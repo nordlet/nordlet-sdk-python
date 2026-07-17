@@ -5,7 +5,7 @@
   "generatorConfig": {
     "client_class_name": "Nordlet"
   },
-  "originGitCommit": "c592b27d487539b99475f69f6af1df30ec891f51",
+  "originGitCommit": "caacc549223941dfc789d1cefa87ae08c36f4cb7",
   "originGitCommitIsDirty": false,
   "invokedBy": "ci",
   "requestedVersion": "0.1.0",
