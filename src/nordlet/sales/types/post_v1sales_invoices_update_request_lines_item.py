@@ -7,6 +7,9 @@ import typing_extensions
 from ...core.pydantic_utilities import IS_PYDANTIC_V2, UniversalBaseModel
 from ...core.serialization import FieldMetadata
 from .post_v1sales_invoices_update_request_lines_item_quantity import PostV1SalesInvoicesUpdateRequestLinesItemQuantity
+from .post_v1sales_invoices_update_request_lines_item_recognition import (
+    PostV1SalesInvoicesUpdateRequestLinesItemRecognition,
+)
 
 
 class PostV1SalesInvoicesUpdateRequestLinesItem(UniversalBaseModel):
@@ -30,6 +33,17 @@ class PostV1SalesInvoicesUpdateRequestLinesItem(UniversalBaseModel):
     ] = None
     cost_center_id: typing_extensions.Annotated[
         typing.Optional[str], FieldMetadata(alias="costCenterId"), pydantic.Field(alias="costCenterId")
+    ] = None
+    recognition: typing.Optional[PostV1SalesInvoicesUpdateRequestLinesItemRecognition] = None
+    standalone_selling_price: typing_extensions.Annotated[
+        typing.Optional[str],
+        FieldMetadata(alias="standaloneSellingPrice"),
+        pydantic.Field(alias="standaloneSellingPrice"),
+    ] = None
+    refund_estimate_percent: typing_extensions.Annotated[
+        typing.Optional[str],
+        FieldMetadata(alias="refundEstimatePercent"),
+        pydantic.Field(alias="refundEstimatePercent"),
     ] = None
 
     if IS_PYDANTIC_V2:

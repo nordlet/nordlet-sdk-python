@@ -17,6 +17,9 @@ class PostV1AccountCompaniesUpdateResponse(UniversalBaseModel):
     vat_code: typing_extensions.Annotated[
         typing.Optional[str], FieldMetadata(alias="vatCode"), pydantic.Field(alias="vatCode")
     ] = None
+    sme_exemption_number: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="smeExemptionNumber"), pydantic.Field(alias="smeExemptionNumber")
+    ] = None
     is_vat_payer: typing_extensions.Annotated[
         bool, FieldMetadata(alias="isVatPayer"), pydantic.Field(alias="isVatPayer")
     ]

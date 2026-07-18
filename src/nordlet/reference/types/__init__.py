@@ -59,6 +59,25 @@ if typing.TYPE_CHECKING:
     from .post_v1reference_eu_vat_rates_list_response_rows_item_category import (
         PostV1ReferenceEuVatRatesListResponseRowsItemCategory,
     )
+    from .post_v1reference_eu_vat_rates_list_response_rows_item_source import (
+        PostV1ReferenceEuVatRatesListResponseRowsItemSource,
+    )
+    from .post_v1reference_eu_vat_rates_set_overrides_request_rates_item import (
+        PostV1ReferenceEuVatRatesSetOverridesRequestRatesItem,
+    )
+    from .post_v1reference_eu_vat_rates_set_overrides_request_rates_item_category import (
+        PostV1ReferenceEuVatRatesSetOverridesRequestRatesItemCategory,
+    )
+    from .post_v1reference_eu_vat_rates_set_overrides_response import PostV1ReferenceEuVatRatesSetOverridesResponse
+    from .post_v1reference_eu_vat_rates_set_overrides_response_rows_item import (
+        PostV1ReferenceEuVatRatesSetOverridesResponseRowsItem,
+    )
+    from .post_v1reference_eu_vat_rates_set_overrides_response_rows_item_category import (
+        PostV1ReferenceEuVatRatesSetOverridesResponseRowsItemCategory,
+    )
+    from .post_v1reference_eu_vat_rates_set_overrides_response_source import (
+        PostV1ReferenceEuVatRatesSetOverridesResponseSource,
+    )
     from .post_v1reference_exchange_rates_list_request_filter_item import (
         PostV1ReferenceExchangeRatesListRequestFilterItem,
     )
@@ -204,6 +223,13 @@ _dynamic_imports: typing.Dict[str, str] = {
     "PostV1ReferenceEuVatRatesListResponse": ".post_v1reference_eu_vat_rates_list_response",
     "PostV1ReferenceEuVatRatesListResponseRowsItem": ".post_v1reference_eu_vat_rates_list_response_rows_item",
     "PostV1ReferenceEuVatRatesListResponseRowsItemCategory": ".post_v1reference_eu_vat_rates_list_response_rows_item_category",
+    "PostV1ReferenceEuVatRatesListResponseRowsItemSource": ".post_v1reference_eu_vat_rates_list_response_rows_item_source",
+    "PostV1ReferenceEuVatRatesSetOverridesRequestRatesItem": ".post_v1reference_eu_vat_rates_set_overrides_request_rates_item",
+    "PostV1ReferenceEuVatRatesSetOverridesRequestRatesItemCategory": ".post_v1reference_eu_vat_rates_set_overrides_request_rates_item_category",
+    "PostV1ReferenceEuVatRatesSetOverridesResponse": ".post_v1reference_eu_vat_rates_set_overrides_response",
+    "PostV1ReferenceEuVatRatesSetOverridesResponseRowsItem": ".post_v1reference_eu_vat_rates_set_overrides_response_rows_item",
+    "PostV1ReferenceEuVatRatesSetOverridesResponseRowsItemCategory": ".post_v1reference_eu_vat_rates_set_overrides_response_rows_item_category",
+    "PostV1ReferenceEuVatRatesSetOverridesResponseSource": ".post_v1reference_eu_vat_rates_set_overrides_response_source",
     "PostV1ReferenceExchangeRatesListRequestFilterItem": ".post_v1reference_exchange_rates_list_request_filter_item",
     "PostV1ReferenceExchangeRatesListRequestFilterItemOp": ".post_v1reference_exchange_rates_list_request_filter_item_op",
     "PostV1ReferenceExchangeRatesListRequestFilterItemValue": ".post_v1reference_exchange_rates_list_request_filter_item_value",
@@ -319,6 +345,13 @@ __all__ = [
     "PostV1ReferenceEuVatRatesListResponse",
     "PostV1ReferenceEuVatRatesListResponseRowsItem",
     "PostV1ReferenceEuVatRatesListResponseRowsItemCategory",
+    "PostV1ReferenceEuVatRatesListResponseRowsItemSource",
+    "PostV1ReferenceEuVatRatesSetOverridesRequestRatesItem",
+    "PostV1ReferenceEuVatRatesSetOverridesRequestRatesItemCategory",
+    "PostV1ReferenceEuVatRatesSetOverridesResponse",
+    "PostV1ReferenceEuVatRatesSetOverridesResponseRowsItem",
+    "PostV1ReferenceEuVatRatesSetOverridesResponseRowsItemCategory",
+    "PostV1ReferenceEuVatRatesSetOverridesResponseSource",
     "PostV1ReferenceExchangeRatesListRequestFilterItem",
     "PostV1ReferenceExchangeRatesListRequestFilterItemOp",
     "PostV1ReferenceExchangeRatesListRequestFilterItemValue",

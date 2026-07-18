@@ -9,6 +9,9 @@ from ...core.serialization import FieldMetadata
 from .post_v1reference_eu_vat_rates_list_response_rows_item_category import (
     PostV1ReferenceEuVatRatesListResponseRowsItemCategory,
 )
+from .post_v1reference_eu_vat_rates_list_response_rows_item_source import (
+    PostV1ReferenceEuVatRatesListResponseRowsItemSource,
+)
 
 
 class PostV1ReferenceEuVatRatesListResponseRowsItem(UniversalBaseModel):
@@ -25,6 +28,7 @@ class PostV1ReferenceEuVatRatesListResponseRowsItem(UniversalBaseModel):
     valid_to: typing_extensions.Annotated[
         typing.Optional[str], FieldMetadata(alias="validTo"), pydantic.Field(alias="validTo")
     ] = None
+    source: PostV1ReferenceEuVatRatesListResponseRowsItemSource
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

@@ -12,6 +12,7 @@ PostV1SalesInvoicesCreateResponseVatScheme = typing.Union[
         "marketplace_deemed",
         "export",
         "out_of_scope",
+        "sme_exempt",
     ],
     typing.Any,
 ]

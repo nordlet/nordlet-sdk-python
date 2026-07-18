@@ -7,8 +7,19 @@ from ..core.request_options import RequestOptions
 from .raw_client import AsyncRawDeclarationsClient, RawDeclarationsClient
 from .types.post_v1declarations_configs_list_response import PostV1DeclarationsConfigsListResponse
 from .types.post_v1declarations_configs_update_response import PostV1DeclarationsConfigsUpdateResponse
+from .types.post_v1declarations_eu_distance_sales_threshold_get_response import (
+    PostV1DeclarationsEuDistanceSalesThresholdGetResponse,
+)
 from .types.post_v1declarations_eu_ioss_compute_response import PostV1DeclarationsEuIossComputeResponse
 from .types.post_v1declarations_eu_oss_compute_response import PostV1DeclarationsEuOssComputeResponse
+from .types.post_v1declarations_eu_sme_cross_border_report_compute_response import (
+    PostV1DeclarationsEuSmeCrossBorderReportComputeResponse,
+)
+from .types.post_v1declarations_eu_sme_threshold_get_response import PostV1DeclarationsEuSmeThresholdGetResponse
+from .types.post_v1declarations_eu_sme_thresholds_list_response import PostV1DeclarationsEuSmeThresholdsListResponse
+from .types.post_v1declarations_eu_union_turnover_get_response import PostV1DeclarationsEuUnionTurnoverGetResponse
+from .types.post_v1declarations_eu_vat_return_compute_response import PostV1DeclarationsEuVatReturnComputeResponse
+from .types.post_v1declarations_eu_vat_return_packs_list_response import PostV1DeclarationsEuVatReturnPacksListResponse
 from .types.post_v1declarations_lt_fr0600compute_response import PostV1DeclarationsLtFr0600ComputeResponse
 from .types.post_v1declarations_lt_gpm313compute_request_payout_timing import (
     PostV1DeclarationsLtGpm313ComputeRequestPayoutTiming,
@@ -526,6 +537,229 @@ class DeclarationsClient:
         """
         _response = self._raw_client.post_v1declarations_eu_ioss_compute(
             year=year, month=month, request_options=request_options
+        )
+        return _response.data
+
+    def post_v1declarations_eu_distance_sales_threshold_get(
+        self, *, date: typing.Optional[str] = OMIT, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1DeclarationsEuDistanceSalesThresholdGetResponse:
+        """
+        Parameters
+        ----------
+        date : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1DeclarationsEuDistanceSalesThresholdGetResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.declarations.post_v1declarations_eu_distance_sales_threshold_get()
+        """
+        _response = self._raw_client.post_v1declarations_eu_distance_sales_threshold_get(
+            date=date, request_options=request_options
+        )
+        return _response.data
+
+    def post_v1declarations_eu_union_turnover_get(
+        self, *, date: typing.Optional[str] = OMIT, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1DeclarationsEuUnionTurnoverGetResponse:
+        """
+        Parameters
+        ----------
+        date : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1DeclarationsEuUnionTurnoverGetResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.declarations.post_v1declarations_eu_union_turnover_get()
+        """
+        _response = self._raw_client.post_v1declarations_eu_union_turnover_get(
+            date=date, request_options=request_options
+        )
+        return _response.data
+
+    def post_v1declarations_eu_sme_cross_border_report_compute(
+        self, *, year: int, quarter: int, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1DeclarationsEuSmeCrossBorderReportComputeResponse:
+        """
+        Parameters
+        ----------
+        year : int
+
+        quarter : int
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1DeclarationsEuSmeCrossBorderReportComputeResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.declarations.post_v1declarations_eu_sme_cross_border_report_compute(
+            year=1000000,
+            quarter=1000000,
+        )
+        """
+        _response = self._raw_client.post_v1declarations_eu_sme_cross_border_report_compute(
+            year=year, quarter=quarter, request_options=request_options
+        )
+        return _response.data
+
+    def post_v1declarations_eu_sme_thresholds_list(
+        self, *, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1DeclarationsEuSmeThresholdsListResponse:
+        """
+        Parameters
+        ----------
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1DeclarationsEuSmeThresholdsListResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.declarations.post_v1declarations_eu_sme_thresholds_list()
+        """
+        _response = self._raw_client.post_v1declarations_eu_sme_thresholds_list(request_options=request_options)
+        return _response.data
+
+    def post_v1declarations_eu_sme_threshold_get(
+        self, *, date: typing.Optional[str] = OMIT, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1DeclarationsEuSmeThresholdGetResponse:
+        """
+        Parameters
+        ----------
+        date : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1DeclarationsEuSmeThresholdGetResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.declarations.post_v1declarations_eu_sme_threshold_get()
+        """
+        _response = self._raw_client.post_v1declarations_eu_sme_threshold_get(
+            date=date, request_options=request_options
+        )
+        return _response.data
+
+    def post_v1declarations_eu_vat_return_packs_list(
+        self, *, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1DeclarationsEuVatReturnPacksListResponse:
+        """
+        Parameters
+        ----------
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1DeclarationsEuVatReturnPacksListResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.declarations.post_v1declarations_eu_vat_return_packs_list()
+        """
+        _response = self._raw_client.post_v1declarations_eu_vat_return_packs_list(request_options=request_options)
+        return _response.data
+
+    def post_v1declarations_eu_vat_return_compute(
+        self,
+        *,
+        country_code: str,
+        year: int,
+        month: int,
+        months: typing.Optional[int] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1DeclarationsEuVatReturnComputeResponse:
+        """
+        Parameters
+        ----------
+        country_code : str
+
+        year : int
+
+        month : int
+
+        months : typing.Optional[int]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1DeclarationsEuVatReturnComputeResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.declarations.post_v1declarations_eu_vat_return_compute(
+            country_code="countryCode",
+            year=1000000,
+            month=1000000,
+        )
+        """
+        _response = self._raw_client.post_v1declarations_eu_vat_return_compute(
+            country_code=country_code, year=year, month=month, months=months, request_options=request_options
         )
         return _response.data
 
@@ -1285,6 +1519,285 @@ class AsyncDeclarationsClient:
         """
         _response = await self._raw_client.post_v1declarations_eu_ioss_compute(
             year=year, month=month, request_options=request_options
+        )
+        return _response.data
+
+    async def post_v1declarations_eu_distance_sales_threshold_get(
+        self, *, date: typing.Optional[str] = OMIT, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1DeclarationsEuDistanceSalesThresholdGetResponse:
+        """
+        Parameters
+        ----------
+        date : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1DeclarationsEuDistanceSalesThresholdGetResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.declarations.post_v1declarations_eu_distance_sales_threshold_get()
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1declarations_eu_distance_sales_threshold_get(
+            date=date, request_options=request_options
+        )
+        return _response.data
+
+    async def post_v1declarations_eu_union_turnover_get(
+        self, *, date: typing.Optional[str] = OMIT, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1DeclarationsEuUnionTurnoverGetResponse:
+        """
+        Parameters
+        ----------
+        date : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1DeclarationsEuUnionTurnoverGetResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.declarations.post_v1declarations_eu_union_turnover_get()
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1declarations_eu_union_turnover_get(
+            date=date, request_options=request_options
+        )
+        return _response.data
+
+    async def post_v1declarations_eu_sme_cross_border_report_compute(
+        self, *, year: int, quarter: int, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1DeclarationsEuSmeCrossBorderReportComputeResponse:
+        """
+        Parameters
+        ----------
+        year : int
+
+        quarter : int
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1DeclarationsEuSmeCrossBorderReportComputeResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.declarations.post_v1declarations_eu_sme_cross_border_report_compute(
+                year=1000000,
+                quarter=1000000,
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1declarations_eu_sme_cross_border_report_compute(
+            year=year, quarter=quarter, request_options=request_options
+        )
+        return _response.data
+
+    async def post_v1declarations_eu_sme_thresholds_list(
+        self, *, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1DeclarationsEuSmeThresholdsListResponse:
+        """
+        Parameters
+        ----------
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1DeclarationsEuSmeThresholdsListResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.declarations.post_v1declarations_eu_sme_thresholds_list()
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1declarations_eu_sme_thresholds_list(request_options=request_options)
+        return _response.data
+
+    async def post_v1declarations_eu_sme_threshold_get(
+        self, *, date: typing.Optional[str] = OMIT, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1DeclarationsEuSmeThresholdGetResponse:
+        """
+        Parameters
+        ----------
+        date : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1DeclarationsEuSmeThresholdGetResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.declarations.post_v1declarations_eu_sme_threshold_get()
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1declarations_eu_sme_threshold_get(
+            date=date, request_options=request_options
+        )
+        return _response.data
+
+    async def post_v1declarations_eu_vat_return_packs_list(
+        self, *, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1DeclarationsEuVatReturnPacksListResponse:
+        """
+        Parameters
+        ----------
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1DeclarationsEuVatReturnPacksListResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.declarations.post_v1declarations_eu_vat_return_packs_list()
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1declarations_eu_vat_return_packs_list(request_options=request_options)
+        return _response.data
+
+    async def post_v1declarations_eu_vat_return_compute(
+        self,
+        *,
+        country_code: str,
+        year: int,
+        month: int,
+        months: typing.Optional[int] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1DeclarationsEuVatReturnComputeResponse:
+        """
+        Parameters
+        ----------
+        country_code : str
+
+        year : int
+
+        month : int
+
+        months : typing.Optional[int]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1DeclarationsEuVatReturnComputeResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.declarations.post_v1declarations_eu_vat_return_compute(
+                country_code="countryCode",
+                year=1000000,
+                month=1000000,
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1declarations_eu_vat_return_compute(
+            country_code=country_code, year=year, month=month, months=months, request_options=request_options
         )
         return _response.data
 

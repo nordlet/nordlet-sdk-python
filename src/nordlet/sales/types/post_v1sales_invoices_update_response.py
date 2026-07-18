@@ -48,6 +48,9 @@ class PostV1SalesInvoicesUpdateResponse(UniversalBaseModel):
     credited_invoice_id: typing_extensions.Annotated[
         typing.Optional[str], FieldMetadata(alias="creditedInvoiceId"), pydantic.Field(alias="creditedInvoiceId")
     ] = None
+    agreement_id: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="agreementId"), pydantic.Field(alias="agreementId")
+    ] = None
     vat_scheme: typing_extensions.Annotated[
         typing.Optional[PostV1SalesInvoicesUpdateResponseVatScheme],
         FieldMetadata(alias="vatScheme"),

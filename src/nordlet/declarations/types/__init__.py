@@ -27,18 +27,101 @@ if typing.TYPE_CHECKING:
     from .post_v1declarations_configs_update_response_fields_item_kind import (
         PostV1DeclarationsConfigsUpdateResponseFieldsItemKind,
     )
+    from .post_v1declarations_eu_distance_sales_threshold_get_response import (
+        PostV1DeclarationsEuDistanceSalesThresholdGetResponse,
+    )
+    from .post_v1declarations_eu_distance_sales_threshold_get_response_current_year import (
+        PostV1DeclarationsEuDistanceSalesThresholdGetResponseCurrentYear,
+    )
+    from .post_v1declarations_eu_distance_sales_threshold_get_response_preceding_year import (
+        PostV1DeclarationsEuDistanceSalesThresholdGetResponsePrecedingYear,
+    )
     from .post_v1declarations_eu_ioss_compute_response import PostV1DeclarationsEuIossComputeResponse
+    from .post_v1declarations_eu_ioss_compute_response_corrections_item import (
+        PostV1DeclarationsEuIossComputeResponseCorrectionsItem,
+    )
+    from .post_v1declarations_eu_ioss_compute_response_corrections_total import (
+        PostV1DeclarationsEuIossComputeResponseCorrectionsTotal,
+    )
     from .post_v1declarations_eu_ioss_compute_response_rows_item import PostV1DeclarationsEuIossComputeResponseRowsItem
     from .post_v1declarations_eu_ioss_compute_response_rows_item_rate_type import (
         PostV1DeclarationsEuIossComputeResponseRowsItemRateType,
     )
     from .post_v1declarations_eu_ioss_compute_response_totals import PostV1DeclarationsEuIossComputeResponseTotals
     from .post_v1declarations_eu_oss_compute_response import PostV1DeclarationsEuOssComputeResponse
+    from .post_v1declarations_eu_oss_compute_response_corrections_item import (
+        PostV1DeclarationsEuOssComputeResponseCorrectionsItem,
+    )
+    from .post_v1declarations_eu_oss_compute_response_corrections_total import (
+        PostV1DeclarationsEuOssComputeResponseCorrectionsTotal,
+    )
     from .post_v1declarations_eu_oss_compute_response_rows_item import PostV1DeclarationsEuOssComputeResponseRowsItem
     from .post_v1declarations_eu_oss_compute_response_rows_item_rate_type import (
         PostV1DeclarationsEuOssComputeResponseRowsItemRateType,
     )
     from .post_v1declarations_eu_oss_compute_response_totals import PostV1DeclarationsEuOssComputeResponseTotals
+    from .post_v1declarations_eu_sme_cross_border_report_compute_response import (
+        PostV1DeclarationsEuSmeCrossBorderReportComputeResponse,
+    )
+    from .post_v1declarations_eu_sme_cross_border_report_compute_response_rows_item import (
+        PostV1DeclarationsEuSmeCrossBorderReportComputeResponseRowsItem,
+    )
+    from .post_v1declarations_eu_sme_threshold_get_response import PostV1DeclarationsEuSmeThresholdGetResponse
+    from .post_v1declarations_eu_sme_threshold_get_response_intra_eu import (
+        PostV1DeclarationsEuSmeThresholdGetResponseIntraEu,
+    )
+    from .post_v1declarations_eu_sme_threshold_get_response_intra_eu_status import (
+        PostV1DeclarationsEuSmeThresholdGetResponseIntraEuStatus,
+    )
+    from .post_v1declarations_eu_sme_threshold_get_response_preceding_turnover import (
+        PostV1DeclarationsEuSmeThresholdGetResponsePrecedingTurnover,
+    )
+    from .post_v1declarations_eu_sme_threshold_get_response_status import (
+        PostV1DeclarationsEuSmeThresholdGetResponseStatus,
+    )
+    from .post_v1declarations_eu_sme_threshold_get_response_threshold import (
+        PostV1DeclarationsEuSmeThresholdGetResponseThreshold,
+    )
+    from .post_v1declarations_eu_sme_threshold_get_response_threshold_sectors_item import (
+        PostV1DeclarationsEuSmeThresholdGetResponseThresholdSectorsItem,
+    )
+    from .post_v1declarations_eu_sme_threshold_get_response_turnover import (
+        PostV1DeclarationsEuSmeThresholdGetResponseTurnover,
+    )
+    from .post_v1declarations_eu_sme_thresholds_list_response import PostV1DeclarationsEuSmeThresholdsListResponse
+    from .post_v1declarations_eu_sme_thresholds_list_response_thresholds_item import (
+        PostV1DeclarationsEuSmeThresholdsListResponseThresholdsItem,
+    )
+    from .post_v1declarations_eu_sme_thresholds_list_response_thresholds_item_intra_eu_acquisitions_trigger import (
+        PostV1DeclarationsEuSmeThresholdsListResponseThresholdsItemIntraEuAcquisitionsTrigger,
+    )
+    from .post_v1declarations_eu_sme_thresholds_list_response_thresholds_item_sectors_item import (
+        PostV1DeclarationsEuSmeThresholdsListResponseThresholdsItemSectorsItem,
+    )
+    from .post_v1declarations_eu_union_turnover_get_response import PostV1DeclarationsEuUnionTurnoverGetResponse
+    from .post_v1declarations_eu_union_turnover_get_response_current_year import (
+        PostV1DeclarationsEuUnionTurnoverGetResponseCurrentYear,
+    )
+    from .post_v1declarations_eu_union_turnover_get_response_previous_year import (
+        PostV1DeclarationsEuUnionTurnoverGetResponsePreviousYear,
+    )
+    from .post_v1declarations_eu_union_turnover_get_response_status import (
+        PostV1DeclarationsEuUnionTurnoverGetResponseStatus,
+    )
+    from .post_v1declarations_eu_vat_return_compute_response import PostV1DeclarationsEuVatReturnComputeResponse
+    from .post_v1declarations_eu_vat_return_compute_response_boxes_item import (
+        PostV1DeclarationsEuVatReturnComputeResponseBoxesItem,
+    )
+    from .post_v1declarations_eu_vat_return_compute_response_frequency import (
+        PostV1DeclarationsEuVatReturnComputeResponseFrequency,
+    )
+    from .post_v1declarations_eu_vat_return_packs_list_response import PostV1DeclarationsEuVatReturnPacksListResponse
+    from .post_v1declarations_eu_vat_return_packs_list_response_packs_item import (
+        PostV1DeclarationsEuVatReturnPacksListResponsePacksItem,
+    )
+    from .post_v1declarations_eu_vat_return_packs_list_response_packs_item_frequency import (
+        PostV1DeclarationsEuVatReturnPacksListResponsePacksItemFrequency,
+    )
     from .post_v1declarations_lt_fr0600compute_response import PostV1DeclarationsLtFr0600ComputeResponse
     from .post_v1declarations_lt_fr0600compute_response_breakdown_item import (
         PostV1DeclarationsLtFr0600ComputeResponseBreakdownItem,
@@ -153,14 +236,45 @@ _dynamic_imports: typing.Dict[str, str] = {
     "PostV1DeclarationsConfigsUpdateResponseEndpointsItem": ".post_v1declarations_configs_update_response_endpoints_item",
     "PostV1DeclarationsConfigsUpdateResponseFieldsItem": ".post_v1declarations_configs_update_response_fields_item",
     "PostV1DeclarationsConfigsUpdateResponseFieldsItemKind": ".post_v1declarations_configs_update_response_fields_item_kind",
+    "PostV1DeclarationsEuDistanceSalesThresholdGetResponse": ".post_v1declarations_eu_distance_sales_threshold_get_response",
+    "PostV1DeclarationsEuDistanceSalesThresholdGetResponseCurrentYear": ".post_v1declarations_eu_distance_sales_threshold_get_response_current_year",
+    "PostV1DeclarationsEuDistanceSalesThresholdGetResponsePrecedingYear": ".post_v1declarations_eu_distance_sales_threshold_get_response_preceding_year",
     "PostV1DeclarationsEuIossComputeResponse": ".post_v1declarations_eu_ioss_compute_response",
+    "PostV1DeclarationsEuIossComputeResponseCorrectionsItem": ".post_v1declarations_eu_ioss_compute_response_corrections_item",
+    "PostV1DeclarationsEuIossComputeResponseCorrectionsTotal": ".post_v1declarations_eu_ioss_compute_response_corrections_total",
     "PostV1DeclarationsEuIossComputeResponseRowsItem": ".post_v1declarations_eu_ioss_compute_response_rows_item",
     "PostV1DeclarationsEuIossComputeResponseRowsItemRateType": ".post_v1declarations_eu_ioss_compute_response_rows_item_rate_type",
     "PostV1DeclarationsEuIossComputeResponseTotals": ".post_v1declarations_eu_ioss_compute_response_totals",
     "PostV1DeclarationsEuOssComputeResponse": ".post_v1declarations_eu_oss_compute_response",
+    "PostV1DeclarationsEuOssComputeResponseCorrectionsItem": ".post_v1declarations_eu_oss_compute_response_corrections_item",
+    "PostV1DeclarationsEuOssComputeResponseCorrectionsTotal": ".post_v1declarations_eu_oss_compute_response_corrections_total",
     "PostV1DeclarationsEuOssComputeResponseRowsItem": ".post_v1declarations_eu_oss_compute_response_rows_item",
     "PostV1DeclarationsEuOssComputeResponseRowsItemRateType": ".post_v1declarations_eu_oss_compute_response_rows_item_rate_type",
     "PostV1DeclarationsEuOssComputeResponseTotals": ".post_v1declarations_eu_oss_compute_response_totals",
+    "PostV1DeclarationsEuSmeCrossBorderReportComputeResponse": ".post_v1declarations_eu_sme_cross_border_report_compute_response",
+    "PostV1DeclarationsEuSmeCrossBorderReportComputeResponseRowsItem": ".post_v1declarations_eu_sme_cross_border_report_compute_response_rows_item",
+    "PostV1DeclarationsEuSmeThresholdGetResponse": ".post_v1declarations_eu_sme_threshold_get_response",
+    "PostV1DeclarationsEuSmeThresholdGetResponseIntraEu": ".post_v1declarations_eu_sme_threshold_get_response_intra_eu",
+    "PostV1DeclarationsEuSmeThresholdGetResponseIntraEuStatus": ".post_v1declarations_eu_sme_threshold_get_response_intra_eu_status",
+    "PostV1DeclarationsEuSmeThresholdGetResponsePrecedingTurnover": ".post_v1declarations_eu_sme_threshold_get_response_preceding_turnover",
+    "PostV1DeclarationsEuSmeThresholdGetResponseStatus": ".post_v1declarations_eu_sme_threshold_get_response_status",
+    "PostV1DeclarationsEuSmeThresholdGetResponseThreshold": ".post_v1declarations_eu_sme_threshold_get_response_threshold",
+    "PostV1DeclarationsEuSmeThresholdGetResponseThresholdSectorsItem": ".post_v1declarations_eu_sme_threshold_get_response_threshold_sectors_item",
+    "PostV1DeclarationsEuSmeThresholdGetResponseTurnover": ".post_v1declarations_eu_sme_threshold_get_response_turnover",
+    "PostV1DeclarationsEuSmeThresholdsListResponse": ".post_v1declarations_eu_sme_thresholds_list_response",
+    "PostV1DeclarationsEuSmeThresholdsListResponseThresholdsItem": ".post_v1declarations_eu_sme_thresholds_list_response_thresholds_item",
+    "PostV1DeclarationsEuSmeThresholdsListResponseThresholdsItemIntraEuAcquisitionsTrigger": ".post_v1declarations_eu_sme_thresholds_list_response_thresholds_item_intra_eu_acquisitions_trigger",
+    "PostV1DeclarationsEuSmeThresholdsListResponseThresholdsItemSectorsItem": ".post_v1declarations_eu_sme_thresholds_list_response_thresholds_item_sectors_item",
+    "PostV1DeclarationsEuUnionTurnoverGetResponse": ".post_v1declarations_eu_union_turnover_get_response",
+    "PostV1DeclarationsEuUnionTurnoverGetResponseCurrentYear": ".post_v1declarations_eu_union_turnover_get_response_current_year",
+    "PostV1DeclarationsEuUnionTurnoverGetResponsePreviousYear": ".post_v1declarations_eu_union_turnover_get_response_previous_year",
+    "PostV1DeclarationsEuUnionTurnoverGetResponseStatus": ".post_v1declarations_eu_union_turnover_get_response_status",
+    "PostV1DeclarationsEuVatReturnComputeResponse": ".post_v1declarations_eu_vat_return_compute_response",
+    "PostV1DeclarationsEuVatReturnComputeResponseBoxesItem": ".post_v1declarations_eu_vat_return_compute_response_boxes_item",
+    "PostV1DeclarationsEuVatReturnComputeResponseFrequency": ".post_v1declarations_eu_vat_return_compute_response_frequency",
+    "PostV1DeclarationsEuVatReturnPacksListResponse": ".post_v1declarations_eu_vat_return_packs_list_response",
+    "PostV1DeclarationsEuVatReturnPacksListResponsePacksItem": ".post_v1declarations_eu_vat_return_packs_list_response_packs_item",
+    "PostV1DeclarationsEuVatReturnPacksListResponsePacksItemFrequency": ".post_v1declarations_eu_vat_return_packs_list_response_packs_item_frequency",
     "PostV1DeclarationsLtFr0600ComputeResponse": ".post_v1declarations_lt_fr0600compute_response",
     "PostV1DeclarationsLtFr0600ComputeResponseBreakdownItem": ".post_v1declarations_lt_fr0600compute_response_breakdown_item",
     "PostV1DeclarationsLtFr0600ComputeResponseBreakdownItemDirection": ".post_v1declarations_lt_fr0600compute_response_breakdown_item_direction",
@@ -247,14 +361,45 @@ __all__ = [
     "PostV1DeclarationsConfigsUpdateResponseEndpointsItem",
     "PostV1DeclarationsConfigsUpdateResponseFieldsItem",
     "PostV1DeclarationsConfigsUpdateResponseFieldsItemKind",
+    "PostV1DeclarationsEuDistanceSalesThresholdGetResponse",
+    "PostV1DeclarationsEuDistanceSalesThresholdGetResponseCurrentYear",
+    "PostV1DeclarationsEuDistanceSalesThresholdGetResponsePrecedingYear",
     "PostV1DeclarationsEuIossComputeResponse",
+    "PostV1DeclarationsEuIossComputeResponseCorrectionsItem",
+    "PostV1DeclarationsEuIossComputeResponseCorrectionsTotal",
     "PostV1DeclarationsEuIossComputeResponseRowsItem",
     "PostV1DeclarationsEuIossComputeResponseRowsItemRateType",
     "PostV1DeclarationsEuIossComputeResponseTotals",
     "PostV1DeclarationsEuOssComputeResponse",
+    "PostV1DeclarationsEuOssComputeResponseCorrectionsItem",
+    "PostV1DeclarationsEuOssComputeResponseCorrectionsTotal",
     "PostV1DeclarationsEuOssComputeResponseRowsItem",
     "PostV1DeclarationsEuOssComputeResponseRowsItemRateType",
     "PostV1DeclarationsEuOssComputeResponseTotals",
+    "PostV1DeclarationsEuSmeCrossBorderReportComputeResponse",
+    "PostV1DeclarationsEuSmeCrossBorderReportComputeResponseRowsItem",
+    "PostV1DeclarationsEuSmeThresholdGetResponse",
+    "PostV1DeclarationsEuSmeThresholdGetResponseIntraEu",
+    "PostV1DeclarationsEuSmeThresholdGetResponseIntraEuStatus",
+    "PostV1DeclarationsEuSmeThresholdGetResponsePrecedingTurnover",
+    "PostV1DeclarationsEuSmeThresholdGetResponseStatus",
+    "PostV1DeclarationsEuSmeThresholdGetResponseThreshold",
+    "PostV1DeclarationsEuSmeThresholdGetResponseThresholdSectorsItem",
+    "PostV1DeclarationsEuSmeThresholdGetResponseTurnover",
+    "PostV1DeclarationsEuSmeThresholdsListResponse",
+    "PostV1DeclarationsEuSmeThresholdsListResponseThresholdsItem",
+    "PostV1DeclarationsEuSmeThresholdsListResponseThresholdsItemIntraEuAcquisitionsTrigger",
+    "PostV1DeclarationsEuSmeThresholdsListResponseThresholdsItemSectorsItem",
+    "PostV1DeclarationsEuUnionTurnoverGetResponse",
+    "PostV1DeclarationsEuUnionTurnoverGetResponseCurrentYear",
+    "PostV1DeclarationsEuUnionTurnoverGetResponsePreviousYear",
+    "PostV1DeclarationsEuUnionTurnoverGetResponseStatus",
+    "PostV1DeclarationsEuVatReturnComputeResponse",
+    "PostV1DeclarationsEuVatReturnComputeResponseBoxesItem",
+    "PostV1DeclarationsEuVatReturnComputeResponseFrequency",
+    "PostV1DeclarationsEuVatReturnPacksListResponse",
+    "PostV1DeclarationsEuVatReturnPacksListResponsePacksItem",
+    "PostV1DeclarationsEuVatReturnPacksListResponsePacksItemFrequency",
     "PostV1DeclarationsLtFr0600ComputeResponse",
     "PostV1DeclarationsLtFr0600ComputeResponseBreakdownItem",
     "PostV1DeclarationsLtFr0600ComputeResponseBreakdownItemDirection",

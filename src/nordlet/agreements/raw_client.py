@@ -19,16 +19,26 @@ from ..errors.too_many_requests_error import TooManyRequestsError
 from ..errors.unauthorized_error import UnauthorizedError
 from ..errors.unprocessable_entity_error import UnprocessableEntityError
 from ..types.error_response import ErrorResponse
+from .types.post_v1agreements_agreements_billing_run_response import PostV1AgreementsAgreementsBillingRunResponse
+from .types.post_v1agreements_agreements_create_request_billing_period import (
+    PostV1AgreementsAgreementsCreateRequestBillingPeriod,
+)
 from .types.post_v1agreements_agreements_create_request_items_item import (
     PostV1AgreementsAgreementsCreateRequestItemsItem,
 )
 from .types.post_v1agreements_agreements_create_request_status import PostV1AgreementsAgreementsCreateRequestStatus
 from .types.post_v1agreements_agreements_create_response import PostV1AgreementsAgreementsCreateResponse
 from .types.post_v1agreements_agreements_delete_response import PostV1AgreementsAgreementsDeleteResponse
+from .types.post_v1agreements_agreements_generate_invoice_response import (
+    PostV1AgreementsAgreementsGenerateInvoiceResponse,
+)
 from .types.post_v1agreements_agreements_get_response import PostV1AgreementsAgreementsGetResponse
 from .types.post_v1agreements_agreements_list_request_filter_item import PostV1AgreementsAgreementsListRequestFilterItem
 from .types.post_v1agreements_agreements_list_request_sort_item import PostV1AgreementsAgreementsListRequestSortItem
 from .types.post_v1agreements_agreements_list_response import PostV1AgreementsAgreementsListResponse
+from .types.post_v1agreements_agreements_update_request_billing_period import (
+    PostV1AgreementsAgreementsUpdateRequestBillingPeriod,
+)
 from .types.post_v1agreements_agreements_update_request_status import PostV1AgreementsAgreementsUpdateRequestStatus
 from .types.post_v1agreements_agreements_update_response import PostV1AgreementsAgreementsUpdateResponse
 from .types.post_v1agreements_insurance_policies_create_response import PostV1AgreementsInsurancePoliciesCreateResponse
@@ -361,6 +371,7 @@ class RawAgreementsClient:
         end_date: typing.Optional[str] = OMIT,
         auto_renew: typing.Optional[bool] = OMIT,
         value: typing.Optional[str] = OMIT,
+        billing_period: typing.Optional[PostV1AgreementsAgreementsCreateRequestBillingPeriod] = OMIT,
         currency: typing.Optional[str] = OMIT,
         status: typing.Optional[PostV1AgreementsAgreementsCreateRequestStatus] = OMIT,
         notes: typing.Optional[str] = OMIT,
@@ -385,6 +396,8 @@ class RawAgreementsClient:
         auto_renew : typing.Optional[bool]
 
         value : typing.Optional[str]
+
+        billing_period : typing.Optional[PostV1AgreementsAgreementsCreateRequestBillingPeriod]
 
         currency : typing.Optional[str]
 
@@ -414,6 +427,7 @@ class RawAgreementsClient:
                 "endDate": end_date,
                 "autoRenew": auto_renew,
                 "value": value,
+                "billingPeriod": billing_period,
                 "currency": currency,
                 "status": status,
                 "notes": notes,
@@ -680,6 +694,7 @@ class RawAgreementsClient:
         end_date: typing.Optional[str] = OMIT,
         auto_renew: typing.Optional[bool] = OMIT,
         value: typing.Optional[str] = OMIT,
+        billing_period: typing.Optional[PostV1AgreementsAgreementsUpdateRequestBillingPeriod] = OMIT,
         status: typing.Optional[PostV1AgreementsAgreementsUpdateRequestStatus] = OMIT,
         notes: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
@@ -698,6 +713,8 @@ class RawAgreementsClient:
         auto_renew : typing.Optional[bool]
 
         value : typing.Optional[str]
+
+        billing_period : typing.Optional[PostV1AgreementsAgreementsUpdateRequestBillingPeriod]
 
         status : typing.Optional[PostV1AgreementsAgreementsUpdateRequestStatus]
 
@@ -721,6 +738,7 @@ class RawAgreementsClient:
                 "endDate": end_date,
                 "autoRenew": auto_renew,
                 "value": value,
+                "billingPeriod": billing_period,
                 "status": status,
                 "notes": notes,
             },
@@ -1029,6 +1047,283 @@ class RawAgreementsClient:
                     PostV1AgreementsAgreementsListResponse,
                     parse_obj_as(
                         type_=PostV1AgreementsAgreementsListResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return HttpResponse(response=_response, data=_data)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 422:
+                raise UnprocessableEntityError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
+    def post_v1agreements_agreements_generate_invoice(
+        self,
+        *,
+        id: str,
+        as_of_date: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> HttpResponse[PostV1AgreementsAgreementsGenerateInvoiceResponse]:
+        """
+        Parameters
+        ----------
+        id : str
+
+        as_of_date : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        HttpResponse[PostV1AgreementsAgreementsGenerateInvoiceResponse]
+            Default Response
+        """
+        _response = self._client_wrapper.httpx_client.request(
+            "v1/agreements/agreements/generate-invoice",
+            method="POST",
+            json={
+                "id": id,
+                "asOfDate": as_of_date,
+            },
+            headers={
+                "content-type": "application/json",
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    PostV1AgreementsAgreementsGenerateInvoiceResponse,
+                    parse_obj_as(
+                        type_=PostV1AgreementsAgreementsGenerateInvoiceResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return HttpResponse(response=_response, data=_data)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 422:
+                raise UnprocessableEntityError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
+    def post_v1agreements_agreements_billing_run(
+        self, *, as_of_date: typing.Optional[str] = OMIT, request_options: typing.Optional[RequestOptions] = None
+    ) -> HttpResponse[PostV1AgreementsAgreementsBillingRunResponse]:
+        """
+        Parameters
+        ----------
+        as_of_date : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        HttpResponse[PostV1AgreementsAgreementsBillingRunResponse]
+            Default Response
+        """
+        _response = self._client_wrapper.httpx_client.request(
+            "v1/agreements/agreements/billing/run",
+            method="POST",
+            json={
+                "asOfDate": as_of_date,
+            },
+            headers={
+                "content-type": "application/json",
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    PostV1AgreementsAgreementsBillingRunResponse,
+                    parse_obj_as(
+                        type_=PostV1AgreementsAgreementsBillingRunResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -1901,6 +2196,7 @@ class AsyncRawAgreementsClient:
         end_date: typing.Optional[str] = OMIT,
         auto_renew: typing.Optional[bool] = OMIT,
         value: typing.Optional[str] = OMIT,
+        billing_period: typing.Optional[PostV1AgreementsAgreementsCreateRequestBillingPeriod] = OMIT,
         currency: typing.Optional[str] = OMIT,
         status: typing.Optional[PostV1AgreementsAgreementsCreateRequestStatus] = OMIT,
         notes: typing.Optional[str] = OMIT,
@@ -1925,6 +2221,8 @@ class AsyncRawAgreementsClient:
         auto_renew : typing.Optional[bool]
 
         value : typing.Optional[str]
+
+        billing_period : typing.Optional[PostV1AgreementsAgreementsCreateRequestBillingPeriod]
 
         currency : typing.Optional[str]
 
@@ -1954,6 +2252,7 @@ class AsyncRawAgreementsClient:
                 "endDate": end_date,
                 "autoRenew": auto_renew,
                 "value": value,
+                "billingPeriod": billing_period,
                 "currency": currency,
                 "status": status,
                 "notes": notes,
@@ -2220,6 +2519,7 @@ class AsyncRawAgreementsClient:
         end_date: typing.Optional[str] = OMIT,
         auto_renew: typing.Optional[bool] = OMIT,
         value: typing.Optional[str] = OMIT,
+        billing_period: typing.Optional[PostV1AgreementsAgreementsUpdateRequestBillingPeriod] = OMIT,
         status: typing.Optional[PostV1AgreementsAgreementsUpdateRequestStatus] = OMIT,
         notes: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
@@ -2238,6 +2538,8 @@ class AsyncRawAgreementsClient:
         auto_renew : typing.Optional[bool]
 
         value : typing.Optional[str]
+
+        billing_period : typing.Optional[PostV1AgreementsAgreementsUpdateRequestBillingPeriod]
 
         status : typing.Optional[PostV1AgreementsAgreementsUpdateRequestStatus]
 
@@ -2261,6 +2563,7 @@ class AsyncRawAgreementsClient:
                 "endDate": end_date,
                 "autoRenew": auto_renew,
                 "value": value,
+                "billingPeriod": billing_period,
                 "status": status,
                 "notes": notes,
             },
@@ -2569,6 +2872,283 @@ class AsyncRawAgreementsClient:
                     PostV1AgreementsAgreementsListResponse,
                     parse_obj_as(
                         type_=PostV1AgreementsAgreementsListResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return AsyncHttpResponse(response=_response, data=_data)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 422:
+                raise UnprocessableEntityError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
+    async def post_v1agreements_agreements_generate_invoice(
+        self,
+        *,
+        id: str,
+        as_of_date: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> AsyncHttpResponse[PostV1AgreementsAgreementsGenerateInvoiceResponse]:
+        """
+        Parameters
+        ----------
+        id : str
+
+        as_of_date : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        AsyncHttpResponse[PostV1AgreementsAgreementsGenerateInvoiceResponse]
+            Default Response
+        """
+        _response = await self._client_wrapper.httpx_client.request(
+            "v1/agreements/agreements/generate-invoice",
+            method="POST",
+            json={
+                "id": id,
+                "asOfDate": as_of_date,
+            },
+            headers={
+                "content-type": "application/json",
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    PostV1AgreementsAgreementsGenerateInvoiceResponse,
+                    parse_obj_as(
+                        type_=PostV1AgreementsAgreementsGenerateInvoiceResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return AsyncHttpResponse(response=_response, data=_data)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 422:
+                raise UnprocessableEntityError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
+    async def post_v1agreements_agreements_billing_run(
+        self, *, as_of_date: typing.Optional[str] = OMIT, request_options: typing.Optional[RequestOptions] = None
+    ) -> AsyncHttpResponse[PostV1AgreementsAgreementsBillingRunResponse]:
+        """
+        Parameters
+        ----------
+        as_of_date : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        AsyncHttpResponse[PostV1AgreementsAgreementsBillingRunResponse]
+            Default Response
+        """
+        _response = await self._client_wrapper.httpx_client.request(
+            "v1/agreements/agreements/billing/run",
+            method="POST",
+            json={
+                "asOfDate": as_of_date,
+            },
+            headers={
+                "content-type": "application/json",
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    PostV1AgreementsAgreementsBillingRunResponse,
+                    parse_obj_as(
+                        type_=PostV1AgreementsAgreementsBillingRunResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )

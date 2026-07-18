@@ -8,6 +8,7 @@ from .post_v1reference_eu_vat_rates_list_response_rows_item import PostV1Referen
 
 
 class PostV1ReferenceEuVatRatesListResponse(UniversalBaseModel):
+    notice: str
     rows: typing.List[PostV1ReferenceEuVatRatesListResponseRowsItem]
 
     if IS_PYDANTIC_V2:

@@ -476,6 +476,7 @@ class AccountClient:
         name: str,
         code: typing.Optional[str] = OMIT,
         vat_code: typing.Optional[str] = OMIT,
+        sme_exemption_number: typing.Optional[str] = OMIT,
         is_vat_payer: typing.Optional[bool] = OMIT,
         address: typing.Optional[PostV1AccountCompaniesCreateRequestAddress] = OMIT,
         email: typing.Optional[str] = OMIT,
@@ -496,6 +497,8 @@ class AccountClient:
         code : typing.Optional[str]
 
         vat_code : typing.Optional[str]
+
+        sme_exemption_number : typing.Optional[str]
 
         is_vat_payer : typing.Optional[bool]
 
@@ -542,6 +545,7 @@ class AccountClient:
             name=name,
             code=code,
             vat_code=vat_code,
+            sme_exemption_number=sme_exemption_number,
             is_vat_payer=is_vat_payer,
             address=address,
             email=email,
@@ -620,6 +624,7 @@ class AccountClient:
         name: typing.Optional[str] = OMIT,
         code: typing.Optional[str] = OMIT,
         vat_code: typing.Optional[str] = OMIT,
+        sme_exemption_number: typing.Optional[str] = OMIT,
         is_vat_payer: typing.Optional[bool] = OMIT,
         address: typing.Optional[PostV1AccountCompaniesUpdateRequestAddress] = OMIT,
         email: typing.Optional[str] = OMIT,
@@ -639,6 +644,8 @@ class AccountClient:
         code : typing.Optional[str]
 
         vat_code : typing.Optional[str]
+
+        sme_exemption_number : typing.Optional[str]
 
         is_vat_payer : typing.Optional[bool]
 
@@ -679,6 +686,7 @@ class AccountClient:
             name=name,
             code=code,
             vat_code=vat_code,
+            sme_exemption_number=sme_exemption_number,
             is_vat_payer=is_vat_payer,
             address=address,
             email=email,
@@ -1426,6 +1434,7 @@ class AsyncAccountClient:
         name: str,
         code: typing.Optional[str] = OMIT,
         vat_code: typing.Optional[str] = OMIT,
+        sme_exemption_number: typing.Optional[str] = OMIT,
         is_vat_payer: typing.Optional[bool] = OMIT,
         address: typing.Optional[PostV1AccountCompaniesCreateRequestAddress] = OMIT,
         email: typing.Optional[str] = OMIT,
@@ -1446,6 +1455,8 @@ class AsyncAccountClient:
         code : typing.Optional[str]
 
         vat_code : typing.Optional[str]
+
+        sme_exemption_number : typing.Optional[str]
 
         is_vat_payer : typing.Optional[bool]
 
@@ -1500,6 +1511,7 @@ class AsyncAccountClient:
             name=name,
             code=code,
             vat_code=vat_code,
+            sme_exemption_number=sme_exemption_number,
             is_vat_payer=is_vat_payer,
             address=address,
             email=email,
@@ -1594,6 +1606,7 @@ class AsyncAccountClient:
         name: typing.Optional[str] = OMIT,
         code: typing.Optional[str] = OMIT,
         vat_code: typing.Optional[str] = OMIT,
+        sme_exemption_number: typing.Optional[str] = OMIT,
         is_vat_payer: typing.Optional[bool] = OMIT,
         address: typing.Optional[PostV1AccountCompaniesUpdateRequestAddress] = OMIT,
         email: typing.Optional[str] = OMIT,
@@ -1613,6 +1626,8 @@ class AsyncAccountClient:
         code : typing.Optional[str]
 
         vat_code : typing.Optional[str]
+
+        sme_exemption_number : typing.Optional[str]
 
         is_vat_payer : typing.Optional[bool]
 
@@ -1661,6 +1676,7 @@ class AsyncAccountClient:
             name=name,
             code=code,
             vat_code=vat_code,
+            sme_exemption_number=sme_exemption_number,
             is_vat_payer=is_vat_payer,
             address=address,
             email=email,

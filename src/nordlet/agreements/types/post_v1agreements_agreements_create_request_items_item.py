@@ -17,6 +17,9 @@ class PostV1AgreementsAgreementsCreateRequestItemsItem(UniversalBaseModel):
     unit_price: typing_extensions.Annotated[
         typing.Optional[str], FieldMetadata(alias="unitPrice"), pydantic.Field(alias="unitPrice")
     ] = None
+    vat_rate_percent: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="vatRatePercent"), pydantic.Field(alias="vatRatePercent")
+    ] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

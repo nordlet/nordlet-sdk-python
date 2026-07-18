@@ -6,6 +6,12 @@ import pydantic
 import typing_extensions
 from ...core.pydantic_utilities import IS_PYDANTIC_V2, UniversalBaseModel
 from ...core.serialization import FieldMetadata
+from .post_v1sales_invoices_issue_response_lines_item_recognition_method import (
+    PostV1SalesInvoicesIssueResponseLinesItemRecognitionMethod,
+)
+from .post_v1sales_invoices_issue_response_lines_item_recognition_milestones_item import (
+    PostV1SalesInvoicesIssueResponseLinesItemRecognitionMilestonesItem,
+)
 
 
 class PostV1SalesInvoicesIssueResponseLinesItem(UniversalBaseModel):
@@ -35,6 +41,35 @@ class PostV1SalesInvoicesIssueResponseLinesItem(UniversalBaseModel):
     line_vat: typing_extensions.Annotated[str, FieldMetadata(alias="lineVat"), pydantic.Field(alias="lineVat")]
     line_gross: typing_extensions.Annotated[str, FieldMetadata(alias="lineGross"), pydantic.Field(alias="lineGross")]
     sort_order: typing_extensions.Annotated[int, FieldMetadata(alias="sortOrder"), pydantic.Field(alias="sortOrder")]
+    recognition_method: typing_extensions.Annotated[
+        PostV1SalesInvoicesIssueResponseLinesItemRecognitionMethod,
+        FieldMetadata(alias="recognitionMethod"),
+        pydantic.Field(alias="recognitionMethod"),
+    ]
+    recognition_start_date: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="recognitionStartDate"), pydantic.Field(alias="recognitionStartDate")
+    ] = None
+    recognition_end_date: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="recognitionEndDate"), pydantic.Field(alias="recognitionEndDate")
+    ] = None
+    recognition_milestones: typing_extensions.Annotated[
+        typing.Optional[typing.List[PostV1SalesInvoicesIssueResponseLinesItemRecognitionMilestonesItem]],
+        FieldMetadata(alias="recognitionMilestones"),
+        pydantic.Field(alias="recognitionMilestones"),
+    ] = None
+    standalone_selling_price: typing_extensions.Annotated[
+        typing.Optional[str],
+        FieldMetadata(alias="standaloneSellingPrice"),
+        pydantic.Field(alias="standaloneSellingPrice"),
+    ] = None
+    allocated_net: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="allocatedNet"), pydantic.Field(alias="allocatedNet")
+    ] = None
+    refund_estimate_percent: typing_extensions.Annotated[
+        typing.Optional[str],
+        FieldMetadata(alias="refundEstimatePercent"),
+        pydantic.Field(alias="refundEstimatePercent"),
+    ] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

@@ -21,6 +21,9 @@ PostV1LedgerPostingRulesUpdateRequestRulesItemKey = typing.Union[
         "settlements.commissionRevenue",
         "settlements.sellerPayable",
         "settlements.suspense",
+        "revenue.deferredIncome",
+        "revenue.contractAsset",
+        "revenue.refundLiability",
     ],
     typing.Any,
 ]

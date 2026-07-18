@@ -6,6 +6,9 @@ import pydantic
 import typing_extensions
 from ...core.pydantic_utilities import IS_PYDANTIC_V2, UniversalBaseModel
 from ...core.serialization import FieldMetadata
+from .post_v1agreements_agreements_update_response_billing_period import (
+    PostV1AgreementsAgreementsUpdateResponseBillingPeriod,
+)
 from .post_v1agreements_agreements_update_response_items_item import PostV1AgreementsAgreementsUpdateResponseItemsItem
 from .post_v1agreements_agreements_update_response_status import PostV1AgreementsAgreementsUpdateResponseStatus
 
@@ -24,6 +27,11 @@ class PostV1AgreementsAgreementsUpdateResponse(UniversalBaseModel):
     ] = None
     auto_renew: typing_extensions.Annotated[bool, FieldMetadata(alias="autoRenew"), pydantic.Field(alias="autoRenew")]
     value: typing.Optional[str] = None
+    billing_period: typing_extensions.Annotated[
+        typing.Optional[PostV1AgreementsAgreementsUpdateResponseBillingPeriod],
+        FieldMetadata(alias="billingPeriod"),
+        pydantic.Field(alias="billingPeriod"),
+    ] = None
     currency: str
     status: PostV1AgreementsAgreementsUpdateResponseStatus
     notes: typing.Optional[str] = None

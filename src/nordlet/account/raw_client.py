@@ -1843,6 +1843,7 @@ class RawAccountClient:
         name: str,
         code: typing.Optional[str] = OMIT,
         vat_code: typing.Optional[str] = OMIT,
+        sme_exemption_number: typing.Optional[str] = OMIT,
         is_vat_payer: typing.Optional[bool] = OMIT,
         address: typing.Optional[PostV1AccountCompaniesCreateRequestAddress] = OMIT,
         email: typing.Optional[str] = OMIT,
@@ -1863,6 +1864,8 @@ class RawAccountClient:
         code : typing.Optional[str]
 
         vat_code : typing.Optional[str]
+
+        sme_exemption_number : typing.Optional[str]
 
         is_vat_payer : typing.Optional[bool]
 
@@ -1901,6 +1904,7 @@ class RawAccountClient:
                 "name": name,
                 "code": code,
                 "vatCode": vat_code,
+                "smeExemptionNumber": sme_exemption_number,
                 "isVatPayer": is_vat_payer,
                 "address": convert_and_respect_annotation_metadata(
                     object_=address, annotation=PostV1AccountCompaniesCreateRequestAddress, direction="write"
@@ -2299,6 +2303,7 @@ class RawAccountClient:
         name: typing.Optional[str] = OMIT,
         code: typing.Optional[str] = OMIT,
         vat_code: typing.Optional[str] = OMIT,
+        sme_exemption_number: typing.Optional[str] = OMIT,
         is_vat_payer: typing.Optional[bool] = OMIT,
         address: typing.Optional[PostV1AccountCompaniesUpdateRequestAddress] = OMIT,
         email: typing.Optional[str] = OMIT,
@@ -2318,6 +2323,8 @@ class RawAccountClient:
         code : typing.Optional[str]
 
         vat_code : typing.Optional[str]
+
+        sme_exemption_number : typing.Optional[str]
 
         is_vat_payer : typing.Optional[bool]
 
@@ -2352,6 +2359,7 @@ class RawAccountClient:
                 "name": name,
                 "code": code,
                 "vatCode": vat_code,
+                "smeExemptionNumber": sme_exemption_number,
                 "isVatPayer": is_vat_payer,
                 "address": convert_and_respect_annotation_metadata(
                     object_=address, annotation=PostV1AccountCompaniesUpdateRequestAddress, direction="write"
@@ -5078,6 +5086,7 @@ class AsyncRawAccountClient:
         name: str,
         code: typing.Optional[str] = OMIT,
         vat_code: typing.Optional[str] = OMIT,
+        sme_exemption_number: typing.Optional[str] = OMIT,
         is_vat_payer: typing.Optional[bool] = OMIT,
         address: typing.Optional[PostV1AccountCompaniesCreateRequestAddress] = OMIT,
         email: typing.Optional[str] = OMIT,
@@ -5098,6 +5107,8 @@ class AsyncRawAccountClient:
         code : typing.Optional[str]
 
         vat_code : typing.Optional[str]
+
+        sme_exemption_number : typing.Optional[str]
 
         is_vat_payer : typing.Optional[bool]
 
@@ -5136,6 +5147,7 @@ class AsyncRawAccountClient:
                 "name": name,
                 "code": code,
                 "vatCode": vat_code,
+                "smeExemptionNumber": sme_exemption_number,
                 "isVatPayer": is_vat_payer,
                 "address": convert_and_respect_annotation_metadata(
                     object_=address, annotation=PostV1AccountCompaniesCreateRequestAddress, direction="write"
@@ -5534,6 +5546,7 @@ class AsyncRawAccountClient:
         name: typing.Optional[str] = OMIT,
         code: typing.Optional[str] = OMIT,
         vat_code: typing.Optional[str] = OMIT,
+        sme_exemption_number: typing.Optional[str] = OMIT,
         is_vat_payer: typing.Optional[bool] = OMIT,
         address: typing.Optional[PostV1AccountCompaniesUpdateRequestAddress] = OMIT,
         email: typing.Optional[str] = OMIT,
@@ -5553,6 +5566,8 @@ class AsyncRawAccountClient:
         code : typing.Optional[str]
 
         vat_code : typing.Optional[str]
+
+        sme_exemption_number : typing.Optional[str]
 
         is_vat_payer : typing.Optional[bool]
 
@@ -5587,6 +5602,7 @@ class AsyncRawAccountClient:
                 "name": name,
                 "code": code,
                 "vatCode": vat_code,
+                "smeExemptionNumber": sme_exemption_number,
                 "isVatPayer": is_vat_payer,
                 "address": convert_and_respect_annotation_metadata(
                     object_=address, annotation=PostV1AccountCompaniesUpdateRequestAddress, direction="write"

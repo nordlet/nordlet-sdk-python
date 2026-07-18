@@ -20,6 +20,10 @@ from .types.post_v1reference_currencies_list_request_filter_item import PostV1Re
 from .types.post_v1reference_currencies_list_request_sort_item import PostV1ReferenceCurrenciesListRequestSortItem
 from .types.post_v1reference_currencies_list_response import PostV1ReferenceCurrenciesListResponse
 from .types.post_v1reference_eu_vat_rates_list_response import PostV1ReferenceEuVatRatesListResponse
+from .types.post_v1reference_eu_vat_rates_set_overrides_request_rates_item import (
+    PostV1ReferenceEuVatRatesSetOverridesRequestRatesItem,
+)
+from .types.post_v1reference_eu_vat_rates_set_overrides_response import PostV1ReferenceEuVatRatesSetOverridesResponse
 from .types.post_v1reference_exchange_rates_list_request_filter_item import (
     PostV1ReferenceExchangeRatesListRequestFilterItem,
 )
@@ -547,6 +551,8 @@ class ReferenceClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1ReferenceEuVatRatesListResponse:
         """
+        Effective EU VAT rate mapping for this company: EC TEDB defaults, replaced per country by any company overrides. Verify the mapping fits the goods and services you sell before relying on it.
+
         Parameters
         ----------
         country_code : typing.Optional[str]
@@ -572,6 +578,55 @@ class ReferenceClient:
         """
         _response = self._raw_client.post_v1reference_eu_vat_rates_list(
             country_code=country_code, date=date, request_options=request_options
+        )
+        return _response.data
+
+    def post_v1reference_eu_vat_rates_set_overrides(
+        self,
+        *,
+        country_code: str,
+        rates: typing.Sequence[PostV1ReferenceEuVatRatesSetOverridesRequestRatesItem],
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1ReferenceEuVatRatesSetOverridesResponse:
+        """
+        Replace the VAT rate mapping this company uses for one EU country. Pass an empty rates array to drop the overrides and return to the TEDB defaults. Overrides feed rate suggestions (vat/resolve) and OSS/IOSS return rate classification.
+
+        Parameters
+        ----------
+        country_code : str
+
+        rates : typing.Sequence[PostV1ReferenceEuVatRatesSetOverridesRequestRatesItem]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1ReferenceEuVatRatesSetOverridesResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+        from nordlet.reference import (
+            PostV1ReferenceEuVatRatesSetOverridesRequestRatesItem,
+        )
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.reference.post_v1reference_eu_vat_rates_set_overrides(
+            country_code="countryCode",
+            rates=[
+                PostV1ReferenceEuVatRatesSetOverridesRequestRatesItem(
+                    category="standard",
+                    rate_percent="ratePercent",
+                )
+            ],
+        )
+        """
+        _response = self._raw_client.post_v1reference_eu_vat_rates_set_overrides(
+            country_code=country_code, rates=rates, request_options=request_options
         )
         return _response.data
 
@@ -1491,6 +1546,8 @@ class AsyncReferenceClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1ReferenceEuVatRatesListResponse:
         """
+        Effective EU VAT rate mapping for this company: EC TEDB defaults, replaced per country by any company overrides. Verify the mapping fits the goods and services you sell before relying on it.
+
         Parameters
         ----------
         country_code : typing.Optional[str]
@@ -1524,6 +1581,63 @@ class AsyncReferenceClient:
         """
         _response = await self._raw_client.post_v1reference_eu_vat_rates_list(
             country_code=country_code, date=date, request_options=request_options
+        )
+        return _response.data
+
+    async def post_v1reference_eu_vat_rates_set_overrides(
+        self,
+        *,
+        country_code: str,
+        rates: typing.Sequence[PostV1ReferenceEuVatRatesSetOverridesRequestRatesItem],
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1ReferenceEuVatRatesSetOverridesResponse:
+        """
+        Replace the VAT rate mapping this company uses for one EU country. Pass an empty rates array to drop the overrides and return to the TEDB defaults. Overrides feed rate suggestions (vat/resolve) and OSS/IOSS return rate classification.
+
+        Parameters
+        ----------
+        country_code : str
+
+        rates : typing.Sequence[PostV1ReferenceEuVatRatesSetOverridesRequestRatesItem]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1ReferenceEuVatRatesSetOverridesResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+        from nordlet.reference import (
+            PostV1ReferenceEuVatRatesSetOverridesRequestRatesItem,
+        )
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.reference.post_v1reference_eu_vat_rates_set_overrides(
+                country_code="countryCode",
+                rates=[
+                    PostV1ReferenceEuVatRatesSetOverridesRequestRatesItem(
+                        category="standard",
+                        rate_percent="ratePercent",
+                    )
+                ],
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1reference_eu_vat_rates_set_overrides(
+            country_code=country_code, rates=rates, request_options=request_options
         )
         return _response.data
 

@@ -39,6 +39,33 @@ from .types.post_v1sales_invoices_send_response import PostV1SalesInvoicesSendRe
 from .types.post_v1sales_invoices_update_request_lines_item import PostV1SalesInvoicesUpdateRequestLinesItem
 from .types.post_v1sales_invoices_update_request_vat_scheme import PostV1SalesInvoicesUpdateRequestVatScheme
 from .types.post_v1sales_invoices_update_response import PostV1SalesInvoicesUpdateResponse
+from .types.post_v1sales_recognition_compute_response import PostV1SalesRecognitionComputeResponse
+from .types.post_v1sales_recognition_modify_request_approach import PostV1SalesRecognitionModifyRequestApproach
+from .types.post_v1sales_recognition_modify_request_new_milestones_item import (
+    PostV1SalesRecognitionModifyRequestNewMilestonesItem,
+)
+from .types.post_v1sales_recognition_modify_response import PostV1SalesRecognitionModifyResponse
+from .types.post_v1sales_recognition_progress_response import PostV1SalesRecognitionProgressResponse
+from .types.post_v1sales_recognition_run_response import PostV1SalesRecognitionRunResponse
+from .types.post_v1sales_recognition_runs_list_request_filter_item import (
+    PostV1SalesRecognitionRunsListRequestFilterItem,
+)
+from .types.post_v1sales_recognition_runs_list_request_sort_item import PostV1SalesRecognitionRunsListRequestSortItem
+from .types.post_v1sales_recognition_runs_list_response import PostV1SalesRecognitionRunsListResponse
+from .types.post_v1sales_recognition_schedules_list_request_filter_item import (
+    PostV1SalesRecognitionSchedulesListRequestFilterItem,
+)
+from .types.post_v1sales_recognition_schedules_list_request_sort_item import (
+    PostV1SalesRecognitionSchedulesListRequestSortItem,
+)
+from .types.post_v1sales_recognition_schedules_list_response import PostV1SalesRecognitionSchedulesListResponse
+from .types.post_v1sales_recognition_summary_response import PostV1SalesRecognitionSummaryResponse
+from .types.post_v1sales_refund_liability_list_request_filter_item import (
+    PostV1SalesRefundLiabilityListRequestFilterItem,
+)
+from .types.post_v1sales_refund_liability_list_request_sort_item import PostV1SalesRefundLiabilityListRequestSortItem
+from .types.post_v1sales_refund_liability_list_response import PostV1SalesRefundLiabilityListResponse
+from .types.post_v1sales_refund_liability_true_up_response import PostV1SalesRefundLiabilityTrueUpResponse
 
 # this is used as the default value for optional parameters
 OMIT = typing.cast(typing.Any, ...)
@@ -450,6 +477,48 @@ class SalesClient:
         )
         return _response.data
 
+    def post_v1sales_recognition_schedules_list(
+        self,
+        *,
+        page: typing.Optional[int] = OMIT,
+        page_size: typing.Optional[int] = OMIT,
+        sort: typing.Optional[typing.Sequence[PostV1SalesRecognitionSchedulesListRequestSortItem]] = OMIT,
+        filter: typing.Optional[typing.Sequence[PostV1SalesRecognitionSchedulesListRequestFilterItem]] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1SalesRecognitionSchedulesListResponse:
+        """
+        Parameters
+        ----------
+        page : typing.Optional[int]
+
+        page_size : typing.Optional[int]
+
+        sort : typing.Optional[typing.Sequence[PostV1SalesRecognitionSchedulesListRequestSortItem]]
+
+        filter : typing.Optional[typing.Sequence[PostV1SalesRecognitionSchedulesListRequestFilterItem]]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1SalesRecognitionSchedulesListResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.sales.post_v1sales_recognition_schedules_list()
+        """
+        _response = self._raw_client.post_v1sales_recognition_schedules_list(
+            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+        )
+        return _response.data
+
     def post_v1sales_invoices_apply_advance(
         self,
         *,
@@ -856,6 +925,331 @@ class SalesClient:
         )
         """
         _response = self._raw_client.post_v1sales_acts_pdf(id=id, locale=locale, request_options=request_options)
+        return _response.data
+
+    def post_v1sales_recognition_compute(
+        self, *, as_of_date: typing.Optional[str] = OMIT, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1SalesRecognitionComputeResponse:
+        """
+        Parameters
+        ----------
+        as_of_date : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1SalesRecognitionComputeResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.sales.post_v1sales_recognition_compute()
+        """
+        _response = self._raw_client.post_v1sales_recognition_compute(
+            as_of_date=as_of_date, request_options=request_options
+        )
+        return _response.data
+
+    def post_v1sales_recognition_run(
+        self,
+        *,
+        as_of_date: typing.Optional[str] = OMIT,
+        posting_date: typing.Optional[str] = OMIT,
+        schedule_ids: typing.Optional[typing.Sequence[str]] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1SalesRecognitionRunResponse:
+        """
+        Parameters
+        ----------
+        as_of_date : typing.Optional[str]
+
+        posting_date : typing.Optional[str]
+
+        schedule_ids : typing.Optional[typing.Sequence[str]]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1SalesRecognitionRunResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.sales.post_v1sales_recognition_run()
+        """
+        _response = self._raw_client.post_v1sales_recognition_run(
+            as_of_date=as_of_date, posting_date=posting_date, schedule_ids=schedule_ids, request_options=request_options
+        )
+        return _response.data
+
+    def post_v1sales_recognition_progress(
+        self,
+        *,
+        invoice_line_id: str,
+        percent_complete: str,
+        date: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1SalesRecognitionProgressResponse:
+        """
+        Parameters
+        ----------
+        invoice_line_id : str
+
+        percent_complete : str
+
+        date : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1SalesRecognitionProgressResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.sales.post_v1sales_recognition_progress(
+            invoice_line_id="invoiceLineId",
+            percent_complete="percentComplete",
+        )
+        """
+        _response = self._raw_client.post_v1sales_recognition_progress(
+            invoice_line_id=invoice_line_id,
+            percent_complete=percent_complete,
+            date=date,
+            request_options=request_options,
+        )
+        return _response.data
+
+    def post_v1sales_recognition_modify(
+        self,
+        *,
+        invoice_line_id: str,
+        approach: PostV1SalesRecognitionModifyRequestApproach,
+        date: typing.Optional[str] = OMIT,
+        new_end_date: typing.Optional[str] = OMIT,
+        new_milestones: typing.Optional[typing.Sequence[PostV1SalesRecognitionModifyRequestNewMilestonesItem]] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1SalesRecognitionModifyResponse:
+        """
+        Apply an IFRS 15 contract modification to a deferred invoice line. Prospective: cancel the pending schedule and respread the unrecognized remainder over the new terms. Cumulative catch-up (ratable only): recompute revenue as if the new terms applied from the start and post the difference immediately.
+
+        Parameters
+        ----------
+        invoice_line_id : str
+
+        approach : PostV1SalesRecognitionModifyRequestApproach
+
+        date : typing.Optional[str]
+
+        new_end_date : typing.Optional[str]
+
+        new_milestones : typing.Optional[typing.Sequence[PostV1SalesRecognitionModifyRequestNewMilestonesItem]]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1SalesRecognitionModifyResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.sales.post_v1sales_recognition_modify(
+            invoice_line_id="invoiceLineId",
+            approach="prospective",
+        )
+        """
+        _response = self._raw_client.post_v1sales_recognition_modify(
+            invoice_line_id=invoice_line_id,
+            approach=approach,
+            date=date,
+            new_end_date=new_end_date,
+            new_milestones=new_milestones,
+            request_options=request_options,
+        )
+        return _response.data
+
+    def post_v1sales_recognition_runs_list(
+        self,
+        *,
+        page: typing.Optional[int] = OMIT,
+        page_size: typing.Optional[int] = OMIT,
+        sort: typing.Optional[typing.Sequence[PostV1SalesRecognitionRunsListRequestSortItem]] = OMIT,
+        filter: typing.Optional[typing.Sequence[PostV1SalesRecognitionRunsListRequestFilterItem]] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1SalesRecognitionRunsListResponse:
+        """
+        Parameters
+        ----------
+        page : typing.Optional[int]
+
+        page_size : typing.Optional[int]
+
+        sort : typing.Optional[typing.Sequence[PostV1SalesRecognitionRunsListRequestSortItem]]
+
+        filter : typing.Optional[typing.Sequence[PostV1SalesRecognitionRunsListRequestFilterItem]]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1SalesRecognitionRunsListResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.sales.post_v1sales_recognition_runs_list()
+        """
+        _response = self._raw_client.post_v1sales_recognition_runs_list(
+            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+        )
+        return _response.data
+
+    def post_v1sales_recognition_summary(
+        self, *, invoice_id: typing.Optional[str] = OMIT, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1SalesRecognitionSummaryResponse:
+        """
+        Parameters
+        ----------
+        invoice_id : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1SalesRecognitionSummaryResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.sales.post_v1sales_recognition_summary()
+        """
+        _response = self._raw_client.post_v1sales_recognition_summary(
+            invoice_id=invoice_id, request_options=request_options
+        )
+        return _response.data
+
+    def post_v1sales_refund_liability_list(
+        self,
+        *,
+        page: typing.Optional[int] = OMIT,
+        page_size: typing.Optional[int] = OMIT,
+        sort: typing.Optional[typing.Sequence[PostV1SalesRefundLiabilityListRequestSortItem]] = OMIT,
+        filter: typing.Optional[typing.Sequence[PostV1SalesRefundLiabilityListRequestFilterItem]] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1SalesRefundLiabilityListResponse:
+        """
+        Parameters
+        ----------
+        page : typing.Optional[int]
+
+        page_size : typing.Optional[int]
+
+        sort : typing.Optional[typing.Sequence[PostV1SalesRefundLiabilityListRequestSortItem]]
+
+        filter : typing.Optional[typing.Sequence[PostV1SalesRefundLiabilityListRequestFilterItem]]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1SalesRefundLiabilityListResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.sales.post_v1sales_refund_liability_list()
+        """
+        _response = self._raw_client.post_v1sales_refund_liability_list(
+            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+        )
+        return _response.data
+
+    def post_v1sales_refund_liability_true_up(
+        self,
+        *,
+        invoice_id: str,
+        estimated_total: str,
+        date: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1SalesRefundLiabilityTrueUpResponse:
+        """
+        Parameters
+        ----------
+        invoice_id : str
+
+        estimated_total : str
+
+        date : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1SalesRefundLiabilityTrueUpResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.sales.post_v1sales_refund_liability_true_up(
+            invoice_id="invoiceId",
+            estimated_total="estimatedTotal",
+        )
+        """
+        _response = self._raw_client.post_v1sales_refund_liability_true_up(
+            invoice_id=invoice_id, estimated_total=estimated_total, date=date, request_options=request_options
+        )
         return _response.data
 
 
@@ -1339,6 +1733,56 @@ class AsyncSalesClient:
         )
         return _response.data
 
+    async def post_v1sales_recognition_schedules_list(
+        self,
+        *,
+        page: typing.Optional[int] = OMIT,
+        page_size: typing.Optional[int] = OMIT,
+        sort: typing.Optional[typing.Sequence[PostV1SalesRecognitionSchedulesListRequestSortItem]] = OMIT,
+        filter: typing.Optional[typing.Sequence[PostV1SalesRecognitionSchedulesListRequestFilterItem]] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1SalesRecognitionSchedulesListResponse:
+        """
+        Parameters
+        ----------
+        page : typing.Optional[int]
+
+        page_size : typing.Optional[int]
+
+        sort : typing.Optional[typing.Sequence[PostV1SalesRecognitionSchedulesListRequestSortItem]]
+
+        filter : typing.Optional[typing.Sequence[PostV1SalesRecognitionSchedulesListRequestFilterItem]]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1SalesRecognitionSchedulesListResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.sales.post_v1sales_recognition_schedules_list()
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1sales_recognition_schedules_list(
+            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+        )
+        return _response.data
+
     async def post_v1sales_invoices_apply_advance(
         self,
         *,
@@ -1817,4 +2261,393 @@ class AsyncSalesClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.post_v1sales_acts_pdf(id=id, locale=locale, request_options=request_options)
+        return _response.data
+
+    async def post_v1sales_recognition_compute(
+        self, *, as_of_date: typing.Optional[str] = OMIT, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1SalesRecognitionComputeResponse:
+        """
+        Parameters
+        ----------
+        as_of_date : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1SalesRecognitionComputeResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.sales.post_v1sales_recognition_compute()
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1sales_recognition_compute(
+            as_of_date=as_of_date, request_options=request_options
+        )
+        return _response.data
+
+    async def post_v1sales_recognition_run(
+        self,
+        *,
+        as_of_date: typing.Optional[str] = OMIT,
+        posting_date: typing.Optional[str] = OMIT,
+        schedule_ids: typing.Optional[typing.Sequence[str]] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1SalesRecognitionRunResponse:
+        """
+        Parameters
+        ----------
+        as_of_date : typing.Optional[str]
+
+        posting_date : typing.Optional[str]
+
+        schedule_ids : typing.Optional[typing.Sequence[str]]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1SalesRecognitionRunResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.sales.post_v1sales_recognition_run()
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1sales_recognition_run(
+            as_of_date=as_of_date, posting_date=posting_date, schedule_ids=schedule_ids, request_options=request_options
+        )
+        return _response.data
+
+    async def post_v1sales_recognition_progress(
+        self,
+        *,
+        invoice_line_id: str,
+        percent_complete: str,
+        date: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1SalesRecognitionProgressResponse:
+        """
+        Parameters
+        ----------
+        invoice_line_id : str
+
+        percent_complete : str
+
+        date : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1SalesRecognitionProgressResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.sales.post_v1sales_recognition_progress(
+                invoice_line_id="invoiceLineId",
+                percent_complete="percentComplete",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1sales_recognition_progress(
+            invoice_line_id=invoice_line_id,
+            percent_complete=percent_complete,
+            date=date,
+            request_options=request_options,
+        )
+        return _response.data
+
+    async def post_v1sales_recognition_modify(
+        self,
+        *,
+        invoice_line_id: str,
+        approach: PostV1SalesRecognitionModifyRequestApproach,
+        date: typing.Optional[str] = OMIT,
+        new_end_date: typing.Optional[str] = OMIT,
+        new_milestones: typing.Optional[typing.Sequence[PostV1SalesRecognitionModifyRequestNewMilestonesItem]] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1SalesRecognitionModifyResponse:
+        """
+        Apply an IFRS 15 contract modification to a deferred invoice line. Prospective: cancel the pending schedule and respread the unrecognized remainder over the new terms. Cumulative catch-up (ratable only): recompute revenue as if the new terms applied from the start and post the difference immediately.
+
+        Parameters
+        ----------
+        invoice_line_id : str
+
+        approach : PostV1SalesRecognitionModifyRequestApproach
+
+        date : typing.Optional[str]
+
+        new_end_date : typing.Optional[str]
+
+        new_milestones : typing.Optional[typing.Sequence[PostV1SalesRecognitionModifyRequestNewMilestonesItem]]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1SalesRecognitionModifyResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.sales.post_v1sales_recognition_modify(
+                invoice_line_id="invoiceLineId",
+                approach="prospective",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1sales_recognition_modify(
+            invoice_line_id=invoice_line_id,
+            approach=approach,
+            date=date,
+            new_end_date=new_end_date,
+            new_milestones=new_milestones,
+            request_options=request_options,
+        )
+        return _response.data
+
+    async def post_v1sales_recognition_runs_list(
+        self,
+        *,
+        page: typing.Optional[int] = OMIT,
+        page_size: typing.Optional[int] = OMIT,
+        sort: typing.Optional[typing.Sequence[PostV1SalesRecognitionRunsListRequestSortItem]] = OMIT,
+        filter: typing.Optional[typing.Sequence[PostV1SalesRecognitionRunsListRequestFilterItem]] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1SalesRecognitionRunsListResponse:
+        """
+        Parameters
+        ----------
+        page : typing.Optional[int]
+
+        page_size : typing.Optional[int]
+
+        sort : typing.Optional[typing.Sequence[PostV1SalesRecognitionRunsListRequestSortItem]]
+
+        filter : typing.Optional[typing.Sequence[PostV1SalesRecognitionRunsListRequestFilterItem]]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1SalesRecognitionRunsListResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.sales.post_v1sales_recognition_runs_list()
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1sales_recognition_runs_list(
+            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+        )
+        return _response.data
+
+    async def post_v1sales_recognition_summary(
+        self, *, invoice_id: typing.Optional[str] = OMIT, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1SalesRecognitionSummaryResponse:
+        """
+        Parameters
+        ----------
+        invoice_id : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1SalesRecognitionSummaryResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.sales.post_v1sales_recognition_summary()
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1sales_recognition_summary(
+            invoice_id=invoice_id, request_options=request_options
+        )
+        return _response.data
+
+    async def post_v1sales_refund_liability_list(
+        self,
+        *,
+        page: typing.Optional[int] = OMIT,
+        page_size: typing.Optional[int] = OMIT,
+        sort: typing.Optional[typing.Sequence[PostV1SalesRefundLiabilityListRequestSortItem]] = OMIT,
+        filter: typing.Optional[typing.Sequence[PostV1SalesRefundLiabilityListRequestFilterItem]] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1SalesRefundLiabilityListResponse:
+        """
+        Parameters
+        ----------
+        page : typing.Optional[int]
+
+        page_size : typing.Optional[int]
+
+        sort : typing.Optional[typing.Sequence[PostV1SalesRefundLiabilityListRequestSortItem]]
+
+        filter : typing.Optional[typing.Sequence[PostV1SalesRefundLiabilityListRequestFilterItem]]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1SalesRefundLiabilityListResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.sales.post_v1sales_refund_liability_list()
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1sales_refund_liability_list(
+            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+        )
+        return _response.data
+
+    async def post_v1sales_refund_liability_true_up(
+        self,
+        *,
+        invoice_id: str,
+        estimated_total: str,
+        date: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1SalesRefundLiabilityTrueUpResponse:
+        """
+        Parameters
+        ----------
+        invoice_id : str
+
+        estimated_total : str
+
+        date : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1SalesRefundLiabilityTrueUpResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.sales.post_v1sales_refund_liability_true_up(
+                invoice_id="invoiceId",
+                estimated_total="estimatedTotal",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1sales_refund_liability_true_up(
+            invoice_id=invoice_id, estimated_total=estimated_total, date=date, request_options=request_options
+        )
         return _response.data

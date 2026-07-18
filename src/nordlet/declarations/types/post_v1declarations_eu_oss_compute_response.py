@@ -6,6 +6,12 @@ import pydantic
 import typing_extensions
 from ...core.pydantic_utilities import IS_PYDANTIC_V2, UniversalBaseModel
 from ...core.serialization import FieldMetadata
+from .post_v1declarations_eu_oss_compute_response_corrections_item import (
+    PostV1DeclarationsEuOssComputeResponseCorrectionsItem,
+)
+from .post_v1declarations_eu_oss_compute_response_corrections_total import (
+    PostV1DeclarationsEuOssComputeResponseCorrectionsTotal,
+)
 from .post_v1declarations_eu_oss_compute_response_rows_item import PostV1DeclarationsEuOssComputeResponseRowsItem
 from .post_v1declarations_eu_oss_compute_response_totals import PostV1DeclarationsEuOssComputeResponseTotals
 
@@ -19,6 +25,12 @@ class PostV1DeclarationsEuOssComputeResponse(UniversalBaseModel):
     ]
     rows: typing.List[PostV1DeclarationsEuOssComputeResponseRowsItem]
     totals: PostV1DeclarationsEuOssComputeResponseTotals
+    corrections: typing.List[PostV1DeclarationsEuOssComputeResponseCorrectionsItem]
+    corrections_total: typing_extensions.Annotated[
+        PostV1DeclarationsEuOssComputeResponseCorrectionsTotal,
+        FieldMetadata(alias="correctionsTotal"),
+        pydantic.Field(alias="correctionsTotal"),
+    ]
     warnings: typing.List[str]
     period_quarter: typing_extensions.Annotated[
         int, FieldMetadata(alias="periodQuarter"), pydantic.Field(alias="periodQuarter")

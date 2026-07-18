@@ -47,6 +47,12 @@ if typing.TYPE_CHECKING:
     from .post_v1sales_invoices_apply_advance_response_lines_item import (
         PostV1SalesInvoicesApplyAdvanceResponseLinesItem,
     )
+    from .post_v1sales_invoices_apply_advance_response_lines_item_recognition_method import (
+        PostV1SalesInvoicesApplyAdvanceResponseLinesItemRecognitionMethod,
+    )
+    from .post_v1sales_invoices_apply_advance_response_lines_item_recognition_milestones_item import (
+        PostV1SalesInvoicesApplyAdvanceResponseLinesItemRecognitionMilestonesItem,
+    )
     from .post_v1sales_invoices_apply_advance_response_payment_status import (
         PostV1SalesInvoicesApplyAdvanceResponsePaymentStatus,
     )
@@ -59,10 +65,25 @@ if typing.TYPE_CHECKING:
     from .post_v1sales_invoices_create_request_lines_item_quantity import (
         PostV1SalesInvoicesCreateRequestLinesItemQuantity,
     )
+    from .post_v1sales_invoices_create_request_lines_item_recognition import (
+        PostV1SalesInvoicesCreateRequestLinesItemRecognition,
+    )
+    from .post_v1sales_invoices_create_request_lines_item_recognition_method import (
+        PostV1SalesInvoicesCreateRequestLinesItemRecognitionMethod,
+    )
+    from .post_v1sales_invoices_create_request_lines_item_recognition_milestones_item import (
+        PostV1SalesInvoicesCreateRequestLinesItemRecognitionMilestonesItem,
+    )
     from .post_v1sales_invoices_create_request_type import PostV1SalesInvoicesCreateRequestType
     from .post_v1sales_invoices_create_request_vat_scheme import PostV1SalesInvoicesCreateRequestVatScheme
     from .post_v1sales_invoices_create_response import PostV1SalesInvoicesCreateResponse
     from .post_v1sales_invoices_create_response_lines_item import PostV1SalesInvoicesCreateResponseLinesItem
+    from .post_v1sales_invoices_create_response_lines_item_recognition_method import (
+        PostV1SalesInvoicesCreateResponseLinesItemRecognitionMethod,
+    )
+    from .post_v1sales_invoices_create_response_lines_item_recognition_milestones_item import (
+        PostV1SalesInvoicesCreateResponseLinesItemRecognitionMilestonesItem,
+    )
     from .post_v1sales_invoices_create_response_payment_status import PostV1SalesInvoicesCreateResponsePaymentStatus
     from .post_v1sales_invoices_create_response_status import PostV1SalesInvoicesCreateResponseStatus
     from .post_v1sales_invoices_create_response_type import PostV1SalesInvoicesCreateResponseType
@@ -70,12 +91,24 @@ if typing.TYPE_CHECKING:
     from .post_v1sales_invoices_delete_response import PostV1SalesInvoicesDeleteResponse
     from .post_v1sales_invoices_get_response import PostV1SalesInvoicesGetResponse
     from .post_v1sales_invoices_get_response_lines_item import PostV1SalesInvoicesGetResponseLinesItem
+    from .post_v1sales_invoices_get_response_lines_item_recognition_method import (
+        PostV1SalesInvoicesGetResponseLinesItemRecognitionMethod,
+    )
+    from .post_v1sales_invoices_get_response_lines_item_recognition_milestones_item import (
+        PostV1SalesInvoicesGetResponseLinesItemRecognitionMilestonesItem,
+    )
     from .post_v1sales_invoices_get_response_payment_status import PostV1SalesInvoicesGetResponsePaymentStatus
     from .post_v1sales_invoices_get_response_status import PostV1SalesInvoicesGetResponseStatus
     from .post_v1sales_invoices_get_response_type import PostV1SalesInvoicesGetResponseType
     from .post_v1sales_invoices_get_response_vat_scheme import PostV1SalesInvoicesGetResponseVatScheme
     from .post_v1sales_invoices_issue_response import PostV1SalesInvoicesIssueResponse
     from .post_v1sales_invoices_issue_response_lines_item import PostV1SalesInvoicesIssueResponseLinesItem
+    from .post_v1sales_invoices_issue_response_lines_item_recognition_method import (
+        PostV1SalesInvoicesIssueResponseLinesItemRecognitionMethod,
+    )
+    from .post_v1sales_invoices_issue_response_lines_item_recognition_milestones_item import (
+        PostV1SalesInvoicesIssueResponseLinesItemRecognitionMilestonesItem,
+    )
     from .post_v1sales_invoices_issue_response_payment_status import PostV1SalesInvoicesIssueResponsePaymentStatus
     from .post_v1sales_invoices_issue_response_status import PostV1SalesInvoicesIssueResponseStatus
     from .post_v1sales_invoices_issue_response_type import PostV1SalesInvoicesIssueResponseType
@@ -108,13 +141,109 @@ if typing.TYPE_CHECKING:
     from .post_v1sales_invoices_update_request_lines_item_quantity import (
         PostV1SalesInvoicesUpdateRequestLinesItemQuantity,
     )
+    from .post_v1sales_invoices_update_request_lines_item_recognition import (
+        PostV1SalesInvoicesUpdateRequestLinesItemRecognition,
+    )
+    from .post_v1sales_invoices_update_request_lines_item_recognition_method import (
+        PostV1SalesInvoicesUpdateRequestLinesItemRecognitionMethod,
+    )
+    from .post_v1sales_invoices_update_request_lines_item_recognition_milestones_item import (
+        PostV1SalesInvoicesUpdateRequestLinesItemRecognitionMilestonesItem,
+    )
     from .post_v1sales_invoices_update_request_vat_scheme import PostV1SalesInvoicesUpdateRequestVatScheme
     from .post_v1sales_invoices_update_response import PostV1SalesInvoicesUpdateResponse
     from .post_v1sales_invoices_update_response_lines_item import PostV1SalesInvoicesUpdateResponseLinesItem
+    from .post_v1sales_invoices_update_response_lines_item_recognition_method import (
+        PostV1SalesInvoicesUpdateResponseLinesItemRecognitionMethod,
+    )
+    from .post_v1sales_invoices_update_response_lines_item_recognition_milestones_item import (
+        PostV1SalesInvoicesUpdateResponseLinesItemRecognitionMilestonesItem,
+    )
     from .post_v1sales_invoices_update_response_payment_status import PostV1SalesInvoicesUpdateResponsePaymentStatus
     from .post_v1sales_invoices_update_response_status import PostV1SalesInvoicesUpdateResponseStatus
     from .post_v1sales_invoices_update_response_type import PostV1SalesInvoicesUpdateResponseType
     from .post_v1sales_invoices_update_response_vat_scheme import PostV1SalesInvoicesUpdateResponseVatScheme
+    from .post_v1sales_recognition_compute_response import PostV1SalesRecognitionComputeResponse
+    from .post_v1sales_recognition_compute_response_rows_item import PostV1SalesRecognitionComputeResponseRowsItem
+    from .post_v1sales_recognition_modify_request_approach import PostV1SalesRecognitionModifyRequestApproach
+    from .post_v1sales_recognition_modify_request_new_milestones_item import (
+        PostV1SalesRecognitionModifyRequestNewMilestonesItem,
+    )
+    from .post_v1sales_recognition_modify_response import PostV1SalesRecognitionModifyResponse
+    from .post_v1sales_recognition_modify_response_approach import PostV1SalesRecognitionModifyResponseApproach
+    from .post_v1sales_recognition_progress_response import PostV1SalesRecognitionProgressResponse
+    from .post_v1sales_recognition_run_response import PostV1SalesRecognitionRunResponse
+    from .post_v1sales_recognition_run_response_trigger import PostV1SalesRecognitionRunResponseTrigger
+    from .post_v1sales_recognition_runs_list_request_filter_item import PostV1SalesRecognitionRunsListRequestFilterItem
+    from .post_v1sales_recognition_runs_list_request_filter_item_op import (
+        PostV1SalesRecognitionRunsListRequestFilterItemOp,
+    )
+    from .post_v1sales_recognition_runs_list_request_filter_item_value import (
+        PostV1SalesRecognitionRunsListRequestFilterItemValue,
+    )
+    from .post_v1sales_recognition_runs_list_request_filter_item_value_three_item import (
+        PostV1SalesRecognitionRunsListRequestFilterItemValueThreeItem,
+    )
+    from .post_v1sales_recognition_runs_list_request_sort_item import PostV1SalesRecognitionRunsListRequestSortItem
+    from .post_v1sales_recognition_runs_list_request_sort_item_dir import (
+        PostV1SalesRecognitionRunsListRequestSortItemDir,
+    )
+    from .post_v1sales_recognition_runs_list_response import PostV1SalesRecognitionRunsListResponse
+    from .post_v1sales_recognition_runs_list_response_rows_item import PostV1SalesRecognitionRunsListResponseRowsItem
+    from .post_v1sales_recognition_runs_list_response_rows_item_trigger import (
+        PostV1SalesRecognitionRunsListResponseRowsItemTrigger,
+    )
+    from .post_v1sales_recognition_schedules_list_request_filter_item import (
+        PostV1SalesRecognitionSchedulesListRequestFilterItem,
+    )
+    from .post_v1sales_recognition_schedules_list_request_filter_item_op import (
+        PostV1SalesRecognitionSchedulesListRequestFilterItemOp,
+    )
+    from .post_v1sales_recognition_schedules_list_request_filter_item_value import (
+        PostV1SalesRecognitionSchedulesListRequestFilterItemValue,
+    )
+    from .post_v1sales_recognition_schedules_list_request_filter_item_value_three_item import (
+        PostV1SalesRecognitionSchedulesListRequestFilterItemValueThreeItem,
+    )
+    from .post_v1sales_recognition_schedules_list_request_sort_item import (
+        PostV1SalesRecognitionSchedulesListRequestSortItem,
+    )
+    from .post_v1sales_recognition_schedules_list_request_sort_item_dir import (
+        PostV1SalesRecognitionSchedulesListRequestSortItemDir,
+    )
+    from .post_v1sales_recognition_schedules_list_response import PostV1SalesRecognitionSchedulesListResponse
+    from .post_v1sales_recognition_schedules_list_response_rows_item import (
+        PostV1SalesRecognitionSchedulesListResponseRowsItem,
+    )
+    from .post_v1sales_recognition_schedules_list_response_rows_item_method import (
+        PostV1SalesRecognitionSchedulesListResponseRowsItemMethod,
+    )
+    from .post_v1sales_recognition_schedules_list_response_rows_item_status import (
+        PostV1SalesRecognitionSchedulesListResponseRowsItemStatus,
+    )
+    from .post_v1sales_recognition_summary_response import PostV1SalesRecognitionSummaryResponse
+    from .post_v1sales_recognition_summary_response_rows_item import PostV1SalesRecognitionSummaryResponseRowsItem
+    from .post_v1sales_recognition_summary_response_rows_item_method import (
+        PostV1SalesRecognitionSummaryResponseRowsItemMethod,
+    )
+    from .post_v1sales_recognition_summary_response_totals import PostV1SalesRecognitionSummaryResponseTotals
+    from .post_v1sales_refund_liability_list_request_filter_item import PostV1SalesRefundLiabilityListRequestFilterItem
+    from .post_v1sales_refund_liability_list_request_filter_item_op import (
+        PostV1SalesRefundLiabilityListRequestFilterItemOp,
+    )
+    from .post_v1sales_refund_liability_list_request_filter_item_value import (
+        PostV1SalesRefundLiabilityListRequestFilterItemValue,
+    )
+    from .post_v1sales_refund_liability_list_request_filter_item_value_three_item import (
+        PostV1SalesRefundLiabilityListRequestFilterItemValueThreeItem,
+    )
+    from .post_v1sales_refund_liability_list_request_sort_item import PostV1SalesRefundLiabilityListRequestSortItem
+    from .post_v1sales_refund_liability_list_request_sort_item_dir import (
+        PostV1SalesRefundLiabilityListRequestSortItemDir,
+    )
+    from .post_v1sales_refund_liability_list_response import PostV1SalesRefundLiabilityListResponse
+    from .post_v1sales_refund_liability_list_response_rows_item import PostV1SalesRefundLiabilityListResponseRowsItem
+    from .post_v1sales_refund_liability_true_up_response import PostV1SalesRefundLiabilityTrueUpResponse
 _dynamic_imports: typing.Dict[str, str] = {
     "PostV1SalesActsCancelResponse": ".post_v1sales_acts_cancel_response",
     "PostV1SalesActsCancelResponseStatus": ".post_v1sales_acts_cancel_response_status",
@@ -153,16 +282,23 @@ _dynamic_imports: typing.Dict[str, str] = {
     "PostV1SalesActsUpdateResponseType": ".post_v1sales_acts_update_response_type",
     "PostV1SalesInvoicesApplyAdvanceResponse": ".post_v1sales_invoices_apply_advance_response",
     "PostV1SalesInvoicesApplyAdvanceResponseLinesItem": ".post_v1sales_invoices_apply_advance_response_lines_item",
+    "PostV1SalesInvoicesApplyAdvanceResponseLinesItemRecognitionMethod": ".post_v1sales_invoices_apply_advance_response_lines_item_recognition_method",
+    "PostV1SalesInvoicesApplyAdvanceResponseLinesItemRecognitionMilestonesItem": ".post_v1sales_invoices_apply_advance_response_lines_item_recognition_milestones_item",
     "PostV1SalesInvoicesApplyAdvanceResponsePaymentStatus": ".post_v1sales_invoices_apply_advance_response_payment_status",
     "PostV1SalesInvoicesApplyAdvanceResponseStatus": ".post_v1sales_invoices_apply_advance_response_status",
     "PostV1SalesInvoicesApplyAdvanceResponseType": ".post_v1sales_invoices_apply_advance_response_type",
     "PostV1SalesInvoicesApplyAdvanceResponseVatScheme": ".post_v1sales_invoices_apply_advance_response_vat_scheme",
     "PostV1SalesInvoicesCreateRequestLinesItem": ".post_v1sales_invoices_create_request_lines_item",
     "PostV1SalesInvoicesCreateRequestLinesItemQuantity": ".post_v1sales_invoices_create_request_lines_item_quantity",
+    "PostV1SalesInvoicesCreateRequestLinesItemRecognition": ".post_v1sales_invoices_create_request_lines_item_recognition",
+    "PostV1SalesInvoicesCreateRequestLinesItemRecognitionMethod": ".post_v1sales_invoices_create_request_lines_item_recognition_method",
+    "PostV1SalesInvoicesCreateRequestLinesItemRecognitionMilestonesItem": ".post_v1sales_invoices_create_request_lines_item_recognition_milestones_item",
     "PostV1SalesInvoicesCreateRequestType": ".post_v1sales_invoices_create_request_type",
     "PostV1SalesInvoicesCreateRequestVatScheme": ".post_v1sales_invoices_create_request_vat_scheme",
     "PostV1SalesInvoicesCreateResponse": ".post_v1sales_invoices_create_response",
     "PostV1SalesInvoicesCreateResponseLinesItem": ".post_v1sales_invoices_create_response_lines_item",
+    "PostV1SalesInvoicesCreateResponseLinesItemRecognitionMethod": ".post_v1sales_invoices_create_response_lines_item_recognition_method",
+    "PostV1SalesInvoicesCreateResponseLinesItemRecognitionMilestonesItem": ".post_v1sales_invoices_create_response_lines_item_recognition_milestones_item",
     "PostV1SalesInvoicesCreateResponsePaymentStatus": ".post_v1sales_invoices_create_response_payment_status",
     "PostV1SalesInvoicesCreateResponseStatus": ".post_v1sales_invoices_create_response_status",
     "PostV1SalesInvoicesCreateResponseType": ".post_v1sales_invoices_create_response_type",
@@ -170,12 +306,16 @@ _dynamic_imports: typing.Dict[str, str] = {
     "PostV1SalesInvoicesDeleteResponse": ".post_v1sales_invoices_delete_response",
     "PostV1SalesInvoicesGetResponse": ".post_v1sales_invoices_get_response",
     "PostV1SalesInvoicesGetResponseLinesItem": ".post_v1sales_invoices_get_response_lines_item",
+    "PostV1SalesInvoicesGetResponseLinesItemRecognitionMethod": ".post_v1sales_invoices_get_response_lines_item_recognition_method",
+    "PostV1SalesInvoicesGetResponseLinesItemRecognitionMilestonesItem": ".post_v1sales_invoices_get_response_lines_item_recognition_milestones_item",
     "PostV1SalesInvoicesGetResponsePaymentStatus": ".post_v1sales_invoices_get_response_payment_status",
     "PostV1SalesInvoicesGetResponseStatus": ".post_v1sales_invoices_get_response_status",
     "PostV1SalesInvoicesGetResponseType": ".post_v1sales_invoices_get_response_type",
     "PostV1SalesInvoicesGetResponseVatScheme": ".post_v1sales_invoices_get_response_vat_scheme",
     "PostV1SalesInvoicesIssueResponse": ".post_v1sales_invoices_issue_response",
     "PostV1SalesInvoicesIssueResponseLinesItem": ".post_v1sales_invoices_issue_response_lines_item",
+    "PostV1SalesInvoicesIssueResponseLinesItemRecognitionMethod": ".post_v1sales_invoices_issue_response_lines_item_recognition_method",
+    "PostV1SalesInvoicesIssueResponseLinesItemRecognitionMilestonesItem": ".post_v1sales_invoices_issue_response_lines_item_recognition_milestones_item",
     "PostV1SalesInvoicesIssueResponsePaymentStatus": ".post_v1sales_invoices_issue_response_payment_status",
     "PostV1SalesInvoicesIssueResponseStatus": ".post_v1sales_invoices_issue_response_status",
     "PostV1SalesInvoicesIssueResponseType": ".post_v1sales_invoices_issue_response_type",
@@ -200,13 +340,59 @@ _dynamic_imports: typing.Dict[str, str] = {
     "PostV1SalesInvoicesSendResponse": ".post_v1sales_invoices_send_response",
     "PostV1SalesInvoicesUpdateRequestLinesItem": ".post_v1sales_invoices_update_request_lines_item",
     "PostV1SalesInvoicesUpdateRequestLinesItemQuantity": ".post_v1sales_invoices_update_request_lines_item_quantity",
+    "PostV1SalesInvoicesUpdateRequestLinesItemRecognition": ".post_v1sales_invoices_update_request_lines_item_recognition",
+    "PostV1SalesInvoicesUpdateRequestLinesItemRecognitionMethod": ".post_v1sales_invoices_update_request_lines_item_recognition_method",
+    "PostV1SalesInvoicesUpdateRequestLinesItemRecognitionMilestonesItem": ".post_v1sales_invoices_update_request_lines_item_recognition_milestones_item",
     "PostV1SalesInvoicesUpdateRequestVatScheme": ".post_v1sales_invoices_update_request_vat_scheme",
     "PostV1SalesInvoicesUpdateResponse": ".post_v1sales_invoices_update_response",
     "PostV1SalesInvoicesUpdateResponseLinesItem": ".post_v1sales_invoices_update_response_lines_item",
+    "PostV1SalesInvoicesUpdateResponseLinesItemRecognitionMethod": ".post_v1sales_invoices_update_response_lines_item_recognition_method",
+    "PostV1SalesInvoicesUpdateResponseLinesItemRecognitionMilestonesItem": ".post_v1sales_invoices_update_response_lines_item_recognition_milestones_item",
     "PostV1SalesInvoicesUpdateResponsePaymentStatus": ".post_v1sales_invoices_update_response_payment_status",
     "PostV1SalesInvoicesUpdateResponseStatus": ".post_v1sales_invoices_update_response_status",
     "PostV1SalesInvoicesUpdateResponseType": ".post_v1sales_invoices_update_response_type",
     "PostV1SalesInvoicesUpdateResponseVatScheme": ".post_v1sales_invoices_update_response_vat_scheme",
+    "PostV1SalesRecognitionComputeResponse": ".post_v1sales_recognition_compute_response",
+    "PostV1SalesRecognitionComputeResponseRowsItem": ".post_v1sales_recognition_compute_response_rows_item",
+    "PostV1SalesRecognitionModifyRequestApproach": ".post_v1sales_recognition_modify_request_approach",
+    "PostV1SalesRecognitionModifyRequestNewMilestonesItem": ".post_v1sales_recognition_modify_request_new_milestones_item",
+    "PostV1SalesRecognitionModifyResponse": ".post_v1sales_recognition_modify_response",
+    "PostV1SalesRecognitionModifyResponseApproach": ".post_v1sales_recognition_modify_response_approach",
+    "PostV1SalesRecognitionProgressResponse": ".post_v1sales_recognition_progress_response",
+    "PostV1SalesRecognitionRunResponse": ".post_v1sales_recognition_run_response",
+    "PostV1SalesRecognitionRunResponseTrigger": ".post_v1sales_recognition_run_response_trigger",
+    "PostV1SalesRecognitionRunsListRequestFilterItem": ".post_v1sales_recognition_runs_list_request_filter_item",
+    "PostV1SalesRecognitionRunsListRequestFilterItemOp": ".post_v1sales_recognition_runs_list_request_filter_item_op",
+    "PostV1SalesRecognitionRunsListRequestFilterItemValue": ".post_v1sales_recognition_runs_list_request_filter_item_value",
+    "PostV1SalesRecognitionRunsListRequestFilterItemValueThreeItem": ".post_v1sales_recognition_runs_list_request_filter_item_value_three_item",
+    "PostV1SalesRecognitionRunsListRequestSortItem": ".post_v1sales_recognition_runs_list_request_sort_item",
+    "PostV1SalesRecognitionRunsListRequestSortItemDir": ".post_v1sales_recognition_runs_list_request_sort_item_dir",
+    "PostV1SalesRecognitionRunsListResponse": ".post_v1sales_recognition_runs_list_response",
+    "PostV1SalesRecognitionRunsListResponseRowsItem": ".post_v1sales_recognition_runs_list_response_rows_item",
+    "PostV1SalesRecognitionRunsListResponseRowsItemTrigger": ".post_v1sales_recognition_runs_list_response_rows_item_trigger",
+    "PostV1SalesRecognitionSchedulesListRequestFilterItem": ".post_v1sales_recognition_schedules_list_request_filter_item",
+    "PostV1SalesRecognitionSchedulesListRequestFilterItemOp": ".post_v1sales_recognition_schedules_list_request_filter_item_op",
+    "PostV1SalesRecognitionSchedulesListRequestFilterItemValue": ".post_v1sales_recognition_schedules_list_request_filter_item_value",
+    "PostV1SalesRecognitionSchedulesListRequestFilterItemValueThreeItem": ".post_v1sales_recognition_schedules_list_request_filter_item_value_three_item",
+    "PostV1SalesRecognitionSchedulesListRequestSortItem": ".post_v1sales_recognition_schedules_list_request_sort_item",
+    "PostV1SalesRecognitionSchedulesListRequestSortItemDir": ".post_v1sales_recognition_schedules_list_request_sort_item_dir",
+    "PostV1SalesRecognitionSchedulesListResponse": ".post_v1sales_recognition_schedules_list_response",
+    "PostV1SalesRecognitionSchedulesListResponseRowsItem": ".post_v1sales_recognition_schedules_list_response_rows_item",
+    "PostV1SalesRecognitionSchedulesListResponseRowsItemMethod": ".post_v1sales_recognition_schedules_list_response_rows_item_method",
+    "PostV1SalesRecognitionSchedulesListResponseRowsItemStatus": ".post_v1sales_recognition_schedules_list_response_rows_item_status",
+    "PostV1SalesRecognitionSummaryResponse": ".post_v1sales_recognition_summary_response",
+    "PostV1SalesRecognitionSummaryResponseRowsItem": ".post_v1sales_recognition_summary_response_rows_item",
+    "PostV1SalesRecognitionSummaryResponseRowsItemMethod": ".post_v1sales_recognition_summary_response_rows_item_method",
+    "PostV1SalesRecognitionSummaryResponseTotals": ".post_v1sales_recognition_summary_response_totals",
+    "PostV1SalesRefundLiabilityListRequestFilterItem": ".post_v1sales_refund_liability_list_request_filter_item",
+    "PostV1SalesRefundLiabilityListRequestFilterItemOp": ".post_v1sales_refund_liability_list_request_filter_item_op",
+    "PostV1SalesRefundLiabilityListRequestFilterItemValue": ".post_v1sales_refund_liability_list_request_filter_item_value",
+    "PostV1SalesRefundLiabilityListRequestFilterItemValueThreeItem": ".post_v1sales_refund_liability_list_request_filter_item_value_three_item",
+    "PostV1SalesRefundLiabilityListRequestSortItem": ".post_v1sales_refund_liability_list_request_sort_item",
+    "PostV1SalesRefundLiabilityListRequestSortItemDir": ".post_v1sales_refund_liability_list_request_sort_item_dir",
+    "PostV1SalesRefundLiabilityListResponse": ".post_v1sales_refund_liability_list_response",
+    "PostV1SalesRefundLiabilityListResponseRowsItem": ".post_v1sales_refund_liability_list_response_rows_item",
+    "PostV1SalesRefundLiabilityTrueUpResponse": ".post_v1sales_refund_liability_true_up_response",
 }
 
 
@@ -269,16 +455,23 @@ __all__ = [
     "PostV1SalesActsUpdateResponseType",
     "PostV1SalesInvoicesApplyAdvanceResponse",
     "PostV1SalesInvoicesApplyAdvanceResponseLinesItem",
+    "PostV1SalesInvoicesApplyAdvanceResponseLinesItemRecognitionMethod",
+    "PostV1SalesInvoicesApplyAdvanceResponseLinesItemRecognitionMilestonesItem",
     "PostV1SalesInvoicesApplyAdvanceResponsePaymentStatus",
     "PostV1SalesInvoicesApplyAdvanceResponseStatus",
     "PostV1SalesInvoicesApplyAdvanceResponseType",
     "PostV1SalesInvoicesApplyAdvanceResponseVatScheme",
     "PostV1SalesInvoicesCreateRequestLinesItem",
     "PostV1SalesInvoicesCreateRequestLinesItemQuantity",
+    "PostV1SalesInvoicesCreateRequestLinesItemRecognition",
+    "PostV1SalesInvoicesCreateRequestLinesItemRecognitionMethod",
+    "PostV1SalesInvoicesCreateRequestLinesItemRecognitionMilestonesItem",
     "PostV1SalesInvoicesCreateRequestType",
     "PostV1SalesInvoicesCreateRequestVatScheme",
     "PostV1SalesInvoicesCreateResponse",
     "PostV1SalesInvoicesCreateResponseLinesItem",
+    "PostV1SalesInvoicesCreateResponseLinesItemRecognitionMethod",
+    "PostV1SalesInvoicesCreateResponseLinesItemRecognitionMilestonesItem",
     "PostV1SalesInvoicesCreateResponsePaymentStatus",
     "PostV1SalesInvoicesCreateResponseStatus",
     "PostV1SalesInvoicesCreateResponseType",
@@ -286,12 +479,16 @@ __all__ = [
     "PostV1SalesInvoicesDeleteResponse",
     "PostV1SalesInvoicesGetResponse",
     "PostV1SalesInvoicesGetResponseLinesItem",
+    "PostV1SalesInvoicesGetResponseLinesItemRecognitionMethod",
+    "PostV1SalesInvoicesGetResponseLinesItemRecognitionMilestonesItem",
     "PostV1SalesInvoicesGetResponsePaymentStatus",
     "PostV1SalesInvoicesGetResponseStatus",
     "PostV1SalesInvoicesGetResponseType",
     "PostV1SalesInvoicesGetResponseVatScheme",
     "PostV1SalesInvoicesIssueResponse",
     "PostV1SalesInvoicesIssueResponseLinesItem",
+    "PostV1SalesInvoicesIssueResponseLinesItemRecognitionMethod",
+    "PostV1SalesInvoicesIssueResponseLinesItemRecognitionMilestonesItem",
     "PostV1SalesInvoicesIssueResponsePaymentStatus",
     "PostV1SalesInvoicesIssueResponseStatus",
     "PostV1SalesInvoicesIssueResponseType",
@@ -316,11 +513,57 @@ __all__ = [
     "PostV1SalesInvoicesSendResponse",
     "PostV1SalesInvoicesUpdateRequestLinesItem",
     "PostV1SalesInvoicesUpdateRequestLinesItemQuantity",
+    "PostV1SalesInvoicesUpdateRequestLinesItemRecognition",
+    "PostV1SalesInvoicesUpdateRequestLinesItemRecognitionMethod",
+    "PostV1SalesInvoicesUpdateRequestLinesItemRecognitionMilestonesItem",
     "PostV1SalesInvoicesUpdateRequestVatScheme",
     "PostV1SalesInvoicesUpdateResponse",
     "PostV1SalesInvoicesUpdateResponseLinesItem",
+    "PostV1SalesInvoicesUpdateResponseLinesItemRecognitionMethod",
+    "PostV1SalesInvoicesUpdateResponseLinesItemRecognitionMilestonesItem",
     "PostV1SalesInvoicesUpdateResponsePaymentStatus",
     "PostV1SalesInvoicesUpdateResponseStatus",
     "PostV1SalesInvoicesUpdateResponseType",
     "PostV1SalesInvoicesUpdateResponseVatScheme",
+    "PostV1SalesRecognitionComputeResponse",
+    "PostV1SalesRecognitionComputeResponseRowsItem",
+    "PostV1SalesRecognitionModifyRequestApproach",
+    "PostV1SalesRecognitionModifyRequestNewMilestonesItem",
+    "PostV1SalesRecognitionModifyResponse",
+    "PostV1SalesRecognitionModifyResponseApproach",
+    "PostV1SalesRecognitionProgressResponse",
+    "PostV1SalesRecognitionRunResponse",
+    "PostV1SalesRecognitionRunResponseTrigger",
+    "PostV1SalesRecognitionRunsListRequestFilterItem",
+    "PostV1SalesRecognitionRunsListRequestFilterItemOp",
+    "PostV1SalesRecognitionRunsListRequestFilterItemValue",
+    "PostV1SalesRecognitionRunsListRequestFilterItemValueThreeItem",
+    "PostV1SalesRecognitionRunsListRequestSortItem",
+    "PostV1SalesRecognitionRunsListRequestSortItemDir",
+    "PostV1SalesRecognitionRunsListResponse",
+    "PostV1SalesRecognitionRunsListResponseRowsItem",
+    "PostV1SalesRecognitionRunsListResponseRowsItemTrigger",
+    "PostV1SalesRecognitionSchedulesListRequestFilterItem",
+    "PostV1SalesRecognitionSchedulesListRequestFilterItemOp",
+    "PostV1SalesRecognitionSchedulesListRequestFilterItemValue",
+    "PostV1SalesRecognitionSchedulesListRequestFilterItemValueThreeItem",
+    "PostV1SalesRecognitionSchedulesListRequestSortItem",
+    "PostV1SalesRecognitionSchedulesListRequestSortItemDir",
+    "PostV1SalesRecognitionSchedulesListResponse",
+    "PostV1SalesRecognitionSchedulesListResponseRowsItem",
+    "PostV1SalesRecognitionSchedulesListResponseRowsItemMethod",
+    "PostV1SalesRecognitionSchedulesListResponseRowsItemStatus",
+    "PostV1SalesRecognitionSummaryResponse",
+    "PostV1SalesRecognitionSummaryResponseRowsItem",
+    "PostV1SalesRecognitionSummaryResponseRowsItemMethod",
+    "PostV1SalesRecognitionSummaryResponseTotals",
+    "PostV1SalesRefundLiabilityListRequestFilterItem",
+    "PostV1SalesRefundLiabilityListRequestFilterItemOp",
+    "PostV1SalesRefundLiabilityListRequestFilterItemValue",
+    "PostV1SalesRefundLiabilityListRequestFilterItemValueThreeItem",
+    "PostV1SalesRefundLiabilityListRequestSortItem",
+    "PostV1SalesRefundLiabilityListRequestSortItemDir",
+    "PostV1SalesRefundLiabilityListResponse",
+    "PostV1SalesRefundLiabilityListResponseRowsItem",
+    "PostV1SalesRefundLiabilityTrueUpResponse",
 ]

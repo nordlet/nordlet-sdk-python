@@ -5,16 +5,26 @@ import typing
 from ..core.client_wrapper import AsyncClientWrapper, SyncClientWrapper
 from ..core.request_options import RequestOptions
 from .raw_client import AsyncRawAgreementsClient, RawAgreementsClient
+from .types.post_v1agreements_agreements_billing_run_response import PostV1AgreementsAgreementsBillingRunResponse
+from .types.post_v1agreements_agreements_create_request_billing_period import (
+    PostV1AgreementsAgreementsCreateRequestBillingPeriod,
+)
 from .types.post_v1agreements_agreements_create_request_items_item import (
     PostV1AgreementsAgreementsCreateRequestItemsItem,
 )
 from .types.post_v1agreements_agreements_create_request_status import PostV1AgreementsAgreementsCreateRequestStatus
 from .types.post_v1agreements_agreements_create_response import PostV1AgreementsAgreementsCreateResponse
 from .types.post_v1agreements_agreements_delete_response import PostV1AgreementsAgreementsDeleteResponse
+from .types.post_v1agreements_agreements_generate_invoice_response import (
+    PostV1AgreementsAgreementsGenerateInvoiceResponse,
+)
 from .types.post_v1agreements_agreements_get_response import PostV1AgreementsAgreementsGetResponse
 from .types.post_v1agreements_agreements_list_request_filter_item import PostV1AgreementsAgreementsListRequestFilterItem
 from .types.post_v1agreements_agreements_list_request_sort_item import PostV1AgreementsAgreementsListRequestSortItem
 from .types.post_v1agreements_agreements_list_response import PostV1AgreementsAgreementsListResponse
+from .types.post_v1agreements_agreements_update_request_billing_period import (
+    PostV1AgreementsAgreementsUpdateRequestBillingPeriod,
+)
 from .types.post_v1agreements_agreements_update_request_status import PostV1AgreementsAgreementsUpdateRequestStatus
 from .types.post_v1agreements_agreements_update_response import PostV1AgreementsAgreementsUpdateResponse
 from .types.post_v1agreements_insurance_policies_create_response import PostV1AgreementsInsurancePoliciesCreateResponse
@@ -138,6 +148,7 @@ class AgreementsClient:
         end_date: typing.Optional[str] = OMIT,
         auto_renew: typing.Optional[bool] = OMIT,
         value: typing.Optional[str] = OMIT,
+        billing_period: typing.Optional[PostV1AgreementsAgreementsCreateRequestBillingPeriod] = OMIT,
         currency: typing.Optional[str] = OMIT,
         status: typing.Optional[PostV1AgreementsAgreementsCreateRequestStatus] = OMIT,
         notes: typing.Optional[str] = OMIT,
@@ -162,6 +173,8 @@ class AgreementsClient:
         auto_renew : typing.Optional[bool]
 
         value : typing.Optional[str]
+
+        billing_period : typing.Optional[PostV1AgreementsAgreementsCreateRequestBillingPeriod]
 
         currency : typing.Optional[str]
 
@@ -201,6 +214,7 @@ class AgreementsClient:
             end_date=end_date,
             auto_renew=auto_renew,
             value=value,
+            billing_period=billing_period,
             currency=currency,
             status=status,
             notes=notes,
@@ -248,6 +262,7 @@ class AgreementsClient:
         end_date: typing.Optional[str] = OMIT,
         auto_renew: typing.Optional[bool] = OMIT,
         value: typing.Optional[str] = OMIT,
+        billing_period: typing.Optional[PostV1AgreementsAgreementsUpdateRequestBillingPeriod] = OMIT,
         status: typing.Optional[PostV1AgreementsAgreementsUpdateRequestStatus] = OMIT,
         notes: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
@@ -266,6 +281,8 @@ class AgreementsClient:
         auto_renew : typing.Optional[bool]
 
         value : typing.Optional[str]
+
+        billing_period : typing.Optional[PostV1AgreementsAgreementsUpdateRequestBillingPeriod]
 
         status : typing.Optional[PostV1AgreementsAgreementsUpdateRequestStatus]
 
@@ -297,6 +314,7 @@ class AgreementsClient:
             end_date=end_date,
             auto_renew=auto_renew,
             value=value,
+            billing_period=billing_period,
             status=status,
             notes=notes,
             request_options=request_options,
@@ -372,6 +390,74 @@ class AgreementsClient:
         """
         _response = self._raw_client.post_v1agreements_agreements_list(
             page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+        )
+        return _response.data
+
+    def post_v1agreements_agreements_generate_invoice(
+        self,
+        *,
+        id: str,
+        as_of_date: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1AgreementsAgreementsGenerateInvoiceResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        as_of_date : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1AgreementsAgreementsGenerateInvoiceResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.agreements.post_v1agreements_agreements_generate_invoice(
+            id="id",
+        )
+        """
+        _response = self._raw_client.post_v1agreements_agreements_generate_invoice(
+            id=id, as_of_date=as_of_date, request_options=request_options
+        )
+        return _response.data
+
+    def post_v1agreements_agreements_billing_run(
+        self, *, as_of_date: typing.Optional[str] = OMIT, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1AgreementsAgreementsBillingRunResponse:
+        """
+        Parameters
+        ----------
+        as_of_date : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1AgreementsAgreementsBillingRunResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.agreements.post_v1agreements_agreements_billing_run()
+        """
+        _response = self._raw_client.post_v1agreements_agreements_billing_run(
+            as_of_date=as_of_date, request_options=request_options
         )
         return _response.data
 
@@ -634,6 +720,7 @@ class AsyncAgreementsClient:
         end_date: typing.Optional[str] = OMIT,
         auto_renew: typing.Optional[bool] = OMIT,
         value: typing.Optional[str] = OMIT,
+        billing_period: typing.Optional[PostV1AgreementsAgreementsCreateRequestBillingPeriod] = OMIT,
         currency: typing.Optional[str] = OMIT,
         status: typing.Optional[PostV1AgreementsAgreementsCreateRequestStatus] = OMIT,
         notes: typing.Optional[str] = OMIT,
@@ -658,6 +745,8 @@ class AsyncAgreementsClient:
         auto_renew : typing.Optional[bool]
 
         value : typing.Optional[str]
+
+        billing_period : typing.Optional[PostV1AgreementsAgreementsCreateRequestBillingPeriod]
 
         currency : typing.Optional[str]
 
@@ -705,6 +794,7 @@ class AsyncAgreementsClient:
             end_date=end_date,
             auto_renew=auto_renew,
             value=value,
+            billing_period=billing_period,
             currency=currency,
             status=status,
             notes=notes,
@@ -760,6 +850,7 @@ class AsyncAgreementsClient:
         end_date: typing.Optional[str] = OMIT,
         auto_renew: typing.Optional[bool] = OMIT,
         value: typing.Optional[str] = OMIT,
+        billing_period: typing.Optional[PostV1AgreementsAgreementsUpdateRequestBillingPeriod] = OMIT,
         status: typing.Optional[PostV1AgreementsAgreementsUpdateRequestStatus] = OMIT,
         notes: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
@@ -778,6 +869,8 @@ class AsyncAgreementsClient:
         auto_renew : typing.Optional[bool]
 
         value : typing.Optional[str]
+
+        billing_period : typing.Optional[PostV1AgreementsAgreementsUpdateRequestBillingPeriod]
 
         status : typing.Optional[PostV1AgreementsAgreementsUpdateRequestStatus]
 
@@ -817,6 +910,7 @@ class AsyncAgreementsClient:
             end_date=end_date,
             auto_renew=auto_renew,
             value=value,
+            billing_period=billing_period,
             status=status,
             notes=notes,
             request_options=request_options,
@@ -908,6 +1002,90 @@ class AsyncAgreementsClient:
         """
         _response = await self._raw_client.post_v1agreements_agreements_list(
             page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+        )
+        return _response.data
+
+    async def post_v1agreements_agreements_generate_invoice(
+        self,
+        *,
+        id: str,
+        as_of_date: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1AgreementsAgreementsGenerateInvoiceResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        as_of_date : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1AgreementsAgreementsGenerateInvoiceResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.agreements.post_v1agreements_agreements_generate_invoice(
+                id="id",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1agreements_agreements_generate_invoice(
+            id=id, as_of_date=as_of_date, request_options=request_options
+        )
+        return _response.data
+
+    async def post_v1agreements_agreements_billing_run(
+        self, *, as_of_date: typing.Optional[str] = OMIT, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1AgreementsAgreementsBillingRunResponse:
+        """
+        Parameters
+        ----------
+        as_of_date : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1AgreementsAgreementsBillingRunResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.agreements.post_v1agreements_agreements_billing_run()
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1agreements_agreements_billing_run(
+            as_of_date=as_of_date, request_options=request_options
         )
         return _response.data
 

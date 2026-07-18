@@ -34,6 +34,10 @@ from .types.post_v1reference_currencies_list_request_filter_item import PostV1Re
 from .types.post_v1reference_currencies_list_request_sort_item import PostV1ReferenceCurrenciesListRequestSortItem
 from .types.post_v1reference_currencies_list_response import PostV1ReferenceCurrenciesListResponse
 from .types.post_v1reference_eu_vat_rates_list_response import PostV1ReferenceEuVatRatesListResponse
+from .types.post_v1reference_eu_vat_rates_set_overrides_request_rates_item import (
+    PostV1ReferenceEuVatRatesSetOverridesRequestRatesItem,
+)
+from .types.post_v1reference_eu_vat_rates_set_overrides_response import PostV1ReferenceEuVatRatesSetOverridesResponse
 from .types.post_v1reference_exchange_rates_list_request_filter_item import (
     PostV1ReferenceExchangeRatesListRequestFilterItem,
 )
@@ -1855,6 +1859,8 @@ class RawReferenceClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[PostV1ReferenceEuVatRatesListResponse]:
         """
+        Effective EU VAT rate mapping for this company: EC TEDB defaults, replaced per country by any company overrides. Verify the mapping fits the goods and services you sell before relying on it.
+
         Parameters
         ----------
         country_code : typing.Optional[str]
@@ -1888,6 +1894,154 @@ class RawReferenceClient:
                     PostV1ReferenceEuVatRatesListResponse,
                     parse_obj_as(
                         type_=PostV1ReferenceEuVatRatesListResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return HttpResponse(response=_response, data=_data)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 422:
+                raise UnprocessableEntityError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
+    def post_v1reference_eu_vat_rates_set_overrides(
+        self,
+        *,
+        country_code: str,
+        rates: typing.Sequence[PostV1ReferenceEuVatRatesSetOverridesRequestRatesItem],
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> HttpResponse[PostV1ReferenceEuVatRatesSetOverridesResponse]:
+        """
+        Replace the VAT rate mapping this company uses for one EU country. Pass an empty rates array to drop the overrides and return to the TEDB defaults. Overrides feed rate suggestions (vat/resolve) and OSS/IOSS return rate classification.
+
+        Parameters
+        ----------
+        country_code : str
+
+        rates : typing.Sequence[PostV1ReferenceEuVatRatesSetOverridesRequestRatesItem]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        HttpResponse[PostV1ReferenceEuVatRatesSetOverridesResponse]
+            Default Response
+        """
+        _response = self._client_wrapper.httpx_client.request(
+            "v1/reference/eu-vat-rates/set-overrides",
+            method="POST",
+            json={
+                "countryCode": country_code,
+                "rates": convert_and_respect_annotation_metadata(
+                    object_=rates,
+                    annotation=typing.Sequence[PostV1ReferenceEuVatRatesSetOverridesRequestRatesItem],
+                    direction="write",
+                ),
+            },
+            headers={
+                "content-type": "application/json",
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    PostV1ReferenceEuVatRatesSetOverridesResponse,
+                    parse_obj_as(
+                        type_=PostV1ReferenceEuVatRatesSetOverridesResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -4966,6 +5120,8 @@ class AsyncRawReferenceClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[PostV1ReferenceEuVatRatesListResponse]:
         """
+        Effective EU VAT rate mapping for this company: EC TEDB defaults, replaced per country by any company overrides. Verify the mapping fits the goods and services you sell before relying on it.
+
         Parameters
         ----------
         country_code : typing.Optional[str]
@@ -4999,6 +5155,154 @@ class AsyncRawReferenceClient:
                     PostV1ReferenceEuVatRatesListResponse,
                     parse_obj_as(
                         type_=PostV1ReferenceEuVatRatesListResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return AsyncHttpResponse(response=_response, data=_data)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 422:
+                raise UnprocessableEntityError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
+    async def post_v1reference_eu_vat_rates_set_overrides(
+        self,
+        *,
+        country_code: str,
+        rates: typing.Sequence[PostV1ReferenceEuVatRatesSetOverridesRequestRatesItem],
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> AsyncHttpResponse[PostV1ReferenceEuVatRatesSetOverridesResponse]:
+        """
+        Replace the VAT rate mapping this company uses for one EU country. Pass an empty rates array to drop the overrides and return to the TEDB defaults. Overrides feed rate suggestions (vat/resolve) and OSS/IOSS return rate classification.
+
+        Parameters
+        ----------
+        country_code : str
+
+        rates : typing.Sequence[PostV1ReferenceEuVatRatesSetOverridesRequestRatesItem]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        AsyncHttpResponse[PostV1ReferenceEuVatRatesSetOverridesResponse]
+            Default Response
+        """
+        _response = await self._client_wrapper.httpx_client.request(
+            "v1/reference/eu-vat-rates/set-overrides",
+            method="POST",
+            json={
+                "countryCode": country_code,
+                "rates": convert_and_respect_annotation_metadata(
+                    object_=rates,
+                    annotation=typing.Sequence[PostV1ReferenceEuVatRatesSetOverridesRequestRatesItem],
+                    direction="write",
+                ),
+            },
+            headers={
+                "content-type": "application/json",
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    PostV1ReferenceEuVatRatesSetOverridesResponse,
+                    parse_obj_as(
+                        type_=PostV1ReferenceEuVatRatesSetOverridesResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
