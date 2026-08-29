@@ -125,6 +125,38 @@ if typing.TYPE_CHECKING:
     from .post_v1partners_update_response_address import PostV1PartnersUpdateResponseAddress
     from .post_v1partners_update_response_type import PostV1PartnersUpdateResponseType
     from .post_v1partners_validate_vat_response import PostV1PartnersValidateVatResponse
+    from .post_v1partners_vat_reviews_list_request_filter_item import PostV1PartnersVatReviewsListRequestFilterItem
+    from .post_v1partners_vat_reviews_list_request_filter_item_op import PostV1PartnersVatReviewsListRequestFilterItemOp
+    from .post_v1partners_vat_reviews_list_request_filter_item_value import (
+        PostV1PartnersVatReviewsListRequestFilterItemValue,
+    )
+    from .post_v1partners_vat_reviews_list_request_filter_item_value_three_item import (
+        PostV1PartnersVatReviewsListRequestFilterItemValueThreeItem,
+    )
+    from .post_v1partners_vat_reviews_list_request_sort_item import PostV1PartnersVatReviewsListRequestSortItem
+    from .post_v1partners_vat_reviews_list_request_sort_item_dir import PostV1PartnersVatReviewsListRequestSortItemDir
+    from .post_v1partners_vat_reviews_list_response import PostV1PartnersVatReviewsListResponse
+    from .post_v1partners_vat_reviews_list_response_rows_item import PostV1PartnersVatReviewsListResponseRowsItem
+    from .post_v1partners_vat_reviews_list_response_rows_item_details import (
+        PostV1PartnersVatReviewsListResponseRowsItemDetails,
+    )
+    from .post_v1partners_vat_reviews_list_response_rows_item_reason import (
+        PostV1PartnersVatReviewsListResponseRowsItemReason,
+    )
+    from .post_v1partners_vat_reviews_list_response_rows_item_resolution import (
+        PostV1PartnersVatReviewsListResponseRowsItemResolution,
+    )
+    from .post_v1partners_vat_reviews_list_response_rows_item_status import (
+        PostV1PartnersVatReviewsListResponseRowsItemStatus,
+    )
+    from .post_v1partners_vat_reviews_resolve_request_resolution import PostV1PartnersVatReviewsResolveRequestResolution
+    from .post_v1partners_vat_reviews_resolve_response import PostV1PartnersVatReviewsResolveResponse
+    from .post_v1partners_vat_reviews_resolve_response_details import PostV1PartnersVatReviewsResolveResponseDetails
+    from .post_v1partners_vat_reviews_resolve_response_reason import PostV1PartnersVatReviewsResolveResponseReason
+    from .post_v1partners_vat_reviews_resolve_response_resolution import (
+        PostV1PartnersVatReviewsResolveResponseResolution,
+    )
+    from .post_v1partners_vat_reviews_resolve_response_status import PostV1PartnersVatReviewsResolveResponseStatus
 _dynamic_imports: typing.Dict[str, str] = {
     "PostV1PartnersAddressesCreateRequestType": ".post_v1partners_addresses_create_request_type",
     "PostV1PartnersAddressesCreateResponse": ".post_v1partners_addresses_create_response",
@@ -219,6 +251,24 @@ _dynamic_imports: typing.Dict[str, str] = {
     "PostV1PartnersUpdateResponseAddress": ".post_v1partners_update_response_address",
     "PostV1PartnersUpdateResponseType": ".post_v1partners_update_response_type",
     "PostV1PartnersValidateVatResponse": ".post_v1partners_validate_vat_response",
+    "PostV1PartnersVatReviewsListRequestFilterItem": ".post_v1partners_vat_reviews_list_request_filter_item",
+    "PostV1PartnersVatReviewsListRequestFilterItemOp": ".post_v1partners_vat_reviews_list_request_filter_item_op",
+    "PostV1PartnersVatReviewsListRequestFilterItemValue": ".post_v1partners_vat_reviews_list_request_filter_item_value",
+    "PostV1PartnersVatReviewsListRequestFilterItemValueThreeItem": ".post_v1partners_vat_reviews_list_request_filter_item_value_three_item",
+    "PostV1PartnersVatReviewsListRequestSortItem": ".post_v1partners_vat_reviews_list_request_sort_item",
+    "PostV1PartnersVatReviewsListRequestSortItemDir": ".post_v1partners_vat_reviews_list_request_sort_item_dir",
+    "PostV1PartnersVatReviewsListResponse": ".post_v1partners_vat_reviews_list_response",
+    "PostV1PartnersVatReviewsListResponseRowsItem": ".post_v1partners_vat_reviews_list_response_rows_item",
+    "PostV1PartnersVatReviewsListResponseRowsItemDetails": ".post_v1partners_vat_reviews_list_response_rows_item_details",
+    "PostV1PartnersVatReviewsListResponseRowsItemReason": ".post_v1partners_vat_reviews_list_response_rows_item_reason",
+    "PostV1PartnersVatReviewsListResponseRowsItemResolution": ".post_v1partners_vat_reviews_list_response_rows_item_resolution",
+    "PostV1PartnersVatReviewsListResponseRowsItemStatus": ".post_v1partners_vat_reviews_list_response_rows_item_status",
+    "PostV1PartnersVatReviewsResolveRequestResolution": ".post_v1partners_vat_reviews_resolve_request_resolution",
+    "PostV1PartnersVatReviewsResolveResponse": ".post_v1partners_vat_reviews_resolve_response",
+    "PostV1PartnersVatReviewsResolveResponseDetails": ".post_v1partners_vat_reviews_resolve_response_details",
+    "PostV1PartnersVatReviewsResolveResponseReason": ".post_v1partners_vat_reviews_resolve_response_reason",
+    "PostV1PartnersVatReviewsResolveResponseResolution": ".post_v1partners_vat_reviews_resolve_response_resolution",
+    "PostV1PartnersVatReviewsResolveResponseStatus": ".post_v1partners_vat_reviews_resolve_response_status",
 }
 
 
@@ -337,4 +387,22 @@ __all__ = [
     "PostV1PartnersUpdateResponseAddress",
     "PostV1PartnersUpdateResponseType",
     "PostV1PartnersValidateVatResponse",
+    "PostV1PartnersVatReviewsListRequestFilterItem",
+    "PostV1PartnersVatReviewsListRequestFilterItemOp",
+    "PostV1PartnersVatReviewsListRequestFilterItemValue",
+    "PostV1PartnersVatReviewsListRequestFilterItemValueThreeItem",
+    "PostV1PartnersVatReviewsListRequestSortItem",
+    "PostV1PartnersVatReviewsListRequestSortItemDir",
+    "PostV1PartnersVatReviewsListResponse",
+    "PostV1PartnersVatReviewsListResponseRowsItem",
+    "PostV1PartnersVatReviewsListResponseRowsItemDetails",
+    "PostV1PartnersVatReviewsListResponseRowsItemReason",
+    "PostV1PartnersVatReviewsListResponseRowsItemResolution",
+    "PostV1PartnersVatReviewsListResponseRowsItemStatus",
+    "PostV1PartnersVatReviewsResolveRequestResolution",
+    "PostV1PartnersVatReviewsResolveResponse",
+    "PostV1PartnersVatReviewsResolveResponseDetails",
+    "PostV1PartnersVatReviewsResolveResponseReason",
+    "PostV1PartnersVatReviewsResolveResponseResolution",
+    "PostV1PartnersVatReviewsResolveResponseStatus",
 ]

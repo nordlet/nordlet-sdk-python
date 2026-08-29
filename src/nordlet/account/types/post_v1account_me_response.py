@@ -6,6 +6,7 @@ import pydantic
 import typing_extensions
 from ...core.pydantic_utilities import IS_PYDANTIC_V2, UniversalBaseModel
 from ...core.serialization import FieldMetadata
+from .post_v1account_me_response_billing import PostV1AccountMeResponseBilling
 from .post_v1account_me_response_companies_item import PostV1AccountMeResponseCompaniesItem
 from .post_v1account_me_response_user import PostV1AccountMeResponseUser
 
@@ -17,6 +18,7 @@ class PostV1AccountMeResponse(UniversalBaseModel):
         typing.Optional[str], FieldMetadata(alias="activeCompanyId"), pydantic.Field(alias="activeCompanyId")
     ] = None
     role: typing.Optional[str] = None
+    billing: PostV1AccountMeResponseBilling
     companies: typing.List[PostV1AccountMeResponseCompaniesItem]
 
     if IS_PYDANTIC_V2:

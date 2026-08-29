@@ -43,6 +43,12 @@ if typing.TYPE_CHECKING:
         PostV1PurchasesInvoicesListResponseRowsItemStatus,
     )
     from .post_v1purchases_invoices_list_response_rows_item_type import PostV1PurchasesInvoicesListResponseRowsItemType
+    from .post_v1purchases_invoices_match_response import PostV1PurchasesInvoicesMatchResponse
+    from .post_v1purchases_invoices_match_response_rows_item import PostV1PurchasesInvoicesMatchResponseRowsItem
+    from .post_v1purchases_invoices_match_response_rows_item_status import (
+        PostV1PurchasesInvoicesMatchResponseRowsItemStatus,
+    )
+    from .post_v1purchases_invoices_match_response_status import PostV1PurchasesInvoicesMatchResponseStatus
     from .post_v1purchases_invoices_register_response import PostV1PurchasesInvoicesRegisterResponse
     from .post_v1purchases_invoices_register_response_lines_item import PostV1PurchasesInvoicesRegisterResponseLinesItem
     from .post_v1purchases_invoices_register_response_payment_status import (
@@ -61,6 +67,67 @@ if typing.TYPE_CHECKING:
     )
     from .post_v1purchases_invoices_update_response_status import PostV1PurchasesInvoicesUpdateResponseStatus
     from .post_v1purchases_invoices_update_response_type import PostV1PurchasesInvoicesUpdateResponseType
+    from .post_v1purchases_orders_approve_response import PostV1PurchasesOrdersApproveResponse
+    from .post_v1purchases_orders_approve_response_lines_item import PostV1PurchasesOrdersApproveResponseLinesItem
+    from .post_v1purchases_orders_approve_response_status import PostV1PurchasesOrdersApproveResponseStatus
+    from .post_v1purchases_orders_cancel_response import PostV1PurchasesOrdersCancelResponse
+    from .post_v1purchases_orders_cancel_response_lines_item import PostV1PurchasesOrdersCancelResponseLinesItem
+    from .post_v1purchases_orders_cancel_response_status import PostV1PurchasesOrdersCancelResponseStatus
+    from .post_v1purchases_orders_close_response import PostV1PurchasesOrdersCloseResponse
+    from .post_v1purchases_orders_close_response_lines_item import PostV1PurchasesOrdersCloseResponseLinesItem
+    from .post_v1purchases_orders_close_response_status import PostV1PurchasesOrdersCloseResponseStatus
+    from .post_v1purchases_orders_create_request_lines_item import PostV1PurchasesOrdersCreateRequestLinesItem
+    from .post_v1purchases_orders_create_request_lines_item_quantity import (
+        PostV1PurchasesOrdersCreateRequestLinesItemQuantity,
+    )
+    from .post_v1purchases_orders_create_response import PostV1PurchasesOrdersCreateResponse
+    from .post_v1purchases_orders_create_response_lines_item import PostV1PurchasesOrdersCreateResponseLinesItem
+    from .post_v1purchases_orders_create_response_status import PostV1PurchasesOrdersCreateResponseStatus
+    from .post_v1purchases_orders_delete_response import PostV1PurchasesOrdersDeleteResponse
+    from .post_v1purchases_orders_get_response import PostV1PurchasesOrdersGetResponse
+    from .post_v1purchases_orders_get_response_lines_item import PostV1PurchasesOrdersGetResponseLinesItem
+    from .post_v1purchases_orders_get_response_status import PostV1PurchasesOrdersGetResponseStatus
+    from .post_v1purchases_orders_list_request_filter_item import PostV1PurchasesOrdersListRequestFilterItem
+    from .post_v1purchases_orders_list_request_filter_item_op import PostV1PurchasesOrdersListRequestFilterItemOp
+    from .post_v1purchases_orders_list_request_filter_item_value import PostV1PurchasesOrdersListRequestFilterItemValue
+    from .post_v1purchases_orders_list_request_filter_item_value_three_item import (
+        PostV1PurchasesOrdersListRequestFilterItemValueThreeItem,
+    )
+    from .post_v1purchases_orders_list_request_sort_item import PostV1PurchasesOrdersListRequestSortItem
+    from .post_v1purchases_orders_list_request_sort_item_dir import PostV1PurchasesOrdersListRequestSortItemDir
+    from .post_v1purchases_orders_list_response import PostV1PurchasesOrdersListResponse
+    from .post_v1purchases_orders_list_response_rows_item import PostV1PurchasesOrdersListResponseRowsItem
+    from .post_v1purchases_orders_list_response_rows_item_status import PostV1PurchasesOrdersListResponseRowsItemStatus
+    from .post_v1purchases_orders_reject_response import PostV1PurchasesOrdersRejectResponse
+    from .post_v1purchases_orders_reject_response_lines_item import PostV1PurchasesOrdersRejectResponseLinesItem
+    from .post_v1purchases_orders_reject_response_status import PostV1PurchasesOrdersRejectResponseStatus
+    from .post_v1purchases_orders_submit_response import PostV1PurchasesOrdersSubmitResponse
+    from .post_v1purchases_orders_submit_response_lines_item import PostV1PurchasesOrdersSubmitResponseLinesItem
+    from .post_v1purchases_orders_submit_response_status import PostV1PurchasesOrdersSubmitResponseStatus
+    from .post_v1purchases_orders_update_request_lines_item import PostV1PurchasesOrdersUpdateRequestLinesItem
+    from .post_v1purchases_orders_update_request_lines_item_quantity import (
+        PostV1PurchasesOrdersUpdateRequestLinesItemQuantity,
+    )
+    from .post_v1purchases_orders_update_response import PostV1PurchasesOrdersUpdateResponse
+    from .post_v1purchases_orders_update_response_lines_item import PostV1PurchasesOrdersUpdateResponseLinesItem
+    from .post_v1purchases_orders_update_response_status import PostV1PurchasesOrdersUpdateResponseStatus
+    from .post_v1purchases_receipts_create_request_lines_item import PostV1PurchasesReceiptsCreateRequestLinesItem
+    from .post_v1purchases_receipts_create_response import PostV1PurchasesReceiptsCreateResponse
+    from .post_v1purchases_receipts_create_response_lines_item import PostV1PurchasesReceiptsCreateResponseLinesItem
+    from .post_v1purchases_receipts_get_response import PostV1PurchasesReceiptsGetResponse
+    from .post_v1purchases_receipts_get_response_lines_item import PostV1PurchasesReceiptsGetResponseLinesItem
+    from .post_v1purchases_receipts_list_request_filter_item import PostV1PurchasesReceiptsListRequestFilterItem
+    from .post_v1purchases_receipts_list_request_filter_item_op import PostV1PurchasesReceiptsListRequestFilterItemOp
+    from .post_v1purchases_receipts_list_request_filter_item_value import (
+        PostV1PurchasesReceiptsListRequestFilterItemValue,
+    )
+    from .post_v1purchases_receipts_list_request_filter_item_value_three_item import (
+        PostV1PurchasesReceiptsListRequestFilterItemValueThreeItem,
+    )
+    from .post_v1purchases_receipts_list_request_sort_item import PostV1PurchasesReceiptsListRequestSortItem
+    from .post_v1purchases_receipts_list_request_sort_item_dir import PostV1PurchasesReceiptsListRequestSortItemDir
+    from .post_v1purchases_receipts_list_response import PostV1PurchasesReceiptsListResponse
+    from .post_v1purchases_receipts_list_response_rows_item import PostV1PurchasesReceiptsListResponseRowsItem
 _dynamic_imports: typing.Dict[str, str] = {
     "PostV1PurchasesInvoicesCreateRequestLinesItem": ".post_v1purchases_invoices_create_request_lines_item",
     "PostV1PurchasesInvoicesCreateRequestLinesItemQuantity": ".post_v1purchases_invoices_create_request_lines_item_quantity",
@@ -87,6 +154,10 @@ _dynamic_imports: typing.Dict[str, str] = {
     "PostV1PurchasesInvoicesListResponseRowsItemPaymentStatus": ".post_v1purchases_invoices_list_response_rows_item_payment_status",
     "PostV1PurchasesInvoicesListResponseRowsItemStatus": ".post_v1purchases_invoices_list_response_rows_item_status",
     "PostV1PurchasesInvoicesListResponseRowsItemType": ".post_v1purchases_invoices_list_response_rows_item_type",
+    "PostV1PurchasesInvoicesMatchResponse": ".post_v1purchases_invoices_match_response",
+    "PostV1PurchasesInvoicesMatchResponseRowsItem": ".post_v1purchases_invoices_match_response_rows_item",
+    "PostV1PurchasesInvoicesMatchResponseRowsItemStatus": ".post_v1purchases_invoices_match_response_rows_item_status",
+    "PostV1PurchasesInvoicesMatchResponseStatus": ".post_v1purchases_invoices_match_response_status",
     "PostV1PurchasesInvoicesRegisterResponse": ".post_v1purchases_invoices_register_response",
     "PostV1PurchasesInvoicesRegisterResponseLinesItem": ".post_v1purchases_invoices_register_response_lines_item",
     "PostV1PurchasesInvoicesRegisterResponsePaymentStatus": ".post_v1purchases_invoices_register_response_payment_status",
@@ -99,6 +170,57 @@ _dynamic_imports: typing.Dict[str, str] = {
     "PostV1PurchasesInvoicesUpdateResponsePaymentStatus": ".post_v1purchases_invoices_update_response_payment_status",
     "PostV1PurchasesInvoicesUpdateResponseStatus": ".post_v1purchases_invoices_update_response_status",
     "PostV1PurchasesInvoicesUpdateResponseType": ".post_v1purchases_invoices_update_response_type",
+    "PostV1PurchasesOrdersApproveResponse": ".post_v1purchases_orders_approve_response",
+    "PostV1PurchasesOrdersApproveResponseLinesItem": ".post_v1purchases_orders_approve_response_lines_item",
+    "PostV1PurchasesOrdersApproveResponseStatus": ".post_v1purchases_orders_approve_response_status",
+    "PostV1PurchasesOrdersCancelResponse": ".post_v1purchases_orders_cancel_response",
+    "PostV1PurchasesOrdersCancelResponseLinesItem": ".post_v1purchases_orders_cancel_response_lines_item",
+    "PostV1PurchasesOrdersCancelResponseStatus": ".post_v1purchases_orders_cancel_response_status",
+    "PostV1PurchasesOrdersCloseResponse": ".post_v1purchases_orders_close_response",
+    "PostV1PurchasesOrdersCloseResponseLinesItem": ".post_v1purchases_orders_close_response_lines_item",
+    "PostV1PurchasesOrdersCloseResponseStatus": ".post_v1purchases_orders_close_response_status",
+    "PostV1PurchasesOrdersCreateRequestLinesItem": ".post_v1purchases_orders_create_request_lines_item",
+    "PostV1PurchasesOrdersCreateRequestLinesItemQuantity": ".post_v1purchases_orders_create_request_lines_item_quantity",
+    "PostV1PurchasesOrdersCreateResponse": ".post_v1purchases_orders_create_response",
+    "PostV1PurchasesOrdersCreateResponseLinesItem": ".post_v1purchases_orders_create_response_lines_item",
+    "PostV1PurchasesOrdersCreateResponseStatus": ".post_v1purchases_orders_create_response_status",
+    "PostV1PurchasesOrdersDeleteResponse": ".post_v1purchases_orders_delete_response",
+    "PostV1PurchasesOrdersGetResponse": ".post_v1purchases_orders_get_response",
+    "PostV1PurchasesOrdersGetResponseLinesItem": ".post_v1purchases_orders_get_response_lines_item",
+    "PostV1PurchasesOrdersGetResponseStatus": ".post_v1purchases_orders_get_response_status",
+    "PostV1PurchasesOrdersListRequestFilterItem": ".post_v1purchases_orders_list_request_filter_item",
+    "PostV1PurchasesOrdersListRequestFilterItemOp": ".post_v1purchases_orders_list_request_filter_item_op",
+    "PostV1PurchasesOrdersListRequestFilterItemValue": ".post_v1purchases_orders_list_request_filter_item_value",
+    "PostV1PurchasesOrdersListRequestFilterItemValueThreeItem": ".post_v1purchases_orders_list_request_filter_item_value_three_item",
+    "PostV1PurchasesOrdersListRequestSortItem": ".post_v1purchases_orders_list_request_sort_item",
+    "PostV1PurchasesOrdersListRequestSortItemDir": ".post_v1purchases_orders_list_request_sort_item_dir",
+    "PostV1PurchasesOrdersListResponse": ".post_v1purchases_orders_list_response",
+    "PostV1PurchasesOrdersListResponseRowsItem": ".post_v1purchases_orders_list_response_rows_item",
+    "PostV1PurchasesOrdersListResponseRowsItemStatus": ".post_v1purchases_orders_list_response_rows_item_status",
+    "PostV1PurchasesOrdersRejectResponse": ".post_v1purchases_orders_reject_response",
+    "PostV1PurchasesOrdersRejectResponseLinesItem": ".post_v1purchases_orders_reject_response_lines_item",
+    "PostV1PurchasesOrdersRejectResponseStatus": ".post_v1purchases_orders_reject_response_status",
+    "PostV1PurchasesOrdersSubmitResponse": ".post_v1purchases_orders_submit_response",
+    "PostV1PurchasesOrdersSubmitResponseLinesItem": ".post_v1purchases_orders_submit_response_lines_item",
+    "PostV1PurchasesOrdersSubmitResponseStatus": ".post_v1purchases_orders_submit_response_status",
+    "PostV1PurchasesOrdersUpdateRequestLinesItem": ".post_v1purchases_orders_update_request_lines_item",
+    "PostV1PurchasesOrdersUpdateRequestLinesItemQuantity": ".post_v1purchases_orders_update_request_lines_item_quantity",
+    "PostV1PurchasesOrdersUpdateResponse": ".post_v1purchases_orders_update_response",
+    "PostV1PurchasesOrdersUpdateResponseLinesItem": ".post_v1purchases_orders_update_response_lines_item",
+    "PostV1PurchasesOrdersUpdateResponseStatus": ".post_v1purchases_orders_update_response_status",
+    "PostV1PurchasesReceiptsCreateRequestLinesItem": ".post_v1purchases_receipts_create_request_lines_item",
+    "PostV1PurchasesReceiptsCreateResponse": ".post_v1purchases_receipts_create_response",
+    "PostV1PurchasesReceiptsCreateResponseLinesItem": ".post_v1purchases_receipts_create_response_lines_item",
+    "PostV1PurchasesReceiptsGetResponse": ".post_v1purchases_receipts_get_response",
+    "PostV1PurchasesReceiptsGetResponseLinesItem": ".post_v1purchases_receipts_get_response_lines_item",
+    "PostV1PurchasesReceiptsListRequestFilterItem": ".post_v1purchases_receipts_list_request_filter_item",
+    "PostV1PurchasesReceiptsListRequestFilterItemOp": ".post_v1purchases_receipts_list_request_filter_item_op",
+    "PostV1PurchasesReceiptsListRequestFilterItemValue": ".post_v1purchases_receipts_list_request_filter_item_value",
+    "PostV1PurchasesReceiptsListRequestFilterItemValueThreeItem": ".post_v1purchases_receipts_list_request_filter_item_value_three_item",
+    "PostV1PurchasesReceiptsListRequestSortItem": ".post_v1purchases_receipts_list_request_sort_item",
+    "PostV1PurchasesReceiptsListRequestSortItemDir": ".post_v1purchases_receipts_list_request_sort_item_dir",
+    "PostV1PurchasesReceiptsListResponse": ".post_v1purchases_receipts_list_response",
+    "PostV1PurchasesReceiptsListResponseRowsItem": ".post_v1purchases_receipts_list_response_rows_item",
 }
 
 
@@ -149,6 +271,10 @@ __all__ = [
     "PostV1PurchasesInvoicesListResponseRowsItemPaymentStatus",
     "PostV1PurchasesInvoicesListResponseRowsItemStatus",
     "PostV1PurchasesInvoicesListResponseRowsItemType",
+    "PostV1PurchasesInvoicesMatchResponse",
+    "PostV1PurchasesInvoicesMatchResponseRowsItem",
+    "PostV1PurchasesInvoicesMatchResponseRowsItemStatus",
+    "PostV1PurchasesInvoicesMatchResponseStatus",
     "PostV1PurchasesInvoicesRegisterResponse",
     "PostV1PurchasesInvoicesRegisterResponseLinesItem",
     "PostV1PurchasesInvoicesRegisterResponsePaymentStatus",
@@ -161,4 +287,55 @@ __all__ = [
     "PostV1PurchasesInvoicesUpdateResponsePaymentStatus",
     "PostV1PurchasesInvoicesUpdateResponseStatus",
     "PostV1PurchasesInvoicesUpdateResponseType",
+    "PostV1PurchasesOrdersApproveResponse",
+    "PostV1PurchasesOrdersApproveResponseLinesItem",
+    "PostV1PurchasesOrdersApproveResponseStatus",
+    "PostV1PurchasesOrdersCancelResponse",
+    "PostV1PurchasesOrdersCancelResponseLinesItem",
+    "PostV1PurchasesOrdersCancelResponseStatus",
+    "PostV1PurchasesOrdersCloseResponse",
+    "PostV1PurchasesOrdersCloseResponseLinesItem",
+    "PostV1PurchasesOrdersCloseResponseStatus",
+    "PostV1PurchasesOrdersCreateRequestLinesItem",
+    "PostV1PurchasesOrdersCreateRequestLinesItemQuantity",
+    "PostV1PurchasesOrdersCreateResponse",
+    "PostV1PurchasesOrdersCreateResponseLinesItem",
+    "PostV1PurchasesOrdersCreateResponseStatus",
+    "PostV1PurchasesOrdersDeleteResponse",
+    "PostV1PurchasesOrdersGetResponse",
+    "PostV1PurchasesOrdersGetResponseLinesItem",
+    "PostV1PurchasesOrdersGetResponseStatus",
+    "PostV1PurchasesOrdersListRequestFilterItem",
+    "PostV1PurchasesOrdersListRequestFilterItemOp",
+    "PostV1PurchasesOrdersListRequestFilterItemValue",
+    "PostV1PurchasesOrdersListRequestFilterItemValueThreeItem",
+    "PostV1PurchasesOrdersListRequestSortItem",
+    "PostV1PurchasesOrdersListRequestSortItemDir",
+    "PostV1PurchasesOrdersListResponse",
+    "PostV1PurchasesOrdersListResponseRowsItem",
+    "PostV1PurchasesOrdersListResponseRowsItemStatus",
+    "PostV1PurchasesOrdersRejectResponse",
+    "PostV1PurchasesOrdersRejectResponseLinesItem",
+    "PostV1PurchasesOrdersRejectResponseStatus",
+    "PostV1PurchasesOrdersSubmitResponse",
+    "PostV1PurchasesOrdersSubmitResponseLinesItem",
+    "PostV1PurchasesOrdersSubmitResponseStatus",
+    "PostV1PurchasesOrdersUpdateRequestLinesItem",
+    "PostV1PurchasesOrdersUpdateRequestLinesItemQuantity",
+    "PostV1PurchasesOrdersUpdateResponse",
+    "PostV1PurchasesOrdersUpdateResponseLinesItem",
+    "PostV1PurchasesOrdersUpdateResponseStatus",
+    "PostV1PurchasesReceiptsCreateRequestLinesItem",
+    "PostV1PurchasesReceiptsCreateResponse",
+    "PostV1PurchasesReceiptsCreateResponseLinesItem",
+    "PostV1PurchasesReceiptsGetResponse",
+    "PostV1PurchasesReceiptsGetResponseLinesItem",
+    "PostV1PurchasesReceiptsListRequestFilterItem",
+    "PostV1PurchasesReceiptsListRequestFilterItemOp",
+    "PostV1PurchasesReceiptsListRequestFilterItemValue",
+    "PostV1PurchasesReceiptsListRequestFilterItemValueThreeItem",
+    "PostV1PurchasesReceiptsListRequestSortItem",
+    "PostV1PurchasesReceiptsListRequestSortItemDir",
+    "PostV1PurchasesReceiptsListResponse",
+    "PostV1PurchasesReceiptsListResponseRowsItem",
 ]

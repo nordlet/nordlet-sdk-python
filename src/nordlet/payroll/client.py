@@ -230,6 +230,7 @@ class PayrollClient:
         *,
         year: int,
         month: int,
+        include_natura: typing.Optional[bool] = OMIT,
         lines: typing.Optional[typing.Sequence[PostV1PayrollRunsCreateRequestLinesItem]] = OMIT,
         notes: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
@@ -240,6 +241,8 @@ class PayrollClient:
         year : int
 
         month : int
+
+        include_natura : typing.Optional[bool]
 
         lines : typing.Optional[typing.Sequence[PostV1PayrollRunsCreateRequestLinesItem]]
 
@@ -266,7 +269,12 @@ class PayrollClient:
         )
         """
         _response = self._raw_client.post_v1payroll_runs_create(
-            year=year, month=month, lines=lines, notes=notes, request_options=request_options
+            year=year,
+            month=month,
+            include_natura=include_natura,
+            lines=lines,
+            notes=notes,
+            request_options=request_options,
         )
         return _response.data
 
@@ -724,6 +732,7 @@ class AsyncPayrollClient:
         *,
         year: int,
         month: int,
+        include_natura: typing.Optional[bool] = OMIT,
         lines: typing.Optional[typing.Sequence[PostV1PayrollRunsCreateRequestLinesItem]] = OMIT,
         notes: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
@@ -734,6 +743,8 @@ class AsyncPayrollClient:
         year : int
 
         month : int
+
+        include_natura : typing.Optional[bool]
 
         lines : typing.Optional[typing.Sequence[PostV1PayrollRunsCreateRequestLinesItem]]
 
@@ -768,7 +779,12 @@ class AsyncPayrollClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.post_v1payroll_runs_create(
-            year=year, month=month, lines=lines, notes=notes, request_options=request_options
+            year=year,
+            month=month,
+            include_natura=include_natura,
+            lines=lines,
+            notes=notes,
+            request_options=request_options,
         )
         return _response.data
 

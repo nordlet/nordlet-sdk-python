@@ -1851,6 +1851,7 @@ class RawAccountClient:
         iban: typing.Optional[str] = OMIT,
         bank_name: typing.Optional[str] = OMIT,
         peppol_id: typing.Optional[str] = OMIT,
+        sepa_creditor_id: typing.Optional[str] = OMIT,
         default_invoice_currency: typing.Optional[str] = OMIT,
         country_code: typing.Optional[PostV1AccountCompaniesCreateRequestCountryCode] = OMIT,
         is_sandbox: typing.Optional[bool] = OMIT,
@@ -1880,6 +1881,8 @@ class RawAccountClient:
         bank_name : typing.Optional[str]
 
         peppol_id : typing.Optional[str]
+
+        sepa_creditor_id : typing.Optional[str]
 
         default_invoice_currency : typing.Optional[str]
 
@@ -1914,6 +1917,7 @@ class RawAccountClient:
                 "iban": iban,
                 "bankName": bank_name,
                 "peppolId": peppol_id,
+                "sepaCreditorId": sepa_creditor_id,
                 "defaultInvoiceCurrency": default_invoice_currency,
                 "countryCode": country_code,
                 "isSandbox": is_sandbox,
@@ -2311,6 +2315,7 @@ class RawAccountClient:
         iban: typing.Optional[str] = OMIT,
         bank_name: typing.Optional[str] = OMIT,
         peppol_id: typing.Optional[str] = OMIT,
+        sepa_creditor_id: typing.Optional[str] = OMIT,
         default_invoice_currency: typing.Optional[str] = OMIT,
         logo: typing.Optional[PostV1AccountCompaniesUpdateRequestLogo] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
@@ -2339,6 +2344,8 @@ class RawAccountClient:
         bank_name : typing.Optional[str]
 
         peppol_id : typing.Optional[str]
+
+        sepa_creditor_id : typing.Optional[str]
 
         default_invoice_currency : typing.Optional[str]
 
@@ -2369,6 +2376,7 @@ class RawAccountClient:
                 "iban": iban,
                 "bankName": bank_name,
                 "peppolId": peppol_id,
+                "sepaCreditorId": sepa_creditor_id,
                 "defaultInvoiceCurrency": default_invoice_currency,
                 "logo": convert_and_respect_annotation_metadata(
                     object_=logo, annotation=PostV1AccountCompaniesUpdateRequestLogo, direction="write"
@@ -5094,6 +5102,7 @@ class AsyncRawAccountClient:
         iban: typing.Optional[str] = OMIT,
         bank_name: typing.Optional[str] = OMIT,
         peppol_id: typing.Optional[str] = OMIT,
+        sepa_creditor_id: typing.Optional[str] = OMIT,
         default_invoice_currency: typing.Optional[str] = OMIT,
         country_code: typing.Optional[PostV1AccountCompaniesCreateRequestCountryCode] = OMIT,
         is_sandbox: typing.Optional[bool] = OMIT,
@@ -5123,6 +5132,8 @@ class AsyncRawAccountClient:
         bank_name : typing.Optional[str]
 
         peppol_id : typing.Optional[str]
+
+        sepa_creditor_id : typing.Optional[str]
 
         default_invoice_currency : typing.Optional[str]
 
@@ -5157,6 +5168,7 @@ class AsyncRawAccountClient:
                 "iban": iban,
                 "bankName": bank_name,
                 "peppolId": peppol_id,
+                "sepaCreditorId": sepa_creditor_id,
                 "defaultInvoiceCurrency": default_invoice_currency,
                 "countryCode": country_code,
                 "isSandbox": is_sandbox,
@@ -5554,6 +5566,7 @@ class AsyncRawAccountClient:
         iban: typing.Optional[str] = OMIT,
         bank_name: typing.Optional[str] = OMIT,
         peppol_id: typing.Optional[str] = OMIT,
+        sepa_creditor_id: typing.Optional[str] = OMIT,
         default_invoice_currency: typing.Optional[str] = OMIT,
         logo: typing.Optional[PostV1AccountCompaniesUpdateRequestLogo] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
@@ -5582,6 +5595,8 @@ class AsyncRawAccountClient:
         bank_name : typing.Optional[str]
 
         peppol_id : typing.Optional[str]
+
+        sepa_creditor_id : typing.Optional[str]
 
         default_invoice_currency : typing.Optional[str]
 
@@ -5612,6 +5627,7 @@ class AsyncRawAccountClient:
                 "iban": iban,
                 "bankName": bank_name,
                 "peppolId": peppol_id,
+                "sepaCreditorId": sepa_creditor_id,
                 "defaultInvoiceCurrency": default_invoice_currency,
                 "logo": convert_and_respect_annotation_metadata(
                     object_=logo, annotation=PostV1AccountCompaniesUpdateRequestLogo, direction="write"

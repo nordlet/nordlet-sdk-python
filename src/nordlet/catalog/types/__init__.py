@@ -12,10 +12,12 @@ if typing.TYPE_CHECKING:
     from .post_v1catalog_item_groups_list_response_rows_item import PostV1CatalogItemGroupsListResponseRowsItem
     from .post_v1catalog_item_groups_update_response import PostV1CatalogItemGroupsUpdateResponse
     from .post_v1catalog_items_create_request_components_item import PostV1CatalogItemsCreateRequestComponentsItem
+    from .post_v1catalog_items_create_request_tracking import PostV1CatalogItemsCreateRequestTracking
     from .post_v1catalog_items_create_request_translations_value import PostV1CatalogItemsCreateRequestTranslationsValue
     from .post_v1catalog_items_create_request_type import PostV1CatalogItemsCreateRequestType
     from .post_v1catalog_items_create_response import PostV1CatalogItemsCreateResponse
     from .post_v1catalog_items_create_response_components_item import PostV1CatalogItemsCreateResponseComponentsItem
+    from .post_v1catalog_items_create_response_tracking import PostV1CatalogItemsCreateResponseTracking
     from .post_v1catalog_items_create_response_translations_value import (
         PostV1CatalogItemsCreateResponseTranslationsValue,
     )
@@ -23,6 +25,7 @@ if typing.TYPE_CHECKING:
     from .post_v1catalog_items_delete_response import PostV1CatalogItemsDeleteResponse
     from .post_v1catalog_items_get_response import PostV1CatalogItemsGetResponse
     from .post_v1catalog_items_get_response_components_item import PostV1CatalogItemsGetResponseComponentsItem
+    from .post_v1catalog_items_get_response_tracking import PostV1CatalogItemsGetResponseTracking
     from .post_v1catalog_items_get_response_translations_value import PostV1CatalogItemsGetResponseTranslationsValue
     from .post_v1catalog_items_get_response_type import PostV1CatalogItemsGetResponseType
     from .post_v1catalog_items_list_request_filter_item import PostV1CatalogItemsListRequestFilterItem
@@ -38,6 +41,7 @@ if typing.TYPE_CHECKING:
     from .post_v1catalog_items_list_response_rows_item_components_item import (
         PostV1CatalogItemsListResponseRowsItemComponentsItem,
     )
+    from .post_v1catalog_items_list_response_rows_item_tracking import PostV1CatalogItemsListResponseRowsItemTracking
     from .post_v1catalog_items_list_response_rows_item_translations_value import (
         PostV1CatalogItemsListResponseRowsItemTranslationsValue,
     )
@@ -47,10 +51,12 @@ if typing.TYPE_CHECKING:
     from .post_v1catalog_items_suppliers_list_response_rows_item import PostV1CatalogItemsSuppliersListResponseRowsItem
     from .post_v1catalog_items_suppliers_upsert_response import PostV1CatalogItemsSuppliersUpsertResponse
     from .post_v1catalog_items_update_request_components_item import PostV1CatalogItemsUpdateRequestComponentsItem
+    from .post_v1catalog_items_update_request_tracking import PostV1CatalogItemsUpdateRequestTracking
     from .post_v1catalog_items_update_request_translations_value import PostV1CatalogItemsUpdateRequestTranslationsValue
     from .post_v1catalog_items_update_request_type import PostV1CatalogItemsUpdateRequestType
     from .post_v1catalog_items_update_response import PostV1CatalogItemsUpdateResponse
     from .post_v1catalog_items_update_response_components_item import PostV1CatalogItemsUpdateResponseComponentsItem
+    from .post_v1catalog_items_update_response_tracking import PostV1CatalogItemsUpdateResponseTracking
     from .post_v1catalog_items_update_response_translations_value import (
         PostV1CatalogItemsUpdateResponseTranslationsValue,
     )
@@ -73,15 +79,18 @@ _dynamic_imports: typing.Dict[str, str] = {
     "PostV1CatalogItemGroupsListResponseRowsItem": ".post_v1catalog_item_groups_list_response_rows_item",
     "PostV1CatalogItemGroupsUpdateResponse": ".post_v1catalog_item_groups_update_response",
     "PostV1CatalogItemsCreateRequestComponentsItem": ".post_v1catalog_items_create_request_components_item",
+    "PostV1CatalogItemsCreateRequestTracking": ".post_v1catalog_items_create_request_tracking",
     "PostV1CatalogItemsCreateRequestTranslationsValue": ".post_v1catalog_items_create_request_translations_value",
     "PostV1CatalogItemsCreateRequestType": ".post_v1catalog_items_create_request_type",
     "PostV1CatalogItemsCreateResponse": ".post_v1catalog_items_create_response",
     "PostV1CatalogItemsCreateResponseComponentsItem": ".post_v1catalog_items_create_response_components_item",
+    "PostV1CatalogItemsCreateResponseTracking": ".post_v1catalog_items_create_response_tracking",
     "PostV1CatalogItemsCreateResponseTranslationsValue": ".post_v1catalog_items_create_response_translations_value",
     "PostV1CatalogItemsCreateResponseType": ".post_v1catalog_items_create_response_type",
     "PostV1CatalogItemsDeleteResponse": ".post_v1catalog_items_delete_response",
     "PostV1CatalogItemsGetResponse": ".post_v1catalog_items_get_response",
     "PostV1CatalogItemsGetResponseComponentsItem": ".post_v1catalog_items_get_response_components_item",
+    "PostV1CatalogItemsGetResponseTracking": ".post_v1catalog_items_get_response_tracking",
     "PostV1CatalogItemsGetResponseTranslationsValue": ".post_v1catalog_items_get_response_translations_value",
     "PostV1CatalogItemsGetResponseType": ".post_v1catalog_items_get_response_type",
     "PostV1CatalogItemsListRequestFilterItem": ".post_v1catalog_items_list_request_filter_item",
@@ -93,6 +102,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "PostV1CatalogItemsListResponse": ".post_v1catalog_items_list_response",
     "PostV1CatalogItemsListResponseRowsItem": ".post_v1catalog_items_list_response_rows_item",
     "PostV1CatalogItemsListResponseRowsItemComponentsItem": ".post_v1catalog_items_list_response_rows_item_components_item",
+    "PostV1CatalogItemsListResponseRowsItemTracking": ".post_v1catalog_items_list_response_rows_item_tracking",
     "PostV1CatalogItemsListResponseRowsItemTranslationsValue": ".post_v1catalog_items_list_response_rows_item_translations_value",
     "PostV1CatalogItemsListResponseRowsItemType": ".post_v1catalog_items_list_response_rows_item_type",
     "PostV1CatalogItemsSuppliersDeleteResponse": ".post_v1catalog_items_suppliers_delete_response",
@@ -100,10 +110,12 @@ _dynamic_imports: typing.Dict[str, str] = {
     "PostV1CatalogItemsSuppliersListResponseRowsItem": ".post_v1catalog_items_suppliers_list_response_rows_item",
     "PostV1CatalogItemsSuppliersUpsertResponse": ".post_v1catalog_items_suppliers_upsert_response",
     "PostV1CatalogItemsUpdateRequestComponentsItem": ".post_v1catalog_items_update_request_components_item",
+    "PostV1CatalogItemsUpdateRequestTracking": ".post_v1catalog_items_update_request_tracking",
     "PostV1CatalogItemsUpdateRequestTranslationsValue": ".post_v1catalog_items_update_request_translations_value",
     "PostV1CatalogItemsUpdateRequestType": ".post_v1catalog_items_update_request_type",
     "PostV1CatalogItemsUpdateResponse": ".post_v1catalog_items_update_response",
     "PostV1CatalogItemsUpdateResponseComponentsItem": ".post_v1catalog_items_update_response_components_item",
+    "PostV1CatalogItemsUpdateResponseTracking": ".post_v1catalog_items_update_response_tracking",
     "PostV1CatalogItemsUpdateResponseTranslationsValue": ".post_v1catalog_items_update_response_translations_value",
     "PostV1CatalogItemsUpdateResponseType": ".post_v1catalog_items_update_response_type",
     "PostV1CatalogPriceListsCreateResponse": ".post_v1catalog_price_lists_create_response",
@@ -146,15 +158,18 @@ __all__ = [
     "PostV1CatalogItemGroupsListResponseRowsItem",
     "PostV1CatalogItemGroupsUpdateResponse",
     "PostV1CatalogItemsCreateRequestComponentsItem",
+    "PostV1CatalogItemsCreateRequestTracking",
     "PostV1CatalogItemsCreateRequestTranslationsValue",
     "PostV1CatalogItemsCreateRequestType",
     "PostV1CatalogItemsCreateResponse",
     "PostV1CatalogItemsCreateResponseComponentsItem",
+    "PostV1CatalogItemsCreateResponseTracking",
     "PostV1CatalogItemsCreateResponseTranslationsValue",
     "PostV1CatalogItemsCreateResponseType",
     "PostV1CatalogItemsDeleteResponse",
     "PostV1CatalogItemsGetResponse",
     "PostV1CatalogItemsGetResponseComponentsItem",
+    "PostV1CatalogItemsGetResponseTracking",
     "PostV1CatalogItemsGetResponseTranslationsValue",
     "PostV1CatalogItemsGetResponseType",
     "PostV1CatalogItemsListRequestFilterItem",
@@ -166,6 +181,7 @@ __all__ = [
     "PostV1CatalogItemsListResponse",
     "PostV1CatalogItemsListResponseRowsItem",
     "PostV1CatalogItemsListResponseRowsItemComponentsItem",
+    "PostV1CatalogItemsListResponseRowsItemTracking",
     "PostV1CatalogItemsListResponseRowsItemTranslationsValue",
     "PostV1CatalogItemsListResponseRowsItemType",
     "PostV1CatalogItemsSuppliersDeleteResponse",
@@ -173,10 +189,12 @@ __all__ = [
     "PostV1CatalogItemsSuppliersListResponseRowsItem",
     "PostV1CatalogItemsSuppliersUpsertResponse",
     "PostV1CatalogItemsUpdateRequestComponentsItem",
+    "PostV1CatalogItemsUpdateRequestTracking",
     "PostV1CatalogItemsUpdateRequestTranslationsValue",
     "PostV1CatalogItemsUpdateRequestType",
     "PostV1CatalogItemsUpdateResponse",
     "PostV1CatalogItemsUpdateResponseComponentsItem",
+    "PostV1CatalogItemsUpdateResponseTracking",
     "PostV1CatalogItemsUpdateResponseTranslationsValue",
     "PostV1CatalogItemsUpdateResponseType",
     "PostV1CatalogPriceListsCreateResponse",

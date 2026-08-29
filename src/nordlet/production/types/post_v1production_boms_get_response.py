@@ -19,6 +19,9 @@ class PostV1ProductionBomsGetResponse(UniversalBaseModel):
     output_quantity: typing_extensions.Annotated[
         str, FieldMetadata(alias="outputQuantity"), pydantic.Field(alias="outputQuantity")
     ]
+    routing_id: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="routingId"), pydantic.Field(alias="routingId")
+    ] = None
     is_active: typing_extensions.Annotated[bool, FieldMetadata(alias="isActive"), pydantic.Field(alias="isActive")]
     lines: typing.List[PostV1ProductionBomsGetResponseLinesItem]
 

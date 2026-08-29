@@ -752,6 +752,7 @@ class RawPayrollClient:
         *,
         year: int,
         month: int,
+        include_natura: typing.Optional[bool] = OMIT,
         lines: typing.Optional[typing.Sequence[PostV1PayrollRunsCreateRequestLinesItem]] = OMIT,
         notes: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
@@ -762,6 +763,8 @@ class RawPayrollClient:
         year : int
 
         month : int
+
+        include_natura : typing.Optional[bool]
 
         lines : typing.Optional[typing.Sequence[PostV1PayrollRunsCreateRequestLinesItem]]
 
@@ -781,6 +784,7 @@ class RawPayrollClient:
             json={
                 "year": year,
                 "month": month,
+                "includeNatura": include_natura,
                 "lines": convert_and_respect_annotation_metadata(
                     object_=lines,
                     annotation=typing.Sequence[PostV1PayrollRunsCreateRequestLinesItem],
@@ -2349,6 +2353,7 @@ class AsyncRawPayrollClient:
         *,
         year: int,
         month: int,
+        include_natura: typing.Optional[bool] = OMIT,
         lines: typing.Optional[typing.Sequence[PostV1PayrollRunsCreateRequestLinesItem]] = OMIT,
         notes: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
@@ -2359,6 +2364,8 @@ class AsyncRawPayrollClient:
         year : int
 
         month : int
+
+        include_natura : typing.Optional[bool]
 
         lines : typing.Optional[typing.Sequence[PostV1PayrollRunsCreateRequestLinesItem]]
 
@@ -2378,6 +2385,7 @@ class AsyncRawPayrollClient:
             json={
                 "year": year,
                 "month": month,
+                "includeNatura": include_natura,
                 "lines": convert_and_respect_annotation_metadata(
                     object_=lines,
                     annotation=typing.Sequence[PostV1PayrollRunsCreateRequestLinesItem],

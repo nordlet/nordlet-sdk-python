@@ -15,6 +15,8 @@ PostV1LedgerPostingRulesUpdateRequestRulesItemKey = typing.Union[
         "purchases.defaultExpense",
         "inventory.cogs",
         "inventory.stock",
+        "production.laborApplied",
+        "production.scrap",
         "bank.fxGain",
         "bank.fxLoss",
         "settlements.fees",

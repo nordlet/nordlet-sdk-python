@@ -15,12 +15,15 @@ if typing.TYPE_CHECKING:
     from .assets.client import AssetsClient, AsyncAssetsClient
     from .audit.client import AsyncAuditClient, AuditClient
     from .bank.client import AsyncBankClient, BankClient
+    from .billing.client import AsyncBillingClient, BillingClient
+    from .capture.client import AsyncCaptureClient, CaptureClient
     from .cash.client import AsyncCashClient, CashClient
     from .catalog.client import AsyncCatalogClient, CatalogClient
     from .consolidation.client import AsyncConsolidationClient, ConsolidationClient
     from .declarations.client import AsyncDeclarationsClient, DeclarationsClient
     from .ecommerce.client import AsyncEcommerceClient, EcommerceClient
     from .files.client import AsyncFilesClient, FilesClient
+    from .fleet.client import AsyncFleetClient, FleetClient
     from .hr.client import AsyncHrClient, HrClient
     from .inventory.client import AsyncInventoryClient, InventoryClient
     from .ledger.client import AsyncLedgerClient, LedgerClient
@@ -28,6 +31,7 @@ if typing.TYPE_CHECKING:
     from .payroll.client import AsyncPayrollClient, PayrollClient
     from .pos.client import AsyncPosClient, PosClient
     from .production.client import AsyncProductionClient, ProductionClient
+    from .projects.client import AsyncProjectsClient, ProjectsClient
     from .public.client import AsyncPublicClient, PublicClient
     from .purchases.client import AsyncPurchasesClient, PurchasesClient
     from .reference.client import AsyncReferenceClient, ReferenceClient
@@ -126,16 +130,19 @@ class Nordlet:
         self._catalog: typing.Optional[CatalogClient] = None
         self._sales: typing.Optional[SalesClient] = None
         self._purchases: typing.Optional[PurchasesClient] = None
+        self._capture: typing.Optional[CaptureClient] = None
         self._declarations: typing.Optional[DeclarationsClient] = None
         self._ledger: typing.Optional[LedgerClient] = None
         self._assets: typing.Optional[AssetsClient] = None
         self._hr: typing.Optional[HrClient] = None
+        self._fleet: typing.Optional[FleetClient] = None
         self._payroll: typing.Optional[PayrollClient] = None
         self._agreements: typing.Optional[AgreementsClient] = None
         self._inventory: typing.Optional[InventoryClient] = None
         self._production: typing.Optional[ProductionClient] = None
         self._ecommerce: typing.Optional[EcommerceClient] = None
         self._cash: typing.Optional[CashClient] = None
+        self._projects: typing.Optional[ProjectsClient] = None
         self._transport: typing.Optional[TransportClient] = None
         self._pos: typing.Optional[PosClient] = None
         self._audit: typing.Optional[AuditClient] = None
@@ -145,6 +152,7 @@ class Nordlet:
         self._reports: typing.Optional[ReportsClient] = None
         self._consolidation: typing.Optional[ConsolidationClient] = None
         self._public: typing.Optional[PublicClient] = None
+        self._billing: typing.Optional[BillingClient] = None
         self._account: typing.Optional[AccountClient] = None
 
     @property
@@ -188,6 +196,14 @@ class Nordlet:
         return self._purchases
 
     @property
+    def capture(self):
+        if self._capture is None:
+            from .capture.client import CaptureClient  # noqa: E402
+
+            self._capture = CaptureClient(client_wrapper=self._client_wrapper)
+        return self._capture
+
+    @property
     def declarations(self):
         if self._declarations is None:
             from .declarations.client import DeclarationsClient  # noqa: E402
@@ -218,6 +234,14 @@ class Nordlet:
 
             self._hr = HrClient(client_wrapper=self._client_wrapper)
         return self._hr
+
+    @property
+    def fleet(self):
+        if self._fleet is None:
+            from .fleet.client import FleetClient  # noqa: E402
+
+            self._fleet = FleetClient(client_wrapper=self._client_wrapper)
+        return self._fleet
 
     @property
     def payroll(self):
@@ -266,6 +290,14 @@ class Nordlet:
 
             self._cash = CashClient(client_wrapper=self._client_wrapper)
         return self._cash
+
+    @property
+    def projects(self):
+        if self._projects is None:
+            from .projects.client import ProjectsClient  # noqa: E402
+
+            self._projects = ProjectsClient(client_wrapper=self._client_wrapper)
+        return self._projects
 
     @property
     def transport(self):
@@ -338,6 +370,14 @@ class Nordlet:
 
             self._public = PublicClient(client_wrapper=self._client_wrapper)
         return self._public
+
+    @property
+    def billing(self):
+        if self._billing is None:
+            from .billing.client import BillingClient  # noqa: E402
+
+            self._billing = BillingClient(client_wrapper=self._client_wrapper)
+        return self._billing
 
     @property
     def account(self):
@@ -458,16 +498,19 @@ class AsyncNordlet:
         self._catalog: typing.Optional[AsyncCatalogClient] = None
         self._sales: typing.Optional[AsyncSalesClient] = None
         self._purchases: typing.Optional[AsyncPurchasesClient] = None
+        self._capture: typing.Optional[AsyncCaptureClient] = None
         self._declarations: typing.Optional[AsyncDeclarationsClient] = None
         self._ledger: typing.Optional[AsyncLedgerClient] = None
         self._assets: typing.Optional[AsyncAssetsClient] = None
         self._hr: typing.Optional[AsyncHrClient] = None
+        self._fleet: typing.Optional[AsyncFleetClient] = None
         self._payroll: typing.Optional[AsyncPayrollClient] = None
         self._agreements: typing.Optional[AsyncAgreementsClient] = None
         self._inventory: typing.Optional[AsyncInventoryClient] = None
         self._production: typing.Optional[AsyncProductionClient] = None
         self._ecommerce: typing.Optional[AsyncEcommerceClient] = None
         self._cash: typing.Optional[AsyncCashClient] = None
+        self._projects: typing.Optional[AsyncProjectsClient] = None
         self._transport: typing.Optional[AsyncTransportClient] = None
         self._pos: typing.Optional[AsyncPosClient] = None
         self._audit: typing.Optional[AsyncAuditClient] = None
@@ -477,6 +520,7 @@ class AsyncNordlet:
         self._reports: typing.Optional[AsyncReportsClient] = None
         self._consolidation: typing.Optional[AsyncConsolidationClient] = None
         self._public: typing.Optional[AsyncPublicClient] = None
+        self._billing: typing.Optional[AsyncBillingClient] = None
         self._account: typing.Optional[AsyncAccountClient] = None
 
     @property
@@ -520,6 +564,14 @@ class AsyncNordlet:
         return self._purchases
 
     @property
+    def capture(self):
+        if self._capture is None:
+            from .capture.client import AsyncCaptureClient  # noqa: E402
+
+            self._capture = AsyncCaptureClient(client_wrapper=self._client_wrapper)
+        return self._capture
+
+    @property
     def declarations(self):
         if self._declarations is None:
             from .declarations.client import AsyncDeclarationsClient  # noqa: E402
@@ -550,6 +602,14 @@ class AsyncNordlet:
 
             self._hr = AsyncHrClient(client_wrapper=self._client_wrapper)
         return self._hr
+
+    @property
+    def fleet(self):
+        if self._fleet is None:
+            from .fleet.client import AsyncFleetClient  # noqa: E402
+
+            self._fleet = AsyncFleetClient(client_wrapper=self._client_wrapper)
+        return self._fleet
 
     @property
     def payroll(self):
@@ -598,6 +658,14 @@ class AsyncNordlet:
 
             self._cash = AsyncCashClient(client_wrapper=self._client_wrapper)
         return self._cash
+
+    @property
+    def projects(self):
+        if self._projects is None:
+            from .projects.client import AsyncProjectsClient  # noqa: E402
+
+            self._projects = AsyncProjectsClient(client_wrapper=self._client_wrapper)
+        return self._projects
 
     @property
     def transport(self):
@@ -670,6 +738,14 @@ class AsyncNordlet:
 
             self._public = AsyncPublicClient(client_wrapper=self._client_wrapper)
         return self._public
+
+    @property
+    def billing(self):
+        if self._billing is None:
+            from .billing.client import AsyncBillingClient  # noqa: E402
+
+            self._billing = AsyncBillingClient(client_wrapper=self._client_wrapper)
+        return self._billing
 
     @property
     def account(self):

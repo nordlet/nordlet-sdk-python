@@ -7,6 +7,7 @@ import typing_extensions
 from ...core.pydantic_utilities import IS_PYDANTIC_V2, UniversalBaseModel
 from ...core.serialization import FieldMetadata
 from .post_v1catalog_items_update_response_components_item import PostV1CatalogItemsUpdateResponseComponentsItem
+from .post_v1catalog_items_update_response_tracking import PostV1CatalogItemsUpdateResponseTracking
 from .post_v1catalog_items_update_response_translations_value import PostV1CatalogItemsUpdateResponseTranslationsValue
 from .post_v1catalog_items_update_response_type import PostV1CatalogItemsUpdateResponseType
 
@@ -14,6 +15,7 @@ from .post_v1catalog_items_update_response_type import PostV1CatalogItemsUpdateR
 class PostV1CatalogItemsUpdateResponse(UniversalBaseModel):
     id: str
     type: PostV1CatalogItemsUpdateResponseType
+    tracking: PostV1CatalogItemsUpdateResponseTracking
     name: str
     code: typing.Optional[str] = None
     barcode: typing.Optional[str] = None

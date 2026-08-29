@@ -484,6 +484,7 @@ class AccountClient:
         iban: typing.Optional[str] = OMIT,
         bank_name: typing.Optional[str] = OMIT,
         peppol_id: typing.Optional[str] = OMIT,
+        sepa_creditor_id: typing.Optional[str] = OMIT,
         default_invoice_currency: typing.Optional[str] = OMIT,
         country_code: typing.Optional[PostV1AccountCompaniesCreateRequestCountryCode] = OMIT,
         is_sandbox: typing.Optional[bool] = OMIT,
@@ -513,6 +514,8 @@ class AccountClient:
         bank_name : typing.Optional[str]
 
         peppol_id : typing.Optional[str]
+
+        sepa_creditor_id : typing.Optional[str]
 
         default_invoice_currency : typing.Optional[str]
 
@@ -553,6 +556,7 @@ class AccountClient:
             iban=iban,
             bank_name=bank_name,
             peppol_id=peppol_id,
+            sepa_creditor_id=sepa_creditor_id,
             default_invoice_currency=default_invoice_currency,
             country_code=country_code,
             is_sandbox=is_sandbox,
@@ -632,6 +636,7 @@ class AccountClient:
         iban: typing.Optional[str] = OMIT,
         bank_name: typing.Optional[str] = OMIT,
         peppol_id: typing.Optional[str] = OMIT,
+        sepa_creditor_id: typing.Optional[str] = OMIT,
         default_invoice_currency: typing.Optional[str] = OMIT,
         logo: typing.Optional[PostV1AccountCompaniesUpdateRequestLogo] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
@@ -660,6 +665,8 @@ class AccountClient:
         bank_name : typing.Optional[str]
 
         peppol_id : typing.Optional[str]
+
+        sepa_creditor_id : typing.Optional[str]
 
         default_invoice_currency : typing.Optional[str]
 
@@ -694,6 +701,7 @@ class AccountClient:
             iban=iban,
             bank_name=bank_name,
             peppol_id=peppol_id,
+            sepa_creditor_id=sepa_creditor_id,
             default_invoice_currency=default_invoice_currency,
             logo=logo,
             request_options=request_options,
@@ -1442,6 +1450,7 @@ class AsyncAccountClient:
         iban: typing.Optional[str] = OMIT,
         bank_name: typing.Optional[str] = OMIT,
         peppol_id: typing.Optional[str] = OMIT,
+        sepa_creditor_id: typing.Optional[str] = OMIT,
         default_invoice_currency: typing.Optional[str] = OMIT,
         country_code: typing.Optional[PostV1AccountCompaniesCreateRequestCountryCode] = OMIT,
         is_sandbox: typing.Optional[bool] = OMIT,
@@ -1471,6 +1480,8 @@ class AsyncAccountClient:
         bank_name : typing.Optional[str]
 
         peppol_id : typing.Optional[str]
+
+        sepa_creditor_id : typing.Optional[str]
 
         default_invoice_currency : typing.Optional[str]
 
@@ -1519,6 +1530,7 @@ class AsyncAccountClient:
             iban=iban,
             bank_name=bank_name,
             peppol_id=peppol_id,
+            sepa_creditor_id=sepa_creditor_id,
             default_invoice_currency=default_invoice_currency,
             country_code=country_code,
             is_sandbox=is_sandbox,
@@ -1614,6 +1626,7 @@ class AsyncAccountClient:
         iban: typing.Optional[str] = OMIT,
         bank_name: typing.Optional[str] = OMIT,
         peppol_id: typing.Optional[str] = OMIT,
+        sepa_creditor_id: typing.Optional[str] = OMIT,
         default_invoice_currency: typing.Optional[str] = OMIT,
         logo: typing.Optional[PostV1AccountCompaniesUpdateRequestLogo] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
@@ -1642,6 +1655,8 @@ class AsyncAccountClient:
         bank_name : typing.Optional[str]
 
         peppol_id : typing.Optional[str]
+
+        sepa_creditor_id : typing.Optional[str]
 
         default_invoice_currency : typing.Optional[str]
 
@@ -1684,6 +1699,7 @@ class AsyncAccountClient:
             iban=iban,
             bank_name=bank_name,
             peppol_id=peppol_id,
+            sepa_creditor_id=sepa_creditor_id,
             default_invoice_currency=default_invoice_currency,
             logo=logo,
             request_options=request_options,

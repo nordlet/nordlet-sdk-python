@@ -10,6 +10,17 @@ from .types.post_v1consolidation_groups_delete_response import PostV1Consolidati
 from .types.post_v1consolidation_groups_get_response import PostV1ConsolidationGroupsGetResponse
 from .types.post_v1consolidation_groups_list_response import PostV1ConsolidationGroupsListResponse
 from .types.post_v1consolidation_groups_update_response import PostV1ConsolidationGroupsUpdateResponse
+from .types.post_v1consolidation_intercompany_candidates_response import (
+    PostV1ConsolidationIntercompanyCandidatesResponse,
+)
+from .types.post_v1consolidation_intercompany_links_list_response import (
+    PostV1ConsolidationIntercompanyLinksListResponse,
+)
+from .types.post_v1consolidation_intercompany_links_remove_response import (
+    PostV1ConsolidationIntercompanyLinksRemoveResponse,
+)
+from .types.post_v1consolidation_intercompany_links_set_response import PostV1ConsolidationIntercompanyLinksSetResponse
+from .types.post_v1consolidation_intercompany_report_response import PostV1ConsolidationIntercompanyReportResponse
 from .types.post_v1consolidation_members_add_request_method import PostV1ConsolidationMembersAddRequestMethod
 from .types.post_v1consolidation_members_add_response import PostV1ConsolidationMembersAddResponse
 from .types.post_v1consolidation_members_remove_response import PostV1ConsolidationMembersRemoveResponse
@@ -286,6 +297,195 @@ class ConsolidationClient:
         """
         _response = self._raw_client.post_v1consolidation_members_remove(
             group_id=group_id, member_company_id=member_company_id, request_options=request_options
+        )
+        return _response.data
+
+    def post_v1consolidation_intercompany_candidates(
+        self, *, group_id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1ConsolidationIntercompanyCandidatesResponse:
+        """
+        Partners in member companies that look like other members of the same group (matched on company code or VAT code), with any existing intercompany link. Confirming a candidate via intercompany/links/set enables invoice mirroring.
+
+        Parameters
+        ----------
+        group_id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1ConsolidationIntercompanyCandidatesResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.consolidation.post_v1consolidation_intercompany_candidates(
+            group_id="groupId",
+        )
+        """
+        _response = self._raw_client.post_v1consolidation_intercompany_candidates(
+            group_id=group_id, request_options=request_options
+        )
+        return _response.data
+
+    def post_v1consolidation_intercompany_links_set(
+        self,
+        *,
+        group_id: str,
+        partner_id: str,
+        counterparty_company_id: str,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1ConsolidationIntercompanyLinksSetResponse:
+        """
+        Confirm that a partner record in one member company represents another member company of the group. Once links exist in both directions, issuing an intercompany sale invoice automatically creates the matching draft purchase invoice in the counterparty.
+
+        Parameters
+        ----------
+        group_id : str
+
+        partner_id : str
+
+        counterparty_company_id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1ConsolidationIntercompanyLinksSetResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.consolidation.post_v1consolidation_intercompany_links_set(
+            group_id="groupId",
+            partner_id="partnerId",
+            counterparty_company_id="counterpartyCompanyId",
+        )
+        """
+        _response = self._raw_client.post_v1consolidation_intercompany_links_set(
+            group_id=group_id,
+            partner_id=partner_id,
+            counterparty_company_id=counterparty_company_id,
+            request_options=request_options,
+        )
+        return _response.data
+
+    def post_v1consolidation_intercompany_links_list(
+        self, *, group_id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1ConsolidationIntercompanyLinksListResponse:
+        """
+        Parameters
+        ----------
+        group_id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1ConsolidationIntercompanyLinksListResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.consolidation.post_v1consolidation_intercompany_links_list(
+            group_id="groupId",
+        )
+        """
+        _response = self._raw_client.post_v1consolidation_intercompany_links_list(
+            group_id=group_id, request_options=request_options
+        )
+        return _response.data
+
+    def post_v1consolidation_intercompany_links_remove(
+        self, *, group_id: str, id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1ConsolidationIntercompanyLinksRemoveResponse:
+        """
+        Parameters
+        ----------
+        group_id : str
+
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1ConsolidationIntercompanyLinksRemoveResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.consolidation.post_v1consolidation_intercompany_links_remove(
+            group_id="groupId",
+            id="id",
+        )
+        """
+        _response = self._raw_client.post_v1consolidation_intercompany_links_remove(
+            group_id=group_id, id=id, request_options=request_options
+        )
+        return _response.data
+
+    def post_v1consolidation_intercompany_report(
+        self, *, group_id: str, from_date: str, to_date: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1ConsolidationIntercompanyReportResponse:
+        """
+        Intercompany reconciliation for a period: every issued intercompany sale invoice with its mirrored or manually recorded counterpart, unmatched documents on both sides, and per-currency totals with differences. Confirmed pairs are the basis for consolidation eliminations.
+
+        Parameters
+        ----------
+        group_id : str
+
+        from_date : str
+
+        to_date : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1ConsolidationIntercompanyReportResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.consolidation.post_v1consolidation_intercompany_report(
+            group_id="groupId",
+            from_date="fromDate",
+            to_date="toDate",
+        )
+        """
+        _response = self._raw_client.post_v1consolidation_intercompany_report(
+            group_id=group_id, from_date=from_date, to_date=to_date, request_options=request_options
         )
         return _response.data
 
@@ -665,6 +865,235 @@ class AsyncConsolidationClient:
         """
         _response = await self._raw_client.post_v1consolidation_members_remove(
             group_id=group_id, member_company_id=member_company_id, request_options=request_options
+        )
+        return _response.data
+
+    async def post_v1consolidation_intercompany_candidates(
+        self, *, group_id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1ConsolidationIntercompanyCandidatesResponse:
+        """
+        Partners in member companies that look like other members of the same group (matched on company code or VAT code), with any existing intercompany link. Confirming a candidate via intercompany/links/set enables invoice mirroring.
+
+        Parameters
+        ----------
+        group_id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1ConsolidationIntercompanyCandidatesResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.consolidation.post_v1consolidation_intercompany_candidates(
+                group_id="groupId",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1consolidation_intercompany_candidates(
+            group_id=group_id, request_options=request_options
+        )
+        return _response.data
+
+    async def post_v1consolidation_intercompany_links_set(
+        self,
+        *,
+        group_id: str,
+        partner_id: str,
+        counterparty_company_id: str,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1ConsolidationIntercompanyLinksSetResponse:
+        """
+        Confirm that a partner record in one member company represents another member company of the group. Once links exist in both directions, issuing an intercompany sale invoice automatically creates the matching draft purchase invoice in the counterparty.
+
+        Parameters
+        ----------
+        group_id : str
+
+        partner_id : str
+
+        counterparty_company_id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1ConsolidationIntercompanyLinksSetResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.consolidation.post_v1consolidation_intercompany_links_set(
+                group_id="groupId",
+                partner_id="partnerId",
+                counterparty_company_id="counterpartyCompanyId",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1consolidation_intercompany_links_set(
+            group_id=group_id,
+            partner_id=partner_id,
+            counterparty_company_id=counterparty_company_id,
+            request_options=request_options,
+        )
+        return _response.data
+
+    async def post_v1consolidation_intercompany_links_list(
+        self, *, group_id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1ConsolidationIntercompanyLinksListResponse:
+        """
+        Parameters
+        ----------
+        group_id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1ConsolidationIntercompanyLinksListResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.consolidation.post_v1consolidation_intercompany_links_list(
+                group_id="groupId",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1consolidation_intercompany_links_list(
+            group_id=group_id, request_options=request_options
+        )
+        return _response.data
+
+    async def post_v1consolidation_intercompany_links_remove(
+        self, *, group_id: str, id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1ConsolidationIntercompanyLinksRemoveResponse:
+        """
+        Parameters
+        ----------
+        group_id : str
+
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1ConsolidationIntercompanyLinksRemoveResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.consolidation.post_v1consolidation_intercompany_links_remove(
+                group_id="groupId",
+                id="id",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1consolidation_intercompany_links_remove(
+            group_id=group_id, id=id, request_options=request_options
+        )
+        return _response.data
+
+    async def post_v1consolidation_intercompany_report(
+        self, *, group_id: str, from_date: str, to_date: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1ConsolidationIntercompanyReportResponse:
+        """
+        Intercompany reconciliation for a period: every issued intercompany sale invoice with its mirrored or manually recorded counterpart, unmatched documents on both sides, and per-currency totals with differences. Confirmed pairs are the basis for consolidation eliminations.
+
+        Parameters
+        ----------
+        group_id : str
+
+        from_date : str
+
+        to_date : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1ConsolidationIntercompanyReportResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.consolidation.post_v1consolidation_intercompany_report(
+                group_id="groupId",
+                from_date="fromDate",
+                to_date="toDate",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1consolidation_intercompany_report(
+            group_id=group_id, from_date=from_date, to_date=to_date, request_options=request_options
         )
         return _response.data
 

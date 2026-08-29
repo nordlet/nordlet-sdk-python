@@ -12,6 +12,9 @@ from .post_v1sales_invoices_apply_advance_response_payment_status import (
 )
 from .post_v1sales_invoices_apply_advance_response_status import PostV1SalesInvoicesApplyAdvanceResponseStatus
 from .post_v1sales_invoices_apply_advance_response_type import PostV1SalesInvoicesApplyAdvanceResponseType
+from .post_v1sales_invoices_apply_advance_response_vat_evidence import (
+    PostV1SalesInvoicesApplyAdvanceResponseVatEvidence,
+)
 from .post_v1sales_invoices_apply_advance_response_vat_scheme import PostV1SalesInvoicesApplyAdvanceResponseVatScheme
 
 
@@ -68,6 +71,11 @@ class PostV1SalesInvoicesApplyAdvanceResponse(UniversalBaseModel):
     created_at: typing_extensions.Annotated[str, FieldMetadata(alias="createdAt"), pydantic.Field(alias="createdAt")]
     updated_at: typing_extensions.Annotated[str, FieldMetadata(alias="updatedAt"), pydantic.Field(alias="updatedAt")]
     lines: typing.List[PostV1SalesInvoicesApplyAdvanceResponseLinesItem]
+    vat_evidence: typing_extensions.Annotated[
+        typing.Optional[PostV1SalesInvoicesApplyAdvanceResponseVatEvidence],
+        FieldMetadata(alias="vatEvidence"),
+        pydantic.Field(alias="vatEvidence"),
+    ] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

@@ -24,6 +24,7 @@ class PostV1PayrollRunsCreateResponseLinesItem(UniversalBaseModel):
         str, FieldMetadata(alias="employeeName"), pydantic.Field(alias="employeeName")
     ]
     gross: str
+    natura: str
     additions: typing.List[PostV1PayrollRunsCreateResponseLinesItemAdditionsItem]
     deductions: typing.List[PostV1PayrollRunsCreateResponseLinesItemDeductionsItem]
     taxable_base: typing_extensions.Annotated[

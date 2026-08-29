@@ -44,6 +44,9 @@ class PostV1AccountCompaniesProfileResponse(UniversalBaseModel):
     peppol_id: typing_extensions.Annotated[
         typing.Optional[str], FieldMetadata(alias="peppolId"), pydantic.Field(alias="peppolId")
     ] = None
+    sepa_creditor_id: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="sepaCreditorId"), pydantic.Field(alias="sepaCreditorId")
+    ] = None
     logo_file_id: typing_extensions.Annotated[
         typing.Optional[str], FieldMetadata(alias="logoFileId"), pydantic.Field(alias="logoFileId")
     ] = None

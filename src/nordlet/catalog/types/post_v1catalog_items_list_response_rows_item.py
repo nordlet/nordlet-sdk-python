@@ -9,6 +9,7 @@ from ...core.serialization import FieldMetadata
 from .post_v1catalog_items_list_response_rows_item_components_item import (
     PostV1CatalogItemsListResponseRowsItemComponentsItem,
 )
+from .post_v1catalog_items_list_response_rows_item_tracking import PostV1CatalogItemsListResponseRowsItemTracking
 from .post_v1catalog_items_list_response_rows_item_translations_value import (
     PostV1CatalogItemsListResponseRowsItemTranslationsValue,
 )
@@ -18,6 +19,7 @@ from .post_v1catalog_items_list_response_rows_item_type import PostV1CatalogItem
 class PostV1CatalogItemsListResponseRowsItem(UniversalBaseModel):
     id: str
     type: PostV1CatalogItemsListResponseRowsItemType
+    tracking: PostV1CatalogItemsListResponseRowsItemTracking
     name: str
     code: typing.Optional[str] = None
     barcode: typing.Optional[str] = None

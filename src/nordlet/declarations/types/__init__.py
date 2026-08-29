@@ -190,6 +190,13 @@ if typing.TYPE_CHECKING:
     from .post_v1declarations_lt_sd_generate_response import PostV1DeclarationsLtSdGenerateResponse
     from .post_v1declarations_lt_sd_generate_response_rows_item import PostV1DeclarationsLtSdGenerateResponseRowsItem
     from .post_v1declarations_lt_sd_generate_response_type import PostV1DeclarationsLtSdGenerateResponseType
+    from .post_v1declarations_pl_jpk_v7m_generate_response import PostV1DeclarationsPlJpkV7MGenerateResponse
+    from .post_v1declarations_pl_jpk_v7m_generate_response_counts import (
+        PostV1DeclarationsPlJpkV7MGenerateResponseCounts,
+    )
+    from .post_v1declarations_pl_jpk_v7m_generate_response_declaration_item import (
+        PostV1DeclarationsPlJpkV7MGenerateResponseDeclarationItem,
+    )
     from .post_v1declarations_submissions_create_request_data_type import (
         PostV1DeclarationsSubmissionsCreateRequestDataType,
     )
@@ -311,6 +318,9 @@ _dynamic_imports: typing.Dict[str, str] = {
     "PostV1DeclarationsLtSdGenerateResponse": ".post_v1declarations_lt_sd_generate_response",
     "PostV1DeclarationsLtSdGenerateResponseRowsItem": ".post_v1declarations_lt_sd_generate_response_rows_item",
     "PostV1DeclarationsLtSdGenerateResponseType": ".post_v1declarations_lt_sd_generate_response_type",
+    "PostV1DeclarationsPlJpkV7MGenerateResponse": ".post_v1declarations_pl_jpk_v7m_generate_response",
+    "PostV1DeclarationsPlJpkV7MGenerateResponseCounts": ".post_v1declarations_pl_jpk_v7m_generate_response_counts",
+    "PostV1DeclarationsPlJpkV7MGenerateResponseDeclarationItem": ".post_v1declarations_pl_jpk_v7m_generate_response_declaration_item",
     "PostV1DeclarationsSubmissionsCreateRequestDataType": ".post_v1declarations_submissions_create_request_data_type",
     "PostV1DeclarationsSubmissionsCreateRequestObligation": ".post_v1declarations_submissions_create_request_obligation",
     "PostV1DeclarationsSubmissionsCreateResponse": ".post_v1declarations_submissions_create_response",
@@ -436,6 +446,9 @@ __all__ = [
     "PostV1DeclarationsLtSdGenerateResponse",
     "PostV1DeclarationsLtSdGenerateResponseRowsItem",
     "PostV1DeclarationsLtSdGenerateResponseType",
+    "PostV1DeclarationsPlJpkV7MGenerateResponse",
+    "PostV1DeclarationsPlJpkV7MGenerateResponseCounts",
+    "PostV1DeclarationsPlJpkV7MGenerateResponseDeclarationItem",
     "PostV1DeclarationsSubmissionsCreateRequestDataType",
     "PostV1DeclarationsSubmissionsCreateRequestObligation",
     "PostV1DeclarationsSubmissionsCreateResponse",

@@ -13,9 +13,30 @@ from .types.post_v1purchases_invoices_get_response import PostV1PurchasesInvoice
 from .types.post_v1purchases_invoices_list_request_filter_item import PostV1PurchasesInvoicesListRequestFilterItem
 from .types.post_v1purchases_invoices_list_request_sort_item import PostV1PurchasesInvoicesListRequestSortItem
 from .types.post_v1purchases_invoices_list_response import PostV1PurchasesInvoicesListResponse
+from .types.post_v1purchases_invoices_match_response import PostV1PurchasesInvoicesMatchResponse
 from .types.post_v1purchases_invoices_register_response import PostV1PurchasesInvoicesRegisterResponse
 from .types.post_v1purchases_invoices_update_request_lines_item import PostV1PurchasesInvoicesUpdateRequestLinesItem
 from .types.post_v1purchases_invoices_update_response import PostV1PurchasesInvoicesUpdateResponse
+from .types.post_v1purchases_orders_approve_response import PostV1PurchasesOrdersApproveResponse
+from .types.post_v1purchases_orders_cancel_response import PostV1PurchasesOrdersCancelResponse
+from .types.post_v1purchases_orders_close_response import PostV1PurchasesOrdersCloseResponse
+from .types.post_v1purchases_orders_create_request_lines_item import PostV1PurchasesOrdersCreateRequestLinesItem
+from .types.post_v1purchases_orders_create_response import PostV1PurchasesOrdersCreateResponse
+from .types.post_v1purchases_orders_delete_response import PostV1PurchasesOrdersDeleteResponse
+from .types.post_v1purchases_orders_get_response import PostV1PurchasesOrdersGetResponse
+from .types.post_v1purchases_orders_list_request_filter_item import PostV1PurchasesOrdersListRequestFilterItem
+from .types.post_v1purchases_orders_list_request_sort_item import PostV1PurchasesOrdersListRequestSortItem
+from .types.post_v1purchases_orders_list_response import PostV1PurchasesOrdersListResponse
+from .types.post_v1purchases_orders_reject_response import PostV1PurchasesOrdersRejectResponse
+from .types.post_v1purchases_orders_submit_response import PostV1PurchasesOrdersSubmitResponse
+from .types.post_v1purchases_orders_update_request_lines_item import PostV1PurchasesOrdersUpdateRequestLinesItem
+from .types.post_v1purchases_orders_update_response import PostV1PurchasesOrdersUpdateResponse
+from .types.post_v1purchases_receipts_create_request_lines_item import PostV1PurchasesReceiptsCreateRequestLinesItem
+from .types.post_v1purchases_receipts_create_response import PostV1PurchasesReceiptsCreateResponse
+from .types.post_v1purchases_receipts_get_response import PostV1PurchasesReceiptsGetResponse
+from .types.post_v1purchases_receipts_list_request_filter_item import PostV1PurchasesReceiptsListRequestFilterItem
+from .types.post_v1purchases_receipts_list_request_sort_item import PostV1PurchasesReceiptsListRequestSortItem
+from .types.post_v1purchases_receipts_list_response import PostV1PurchasesReceiptsListResponse
 
 # this is used as the default value for optional parameters
 OMIT = typing.cast(typing.Any, ...)
@@ -47,6 +68,7 @@ class PurchasesClient:
         due_date: typing.Optional[str] = OMIT,
         currency: typing.Optional[str] = OMIT,
         credited_invoice_id: typing.Optional[str] = OMIT,
+        purchase_order_id: typing.Optional[str] = OMIT,
         notes: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1PurchasesInvoicesCreateResponse:
@@ -68,6 +90,8 @@ class PurchasesClient:
         currency : typing.Optional[str]
 
         credited_invoice_id : typing.Optional[str]
+
+        purchase_order_id : typing.Optional[str]
 
         notes : typing.Optional[str]
 
@@ -103,6 +127,7 @@ class PurchasesClient:
             due_date=due_date,
             currency=currency,
             credited_invoice_id=credited_invoice_id,
+            purchase_order_id=purchase_order_id,
             notes=notes,
             request_options=request_options,
         )
@@ -147,6 +172,7 @@ class PurchasesClient:
         document_date: typing.Optional[str] = OMIT,
         due_date: typing.Optional[str] = OMIT,
         currency: typing.Optional[str] = OMIT,
+        purchase_order_id: typing.Optional[str] = OMIT,
         notes: typing.Optional[str] = OMIT,
         lines: typing.Optional[typing.Sequence[PostV1PurchasesInvoicesUpdateRequestLinesItem]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
@@ -165,6 +191,8 @@ class PurchasesClient:
         due_date : typing.Optional[str]
 
         currency : typing.Optional[str]
+
+        purchase_order_id : typing.Optional[str]
 
         notes : typing.Optional[str]
 
@@ -196,6 +224,7 @@ class PurchasesClient:
             document_date=document_date,
             due_date=due_date,
             currency=currency,
+            purchase_order_id=purchase_order_id,
             notes=notes,
             lines=lines,
             request_options=request_options,
@@ -315,6 +344,579 @@ class PurchasesClient:
         )
         return _response.data
 
+    def post_v1purchases_orders_create(
+        self,
+        *,
+        partner_id: str,
+        order_date: str,
+        lines: typing.Sequence[PostV1PurchasesOrdersCreateRequestLinesItem],
+        order_number: typing.Optional[str] = OMIT,
+        expected_date: typing.Optional[str] = OMIT,
+        warehouse_id: typing.Optional[str] = OMIT,
+        currency: typing.Optional[str] = OMIT,
+        notes: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1PurchasesOrdersCreateResponse:
+        """
+        Parameters
+        ----------
+        partner_id : str
+
+        order_date : str
+
+        lines : typing.Sequence[PostV1PurchasesOrdersCreateRequestLinesItem]
+
+        order_number : typing.Optional[str]
+
+        expected_date : typing.Optional[str]
+
+        warehouse_id : typing.Optional[str]
+
+        currency : typing.Optional[str]
+
+        notes : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1PurchasesOrdersCreateResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+        from nordlet.purchases import PostV1PurchasesOrdersCreateRequestLinesItem
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.purchases.post_v1purchases_orders_create(
+            partner_id="partnerId",
+            order_date="orderDate",
+            lines=[PostV1PurchasesOrdersCreateRequestLinesItem()],
+        )
+        """
+        _response = self._raw_client.post_v1purchases_orders_create(
+            partner_id=partner_id,
+            order_date=order_date,
+            lines=lines,
+            order_number=order_number,
+            expected_date=expected_date,
+            warehouse_id=warehouse_id,
+            currency=currency,
+            notes=notes,
+            request_options=request_options,
+        )
+        return _response.data
+
+    def post_v1purchases_orders_update(
+        self,
+        *,
+        id: str,
+        partner_id: typing.Optional[str] = OMIT,
+        order_date: typing.Optional[str] = OMIT,
+        expected_date: typing.Optional[str] = OMIT,
+        warehouse_id: typing.Optional[str] = OMIT,
+        currency: typing.Optional[str] = OMIT,
+        notes: typing.Optional[str] = OMIT,
+        lines: typing.Optional[typing.Sequence[PostV1PurchasesOrdersUpdateRequestLinesItem]] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1PurchasesOrdersUpdateResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        partner_id : typing.Optional[str]
+
+        order_date : typing.Optional[str]
+
+        expected_date : typing.Optional[str]
+
+        warehouse_id : typing.Optional[str]
+
+        currency : typing.Optional[str]
+
+        notes : typing.Optional[str]
+
+        lines : typing.Optional[typing.Sequence[PostV1PurchasesOrdersUpdateRequestLinesItem]]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1PurchasesOrdersUpdateResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.purchases.post_v1purchases_orders_update(
+            id="id",
+        )
+        """
+        _response = self._raw_client.post_v1purchases_orders_update(
+            id=id,
+            partner_id=partner_id,
+            order_date=order_date,
+            expected_date=expected_date,
+            warehouse_id=warehouse_id,
+            currency=currency,
+            notes=notes,
+            lines=lines,
+            request_options=request_options,
+        )
+        return _response.data
+
+    def post_v1purchases_orders_get(
+        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1PurchasesOrdersGetResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1PurchasesOrdersGetResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.purchases.post_v1purchases_orders_get(
+            id="id",
+        )
+        """
+        _response = self._raw_client.post_v1purchases_orders_get(id=id, request_options=request_options)
+        return _response.data
+
+    def post_v1purchases_orders_list(
+        self,
+        *,
+        page: typing.Optional[int] = OMIT,
+        page_size: typing.Optional[int] = OMIT,
+        sort: typing.Optional[typing.Sequence[PostV1PurchasesOrdersListRequestSortItem]] = OMIT,
+        filter: typing.Optional[typing.Sequence[PostV1PurchasesOrdersListRequestFilterItem]] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1PurchasesOrdersListResponse:
+        """
+        Parameters
+        ----------
+        page : typing.Optional[int]
+
+        page_size : typing.Optional[int]
+
+        sort : typing.Optional[typing.Sequence[PostV1PurchasesOrdersListRequestSortItem]]
+
+        filter : typing.Optional[typing.Sequence[PostV1PurchasesOrdersListRequestFilterItem]]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1PurchasesOrdersListResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.purchases.post_v1purchases_orders_list()
+        """
+        _response = self._raw_client.post_v1purchases_orders_list(
+            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+        )
+        return _response.data
+
+    def post_v1purchases_orders_submit(
+        self, *, id: str, reason: typing.Optional[str] = OMIT, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1PurchasesOrdersSubmitResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        reason : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1PurchasesOrdersSubmitResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.purchases.post_v1purchases_orders_submit(
+            id="id",
+        )
+        """
+        _response = self._raw_client.post_v1purchases_orders_submit(
+            id=id, reason=reason, request_options=request_options
+        )
+        return _response.data
+
+    def post_v1purchases_orders_approve(
+        self, *, id: str, reason: typing.Optional[str] = OMIT, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1PurchasesOrdersApproveResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        reason : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1PurchasesOrdersApproveResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.purchases.post_v1purchases_orders_approve(
+            id="id",
+        )
+        """
+        _response = self._raw_client.post_v1purchases_orders_approve(
+            id=id, reason=reason, request_options=request_options
+        )
+        return _response.data
+
+    def post_v1purchases_orders_reject(
+        self, *, id: str, reason: typing.Optional[str] = OMIT, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1PurchasesOrdersRejectResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        reason : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1PurchasesOrdersRejectResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.purchases.post_v1purchases_orders_reject(
+            id="id",
+        )
+        """
+        _response = self._raw_client.post_v1purchases_orders_reject(
+            id=id, reason=reason, request_options=request_options
+        )
+        return _response.data
+
+    def post_v1purchases_orders_cancel(
+        self, *, id: str, reason: typing.Optional[str] = OMIT, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1PurchasesOrdersCancelResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        reason : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1PurchasesOrdersCancelResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.purchases.post_v1purchases_orders_cancel(
+            id="id",
+        )
+        """
+        _response = self._raw_client.post_v1purchases_orders_cancel(
+            id=id, reason=reason, request_options=request_options
+        )
+        return _response.data
+
+    def post_v1purchases_orders_close(
+        self, *, id: str, reason: typing.Optional[str] = OMIT, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1PurchasesOrdersCloseResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        reason : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1PurchasesOrdersCloseResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.purchases.post_v1purchases_orders_close(
+            id="id",
+        )
+        """
+        _response = self._raw_client.post_v1purchases_orders_close(
+            id=id, reason=reason, request_options=request_options
+        )
+        return _response.data
+
+    def post_v1purchases_orders_delete(
+        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1PurchasesOrdersDeleteResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1PurchasesOrdersDeleteResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.purchases.post_v1purchases_orders_delete(
+            id="id",
+        )
+        """
+        _response = self._raw_client.post_v1purchases_orders_delete(id=id, request_options=request_options)
+        return _response.data
+
+    def post_v1purchases_receipts_create(
+        self,
+        *,
+        order_id: str,
+        receipt_date: str,
+        lines: typing.Sequence[PostV1PurchasesReceiptsCreateRequestLinesItem],
+        warehouse_id: typing.Optional[str] = OMIT,
+        notes: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1PurchasesReceiptsCreateResponse:
+        """
+        Parameters
+        ----------
+        order_id : str
+
+        receipt_date : str
+
+        lines : typing.Sequence[PostV1PurchasesReceiptsCreateRequestLinesItem]
+
+        warehouse_id : typing.Optional[str]
+
+        notes : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1PurchasesReceiptsCreateResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+        from nordlet.purchases import PostV1PurchasesReceiptsCreateRequestLinesItem
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.purchases.post_v1purchases_receipts_create(
+            order_id="orderId",
+            receipt_date="receiptDate",
+            lines=[
+                PostV1PurchasesReceiptsCreateRequestLinesItem(
+                    order_line_id="orderLineId",
+                    quantity="quantity",
+                )
+            ],
+        )
+        """
+        _response = self._raw_client.post_v1purchases_receipts_create(
+            order_id=order_id,
+            receipt_date=receipt_date,
+            lines=lines,
+            warehouse_id=warehouse_id,
+            notes=notes,
+            request_options=request_options,
+        )
+        return _response.data
+
+    def post_v1purchases_receipts_get(
+        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1PurchasesReceiptsGetResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1PurchasesReceiptsGetResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.purchases.post_v1purchases_receipts_get(
+            id="id",
+        )
+        """
+        _response = self._raw_client.post_v1purchases_receipts_get(id=id, request_options=request_options)
+        return _response.data
+
+    def post_v1purchases_receipts_list(
+        self,
+        *,
+        page: typing.Optional[int] = OMIT,
+        page_size: typing.Optional[int] = OMIT,
+        sort: typing.Optional[typing.Sequence[PostV1PurchasesReceiptsListRequestSortItem]] = OMIT,
+        filter: typing.Optional[typing.Sequence[PostV1PurchasesReceiptsListRequestFilterItem]] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1PurchasesReceiptsListResponse:
+        """
+        Parameters
+        ----------
+        page : typing.Optional[int]
+
+        page_size : typing.Optional[int]
+
+        sort : typing.Optional[typing.Sequence[PostV1PurchasesReceiptsListRequestSortItem]]
+
+        filter : typing.Optional[typing.Sequence[PostV1PurchasesReceiptsListRequestFilterItem]]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1PurchasesReceiptsListResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.purchases.post_v1purchases_receipts_list()
+        """
+        _response = self._raw_client.post_v1purchases_receipts_list(
+            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+        )
+        return _response.data
+
+    def post_v1purchases_invoices_match(
+        self,
+        *,
+        invoice_id: str,
+        price_tolerance_percent: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1PurchasesInvoicesMatchResponse:
+        """
+        Parameters
+        ----------
+        invoice_id : str
+
+        price_tolerance_percent : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1PurchasesInvoicesMatchResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.purchases.post_v1purchases_invoices_match(
+            invoice_id="invoiceId",
+        )
+        """
+        _response = self._raw_client.post_v1purchases_invoices_match(
+            invoice_id=invoice_id, price_tolerance_percent=price_tolerance_percent, request_options=request_options
+        )
+        return _response.data
+
 
 class AsyncPurchasesClient:
     def __init__(self, *, client_wrapper: AsyncClientWrapper):
@@ -342,6 +944,7 @@ class AsyncPurchasesClient:
         due_date: typing.Optional[str] = OMIT,
         currency: typing.Optional[str] = OMIT,
         credited_invoice_id: typing.Optional[str] = OMIT,
+        purchase_order_id: typing.Optional[str] = OMIT,
         notes: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1PurchasesInvoicesCreateResponse:
@@ -363,6 +966,8 @@ class AsyncPurchasesClient:
         currency : typing.Optional[str]
 
         credited_invoice_id : typing.Optional[str]
+
+        purchase_order_id : typing.Optional[str]
 
         notes : typing.Optional[str]
 
@@ -406,6 +1011,7 @@ class AsyncPurchasesClient:
             due_date=due_date,
             currency=currency,
             credited_invoice_id=credited_invoice_id,
+            purchase_order_id=purchase_order_id,
             notes=notes,
             request_options=request_options,
         )
@@ -458,6 +1064,7 @@ class AsyncPurchasesClient:
         document_date: typing.Optional[str] = OMIT,
         due_date: typing.Optional[str] = OMIT,
         currency: typing.Optional[str] = OMIT,
+        purchase_order_id: typing.Optional[str] = OMIT,
         notes: typing.Optional[str] = OMIT,
         lines: typing.Optional[typing.Sequence[PostV1PurchasesInvoicesUpdateRequestLinesItem]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
@@ -476,6 +1083,8 @@ class AsyncPurchasesClient:
         due_date : typing.Optional[str]
 
         currency : typing.Optional[str]
+
+        purchase_order_id : typing.Optional[str]
 
         notes : typing.Optional[str]
 
@@ -515,6 +1124,7 @@ class AsyncPurchasesClient:
             document_date=document_date,
             due_date=due_date,
             currency=currency,
+            purchase_order_id=purchase_order_id,
             notes=notes,
             lines=lines,
             request_options=request_options,
@@ -655,5 +1265,690 @@ class AsyncPurchasesClient:
         """
         _response = await self._raw_client.post_v1purchases_invoices_list(
             page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+        )
+        return _response.data
+
+    async def post_v1purchases_orders_create(
+        self,
+        *,
+        partner_id: str,
+        order_date: str,
+        lines: typing.Sequence[PostV1PurchasesOrdersCreateRequestLinesItem],
+        order_number: typing.Optional[str] = OMIT,
+        expected_date: typing.Optional[str] = OMIT,
+        warehouse_id: typing.Optional[str] = OMIT,
+        currency: typing.Optional[str] = OMIT,
+        notes: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1PurchasesOrdersCreateResponse:
+        """
+        Parameters
+        ----------
+        partner_id : str
+
+        order_date : str
+
+        lines : typing.Sequence[PostV1PurchasesOrdersCreateRequestLinesItem]
+
+        order_number : typing.Optional[str]
+
+        expected_date : typing.Optional[str]
+
+        warehouse_id : typing.Optional[str]
+
+        currency : typing.Optional[str]
+
+        notes : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1PurchasesOrdersCreateResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+        from nordlet.purchases import PostV1PurchasesOrdersCreateRequestLinesItem
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.purchases.post_v1purchases_orders_create(
+                partner_id="partnerId",
+                order_date="orderDate",
+                lines=[PostV1PurchasesOrdersCreateRequestLinesItem()],
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1purchases_orders_create(
+            partner_id=partner_id,
+            order_date=order_date,
+            lines=lines,
+            order_number=order_number,
+            expected_date=expected_date,
+            warehouse_id=warehouse_id,
+            currency=currency,
+            notes=notes,
+            request_options=request_options,
+        )
+        return _response.data
+
+    async def post_v1purchases_orders_update(
+        self,
+        *,
+        id: str,
+        partner_id: typing.Optional[str] = OMIT,
+        order_date: typing.Optional[str] = OMIT,
+        expected_date: typing.Optional[str] = OMIT,
+        warehouse_id: typing.Optional[str] = OMIT,
+        currency: typing.Optional[str] = OMIT,
+        notes: typing.Optional[str] = OMIT,
+        lines: typing.Optional[typing.Sequence[PostV1PurchasesOrdersUpdateRequestLinesItem]] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1PurchasesOrdersUpdateResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        partner_id : typing.Optional[str]
+
+        order_date : typing.Optional[str]
+
+        expected_date : typing.Optional[str]
+
+        warehouse_id : typing.Optional[str]
+
+        currency : typing.Optional[str]
+
+        notes : typing.Optional[str]
+
+        lines : typing.Optional[typing.Sequence[PostV1PurchasesOrdersUpdateRequestLinesItem]]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1PurchasesOrdersUpdateResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.purchases.post_v1purchases_orders_update(
+                id="id",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1purchases_orders_update(
+            id=id,
+            partner_id=partner_id,
+            order_date=order_date,
+            expected_date=expected_date,
+            warehouse_id=warehouse_id,
+            currency=currency,
+            notes=notes,
+            lines=lines,
+            request_options=request_options,
+        )
+        return _response.data
+
+    async def post_v1purchases_orders_get(
+        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1PurchasesOrdersGetResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1PurchasesOrdersGetResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.purchases.post_v1purchases_orders_get(
+                id="id",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1purchases_orders_get(id=id, request_options=request_options)
+        return _response.data
+
+    async def post_v1purchases_orders_list(
+        self,
+        *,
+        page: typing.Optional[int] = OMIT,
+        page_size: typing.Optional[int] = OMIT,
+        sort: typing.Optional[typing.Sequence[PostV1PurchasesOrdersListRequestSortItem]] = OMIT,
+        filter: typing.Optional[typing.Sequence[PostV1PurchasesOrdersListRequestFilterItem]] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1PurchasesOrdersListResponse:
+        """
+        Parameters
+        ----------
+        page : typing.Optional[int]
+
+        page_size : typing.Optional[int]
+
+        sort : typing.Optional[typing.Sequence[PostV1PurchasesOrdersListRequestSortItem]]
+
+        filter : typing.Optional[typing.Sequence[PostV1PurchasesOrdersListRequestFilterItem]]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1PurchasesOrdersListResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.purchases.post_v1purchases_orders_list()
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1purchases_orders_list(
+            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+        )
+        return _response.data
+
+    async def post_v1purchases_orders_submit(
+        self, *, id: str, reason: typing.Optional[str] = OMIT, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1PurchasesOrdersSubmitResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        reason : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1PurchasesOrdersSubmitResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.purchases.post_v1purchases_orders_submit(
+                id="id",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1purchases_orders_submit(
+            id=id, reason=reason, request_options=request_options
+        )
+        return _response.data
+
+    async def post_v1purchases_orders_approve(
+        self, *, id: str, reason: typing.Optional[str] = OMIT, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1PurchasesOrdersApproveResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        reason : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1PurchasesOrdersApproveResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.purchases.post_v1purchases_orders_approve(
+                id="id",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1purchases_orders_approve(
+            id=id, reason=reason, request_options=request_options
+        )
+        return _response.data
+
+    async def post_v1purchases_orders_reject(
+        self, *, id: str, reason: typing.Optional[str] = OMIT, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1PurchasesOrdersRejectResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        reason : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1PurchasesOrdersRejectResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.purchases.post_v1purchases_orders_reject(
+                id="id",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1purchases_orders_reject(
+            id=id, reason=reason, request_options=request_options
+        )
+        return _response.data
+
+    async def post_v1purchases_orders_cancel(
+        self, *, id: str, reason: typing.Optional[str] = OMIT, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1PurchasesOrdersCancelResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        reason : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1PurchasesOrdersCancelResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.purchases.post_v1purchases_orders_cancel(
+                id="id",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1purchases_orders_cancel(
+            id=id, reason=reason, request_options=request_options
+        )
+        return _response.data
+
+    async def post_v1purchases_orders_close(
+        self, *, id: str, reason: typing.Optional[str] = OMIT, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1PurchasesOrdersCloseResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        reason : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1PurchasesOrdersCloseResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.purchases.post_v1purchases_orders_close(
+                id="id",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1purchases_orders_close(
+            id=id, reason=reason, request_options=request_options
+        )
+        return _response.data
+
+    async def post_v1purchases_orders_delete(
+        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1PurchasesOrdersDeleteResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1PurchasesOrdersDeleteResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.purchases.post_v1purchases_orders_delete(
+                id="id",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1purchases_orders_delete(id=id, request_options=request_options)
+        return _response.data
+
+    async def post_v1purchases_receipts_create(
+        self,
+        *,
+        order_id: str,
+        receipt_date: str,
+        lines: typing.Sequence[PostV1PurchasesReceiptsCreateRequestLinesItem],
+        warehouse_id: typing.Optional[str] = OMIT,
+        notes: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1PurchasesReceiptsCreateResponse:
+        """
+        Parameters
+        ----------
+        order_id : str
+
+        receipt_date : str
+
+        lines : typing.Sequence[PostV1PurchasesReceiptsCreateRequestLinesItem]
+
+        warehouse_id : typing.Optional[str]
+
+        notes : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1PurchasesReceiptsCreateResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+        from nordlet.purchases import PostV1PurchasesReceiptsCreateRequestLinesItem
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.purchases.post_v1purchases_receipts_create(
+                order_id="orderId",
+                receipt_date="receiptDate",
+                lines=[
+                    PostV1PurchasesReceiptsCreateRequestLinesItem(
+                        order_line_id="orderLineId",
+                        quantity="quantity",
+                    )
+                ],
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1purchases_receipts_create(
+            order_id=order_id,
+            receipt_date=receipt_date,
+            lines=lines,
+            warehouse_id=warehouse_id,
+            notes=notes,
+            request_options=request_options,
+        )
+        return _response.data
+
+    async def post_v1purchases_receipts_get(
+        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1PurchasesReceiptsGetResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1PurchasesReceiptsGetResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.purchases.post_v1purchases_receipts_get(
+                id="id",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1purchases_receipts_get(id=id, request_options=request_options)
+        return _response.data
+
+    async def post_v1purchases_receipts_list(
+        self,
+        *,
+        page: typing.Optional[int] = OMIT,
+        page_size: typing.Optional[int] = OMIT,
+        sort: typing.Optional[typing.Sequence[PostV1PurchasesReceiptsListRequestSortItem]] = OMIT,
+        filter: typing.Optional[typing.Sequence[PostV1PurchasesReceiptsListRequestFilterItem]] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1PurchasesReceiptsListResponse:
+        """
+        Parameters
+        ----------
+        page : typing.Optional[int]
+
+        page_size : typing.Optional[int]
+
+        sort : typing.Optional[typing.Sequence[PostV1PurchasesReceiptsListRequestSortItem]]
+
+        filter : typing.Optional[typing.Sequence[PostV1PurchasesReceiptsListRequestFilterItem]]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1PurchasesReceiptsListResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.purchases.post_v1purchases_receipts_list()
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1purchases_receipts_list(
+            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+        )
+        return _response.data
+
+    async def post_v1purchases_invoices_match(
+        self,
+        *,
+        invoice_id: str,
+        price_tolerance_percent: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1PurchasesInvoicesMatchResponse:
+        """
+        Parameters
+        ----------
+        invoice_id : str
+
+        price_tolerance_percent : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1PurchasesInvoicesMatchResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.purchases.post_v1purchases_invoices_match(
+                invoice_id="invoiceId",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1purchases_invoices_match(
+            invoice_id=invoice_id, price_tolerance_percent=price_tolerance_percent, request_options=request_options
         )
         return _response.data

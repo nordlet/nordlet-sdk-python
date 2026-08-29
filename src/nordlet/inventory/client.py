@@ -5,6 +5,28 @@ import typing
 from ..core.client_wrapper import AsyncClientWrapper, SyncClientWrapper
 from ..core.request_options import RequestOptions
 from .raw_client import AsyncRawInventoryClient, RawInventoryClient
+from .types.post_v1inventory_landed_costs_create_request_method import PostV1InventoryLandedCostsCreateRequestMethod
+from .types.post_v1inventory_landed_costs_create_response import PostV1InventoryLandedCostsCreateResponse
+from .types.post_v1inventory_landed_costs_get_response import PostV1InventoryLandedCostsGetResponse
+from .types.post_v1inventory_landed_costs_list_request_filter_item import (
+    PostV1InventoryLandedCostsListRequestFilterItem,
+)
+from .types.post_v1inventory_landed_costs_list_request_sort_item import PostV1InventoryLandedCostsListRequestSortItem
+from .types.post_v1inventory_landed_costs_list_response import PostV1InventoryLandedCostsListResponse
+from .types.post_v1inventory_lots_get_response import PostV1InventoryLotsGetResponse
+from .types.post_v1inventory_lots_list_request_filter_item import PostV1InventoryLotsListRequestFilterItem
+from .types.post_v1inventory_lots_list_request_sort_item import PostV1InventoryLotsListRequestSortItem
+from .types.post_v1inventory_lots_list_response import PostV1InventoryLotsListResponse
+from .types.post_v1inventory_lots_update_response import PostV1InventoryLotsUpdateResponse
+from .types.post_v1inventory_reorder_rules_check_response import PostV1InventoryReorderRulesCheckResponse
+from .types.post_v1inventory_reorder_rules_create_response import PostV1InventoryReorderRulesCreateResponse
+from .types.post_v1inventory_reorder_rules_delete_response import PostV1InventoryReorderRulesDeleteResponse
+from .types.post_v1inventory_reorder_rules_list_request_filter_item import (
+    PostV1InventoryReorderRulesListRequestFilterItem,
+)
+from .types.post_v1inventory_reorder_rules_list_request_sort_item import PostV1InventoryReorderRulesListRequestSortItem
+from .types.post_v1inventory_reorder_rules_list_response import PostV1InventoryReorderRulesListResponse
+from .types.post_v1inventory_reorder_rules_update_response import PostV1InventoryReorderRulesUpdateResponse
 from .types.post_v1inventory_settings_get_response import PostV1InventorySettingsGetResponse
 from .types.post_v1inventory_settings_update_request_negative_stock_policy import (
     PostV1InventorySettingsUpdateRequestNegativeStockPolicy,
@@ -200,6 +222,8 @@ class InventoryClient:
         date: str,
         quantity: str,
         unit_cost: str,
+        lot_number: typing.Optional[str] = OMIT,
+        expiry_date: typing.Optional[str] = OMIT,
         notes: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1InventoryStockReceiveResponse:
@@ -215,6 +239,10 @@ class InventoryClient:
         quantity : str
 
         unit_cost : str
+
+        lot_number : typing.Optional[str]
+
+        expiry_date : typing.Optional[str]
 
         notes : typing.Optional[str]
 
@@ -247,6 +275,8 @@ class InventoryClient:
             date=date,
             quantity=quantity,
             unit_cost=unit_cost,
+            lot_number=lot_number,
+            expiry_date=expiry_date,
             notes=notes,
             request_options=request_options,
         )
@@ -259,6 +289,7 @@ class InventoryClient:
         item_id: str,
         date: str,
         quantity: str,
+        lot_number: typing.Optional[str] = OMIT,
         expense_account_code: typing.Optional[str] = OMIT,
         inventory_account_code: typing.Optional[str] = OMIT,
         notes: typing.Optional[str] = OMIT,
@@ -274,6 +305,8 @@ class InventoryClient:
         date : str
 
         quantity : str
+
+        lot_number : typing.Optional[str]
 
         expense_account_code : typing.Optional[str]
 
@@ -308,6 +341,7 @@ class InventoryClient:
             item_id=item_id,
             date=date,
             quantity=quantity,
+            lot_number=lot_number,
             expense_account_code=expense_account_code,
             inventory_account_code=inventory_account_code,
             notes=notes,
@@ -323,6 +357,7 @@ class InventoryClient:
         item_id: str,
         date: str,
         quantity: str,
+        lot_number: typing.Optional[str] = OMIT,
         notes: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1InventoryStockTransferResponse:
@@ -338,6 +373,8 @@ class InventoryClient:
         date : str
 
         quantity : str
+
+        lot_number : typing.Optional[str]
 
         notes : typing.Optional[str]
 
@@ -370,6 +407,7 @@ class InventoryClient:
             item_id=item_id,
             date=date,
             quantity=quantity,
+            lot_number=lot_number,
             notes=notes,
             request_options=request_options,
         )
@@ -510,6 +548,459 @@ class InventoryClient:
         _response = self._raw_client.post_v1inventory_stock_movements_list(
             page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
         )
+        return _response.data
+
+    def post_v1inventory_lots_list(
+        self,
+        *,
+        page: typing.Optional[int] = OMIT,
+        page_size: typing.Optional[int] = OMIT,
+        sort: typing.Optional[typing.Sequence[PostV1InventoryLotsListRequestSortItem]] = OMIT,
+        filter: typing.Optional[typing.Sequence[PostV1InventoryLotsListRequestFilterItem]] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1InventoryLotsListResponse:
+        """
+        Parameters
+        ----------
+        page : typing.Optional[int]
+
+        page_size : typing.Optional[int]
+
+        sort : typing.Optional[typing.Sequence[PostV1InventoryLotsListRequestSortItem]]
+
+        filter : typing.Optional[typing.Sequence[PostV1InventoryLotsListRequestFilterItem]]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1InventoryLotsListResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.inventory.post_v1inventory_lots_list()
+        """
+        _response = self._raw_client.post_v1inventory_lots_list(
+            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+        )
+        return _response.data
+
+    def post_v1inventory_lots_get(
+        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1InventoryLotsGetResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1InventoryLotsGetResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.inventory.post_v1inventory_lots_get(
+            id="id",
+        )
+        """
+        _response = self._raw_client.post_v1inventory_lots_get(id=id, request_options=request_options)
+        return _response.data
+
+    def post_v1inventory_lots_update(
+        self,
+        *,
+        id: str,
+        expiry_date: typing.Optional[str] = OMIT,
+        notes: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1InventoryLotsUpdateResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        expiry_date : typing.Optional[str]
+
+        notes : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1InventoryLotsUpdateResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.inventory.post_v1inventory_lots_update(
+            id="id",
+        )
+        """
+        _response = self._raw_client.post_v1inventory_lots_update(
+            id=id, expiry_date=expiry_date, notes=notes, request_options=request_options
+        )
+        return _response.data
+
+    def post_v1inventory_landed_costs_create(
+        self,
+        *,
+        date: str,
+        amount: str,
+        method: typing.Optional[PostV1InventoryLandedCostsCreateRequestMethod] = OMIT,
+        goods_receipt_id: typing.Optional[str] = OMIT,
+        movement_ids: typing.Optional[typing.Sequence[str]] = OMIT,
+        source_invoice_id: typing.Optional[str] = OMIT,
+        notes: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1InventoryLandedCostsCreateResponse:
+        """
+        Parameters
+        ----------
+        date : str
+
+        amount : str
+
+        method : typing.Optional[PostV1InventoryLandedCostsCreateRequestMethod]
+
+        goods_receipt_id : typing.Optional[str]
+
+        movement_ids : typing.Optional[typing.Sequence[str]]
+
+        source_invoice_id : typing.Optional[str]
+
+        notes : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1InventoryLandedCostsCreateResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.inventory.post_v1inventory_landed_costs_create(
+            date="date",
+            amount="amount",
+        )
+        """
+        _response = self._raw_client.post_v1inventory_landed_costs_create(
+            date=date,
+            amount=amount,
+            method=method,
+            goods_receipt_id=goods_receipt_id,
+            movement_ids=movement_ids,
+            source_invoice_id=source_invoice_id,
+            notes=notes,
+            request_options=request_options,
+        )
+        return _response.data
+
+    def post_v1inventory_landed_costs_get(
+        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1InventoryLandedCostsGetResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1InventoryLandedCostsGetResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.inventory.post_v1inventory_landed_costs_get(
+            id="id",
+        )
+        """
+        _response = self._raw_client.post_v1inventory_landed_costs_get(id=id, request_options=request_options)
+        return _response.data
+
+    def post_v1inventory_landed_costs_list(
+        self,
+        *,
+        page: typing.Optional[int] = OMIT,
+        page_size: typing.Optional[int] = OMIT,
+        sort: typing.Optional[typing.Sequence[PostV1InventoryLandedCostsListRequestSortItem]] = OMIT,
+        filter: typing.Optional[typing.Sequence[PostV1InventoryLandedCostsListRequestFilterItem]] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1InventoryLandedCostsListResponse:
+        """
+        Parameters
+        ----------
+        page : typing.Optional[int]
+
+        page_size : typing.Optional[int]
+
+        sort : typing.Optional[typing.Sequence[PostV1InventoryLandedCostsListRequestSortItem]]
+
+        filter : typing.Optional[typing.Sequence[PostV1InventoryLandedCostsListRequestFilterItem]]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1InventoryLandedCostsListResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.inventory.post_v1inventory_landed_costs_list()
+        """
+        _response = self._raw_client.post_v1inventory_landed_costs_list(
+            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+        )
+        return _response.data
+
+    def post_v1inventory_reorder_rules_create(
+        self,
+        *,
+        item_id: str,
+        min_qty: str,
+        warehouse_id: typing.Optional[str] = OMIT,
+        reorder_qty: typing.Optional[str] = OMIT,
+        is_active: typing.Optional[bool] = OMIT,
+        notes: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1InventoryReorderRulesCreateResponse:
+        """
+        Parameters
+        ----------
+        item_id : str
+
+        min_qty : str
+
+        warehouse_id : typing.Optional[str]
+
+        reorder_qty : typing.Optional[str]
+
+        is_active : typing.Optional[bool]
+
+        notes : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1InventoryReorderRulesCreateResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.inventory.post_v1inventory_reorder_rules_create(
+            item_id="itemId",
+            min_qty="minQty",
+        )
+        """
+        _response = self._raw_client.post_v1inventory_reorder_rules_create(
+            item_id=item_id,
+            min_qty=min_qty,
+            warehouse_id=warehouse_id,
+            reorder_qty=reorder_qty,
+            is_active=is_active,
+            notes=notes,
+            request_options=request_options,
+        )
+        return _response.data
+
+    def post_v1inventory_reorder_rules_update(
+        self,
+        *,
+        id: str,
+        min_qty: typing.Optional[str] = OMIT,
+        reorder_qty: typing.Optional[str] = OMIT,
+        is_active: typing.Optional[bool] = OMIT,
+        notes: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1InventoryReorderRulesUpdateResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        min_qty : typing.Optional[str]
+
+        reorder_qty : typing.Optional[str]
+
+        is_active : typing.Optional[bool]
+
+        notes : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1InventoryReorderRulesUpdateResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.inventory.post_v1inventory_reorder_rules_update(
+            id="id",
+        )
+        """
+        _response = self._raw_client.post_v1inventory_reorder_rules_update(
+            id=id,
+            min_qty=min_qty,
+            reorder_qty=reorder_qty,
+            is_active=is_active,
+            notes=notes,
+            request_options=request_options,
+        )
+        return _response.data
+
+    def post_v1inventory_reorder_rules_delete(
+        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1InventoryReorderRulesDeleteResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1InventoryReorderRulesDeleteResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.inventory.post_v1inventory_reorder_rules_delete(
+            id="id",
+        )
+        """
+        _response = self._raw_client.post_v1inventory_reorder_rules_delete(id=id, request_options=request_options)
+        return _response.data
+
+    def post_v1inventory_reorder_rules_list(
+        self,
+        *,
+        page: typing.Optional[int] = OMIT,
+        page_size: typing.Optional[int] = OMIT,
+        sort: typing.Optional[typing.Sequence[PostV1InventoryReorderRulesListRequestSortItem]] = OMIT,
+        filter: typing.Optional[typing.Sequence[PostV1InventoryReorderRulesListRequestFilterItem]] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1InventoryReorderRulesListResponse:
+        """
+        Parameters
+        ----------
+        page : typing.Optional[int]
+
+        page_size : typing.Optional[int]
+
+        sort : typing.Optional[typing.Sequence[PostV1InventoryReorderRulesListRequestSortItem]]
+
+        filter : typing.Optional[typing.Sequence[PostV1InventoryReorderRulesListRequestFilterItem]]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1InventoryReorderRulesListResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.inventory.post_v1inventory_reorder_rules_list()
+        """
+        _response = self._raw_client.post_v1inventory_reorder_rules_list(
+            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+        )
+        return _response.data
+
+    def post_v1inventory_reorder_rules_check(
+        self, *, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1InventoryReorderRulesCheckResponse:
+        """
+        Parameters
+        ----------
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1InventoryReorderRulesCheckResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.inventory.post_v1inventory_reorder_rules_check()
+        """
+        _response = self._raw_client.post_v1inventory_reorder_rules_check(request_options=request_options)
         return _response.data
 
 
@@ -713,6 +1204,8 @@ class AsyncInventoryClient:
         date: str,
         quantity: str,
         unit_cost: str,
+        lot_number: typing.Optional[str] = OMIT,
+        expiry_date: typing.Optional[str] = OMIT,
         notes: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1InventoryStockReceiveResponse:
@@ -728,6 +1221,10 @@ class AsyncInventoryClient:
         quantity : str
 
         unit_cost : str
+
+        lot_number : typing.Optional[str]
+
+        expiry_date : typing.Optional[str]
 
         notes : typing.Optional[str]
 
@@ -768,6 +1265,8 @@ class AsyncInventoryClient:
             date=date,
             quantity=quantity,
             unit_cost=unit_cost,
+            lot_number=lot_number,
+            expiry_date=expiry_date,
             notes=notes,
             request_options=request_options,
         )
@@ -780,6 +1279,7 @@ class AsyncInventoryClient:
         item_id: str,
         date: str,
         quantity: str,
+        lot_number: typing.Optional[str] = OMIT,
         expense_account_code: typing.Optional[str] = OMIT,
         inventory_account_code: typing.Optional[str] = OMIT,
         notes: typing.Optional[str] = OMIT,
@@ -795,6 +1295,8 @@ class AsyncInventoryClient:
         date : str
 
         quantity : str
+
+        lot_number : typing.Optional[str]
 
         expense_account_code : typing.Optional[str]
 
@@ -837,6 +1339,7 @@ class AsyncInventoryClient:
             item_id=item_id,
             date=date,
             quantity=quantity,
+            lot_number=lot_number,
             expense_account_code=expense_account_code,
             inventory_account_code=inventory_account_code,
             notes=notes,
@@ -852,6 +1355,7 @@ class AsyncInventoryClient:
         item_id: str,
         date: str,
         quantity: str,
+        lot_number: typing.Optional[str] = OMIT,
         notes: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1InventoryStockTransferResponse:
@@ -867,6 +1371,8 @@ class AsyncInventoryClient:
         date : str
 
         quantity : str
+
+        lot_number : typing.Optional[str]
 
         notes : typing.Optional[str]
 
@@ -907,6 +1413,7 @@ class AsyncInventoryClient:
             item_id=item_id,
             date=date,
             quantity=quantity,
+            lot_number=lot_number,
             notes=notes,
             request_options=request_options,
         )
@@ -1071,4 +1578,545 @@ class AsyncInventoryClient:
         _response = await self._raw_client.post_v1inventory_stock_movements_list(
             page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
         )
+        return _response.data
+
+    async def post_v1inventory_lots_list(
+        self,
+        *,
+        page: typing.Optional[int] = OMIT,
+        page_size: typing.Optional[int] = OMIT,
+        sort: typing.Optional[typing.Sequence[PostV1InventoryLotsListRequestSortItem]] = OMIT,
+        filter: typing.Optional[typing.Sequence[PostV1InventoryLotsListRequestFilterItem]] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1InventoryLotsListResponse:
+        """
+        Parameters
+        ----------
+        page : typing.Optional[int]
+
+        page_size : typing.Optional[int]
+
+        sort : typing.Optional[typing.Sequence[PostV1InventoryLotsListRequestSortItem]]
+
+        filter : typing.Optional[typing.Sequence[PostV1InventoryLotsListRequestFilterItem]]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1InventoryLotsListResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.inventory.post_v1inventory_lots_list()
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1inventory_lots_list(
+            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+        )
+        return _response.data
+
+    async def post_v1inventory_lots_get(
+        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1InventoryLotsGetResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1InventoryLotsGetResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.inventory.post_v1inventory_lots_get(
+                id="id",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1inventory_lots_get(id=id, request_options=request_options)
+        return _response.data
+
+    async def post_v1inventory_lots_update(
+        self,
+        *,
+        id: str,
+        expiry_date: typing.Optional[str] = OMIT,
+        notes: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1InventoryLotsUpdateResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        expiry_date : typing.Optional[str]
+
+        notes : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1InventoryLotsUpdateResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.inventory.post_v1inventory_lots_update(
+                id="id",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1inventory_lots_update(
+            id=id, expiry_date=expiry_date, notes=notes, request_options=request_options
+        )
+        return _response.data
+
+    async def post_v1inventory_landed_costs_create(
+        self,
+        *,
+        date: str,
+        amount: str,
+        method: typing.Optional[PostV1InventoryLandedCostsCreateRequestMethod] = OMIT,
+        goods_receipt_id: typing.Optional[str] = OMIT,
+        movement_ids: typing.Optional[typing.Sequence[str]] = OMIT,
+        source_invoice_id: typing.Optional[str] = OMIT,
+        notes: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1InventoryLandedCostsCreateResponse:
+        """
+        Parameters
+        ----------
+        date : str
+
+        amount : str
+
+        method : typing.Optional[PostV1InventoryLandedCostsCreateRequestMethod]
+
+        goods_receipt_id : typing.Optional[str]
+
+        movement_ids : typing.Optional[typing.Sequence[str]]
+
+        source_invoice_id : typing.Optional[str]
+
+        notes : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1InventoryLandedCostsCreateResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.inventory.post_v1inventory_landed_costs_create(
+                date="date",
+                amount="amount",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1inventory_landed_costs_create(
+            date=date,
+            amount=amount,
+            method=method,
+            goods_receipt_id=goods_receipt_id,
+            movement_ids=movement_ids,
+            source_invoice_id=source_invoice_id,
+            notes=notes,
+            request_options=request_options,
+        )
+        return _response.data
+
+    async def post_v1inventory_landed_costs_get(
+        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1InventoryLandedCostsGetResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1InventoryLandedCostsGetResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.inventory.post_v1inventory_landed_costs_get(
+                id="id",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1inventory_landed_costs_get(id=id, request_options=request_options)
+        return _response.data
+
+    async def post_v1inventory_landed_costs_list(
+        self,
+        *,
+        page: typing.Optional[int] = OMIT,
+        page_size: typing.Optional[int] = OMIT,
+        sort: typing.Optional[typing.Sequence[PostV1InventoryLandedCostsListRequestSortItem]] = OMIT,
+        filter: typing.Optional[typing.Sequence[PostV1InventoryLandedCostsListRequestFilterItem]] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1InventoryLandedCostsListResponse:
+        """
+        Parameters
+        ----------
+        page : typing.Optional[int]
+
+        page_size : typing.Optional[int]
+
+        sort : typing.Optional[typing.Sequence[PostV1InventoryLandedCostsListRequestSortItem]]
+
+        filter : typing.Optional[typing.Sequence[PostV1InventoryLandedCostsListRequestFilterItem]]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1InventoryLandedCostsListResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.inventory.post_v1inventory_landed_costs_list()
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1inventory_landed_costs_list(
+            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+        )
+        return _response.data
+
+    async def post_v1inventory_reorder_rules_create(
+        self,
+        *,
+        item_id: str,
+        min_qty: str,
+        warehouse_id: typing.Optional[str] = OMIT,
+        reorder_qty: typing.Optional[str] = OMIT,
+        is_active: typing.Optional[bool] = OMIT,
+        notes: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1InventoryReorderRulesCreateResponse:
+        """
+        Parameters
+        ----------
+        item_id : str
+
+        min_qty : str
+
+        warehouse_id : typing.Optional[str]
+
+        reorder_qty : typing.Optional[str]
+
+        is_active : typing.Optional[bool]
+
+        notes : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1InventoryReorderRulesCreateResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.inventory.post_v1inventory_reorder_rules_create(
+                item_id="itemId",
+                min_qty="minQty",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1inventory_reorder_rules_create(
+            item_id=item_id,
+            min_qty=min_qty,
+            warehouse_id=warehouse_id,
+            reorder_qty=reorder_qty,
+            is_active=is_active,
+            notes=notes,
+            request_options=request_options,
+        )
+        return _response.data
+
+    async def post_v1inventory_reorder_rules_update(
+        self,
+        *,
+        id: str,
+        min_qty: typing.Optional[str] = OMIT,
+        reorder_qty: typing.Optional[str] = OMIT,
+        is_active: typing.Optional[bool] = OMIT,
+        notes: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1InventoryReorderRulesUpdateResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        min_qty : typing.Optional[str]
+
+        reorder_qty : typing.Optional[str]
+
+        is_active : typing.Optional[bool]
+
+        notes : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1InventoryReorderRulesUpdateResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.inventory.post_v1inventory_reorder_rules_update(
+                id="id",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1inventory_reorder_rules_update(
+            id=id,
+            min_qty=min_qty,
+            reorder_qty=reorder_qty,
+            is_active=is_active,
+            notes=notes,
+            request_options=request_options,
+        )
+        return _response.data
+
+    async def post_v1inventory_reorder_rules_delete(
+        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1InventoryReorderRulesDeleteResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1InventoryReorderRulesDeleteResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.inventory.post_v1inventory_reorder_rules_delete(
+                id="id",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1inventory_reorder_rules_delete(id=id, request_options=request_options)
+        return _response.data
+
+    async def post_v1inventory_reorder_rules_list(
+        self,
+        *,
+        page: typing.Optional[int] = OMIT,
+        page_size: typing.Optional[int] = OMIT,
+        sort: typing.Optional[typing.Sequence[PostV1InventoryReorderRulesListRequestSortItem]] = OMIT,
+        filter: typing.Optional[typing.Sequence[PostV1InventoryReorderRulesListRequestFilterItem]] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1InventoryReorderRulesListResponse:
+        """
+        Parameters
+        ----------
+        page : typing.Optional[int]
+
+        page_size : typing.Optional[int]
+
+        sort : typing.Optional[typing.Sequence[PostV1InventoryReorderRulesListRequestSortItem]]
+
+        filter : typing.Optional[typing.Sequence[PostV1InventoryReorderRulesListRequestFilterItem]]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1InventoryReorderRulesListResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.inventory.post_v1inventory_reorder_rules_list()
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1inventory_reorder_rules_list(
+            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+        )
+        return _response.data
+
+    async def post_v1inventory_reorder_rules_check(
+        self, *, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1InventoryReorderRulesCheckResponse:
+        """
+        Parameters
+        ----------
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1InventoryReorderRulesCheckResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.inventory.post_v1inventory_reorder_rules_check()
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1inventory_reorder_rules_check(request_options=request_options)
         return _response.data

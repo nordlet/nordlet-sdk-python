@@ -25,6 +25,8 @@ from .types.post_v1sales_invoices_create_request_type import PostV1SalesInvoices
 from .types.post_v1sales_invoices_create_request_vat_scheme import PostV1SalesInvoicesCreateRequestVatScheme
 from .types.post_v1sales_invoices_create_response import PostV1SalesInvoicesCreateResponse
 from .types.post_v1sales_invoices_delete_response import PostV1SalesInvoicesDeleteResponse
+from .types.post_v1sales_invoices_einvoice_send_response import PostV1SalesInvoicesEinvoiceSendResponse
+from .types.post_v1sales_invoices_einvoice_xml_response import PostV1SalesInvoicesEinvoiceXmlResponse
 from .types.post_v1sales_invoices_get_response import PostV1SalesInvoicesGetResponse
 from .types.post_v1sales_invoices_issue_response import PostV1SalesInvoicesIssueResponse
 from .types.post_v1sales_invoices_list_request_filter_item import PostV1SalesInvoicesListRequestFilterItem
@@ -329,6 +331,70 @@ class SalesClient:
         )
         """
         _response = self._raw_client.post_v1sales_invoices_peppol_send(id=id, request_options=request_options)
+        return _response.data
+
+    def post_v1sales_invoices_einvoice_xml(
+        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1SalesInvoicesEinvoiceXmlResponse:
+        """
+        Render an issued invoice as the national e-invoicing payload for the company country: FatturaPA (IT), KSeF FA(3) (PL) or UBL CIUS-RO (RO). Review the warnings - data the invoice does not carry is flagged, never invented.
+
+        Parameters
+        ----------
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1SalesInvoicesEinvoiceXmlResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.sales.post_v1sales_invoices_einvoice_xml(
+            id="id",
+        )
+        """
+        _response = self._raw_client.post_v1sales_invoices_einvoice_xml(id=id, request_options=request_options)
+        return _response.data
+
+    def post_v1sales_invoices_einvoice_send(
+        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1SalesInvoicesEinvoiceSendResponse:
+        """
+        Build the national e-invoicing payload and deliver it to the bridge endpoint configured for the country gateway in compliance settings. The bridge (an accredited intermediary or connector) handles the certified national channel - SdI accreditation, KSeF sessions or ANAF SPV OAuth.
+
+        Parameters
+        ----------
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1SalesInvoicesEinvoiceSendResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.sales.post_v1sales_invoices_einvoice_send(
+            id="id",
+        )
+        """
+        _response = self._raw_client.post_v1sales_invoices_einvoice_send(id=id, request_options=request_options)
         return _response.data
 
     def post_v1sales_invoices_update(
@@ -1561,6 +1627,86 @@ class AsyncSalesClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.post_v1sales_invoices_peppol_send(id=id, request_options=request_options)
+        return _response.data
+
+    async def post_v1sales_invoices_einvoice_xml(
+        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1SalesInvoicesEinvoiceXmlResponse:
+        """
+        Render an issued invoice as the national e-invoicing payload for the company country: FatturaPA (IT), KSeF FA(3) (PL) or UBL CIUS-RO (RO). Review the warnings - data the invoice does not carry is flagged, never invented.
+
+        Parameters
+        ----------
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1SalesInvoicesEinvoiceXmlResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.sales.post_v1sales_invoices_einvoice_xml(
+                id="id",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1sales_invoices_einvoice_xml(id=id, request_options=request_options)
+        return _response.data
+
+    async def post_v1sales_invoices_einvoice_send(
+        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1SalesInvoicesEinvoiceSendResponse:
+        """
+        Build the national e-invoicing payload and deliver it to the bridge endpoint configured for the country gateway in compliance settings. The bridge (an accredited intermediary or connector) handles the certified national channel - SdI accreditation, KSeF sessions or ANAF SPV OAuth.
+
+        Parameters
+        ----------
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1SalesInvoicesEinvoiceSendResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.sales.post_v1sales_invoices_einvoice_send(
+                id="id",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1sales_invoices_einvoice_send(id=id, request_options=request_options)
         return _response.data
 
     async def post_v1sales_invoices_update(

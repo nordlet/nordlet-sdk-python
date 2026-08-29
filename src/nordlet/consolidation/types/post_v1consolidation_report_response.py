@@ -6,6 +6,7 @@ import pydantic
 import typing_extensions
 from ...core.pydantic_utilities import IS_PYDANTIC_V2, UniversalBaseModel
 from ...core.serialization import FieldMetadata
+from .post_v1consolidation_report_response_cash_flow import PostV1ConsolidationReportResponseCashFlow
 from .post_v1consolidation_report_response_category import PostV1ConsolidationReportResponseCategory
 from .post_v1consolidation_report_response_eliminations import PostV1ConsolidationReportResponseEliminations
 from .post_v1consolidation_report_response_equity_method import PostV1ConsolidationReportResponseEquityMethod
@@ -45,6 +46,9 @@ class PostV1ConsolidationReportResponse(UniversalBaseModel):
     ]
     members: typing.List[PostV1ConsolidationReportResponseMembersItem]
     eliminations: PostV1ConsolidationReportResponseEliminations
+    cash_flow: typing_extensions.Annotated[
+        PostV1ConsolidationReportResponseCashFlow, FieldMetadata(alias="cashFlow"), pydantic.Field(alias="cashFlow")
+    ]
     intercompany_candidates: typing_extensions.Annotated[
         typing.List[PostV1ConsolidationReportResponseIntercompanyCandidatesItem],
         FieldMetadata(alias="intercompanyCandidates"),

@@ -58,6 +58,13 @@ from .types.post_v1partners_update_request_address import PostV1PartnersUpdateRe
 from .types.post_v1partners_update_request_type import PostV1PartnersUpdateRequestType
 from .types.post_v1partners_update_response import PostV1PartnersUpdateResponse
 from .types.post_v1partners_validate_vat_response import PostV1PartnersValidateVatResponse
+from .types.post_v1partners_vat_reviews_list_request_filter_item import PostV1PartnersVatReviewsListRequestFilterItem
+from .types.post_v1partners_vat_reviews_list_request_sort_item import PostV1PartnersVatReviewsListRequestSortItem
+from .types.post_v1partners_vat_reviews_list_response import PostV1PartnersVatReviewsListResponse
+from .types.post_v1partners_vat_reviews_resolve_request_resolution import (
+    PostV1PartnersVatReviewsResolveRequestResolution,
+)
+from .types.post_v1partners_vat_reviews_resolve_response import PostV1PartnersVatReviewsResolveResponse
 
 # this is used as the default value for optional parameters
 OMIT = typing.cast(typing.Any, ...)
@@ -667,6 +674,90 @@ class PartnersClient:
         """
         _response = self._raw_client.post_v1partners_validate_vat(
             vat_code=vat_code, partner_id=partner_id, request_options=request_options
+        )
+        return _response.data
+
+    def post_v1partners_vat_reviews_list(
+        self,
+        *,
+        page: typing.Optional[int] = OMIT,
+        page_size: typing.Optional[int] = OMIT,
+        sort: typing.Optional[typing.Sequence[PostV1PartnersVatReviewsListRequestSortItem]] = OMIT,
+        filter: typing.Optional[typing.Sequence[PostV1PartnersVatReviewsListRequestFilterItem]] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1PartnersVatReviewsListResponse:
+        """
+        Parameters
+        ----------
+        page : typing.Optional[int]
+
+        page_size : typing.Optional[int]
+
+        sort : typing.Optional[typing.Sequence[PostV1PartnersVatReviewsListRequestSortItem]]
+
+        filter : typing.Optional[typing.Sequence[PostV1PartnersVatReviewsListRequestFilterItem]]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1PartnersVatReviewsListResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.partners.post_v1partners_vat_reviews_list()
+        """
+        _response = self._raw_client.post_v1partners_vat_reviews_list(
+            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+        )
+        return _response.data
+
+    def post_v1partners_vat_reviews_resolve(
+        self,
+        *,
+        id: str,
+        resolution: PostV1PartnersVatReviewsResolveRequestResolution,
+        note: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1PartnersVatReviewsResolveResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        resolution : PostV1PartnersVatReviewsResolveRequestResolution
+
+        note : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1PartnersVatReviewsResolveResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.partners.post_v1partners_vat_reviews_resolve(
+            id="id",
+            resolution="confirmed_valid",
+        )
+        """
+        _response = self._raw_client.post_v1partners_vat_reviews_resolve(
+            id=id, resolution=resolution, note=note, request_options=request_options
         )
         return _response.data
 
@@ -2313,6 +2404,106 @@ class AsyncPartnersClient:
         """
         _response = await self._raw_client.post_v1partners_validate_vat(
             vat_code=vat_code, partner_id=partner_id, request_options=request_options
+        )
+        return _response.data
+
+    async def post_v1partners_vat_reviews_list(
+        self,
+        *,
+        page: typing.Optional[int] = OMIT,
+        page_size: typing.Optional[int] = OMIT,
+        sort: typing.Optional[typing.Sequence[PostV1PartnersVatReviewsListRequestSortItem]] = OMIT,
+        filter: typing.Optional[typing.Sequence[PostV1PartnersVatReviewsListRequestFilterItem]] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1PartnersVatReviewsListResponse:
+        """
+        Parameters
+        ----------
+        page : typing.Optional[int]
+
+        page_size : typing.Optional[int]
+
+        sort : typing.Optional[typing.Sequence[PostV1PartnersVatReviewsListRequestSortItem]]
+
+        filter : typing.Optional[typing.Sequence[PostV1PartnersVatReviewsListRequestFilterItem]]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1PartnersVatReviewsListResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.partners.post_v1partners_vat_reviews_list()
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1partners_vat_reviews_list(
+            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+        )
+        return _response.data
+
+    async def post_v1partners_vat_reviews_resolve(
+        self,
+        *,
+        id: str,
+        resolution: PostV1PartnersVatReviewsResolveRequestResolution,
+        note: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1PartnersVatReviewsResolveResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        resolution : PostV1PartnersVatReviewsResolveRequestResolution
+
+        note : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1PartnersVatReviewsResolveResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.partners.post_v1partners_vat_reviews_resolve(
+                id="id",
+                resolution="confirmed_valid",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1partners_vat_reviews_resolve(
+            id=id, resolution=resolution, note=note, request_options=request_options
         )
         return _response.data
 

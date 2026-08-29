@@ -11,6 +11,15 @@ from .types.post_v1production_boms_get_response import PostV1ProductionBomsGetRe
 from .types.post_v1production_boms_list_request_filter_item import PostV1ProductionBomsListRequestFilterItem
 from .types.post_v1production_boms_list_request_sort_item import PostV1ProductionBomsListRequestSortItem
 from .types.post_v1production_boms_list_response import PostV1ProductionBomsListResponse
+from .types.post_v1production_maintenance_cancel_response import PostV1ProductionMaintenanceCancelResponse
+from .types.post_v1production_maintenance_complete_response import PostV1ProductionMaintenanceCompleteResponse
+from .types.post_v1production_maintenance_create_request_type import PostV1ProductionMaintenanceCreateRequestType
+from .types.post_v1production_maintenance_create_response import PostV1ProductionMaintenanceCreateResponse
+from .types.post_v1production_maintenance_list_request_filter_item import (
+    PostV1ProductionMaintenanceListRequestFilterItem,
+)
+from .types.post_v1production_maintenance_list_request_sort_item import PostV1ProductionMaintenanceListRequestSortItem
+from .types.post_v1production_maintenance_list_response import PostV1ProductionMaintenanceListResponse
 from .types.post_v1production_orders_complete_response import PostV1ProductionOrdersCompleteResponse
 from .types.post_v1production_orders_create_request_type import PostV1ProductionOrdersCreateRequestType
 from .types.post_v1production_orders_create_response import PostV1ProductionOrdersCreateResponse
@@ -18,6 +27,34 @@ from .types.post_v1production_orders_get_response import PostV1ProductionOrdersG
 from .types.post_v1production_orders_list_request_filter_item import PostV1ProductionOrdersListRequestFilterItem
 from .types.post_v1production_orders_list_request_sort_item import PostV1ProductionOrdersListRequestSortItem
 from .types.post_v1production_orders_list_response import PostV1ProductionOrdersListResponse
+from .types.post_v1production_orders_record_operation_response import PostV1ProductionOrdersRecordOperationResponse
+from .types.post_v1production_quality_checks_add_response import PostV1ProductionQualityChecksAddResponse
+from .types.post_v1production_quality_checks_list_request_filter_item import (
+    PostV1ProductionQualityChecksListRequestFilterItem,
+)
+from .types.post_v1production_quality_checks_list_request_sort_item import (
+    PostV1ProductionQualityChecksListRequestSortItem,
+)
+from .types.post_v1production_quality_checks_list_response import PostV1ProductionQualityChecksListResponse
+from .types.post_v1production_quality_checks_record_request_result import (
+    PostV1ProductionQualityChecksRecordRequestResult,
+)
+from .types.post_v1production_quality_checks_record_response import PostV1ProductionQualityChecksRecordResponse
+from .types.post_v1production_routings_create_request_operations_item import (
+    PostV1ProductionRoutingsCreateRequestOperationsItem,
+)
+from .types.post_v1production_routings_create_response import PostV1ProductionRoutingsCreateResponse
+from .types.post_v1production_routings_get_response import PostV1ProductionRoutingsGetResponse
+from .types.post_v1production_routings_list_request_filter_item import PostV1ProductionRoutingsListRequestFilterItem
+from .types.post_v1production_routings_list_request_sort_item import PostV1ProductionRoutingsListRequestSortItem
+from .types.post_v1production_routings_list_response import PostV1ProductionRoutingsListResponse
+from .types.post_v1production_work_centers_create_response import PostV1ProductionWorkCentersCreateResponse
+from .types.post_v1production_work_centers_list_request_filter_item import (
+    PostV1ProductionWorkCentersListRequestFilterItem,
+)
+from .types.post_v1production_work_centers_list_request_sort_item import PostV1ProductionWorkCentersListRequestSortItem
+from .types.post_v1production_work_centers_list_response import PostV1ProductionWorkCentersListResponse
+from .types.post_v1production_work_centers_update_response import PostV1ProductionWorkCentersUpdateResponse
 
 # this is used as the default value for optional parameters
 OMIT = typing.cast(typing.Any, ...)
@@ -38,6 +75,475 @@ class ProductionClient:
         """
         return self._raw_client
 
+    def post_v1production_work_centers_create(
+        self,
+        *,
+        code: str,
+        name: str,
+        cost_per_hour: typing.Optional[str] = OMIT,
+        cost_account_code: typing.Optional[str] = OMIT,
+        maintenance_interval_days: typing.Optional[int] = OMIT,
+        notes: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1ProductionWorkCentersCreateResponse:
+        """
+        Parameters
+        ----------
+        code : str
+
+        name : str
+
+        cost_per_hour : typing.Optional[str]
+
+        cost_account_code : typing.Optional[str]
+
+        maintenance_interval_days : typing.Optional[int]
+
+        notes : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1ProductionWorkCentersCreateResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.production.post_v1production_work_centers_create(
+            code="code",
+            name="name",
+        )
+        """
+        _response = self._raw_client.post_v1production_work_centers_create(
+            code=code,
+            name=name,
+            cost_per_hour=cost_per_hour,
+            cost_account_code=cost_account_code,
+            maintenance_interval_days=maintenance_interval_days,
+            notes=notes,
+            request_options=request_options,
+        )
+        return _response.data
+
+    def post_v1production_work_centers_update(
+        self,
+        *,
+        id: str,
+        code: typing.Optional[str] = OMIT,
+        name: typing.Optional[str] = OMIT,
+        cost_per_hour: typing.Optional[str] = OMIT,
+        cost_account_code: typing.Optional[str] = OMIT,
+        maintenance_interval_days: typing.Optional[int] = OMIT,
+        is_active: typing.Optional[bool] = OMIT,
+        notes: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1ProductionWorkCentersUpdateResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        code : typing.Optional[str]
+
+        name : typing.Optional[str]
+
+        cost_per_hour : typing.Optional[str]
+
+        cost_account_code : typing.Optional[str]
+
+        maintenance_interval_days : typing.Optional[int]
+
+        is_active : typing.Optional[bool]
+
+        notes : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1ProductionWorkCentersUpdateResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.production.post_v1production_work_centers_update(
+            id="id",
+        )
+        """
+        _response = self._raw_client.post_v1production_work_centers_update(
+            id=id,
+            code=code,
+            name=name,
+            cost_per_hour=cost_per_hour,
+            cost_account_code=cost_account_code,
+            maintenance_interval_days=maintenance_interval_days,
+            is_active=is_active,
+            notes=notes,
+            request_options=request_options,
+        )
+        return _response.data
+
+    def post_v1production_work_centers_list(
+        self,
+        *,
+        page: typing.Optional[int] = OMIT,
+        page_size: typing.Optional[int] = OMIT,
+        sort: typing.Optional[typing.Sequence[PostV1ProductionWorkCentersListRequestSortItem]] = OMIT,
+        filter: typing.Optional[typing.Sequence[PostV1ProductionWorkCentersListRequestFilterItem]] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1ProductionWorkCentersListResponse:
+        """
+        Parameters
+        ----------
+        page : typing.Optional[int]
+
+        page_size : typing.Optional[int]
+
+        sort : typing.Optional[typing.Sequence[PostV1ProductionWorkCentersListRequestSortItem]]
+
+        filter : typing.Optional[typing.Sequence[PostV1ProductionWorkCentersListRequestFilterItem]]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1ProductionWorkCentersListResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.production.post_v1production_work_centers_list()
+        """
+        _response = self._raw_client.post_v1production_work_centers_list(
+            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+        )
+        return _response.data
+
+    def post_v1production_routings_create(
+        self,
+        *,
+        code: str,
+        name: str,
+        operations: typing.Sequence[PostV1ProductionRoutingsCreateRequestOperationsItem],
+        notes: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1ProductionRoutingsCreateResponse:
+        """
+        Parameters
+        ----------
+        code : str
+
+        name : str
+
+        operations : typing.Sequence[PostV1ProductionRoutingsCreateRequestOperationsItem]
+
+        notes : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1ProductionRoutingsCreateResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+        from nordlet.production import (
+            PostV1ProductionRoutingsCreateRequestOperationsItem,
+        )
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.production.post_v1production_routings_create(
+            code="code",
+            name="name",
+            operations=[
+                PostV1ProductionRoutingsCreateRequestOperationsItem(
+                    sequence=1000000,
+                    name="name",
+                    work_center_id="workCenterId",
+                )
+            ],
+        )
+        """
+        _response = self._raw_client.post_v1production_routings_create(
+            code=code, name=name, operations=operations, notes=notes, request_options=request_options
+        )
+        return _response.data
+
+    def post_v1production_routings_get(
+        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1ProductionRoutingsGetResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1ProductionRoutingsGetResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.production.post_v1production_routings_get(
+            id="id",
+        )
+        """
+        _response = self._raw_client.post_v1production_routings_get(id=id, request_options=request_options)
+        return _response.data
+
+    def post_v1production_routings_list(
+        self,
+        *,
+        page: typing.Optional[int] = OMIT,
+        page_size: typing.Optional[int] = OMIT,
+        sort: typing.Optional[typing.Sequence[PostV1ProductionRoutingsListRequestSortItem]] = OMIT,
+        filter: typing.Optional[typing.Sequence[PostV1ProductionRoutingsListRequestFilterItem]] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1ProductionRoutingsListResponse:
+        """
+        Parameters
+        ----------
+        page : typing.Optional[int]
+
+        page_size : typing.Optional[int]
+
+        sort : typing.Optional[typing.Sequence[PostV1ProductionRoutingsListRequestSortItem]]
+
+        filter : typing.Optional[typing.Sequence[PostV1ProductionRoutingsListRequestFilterItem]]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1ProductionRoutingsListResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.production.post_v1production_routings_list()
+        """
+        _response = self._raw_client.post_v1production_routings_list(
+            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+        )
+        return _response.data
+
+    def post_v1production_maintenance_create(
+        self,
+        *,
+        work_center_id: str,
+        type: PostV1ProductionMaintenanceCreateRequestType,
+        planned_date: str,
+        description: typing.Optional[str] = OMIT,
+        notes: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1ProductionMaintenanceCreateResponse:
+        """
+        Parameters
+        ----------
+        work_center_id : str
+
+        type : PostV1ProductionMaintenanceCreateRequestType
+
+        planned_date : str
+
+        description : typing.Optional[str]
+
+        notes : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1ProductionMaintenanceCreateResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.production.post_v1production_maintenance_create(
+            work_center_id="workCenterId",
+            type="preventive",
+            planned_date="plannedDate",
+        )
+        """
+        _response = self._raw_client.post_v1production_maintenance_create(
+            work_center_id=work_center_id,
+            type=type,
+            planned_date=planned_date,
+            description=description,
+            notes=notes,
+            request_options=request_options,
+        )
+        return _response.data
+
+    def post_v1production_maintenance_complete(
+        self,
+        *,
+        id: str,
+        completed_date: str,
+        downtime_hours: typing.Optional[str] = OMIT,
+        cost: typing.Optional[str] = OMIT,
+        notes: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1ProductionMaintenanceCompleteResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        completed_date : str
+
+        downtime_hours : typing.Optional[str]
+
+        cost : typing.Optional[str]
+
+        notes : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1ProductionMaintenanceCompleteResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.production.post_v1production_maintenance_complete(
+            id="id",
+            completed_date="completedDate",
+        )
+        """
+        _response = self._raw_client.post_v1production_maintenance_complete(
+            id=id,
+            completed_date=completed_date,
+            downtime_hours=downtime_hours,
+            cost=cost,
+            notes=notes,
+            request_options=request_options,
+        )
+        return _response.data
+
+    def post_v1production_maintenance_cancel(
+        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1ProductionMaintenanceCancelResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1ProductionMaintenanceCancelResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.production.post_v1production_maintenance_cancel(
+            id="id",
+        )
+        """
+        _response = self._raw_client.post_v1production_maintenance_cancel(id=id, request_options=request_options)
+        return _response.data
+
+    def post_v1production_maintenance_list(
+        self,
+        *,
+        page: typing.Optional[int] = OMIT,
+        page_size: typing.Optional[int] = OMIT,
+        sort: typing.Optional[typing.Sequence[PostV1ProductionMaintenanceListRequestSortItem]] = OMIT,
+        filter: typing.Optional[typing.Sequence[PostV1ProductionMaintenanceListRequestFilterItem]] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1ProductionMaintenanceListResponse:
+        """
+        Parameters
+        ----------
+        page : typing.Optional[int]
+
+        page_size : typing.Optional[int]
+
+        sort : typing.Optional[typing.Sequence[PostV1ProductionMaintenanceListRequestSortItem]]
+
+        filter : typing.Optional[typing.Sequence[PostV1ProductionMaintenanceListRequestFilterItem]]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1ProductionMaintenanceListResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.production.post_v1production_maintenance_list()
+        """
+        _response = self._raw_client.post_v1production_maintenance_list(
+            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+        )
+        return _response.data
+
     def post_v1production_boms_create(
         self,
         *,
@@ -46,6 +552,7 @@ class ProductionClient:
         finished_item_id: str,
         lines: typing.Sequence[PostV1ProductionBomsCreateRequestLinesItem],
         output_quantity: typing.Optional[str] = OMIT,
+        routing_id: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1ProductionBomsCreateResponse:
         """
@@ -60,6 +567,8 @@ class ProductionClient:
         lines : typing.Sequence[PostV1ProductionBomsCreateRequestLinesItem]
 
         output_quantity : typing.Optional[str]
+
+        routing_id : typing.Optional[str]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -95,6 +604,7 @@ class ProductionClient:
             finished_item_id=finished_item_id,
             lines=lines,
             output_quantity=output_quantity,
+            routing_id=routing_id,
             request_options=request_options,
         )
         return _response.data
@@ -179,6 +689,7 @@ class ProductionClient:
         quantity: str,
         date: str,
         type: typing.Optional[PostV1ProductionOrdersCreateRequestType] = OMIT,
+        routing_id: typing.Optional[str] = OMIT,
         notes: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1ProductionOrdersCreateResponse:
@@ -194,6 +705,8 @@ class ProductionClient:
         date : str
 
         type : typing.Optional[PostV1ProductionOrdersCreateRequestType]
+
+        routing_id : typing.Optional[str]
 
         notes : typing.Optional[str]
 
@@ -225,8 +738,170 @@ class ProductionClient:
             quantity=quantity,
             date=date,
             type=type,
+            routing_id=routing_id,
             notes=notes,
             request_options=request_options,
+        )
+        return _response.data
+
+    def post_v1production_orders_record_operation(
+        self, *, id: str, actual_minutes: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1ProductionOrdersRecordOperationResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        actual_minutes : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1ProductionOrdersRecordOperationResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.production.post_v1production_orders_record_operation(
+            id="id",
+            actual_minutes="actualMinutes",
+        )
+        """
+        _response = self._raw_client.post_v1production_orders_record_operation(
+            id=id, actual_minutes=actual_minutes, request_options=request_options
+        )
+        return _response.data
+
+    def post_v1production_quality_checks_add(
+        self,
+        *,
+        order_id: str,
+        name: str,
+        notes: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1ProductionQualityChecksAddResponse:
+        """
+        Parameters
+        ----------
+        order_id : str
+
+        name : str
+
+        notes : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1ProductionQualityChecksAddResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.production.post_v1production_quality_checks_add(
+            order_id="orderId",
+            name="name",
+        )
+        """
+        _response = self._raw_client.post_v1production_quality_checks_add(
+            order_id=order_id, name=name, notes=notes, request_options=request_options
+        )
+        return _response.data
+
+    def post_v1production_quality_checks_record(
+        self,
+        *,
+        id: str,
+        result: PostV1ProductionQualityChecksRecordRequestResult,
+        notes: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1ProductionQualityChecksRecordResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        result : PostV1ProductionQualityChecksRecordRequestResult
+
+        notes : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1ProductionQualityChecksRecordResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.production.post_v1production_quality_checks_record(
+            id="id",
+            result="passed",
+        )
+        """
+        _response = self._raw_client.post_v1production_quality_checks_record(
+            id=id, result=result, notes=notes, request_options=request_options
+        )
+        return _response.data
+
+    def post_v1production_quality_checks_list(
+        self,
+        *,
+        page: typing.Optional[int] = OMIT,
+        page_size: typing.Optional[int] = OMIT,
+        sort: typing.Optional[typing.Sequence[PostV1ProductionQualityChecksListRequestSortItem]] = OMIT,
+        filter: typing.Optional[typing.Sequence[PostV1ProductionQualityChecksListRequestFilterItem]] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1ProductionQualityChecksListResponse:
+        """
+        Parameters
+        ----------
+        page : typing.Optional[int]
+
+        page_size : typing.Optional[int]
+
+        sort : typing.Optional[typing.Sequence[PostV1ProductionQualityChecksListRequestSortItem]]
+
+        filter : typing.Optional[typing.Sequence[PostV1ProductionQualityChecksListRequestFilterItem]]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1ProductionQualityChecksListResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.production.post_v1production_quality_checks_list()
+        """
+        _response = self._raw_client.post_v1production_quality_checks_list(
+            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
         )
         return _response.data
 
@@ -234,6 +909,7 @@ class ProductionClient:
         self,
         *,
         id: str,
+        scrapped_quantity: typing.Optional[str] = OMIT,
         components_account_code: typing.Optional[str] = OMIT,
         finished_account_code: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
@@ -242,6 +918,8 @@ class ProductionClient:
         Parameters
         ----------
         id : str
+
+        scrapped_quantity : typing.Optional[str]
 
         components_account_code : typing.Optional[str]
 
@@ -268,6 +946,7 @@ class ProductionClient:
         """
         _response = self._raw_client.post_v1production_orders_complete(
             id=id,
+            scrapped_quantity=scrapped_quantity,
             components_account_code=components_account_code,
             finished_account_code=finished_account_code,
             request_options=request_options,
@@ -362,6 +1041,555 @@ class AsyncProductionClient:
         """
         return self._raw_client
 
+    async def post_v1production_work_centers_create(
+        self,
+        *,
+        code: str,
+        name: str,
+        cost_per_hour: typing.Optional[str] = OMIT,
+        cost_account_code: typing.Optional[str] = OMIT,
+        maintenance_interval_days: typing.Optional[int] = OMIT,
+        notes: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1ProductionWorkCentersCreateResponse:
+        """
+        Parameters
+        ----------
+        code : str
+
+        name : str
+
+        cost_per_hour : typing.Optional[str]
+
+        cost_account_code : typing.Optional[str]
+
+        maintenance_interval_days : typing.Optional[int]
+
+        notes : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1ProductionWorkCentersCreateResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.production.post_v1production_work_centers_create(
+                code="code",
+                name="name",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1production_work_centers_create(
+            code=code,
+            name=name,
+            cost_per_hour=cost_per_hour,
+            cost_account_code=cost_account_code,
+            maintenance_interval_days=maintenance_interval_days,
+            notes=notes,
+            request_options=request_options,
+        )
+        return _response.data
+
+    async def post_v1production_work_centers_update(
+        self,
+        *,
+        id: str,
+        code: typing.Optional[str] = OMIT,
+        name: typing.Optional[str] = OMIT,
+        cost_per_hour: typing.Optional[str] = OMIT,
+        cost_account_code: typing.Optional[str] = OMIT,
+        maintenance_interval_days: typing.Optional[int] = OMIT,
+        is_active: typing.Optional[bool] = OMIT,
+        notes: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1ProductionWorkCentersUpdateResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        code : typing.Optional[str]
+
+        name : typing.Optional[str]
+
+        cost_per_hour : typing.Optional[str]
+
+        cost_account_code : typing.Optional[str]
+
+        maintenance_interval_days : typing.Optional[int]
+
+        is_active : typing.Optional[bool]
+
+        notes : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1ProductionWorkCentersUpdateResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.production.post_v1production_work_centers_update(
+                id="id",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1production_work_centers_update(
+            id=id,
+            code=code,
+            name=name,
+            cost_per_hour=cost_per_hour,
+            cost_account_code=cost_account_code,
+            maintenance_interval_days=maintenance_interval_days,
+            is_active=is_active,
+            notes=notes,
+            request_options=request_options,
+        )
+        return _response.data
+
+    async def post_v1production_work_centers_list(
+        self,
+        *,
+        page: typing.Optional[int] = OMIT,
+        page_size: typing.Optional[int] = OMIT,
+        sort: typing.Optional[typing.Sequence[PostV1ProductionWorkCentersListRequestSortItem]] = OMIT,
+        filter: typing.Optional[typing.Sequence[PostV1ProductionWorkCentersListRequestFilterItem]] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1ProductionWorkCentersListResponse:
+        """
+        Parameters
+        ----------
+        page : typing.Optional[int]
+
+        page_size : typing.Optional[int]
+
+        sort : typing.Optional[typing.Sequence[PostV1ProductionWorkCentersListRequestSortItem]]
+
+        filter : typing.Optional[typing.Sequence[PostV1ProductionWorkCentersListRequestFilterItem]]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1ProductionWorkCentersListResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.production.post_v1production_work_centers_list()
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1production_work_centers_list(
+            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+        )
+        return _response.data
+
+    async def post_v1production_routings_create(
+        self,
+        *,
+        code: str,
+        name: str,
+        operations: typing.Sequence[PostV1ProductionRoutingsCreateRequestOperationsItem],
+        notes: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1ProductionRoutingsCreateResponse:
+        """
+        Parameters
+        ----------
+        code : str
+
+        name : str
+
+        operations : typing.Sequence[PostV1ProductionRoutingsCreateRequestOperationsItem]
+
+        notes : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1ProductionRoutingsCreateResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+        from nordlet.production import (
+            PostV1ProductionRoutingsCreateRequestOperationsItem,
+        )
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.production.post_v1production_routings_create(
+                code="code",
+                name="name",
+                operations=[
+                    PostV1ProductionRoutingsCreateRequestOperationsItem(
+                        sequence=1000000,
+                        name="name",
+                        work_center_id="workCenterId",
+                    )
+                ],
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1production_routings_create(
+            code=code, name=name, operations=operations, notes=notes, request_options=request_options
+        )
+        return _response.data
+
+    async def post_v1production_routings_get(
+        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1ProductionRoutingsGetResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1ProductionRoutingsGetResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.production.post_v1production_routings_get(
+                id="id",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1production_routings_get(id=id, request_options=request_options)
+        return _response.data
+
+    async def post_v1production_routings_list(
+        self,
+        *,
+        page: typing.Optional[int] = OMIT,
+        page_size: typing.Optional[int] = OMIT,
+        sort: typing.Optional[typing.Sequence[PostV1ProductionRoutingsListRequestSortItem]] = OMIT,
+        filter: typing.Optional[typing.Sequence[PostV1ProductionRoutingsListRequestFilterItem]] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1ProductionRoutingsListResponse:
+        """
+        Parameters
+        ----------
+        page : typing.Optional[int]
+
+        page_size : typing.Optional[int]
+
+        sort : typing.Optional[typing.Sequence[PostV1ProductionRoutingsListRequestSortItem]]
+
+        filter : typing.Optional[typing.Sequence[PostV1ProductionRoutingsListRequestFilterItem]]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1ProductionRoutingsListResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.production.post_v1production_routings_list()
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1production_routings_list(
+            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+        )
+        return _response.data
+
+    async def post_v1production_maintenance_create(
+        self,
+        *,
+        work_center_id: str,
+        type: PostV1ProductionMaintenanceCreateRequestType,
+        planned_date: str,
+        description: typing.Optional[str] = OMIT,
+        notes: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1ProductionMaintenanceCreateResponse:
+        """
+        Parameters
+        ----------
+        work_center_id : str
+
+        type : PostV1ProductionMaintenanceCreateRequestType
+
+        planned_date : str
+
+        description : typing.Optional[str]
+
+        notes : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1ProductionMaintenanceCreateResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.production.post_v1production_maintenance_create(
+                work_center_id="workCenterId",
+                type="preventive",
+                planned_date="plannedDate",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1production_maintenance_create(
+            work_center_id=work_center_id,
+            type=type,
+            planned_date=planned_date,
+            description=description,
+            notes=notes,
+            request_options=request_options,
+        )
+        return _response.data
+
+    async def post_v1production_maintenance_complete(
+        self,
+        *,
+        id: str,
+        completed_date: str,
+        downtime_hours: typing.Optional[str] = OMIT,
+        cost: typing.Optional[str] = OMIT,
+        notes: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1ProductionMaintenanceCompleteResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        completed_date : str
+
+        downtime_hours : typing.Optional[str]
+
+        cost : typing.Optional[str]
+
+        notes : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1ProductionMaintenanceCompleteResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.production.post_v1production_maintenance_complete(
+                id="id",
+                completed_date="completedDate",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1production_maintenance_complete(
+            id=id,
+            completed_date=completed_date,
+            downtime_hours=downtime_hours,
+            cost=cost,
+            notes=notes,
+            request_options=request_options,
+        )
+        return _response.data
+
+    async def post_v1production_maintenance_cancel(
+        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1ProductionMaintenanceCancelResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1ProductionMaintenanceCancelResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.production.post_v1production_maintenance_cancel(
+                id="id",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1production_maintenance_cancel(id=id, request_options=request_options)
+        return _response.data
+
+    async def post_v1production_maintenance_list(
+        self,
+        *,
+        page: typing.Optional[int] = OMIT,
+        page_size: typing.Optional[int] = OMIT,
+        sort: typing.Optional[typing.Sequence[PostV1ProductionMaintenanceListRequestSortItem]] = OMIT,
+        filter: typing.Optional[typing.Sequence[PostV1ProductionMaintenanceListRequestFilterItem]] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1ProductionMaintenanceListResponse:
+        """
+        Parameters
+        ----------
+        page : typing.Optional[int]
+
+        page_size : typing.Optional[int]
+
+        sort : typing.Optional[typing.Sequence[PostV1ProductionMaintenanceListRequestSortItem]]
+
+        filter : typing.Optional[typing.Sequence[PostV1ProductionMaintenanceListRequestFilterItem]]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1ProductionMaintenanceListResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.production.post_v1production_maintenance_list()
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1production_maintenance_list(
+            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+        )
+        return _response.data
+
     async def post_v1production_boms_create(
         self,
         *,
@@ -370,6 +1598,7 @@ class AsyncProductionClient:
         finished_item_id: str,
         lines: typing.Sequence[PostV1ProductionBomsCreateRequestLinesItem],
         output_quantity: typing.Optional[str] = OMIT,
+        routing_id: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1ProductionBomsCreateResponse:
         """
@@ -384,6 +1613,8 @@ class AsyncProductionClient:
         lines : typing.Sequence[PostV1ProductionBomsCreateRequestLinesItem]
 
         output_quantity : typing.Optional[str]
+
+        routing_id : typing.Optional[str]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -427,6 +1658,7 @@ class AsyncProductionClient:
             finished_item_id=finished_item_id,
             lines=lines,
             output_quantity=output_quantity,
+            routing_id=routing_id,
             request_options=request_options,
         )
         return _response.data
@@ -527,6 +1759,7 @@ class AsyncProductionClient:
         quantity: str,
         date: str,
         type: typing.Optional[PostV1ProductionOrdersCreateRequestType] = OMIT,
+        routing_id: typing.Optional[str] = OMIT,
         notes: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1ProductionOrdersCreateResponse:
@@ -542,6 +1775,8 @@ class AsyncProductionClient:
         date : str
 
         type : typing.Optional[PostV1ProductionOrdersCreateRequestType]
+
+        routing_id : typing.Optional[str]
 
         notes : typing.Optional[str]
 
@@ -581,8 +1816,202 @@ class AsyncProductionClient:
             quantity=quantity,
             date=date,
             type=type,
+            routing_id=routing_id,
             notes=notes,
             request_options=request_options,
+        )
+        return _response.data
+
+    async def post_v1production_orders_record_operation(
+        self, *, id: str, actual_minutes: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1ProductionOrdersRecordOperationResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        actual_minutes : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1ProductionOrdersRecordOperationResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.production.post_v1production_orders_record_operation(
+                id="id",
+                actual_minutes="actualMinutes",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1production_orders_record_operation(
+            id=id, actual_minutes=actual_minutes, request_options=request_options
+        )
+        return _response.data
+
+    async def post_v1production_quality_checks_add(
+        self,
+        *,
+        order_id: str,
+        name: str,
+        notes: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1ProductionQualityChecksAddResponse:
+        """
+        Parameters
+        ----------
+        order_id : str
+
+        name : str
+
+        notes : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1ProductionQualityChecksAddResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.production.post_v1production_quality_checks_add(
+                order_id="orderId",
+                name="name",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1production_quality_checks_add(
+            order_id=order_id, name=name, notes=notes, request_options=request_options
+        )
+        return _response.data
+
+    async def post_v1production_quality_checks_record(
+        self,
+        *,
+        id: str,
+        result: PostV1ProductionQualityChecksRecordRequestResult,
+        notes: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1ProductionQualityChecksRecordResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        result : PostV1ProductionQualityChecksRecordRequestResult
+
+        notes : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1ProductionQualityChecksRecordResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.production.post_v1production_quality_checks_record(
+                id="id",
+                result="passed",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1production_quality_checks_record(
+            id=id, result=result, notes=notes, request_options=request_options
+        )
+        return _response.data
+
+    async def post_v1production_quality_checks_list(
+        self,
+        *,
+        page: typing.Optional[int] = OMIT,
+        page_size: typing.Optional[int] = OMIT,
+        sort: typing.Optional[typing.Sequence[PostV1ProductionQualityChecksListRequestSortItem]] = OMIT,
+        filter: typing.Optional[typing.Sequence[PostV1ProductionQualityChecksListRequestFilterItem]] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1ProductionQualityChecksListResponse:
+        """
+        Parameters
+        ----------
+        page : typing.Optional[int]
+
+        page_size : typing.Optional[int]
+
+        sort : typing.Optional[typing.Sequence[PostV1ProductionQualityChecksListRequestSortItem]]
+
+        filter : typing.Optional[typing.Sequence[PostV1ProductionQualityChecksListRequestFilterItem]]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1ProductionQualityChecksListResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.production.post_v1production_quality_checks_list()
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1production_quality_checks_list(
+            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
         )
         return _response.data
 
@@ -590,6 +2019,7 @@ class AsyncProductionClient:
         self,
         *,
         id: str,
+        scrapped_quantity: typing.Optional[str] = OMIT,
         components_account_code: typing.Optional[str] = OMIT,
         finished_account_code: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
@@ -598,6 +2028,8 @@ class AsyncProductionClient:
         Parameters
         ----------
         id : str
+
+        scrapped_quantity : typing.Optional[str]
 
         components_account_code : typing.Optional[str]
 
@@ -632,6 +2064,7 @@ class AsyncProductionClient:
         """
         _response = await self._raw_client.post_v1production_orders_complete(
             id=id,
+            scrapped_quantity=scrapped_quantity,
             components_account_code=components_account_code,
             finished_account_code=finished_account_code,
             request_options=request_options,

@@ -6,6 +6,10 @@ import pydantic
 import typing_extensions
 from ...core.pydantic_utilities import IS_PYDANTIC_V2, UniversalBaseModel
 from ...core.serialization import FieldMetadata
+from .post_v1production_orders_get_response_operations_item import PostV1ProductionOrdersGetResponseOperationsItem
+from .post_v1production_orders_get_response_quality_checks_item import (
+    PostV1ProductionOrdersGetResponseQualityChecksItem,
+)
 from .post_v1production_orders_get_response_status import PostV1ProductionOrdersGetResponseStatus
 from .post_v1production_orders_get_response_type import PostV1ProductionOrdersGetResponseType
 
@@ -17,9 +21,24 @@ class PostV1ProductionOrdersGetResponse(UniversalBaseModel):
     warehouse_id: typing_extensions.Annotated[
         str, FieldMetadata(alias="warehouseId"), pydantic.Field(alias="warehouseId")
     ]
+    routing_id: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="routingId"), pydantic.Field(alias="routingId")
+    ] = None
     quantity: str
     date: str
     status: PostV1ProductionOrdersGetResponseStatus
+    scrapped_quantity: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="scrappedQuantity"), pydantic.Field(alias="scrappedQuantity")
+    ] = None
+    material_cost: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="materialCost"), pydantic.Field(alias="materialCost")
+    ] = None
+    labor_cost: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="laborCost"), pydantic.Field(alias="laborCost")
+    ] = None
+    scrap_cost: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="scrapCost"), pydantic.Field(alias="scrapCost")
+    ] = None
     total_cost: typing_extensions.Annotated[
         typing.Optional[str], FieldMetadata(alias="totalCost"), pydantic.Field(alias="totalCost")
     ] = None
@@ -28,6 +47,12 @@ class PostV1ProductionOrdersGetResponse(UniversalBaseModel):
     ] = None
     notes: typing.Optional[str] = None
     created_at: typing_extensions.Annotated[str, FieldMetadata(alias="createdAt"), pydantic.Field(alias="createdAt")]
+    operations: typing.List[PostV1ProductionOrdersGetResponseOperationsItem]
+    quality_checks: typing_extensions.Annotated[
+        typing.List[PostV1ProductionOrdersGetResponseQualityChecksItem],
+        FieldMetadata(alias="qualityChecks"),
+        pydantic.Field(alias="qualityChecks"),
+    ]
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

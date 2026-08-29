@@ -33,6 +33,9 @@ class PostV1PurchasesInvoicesUpdateRequestLinesItem(UniversalBaseModel):
     cost_center_id: typing_extensions.Annotated[
         typing.Optional[str], FieldMetadata(alias="costCenterId"), pydantic.Field(alias="costCenterId")
     ] = None
+    project_id: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="projectId"), pydantic.Field(alias="projectId")
+    ] = None
     account_code: typing_extensions.Annotated[
         typing.Optional[str], FieldMetadata(alias="accountCode"), pydantic.Field(alias="accountCode")
     ] = None

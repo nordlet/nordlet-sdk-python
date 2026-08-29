@@ -942,6 +942,140 @@ client.reference.post_v1reference_eu_vat_rates_list()
 </dl>
 </details>
 
+<details><summary><code>client.reference.<a href="src/nordlet/reference/client.py">post_v1reference_eu_vat_rates_imports_list</a>(...) -> PostV1ReferenceEuVatRatesImportsListResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+History of EU VAT rate imports from the EC TEDB VatRetrievalService: when rates were pulled, what changed, and whether the run succeeded. The initial seed run carries the built-in snapshot.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.reference.post_v1reference_eu_vat_rates_imports_list()
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**limit:** `typing.Optional[int]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.reference.<a href="src/nordlet/reference/client.py">post_v1reference_eu_vat_rates_sync</a>() -> PostV1ReferenceEuVatRatesSyncResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Trigger an immediate pull of EU VAT rates from the EC TEDB VatRetrievalService. Rates are shared reference data: new rates open with today as their effective date, rates that disappeared are closed with a validity end date. Returns the finished import run.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.reference.post_v1reference_eu_vat_rates_sync()
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.reference.<a href="src/nordlet/reference/client.py">post_v1reference_eu_vat_rates_set_overrides</a>(...) -> PostV1ReferenceEuVatRatesSetOverridesResponse</code></summary>
 <dl>
 <dd>
@@ -2736,6 +2870,163 @@ client.partners.post_v1partners_validate_vat()
 <dd>
 
 **partner_id:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.partners.<a href="src/nordlet/partners/client.py">post_v1partners_vat_reviews_list</a>(...) -> PostV1PartnersVatReviewsListResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.partners.post_v1partners_vat_reviews_list()
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**page:** `typing.Optional[int]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**page_size:** `typing.Optional[int]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sort:** `typing.Optional[typing.List[PostV1PartnersVatReviewsListRequestSortItem]]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filter:** `typing.Optional[typing.List[PostV1PartnersVatReviewsListRequestFilterItem]]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.partners.<a href="src/nordlet/partners/client.py">post_v1partners_vat_reviews_resolve</a>(...) -> PostV1PartnersVatReviewsResolveResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.partners.post_v1partners_vat_reviews_resolve(
+    id="id",
+    resolution="confirmed_valid",
+)
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**resolution:** `PostV1PartnersVatReviewsResolveRequestResolution` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**note:** `typing.Optional[str]` 
     
 </dd>
 </dl>
@@ -4566,6 +4857,14 @@ client.catalog.post_v1catalog_items_create(
 <dl>
 <dd>
 
+**tracking:** `typing.Optional[PostV1CatalogItemsCreateRequestTracking]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **code:** `typing.Optional[str]` 
     
 </dd>
@@ -4821,6 +5120,14 @@ client.catalog.post_v1catalog_items_update(
 <dd>
 
 **type:** `typing.Optional[PostV1CatalogItemsUpdateRequestType]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**tracking:** `typing.Optional[PostV1CatalogItemsUpdateRequestTracking]` 
     
 </dd>
 </dl>
@@ -6466,6 +6773,152 @@ client = Nordlet(
 )
 
 client.sales.post_v1sales_invoices_peppol_send(
+    id="id",
+)
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.sales.<a href="src/nordlet/sales/client.py">post_v1sales_invoices_einvoice_xml</a>(...) -> PostV1SalesInvoicesEinvoiceXmlResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Render an issued invoice as the national e-invoicing payload for the company country: FatturaPA (IT), KSeF FA(3) (PL) or UBL CIUS-RO (RO). Review the warnings - data the invoice does not carry is flagged, never invented.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.sales.post_v1sales_invoices_einvoice_xml(
+    id="id",
+)
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.sales.<a href="src/nordlet/sales/client.py">post_v1sales_invoices_einvoice_send</a>(...) -> PostV1SalesInvoicesEinvoiceSendResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Build the national e-invoicing payload and deliver it to the bridge endpoint configured for the country gateway in compliance settings. The bridge (an accredited intermediary or connector) handles the certified national channel - SdI accreditation, KSeF sessions or ANAF SPV OAuth.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.sales.post_v1sales_invoices_einvoice_send(
     id="id",
 )
 
@@ -8342,6 +8795,14 @@ client.purchases.post_v1purchases_invoices_create(
 <dl>
 <dd>
 
+**purchase_order_id:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **notes:** `typing.Optional[str]` 
     
 </dd>
@@ -8501,6 +8962,14 @@ client.purchases.post_v1purchases_invoices_update(
 <dd>
 
 **currency:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**purchase_order_id:** `typing.Optional[str]` 
     
 </dd>
 </dl>
@@ -8732,6 +9201,1546 @@ client.purchases.post_v1purchases_invoices_list()
 <dd>
 
 **filter:** `typing.Optional[typing.List[PostV1PurchasesInvoicesListRequestFilterItem]]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.purchases.<a href="src/nordlet/purchases/client.py">post_v1purchases_orders_create</a>(...) -> PostV1PurchasesOrdersCreateResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+from nordlet.purchases import PostV1PurchasesOrdersCreateRequestLinesItem
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.purchases.post_v1purchases_orders_create(
+    partner_id="partnerId",
+    order_date="orderDate",
+    lines=[
+        PostV1PurchasesOrdersCreateRequestLinesItem()
+    ],
+)
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**partner_id:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**order_date:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**lines:** `typing.List[PostV1PurchasesOrdersCreateRequestLinesItem]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**order_number:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**expected_date:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**warehouse_id:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**currency:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**notes:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.purchases.<a href="src/nordlet/purchases/client.py">post_v1purchases_orders_update</a>(...) -> PostV1PurchasesOrdersUpdateResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.purchases.post_v1purchases_orders_update(
+    id="id",
+)
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**partner_id:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**order_date:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**expected_date:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**warehouse_id:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**currency:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**notes:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**lines:** `typing.Optional[typing.List[PostV1PurchasesOrdersUpdateRequestLinesItem]]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.purchases.<a href="src/nordlet/purchases/client.py">post_v1purchases_orders_get</a>(...) -> PostV1PurchasesOrdersGetResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.purchases.post_v1purchases_orders_get(
+    id="id",
+)
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.purchases.<a href="src/nordlet/purchases/client.py">post_v1purchases_orders_list</a>(...) -> PostV1PurchasesOrdersListResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.purchases.post_v1purchases_orders_list()
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**page:** `typing.Optional[int]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**page_size:** `typing.Optional[int]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sort:** `typing.Optional[typing.List[PostV1PurchasesOrdersListRequestSortItem]]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filter:** `typing.Optional[typing.List[PostV1PurchasesOrdersListRequestFilterItem]]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.purchases.<a href="src/nordlet/purchases/client.py">post_v1purchases_orders_submit</a>(...) -> PostV1PurchasesOrdersSubmitResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.purchases.post_v1purchases_orders_submit(
+    id="id",
+)
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**reason:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.purchases.<a href="src/nordlet/purchases/client.py">post_v1purchases_orders_approve</a>(...) -> PostV1PurchasesOrdersApproveResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.purchases.post_v1purchases_orders_approve(
+    id="id",
+)
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**reason:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.purchases.<a href="src/nordlet/purchases/client.py">post_v1purchases_orders_reject</a>(...) -> PostV1PurchasesOrdersRejectResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.purchases.post_v1purchases_orders_reject(
+    id="id",
+)
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**reason:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.purchases.<a href="src/nordlet/purchases/client.py">post_v1purchases_orders_cancel</a>(...) -> PostV1PurchasesOrdersCancelResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.purchases.post_v1purchases_orders_cancel(
+    id="id",
+)
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**reason:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.purchases.<a href="src/nordlet/purchases/client.py">post_v1purchases_orders_close</a>(...) -> PostV1PurchasesOrdersCloseResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.purchases.post_v1purchases_orders_close(
+    id="id",
+)
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**reason:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.purchases.<a href="src/nordlet/purchases/client.py">post_v1purchases_orders_delete</a>(...) -> PostV1PurchasesOrdersDeleteResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.purchases.post_v1purchases_orders_delete(
+    id="id",
+)
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.purchases.<a href="src/nordlet/purchases/client.py">post_v1purchases_receipts_create</a>(...) -> PostV1PurchasesReceiptsCreateResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+from nordlet.purchases import PostV1PurchasesReceiptsCreateRequestLinesItem
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.purchases.post_v1purchases_receipts_create(
+    order_id="orderId",
+    receipt_date="receiptDate",
+    lines=[
+        PostV1PurchasesReceiptsCreateRequestLinesItem(
+            order_line_id="orderLineId",
+            quantity="quantity",
+        )
+    ],
+)
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**order_id:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**receipt_date:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**lines:** `typing.List[PostV1PurchasesReceiptsCreateRequestLinesItem]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**warehouse_id:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**notes:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.purchases.<a href="src/nordlet/purchases/client.py">post_v1purchases_receipts_get</a>(...) -> PostV1PurchasesReceiptsGetResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.purchases.post_v1purchases_receipts_get(
+    id="id",
+)
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.purchases.<a href="src/nordlet/purchases/client.py">post_v1purchases_receipts_list</a>(...) -> PostV1PurchasesReceiptsListResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.purchases.post_v1purchases_receipts_list()
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**page:** `typing.Optional[int]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**page_size:** `typing.Optional[int]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sort:** `typing.Optional[typing.List[PostV1PurchasesReceiptsListRequestSortItem]]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filter:** `typing.Optional[typing.List[PostV1PurchasesReceiptsListRequestFilterItem]]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.purchases.<a href="src/nordlet/purchases/client.py">post_v1purchases_invoices_match</a>(...) -> PostV1PurchasesInvoicesMatchResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.purchases.post_v1purchases_invoices_match(
+    invoice_id="invoiceId",
+)
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**invoice_id:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**price_tolerance_percent:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Capture
+<details><summary><code>client.capture.<a href="src/nordlet/capture/client.py">read_a_vendor_bill_or_receipt_and_return_an_editable_purchase_invoice_draft</a>(...) -> PostV1CaptureDocumentsUploadResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.capture.read_a_vendor_bill_or_receipt_and_return_an_editable_purchase_invoice_draft(
+    file_name="fileName",
+    mime_type="mimeType",
+    content="content",
+)
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**file_name:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**mime_type:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**content:** `str` — Base64-encoded scan, photo or PDF of the supplier document
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.capture.<a href="src/nordlet/capture/client.py">re_read_a_stored_capture_replacing_the_previous_draft</a>(...) -> PostV1CaptureDocumentsExtractResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.capture.re_read_a_stored_capture_replacing_the_previous_draft(
+    id="id",
+)
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.capture.<a href="src/nordlet/capture/client.py">post_v1capture_documents_get</a>(...) -> PostV1CaptureDocumentsGetResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.capture.post_v1capture_documents_get(
+    id="id",
+)
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.capture.<a href="src/nordlet/capture/client.py">post_v1capture_documents_list</a>(...) -> PostV1CaptureDocumentsListResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.capture.post_v1capture_documents_list()
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**page:** `typing.Optional[int]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**page_size:** `typing.Optional[int]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sort:** `typing.Optional[typing.List[PostV1CaptureDocumentsListRequestSortItem]]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filter:** `typing.Optional[typing.List[PostV1CaptureDocumentsListRequestFilterItem]]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.capture.<a href="src/nordlet/capture/client.py">post_v1capture_documents_delete</a>(...) -> PostV1CaptureDocumentsDeleteResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.capture.post_v1capture_documents_delete(
+    id="id",
+)
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.capture.<a href="src/nordlet/capture/client.py">save_the_reviewed_draft_as_a_purchase_invoice_and_attach_the_original_document</a>(...) -> PostV1CaptureDocumentsConfirmResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+from nordlet.capture import PostV1CaptureDocumentsConfirmRequestLinesItem
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.capture.save_the_reviewed_draft_as_a_purchase_invoice_and_attach_the_original_document(
+    id="id",
+    document_number="documentNumber",
+    document_date="documentDate",
+    lines=[
+        PostV1CaptureDocumentsConfirmRequestLinesItem()
+    ],
+)
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**document_number:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**document_date:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**lines:** `typing.List[PostV1CaptureDocumentsConfirmRequestLinesItem]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**partner_id:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**new_supplier:** `typing.Optional[PostV1CaptureDocumentsConfirmRequestNewSupplier]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**due_date:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**currency:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**notes:** `typing.Optional[str]` 
     
 </dd>
 </dl>
@@ -10001,6 +12010,114 @@ client.declarations.post_v1declarations_eu_vat_return_compute(
 <dd>
 
 **months:** `typing.Optional[int]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">post_v1declarations_pl_jpk_v7m_generate</a>(...) -> PostV1DeclarationsPlJpkV7MGenerateResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Generate the Polish JPK_V7M(3) file (VAT declaration with evidence) for a month, per the MF schema in force since February 2026. Amounts must already be in PLN; rows are marked BFK until a KSeF integration supplies invoice numbers. Review the warnings before submitting via e-dokumenty.mf.gov.pl.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.declarations.post_v1declarations_pl_jpk_v7m_generate(
+    year=1000000,
+    month=1000000,
+    kod_urzedu="kodUrzedu",
+    email="email",
+)
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**year:** `int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**month:** `int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**kod_urzedu:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**email:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**cel_zlozenia:** `typing.Optional[int]` 
     
 </dd>
 </dl>
@@ -15043,6 +17160,785 @@ client.hr.post_v1hr_timesheets_delete(
 </dl>
 </details>
 
+## Fleet
+<details><summary><code>client.fleet.<a href="src/nordlet/fleet/client.py">post_v1fleet_vehicles_create</a>(...) -> PostV1FleetVehiclesCreateResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.fleet.post_v1fleet_vehicles_create(
+    plate_number="plateNumber",
+    make="make",
+    model="model",
+)
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**plate_number:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**make:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**model:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**year:** `typing.Optional[int]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**vin:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**fuel_type:** `typing.Optional[PostV1FleetVehiclesCreateRequestFuelType]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**acquisition_date:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**market_value:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**fixed_asset_id:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**technical_inspection_due:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**insurance_due:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**notes:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.fleet.<a href="src/nordlet/fleet/client.py">post_v1fleet_vehicles_update</a>(...) -> PostV1FleetVehiclesUpdateResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.fleet.post_v1fleet_vehicles_update(
+    id="id",
+)
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**plate_number:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**make:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**model:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**year:** `typing.Optional[int]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**vin:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**fuel_type:** `typing.Optional[PostV1FleetVehiclesUpdateRequestFuelType]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**acquisition_date:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**market_value:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**fixed_asset_id:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**technical_inspection_due:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**insurance_due:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**status:** `typing.Optional[PostV1FleetVehiclesUpdateRequestStatus]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**notes:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.fleet.<a href="src/nordlet/fleet/client.py">post_v1fleet_vehicles_get</a>(...) -> PostV1FleetVehiclesGetResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.fleet.post_v1fleet_vehicles_get(
+    id="id",
+)
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.fleet.<a href="src/nordlet/fleet/client.py">post_v1fleet_vehicles_list</a>(...) -> PostV1FleetVehiclesListResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.fleet.post_v1fleet_vehicles_list()
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**page:** `typing.Optional[int]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**page_size:** `typing.Optional[int]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sort:** `typing.Optional[typing.List[PostV1FleetVehiclesListRequestSortItem]]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filter:** `typing.Optional[typing.List[PostV1FleetVehiclesListRequestFilterItem]]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.fleet.<a href="src/nordlet/fleet/client.py">post_v1fleet_assignments_create</a>(...) -> PostV1FleetAssignmentsCreateResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.fleet.post_v1fleet_assignments_create(
+    vehicle_id="vehicleId",
+    employee_id="employeeId",
+    from_date="fromDate",
+)
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**vehicle_id:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**employee_id:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**from_date:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**to_date:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**private_use:** `typing.Optional[bool]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**employer_pays_fuel:** `typing.Optional[bool]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**notes:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.fleet.<a href="src/nordlet/fleet/client.py">post_v1fleet_assignments_end</a>(...) -> PostV1FleetAssignmentsEndResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.fleet.post_v1fleet_assignments_end(
+    id="id",
+    to_date="toDate",
+)
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**to_date:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.fleet.<a href="src/nordlet/fleet/client.py">post_v1fleet_assignments_list</a>(...) -> PostV1FleetAssignmentsListResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.fleet.post_v1fleet_assignments_list()
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**page:** `typing.Optional[int]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**page_size:** `typing.Optional[int]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sort:** `typing.Optional[typing.List[PostV1FleetAssignmentsListRequestSortItem]]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filter:** `typing.Optional[typing.List[PostV1FleetAssignmentsListRequestFilterItem]]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.fleet.<a href="src/nordlet/fleet/client.py">post_v1fleet_natura_preview</a>(...) -> PostV1FleetNaturaPreviewResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.fleet.post_v1fleet_natura_preview(
+    year=1000000,
+    month=1000000,
+)
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**year:** `int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**month:** `int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Payroll
 <details><summary><code>client.payroll.<a href="src/nordlet/payroll/client.py">post_v1payroll_departments_create</a>(...) -> PostV1PayrollDepartmentsCreateResponse</code></summary>
 <dl>
@@ -15435,6 +18331,14 @@ client.payroll.post_v1payroll_runs_create(
 <dd>
 
 **month:** `int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**include_natura:** `typing.Optional[bool]` 
     
 </dd>
 </dl>
@@ -17212,6 +20116,22 @@ client.inventory.post_v1inventory_stock_receive(
 <dl>
 <dd>
 
+**lot_number:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**expiry_date:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **notes:** `typing.Optional[str]` 
     
 </dd>
@@ -17299,6 +20219,14 @@ client.inventory.post_v1inventory_stock_write_off(
 <dd>
 
 **quantity:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**lot_number:** `typing.Optional[str]` 
     
 </dd>
 </dl>
@@ -17418,6 +20346,14 @@ client.inventory.post_v1inventory_stock_transfer(
 <dd>
 
 **quantity:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**lot_number:** `typing.Optional[str]` 
     
 </dd>
 </dl>
@@ -17689,7 +20625,1703 @@ client.inventory.post_v1inventory_stock_movements_list()
 </dl>
 </details>
 
+<details><summary><code>client.inventory.<a href="src/nordlet/inventory/client.py">post_v1inventory_lots_list</a>(...) -> PostV1InventoryLotsListResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.inventory.post_v1inventory_lots_list()
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**page:** `typing.Optional[int]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**page_size:** `typing.Optional[int]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sort:** `typing.Optional[typing.List[PostV1InventoryLotsListRequestSortItem]]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filter:** `typing.Optional[typing.List[PostV1InventoryLotsListRequestFilterItem]]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.inventory.<a href="src/nordlet/inventory/client.py">post_v1inventory_lots_get</a>(...) -> PostV1InventoryLotsGetResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.inventory.post_v1inventory_lots_get(
+    id="id",
+)
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.inventory.<a href="src/nordlet/inventory/client.py">post_v1inventory_lots_update</a>(...) -> PostV1InventoryLotsUpdateResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.inventory.post_v1inventory_lots_update(
+    id="id",
+)
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**expiry_date:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**notes:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.inventory.<a href="src/nordlet/inventory/client.py">post_v1inventory_landed_costs_create</a>(...) -> PostV1InventoryLandedCostsCreateResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.inventory.post_v1inventory_landed_costs_create(
+    date="date",
+    amount="amount",
+)
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**date:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**amount:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**method:** `typing.Optional[PostV1InventoryLandedCostsCreateRequestMethod]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**goods_receipt_id:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**movement_ids:** `typing.Optional[typing.List[str]]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**source_invoice_id:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**notes:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.inventory.<a href="src/nordlet/inventory/client.py">post_v1inventory_landed_costs_get</a>(...) -> PostV1InventoryLandedCostsGetResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.inventory.post_v1inventory_landed_costs_get(
+    id="id",
+)
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.inventory.<a href="src/nordlet/inventory/client.py">post_v1inventory_landed_costs_list</a>(...) -> PostV1InventoryLandedCostsListResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.inventory.post_v1inventory_landed_costs_list()
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**page:** `typing.Optional[int]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**page_size:** `typing.Optional[int]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sort:** `typing.Optional[typing.List[PostV1InventoryLandedCostsListRequestSortItem]]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filter:** `typing.Optional[typing.List[PostV1InventoryLandedCostsListRequestFilterItem]]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.inventory.<a href="src/nordlet/inventory/client.py">post_v1inventory_reorder_rules_create</a>(...) -> PostV1InventoryReorderRulesCreateResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.inventory.post_v1inventory_reorder_rules_create(
+    item_id="itemId",
+    min_qty="minQty",
+)
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**item_id:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**min_qty:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**warehouse_id:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**reorder_qty:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**is_active:** `typing.Optional[bool]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**notes:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.inventory.<a href="src/nordlet/inventory/client.py">post_v1inventory_reorder_rules_update</a>(...) -> PostV1InventoryReorderRulesUpdateResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.inventory.post_v1inventory_reorder_rules_update(
+    id="id",
+)
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**min_qty:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**reorder_qty:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**is_active:** `typing.Optional[bool]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**notes:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.inventory.<a href="src/nordlet/inventory/client.py">post_v1inventory_reorder_rules_delete</a>(...) -> PostV1InventoryReorderRulesDeleteResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.inventory.post_v1inventory_reorder_rules_delete(
+    id="id",
+)
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.inventory.<a href="src/nordlet/inventory/client.py">post_v1inventory_reorder_rules_list</a>(...) -> PostV1InventoryReorderRulesListResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.inventory.post_v1inventory_reorder_rules_list()
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**page:** `typing.Optional[int]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**page_size:** `typing.Optional[int]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sort:** `typing.Optional[typing.List[PostV1InventoryReorderRulesListRequestSortItem]]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filter:** `typing.Optional[typing.List[PostV1InventoryReorderRulesListRequestFilterItem]]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.inventory.<a href="src/nordlet/inventory/client.py">post_v1inventory_reorder_rules_check</a>() -> PostV1InventoryReorderRulesCheckResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.inventory.post_v1inventory_reorder_rules_check()
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Production
+<details><summary><code>client.production.<a href="src/nordlet/production/client.py">post_v1production_work_centers_create</a>(...) -> PostV1ProductionWorkCentersCreateResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.production.post_v1production_work_centers_create(
+    code="code",
+    name="name",
+)
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**code:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**name:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**cost_per_hour:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**cost_account_code:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**maintenance_interval_days:** `typing.Optional[int]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**notes:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.production.<a href="src/nordlet/production/client.py">post_v1production_work_centers_update</a>(...) -> PostV1ProductionWorkCentersUpdateResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.production.post_v1production_work_centers_update(
+    id="id",
+)
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**code:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**name:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**cost_per_hour:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**cost_account_code:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**maintenance_interval_days:** `typing.Optional[int]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**is_active:** `typing.Optional[bool]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**notes:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.production.<a href="src/nordlet/production/client.py">post_v1production_work_centers_list</a>(...) -> PostV1ProductionWorkCentersListResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.production.post_v1production_work_centers_list()
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**page:** `typing.Optional[int]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**page_size:** `typing.Optional[int]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sort:** `typing.Optional[typing.List[PostV1ProductionWorkCentersListRequestSortItem]]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filter:** `typing.Optional[typing.List[PostV1ProductionWorkCentersListRequestFilterItem]]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.production.<a href="src/nordlet/production/client.py">post_v1production_routings_create</a>(...) -> PostV1ProductionRoutingsCreateResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+from nordlet.production import PostV1ProductionRoutingsCreateRequestOperationsItem
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.production.post_v1production_routings_create(
+    code="code",
+    name="name",
+    operations=[
+        PostV1ProductionRoutingsCreateRequestOperationsItem(
+            sequence=1000000,
+            name="name",
+            work_center_id="workCenterId",
+        )
+    ],
+)
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**code:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**name:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**operations:** `typing.List[PostV1ProductionRoutingsCreateRequestOperationsItem]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**notes:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.production.<a href="src/nordlet/production/client.py">post_v1production_routings_get</a>(...) -> PostV1ProductionRoutingsGetResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.production.post_v1production_routings_get(
+    id="id",
+)
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.production.<a href="src/nordlet/production/client.py">post_v1production_routings_list</a>(...) -> PostV1ProductionRoutingsListResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.production.post_v1production_routings_list()
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**page:** `typing.Optional[int]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**page_size:** `typing.Optional[int]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sort:** `typing.Optional[typing.List[PostV1ProductionRoutingsListRequestSortItem]]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filter:** `typing.Optional[typing.List[PostV1ProductionRoutingsListRequestFilterItem]]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.production.<a href="src/nordlet/production/client.py">post_v1production_maintenance_create</a>(...) -> PostV1ProductionMaintenanceCreateResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.production.post_v1production_maintenance_create(
+    work_center_id="workCenterId",
+    type="preventive",
+    planned_date="plannedDate",
+)
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**work_center_id:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**type:** `PostV1ProductionMaintenanceCreateRequestType` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**planned_date:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**description:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**notes:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.production.<a href="src/nordlet/production/client.py">post_v1production_maintenance_complete</a>(...) -> PostV1ProductionMaintenanceCompleteResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.production.post_v1production_maintenance_complete(
+    id="id",
+    completed_date="completedDate",
+)
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**completed_date:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**downtime_hours:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**cost:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**notes:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.production.<a href="src/nordlet/production/client.py">post_v1production_maintenance_cancel</a>(...) -> PostV1ProductionMaintenanceCancelResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.production.post_v1production_maintenance_cancel(
+    id="id",
+)
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.production.<a href="src/nordlet/production/client.py">post_v1production_maintenance_list</a>(...) -> PostV1ProductionMaintenanceListResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.production.post_v1production_maintenance_list()
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**page:** `typing.Optional[int]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**page_size:** `typing.Optional[int]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sort:** `typing.Optional[typing.List[PostV1ProductionMaintenanceListRequestSortItem]]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filter:** `typing.Optional[typing.List[PostV1ProductionMaintenanceListRequestFilterItem]]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.production.<a href="src/nordlet/production/client.py">post_v1production_boms_create</a>(...) -> PostV1ProductionBomsCreateResponse</code></summary>
 <dl>
 <dd>
@@ -17771,6 +22403,14 @@ client.production.post_v1production_boms_create(
 <dd>
 
 **output_quantity:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**routing_id:** `typing.Optional[str]` 
     
 </dd>
 </dl>
@@ -18012,7 +22652,316 @@ client.production.post_v1production_orders_create(
 <dl>
 <dd>
 
+**routing_id:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **notes:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.production.<a href="src/nordlet/production/client.py">post_v1production_orders_record_operation</a>(...) -> PostV1ProductionOrdersRecordOperationResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.production.post_v1production_orders_record_operation(
+    id="id",
+    actual_minutes="actualMinutes",
+)
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**actual_minutes:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.production.<a href="src/nordlet/production/client.py">post_v1production_quality_checks_add</a>(...) -> PostV1ProductionQualityChecksAddResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.production.post_v1production_quality_checks_add(
+    order_id="orderId",
+    name="name",
+)
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**order_id:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**name:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**notes:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.production.<a href="src/nordlet/production/client.py">post_v1production_quality_checks_record</a>(...) -> PostV1ProductionQualityChecksRecordResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.production.post_v1production_quality_checks_record(
+    id="id",
+    result="passed",
+)
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**result:** `PostV1ProductionQualityChecksRecordRequestResult` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**notes:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.production.<a href="src/nordlet/production/client.py">post_v1production_quality_checks_list</a>(...) -> PostV1ProductionQualityChecksListResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.production.post_v1production_quality_checks_list()
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**page:** `typing.Optional[int]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**page_size:** `typing.Optional[int]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sort:** `typing.Optional[typing.List[PostV1ProductionQualityChecksListRequestSortItem]]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filter:** `typing.Optional[typing.List[PostV1ProductionQualityChecksListRequestFilterItem]]` 
     
 </dd>
 </dl>
@@ -18072,6 +23021,14 @@ client.production.post_v1production_orders_complete(
 <dd>
 
 **id:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**scrapped_quantity:** `typing.Optional[str]` 
     
 </dd>
 </dl>
@@ -19255,6 +24212,890 @@ client.cash.post_v1cash_advance_holders_balances()
 
 <dl>
 <dd>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Projects
+<details><summary><code>client.projects.<a href="src/nordlet/projects/client.py">post_v1projects_create</a>(...) -> PostV1ProjectsCreateResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.projects.post_v1projects_create(
+    code="code",
+    name="name",
+)
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**code:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**name:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**partner_id:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**notes:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.projects.<a href="src/nordlet/projects/client.py">post_v1projects_update</a>(...) -> PostV1ProjectsUpdateResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.projects.post_v1projects_update(
+    id="id",
+)
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**name:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**partner_id:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**status:** `typing.Optional[PostV1ProjectsUpdateRequestStatus]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**notes:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.projects.<a href="src/nordlet/projects/client.py">post_v1projects_get</a>(...) -> PostV1ProjectsGetResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.projects.post_v1projects_get(
+    id="id",
+)
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.projects.<a href="src/nordlet/projects/client.py">post_v1projects_list</a>(...) -> PostV1ProjectsListResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.projects.post_v1projects_list()
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**page:** `typing.Optional[int]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**page_size:** `typing.Optional[int]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sort:** `typing.Optional[typing.List[PostV1ProjectsListRequestSortItem]]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filter:** `typing.Optional[typing.List[PostV1ProjectsListRequestFilterItem]]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.projects.<a href="src/nordlet/projects/client.py">post_v1projects_time_entries_create</a>(...) -> PostV1ProjectsTimeEntriesCreateResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.projects.post_v1projects_time_entries_create(
+    project_id="projectId",
+    date="date",
+    hours="hours",
+)
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**project_id:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**date:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**hours:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**employee_id:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**description:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**billable:** `typing.Optional[bool]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**hourly_rate:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.projects.<a href="src/nordlet/projects/client.py">post_v1projects_time_entries_update</a>(...) -> PostV1ProjectsTimeEntriesUpdateResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.projects.post_v1projects_time_entries_update(
+    id="id",
+)
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**date:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**hours:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**description:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**billable:** `typing.Optional[bool]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**hourly_rate:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.projects.<a href="src/nordlet/projects/client.py">post_v1projects_time_entries_delete</a>(...) -> PostV1ProjectsTimeEntriesDeleteResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.projects.post_v1projects_time_entries_delete(
+    id="id",
+)
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.projects.<a href="src/nordlet/projects/client.py">post_v1projects_time_entries_list</a>(...) -> PostV1ProjectsTimeEntriesListResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.projects.post_v1projects_time_entries_list()
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**page:** `typing.Optional[int]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**page_size:** `typing.Optional[int]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sort:** `typing.Optional[typing.List[PostV1ProjectsTimeEntriesListRequestSortItem]]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filter:** `typing.Optional[typing.List[PostV1ProjectsTimeEntriesListRequestFilterItem]]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.projects.<a href="src/nordlet/projects/client.py">post_v1projects_time_entries_bill</a>(...) -> PostV1ProjectsTimeEntriesBillResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.projects.post_v1projects_time_entries_bill(
+    project_id="projectId",
+)
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**project_id:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**partner_id:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**date_from:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**date_to:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**item_id:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**hourly_rate:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**vat_rate_percent:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**vat_classifier_code:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**issue_date:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**due_date:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**group_by:** `typing.Optional[PostV1ProjectsTimeEntriesBillRequestGroupBy]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**notes:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.projects.<a href="src/nordlet/projects/client.py">post_v1projects_report</a>(...) -> PostV1ProjectsReportResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.projects.post_v1projects_report()
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**project_id:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**date_from:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**date_to:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
 
 <dl>
 <dd>
@@ -21683,6 +27524,491 @@ client.bank.post_v1bank_payments_export(
 </dl>
 </details>
 
+<details><summary><code>client.bank.<a href="src/nordlet/bank/client.py">post_v1bank_mandates_create</a>(...) -> PostV1BankMandatesCreateResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.bank.post_v1bank_mandates_create(
+    partner_id="partnerId",
+    iban="iban",
+    signature_date="signatureDate",
+)
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**partner_id:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**iban:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**signature_date:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**bic:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**scheme:** `typing.Optional[PostV1BankMandatesCreateRequestScheme]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sequence_type:** `typing.Optional[PostV1BankMandatesCreateRequestSequenceType]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**reference:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**debtor_name:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**notes:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.bank.<a href="src/nordlet/bank/client.py">post_v1bank_mandates_update</a>(...) -> PostV1BankMandatesUpdateResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.bank.post_v1bank_mandates_update(
+    id="id",
+)
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**bic:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**debtor_name:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**notes:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.bank.<a href="src/nordlet/bank/client.py">post_v1bank_mandates_cancel</a>(...) -> PostV1BankMandatesCancelResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.bank.post_v1bank_mandates_cancel(
+    id="id",
+)
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.bank.<a href="src/nordlet/bank/client.py">post_v1bank_mandates_get</a>(...) -> PostV1BankMandatesGetResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.bank.post_v1bank_mandates_get(
+    id="id",
+)
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.bank.<a href="src/nordlet/bank/client.py">post_v1bank_mandates_list</a>(...) -> PostV1BankMandatesListResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.bank.post_v1bank_mandates_list()
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**page:** `typing.Optional[int]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**page_size:** `typing.Optional[int]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sort:** `typing.Optional[typing.List[PostV1BankMandatesListRequestSortItem]]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filter:** `typing.Optional[typing.List[PostV1BankMandatesListRequestFilterItem]]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.bank.<a href="src/nordlet/bank/client.py">post_v1bank_direct_debits_export</a>(...) -> PostV1BankDirectDebitsExportResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.bank.post_v1bank_direct_debits_export(
+    bank_account_id="bankAccountId",
+    sale_invoice_ids=[
+        "saleInvoiceIds"
+    ],
+)
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**bank_account_id:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sale_invoice_ids:** `typing.List[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**collection_date:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.bank.<a href="src/nordlet/bank/client.py">post_v1bank_transactions_suggest_matches</a>(...) -> PostV1BankTransactionsSuggestMatchesResponse</code></summary>
 <dl>
 <dd>
@@ -22089,6 +28415,596 @@ client.bank.post_v1bank_settlements_post(
 <dd>
 
 **commission_percent:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.bank.<a href="src/nordlet/bank/client.py">list_the_psd2banks_asps_ps_available_to_connect</a>(...) -> PostV1BankFeedsBanksListResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.bank.list_the_psd2banks_asps_ps_available_to_connect()
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**country:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.bank.<a href="src/nordlet/bank/client.py">begin_bank_authorization_redirect_the_user_to_the_returned_url</a>(...) -> PostV1BankFeedsConnectionsStartResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.bank.begin_bank_authorization_redirect_the_user_to_the_returned_url(
+    aspsp_name="aspspName",
+    aspsp_country="aspspCountry",
+)
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**aspsp_name:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**aspsp_country:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**psu_type:** `typing.Optional[PostV1BankFeedsConnectionsStartRequestPsuType]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**redirect_url:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**valid_for_days:** `typing.Optional[int]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**language:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.bank.<a href="src/nordlet/bank/client.py">exchange_the_redirect_code_for_a_session_and_store_the_bank_accounts_it_exposes</a>(...) -> PostV1BankFeedsConnectionsCompleteResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.bank.exchange_the_redirect_code_for_a_session_and_store_the_bank_accounts_it_exposes(
+    reference="reference",
+    code="code",
+)
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**reference:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**code:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.bank.<a href="src/nordlet/bank/client.py">post_v1bank_feeds_connections_get</a>(...) -> PostV1BankFeedsConnectionsGetResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.bank.post_v1bank_feeds_connections_get(
+    id="id",
+)
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.bank.<a href="src/nordlet/bank/client.py">post_v1bank_feeds_connections_list</a>(...) -> PostV1BankFeedsConnectionsListResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.bank.post_v1bank_feeds_connections_list()
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**page:** `typing.Optional[int]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**page_size:** `typing.Optional[int]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sort:** `typing.Optional[typing.List[PostV1BankFeedsConnectionsListRequestSortItem]]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filter:** `typing.Optional[typing.List[PostV1BankFeedsConnectionsListRequestFilterItem]]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.bank.<a href="src/nordlet/bank/client.py">revoke_the_consent_at_the_bank_and_drop_the_stored_connection</a>(...) -> PostV1BankFeedsConnectionsDeleteResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.bank.revoke_the_consent_at_the_bank_and_drop_the_stored_connection(
+    id="id",
+)
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.bank.<a href="src/nordlet/bank/client.py">point_a_bank_feed_account_at_a_ledger_bank_account_so_its_transactions_can_be_synced</a>(...) -> PostV1BankFeedsAccountsLinkResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.bank.point_a_bank_feed_account_at_a_ledger_bank_account_so_its_transactions_can_be_synced(
+    id="id",
+)
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**bank_account_id:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**create_bank_account:** `typing.Optional[PostV1BankFeedsAccountsLinkRequestCreateBankAccount]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sync_from:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.bank.<a href="src/nordlet/bank/client.py">pull_new_transactions_from_the_bank_into_the_ledger_emits_bank_feed_synced</a>(...) -> PostV1BankFeedsSyncResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.bank.pull_new_transactions_from_the_bank_into_the_ledger_emits_bank_feed_synced(
+    connection_id="connectionId",
+)
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**connection_id:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**feed_account_id:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**date_from:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**date_to:** `typing.Optional[str]` 
     
 </dd>
 </dl>
@@ -24748,6 +31664,388 @@ client.consolidation.post_v1consolidation_members_remove(
 </dl>
 </details>
 
+<details><summary><code>client.consolidation.<a href="src/nordlet/consolidation/client.py">post_v1consolidation_intercompany_candidates</a>(...) -> PostV1ConsolidationIntercompanyCandidatesResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Partners in member companies that look like other members of the same group (matched on company code or VAT code), with any existing intercompany link. Confirming a candidate via intercompany/links/set enables invoice mirroring.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.consolidation.post_v1consolidation_intercompany_candidates(
+    group_id="groupId",
+)
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**group_id:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.consolidation.<a href="src/nordlet/consolidation/client.py">post_v1consolidation_intercompany_links_set</a>(...) -> PostV1ConsolidationIntercompanyLinksSetResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Confirm that a partner record in one member company represents another member company of the group. Once links exist in both directions, issuing an intercompany sale invoice automatically creates the matching draft purchase invoice in the counterparty.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.consolidation.post_v1consolidation_intercompany_links_set(
+    group_id="groupId",
+    partner_id="partnerId",
+    counterparty_company_id="counterpartyCompanyId",
+)
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**group_id:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**partner_id:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**counterparty_company_id:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.consolidation.<a href="src/nordlet/consolidation/client.py">post_v1consolidation_intercompany_links_list</a>(...) -> PostV1ConsolidationIntercompanyLinksListResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.consolidation.post_v1consolidation_intercompany_links_list(
+    group_id="groupId",
+)
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**group_id:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.consolidation.<a href="src/nordlet/consolidation/client.py">post_v1consolidation_intercompany_links_remove</a>(...) -> PostV1ConsolidationIntercompanyLinksRemoveResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.consolidation.post_v1consolidation_intercompany_links_remove(
+    group_id="groupId",
+    id="id",
+)
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**group_id:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**id:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.consolidation.<a href="src/nordlet/consolidation/client.py">post_v1consolidation_intercompany_report</a>(...) -> PostV1ConsolidationIntercompanyReportResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Intercompany reconciliation for a period: every issued intercompany sale invoice with its mirrored or manually recorded counterpart, unmatched documents on both sides, and per-currency totals with differences. Confirmed pairs are the basis for consolidation eliminations.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.consolidation.post_v1consolidation_intercompany_report(
+    group_id="groupId",
+    from_date="fromDate",
+    to_date="toDate",
+)
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**group_id:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**from_date:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**to_date:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.consolidation.<a href="src/nordlet/consolidation/client.py">post_v1consolidation_report</a>(...) -> PostV1ConsolidationReportResponse</code></summary>
 <dl>
 <dd>
@@ -24924,6 +32222,307 @@ client.public.post_v1public_integration_requests(
 <dd>
 
 **website:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Billing
+<details><summary><code>client.billing.<a href="src/nordlet/billing/client.py">post_v1billing_account_get</a>() -> PostV1BillingAccountGetResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.billing.post_v1billing_account_get()
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.billing.<a href="src/nordlet/billing/client.py">post_v1billing_account_set_plan</a>(...) -> PostV1BillingAccountSetPlanResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.billing.post_v1billing_account_set_plan(
+    plan="starter",
+)
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**plan:** `PostV1BillingAccountSetPlanRequestPlan` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.billing.<a href="src/nordlet/billing/client.py">post_v1billing_topup_create</a>(...) -> PostV1BillingTopupCreateResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.billing.post_v1billing_topup_create(
+    amount_cents=1000000,
+)
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**amount_cents:** `int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**locale:** `typing.Optional[PostV1BillingTopupCreateRequestLocale]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.billing.<a href="src/nordlet/billing/client.py">post_v1billing_transactions_list</a>(...) -> PostV1BillingTransactionsListResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.billing.post_v1billing_transactions_list()
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**limit:** `typing.Optional[int]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.billing.<a href="src/nordlet/billing/client.py">post_v1billing_usage_list</a>(...) -> PostV1BillingUsageListResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.billing.post_v1billing_usage_list(
+    from_="from",
+    to="to",
+)
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**from:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**to:** `str` 
     
 </dd>
 </dl>
@@ -25848,6 +33447,14 @@ client.account.post_v1account_companies_create(
 <dl>
 <dd>
 
+**sepa_creditor_id:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **default_invoice_currency:** `typing.Optional[str]` 
     
 </dd>
@@ -26110,6 +33717,14 @@ client.account.post_v1account_companies_update()
 <dd>
 
 **peppol_id:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sepa_creditor_id:** `typing.Optional[str]` 
     
 </dd>
 </dl>

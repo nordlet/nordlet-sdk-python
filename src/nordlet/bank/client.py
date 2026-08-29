@@ -10,6 +10,32 @@ from .types.post_v1bank_accounts_list_request_filter_item import PostV1BankAccou
 from .types.post_v1bank_accounts_list_request_sort_item import PostV1BankAccountsListRequestSortItem
 from .types.post_v1bank_accounts_list_response import PostV1BankAccountsListResponse
 from .types.post_v1bank_accounts_update_response import PostV1BankAccountsUpdateResponse
+from .types.post_v1bank_direct_debits_export_response import PostV1BankDirectDebitsExportResponse
+from .types.post_v1bank_feeds_accounts_link_request_create_bank_account import (
+    PostV1BankFeedsAccountsLinkRequestCreateBankAccount,
+)
+from .types.post_v1bank_feeds_accounts_link_response import PostV1BankFeedsAccountsLinkResponse
+from .types.post_v1bank_feeds_banks_list_response import PostV1BankFeedsBanksListResponse
+from .types.post_v1bank_feeds_connections_complete_response import PostV1BankFeedsConnectionsCompleteResponse
+from .types.post_v1bank_feeds_connections_delete_response import PostV1BankFeedsConnectionsDeleteResponse
+from .types.post_v1bank_feeds_connections_get_response import PostV1BankFeedsConnectionsGetResponse
+from .types.post_v1bank_feeds_connections_list_request_filter_item import (
+    PostV1BankFeedsConnectionsListRequestFilterItem,
+)
+from .types.post_v1bank_feeds_connections_list_request_sort_item import PostV1BankFeedsConnectionsListRequestSortItem
+from .types.post_v1bank_feeds_connections_list_response import PostV1BankFeedsConnectionsListResponse
+from .types.post_v1bank_feeds_connections_start_request_psu_type import PostV1BankFeedsConnectionsStartRequestPsuType
+from .types.post_v1bank_feeds_connections_start_response import PostV1BankFeedsConnectionsStartResponse
+from .types.post_v1bank_feeds_sync_response import PostV1BankFeedsSyncResponse
+from .types.post_v1bank_mandates_cancel_response import PostV1BankMandatesCancelResponse
+from .types.post_v1bank_mandates_create_request_scheme import PostV1BankMandatesCreateRequestScheme
+from .types.post_v1bank_mandates_create_request_sequence_type import PostV1BankMandatesCreateRequestSequenceType
+from .types.post_v1bank_mandates_create_response import PostV1BankMandatesCreateResponse
+from .types.post_v1bank_mandates_get_response import PostV1BankMandatesGetResponse
+from .types.post_v1bank_mandates_list_request_filter_item import PostV1BankMandatesListRequestFilterItem
+from .types.post_v1bank_mandates_list_request_sort_item import PostV1BankMandatesListRequestSortItem
+from .types.post_v1bank_mandates_list_response import PostV1BankMandatesListResponse
+from .types.post_v1bank_mandates_update_response import PostV1BankMandatesUpdateResponse
 from .types.post_v1bank_payments_export_response import PostV1BankPaymentsExportResponse
 from .types.post_v1bank_settlements_get_response import PostV1BankSettlementsGetResponse
 from .types.post_v1bank_settlements_import_request_provider import PostV1BankSettlementsImportRequestProvider
@@ -404,6 +430,267 @@ class BankClient:
         )
         return _response.data
 
+    def post_v1bank_mandates_create(
+        self,
+        *,
+        partner_id: str,
+        iban: str,
+        signature_date: str,
+        bic: typing.Optional[str] = OMIT,
+        scheme: typing.Optional[PostV1BankMandatesCreateRequestScheme] = OMIT,
+        sequence_type: typing.Optional[PostV1BankMandatesCreateRequestSequenceType] = OMIT,
+        reference: typing.Optional[str] = OMIT,
+        debtor_name: typing.Optional[str] = OMIT,
+        notes: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1BankMandatesCreateResponse:
+        """
+        Parameters
+        ----------
+        partner_id : str
+
+        iban : str
+
+        signature_date : str
+
+        bic : typing.Optional[str]
+
+        scheme : typing.Optional[PostV1BankMandatesCreateRequestScheme]
+
+        sequence_type : typing.Optional[PostV1BankMandatesCreateRequestSequenceType]
+
+        reference : typing.Optional[str]
+
+        debtor_name : typing.Optional[str]
+
+        notes : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1BankMandatesCreateResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.bank.post_v1bank_mandates_create(
+            partner_id="partnerId",
+            iban="iban",
+            signature_date="signatureDate",
+        )
+        """
+        _response = self._raw_client.post_v1bank_mandates_create(
+            partner_id=partner_id,
+            iban=iban,
+            signature_date=signature_date,
+            bic=bic,
+            scheme=scheme,
+            sequence_type=sequence_type,
+            reference=reference,
+            debtor_name=debtor_name,
+            notes=notes,
+            request_options=request_options,
+        )
+        return _response.data
+
+    def post_v1bank_mandates_update(
+        self,
+        *,
+        id: str,
+        bic: typing.Optional[str] = OMIT,
+        debtor_name: typing.Optional[str] = OMIT,
+        notes: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1BankMandatesUpdateResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        bic : typing.Optional[str]
+
+        debtor_name : typing.Optional[str]
+
+        notes : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1BankMandatesUpdateResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.bank.post_v1bank_mandates_update(
+            id="id",
+        )
+        """
+        _response = self._raw_client.post_v1bank_mandates_update(
+            id=id, bic=bic, debtor_name=debtor_name, notes=notes, request_options=request_options
+        )
+        return _response.data
+
+    def post_v1bank_mandates_cancel(
+        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1BankMandatesCancelResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1BankMandatesCancelResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.bank.post_v1bank_mandates_cancel(
+            id="id",
+        )
+        """
+        _response = self._raw_client.post_v1bank_mandates_cancel(id=id, request_options=request_options)
+        return _response.data
+
+    def post_v1bank_mandates_get(
+        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1BankMandatesGetResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1BankMandatesGetResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.bank.post_v1bank_mandates_get(
+            id="id",
+        )
+        """
+        _response = self._raw_client.post_v1bank_mandates_get(id=id, request_options=request_options)
+        return _response.data
+
+    def post_v1bank_mandates_list(
+        self,
+        *,
+        page: typing.Optional[int] = OMIT,
+        page_size: typing.Optional[int] = OMIT,
+        sort: typing.Optional[typing.Sequence[PostV1BankMandatesListRequestSortItem]] = OMIT,
+        filter: typing.Optional[typing.Sequence[PostV1BankMandatesListRequestFilterItem]] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1BankMandatesListResponse:
+        """
+        Parameters
+        ----------
+        page : typing.Optional[int]
+
+        page_size : typing.Optional[int]
+
+        sort : typing.Optional[typing.Sequence[PostV1BankMandatesListRequestSortItem]]
+
+        filter : typing.Optional[typing.Sequence[PostV1BankMandatesListRequestFilterItem]]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1BankMandatesListResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.bank.post_v1bank_mandates_list()
+        """
+        _response = self._raw_client.post_v1bank_mandates_list(
+            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+        )
+        return _response.data
+
+    def post_v1bank_direct_debits_export(
+        self,
+        *,
+        bank_account_id: str,
+        sale_invoice_ids: typing.Sequence[str],
+        collection_date: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1BankDirectDebitsExportResponse:
+        """
+        Parameters
+        ----------
+        bank_account_id : str
+
+        sale_invoice_ids : typing.Sequence[str]
+
+        collection_date : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1BankDirectDebitsExportResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.bank.post_v1bank_direct_debits_export(
+            bank_account_id="bankAccountId",
+            sale_invoice_ids=["saleInvoiceIds"],
+        )
+        """
+        _response = self._raw_client.post_v1bank_direct_debits_export(
+            bank_account_id=bank_account_id,
+            sale_invoice_ids=sale_invoice_ids,
+            collection_date=collection_date,
+            request_options=request_options,
+        )
+        return _response.data
+
     def post_v1bank_transactions_suggest_matches(
         self,
         *,
@@ -632,6 +919,330 @@ class BankClient:
         """
         _response = self._raw_client.post_v1bank_settlements_post(
             id=id, date=date, commission_percent=commission_percent, request_options=request_options
+        )
+        return _response.data
+
+    def list_the_psd2banks_asps_ps_available_to_connect(
+        self, *, country: typing.Optional[str] = OMIT, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1BankFeedsBanksListResponse:
+        """
+        Parameters
+        ----------
+        country : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1BankFeedsBanksListResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.bank.list_the_psd2banks_asps_ps_available_to_connect()
+        """
+        _response = self._raw_client.list_the_psd2banks_asps_ps_available_to_connect(
+            country=country, request_options=request_options
+        )
+        return _response.data
+
+    def begin_bank_authorization_redirect_the_user_to_the_returned_url(
+        self,
+        *,
+        aspsp_name: str,
+        aspsp_country: str,
+        psu_type: typing.Optional[PostV1BankFeedsConnectionsStartRequestPsuType] = OMIT,
+        redirect_url: typing.Optional[str] = OMIT,
+        valid_for_days: typing.Optional[int] = OMIT,
+        language: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1BankFeedsConnectionsStartResponse:
+        """
+        Parameters
+        ----------
+        aspsp_name : str
+
+        aspsp_country : str
+
+        psu_type : typing.Optional[PostV1BankFeedsConnectionsStartRequestPsuType]
+
+        redirect_url : typing.Optional[str]
+
+        valid_for_days : typing.Optional[int]
+
+        language : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1BankFeedsConnectionsStartResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.bank.begin_bank_authorization_redirect_the_user_to_the_returned_url(
+            aspsp_name="aspspName",
+            aspsp_country="aspspCountry",
+        )
+        """
+        _response = self._raw_client.begin_bank_authorization_redirect_the_user_to_the_returned_url(
+            aspsp_name=aspsp_name,
+            aspsp_country=aspsp_country,
+            psu_type=psu_type,
+            redirect_url=redirect_url,
+            valid_for_days=valid_for_days,
+            language=language,
+            request_options=request_options,
+        )
+        return _response.data
+
+    def exchange_the_redirect_code_for_a_session_and_store_the_bank_accounts_it_exposes(
+        self, *, reference: str, code: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1BankFeedsConnectionsCompleteResponse:
+        """
+        Parameters
+        ----------
+        reference : str
+
+        code : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1BankFeedsConnectionsCompleteResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.bank.exchange_the_redirect_code_for_a_session_and_store_the_bank_accounts_it_exposes(
+            reference="reference",
+            code="code",
+        )
+        """
+        _response = self._raw_client.exchange_the_redirect_code_for_a_session_and_store_the_bank_accounts_it_exposes(
+            reference=reference, code=code, request_options=request_options
+        )
+        return _response.data
+
+    def post_v1bank_feeds_connections_get(
+        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1BankFeedsConnectionsGetResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1BankFeedsConnectionsGetResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.bank.post_v1bank_feeds_connections_get(
+            id="id",
+        )
+        """
+        _response = self._raw_client.post_v1bank_feeds_connections_get(id=id, request_options=request_options)
+        return _response.data
+
+    def post_v1bank_feeds_connections_list(
+        self,
+        *,
+        page: typing.Optional[int] = OMIT,
+        page_size: typing.Optional[int] = OMIT,
+        sort: typing.Optional[typing.Sequence[PostV1BankFeedsConnectionsListRequestSortItem]] = OMIT,
+        filter: typing.Optional[typing.Sequence[PostV1BankFeedsConnectionsListRequestFilterItem]] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1BankFeedsConnectionsListResponse:
+        """
+        Parameters
+        ----------
+        page : typing.Optional[int]
+
+        page_size : typing.Optional[int]
+
+        sort : typing.Optional[typing.Sequence[PostV1BankFeedsConnectionsListRequestSortItem]]
+
+        filter : typing.Optional[typing.Sequence[PostV1BankFeedsConnectionsListRequestFilterItem]]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1BankFeedsConnectionsListResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.bank.post_v1bank_feeds_connections_list()
+        """
+        _response = self._raw_client.post_v1bank_feeds_connections_list(
+            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+        )
+        return _response.data
+
+    def revoke_the_consent_at_the_bank_and_drop_the_stored_connection(
+        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1BankFeedsConnectionsDeleteResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1BankFeedsConnectionsDeleteResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.bank.revoke_the_consent_at_the_bank_and_drop_the_stored_connection(
+            id="id",
+        )
+        """
+        _response = self._raw_client.revoke_the_consent_at_the_bank_and_drop_the_stored_connection(
+            id=id, request_options=request_options
+        )
+        return _response.data
+
+    def point_a_bank_feed_account_at_a_ledger_bank_account_so_its_transactions_can_be_synced(
+        self,
+        *,
+        id: str,
+        bank_account_id: typing.Optional[str] = OMIT,
+        create_bank_account: typing.Optional[PostV1BankFeedsAccountsLinkRequestCreateBankAccount] = OMIT,
+        sync_from: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1BankFeedsAccountsLinkResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        bank_account_id : typing.Optional[str]
+
+        create_bank_account : typing.Optional[PostV1BankFeedsAccountsLinkRequestCreateBankAccount]
+
+        sync_from : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1BankFeedsAccountsLinkResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.bank.point_a_bank_feed_account_at_a_ledger_bank_account_so_its_transactions_can_be_synced(
+            id="id",
+        )
+        """
+        _response = (
+            self._raw_client.point_a_bank_feed_account_at_a_ledger_bank_account_so_its_transactions_can_be_synced(
+                id=id,
+                bank_account_id=bank_account_id,
+                create_bank_account=create_bank_account,
+                sync_from=sync_from,
+                request_options=request_options,
+            )
+        )
+        return _response.data
+
+    def pull_new_transactions_from_the_bank_into_the_ledger_emits_bank_feed_synced(
+        self,
+        *,
+        connection_id: str,
+        feed_account_id: typing.Optional[str] = OMIT,
+        date_from: typing.Optional[str] = OMIT,
+        date_to: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1BankFeedsSyncResponse:
+        """
+        Parameters
+        ----------
+        connection_id : str
+
+        feed_account_id : typing.Optional[str]
+
+        date_from : typing.Optional[str]
+
+        date_to : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1BankFeedsSyncResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.bank.pull_new_transactions_from_the_bank_into_the_ledger_emits_bank_feed_synced(
+            connection_id="connectionId",
+        )
+        """
+        _response = self._raw_client.pull_new_transactions_from_the_bank_into_the_ledger_emits_bank_feed_synced(
+            connection_id=connection_id,
+            feed_account_id=feed_account_id,
+            date_from=date_from,
+            date_to=date_to,
+            request_options=request_options,
         )
         return _response.data
 
@@ -1068,6 +1679,315 @@ class AsyncBankClient:
         )
         return _response.data
 
+    async def post_v1bank_mandates_create(
+        self,
+        *,
+        partner_id: str,
+        iban: str,
+        signature_date: str,
+        bic: typing.Optional[str] = OMIT,
+        scheme: typing.Optional[PostV1BankMandatesCreateRequestScheme] = OMIT,
+        sequence_type: typing.Optional[PostV1BankMandatesCreateRequestSequenceType] = OMIT,
+        reference: typing.Optional[str] = OMIT,
+        debtor_name: typing.Optional[str] = OMIT,
+        notes: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1BankMandatesCreateResponse:
+        """
+        Parameters
+        ----------
+        partner_id : str
+
+        iban : str
+
+        signature_date : str
+
+        bic : typing.Optional[str]
+
+        scheme : typing.Optional[PostV1BankMandatesCreateRequestScheme]
+
+        sequence_type : typing.Optional[PostV1BankMandatesCreateRequestSequenceType]
+
+        reference : typing.Optional[str]
+
+        debtor_name : typing.Optional[str]
+
+        notes : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1BankMandatesCreateResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.bank.post_v1bank_mandates_create(
+                partner_id="partnerId",
+                iban="iban",
+                signature_date="signatureDate",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1bank_mandates_create(
+            partner_id=partner_id,
+            iban=iban,
+            signature_date=signature_date,
+            bic=bic,
+            scheme=scheme,
+            sequence_type=sequence_type,
+            reference=reference,
+            debtor_name=debtor_name,
+            notes=notes,
+            request_options=request_options,
+        )
+        return _response.data
+
+    async def post_v1bank_mandates_update(
+        self,
+        *,
+        id: str,
+        bic: typing.Optional[str] = OMIT,
+        debtor_name: typing.Optional[str] = OMIT,
+        notes: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1BankMandatesUpdateResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        bic : typing.Optional[str]
+
+        debtor_name : typing.Optional[str]
+
+        notes : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1BankMandatesUpdateResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.bank.post_v1bank_mandates_update(
+                id="id",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1bank_mandates_update(
+            id=id, bic=bic, debtor_name=debtor_name, notes=notes, request_options=request_options
+        )
+        return _response.data
+
+    async def post_v1bank_mandates_cancel(
+        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1BankMandatesCancelResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1BankMandatesCancelResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.bank.post_v1bank_mandates_cancel(
+                id="id",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1bank_mandates_cancel(id=id, request_options=request_options)
+        return _response.data
+
+    async def post_v1bank_mandates_get(
+        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1BankMandatesGetResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1BankMandatesGetResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.bank.post_v1bank_mandates_get(
+                id="id",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1bank_mandates_get(id=id, request_options=request_options)
+        return _response.data
+
+    async def post_v1bank_mandates_list(
+        self,
+        *,
+        page: typing.Optional[int] = OMIT,
+        page_size: typing.Optional[int] = OMIT,
+        sort: typing.Optional[typing.Sequence[PostV1BankMandatesListRequestSortItem]] = OMIT,
+        filter: typing.Optional[typing.Sequence[PostV1BankMandatesListRequestFilterItem]] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1BankMandatesListResponse:
+        """
+        Parameters
+        ----------
+        page : typing.Optional[int]
+
+        page_size : typing.Optional[int]
+
+        sort : typing.Optional[typing.Sequence[PostV1BankMandatesListRequestSortItem]]
+
+        filter : typing.Optional[typing.Sequence[PostV1BankMandatesListRequestFilterItem]]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1BankMandatesListResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.bank.post_v1bank_mandates_list()
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1bank_mandates_list(
+            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+        )
+        return _response.data
+
+    async def post_v1bank_direct_debits_export(
+        self,
+        *,
+        bank_account_id: str,
+        sale_invoice_ids: typing.Sequence[str],
+        collection_date: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1BankDirectDebitsExportResponse:
+        """
+        Parameters
+        ----------
+        bank_account_id : str
+
+        sale_invoice_ids : typing.Sequence[str]
+
+        collection_date : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1BankDirectDebitsExportResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.bank.post_v1bank_direct_debits_export(
+                bank_account_id="bankAccountId",
+                sale_invoice_ids=["saleInvoiceIds"],
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1bank_direct_debits_export(
+            bank_account_id=bank_account_id,
+            sale_invoice_ids=sale_invoice_ids,
+            collection_date=collection_date,
+            request_options=request_options,
+        )
+        return _response.data
+
     async def post_v1bank_transactions_suggest_matches(
         self,
         *,
@@ -1344,5 +2264,395 @@ class AsyncBankClient:
         """
         _response = await self._raw_client.post_v1bank_settlements_post(
             id=id, date=date, commission_percent=commission_percent, request_options=request_options
+        )
+        return _response.data
+
+    async def list_the_psd2banks_asps_ps_available_to_connect(
+        self, *, country: typing.Optional[str] = OMIT, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1BankFeedsBanksListResponse:
+        """
+        Parameters
+        ----------
+        country : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1BankFeedsBanksListResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.bank.list_the_psd2banks_asps_ps_available_to_connect()
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.list_the_psd2banks_asps_ps_available_to_connect(
+            country=country, request_options=request_options
+        )
+        return _response.data
+
+    async def begin_bank_authorization_redirect_the_user_to_the_returned_url(
+        self,
+        *,
+        aspsp_name: str,
+        aspsp_country: str,
+        psu_type: typing.Optional[PostV1BankFeedsConnectionsStartRequestPsuType] = OMIT,
+        redirect_url: typing.Optional[str] = OMIT,
+        valid_for_days: typing.Optional[int] = OMIT,
+        language: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1BankFeedsConnectionsStartResponse:
+        """
+        Parameters
+        ----------
+        aspsp_name : str
+
+        aspsp_country : str
+
+        psu_type : typing.Optional[PostV1BankFeedsConnectionsStartRequestPsuType]
+
+        redirect_url : typing.Optional[str]
+
+        valid_for_days : typing.Optional[int]
+
+        language : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1BankFeedsConnectionsStartResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.bank.begin_bank_authorization_redirect_the_user_to_the_returned_url(
+                aspsp_name="aspspName",
+                aspsp_country="aspspCountry",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.begin_bank_authorization_redirect_the_user_to_the_returned_url(
+            aspsp_name=aspsp_name,
+            aspsp_country=aspsp_country,
+            psu_type=psu_type,
+            redirect_url=redirect_url,
+            valid_for_days=valid_for_days,
+            language=language,
+            request_options=request_options,
+        )
+        return _response.data
+
+    async def exchange_the_redirect_code_for_a_session_and_store_the_bank_accounts_it_exposes(
+        self, *, reference: str, code: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1BankFeedsConnectionsCompleteResponse:
+        """
+        Parameters
+        ----------
+        reference : str
+
+        code : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1BankFeedsConnectionsCompleteResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.bank.exchange_the_redirect_code_for_a_session_and_store_the_bank_accounts_it_exposes(
+                reference="reference",
+                code="code",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = (
+            await self._raw_client.exchange_the_redirect_code_for_a_session_and_store_the_bank_accounts_it_exposes(
+                reference=reference, code=code, request_options=request_options
+            )
+        )
+        return _response.data
+
+    async def post_v1bank_feeds_connections_get(
+        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1BankFeedsConnectionsGetResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1BankFeedsConnectionsGetResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.bank.post_v1bank_feeds_connections_get(
+                id="id",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1bank_feeds_connections_get(id=id, request_options=request_options)
+        return _response.data
+
+    async def post_v1bank_feeds_connections_list(
+        self,
+        *,
+        page: typing.Optional[int] = OMIT,
+        page_size: typing.Optional[int] = OMIT,
+        sort: typing.Optional[typing.Sequence[PostV1BankFeedsConnectionsListRequestSortItem]] = OMIT,
+        filter: typing.Optional[typing.Sequence[PostV1BankFeedsConnectionsListRequestFilterItem]] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1BankFeedsConnectionsListResponse:
+        """
+        Parameters
+        ----------
+        page : typing.Optional[int]
+
+        page_size : typing.Optional[int]
+
+        sort : typing.Optional[typing.Sequence[PostV1BankFeedsConnectionsListRequestSortItem]]
+
+        filter : typing.Optional[typing.Sequence[PostV1BankFeedsConnectionsListRequestFilterItem]]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1BankFeedsConnectionsListResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.bank.post_v1bank_feeds_connections_list()
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1bank_feeds_connections_list(
+            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+        )
+        return _response.data
+
+    async def revoke_the_consent_at_the_bank_and_drop_the_stored_connection(
+        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1BankFeedsConnectionsDeleteResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1BankFeedsConnectionsDeleteResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.bank.revoke_the_consent_at_the_bank_and_drop_the_stored_connection(
+                id="id",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.revoke_the_consent_at_the_bank_and_drop_the_stored_connection(
+            id=id, request_options=request_options
+        )
+        return _response.data
+
+    async def point_a_bank_feed_account_at_a_ledger_bank_account_so_its_transactions_can_be_synced(
+        self,
+        *,
+        id: str,
+        bank_account_id: typing.Optional[str] = OMIT,
+        create_bank_account: typing.Optional[PostV1BankFeedsAccountsLinkRequestCreateBankAccount] = OMIT,
+        sync_from: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1BankFeedsAccountsLinkResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        bank_account_id : typing.Optional[str]
+
+        create_bank_account : typing.Optional[PostV1BankFeedsAccountsLinkRequestCreateBankAccount]
+
+        sync_from : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1BankFeedsAccountsLinkResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.bank.point_a_bank_feed_account_at_a_ledger_bank_account_so_its_transactions_can_be_synced(
+                id="id",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = (
+            await self._raw_client.point_a_bank_feed_account_at_a_ledger_bank_account_so_its_transactions_can_be_synced(
+                id=id,
+                bank_account_id=bank_account_id,
+                create_bank_account=create_bank_account,
+                sync_from=sync_from,
+                request_options=request_options,
+            )
+        )
+        return _response.data
+
+    async def pull_new_transactions_from_the_bank_into_the_ledger_emits_bank_feed_synced(
+        self,
+        *,
+        connection_id: str,
+        feed_account_id: typing.Optional[str] = OMIT,
+        date_from: typing.Optional[str] = OMIT,
+        date_to: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1BankFeedsSyncResponse:
+        """
+        Parameters
+        ----------
+        connection_id : str
+
+        feed_account_id : typing.Optional[str]
+
+        date_from : typing.Optional[str]
+
+        date_to : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1BankFeedsSyncResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.bank.pull_new_transactions_from_the_bank_into_the_ledger_emits_bank_feed_synced(
+                connection_id="connectionId",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.pull_new_transactions_from_the_bank_into_the_ledger_emits_bank_feed_synced(
+            connection_id=connection_id,
+            feed_account_id=feed_account_id,
+            date_from=date_from,
+            date_to=date_to,
+            request_options=request_options,
         )
         return _response.data

@@ -17,6 +17,9 @@ class PostV1InventoryStockMovementsListResponseRowsItem(UniversalBaseModel):
         str, FieldMetadata(alias="warehouseId"), pydantic.Field(alias="warehouseId")
     ]
     item_id: typing_extensions.Annotated[str, FieldMetadata(alias="itemId"), pydantic.Field(alias="itemId")]
+    lot_id: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="lotId"), pydantic.Field(alias="lotId")
+    ] = None
     date: str
     direction: PostV1InventoryStockMovementsListResponseRowsItemDirection
     quantity: str

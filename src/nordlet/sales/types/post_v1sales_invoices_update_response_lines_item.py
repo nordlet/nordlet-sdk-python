@@ -37,6 +37,9 @@ class PostV1SalesInvoicesUpdateResponseLinesItem(UniversalBaseModel):
     cost_center_id: typing_extensions.Annotated[
         typing.Optional[str], FieldMetadata(alias="costCenterId"), pydantic.Field(alias="costCenterId")
     ] = None
+    project_id: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="projectId"), pydantic.Field(alias="projectId")
+    ] = None
     line_net: typing_extensions.Annotated[str, FieldMetadata(alias="lineNet"), pydantic.Field(alias="lineNet")]
     line_vat: typing_extensions.Annotated[str, FieldMetadata(alias="lineVat"), pydantic.Field(alias="lineVat")]
     line_gross: typing_extensions.Annotated[str, FieldMetadata(alias="lineGross"), pydantic.Field(alias="lineGross")]

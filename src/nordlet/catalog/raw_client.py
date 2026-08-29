@@ -24,6 +24,7 @@ from .types.post_v1catalog_item_groups_delete_response import PostV1CatalogItemG
 from .types.post_v1catalog_item_groups_list_response import PostV1CatalogItemGroupsListResponse
 from .types.post_v1catalog_item_groups_update_response import PostV1CatalogItemGroupsUpdateResponse
 from .types.post_v1catalog_items_create_request_components_item import PostV1CatalogItemsCreateRequestComponentsItem
+from .types.post_v1catalog_items_create_request_tracking import PostV1CatalogItemsCreateRequestTracking
 from .types.post_v1catalog_items_create_request_translations_value import (
     PostV1CatalogItemsCreateRequestTranslationsValue,
 )
@@ -38,6 +39,7 @@ from .types.post_v1catalog_items_suppliers_delete_response import PostV1CatalogI
 from .types.post_v1catalog_items_suppliers_list_response import PostV1CatalogItemsSuppliersListResponse
 from .types.post_v1catalog_items_suppliers_upsert_response import PostV1CatalogItemsSuppliersUpsertResponse
 from .types.post_v1catalog_items_update_request_components_item import PostV1CatalogItemsUpdateRequestComponentsItem
+from .types.post_v1catalog_items_update_request_tracking import PostV1CatalogItemsUpdateRequestTracking
 from .types.post_v1catalog_items_update_request_translations_value import (
     PostV1CatalogItemsUpdateRequestTranslationsValue,
 )
@@ -67,6 +69,7 @@ class RawCatalogClient:
         *,
         name: str,
         type: typing.Optional[PostV1CatalogItemsCreateRequestType] = OMIT,
+        tracking: typing.Optional[PostV1CatalogItemsCreateRequestTracking] = OMIT,
         code: typing.Optional[str] = OMIT,
         barcode: typing.Optional[str] = OMIT,
         unit: typing.Optional[str] = OMIT,
@@ -92,6 +95,8 @@ class RawCatalogClient:
         name : str
 
         type : typing.Optional[PostV1CatalogItemsCreateRequestType]
+
+        tracking : typing.Optional[PostV1CatalogItemsCreateRequestTracking]
 
         code : typing.Optional[str]
 
@@ -140,6 +145,7 @@ class RawCatalogClient:
             method="POST",
             json={
                 "type": type,
+                "tracking": tracking,
                 "name": name,
                 "code": code,
                 "barcode": barcode,
@@ -420,6 +426,7 @@ class RawCatalogClient:
         *,
         id: str,
         type: typing.Optional[PostV1CatalogItemsUpdateRequestType] = OMIT,
+        tracking: typing.Optional[PostV1CatalogItemsUpdateRequestTracking] = OMIT,
         name: typing.Optional[str] = OMIT,
         code: typing.Optional[str] = OMIT,
         barcode: typing.Optional[str] = OMIT,
@@ -446,6 +453,8 @@ class RawCatalogClient:
         id : str
 
         type : typing.Optional[PostV1CatalogItemsUpdateRequestType]
+
+        tracking : typing.Optional[PostV1CatalogItemsUpdateRequestTracking]
 
         name : typing.Optional[str]
 
@@ -497,6 +506,7 @@ class RawCatalogClient:
             json={
                 "id": id,
                 "type": type,
+                "tracking": tracking,
                 "name": name,
                 "code": code,
                 "barcode": barcode,
@@ -2789,6 +2799,7 @@ class AsyncRawCatalogClient:
         *,
         name: str,
         type: typing.Optional[PostV1CatalogItemsCreateRequestType] = OMIT,
+        tracking: typing.Optional[PostV1CatalogItemsCreateRequestTracking] = OMIT,
         code: typing.Optional[str] = OMIT,
         barcode: typing.Optional[str] = OMIT,
         unit: typing.Optional[str] = OMIT,
@@ -2814,6 +2825,8 @@ class AsyncRawCatalogClient:
         name : str
 
         type : typing.Optional[PostV1CatalogItemsCreateRequestType]
+
+        tracking : typing.Optional[PostV1CatalogItemsCreateRequestTracking]
 
         code : typing.Optional[str]
 
@@ -2862,6 +2875,7 @@ class AsyncRawCatalogClient:
             method="POST",
             json={
                 "type": type,
+                "tracking": tracking,
                 "name": name,
                 "code": code,
                 "barcode": barcode,
@@ -3142,6 +3156,7 @@ class AsyncRawCatalogClient:
         *,
         id: str,
         type: typing.Optional[PostV1CatalogItemsUpdateRequestType] = OMIT,
+        tracking: typing.Optional[PostV1CatalogItemsUpdateRequestTracking] = OMIT,
         name: typing.Optional[str] = OMIT,
         code: typing.Optional[str] = OMIT,
         barcode: typing.Optional[str] = OMIT,
@@ -3168,6 +3183,8 @@ class AsyncRawCatalogClient:
         id : str
 
         type : typing.Optional[PostV1CatalogItemsUpdateRequestType]
+
+        tracking : typing.Optional[PostV1CatalogItemsUpdateRequestTracking]
 
         name : typing.Optional[str]
 
@@ -3219,6 +3236,7 @@ class AsyncRawCatalogClient:
             json={
                 "id": id,
                 "type": type,
+                "tracking": tracking,
                 "name": name,
                 "code": code,
                 "barcode": barcode,

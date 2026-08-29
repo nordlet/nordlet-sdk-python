@@ -17,9 +17,24 @@ class PostV1ProductionOrdersListResponseRowsItem(UniversalBaseModel):
     warehouse_id: typing_extensions.Annotated[
         str, FieldMetadata(alias="warehouseId"), pydantic.Field(alias="warehouseId")
     ]
+    routing_id: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="routingId"), pydantic.Field(alias="routingId")
+    ] = None
     quantity: str
     date: str
     status: PostV1ProductionOrdersListResponseRowsItemStatus
+    scrapped_quantity: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="scrappedQuantity"), pydantic.Field(alias="scrappedQuantity")
+    ] = None
+    material_cost: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="materialCost"), pydantic.Field(alias="materialCost")
+    ] = None
+    labor_cost: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="laborCost"), pydantic.Field(alias="laborCost")
+    ] = None
+    scrap_cost: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="scrapCost"), pydantic.Field(alias="scrapCost")
+    ] = None
     total_cost: typing_extensions.Annotated[
         typing.Optional[str], FieldMetadata(alias="totalCost"), pydantic.Field(alias="totalCost")
     ] = None

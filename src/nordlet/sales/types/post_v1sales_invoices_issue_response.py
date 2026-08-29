@@ -10,6 +10,7 @@ from .post_v1sales_invoices_issue_response_lines_item import PostV1SalesInvoices
 from .post_v1sales_invoices_issue_response_payment_status import PostV1SalesInvoicesIssueResponsePaymentStatus
 from .post_v1sales_invoices_issue_response_status import PostV1SalesInvoicesIssueResponseStatus
 from .post_v1sales_invoices_issue_response_type import PostV1SalesInvoicesIssueResponseType
+from .post_v1sales_invoices_issue_response_vat_evidence import PostV1SalesInvoicesIssueResponseVatEvidence
 from .post_v1sales_invoices_issue_response_vat_scheme import PostV1SalesInvoicesIssueResponseVatScheme
 
 
@@ -66,6 +67,11 @@ class PostV1SalesInvoicesIssueResponse(UniversalBaseModel):
     created_at: typing_extensions.Annotated[str, FieldMetadata(alias="createdAt"), pydantic.Field(alias="createdAt")]
     updated_at: typing_extensions.Annotated[str, FieldMetadata(alias="updatedAt"), pydantic.Field(alias="updatedAt")]
     lines: typing.List[PostV1SalesInvoicesIssueResponseLinesItem]
+    vat_evidence: typing_extensions.Annotated[
+        typing.Optional[PostV1SalesInvoicesIssueResponseVatEvidence],
+        FieldMetadata(alias="vatEvidence"),
+        pydantic.Field(alias="vatEvidence"),
+    ] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

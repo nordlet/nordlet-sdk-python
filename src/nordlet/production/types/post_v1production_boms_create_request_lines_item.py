@@ -13,6 +13,9 @@ class PostV1ProductionBomsCreateRequestLinesItem(UniversalBaseModel):
         str, FieldMetadata(alias="componentItemId"), pydantic.Field(alias="componentItemId")
     ]
     quantity: str
+    scrap_percent: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="scrapPercent"), pydantic.Field(alias="scrapPercent")
+    ] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

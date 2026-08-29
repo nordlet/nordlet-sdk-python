@@ -43,6 +43,7 @@ from .types.post_v1declarations_lt_saft_generate_response import PostV1Declarati
 from .types.post_v1declarations_lt_sam_compute_response import PostV1DeclarationsLtSamComputeResponse
 from .types.post_v1declarations_lt_sd_generate_request_type import PostV1DeclarationsLtSdGenerateRequestType
 from .types.post_v1declarations_lt_sd_generate_response import PostV1DeclarationsLtSdGenerateResponse
+from .types.post_v1declarations_pl_jpk_v7m_generate_response import PostV1DeclarationsPlJpkV7MGenerateResponse
 from .types.post_v1declarations_submissions_create_request_data_type import (
     PostV1DeclarationsSubmissionsCreateRequestDataType,
 )
@@ -760,6 +761,63 @@ class DeclarationsClient:
         """
         _response = self._raw_client.post_v1declarations_eu_vat_return_compute(
             country_code=country_code, year=year, month=month, months=months, request_options=request_options
+        )
+        return _response.data
+
+    def post_v1declarations_pl_jpk_v7m_generate(
+        self,
+        *,
+        year: int,
+        month: int,
+        kod_urzedu: str,
+        email: str,
+        cel_zlozenia: typing.Optional[int] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1DeclarationsPlJpkV7MGenerateResponse:
+        """
+        Generate the Polish JPK_V7M(3) file (VAT declaration with evidence) for a month, per the MF schema in force since February 2026. Amounts must already be in PLN; rows are marked BFK until a KSeF integration supplies invoice numbers. Review the warnings before submitting via e-dokumenty.mf.gov.pl.
+
+        Parameters
+        ----------
+        year : int
+
+        month : int
+
+        kod_urzedu : str
+
+        email : str
+
+        cel_zlozenia : typing.Optional[int]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1DeclarationsPlJpkV7MGenerateResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.declarations.post_v1declarations_pl_jpk_v7m_generate(
+            year=1000000,
+            month=1000000,
+            kod_urzedu="kodUrzedu",
+            email="email",
+        )
+        """
+        _response = self._raw_client.post_v1declarations_pl_jpk_v7m_generate(
+            year=year,
+            month=month,
+            kod_urzedu=kod_urzedu,
+            email=email,
+            cel_zlozenia=cel_zlozenia,
+            request_options=request_options,
         )
         return _response.data
 
@@ -1798,6 +1856,71 @@ class AsyncDeclarationsClient:
         """
         _response = await self._raw_client.post_v1declarations_eu_vat_return_compute(
             country_code=country_code, year=year, month=month, months=months, request_options=request_options
+        )
+        return _response.data
+
+    async def post_v1declarations_pl_jpk_v7m_generate(
+        self,
+        *,
+        year: int,
+        month: int,
+        kod_urzedu: str,
+        email: str,
+        cel_zlozenia: typing.Optional[int] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1DeclarationsPlJpkV7MGenerateResponse:
+        """
+        Generate the Polish JPK_V7M(3) file (VAT declaration with evidence) for a month, per the MF schema in force since February 2026. Amounts must already be in PLN; rows are marked BFK until a KSeF integration supplies invoice numbers. Review the warnings before submitting via e-dokumenty.mf.gov.pl.
+
+        Parameters
+        ----------
+        year : int
+
+        month : int
+
+        kod_urzedu : str
+
+        email : str
+
+        cel_zlozenia : typing.Optional[int]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1DeclarationsPlJpkV7MGenerateResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.declarations.post_v1declarations_pl_jpk_v7m_generate(
+                year=1000000,
+                month=1000000,
+                kod_urzedu="kodUrzedu",
+                email="email",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1declarations_pl_jpk_v7m_generate(
+            year=year,
+            month=month,
+            kod_urzedu=kod_urzedu,
+            email=email,
+            cel_zlozenia=cel_zlozenia,
+            request_options=request_options,
         )
         return _response.data
 

@@ -54,6 +54,16 @@ if typing.TYPE_CHECKING:
     from .post_v1reference_currencies_list_request_sort_item_dir import PostV1ReferenceCurrenciesListRequestSortItemDir
     from .post_v1reference_currencies_list_response import PostV1ReferenceCurrenciesListResponse
     from .post_v1reference_currencies_list_response_rows_item import PostV1ReferenceCurrenciesListResponseRowsItem
+    from .post_v1reference_eu_vat_rates_imports_list_response import PostV1ReferenceEuVatRatesImportsListResponse
+    from .post_v1reference_eu_vat_rates_imports_list_response_rows_item import (
+        PostV1ReferenceEuVatRatesImportsListResponseRowsItem,
+    )
+    from .post_v1reference_eu_vat_rates_imports_list_response_rows_item_status import (
+        PostV1ReferenceEuVatRatesImportsListResponseRowsItemStatus,
+    )
+    from .post_v1reference_eu_vat_rates_imports_list_response_rows_item_trigger import (
+        PostV1ReferenceEuVatRatesImportsListResponseRowsItemTrigger,
+    )
     from .post_v1reference_eu_vat_rates_list_response import PostV1ReferenceEuVatRatesListResponse
     from .post_v1reference_eu_vat_rates_list_response_rows_item import PostV1ReferenceEuVatRatesListResponseRowsItem
     from .post_v1reference_eu_vat_rates_list_response_rows_item_category import (
@@ -78,6 +88,8 @@ if typing.TYPE_CHECKING:
     from .post_v1reference_eu_vat_rates_set_overrides_response_source import (
         PostV1ReferenceEuVatRatesSetOverridesResponseSource,
     )
+    from .post_v1reference_eu_vat_rates_sync_response import PostV1ReferenceEuVatRatesSyncResponse
+    from .post_v1reference_eu_vat_rates_sync_response_status import PostV1ReferenceEuVatRatesSyncResponseStatus
     from .post_v1reference_exchange_rates_list_request_filter_item import (
         PostV1ReferenceExchangeRatesListRequestFilterItem,
     )
@@ -220,6 +232,10 @@ _dynamic_imports: typing.Dict[str, str] = {
     "PostV1ReferenceCurrenciesListRequestSortItemDir": ".post_v1reference_currencies_list_request_sort_item_dir",
     "PostV1ReferenceCurrenciesListResponse": ".post_v1reference_currencies_list_response",
     "PostV1ReferenceCurrenciesListResponseRowsItem": ".post_v1reference_currencies_list_response_rows_item",
+    "PostV1ReferenceEuVatRatesImportsListResponse": ".post_v1reference_eu_vat_rates_imports_list_response",
+    "PostV1ReferenceEuVatRatesImportsListResponseRowsItem": ".post_v1reference_eu_vat_rates_imports_list_response_rows_item",
+    "PostV1ReferenceEuVatRatesImportsListResponseRowsItemStatus": ".post_v1reference_eu_vat_rates_imports_list_response_rows_item_status",
+    "PostV1ReferenceEuVatRatesImportsListResponseRowsItemTrigger": ".post_v1reference_eu_vat_rates_imports_list_response_rows_item_trigger",
     "PostV1ReferenceEuVatRatesListResponse": ".post_v1reference_eu_vat_rates_list_response",
     "PostV1ReferenceEuVatRatesListResponseRowsItem": ".post_v1reference_eu_vat_rates_list_response_rows_item",
     "PostV1ReferenceEuVatRatesListResponseRowsItemCategory": ".post_v1reference_eu_vat_rates_list_response_rows_item_category",
@@ -230,6 +246,8 @@ _dynamic_imports: typing.Dict[str, str] = {
     "PostV1ReferenceEuVatRatesSetOverridesResponseRowsItem": ".post_v1reference_eu_vat_rates_set_overrides_response_rows_item",
     "PostV1ReferenceEuVatRatesSetOverridesResponseRowsItemCategory": ".post_v1reference_eu_vat_rates_set_overrides_response_rows_item_category",
     "PostV1ReferenceEuVatRatesSetOverridesResponseSource": ".post_v1reference_eu_vat_rates_set_overrides_response_source",
+    "PostV1ReferenceEuVatRatesSyncResponse": ".post_v1reference_eu_vat_rates_sync_response",
+    "PostV1ReferenceEuVatRatesSyncResponseStatus": ".post_v1reference_eu_vat_rates_sync_response_status",
     "PostV1ReferenceExchangeRatesListRequestFilterItem": ".post_v1reference_exchange_rates_list_request_filter_item",
     "PostV1ReferenceExchangeRatesListRequestFilterItemOp": ".post_v1reference_exchange_rates_list_request_filter_item_op",
     "PostV1ReferenceExchangeRatesListRequestFilterItemValue": ".post_v1reference_exchange_rates_list_request_filter_item_value",
@@ -342,6 +360,10 @@ __all__ = [
     "PostV1ReferenceCurrenciesListRequestSortItemDir",
     "PostV1ReferenceCurrenciesListResponse",
     "PostV1ReferenceCurrenciesListResponseRowsItem",
+    "PostV1ReferenceEuVatRatesImportsListResponse",
+    "PostV1ReferenceEuVatRatesImportsListResponseRowsItem",
+    "PostV1ReferenceEuVatRatesImportsListResponseRowsItemStatus",
+    "PostV1ReferenceEuVatRatesImportsListResponseRowsItemTrigger",
     "PostV1ReferenceEuVatRatesListResponse",
     "PostV1ReferenceEuVatRatesListResponseRowsItem",
     "PostV1ReferenceEuVatRatesListResponseRowsItemCategory",
@@ -352,6 +374,8 @@ __all__ = [
     "PostV1ReferenceEuVatRatesSetOverridesResponseRowsItem",
     "PostV1ReferenceEuVatRatesSetOverridesResponseRowsItemCategory",
     "PostV1ReferenceEuVatRatesSetOverridesResponseSource",
+    "PostV1ReferenceEuVatRatesSyncResponse",
+    "PostV1ReferenceEuVatRatesSyncResponseStatus",
     "PostV1ReferenceExchangeRatesListRequestFilterItem",
     "PostV1ReferenceExchangeRatesListRequestFilterItemOp",
     "PostV1ReferenceExchangeRatesListRequestFilterItemValue",

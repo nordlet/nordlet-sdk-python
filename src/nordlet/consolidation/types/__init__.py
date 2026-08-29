@@ -16,6 +16,55 @@ if typing.TYPE_CHECKING:
     from .post_v1consolidation_groups_list_response import PostV1ConsolidationGroupsListResponse
     from .post_v1consolidation_groups_list_response_rows_item import PostV1ConsolidationGroupsListResponseRowsItem
     from .post_v1consolidation_groups_update_response import PostV1ConsolidationGroupsUpdateResponse
+    from .post_v1consolidation_intercompany_candidates_response import PostV1ConsolidationIntercompanyCandidatesResponse
+    from .post_v1consolidation_intercompany_candidates_response_rows_item import (
+        PostV1ConsolidationIntercompanyCandidatesResponseRowsItem,
+    )
+    from .post_v1consolidation_intercompany_candidates_response_rows_item_matched_on import (
+        PostV1ConsolidationIntercompanyCandidatesResponseRowsItemMatchedOn,
+    )
+    from .post_v1consolidation_intercompany_links_list_response import PostV1ConsolidationIntercompanyLinksListResponse
+    from .post_v1consolidation_intercompany_links_list_response_rows_item import (
+        PostV1ConsolidationIntercompanyLinksListResponseRowsItem,
+    )
+    from .post_v1consolidation_intercompany_links_remove_response import (
+        PostV1ConsolidationIntercompanyLinksRemoveResponse,
+    )
+    from .post_v1consolidation_intercompany_links_set_response import PostV1ConsolidationIntercompanyLinksSetResponse
+    from .post_v1consolidation_intercompany_report_response import PostV1ConsolidationIntercompanyReportResponse
+    from .post_v1consolidation_intercompany_report_response_directions_item import (
+        PostV1ConsolidationIntercompanyReportResponseDirectionsItem,
+    )
+    from .post_v1consolidation_intercompany_report_response_directions_item_documents_item import (
+        PostV1ConsolidationIntercompanyReportResponseDirectionsItemDocumentsItem,
+    )
+    from .post_v1consolidation_intercompany_report_response_directions_item_documents_item_counterpart import (
+        PostV1ConsolidationIntercompanyReportResponseDirectionsItemDocumentsItemCounterpart,
+    )
+    from .post_v1consolidation_intercompany_report_response_directions_item_documents_item_counterpart_payment_status import (
+        PostV1ConsolidationIntercompanyReportResponseDirectionsItemDocumentsItemCounterpartPaymentStatus,
+    )
+    from .post_v1consolidation_intercompany_report_response_directions_item_documents_item_counterpart_status import (
+        PostV1ConsolidationIntercompanyReportResponseDirectionsItemDocumentsItemCounterpartStatus,
+    )
+    from .post_v1consolidation_intercompany_report_response_directions_item_documents_item_match import (
+        PostV1ConsolidationIntercompanyReportResponseDirectionsItemDocumentsItemMatch,
+    )
+    from .post_v1consolidation_intercompany_report_response_directions_item_documents_item_payment_status import (
+        PostV1ConsolidationIntercompanyReportResponseDirectionsItemDocumentsItemPaymentStatus,
+    )
+    from .post_v1consolidation_intercompany_report_response_directions_item_documents_item_type import (
+        PostV1ConsolidationIntercompanyReportResponseDirectionsItemDocumentsItemType,
+    )
+    from .post_v1consolidation_intercompany_report_response_directions_item_totals_item import (
+        PostV1ConsolidationIntercompanyReportResponseDirectionsItemTotalsItem,
+    )
+    from .post_v1consolidation_intercompany_report_response_directions_item_unmatched_purchases_item import (
+        PostV1ConsolidationIntercompanyReportResponseDirectionsItemUnmatchedPurchasesItem,
+    )
+    from .post_v1consolidation_intercompany_report_response_directions_item_unmatched_purchases_item_status import (
+        PostV1ConsolidationIntercompanyReportResponseDirectionsItemUnmatchedPurchasesItemStatus,
+    )
     from .post_v1consolidation_members_add_request_method import PostV1ConsolidationMembersAddRequestMethod
     from .post_v1consolidation_members_add_response import PostV1ConsolidationMembersAddResponse
     from .post_v1consolidation_members_add_response_method import PostV1ConsolidationMembersAddResponseMethod
@@ -23,6 +72,25 @@ if typing.TYPE_CHECKING:
     from .post_v1consolidation_report_request_category import PostV1ConsolidationReportRequestCategory
     from .post_v1consolidation_report_request_eliminations_item import PostV1ConsolidationReportRequestEliminationsItem
     from .post_v1consolidation_report_response import PostV1ConsolidationReportResponse
+    from .post_v1consolidation_report_response_cash_flow import PostV1ConsolidationReportResponseCashFlow
+    from .post_v1consolidation_report_response_cash_flow_financing import (
+        PostV1ConsolidationReportResponseCashFlowFinancing,
+    )
+    from .post_v1consolidation_report_response_cash_flow_financing_rows_item import (
+        PostV1ConsolidationReportResponseCashFlowFinancingRowsItem,
+    )
+    from .post_v1consolidation_report_response_cash_flow_investing import (
+        PostV1ConsolidationReportResponseCashFlowInvesting,
+    )
+    from .post_v1consolidation_report_response_cash_flow_investing_rows_item import (
+        PostV1ConsolidationReportResponseCashFlowInvestingRowsItem,
+    )
+    from .post_v1consolidation_report_response_cash_flow_operating import (
+        PostV1ConsolidationReportResponseCashFlowOperating,
+    )
+    from .post_v1consolidation_report_response_cash_flow_operating_rows_item import (
+        PostV1ConsolidationReportResponseCashFlowOperatingRowsItem,
+    )
     from .post_v1consolidation_report_response_category import PostV1ConsolidationReportResponseCategory
     from .post_v1consolidation_report_response_eliminations import PostV1ConsolidationReportResponseEliminations
     from .post_v1consolidation_report_response_eliminations_applied_item import (
@@ -82,6 +150,25 @@ _dynamic_imports: typing.Dict[str, str] = {
     "PostV1ConsolidationGroupsListResponse": ".post_v1consolidation_groups_list_response",
     "PostV1ConsolidationGroupsListResponseRowsItem": ".post_v1consolidation_groups_list_response_rows_item",
     "PostV1ConsolidationGroupsUpdateResponse": ".post_v1consolidation_groups_update_response",
+    "PostV1ConsolidationIntercompanyCandidatesResponse": ".post_v1consolidation_intercompany_candidates_response",
+    "PostV1ConsolidationIntercompanyCandidatesResponseRowsItem": ".post_v1consolidation_intercompany_candidates_response_rows_item",
+    "PostV1ConsolidationIntercompanyCandidatesResponseRowsItemMatchedOn": ".post_v1consolidation_intercompany_candidates_response_rows_item_matched_on",
+    "PostV1ConsolidationIntercompanyLinksListResponse": ".post_v1consolidation_intercompany_links_list_response",
+    "PostV1ConsolidationIntercompanyLinksListResponseRowsItem": ".post_v1consolidation_intercompany_links_list_response_rows_item",
+    "PostV1ConsolidationIntercompanyLinksRemoveResponse": ".post_v1consolidation_intercompany_links_remove_response",
+    "PostV1ConsolidationIntercompanyLinksSetResponse": ".post_v1consolidation_intercompany_links_set_response",
+    "PostV1ConsolidationIntercompanyReportResponse": ".post_v1consolidation_intercompany_report_response",
+    "PostV1ConsolidationIntercompanyReportResponseDirectionsItem": ".post_v1consolidation_intercompany_report_response_directions_item",
+    "PostV1ConsolidationIntercompanyReportResponseDirectionsItemDocumentsItem": ".post_v1consolidation_intercompany_report_response_directions_item_documents_item",
+    "PostV1ConsolidationIntercompanyReportResponseDirectionsItemDocumentsItemCounterpart": ".post_v1consolidation_intercompany_report_response_directions_item_documents_item_counterpart",
+    "PostV1ConsolidationIntercompanyReportResponseDirectionsItemDocumentsItemCounterpartPaymentStatus": ".post_v1consolidation_intercompany_report_response_directions_item_documents_item_counterpart_payment_status",
+    "PostV1ConsolidationIntercompanyReportResponseDirectionsItemDocumentsItemCounterpartStatus": ".post_v1consolidation_intercompany_report_response_directions_item_documents_item_counterpart_status",
+    "PostV1ConsolidationIntercompanyReportResponseDirectionsItemDocumentsItemMatch": ".post_v1consolidation_intercompany_report_response_directions_item_documents_item_match",
+    "PostV1ConsolidationIntercompanyReportResponseDirectionsItemDocumentsItemPaymentStatus": ".post_v1consolidation_intercompany_report_response_directions_item_documents_item_payment_status",
+    "PostV1ConsolidationIntercompanyReportResponseDirectionsItemDocumentsItemType": ".post_v1consolidation_intercompany_report_response_directions_item_documents_item_type",
+    "PostV1ConsolidationIntercompanyReportResponseDirectionsItemTotalsItem": ".post_v1consolidation_intercompany_report_response_directions_item_totals_item",
+    "PostV1ConsolidationIntercompanyReportResponseDirectionsItemUnmatchedPurchasesItem": ".post_v1consolidation_intercompany_report_response_directions_item_unmatched_purchases_item",
+    "PostV1ConsolidationIntercompanyReportResponseDirectionsItemUnmatchedPurchasesItemStatus": ".post_v1consolidation_intercompany_report_response_directions_item_unmatched_purchases_item_status",
     "PostV1ConsolidationMembersAddRequestMethod": ".post_v1consolidation_members_add_request_method",
     "PostV1ConsolidationMembersAddResponse": ".post_v1consolidation_members_add_response",
     "PostV1ConsolidationMembersAddResponseMethod": ".post_v1consolidation_members_add_response_method",
@@ -89,6 +176,13 @@ _dynamic_imports: typing.Dict[str, str] = {
     "PostV1ConsolidationReportRequestCategory": ".post_v1consolidation_report_request_category",
     "PostV1ConsolidationReportRequestEliminationsItem": ".post_v1consolidation_report_request_eliminations_item",
     "PostV1ConsolidationReportResponse": ".post_v1consolidation_report_response",
+    "PostV1ConsolidationReportResponseCashFlow": ".post_v1consolidation_report_response_cash_flow",
+    "PostV1ConsolidationReportResponseCashFlowFinancing": ".post_v1consolidation_report_response_cash_flow_financing",
+    "PostV1ConsolidationReportResponseCashFlowFinancingRowsItem": ".post_v1consolidation_report_response_cash_flow_financing_rows_item",
+    "PostV1ConsolidationReportResponseCashFlowInvesting": ".post_v1consolidation_report_response_cash_flow_investing",
+    "PostV1ConsolidationReportResponseCashFlowInvestingRowsItem": ".post_v1consolidation_report_response_cash_flow_investing_rows_item",
+    "PostV1ConsolidationReportResponseCashFlowOperating": ".post_v1consolidation_report_response_cash_flow_operating",
+    "PostV1ConsolidationReportResponseCashFlowOperatingRowsItem": ".post_v1consolidation_report_response_cash_flow_operating_rows_item",
     "PostV1ConsolidationReportResponseCategory": ".post_v1consolidation_report_response_category",
     "PostV1ConsolidationReportResponseEliminations": ".post_v1consolidation_report_response_eliminations",
     "PostV1ConsolidationReportResponseEliminationsAppliedItem": ".post_v1consolidation_report_response_eliminations_applied_item",
@@ -142,6 +236,25 @@ __all__ = [
     "PostV1ConsolidationGroupsListResponse",
     "PostV1ConsolidationGroupsListResponseRowsItem",
     "PostV1ConsolidationGroupsUpdateResponse",
+    "PostV1ConsolidationIntercompanyCandidatesResponse",
+    "PostV1ConsolidationIntercompanyCandidatesResponseRowsItem",
+    "PostV1ConsolidationIntercompanyCandidatesResponseRowsItemMatchedOn",
+    "PostV1ConsolidationIntercompanyLinksListResponse",
+    "PostV1ConsolidationIntercompanyLinksListResponseRowsItem",
+    "PostV1ConsolidationIntercompanyLinksRemoveResponse",
+    "PostV1ConsolidationIntercompanyLinksSetResponse",
+    "PostV1ConsolidationIntercompanyReportResponse",
+    "PostV1ConsolidationIntercompanyReportResponseDirectionsItem",
+    "PostV1ConsolidationIntercompanyReportResponseDirectionsItemDocumentsItem",
+    "PostV1ConsolidationIntercompanyReportResponseDirectionsItemDocumentsItemCounterpart",
+    "PostV1ConsolidationIntercompanyReportResponseDirectionsItemDocumentsItemCounterpartPaymentStatus",
+    "PostV1ConsolidationIntercompanyReportResponseDirectionsItemDocumentsItemCounterpartStatus",
+    "PostV1ConsolidationIntercompanyReportResponseDirectionsItemDocumentsItemMatch",
+    "PostV1ConsolidationIntercompanyReportResponseDirectionsItemDocumentsItemPaymentStatus",
+    "PostV1ConsolidationIntercompanyReportResponseDirectionsItemDocumentsItemType",
+    "PostV1ConsolidationIntercompanyReportResponseDirectionsItemTotalsItem",
+    "PostV1ConsolidationIntercompanyReportResponseDirectionsItemUnmatchedPurchasesItem",
+    "PostV1ConsolidationIntercompanyReportResponseDirectionsItemUnmatchedPurchasesItemStatus",
     "PostV1ConsolidationMembersAddRequestMethod",
     "PostV1ConsolidationMembersAddResponse",
     "PostV1ConsolidationMembersAddResponseMethod",
@@ -149,6 +262,13 @@ __all__ = [
     "PostV1ConsolidationReportRequestCategory",
     "PostV1ConsolidationReportRequestEliminationsItem",
     "PostV1ConsolidationReportResponse",
+    "PostV1ConsolidationReportResponseCashFlow",
+    "PostV1ConsolidationReportResponseCashFlowFinancing",
+    "PostV1ConsolidationReportResponseCashFlowFinancingRowsItem",
+    "PostV1ConsolidationReportResponseCashFlowInvesting",
+    "PostV1ConsolidationReportResponseCashFlowInvestingRowsItem",
+    "PostV1ConsolidationReportResponseCashFlowOperating",
+    "PostV1ConsolidationReportResponseCashFlowOperatingRowsItem",
     "PostV1ConsolidationReportResponseCategory",
     "PostV1ConsolidationReportResponseEliminations",
     "PostV1ConsolidationReportResponseEliminationsAppliedItem",

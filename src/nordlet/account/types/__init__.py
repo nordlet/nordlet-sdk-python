@@ -44,6 +44,8 @@ if typing.TYPE_CHECKING:
     from .post_v1account_login_link_request_response import PostV1AccountLoginLinkRequestResponse
     from .post_v1account_logout_response import PostV1AccountLogoutResponse
     from .post_v1account_me_response import PostV1AccountMeResponse
+    from .post_v1account_me_response_billing import PostV1AccountMeResponseBilling
+    from .post_v1account_me_response_billing_status import PostV1AccountMeResponseBillingStatus
     from .post_v1account_me_response_companies_item import PostV1AccountMeResponseCompaniesItem
     from .post_v1account_me_response_companies_item_status import PostV1AccountMeResponseCompaniesItemStatus
     from .post_v1account_me_response_user import PostV1AccountMeResponseUser
@@ -91,6 +93,8 @@ _dynamic_imports: typing.Dict[str, str] = {
     "PostV1AccountLoginLinkRequestResponse": ".post_v1account_login_link_request_response",
     "PostV1AccountLogoutResponse": ".post_v1account_logout_response",
     "PostV1AccountMeResponse": ".post_v1account_me_response",
+    "PostV1AccountMeResponseBilling": ".post_v1account_me_response_billing",
+    "PostV1AccountMeResponseBillingStatus": ".post_v1account_me_response_billing_status",
     "PostV1AccountMeResponseCompaniesItem": ".post_v1account_me_response_companies_item",
     "PostV1AccountMeResponseCompaniesItemStatus": ".post_v1account_me_response_companies_item_status",
     "PostV1AccountMeResponseUser": ".post_v1account_me_response_user",
@@ -162,6 +166,8 @@ __all__ = [
     "PostV1AccountLoginLinkRequestResponse",
     "PostV1AccountLogoutResponse",
     "PostV1AccountMeResponse",
+    "PostV1AccountMeResponseBilling",
+    "PostV1AccountMeResponseBillingStatus",
     "PostV1AccountMeResponseCompaniesItem",
     "PostV1AccountMeResponseCompaniesItemStatus",
     "PostV1AccountMeResponseUser",
