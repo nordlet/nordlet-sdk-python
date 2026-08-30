@@ -13,6 +13,7 @@ from .types.post_v1partners_addresses_list_request_sort_item import PostV1Partne
 from .types.post_v1partners_addresses_list_response import PostV1PartnersAddressesListResponse
 from .types.post_v1partners_addresses_update_request_type import PostV1PartnersAddressesUpdateRequestType
 from .types.post_v1partners_addresses_update_response import PostV1PartnersAddressesUpdateResponse
+from .types.post_v1partners_anonymize_response import PostV1PartnersAnonymizeResponse
 from .types.post_v1partners_bank_accounts_create_response import PostV1PartnersBankAccountsCreateResponse
 from .types.post_v1partners_bank_accounts_delete_response import PostV1PartnersBankAccountsDeleteResponse
 from .types.post_v1partners_bank_accounts_list_request_filter_item import (
@@ -1135,6 +1136,40 @@ class PartnersClient:
         )
         """
         _response = self._raw_client.post_v1partners_delete(id=id, request_options=request_options)
+        return _response.data
+
+    def blank_a_partners_personal_data_and_hide_the_record(
+        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1PartnersAnonymizeResponse:
+        """
+        Removes birth date, self-employment certificate number, email, phone, address, notes, contacts, addresses and bank accounts, then hides the partner. The name, code and VAT number stay because issued invoices must keep identifying the counterparty for the statutory retention period.
+
+        Parameters
+        ----------
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1PartnersAnonymizeResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.partners.blank_a_partners_personal_data_and_hide_the_record(
+            id="id",
+        )
+        """
+        _response = self._raw_client.blank_a_partners_personal_data_and_hide_the_record(
+            id=id, request_options=request_options
+        )
         return _response.data
 
     def post_v1partners_list(
@@ -2921,6 +2956,48 @@ class AsyncPartnersClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.post_v1partners_delete(id=id, request_options=request_options)
+        return _response.data
+
+    async def blank_a_partners_personal_data_and_hide_the_record(
+        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1PartnersAnonymizeResponse:
+        """
+        Removes birth date, self-employment certificate number, email, phone, address, notes, contacts, addresses and bank accounts, then hides the partner. The name, code and VAT number stay because issued invoices must keep identifying the counterparty for the statutory retention period.
+
+        Parameters
+        ----------
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1PartnersAnonymizeResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.partners.blank_a_partners_personal_data_and_hide_the_record(
+                id="id",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.blank_a_partners_personal_data_and_hide_the_record(
+            id=id, request_options=request_options
+        )
         return _response.data
 
     async def post_v1partners_list(

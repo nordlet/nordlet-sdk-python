@@ -29,6 +29,9 @@ if typing.TYPE_CHECKING:
     from .post_v1hr_contracts_list_response_rows_item_salary_type import PostV1HrContractsListResponseRowsItemSalaryType
     from .post_v1hr_contracts_list_response_rows_item_status import PostV1HrContractsListResponseRowsItemStatus
     from .post_v1hr_contracts_list_response_rows_item_type import PostV1HrContractsListResponseRowsItemType
+    from .post_v1hr_employees_anonymize_response import PostV1HrEmployeesAnonymizeResponse
+    from .post_v1hr_employees_anonymize_response_address import PostV1HrEmployeesAnonymizeResponseAddress
+    from .post_v1hr_employees_anonymize_response_status import PostV1HrEmployeesAnonymizeResponseStatus
     from .post_v1hr_employees_attachments_list_response import PostV1HrEmployeesAttachmentsListResponse
     from .post_v1hr_employees_attachments_list_response_rows_item import (
         PostV1HrEmployeesAttachmentsListResponseRowsItem,
@@ -37,6 +40,7 @@ if typing.TYPE_CHECKING:
     from .post_v1hr_employees_create_response import PostV1HrEmployeesCreateResponse
     from .post_v1hr_employees_create_response_address import PostV1HrEmployeesCreateResponseAddress
     from .post_v1hr_employees_create_response_status import PostV1HrEmployeesCreateResponseStatus
+    from .post_v1hr_employees_delete_response import PostV1HrEmployeesDeleteResponse
     from .post_v1hr_employees_get_response import PostV1HrEmployeesGetResponse
     from .post_v1hr_employees_get_response_address import PostV1HrEmployeesGetResponseAddress
     from .post_v1hr_employees_get_response_status import PostV1HrEmployeesGetResponseStatus
@@ -162,12 +166,16 @@ _dynamic_imports: typing.Dict[str, str] = {
     "PostV1HrContractsListResponseRowsItemSalaryType": ".post_v1hr_contracts_list_response_rows_item_salary_type",
     "PostV1HrContractsListResponseRowsItemStatus": ".post_v1hr_contracts_list_response_rows_item_status",
     "PostV1HrContractsListResponseRowsItemType": ".post_v1hr_contracts_list_response_rows_item_type",
+    "PostV1HrEmployeesAnonymizeResponse": ".post_v1hr_employees_anonymize_response",
+    "PostV1HrEmployeesAnonymizeResponseAddress": ".post_v1hr_employees_anonymize_response_address",
+    "PostV1HrEmployeesAnonymizeResponseStatus": ".post_v1hr_employees_anonymize_response_status",
     "PostV1HrEmployeesAttachmentsListResponse": ".post_v1hr_employees_attachments_list_response",
     "PostV1HrEmployeesAttachmentsListResponseRowsItem": ".post_v1hr_employees_attachments_list_response_rows_item",
     "PostV1HrEmployeesCreateRequestAddress": ".post_v1hr_employees_create_request_address",
     "PostV1HrEmployeesCreateResponse": ".post_v1hr_employees_create_response",
     "PostV1HrEmployeesCreateResponseAddress": ".post_v1hr_employees_create_response_address",
     "PostV1HrEmployeesCreateResponseStatus": ".post_v1hr_employees_create_response_status",
+    "PostV1HrEmployeesDeleteResponse": ".post_v1hr_employees_delete_response",
     "PostV1HrEmployeesGetResponse": ".post_v1hr_employees_get_response",
     "PostV1HrEmployeesGetResponseAddress": ".post_v1hr_employees_get_response_address",
     "PostV1HrEmployeesGetResponseStatus": ".post_v1hr_employees_get_response_status",
@@ -289,12 +297,16 @@ __all__ = [
     "PostV1HrContractsListResponseRowsItemSalaryType",
     "PostV1HrContractsListResponseRowsItemStatus",
     "PostV1HrContractsListResponseRowsItemType",
+    "PostV1HrEmployeesAnonymizeResponse",
+    "PostV1HrEmployeesAnonymizeResponseAddress",
+    "PostV1HrEmployeesAnonymizeResponseStatus",
     "PostV1HrEmployeesAttachmentsListResponse",
     "PostV1HrEmployeesAttachmentsListResponseRowsItem",
     "PostV1HrEmployeesCreateRequestAddress",
     "PostV1HrEmployeesCreateResponse",
     "PostV1HrEmployeesCreateResponseAddress",
     "PostV1HrEmployeesCreateResponseStatus",
+    "PostV1HrEmployeesDeleteResponse",
     "PostV1HrEmployeesGetResponse",
     "PostV1HrEmployeesGetResponseAddress",
     "PostV1HrEmployeesGetResponseStatus",

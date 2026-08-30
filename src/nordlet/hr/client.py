@@ -12,9 +12,11 @@ from .types.post_v1hr_contracts_end_response import PostV1HrContractsEndResponse
 from .types.post_v1hr_contracts_list_request_filter_item import PostV1HrContractsListRequestFilterItem
 from .types.post_v1hr_contracts_list_request_sort_item import PostV1HrContractsListRequestSortItem
 from .types.post_v1hr_contracts_list_response import PostV1HrContractsListResponse
+from .types.post_v1hr_employees_anonymize_response import PostV1HrEmployeesAnonymizeResponse
 from .types.post_v1hr_employees_attachments_list_response import PostV1HrEmployeesAttachmentsListResponse
 from .types.post_v1hr_employees_create_request_address import PostV1HrEmployeesCreateRequestAddress
 from .types.post_v1hr_employees_create_response import PostV1HrEmployeesCreateResponse
+from .types.post_v1hr_employees_delete_response import PostV1HrEmployeesDeleteResponse
 from .types.post_v1hr_employees_get_response import PostV1HrEmployeesGetResponse
 from .types.post_v1hr_employees_list_request_filter_item import PostV1HrEmployeesListRequestFilterItem
 from .types.post_v1hr_employees_list_request_sort_item import PostV1HrEmployeesListRequestSortItem
@@ -476,6 +478,70 @@ class HrClient:
         """
         _response = self._raw_client.post_v1hr_employees_list(
             page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+        )
+        return _response.data
+
+    def post_v1hr_employees_delete(
+        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1HrEmployeesDeleteResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1HrEmployeesDeleteResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.hr.post_v1hr_employees_delete(
+            id="id",
+        )
+        """
+        _response = self._raw_client.post_v1hr_employees_delete(id=id, request_options=request_options)
+        return _response.data
+
+    def blank_an_employees_personal_data_and_hide_the_record(
+        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1HrEmployeesAnonymizeResponse:
+        """
+        Replaces the name with a placeholder and removes personal code, birth date, contact details, address, bank account, social-insurance number, notes and sick-leave reasons. Payroll and contract rows stay linked to the record for the statutory retention period.
+
+        Parameters
+        ----------
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1HrEmployeesAnonymizeResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.hr.blank_an_employees_personal_data_and_hide_the_record(
+            id="id",
+        )
+        """
+        _response = self._raw_client.blank_an_employees_personal_data_and_hide_the_record(
+            id=id, request_options=request_options
         )
         return _response.data
 
@@ -1743,6 +1809,86 @@ class AsyncHrClient:
         """
         _response = await self._raw_client.post_v1hr_employees_list(
             page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+        )
+        return _response.data
+
+    async def post_v1hr_employees_delete(
+        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1HrEmployeesDeleteResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1HrEmployeesDeleteResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.hr.post_v1hr_employees_delete(
+                id="id",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1hr_employees_delete(id=id, request_options=request_options)
+        return _response.data
+
+    async def blank_an_employees_personal_data_and_hide_the_record(
+        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1HrEmployeesAnonymizeResponse:
+        """
+        Replaces the name with a placeholder and removes personal code, birth date, contact details, address, bank account, social-insurance number, notes and sick-leave reasons. Payroll and contract rows stay linked to the record for the statutory retention period.
+
+        Parameters
+        ----------
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1HrEmployeesAnonymizeResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.hr.blank_an_employees_personal_data_and_hide_the_record(
+                id="id",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.blank_an_employees_personal_data_and_hide_the_record(
+            id=id, request_options=request_options
         )
         return _response.data
 

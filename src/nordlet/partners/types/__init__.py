@@ -23,6 +23,7 @@ if typing.TYPE_CHECKING:
     from .post_v1partners_addresses_list_response_rows_item import PostV1PartnersAddressesListResponseRowsItem
     from .post_v1partners_addresses_update_request_type import PostV1PartnersAddressesUpdateRequestType
     from .post_v1partners_addresses_update_response import PostV1PartnersAddressesUpdateResponse
+    from .post_v1partners_anonymize_response import PostV1PartnersAnonymizeResponse
     from .post_v1partners_bank_accounts_create_response import PostV1PartnersBankAccountsCreateResponse
     from .post_v1partners_bank_accounts_delete_response import PostV1PartnersBankAccountsDeleteResponse
     from .post_v1partners_bank_accounts_list_request_filter_item import PostV1PartnersBankAccountsListRequestFilterItem
@@ -171,6 +172,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "PostV1PartnersAddressesListResponseRowsItem": ".post_v1partners_addresses_list_response_rows_item",
     "PostV1PartnersAddressesUpdateRequestType": ".post_v1partners_addresses_update_request_type",
     "PostV1PartnersAddressesUpdateResponse": ".post_v1partners_addresses_update_response",
+    "PostV1PartnersAnonymizeResponse": ".post_v1partners_anonymize_response",
     "PostV1PartnersBankAccountsCreateResponse": ".post_v1partners_bank_accounts_create_response",
     "PostV1PartnersBankAccountsDeleteResponse": ".post_v1partners_bank_accounts_delete_response",
     "PostV1PartnersBankAccountsListRequestFilterItem": ".post_v1partners_bank_accounts_list_request_filter_item",
@@ -307,6 +309,7 @@ __all__ = [
     "PostV1PartnersAddressesListResponseRowsItem",
     "PostV1PartnersAddressesUpdateRequestType",
     "PostV1PartnersAddressesUpdateResponse",
+    "PostV1PartnersAnonymizeResponse",
     "PostV1PartnersBankAccountsCreateResponse",
     "PostV1PartnersBankAccountsDeleteResponse",
     "PostV1PartnersBankAccountsListRequestFilterItem",

@@ -19,6 +19,11 @@ from .types.post_v1account_companies_select_response import PostV1AccountCompani
 from .types.post_v1account_companies_update_request_address import PostV1AccountCompaniesUpdateRequestAddress
 from .types.post_v1account_companies_update_request_logo import PostV1AccountCompaniesUpdateRequestLogo
 from .types.post_v1account_companies_update_response import PostV1AccountCompaniesUpdateResponse
+from .types.post_v1account_consent_accept_response import PostV1AccountConsentAcceptResponse
+from .types.post_v1account_delete_response import PostV1AccountDeleteResponse
+from .types.post_v1account_email_change_request_request_locale import PostV1AccountEmailChangeRequestRequestLocale
+from .types.post_v1account_email_change_request_response import PostV1AccountEmailChangeRequestResponse
+from .types.post_v1account_export_response import PostV1AccountExportResponse
 from .types.post_v1account_invites_accept_request_locale import PostV1AccountInvitesAcceptRequestLocale
 from .types.post_v1account_invites_accept_response import PostV1AccountInvitesAcceptResponse
 from .types.post_v1account_invites_create_request_locale import PostV1AccountInvitesCreateRequestLocale
@@ -38,6 +43,10 @@ from .types.post_v1account_members_list_response import PostV1AccountMembersList
 from .types.post_v1account_members_remove_response import PostV1AccountMembersRemoveResponse
 from .types.post_v1account_members_set_role_request_role import PostV1AccountMembersSetRoleRequestRole
 from .types.post_v1account_members_set_role_response import PostV1AccountMembersSetRoleResponse
+from .types.post_v1account_profile_update_response import PostV1AccountProfileUpdateResponse
+from .types.post_v1account_sessions_list_response import PostV1AccountSessionsListResponse
+from .types.post_v1account_sessions_revoke_others_response import PostV1AccountSessionsRevokeOthersResponse
+from .types.post_v1account_sessions_revoke_response import PostV1AccountSessionsRevokeResponse
 
 # this is used as the default value for optional parameters
 OMIT = typing.cast(typing.Any, ...)
@@ -63,6 +72,8 @@ class AccountClient:
         *,
         email: str,
         locale: typing.Optional[PostV1AccountLoginLinkRequestRequestLocale] = OMIT,
+        accept_terms: typing.Optional[bool] = OMIT,
+        accept_dpa: typing.Optional[bool] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1AccountLoginLinkRequestResponse:
         """
@@ -71,6 +82,10 @@ class AccountClient:
         email : str
 
         locale : typing.Optional[PostV1AccountLoginLinkRequestRequestLocale]
+
+        accept_terms : typing.Optional[bool]
+
+        accept_dpa : typing.Optional[bool]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -92,7 +107,11 @@ class AccountClient:
         )
         """
         _response = self._raw_client.post_v1account_login_link_request(
-            email=email, locale=locale, request_options=request_options
+            email=email,
+            locale=locale,
+            accept_terms=accept_terms,
+            accept_dpa=accept_dpa,
+            request_options=request_options,
         )
         return _response.data
 
@@ -405,6 +424,8 @@ class AccountClient:
         token: str,
         name: typing.Optional[str] = OMIT,
         locale: typing.Optional[PostV1AccountInvitesAcceptRequestLocale] = OMIT,
+        accept_terms: typing.Optional[bool] = OMIT,
+        accept_dpa: typing.Optional[bool] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1AccountInvitesAcceptResponse:
         """
@@ -415,6 +436,10 @@ class AccountClient:
         name : typing.Optional[str]
 
         locale : typing.Optional[PostV1AccountInvitesAcceptRequestLocale]
+
+        accept_terms : typing.Optional[bool]
+
+        accept_dpa : typing.Optional[bool]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -436,7 +461,12 @@ class AccountClient:
         )
         """
         _response = self._raw_client.post_v1account_invites_accept(
-            token=token, name=name, locale=locale, request_options=request_options
+            token=token,
+            name=name,
+            locale=locale,
+            accept_terms=accept_terms,
+            accept_dpa=accept_dpa,
+            request_options=request_options,
         )
         return _response.data
 
@@ -898,6 +928,251 @@ class AccountClient:
         _response = self._raw_client.post_v1account_api_keys_revoke(id=id, request_options=request_options)
         return _response.data
 
+    def post_v1account_consent_accept(
+        self, *, accept_terms: bool, accept_dpa: bool, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1AccountConsentAcceptResponse:
+        """
+        Parameters
+        ----------
+        accept_terms : bool
+
+        accept_dpa : bool
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1AccountConsentAcceptResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.account.post_v1account_consent_accept(
+            accept_terms=True,
+            accept_dpa=True,
+        )
+        """
+        _response = self._raw_client.post_v1account_consent_accept(
+            accept_terms=accept_terms, accept_dpa=accept_dpa, request_options=request_options
+        )
+        return _response.data
+
+    def post_v1account_profile_update(
+        self, *, name: typing.Optional[str] = OMIT, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1AccountProfileUpdateResponse:
+        """
+        Parameters
+        ----------
+        name : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1AccountProfileUpdateResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.account.post_v1account_profile_update()
+        """
+        _response = self._raw_client.post_v1account_profile_update(name=name, request_options=request_options)
+        return _response.data
+
+    def post_v1account_email_change_request(
+        self,
+        *,
+        new_email: str,
+        locale: typing.Optional[PostV1AccountEmailChangeRequestRequestLocale] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1AccountEmailChangeRequestResponse:
+        """
+        Parameters
+        ----------
+        new_email : str
+
+        locale : typing.Optional[PostV1AccountEmailChangeRequestRequestLocale]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1AccountEmailChangeRequestResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.account.post_v1account_email_change_request(
+            new_email="newEmail",
+        )
+        """
+        _response = self._raw_client.post_v1account_email_change_request(
+            new_email=new_email, locale=locale, request_options=request_options
+        )
+        return _response.data
+
+    def post_v1account_sessions_list(
+        self, *, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1AccountSessionsListResponse:
+        """
+        Parameters
+        ----------
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1AccountSessionsListResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.account.post_v1account_sessions_list()
+        """
+        _response = self._raw_client.post_v1account_sessions_list(request_options=request_options)
+        return _response.data
+
+    def post_v1account_sessions_revoke(
+        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1AccountSessionsRevokeResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1AccountSessionsRevokeResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.account.post_v1account_sessions_revoke(
+            id="id",
+        )
+        """
+        _response = self._raw_client.post_v1account_sessions_revoke(id=id, request_options=request_options)
+        return _response.data
+
+    def post_v1account_sessions_revoke_others(
+        self, *, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1AccountSessionsRevokeOthersResponse:
+        """
+        Parameters
+        ----------
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1AccountSessionsRevokeOthersResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.account.post_v1account_sessions_revoke_others()
+        """
+        _response = self._raw_client.post_v1account_sessions_revoke_others(request_options=request_options)
+        return _response.data
+
+    def download_everything_nordlet_stores_about_the_signed_in_user(
+        self, *, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1AccountExportResponse:
+        """
+        Parameters
+        ----------
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1AccountExportResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.account.download_everything_nordlet_stores_about_the_signed_in_user()
+        """
+        _response = self._raw_client.download_everything_nordlet_stores_about_the_signed_in_user(
+            request_options=request_options
+        )
+        return _response.data
+
+    def delete_the_signed_in_user_account(
+        self, *, confirm_email: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1AccountDeleteResponse:
+        """
+        Removes the user: sessions, sign-in links, memberships and pending invitations are deleted at once; the email and name are replaced by an anonymous placeholder immediately and the remaining row is removed after 30 days. Refused while the user still owns or pays for a company that is not deleted.
+
+        Parameters
+        ----------
+        confirm_email : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1AccountDeleteResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.account.delete_the_signed_in_user_account(
+            confirm_email="confirmEmail",
+        )
+        """
+        _response = self._raw_client.delete_the_signed_in_user_account(
+            confirm_email=confirm_email, request_options=request_options
+        )
+        return _response.data
+
 
 class AsyncAccountClient:
     def __init__(self, *, client_wrapper: AsyncClientWrapper):
@@ -919,6 +1194,8 @@ class AsyncAccountClient:
         *,
         email: str,
         locale: typing.Optional[PostV1AccountLoginLinkRequestRequestLocale] = OMIT,
+        accept_terms: typing.Optional[bool] = OMIT,
+        accept_dpa: typing.Optional[bool] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1AccountLoginLinkRequestResponse:
         """
@@ -927,6 +1204,10 @@ class AsyncAccountClient:
         email : str
 
         locale : typing.Optional[PostV1AccountLoginLinkRequestRequestLocale]
+
+        accept_terms : typing.Optional[bool]
+
+        accept_dpa : typing.Optional[bool]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -956,7 +1237,11 @@ class AsyncAccountClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.post_v1account_login_link_request(
-            email=email, locale=locale, request_options=request_options
+            email=email,
+            locale=locale,
+            accept_terms=accept_terms,
+            accept_dpa=accept_dpa,
+            request_options=request_options,
         )
         return _response.data
 
@@ -1355,6 +1640,8 @@ class AsyncAccountClient:
         token: str,
         name: typing.Optional[str] = OMIT,
         locale: typing.Optional[PostV1AccountInvitesAcceptRequestLocale] = OMIT,
+        accept_terms: typing.Optional[bool] = OMIT,
+        accept_dpa: typing.Optional[bool] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1AccountInvitesAcceptResponse:
         """
@@ -1365,6 +1652,10 @@ class AsyncAccountClient:
         name : typing.Optional[str]
 
         locale : typing.Optional[PostV1AccountInvitesAcceptRequestLocale]
+
+        accept_terms : typing.Optional[bool]
+
+        accept_dpa : typing.Optional[bool]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -1394,7 +1685,12 @@ class AsyncAccountClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.post_v1account_invites_accept(
-            token=token, name=name, locale=locale, request_options=request_options
+            token=token,
+            name=name,
+            locale=locale,
+            accept_terms=accept_terms,
+            accept_dpa=accept_dpa,
+            request_options=request_options,
         )
         return _response.data
 
@@ -1942,4 +2238,313 @@ class AsyncAccountClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.post_v1account_api_keys_revoke(id=id, request_options=request_options)
+        return _response.data
+
+    async def post_v1account_consent_accept(
+        self, *, accept_terms: bool, accept_dpa: bool, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1AccountConsentAcceptResponse:
+        """
+        Parameters
+        ----------
+        accept_terms : bool
+
+        accept_dpa : bool
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1AccountConsentAcceptResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.account.post_v1account_consent_accept(
+                accept_terms=True,
+                accept_dpa=True,
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1account_consent_accept(
+            accept_terms=accept_terms, accept_dpa=accept_dpa, request_options=request_options
+        )
+        return _response.data
+
+    async def post_v1account_profile_update(
+        self, *, name: typing.Optional[str] = OMIT, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1AccountProfileUpdateResponse:
+        """
+        Parameters
+        ----------
+        name : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1AccountProfileUpdateResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.account.post_v1account_profile_update()
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1account_profile_update(name=name, request_options=request_options)
+        return _response.data
+
+    async def post_v1account_email_change_request(
+        self,
+        *,
+        new_email: str,
+        locale: typing.Optional[PostV1AccountEmailChangeRequestRequestLocale] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1AccountEmailChangeRequestResponse:
+        """
+        Parameters
+        ----------
+        new_email : str
+
+        locale : typing.Optional[PostV1AccountEmailChangeRequestRequestLocale]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1AccountEmailChangeRequestResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.account.post_v1account_email_change_request(
+                new_email="newEmail",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1account_email_change_request(
+            new_email=new_email, locale=locale, request_options=request_options
+        )
+        return _response.data
+
+    async def post_v1account_sessions_list(
+        self, *, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1AccountSessionsListResponse:
+        """
+        Parameters
+        ----------
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1AccountSessionsListResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.account.post_v1account_sessions_list()
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1account_sessions_list(request_options=request_options)
+        return _response.data
+
+    async def post_v1account_sessions_revoke(
+        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1AccountSessionsRevokeResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1AccountSessionsRevokeResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.account.post_v1account_sessions_revoke(
+                id="id",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1account_sessions_revoke(id=id, request_options=request_options)
+        return _response.data
+
+    async def post_v1account_sessions_revoke_others(
+        self, *, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1AccountSessionsRevokeOthersResponse:
+        """
+        Parameters
+        ----------
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1AccountSessionsRevokeOthersResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.account.post_v1account_sessions_revoke_others()
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1account_sessions_revoke_others(request_options=request_options)
+        return _response.data
+
+    async def download_everything_nordlet_stores_about_the_signed_in_user(
+        self, *, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1AccountExportResponse:
+        """
+        Parameters
+        ----------
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1AccountExportResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.account.download_everything_nordlet_stores_about_the_signed_in_user()
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.download_everything_nordlet_stores_about_the_signed_in_user(
+            request_options=request_options
+        )
+        return _response.data
+
+    async def delete_the_signed_in_user_account(
+        self, *, confirm_email: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1AccountDeleteResponse:
+        """
+        Removes the user: sessions, sign-in links, memberships and pending invitations are deleted at once; the email and name are replaced by an anonymous placeholder immediately and the remaining row is removed after 30 days. Refused while the user still owns or pays for a company that is not deleted.
+
+        Parameters
+        ----------
+        confirm_email : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1AccountDeleteResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.account.delete_the_signed_in_user_account(
+                confirm_email="confirmEmail",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.delete_the_signed_in_user_account(
+            confirm_email=confirm_email, request_options=request_options
+        )
         return _response.data
