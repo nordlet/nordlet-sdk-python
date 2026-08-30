@@ -14265,6 +14265,329 @@ client.ledger.post_v1ledger_journal_transactions_create(
 </dl>
 </details>
 
+## Migration
+<details><summary><code>client.migration.<a href="src/nordlet/migration/client.py">check_a_historical_books_package_without_writing_anything</a>(...) -> PostV1MigrationBooksValidateResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Runs every check the import runs (accounts, partners, balances, open invoices, assets, stock) and returns the same summary and warnings, then rolls everything back. Nothing is stored.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.migration.check_a_historical_books_package_without_writing_anything(
+    cutover_date="cutoverDate",
+)
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**cutover_date:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**source:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**accounts:** `typing.Optional[typing.List[PostV1MigrationBooksValidateRequestAccountsItem]]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**partners:** `typing.Optional[typing.List[PostV1MigrationBooksValidateRequestPartnersItem]]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**items:** `typing.Optional[typing.List[PostV1MigrationBooksValidateRequestItemsItem]]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**opening_balances:** `typing.Optional[PostV1MigrationBooksValidateRequestOpeningBalances]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**journal:** `typing.Optional[typing.List[PostV1MigrationBooksValidateRequestJournalItem]]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**open_receivables:** `typing.Optional[typing.List[PostV1MigrationBooksValidateRequestOpenReceivablesItem]]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**open_payables:** `typing.Optional[typing.List[PostV1MigrationBooksValidateRequestOpenPayablesItem]]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**asset_groups:** `typing.Optional[typing.List[PostV1MigrationBooksValidateRequestAssetGroupsItem]]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**fixed_assets:** `typing.Optional[typing.List[PostV1MigrationBooksValidateRequestFixedAssetsItem]]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**stock:** `typing.Optional[typing.List[PostV1MigrationBooksValidateRequestStockItem]]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.migration.<a href="src/nordlet/migration/client.py">import_historical_books_from_a_previous_accounting_system</a>(...) -> PostV1MigrationBooksImportResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Brings a company over from another system in one call: chart of accounts, partners, items, opening balances (or the full journal history), open customer and supplier invoices, fixed assets with their accumulated depreciation, and stock on hand. The whole package is written in one database transaction — if any row fails, nothing is stored.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.migration.import_historical_books_from_a_previous_accounting_system(
+    cutover_date="cutoverDate",
+)
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**cutover_date:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**source:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**accounts:** `typing.Optional[typing.List[PostV1MigrationBooksImportRequestAccountsItem]]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**partners:** `typing.Optional[typing.List[PostV1MigrationBooksImportRequestPartnersItem]]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**items:** `typing.Optional[typing.List[PostV1MigrationBooksImportRequestItemsItem]]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**opening_balances:** `typing.Optional[PostV1MigrationBooksImportRequestOpeningBalances]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**journal:** `typing.Optional[typing.List[PostV1MigrationBooksImportRequestJournalItem]]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**open_receivables:** `typing.Optional[typing.List[PostV1MigrationBooksImportRequestOpenReceivablesItem]]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**open_payables:** `typing.Optional[typing.List[PostV1MigrationBooksImportRequestOpenPayablesItem]]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**asset_groups:** `typing.Optional[typing.List[PostV1MigrationBooksImportRequestAssetGroupsItem]]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**fixed_assets:** `typing.Optional[typing.List[PostV1MigrationBooksImportRequestFixedAssetsItem]]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**stock:** `typing.Optional[typing.List[PostV1MigrationBooksImportRequestStockItem]]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Assets
 <details><summary><code>client.assets.<a href="src/nordlet/assets/client.py">post_v1assets_groups_create</a>(...) -> PostV1AssetsGroupsCreateResponse</code></summary>
 <dl>

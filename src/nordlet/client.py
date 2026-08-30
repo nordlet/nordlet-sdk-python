@@ -27,6 +27,7 @@ if typing.TYPE_CHECKING:
     from .hr.client import AsyncHrClient, HrClient
     from .inventory.client import AsyncInventoryClient, InventoryClient
     from .ledger.client import AsyncLedgerClient, LedgerClient
+    from .migration.client import AsyncMigrationClient, MigrationClient
     from .partners.client import AsyncPartnersClient, PartnersClient
     from .payroll.client import AsyncPayrollClient, PayrollClient
     from .pos.client import AsyncPosClient, PosClient
@@ -133,6 +134,7 @@ class Nordlet:
         self._capture: typing.Optional[CaptureClient] = None
         self._declarations: typing.Optional[DeclarationsClient] = None
         self._ledger: typing.Optional[LedgerClient] = None
+        self._migration: typing.Optional[MigrationClient] = None
         self._assets: typing.Optional[AssetsClient] = None
         self._hr: typing.Optional[HrClient] = None
         self._fleet: typing.Optional[FleetClient] = None
@@ -218,6 +220,14 @@ class Nordlet:
 
             self._ledger = LedgerClient(client_wrapper=self._client_wrapper)
         return self._ledger
+
+    @property
+    def migration(self):
+        if self._migration is None:
+            from .migration.client import MigrationClient  # noqa: E402
+
+            self._migration = MigrationClient(client_wrapper=self._client_wrapper)
+        return self._migration
 
     @property
     def assets(self):
@@ -501,6 +511,7 @@ class AsyncNordlet:
         self._capture: typing.Optional[AsyncCaptureClient] = None
         self._declarations: typing.Optional[AsyncDeclarationsClient] = None
         self._ledger: typing.Optional[AsyncLedgerClient] = None
+        self._migration: typing.Optional[AsyncMigrationClient] = None
         self._assets: typing.Optional[AsyncAssetsClient] = None
         self._hr: typing.Optional[AsyncHrClient] = None
         self._fleet: typing.Optional[AsyncFleetClient] = None
@@ -586,6 +597,14 @@ class AsyncNordlet:
 
             self._ledger = AsyncLedgerClient(client_wrapper=self._client_wrapper)
         return self._ledger
+
+    @property
+    def migration(self):
+        if self._migration is None:
+            from .migration.client import AsyncMigrationClient  # noqa: E402
+
+            self._migration = AsyncMigrationClient(client_wrapper=self._client_wrapper)
+        return self._migration
 
     @property
     def assets(self):
