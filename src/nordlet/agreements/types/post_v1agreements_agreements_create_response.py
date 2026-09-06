@@ -10,6 +10,7 @@ from .post_v1agreements_agreements_create_response_billing_period import (
     PostV1AgreementsAgreementsCreateResponseBillingPeriod,
 )
 from .post_v1agreements_agreements_create_response_items_item import PostV1AgreementsAgreementsCreateResponseItemsItem
+from .post_v1agreements_agreements_create_response_kind import PostV1AgreementsAgreementsCreateResponseKind
 from .post_v1agreements_agreements_create_response_status import PostV1AgreementsAgreementsCreateResponseStatus
 
 
@@ -18,7 +19,16 @@ class PostV1AgreementsAgreementsCreateResponse(UniversalBaseModel):
     type_id: typing_extensions.Annotated[
         typing.Optional[str], FieldMetadata(alias="typeId"), pydantic.Field(alias="typeId")
     ] = None
-    partner_id: typing_extensions.Annotated[str, FieldMetadata(alias="partnerId"), pydantic.Field(alias="partnerId")]
+    kind: PostV1AgreementsAgreementsCreateResponseKind
+    partner_id: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="partnerId"), pydantic.Field(alias="partnerId")
+    ] = None
+    employee_id: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="employeeId"), pydantic.Field(alias="employeeId")
+    ] = None
+    bank_account_id: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="bankAccountId"), pydantic.Field(alias="bankAccountId")
+    ] = None
     number: str
     name: typing.Optional[str] = None
     start_date: typing_extensions.Annotated[str, FieldMetadata(alias="startDate"), pydantic.Field(alias="startDate")]
@@ -35,6 +45,9 @@ class PostV1AgreementsAgreementsCreateResponse(UniversalBaseModel):
     currency: str
     status: PostV1AgreementsAgreementsCreateResponseStatus
     notes: typing.Optional[str] = None
+    document_ref: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="documentRef"), pydantic.Field(alias="documentRef")
+    ] = None
     created_at: typing_extensions.Annotated[str, FieldMetadata(alias="createdAt"), pydantic.Field(alias="createdAt")]
     items: typing.List[PostV1AgreementsAgreementsCreateResponseItemsItem]
 

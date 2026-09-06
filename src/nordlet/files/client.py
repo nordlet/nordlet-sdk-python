@@ -35,10 +35,10 @@ class FilesClient:
         self,
         *,
         entity: str,
-        entity_id: str,
         file_name: str,
         mime_type: str,
         content: str,
+        entity_id: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1FilesUploadResponse:
         """
@@ -46,14 +46,14 @@ class FilesClient:
         ----------
         entity : str
 
-        entity_id : str
-
         file_name : str
 
         mime_type : str
 
         content : str
             Base64-encoded file content
+
+        entity_id : typing.Optional[str]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -72,7 +72,6 @@ class FilesClient:
         )
         client.files.post_v1files_upload(
             entity="entity",
-            entity_id="entityId",
             file_name="fileName",
             mime_type="mimeType",
             content="content",
@@ -80,10 +79,10 @@ class FilesClient:
         """
         _response = self._raw_client.post_v1files_upload(
             entity=entity,
-            entity_id=entity_id,
             file_name=file_name,
             mime_type=mime_type,
             content=content,
+            entity_id=entity_id,
             request_options=request_options,
         )
         return _response.data
@@ -210,10 +209,10 @@ class AsyncFilesClient:
         self,
         *,
         entity: str,
-        entity_id: str,
         file_name: str,
         mime_type: str,
         content: str,
+        entity_id: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1FilesUploadResponse:
         """
@@ -221,14 +220,14 @@ class AsyncFilesClient:
         ----------
         entity : str
 
-        entity_id : str
-
         file_name : str
 
         mime_type : str
 
         content : str
             Base64-encoded file content
+
+        entity_id : typing.Optional[str]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -252,7 +251,6 @@ class AsyncFilesClient:
         async def main() -> None:
             await client.files.post_v1files_upload(
                 entity="entity",
-                entity_id="entityId",
                 file_name="fileName",
                 mime_type="mimeType",
                 content="content",
@@ -263,10 +261,10 @@ class AsyncFilesClient:
         """
         _response = await self._raw_client.post_v1files_upload(
             entity=entity,
-            entity_id=entity_id,
             file_name=file_name,
             mime_type=mime_type,
             content=content,
+            entity_id=entity_id,
             request_options=request_options,
         )
         return _response.data

@@ -15,6 +15,7 @@ from .types.post_v1hr_contracts_list_response import PostV1HrContractsListRespon
 from .types.post_v1hr_employees_anonymize_response import PostV1HrEmployeesAnonymizeResponse
 from .types.post_v1hr_employees_attachments_list_response import PostV1HrEmployeesAttachmentsListResponse
 from .types.post_v1hr_employees_create_request_address import PostV1HrEmployeesCreateRequestAddress
+from .types.post_v1hr_employees_create_request_attributes_item import PostV1HrEmployeesCreateRequestAttributesItem
 from .types.post_v1hr_employees_create_response import PostV1HrEmployeesCreateResponse
 from .types.post_v1hr_employees_delete_response import PostV1HrEmployeesDeleteResponse
 from .types.post_v1hr_employees_get_response import PostV1HrEmployeesGetResponse
@@ -30,6 +31,7 @@ from .types.post_v1hr_employees_records_list_response import PostV1HrEmployeesRe
 from .types.post_v1hr_employees_records_update_request_type import PostV1HrEmployeesRecordsUpdateRequestType
 from .types.post_v1hr_employees_records_update_response import PostV1HrEmployeesRecordsUpdateResponse
 from .types.post_v1hr_employees_update_request_address import PostV1HrEmployeesUpdateRequestAddress
+from .types.post_v1hr_employees_update_request_attributes_item import PostV1HrEmployeesUpdateRequestAttributesItem
 from .types.post_v1hr_employees_update_request_status import PostV1HrEmployeesUpdateRequestStatus
 from .types.post_v1hr_employees_update_response import PostV1HrEmployeesUpdateResponse
 from .types.post_v1hr_incapacity_certificates_create_response import PostV1HrIncapacityCertificatesCreateResponse
@@ -223,6 +225,7 @@ class HrClient:
         npd_override: typing.Optional[str] = OMIT,
         pension_accumulation: typing.Optional[bool] = OMIT,
         notes: typing.Optional[str] = OMIT,
+        attributes: typing.Optional[typing.Sequence[PostV1HrEmployeesCreateRequestAttributesItem]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1HrEmployeesCreateResponse:
         """
@@ -259,6 +262,8 @@ class HrClient:
         pension_accumulation : typing.Optional[bool]
 
         notes : typing.Optional[str]
+
+        attributes : typing.Optional[typing.Sequence[PostV1HrEmployeesCreateRequestAttributesItem]]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -297,6 +302,7 @@ class HrClient:
             npd_override=npd_override,
             pension_accumulation=pension_accumulation,
             notes=notes,
+            attributes=attributes,
             request_options=request_options,
         )
         return _response.data
@@ -321,6 +327,7 @@ class HrClient:
         npd_override: typing.Optional[str] = OMIT,
         pension_accumulation: typing.Optional[bool] = OMIT,
         notes: typing.Optional[str] = OMIT,
+        attributes: typing.Optional[typing.Sequence[PostV1HrEmployeesUpdateRequestAttributesItem]] = OMIT,
         termination_date: typing.Optional[str] = OMIT,
         status: typing.Optional[PostV1HrEmployeesUpdateRequestStatus] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
@@ -361,6 +368,8 @@ class HrClient:
         pension_accumulation : typing.Optional[bool]
 
         notes : typing.Optional[str]
+
+        attributes : typing.Optional[typing.Sequence[PostV1HrEmployeesUpdateRequestAttributesItem]]
 
         termination_date : typing.Optional[str]
 
@@ -403,6 +412,7 @@ class HrClient:
             npd_override=npd_override,
             pension_accumulation=pension_accumulation,
             notes=notes,
+            attributes=attributes,
             termination_date=termination_date,
             status=status,
             request_options=request_options,
@@ -549,16 +559,17 @@ class HrClient:
         self,
         *,
         employee_id: str,
-        contract_no: str,
         start_date: str,
         base_salary: str,
         position_id: typing.Optional[str] = OMIT,
         department_id: typing.Optional[str] = OMIT,
         schedule_id: typing.Optional[str] = OMIT,
+        agreement_id: typing.Optional[str] = OMIT,
+        contract_no: typing.Optional[str] = OMIT,
         type: typing.Optional[PostV1HrContractsCreateRequestType] = OMIT,
         end_date: typing.Optional[str] = OMIT,
         salary_type: typing.Optional[PostV1HrContractsCreateRequestSalaryType] = OMIT,
-        work_hours_per_week: typing.Optional[str] = OMIT,
+        work_hours: typing.Optional[str] = OMIT,
         notes: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1HrContractsCreateResponse:
@@ -566,8 +577,6 @@ class HrClient:
         Parameters
         ----------
         employee_id : str
-
-        contract_no : str
 
         start_date : str
 
@@ -579,13 +588,17 @@ class HrClient:
 
         schedule_id : typing.Optional[str]
 
+        agreement_id : typing.Optional[str]
+
+        contract_no : typing.Optional[str]
+
         type : typing.Optional[PostV1HrContractsCreateRequestType]
 
         end_date : typing.Optional[str]
 
         salary_type : typing.Optional[PostV1HrContractsCreateRequestSalaryType]
 
-        work_hours_per_week : typing.Optional[str]
+        work_hours : typing.Optional[str]
 
         notes : typing.Optional[str]
 
@@ -606,23 +619,23 @@ class HrClient:
         )
         client.hr.post_v1hr_contracts_create(
             employee_id="employeeId",
-            contract_no="contractNo",
             start_date="startDate",
             base_salary="baseSalary",
         )
         """
         _response = self._raw_client.post_v1hr_contracts_create(
             employee_id=employee_id,
-            contract_no=contract_no,
             start_date=start_date,
             base_salary=base_salary,
             position_id=position_id,
             department_id=department_id,
             schedule_id=schedule_id,
+            agreement_id=agreement_id,
+            contract_no=contract_no,
             type=type,
             end_date=end_date,
             salary_type=salary_type,
-            work_hours_per_week=work_hours_per_week,
+            work_hours=work_hours,
             notes=notes,
             request_options=request_options,
         )
@@ -1522,6 +1535,7 @@ class AsyncHrClient:
         npd_override: typing.Optional[str] = OMIT,
         pension_accumulation: typing.Optional[bool] = OMIT,
         notes: typing.Optional[str] = OMIT,
+        attributes: typing.Optional[typing.Sequence[PostV1HrEmployeesCreateRequestAttributesItem]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1HrEmployeesCreateResponse:
         """
@@ -1558,6 +1572,8 @@ class AsyncHrClient:
         pension_accumulation : typing.Optional[bool]
 
         notes : typing.Optional[str]
+
+        attributes : typing.Optional[typing.Sequence[PostV1HrEmployeesCreateRequestAttributesItem]]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -1604,6 +1620,7 @@ class AsyncHrClient:
             npd_override=npd_override,
             pension_accumulation=pension_accumulation,
             notes=notes,
+            attributes=attributes,
             request_options=request_options,
         )
         return _response.data
@@ -1628,6 +1645,7 @@ class AsyncHrClient:
         npd_override: typing.Optional[str] = OMIT,
         pension_accumulation: typing.Optional[bool] = OMIT,
         notes: typing.Optional[str] = OMIT,
+        attributes: typing.Optional[typing.Sequence[PostV1HrEmployeesUpdateRequestAttributesItem]] = OMIT,
         termination_date: typing.Optional[str] = OMIT,
         status: typing.Optional[PostV1HrEmployeesUpdateRequestStatus] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
@@ -1668,6 +1686,8 @@ class AsyncHrClient:
         pension_accumulation : typing.Optional[bool]
 
         notes : typing.Optional[str]
+
+        attributes : typing.Optional[typing.Sequence[PostV1HrEmployeesUpdateRequestAttributesItem]]
 
         termination_date : typing.Optional[str]
 
@@ -1718,6 +1738,7 @@ class AsyncHrClient:
             npd_override=npd_override,
             pension_accumulation=pension_accumulation,
             notes=notes,
+            attributes=attributes,
             termination_date=termination_date,
             status=status,
             request_options=request_options,
@@ -1896,16 +1917,17 @@ class AsyncHrClient:
         self,
         *,
         employee_id: str,
-        contract_no: str,
         start_date: str,
         base_salary: str,
         position_id: typing.Optional[str] = OMIT,
         department_id: typing.Optional[str] = OMIT,
         schedule_id: typing.Optional[str] = OMIT,
+        agreement_id: typing.Optional[str] = OMIT,
+        contract_no: typing.Optional[str] = OMIT,
         type: typing.Optional[PostV1HrContractsCreateRequestType] = OMIT,
         end_date: typing.Optional[str] = OMIT,
         salary_type: typing.Optional[PostV1HrContractsCreateRequestSalaryType] = OMIT,
-        work_hours_per_week: typing.Optional[str] = OMIT,
+        work_hours: typing.Optional[str] = OMIT,
         notes: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1HrContractsCreateResponse:
@@ -1913,8 +1935,6 @@ class AsyncHrClient:
         Parameters
         ----------
         employee_id : str
-
-        contract_no : str
 
         start_date : str
 
@@ -1926,13 +1946,17 @@ class AsyncHrClient:
 
         schedule_id : typing.Optional[str]
 
+        agreement_id : typing.Optional[str]
+
+        contract_no : typing.Optional[str]
+
         type : typing.Optional[PostV1HrContractsCreateRequestType]
 
         end_date : typing.Optional[str]
 
         salary_type : typing.Optional[PostV1HrContractsCreateRequestSalaryType]
 
-        work_hours_per_week : typing.Optional[str]
+        work_hours : typing.Optional[str]
 
         notes : typing.Optional[str]
 
@@ -1958,7 +1982,6 @@ class AsyncHrClient:
         async def main() -> None:
             await client.hr.post_v1hr_contracts_create(
                 employee_id="employeeId",
-                contract_no="contractNo",
                 start_date="startDate",
                 base_salary="baseSalary",
             )
@@ -1968,16 +1991,17 @@ class AsyncHrClient:
         """
         _response = await self._raw_client.post_v1hr_contracts_create(
             employee_id=employee_id,
-            contract_no=contract_no,
             start_date=start_date,
             base_salary=base_salary,
             position_id=position_id,
             department_id=department_id,
             schedule_id=schedule_id,
+            agreement_id=agreement_id,
+            contract_no=contract_no,
             type=type,
             end_date=end_date,
             salary_type=salary_type,
-            work_hours_per_week=work_hours_per_week,
+            work_hours=work_hours,
             notes=notes,
             request_options=request_options,
         )

@@ -11,11 +11,14 @@ from ...core.serialization import FieldMetadata
 class PostV1FilesGetResponse(UniversalBaseModel):
     id: str
     entity: str
-    entity_id: typing_extensions.Annotated[str, FieldMetadata(alias="entityId"), pydantic.Field(alias="entityId")]
+    entity_id: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="entityId"), pydantic.Field(alias="entityId")
+    ] = None
     file_name: typing_extensions.Annotated[str, FieldMetadata(alias="fileName"), pydantic.Field(alias="fileName")]
     mime_type: typing_extensions.Annotated[str, FieldMetadata(alias="mimeType"), pydantic.Field(alias="mimeType")]
     size_bytes: typing_extensions.Annotated[int, FieldMetadata(alias="sizeBytes"), pydantic.Field(alias="sizeBytes")]
     sha256: str
+    storage_key: typing_extensions.Annotated[str, FieldMetadata(alias="storageKey"), pydantic.Field(alias="storageKey")]
     created_at: typing_extensions.Annotated[str, FieldMetadata(alias="createdAt"), pydantic.Field(alias="createdAt")]
     content: str
 

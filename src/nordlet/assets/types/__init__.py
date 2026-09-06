@@ -6,9 +6,12 @@ import typing
 from importlib import import_module
 
 if typing.TYPE_CHECKING:
+    from .post_v1assets_assets_create_request_documents_item import PostV1AssetsAssetsCreateRequestDocumentsItem
     from .post_v1assets_assets_create_response import PostV1AssetsAssetsCreateResponse
+    from .post_v1assets_assets_create_response_documents_item import PostV1AssetsAssetsCreateResponseDocumentsItem
     from .post_v1assets_assets_create_response_status import PostV1AssetsAssetsCreateResponseStatus
     from .post_v1assets_assets_get_response import PostV1AssetsAssetsGetResponse
+    from .post_v1assets_assets_get_response_documents_item import PostV1AssetsAssetsGetResponseDocumentsItem
     from .post_v1assets_assets_get_response_status import PostV1AssetsAssetsGetResponseStatus
     from .post_v1assets_assets_list_request_filter_item import PostV1AssetsAssetsListRequestFilterItem
     from .post_v1assets_assets_list_request_filter_item_op import PostV1AssetsAssetsListRequestFilterItemOp
@@ -20,8 +23,12 @@ if typing.TYPE_CHECKING:
     from .post_v1assets_assets_list_request_sort_item_dir import PostV1AssetsAssetsListRequestSortItemDir
     from .post_v1assets_assets_list_response import PostV1AssetsAssetsListResponse
     from .post_v1assets_assets_list_response_rows_item import PostV1AssetsAssetsListResponseRowsItem
+    from .post_v1assets_assets_list_response_rows_item_documents_item import (
+        PostV1AssetsAssetsListResponseRowsItemDocumentsItem,
+    )
     from .post_v1assets_assets_list_response_rows_item_status import PostV1AssetsAssetsListResponseRowsItemStatus
     from .post_v1assets_assets_modernize_response import PostV1AssetsAssetsModernizeResponse
+    from .post_v1assets_assets_modernize_response_documents_item import PostV1AssetsAssetsModernizeResponseDocumentsItem
     from .post_v1assets_assets_modernize_response_status import PostV1AssetsAssetsModernizeResponseStatus
     from .post_v1assets_depreciation_post_response import PostV1AssetsDepreciationPostResponse
     from .post_v1assets_depreciation_preview_response import PostV1AssetsDepreciationPreviewResponse
@@ -38,9 +45,12 @@ if typing.TYPE_CHECKING:
     from .post_v1assets_groups_list_response import PostV1AssetsGroupsListResponse
     from .post_v1assets_groups_list_response_rows_item import PostV1AssetsGroupsListResponseRowsItem
 _dynamic_imports: typing.Dict[str, str] = {
+    "PostV1AssetsAssetsCreateRequestDocumentsItem": ".post_v1assets_assets_create_request_documents_item",
     "PostV1AssetsAssetsCreateResponse": ".post_v1assets_assets_create_response",
+    "PostV1AssetsAssetsCreateResponseDocumentsItem": ".post_v1assets_assets_create_response_documents_item",
     "PostV1AssetsAssetsCreateResponseStatus": ".post_v1assets_assets_create_response_status",
     "PostV1AssetsAssetsGetResponse": ".post_v1assets_assets_get_response",
+    "PostV1AssetsAssetsGetResponseDocumentsItem": ".post_v1assets_assets_get_response_documents_item",
     "PostV1AssetsAssetsGetResponseStatus": ".post_v1assets_assets_get_response_status",
     "PostV1AssetsAssetsListRequestFilterItem": ".post_v1assets_assets_list_request_filter_item",
     "PostV1AssetsAssetsListRequestFilterItemOp": ".post_v1assets_assets_list_request_filter_item_op",
@@ -50,8 +60,10 @@ _dynamic_imports: typing.Dict[str, str] = {
     "PostV1AssetsAssetsListRequestSortItemDir": ".post_v1assets_assets_list_request_sort_item_dir",
     "PostV1AssetsAssetsListResponse": ".post_v1assets_assets_list_response",
     "PostV1AssetsAssetsListResponseRowsItem": ".post_v1assets_assets_list_response_rows_item",
+    "PostV1AssetsAssetsListResponseRowsItemDocumentsItem": ".post_v1assets_assets_list_response_rows_item_documents_item",
     "PostV1AssetsAssetsListResponseRowsItemStatus": ".post_v1assets_assets_list_response_rows_item_status",
     "PostV1AssetsAssetsModernizeResponse": ".post_v1assets_assets_modernize_response",
+    "PostV1AssetsAssetsModernizeResponseDocumentsItem": ".post_v1assets_assets_modernize_response_documents_item",
     "PostV1AssetsAssetsModernizeResponseStatus": ".post_v1assets_assets_modernize_response_status",
     "PostV1AssetsDepreciationPostResponse": ".post_v1assets_depreciation_post_response",
     "PostV1AssetsDepreciationPreviewResponse": ".post_v1assets_depreciation_preview_response",
@@ -90,9 +102,12 @@ def __dir__():
 
 
 __all__ = [
+    "PostV1AssetsAssetsCreateRequestDocumentsItem",
     "PostV1AssetsAssetsCreateResponse",
+    "PostV1AssetsAssetsCreateResponseDocumentsItem",
     "PostV1AssetsAssetsCreateResponseStatus",
     "PostV1AssetsAssetsGetResponse",
+    "PostV1AssetsAssetsGetResponseDocumentsItem",
     "PostV1AssetsAssetsGetResponseStatus",
     "PostV1AssetsAssetsListRequestFilterItem",
     "PostV1AssetsAssetsListRequestFilterItemOp",
@@ -102,8 +117,10 @@ __all__ = [
     "PostV1AssetsAssetsListRequestSortItemDir",
     "PostV1AssetsAssetsListResponse",
     "PostV1AssetsAssetsListResponseRowsItem",
+    "PostV1AssetsAssetsListResponseRowsItemDocumentsItem",
     "PostV1AssetsAssetsListResponseRowsItemStatus",
     "PostV1AssetsAssetsModernizeResponse",
+    "PostV1AssetsAssetsModernizeResponseDocumentsItem",
     "PostV1AssetsAssetsModernizeResponseStatus",
     "PostV1AssetsDepreciationPostResponse",
     "PostV1AssetsDepreciationPreviewResponse",

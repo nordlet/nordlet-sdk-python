@@ -74,6 +74,7 @@ class RawPurchasesClient:
         credited_invoice_id: typing.Optional[str] = OMIT,
         purchase_order_id: typing.Optional[str] = OMIT,
         notes: typing.Optional[str] = OMIT,
+        document_ref: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[PostV1PurchasesInvoicesCreateResponse]:
         """
@@ -99,6 +100,8 @@ class RawPurchasesClient:
 
         notes : typing.Optional[str]
 
+        document_ref : typing.Optional[str]
+
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
@@ -120,6 +123,7 @@ class RawPurchasesClient:
                 "creditedInvoiceId": credited_invoice_id,
                 "purchaseOrderId": purchase_order_id,
                 "notes": notes,
+                "documentRef": document_ref,
                 "lines": convert_and_respect_annotation_metadata(
                     object_=lines,
                     annotation=typing.Sequence[PostV1PurchasesInvoicesCreateRequestLinesItem],
@@ -998,6 +1002,7 @@ class RawPurchasesClient:
         warehouse_id: typing.Optional[str] = OMIT,
         currency: typing.Optional[str] = OMIT,
         notes: typing.Optional[str] = OMIT,
+        document_ref: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[PostV1PurchasesOrdersCreateResponse]:
         """
@@ -1019,6 +1024,8 @@ class RawPurchasesClient:
 
         notes : typing.Optional[str]
 
+        document_ref : typing.Optional[str]
+
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
@@ -1038,6 +1045,7 @@ class RawPurchasesClient:
                 "warehouseId": warehouse_id,
                 "currency": currency,
                 "notes": notes,
+                "documentRef": document_ref,
                 "lines": convert_and_respect_annotation_metadata(
                     object_=lines,
                     annotation=typing.Sequence[PostV1PurchasesOrdersCreateRequestLinesItem],
@@ -3056,6 +3064,7 @@ class AsyncRawPurchasesClient:
         credited_invoice_id: typing.Optional[str] = OMIT,
         purchase_order_id: typing.Optional[str] = OMIT,
         notes: typing.Optional[str] = OMIT,
+        document_ref: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[PostV1PurchasesInvoicesCreateResponse]:
         """
@@ -3081,6 +3090,8 @@ class AsyncRawPurchasesClient:
 
         notes : typing.Optional[str]
 
+        document_ref : typing.Optional[str]
+
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
@@ -3102,6 +3113,7 @@ class AsyncRawPurchasesClient:
                 "creditedInvoiceId": credited_invoice_id,
                 "purchaseOrderId": purchase_order_id,
                 "notes": notes,
+                "documentRef": document_ref,
                 "lines": convert_and_respect_annotation_metadata(
                     object_=lines,
                     annotation=typing.Sequence[PostV1PurchasesInvoicesCreateRequestLinesItem],
@@ -3980,6 +3992,7 @@ class AsyncRawPurchasesClient:
         warehouse_id: typing.Optional[str] = OMIT,
         currency: typing.Optional[str] = OMIT,
         notes: typing.Optional[str] = OMIT,
+        document_ref: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[PostV1PurchasesOrdersCreateResponse]:
         """
@@ -4001,6 +4014,8 @@ class AsyncRawPurchasesClient:
 
         notes : typing.Optional[str]
 
+        document_ref : typing.Optional[str]
+
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
@@ -4020,6 +4035,7 @@ class AsyncRawPurchasesClient:
                 "warehouseId": warehouse_id,
                 "currency": currency,
                 "notes": notes,
+                "documentRef": document_ref,
                 "lines": convert_and_respect_annotation_metadata(
                     object_=lines,
                     annotation=typing.Sequence[PostV1PurchasesOrdersCreateRequestLinesItem],

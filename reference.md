@@ -942,140 +942,6 @@ client.reference.post_v1reference_eu_vat_rates_list()
 </dl>
 </details>
 
-<details><summary><code>client.reference.<a href="src/nordlet/reference/client.py">post_v1reference_eu_vat_rates_imports_list</a>(...) -> PostV1ReferenceEuVatRatesImportsListResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-History of EU VAT rate imports from the EC TEDB VatRetrievalService: when rates were pulled, what changed, and whether the run succeeded. The initial seed run carries the built-in snapshot.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```python
-from nordlet import Nordlet
-from nordlet.environment import NordletEnvironment
-
-client = Nordlet(
-    token="<token>",
-    environment=NordletEnvironment.PRODUCTION,
-)
-
-client.reference.post_v1reference_eu_vat_rates_imports_list()
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**limit:** `typing.Optional[int]` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.reference.<a href="src/nordlet/reference/client.py">post_v1reference_eu_vat_rates_sync</a>() -> PostV1ReferenceEuVatRatesSyncResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Trigger an immediate pull of EU VAT rates from the EC TEDB VatRetrievalService. Rates are shared reference data: new rates open with today as their effective date, rates that disappeared are closed with a validity end date. Returns the finished import run.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```python
-from nordlet import Nordlet
-from nordlet.environment import NordletEnvironment
-
-client = Nordlet(
-    token="<token>",
-    environment=NordletEnvironment.PRODUCTION,
-)
-
-client.reference.post_v1reference_eu_vat_rates_sync()
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
 <details><summary><code>client.reference.<a href="src/nordlet/reference/client.py">post_v1reference_eu_vat_rates_set_overrides</a>(...) -> PostV1ReferenceEuVatRatesSetOverridesResponse</code></summary>
 <dl>
 <dd>
@@ -3229,6 +3095,14 @@ client.partners.post_v1partners_create(
 <dl>
 <dd>
 
+**document_ref:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
     
 </dd>
@@ -3417,6 +3291,14 @@ client.partners.post_v1partners_find_or_create(
 <dd>
 
 **notes:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**document_ref:** `typing.Optional[str]` 
     
 </dd>
 </dl>
@@ -3679,6 +3561,14 @@ client.partners.post_v1partners_update(
 <dd>
 
 **notes:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**document_ref:** `typing.Optional[str]` 
     
 </dd>
 </dl>
@@ -5058,6 +4948,14 @@ client.catalog.post_v1catalog_items_create(
 <dl>
 <dd>
 
+**document_ref:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **translations:** `typing.Optional[typing.Dict[str, PostV1CatalogItemsCreateRequestTranslationsValue]]` 
     
 </dd>
@@ -5329,6 +5227,14 @@ client.catalog.post_v1catalog_items_update(
 <dd>
 
 **attributes:** `typing.Optional[typing.Dict[str, str]]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**document_ref:** `typing.Optional[str]` 
     
 </dd>
 </dl>
@@ -6545,6 +6451,14 @@ client.sales.post_v1sales_invoices_create(
 <dd>
 
 **notes:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**document_ref:** `typing.Optional[str]` 
     
 </dd>
 </dl>
@@ -8884,6 +8798,14 @@ client.purchases.post_v1purchases_invoices_create(
 <dl>
 <dd>
 
+**document_ref:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
     
 </dd>
@@ -9394,6 +9316,14 @@ client.purchases.post_v1purchases_orders_create(
 <dd>
 
 **notes:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**document_ref:** `typing.Optional[str]` 
     
 </dd>
 </dl>
@@ -12726,6 +12656,14 @@ client.ledger.post_v1ledger_accounts_create(
 <dl>
 <dd>
 
+**translations:** `typing.Optional[PostV1LedgerAccountsCreateRequestTranslations]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **parent_id:** `typing.Optional[str]` 
     
 </dd>
@@ -12802,6 +12740,14 @@ client.ledger.post_v1ledger_accounts_update(
 <dd>
 
 **name:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**translations:** `typing.Optional[PostV1LedgerAccountsUpdateRequestTranslations]` 
     
 </dd>
 </dl>
@@ -14960,6 +14906,14 @@ client.assets.post_v1assets_assets_create(
 <dl>
 <dd>
 
+**documents:** `typing.Optional[typing.List[PostV1AssetsAssetsCreateRequestDocumentsItem]]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
     
 </dd>
@@ -15749,6 +15703,14 @@ client.hr.post_v1hr_employees_create(
 <dl>
 <dd>
 
+**attributes:** `typing.Optional[typing.List[PostV1HrEmployeesCreateRequestAttributesItem]]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
     
 </dd>
@@ -15929,6 +15891,14 @@ client.hr.post_v1hr_employees_update(
 <dd>
 
 **notes:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**attributes:** `typing.Optional[typing.List[PostV1HrEmployeesUpdateRequestAttributesItem]]` 
     
 </dd>
 </dl>
@@ -16259,7 +16229,6 @@ client = Nordlet(
 
 client.hr.post_v1hr_contracts_create(
     employee_id="employeeId",
-    contract_no="contractNo",
     start_date="startDate",
     base_salary="baseSalary",
 )
@@ -16279,14 +16248,6 @@ client.hr.post_v1hr_contracts_create(
 <dd>
 
 **employee_id:** `str` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**contract_no:** `str` 
     
 </dd>
 </dl>
@@ -16334,6 +16295,22 @@ client.hr.post_v1hr_contracts_create(
 <dl>
 <dd>
 
+**agreement_id:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**contract_no:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **type:** `typing.Optional[PostV1HrContractsCreateRequestType]` 
     
 </dd>
@@ -16358,7 +16335,7 @@ client.hr.post_v1hr_contracts_create(
 <dl>
 <dd>
 
-**work_hours_per_week:** `typing.Optional[str]` 
+**work_hours:** `typing.Optional[str]` 
     
 </dd>
 </dl>
@@ -17819,6 +17796,14 @@ client.fleet.post_v1fleet_vehicles_create(
 <dd>
 
 **notes:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**documents:** `typing.Optional[typing.List[PostV1FleetVehiclesCreateRequestDocumentsItem]]` 
     
 </dd>
 </dl>
@@ -19456,7 +19441,6 @@ client = Nordlet(
 )
 
 client.agreements.post_v1agreements_agreements_create(
-    partner_id="partnerId",
     number="number",
     start_date="startDate",
 )
@@ -19471,14 +19455,6 @@ client.agreements.post_v1agreements_agreements_create(
 
 <dl>
 <dd>
-
-<dl>
-<dd>
-
-**partner_id:** `str` 
-    
-</dd>
-</dl>
 
 <dl>
 <dd>
@@ -19500,6 +19476,38 @@ client.agreements.post_v1agreements_agreements_create(
 <dd>
 
 **type_id:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**kind:** `typing.Optional[PostV1AgreementsAgreementsCreateRequestKind]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**partner_id:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**employee_id:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**bank_account_id:** `typing.Optional[str]` 
     
 </dd>
 </dl>
@@ -19564,6 +19572,14 @@ client.agreements.post_v1agreements_agreements_create(
 <dd>
 
 **notes:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**document_ref:** `typing.Optional[str]` 
     
 </dd>
 </dl>
@@ -19705,6 +19721,14 @@ client.agreements.post_v1agreements_agreements_update(
 <dl>
 <dd>
 
+**kind:** `typing.Optional[PostV1AgreementsAgreementsUpdateRequestKind]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **name:** `typing.Optional[str]` 
     
 </dd>
@@ -19754,6 +19778,14 @@ client.agreements.post_v1agreements_agreements_update(
 <dd>
 
 **notes:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**document_ref:** `typing.Optional[str]` 
     
 </dd>
 </dl>
@@ -27482,6 +27514,14 @@ client.bank.post_v1bank_accounts_create(
 <dl>
 <dd>
 
+**document_ref:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
     
 </dd>
@@ -27796,6 +27836,14 @@ client.bank.post_v1bank_statements_import(
 <dl>
 <dd>
 
+**template_id:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **format:** `typing.Optional[PostV1BankStatementsImportRequestFormat]` 
     
 </dd>
@@ -27974,6 +28022,109 @@ client.bank.post_v1bank_transactions_match(
 </dl>
 </details>
 
+<details><summary><code>client.bank.<a href="src/nordlet/bank/client.py">post_v1bank_transactions_record</a>(...) -> PostV1BankTransactionsRecordResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.bank.post_v1bank_transactions_record(
+    bank_account_id="bankAccountId",
+    date="date",
+    amount="amount",
+    document_type="sale_invoice",
+    document_id="documentId",
+)
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**bank_account_id:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**date:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**amount:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**document_type:** `PostV1BankTransactionsRecordRequestDocumentType` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**document_id:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**description:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.bank.<a href="src/nordlet/bank/client.py">post_v1bank_payments_export</a>(...) -> PostV1BankPaymentsExportResponse</code></summary>
 <dl>
 <dd>
@@ -28033,6 +28184,460 @@ client.bank.post_v1bank_payments_export(
 <dd>
 
 **execution_date:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.bank.<a href="src/nordlet/bank/client.py">create_a_bank_import_template_fields_default_to_the_types_standard_field_list</a>(...) -> PostV1BankImportTemplatesCreateResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.bank.create_a_bank_import_template_fields_default_to_the_types_standard_field_list(
+    name="name",
+    type="stripe",
+)
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**name:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**type:** `PostV1BankImportTemplatesCreateRequestType` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**fields:** `typing.Optional[typing.List[PostV1BankImportTemplatesCreateRequestFieldsItem]]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**meta_fields:** `typing.Optional[typing.List[str]]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**invoice_meta_field:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**invoice_vat_rate_percent:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**company_meta_field:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**invoice_item_id:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**advance_invoices:** `typing.Optional[bool]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.bank.<a href="src/nordlet/bank/client.py">post_v1bank_import_templates_update</a>(...) -> PostV1BankImportTemplatesUpdateResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.bank.post_v1bank_import_templates_update(
+    id="id",
+)
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**name:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**type:** `typing.Optional[PostV1BankImportTemplatesUpdateRequestType]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**fields:** `typing.Optional[typing.List[PostV1BankImportTemplatesUpdateRequestFieldsItem]]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**meta_fields:** `typing.Optional[typing.List[str]]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**invoice_meta_field:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**invoice_vat_rate_percent:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**company_meta_field:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**invoice_item_id:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**advance_invoices:** `typing.Optional[bool]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.bank.<a href="src/nordlet/bank/client.py">post_v1bank_import_templates_delete</a>(...) -> PostV1BankImportTemplatesDeleteResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.bank.post_v1bank_import_templates_delete(
+    id="id",
+)
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.bank.<a href="src/nordlet/bank/client.py">post_v1bank_import_templates_get</a>(...) -> PostV1BankImportTemplatesGetResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.bank.post_v1bank_import_templates_get(
+    id="id",
+)
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.bank.<a href="src/nordlet/bank/client.py">post_v1bank_import_templates_list</a>(...) -> PostV1BankImportTemplatesListResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.bank.post_v1bank_import_templates_list()
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**page:** `typing.Optional[int]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**page_size:** `typing.Optional[int]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sort:** `typing.Optional[typing.List[PostV1BankImportTemplatesListRequestSortItem]]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filter:** `typing.Optional[typing.List[PostV1BankImportTemplatesListRequestFilterItem]]` 
     
 </dd>
 </dl>
@@ -29469,6 +30074,81 @@ client.bank.point_a_bank_feed_account_at_a_ledger_bank_account_so_its_transactio
 </dl>
 </details>
 
+<details><summary><code>client.bank.<a href="src/nordlet/bank/client.py">choose_the_import_template_applied_on_sync_and_how_often_the_account_is_synced_automatically</a>(...) -> PostV1BankFeedsAccountsConfigureResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.bank.choose_the_import_template_applied_on_sync_and_how_often_the_account_is_synced_automatically(
+    id="id",
+)
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**import_template_id:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sync_schedule:** `typing.Optional[PostV1BankFeedsAccountsConfigureRequestSyncSchedule]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.bank.<a href="src/nordlet/bank/client.py">pull_new_transactions_from_the_bank_into_the_ledger_emits_bank_feed_synced</a>(...) -> PostV1BankFeedsSyncResponse</code></summary>
 <dl>
 <dd>
@@ -29576,7 +30256,6 @@ client = Nordlet(
 
 client.files.post_v1files_upload(
     entity="entity",
-    entity_id="entityId",
     file_name="fileName",
     mime_type="mimeType",
     content="content",
@@ -29604,14 +30283,6 @@ client.files.post_v1files_upload(
 <dl>
 <dd>
 
-**entity_id:** `str` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
 **file_name:** `str` 
     
 </dd>
@@ -29629,6 +30300,14 @@ client.files.post_v1files_upload(
 <dd>
 
 **content:** `str` — Base64-encoded file content
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**entity_id:** `typing.Optional[str]` 
     
 </dd>
 </dl>

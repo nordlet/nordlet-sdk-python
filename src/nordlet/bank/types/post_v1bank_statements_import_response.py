@@ -3,13 +3,32 @@
 import typing
 
 import pydantic
+import typing_extensions
 from ...core.pydantic_utilities import IS_PYDANTIC_V2, UniversalBaseModel
+from ...core.serialization import FieldMetadata
 from .post_v1bank_statements_import_response_statements_item import PostV1BankStatementsImportResponseStatementsItem
 
 
 class PostV1BankStatementsImportResponse(UniversalBaseModel):
     imported: int
     skipped: int
+    posted: int
+    customers_created: typing_extensions.Annotated[
+        int, FieldMetadata(alias="customersCreated"), pydantic.Field(alias="customersCreated")
+    ]
+    invoices_created: typing_extensions.Annotated[
+        int, FieldMetadata(alias="invoicesCreated"), pydantic.Field(alias="invoicesCreated")
+    ]
+    invoices_linked: typing_extensions.Annotated[
+        int, FieldMetadata(alias="invoicesLinked"), pydantic.Field(alias="invoicesLinked")
+    ]
+    credit_notes_created: typing_extensions.Annotated[
+        int, FieldMetadata(alias="creditNotesCreated"), pydantic.Field(alias="creditNotesCreated")
+    ]
+    payments_matched: typing_extensions.Annotated[
+        int, FieldMetadata(alias="paymentsMatched"), pydantic.Field(alias="paymentsMatched")
+    ]
+    warnings: typing.List[str]
     statements: typing.List[PostV1BankStatementsImportResponseStatementsItem]
 
     if IS_PYDANTIC_V2:

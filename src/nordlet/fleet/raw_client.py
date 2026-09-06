@@ -25,6 +25,7 @@ from .types.post_v1fleet_assignments_list_request_filter_item import PostV1Fleet
 from .types.post_v1fleet_assignments_list_request_sort_item import PostV1FleetAssignmentsListRequestSortItem
 from .types.post_v1fleet_assignments_list_response import PostV1FleetAssignmentsListResponse
 from .types.post_v1fleet_natura_preview_response import PostV1FleetNaturaPreviewResponse
+from .types.post_v1fleet_vehicles_create_request_documents_item import PostV1FleetVehiclesCreateRequestDocumentsItem
 from .types.post_v1fleet_vehicles_create_request_fuel_type import PostV1FleetVehiclesCreateRequestFuelType
 from .types.post_v1fleet_vehicles_create_response import PostV1FleetVehiclesCreateResponse
 from .types.post_v1fleet_vehicles_get_response import PostV1FleetVehiclesGetResponse
@@ -59,6 +60,7 @@ class RawFleetClient:
         technical_inspection_due: typing.Optional[str] = OMIT,
         insurance_due: typing.Optional[str] = OMIT,
         notes: typing.Optional[str] = OMIT,
+        documents: typing.Optional[typing.Sequence[PostV1FleetVehiclesCreateRequestDocumentsItem]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[PostV1FleetVehiclesCreateResponse]:
         """
@@ -88,6 +90,8 @@ class RawFleetClient:
 
         notes : typing.Optional[str]
 
+        documents : typing.Optional[typing.Sequence[PostV1FleetVehiclesCreateRequestDocumentsItem]]
+
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
@@ -112,6 +116,11 @@ class RawFleetClient:
                 "technicalInspectionDue": technical_inspection_due,
                 "insuranceDue": insurance_due,
                 "notes": notes,
+                "documents": convert_and_respect_annotation_metadata(
+                    object_=documents,
+                    annotation=typing.Sequence[PostV1FleetVehiclesCreateRequestDocumentsItem],
+                    direction="write",
+                ),
             },
             headers={
                 "content-type": "application/json",
@@ -1323,6 +1332,7 @@ class AsyncRawFleetClient:
         technical_inspection_due: typing.Optional[str] = OMIT,
         insurance_due: typing.Optional[str] = OMIT,
         notes: typing.Optional[str] = OMIT,
+        documents: typing.Optional[typing.Sequence[PostV1FleetVehiclesCreateRequestDocumentsItem]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[PostV1FleetVehiclesCreateResponse]:
         """
@@ -1352,6 +1362,8 @@ class AsyncRawFleetClient:
 
         notes : typing.Optional[str]
 
+        documents : typing.Optional[typing.Sequence[PostV1FleetVehiclesCreateRequestDocumentsItem]]
+
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
@@ -1376,6 +1388,11 @@ class AsyncRawFleetClient:
                 "technicalInspectionDue": technical_inspection_due,
                 "insuranceDue": insurance_due,
                 "notes": notes,
+                "documents": convert_and_respect_annotation_metadata(
+                    object_=documents,
+                    annotation=typing.Sequence[PostV1FleetVehiclesCreateRequestDocumentsItem],
+                    direction="write",
+                ),
             },
             headers={
                 "content-type": "application/json",

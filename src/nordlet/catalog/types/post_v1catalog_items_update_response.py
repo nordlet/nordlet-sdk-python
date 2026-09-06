@@ -54,6 +54,9 @@ class PostV1CatalogItemsUpdateResponse(UniversalBaseModel):
         typing.Optional[str], FieldMetadata(alias="groupId"), pydantic.Field(alias="groupId")
     ] = None
     attributes: typing.Optional[typing.Dict[str, typing.Optional[str]]] = None
+    document_ref: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="documentRef"), pydantic.Field(alias="documentRef")
+    ] = None
     translations: typing.Optional[
         typing.Dict[str, typing.Optional[PostV1CatalogItemsUpdateResponseTranslationsValue]]
     ] = None

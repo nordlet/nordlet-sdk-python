@@ -70,6 +70,7 @@ class PurchasesClient:
         credited_invoice_id: typing.Optional[str] = OMIT,
         purchase_order_id: typing.Optional[str] = OMIT,
         notes: typing.Optional[str] = OMIT,
+        document_ref: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1PurchasesInvoicesCreateResponse:
         """
@@ -94,6 +95,8 @@ class PurchasesClient:
         purchase_order_id : typing.Optional[str]
 
         notes : typing.Optional[str]
+
+        document_ref : typing.Optional[str]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -129,6 +132,7 @@ class PurchasesClient:
             credited_invoice_id=credited_invoice_id,
             purchase_order_id=purchase_order_id,
             notes=notes,
+            document_ref=document_ref,
             request_options=request_options,
         )
         return _response.data
@@ -355,6 +359,7 @@ class PurchasesClient:
         warehouse_id: typing.Optional[str] = OMIT,
         currency: typing.Optional[str] = OMIT,
         notes: typing.Optional[str] = OMIT,
+        document_ref: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1PurchasesOrdersCreateResponse:
         """
@@ -375,6 +380,8 @@ class PurchasesClient:
         currency : typing.Optional[str]
 
         notes : typing.Optional[str]
+
+        document_ref : typing.Optional[str]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -407,6 +414,7 @@ class PurchasesClient:
             warehouse_id=warehouse_id,
             currency=currency,
             notes=notes,
+            document_ref=document_ref,
             request_options=request_options,
         )
         return _response.data
@@ -946,6 +954,7 @@ class AsyncPurchasesClient:
         credited_invoice_id: typing.Optional[str] = OMIT,
         purchase_order_id: typing.Optional[str] = OMIT,
         notes: typing.Optional[str] = OMIT,
+        document_ref: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1PurchasesInvoicesCreateResponse:
         """
@@ -970,6 +979,8 @@ class AsyncPurchasesClient:
         purchase_order_id : typing.Optional[str]
 
         notes : typing.Optional[str]
+
+        document_ref : typing.Optional[str]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -1013,6 +1024,7 @@ class AsyncPurchasesClient:
             credited_invoice_id=credited_invoice_id,
             purchase_order_id=purchase_order_id,
             notes=notes,
+            document_ref=document_ref,
             request_options=request_options,
         )
         return _response.data
@@ -1279,6 +1291,7 @@ class AsyncPurchasesClient:
         warehouse_id: typing.Optional[str] = OMIT,
         currency: typing.Optional[str] = OMIT,
         notes: typing.Optional[str] = OMIT,
+        document_ref: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1PurchasesOrdersCreateResponse:
         """
@@ -1299,6 +1312,8 @@ class AsyncPurchasesClient:
         currency : typing.Optional[str]
 
         notes : typing.Optional[str]
+
+        document_ref : typing.Optional[str]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -1339,6 +1354,7 @@ class AsyncPurchasesClient:
             warehouse_id=warehouse_id,
             currency=currency,
             notes=notes,
+            document_ref=document_ref,
             request_options=request_options,
         )
         return _response.data

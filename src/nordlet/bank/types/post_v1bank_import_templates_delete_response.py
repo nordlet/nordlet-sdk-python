@@ -4,13 +4,11 @@ import typing
 
 import pydantic
 from ...core.pydantic_utilities import IS_PYDANTIC_V2, UniversalBaseModel
-from .post_v1reference_eu_vat_rates_imports_list_response_rows_item import (
-    PostV1ReferenceEuVatRatesImportsListResponseRowsItem,
-)
 
 
-class PostV1ReferenceEuVatRatesImportsListResponse(UniversalBaseModel):
-    rows: typing.List[PostV1ReferenceEuVatRatesImportsListResponseRowsItem]
+class PostV1BankImportTemplatesDeleteResponse(UniversalBaseModel):
+    id: str
+    deleted: bool
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

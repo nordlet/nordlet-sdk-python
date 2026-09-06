@@ -19,6 +19,7 @@ from ..errors.too_many_requests_error import TooManyRequestsError
 from ..errors.unauthorized_error import UnauthorizedError
 from ..errors.unprocessable_entity_error import UnprocessableEntityError
 from ..types.error_response import ErrorResponse
+from .types.post_v1assets_assets_create_request_documents_item import PostV1AssetsAssetsCreateRequestDocumentsItem
 from .types.post_v1assets_assets_create_response import PostV1AssetsAssetsCreateResponse
 from .types.post_v1assets_assets_get_response import PostV1AssetsAssetsGetResponse
 from .types.post_v1assets_assets_list_request_filter_item import PostV1AssetsAssetsListRequestFilterItem
@@ -367,6 +368,7 @@ class RawAssetsClient:
         salvage_value: typing.Optional[str] = OMIT,
         useful_life_months: typing.Optional[int] = OMIT,
         notes: typing.Optional[str] = OMIT,
+        documents: typing.Optional[typing.Sequence[PostV1AssetsAssetsCreateRequestDocumentsItem]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[PostV1AssetsAssetsCreateResponse]:
         """
@@ -390,6 +392,8 @@ class RawAssetsClient:
 
         notes : typing.Optional[str]
 
+        documents : typing.Optional[typing.Sequence[PostV1AssetsAssetsCreateRequestDocumentsItem]]
+
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
@@ -411,6 +415,11 @@ class RawAssetsClient:
                 "salvageValue": salvage_value,
                 "usefulLifeMonths": useful_life_months,
                 "notes": notes,
+                "documents": convert_and_respect_annotation_metadata(
+                    object_=documents,
+                    annotation=typing.Sequence[PostV1AssetsAssetsCreateRequestDocumentsItem],
+                    direction="write",
+                ),
             },
             headers={
                 "content-type": "application/json",
@@ -1577,6 +1586,7 @@ class AsyncRawAssetsClient:
         salvage_value: typing.Optional[str] = OMIT,
         useful_life_months: typing.Optional[int] = OMIT,
         notes: typing.Optional[str] = OMIT,
+        documents: typing.Optional[typing.Sequence[PostV1AssetsAssetsCreateRequestDocumentsItem]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[PostV1AssetsAssetsCreateResponse]:
         """
@@ -1600,6 +1610,8 @@ class AsyncRawAssetsClient:
 
         notes : typing.Optional[str]
 
+        documents : typing.Optional[typing.Sequence[PostV1AssetsAssetsCreateRequestDocumentsItem]]
+
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
@@ -1621,6 +1633,11 @@ class AsyncRawAssetsClient:
                 "salvageValue": salvage_value,
                 "usefulLifeMonths": useful_life_months,
                 "notes": notes,
+                "documents": convert_and_respect_annotation_metadata(
+                    object_=documents,
+                    annotation=typing.Sequence[PostV1AssetsAssetsCreateRequestDocumentsItem],
+                    direction="write",
+                ),
             },
             headers={
                 "content-type": "application/json",

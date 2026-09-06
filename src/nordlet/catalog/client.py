@@ -81,6 +81,7 @@ class CatalogClient:
         description: typing.Optional[str] = OMIT,
         group_id: typing.Optional[str] = OMIT,
         attributes: typing.Optional[typing.Dict[str, str]] = OMIT,
+        document_ref: typing.Optional[str] = OMIT,
         translations: typing.Optional[typing.Dict[str, PostV1CatalogItemsCreateRequestTranslationsValue]] = OMIT,
         components: typing.Optional[typing.Sequence[PostV1CatalogItemsCreateRequestComponentsItem]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
@@ -124,6 +125,8 @@ class CatalogClient:
 
         attributes : typing.Optional[typing.Dict[str, str]]
 
+        document_ref : typing.Optional[str]
+
         translations : typing.Optional[typing.Dict[str, PostV1CatalogItemsCreateRequestTranslationsValue]]
 
         components : typing.Optional[typing.Sequence[PostV1CatalogItemsCreateRequestComponentsItem]]
@@ -166,6 +169,7 @@ class CatalogClient:
             description=description,
             group_id=group_id,
             attributes=attributes,
+            document_ref=document_ref,
             translations=translations,
             components=components,
             request_options=request_options,
@@ -224,6 +228,7 @@ class CatalogClient:
         description: typing.Optional[str] = OMIT,
         group_id: typing.Optional[str] = OMIT,
         attributes: typing.Optional[typing.Dict[str, str]] = OMIT,
+        document_ref: typing.Optional[str] = OMIT,
         translations: typing.Optional[typing.Dict[str, PostV1CatalogItemsUpdateRequestTranslationsValue]] = OMIT,
         components: typing.Optional[typing.Sequence[PostV1CatalogItemsUpdateRequestComponentsItem]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
@@ -269,6 +274,8 @@ class CatalogClient:
 
         attributes : typing.Optional[typing.Dict[str, str]]
 
+        document_ref : typing.Optional[str]
+
         translations : typing.Optional[typing.Dict[str, PostV1CatalogItemsUpdateRequestTranslationsValue]]
 
         components : typing.Optional[typing.Sequence[PostV1CatalogItemsUpdateRequestComponentsItem]]
@@ -312,6 +319,7 @@ class CatalogClient:
             description=description,
             group_id=group_id,
             attributes=attributes,
+            document_ref=document_ref,
             translations=translations,
             components=components,
             request_options=request_options,
@@ -922,6 +930,7 @@ class AsyncCatalogClient:
         description: typing.Optional[str] = OMIT,
         group_id: typing.Optional[str] = OMIT,
         attributes: typing.Optional[typing.Dict[str, str]] = OMIT,
+        document_ref: typing.Optional[str] = OMIT,
         translations: typing.Optional[typing.Dict[str, PostV1CatalogItemsCreateRequestTranslationsValue]] = OMIT,
         components: typing.Optional[typing.Sequence[PostV1CatalogItemsCreateRequestComponentsItem]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
@@ -964,6 +973,8 @@ class AsyncCatalogClient:
         group_id : typing.Optional[str]
 
         attributes : typing.Optional[typing.Dict[str, str]]
+
+        document_ref : typing.Optional[str]
 
         translations : typing.Optional[typing.Dict[str, PostV1CatalogItemsCreateRequestTranslationsValue]]
 
@@ -1015,6 +1026,7 @@ class AsyncCatalogClient:
             description=description,
             group_id=group_id,
             attributes=attributes,
+            document_ref=document_ref,
             translations=translations,
             components=components,
             request_options=request_options,
@@ -1081,6 +1093,7 @@ class AsyncCatalogClient:
         description: typing.Optional[str] = OMIT,
         group_id: typing.Optional[str] = OMIT,
         attributes: typing.Optional[typing.Dict[str, str]] = OMIT,
+        document_ref: typing.Optional[str] = OMIT,
         translations: typing.Optional[typing.Dict[str, PostV1CatalogItemsUpdateRequestTranslationsValue]] = OMIT,
         components: typing.Optional[typing.Sequence[PostV1CatalogItemsUpdateRequestComponentsItem]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
@@ -1125,6 +1138,8 @@ class AsyncCatalogClient:
         group_id : typing.Optional[str]
 
         attributes : typing.Optional[typing.Dict[str, str]]
+
+        document_ref : typing.Optional[str]
 
         translations : typing.Optional[typing.Dict[str, PostV1CatalogItemsUpdateRequestTranslationsValue]]
 
@@ -1177,6 +1192,7 @@ class AsyncCatalogClient:
             description=description,
             group_id=group_id,
             attributes=attributes,
+            document_ref=document_ref,
             translations=translations,
             components=components,
             request_options=request_options,

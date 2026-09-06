@@ -8,6 +8,7 @@ from ...core.pydantic_utilities import IS_PYDANTIC_V2, UniversalBaseModel
 from ...core.serialization import FieldMetadata
 from .post_v1agreements_agreements_get_response_billing_period import PostV1AgreementsAgreementsGetResponseBillingPeriod
 from .post_v1agreements_agreements_get_response_items_item import PostV1AgreementsAgreementsGetResponseItemsItem
+from .post_v1agreements_agreements_get_response_kind import PostV1AgreementsAgreementsGetResponseKind
 from .post_v1agreements_agreements_get_response_status import PostV1AgreementsAgreementsGetResponseStatus
 
 
@@ -16,7 +17,16 @@ class PostV1AgreementsAgreementsGetResponse(UniversalBaseModel):
     type_id: typing_extensions.Annotated[
         typing.Optional[str], FieldMetadata(alias="typeId"), pydantic.Field(alias="typeId")
     ] = None
-    partner_id: typing_extensions.Annotated[str, FieldMetadata(alias="partnerId"), pydantic.Field(alias="partnerId")]
+    kind: PostV1AgreementsAgreementsGetResponseKind
+    partner_id: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="partnerId"), pydantic.Field(alias="partnerId")
+    ] = None
+    employee_id: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="employeeId"), pydantic.Field(alias="employeeId")
+    ] = None
+    bank_account_id: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="bankAccountId"), pydantic.Field(alias="bankAccountId")
+    ] = None
     number: str
     name: typing.Optional[str] = None
     start_date: typing_extensions.Annotated[str, FieldMetadata(alias="startDate"), pydantic.Field(alias="startDate")]
@@ -33,6 +43,9 @@ class PostV1AgreementsAgreementsGetResponse(UniversalBaseModel):
     currency: str
     status: PostV1AgreementsAgreementsGetResponseStatus
     notes: typing.Optional[str] = None
+    document_ref: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="documentRef"), pydantic.Field(alias="documentRef")
+    ] = None
     created_at: typing_extensions.Annotated[str, FieldMetadata(alias="createdAt"), pydantic.Field(alias="createdAt")]
     items: typing.List[PostV1AgreementsAgreementsGetResponseItemsItem]
 

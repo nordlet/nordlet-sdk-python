@@ -106,6 +106,7 @@ class RawSalesClient:
         vat_country_code: typing.Optional[str] = OMIT,
         deemed_supplier: typing.Optional[bool] = OMIT,
         notes: typing.Optional[str] = OMIT,
+        document_ref: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[PostV1SalesInvoicesCreateResponse]:
         """
@@ -133,6 +134,8 @@ class RawSalesClient:
 
         notes : typing.Optional[str]
 
+        document_ref : typing.Optional[str]
+
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
@@ -155,6 +158,7 @@ class RawSalesClient:
                 "vatCountryCode": vat_country_code,
                 "deemedSupplier": deemed_supplier,
                 "notes": notes,
+                "documentRef": document_ref,
                 "lines": convert_and_respect_annotation_metadata(
                     object_=lines,
                     annotation=typing.Sequence[PostV1SalesInvoicesCreateRequestLinesItem],
@@ -4432,6 +4436,7 @@ class AsyncRawSalesClient:
         vat_country_code: typing.Optional[str] = OMIT,
         deemed_supplier: typing.Optional[bool] = OMIT,
         notes: typing.Optional[str] = OMIT,
+        document_ref: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[PostV1SalesInvoicesCreateResponse]:
         """
@@ -4459,6 +4464,8 @@ class AsyncRawSalesClient:
 
         notes : typing.Optional[str]
 
+        document_ref : typing.Optional[str]
+
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
@@ -4481,6 +4488,7 @@ class AsyncRawSalesClient:
                 "vatCountryCode": vat_country_code,
                 "deemedSupplier": deemed_supplier,
                 "notes": notes,
+                "documentRef": document_ref,
                 "lines": convert_and_respect_annotation_metadata(
                     object_=lines,
                     annotation=typing.Sequence[PostV1SalesInvoicesCreateRequestLinesItem],

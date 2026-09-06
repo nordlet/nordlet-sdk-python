@@ -7,6 +7,7 @@ import typing_extensions
 from ...core.pydantic_utilities import IS_PYDANTIC_V2, UniversalBaseModel
 from ...core.serialization import FieldMetadata
 from .post_v1hr_employees_create_response_address import PostV1HrEmployeesCreateResponseAddress
+from .post_v1hr_employees_create_response_attributes_item import PostV1HrEmployeesCreateResponseAttributesItem
 from .post_v1hr_employees_create_response_status import PostV1HrEmployeesCreateResponseStatus
 
 
@@ -46,6 +47,7 @@ class PostV1HrEmployeesCreateResponse(UniversalBaseModel):
     ]
     status: PostV1HrEmployeesCreateResponseStatus
     notes: typing.Optional[str] = None
+    attributes: typing.Optional[typing.List[PostV1HrEmployeesCreateResponseAttributesItem]] = None
     created_at: typing_extensions.Annotated[str, FieldMetadata(alias="createdAt"), pydantic.Field(alias="createdAt")]
 
     if IS_PYDANTIC_V2:

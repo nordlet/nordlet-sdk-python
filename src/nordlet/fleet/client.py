@@ -11,6 +11,7 @@ from .types.post_v1fleet_assignments_list_request_filter_item import PostV1Fleet
 from .types.post_v1fleet_assignments_list_request_sort_item import PostV1FleetAssignmentsListRequestSortItem
 from .types.post_v1fleet_assignments_list_response import PostV1FleetAssignmentsListResponse
 from .types.post_v1fleet_natura_preview_response import PostV1FleetNaturaPreviewResponse
+from .types.post_v1fleet_vehicles_create_request_documents_item import PostV1FleetVehiclesCreateRequestDocumentsItem
 from .types.post_v1fleet_vehicles_create_request_fuel_type import PostV1FleetVehiclesCreateRequestFuelType
 from .types.post_v1fleet_vehicles_create_response import PostV1FleetVehiclesCreateResponse
 from .types.post_v1fleet_vehicles_get_response import PostV1FleetVehiclesGetResponse
@@ -55,6 +56,7 @@ class FleetClient:
         technical_inspection_due: typing.Optional[str] = OMIT,
         insurance_due: typing.Optional[str] = OMIT,
         notes: typing.Optional[str] = OMIT,
+        documents: typing.Optional[typing.Sequence[PostV1FleetVehiclesCreateRequestDocumentsItem]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1FleetVehiclesCreateResponse:
         """
@@ -83,6 +85,8 @@ class FleetClient:
         insurance_due : typing.Optional[str]
 
         notes : typing.Optional[str]
+
+        documents : typing.Optional[typing.Sequence[PostV1FleetVehiclesCreateRequestDocumentsItem]]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -118,6 +122,7 @@ class FleetClient:
             technical_inspection_due=technical_inspection_due,
             insurance_due=insurance_due,
             notes=notes,
+            documents=documents,
             request_options=request_options,
         )
         return _response.data
@@ -487,6 +492,7 @@ class AsyncFleetClient:
         technical_inspection_due: typing.Optional[str] = OMIT,
         insurance_due: typing.Optional[str] = OMIT,
         notes: typing.Optional[str] = OMIT,
+        documents: typing.Optional[typing.Sequence[PostV1FleetVehiclesCreateRequestDocumentsItem]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1FleetVehiclesCreateResponse:
         """
@@ -515,6 +521,8 @@ class AsyncFleetClient:
         insurance_due : typing.Optional[str]
 
         notes : typing.Optional[str]
+
+        documents : typing.Optional[typing.Sequence[PostV1FleetVehiclesCreateRequestDocumentsItem]]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -558,6 +566,7 @@ class AsyncFleetClient:
             technical_inspection_due=technical_inspection_due,
             insurance_due=insurance_due,
             notes=notes,
+            documents=documents,
             request_options=request_options,
         )
         return _response.data

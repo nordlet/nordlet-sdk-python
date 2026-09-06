@@ -11,6 +11,10 @@ from .types.post_v1bank_accounts_list_request_sort_item import PostV1BankAccount
 from .types.post_v1bank_accounts_list_response import PostV1BankAccountsListResponse
 from .types.post_v1bank_accounts_update_response import PostV1BankAccountsUpdateResponse
 from .types.post_v1bank_direct_debits_export_response import PostV1BankDirectDebitsExportResponse
+from .types.post_v1bank_feeds_accounts_configure_request_sync_schedule import (
+    PostV1BankFeedsAccountsConfigureRequestSyncSchedule,
+)
+from .types.post_v1bank_feeds_accounts_configure_response import PostV1BankFeedsAccountsConfigureResponse
 from .types.post_v1bank_feeds_accounts_link_request_create_bank_account import (
     PostV1BankFeedsAccountsLinkRequestCreateBankAccount,
 )
@@ -27,6 +31,21 @@ from .types.post_v1bank_feeds_connections_list_response import PostV1BankFeedsCo
 from .types.post_v1bank_feeds_connections_start_request_psu_type import PostV1BankFeedsConnectionsStartRequestPsuType
 from .types.post_v1bank_feeds_connections_start_response import PostV1BankFeedsConnectionsStartResponse
 from .types.post_v1bank_feeds_sync_response import PostV1BankFeedsSyncResponse
+from .types.post_v1bank_import_templates_create_request_fields_item import (
+    PostV1BankImportTemplatesCreateRequestFieldsItem,
+)
+from .types.post_v1bank_import_templates_create_request_type import PostV1BankImportTemplatesCreateRequestType
+from .types.post_v1bank_import_templates_create_response import PostV1BankImportTemplatesCreateResponse
+from .types.post_v1bank_import_templates_delete_response import PostV1BankImportTemplatesDeleteResponse
+from .types.post_v1bank_import_templates_get_response import PostV1BankImportTemplatesGetResponse
+from .types.post_v1bank_import_templates_list_request_filter_item import PostV1BankImportTemplatesListRequestFilterItem
+from .types.post_v1bank_import_templates_list_request_sort_item import PostV1BankImportTemplatesListRequestSortItem
+from .types.post_v1bank_import_templates_list_response import PostV1BankImportTemplatesListResponse
+from .types.post_v1bank_import_templates_update_request_fields_item import (
+    PostV1BankImportTemplatesUpdateRequestFieldsItem,
+)
+from .types.post_v1bank_import_templates_update_request_type import PostV1BankImportTemplatesUpdateRequestType
+from .types.post_v1bank_import_templates_update_response import PostV1BankImportTemplatesUpdateResponse
 from .types.post_v1bank_mandates_cancel_response import PostV1BankMandatesCancelResponse
 from .types.post_v1bank_mandates_create_request_scheme import PostV1BankMandatesCreateRequestScheme
 from .types.post_v1bank_mandates_create_request_sequence_type import PostV1BankMandatesCreateRequestSequenceType
@@ -56,6 +75,8 @@ from .types.post_v1bank_transactions_list_request_sort_item import PostV1BankTra
 from .types.post_v1bank_transactions_list_response import PostV1BankTransactionsListResponse
 from .types.post_v1bank_transactions_match_request_document_type import PostV1BankTransactionsMatchRequestDocumentType
 from .types.post_v1bank_transactions_match_response import PostV1BankTransactionsMatchResponse
+from .types.post_v1bank_transactions_record_request_document_type import PostV1BankTransactionsRecordRequestDocumentType
+from .types.post_v1bank_transactions_record_response import PostV1BankTransactionsRecordResponse
 from .types.post_v1bank_transactions_suggest_matches_response import PostV1BankTransactionsSuggestMatchesResponse
 
 # this is used as the default value for optional parameters
@@ -84,6 +105,7 @@ class BankClient:
         iban: typing.Optional[str] = OMIT,
         currency: typing.Optional[str] = OMIT,
         account_code: typing.Optional[str] = OMIT,
+        document_ref: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1BankAccountsCreateResponse:
         """
@@ -96,6 +118,8 @@ class BankClient:
         currency : typing.Optional[str]
 
         account_code : typing.Optional[str]
+
+        document_ref : typing.Optional[str]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -117,7 +141,12 @@ class BankClient:
         )
         """
         _response = self._raw_client.post_v1bank_accounts_create(
-            name=name, iban=iban, currency=currency, account_code=account_code, request_options=request_options
+            name=name,
+            iban=iban,
+            currency=currency,
+            account_code=account_code,
+            document_ref=document_ref,
+            request_options=request_options,
         )
         return _response.data
 
@@ -260,6 +289,7 @@ class BankClient:
         *,
         bank_account_id: str,
         content: str,
+        template_id: typing.Optional[str] = OMIT,
         format: typing.Optional[PostV1BankStatementsImportRequestFormat] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1BankStatementsImportResponse:
@@ -269,6 +299,8 @@ class BankClient:
         bank_account_id : str
 
         content : str
+
+        template_id : typing.Optional[str]
 
         format : typing.Optional[PostV1BankStatementsImportRequestFormat]
 
@@ -293,7 +325,11 @@ class BankClient:
         )
         """
         _response = self._raw_client.post_v1bank_statements_import(
-            bank_account_id=bank_account_id, content=content, format=format, request_options=request_options
+            bank_account_id=bank_account_id,
+            content=content,
+            template_id=template_id,
+            format=format,
+            request_options=request_options,
         )
         return _response.data
 
@@ -385,6 +421,66 @@ class BankClient:
         )
         return _response.data
 
+    def post_v1bank_transactions_record(
+        self,
+        *,
+        bank_account_id: str,
+        date: str,
+        amount: str,
+        document_type: PostV1BankTransactionsRecordRequestDocumentType,
+        document_id: str,
+        description: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1BankTransactionsRecordResponse:
+        """
+        Parameters
+        ----------
+        bank_account_id : str
+
+        date : str
+
+        amount : str
+
+        document_type : PostV1BankTransactionsRecordRequestDocumentType
+
+        document_id : str
+
+        description : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1BankTransactionsRecordResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.bank.post_v1bank_transactions_record(
+            bank_account_id="bankAccountId",
+            date="date",
+            amount="amount",
+            document_type="sale_invoice",
+            document_id="documentId",
+        )
+        """
+        _response = self._raw_client.post_v1bank_transactions_record(
+            bank_account_id=bank_account_id,
+            date=date,
+            amount=amount,
+            document_type=document_type,
+            document_id=document_id,
+            description=description,
+            request_options=request_options,
+        )
+        return _response.data
+
     def post_v1bank_payments_export(
         self,
         *,
@@ -427,6 +523,249 @@ class BankClient:
             purchase_invoice_ids=purchase_invoice_ids,
             execution_date=execution_date,
             request_options=request_options,
+        )
+        return _response.data
+
+    def create_a_bank_import_template_fields_default_to_the_types_standard_field_list(
+        self,
+        *,
+        name: str,
+        type: PostV1BankImportTemplatesCreateRequestType,
+        fields: typing.Optional[typing.Sequence[PostV1BankImportTemplatesCreateRequestFieldsItem]] = OMIT,
+        meta_fields: typing.Optional[typing.Sequence[str]] = OMIT,
+        invoice_meta_field: typing.Optional[str] = OMIT,
+        invoice_vat_rate_percent: typing.Optional[str] = OMIT,
+        company_meta_field: typing.Optional[str] = OMIT,
+        invoice_item_id: typing.Optional[str] = OMIT,
+        advance_invoices: typing.Optional[bool] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1BankImportTemplatesCreateResponse:
+        """
+        Parameters
+        ----------
+        name : str
+
+        type : PostV1BankImportTemplatesCreateRequestType
+
+        fields : typing.Optional[typing.Sequence[PostV1BankImportTemplatesCreateRequestFieldsItem]]
+
+        meta_fields : typing.Optional[typing.Sequence[str]]
+
+        invoice_meta_field : typing.Optional[str]
+
+        invoice_vat_rate_percent : typing.Optional[str]
+
+        company_meta_field : typing.Optional[str]
+
+        invoice_item_id : typing.Optional[str]
+
+        advance_invoices : typing.Optional[bool]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1BankImportTemplatesCreateResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.bank.create_a_bank_import_template_fields_default_to_the_types_standard_field_list(
+            name="name",
+            type="stripe",
+        )
+        """
+        _response = self._raw_client.create_a_bank_import_template_fields_default_to_the_types_standard_field_list(
+            name=name,
+            type=type,
+            fields=fields,
+            meta_fields=meta_fields,
+            invoice_meta_field=invoice_meta_field,
+            invoice_vat_rate_percent=invoice_vat_rate_percent,
+            company_meta_field=company_meta_field,
+            invoice_item_id=invoice_item_id,
+            advance_invoices=advance_invoices,
+            request_options=request_options,
+        )
+        return _response.data
+
+    def post_v1bank_import_templates_update(
+        self,
+        *,
+        id: str,
+        name: typing.Optional[str] = OMIT,
+        type: typing.Optional[PostV1BankImportTemplatesUpdateRequestType] = OMIT,
+        fields: typing.Optional[typing.Sequence[PostV1BankImportTemplatesUpdateRequestFieldsItem]] = OMIT,
+        meta_fields: typing.Optional[typing.Sequence[str]] = OMIT,
+        invoice_meta_field: typing.Optional[str] = OMIT,
+        invoice_vat_rate_percent: typing.Optional[str] = OMIT,
+        company_meta_field: typing.Optional[str] = OMIT,
+        invoice_item_id: typing.Optional[str] = OMIT,
+        advance_invoices: typing.Optional[bool] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1BankImportTemplatesUpdateResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        name : typing.Optional[str]
+
+        type : typing.Optional[PostV1BankImportTemplatesUpdateRequestType]
+
+        fields : typing.Optional[typing.Sequence[PostV1BankImportTemplatesUpdateRequestFieldsItem]]
+
+        meta_fields : typing.Optional[typing.Sequence[str]]
+
+        invoice_meta_field : typing.Optional[str]
+
+        invoice_vat_rate_percent : typing.Optional[str]
+
+        company_meta_field : typing.Optional[str]
+
+        invoice_item_id : typing.Optional[str]
+
+        advance_invoices : typing.Optional[bool]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1BankImportTemplatesUpdateResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.bank.post_v1bank_import_templates_update(
+            id="id",
+        )
+        """
+        _response = self._raw_client.post_v1bank_import_templates_update(
+            id=id,
+            name=name,
+            type=type,
+            fields=fields,
+            meta_fields=meta_fields,
+            invoice_meta_field=invoice_meta_field,
+            invoice_vat_rate_percent=invoice_vat_rate_percent,
+            company_meta_field=company_meta_field,
+            invoice_item_id=invoice_item_id,
+            advance_invoices=advance_invoices,
+            request_options=request_options,
+        )
+        return _response.data
+
+    def post_v1bank_import_templates_delete(
+        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1BankImportTemplatesDeleteResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1BankImportTemplatesDeleteResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.bank.post_v1bank_import_templates_delete(
+            id="id",
+        )
+        """
+        _response = self._raw_client.post_v1bank_import_templates_delete(id=id, request_options=request_options)
+        return _response.data
+
+    def post_v1bank_import_templates_get(
+        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1BankImportTemplatesGetResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1BankImportTemplatesGetResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.bank.post_v1bank_import_templates_get(
+            id="id",
+        )
+        """
+        _response = self._raw_client.post_v1bank_import_templates_get(id=id, request_options=request_options)
+        return _response.data
+
+    def post_v1bank_import_templates_list(
+        self,
+        *,
+        page: typing.Optional[int] = OMIT,
+        page_size: typing.Optional[int] = OMIT,
+        sort: typing.Optional[typing.Sequence[PostV1BankImportTemplatesListRequestSortItem]] = OMIT,
+        filter: typing.Optional[typing.Sequence[PostV1BankImportTemplatesListRequestFilterItem]] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1BankImportTemplatesListResponse:
+        """
+        Parameters
+        ----------
+        page : typing.Optional[int]
+
+        page_size : typing.Optional[int]
+
+        sort : typing.Optional[typing.Sequence[PostV1BankImportTemplatesListRequestSortItem]]
+
+        filter : typing.Optional[typing.Sequence[PostV1BankImportTemplatesListRequestFilterItem]]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1BankImportTemplatesListResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.bank.post_v1bank_import_templates_list()
+        """
+        _response = self._raw_client.post_v1bank_import_templates_list(
+            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
         )
         return _response.data
 
@@ -1198,6 +1537,47 @@ class BankClient:
         )
         return _response.data
 
+    def choose_the_import_template_applied_on_sync_and_how_often_the_account_is_synced_automatically(
+        self,
+        *,
+        id: str,
+        import_template_id: typing.Optional[str] = OMIT,
+        sync_schedule: typing.Optional[PostV1BankFeedsAccountsConfigureRequestSyncSchedule] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1BankFeedsAccountsConfigureResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        import_template_id : typing.Optional[str]
+
+        sync_schedule : typing.Optional[PostV1BankFeedsAccountsConfigureRequestSyncSchedule]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1BankFeedsAccountsConfigureResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.bank.choose_the_import_template_applied_on_sync_and_how_often_the_account_is_synced_automatically(
+            id="id",
+        )
+        """
+        _response = self._raw_client.choose_the_import_template_applied_on_sync_and_how_often_the_account_is_synced_automatically(
+            id=id, import_template_id=import_template_id, sync_schedule=sync_schedule, request_options=request_options
+        )
+        return _response.data
+
     def pull_new_transactions_from_the_bank_into_the_ledger_emits_bank_feed_synced(
         self,
         *,
@@ -1269,6 +1649,7 @@ class AsyncBankClient:
         iban: typing.Optional[str] = OMIT,
         currency: typing.Optional[str] = OMIT,
         account_code: typing.Optional[str] = OMIT,
+        document_ref: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1BankAccountsCreateResponse:
         """
@@ -1281,6 +1662,8 @@ class AsyncBankClient:
         currency : typing.Optional[str]
 
         account_code : typing.Optional[str]
+
+        document_ref : typing.Optional[str]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -1310,7 +1693,12 @@ class AsyncBankClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.post_v1bank_accounts_create(
-            name=name, iban=iban, currency=currency, account_code=account_code, request_options=request_options
+            name=name,
+            iban=iban,
+            currency=currency,
+            account_code=account_code,
+            document_ref=document_ref,
+            request_options=request_options,
         )
         return _response.data
 
@@ -1477,6 +1865,7 @@ class AsyncBankClient:
         *,
         bank_account_id: str,
         content: str,
+        template_id: typing.Optional[str] = OMIT,
         format: typing.Optional[PostV1BankStatementsImportRequestFormat] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1BankStatementsImportResponse:
@@ -1486,6 +1875,8 @@ class AsyncBankClient:
         bank_account_id : str
 
         content : str
+
+        template_id : typing.Optional[str]
 
         format : typing.Optional[PostV1BankStatementsImportRequestFormat]
 
@@ -1518,7 +1909,11 @@ class AsyncBankClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.post_v1bank_statements_import(
-            bank_account_id=bank_account_id, content=content, format=format, request_options=request_options
+            bank_account_id=bank_account_id,
+            content=content,
+            template_id=template_id,
+            format=format,
+            request_options=request_options,
         )
         return _response.data
 
@@ -1626,6 +2021,74 @@ class AsyncBankClient:
         )
         return _response.data
 
+    async def post_v1bank_transactions_record(
+        self,
+        *,
+        bank_account_id: str,
+        date: str,
+        amount: str,
+        document_type: PostV1BankTransactionsRecordRequestDocumentType,
+        document_id: str,
+        description: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1BankTransactionsRecordResponse:
+        """
+        Parameters
+        ----------
+        bank_account_id : str
+
+        date : str
+
+        amount : str
+
+        document_type : PostV1BankTransactionsRecordRequestDocumentType
+
+        document_id : str
+
+        description : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1BankTransactionsRecordResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.bank.post_v1bank_transactions_record(
+                bank_account_id="bankAccountId",
+                date="date",
+                amount="amount",
+                document_type="sale_invoice",
+                document_id="documentId",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1bank_transactions_record(
+            bank_account_id=bank_account_id,
+            date=date,
+            amount=amount,
+            document_type=document_type,
+            document_id=document_id,
+            description=description,
+            request_options=request_options,
+        )
+        return _response.data
+
     async def post_v1bank_payments_export(
         self,
         *,
@@ -1676,6 +2139,291 @@ class AsyncBankClient:
             purchase_invoice_ids=purchase_invoice_ids,
             execution_date=execution_date,
             request_options=request_options,
+        )
+        return _response.data
+
+    async def create_a_bank_import_template_fields_default_to_the_types_standard_field_list(
+        self,
+        *,
+        name: str,
+        type: PostV1BankImportTemplatesCreateRequestType,
+        fields: typing.Optional[typing.Sequence[PostV1BankImportTemplatesCreateRequestFieldsItem]] = OMIT,
+        meta_fields: typing.Optional[typing.Sequence[str]] = OMIT,
+        invoice_meta_field: typing.Optional[str] = OMIT,
+        invoice_vat_rate_percent: typing.Optional[str] = OMIT,
+        company_meta_field: typing.Optional[str] = OMIT,
+        invoice_item_id: typing.Optional[str] = OMIT,
+        advance_invoices: typing.Optional[bool] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1BankImportTemplatesCreateResponse:
+        """
+        Parameters
+        ----------
+        name : str
+
+        type : PostV1BankImportTemplatesCreateRequestType
+
+        fields : typing.Optional[typing.Sequence[PostV1BankImportTemplatesCreateRequestFieldsItem]]
+
+        meta_fields : typing.Optional[typing.Sequence[str]]
+
+        invoice_meta_field : typing.Optional[str]
+
+        invoice_vat_rate_percent : typing.Optional[str]
+
+        company_meta_field : typing.Optional[str]
+
+        invoice_item_id : typing.Optional[str]
+
+        advance_invoices : typing.Optional[bool]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1BankImportTemplatesCreateResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.bank.create_a_bank_import_template_fields_default_to_the_types_standard_field_list(
+                name="name",
+                type="stripe",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = (
+            await self._raw_client.create_a_bank_import_template_fields_default_to_the_types_standard_field_list(
+                name=name,
+                type=type,
+                fields=fields,
+                meta_fields=meta_fields,
+                invoice_meta_field=invoice_meta_field,
+                invoice_vat_rate_percent=invoice_vat_rate_percent,
+                company_meta_field=company_meta_field,
+                invoice_item_id=invoice_item_id,
+                advance_invoices=advance_invoices,
+                request_options=request_options,
+            )
+        )
+        return _response.data
+
+    async def post_v1bank_import_templates_update(
+        self,
+        *,
+        id: str,
+        name: typing.Optional[str] = OMIT,
+        type: typing.Optional[PostV1BankImportTemplatesUpdateRequestType] = OMIT,
+        fields: typing.Optional[typing.Sequence[PostV1BankImportTemplatesUpdateRequestFieldsItem]] = OMIT,
+        meta_fields: typing.Optional[typing.Sequence[str]] = OMIT,
+        invoice_meta_field: typing.Optional[str] = OMIT,
+        invoice_vat_rate_percent: typing.Optional[str] = OMIT,
+        company_meta_field: typing.Optional[str] = OMIT,
+        invoice_item_id: typing.Optional[str] = OMIT,
+        advance_invoices: typing.Optional[bool] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1BankImportTemplatesUpdateResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        name : typing.Optional[str]
+
+        type : typing.Optional[PostV1BankImportTemplatesUpdateRequestType]
+
+        fields : typing.Optional[typing.Sequence[PostV1BankImportTemplatesUpdateRequestFieldsItem]]
+
+        meta_fields : typing.Optional[typing.Sequence[str]]
+
+        invoice_meta_field : typing.Optional[str]
+
+        invoice_vat_rate_percent : typing.Optional[str]
+
+        company_meta_field : typing.Optional[str]
+
+        invoice_item_id : typing.Optional[str]
+
+        advance_invoices : typing.Optional[bool]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1BankImportTemplatesUpdateResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.bank.post_v1bank_import_templates_update(
+                id="id",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1bank_import_templates_update(
+            id=id,
+            name=name,
+            type=type,
+            fields=fields,
+            meta_fields=meta_fields,
+            invoice_meta_field=invoice_meta_field,
+            invoice_vat_rate_percent=invoice_vat_rate_percent,
+            company_meta_field=company_meta_field,
+            invoice_item_id=invoice_item_id,
+            advance_invoices=advance_invoices,
+            request_options=request_options,
+        )
+        return _response.data
+
+    async def post_v1bank_import_templates_delete(
+        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1BankImportTemplatesDeleteResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1BankImportTemplatesDeleteResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.bank.post_v1bank_import_templates_delete(
+                id="id",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1bank_import_templates_delete(id=id, request_options=request_options)
+        return _response.data
+
+    async def post_v1bank_import_templates_get(
+        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1BankImportTemplatesGetResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1BankImportTemplatesGetResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.bank.post_v1bank_import_templates_get(
+                id="id",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1bank_import_templates_get(id=id, request_options=request_options)
+        return _response.data
+
+    async def post_v1bank_import_templates_list(
+        self,
+        *,
+        page: typing.Optional[int] = OMIT,
+        page_size: typing.Optional[int] = OMIT,
+        sort: typing.Optional[typing.Sequence[PostV1BankImportTemplatesListRequestSortItem]] = OMIT,
+        filter: typing.Optional[typing.Sequence[PostV1BankImportTemplatesListRequestFilterItem]] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1BankImportTemplatesListResponse:
+        """
+        Parameters
+        ----------
+        page : typing.Optional[int]
+
+        page_size : typing.Optional[int]
+
+        sort : typing.Optional[typing.Sequence[PostV1BankImportTemplatesListRequestSortItem]]
+
+        filter : typing.Optional[typing.Sequence[PostV1BankImportTemplatesListRequestFilterItem]]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1BankImportTemplatesListResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.bank.post_v1bank_import_templates_list()
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1bank_import_templates_list(
+            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
         )
         return _response.data
 
@@ -2598,6 +3346,55 @@ class AsyncBankClient:
                 sync_from=sync_from,
                 request_options=request_options,
             )
+        )
+        return _response.data
+
+    async def choose_the_import_template_applied_on_sync_and_how_often_the_account_is_synced_automatically(
+        self,
+        *,
+        id: str,
+        import_template_id: typing.Optional[str] = OMIT,
+        sync_schedule: typing.Optional[PostV1BankFeedsAccountsConfigureRequestSyncSchedule] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1BankFeedsAccountsConfigureResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        import_template_id : typing.Optional[str]
+
+        sync_schedule : typing.Optional[PostV1BankFeedsAccountsConfigureRequestSyncSchedule]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1BankFeedsAccountsConfigureResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.bank.choose_the_import_template_applied_on_sync_and_how_often_the_account_is_synced_automatically(
+                id="id",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.choose_the_import_template_applied_on_sync_and_how_often_the_account_is_synced_automatically(
+            id=id, import_template_id=import_template_id, sync_schedule=sync_schedule, request_options=request_options
         )
         return _response.data
 

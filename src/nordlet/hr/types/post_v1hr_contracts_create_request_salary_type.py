@@ -2,4 +2,6 @@
 
 import typing
 
-PostV1HrContractsCreateRequestSalaryType = typing.Union[typing.Literal["monthly", "hourly"], typing.Any]
+PostV1HrContractsCreateRequestSalaryType = typing.Union[
+    typing.Literal["monthly", "hourly", "weekly", "daily", "yearly"], typing.Any
+]

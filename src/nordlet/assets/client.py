@@ -5,6 +5,7 @@ import typing
 from ..core.client_wrapper import AsyncClientWrapper, SyncClientWrapper
 from ..core.request_options import RequestOptions
 from .raw_client import AsyncRawAssetsClient, RawAssetsClient
+from .types.post_v1assets_assets_create_request_documents_item import PostV1AssetsAssetsCreateRequestDocumentsItem
 from .types.post_v1assets_assets_create_response import PostV1AssetsAssetsCreateResponse
 from .types.post_v1assets_assets_get_response import PostV1AssetsAssetsGetResponse
 from .types.post_v1assets_assets_list_request_filter_item import PostV1AssetsAssetsListRequestFilterItem
@@ -150,6 +151,7 @@ class AssetsClient:
         salvage_value: typing.Optional[str] = OMIT,
         useful_life_months: typing.Optional[int] = OMIT,
         notes: typing.Optional[str] = OMIT,
+        documents: typing.Optional[typing.Sequence[PostV1AssetsAssetsCreateRequestDocumentsItem]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1AssetsAssetsCreateResponse:
         """
@@ -172,6 +174,8 @@ class AssetsClient:
         useful_life_months : typing.Optional[int]
 
         notes : typing.Optional[str]
+
+        documents : typing.Optional[typing.Sequence[PostV1AssetsAssetsCreateRequestDocumentsItem]]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -206,6 +210,7 @@ class AssetsClient:
             salvage_value=salvage_value,
             useful_life_months=useful_life_months,
             notes=notes,
+            documents=documents,
             request_options=request_options,
         )
         return _response.data
@@ -551,6 +556,7 @@ class AsyncAssetsClient:
         salvage_value: typing.Optional[str] = OMIT,
         useful_life_months: typing.Optional[int] = OMIT,
         notes: typing.Optional[str] = OMIT,
+        documents: typing.Optional[typing.Sequence[PostV1AssetsAssetsCreateRequestDocumentsItem]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1AssetsAssetsCreateResponse:
         """
@@ -573,6 +579,8 @@ class AsyncAssetsClient:
         useful_life_months : typing.Optional[int]
 
         notes : typing.Optional[str]
+
+        documents : typing.Optional[typing.Sequence[PostV1AssetsAssetsCreateRequestDocumentsItem]]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -615,6 +623,7 @@ class AsyncAssetsClient:
             salvage_value=salvage_value,
             useful_life_months=useful_life_months,
             notes=notes,
+            documents=documents,
             request_options=request_options,
         )
         return _response.data

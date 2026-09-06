@@ -2392,6 +2392,7 @@ class RawPartnersClient:
         status_id: typing.Optional[str] = OMIT,
         address: typing.Optional[PostV1PartnersCreateRequestAddress] = OMIT,
         notes: typing.Optional[str] = OMIT,
+        document_ref: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[PostV1PartnersCreateResponse]:
         """
@@ -2433,6 +2434,8 @@ class RawPartnersClient:
 
         notes : typing.Optional[str]
 
+        document_ref : typing.Optional[str]
+
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
@@ -2465,6 +2468,7 @@ class RawPartnersClient:
                     object_=address, annotation=PostV1PartnersCreateRequestAddress, direction="write"
                 ),
                 "notes": notes,
+                "documentRef": document_ref,
             },
             headers={
                 "content-type": "application/json",
@@ -2600,6 +2604,7 @@ class RawPartnersClient:
         status_id: typing.Optional[str] = OMIT,
         address: typing.Optional[PostV1PartnersFindOrCreateRequestAddress] = OMIT,
         notes: typing.Optional[str] = OMIT,
+        document_ref: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[PostV1PartnersFindOrCreateResponse]:
         """
@@ -2641,6 +2646,8 @@ class RawPartnersClient:
 
         notes : typing.Optional[str]
 
+        document_ref : typing.Optional[str]
+
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
@@ -2673,6 +2680,7 @@ class RawPartnersClient:
                     object_=address, annotation=PostV1PartnersFindOrCreateRequestAddress, direction="write"
                 ),
                 "notes": notes,
+                "documentRef": document_ref,
             },
             headers={
                 "content-type": "application/json",
@@ -2944,6 +2952,7 @@ class RawPartnersClient:
         status_id: typing.Optional[str] = OMIT,
         address: typing.Optional[PostV1PartnersUpdateRequestAddress] = OMIT,
         notes: typing.Optional[str] = OMIT,
+        document_ref: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[PostV1PartnersUpdateResponse]:
         """
@@ -2987,6 +2996,8 @@ class RawPartnersClient:
 
         notes : typing.Optional[str]
 
+        document_ref : typing.Optional[str]
+
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
@@ -3020,6 +3031,7 @@ class RawPartnersClient:
                     object_=address, annotation=PostV1PartnersUpdateRequestAddress, direction="write"
                 ),
                 "notes": notes,
+                "documentRef": document_ref,
             },
             headers={
                 "content-type": "application/json",
@@ -7750,6 +7762,7 @@ class AsyncRawPartnersClient:
         status_id: typing.Optional[str] = OMIT,
         address: typing.Optional[PostV1PartnersCreateRequestAddress] = OMIT,
         notes: typing.Optional[str] = OMIT,
+        document_ref: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[PostV1PartnersCreateResponse]:
         """
@@ -7791,6 +7804,8 @@ class AsyncRawPartnersClient:
 
         notes : typing.Optional[str]
 
+        document_ref : typing.Optional[str]
+
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
@@ -7823,6 +7838,7 @@ class AsyncRawPartnersClient:
                     object_=address, annotation=PostV1PartnersCreateRequestAddress, direction="write"
                 ),
                 "notes": notes,
+                "documentRef": document_ref,
             },
             headers={
                 "content-type": "application/json",
@@ -7958,6 +7974,7 @@ class AsyncRawPartnersClient:
         status_id: typing.Optional[str] = OMIT,
         address: typing.Optional[PostV1PartnersFindOrCreateRequestAddress] = OMIT,
         notes: typing.Optional[str] = OMIT,
+        document_ref: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[PostV1PartnersFindOrCreateResponse]:
         """
@@ -7999,6 +8016,8 @@ class AsyncRawPartnersClient:
 
         notes : typing.Optional[str]
 
+        document_ref : typing.Optional[str]
+
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
@@ -8031,6 +8050,7 @@ class AsyncRawPartnersClient:
                     object_=address, annotation=PostV1PartnersFindOrCreateRequestAddress, direction="write"
                 ),
                 "notes": notes,
+                "documentRef": document_ref,
             },
             headers={
                 "content-type": "application/json",
@@ -8302,6 +8322,7 @@ class AsyncRawPartnersClient:
         status_id: typing.Optional[str] = OMIT,
         address: typing.Optional[PostV1PartnersUpdateRequestAddress] = OMIT,
         notes: typing.Optional[str] = OMIT,
+        document_ref: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[PostV1PartnersUpdateResponse]:
         """
@@ -8345,6 +8366,8 @@ class AsyncRawPartnersClient:
 
         notes : typing.Optional[str]
 
+        document_ref : typing.Optional[str]
+
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
@@ -8378,6 +8401,7 @@ class AsyncRawPartnersClient:
                     object_=address, annotation=PostV1PartnersUpdateRequestAddress, direction="write"
                 ),
                 "notes": notes,
+                "documentRef": document_ref,
             },
             headers={
                 "content-type": "application/json",

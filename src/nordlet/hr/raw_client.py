@@ -29,6 +29,7 @@ from .types.post_v1hr_contracts_list_response import PostV1HrContractsListRespon
 from .types.post_v1hr_employees_anonymize_response import PostV1HrEmployeesAnonymizeResponse
 from .types.post_v1hr_employees_attachments_list_response import PostV1HrEmployeesAttachmentsListResponse
 from .types.post_v1hr_employees_create_request_address import PostV1HrEmployeesCreateRequestAddress
+from .types.post_v1hr_employees_create_request_attributes_item import PostV1HrEmployeesCreateRequestAttributesItem
 from .types.post_v1hr_employees_create_response import PostV1HrEmployeesCreateResponse
 from .types.post_v1hr_employees_delete_response import PostV1HrEmployeesDeleteResponse
 from .types.post_v1hr_employees_get_response import PostV1HrEmployeesGetResponse
@@ -44,6 +45,7 @@ from .types.post_v1hr_employees_records_list_response import PostV1HrEmployeesRe
 from .types.post_v1hr_employees_records_update_request_type import PostV1HrEmployeesRecordsUpdateRequestType
 from .types.post_v1hr_employees_records_update_response import PostV1HrEmployeesRecordsUpdateResponse
 from .types.post_v1hr_employees_update_request_address import PostV1HrEmployeesUpdateRequestAddress
+from .types.post_v1hr_employees_update_request_attributes_item import PostV1HrEmployeesUpdateRequestAttributesItem
 from .types.post_v1hr_employees_update_request_status import PostV1HrEmployeesUpdateRequestStatus
 from .types.post_v1hr_employees_update_response import PostV1HrEmployeesUpdateResponse
 from .types.post_v1hr_incapacity_certificates_create_response import PostV1HrIncapacityCertificatesCreateResponse
@@ -562,6 +564,7 @@ class RawHrClient:
         npd_override: typing.Optional[str] = OMIT,
         pension_accumulation: typing.Optional[bool] = OMIT,
         notes: typing.Optional[str] = OMIT,
+        attributes: typing.Optional[typing.Sequence[PostV1HrEmployeesCreateRequestAttributesItem]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[PostV1HrEmployeesCreateResponse]:
         """
@@ -599,6 +602,8 @@ class RawHrClient:
 
         notes : typing.Optional[str]
 
+        attributes : typing.Optional[typing.Sequence[PostV1HrEmployeesCreateRequestAttributesItem]]
+
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
@@ -629,6 +634,11 @@ class RawHrClient:
                 "npdOverride": npd_override,
                 "pensionAccumulation": pension_accumulation,
                 "notes": notes,
+                "attributes": convert_and_respect_annotation_metadata(
+                    object_=attributes,
+                    annotation=typing.Sequence[PostV1HrEmployeesCreateRequestAttributesItem],
+                    direction="write",
+                ),
             },
             headers={
                 "content-type": "application/json",
@@ -763,6 +773,7 @@ class RawHrClient:
         npd_override: typing.Optional[str] = OMIT,
         pension_accumulation: typing.Optional[bool] = OMIT,
         notes: typing.Optional[str] = OMIT,
+        attributes: typing.Optional[typing.Sequence[PostV1HrEmployeesUpdateRequestAttributesItem]] = OMIT,
         termination_date: typing.Optional[str] = OMIT,
         status: typing.Optional[PostV1HrEmployeesUpdateRequestStatus] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
@@ -804,6 +815,8 @@ class RawHrClient:
 
         notes : typing.Optional[str]
 
+        attributes : typing.Optional[typing.Sequence[PostV1HrEmployeesUpdateRequestAttributesItem]]
+
         termination_date : typing.Optional[str]
 
         status : typing.Optional[PostV1HrEmployeesUpdateRequestStatus]
@@ -838,6 +851,11 @@ class RawHrClient:
                 "npdOverride": npd_override,
                 "pensionAccumulation": pension_accumulation,
                 "notes": notes,
+                "attributes": convert_and_respect_annotation_metadata(
+                    object_=attributes,
+                    annotation=typing.Sequence[PostV1HrEmployeesUpdateRequestAttributesItem],
+                    direction="write",
+                ),
                 "id": id,
                 "terminationDate": termination_date,
                 "status": status,
@@ -1522,16 +1540,17 @@ class RawHrClient:
         self,
         *,
         employee_id: str,
-        contract_no: str,
         start_date: str,
         base_salary: str,
         position_id: typing.Optional[str] = OMIT,
         department_id: typing.Optional[str] = OMIT,
         schedule_id: typing.Optional[str] = OMIT,
+        agreement_id: typing.Optional[str] = OMIT,
+        contract_no: typing.Optional[str] = OMIT,
         type: typing.Optional[PostV1HrContractsCreateRequestType] = OMIT,
         end_date: typing.Optional[str] = OMIT,
         salary_type: typing.Optional[PostV1HrContractsCreateRequestSalaryType] = OMIT,
-        work_hours_per_week: typing.Optional[str] = OMIT,
+        work_hours: typing.Optional[str] = OMIT,
         notes: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[PostV1HrContractsCreateResponse]:
@@ -1539,8 +1558,6 @@ class RawHrClient:
         Parameters
         ----------
         employee_id : str
-
-        contract_no : str
 
         start_date : str
 
@@ -1552,13 +1569,17 @@ class RawHrClient:
 
         schedule_id : typing.Optional[str]
 
+        agreement_id : typing.Optional[str]
+
+        contract_no : typing.Optional[str]
+
         type : typing.Optional[PostV1HrContractsCreateRequestType]
 
         end_date : typing.Optional[str]
 
         salary_type : typing.Optional[PostV1HrContractsCreateRequestSalaryType]
 
-        work_hours_per_week : typing.Optional[str]
+        work_hours : typing.Optional[str]
 
         notes : typing.Optional[str]
 
@@ -1578,13 +1599,14 @@ class RawHrClient:
                 "positionId": position_id,
                 "departmentId": department_id,
                 "scheduleId": schedule_id,
+                "agreementId": agreement_id,
                 "contractNo": contract_no,
                 "type": type,
                 "startDate": start_date,
                 "endDate": end_date,
                 "baseSalary": base_salary,
                 "salaryType": salary_type,
-                "workHoursPerWeek": work_hours_per_week,
+                "workHours": work_hours,
                 "notes": notes,
             },
             headers={
@@ -4574,6 +4596,7 @@ class AsyncRawHrClient:
         npd_override: typing.Optional[str] = OMIT,
         pension_accumulation: typing.Optional[bool] = OMIT,
         notes: typing.Optional[str] = OMIT,
+        attributes: typing.Optional[typing.Sequence[PostV1HrEmployeesCreateRequestAttributesItem]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[PostV1HrEmployeesCreateResponse]:
         """
@@ -4611,6 +4634,8 @@ class AsyncRawHrClient:
 
         notes : typing.Optional[str]
 
+        attributes : typing.Optional[typing.Sequence[PostV1HrEmployeesCreateRequestAttributesItem]]
+
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
@@ -4641,6 +4666,11 @@ class AsyncRawHrClient:
                 "npdOverride": npd_override,
                 "pensionAccumulation": pension_accumulation,
                 "notes": notes,
+                "attributes": convert_and_respect_annotation_metadata(
+                    object_=attributes,
+                    annotation=typing.Sequence[PostV1HrEmployeesCreateRequestAttributesItem],
+                    direction="write",
+                ),
             },
             headers={
                 "content-type": "application/json",
@@ -4775,6 +4805,7 @@ class AsyncRawHrClient:
         npd_override: typing.Optional[str] = OMIT,
         pension_accumulation: typing.Optional[bool] = OMIT,
         notes: typing.Optional[str] = OMIT,
+        attributes: typing.Optional[typing.Sequence[PostV1HrEmployeesUpdateRequestAttributesItem]] = OMIT,
         termination_date: typing.Optional[str] = OMIT,
         status: typing.Optional[PostV1HrEmployeesUpdateRequestStatus] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
@@ -4816,6 +4847,8 @@ class AsyncRawHrClient:
 
         notes : typing.Optional[str]
 
+        attributes : typing.Optional[typing.Sequence[PostV1HrEmployeesUpdateRequestAttributesItem]]
+
         termination_date : typing.Optional[str]
 
         status : typing.Optional[PostV1HrEmployeesUpdateRequestStatus]
@@ -4850,6 +4883,11 @@ class AsyncRawHrClient:
                 "npdOverride": npd_override,
                 "pensionAccumulation": pension_accumulation,
                 "notes": notes,
+                "attributes": convert_and_respect_annotation_metadata(
+                    object_=attributes,
+                    annotation=typing.Sequence[PostV1HrEmployeesUpdateRequestAttributesItem],
+                    direction="write",
+                ),
                 "id": id,
                 "terminationDate": termination_date,
                 "status": status,
@@ -5534,16 +5572,17 @@ class AsyncRawHrClient:
         self,
         *,
         employee_id: str,
-        contract_no: str,
         start_date: str,
         base_salary: str,
         position_id: typing.Optional[str] = OMIT,
         department_id: typing.Optional[str] = OMIT,
         schedule_id: typing.Optional[str] = OMIT,
+        agreement_id: typing.Optional[str] = OMIT,
+        contract_no: typing.Optional[str] = OMIT,
         type: typing.Optional[PostV1HrContractsCreateRequestType] = OMIT,
         end_date: typing.Optional[str] = OMIT,
         salary_type: typing.Optional[PostV1HrContractsCreateRequestSalaryType] = OMIT,
-        work_hours_per_week: typing.Optional[str] = OMIT,
+        work_hours: typing.Optional[str] = OMIT,
         notes: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[PostV1HrContractsCreateResponse]:
@@ -5551,8 +5590,6 @@ class AsyncRawHrClient:
         Parameters
         ----------
         employee_id : str
-
-        contract_no : str
 
         start_date : str
 
@@ -5564,13 +5601,17 @@ class AsyncRawHrClient:
 
         schedule_id : typing.Optional[str]
 
+        agreement_id : typing.Optional[str]
+
+        contract_no : typing.Optional[str]
+
         type : typing.Optional[PostV1HrContractsCreateRequestType]
 
         end_date : typing.Optional[str]
 
         salary_type : typing.Optional[PostV1HrContractsCreateRequestSalaryType]
 
-        work_hours_per_week : typing.Optional[str]
+        work_hours : typing.Optional[str]
 
         notes : typing.Optional[str]
 
@@ -5590,13 +5631,14 @@ class AsyncRawHrClient:
                 "positionId": position_id,
                 "departmentId": department_id,
                 "scheduleId": schedule_id,
+                "agreementId": agreement_id,
                 "contractNo": contract_no,
                 "type": type,
                 "startDate": start_date,
                 "endDate": end_date,
                 "baseSalary": base_salary,
                 "salaryType": salary_type,
-                "workHoursPerWeek": work_hours_per_week,
+                "workHours": work_hours,
                 "notes": notes,
             },
             headers={

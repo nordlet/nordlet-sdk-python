@@ -15,6 +15,20 @@ class PostV1BankFeedsSyncResponse(UniversalBaseModel):
     ]
     imported: int
     skipped: int
+    posted: int
+    partners_created: typing_extensions.Annotated[
+        int, FieldMetadata(alias="partnersCreated"), pydantic.Field(alias="partnersCreated")
+    ]
+    invoices_created: typing_extensions.Annotated[
+        int, FieldMetadata(alias="invoicesCreated"), pydantic.Field(alias="invoicesCreated")
+    ]
+    invoices_linked: typing_extensions.Annotated[
+        int, FieldMetadata(alias="invoicesLinked"), pydantic.Field(alias="invoicesLinked")
+    ]
+    payments_matched: typing_extensions.Annotated[
+        int, FieldMetadata(alias="paymentsMatched"), pydantic.Field(alias="paymentsMatched")
+    ]
+    warnings: typing.List[str]
     accounts: typing.List[PostV1BankFeedsSyncResponseAccountsItem]
 
     if IS_PYDANTIC_V2:

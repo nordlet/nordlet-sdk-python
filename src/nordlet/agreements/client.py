@@ -12,6 +12,7 @@ from .types.post_v1agreements_agreements_create_request_billing_period import (
 from .types.post_v1agreements_agreements_create_request_items_item import (
     PostV1AgreementsAgreementsCreateRequestItemsItem,
 )
+from .types.post_v1agreements_agreements_create_request_kind import PostV1AgreementsAgreementsCreateRequestKind
 from .types.post_v1agreements_agreements_create_request_status import PostV1AgreementsAgreementsCreateRequestStatus
 from .types.post_v1agreements_agreements_create_response import PostV1AgreementsAgreementsCreateResponse
 from .types.post_v1agreements_agreements_delete_response import PostV1AgreementsAgreementsDeleteResponse
@@ -25,6 +26,7 @@ from .types.post_v1agreements_agreements_list_response import PostV1AgreementsAg
 from .types.post_v1agreements_agreements_update_request_billing_period import (
     PostV1AgreementsAgreementsUpdateRequestBillingPeriod,
 )
+from .types.post_v1agreements_agreements_update_request_kind import PostV1AgreementsAgreementsUpdateRequestKind
 from .types.post_v1agreements_agreements_update_request_status import PostV1AgreementsAgreementsUpdateRequestStatus
 from .types.post_v1agreements_agreements_update_response import PostV1AgreementsAgreementsUpdateResponse
 from .types.post_v1agreements_insurance_policies_create_response import PostV1AgreementsInsurancePoliciesCreateResponse
@@ -140,10 +142,13 @@ class AgreementsClient:
     def post_v1agreements_agreements_create(
         self,
         *,
-        partner_id: str,
         number: str,
         start_date: str,
         type_id: typing.Optional[str] = OMIT,
+        kind: typing.Optional[PostV1AgreementsAgreementsCreateRequestKind] = OMIT,
+        partner_id: typing.Optional[str] = OMIT,
+        employee_id: typing.Optional[str] = OMIT,
+        bank_account_id: typing.Optional[str] = OMIT,
         name: typing.Optional[str] = OMIT,
         end_date: typing.Optional[str] = OMIT,
         auto_renew: typing.Optional[bool] = OMIT,
@@ -152,19 +157,26 @@ class AgreementsClient:
         currency: typing.Optional[str] = OMIT,
         status: typing.Optional[PostV1AgreementsAgreementsCreateRequestStatus] = OMIT,
         notes: typing.Optional[str] = OMIT,
+        document_ref: typing.Optional[str] = OMIT,
         items: typing.Optional[typing.Sequence[PostV1AgreementsAgreementsCreateRequestItemsItem]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1AgreementsAgreementsCreateResponse:
         """
         Parameters
         ----------
-        partner_id : str
-
         number : str
 
         start_date : str
 
         type_id : typing.Optional[str]
+
+        kind : typing.Optional[PostV1AgreementsAgreementsCreateRequestKind]
+
+        partner_id : typing.Optional[str]
+
+        employee_id : typing.Optional[str]
+
+        bank_account_id : typing.Optional[str]
 
         name : typing.Optional[str]
 
@@ -181,6 +193,8 @@ class AgreementsClient:
         status : typing.Optional[PostV1AgreementsAgreementsCreateRequestStatus]
 
         notes : typing.Optional[str]
+
+        document_ref : typing.Optional[str]
 
         items : typing.Optional[typing.Sequence[PostV1AgreementsAgreementsCreateRequestItemsItem]]
 
@@ -200,16 +214,18 @@ class AgreementsClient:
             token="YOUR_TOKEN",
         )
         client.agreements.post_v1agreements_agreements_create(
-            partner_id="partnerId",
             number="number",
             start_date="startDate",
         )
         """
         _response = self._raw_client.post_v1agreements_agreements_create(
-            partner_id=partner_id,
             number=number,
             start_date=start_date,
             type_id=type_id,
+            kind=kind,
+            partner_id=partner_id,
+            employee_id=employee_id,
+            bank_account_id=bank_account_id,
             name=name,
             end_date=end_date,
             auto_renew=auto_renew,
@@ -218,6 +234,7 @@ class AgreementsClient:
             currency=currency,
             status=status,
             notes=notes,
+            document_ref=document_ref,
             items=items,
             request_options=request_options,
         )
@@ -258,6 +275,7 @@ class AgreementsClient:
         *,
         id: str,
         type_id: typing.Optional[str] = OMIT,
+        kind: typing.Optional[PostV1AgreementsAgreementsUpdateRequestKind] = OMIT,
         name: typing.Optional[str] = OMIT,
         end_date: typing.Optional[str] = OMIT,
         auto_renew: typing.Optional[bool] = OMIT,
@@ -265,6 +283,7 @@ class AgreementsClient:
         billing_period: typing.Optional[PostV1AgreementsAgreementsUpdateRequestBillingPeriod] = OMIT,
         status: typing.Optional[PostV1AgreementsAgreementsUpdateRequestStatus] = OMIT,
         notes: typing.Optional[str] = OMIT,
+        document_ref: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1AgreementsAgreementsUpdateResponse:
         """
@@ -273,6 +292,8 @@ class AgreementsClient:
         id : str
 
         type_id : typing.Optional[str]
+
+        kind : typing.Optional[PostV1AgreementsAgreementsUpdateRequestKind]
 
         name : typing.Optional[str]
 
@@ -287,6 +308,8 @@ class AgreementsClient:
         status : typing.Optional[PostV1AgreementsAgreementsUpdateRequestStatus]
 
         notes : typing.Optional[str]
+
+        document_ref : typing.Optional[str]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -310,6 +333,7 @@ class AgreementsClient:
         _response = self._raw_client.post_v1agreements_agreements_update(
             id=id,
             type_id=type_id,
+            kind=kind,
             name=name,
             end_date=end_date,
             auto_renew=auto_renew,
@@ -317,6 +341,7 @@ class AgreementsClient:
             billing_period=billing_period,
             status=status,
             notes=notes,
+            document_ref=document_ref,
             request_options=request_options,
         )
         return _response.data
@@ -712,10 +737,13 @@ class AsyncAgreementsClient:
     async def post_v1agreements_agreements_create(
         self,
         *,
-        partner_id: str,
         number: str,
         start_date: str,
         type_id: typing.Optional[str] = OMIT,
+        kind: typing.Optional[PostV1AgreementsAgreementsCreateRequestKind] = OMIT,
+        partner_id: typing.Optional[str] = OMIT,
+        employee_id: typing.Optional[str] = OMIT,
+        bank_account_id: typing.Optional[str] = OMIT,
         name: typing.Optional[str] = OMIT,
         end_date: typing.Optional[str] = OMIT,
         auto_renew: typing.Optional[bool] = OMIT,
@@ -724,19 +752,26 @@ class AsyncAgreementsClient:
         currency: typing.Optional[str] = OMIT,
         status: typing.Optional[PostV1AgreementsAgreementsCreateRequestStatus] = OMIT,
         notes: typing.Optional[str] = OMIT,
+        document_ref: typing.Optional[str] = OMIT,
         items: typing.Optional[typing.Sequence[PostV1AgreementsAgreementsCreateRequestItemsItem]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1AgreementsAgreementsCreateResponse:
         """
         Parameters
         ----------
-        partner_id : str
-
         number : str
 
         start_date : str
 
         type_id : typing.Optional[str]
+
+        kind : typing.Optional[PostV1AgreementsAgreementsCreateRequestKind]
+
+        partner_id : typing.Optional[str]
+
+        employee_id : typing.Optional[str]
+
+        bank_account_id : typing.Optional[str]
 
         name : typing.Optional[str]
 
@@ -753,6 +788,8 @@ class AsyncAgreementsClient:
         status : typing.Optional[PostV1AgreementsAgreementsCreateRequestStatus]
 
         notes : typing.Optional[str]
+
+        document_ref : typing.Optional[str]
 
         items : typing.Optional[typing.Sequence[PostV1AgreementsAgreementsCreateRequestItemsItem]]
 
@@ -777,7 +814,6 @@ class AsyncAgreementsClient:
 
         async def main() -> None:
             await client.agreements.post_v1agreements_agreements_create(
-                partner_id="partnerId",
                 number="number",
                 start_date="startDate",
             )
@@ -786,10 +822,13 @@ class AsyncAgreementsClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.post_v1agreements_agreements_create(
-            partner_id=partner_id,
             number=number,
             start_date=start_date,
             type_id=type_id,
+            kind=kind,
+            partner_id=partner_id,
+            employee_id=employee_id,
+            bank_account_id=bank_account_id,
             name=name,
             end_date=end_date,
             auto_renew=auto_renew,
@@ -798,6 +837,7 @@ class AsyncAgreementsClient:
             currency=currency,
             status=status,
             notes=notes,
+            document_ref=document_ref,
             items=items,
             request_options=request_options,
         )
@@ -846,6 +886,7 @@ class AsyncAgreementsClient:
         *,
         id: str,
         type_id: typing.Optional[str] = OMIT,
+        kind: typing.Optional[PostV1AgreementsAgreementsUpdateRequestKind] = OMIT,
         name: typing.Optional[str] = OMIT,
         end_date: typing.Optional[str] = OMIT,
         auto_renew: typing.Optional[bool] = OMIT,
@@ -853,6 +894,7 @@ class AsyncAgreementsClient:
         billing_period: typing.Optional[PostV1AgreementsAgreementsUpdateRequestBillingPeriod] = OMIT,
         status: typing.Optional[PostV1AgreementsAgreementsUpdateRequestStatus] = OMIT,
         notes: typing.Optional[str] = OMIT,
+        document_ref: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1AgreementsAgreementsUpdateResponse:
         """
@@ -861,6 +903,8 @@ class AsyncAgreementsClient:
         id : str
 
         type_id : typing.Optional[str]
+
+        kind : typing.Optional[PostV1AgreementsAgreementsUpdateRequestKind]
 
         name : typing.Optional[str]
 
@@ -875,6 +919,8 @@ class AsyncAgreementsClient:
         status : typing.Optional[PostV1AgreementsAgreementsUpdateRequestStatus]
 
         notes : typing.Optional[str]
+
+        document_ref : typing.Optional[str]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -906,6 +952,7 @@ class AsyncAgreementsClient:
         _response = await self._raw_client.post_v1agreements_agreements_update(
             id=id,
             type_id=type_id,
+            kind=kind,
             name=name,
             end_date=end_date,
             auto_renew=auto_renew,
@@ -913,6 +960,7 @@ class AsyncAgreementsClient:
             billing_period=billing_period,
             status=status,
             notes=notes,
+            document_ref=document_ref,
             request_options=request_options,
         )
         return _response.data

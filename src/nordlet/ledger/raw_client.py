@@ -20,11 +20,13 @@ from ..errors.unauthorized_error import UnauthorizedError
 from ..errors.unprocessable_entity_error import UnprocessableEntityError
 from ..types.error_response import ErrorResponse
 from .types.post_v1ledger_accounts_apply_template_response import PostV1LedgerAccountsApplyTemplateResponse
+from .types.post_v1ledger_accounts_create_request_translations import PostV1LedgerAccountsCreateRequestTranslations
 from .types.post_v1ledger_accounts_create_request_type import PostV1LedgerAccountsCreateRequestType
 from .types.post_v1ledger_accounts_create_response import PostV1LedgerAccountsCreateResponse
 from .types.post_v1ledger_accounts_list_request_filter_item import PostV1LedgerAccountsListRequestFilterItem
 from .types.post_v1ledger_accounts_list_request_sort_item import PostV1LedgerAccountsListRequestSortItem
 from .types.post_v1ledger_accounts_list_response import PostV1LedgerAccountsListResponse
+from .types.post_v1ledger_accounts_update_request_translations import PostV1LedgerAccountsUpdateRequestTranslations
 from .types.post_v1ledger_accounts_update_response import PostV1LedgerAccountsUpdateResponse
 from .types.post_v1ledger_cost_center_groups_create_response import PostV1LedgerCostCenterGroupsCreateResponse
 from .types.post_v1ledger_cost_center_groups_delete_response import PostV1LedgerCostCenterGroupsDeleteResponse
@@ -243,6 +245,7 @@ class RawLedgerClient:
         code: str,
         name: str,
         type: PostV1LedgerAccountsCreateRequestType,
+        translations: typing.Optional[PostV1LedgerAccountsCreateRequestTranslations] = OMIT,
         parent_id: typing.Optional[str] = OMIT,
         is_postable: typing.Optional[bool] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
@@ -255,6 +258,8 @@ class RawLedgerClient:
         name : str
 
         type : PostV1LedgerAccountsCreateRequestType
+
+        translations : typing.Optional[PostV1LedgerAccountsCreateRequestTranslations]
 
         parent_id : typing.Optional[str]
 
@@ -274,6 +279,9 @@ class RawLedgerClient:
             json={
                 "code": code,
                 "name": name,
+                "translations": convert_and_respect_annotation_metadata(
+                    object_=translations, annotation=PostV1LedgerAccountsCreateRequestTranslations, direction="write"
+                ),
                 "type": type,
                 "parentId": parent_id,
                 "isPostable": is_postable,
@@ -396,6 +404,7 @@ class RawLedgerClient:
         *,
         id: str,
         name: typing.Optional[str] = OMIT,
+        translations: typing.Optional[PostV1LedgerAccountsUpdateRequestTranslations] = OMIT,
         parent_id: typing.Optional[str] = OMIT,
         is_postable: typing.Optional[bool] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
@@ -406,6 +415,8 @@ class RawLedgerClient:
         id : str
 
         name : typing.Optional[str]
+
+        translations : typing.Optional[PostV1LedgerAccountsUpdateRequestTranslations]
 
         parent_id : typing.Optional[str]
 
@@ -425,6 +436,11 @@ class RawLedgerClient:
             json={
                 "id": id,
                 "name": name,
+                "translations": convert_and_respect_annotation_metadata(
+                    object_=translations,
+                    annotation=typing.Optional[PostV1LedgerAccountsUpdateRequestTranslations],
+                    direction="write",
+                ),
                 "parentId": parent_id,
                 "isPostable": is_postable,
             },
@@ -3651,6 +3667,7 @@ class AsyncRawLedgerClient:
         code: str,
         name: str,
         type: PostV1LedgerAccountsCreateRequestType,
+        translations: typing.Optional[PostV1LedgerAccountsCreateRequestTranslations] = OMIT,
         parent_id: typing.Optional[str] = OMIT,
         is_postable: typing.Optional[bool] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
@@ -3663,6 +3680,8 @@ class AsyncRawLedgerClient:
         name : str
 
         type : PostV1LedgerAccountsCreateRequestType
+
+        translations : typing.Optional[PostV1LedgerAccountsCreateRequestTranslations]
 
         parent_id : typing.Optional[str]
 
@@ -3682,6 +3701,9 @@ class AsyncRawLedgerClient:
             json={
                 "code": code,
                 "name": name,
+                "translations": convert_and_respect_annotation_metadata(
+                    object_=translations, annotation=PostV1LedgerAccountsCreateRequestTranslations, direction="write"
+                ),
                 "type": type,
                 "parentId": parent_id,
                 "isPostable": is_postable,
@@ -3804,6 +3826,7 @@ class AsyncRawLedgerClient:
         *,
         id: str,
         name: typing.Optional[str] = OMIT,
+        translations: typing.Optional[PostV1LedgerAccountsUpdateRequestTranslations] = OMIT,
         parent_id: typing.Optional[str] = OMIT,
         is_postable: typing.Optional[bool] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
@@ -3814,6 +3837,8 @@ class AsyncRawLedgerClient:
         id : str
 
         name : typing.Optional[str]
+
+        translations : typing.Optional[PostV1LedgerAccountsUpdateRequestTranslations]
 
         parent_id : typing.Optional[str]
 
@@ -3833,6 +3858,11 @@ class AsyncRawLedgerClient:
             json={
                 "id": id,
                 "name": name,
+                "translations": convert_and_respect_annotation_metadata(
+                    object_=translations,
+                    annotation=typing.Optional[PostV1LedgerAccountsUpdateRequestTranslations],
+                    direction="write",
+                ),
                 "parentId": parent_id,
                 "isPostable": is_postable,
             },

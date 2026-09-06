@@ -22,6 +22,9 @@ class PostV1LedgerJournalTransactionsGetResponse(UniversalBaseModel):
     document_id: typing_extensions.Annotated[
         typing.Optional[str], FieldMetadata(alias="documentId"), pydantic.Field(alias="documentId")
     ] = None
+    partner_id: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="partnerId"), pydantic.Field(alias="partnerId")
+    ] = None
     status: PostV1LedgerJournalTransactionsGetResponseStatus
     created_at: typing_extensions.Annotated[str, FieldMetadata(alias="createdAt"), pydantic.Field(alias="createdAt")]
     posted_at: typing_extensions.Annotated[

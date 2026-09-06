@@ -19,13 +19,11 @@ from .types.post_v1reference_countries_list_response import PostV1ReferenceCount
 from .types.post_v1reference_currencies_list_request_filter_item import PostV1ReferenceCurrenciesListRequestFilterItem
 from .types.post_v1reference_currencies_list_request_sort_item import PostV1ReferenceCurrenciesListRequestSortItem
 from .types.post_v1reference_currencies_list_response import PostV1ReferenceCurrenciesListResponse
-from .types.post_v1reference_eu_vat_rates_imports_list_response import PostV1ReferenceEuVatRatesImportsListResponse
 from .types.post_v1reference_eu_vat_rates_list_response import PostV1ReferenceEuVatRatesListResponse
 from .types.post_v1reference_eu_vat_rates_set_overrides_request_rates_item import (
     PostV1ReferenceEuVatRatesSetOverridesRequestRatesItem,
 )
 from .types.post_v1reference_eu_vat_rates_set_overrides_response import PostV1ReferenceEuVatRatesSetOverridesResponse
-from .types.post_v1reference_eu_vat_rates_sync_response import PostV1ReferenceEuVatRatesSyncResponse
 from .types.post_v1reference_exchange_rates_list_request_filter_item import (
     PostV1ReferenceExchangeRatesListRequestFilterItem,
 )
@@ -581,66 +579,6 @@ class ReferenceClient:
         _response = self._raw_client.post_v1reference_eu_vat_rates_list(
             country_code=country_code, date=date, request_options=request_options
         )
-        return _response.data
-
-    def post_v1reference_eu_vat_rates_imports_list(
-        self, *, limit: typing.Optional[int] = OMIT, request_options: typing.Optional[RequestOptions] = None
-    ) -> PostV1ReferenceEuVatRatesImportsListResponse:
-        """
-        History of EU VAT rate imports from the EC TEDB VatRetrievalService: when rates were pulled, what changed, and whether the run succeeded. The initial seed run carries the built-in snapshot.
-
-        Parameters
-        ----------
-        limit : typing.Optional[int]
-
-        request_options : typing.Optional[RequestOptions]
-            Request-specific configuration.
-
-        Returns
-        -------
-        PostV1ReferenceEuVatRatesImportsListResponse
-            Default Response
-
-        Examples
-        --------
-        from nordlet import Nordlet
-
-        client = Nordlet(
-            token="YOUR_TOKEN",
-        )
-        client.reference.post_v1reference_eu_vat_rates_imports_list()
-        """
-        _response = self._raw_client.post_v1reference_eu_vat_rates_imports_list(
-            limit=limit, request_options=request_options
-        )
-        return _response.data
-
-    def post_v1reference_eu_vat_rates_sync(
-        self, *, request_options: typing.Optional[RequestOptions] = None
-    ) -> PostV1ReferenceEuVatRatesSyncResponse:
-        """
-        Trigger an immediate pull of EU VAT rates from the EC TEDB VatRetrievalService. Rates are shared reference data: new rates open with today as their effective date, rates that disappeared are closed with a validity end date. Returns the finished import run.
-
-        Parameters
-        ----------
-        request_options : typing.Optional[RequestOptions]
-            Request-specific configuration.
-
-        Returns
-        -------
-        PostV1ReferenceEuVatRatesSyncResponse
-            Default Response
-
-        Examples
-        --------
-        from nordlet import Nordlet
-
-        client = Nordlet(
-            token="YOUR_TOKEN",
-        )
-        client.reference.post_v1reference_eu_vat_rates_sync()
-        """
-        _response = self._raw_client.post_v1reference_eu_vat_rates_sync(request_options=request_options)
         return _response.data
 
     def post_v1reference_eu_vat_rates_set_overrides(
@@ -1644,82 +1582,6 @@ class AsyncReferenceClient:
         _response = await self._raw_client.post_v1reference_eu_vat_rates_list(
             country_code=country_code, date=date, request_options=request_options
         )
-        return _response.data
-
-    async def post_v1reference_eu_vat_rates_imports_list(
-        self, *, limit: typing.Optional[int] = OMIT, request_options: typing.Optional[RequestOptions] = None
-    ) -> PostV1ReferenceEuVatRatesImportsListResponse:
-        """
-        History of EU VAT rate imports from the EC TEDB VatRetrievalService: when rates were pulled, what changed, and whether the run succeeded. The initial seed run carries the built-in snapshot.
-
-        Parameters
-        ----------
-        limit : typing.Optional[int]
-
-        request_options : typing.Optional[RequestOptions]
-            Request-specific configuration.
-
-        Returns
-        -------
-        PostV1ReferenceEuVatRatesImportsListResponse
-            Default Response
-
-        Examples
-        --------
-        import asyncio
-
-        from nordlet import AsyncNordlet
-
-        client = AsyncNordlet(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.reference.post_v1reference_eu_vat_rates_imports_list()
-
-
-        asyncio.run(main())
-        """
-        _response = await self._raw_client.post_v1reference_eu_vat_rates_imports_list(
-            limit=limit, request_options=request_options
-        )
-        return _response.data
-
-    async def post_v1reference_eu_vat_rates_sync(
-        self, *, request_options: typing.Optional[RequestOptions] = None
-    ) -> PostV1ReferenceEuVatRatesSyncResponse:
-        """
-        Trigger an immediate pull of EU VAT rates from the EC TEDB VatRetrievalService. Rates are shared reference data: new rates open with today as their effective date, rates that disappeared are closed with a validity end date. Returns the finished import run.
-
-        Parameters
-        ----------
-        request_options : typing.Optional[RequestOptions]
-            Request-specific configuration.
-
-        Returns
-        -------
-        PostV1ReferenceEuVatRatesSyncResponse
-            Default Response
-
-        Examples
-        --------
-        import asyncio
-
-        from nordlet import AsyncNordlet
-
-        client = AsyncNordlet(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.reference.post_v1reference_eu_vat_rates_sync()
-
-
-        asyncio.run(main())
-        """
-        _response = await self._raw_client.post_v1reference_eu_vat_rates_sync(request_options=request_options)
         return _response.data
 
     async def post_v1reference_eu_vat_rates_set_overrides(

@@ -7,9 +7,12 @@ from importlib import import_module
 
 if typing.TYPE_CHECKING:
     from .types import (
+        PostV1AssetsAssetsCreateRequestDocumentsItem,
         PostV1AssetsAssetsCreateResponse,
+        PostV1AssetsAssetsCreateResponseDocumentsItem,
         PostV1AssetsAssetsCreateResponseStatus,
         PostV1AssetsAssetsGetResponse,
+        PostV1AssetsAssetsGetResponseDocumentsItem,
         PostV1AssetsAssetsGetResponseStatus,
         PostV1AssetsAssetsListRequestFilterItem,
         PostV1AssetsAssetsListRequestFilterItemOp,
@@ -19,8 +22,10 @@ if typing.TYPE_CHECKING:
         PostV1AssetsAssetsListRequestSortItemDir,
         PostV1AssetsAssetsListResponse,
         PostV1AssetsAssetsListResponseRowsItem,
+        PostV1AssetsAssetsListResponseRowsItemDocumentsItem,
         PostV1AssetsAssetsListResponseRowsItemStatus,
         PostV1AssetsAssetsModernizeResponse,
+        PostV1AssetsAssetsModernizeResponseDocumentsItem,
         PostV1AssetsAssetsModernizeResponseStatus,
         PostV1AssetsDepreciationPostResponse,
         PostV1AssetsDepreciationPreviewResponse,
@@ -36,9 +41,12 @@ if typing.TYPE_CHECKING:
         PostV1AssetsGroupsListResponseRowsItem,
     )
 _dynamic_imports: typing.Dict[str, str] = {
+    "PostV1AssetsAssetsCreateRequestDocumentsItem": ".types",
     "PostV1AssetsAssetsCreateResponse": ".types",
+    "PostV1AssetsAssetsCreateResponseDocumentsItem": ".types",
     "PostV1AssetsAssetsCreateResponseStatus": ".types",
     "PostV1AssetsAssetsGetResponse": ".types",
+    "PostV1AssetsAssetsGetResponseDocumentsItem": ".types",
     "PostV1AssetsAssetsGetResponseStatus": ".types",
     "PostV1AssetsAssetsListRequestFilterItem": ".types",
     "PostV1AssetsAssetsListRequestFilterItemOp": ".types",
@@ -48,8 +56,10 @@ _dynamic_imports: typing.Dict[str, str] = {
     "PostV1AssetsAssetsListRequestSortItemDir": ".types",
     "PostV1AssetsAssetsListResponse": ".types",
     "PostV1AssetsAssetsListResponseRowsItem": ".types",
+    "PostV1AssetsAssetsListResponseRowsItemDocumentsItem": ".types",
     "PostV1AssetsAssetsListResponseRowsItemStatus": ".types",
     "PostV1AssetsAssetsModernizeResponse": ".types",
+    "PostV1AssetsAssetsModernizeResponseDocumentsItem": ".types",
     "PostV1AssetsAssetsModernizeResponseStatus": ".types",
     "PostV1AssetsDepreciationPostResponse": ".types",
     "PostV1AssetsDepreciationPreviewResponse": ".types",
@@ -88,9 +98,12 @@ def __dir__():
 
 
 __all__ = [
+    "PostV1AssetsAssetsCreateRequestDocumentsItem",
     "PostV1AssetsAssetsCreateResponse",
+    "PostV1AssetsAssetsCreateResponseDocumentsItem",
     "PostV1AssetsAssetsCreateResponseStatus",
     "PostV1AssetsAssetsGetResponse",
+    "PostV1AssetsAssetsGetResponseDocumentsItem",
     "PostV1AssetsAssetsGetResponseStatus",
     "PostV1AssetsAssetsListRequestFilterItem",
     "PostV1AssetsAssetsListRequestFilterItemOp",
@@ -100,8 +113,10 @@ __all__ = [
     "PostV1AssetsAssetsListRequestSortItemDir",
     "PostV1AssetsAssetsListResponse",
     "PostV1AssetsAssetsListResponseRowsItem",
+    "PostV1AssetsAssetsListResponseRowsItemDocumentsItem",
     "PostV1AssetsAssetsListResponseRowsItemStatus",
     "PostV1AssetsAssetsModernizeResponse",
+    "PostV1AssetsAssetsModernizeResponseDocumentsItem",
     "PostV1AssetsAssetsModernizeResponseStatus",
     "PostV1AssetsDepreciationPostResponse",
     "PostV1AssetsDepreciationPreviewResponse",

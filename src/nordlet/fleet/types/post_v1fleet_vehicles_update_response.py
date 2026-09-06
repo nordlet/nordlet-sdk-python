@@ -7,6 +7,7 @@ import typing_extensions
 from ...core.pydantic_utilities import IS_PYDANTIC_V2, UniversalBaseModel
 from ...core.serialization import FieldMetadata
 from .post_v1fleet_vehicles_update_response_current_assignment import PostV1FleetVehiclesUpdateResponseCurrentAssignment
+from .post_v1fleet_vehicles_update_response_documents_item import PostV1FleetVehiclesUpdateResponseDocumentsItem
 from .post_v1fleet_vehicles_update_response_status import PostV1FleetVehiclesUpdateResponseStatus
 
 
@@ -41,6 +42,7 @@ class PostV1FleetVehiclesUpdateResponse(UniversalBaseModel):
     ] = None
     status: PostV1FleetVehiclesUpdateResponseStatus
     notes: typing.Optional[str] = None
+    documents: typing.Optional[typing.List[PostV1FleetVehiclesUpdateResponseDocumentsItem]] = None
     current_assignment: typing_extensions.Annotated[
         typing.Optional[PostV1FleetVehiclesUpdateResponseCurrentAssignment],
         FieldMetadata(alias="currentAssignment"),

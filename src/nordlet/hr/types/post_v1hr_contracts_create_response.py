@@ -9,6 +9,7 @@ from ...core.serialization import FieldMetadata
 from .post_v1hr_contracts_create_response_salary_type import PostV1HrContractsCreateResponseSalaryType
 from .post_v1hr_contracts_create_response_status import PostV1HrContractsCreateResponseStatus
 from .post_v1hr_contracts_create_response_type import PostV1HrContractsCreateResponseType
+from .post_v1hr_contracts_create_response_work_hours_unit import PostV1HrContractsCreateResponseWorkHoursUnit
 
 
 class PostV1HrContractsCreateResponse(UniversalBaseModel):
@@ -23,6 +24,9 @@ class PostV1HrContractsCreateResponse(UniversalBaseModel):
     schedule_id: typing_extensions.Annotated[
         typing.Optional[str], FieldMetadata(alias="scheduleId"), pydantic.Field(alias="scheduleId")
     ] = None
+    agreement_id: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="agreementId"), pydantic.Field(alias="agreementId")
+    ] = None
     contract_no: typing_extensions.Annotated[str, FieldMetadata(alias="contractNo"), pydantic.Field(alias="contractNo")]
     type: PostV1HrContractsCreateResponseType
     start_date: typing_extensions.Annotated[str, FieldMetadata(alias="startDate"), pydantic.Field(alias="startDate")]
@@ -36,8 +40,11 @@ class PostV1HrContractsCreateResponse(UniversalBaseModel):
     salary_type: typing_extensions.Annotated[
         PostV1HrContractsCreateResponseSalaryType, FieldMetadata(alias="salaryType"), pydantic.Field(alias="salaryType")
     ]
-    work_hours_per_week: typing_extensions.Annotated[
-        str, FieldMetadata(alias="workHoursPerWeek"), pydantic.Field(alias="workHoursPerWeek")
+    work_hours: typing_extensions.Annotated[str, FieldMetadata(alias="workHours"), pydantic.Field(alias="workHours")]
+    work_hours_unit: typing_extensions.Annotated[
+        PostV1HrContractsCreateResponseWorkHoursUnit,
+        FieldMetadata(alias="workHoursUnit"),
+        pydantic.Field(alias="workHoursUnit"),
     ]
     status: PostV1HrContractsCreateResponseStatus
     notes: typing.Optional[str] = None

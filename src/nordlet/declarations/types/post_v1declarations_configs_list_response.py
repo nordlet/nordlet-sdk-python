@@ -3,11 +3,16 @@
 import typing
 
 import pydantic
+import typing_extensions
 from ...core.pydantic_utilities import IS_PYDANTIC_V2, UniversalBaseModel
+from ...core.serialization import FieldMetadata
 from .post_v1declarations_configs_list_response_rows_item import PostV1DeclarationsConfigsListResponseRowsItem
 
 
 class PostV1DeclarationsConfigsListResponse(UniversalBaseModel):
+    company_country: typing_extensions.Annotated[
+        str, FieldMetadata(alias="companyCountry"), pydantic.Field(alias="companyCountry")
+    ]
     rows: typing.List[PostV1DeclarationsConfigsListResponseRowsItem]
 
     if IS_PYDANTIC_V2:

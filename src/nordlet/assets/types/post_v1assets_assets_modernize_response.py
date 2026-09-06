@@ -6,6 +6,7 @@ import pydantic
 import typing_extensions
 from ...core.pydantic_utilities import IS_PYDANTIC_V2, UniversalBaseModel
 from ...core.serialization import FieldMetadata
+from .post_v1assets_assets_modernize_response_documents_item import PostV1AssetsAssetsModernizeResponseDocumentsItem
 from .post_v1assets_assets_modernize_response_status import PostV1AssetsAssetsModernizeResponseStatus
 
 
@@ -44,6 +45,7 @@ class PostV1AssetsAssetsModernizeResponse(UniversalBaseModel):
     ]
     status: PostV1AssetsAssetsModernizeResponseStatus
     notes: typing.Optional[str] = None
+    documents: typing.Optional[typing.List[PostV1AssetsAssetsModernizeResponseDocumentsItem]] = None
     created_at: typing_extensions.Annotated[str, FieldMetadata(alias="createdAt"), pydantic.Field(alias="createdAt")]
 
     if IS_PYDANTIC_V2:

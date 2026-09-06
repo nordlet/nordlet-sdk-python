@@ -9,6 +9,9 @@ from ...core.serialization import FieldMetadata
 from .post_v1fleet_vehicles_list_response_rows_item_current_assignment import (
     PostV1FleetVehiclesListResponseRowsItemCurrentAssignment,
 )
+from .post_v1fleet_vehicles_list_response_rows_item_documents_item import (
+    PostV1FleetVehiclesListResponseRowsItemDocumentsItem,
+)
 from .post_v1fleet_vehicles_list_response_rows_item_status import PostV1FleetVehiclesListResponseRowsItemStatus
 
 
@@ -43,6 +46,7 @@ class PostV1FleetVehiclesListResponseRowsItem(UniversalBaseModel):
     ] = None
     status: PostV1FleetVehiclesListResponseRowsItemStatus
     notes: typing.Optional[str] = None
+    documents: typing.Optional[typing.List[PostV1FleetVehiclesListResponseRowsItemDocumentsItem]] = None
     current_assignment: typing_extensions.Annotated[
         typing.Optional[PostV1FleetVehiclesListResponseRowsItemCurrentAssignment],
         FieldMetadata(alias="currentAssignment"),

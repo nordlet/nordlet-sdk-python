@@ -6,6 +6,7 @@ import pydantic
 import typing_extensions
 from ...core.pydantic_utilities import IS_PYDANTIC_V2, UniversalBaseModel
 from ...core.serialization import FieldMetadata
+from .post_v1ledger_accounts_update_response_translations import PostV1LedgerAccountsUpdateResponseTranslations
 from .post_v1ledger_accounts_update_response_type import PostV1LedgerAccountsUpdateResponseType
 
 
@@ -13,6 +14,7 @@ class PostV1LedgerAccountsUpdateResponse(UniversalBaseModel):
     id: str
     code: str
     name: str
+    translations: typing.Optional[PostV1LedgerAccountsUpdateResponseTranslations] = None
     type: PostV1LedgerAccountsUpdateResponseType
     parent_id: typing_extensions.Annotated[
         typing.Optional[str], FieldMetadata(alias="parentId"), pydantic.Field(alias="parentId")

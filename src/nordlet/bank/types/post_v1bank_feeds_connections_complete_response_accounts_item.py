@@ -6,6 +6,9 @@ import pydantic
 import typing_extensions
 from ...core.pydantic_utilities import IS_PYDANTIC_V2, UniversalBaseModel
 from ...core.serialization import FieldMetadata
+from .post_v1bank_feeds_connections_complete_response_accounts_item_sync_schedule import (
+    PostV1BankFeedsConnectionsCompleteResponseAccountsItemSyncSchedule,
+)
 
 
 class PostV1BankFeedsConnectionsCompleteResponseAccountsItem(UniversalBaseModel):
@@ -16,6 +19,14 @@ class PostV1BankFeedsConnectionsCompleteResponseAccountsItem(UniversalBaseModel)
     bank_account_id: typing_extensions.Annotated[
         typing.Optional[str], FieldMetadata(alias="bankAccountId"), pydantic.Field(alias="bankAccountId")
     ] = None
+    import_template_id: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="importTemplateId"), pydantic.Field(alias="importTemplateId")
+    ] = None
+    sync_schedule: typing_extensions.Annotated[
+        PostV1BankFeedsConnectionsCompleteResponseAccountsItemSyncSchedule,
+        FieldMetadata(alias="syncSchedule"),
+        pydantic.Field(alias="syncSchedule"),
+    ]
     external_id: typing_extensions.Annotated[str, FieldMetadata(alias="externalId"), pydantic.Field(alias="externalId")]
     iban: typing.Optional[str] = None
     currency: str

@@ -85,6 +85,7 @@ class RawCatalogClient:
         description: typing.Optional[str] = OMIT,
         group_id: typing.Optional[str] = OMIT,
         attributes: typing.Optional[typing.Dict[str, str]] = OMIT,
+        document_ref: typing.Optional[str] = OMIT,
         translations: typing.Optional[typing.Dict[str, PostV1CatalogItemsCreateRequestTranslationsValue]] = OMIT,
         components: typing.Optional[typing.Sequence[PostV1CatalogItemsCreateRequestComponentsItem]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
@@ -128,6 +129,8 @@ class RawCatalogClient:
 
         attributes : typing.Optional[typing.Dict[str, str]]
 
+        document_ref : typing.Optional[str]
+
         translations : typing.Optional[typing.Dict[str, PostV1CatalogItemsCreateRequestTranslationsValue]]
 
         components : typing.Optional[typing.Sequence[PostV1CatalogItemsCreateRequestComponentsItem]]
@@ -162,6 +165,7 @@ class RawCatalogClient:
                 "description": description,
                 "groupId": group_id,
                 "attributes": attributes,
+                "documentRef": document_ref,
                 "translations": convert_and_respect_annotation_metadata(
                     object_=translations,
                     annotation=typing.Dict[str, PostV1CatalogItemsCreateRequestTranslationsValue],
@@ -443,6 +447,7 @@ class RawCatalogClient:
         description: typing.Optional[str] = OMIT,
         group_id: typing.Optional[str] = OMIT,
         attributes: typing.Optional[typing.Dict[str, str]] = OMIT,
+        document_ref: typing.Optional[str] = OMIT,
         translations: typing.Optional[typing.Dict[str, PostV1CatalogItemsUpdateRequestTranslationsValue]] = OMIT,
         components: typing.Optional[typing.Sequence[PostV1CatalogItemsUpdateRequestComponentsItem]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
@@ -488,6 +493,8 @@ class RawCatalogClient:
 
         attributes : typing.Optional[typing.Dict[str, str]]
 
+        document_ref : typing.Optional[str]
+
         translations : typing.Optional[typing.Dict[str, PostV1CatalogItemsUpdateRequestTranslationsValue]]
 
         components : typing.Optional[typing.Sequence[PostV1CatalogItemsUpdateRequestComponentsItem]]
@@ -523,6 +530,7 @@ class RawCatalogClient:
                 "description": description,
                 "groupId": group_id,
                 "attributes": attributes,
+                "documentRef": document_ref,
                 "translations": convert_and_respect_annotation_metadata(
                     object_=translations,
                     annotation=typing.Dict[str, PostV1CatalogItemsUpdateRequestTranslationsValue],
@@ -2815,6 +2823,7 @@ class AsyncRawCatalogClient:
         description: typing.Optional[str] = OMIT,
         group_id: typing.Optional[str] = OMIT,
         attributes: typing.Optional[typing.Dict[str, str]] = OMIT,
+        document_ref: typing.Optional[str] = OMIT,
         translations: typing.Optional[typing.Dict[str, PostV1CatalogItemsCreateRequestTranslationsValue]] = OMIT,
         components: typing.Optional[typing.Sequence[PostV1CatalogItemsCreateRequestComponentsItem]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
@@ -2858,6 +2867,8 @@ class AsyncRawCatalogClient:
 
         attributes : typing.Optional[typing.Dict[str, str]]
 
+        document_ref : typing.Optional[str]
+
         translations : typing.Optional[typing.Dict[str, PostV1CatalogItemsCreateRequestTranslationsValue]]
 
         components : typing.Optional[typing.Sequence[PostV1CatalogItemsCreateRequestComponentsItem]]
@@ -2892,6 +2903,7 @@ class AsyncRawCatalogClient:
                 "description": description,
                 "groupId": group_id,
                 "attributes": attributes,
+                "documentRef": document_ref,
                 "translations": convert_and_respect_annotation_metadata(
                     object_=translations,
                     annotation=typing.Dict[str, PostV1CatalogItemsCreateRequestTranslationsValue],
@@ -3173,6 +3185,7 @@ class AsyncRawCatalogClient:
         description: typing.Optional[str] = OMIT,
         group_id: typing.Optional[str] = OMIT,
         attributes: typing.Optional[typing.Dict[str, str]] = OMIT,
+        document_ref: typing.Optional[str] = OMIT,
         translations: typing.Optional[typing.Dict[str, PostV1CatalogItemsUpdateRequestTranslationsValue]] = OMIT,
         components: typing.Optional[typing.Sequence[PostV1CatalogItemsUpdateRequestComponentsItem]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
@@ -3218,6 +3231,8 @@ class AsyncRawCatalogClient:
 
         attributes : typing.Optional[typing.Dict[str, str]]
 
+        document_ref : typing.Optional[str]
+
         translations : typing.Optional[typing.Dict[str, PostV1CatalogItemsUpdateRequestTranslationsValue]]
 
         components : typing.Optional[typing.Sequence[PostV1CatalogItemsUpdateRequestComponentsItem]]
@@ -3253,6 +3268,7 @@ class AsyncRawCatalogClient:
                 "description": description,
                 "groupId": group_id,
                 "attributes": attributes,
+                "documentRef": document_ref,
                 "translations": convert_and_respect_annotation_metadata(
                     object_=translations,
                     annotation=typing.Dict[str, PostV1CatalogItemsUpdateRequestTranslationsValue],

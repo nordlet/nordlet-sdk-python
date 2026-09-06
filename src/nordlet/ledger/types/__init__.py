@@ -7,8 +7,16 @@ from importlib import import_module
 
 if typing.TYPE_CHECKING:
     from .post_v1ledger_accounts_apply_template_response import PostV1LedgerAccountsApplyTemplateResponse
+    from .post_v1ledger_accounts_create_request_translations import PostV1LedgerAccountsCreateRequestTranslations
+    from .post_v1ledger_accounts_create_request_translations_en import PostV1LedgerAccountsCreateRequestTranslationsEn
+    from .post_v1ledger_accounts_create_request_translations_lt import PostV1LedgerAccountsCreateRequestTranslationsLt
+    from .post_v1ledger_accounts_create_request_translations_ru import PostV1LedgerAccountsCreateRequestTranslationsRu
     from .post_v1ledger_accounts_create_request_type import PostV1LedgerAccountsCreateRequestType
     from .post_v1ledger_accounts_create_response import PostV1LedgerAccountsCreateResponse
+    from .post_v1ledger_accounts_create_response_translations import PostV1LedgerAccountsCreateResponseTranslations
+    from .post_v1ledger_accounts_create_response_translations_en import PostV1LedgerAccountsCreateResponseTranslationsEn
+    from .post_v1ledger_accounts_create_response_translations_lt import PostV1LedgerAccountsCreateResponseTranslationsLt
+    from .post_v1ledger_accounts_create_response_translations_ru import PostV1LedgerAccountsCreateResponseTranslationsRu
     from .post_v1ledger_accounts_create_response_type import PostV1LedgerAccountsCreateResponseType
     from .post_v1ledger_accounts_list_request_filter_item import PostV1LedgerAccountsListRequestFilterItem
     from .post_v1ledger_accounts_list_request_filter_item_op import PostV1LedgerAccountsListRequestFilterItemOp
@@ -20,8 +28,28 @@ if typing.TYPE_CHECKING:
     from .post_v1ledger_accounts_list_request_sort_item_dir import PostV1LedgerAccountsListRequestSortItemDir
     from .post_v1ledger_accounts_list_response import PostV1LedgerAccountsListResponse
     from .post_v1ledger_accounts_list_response_rows_item import PostV1LedgerAccountsListResponseRowsItem
+    from .post_v1ledger_accounts_list_response_rows_item_translations import (
+        PostV1LedgerAccountsListResponseRowsItemTranslations,
+    )
+    from .post_v1ledger_accounts_list_response_rows_item_translations_en import (
+        PostV1LedgerAccountsListResponseRowsItemTranslationsEn,
+    )
+    from .post_v1ledger_accounts_list_response_rows_item_translations_lt import (
+        PostV1LedgerAccountsListResponseRowsItemTranslationsLt,
+    )
+    from .post_v1ledger_accounts_list_response_rows_item_translations_ru import (
+        PostV1LedgerAccountsListResponseRowsItemTranslationsRu,
+    )
     from .post_v1ledger_accounts_list_response_rows_item_type import PostV1LedgerAccountsListResponseRowsItemType
+    from .post_v1ledger_accounts_update_request_translations import PostV1LedgerAccountsUpdateRequestTranslations
+    from .post_v1ledger_accounts_update_request_translations_en import PostV1LedgerAccountsUpdateRequestTranslationsEn
+    from .post_v1ledger_accounts_update_request_translations_lt import PostV1LedgerAccountsUpdateRequestTranslationsLt
+    from .post_v1ledger_accounts_update_request_translations_ru import PostV1LedgerAccountsUpdateRequestTranslationsRu
     from .post_v1ledger_accounts_update_response import PostV1LedgerAccountsUpdateResponse
+    from .post_v1ledger_accounts_update_response_translations import PostV1LedgerAccountsUpdateResponseTranslations
+    from .post_v1ledger_accounts_update_response_translations_en import PostV1LedgerAccountsUpdateResponseTranslationsEn
+    from .post_v1ledger_accounts_update_response_translations_lt import PostV1LedgerAccountsUpdateResponseTranslationsLt
+    from .post_v1ledger_accounts_update_response_translations_ru import PostV1LedgerAccountsUpdateResponseTranslationsRu
     from .post_v1ledger_accounts_update_response_type import PostV1LedgerAccountsUpdateResponseType
     from .post_v1ledger_cost_center_groups_create_response import PostV1LedgerCostCenterGroupsCreateResponse
     from .post_v1ledger_cost_center_groups_delete_response import PostV1LedgerCostCenterGroupsDeleteResponse
@@ -142,8 +170,16 @@ if typing.TYPE_CHECKING:
     from .post_v1ledger_posting_rules_update_response_rows_item import PostV1LedgerPostingRulesUpdateResponseRowsItem
 _dynamic_imports: typing.Dict[str, str] = {
     "PostV1LedgerAccountsApplyTemplateResponse": ".post_v1ledger_accounts_apply_template_response",
+    "PostV1LedgerAccountsCreateRequestTranslations": ".post_v1ledger_accounts_create_request_translations",
+    "PostV1LedgerAccountsCreateRequestTranslationsEn": ".post_v1ledger_accounts_create_request_translations_en",
+    "PostV1LedgerAccountsCreateRequestTranslationsLt": ".post_v1ledger_accounts_create_request_translations_lt",
+    "PostV1LedgerAccountsCreateRequestTranslationsRu": ".post_v1ledger_accounts_create_request_translations_ru",
     "PostV1LedgerAccountsCreateRequestType": ".post_v1ledger_accounts_create_request_type",
     "PostV1LedgerAccountsCreateResponse": ".post_v1ledger_accounts_create_response",
+    "PostV1LedgerAccountsCreateResponseTranslations": ".post_v1ledger_accounts_create_response_translations",
+    "PostV1LedgerAccountsCreateResponseTranslationsEn": ".post_v1ledger_accounts_create_response_translations_en",
+    "PostV1LedgerAccountsCreateResponseTranslationsLt": ".post_v1ledger_accounts_create_response_translations_lt",
+    "PostV1LedgerAccountsCreateResponseTranslationsRu": ".post_v1ledger_accounts_create_response_translations_ru",
     "PostV1LedgerAccountsCreateResponseType": ".post_v1ledger_accounts_create_response_type",
     "PostV1LedgerAccountsListRequestFilterItem": ".post_v1ledger_accounts_list_request_filter_item",
     "PostV1LedgerAccountsListRequestFilterItemOp": ".post_v1ledger_accounts_list_request_filter_item_op",
@@ -153,8 +189,20 @@ _dynamic_imports: typing.Dict[str, str] = {
     "PostV1LedgerAccountsListRequestSortItemDir": ".post_v1ledger_accounts_list_request_sort_item_dir",
     "PostV1LedgerAccountsListResponse": ".post_v1ledger_accounts_list_response",
     "PostV1LedgerAccountsListResponseRowsItem": ".post_v1ledger_accounts_list_response_rows_item",
+    "PostV1LedgerAccountsListResponseRowsItemTranslations": ".post_v1ledger_accounts_list_response_rows_item_translations",
+    "PostV1LedgerAccountsListResponseRowsItemTranslationsEn": ".post_v1ledger_accounts_list_response_rows_item_translations_en",
+    "PostV1LedgerAccountsListResponseRowsItemTranslationsLt": ".post_v1ledger_accounts_list_response_rows_item_translations_lt",
+    "PostV1LedgerAccountsListResponseRowsItemTranslationsRu": ".post_v1ledger_accounts_list_response_rows_item_translations_ru",
     "PostV1LedgerAccountsListResponseRowsItemType": ".post_v1ledger_accounts_list_response_rows_item_type",
+    "PostV1LedgerAccountsUpdateRequestTranslations": ".post_v1ledger_accounts_update_request_translations",
+    "PostV1LedgerAccountsUpdateRequestTranslationsEn": ".post_v1ledger_accounts_update_request_translations_en",
+    "PostV1LedgerAccountsUpdateRequestTranslationsLt": ".post_v1ledger_accounts_update_request_translations_lt",
+    "PostV1LedgerAccountsUpdateRequestTranslationsRu": ".post_v1ledger_accounts_update_request_translations_ru",
     "PostV1LedgerAccountsUpdateResponse": ".post_v1ledger_accounts_update_response",
+    "PostV1LedgerAccountsUpdateResponseTranslations": ".post_v1ledger_accounts_update_response_translations",
+    "PostV1LedgerAccountsUpdateResponseTranslationsEn": ".post_v1ledger_accounts_update_response_translations_en",
+    "PostV1LedgerAccountsUpdateResponseTranslationsLt": ".post_v1ledger_accounts_update_response_translations_lt",
+    "PostV1LedgerAccountsUpdateResponseTranslationsRu": ".post_v1ledger_accounts_update_response_translations_ru",
     "PostV1LedgerAccountsUpdateResponseType": ".post_v1ledger_accounts_update_response_type",
     "PostV1LedgerCostCenterGroupsCreateResponse": ".post_v1ledger_cost_center_groups_create_response",
     "PostV1LedgerCostCenterGroupsDeleteResponse": ".post_v1ledger_cost_center_groups_delete_response",
@@ -255,8 +303,16 @@ def __dir__():
 
 __all__ = [
     "PostV1LedgerAccountsApplyTemplateResponse",
+    "PostV1LedgerAccountsCreateRequestTranslations",
+    "PostV1LedgerAccountsCreateRequestTranslationsEn",
+    "PostV1LedgerAccountsCreateRequestTranslationsLt",
+    "PostV1LedgerAccountsCreateRequestTranslationsRu",
     "PostV1LedgerAccountsCreateRequestType",
     "PostV1LedgerAccountsCreateResponse",
+    "PostV1LedgerAccountsCreateResponseTranslations",
+    "PostV1LedgerAccountsCreateResponseTranslationsEn",
+    "PostV1LedgerAccountsCreateResponseTranslationsLt",
+    "PostV1LedgerAccountsCreateResponseTranslationsRu",
     "PostV1LedgerAccountsCreateResponseType",
     "PostV1LedgerAccountsListRequestFilterItem",
     "PostV1LedgerAccountsListRequestFilterItemOp",
@@ -266,8 +322,20 @@ __all__ = [
     "PostV1LedgerAccountsListRequestSortItemDir",
     "PostV1LedgerAccountsListResponse",
     "PostV1LedgerAccountsListResponseRowsItem",
+    "PostV1LedgerAccountsListResponseRowsItemTranslations",
+    "PostV1LedgerAccountsListResponseRowsItemTranslationsEn",
+    "PostV1LedgerAccountsListResponseRowsItemTranslationsLt",
+    "PostV1LedgerAccountsListResponseRowsItemTranslationsRu",
     "PostV1LedgerAccountsListResponseRowsItemType",
+    "PostV1LedgerAccountsUpdateRequestTranslations",
+    "PostV1LedgerAccountsUpdateRequestTranslationsEn",
+    "PostV1LedgerAccountsUpdateRequestTranslationsLt",
+    "PostV1LedgerAccountsUpdateRequestTranslationsRu",
     "PostV1LedgerAccountsUpdateResponse",
+    "PostV1LedgerAccountsUpdateResponseTranslations",
+    "PostV1LedgerAccountsUpdateResponseTranslationsEn",
+    "PostV1LedgerAccountsUpdateResponseTranslationsLt",
+    "PostV1LedgerAccountsUpdateResponseTranslationsRu",
     "PostV1LedgerAccountsUpdateResponseType",
     "PostV1LedgerCostCenterGroupsCreateResponse",
     "PostV1LedgerCostCenterGroupsDeleteResponse",

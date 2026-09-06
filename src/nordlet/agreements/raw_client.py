@@ -26,6 +26,7 @@ from .types.post_v1agreements_agreements_create_request_billing_period import (
 from .types.post_v1agreements_agreements_create_request_items_item import (
     PostV1AgreementsAgreementsCreateRequestItemsItem,
 )
+from .types.post_v1agreements_agreements_create_request_kind import PostV1AgreementsAgreementsCreateRequestKind
 from .types.post_v1agreements_agreements_create_request_status import PostV1AgreementsAgreementsCreateRequestStatus
 from .types.post_v1agreements_agreements_create_response import PostV1AgreementsAgreementsCreateResponse
 from .types.post_v1agreements_agreements_delete_response import PostV1AgreementsAgreementsDeleteResponse
@@ -39,6 +40,7 @@ from .types.post_v1agreements_agreements_list_response import PostV1AgreementsAg
 from .types.post_v1agreements_agreements_update_request_billing_period import (
     PostV1AgreementsAgreementsUpdateRequestBillingPeriod,
 )
+from .types.post_v1agreements_agreements_update_request_kind import PostV1AgreementsAgreementsUpdateRequestKind
 from .types.post_v1agreements_agreements_update_request_status import PostV1AgreementsAgreementsUpdateRequestStatus
 from .types.post_v1agreements_agreements_update_response import PostV1AgreementsAgreementsUpdateResponse
 from .types.post_v1agreements_insurance_policies_create_response import PostV1AgreementsInsurancePoliciesCreateResponse
@@ -363,10 +365,13 @@ class RawAgreementsClient:
     def post_v1agreements_agreements_create(
         self,
         *,
-        partner_id: str,
         number: str,
         start_date: str,
         type_id: typing.Optional[str] = OMIT,
+        kind: typing.Optional[PostV1AgreementsAgreementsCreateRequestKind] = OMIT,
+        partner_id: typing.Optional[str] = OMIT,
+        employee_id: typing.Optional[str] = OMIT,
+        bank_account_id: typing.Optional[str] = OMIT,
         name: typing.Optional[str] = OMIT,
         end_date: typing.Optional[str] = OMIT,
         auto_renew: typing.Optional[bool] = OMIT,
@@ -375,19 +380,26 @@ class RawAgreementsClient:
         currency: typing.Optional[str] = OMIT,
         status: typing.Optional[PostV1AgreementsAgreementsCreateRequestStatus] = OMIT,
         notes: typing.Optional[str] = OMIT,
+        document_ref: typing.Optional[str] = OMIT,
         items: typing.Optional[typing.Sequence[PostV1AgreementsAgreementsCreateRequestItemsItem]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[PostV1AgreementsAgreementsCreateResponse]:
         """
         Parameters
         ----------
-        partner_id : str
-
         number : str
 
         start_date : str
 
         type_id : typing.Optional[str]
+
+        kind : typing.Optional[PostV1AgreementsAgreementsCreateRequestKind]
+
+        partner_id : typing.Optional[str]
+
+        employee_id : typing.Optional[str]
+
+        bank_account_id : typing.Optional[str]
 
         name : typing.Optional[str]
 
@@ -405,6 +417,8 @@ class RawAgreementsClient:
 
         notes : typing.Optional[str]
 
+        document_ref : typing.Optional[str]
+
         items : typing.Optional[typing.Sequence[PostV1AgreementsAgreementsCreateRequestItemsItem]]
 
         request_options : typing.Optional[RequestOptions]
@@ -420,7 +434,10 @@ class RawAgreementsClient:
             method="POST",
             json={
                 "typeId": type_id,
+                "kind": kind,
                 "partnerId": partner_id,
+                "employeeId": employee_id,
+                "bankAccountId": bank_account_id,
                 "number": number,
                 "name": name,
                 "startDate": start_date,
@@ -431,6 +448,7 @@ class RawAgreementsClient:
                 "currency": currency,
                 "status": status,
                 "notes": notes,
+                "documentRef": document_ref,
                 "items": convert_and_respect_annotation_metadata(
                     object_=items,
                     annotation=typing.Sequence[PostV1AgreementsAgreementsCreateRequestItemsItem],
@@ -690,6 +708,7 @@ class RawAgreementsClient:
         *,
         id: str,
         type_id: typing.Optional[str] = OMIT,
+        kind: typing.Optional[PostV1AgreementsAgreementsUpdateRequestKind] = OMIT,
         name: typing.Optional[str] = OMIT,
         end_date: typing.Optional[str] = OMIT,
         auto_renew: typing.Optional[bool] = OMIT,
@@ -697,6 +716,7 @@ class RawAgreementsClient:
         billing_period: typing.Optional[PostV1AgreementsAgreementsUpdateRequestBillingPeriod] = OMIT,
         status: typing.Optional[PostV1AgreementsAgreementsUpdateRequestStatus] = OMIT,
         notes: typing.Optional[str] = OMIT,
+        document_ref: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[PostV1AgreementsAgreementsUpdateResponse]:
         """
@@ -705,6 +725,8 @@ class RawAgreementsClient:
         id : str
 
         type_id : typing.Optional[str]
+
+        kind : typing.Optional[PostV1AgreementsAgreementsUpdateRequestKind]
 
         name : typing.Optional[str]
 
@@ -720,6 +742,8 @@ class RawAgreementsClient:
 
         notes : typing.Optional[str]
 
+        document_ref : typing.Optional[str]
+
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
@@ -734,6 +758,7 @@ class RawAgreementsClient:
             json={
                 "id": id,
                 "typeId": type_id,
+                "kind": kind,
                 "name": name,
                 "endDate": end_date,
                 "autoRenew": auto_renew,
@@ -741,6 +766,7 @@ class RawAgreementsClient:
                 "billingPeriod": billing_period,
                 "status": status,
                 "notes": notes,
+                "documentRef": document_ref,
             },
             headers={
                 "content-type": "application/json",
@@ -2188,10 +2214,13 @@ class AsyncRawAgreementsClient:
     async def post_v1agreements_agreements_create(
         self,
         *,
-        partner_id: str,
         number: str,
         start_date: str,
         type_id: typing.Optional[str] = OMIT,
+        kind: typing.Optional[PostV1AgreementsAgreementsCreateRequestKind] = OMIT,
+        partner_id: typing.Optional[str] = OMIT,
+        employee_id: typing.Optional[str] = OMIT,
+        bank_account_id: typing.Optional[str] = OMIT,
         name: typing.Optional[str] = OMIT,
         end_date: typing.Optional[str] = OMIT,
         auto_renew: typing.Optional[bool] = OMIT,
@@ -2200,19 +2229,26 @@ class AsyncRawAgreementsClient:
         currency: typing.Optional[str] = OMIT,
         status: typing.Optional[PostV1AgreementsAgreementsCreateRequestStatus] = OMIT,
         notes: typing.Optional[str] = OMIT,
+        document_ref: typing.Optional[str] = OMIT,
         items: typing.Optional[typing.Sequence[PostV1AgreementsAgreementsCreateRequestItemsItem]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[PostV1AgreementsAgreementsCreateResponse]:
         """
         Parameters
         ----------
-        partner_id : str
-
         number : str
 
         start_date : str
 
         type_id : typing.Optional[str]
+
+        kind : typing.Optional[PostV1AgreementsAgreementsCreateRequestKind]
+
+        partner_id : typing.Optional[str]
+
+        employee_id : typing.Optional[str]
+
+        bank_account_id : typing.Optional[str]
 
         name : typing.Optional[str]
 
@@ -2230,6 +2266,8 @@ class AsyncRawAgreementsClient:
 
         notes : typing.Optional[str]
 
+        document_ref : typing.Optional[str]
+
         items : typing.Optional[typing.Sequence[PostV1AgreementsAgreementsCreateRequestItemsItem]]
 
         request_options : typing.Optional[RequestOptions]
@@ -2245,7 +2283,10 @@ class AsyncRawAgreementsClient:
             method="POST",
             json={
                 "typeId": type_id,
+                "kind": kind,
                 "partnerId": partner_id,
+                "employeeId": employee_id,
+                "bankAccountId": bank_account_id,
                 "number": number,
                 "name": name,
                 "startDate": start_date,
@@ -2256,6 +2297,7 @@ class AsyncRawAgreementsClient:
                 "currency": currency,
                 "status": status,
                 "notes": notes,
+                "documentRef": document_ref,
                 "items": convert_and_respect_annotation_metadata(
                     object_=items,
                     annotation=typing.Sequence[PostV1AgreementsAgreementsCreateRequestItemsItem],
@@ -2515,6 +2557,7 @@ class AsyncRawAgreementsClient:
         *,
         id: str,
         type_id: typing.Optional[str] = OMIT,
+        kind: typing.Optional[PostV1AgreementsAgreementsUpdateRequestKind] = OMIT,
         name: typing.Optional[str] = OMIT,
         end_date: typing.Optional[str] = OMIT,
         auto_renew: typing.Optional[bool] = OMIT,
@@ -2522,6 +2565,7 @@ class AsyncRawAgreementsClient:
         billing_period: typing.Optional[PostV1AgreementsAgreementsUpdateRequestBillingPeriod] = OMIT,
         status: typing.Optional[PostV1AgreementsAgreementsUpdateRequestStatus] = OMIT,
         notes: typing.Optional[str] = OMIT,
+        document_ref: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[PostV1AgreementsAgreementsUpdateResponse]:
         """
@@ -2530,6 +2574,8 @@ class AsyncRawAgreementsClient:
         id : str
 
         type_id : typing.Optional[str]
+
+        kind : typing.Optional[PostV1AgreementsAgreementsUpdateRequestKind]
 
         name : typing.Optional[str]
 
@@ -2545,6 +2591,8 @@ class AsyncRawAgreementsClient:
 
         notes : typing.Optional[str]
 
+        document_ref : typing.Optional[str]
+
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
@@ -2559,6 +2607,7 @@ class AsyncRawAgreementsClient:
             json={
                 "id": id,
                 "typeId": type_id,
+                "kind": kind,
                 "name": name,
                 "endDate": end_date,
                 "autoRenew": auto_renew,
@@ -2566,6 +2615,7 @@ class AsyncRawAgreementsClient:
                 "billingPeriod": billing_period,
                 "status": status,
                 "notes": notes,
+                "documentRef": document_ref,
             },
             headers={
                 "content-type": "application/json",

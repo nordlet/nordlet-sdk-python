@@ -49,6 +49,9 @@ class PostV1PurchasesInvoicesUpdateResponse(UniversalBaseModel):
         typing.Optional[str], FieldMetadata(alias="purchaseOrderId"), pydantic.Field(alias="purchaseOrderId")
     ] = None
     notes: typing.Optional[str] = None
+    document_ref: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="documentRef"), pydantic.Field(alias="documentRef")
+    ] = None
     created_at: typing_extensions.Annotated[str, FieldMetadata(alias="createdAt"), pydantic.Field(alias="createdAt")]
     updated_at: typing_extensions.Annotated[str, FieldMetadata(alias="updatedAt"), pydantic.Field(alias="updatedAt")]
     lines: typing.List[PostV1PurchasesInvoicesUpdateResponseLinesItem]

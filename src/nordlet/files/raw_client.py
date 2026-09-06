@@ -39,10 +39,10 @@ class RawFilesClient:
         self,
         *,
         entity: str,
-        entity_id: str,
         file_name: str,
         mime_type: str,
         content: str,
+        entity_id: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[PostV1FilesUploadResponse]:
         """
@@ -50,14 +50,14 @@ class RawFilesClient:
         ----------
         entity : str
 
-        entity_id : str
-
         file_name : str
 
         mime_type : str
 
         content : str
             Base64-encoded file content
+
+        entity_id : typing.Optional[str]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -623,10 +623,10 @@ class AsyncRawFilesClient:
         self,
         *,
         entity: str,
-        entity_id: str,
         file_name: str,
         mime_type: str,
         content: str,
+        entity_id: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[PostV1FilesUploadResponse]:
         """
@@ -634,14 +634,14 @@ class AsyncRawFilesClient:
         ----------
         entity : str
 
-        entity_id : str
-
         file_name : str
 
         mime_type : str
 
         content : str
             Base64-encoded file content
+
+        entity_id : typing.Optional[str]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.

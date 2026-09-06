@@ -6,6 +6,9 @@ import pydantic
 import typing_extensions
 from ...core.pydantic_utilities import IS_PYDANTIC_V2, UniversalBaseModel
 from ...core.serialization import FieldMetadata
+from .post_v1ledger_accounts_list_response_rows_item_translations import (
+    PostV1LedgerAccountsListResponseRowsItemTranslations,
+)
 from .post_v1ledger_accounts_list_response_rows_item_type import PostV1LedgerAccountsListResponseRowsItemType
 
 
@@ -13,6 +16,7 @@ class PostV1LedgerAccountsListResponseRowsItem(UniversalBaseModel):
     id: str
     code: str
     name: str
+    translations: typing.Optional[PostV1LedgerAccountsListResponseRowsItemTranslations] = None
     type: PostV1LedgerAccountsListResponseRowsItemType
     parent_id: typing_extensions.Annotated[
         typing.Optional[str], FieldMetadata(alias="parentId"), pydantic.Field(alias="parentId")

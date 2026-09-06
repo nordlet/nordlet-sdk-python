@@ -783,6 +783,7 @@ class PartnersClient:
         status_id: typing.Optional[str] = OMIT,
         address: typing.Optional[PostV1PartnersCreateRequestAddress] = OMIT,
         notes: typing.Optional[str] = OMIT,
+        document_ref: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1PartnersCreateResponse:
         """
@@ -824,6 +825,8 @@ class PartnersClient:
 
         notes : typing.Optional[str]
 
+        document_ref : typing.Optional[str]
+
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
@@ -862,6 +865,7 @@ class PartnersClient:
             status_id=status_id,
             address=address,
             notes=notes,
+            document_ref=document_ref,
             request_options=request_options,
         )
         return _response.data
@@ -887,6 +891,7 @@ class PartnersClient:
         status_id: typing.Optional[str] = OMIT,
         address: typing.Optional[PostV1PartnersFindOrCreateRequestAddress] = OMIT,
         notes: typing.Optional[str] = OMIT,
+        document_ref: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1PartnersFindOrCreateResponse:
         """
@@ -928,6 +933,8 @@ class PartnersClient:
 
         notes : typing.Optional[str]
 
+        document_ref : typing.Optional[str]
+
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
@@ -966,6 +973,7 @@ class PartnersClient:
             status_id=status_id,
             address=address,
             notes=notes,
+            document_ref=document_ref,
             request_options=request_options,
         )
         return _response.data
@@ -1022,6 +1030,7 @@ class PartnersClient:
         status_id: typing.Optional[str] = OMIT,
         address: typing.Optional[PostV1PartnersUpdateRequestAddress] = OMIT,
         notes: typing.Optional[str] = OMIT,
+        document_ref: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1PartnersUpdateResponse:
         """
@@ -1065,6 +1074,8 @@ class PartnersClient:
 
         notes : typing.Optional[str]
 
+        document_ref : typing.Optional[str]
+
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
@@ -1104,6 +1115,7 @@ class PartnersClient:
             status_id=status_id,
             address=address,
             notes=notes,
+            document_ref=document_ref,
             request_options=request_options,
         )
         return _response.data
@@ -2563,6 +2575,7 @@ class AsyncPartnersClient:
         status_id: typing.Optional[str] = OMIT,
         address: typing.Optional[PostV1PartnersCreateRequestAddress] = OMIT,
         notes: typing.Optional[str] = OMIT,
+        document_ref: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1PartnersCreateResponse:
         """
@@ -2603,6 +2616,8 @@ class AsyncPartnersClient:
         address : typing.Optional[PostV1PartnersCreateRequestAddress]
 
         notes : typing.Optional[str]
+
+        document_ref : typing.Optional[str]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -2650,6 +2665,7 @@ class AsyncPartnersClient:
             status_id=status_id,
             address=address,
             notes=notes,
+            document_ref=document_ref,
             request_options=request_options,
         )
         return _response.data
@@ -2675,6 +2691,7 @@ class AsyncPartnersClient:
         status_id: typing.Optional[str] = OMIT,
         address: typing.Optional[PostV1PartnersFindOrCreateRequestAddress] = OMIT,
         notes: typing.Optional[str] = OMIT,
+        document_ref: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1PartnersFindOrCreateResponse:
         """
@@ -2715,6 +2732,8 @@ class AsyncPartnersClient:
         address : typing.Optional[PostV1PartnersFindOrCreateRequestAddress]
 
         notes : typing.Optional[str]
+
+        document_ref : typing.Optional[str]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -2762,6 +2781,7 @@ class AsyncPartnersClient:
             status_id=status_id,
             address=address,
             notes=notes,
+            document_ref=document_ref,
             request_options=request_options,
         )
         return _response.data
@@ -2826,6 +2846,7 @@ class AsyncPartnersClient:
         status_id: typing.Optional[str] = OMIT,
         address: typing.Optional[PostV1PartnersUpdateRequestAddress] = OMIT,
         notes: typing.Optional[str] = OMIT,
+        document_ref: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1PartnersUpdateResponse:
         """
@@ -2868,6 +2889,8 @@ class AsyncPartnersClient:
         address : typing.Optional[PostV1PartnersUpdateRequestAddress]
 
         notes : typing.Optional[str]
+
+        document_ref : typing.Optional[str]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -2916,6 +2939,7 @@ class AsyncPartnersClient:
             status_id=status_id,
             address=address,
             notes=notes,
+            document_ref=document_ref,
             request_options=request_options,
         )
         return _response.data

@@ -102,6 +102,7 @@ class SalesClient:
         vat_country_code: typing.Optional[str] = OMIT,
         deemed_supplier: typing.Optional[bool] = OMIT,
         notes: typing.Optional[str] = OMIT,
+        document_ref: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1SalesInvoicesCreateResponse:
         """
@@ -128,6 +129,8 @@ class SalesClient:
         deemed_supplier : typing.Optional[bool]
 
         notes : typing.Optional[str]
+
+        document_ref : typing.Optional[str]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -162,6 +165,7 @@ class SalesClient:
             vat_country_code=vat_country_code,
             deemed_supplier=deemed_supplier,
             notes=notes,
+            document_ref=document_ref,
             request_options=request_options,
         )
         return _response.data
@@ -1348,6 +1352,7 @@ class AsyncSalesClient:
         vat_country_code: typing.Optional[str] = OMIT,
         deemed_supplier: typing.Optional[bool] = OMIT,
         notes: typing.Optional[str] = OMIT,
+        document_ref: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1SalesInvoicesCreateResponse:
         """
@@ -1374,6 +1379,8 @@ class AsyncSalesClient:
         deemed_supplier : typing.Optional[bool]
 
         notes : typing.Optional[str]
+
+        document_ref : typing.Optional[str]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -1416,6 +1423,7 @@ class AsyncSalesClient:
             vat_country_code=vat_country_code,
             deemed_supplier=deemed_supplier,
             notes=notes,
+            document_ref=document_ref,
             request_options=request_options,
         )
         return _response.data

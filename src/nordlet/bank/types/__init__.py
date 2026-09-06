@@ -19,10 +19,18 @@ if typing.TYPE_CHECKING:
     from .post_v1bank_accounts_list_response_rows_item import PostV1BankAccountsListResponseRowsItem
     from .post_v1bank_accounts_update_response import PostV1BankAccountsUpdateResponse
     from .post_v1bank_direct_debits_export_response import PostV1BankDirectDebitsExportResponse
+    from .post_v1bank_feeds_accounts_configure_request_sync_schedule import (
+        PostV1BankFeedsAccountsConfigureRequestSyncSchedule,
+    )
+    from .post_v1bank_feeds_accounts_configure_response import PostV1BankFeedsAccountsConfigureResponse
+    from .post_v1bank_feeds_accounts_configure_response_sync_schedule import (
+        PostV1BankFeedsAccountsConfigureResponseSyncSchedule,
+    )
     from .post_v1bank_feeds_accounts_link_request_create_bank_account import (
         PostV1BankFeedsAccountsLinkRequestCreateBankAccount,
     )
     from .post_v1bank_feeds_accounts_link_response import PostV1BankFeedsAccountsLinkResponse
+    from .post_v1bank_feeds_accounts_link_response_sync_schedule import PostV1BankFeedsAccountsLinkResponseSyncSchedule
     from .post_v1bank_feeds_banks_list_response import PostV1BankFeedsBanksListResponse
     from .post_v1bank_feeds_banks_list_response_banks_item import PostV1BankFeedsBanksListResponseBanksItem
     from .post_v1bank_feeds_banks_list_response_banks_item_psu_types_item import (
@@ -32,6 +40,9 @@ if typing.TYPE_CHECKING:
     from .post_v1bank_feeds_connections_complete_response_accounts_item import (
         PostV1BankFeedsConnectionsCompleteResponseAccountsItem,
     )
+    from .post_v1bank_feeds_connections_complete_response_accounts_item_sync_schedule import (
+        PostV1BankFeedsConnectionsCompleteResponseAccountsItemSyncSchedule,
+    )
     from .post_v1bank_feeds_connections_complete_response_psu_type import (
         PostV1BankFeedsConnectionsCompleteResponsePsuType,
     )
@@ -40,6 +51,9 @@ if typing.TYPE_CHECKING:
     from .post_v1bank_feeds_connections_get_response import PostV1BankFeedsConnectionsGetResponse
     from .post_v1bank_feeds_connections_get_response_accounts_item import (
         PostV1BankFeedsConnectionsGetResponseAccountsItem,
+    )
+    from .post_v1bank_feeds_connections_get_response_accounts_item_sync_schedule import (
+        PostV1BankFeedsConnectionsGetResponseAccountsItemSyncSchedule,
     )
     from .post_v1bank_feeds_connections_get_response_psu_type import PostV1BankFeedsConnectionsGetResponsePsuType
     from .post_v1bank_feeds_connections_get_response_status import PostV1BankFeedsConnectionsGetResponseStatus
@@ -69,6 +83,48 @@ if typing.TYPE_CHECKING:
     from .post_v1bank_feeds_connections_start_response import PostV1BankFeedsConnectionsStartResponse
     from .post_v1bank_feeds_sync_response import PostV1BankFeedsSyncResponse
     from .post_v1bank_feeds_sync_response_accounts_item import PostV1BankFeedsSyncResponseAccountsItem
+    from .post_v1bank_import_templates_create_request_fields_item import (
+        PostV1BankImportTemplatesCreateRequestFieldsItem,
+    )
+    from .post_v1bank_import_templates_create_request_type import PostV1BankImportTemplatesCreateRequestType
+    from .post_v1bank_import_templates_create_response import PostV1BankImportTemplatesCreateResponse
+    from .post_v1bank_import_templates_create_response_fields_item import (
+        PostV1BankImportTemplatesCreateResponseFieldsItem,
+    )
+    from .post_v1bank_import_templates_create_response_type import PostV1BankImportTemplatesCreateResponseType
+    from .post_v1bank_import_templates_delete_response import PostV1BankImportTemplatesDeleteResponse
+    from .post_v1bank_import_templates_get_response import PostV1BankImportTemplatesGetResponse
+    from .post_v1bank_import_templates_get_response_fields_item import PostV1BankImportTemplatesGetResponseFieldsItem
+    from .post_v1bank_import_templates_get_response_type import PostV1BankImportTemplatesGetResponseType
+    from .post_v1bank_import_templates_list_request_filter_item import PostV1BankImportTemplatesListRequestFilterItem
+    from .post_v1bank_import_templates_list_request_filter_item_op import (
+        PostV1BankImportTemplatesListRequestFilterItemOp,
+    )
+    from .post_v1bank_import_templates_list_request_filter_item_value import (
+        PostV1BankImportTemplatesListRequestFilterItemValue,
+    )
+    from .post_v1bank_import_templates_list_request_filter_item_value_three_item import (
+        PostV1BankImportTemplatesListRequestFilterItemValueThreeItem,
+    )
+    from .post_v1bank_import_templates_list_request_sort_item import PostV1BankImportTemplatesListRequestSortItem
+    from .post_v1bank_import_templates_list_request_sort_item_dir import PostV1BankImportTemplatesListRequestSortItemDir
+    from .post_v1bank_import_templates_list_response import PostV1BankImportTemplatesListResponse
+    from .post_v1bank_import_templates_list_response_rows_item import PostV1BankImportTemplatesListResponseRowsItem
+    from .post_v1bank_import_templates_list_response_rows_item_fields_item import (
+        PostV1BankImportTemplatesListResponseRowsItemFieldsItem,
+    )
+    from .post_v1bank_import_templates_list_response_rows_item_type import (
+        PostV1BankImportTemplatesListResponseRowsItemType,
+    )
+    from .post_v1bank_import_templates_update_request_fields_item import (
+        PostV1BankImportTemplatesUpdateRequestFieldsItem,
+    )
+    from .post_v1bank_import_templates_update_request_type import PostV1BankImportTemplatesUpdateRequestType
+    from .post_v1bank_import_templates_update_response import PostV1BankImportTemplatesUpdateResponse
+    from .post_v1bank_import_templates_update_response_fields_item import (
+        PostV1BankImportTemplatesUpdateResponseFieldsItem,
+    )
+    from .post_v1bank_import_templates_update_response_type import PostV1BankImportTemplatesUpdateResponseType
     from .post_v1bank_mandates_cancel_response import PostV1BankMandatesCancelResponse
     from .post_v1bank_mandates_cancel_response_scheme import PostV1BankMandatesCancelResponseScheme
     from .post_v1bank_mandates_cancel_response_sequence_type import PostV1BankMandatesCancelResponseSequenceType
@@ -157,6 +213,9 @@ if typing.TYPE_CHECKING:
     from .post_v1bank_transactions_match_request_document_type import PostV1BankTransactionsMatchRequestDocumentType
     from .post_v1bank_transactions_match_response import PostV1BankTransactionsMatchResponse
     from .post_v1bank_transactions_match_response_status import PostV1BankTransactionsMatchResponseStatus
+    from .post_v1bank_transactions_record_request_document_type import PostV1BankTransactionsRecordRequestDocumentType
+    from .post_v1bank_transactions_record_response import PostV1BankTransactionsRecordResponse
+    from .post_v1bank_transactions_record_response_status import PostV1BankTransactionsRecordResponseStatus
     from .post_v1bank_transactions_suggest_matches_response import PostV1BankTransactionsSuggestMatchesResponse
     from .post_v1bank_transactions_suggest_matches_response_suggestions_item import (
         PostV1BankTransactionsSuggestMatchesResponseSuggestionsItem,
@@ -176,18 +235,24 @@ _dynamic_imports: typing.Dict[str, str] = {
     "PostV1BankAccountsListResponseRowsItem": ".post_v1bank_accounts_list_response_rows_item",
     "PostV1BankAccountsUpdateResponse": ".post_v1bank_accounts_update_response",
     "PostV1BankDirectDebitsExportResponse": ".post_v1bank_direct_debits_export_response",
+    "PostV1BankFeedsAccountsConfigureRequestSyncSchedule": ".post_v1bank_feeds_accounts_configure_request_sync_schedule",
+    "PostV1BankFeedsAccountsConfigureResponse": ".post_v1bank_feeds_accounts_configure_response",
+    "PostV1BankFeedsAccountsConfigureResponseSyncSchedule": ".post_v1bank_feeds_accounts_configure_response_sync_schedule",
     "PostV1BankFeedsAccountsLinkRequestCreateBankAccount": ".post_v1bank_feeds_accounts_link_request_create_bank_account",
     "PostV1BankFeedsAccountsLinkResponse": ".post_v1bank_feeds_accounts_link_response",
+    "PostV1BankFeedsAccountsLinkResponseSyncSchedule": ".post_v1bank_feeds_accounts_link_response_sync_schedule",
     "PostV1BankFeedsBanksListResponse": ".post_v1bank_feeds_banks_list_response",
     "PostV1BankFeedsBanksListResponseBanksItem": ".post_v1bank_feeds_banks_list_response_banks_item",
     "PostV1BankFeedsBanksListResponseBanksItemPsuTypesItem": ".post_v1bank_feeds_banks_list_response_banks_item_psu_types_item",
     "PostV1BankFeedsConnectionsCompleteResponse": ".post_v1bank_feeds_connections_complete_response",
     "PostV1BankFeedsConnectionsCompleteResponseAccountsItem": ".post_v1bank_feeds_connections_complete_response_accounts_item",
+    "PostV1BankFeedsConnectionsCompleteResponseAccountsItemSyncSchedule": ".post_v1bank_feeds_connections_complete_response_accounts_item_sync_schedule",
     "PostV1BankFeedsConnectionsCompleteResponsePsuType": ".post_v1bank_feeds_connections_complete_response_psu_type",
     "PostV1BankFeedsConnectionsCompleteResponseStatus": ".post_v1bank_feeds_connections_complete_response_status",
     "PostV1BankFeedsConnectionsDeleteResponse": ".post_v1bank_feeds_connections_delete_response",
     "PostV1BankFeedsConnectionsGetResponse": ".post_v1bank_feeds_connections_get_response",
     "PostV1BankFeedsConnectionsGetResponseAccountsItem": ".post_v1bank_feeds_connections_get_response_accounts_item",
+    "PostV1BankFeedsConnectionsGetResponseAccountsItemSyncSchedule": ".post_v1bank_feeds_connections_get_response_accounts_item_sync_schedule",
     "PostV1BankFeedsConnectionsGetResponsePsuType": ".post_v1bank_feeds_connections_get_response_psu_type",
     "PostV1BankFeedsConnectionsGetResponseStatus": ".post_v1bank_feeds_connections_get_response_status",
     "PostV1BankFeedsConnectionsListRequestFilterItem": ".post_v1bank_feeds_connections_list_request_filter_item",
@@ -204,6 +269,30 @@ _dynamic_imports: typing.Dict[str, str] = {
     "PostV1BankFeedsConnectionsStartResponse": ".post_v1bank_feeds_connections_start_response",
     "PostV1BankFeedsSyncResponse": ".post_v1bank_feeds_sync_response",
     "PostV1BankFeedsSyncResponseAccountsItem": ".post_v1bank_feeds_sync_response_accounts_item",
+    "PostV1BankImportTemplatesCreateRequestFieldsItem": ".post_v1bank_import_templates_create_request_fields_item",
+    "PostV1BankImportTemplatesCreateRequestType": ".post_v1bank_import_templates_create_request_type",
+    "PostV1BankImportTemplatesCreateResponse": ".post_v1bank_import_templates_create_response",
+    "PostV1BankImportTemplatesCreateResponseFieldsItem": ".post_v1bank_import_templates_create_response_fields_item",
+    "PostV1BankImportTemplatesCreateResponseType": ".post_v1bank_import_templates_create_response_type",
+    "PostV1BankImportTemplatesDeleteResponse": ".post_v1bank_import_templates_delete_response",
+    "PostV1BankImportTemplatesGetResponse": ".post_v1bank_import_templates_get_response",
+    "PostV1BankImportTemplatesGetResponseFieldsItem": ".post_v1bank_import_templates_get_response_fields_item",
+    "PostV1BankImportTemplatesGetResponseType": ".post_v1bank_import_templates_get_response_type",
+    "PostV1BankImportTemplatesListRequestFilterItem": ".post_v1bank_import_templates_list_request_filter_item",
+    "PostV1BankImportTemplatesListRequestFilterItemOp": ".post_v1bank_import_templates_list_request_filter_item_op",
+    "PostV1BankImportTemplatesListRequestFilterItemValue": ".post_v1bank_import_templates_list_request_filter_item_value",
+    "PostV1BankImportTemplatesListRequestFilterItemValueThreeItem": ".post_v1bank_import_templates_list_request_filter_item_value_three_item",
+    "PostV1BankImportTemplatesListRequestSortItem": ".post_v1bank_import_templates_list_request_sort_item",
+    "PostV1BankImportTemplatesListRequestSortItemDir": ".post_v1bank_import_templates_list_request_sort_item_dir",
+    "PostV1BankImportTemplatesListResponse": ".post_v1bank_import_templates_list_response",
+    "PostV1BankImportTemplatesListResponseRowsItem": ".post_v1bank_import_templates_list_response_rows_item",
+    "PostV1BankImportTemplatesListResponseRowsItemFieldsItem": ".post_v1bank_import_templates_list_response_rows_item_fields_item",
+    "PostV1BankImportTemplatesListResponseRowsItemType": ".post_v1bank_import_templates_list_response_rows_item_type",
+    "PostV1BankImportTemplatesUpdateRequestFieldsItem": ".post_v1bank_import_templates_update_request_fields_item",
+    "PostV1BankImportTemplatesUpdateRequestType": ".post_v1bank_import_templates_update_request_type",
+    "PostV1BankImportTemplatesUpdateResponse": ".post_v1bank_import_templates_update_response",
+    "PostV1BankImportTemplatesUpdateResponseFieldsItem": ".post_v1bank_import_templates_update_response_fields_item",
+    "PostV1BankImportTemplatesUpdateResponseType": ".post_v1bank_import_templates_update_response_type",
     "PostV1BankMandatesCancelResponse": ".post_v1bank_mandates_cancel_response",
     "PostV1BankMandatesCancelResponseScheme": ".post_v1bank_mandates_cancel_response_scheme",
     "PostV1BankMandatesCancelResponseSequenceType": ".post_v1bank_mandates_cancel_response_sequence_type",
@@ -274,6 +363,9 @@ _dynamic_imports: typing.Dict[str, str] = {
     "PostV1BankTransactionsMatchRequestDocumentType": ".post_v1bank_transactions_match_request_document_type",
     "PostV1BankTransactionsMatchResponse": ".post_v1bank_transactions_match_response",
     "PostV1BankTransactionsMatchResponseStatus": ".post_v1bank_transactions_match_response_status",
+    "PostV1BankTransactionsRecordRequestDocumentType": ".post_v1bank_transactions_record_request_document_type",
+    "PostV1BankTransactionsRecordResponse": ".post_v1bank_transactions_record_response",
+    "PostV1BankTransactionsRecordResponseStatus": ".post_v1bank_transactions_record_response_status",
     "PostV1BankTransactionsSuggestMatchesResponse": ".post_v1bank_transactions_suggest_matches_response",
     "PostV1BankTransactionsSuggestMatchesResponseSuggestionsItem": ".post_v1bank_transactions_suggest_matches_response_suggestions_item",
     "PostV1BankTransactionsSuggestMatchesResponseSuggestionsItemDocumentType": ".post_v1bank_transactions_suggest_matches_response_suggestions_item_document_type",
@@ -313,18 +405,24 @@ __all__ = [
     "PostV1BankAccountsListResponseRowsItem",
     "PostV1BankAccountsUpdateResponse",
     "PostV1BankDirectDebitsExportResponse",
+    "PostV1BankFeedsAccountsConfigureRequestSyncSchedule",
+    "PostV1BankFeedsAccountsConfigureResponse",
+    "PostV1BankFeedsAccountsConfigureResponseSyncSchedule",
     "PostV1BankFeedsAccountsLinkRequestCreateBankAccount",
     "PostV1BankFeedsAccountsLinkResponse",
+    "PostV1BankFeedsAccountsLinkResponseSyncSchedule",
     "PostV1BankFeedsBanksListResponse",
     "PostV1BankFeedsBanksListResponseBanksItem",
     "PostV1BankFeedsBanksListResponseBanksItemPsuTypesItem",
     "PostV1BankFeedsConnectionsCompleteResponse",
     "PostV1BankFeedsConnectionsCompleteResponseAccountsItem",
+    "PostV1BankFeedsConnectionsCompleteResponseAccountsItemSyncSchedule",
     "PostV1BankFeedsConnectionsCompleteResponsePsuType",
     "PostV1BankFeedsConnectionsCompleteResponseStatus",
     "PostV1BankFeedsConnectionsDeleteResponse",
     "PostV1BankFeedsConnectionsGetResponse",
     "PostV1BankFeedsConnectionsGetResponseAccountsItem",
+    "PostV1BankFeedsConnectionsGetResponseAccountsItemSyncSchedule",
     "PostV1BankFeedsConnectionsGetResponsePsuType",
     "PostV1BankFeedsConnectionsGetResponseStatus",
     "PostV1BankFeedsConnectionsListRequestFilterItem",
@@ -341,6 +439,30 @@ __all__ = [
     "PostV1BankFeedsConnectionsStartResponse",
     "PostV1BankFeedsSyncResponse",
     "PostV1BankFeedsSyncResponseAccountsItem",
+    "PostV1BankImportTemplatesCreateRequestFieldsItem",
+    "PostV1BankImportTemplatesCreateRequestType",
+    "PostV1BankImportTemplatesCreateResponse",
+    "PostV1BankImportTemplatesCreateResponseFieldsItem",
+    "PostV1BankImportTemplatesCreateResponseType",
+    "PostV1BankImportTemplatesDeleteResponse",
+    "PostV1BankImportTemplatesGetResponse",
+    "PostV1BankImportTemplatesGetResponseFieldsItem",
+    "PostV1BankImportTemplatesGetResponseType",
+    "PostV1BankImportTemplatesListRequestFilterItem",
+    "PostV1BankImportTemplatesListRequestFilterItemOp",
+    "PostV1BankImportTemplatesListRequestFilterItemValue",
+    "PostV1BankImportTemplatesListRequestFilterItemValueThreeItem",
+    "PostV1BankImportTemplatesListRequestSortItem",
+    "PostV1BankImportTemplatesListRequestSortItemDir",
+    "PostV1BankImportTemplatesListResponse",
+    "PostV1BankImportTemplatesListResponseRowsItem",
+    "PostV1BankImportTemplatesListResponseRowsItemFieldsItem",
+    "PostV1BankImportTemplatesListResponseRowsItemType",
+    "PostV1BankImportTemplatesUpdateRequestFieldsItem",
+    "PostV1BankImportTemplatesUpdateRequestType",
+    "PostV1BankImportTemplatesUpdateResponse",
+    "PostV1BankImportTemplatesUpdateResponseFieldsItem",
+    "PostV1BankImportTemplatesUpdateResponseType",
     "PostV1BankMandatesCancelResponse",
     "PostV1BankMandatesCancelResponseScheme",
     "PostV1BankMandatesCancelResponseSequenceType",
@@ -411,6 +533,9 @@ __all__ = [
     "PostV1BankTransactionsMatchRequestDocumentType",
     "PostV1BankTransactionsMatchResponse",
     "PostV1BankTransactionsMatchResponseStatus",
+    "PostV1BankTransactionsRecordRequestDocumentType",
+    "PostV1BankTransactionsRecordResponse",
+    "PostV1BankTransactionsRecordResponseStatus",
     "PostV1BankTransactionsSuggestMatchesResponse",
     "PostV1BankTransactionsSuggestMatchesResponseSuggestionsItem",
     "PostV1BankTransactionsSuggestMatchesResponseSuggestionsItemDocumentType",

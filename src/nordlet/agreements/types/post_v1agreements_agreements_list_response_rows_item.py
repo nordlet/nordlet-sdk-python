@@ -9,6 +9,9 @@ from ...core.serialization import FieldMetadata
 from .post_v1agreements_agreements_list_response_rows_item_billing_period import (
     PostV1AgreementsAgreementsListResponseRowsItemBillingPeriod,
 )
+from .post_v1agreements_agreements_list_response_rows_item_kind import (
+    PostV1AgreementsAgreementsListResponseRowsItemKind,
+)
 from .post_v1agreements_agreements_list_response_rows_item_status import (
     PostV1AgreementsAgreementsListResponseRowsItemStatus,
 )
@@ -19,7 +22,16 @@ class PostV1AgreementsAgreementsListResponseRowsItem(UniversalBaseModel):
     type_id: typing_extensions.Annotated[
         typing.Optional[str], FieldMetadata(alias="typeId"), pydantic.Field(alias="typeId")
     ] = None
-    partner_id: typing_extensions.Annotated[str, FieldMetadata(alias="partnerId"), pydantic.Field(alias="partnerId")]
+    kind: PostV1AgreementsAgreementsListResponseRowsItemKind
+    partner_id: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="partnerId"), pydantic.Field(alias="partnerId")
+    ] = None
+    employee_id: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="employeeId"), pydantic.Field(alias="employeeId")
+    ] = None
+    bank_account_id: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="bankAccountId"), pydantic.Field(alias="bankAccountId")
+    ] = None
     number: str
     name: typing.Optional[str] = None
     start_date: typing_extensions.Annotated[str, FieldMetadata(alias="startDate"), pydantic.Field(alias="startDate")]
@@ -36,6 +48,9 @@ class PostV1AgreementsAgreementsListResponseRowsItem(UniversalBaseModel):
     currency: str
     status: PostV1AgreementsAgreementsListResponseRowsItemStatus
     notes: typing.Optional[str] = None
+    document_ref: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="documentRef"), pydantic.Field(alias="documentRef")
+    ] = None
     created_at: typing_extensions.Annotated[str, FieldMetadata(alias="createdAt"), pydantic.Field(alias="createdAt")]
 
     if IS_PYDANTIC_V2:
