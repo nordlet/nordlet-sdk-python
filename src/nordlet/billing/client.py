@@ -8,6 +8,8 @@ from .raw_client import AsyncRawBillingClient, RawBillingClient
 from .types.post_v1billing_account_get_response import PostV1BillingAccountGetResponse
 from .types.post_v1billing_account_set_plan_request_plan import PostV1BillingAccountSetPlanRequestPlan
 from .types.post_v1billing_account_set_plan_response import PostV1BillingAccountSetPlanResponse
+from .types.post_v1billing_portal_create_request_locale import PostV1BillingPortalCreateRequestLocale
+from .types.post_v1billing_portal_create_response import PostV1BillingPortalCreateResponse
 from .types.post_v1billing_topup_create_request_locale import PostV1BillingTopupCreateRequestLocale
 from .types.post_v1billing_topup_create_response import PostV1BillingTopupCreateResponse
 from .types.post_v1billing_transactions_list_response import PostV1BillingTransactionsListResponse
@@ -124,6 +126,37 @@ class BillingClient:
         _response = self._raw_client.post_v1billing_topup_create(
             amount_cents=amount_cents, locale=locale, request_options=request_options
         )
+        return _response.data
+
+    def post_v1billing_portal_create(
+        self,
+        *,
+        locale: typing.Optional[PostV1BillingPortalCreateRequestLocale] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1BillingPortalCreateResponse:
+        """
+        Parameters
+        ----------
+        locale : typing.Optional[PostV1BillingPortalCreateRequestLocale]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1BillingPortalCreateResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.billing.post_v1billing_portal_create()
+        """
+        _response = self._raw_client.post_v1billing_portal_create(locale=locale, request_options=request_options)
         return _response.data
 
     def post_v1billing_transactions_list(
@@ -319,6 +352,45 @@ class AsyncBillingClient:
         _response = await self._raw_client.post_v1billing_topup_create(
             amount_cents=amount_cents, locale=locale, request_options=request_options
         )
+        return _response.data
+
+    async def post_v1billing_portal_create(
+        self,
+        *,
+        locale: typing.Optional[PostV1BillingPortalCreateRequestLocale] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1BillingPortalCreateResponse:
+        """
+        Parameters
+        ----------
+        locale : typing.Optional[PostV1BillingPortalCreateRequestLocale]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1BillingPortalCreateResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.billing.post_v1billing_portal_create()
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1billing_portal_create(locale=locale, request_options=request_options)
         return _response.data
 
     async def post_v1billing_transactions_list(

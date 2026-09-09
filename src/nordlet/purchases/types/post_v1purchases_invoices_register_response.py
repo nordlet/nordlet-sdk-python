@@ -50,6 +50,9 @@ class PostV1PurchasesInvoicesRegisterResponse(UniversalBaseModel):
     purchase_order_id: typing_extensions.Annotated[
         typing.Optional[str], FieldMetadata(alias="purchaseOrderId"), pydantic.Field(alias="purchaseOrderId")
     ] = None
+    operation_type_id: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="operationTypeId"), pydantic.Field(alias="operationTypeId")
+    ] = None
     notes: typing.Optional[str] = None
     document_ref: typing_extensions.Annotated[
         typing.Optional[str], FieldMetadata(alias="documentRef"), pydantic.Field(alias="documentRef")

@@ -315,6 +315,7 @@ class PayrollClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1PayrollRunsListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1PayrollRunsListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1PayrollRunsListResponse:
         """
@@ -327,6 +328,9 @@ class PayrollClient:
         sort : typing.Optional[typing.Sequence[PostV1PayrollRunsListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1PayrollRunsListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -346,7 +350,7 @@ class PayrollClient:
         client.payroll.post_v1payroll_runs_list()
         """
         _response = self._raw_client.post_v1payroll_runs_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 
@@ -833,6 +837,7 @@ class AsyncPayrollClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1PayrollRunsListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1PayrollRunsListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1PayrollRunsListResponse:
         """
@@ -845,6 +850,9 @@ class AsyncPayrollClient:
         sort : typing.Optional[typing.Sequence[PostV1PayrollRunsListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1PayrollRunsListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -872,7 +880,7 @@ class AsyncPayrollClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.post_v1payroll_runs_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 

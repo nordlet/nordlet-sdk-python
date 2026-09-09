@@ -44,9 +44,13 @@ from .types.post_v1account_members_remove_response import PostV1AccountMembersRe
 from .types.post_v1account_members_set_role_request_role import PostV1AccountMembersSetRoleRequestRole
 from .types.post_v1account_members_set_role_response import PostV1AccountMembersSetRoleResponse
 from .types.post_v1account_profile_update_response import PostV1AccountProfileUpdateResponse
+from .types.post_v1account_referral_get_response import PostV1AccountReferralGetResponse
 from .types.post_v1account_sessions_list_response import PostV1AccountSessionsListResponse
 from .types.post_v1account_sessions_revoke_others_response import PostV1AccountSessionsRevokeOthersResponse
 from .types.post_v1account_sessions_revoke_response import PostV1AccountSessionsRevokeResponse
+from .types.post_v1account_table_settings_get_response import PostV1AccountTableSettingsGetResponse
+from .types.post_v1account_table_settings_list_response import PostV1AccountTableSettingsListResponse
+from .types.post_v1account_table_settings_set_response import PostV1AccountTableSettingsSetResponse
 
 # this is used as the default value for optional parameters
 OMIT = typing.cast(typing.Any, ...)
@@ -74,6 +78,7 @@ class AccountClient:
         locale: typing.Optional[PostV1AccountLoginLinkRequestRequestLocale] = OMIT,
         accept_terms: typing.Optional[bool] = OMIT,
         accept_dpa: typing.Optional[bool] = OMIT,
+        referral_code: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1AccountLoginLinkRequestResponse:
         """
@@ -86,6 +91,8 @@ class AccountClient:
         accept_terms : typing.Optional[bool]
 
         accept_dpa : typing.Optional[bool]
+
+        referral_code : typing.Optional[str]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -111,6 +118,7 @@ class AccountClient:
             locale=locale,
             accept_terms=accept_terms,
             accept_dpa=accept_dpa,
+            referral_code=referral_code,
             request_options=request_options,
         )
         return _response.data
@@ -1173,6 +1181,131 @@ class AccountClient:
         )
         return _response.data
 
+    def post_v1account_referral_get(
+        self, *, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1AccountReferralGetResponse:
+        """
+        Parameters
+        ----------
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1AccountReferralGetResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.account.post_v1account_referral_get()
+        """
+        _response = self._raw_client.post_v1account_referral_get(request_options=request_options)
+        return _response.data
+
+    def post_v1account_table_settings_get(
+        self, *, table_key: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1AccountTableSettingsGetResponse:
+        """
+        Parameters
+        ----------
+        table_key : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1AccountTableSettingsGetResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.account.post_v1account_table_settings_get(
+            table_key="tableKey",
+        )
+        """
+        _response = self._raw_client.post_v1account_table_settings_get(
+            table_key=table_key, request_options=request_options
+        )
+        return _response.data
+
+    def post_v1account_table_settings_set(
+        self,
+        *,
+        table_key: str,
+        columns: typing.Optional[typing.Sequence[str]] = OMIT,
+        page_size: typing.Optional[float] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1AccountTableSettingsSetResponse:
+        """
+        Parameters
+        ----------
+        table_key : str
+
+        columns : typing.Optional[typing.Sequence[str]]
+
+        page_size : typing.Optional[float]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1AccountTableSettingsSetResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.account.post_v1account_table_settings_set(
+            table_key="tableKey",
+        )
+        """
+        _response = self._raw_client.post_v1account_table_settings_set(
+            table_key=table_key, columns=columns, page_size=page_size, request_options=request_options
+        )
+        return _response.data
+
+    def post_v1account_table_settings_list(
+        self, *, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1AccountTableSettingsListResponse:
+        """
+        Parameters
+        ----------
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1AccountTableSettingsListResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.account.post_v1account_table_settings_list()
+        """
+        _response = self._raw_client.post_v1account_table_settings_list(request_options=request_options)
+        return _response.data
+
 
 class AsyncAccountClient:
     def __init__(self, *, client_wrapper: AsyncClientWrapper):
@@ -1196,6 +1329,7 @@ class AsyncAccountClient:
         locale: typing.Optional[PostV1AccountLoginLinkRequestRequestLocale] = OMIT,
         accept_terms: typing.Optional[bool] = OMIT,
         accept_dpa: typing.Optional[bool] = OMIT,
+        referral_code: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1AccountLoginLinkRequestResponse:
         """
@@ -1208,6 +1342,8 @@ class AsyncAccountClient:
         accept_terms : typing.Optional[bool]
 
         accept_dpa : typing.Optional[bool]
+
+        referral_code : typing.Optional[str]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -1241,6 +1377,7 @@ class AsyncAccountClient:
             locale=locale,
             accept_terms=accept_terms,
             accept_dpa=accept_dpa,
+            referral_code=referral_code,
             request_options=request_options,
         )
         return _response.data
@@ -2547,4 +2684,161 @@ class AsyncAccountClient:
         _response = await self._raw_client.delete_the_signed_in_user_account(
             confirm_email=confirm_email, request_options=request_options
         )
+        return _response.data
+
+    async def post_v1account_referral_get(
+        self, *, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1AccountReferralGetResponse:
+        """
+        Parameters
+        ----------
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1AccountReferralGetResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.account.post_v1account_referral_get()
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1account_referral_get(request_options=request_options)
+        return _response.data
+
+    async def post_v1account_table_settings_get(
+        self, *, table_key: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1AccountTableSettingsGetResponse:
+        """
+        Parameters
+        ----------
+        table_key : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1AccountTableSettingsGetResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.account.post_v1account_table_settings_get(
+                table_key="tableKey",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1account_table_settings_get(
+            table_key=table_key, request_options=request_options
+        )
+        return _response.data
+
+    async def post_v1account_table_settings_set(
+        self,
+        *,
+        table_key: str,
+        columns: typing.Optional[typing.Sequence[str]] = OMIT,
+        page_size: typing.Optional[float] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1AccountTableSettingsSetResponse:
+        """
+        Parameters
+        ----------
+        table_key : str
+
+        columns : typing.Optional[typing.Sequence[str]]
+
+        page_size : typing.Optional[float]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1AccountTableSettingsSetResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.account.post_v1account_table_settings_set(
+                table_key="tableKey",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1account_table_settings_set(
+            table_key=table_key, columns=columns, page_size=page_size, request_options=request_options
+        )
+        return _response.data
+
+    async def post_v1account_table_settings_list(
+        self, *, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1AccountTableSettingsListResponse:
+        """
+        Parameters
+        ----------
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1AccountTableSettingsListResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.account.post_v1account_table_settings_list()
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1account_table_settings_list(request_options=request_options)
         return _response.data

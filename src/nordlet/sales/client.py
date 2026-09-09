@@ -5,6 +5,24 @@ import typing
 from ..core.client_wrapper import AsyncClientWrapper, SyncClientWrapper
 from ..core.request_options import RequestOptions
 from .raw_client import AsyncRawSalesClient, RawSalesClient
+from .types.post_v1document_series_create_request_document_type import PostV1DocumentSeriesCreateRequestDocumentType
+from .types.post_v1document_series_create_response import PostV1DocumentSeriesCreateResponse
+from .types.post_v1document_series_delete_response import PostV1DocumentSeriesDeleteResponse
+from .types.post_v1document_series_get_response import PostV1DocumentSeriesGetResponse
+from .types.post_v1document_series_list_request_filter_item import PostV1DocumentSeriesListRequestFilterItem
+from .types.post_v1document_series_list_request_sort_item import PostV1DocumentSeriesListRequestSortItem
+from .types.post_v1document_series_list_response import PostV1DocumentSeriesListResponse
+from .types.post_v1document_series_update_request_document_type import PostV1DocumentSeriesUpdateRequestDocumentType
+from .types.post_v1document_series_update_response import PostV1DocumentSeriesUpdateResponse
+from .types.post_v1operation_types_create_request_invoice_type import PostV1OperationTypesCreateRequestInvoiceType
+from .types.post_v1operation_types_create_response import PostV1OperationTypesCreateResponse
+from .types.post_v1operation_types_delete_response import PostV1OperationTypesDeleteResponse
+from .types.post_v1operation_types_get_response import PostV1OperationTypesGetResponse
+from .types.post_v1operation_types_list_request_filter_item import PostV1OperationTypesListRequestFilterItem
+from .types.post_v1operation_types_list_request_sort_item import PostV1OperationTypesListRequestSortItem
+from .types.post_v1operation_types_list_response import PostV1OperationTypesListResponse
+from .types.post_v1operation_types_update_request_invoice_type import PostV1OperationTypesUpdateRequestInvoiceType
+from .types.post_v1operation_types_update_response import PostV1OperationTypesUpdateResponse
 from .types.post_v1sales_acts_cancel_response import PostV1SalesActsCancelResponse
 from .types.post_v1sales_acts_create_request_lines_item import PostV1SalesActsCreateRequestLinesItem
 from .types.post_v1sales_acts_create_request_type import PostV1SalesActsCreateRequestType
@@ -32,12 +50,19 @@ from .types.post_v1sales_invoices_issue_response import PostV1SalesInvoicesIssue
 from .types.post_v1sales_invoices_list_request_filter_item import PostV1SalesInvoicesListRequestFilterItem
 from .types.post_v1sales_invoices_list_request_sort_item import PostV1SalesInvoicesListRequestSortItem
 from .types.post_v1sales_invoices_list_response import PostV1SalesInvoicesListResponse
+from .types.post_v1sales_invoices_lock_response import PostV1SalesInvoicesLockResponse
+from .types.post_v1sales_invoices_payment_link_response import PostV1SalesInvoicesPaymentLinkResponse
+from .types.post_v1sales_invoices_payment_settings_get_response import PostV1SalesInvoicesPaymentSettingsGetResponse
+from .types.post_v1sales_invoices_payment_settings_update_response import (
+    PostV1SalesInvoicesPaymentSettingsUpdateResponse,
+)
 from .types.post_v1sales_invoices_pdf_request_locale import PostV1SalesInvoicesPdfRequestLocale
 from .types.post_v1sales_invoices_pdf_response import PostV1SalesInvoicesPdfResponse
 from .types.post_v1sales_invoices_peppol_send_response import PostV1SalesInvoicesPeppolSendResponse
 from .types.post_v1sales_invoices_peppol_xml_response import PostV1SalesInvoicesPeppolXmlResponse
 from .types.post_v1sales_invoices_send_request_locale import PostV1SalesInvoicesSendRequestLocale
 from .types.post_v1sales_invoices_send_response import PostV1SalesInvoicesSendResponse
+from .types.post_v1sales_invoices_unlock_response import PostV1SalesInvoicesUnlockResponse
 from .types.post_v1sales_invoices_update_request_lines_item import PostV1SalesInvoicesUpdateRequestLinesItem
 from .types.post_v1sales_invoices_update_request_vat_scheme import PostV1SalesInvoicesUpdateRequestVatScheme
 from .types.post_v1sales_invoices_update_response import PostV1SalesInvoicesUpdateResponse
@@ -103,6 +128,15 @@ class SalesClient:
         deemed_supplier: typing.Optional[bool] = OMIT,
         notes: typing.Optional[str] = OMIT,
         document_ref: typing.Optional[str] = OMIT,
+        operation_type_id: typing.Optional[str] = OMIT,
+        document_series_id: typing.Optional[str] = OMIT,
+        series_label: typing.Optional[str] = OMIT,
+        order_number: typing.Optional[str] = OMIT,
+        issued_by_name: typing.Optional[str] = OMIT,
+        issued_by_title: typing.Optional[str] = OMIT,
+        received_by_name: typing.Optional[str] = OMIT,
+        received_by_title: typing.Optional[str] = OMIT,
+        discount_percent: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1SalesInvoicesCreateResponse:
         """
@@ -131,6 +165,24 @@ class SalesClient:
         notes : typing.Optional[str]
 
         document_ref : typing.Optional[str]
+
+        operation_type_id : typing.Optional[str]
+
+        document_series_id : typing.Optional[str]
+
+        series_label : typing.Optional[str]
+
+        order_number : typing.Optional[str]
+
+        issued_by_name : typing.Optional[str]
+
+        issued_by_title : typing.Optional[str]
+
+        received_by_name : typing.Optional[str]
+
+        received_by_title : typing.Optional[str]
+
+        discount_percent : typing.Optional[str]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -166,6 +218,15 @@ class SalesClient:
             deemed_supplier=deemed_supplier,
             notes=notes,
             document_ref=document_ref,
+            operation_type_id=operation_type_id,
+            document_series_id=document_series_id,
+            series_label=series_label,
+            order_number=order_number,
+            issued_by_name=issued_by_name,
+            issued_by_title=issued_by_title,
+            received_by_name=received_by_name,
+            received_by_title=received_by_title,
+            discount_percent=discount_percent,
             request_options=request_options,
         )
         return _response.data
@@ -413,6 +474,15 @@ class SalesClient:
         vat_country_code: typing.Optional[str] = OMIT,
         deemed_supplier: typing.Optional[bool] = OMIT,
         notes: typing.Optional[str] = OMIT,
+        operation_type_id: typing.Optional[str] = OMIT,
+        document_series_id: typing.Optional[str] = OMIT,
+        series_label: typing.Optional[str] = OMIT,
+        discount_percent: typing.Optional[str] = OMIT,
+        order_number: typing.Optional[str] = OMIT,
+        issued_by_name: typing.Optional[str] = OMIT,
+        issued_by_title: typing.Optional[str] = OMIT,
+        received_by_name: typing.Optional[str] = OMIT,
+        received_by_title: typing.Optional[str] = OMIT,
         lines: typing.Optional[typing.Sequence[PostV1SalesInvoicesUpdateRequestLinesItem]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1SalesInvoicesUpdateResponse:
@@ -436,6 +506,24 @@ class SalesClient:
         deemed_supplier : typing.Optional[bool]
 
         notes : typing.Optional[str]
+
+        operation_type_id : typing.Optional[str]
+
+        document_series_id : typing.Optional[str]
+
+        series_label : typing.Optional[str]
+
+        discount_percent : typing.Optional[str]
+
+        order_number : typing.Optional[str]
+
+        issued_by_name : typing.Optional[str]
+
+        issued_by_title : typing.Optional[str]
+
+        received_by_name : typing.Optional[str]
+
+        received_by_title : typing.Optional[str]
 
         lines : typing.Optional[typing.Sequence[PostV1SalesInvoicesUpdateRequestLinesItem]]
 
@@ -468,6 +556,15 @@ class SalesClient:
             vat_country_code=vat_country_code,
             deemed_supplier=deemed_supplier,
             notes=notes,
+            operation_type_id=operation_type_id,
+            document_series_id=document_series_id,
+            series_label=series_label,
+            discount_percent=discount_percent,
+            order_number=order_number,
+            issued_by_name=issued_by_name,
+            issued_by_title=issued_by_title,
+            received_by_name=received_by_name,
+            received_by_title=received_by_title,
             lines=lines,
             request_options=request_options,
         )
@@ -547,6 +644,155 @@ class SalesClient:
         )
         return _response.data
 
+    def post_v1sales_invoices_lock(
+        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1SalesInvoicesLockResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1SalesInvoicesLockResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.sales.post_v1sales_invoices_lock(
+            id="id",
+        )
+        """
+        _response = self._raw_client.post_v1sales_invoices_lock(id=id, request_options=request_options)
+        return _response.data
+
+    def post_v1sales_invoices_unlock(
+        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1SalesInvoicesUnlockResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1SalesInvoicesUnlockResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.sales.post_v1sales_invoices_unlock(
+            id="id",
+        )
+        """
+        _response = self._raw_client.post_v1sales_invoices_unlock(id=id, request_options=request_options)
+        return _response.data
+
+    def post_v1sales_invoices_payment_link(
+        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1SalesInvoicesPaymentLinkResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1SalesInvoicesPaymentLinkResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.sales.post_v1sales_invoices_payment_link(
+            id="id",
+        )
+        """
+        _response = self._raw_client.post_v1sales_invoices_payment_link(id=id, request_options=request_options)
+        return _response.data
+
+    def post_v1sales_invoices_payment_settings_get(
+        self, *, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1SalesInvoicesPaymentSettingsGetResponse:
+        """
+        Parameters
+        ----------
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1SalesInvoicesPaymentSettingsGetResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.sales.post_v1sales_invoices_payment_settings_get()
+        """
+        _response = self._raw_client.post_v1sales_invoices_payment_settings_get(request_options=request_options)
+        return _response.data
+
+    def post_v1sales_invoices_payment_settings_update(
+        self,
+        *,
+        payment_link_template: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1SalesInvoicesPaymentSettingsUpdateResponse:
+        """
+        Parameters
+        ----------
+        payment_link_template : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1SalesInvoicesPaymentSettingsUpdateResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.sales.post_v1sales_invoices_payment_settings_update()
+        """
+        _response = self._raw_client.post_v1sales_invoices_payment_settings_update(
+            payment_link_template=payment_link_template, request_options=request_options
+        )
+        return _response.data
+
     def post_v1sales_recognition_schedules_list(
         self,
         *,
@@ -554,6 +800,7 @@ class SalesClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1SalesRecognitionSchedulesListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1SalesRecognitionSchedulesListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1SalesRecognitionSchedulesListResponse:
         """
@@ -566,6 +813,9 @@ class SalesClient:
         sort : typing.Optional[typing.Sequence[PostV1SalesRecognitionSchedulesListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1SalesRecognitionSchedulesListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -585,7 +835,7 @@ class SalesClient:
         client.sales.post_v1sales_recognition_schedules_list()
         """
         _response = self._raw_client.post_v1sales_recognition_schedules_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 
@@ -638,6 +888,7 @@ class SalesClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1SalesInvoicesListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1SalesInvoicesListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1SalesInvoicesListResponse:
         """
@@ -650,6 +901,9 @@ class SalesClient:
         sort : typing.Optional[typing.Sequence[PostV1SalesInvoicesListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1SalesInvoicesListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -669,7 +923,7 @@ class SalesClient:
         client.sales.post_v1sales_invoices_list()
         """
         _response = self._raw_client.post_v1sales_invoices_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 
@@ -926,6 +1180,7 @@ class SalesClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1SalesActsListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1SalesActsListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1SalesActsListResponse:
         """
@@ -938,6 +1193,9 @@ class SalesClient:
         sort : typing.Optional[typing.Sequence[PostV1SalesActsListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1SalesActsListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -957,7 +1215,7 @@ class SalesClient:
         client.sales.post_v1sales_acts_list()
         """
         _response = self._raw_client.post_v1sales_acts_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 
@@ -995,6 +1253,643 @@ class SalesClient:
         )
         """
         _response = self._raw_client.post_v1sales_acts_pdf(id=id, locale=locale, request_options=request_options)
+        return _response.data
+
+    def post_v1operation_types_create(
+        self,
+        *,
+        code: str,
+        name: str,
+        invoice_type: typing.Optional[PostV1OperationTypesCreateRequestInvoiceType] = OMIT,
+        payer_partner_id: typing.Optional[str] = OMIT,
+        debit_account_code: typing.Optional[str] = OMIT,
+        credit_account_code: typing.Optional[str] = OMIT,
+        vat_account_code: typing.Optional[str] = OMIT,
+        expense_account_code: typing.Optional[str] = OMIT,
+        advance_account_code: typing.Optional[str] = OMIT,
+        income_account_code: typing.Optional[str] = OMIT,
+        is_purchase: typing.Optional[bool] = OMIT,
+        is_sale: typing.Optional[bool] = OMIT,
+        is_write_off: typing.Optional[bool] = OMIT,
+        is_internal_movement: typing.Optional[bool] = OMIT,
+        is_purchase_return: typing.Optional[bool] = OMIT,
+        is_sales_return: typing.Optional[bool] = OMIT,
+        is_consignment: typing.Optional[bool] = OMIT,
+        is_production: typing.Optional[bool] = OMIT,
+        is_asset_in: typing.Optional[bool] = OMIT,
+        is_asset_out: typing.Optional[bool] = OMIT,
+        is_cash_register_sale: typing.Optional[bool] = OMIT,
+        include_in_vat_register: typing.Optional[bool] = OMIT,
+        include_in_saft: typing.Optional[bool] = OMIT,
+        is_active: typing.Optional[bool] = OMIT,
+        sort_order: typing.Optional[int] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1OperationTypesCreateResponse:
+        """
+        Parameters
+        ----------
+        code : str
+
+        name : str
+
+        invoice_type : typing.Optional[PostV1OperationTypesCreateRequestInvoiceType]
+
+        payer_partner_id : typing.Optional[str]
+
+        debit_account_code : typing.Optional[str]
+
+        credit_account_code : typing.Optional[str]
+
+        vat_account_code : typing.Optional[str]
+
+        expense_account_code : typing.Optional[str]
+
+        advance_account_code : typing.Optional[str]
+
+        income_account_code : typing.Optional[str]
+
+        is_purchase : typing.Optional[bool]
+
+        is_sale : typing.Optional[bool]
+
+        is_write_off : typing.Optional[bool]
+
+        is_internal_movement : typing.Optional[bool]
+
+        is_purchase_return : typing.Optional[bool]
+
+        is_sales_return : typing.Optional[bool]
+
+        is_consignment : typing.Optional[bool]
+
+        is_production : typing.Optional[bool]
+
+        is_asset_in : typing.Optional[bool]
+
+        is_asset_out : typing.Optional[bool]
+
+        is_cash_register_sale : typing.Optional[bool]
+
+        include_in_vat_register : typing.Optional[bool]
+
+        include_in_saft : typing.Optional[bool]
+
+        is_active : typing.Optional[bool]
+
+        sort_order : typing.Optional[int]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1OperationTypesCreateResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.sales.post_v1operation_types_create(
+            code="code",
+            name="name",
+        )
+        """
+        _response = self._raw_client.post_v1operation_types_create(
+            code=code,
+            name=name,
+            invoice_type=invoice_type,
+            payer_partner_id=payer_partner_id,
+            debit_account_code=debit_account_code,
+            credit_account_code=credit_account_code,
+            vat_account_code=vat_account_code,
+            expense_account_code=expense_account_code,
+            advance_account_code=advance_account_code,
+            income_account_code=income_account_code,
+            is_purchase=is_purchase,
+            is_sale=is_sale,
+            is_write_off=is_write_off,
+            is_internal_movement=is_internal_movement,
+            is_purchase_return=is_purchase_return,
+            is_sales_return=is_sales_return,
+            is_consignment=is_consignment,
+            is_production=is_production,
+            is_asset_in=is_asset_in,
+            is_asset_out=is_asset_out,
+            is_cash_register_sale=is_cash_register_sale,
+            include_in_vat_register=include_in_vat_register,
+            include_in_saft=include_in_saft,
+            is_active=is_active,
+            sort_order=sort_order,
+            request_options=request_options,
+        )
+        return _response.data
+
+    def post_v1operation_types_update(
+        self,
+        *,
+        id: str,
+        code: typing.Optional[str] = OMIT,
+        name: typing.Optional[str] = OMIT,
+        invoice_type: typing.Optional[PostV1OperationTypesUpdateRequestInvoiceType] = OMIT,
+        payer_partner_id: typing.Optional[str] = OMIT,
+        debit_account_code: typing.Optional[str] = OMIT,
+        credit_account_code: typing.Optional[str] = OMIT,
+        vat_account_code: typing.Optional[str] = OMIT,
+        expense_account_code: typing.Optional[str] = OMIT,
+        advance_account_code: typing.Optional[str] = OMIT,
+        income_account_code: typing.Optional[str] = OMIT,
+        is_purchase: typing.Optional[bool] = OMIT,
+        is_sale: typing.Optional[bool] = OMIT,
+        is_write_off: typing.Optional[bool] = OMIT,
+        is_internal_movement: typing.Optional[bool] = OMIT,
+        is_purchase_return: typing.Optional[bool] = OMIT,
+        is_sales_return: typing.Optional[bool] = OMIT,
+        is_consignment: typing.Optional[bool] = OMIT,
+        is_production: typing.Optional[bool] = OMIT,
+        is_asset_in: typing.Optional[bool] = OMIT,
+        is_asset_out: typing.Optional[bool] = OMIT,
+        is_cash_register_sale: typing.Optional[bool] = OMIT,
+        include_in_vat_register: typing.Optional[bool] = OMIT,
+        include_in_saft: typing.Optional[bool] = OMIT,
+        is_active: typing.Optional[bool] = OMIT,
+        sort_order: typing.Optional[int] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1OperationTypesUpdateResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        code : typing.Optional[str]
+
+        name : typing.Optional[str]
+
+        invoice_type : typing.Optional[PostV1OperationTypesUpdateRequestInvoiceType]
+
+        payer_partner_id : typing.Optional[str]
+
+        debit_account_code : typing.Optional[str]
+
+        credit_account_code : typing.Optional[str]
+
+        vat_account_code : typing.Optional[str]
+
+        expense_account_code : typing.Optional[str]
+
+        advance_account_code : typing.Optional[str]
+
+        income_account_code : typing.Optional[str]
+
+        is_purchase : typing.Optional[bool]
+
+        is_sale : typing.Optional[bool]
+
+        is_write_off : typing.Optional[bool]
+
+        is_internal_movement : typing.Optional[bool]
+
+        is_purchase_return : typing.Optional[bool]
+
+        is_sales_return : typing.Optional[bool]
+
+        is_consignment : typing.Optional[bool]
+
+        is_production : typing.Optional[bool]
+
+        is_asset_in : typing.Optional[bool]
+
+        is_asset_out : typing.Optional[bool]
+
+        is_cash_register_sale : typing.Optional[bool]
+
+        include_in_vat_register : typing.Optional[bool]
+
+        include_in_saft : typing.Optional[bool]
+
+        is_active : typing.Optional[bool]
+
+        sort_order : typing.Optional[int]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1OperationTypesUpdateResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.sales.post_v1operation_types_update(
+            id="id",
+        )
+        """
+        _response = self._raw_client.post_v1operation_types_update(
+            id=id,
+            code=code,
+            name=name,
+            invoice_type=invoice_type,
+            payer_partner_id=payer_partner_id,
+            debit_account_code=debit_account_code,
+            credit_account_code=credit_account_code,
+            vat_account_code=vat_account_code,
+            expense_account_code=expense_account_code,
+            advance_account_code=advance_account_code,
+            income_account_code=income_account_code,
+            is_purchase=is_purchase,
+            is_sale=is_sale,
+            is_write_off=is_write_off,
+            is_internal_movement=is_internal_movement,
+            is_purchase_return=is_purchase_return,
+            is_sales_return=is_sales_return,
+            is_consignment=is_consignment,
+            is_production=is_production,
+            is_asset_in=is_asset_in,
+            is_asset_out=is_asset_out,
+            is_cash_register_sale=is_cash_register_sale,
+            include_in_vat_register=include_in_vat_register,
+            include_in_saft=include_in_saft,
+            is_active=is_active,
+            sort_order=sort_order,
+            request_options=request_options,
+        )
+        return _response.data
+
+    def post_v1operation_types_get(
+        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1OperationTypesGetResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1OperationTypesGetResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.sales.post_v1operation_types_get(
+            id="id",
+        )
+        """
+        _response = self._raw_client.post_v1operation_types_get(id=id, request_options=request_options)
+        return _response.data
+
+    def post_v1operation_types_delete(
+        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1OperationTypesDeleteResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1OperationTypesDeleteResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.sales.post_v1operation_types_delete(
+            id="id",
+        )
+        """
+        _response = self._raw_client.post_v1operation_types_delete(id=id, request_options=request_options)
+        return _response.data
+
+    def post_v1operation_types_list(
+        self,
+        *,
+        page: typing.Optional[int] = OMIT,
+        page_size: typing.Optional[int] = OMIT,
+        sort: typing.Optional[typing.Sequence[PostV1OperationTypesListRequestSortItem]] = OMIT,
+        filter: typing.Optional[typing.Sequence[PostV1OperationTypesListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1OperationTypesListResponse:
+        """
+        Parameters
+        ----------
+        page : typing.Optional[int]
+
+        page_size : typing.Optional[int]
+
+        sort : typing.Optional[typing.Sequence[PostV1OperationTypesListRequestSortItem]]
+
+        filter : typing.Optional[typing.Sequence[PostV1OperationTypesListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1OperationTypesListResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.sales.post_v1operation_types_list()
+        """
+        _response = self._raw_client.post_v1operation_types_list(
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
+        )
+        return _response.data
+
+    def post_v1document_series_create(
+        self,
+        *,
+        prefix: str,
+        document_type: typing.Optional[PostV1DocumentSeriesCreateRequestDocumentType] = OMIT,
+        name: typing.Optional[str] = OMIT,
+        label: typing.Optional[str] = OMIT,
+        operation_type_id: typing.Optional[str] = OMIT,
+        number_length: typing.Optional[int] = OMIT,
+        next_number: typing.Optional[int] = OMIT,
+        warehouse_id: typing.Optional[str] = OMIT,
+        print_series: typing.Optional[bool] = OMIT,
+        is_default: typing.Optional[bool] = OMIT,
+        is_active: typing.Optional[bool] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1DocumentSeriesCreateResponse:
+        """
+        Parameters
+        ----------
+        prefix : str
+
+        document_type : typing.Optional[PostV1DocumentSeriesCreateRequestDocumentType]
+
+        name : typing.Optional[str]
+
+        label : typing.Optional[str]
+
+        operation_type_id : typing.Optional[str]
+
+        number_length : typing.Optional[int]
+
+        next_number : typing.Optional[int]
+
+        warehouse_id : typing.Optional[str]
+
+        print_series : typing.Optional[bool]
+
+        is_default : typing.Optional[bool]
+
+        is_active : typing.Optional[bool]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1DocumentSeriesCreateResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.sales.post_v1document_series_create(
+            prefix="prefix",
+        )
+        """
+        _response = self._raw_client.post_v1document_series_create(
+            prefix=prefix,
+            document_type=document_type,
+            name=name,
+            label=label,
+            operation_type_id=operation_type_id,
+            number_length=number_length,
+            next_number=next_number,
+            warehouse_id=warehouse_id,
+            print_series=print_series,
+            is_default=is_default,
+            is_active=is_active,
+            request_options=request_options,
+        )
+        return _response.data
+
+    def post_v1document_series_update(
+        self,
+        *,
+        id: str,
+        document_type: typing.Optional[PostV1DocumentSeriesUpdateRequestDocumentType] = OMIT,
+        prefix: typing.Optional[str] = OMIT,
+        name: typing.Optional[str] = OMIT,
+        label: typing.Optional[str] = OMIT,
+        operation_type_id: typing.Optional[str] = OMIT,
+        number_length: typing.Optional[int] = OMIT,
+        next_number: typing.Optional[int] = OMIT,
+        warehouse_id: typing.Optional[str] = OMIT,
+        print_series: typing.Optional[bool] = OMIT,
+        is_default: typing.Optional[bool] = OMIT,
+        is_active: typing.Optional[bool] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1DocumentSeriesUpdateResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        document_type : typing.Optional[PostV1DocumentSeriesUpdateRequestDocumentType]
+
+        prefix : typing.Optional[str]
+
+        name : typing.Optional[str]
+
+        label : typing.Optional[str]
+
+        operation_type_id : typing.Optional[str]
+
+        number_length : typing.Optional[int]
+
+        next_number : typing.Optional[int]
+
+        warehouse_id : typing.Optional[str]
+
+        print_series : typing.Optional[bool]
+
+        is_default : typing.Optional[bool]
+
+        is_active : typing.Optional[bool]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1DocumentSeriesUpdateResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.sales.post_v1document_series_update(
+            id="id",
+        )
+        """
+        _response = self._raw_client.post_v1document_series_update(
+            id=id,
+            document_type=document_type,
+            prefix=prefix,
+            name=name,
+            label=label,
+            operation_type_id=operation_type_id,
+            number_length=number_length,
+            next_number=next_number,
+            warehouse_id=warehouse_id,
+            print_series=print_series,
+            is_default=is_default,
+            is_active=is_active,
+            request_options=request_options,
+        )
+        return _response.data
+
+    def post_v1document_series_get(
+        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1DocumentSeriesGetResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1DocumentSeriesGetResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.sales.post_v1document_series_get(
+            id="id",
+        )
+        """
+        _response = self._raw_client.post_v1document_series_get(id=id, request_options=request_options)
+        return _response.data
+
+    def post_v1document_series_delete(
+        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1DocumentSeriesDeleteResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1DocumentSeriesDeleteResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.sales.post_v1document_series_delete(
+            id="id",
+        )
+        """
+        _response = self._raw_client.post_v1document_series_delete(id=id, request_options=request_options)
+        return _response.data
+
+    def post_v1document_series_list(
+        self,
+        *,
+        page: typing.Optional[int] = OMIT,
+        page_size: typing.Optional[int] = OMIT,
+        sort: typing.Optional[typing.Sequence[PostV1DocumentSeriesListRequestSortItem]] = OMIT,
+        filter: typing.Optional[typing.Sequence[PostV1DocumentSeriesListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1DocumentSeriesListResponse:
+        """
+        Parameters
+        ----------
+        page : typing.Optional[int]
+
+        page_size : typing.Optional[int]
+
+        sort : typing.Optional[typing.Sequence[PostV1DocumentSeriesListRequestSortItem]]
+
+        filter : typing.Optional[typing.Sequence[PostV1DocumentSeriesListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1DocumentSeriesListResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.sales.post_v1document_series_list()
+        """
+        _response = self._raw_client.post_v1document_series_list(
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
+        )
         return _response.data
 
     def post_v1sales_recognition_compute(
@@ -1173,6 +2068,7 @@ class SalesClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1SalesRecognitionRunsListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1SalesRecognitionRunsListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1SalesRecognitionRunsListResponse:
         """
@@ -1185,6 +2081,9 @@ class SalesClient:
         sort : typing.Optional[typing.Sequence[PostV1SalesRecognitionRunsListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1SalesRecognitionRunsListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -1204,7 +2103,7 @@ class SalesClient:
         client.sales.post_v1sales_recognition_runs_list()
         """
         _response = self._raw_client.post_v1sales_recognition_runs_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 
@@ -1245,6 +2144,7 @@ class SalesClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1SalesRefundLiabilityListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1SalesRefundLiabilityListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1SalesRefundLiabilityListResponse:
         """
@@ -1257,6 +2157,9 @@ class SalesClient:
         sort : typing.Optional[typing.Sequence[PostV1SalesRefundLiabilityListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1SalesRefundLiabilityListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -1276,7 +2179,7 @@ class SalesClient:
         client.sales.post_v1sales_refund_liability_list()
         """
         _response = self._raw_client.post_v1sales_refund_liability_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 
@@ -1353,6 +2256,15 @@ class AsyncSalesClient:
         deemed_supplier: typing.Optional[bool] = OMIT,
         notes: typing.Optional[str] = OMIT,
         document_ref: typing.Optional[str] = OMIT,
+        operation_type_id: typing.Optional[str] = OMIT,
+        document_series_id: typing.Optional[str] = OMIT,
+        series_label: typing.Optional[str] = OMIT,
+        order_number: typing.Optional[str] = OMIT,
+        issued_by_name: typing.Optional[str] = OMIT,
+        issued_by_title: typing.Optional[str] = OMIT,
+        received_by_name: typing.Optional[str] = OMIT,
+        received_by_title: typing.Optional[str] = OMIT,
+        discount_percent: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1SalesInvoicesCreateResponse:
         """
@@ -1381,6 +2293,24 @@ class AsyncSalesClient:
         notes : typing.Optional[str]
 
         document_ref : typing.Optional[str]
+
+        operation_type_id : typing.Optional[str]
+
+        document_series_id : typing.Optional[str]
+
+        series_label : typing.Optional[str]
+
+        order_number : typing.Optional[str]
+
+        issued_by_name : typing.Optional[str]
+
+        issued_by_title : typing.Optional[str]
+
+        received_by_name : typing.Optional[str]
+
+        received_by_title : typing.Optional[str]
+
+        discount_percent : typing.Optional[str]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -1424,6 +2354,15 @@ class AsyncSalesClient:
             deemed_supplier=deemed_supplier,
             notes=notes,
             document_ref=document_ref,
+            operation_type_id=operation_type_id,
+            document_series_id=document_series_id,
+            series_label=series_label,
+            order_number=order_number,
+            issued_by_name=issued_by_name,
+            issued_by_title=issued_by_title,
+            received_by_name=received_by_name,
+            received_by_title=received_by_title,
+            discount_percent=discount_percent,
             request_options=request_options,
         )
         return _response.data
@@ -1729,6 +2668,15 @@ class AsyncSalesClient:
         vat_country_code: typing.Optional[str] = OMIT,
         deemed_supplier: typing.Optional[bool] = OMIT,
         notes: typing.Optional[str] = OMIT,
+        operation_type_id: typing.Optional[str] = OMIT,
+        document_series_id: typing.Optional[str] = OMIT,
+        series_label: typing.Optional[str] = OMIT,
+        discount_percent: typing.Optional[str] = OMIT,
+        order_number: typing.Optional[str] = OMIT,
+        issued_by_name: typing.Optional[str] = OMIT,
+        issued_by_title: typing.Optional[str] = OMIT,
+        received_by_name: typing.Optional[str] = OMIT,
+        received_by_title: typing.Optional[str] = OMIT,
         lines: typing.Optional[typing.Sequence[PostV1SalesInvoicesUpdateRequestLinesItem]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1SalesInvoicesUpdateResponse:
@@ -1752,6 +2700,24 @@ class AsyncSalesClient:
         deemed_supplier : typing.Optional[bool]
 
         notes : typing.Optional[str]
+
+        operation_type_id : typing.Optional[str]
+
+        document_series_id : typing.Optional[str]
+
+        series_label : typing.Optional[str]
+
+        discount_percent : typing.Optional[str]
+
+        order_number : typing.Optional[str]
+
+        issued_by_name : typing.Optional[str]
+
+        issued_by_title : typing.Optional[str]
+
+        received_by_name : typing.Optional[str]
+
+        received_by_title : typing.Optional[str]
 
         lines : typing.Optional[typing.Sequence[PostV1SalesInvoicesUpdateRequestLinesItem]]
 
@@ -1792,6 +2758,15 @@ class AsyncSalesClient:
             vat_country_code=vat_country_code,
             deemed_supplier=deemed_supplier,
             notes=notes,
+            operation_type_id=operation_type_id,
+            document_series_id=document_series_id,
+            series_label=series_label,
+            discount_percent=discount_percent,
+            order_number=order_number,
+            issued_by_name=issued_by_name,
+            issued_by_title=issued_by_title,
+            received_by_name=received_by_name,
+            received_by_title=received_by_title,
             lines=lines,
             request_options=request_options,
         )
@@ -1887,6 +2862,195 @@ class AsyncSalesClient:
         )
         return _response.data
 
+    async def post_v1sales_invoices_lock(
+        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1SalesInvoicesLockResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1SalesInvoicesLockResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.sales.post_v1sales_invoices_lock(
+                id="id",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1sales_invoices_lock(id=id, request_options=request_options)
+        return _response.data
+
+    async def post_v1sales_invoices_unlock(
+        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1SalesInvoicesUnlockResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1SalesInvoicesUnlockResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.sales.post_v1sales_invoices_unlock(
+                id="id",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1sales_invoices_unlock(id=id, request_options=request_options)
+        return _response.data
+
+    async def post_v1sales_invoices_payment_link(
+        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1SalesInvoicesPaymentLinkResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1SalesInvoicesPaymentLinkResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.sales.post_v1sales_invoices_payment_link(
+                id="id",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1sales_invoices_payment_link(id=id, request_options=request_options)
+        return _response.data
+
+    async def post_v1sales_invoices_payment_settings_get(
+        self, *, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1SalesInvoicesPaymentSettingsGetResponse:
+        """
+        Parameters
+        ----------
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1SalesInvoicesPaymentSettingsGetResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.sales.post_v1sales_invoices_payment_settings_get()
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1sales_invoices_payment_settings_get(request_options=request_options)
+        return _response.data
+
+    async def post_v1sales_invoices_payment_settings_update(
+        self,
+        *,
+        payment_link_template: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1SalesInvoicesPaymentSettingsUpdateResponse:
+        """
+        Parameters
+        ----------
+        payment_link_template : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1SalesInvoicesPaymentSettingsUpdateResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.sales.post_v1sales_invoices_payment_settings_update()
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1sales_invoices_payment_settings_update(
+            payment_link_template=payment_link_template, request_options=request_options
+        )
+        return _response.data
+
     async def post_v1sales_recognition_schedules_list(
         self,
         *,
@@ -1894,6 +3058,7 @@ class AsyncSalesClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1SalesRecognitionSchedulesListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1SalesRecognitionSchedulesListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1SalesRecognitionSchedulesListResponse:
         """
@@ -1906,6 +3071,9 @@ class AsyncSalesClient:
         sort : typing.Optional[typing.Sequence[PostV1SalesRecognitionSchedulesListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1SalesRecognitionSchedulesListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -1933,7 +3101,7 @@ class AsyncSalesClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.post_v1sales_recognition_schedules_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 
@@ -1994,6 +3162,7 @@ class AsyncSalesClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1SalesInvoicesListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1SalesInvoicesListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1SalesInvoicesListResponse:
         """
@@ -2006,6 +3175,9 @@ class AsyncSalesClient:
         sort : typing.Optional[typing.Sequence[PostV1SalesInvoicesListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1SalesInvoicesListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -2033,7 +3205,7 @@ class AsyncSalesClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.post_v1sales_invoices_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 
@@ -2330,6 +3502,7 @@ class AsyncSalesClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1SalesActsListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1SalesActsListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1SalesActsListResponse:
         """
@@ -2342,6 +3515,9 @@ class AsyncSalesClient:
         sort : typing.Optional[typing.Sequence[PostV1SalesActsListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1SalesActsListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -2369,7 +3545,7 @@ class AsyncSalesClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.post_v1sales_acts_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 
@@ -2415,6 +3591,723 @@ class AsyncSalesClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.post_v1sales_acts_pdf(id=id, locale=locale, request_options=request_options)
+        return _response.data
+
+    async def post_v1operation_types_create(
+        self,
+        *,
+        code: str,
+        name: str,
+        invoice_type: typing.Optional[PostV1OperationTypesCreateRequestInvoiceType] = OMIT,
+        payer_partner_id: typing.Optional[str] = OMIT,
+        debit_account_code: typing.Optional[str] = OMIT,
+        credit_account_code: typing.Optional[str] = OMIT,
+        vat_account_code: typing.Optional[str] = OMIT,
+        expense_account_code: typing.Optional[str] = OMIT,
+        advance_account_code: typing.Optional[str] = OMIT,
+        income_account_code: typing.Optional[str] = OMIT,
+        is_purchase: typing.Optional[bool] = OMIT,
+        is_sale: typing.Optional[bool] = OMIT,
+        is_write_off: typing.Optional[bool] = OMIT,
+        is_internal_movement: typing.Optional[bool] = OMIT,
+        is_purchase_return: typing.Optional[bool] = OMIT,
+        is_sales_return: typing.Optional[bool] = OMIT,
+        is_consignment: typing.Optional[bool] = OMIT,
+        is_production: typing.Optional[bool] = OMIT,
+        is_asset_in: typing.Optional[bool] = OMIT,
+        is_asset_out: typing.Optional[bool] = OMIT,
+        is_cash_register_sale: typing.Optional[bool] = OMIT,
+        include_in_vat_register: typing.Optional[bool] = OMIT,
+        include_in_saft: typing.Optional[bool] = OMIT,
+        is_active: typing.Optional[bool] = OMIT,
+        sort_order: typing.Optional[int] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1OperationTypesCreateResponse:
+        """
+        Parameters
+        ----------
+        code : str
+
+        name : str
+
+        invoice_type : typing.Optional[PostV1OperationTypesCreateRequestInvoiceType]
+
+        payer_partner_id : typing.Optional[str]
+
+        debit_account_code : typing.Optional[str]
+
+        credit_account_code : typing.Optional[str]
+
+        vat_account_code : typing.Optional[str]
+
+        expense_account_code : typing.Optional[str]
+
+        advance_account_code : typing.Optional[str]
+
+        income_account_code : typing.Optional[str]
+
+        is_purchase : typing.Optional[bool]
+
+        is_sale : typing.Optional[bool]
+
+        is_write_off : typing.Optional[bool]
+
+        is_internal_movement : typing.Optional[bool]
+
+        is_purchase_return : typing.Optional[bool]
+
+        is_sales_return : typing.Optional[bool]
+
+        is_consignment : typing.Optional[bool]
+
+        is_production : typing.Optional[bool]
+
+        is_asset_in : typing.Optional[bool]
+
+        is_asset_out : typing.Optional[bool]
+
+        is_cash_register_sale : typing.Optional[bool]
+
+        include_in_vat_register : typing.Optional[bool]
+
+        include_in_saft : typing.Optional[bool]
+
+        is_active : typing.Optional[bool]
+
+        sort_order : typing.Optional[int]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1OperationTypesCreateResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.sales.post_v1operation_types_create(
+                code="code",
+                name="name",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1operation_types_create(
+            code=code,
+            name=name,
+            invoice_type=invoice_type,
+            payer_partner_id=payer_partner_id,
+            debit_account_code=debit_account_code,
+            credit_account_code=credit_account_code,
+            vat_account_code=vat_account_code,
+            expense_account_code=expense_account_code,
+            advance_account_code=advance_account_code,
+            income_account_code=income_account_code,
+            is_purchase=is_purchase,
+            is_sale=is_sale,
+            is_write_off=is_write_off,
+            is_internal_movement=is_internal_movement,
+            is_purchase_return=is_purchase_return,
+            is_sales_return=is_sales_return,
+            is_consignment=is_consignment,
+            is_production=is_production,
+            is_asset_in=is_asset_in,
+            is_asset_out=is_asset_out,
+            is_cash_register_sale=is_cash_register_sale,
+            include_in_vat_register=include_in_vat_register,
+            include_in_saft=include_in_saft,
+            is_active=is_active,
+            sort_order=sort_order,
+            request_options=request_options,
+        )
+        return _response.data
+
+    async def post_v1operation_types_update(
+        self,
+        *,
+        id: str,
+        code: typing.Optional[str] = OMIT,
+        name: typing.Optional[str] = OMIT,
+        invoice_type: typing.Optional[PostV1OperationTypesUpdateRequestInvoiceType] = OMIT,
+        payer_partner_id: typing.Optional[str] = OMIT,
+        debit_account_code: typing.Optional[str] = OMIT,
+        credit_account_code: typing.Optional[str] = OMIT,
+        vat_account_code: typing.Optional[str] = OMIT,
+        expense_account_code: typing.Optional[str] = OMIT,
+        advance_account_code: typing.Optional[str] = OMIT,
+        income_account_code: typing.Optional[str] = OMIT,
+        is_purchase: typing.Optional[bool] = OMIT,
+        is_sale: typing.Optional[bool] = OMIT,
+        is_write_off: typing.Optional[bool] = OMIT,
+        is_internal_movement: typing.Optional[bool] = OMIT,
+        is_purchase_return: typing.Optional[bool] = OMIT,
+        is_sales_return: typing.Optional[bool] = OMIT,
+        is_consignment: typing.Optional[bool] = OMIT,
+        is_production: typing.Optional[bool] = OMIT,
+        is_asset_in: typing.Optional[bool] = OMIT,
+        is_asset_out: typing.Optional[bool] = OMIT,
+        is_cash_register_sale: typing.Optional[bool] = OMIT,
+        include_in_vat_register: typing.Optional[bool] = OMIT,
+        include_in_saft: typing.Optional[bool] = OMIT,
+        is_active: typing.Optional[bool] = OMIT,
+        sort_order: typing.Optional[int] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1OperationTypesUpdateResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        code : typing.Optional[str]
+
+        name : typing.Optional[str]
+
+        invoice_type : typing.Optional[PostV1OperationTypesUpdateRequestInvoiceType]
+
+        payer_partner_id : typing.Optional[str]
+
+        debit_account_code : typing.Optional[str]
+
+        credit_account_code : typing.Optional[str]
+
+        vat_account_code : typing.Optional[str]
+
+        expense_account_code : typing.Optional[str]
+
+        advance_account_code : typing.Optional[str]
+
+        income_account_code : typing.Optional[str]
+
+        is_purchase : typing.Optional[bool]
+
+        is_sale : typing.Optional[bool]
+
+        is_write_off : typing.Optional[bool]
+
+        is_internal_movement : typing.Optional[bool]
+
+        is_purchase_return : typing.Optional[bool]
+
+        is_sales_return : typing.Optional[bool]
+
+        is_consignment : typing.Optional[bool]
+
+        is_production : typing.Optional[bool]
+
+        is_asset_in : typing.Optional[bool]
+
+        is_asset_out : typing.Optional[bool]
+
+        is_cash_register_sale : typing.Optional[bool]
+
+        include_in_vat_register : typing.Optional[bool]
+
+        include_in_saft : typing.Optional[bool]
+
+        is_active : typing.Optional[bool]
+
+        sort_order : typing.Optional[int]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1OperationTypesUpdateResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.sales.post_v1operation_types_update(
+                id="id",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1operation_types_update(
+            id=id,
+            code=code,
+            name=name,
+            invoice_type=invoice_type,
+            payer_partner_id=payer_partner_id,
+            debit_account_code=debit_account_code,
+            credit_account_code=credit_account_code,
+            vat_account_code=vat_account_code,
+            expense_account_code=expense_account_code,
+            advance_account_code=advance_account_code,
+            income_account_code=income_account_code,
+            is_purchase=is_purchase,
+            is_sale=is_sale,
+            is_write_off=is_write_off,
+            is_internal_movement=is_internal_movement,
+            is_purchase_return=is_purchase_return,
+            is_sales_return=is_sales_return,
+            is_consignment=is_consignment,
+            is_production=is_production,
+            is_asset_in=is_asset_in,
+            is_asset_out=is_asset_out,
+            is_cash_register_sale=is_cash_register_sale,
+            include_in_vat_register=include_in_vat_register,
+            include_in_saft=include_in_saft,
+            is_active=is_active,
+            sort_order=sort_order,
+            request_options=request_options,
+        )
+        return _response.data
+
+    async def post_v1operation_types_get(
+        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1OperationTypesGetResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1OperationTypesGetResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.sales.post_v1operation_types_get(
+                id="id",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1operation_types_get(id=id, request_options=request_options)
+        return _response.data
+
+    async def post_v1operation_types_delete(
+        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1OperationTypesDeleteResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1OperationTypesDeleteResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.sales.post_v1operation_types_delete(
+                id="id",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1operation_types_delete(id=id, request_options=request_options)
+        return _response.data
+
+    async def post_v1operation_types_list(
+        self,
+        *,
+        page: typing.Optional[int] = OMIT,
+        page_size: typing.Optional[int] = OMIT,
+        sort: typing.Optional[typing.Sequence[PostV1OperationTypesListRequestSortItem]] = OMIT,
+        filter: typing.Optional[typing.Sequence[PostV1OperationTypesListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1OperationTypesListResponse:
+        """
+        Parameters
+        ----------
+        page : typing.Optional[int]
+
+        page_size : typing.Optional[int]
+
+        sort : typing.Optional[typing.Sequence[PostV1OperationTypesListRequestSortItem]]
+
+        filter : typing.Optional[typing.Sequence[PostV1OperationTypesListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1OperationTypesListResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.sales.post_v1operation_types_list()
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1operation_types_list(
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
+        )
+        return _response.data
+
+    async def post_v1document_series_create(
+        self,
+        *,
+        prefix: str,
+        document_type: typing.Optional[PostV1DocumentSeriesCreateRequestDocumentType] = OMIT,
+        name: typing.Optional[str] = OMIT,
+        label: typing.Optional[str] = OMIT,
+        operation_type_id: typing.Optional[str] = OMIT,
+        number_length: typing.Optional[int] = OMIT,
+        next_number: typing.Optional[int] = OMIT,
+        warehouse_id: typing.Optional[str] = OMIT,
+        print_series: typing.Optional[bool] = OMIT,
+        is_default: typing.Optional[bool] = OMIT,
+        is_active: typing.Optional[bool] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1DocumentSeriesCreateResponse:
+        """
+        Parameters
+        ----------
+        prefix : str
+
+        document_type : typing.Optional[PostV1DocumentSeriesCreateRequestDocumentType]
+
+        name : typing.Optional[str]
+
+        label : typing.Optional[str]
+
+        operation_type_id : typing.Optional[str]
+
+        number_length : typing.Optional[int]
+
+        next_number : typing.Optional[int]
+
+        warehouse_id : typing.Optional[str]
+
+        print_series : typing.Optional[bool]
+
+        is_default : typing.Optional[bool]
+
+        is_active : typing.Optional[bool]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1DocumentSeriesCreateResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.sales.post_v1document_series_create(
+                prefix="prefix",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1document_series_create(
+            prefix=prefix,
+            document_type=document_type,
+            name=name,
+            label=label,
+            operation_type_id=operation_type_id,
+            number_length=number_length,
+            next_number=next_number,
+            warehouse_id=warehouse_id,
+            print_series=print_series,
+            is_default=is_default,
+            is_active=is_active,
+            request_options=request_options,
+        )
+        return _response.data
+
+    async def post_v1document_series_update(
+        self,
+        *,
+        id: str,
+        document_type: typing.Optional[PostV1DocumentSeriesUpdateRequestDocumentType] = OMIT,
+        prefix: typing.Optional[str] = OMIT,
+        name: typing.Optional[str] = OMIT,
+        label: typing.Optional[str] = OMIT,
+        operation_type_id: typing.Optional[str] = OMIT,
+        number_length: typing.Optional[int] = OMIT,
+        next_number: typing.Optional[int] = OMIT,
+        warehouse_id: typing.Optional[str] = OMIT,
+        print_series: typing.Optional[bool] = OMIT,
+        is_default: typing.Optional[bool] = OMIT,
+        is_active: typing.Optional[bool] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1DocumentSeriesUpdateResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        document_type : typing.Optional[PostV1DocumentSeriesUpdateRequestDocumentType]
+
+        prefix : typing.Optional[str]
+
+        name : typing.Optional[str]
+
+        label : typing.Optional[str]
+
+        operation_type_id : typing.Optional[str]
+
+        number_length : typing.Optional[int]
+
+        next_number : typing.Optional[int]
+
+        warehouse_id : typing.Optional[str]
+
+        print_series : typing.Optional[bool]
+
+        is_default : typing.Optional[bool]
+
+        is_active : typing.Optional[bool]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1DocumentSeriesUpdateResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.sales.post_v1document_series_update(
+                id="id",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1document_series_update(
+            id=id,
+            document_type=document_type,
+            prefix=prefix,
+            name=name,
+            label=label,
+            operation_type_id=operation_type_id,
+            number_length=number_length,
+            next_number=next_number,
+            warehouse_id=warehouse_id,
+            print_series=print_series,
+            is_default=is_default,
+            is_active=is_active,
+            request_options=request_options,
+        )
+        return _response.data
+
+    async def post_v1document_series_get(
+        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1DocumentSeriesGetResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1DocumentSeriesGetResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.sales.post_v1document_series_get(
+                id="id",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1document_series_get(id=id, request_options=request_options)
+        return _response.data
+
+    async def post_v1document_series_delete(
+        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1DocumentSeriesDeleteResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1DocumentSeriesDeleteResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.sales.post_v1document_series_delete(
+                id="id",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1document_series_delete(id=id, request_options=request_options)
+        return _response.data
+
+    async def post_v1document_series_list(
+        self,
+        *,
+        page: typing.Optional[int] = OMIT,
+        page_size: typing.Optional[int] = OMIT,
+        sort: typing.Optional[typing.Sequence[PostV1DocumentSeriesListRequestSortItem]] = OMIT,
+        filter: typing.Optional[typing.Sequence[PostV1DocumentSeriesListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1DocumentSeriesListResponse:
+        """
+        Parameters
+        ----------
+        page : typing.Optional[int]
+
+        page_size : typing.Optional[int]
+
+        sort : typing.Optional[typing.Sequence[PostV1DocumentSeriesListRequestSortItem]]
+
+        filter : typing.Optional[typing.Sequence[PostV1DocumentSeriesListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1DocumentSeriesListResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.sales.post_v1document_series_list()
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1document_series_list(
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
+        )
         return _response.data
 
     async def post_v1sales_recognition_compute(
@@ -2625,6 +4518,7 @@ class AsyncSalesClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1SalesRecognitionRunsListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1SalesRecognitionRunsListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1SalesRecognitionRunsListResponse:
         """
@@ -2637,6 +4531,9 @@ class AsyncSalesClient:
         sort : typing.Optional[typing.Sequence[PostV1SalesRecognitionRunsListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1SalesRecognitionRunsListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -2664,7 +4561,7 @@ class AsyncSalesClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.post_v1sales_recognition_runs_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 
@@ -2713,6 +4610,7 @@ class AsyncSalesClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1SalesRefundLiabilityListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1SalesRefundLiabilityListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1SalesRefundLiabilityListResponse:
         """
@@ -2725,6 +4623,9 @@ class AsyncSalesClient:
         sort : typing.Optional[typing.Sequence[PostV1SalesRefundLiabilityListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1SalesRefundLiabilityListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -2752,7 +4653,7 @@ class AsyncSalesClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.post_v1sales_refund_liability_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 

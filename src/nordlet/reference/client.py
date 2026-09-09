@@ -46,6 +46,9 @@ from .types.post_v1reference_exchange_rates_overrides_list_response import (
 from .types.post_v1reference_exchange_rates_set_response import PostV1ReferenceExchangeRatesSetResponse
 from .types.post_v1reference_exchange_rates_sync_response import PostV1ReferenceExchangeRatesSyncResponse
 from .types.post_v1reference_intrastat_thresholds_list_response import PostV1ReferenceIntrastatThresholdsListResponse
+from .types.post_v1reference_lt_cities_list_response import PostV1ReferenceLtCitiesListResponse
+from .types.post_v1reference_lt_counties_list_response import PostV1ReferenceLtCountiesListResponse
+from .types.post_v1reference_lt_municipalities_list_response import PostV1ReferenceLtMunicipalitiesListResponse
 from .types.post_v1reference_lt_regions_list_response import PostV1ReferenceLtRegionsListResponse
 from .types.post_v1reference_series_create_response import PostV1ReferenceSeriesCreateResponse
 from .types.post_v1reference_series_list_request_filter_item import PostV1ReferenceSeriesListRequestFilterItem
@@ -122,6 +125,7 @@ class ReferenceClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1ReferenceExchangeRatesListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1ReferenceExchangeRatesListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1ReferenceExchangeRatesListResponse:
         """
@@ -134,6 +138,9 @@ class ReferenceClient:
         sort : typing.Optional[typing.Sequence[PostV1ReferenceExchangeRatesListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1ReferenceExchangeRatesListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -153,7 +160,7 @@ class ReferenceClient:
         client.reference.post_v1reference_exchange_rates_list()
         """
         _response = self._raw_client.post_v1reference_exchange_rates_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 
@@ -202,6 +209,7 @@ class ReferenceClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1ReferenceExchangeRatesOverridesListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1ReferenceExchangeRatesOverridesListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1ReferenceExchangeRatesOverridesListResponse:
         """
@@ -214,6 +222,9 @@ class ReferenceClient:
         sort : typing.Optional[typing.Sequence[PostV1ReferenceExchangeRatesOverridesListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1ReferenceExchangeRatesOverridesListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -233,7 +244,7 @@ class ReferenceClient:
         client.reference.post_v1reference_exchange_rates_overrides_list()
         """
         _response = self._raw_client.post_v1reference_exchange_rates_overrides_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 
@@ -298,6 +309,98 @@ class ReferenceClient:
         _response = self._raw_client.post_v1reference_countries_list(request_options=request_options)
         return _response.data
 
+    def post_v1reference_lt_counties_list(
+        self, *, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1ReferenceLtCountiesListResponse:
+        """
+        Parameters
+        ----------
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1ReferenceLtCountiesListResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.reference.post_v1reference_lt_counties_list()
+        """
+        _response = self._raw_client.post_v1reference_lt_counties_list(request_options=request_options)
+        return _response.data
+
+    def post_v1reference_lt_municipalities_list(
+        self, *, county_code: typing.Optional[str] = OMIT, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1ReferenceLtMunicipalitiesListResponse:
+        """
+        Parameters
+        ----------
+        county_code : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1ReferenceLtMunicipalitiesListResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.reference.post_v1reference_lt_municipalities_list()
+        """
+        _response = self._raw_client.post_v1reference_lt_municipalities_list(
+            county_code=county_code, request_options=request_options
+        )
+        return _response.data
+
+    def post_v1reference_lt_cities_list(
+        self,
+        *,
+        municipality_code: typing.Optional[str] = OMIT,
+        q: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1ReferenceLtCitiesListResponse:
+        """
+        Parameters
+        ----------
+        municipality_code : typing.Optional[str]
+
+        q : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1ReferenceLtCitiesListResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.reference.post_v1reference_lt_cities_list()
+        """
+        _response = self._raw_client.post_v1reference_lt_cities_list(
+            municipality_code=municipality_code, q=q, request_options=request_options
+        )
+        return _response.data
+
     def post_v1reference_banks_list(
         self,
         *,
@@ -305,6 +408,7 @@ class ReferenceClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1ReferenceBanksListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1ReferenceBanksListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1ReferenceBanksListResponse:
         """
@@ -317,6 +421,9 @@ class ReferenceClient:
         sort : typing.Optional[typing.Sequence[PostV1ReferenceBanksListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1ReferenceBanksListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -336,7 +443,7 @@ class ReferenceClient:
         client.reference.post_v1reference_banks_list()
         """
         _response = self._raw_client.post_v1reference_banks_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 
@@ -427,6 +534,7 @@ class ReferenceClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1ReferenceCurrenciesListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1ReferenceCurrenciesListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1ReferenceCurrenciesListResponse:
         """
@@ -439,6 +547,9 @@ class ReferenceClient:
         sort : typing.Optional[typing.Sequence[PostV1ReferenceCurrenciesListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1ReferenceCurrenciesListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -458,7 +569,7 @@ class ReferenceClient:
         client.reference.post_v1reference_currencies_list()
         """
         _response = self._raw_client.post_v1reference_currencies_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 
@@ -469,6 +580,7 @@ class ReferenceClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1ReferenceVatClassifiersListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1ReferenceVatClassifiersListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1ReferenceVatClassifiersListResponse:
         """
@@ -481,6 +593,9 @@ class ReferenceClient:
         sort : typing.Optional[typing.Sequence[PostV1ReferenceVatClassifiersListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1ReferenceVatClassifiersListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -500,7 +615,7 @@ class ReferenceClient:
         client.reference.post_v1reference_vat_classifiers_list()
         """
         _response = self._raw_client.post_v1reference_vat_classifiers_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 
@@ -707,6 +822,7 @@ class ReferenceClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1ReferenceCnCodesListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1ReferenceCnCodesListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1ReferenceCnCodesListResponse:
         """
@@ -719,6 +835,9 @@ class ReferenceClient:
         sort : typing.Optional[typing.Sequence[PostV1ReferenceCnCodesListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1ReferenceCnCodesListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -738,7 +857,7 @@ class ReferenceClient:
         client.reference.post_v1reference_cn_codes_list()
         """
         _response = self._raw_client.post_v1reference_cn_codes_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 
@@ -844,6 +963,7 @@ class ReferenceClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1ReferenceUnitsListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1ReferenceUnitsListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1ReferenceUnitsListResponse:
         """
@@ -856,6 +976,9 @@ class ReferenceClient:
         sort : typing.Optional[typing.Sequence[PostV1ReferenceUnitsListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1ReferenceUnitsListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -875,7 +998,7 @@ class ReferenceClient:
         client.reference.post_v1reference_units_list()
         """
         _response = self._raw_client.post_v1reference_units_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 
@@ -931,6 +1054,7 @@ class ReferenceClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1ReferenceSeriesListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1ReferenceSeriesListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1ReferenceSeriesListResponse:
         """
@@ -943,6 +1067,9 @@ class ReferenceClient:
         sort : typing.Optional[typing.Sequence[PostV1ReferenceSeriesListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1ReferenceSeriesListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -962,7 +1089,7 @@ class ReferenceClient:
         client.reference.post_v1reference_series_list()
         """
         _response = self._raw_client.post_v1reference_series_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 
@@ -1027,6 +1154,7 @@ class AsyncReferenceClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1ReferenceExchangeRatesListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1ReferenceExchangeRatesListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1ReferenceExchangeRatesListResponse:
         """
@@ -1039,6 +1167,9 @@ class AsyncReferenceClient:
         sort : typing.Optional[typing.Sequence[PostV1ReferenceExchangeRatesListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1ReferenceExchangeRatesListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -1066,7 +1197,7 @@ class AsyncReferenceClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.post_v1reference_exchange_rates_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 
@@ -1123,6 +1254,7 @@ class AsyncReferenceClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1ReferenceExchangeRatesOverridesListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1ReferenceExchangeRatesOverridesListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1ReferenceExchangeRatesOverridesListResponse:
         """
@@ -1135,6 +1267,9 @@ class AsyncReferenceClient:
         sort : typing.Optional[typing.Sequence[PostV1ReferenceExchangeRatesOverridesListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1ReferenceExchangeRatesOverridesListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -1162,7 +1297,7 @@ class AsyncReferenceClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.post_v1reference_exchange_rates_overrides_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 
@@ -1243,6 +1378,122 @@ class AsyncReferenceClient:
         _response = await self._raw_client.post_v1reference_countries_list(request_options=request_options)
         return _response.data
 
+    async def post_v1reference_lt_counties_list(
+        self, *, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1ReferenceLtCountiesListResponse:
+        """
+        Parameters
+        ----------
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1ReferenceLtCountiesListResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.reference.post_v1reference_lt_counties_list()
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1reference_lt_counties_list(request_options=request_options)
+        return _response.data
+
+    async def post_v1reference_lt_municipalities_list(
+        self, *, county_code: typing.Optional[str] = OMIT, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1ReferenceLtMunicipalitiesListResponse:
+        """
+        Parameters
+        ----------
+        county_code : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1ReferenceLtMunicipalitiesListResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.reference.post_v1reference_lt_municipalities_list()
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1reference_lt_municipalities_list(
+            county_code=county_code, request_options=request_options
+        )
+        return _response.data
+
+    async def post_v1reference_lt_cities_list(
+        self,
+        *,
+        municipality_code: typing.Optional[str] = OMIT,
+        q: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1ReferenceLtCitiesListResponse:
+        """
+        Parameters
+        ----------
+        municipality_code : typing.Optional[str]
+
+        q : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1ReferenceLtCitiesListResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.reference.post_v1reference_lt_cities_list()
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1reference_lt_cities_list(
+            municipality_code=municipality_code, q=q, request_options=request_options
+        )
+        return _response.data
+
     async def post_v1reference_banks_list(
         self,
         *,
@@ -1250,6 +1501,7 @@ class AsyncReferenceClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1ReferenceBanksListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1ReferenceBanksListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1ReferenceBanksListResponse:
         """
@@ -1262,6 +1514,9 @@ class AsyncReferenceClient:
         sort : typing.Optional[typing.Sequence[PostV1ReferenceBanksListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1ReferenceBanksListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -1289,7 +1544,7 @@ class AsyncReferenceClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.post_v1reference_banks_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 
@@ -1396,6 +1651,7 @@ class AsyncReferenceClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1ReferenceCurrenciesListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1ReferenceCurrenciesListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1ReferenceCurrenciesListResponse:
         """
@@ -1408,6 +1664,9 @@ class AsyncReferenceClient:
         sort : typing.Optional[typing.Sequence[PostV1ReferenceCurrenciesListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1ReferenceCurrenciesListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -1435,7 +1694,7 @@ class AsyncReferenceClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.post_v1reference_currencies_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 
@@ -1446,6 +1705,7 @@ class AsyncReferenceClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1ReferenceVatClassifiersListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1ReferenceVatClassifiersListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1ReferenceVatClassifiersListResponse:
         """
@@ -1458,6 +1718,9 @@ class AsyncReferenceClient:
         sort : typing.Optional[typing.Sequence[PostV1ReferenceVatClassifiersListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1ReferenceVatClassifiersListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -1485,7 +1748,7 @@ class AsyncReferenceClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.post_v1reference_vat_classifiers_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 
@@ -1726,6 +1989,7 @@ class AsyncReferenceClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1ReferenceCnCodesListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1ReferenceCnCodesListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1ReferenceCnCodesListResponse:
         """
@@ -1738,6 +2002,9 @@ class AsyncReferenceClient:
         sort : typing.Optional[typing.Sequence[PostV1ReferenceCnCodesListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1ReferenceCnCodesListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -1765,7 +2032,7 @@ class AsyncReferenceClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.post_v1reference_cn_codes_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 
@@ -1895,6 +2162,7 @@ class AsyncReferenceClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1ReferenceUnitsListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1ReferenceUnitsListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1ReferenceUnitsListResponse:
         """
@@ -1907,6 +2175,9 @@ class AsyncReferenceClient:
         sort : typing.Optional[typing.Sequence[PostV1ReferenceUnitsListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1ReferenceUnitsListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -1934,7 +2205,7 @@ class AsyncReferenceClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.post_v1reference_units_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 
@@ -1998,6 +2269,7 @@ class AsyncReferenceClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1ReferenceSeriesListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1ReferenceSeriesListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1ReferenceSeriesListResponse:
         """
@@ -2010,6 +2282,9 @@ class AsyncReferenceClient:
         sort : typing.Optional[typing.Sequence[PostV1ReferenceSeriesListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1ReferenceSeriesListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -2037,6 +2312,6 @@ class AsyncReferenceClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.post_v1reference_series_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data

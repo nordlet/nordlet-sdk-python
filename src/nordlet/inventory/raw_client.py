@@ -495,6 +495,7 @@ class RawInventoryClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1InventoryWarehousesListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1InventoryWarehousesListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[PostV1InventoryWarehousesListResponse]:
         """
@@ -507,6 +508,9 @@ class RawInventoryClient:
         sort : typing.Optional[typing.Sequence[PostV1InventoryWarehousesListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1InventoryWarehousesListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -532,6 +536,7 @@ class RawInventoryClient:
                     annotation=typing.Sequence[PostV1InventoryWarehousesListRequestFilterItem],
                     direction="write",
                 ),
+                "totals": totals,
             },
             headers={
                 "content-type": "application/json",
@@ -1447,6 +1452,7 @@ class RawInventoryClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1InventoryStockMovementsListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1InventoryStockMovementsListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[PostV1InventoryStockMovementsListResponse]:
         """
@@ -1459,6 +1465,9 @@ class RawInventoryClient:
         sort : typing.Optional[typing.Sequence[PostV1InventoryStockMovementsListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1InventoryStockMovementsListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -1484,6 +1493,7 @@ class RawInventoryClient:
                     annotation=typing.Sequence[PostV1InventoryStockMovementsListRequestFilterItem],
                     direction="write",
                 ),
+                "totals": totals,
             },
             headers={
                 "content-type": "application/json",
@@ -1605,6 +1615,7 @@ class RawInventoryClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1InventoryLotsListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1InventoryLotsListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[PostV1InventoryLotsListResponse]:
         """
@@ -1617,6 +1628,9 @@ class RawInventoryClient:
         sort : typing.Optional[typing.Sequence[PostV1InventoryLotsListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1InventoryLotsListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -1640,6 +1654,7 @@ class RawInventoryClient:
                     annotation=typing.Sequence[PostV1InventoryLotsListRequestFilterItem],
                     direction="write",
                 ),
+                "totals": totals,
             },
             headers={
                 "content-type": "application/json",
@@ -2339,6 +2354,7 @@ class RawInventoryClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1InventoryLandedCostsListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1InventoryLandedCostsListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[PostV1InventoryLandedCostsListResponse]:
         """
@@ -2351,6 +2367,9 @@ class RawInventoryClient:
         sort : typing.Optional[typing.Sequence[PostV1InventoryLandedCostsListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1InventoryLandedCostsListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -2376,6 +2395,7 @@ class RawInventoryClient:
                     annotation=typing.Sequence[PostV1InventoryLandedCostsListRequestFilterItem],
                     direction="write",
                 ),
+                "totals": totals,
             },
             headers={
                 "content-type": "application/json",
@@ -2944,6 +2964,7 @@ class RawInventoryClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1InventoryReorderRulesListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1InventoryReorderRulesListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[PostV1InventoryReorderRulesListResponse]:
         """
@@ -2956,6 +2977,9 @@ class RawInventoryClient:
         sort : typing.Optional[typing.Sequence[PostV1InventoryReorderRulesListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1InventoryReorderRulesListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -2981,6 +3005,7 @@ class RawInventoryClient:
                     annotation=typing.Sequence[PostV1InventoryReorderRulesListRequestFilterItem],
                     direction="write",
                 ),
+                "totals": totals,
             },
             headers={
                 "content-type": "application/json",
@@ -3653,6 +3678,7 @@ class AsyncRawInventoryClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1InventoryWarehousesListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1InventoryWarehousesListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[PostV1InventoryWarehousesListResponse]:
         """
@@ -3665,6 +3691,9 @@ class AsyncRawInventoryClient:
         sort : typing.Optional[typing.Sequence[PostV1InventoryWarehousesListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1InventoryWarehousesListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -3690,6 +3719,7 @@ class AsyncRawInventoryClient:
                     annotation=typing.Sequence[PostV1InventoryWarehousesListRequestFilterItem],
                     direction="write",
                 ),
+                "totals": totals,
             },
             headers={
                 "content-type": "application/json",
@@ -4605,6 +4635,7 @@ class AsyncRawInventoryClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1InventoryStockMovementsListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1InventoryStockMovementsListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[PostV1InventoryStockMovementsListResponse]:
         """
@@ -4617,6 +4648,9 @@ class AsyncRawInventoryClient:
         sort : typing.Optional[typing.Sequence[PostV1InventoryStockMovementsListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1InventoryStockMovementsListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -4642,6 +4676,7 @@ class AsyncRawInventoryClient:
                     annotation=typing.Sequence[PostV1InventoryStockMovementsListRequestFilterItem],
                     direction="write",
                 ),
+                "totals": totals,
             },
             headers={
                 "content-type": "application/json",
@@ -4763,6 +4798,7 @@ class AsyncRawInventoryClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1InventoryLotsListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1InventoryLotsListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[PostV1InventoryLotsListResponse]:
         """
@@ -4775,6 +4811,9 @@ class AsyncRawInventoryClient:
         sort : typing.Optional[typing.Sequence[PostV1InventoryLotsListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1InventoryLotsListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -4798,6 +4837,7 @@ class AsyncRawInventoryClient:
                     annotation=typing.Sequence[PostV1InventoryLotsListRequestFilterItem],
                     direction="write",
                 ),
+                "totals": totals,
             },
             headers={
                 "content-type": "application/json",
@@ -5497,6 +5537,7 @@ class AsyncRawInventoryClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1InventoryLandedCostsListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1InventoryLandedCostsListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[PostV1InventoryLandedCostsListResponse]:
         """
@@ -5509,6 +5550,9 @@ class AsyncRawInventoryClient:
         sort : typing.Optional[typing.Sequence[PostV1InventoryLandedCostsListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1InventoryLandedCostsListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -5534,6 +5578,7 @@ class AsyncRawInventoryClient:
                     annotation=typing.Sequence[PostV1InventoryLandedCostsListRequestFilterItem],
                     direction="write",
                 ),
+                "totals": totals,
             },
             headers={
                 "content-type": "application/json",
@@ -6102,6 +6147,7 @@ class AsyncRawInventoryClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1InventoryReorderRulesListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1InventoryReorderRulesListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[PostV1InventoryReorderRulesListResponse]:
         """
@@ -6114,6 +6160,9 @@ class AsyncRawInventoryClient:
         sort : typing.Optional[typing.Sequence[PostV1InventoryReorderRulesListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1InventoryReorderRulesListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -6139,6 +6188,7 @@ class AsyncRawInventoryClient:
                     annotation=typing.Sequence[PostV1InventoryReorderRulesListRequestFilterItem],
                     direction="write",
                 ),
+                "totals": totals,
             },
             headers={
                 "content-type": "application/json",

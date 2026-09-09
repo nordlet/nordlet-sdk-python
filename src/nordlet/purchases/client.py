@@ -69,6 +69,7 @@ class PurchasesClient:
         currency: typing.Optional[str] = OMIT,
         credited_invoice_id: typing.Optional[str] = OMIT,
         purchase_order_id: typing.Optional[str] = OMIT,
+        operation_type_id: typing.Optional[str] = OMIT,
         notes: typing.Optional[str] = OMIT,
         document_ref: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
@@ -93,6 +94,8 @@ class PurchasesClient:
         credited_invoice_id : typing.Optional[str]
 
         purchase_order_id : typing.Optional[str]
+
+        operation_type_id : typing.Optional[str]
 
         notes : typing.Optional[str]
 
@@ -131,6 +134,7 @@ class PurchasesClient:
             currency=currency,
             credited_invoice_id=credited_invoice_id,
             purchase_order_id=purchase_order_id,
+            operation_type_id=operation_type_id,
             notes=notes,
             document_ref=document_ref,
             request_options=request_options,
@@ -177,6 +181,7 @@ class PurchasesClient:
         due_date: typing.Optional[str] = OMIT,
         currency: typing.Optional[str] = OMIT,
         purchase_order_id: typing.Optional[str] = OMIT,
+        operation_type_id: typing.Optional[str] = OMIT,
         notes: typing.Optional[str] = OMIT,
         lines: typing.Optional[typing.Sequence[PostV1PurchasesInvoicesUpdateRequestLinesItem]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
@@ -197,6 +202,8 @@ class PurchasesClient:
         currency : typing.Optional[str]
 
         purchase_order_id : typing.Optional[str]
+
+        operation_type_id : typing.Optional[str]
 
         notes : typing.Optional[str]
 
@@ -229,6 +236,7 @@ class PurchasesClient:
             due_date=due_date,
             currency=currency,
             purchase_order_id=purchase_order_id,
+            operation_type_id=operation_type_id,
             notes=notes,
             lines=lines,
             request_options=request_options,
@@ -313,6 +321,7 @@ class PurchasesClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1PurchasesInvoicesListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1PurchasesInvoicesListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1PurchasesInvoicesListResponse:
         """
@@ -325,6 +334,9 @@ class PurchasesClient:
         sort : typing.Optional[typing.Sequence[PostV1PurchasesInvoicesListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1PurchasesInvoicesListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -344,7 +356,7 @@ class PurchasesClient:
         client.purchases.post_v1purchases_invoices_list()
         """
         _response = self._raw_client.post_v1purchases_invoices_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 
@@ -520,6 +532,7 @@ class PurchasesClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1PurchasesOrdersListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1PurchasesOrdersListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1PurchasesOrdersListResponse:
         """
@@ -532,6 +545,9 @@ class PurchasesClient:
         sort : typing.Optional[typing.Sequence[PostV1PurchasesOrdersListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1PurchasesOrdersListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -551,7 +567,7 @@ class PurchasesClient:
         client.purchases.post_v1purchases_orders_list()
         """
         _response = self._raw_client.post_v1purchases_orders_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 
@@ -852,6 +868,7 @@ class PurchasesClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1PurchasesReceiptsListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1PurchasesReceiptsListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1PurchasesReceiptsListResponse:
         """
@@ -864,6 +881,9 @@ class PurchasesClient:
         sort : typing.Optional[typing.Sequence[PostV1PurchasesReceiptsListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1PurchasesReceiptsListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -883,7 +903,7 @@ class PurchasesClient:
         client.purchases.post_v1purchases_receipts_list()
         """
         _response = self._raw_client.post_v1purchases_receipts_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 
@@ -953,6 +973,7 @@ class AsyncPurchasesClient:
         currency: typing.Optional[str] = OMIT,
         credited_invoice_id: typing.Optional[str] = OMIT,
         purchase_order_id: typing.Optional[str] = OMIT,
+        operation_type_id: typing.Optional[str] = OMIT,
         notes: typing.Optional[str] = OMIT,
         document_ref: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
@@ -977,6 +998,8 @@ class AsyncPurchasesClient:
         credited_invoice_id : typing.Optional[str]
 
         purchase_order_id : typing.Optional[str]
+
+        operation_type_id : typing.Optional[str]
 
         notes : typing.Optional[str]
 
@@ -1023,6 +1046,7 @@ class AsyncPurchasesClient:
             currency=currency,
             credited_invoice_id=credited_invoice_id,
             purchase_order_id=purchase_order_id,
+            operation_type_id=operation_type_id,
             notes=notes,
             document_ref=document_ref,
             request_options=request_options,
@@ -1077,6 +1101,7 @@ class AsyncPurchasesClient:
         due_date: typing.Optional[str] = OMIT,
         currency: typing.Optional[str] = OMIT,
         purchase_order_id: typing.Optional[str] = OMIT,
+        operation_type_id: typing.Optional[str] = OMIT,
         notes: typing.Optional[str] = OMIT,
         lines: typing.Optional[typing.Sequence[PostV1PurchasesInvoicesUpdateRequestLinesItem]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
@@ -1097,6 +1122,8 @@ class AsyncPurchasesClient:
         currency : typing.Optional[str]
 
         purchase_order_id : typing.Optional[str]
+
+        operation_type_id : typing.Optional[str]
 
         notes : typing.Optional[str]
 
@@ -1137,6 +1164,7 @@ class AsyncPurchasesClient:
             due_date=due_date,
             currency=currency,
             purchase_order_id=purchase_order_id,
+            operation_type_id=operation_type_id,
             notes=notes,
             lines=lines,
             request_options=request_options,
@@ -1237,6 +1265,7 @@ class AsyncPurchasesClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1PurchasesInvoicesListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1PurchasesInvoicesListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1PurchasesInvoicesListResponse:
         """
@@ -1249,6 +1278,9 @@ class AsyncPurchasesClient:
         sort : typing.Optional[typing.Sequence[PostV1PurchasesInvoicesListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1PurchasesInvoicesListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -1276,7 +1308,7 @@ class AsyncPurchasesClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.post_v1purchases_invoices_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 
@@ -1476,6 +1508,7 @@ class AsyncPurchasesClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1PurchasesOrdersListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1PurchasesOrdersListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1PurchasesOrdersListResponse:
         """
@@ -1488,6 +1521,9 @@ class AsyncPurchasesClient:
         sort : typing.Optional[typing.Sequence[PostV1PurchasesOrdersListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1PurchasesOrdersListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -1515,7 +1551,7 @@ class AsyncPurchasesClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.post_v1purchases_orders_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 
@@ -1880,6 +1916,7 @@ class AsyncPurchasesClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1PurchasesReceiptsListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1PurchasesReceiptsListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1PurchasesReceiptsListResponse:
         """
@@ -1892,6 +1929,9 @@ class AsyncPurchasesClient:
         sort : typing.Optional[typing.Sequence[PostV1PurchasesReceiptsListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1PurchasesReceiptsListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -1919,7 +1959,7 @@ class AsyncPurchasesClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.post_v1purchases_receipts_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 

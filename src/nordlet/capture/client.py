@@ -15,6 +15,13 @@ from .types.post_v1capture_documents_list_request_filter_item import PostV1Captu
 from .types.post_v1capture_documents_list_request_sort_item import PostV1CaptureDocumentsListRequestSortItem
 from .types.post_v1capture_documents_list_response import PostV1CaptureDocumentsListResponse
 from .types.post_v1capture_documents_upload_response import PostV1CaptureDocumentsUploadResponse
+from .types.post_v1capture_inbound_email_request_attachments_item import PostV1CaptureInboundEmailRequestAttachmentsItem
+from .types.post_v1capture_inbound_email_request_to import PostV1CaptureInboundEmailRequestTo
+from .types.post_v1capture_inbound_email_request_to_full_item import PostV1CaptureInboundEmailRequestToFullItem
+from .types.post_v1capture_inbound_email_response import PostV1CaptureInboundEmailResponse
+from .types.post_v1capture_settings_get_response import PostV1CaptureSettingsGetResponse
+from .types.post_v1capture_settings_regenerate_intake_response import PostV1CaptureSettingsRegenerateIntakeResponse
+from .types.post_v1capture_settings_update_response import PostV1CaptureSettingsUpdateResponse
 
 # this is used as the default value for optional parameters
 OMIT = typing.cast(typing.Any, ...)
@@ -34,6 +41,162 @@ class CaptureClient:
         RawCaptureClient
         """
         return self._raw_client
+
+    def post_v1capture_settings_get(
+        self, *, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1CaptureSettingsGetResponse:
+        """
+        Parameters
+        ----------
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1CaptureSettingsGetResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.capture.post_v1capture_settings_get()
+        """
+        _response = self._raw_client.post_v1capture_settings_get(request_options=request_options)
+        return _response.data
+
+    def post_v1capture_settings_update(
+        self,
+        *,
+        intake_enabled: typing.Optional[bool] = OMIT,
+        capture_auto_extract: typing.Optional[bool] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1CaptureSettingsUpdateResponse:
+        """
+        Parameters
+        ----------
+        intake_enabled : typing.Optional[bool]
+
+        capture_auto_extract : typing.Optional[bool]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1CaptureSettingsUpdateResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.capture.post_v1capture_settings_update()
+        """
+        _response = self._raw_client.post_v1capture_settings_update(
+            intake_enabled=intake_enabled, capture_auto_extract=capture_auto_extract, request_options=request_options
+        )
+        return _response.data
+
+    def post_v1capture_settings_regenerate_intake(
+        self, *, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1CaptureSettingsRegenerateIntakeResponse:
+        """
+        Parameters
+        ----------
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1CaptureSettingsRegenerateIntakeResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.capture.post_v1capture_settings_regenerate_intake()
+        """
+        _response = self._raw_client.post_v1capture_settings_regenerate_intake(request_options=request_options)
+        return _response.data
+
+    def receive_an_inbound_email_with_supplier_documents_attached_postmark_style_or_generic_json(
+        self,
+        *,
+        postmark_to: typing.Optional[str] = OMIT,
+        to_full: typing.Optional[typing.Sequence[PostV1CaptureInboundEmailRequestToFullItem]] = OMIT,
+        postmark_from: typing.Optional[str] = OMIT,
+        postmark_subject: typing.Optional[str] = OMIT,
+        postmark_attachments: typing.Optional[typing.Sequence[PostV1CaptureInboundEmailRequestAttachmentsItem]] = OMIT,
+        to: typing.Optional[PostV1CaptureInboundEmailRequestTo] = OMIT,
+        from_: typing.Optional[str] = OMIT,
+        subject: typing.Optional[str] = OMIT,
+        attachments: typing.Optional[typing.Sequence[PostV1CaptureInboundEmailRequestAttachmentsItem]] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1CaptureInboundEmailResponse:
+        """
+        Parameters
+        ----------
+        postmark_to : typing.Optional[str]
+
+        to_full : typing.Optional[typing.Sequence[PostV1CaptureInboundEmailRequestToFullItem]]
+
+        postmark_from : typing.Optional[str]
+
+        postmark_subject : typing.Optional[str]
+
+        postmark_attachments : typing.Optional[typing.Sequence[PostV1CaptureInboundEmailRequestAttachmentsItem]]
+
+        to : typing.Optional[PostV1CaptureInboundEmailRequestTo]
+
+        from_ : typing.Optional[str]
+
+        subject : typing.Optional[str]
+
+        attachments : typing.Optional[typing.Sequence[PostV1CaptureInboundEmailRequestAttachmentsItem]]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1CaptureInboundEmailResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.capture.receive_an_inbound_email_with_supplier_documents_attached_postmark_style_or_generic_json()
+        """
+        _response = (
+            self._raw_client.receive_an_inbound_email_with_supplier_documents_attached_postmark_style_or_generic_json(
+                postmark_to=postmark_to,
+                to_full=to_full,
+                postmark_from=postmark_from,
+                postmark_subject=postmark_subject,
+                postmark_attachments=postmark_attachments,
+                to=to,
+                from_=from_,
+                subject=subject,
+                attachments=attachments,
+                request_options=request_options,
+            )
+        )
+        return _response.data
 
     def read_a_vendor_bill_or_receipt_and_return_an_editable_purchase_invoice_draft(
         self, *, file_name: str, mime_type: str, content: str, request_options: typing.Optional[RequestOptions] = None
@@ -143,6 +306,7 @@ class CaptureClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1CaptureDocumentsListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1CaptureDocumentsListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1CaptureDocumentsListResponse:
         """
@@ -155,6 +319,9 @@ class CaptureClient:
         sort : typing.Optional[typing.Sequence[PostV1CaptureDocumentsListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1CaptureDocumentsListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -174,7 +341,7 @@ class CaptureClient:
         client.capture.post_v1capture_documents_list()
         """
         _response = self._raw_client.post_v1capture_documents_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 
@@ -295,6 +462,192 @@ class AsyncCaptureClient:
         AsyncRawCaptureClient
         """
         return self._raw_client
+
+    async def post_v1capture_settings_get(
+        self, *, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1CaptureSettingsGetResponse:
+        """
+        Parameters
+        ----------
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1CaptureSettingsGetResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.capture.post_v1capture_settings_get()
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1capture_settings_get(request_options=request_options)
+        return _response.data
+
+    async def post_v1capture_settings_update(
+        self,
+        *,
+        intake_enabled: typing.Optional[bool] = OMIT,
+        capture_auto_extract: typing.Optional[bool] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1CaptureSettingsUpdateResponse:
+        """
+        Parameters
+        ----------
+        intake_enabled : typing.Optional[bool]
+
+        capture_auto_extract : typing.Optional[bool]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1CaptureSettingsUpdateResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.capture.post_v1capture_settings_update()
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1capture_settings_update(
+            intake_enabled=intake_enabled, capture_auto_extract=capture_auto_extract, request_options=request_options
+        )
+        return _response.data
+
+    async def post_v1capture_settings_regenerate_intake(
+        self, *, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1CaptureSettingsRegenerateIntakeResponse:
+        """
+        Parameters
+        ----------
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1CaptureSettingsRegenerateIntakeResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.capture.post_v1capture_settings_regenerate_intake()
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1capture_settings_regenerate_intake(request_options=request_options)
+        return _response.data
+
+    async def receive_an_inbound_email_with_supplier_documents_attached_postmark_style_or_generic_json(
+        self,
+        *,
+        postmark_to: typing.Optional[str] = OMIT,
+        to_full: typing.Optional[typing.Sequence[PostV1CaptureInboundEmailRequestToFullItem]] = OMIT,
+        postmark_from: typing.Optional[str] = OMIT,
+        postmark_subject: typing.Optional[str] = OMIT,
+        postmark_attachments: typing.Optional[typing.Sequence[PostV1CaptureInboundEmailRequestAttachmentsItem]] = OMIT,
+        to: typing.Optional[PostV1CaptureInboundEmailRequestTo] = OMIT,
+        from_: typing.Optional[str] = OMIT,
+        subject: typing.Optional[str] = OMIT,
+        attachments: typing.Optional[typing.Sequence[PostV1CaptureInboundEmailRequestAttachmentsItem]] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1CaptureInboundEmailResponse:
+        """
+        Parameters
+        ----------
+        postmark_to : typing.Optional[str]
+
+        to_full : typing.Optional[typing.Sequence[PostV1CaptureInboundEmailRequestToFullItem]]
+
+        postmark_from : typing.Optional[str]
+
+        postmark_subject : typing.Optional[str]
+
+        postmark_attachments : typing.Optional[typing.Sequence[PostV1CaptureInboundEmailRequestAttachmentsItem]]
+
+        to : typing.Optional[PostV1CaptureInboundEmailRequestTo]
+
+        from_ : typing.Optional[str]
+
+        subject : typing.Optional[str]
+
+        attachments : typing.Optional[typing.Sequence[PostV1CaptureInboundEmailRequestAttachmentsItem]]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1CaptureInboundEmailResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.capture.receive_an_inbound_email_with_supplier_documents_attached_postmark_style_or_generic_json()
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.receive_an_inbound_email_with_supplier_documents_attached_postmark_style_or_generic_json(
+            postmark_to=postmark_to,
+            to_full=to_full,
+            postmark_from=postmark_from,
+            postmark_subject=postmark_subject,
+            postmark_attachments=postmark_attachments,
+            to=to,
+            from_=from_,
+            subject=subject,
+            attachments=attachments,
+            request_options=request_options,
+        )
+        return _response.data
 
     async def read_a_vendor_bill_or_receipt_and_return_an_editable_purchase_invoice_draft(
         self, *, file_name: str, mime_type: str, content: str, request_options: typing.Optional[RequestOptions] = None
@@ -428,6 +781,7 @@ class AsyncCaptureClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1CaptureDocumentsListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1CaptureDocumentsListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1CaptureDocumentsListResponse:
         """
@@ -440,6 +794,9 @@ class AsyncCaptureClient:
         sort : typing.Optional[typing.Sequence[PostV1CaptureDocumentsListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1CaptureDocumentsListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -467,7 +824,7 @@ class AsyncCaptureClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.post_v1capture_documents_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 

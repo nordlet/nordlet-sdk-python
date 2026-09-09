@@ -104,6 +104,7 @@ class AssetsClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1AssetsGroupsListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1AssetsGroupsListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1AssetsGroupsListResponse:
         """
@@ -116,6 +117,9 @@ class AssetsClient:
         sort : typing.Optional[typing.Sequence[PostV1AssetsGroupsListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1AssetsGroupsListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -135,7 +139,7 @@ class AssetsClient:
         client.assets.post_v1assets_groups_list()
         """
         _response = self._raw_client.post_v1assets_groups_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 
@@ -252,6 +256,7 @@ class AssetsClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1AssetsAssetsListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1AssetsAssetsListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1AssetsAssetsListResponse:
         """
@@ -264,6 +269,9 @@ class AssetsClient:
         sort : typing.Optional[typing.Sequence[PostV1AssetsAssetsListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1AssetsAssetsListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -283,7 +291,7 @@ class AssetsClient:
         client.assets.post_v1assets_assets_list()
         """
         _response = self._raw_client.post_v1assets_assets_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 
@@ -501,6 +509,7 @@ class AsyncAssetsClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1AssetsGroupsListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1AssetsGroupsListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1AssetsGroupsListResponse:
         """
@@ -513,6 +522,9 @@ class AsyncAssetsClient:
         sort : typing.Optional[typing.Sequence[PostV1AssetsGroupsListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1AssetsGroupsListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -540,7 +552,7 @@ class AsyncAssetsClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.post_v1assets_groups_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 
@@ -673,6 +685,7 @@ class AsyncAssetsClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1AssetsAssetsListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1AssetsAssetsListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1AssetsAssetsListResponse:
         """
@@ -685,6 +698,9 @@ class AsyncAssetsClient:
         sort : typing.Optional[typing.Sequence[PostV1AssetsAssetsListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1AssetsAssetsListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -712,7 +728,7 @@ class AsyncAssetsClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.post_v1assets_assets_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 

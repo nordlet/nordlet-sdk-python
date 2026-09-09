@@ -3366,6 +3366,7 @@ class RawDeclarationsClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1DeclarationsSubmissionsListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1DeclarationsSubmissionsListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[PostV1DeclarationsSubmissionsListResponse]:
         """
@@ -3378,6 +3379,9 @@ class RawDeclarationsClient:
         sort : typing.Optional[typing.Sequence[PostV1DeclarationsSubmissionsListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1DeclarationsSubmissionsListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -3403,6 +3407,7 @@ class RawDeclarationsClient:
                     annotation=typing.Sequence[PostV1DeclarationsSubmissionsListRequestFilterItem],
                     direction="write",
                 ),
+                "totals": totals,
             },
             headers={
                 "content-type": "application/json",
@@ -6804,6 +6809,7 @@ class AsyncRawDeclarationsClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1DeclarationsSubmissionsListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1DeclarationsSubmissionsListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[PostV1DeclarationsSubmissionsListResponse]:
         """
@@ -6816,6 +6822,9 @@ class AsyncRawDeclarationsClient:
         sort : typing.Optional[typing.Sequence[PostV1DeclarationsSubmissionsListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1DeclarationsSubmissionsListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -6841,6 +6850,7 @@ class AsyncRawDeclarationsClient:
                     annotation=typing.Sequence[PostV1DeclarationsSubmissionsListRequestFilterItem],
                     direction="write",
                 ),
+                "totals": totals,
             },
             headers={
                 "content-type": "application/json",

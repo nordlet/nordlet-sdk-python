@@ -1047,6 +1047,7 @@ class RawPayrollClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1PayrollRunsListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1PayrollRunsListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[PostV1PayrollRunsListResponse]:
         """
@@ -1059,6 +1060,9 @@ class RawPayrollClient:
         sort : typing.Optional[typing.Sequence[PostV1PayrollRunsListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1PayrollRunsListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -1082,6 +1086,7 @@ class RawPayrollClient:
                     annotation=typing.Sequence[PostV1PayrollRunsListRequestFilterItem],
                     direction="write",
                 ),
+                "totals": totals,
             },
             headers={
                 "content-type": "application/json",
@@ -2648,6 +2653,7 @@ class AsyncRawPayrollClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1PayrollRunsListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1PayrollRunsListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[PostV1PayrollRunsListResponse]:
         """
@@ -2660,6 +2666,9 @@ class AsyncRawPayrollClient:
         sort : typing.Optional[typing.Sequence[PostV1PayrollRunsListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1PayrollRunsListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -2683,6 +2692,7 @@ class AsyncRawPayrollClient:
                     annotation=typing.Sequence[PostV1PayrollRunsListRequestFilterItem],
                     direction="write",
                 ),
+                "totals": totals,
             },
             headers={
                 "content-type": "application/json",

@@ -146,6 +146,7 @@ class CashClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1CashOrdersListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1CashOrdersListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1CashOrdersListResponse:
         """
@@ -158,6 +159,9 @@ class CashClient:
         sort : typing.Optional[typing.Sequence[PostV1CashOrdersListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1CashOrdersListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -177,7 +181,7 @@ class CashClient:
         client.cash.post_v1cash_orders_list()
         """
         _response = self._raw_client.post_v1cash_orders_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 
@@ -388,6 +392,7 @@ class AsyncCashClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1CashOrdersListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1CashOrdersListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1CashOrdersListResponse:
         """
@@ -400,6 +405,9 @@ class AsyncCashClient:
         sort : typing.Optional[typing.Sequence[PostV1CashOrdersListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1CashOrdersListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -427,7 +435,7 @@ class AsyncCashClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.post_v1cash_orders_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 

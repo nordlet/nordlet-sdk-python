@@ -84,6 +84,33 @@ class PublicClient:
         )
         return _response.data
 
+    def get_v1public_pay_token(self, token: str, *, request_options: typing.Optional[RequestOptions] = None) -> None:
+        """
+        Parameters
+        ----------
+        token : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        None
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.public.get_v1public_pay_token(
+            token="token",
+        )
+        """
+        _response = self._raw_client.get_v1public_pay_token(token, request_options=request_options)
+        return _response.data
+
 
 class AsyncPublicClient:
     def __init__(self, *, client_wrapper: AsyncClientWrapper):
@@ -164,4 +191,41 @@ class AsyncPublicClient:
             website=website,
             request_options=request_options,
         )
+        return _response.data
+
+    async def get_v1public_pay_token(
+        self, token: str, *, request_options: typing.Optional[RequestOptions] = None
+    ) -> None:
+        """
+        Parameters
+        ----------
+        token : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        None
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.public.get_v1public_pay_token(
+                token="token",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.get_v1public_pay_token(token, request_options=request_options)
         return _response.data

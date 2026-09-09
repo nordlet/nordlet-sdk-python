@@ -35,6 +35,7 @@ class AuditClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1AuditListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1AuditListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1AuditListResponse:
         """
@@ -47,6 +48,9 @@ class AuditClient:
         sort : typing.Optional[typing.Sequence[PostV1AuditListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1AuditListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -66,7 +70,7 @@ class AuditClient:
         client.audit.post_v1audit_list()
         """
         _response = self._raw_client.post_v1audit_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 
@@ -93,6 +97,7 @@ class AsyncAuditClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1AuditListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1AuditListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1AuditListResponse:
         """
@@ -105,6 +110,9 @@ class AsyncAuditClient:
         sort : typing.Optional[typing.Sequence[PostV1AuditListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1AuditListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -132,6 +140,6 @@ class AsyncAuditClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.post_v1audit_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data

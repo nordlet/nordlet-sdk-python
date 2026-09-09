@@ -16,6 +16,7 @@ class PostV1SalesRecognitionSchedulesListResponse(UniversalBaseModel):
     page: int
     page_size: typing_extensions.Annotated[int, FieldMetadata(alias="pageSize"), pydantic.Field(alias="pageSize")]
     total: int
+    totals: typing.Optional[typing.Dict[str, str]] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

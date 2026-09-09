@@ -19,6 +19,8 @@ if typing.TYPE_CHECKING:
     from .post_v1billing_account_set_plan_response_plans_value import PostV1BillingAccountSetPlanResponsePlansValue
     from .post_v1billing_account_set_plan_response_status import PostV1BillingAccountSetPlanResponseStatus
     from .post_v1billing_account_set_plan_response_top_up import PostV1BillingAccountSetPlanResponseTopUp
+    from .post_v1billing_portal_create_request_locale import PostV1BillingPortalCreateRequestLocale
+    from .post_v1billing_portal_create_response import PostV1BillingPortalCreateResponse
     from .post_v1billing_topup_create_request_locale import PostV1BillingTopupCreateRequestLocale
     from .post_v1billing_topup_create_response import PostV1BillingTopupCreateResponse
     from .post_v1billing_transactions_list_response import PostV1BillingTransactionsListResponse
@@ -43,6 +45,8 @@ _dynamic_imports: typing.Dict[str, str] = {
     "PostV1BillingAccountSetPlanResponsePlansValue": ".post_v1billing_account_set_plan_response_plans_value",
     "PostV1BillingAccountSetPlanResponseStatus": ".post_v1billing_account_set_plan_response_status",
     "PostV1BillingAccountSetPlanResponseTopUp": ".post_v1billing_account_set_plan_response_top_up",
+    "PostV1BillingPortalCreateRequestLocale": ".post_v1billing_portal_create_request_locale",
+    "PostV1BillingPortalCreateResponse": ".post_v1billing_portal_create_response",
     "PostV1BillingTopupCreateRequestLocale": ".post_v1billing_topup_create_request_locale",
     "PostV1BillingTopupCreateResponse": ".post_v1billing_topup_create_response",
     "PostV1BillingTransactionsListResponse": ".post_v1billing_transactions_list_response",
@@ -89,6 +93,8 @@ __all__ = [
     "PostV1BillingAccountSetPlanResponsePlansValue",
     "PostV1BillingAccountSetPlanResponseStatus",
     "PostV1BillingAccountSetPlanResponseTopUp",
+    "PostV1BillingPortalCreateRequestLocale",
+    "PostV1BillingPortalCreateResponse",
     "PostV1BillingTopupCreateRequestLocale",
     "PostV1BillingTopupCreateResponse",
     "PostV1BillingTransactionsListResponse",

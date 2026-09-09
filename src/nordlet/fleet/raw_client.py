@@ -567,6 +567,7 @@ class RawFleetClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1FleetVehiclesListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1FleetVehiclesListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[PostV1FleetVehiclesListResponse]:
         """
@@ -579,6 +580,9 @@ class RawFleetClient:
         sort : typing.Optional[typing.Sequence[PostV1FleetVehiclesListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1FleetVehiclesListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -602,6 +606,7 @@ class RawFleetClient:
                     annotation=typing.Sequence[PostV1FleetVehiclesListRequestFilterItem],
                     direction="write",
                 ),
+                "totals": totals,
             },
             headers={
                 "content-type": "application/json",
@@ -1023,6 +1028,7 @@ class RawFleetClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1FleetAssignmentsListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1FleetAssignmentsListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[PostV1FleetAssignmentsListResponse]:
         """
@@ -1035,6 +1041,9 @@ class RawFleetClient:
         sort : typing.Optional[typing.Sequence[PostV1FleetAssignmentsListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1FleetAssignmentsListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -1060,6 +1069,7 @@ class RawFleetClient:
                     annotation=typing.Sequence[PostV1FleetAssignmentsListRequestFilterItem],
                     direction="write",
                 ),
+                "totals": totals,
             },
             headers={
                 "content-type": "application/json",
@@ -1839,6 +1849,7 @@ class AsyncRawFleetClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1FleetVehiclesListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1FleetVehiclesListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[PostV1FleetVehiclesListResponse]:
         """
@@ -1851,6 +1862,9 @@ class AsyncRawFleetClient:
         sort : typing.Optional[typing.Sequence[PostV1FleetVehiclesListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1FleetVehiclesListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -1874,6 +1888,7 @@ class AsyncRawFleetClient:
                     annotation=typing.Sequence[PostV1FleetVehiclesListRequestFilterItem],
                     direction="write",
                 ),
+                "totals": totals,
             },
             headers={
                 "content-type": "application/json",
@@ -2295,6 +2310,7 @@ class AsyncRawFleetClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1FleetAssignmentsListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1FleetAssignmentsListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[PostV1FleetAssignmentsListResponse]:
         """
@@ -2307,6 +2323,9 @@ class AsyncRawFleetClient:
         sort : typing.Optional[typing.Sequence[PostV1FleetAssignmentsListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1FleetAssignmentsListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -2332,6 +2351,7 @@ class AsyncRawFleetClient:
                     annotation=typing.Sequence[PostV1FleetAssignmentsListRequestFilterItem],
                     direction="write",
                 ),
+                "totals": totals,
             },
             headers={
                 "content-type": "application/json",

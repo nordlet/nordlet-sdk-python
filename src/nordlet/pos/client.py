@@ -157,6 +157,7 @@ class PosClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1PosDevicesListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1PosDevicesListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1PosDevicesListResponse:
         """
@@ -169,6 +170,9 @@ class PosClient:
         sort : typing.Optional[typing.Sequence[PostV1PosDevicesListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1PosDevicesListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -188,7 +192,7 @@ class PosClient:
         client.pos.post_v1pos_devices_list()
         """
         _response = self._raw_client.post_v1pos_devices_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 
@@ -330,6 +334,7 @@ class PosClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1PosReportsListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1PosReportsListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1PosReportsListResponse:
         """
@@ -342,6 +347,9 @@ class PosClient:
         sort : typing.Optional[typing.Sequence[PostV1PosReportsListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1PosReportsListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -361,7 +369,7 @@ class PosClient:
         client.pos.post_v1pos_reports_list()
         """
         _response = self._raw_client.post_v1pos_reports_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 
@@ -517,6 +525,7 @@ class AsyncPosClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1PosDevicesListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1PosDevicesListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1PosDevicesListResponse:
         """
@@ -529,6 +538,9 @@ class AsyncPosClient:
         sort : typing.Optional[typing.Sequence[PostV1PosDevicesListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1PosDevicesListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -556,7 +568,7 @@ class AsyncPosClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.post_v1pos_devices_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 
@@ -714,6 +726,7 @@ class AsyncPosClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1PosReportsListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1PosReportsListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1PosReportsListResponse:
         """
@@ -726,6 +739,9 @@ class AsyncPosClient:
         sort : typing.Optional[typing.Sequence[PostV1PosReportsListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1PosReportsListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -753,6 +769,6 @@ class AsyncPosClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.post_v1pos_reports_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data

@@ -252,6 +252,7 @@ class FleetClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1FleetVehiclesListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1FleetVehiclesListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1FleetVehiclesListResponse:
         """
@@ -264,6 +265,9 @@ class FleetClient:
         sort : typing.Optional[typing.Sequence[PostV1FleetVehiclesListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1FleetVehiclesListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -283,7 +287,7 @@ class FleetClient:
         client.fleet.post_v1fleet_vehicles_list()
         """
         _response = self._raw_client.post_v1fleet_vehicles_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 
@@ -391,6 +395,7 @@ class FleetClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1FleetAssignmentsListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1FleetAssignmentsListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1FleetAssignmentsListResponse:
         """
@@ -403,6 +408,9 @@ class FleetClient:
         sort : typing.Optional[typing.Sequence[PostV1FleetAssignmentsListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1FleetAssignmentsListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -422,7 +430,7 @@ class FleetClient:
         client.fleet.post_v1fleet_assignments_list()
         """
         _response = self._raw_client.post_v1fleet_assignments_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 
@@ -712,6 +720,7 @@ class AsyncFleetClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1FleetVehiclesListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1FleetVehiclesListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1FleetVehiclesListResponse:
         """
@@ -724,6 +733,9 @@ class AsyncFleetClient:
         sort : typing.Optional[typing.Sequence[PostV1FleetVehiclesListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1FleetVehiclesListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -751,7 +763,7 @@ class AsyncFleetClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.post_v1fleet_vehicles_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 
@@ -875,6 +887,7 @@ class AsyncFleetClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1FleetAssignmentsListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1FleetAssignmentsListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1FleetAssignmentsListResponse:
         """
@@ -887,6 +900,9 @@ class AsyncFleetClient:
         sort : typing.Optional[typing.Sequence[PostV1FleetAssignmentsListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1FleetAssignmentsListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -914,7 +930,7 @@ class AsyncFleetClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.post_v1fleet_assignments_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 

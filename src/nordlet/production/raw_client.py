@@ -410,6 +410,7 @@ class RawProductionClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1ProductionWorkCentersListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1ProductionWorkCentersListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[PostV1ProductionWorkCentersListResponse]:
         """
@@ -422,6 +423,9 @@ class RawProductionClient:
         sort : typing.Optional[typing.Sequence[PostV1ProductionWorkCentersListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1ProductionWorkCentersListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -447,6 +451,7 @@ class RawProductionClient:
                     annotation=typing.Sequence[PostV1ProductionWorkCentersListRequestFilterItem],
                     direction="write",
                 ),
+                "totals": totals,
             },
             headers={
                 "content-type": "application/json",
@@ -857,6 +862,7 @@ class RawProductionClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1ProductionRoutingsListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1ProductionRoutingsListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[PostV1ProductionRoutingsListResponse]:
         """
@@ -869,6 +875,9 @@ class RawProductionClient:
         sort : typing.Optional[typing.Sequence[PostV1ProductionRoutingsListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1ProductionRoutingsListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -894,6 +903,7 @@ class RawProductionClient:
                     annotation=typing.Sequence[PostV1ProductionRoutingsListRequestFilterItem],
                     direction="write",
                 ),
+                "totals": totals,
             },
             headers={
                 "content-type": "application/json",
@@ -1458,6 +1468,7 @@ class RawProductionClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1ProductionMaintenanceListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1ProductionMaintenanceListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[PostV1ProductionMaintenanceListResponse]:
         """
@@ -1470,6 +1481,9 @@ class RawProductionClient:
         sort : typing.Optional[typing.Sequence[PostV1ProductionMaintenanceListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1ProductionMaintenanceListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -1495,6 +1509,7 @@ class RawProductionClient:
                     annotation=typing.Sequence[PostV1ProductionMaintenanceListRequestFilterItem],
                     direction="write",
                 ),
+                "totals": totals,
             },
             headers={
                 "content-type": "application/json",
@@ -1913,6 +1928,7 @@ class RawProductionClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1ProductionBomsListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1ProductionBomsListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[PostV1ProductionBomsListResponse]:
         """
@@ -1925,6 +1941,9 @@ class RawProductionClient:
         sort : typing.Optional[typing.Sequence[PostV1ProductionBomsListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1ProductionBomsListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -1948,6 +1967,7 @@ class RawProductionClient:
                     annotation=typing.Sequence[PostV1ProductionBomsListRequestFilterItem],
                     direction="write",
                 ),
+                "totals": totals,
             },
             headers={
                 "content-type": "application/json",
@@ -2661,6 +2681,7 @@ class RawProductionClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1ProductionQualityChecksListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1ProductionQualityChecksListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[PostV1ProductionQualityChecksListResponse]:
         """
@@ -2673,6 +2694,9 @@ class RawProductionClient:
         sort : typing.Optional[typing.Sequence[PostV1ProductionQualityChecksListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1ProductionQualityChecksListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -2698,6 +2722,7 @@ class RawProductionClient:
                     annotation=typing.Sequence[PostV1ProductionQualityChecksListRequestFilterItem],
                     direction="write",
                 ),
+                "totals": totals,
             },
             headers={
                 "content-type": "application/json",
@@ -3104,6 +3129,7 @@ class RawProductionClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1ProductionOrdersListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1ProductionOrdersListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[PostV1ProductionOrdersListResponse]:
         """
@@ -3116,6 +3142,9 @@ class RawProductionClient:
         sort : typing.Optional[typing.Sequence[PostV1ProductionOrdersListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1ProductionOrdersListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -3141,6 +3170,7 @@ class RawProductionClient:
                     annotation=typing.Sequence[PostV1ProductionOrdersListRequestFilterItem],
                     direction="write",
                 ),
+                "totals": totals,
             },
             headers={
                 "content-type": "application/json",
@@ -3591,6 +3621,7 @@ class AsyncRawProductionClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1ProductionWorkCentersListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1ProductionWorkCentersListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[PostV1ProductionWorkCentersListResponse]:
         """
@@ -3603,6 +3634,9 @@ class AsyncRawProductionClient:
         sort : typing.Optional[typing.Sequence[PostV1ProductionWorkCentersListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1ProductionWorkCentersListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -3628,6 +3662,7 @@ class AsyncRawProductionClient:
                     annotation=typing.Sequence[PostV1ProductionWorkCentersListRequestFilterItem],
                     direction="write",
                 ),
+                "totals": totals,
             },
             headers={
                 "content-type": "application/json",
@@ -4038,6 +4073,7 @@ class AsyncRawProductionClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1ProductionRoutingsListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1ProductionRoutingsListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[PostV1ProductionRoutingsListResponse]:
         """
@@ -4050,6 +4086,9 @@ class AsyncRawProductionClient:
         sort : typing.Optional[typing.Sequence[PostV1ProductionRoutingsListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1ProductionRoutingsListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -4075,6 +4114,7 @@ class AsyncRawProductionClient:
                     annotation=typing.Sequence[PostV1ProductionRoutingsListRequestFilterItem],
                     direction="write",
                 ),
+                "totals": totals,
             },
             headers={
                 "content-type": "application/json",
@@ -4639,6 +4679,7 @@ class AsyncRawProductionClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1ProductionMaintenanceListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1ProductionMaintenanceListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[PostV1ProductionMaintenanceListResponse]:
         """
@@ -4651,6 +4692,9 @@ class AsyncRawProductionClient:
         sort : typing.Optional[typing.Sequence[PostV1ProductionMaintenanceListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1ProductionMaintenanceListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -4676,6 +4720,7 @@ class AsyncRawProductionClient:
                     annotation=typing.Sequence[PostV1ProductionMaintenanceListRequestFilterItem],
                     direction="write",
                 ),
+                "totals": totals,
             },
             headers={
                 "content-type": "application/json",
@@ -5094,6 +5139,7 @@ class AsyncRawProductionClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1ProductionBomsListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1ProductionBomsListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[PostV1ProductionBomsListResponse]:
         """
@@ -5106,6 +5152,9 @@ class AsyncRawProductionClient:
         sort : typing.Optional[typing.Sequence[PostV1ProductionBomsListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1ProductionBomsListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -5129,6 +5178,7 @@ class AsyncRawProductionClient:
                     annotation=typing.Sequence[PostV1ProductionBomsListRequestFilterItem],
                     direction="write",
                 ),
+                "totals": totals,
             },
             headers={
                 "content-type": "application/json",
@@ -5842,6 +5892,7 @@ class AsyncRawProductionClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1ProductionQualityChecksListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1ProductionQualityChecksListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[PostV1ProductionQualityChecksListResponse]:
         """
@@ -5854,6 +5905,9 @@ class AsyncRawProductionClient:
         sort : typing.Optional[typing.Sequence[PostV1ProductionQualityChecksListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1ProductionQualityChecksListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -5879,6 +5933,7 @@ class AsyncRawProductionClient:
                     annotation=typing.Sequence[PostV1ProductionQualityChecksListRequestFilterItem],
                     direction="write",
                 ),
+                "totals": totals,
             },
             headers={
                 "content-type": "application/json",
@@ -6285,6 +6340,7 @@ class AsyncRawProductionClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1ProductionOrdersListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1ProductionOrdersListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[PostV1ProductionOrdersListResponse]:
         """
@@ -6297,6 +6353,9 @@ class AsyncRawProductionClient:
         sort : typing.Optional[typing.Sequence[PostV1ProductionOrdersListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1ProductionOrdersListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -6322,6 +6381,7 @@ class AsyncRawProductionClient:
                     annotation=typing.Sequence[PostV1ProductionOrdersListRequestFilterItem],
                     direction="write",
                 ),
+                "totals": totals,
             },
             headers={
                 "content-type": "application/json",

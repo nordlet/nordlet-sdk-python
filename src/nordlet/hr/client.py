@@ -171,6 +171,7 @@ class HrClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1HrPositionsListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1HrPositionsListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1HrPositionsListResponse:
         """
@@ -183,6 +184,9 @@ class HrClient:
         sort : typing.Optional[typing.Sequence[PostV1HrPositionsListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1HrPositionsListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -202,7 +206,7 @@ class HrClient:
         client.hr.post_v1hr_positions_list()
         """
         _response = self._raw_client.post_v1hr_positions_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 
@@ -456,6 +460,7 @@ class HrClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1HrEmployeesListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1HrEmployeesListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1HrEmployeesListResponse:
         """
@@ -468,6 +473,9 @@ class HrClient:
         sort : typing.Optional[typing.Sequence[PostV1HrEmployeesListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1HrEmployeesListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -487,7 +495,7 @@ class HrClient:
         client.hr.post_v1hr_employees_list()
         """
         _response = self._raw_client.post_v1hr_employees_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 
@@ -690,6 +698,7 @@ class HrClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1HrContractsListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1HrContractsListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1HrContractsListResponse:
         """
@@ -702,6 +711,9 @@ class HrClient:
         sort : typing.Optional[typing.Sequence[PostV1HrContractsListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1HrContractsListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -721,7 +733,7 @@ class HrClient:
         client.hr.post_v1hr_contracts_list()
         """
         _response = self._raw_client.post_v1hr_contracts_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 
@@ -881,6 +893,7 @@ class HrClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1HrIncapacityCertificatesListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1HrIncapacityCertificatesListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1HrIncapacityCertificatesListResponse:
         """
@@ -893,6 +906,9 @@ class HrClient:
         sort : typing.Optional[typing.Sequence[PostV1HrIncapacityCertificatesListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1HrIncapacityCertificatesListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -912,7 +928,7 @@ class HrClient:
         client.hr.post_v1hr_incapacity_certificates_list()
         """
         _response = self._raw_client.post_v1hr_incapacity_certificates_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 
@@ -1083,6 +1099,7 @@ class HrClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1HrEmployeesRecordsListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1HrEmployeesRecordsListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1HrEmployeesRecordsListResponse:
         """
@@ -1095,6 +1112,9 @@ class HrClient:
         sort : typing.Optional[typing.Sequence[PostV1HrEmployeesRecordsListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1HrEmployeesRecordsListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -1114,7 +1134,7 @@ class HrClient:
         client.hr.post_v1hr_employees_records_list()
         """
         _response = self._raw_client.post_v1hr_employees_records_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 
@@ -1473,6 +1493,7 @@ class AsyncHrClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1HrPositionsListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1HrPositionsListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1HrPositionsListResponse:
         """
@@ -1485,6 +1506,9 @@ class AsyncHrClient:
         sort : typing.Optional[typing.Sequence[PostV1HrPositionsListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1HrPositionsListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -1512,7 +1536,7 @@ class AsyncHrClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.post_v1hr_positions_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 
@@ -1790,6 +1814,7 @@ class AsyncHrClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1HrEmployeesListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1HrEmployeesListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1HrEmployeesListResponse:
         """
@@ -1802,6 +1827,9 @@ class AsyncHrClient:
         sort : typing.Optional[typing.Sequence[PostV1HrEmployeesListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1HrEmployeesListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -1829,7 +1857,7 @@ class AsyncHrClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.post_v1hr_employees_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 
@@ -2064,6 +2092,7 @@ class AsyncHrClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1HrContractsListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1HrContractsListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1HrContractsListResponse:
         """
@@ -2076,6 +2105,9 @@ class AsyncHrClient:
         sort : typing.Optional[typing.Sequence[PostV1HrContractsListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1HrContractsListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -2103,7 +2135,7 @@ class AsyncHrClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.post_v1hr_contracts_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 
@@ -2287,6 +2319,7 @@ class AsyncHrClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1HrIncapacityCertificatesListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1HrIncapacityCertificatesListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1HrIncapacityCertificatesListResponse:
         """
@@ -2299,6 +2332,9 @@ class AsyncHrClient:
         sort : typing.Optional[typing.Sequence[PostV1HrIncapacityCertificatesListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1HrIncapacityCertificatesListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -2326,7 +2362,7 @@ class AsyncHrClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.post_v1hr_incapacity_certificates_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 
@@ -2521,6 +2557,7 @@ class AsyncHrClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1HrEmployeesRecordsListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1HrEmployeesRecordsListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1HrEmployeesRecordsListResponse:
         """
@@ -2533,6 +2570,9 @@ class AsyncHrClient:
         sort : typing.Optional[typing.Sequence[PostV1HrEmployeesRecordsListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1HrEmployeesRecordsListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -2560,7 +2600,7 @@ class AsyncHrClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.post_v1hr_employees_records_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 

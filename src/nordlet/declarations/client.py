@@ -980,6 +980,7 @@ class DeclarationsClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1DeclarationsSubmissionsListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1DeclarationsSubmissionsListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1DeclarationsSubmissionsListResponse:
         """
@@ -992,6 +993,9 @@ class DeclarationsClient:
         sort : typing.Optional[typing.Sequence[PostV1DeclarationsSubmissionsListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1DeclarationsSubmissionsListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -1011,7 +1015,7 @@ class DeclarationsClient:
         client.declarations.post_v1declarations_submissions_list()
         """
         _response = self._raw_client.post_v1declarations_submissions_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 
@@ -2115,6 +2119,7 @@ class AsyncDeclarationsClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1DeclarationsSubmissionsListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1DeclarationsSubmissionsListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1DeclarationsSubmissionsListResponse:
         """
@@ -2127,6 +2132,9 @@ class AsyncDeclarationsClient:
         sort : typing.Optional[typing.Sequence[PostV1DeclarationsSubmissionsListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1DeclarationsSubmissionsListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -2154,6 +2162,6 @@ class AsyncDeclarationsClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.post_v1declarations_submissions_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data

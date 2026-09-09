@@ -49,6 +49,13 @@ if typing.TYPE_CHECKING:
         PostV1CaptureDocumentsUploadResponseExtractionLinesItem,
         PostV1CaptureDocumentsUploadResponseExtractionSupplier,
         PostV1CaptureDocumentsUploadResponseStatus,
+        PostV1CaptureInboundEmailRequestAttachmentsItem,
+        PostV1CaptureInboundEmailRequestTo,
+        PostV1CaptureInboundEmailRequestToFullItem,
+        PostV1CaptureInboundEmailResponse,
+        PostV1CaptureSettingsGetResponse,
+        PostV1CaptureSettingsRegenerateIntakeResponse,
+        PostV1CaptureSettingsUpdateResponse,
     )
 _dynamic_imports: typing.Dict[str, str] = {
     "PostV1CaptureDocumentsConfirmRequestLinesItem": ".types",
@@ -93,6 +100,13 @@ _dynamic_imports: typing.Dict[str, str] = {
     "PostV1CaptureDocumentsUploadResponseExtractionLinesItem": ".types",
     "PostV1CaptureDocumentsUploadResponseExtractionSupplier": ".types",
     "PostV1CaptureDocumentsUploadResponseStatus": ".types",
+    "PostV1CaptureInboundEmailRequestAttachmentsItem": ".types",
+    "PostV1CaptureInboundEmailRequestTo": ".types",
+    "PostV1CaptureInboundEmailRequestToFullItem": ".types",
+    "PostV1CaptureInboundEmailResponse": ".types",
+    "PostV1CaptureSettingsGetResponse": ".types",
+    "PostV1CaptureSettingsRegenerateIntakeResponse": ".types",
+    "PostV1CaptureSettingsUpdateResponse": ".types",
 }
 
 
@@ -160,4 +174,11 @@ __all__ = [
     "PostV1CaptureDocumentsUploadResponseExtractionLinesItem",
     "PostV1CaptureDocumentsUploadResponseExtractionSupplier",
     "PostV1CaptureDocumentsUploadResponseStatus",
+    "PostV1CaptureInboundEmailRequestAttachmentsItem",
+    "PostV1CaptureInboundEmailRequestTo",
+    "PostV1CaptureInboundEmailRequestToFullItem",
+    "PostV1CaptureInboundEmailResponse",
+    "PostV1CaptureSettingsGetResponse",
+    "PostV1CaptureSettingsRegenerateIntakeResponse",
+    "PostV1CaptureSettingsUpdateResponse",
 ]

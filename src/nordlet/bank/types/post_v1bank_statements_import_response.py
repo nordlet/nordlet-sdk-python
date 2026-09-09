@@ -25,6 +25,15 @@ class PostV1BankStatementsImportResponse(UniversalBaseModel):
     credit_notes_created: typing_extensions.Annotated[
         int, FieldMetadata(alias="creditNotesCreated"), pydantic.Field(alias="creditNotesCreated")
     ]
+    authorizations_recorded: typing_extensions.Annotated[
+        int, FieldMetadata(alias="authorizationsRecorded"), pydantic.Field(alias="authorizationsRecorded")
+    ]
+    payouts_posted: typing_extensions.Annotated[
+        int, FieldMetadata(alias="payoutsPosted"), pydantic.Field(alias="payoutsPosted")
+    ]
+    commissions_posted: typing_extensions.Annotated[
+        int, FieldMetadata(alias="commissionsPosted"), pydantic.Field(alias="commissionsPosted")
+    ]
     payments_matched: typing_extensions.Annotated[
         int, FieldMetadata(alias="paymentsMatched"), pydantic.Field(alias="paymentsMatched")
     ]

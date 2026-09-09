@@ -28,6 +28,9 @@ class PostV1BankSettlementsGetResponse(UniversalBaseModel):
     journal_transaction_id: typing_extensions.Annotated[
         typing.Optional[str], FieldMetadata(alias="journalTransactionId"), pydantic.Field(alias="journalTransactionId")
     ] = None
+    bank_transaction_id: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="bankTransactionId"), pydantic.Field(alias="bankTransactionId")
+    ] = None
     line_count: typing_extensions.Annotated[int, FieldMetadata(alias="lineCount"), pydantic.Field(alias="lineCount")]
     matched_count: typing_extensions.Annotated[
         int, FieldMetadata(alias="matchedCount"), pydantic.Field(alias="matchedCount")

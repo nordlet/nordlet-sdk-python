@@ -88,6 +88,13 @@ if typing.TYPE_CHECKING:
         PostV1CaptureDocumentsUploadResponseExtractionSupplier,
     )
     from .post_v1capture_documents_upload_response_status import PostV1CaptureDocumentsUploadResponseStatus
+    from .post_v1capture_inbound_email_request_attachments_item import PostV1CaptureInboundEmailRequestAttachmentsItem
+    from .post_v1capture_inbound_email_request_to import PostV1CaptureInboundEmailRequestTo
+    from .post_v1capture_inbound_email_request_to_full_item import PostV1CaptureInboundEmailRequestToFullItem
+    from .post_v1capture_inbound_email_response import PostV1CaptureInboundEmailResponse
+    from .post_v1capture_settings_get_response import PostV1CaptureSettingsGetResponse
+    from .post_v1capture_settings_regenerate_intake_response import PostV1CaptureSettingsRegenerateIntakeResponse
+    from .post_v1capture_settings_update_response import PostV1CaptureSettingsUpdateResponse
 _dynamic_imports: typing.Dict[str, str] = {
     "PostV1CaptureDocumentsConfirmRequestLinesItem": ".post_v1capture_documents_confirm_request_lines_item",
     "PostV1CaptureDocumentsConfirmRequestLinesItemQuantity": ".post_v1capture_documents_confirm_request_lines_item_quantity",
@@ -131,6 +138,13 @@ _dynamic_imports: typing.Dict[str, str] = {
     "PostV1CaptureDocumentsUploadResponseExtractionLinesItem": ".post_v1capture_documents_upload_response_extraction_lines_item",
     "PostV1CaptureDocumentsUploadResponseExtractionSupplier": ".post_v1capture_documents_upload_response_extraction_supplier",
     "PostV1CaptureDocumentsUploadResponseStatus": ".post_v1capture_documents_upload_response_status",
+    "PostV1CaptureInboundEmailRequestAttachmentsItem": ".post_v1capture_inbound_email_request_attachments_item",
+    "PostV1CaptureInboundEmailRequestTo": ".post_v1capture_inbound_email_request_to",
+    "PostV1CaptureInboundEmailRequestToFullItem": ".post_v1capture_inbound_email_request_to_full_item",
+    "PostV1CaptureInboundEmailResponse": ".post_v1capture_inbound_email_response",
+    "PostV1CaptureSettingsGetResponse": ".post_v1capture_settings_get_response",
+    "PostV1CaptureSettingsRegenerateIntakeResponse": ".post_v1capture_settings_regenerate_intake_response",
+    "PostV1CaptureSettingsUpdateResponse": ".post_v1capture_settings_update_response",
 }
 
 
@@ -198,4 +212,11 @@ __all__ = [
     "PostV1CaptureDocumentsUploadResponseExtractionLinesItem",
     "PostV1CaptureDocumentsUploadResponseExtractionSupplier",
     "PostV1CaptureDocumentsUploadResponseStatus",
+    "PostV1CaptureInboundEmailRequestAttachmentsItem",
+    "PostV1CaptureInboundEmailRequestTo",
+    "PostV1CaptureInboundEmailRequestToFullItem",
+    "PostV1CaptureInboundEmailResponse",
+    "PostV1CaptureSettingsGetResponse",
+    "PostV1CaptureSettingsRegenerateIntakeResponse",
+    "PostV1CaptureSettingsUpdateResponse",
 ]

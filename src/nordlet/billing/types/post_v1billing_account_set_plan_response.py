@@ -31,6 +31,12 @@ class PostV1BillingAccountSetPlanResponse(UniversalBaseModel):
     payments_configured: typing_extensions.Annotated[
         bool, FieldMetadata(alias="paymentsConfigured"), pydantic.Field(alias="paymentsConfigured")
     ]
+    has_payment_account: typing_extensions.Annotated[
+        bool, FieldMetadata(alias="hasPaymentAccount"), pydantic.Field(alias="hasPaymentAccount")
+    ]
+    has_subscription: typing_extensions.Annotated[
+        bool, FieldMetadata(alias="hasSubscription"), pydantic.Field(alias="hasSubscription")
+    ]
     month_to_date: typing_extensions.Annotated[
         PostV1BillingAccountSetPlanResponseMonthToDate,
         FieldMetadata(alias="monthToDate"),

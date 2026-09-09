@@ -16,6 +16,7 @@ if typing.TYPE_CHECKING:
     from .audit.client import AsyncAuditClient, AuditClient
     from .bank.client import AsyncBankClient, BankClient
     from .billing.client import AsyncBillingClient, BillingClient
+    from .calendar.client import AsyncCalendarClient, CalendarClient
     from .capture.client import AsyncCaptureClient, CaptureClient
     from .cash.client import AsyncCashClient, CashClient
     from .catalog.client import AsyncCatalogClient, CatalogClient
@@ -147,6 +148,7 @@ class Nordlet:
         self._projects: typing.Optional[ProjectsClient] = None
         self._transport: typing.Optional[TransportClient] = None
         self._pos: typing.Optional[PosClient] = None
+        self._calendar: typing.Optional[CalendarClient] = None
         self._audit: typing.Optional[AuditClient] = None
         self._webhooks: typing.Optional[WebhooksClient] = None
         self._bank: typing.Optional[BankClient] = None
@@ -324,6 +326,14 @@ class Nordlet:
 
             self._pos = PosClient(client_wrapper=self._client_wrapper)
         return self._pos
+
+    @property
+    def calendar(self):
+        if self._calendar is None:
+            from .calendar.client import CalendarClient  # noqa: E402
+
+            self._calendar = CalendarClient(client_wrapper=self._client_wrapper)
+        return self._calendar
 
     @property
     def audit(self):
@@ -524,6 +534,7 @@ class AsyncNordlet:
         self._projects: typing.Optional[AsyncProjectsClient] = None
         self._transport: typing.Optional[AsyncTransportClient] = None
         self._pos: typing.Optional[AsyncPosClient] = None
+        self._calendar: typing.Optional[AsyncCalendarClient] = None
         self._audit: typing.Optional[AsyncAuditClient] = None
         self._webhooks: typing.Optional[AsyncWebhooksClient] = None
         self._bank: typing.Optional[AsyncBankClient] = None
@@ -701,6 +712,14 @@ class AsyncNordlet:
 
             self._pos = AsyncPosClient(client_wrapper=self._client_wrapper)
         return self._pos
+
+    @property
+    def calendar(self):
+        if self._calendar is None:
+            from .calendar.client import AsyncCalendarClient  # noqa: E402
+
+            self._calendar = AsyncCalendarClient(client_wrapper=self._client_wrapper)
+        return self._calendar
 
     @property
     def audit(self):

@@ -179,6 +179,7 @@ class InventoryClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1InventoryWarehousesListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1InventoryWarehousesListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1InventoryWarehousesListResponse:
         """
@@ -191,6 +192,9 @@ class InventoryClient:
         sort : typing.Optional[typing.Sequence[PostV1InventoryWarehousesListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1InventoryWarehousesListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -210,7 +214,7 @@ class InventoryClient:
         client.inventory.post_v1inventory_warehouses_list()
         """
         _response = self._raw_client.post_v1inventory_warehouses_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 
@@ -515,6 +519,7 @@ class InventoryClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1InventoryStockMovementsListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1InventoryStockMovementsListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1InventoryStockMovementsListResponse:
         """
@@ -527,6 +532,9 @@ class InventoryClient:
         sort : typing.Optional[typing.Sequence[PostV1InventoryStockMovementsListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1InventoryStockMovementsListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -546,7 +554,7 @@ class InventoryClient:
         client.inventory.post_v1inventory_stock_movements_list()
         """
         _response = self._raw_client.post_v1inventory_stock_movements_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 
@@ -557,6 +565,7 @@ class InventoryClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1InventoryLotsListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1InventoryLotsListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1InventoryLotsListResponse:
         """
@@ -569,6 +578,9 @@ class InventoryClient:
         sort : typing.Optional[typing.Sequence[PostV1InventoryLotsListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1InventoryLotsListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -588,7 +600,7 @@ class InventoryClient:
         client.inventory.post_v1inventory_lots_list()
         """
         _response = self._raw_client.post_v1inventory_lots_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 
@@ -761,6 +773,7 @@ class InventoryClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1InventoryLandedCostsListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1InventoryLandedCostsListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1InventoryLandedCostsListResponse:
         """
@@ -773,6 +786,9 @@ class InventoryClient:
         sort : typing.Optional[typing.Sequence[PostV1InventoryLandedCostsListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1InventoryLandedCostsListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -792,7 +808,7 @@ class InventoryClient:
         client.inventory.post_v1inventory_landed_costs_list()
         """
         _response = self._raw_client.post_v1inventory_landed_costs_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 
@@ -942,6 +958,7 @@ class InventoryClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1InventoryReorderRulesListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1InventoryReorderRulesListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1InventoryReorderRulesListResponse:
         """
@@ -954,6 +971,9 @@ class InventoryClient:
         sort : typing.Optional[typing.Sequence[PostV1InventoryReorderRulesListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1InventoryReorderRulesListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -973,7 +993,7 @@ class InventoryClient:
         client.inventory.post_v1inventory_reorder_rules_list()
         """
         _response = self._raw_client.post_v1inventory_reorder_rules_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 
@@ -1153,6 +1173,7 @@ class AsyncInventoryClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1InventoryWarehousesListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1InventoryWarehousesListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1InventoryWarehousesListResponse:
         """
@@ -1165,6 +1186,9 @@ class AsyncInventoryClient:
         sort : typing.Optional[typing.Sequence[PostV1InventoryWarehousesListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1InventoryWarehousesListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -1192,7 +1216,7 @@ class AsyncInventoryClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.post_v1inventory_warehouses_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 
@@ -1537,6 +1561,7 @@ class AsyncInventoryClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1InventoryStockMovementsListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1InventoryStockMovementsListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1InventoryStockMovementsListResponse:
         """
@@ -1549,6 +1574,9 @@ class AsyncInventoryClient:
         sort : typing.Optional[typing.Sequence[PostV1InventoryStockMovementsListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1InventoryStockMovementsListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -1576,7 +1604,7 @@ class AsyncInventoryClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.post_v1inventory_stock_movements_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 
@@ -1587,6 +1615,7 @@ class AsyncInventoryClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1InventoryLotsListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1InventoryLotsListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1InventoryLotsListResponse:
         """
@@ -1599,6 +1628,9 @@ class AsyncInventoryClient:
         sort : typing.Optional[typing.Sequence[PostV1InventoryLotsListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1InventoryLotsListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -1626,7 +1658,7 @@ class AsyncInventoryClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.post_v1inventory_lots_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 
@@ -1831,6 +1863,7 @@ class AsyncInventoryClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1InventoryLandedCostsListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1InventoryLandedCostsListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1InventoryLandedCostsListResponse:
         """
@@ -1843,6 +1876,9 @@ class AsyncInventoryClient:
         sort : typing.Optional[typing.Sequence[PostV1InventoryLandedCostsListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1InventoryLandedCostsListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -1870,7 +1906,7 @@ class AsyncInventoryClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.post_v1inventory_landed_costs_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 
@@ -2044,6 +2080,7 @@ class AsyncInventoryClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1InventoryReorderRulesListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1InventoryReorderRulesListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1InventoryReorderRulesListResponse:
         """
@@ -2056,6 +2093,9 @@ class AsyncInventoryClient:
         sort : typing.Optional[typing.Sequence[PostV1InventoryReorderRulesListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1InventoryReorderRulesListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -2083,7 +2123,7 @@ class AsyncInventoryClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.post_v1inventory_reorder_rules_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 

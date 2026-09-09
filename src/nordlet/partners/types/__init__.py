@@ -6,6 +6,43 @@ import typing
 from importlib import import_module
 
 if typing.TYPE_CHECKING:
+    from .post_v1leads_convert_request_partner_type import PostV1LeadsConvertRequestPartnerType
+    from .post_v1leads_convert_response import PostV1LeadsConvertResponse
+    from .post_v1leads_convert_response_lead import PostV1LeadsConvertResponseLead
+    from .post_v1leads_convert_response_lead_status import PostV1LeadsConvertResponseLeadStatus
+    from .post_v1leads_create_request_documents_item import PostV1LeadsCreateRequestDocumentsItem
+    from .post_v1leads_create_request_status import PostV1LeadsCreateRequestStatus
+    from .post_v1leads_create_response import PostV1LeadsCreateResponse
+    from .post_v1leads_create_response_status import PostV1LeadsCreateResponseStatus
+    from .post_v1leads_delete_response import PostV1LeadsDeleteResponse
+    from .post_v1leads_files_list_response import PostV1LeadsFilesListResponse
+    from .post_v1leads_files_list_response_rows_item import PostV1LeadsFilesListResponseRowsItem
+    from .post_v1leads_get_response import PostV1LeadsGetResponse
+    from .post_v1leads_get_response_status import PostV1LeadsGetResponseStatus
+    from .post_v1leads_list_request_filter_item import PostV1LeadsListRequestFilterItem
+    from .post_v1leads_list_request_filter_item_op import PostV1LeadsListRequestFilterItemOp
+    from .post_v1leads_list_request_filter_item_value import PostV1LeadsListRequestFilterItemValue
+    from .post_v1leads_list_request_filter_item_value_three_item import PostV1LeadsListRequestFilterItemValueThreeItem
+    from .post_v1leads_list_request_sort_item import PostV1LeadsListRequestSortItem
+    from .post_v1leads_list_request_sort_item_dir import PostV1LeadsListRequestSortItemDir
+    from .post_v1leads_list_response import PostV1LeadsListResponse
+    from .post_v1leads_list_response_rows_item import PostV1LeadsListResponseRowsItem
+    from .post_v1leads_list_response_rows_item_status import PostV1LeadsListResponseRowsItemStatus
+    from .post_v1leads_notes_create_response import PostV1LeadsNotesCreateResponse
+    from .post_v1leads_notes_delete_response import PostV1LeadsNotesDeleteResponse
+    from .post_v1leads_notes_list_response import PostV1LeadsNotesListResponse
+    from .post_v1leads_notes_list_response_rows_item import PostV1LeadsNotesListResponseRowsItem
+    from .post_v1leads_sources_create_response import PostV1LeadsSourcesCreateResponse
+    from .post_v1leads_sources_delete_response import PostV1LeadsSourcesDeleteResponse
+    from .post_v1leads_sources_list_response import PostV1LeadsSourcesListResponse
+    from .post_v1leads_sources_list_response_rows_item import PostV1LeadsSourcesListResponseRowsItem
+    from .post_v1leads_sources_options_response import PostV1LeadsSourcesOptionsResponse
+    from .post_v1leads_sources_options_response_rows_item import PostV1LeadsSourcesOptionsResponseRowsItem
+    from .post_v1leads_sources_update_response import PostV1LeadsSourcesUpdateResponse
+    from .post_v1leads_update_request_documents_item import PostV1LeadsUpdateRequestDocumentsItem
+    from .post_v1leads_update_request_status import PostV1LeadsUpdateRequestStatus
+    from .post_v1leads_update_response import PostV1LeadsUpdateResponse
+    from .post_v1leads_update_response_status import PostV1LeadsUpdateResponseStatus
     from .post_v1partners_addresses_create_request_type import PostV1PartnersAddressesCreateRequestType
     from .post_v1partners_addresses_create_response import PostV1PartnersAddressesCreateResponse
     from .post_v1partners_addresses_delete_response import PostV1PartnersAddressesDeleteResponse
@@ -59,22 +96,72 @@ if typing.TYPE_CHECKING:
     from .post_v1partners_contacts_list_response_rows_item import PostV1PartnersContactsListResponseRowsItem
     from .post_v1partners_contacts_update_response import PostV1PartnersContactsUpdateResponse
     from .post_v1partners_create_request_address import PostV1PartnersCreateRequestAddress
+    from .post_v1partners_create_request_correspondence_address import PostV1PartnersCreateRequestCorrespondenceAddress
+    from .post_v1partners_create_request_legal_country_class import PostV1PartnersCreateRequestLegalCountryClass
     from .post_v1partners_create_request_type import PostV1PartnersCreateRequestType
     from .post_v1partners_create_response import PostV1PartnersCreateResponse
     from .post_v1partners_create_response_address import PostV1PartnersCreateResponseAddress
+    from .post_v1partners_create_response_correspondence_address import (
+        PostV1PartnersCreateResponseCorrespondenceAddress,
+    )
+    from .post_v1partners_create_response_legal_country_class import PostV1PartnersCreateResponseLegalCountryClass
     from .post_v1partners_create_response_type import PostV1PartnersCreateResponseType
     from .post_v1partners_credit_check_response import PostV1PartnersCreditCheckResponse
+    from .post_v1partners_debt_reminders_list_request_filter_item import (
+        PostV1PartnersDebtRemindersListRequestFilterItem,
+    )
+    from .post_v1partners_debt_reminders_list_request_filter_item_op import (
+        PostV1PartnersDebtRemindersListRequestFilterItemOp,
+    )
+    from .post_v1partners_debt_reminders_list_request_filter_item_value import (
+        PostV1PartnersDebtRemindersListRequestFilterItemValue,
+    )
+    from .post_v1partners_debt_reminders_list_request_filter_item_value_three_item import (
+        PostV1PartnersDebtRemindersListRequestFilterItemValueThreeItem,
+    )
+    from .post_v1partners_debt_reminders_list_request_sort_item import PostV1PartnersDebtRemindersListRequestSortItem
+    from .post_v1partners_debt_reminders_list_request_sort_item_dir import (
+        PostV1PartnersDebtRemindersListRequestSortItemDir,
+    )
+    from .post_v1partners_debt_reminders_list_response import PostV1PartnersDebtRemindersListResponse
+    from .post_v1partners_debt_reminders_list_response_rows_item import PostV1PartnersDebtRemindersListResponseRowsItem
+    from .post_v1partners_debt_reminders_preview_response import PostV1PartnersDebtRemindersPreviewResponse
+    from .post_v1partners_debt_reminders_preview_response_rows_item import (
+        PostV1PartnersDebtRemindersPreviewResponseRowsItem,
+    )
+    from .post_v1partners_debt_reminders_preview_response_rows_item_invoices_item import (
+        PostV1PartnersDebtRemindersPreviewResponseRowsItemInvoicesItem,
+    )
+    from .post_v1partners_debt_reminders_preview_response_rows_item_locale import (
+        PostV1PartnersDebtRemindersPreviewResponseRowsItemLocale,
+    )
     from .post_v1partners_delete_response import PostV1PartnersDeleteResponse
+    from .post_v1partners_files_list_response import PostV1PartnersFilesListResponse
+    from .post_v1partners_files_list_response_rows_item import PostV1PartnersFilesListResponseRowsItem
     from .post_v1partners_find_or_create_request_address import PostV1PartnersFindOrCreateRequestAddress
+    from .post_v1partners_find_or_create_request_correspondence_address import (
+        PostV1PartnersFindOrCreateRequestCorrespondenceAddress,
+    )
+    from .post_v1partners_find_or_create_request_legal_country_class import (
+        PostV1PartnersFindOrCreateRequestLegalCountryClass,
+    )
     from .post_v1partners_find_or_create_request_type import PostV1PartnersFindOrCreateRequestType
     from .post_v1partners_find_or_create_response import PostV1PartnersFindOrCreateResponse
     from .post_v1partners_find_or_create_response_partner import PostV1PartnersFindOrCreateResponsePartner
     from .post_v1partners_find_or_create_response_partner_address import (
         PostV1PartnersFindOrCreateResponsePartnerAddress,
     )
+    from .post_v1partners_find_or_create_response_partner_correspondence_address import (
+        PostV1PartnersFindOrCreateResponsePartnerCorrespondenceAddress,
+    )
+    from .post_v1partners_find_or_create_response_partner_legal_country_class import (
+        PostV1PartnersFindOrCreateResponsePartnerLegalCountryClass,
+    )
     from .post_v1partners_find_or_create_response_partner_type import PostV1PartnersFindOrCreateResponsePartnerType
     from .post_v1partners_get_response import PostV1PartnersGetResponse
     from .post_v1partners_get_response_address import PostV1PartnersGetResponseAddress
+    from .post_v1partners_get_response_correspondence_address import PostV1PartnersGetResponseCorrespondenceAddress
+    from .post_v1partners_get_response_legal_country_class import PostV1PartnersGetResponseLegalCountryClass
     from .post_v1partners_get_response_type import PostV1PartnersGetResponseType
     from .post_v1partners_groups_create_response import PostV1PartnersGroupsCreateResponse
     from .post_v1partners_groups_delete_response import PostV1PartnersGroupsDeleteResponse
@@ -114,6 +201,12 @@ if typing.TYPE_CHECKING:
     from .post_v1partners_list_response import PostV1PartnersListResponse
     from .post_v1partners_list_response_rows_item import PostV1PartnersListResponseRowsItem
     from .post_v1partners_list_response_rows_item_address import PostV1PartnersListResponseRowsItemAddress
+    from .post_v1partners_list_response_rows_item_correspondence_address import (
+        PostV1PartnersListResponseRowsItemCorrespondenceAddress,
+    )
+    from .post_v1partners_list_response_rows_item_legal_country_class import (
+        PostV1PartnersListResponseRowsItemLegalCountryClass,
+    )
     from .post_v1partners_list_response_rows_item_type import PostV1PartnersListResponseRowsItemType
     from .post_v1partners_statuses_create_response import PostV1PartnersStatusesCreateResponse
     from .post_v1partners_statuses_delete_response import PostV1PartnersStatusesDeleteResponse
@@ -121,9 +214,15 @@ if typing.TYPE_CHECKING:
     from .post_v1partners_statuses_list_response_rows_item import PostV1PartnersStatusesListResponseRowsItem
     from .post_v1partners_statuses_update_response import PostV1PartnersStatusesUpdateResponse
     from .post_v1partners_update_request_address import PostV1PartnersUpdateRequestAddress
+    from .post_v1partners_update_request_correspondence_address import PostV1PartnersUpdateRequestCorrespondenceAddress
+    from .post_v1partners_update_request_legal_country_class import PostV1PartnersUpdateRequestLegalCountryClass
     from .post_v1partners_update_request_type import PostV1PartnersUpdateRequestType
     from .post_v1partners_update_response import PostV1PartnersUpdateResponse
     from .post_v1partners_update_response_address import PostV1PartnersUpdateResponseAddress
+    from .post_v1partners_update_response_correspondence_address import (
+        PostV1PartnersUpdateResponseCorrespondenceAddress,
+    )
+    from .post_v1partners_update_response_legal_country_class import PostV1PartnersUpdateResponseLegalCountryClass
     from .post_v1partners_update_response_type import PostV1PartnersUpdateResponseType
     from .post_v1partners_validate_vat_response import PostV1PartnersValidateVatResponse
     from .post_v1partners_vat_reviews_list_request_filter_item import PostV1PartnersVatReviewsListRequestFilterItem
@@ -159,6 +258,43 @@ if typing.TYPE_CHECKING:
     )
     from .post_v1partners_vat_reviews_resolve_response_status import PostV1PartnersVatReviewsResolveResponseStatus
 _dynamic_imports: typing.Dict[str, str] = {
+    "PostV1LeadsConvertRequestPartnerType": ".post_v1leads_convert_request_partner_type",
+    "PostV1LeadsConvertResponse": ".post_v1leads_convert_response",
+    "PostV1LeadsConvertResponseLead": ".post_v1leads_convert_response_lead",
+    "PostV1LeadsConvertResponseLeadStatus": ".post_v1leads_convert_response_lead_status",
+    "PostV1LeadsCreateRequestDocumentsItem": ".post_v1leads_create_request_documents_item",
+    "PostV1LeadsCreateRequestStatus": ".post_v1leads_create_request_status",
+    "PostV1LeadsCreateResponse": ".post_v1leads_create_response",
+    "PostV1LeadsCreateResponseStatus": ".post_v1leads_create_response_status",
+    "PostV1LeadsDeleteResponse": ".post_v1leads_delete_response",
+    "PostV1LeadsFilesListResponse": ".post_v1leads_files_list_response",
+    "PostV1LeadsFilesListResponseRowsItem": ".post_v1leads_files_list_response_rows_item",
+    "PostV1LeadsGetResponse": ".post_v1leads_get_response",
+    "PostV1LeadsGetResponseStatus": ".post_v1leads_get_response_status",
+    "PostV1LeadsListRequestFilterItem": ".post_v1leads_list_request_filter_item",
+    "PostV1LeadsListRequestFilterItemOp": ".post_v1leads_list_request_filter_item_op",
+    "PostV1LeadsListRequestFilterItemValue": ".post_v1leads_list_request_filter_item_value",
+    "PostV1LeadsListRequestFilterItemValueThreeItem": ".post_v1leads_list_request_filter_item_value_three_item",
+    "PostV1LeadsListRequestSortItem": ".post_v1leads_list_request_sort_item",
+    "PostV1LeadsListRequestSortItemDir": ".post_v1leads_list_request_sort_item_dir",
+    "PostV1LeadsListResponse": ".post_v1leads_list_response",
+    "PostV1LeadsListResponseRowsItem": ".post_v1leads_list_response_rows_item",
+    "PostV1LeadsListResponseRowsItemStatus": ".post_v1leads_list_response_rows_item_status",
+    "PostV1LeadsNotesCreateResponse": ".post_v1leads_notes_create_response",
+    "PostV1LeadsNotesDeleteResponse": ".post_v1leads_notes_delete_response",
+    "PostV1LeadsNotesListResponse": ".post_v1leads_notes_list_response",
+    "PostV1LeadsNotesListResponseRowsItem": ".post_v1leads_notes_list_response_rows_item",
+    "PostV1LeadsSourcesCreateResponse": ".post_v1leads_sources_create_response",
+    "PostV1LeadsSourcesDeleteResponse": ".post_v1leads_sources_delete_response",
+    "PostV1LeadsSourcesListResponse": ".post_v1leads_sources_list_response",
+    "PostV1LeadsSourcesListResponseRowsItem": ".post_v1leads_sources_list_response_rows_item",
+    "PostV1LeadsSourcesOptionsResponse": ".post_v1leads_sources_options_response",
+    "PostV1LeadsSourcesOptionsResponseRowsItem": ".post_v1leads_sources_options_response_rows_item",
+    "PostV1LeadsSourcesUpdateResponse": ".post_v1leads_sources_update_response",
+    "PostV1LeadsUpdateRequestDocumentsItem": ".post_v1leads_update_request_documents_item",
+    "PostV1LeadsUpdateRequestStatus": ".post_v1leads_update_request_status",
+    "PostV1LeadsUpdateResponse": ".post_v1leads_update_response",
+    "PostV1LeadsUpdateResponseStatus": ".post_v1leads_update_response_status",
     "PostV1PartnersAddressesCreateRequestType": ".post_v1partners_addresses_create_request_type",
     "PostV1PartnersAddressesCreateResponse": ".post_v1partners_addresses_create_response",
     "PostV1PartnersAddressesDeleteResponse": ".post_v1partners_addresses_delete_response",
@@ -196,20 +332,44 @@ _dynamic_imports: typing.Dict[str, str] = {
     "PostV1PartnersContactsListResponseRowsItem": ".post_v1partners_contacts_list_response_rows_item",
     "PostV1PartnersContactsUpdateResponse": ".post_v1partners_contacts_update_response",
     "PostV1PartnersCreateRequestAddress": ".post_v1partners_create_request_address",
+    "PostV1PartnersCreateRequestCorrespondenceAddress": ".post_v1partners_create_request_correspondence_address",
+    "PostV1PartnersCreateRequestLegalCountryClass": ".post_v1partners_create_request_legal_country_class",
     "PostV1PartnersCreateRequestType": ".post_v1partners_create_request_type",
     "PostV1PartnersCreateResponse": ".post_v1partners_create_response",
     "PostV1PartnersCreateResponseAddress": ".post_v1partners_create_response_address",
+    "PostV1PartnersCreateResponseCorrespondenceAddress": ".post_v1partners_create_response_correspondence_address",
+    "PostV1PartnersCreateResponseLegalCountryClass": ".post_v1partners_create_response_legal_country_class",
     "PostV1PartnersCreateResponseType": ".post_v1partners_create_response_type",
     "PostV1PartnersCreditCheckResponse": ".post_v1partners_credit_check_response",
+    "PostV1PartnersDebtRemindersListRequestFilterItem": ".post_v1partners_debt_reminders_list_request_filter_item",
+    "PostV1PartnersDebtRemindersListRequestFilterItemOp": ".post_v1partners_debt_reminders_list_request_filter_item_op",
+    "PostV1PartnersDebtRemindersListRequestFilterItemValue": ".post_v1partners_debt_reminders_list_request_filter_item_value",
+    "PostV1PartnersDebtRemindersListRequestFilterItemValueThreeItem": ".post_v1partners_debt_reminders_list_request_filter_item_value_three_item",
+    "PostV1PartnersDebtRemindersListRequestSortItem": ".post_v1partners_debt_reminders_list_request_sort_item",
+    "PostV1PartnersDebtRemindersListRequestSortItemDir": ".post_v1partners_debt_reminders_list_request_sort_item_dir",
+    "PostV1PartnersDebtRemindersListResponse": ".post_v1partners_debt_reminders_list_response",
+    "PostV1PartnersDebtRemindersListResponseRowsItem": ".post_v1partners_debt_reminders_list_response_rows_item",
+    "PostV1PartnersDebtRemindersPreviewResponse": ".post_v1partners_debt_reminders_preview_response",
+    "PostV1PartnersDebtRemindersPreviewResponseRowsItem": ".post_v1partners_debt_reminders_preview_response_rows_item",
+    "PostV1PartnersDebtRemindersPreviewResponseRowsItemInvoicesItem": ".post_v1partners_debt_reminders_preview_response_rows_item_invoices_item",
+    "PostV1PartnersDebtRemindersPreviewResponseRowsItemLocale": ".post_v1partners_debt_reminders_preview_response_rows_item_locale",
     "PostV1PartnersDeleteResponse": ".post_v1partners_delete_response",
+    "PostV1PartnersFilesListResponse": ".post_v1partners_files_list_response",
+    "PostV1PartnersFilesListResponseRowsItem": ".post_v1partners_files_list_response_rows_item",
     "PostV1PartnersFindOrCreateRequestAddress": ".post_v1partners_find_or_create_request_address",
+    "PostV1PartnersFindOrCreateRequestCorrespondenceAddress": ".post_v1partners_find_or_create_request_correspondence_address",
+    "PostV1PartnersFindOrCreateRequestLegalCountryClass": ".post_v1partners_find_or_create_request_legal_country_class",
     "PostV1PartnersFindOrCreateRequestType": ".post_v1partners_find_or_create_request_type",
     "PostV1PartnersFindOrCreateResponse": ".post_v1partners_find_or_create_response",
     "PostV1PartnersFindOrCreateResponsePartner": ".post_v1partners_find_or_create_response_partner",
     "PostV1PartnersFindOrCreateResponsePartnerAddress": ".post_v1partners_find_or_create_response_partner_address",
+    "PostV1PartnersFindOrCreateResponsePartnerCorrespondenceAddress": ".post_v1partners_find_or_create_response_partner_correspondence_address",
+    "PostV1PartnersFindOrCreateResponsePartnerLegalCountryClass": ".post_v1partners_find_or_create_response_partner_legal_country_class",
     "PostV1PartnersFindOrCreateResponsePartnerType": ".post_v1partners_find_or_create_response_partner_type",
     "PostV1PartnersGetResponse": ".post_v1partners_get_response",
     "PostV1PartnersGetResponseAddress": ".post_v1partners_get_response_address",
+    "PostV1PartnersGetResponseCorrespondenceAddress": ".post_v1partners_get_response_correspondence_address",
+    "PostV1PartnersGetResponseLegalCountryClass": ".post_v1partners_get_response_legal_country_class",
     "PostV1PartnersGetResponseType": ".post_v1partners_get_response_type",
     "PostV1PartnersGroupsCreateResponse": ".post_v1partners_groups_create_response",
     "PostV1PartnersGroupsDeleteResponse": ".post_v1partners_groups_delete_response",
@@ -241,6 +401,8 @@ _dynamic_imports: typing.Dict[str, str] = {
     "PostV1PartnersListResponse": ".post_v1partners_list_response",
     "PostV1PartnersListResponseRowsItem": ".post_v1partners_list_response_rows_item",
     "PostV1PartnersListResponseRowsItemAddress": ".post_v1partners_list_response_rows_item_address",
+    "PostV1PartnersListResponseRowsItemCorrespondenceAddress": ".post_v1partners_list_response_rows_item_correspondence_address",
+    "PostV1PartnersListResponseRowsItemLegalCountryClass": ".post_v1partners_list_response_rows_item_legal_country_class",
     "PostV1PartnersListResponseRowsItemType": ".post_v1partners_list_response_rows_item_type",
     "PostV1PartnersStatusesCreateResponse": ".post_v1partners_statuses_create_response",
     "PostV1PartnersStatusesDeleteResponse": ".post_v1partners_statuses_delete_response",
@@ -248,9 +410,13 @@ _dynamic_imports: typing.Dict[str, str] = {
     "PostV1PartnersStatusesListResponseRowsItem": ".post_v1partners_statuses_list_response_rows_item",
     "PostV1PartnersStatusesUpdateResponse": ".post_v1partners_statuses_update_response",
     "PostV1PartnersUpdateRequestAddress": ".post_v1partners_update_request_address",
+    "PostV1PartnersUpdateRequestCorrespondenceAddress": ".post_v1partners_update_request_correspondence_address",
+    "PostV1PartnersUpdateRequestLegalCountryClass": ".post_v1partners_update_request_legal_country_class",
     "PostV1PartnersUpdateRequestType": ".post_v1partners_update_request_type",
     "PostV1PartnersUpdateResponse": ".post_v1partners_update_response",
     "PostV1PartnersUpdateResponseAddress": ".post_v1partners_update_response_address",
+    "PostV1PartnersUpdateResponseCorrespondenceAddress": ".post_v1partners_update_response_correspondence_address",
+    "PostV1PartnersUpdateResponseLegalCountryClass": ".post_v1partners_update_response_legal_country_class",
     "PostV1PartnersUpdateResponseType": ".post_v1partners_update_response_type",
     "PostV1PartnersValidateVatResponse": ".post_v1partners_validate_vat_response",
     "PostV1PartnersVatReviewsListRequestFilterItem": ".post_v1partners_vat_reviews_list_request_filter_item",
@@ -296,6 +462,43 @@ def __dir__():
 
 
 __all__ = [
+    "PostV1LeadsConvertRequestPartnerType",
+    "PostV1LeadsConvertResponse",
+    "PostV1LeadsConvertResponseLead",
+    "PostV1LeadsConvertResponseLeadStatus",
+    "PostV1LeadsCreateRequestDocumentsItem",
+    "PostV1LeadsCreateRequestStatus",
+    "PostV1LeadsCreateResponse",
+    "PostV1LeadsCreateResponseStatus",
+    "PostV1LeadsDeleteResponse",
+    "PostV1LeadsFilesListResponse",
+    "PostV1LeadsFilesListResponseRowsItem",
+    "PostV1LeadsGetResponse",
+    "PostV1LeadsGetResponseStatus",
+    "PostV1LeadsListRequestFilterItem",
+    "PostV1LeadsListRequestFilterItemOp",
+    "PostV1LeadsListRequestFilterItemValue",
+    "PostV1LeadsListRequestFilterItemValueThreeItem",
+    "PostV1LeadsListRequestSortItem",
+    "PostV1LeadsListRequestSortItemDir",
+    "PostV1LeadsListResponse",
+    "PostV1LeadsListResponseRowsItem",
+    "PostV1LeadsListResponseRowsItemStatus",
+    "PostV1LeadsNotesCreateResponse",
+    "PostV1LeadsNotesDeleteResponse",
+    "PostV1LeadsNotesListResponse",
+    "PostV1LeadsNotesListResponseRowsItem",
+    "PostV1LeadsSourcesCreateResponse",
+    "PostV1LeadsSourcesDeleteResponse",
+    "PostV1LeadsSourcesListResponse",
+    "PostV1LeadsSourcesListResponseRowsItem",
+    "PostV1LeadsSourcesOptionsResponse",
+    "PostV1LeadsSourcesOptionsResponseRowsItem",
+    "PostV1LeadsSourcesUpdateResponse",
+    "PostV1LeadsUpdateRequestDocumentsItem",
+    "PostV1LeadsUpdateRequestStatus",
+    "PostV1LeadsUpdateResponse",
+    "PostV1LeadsUpdateResponseStatus",
     "PostV1PartnersAddressesCreateRequestType",
     "PostV1PartnersAddressesCreateResponse",
     "PostV1PartnersAddressesDeleteResponse",
@@ -333,20 +536,44 @@ __all__ = [
     "PostV1PartnersContactsListResponseRowsItem",
     "PostV1PartnersContactsUpdateResponse",
     "PostV1PartnersCreateRequestAddress",
+    "PostV1PartnersCreateRequestCorrespondenceAddress",
+    "PostV1PartnersCreateRequestLegalCountryClass",
     "PostV1PartnersCreateRequestType",
     "PostV1PartnersCreateResponse",
     "PostV1PartnersCreateResponseAddress",
+    "PostV1PartnersCreateResponseCorrespondenceAddress",
+    "PostV1PartnersCreateResponseLegalCountryClass",
     "PostV1PartnersCreateResponseType",
     "PostV1PartnersCreditCheckResponse",
+    "PostV1PartnersDebtRemindersListRequestFilterItem",
+    "PostV1PartnersDebtRemindersListRequestFilterItemOp",
+    "PostV1PartnersDebtRemindersListRequestFilterItemValue",
+    "PostV1PartnersDebtRemindersListRequestFilterItemValueThreeItem",
+    "PostV1PartnersDebtRemindersListRequestSortItem",
+    "PostV1PartnersDebtRemindersListRequestSortItemDir",
+    "PostV1PartnersDebtRemindersListResponse",
+    "PostV1PartnersDebtRemindersListResponseRowsItem",
+    "PostV1PartnersDebtRemindersPreviewResponse",
+    "PostV1PartnersDebtRemindersPreviewResponseRowsItem",
+    "PostV1PartnersDebtRemindersPreviewResponseRowsItemInvoicesItem",
+    "PostV1PartnersDebtRemindersPreviewResponseRowsItemLocale",
     "PostV1PartnersDeleteResponse",
+    "PostV1PartnersFilesListResponse",
+    "PostV1PartnersFilesListResponseRowsItem",
     "PostV1PartnersFindOrCreateRequestAddress",
+    "PostV1PartnersFindOrCreateRequestCorrespondenceAddress",
+    "PostV1PartnersFindOrCreateRequestLegalCountryClass",
     "PostV1PartnersFindOrCreateRequestType",
     "PostV1PartnersFindOrCreateResponse",
     "PostV1PartnersFindOrCreateResponsePartner",
     "PostV1PartnersFindOrCreateResponsePartnerAddress",
+    "PostV1PartnersFindOrCreateResponsePartnerCorrespondenceAddress",
+    "PostV1PartnersFindOrCreateResponsePartnerLegalCountryClass",
     "PostV1PartnersFindOrCreateResponsePartnerType",
     "PostV1PartnersGetResponse",
     "PostV1PartnersGetResponseAddress",
+    "PostV1PartnersGetResponseCorrespondenceAddress",
+    "PostV1PartnersGetResponseLegalCountryClass",
     "PostV1PartnersGetResponseType",
     "PostV1PartnersGroupsCreateResponse",
     "PostV1PartnersGroupsDeleteResponse",
@@ -378,6 +605,8 @@ __all__ = [
     "PostV1PartnersListResponse",
     "PostV1PartnersListResponseRowsItem",
     "PostV1PartnersListResponseRowsItemAddress",
+    "PostV1PartnersListResponseRowsItemCorrespondenceAddress",
+    "PostV1PartnersListResponseRowsItemLegalCountryClass",
     "PostV1PartnersListResponseRowsItemType",
     "PostV1PartnersStatusesCreateResponse",
     "PostV1PartnersStatusesDeleteResponse",
@@ -385,9 +614,13 @@ __all__ = [
     "PostV1PartnersStatusesListResponseRowsItem",
     "PostV1PartnersStatusesUpdateResponse",
     "PostV1PartnersUpdateRequestAddress",
+    "PostV1PartnersUpdateRequestCorrespondenceAddress",
+    "PostV1PartnersUpdateRequestLegalCountryClass",
     "PostV1PartnersUpdateRequestType",
     "PostV1PartnersUpdateResponse",
     "PostV1PartnersUpdateResponseAddress",
+    "PostV1PartnersUpdateResponseCorrespondenceAddress",
+    "PostV1PartnersUpdateResponseLegalCountryClass",
     "PostV1PartnersUpdateResponseType",
     "PostV1PartnersValidateVatResponse",
     "PostV1PartnersVatReviewsListRequestFilterItem",

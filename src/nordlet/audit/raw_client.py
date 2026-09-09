@@ -39,6 +39,7 @@ class RawAuditClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1AuditListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1AuditListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[PostV1AuditListResponse]:
         """
@@ -51,6 +52,9 @@ class RawAuditClient:
         sort : typing.Optional[typing.Sequence[PostV1AuditListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1AuditListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -72,6 +76,7 @@ class RawAuditClient:
                 "filter": convert_and_respect_annotation_metadata(
                     object_=filter, annotation=typing.Sequence[PostV1AuditListRequestFilterItem], direction="write"
                 ),
+                "totals": totals,
             },
             headers={
                 "content-type": "application/json",
@@ -198,6 +203,7 @@ class AsyncRawAuditClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1AuditListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1AuditListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[PostV1AuditListResponse]:
         """
@@ -210,6 +216,9 @@ class AsyncRawAuditClient:
         sort : typing.Optional[typing.Sequence[PostV1AuditListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1AuditListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -231,6 +240,7 @@ class AsyncRawAuditClient:
                 "filter": convert_and_respect_annotation_metadata(
                     object_=filter, annotation=typing.Sequence[PostV1AuditListRequestFilterItem], direction="write"
                 ),
+                "totals": totals,
             },
             headers={
                 "content-type": "application/json",

@@ -104,6 +104,7 @@ class AgreementsClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1AgreementsTypesListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1AgreementsTypesListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1AgreementsTypesListResponse:
         """
@@ -116,6 +117,9 @@ class AgreementsClient:
         sort : typing.Optional[typing.Sequence[PostV1AgreementsTypesListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1AgreementsTypesListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -135,7 +139,7 @@ class AgreementsClient:
         client.agreements.post_v1agreements_types_list()
         """
         _response = self._raw_client.post_v1agreements_types_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 
@@ -383,6 +387,7 @@ class AgreementsClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1AgreementsAgreementsListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1AgreementsAgreementsListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1AgreementsAgreementsListResponse:
         """
@@ -395,6 +400,9 @@ class AgreementsClient:
         sort : typing.Optional[typing.Sequence[PostV1AgreementsAgreementsListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1AgreementsAgreementsListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -414,7 +422,7 @@ class AgreementsClient:
         client.agreements.post_v1agreements_agreements_list()
         """
         _response = self._raw_client.post_v1agreements_agreements_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 
@@ -560,6 +568,7 @@ class AgreementsClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1AgreementsInsurancePoliciesListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1AgreementsInsurancePoliciesListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1AgreementsInsurancePoliciesListResponse:
         """
@@ -572,6 +581,9 @@ class AgreementsClient:
         sort : typing.Optional[typing.Sequence[PostV1AgreementsInsurancePoliciesListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1AgreementsInsurancePoliciesListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -591,7 +603,7 @@ class AgreementsClient:
         client.agreements.post_v1agreements_insurance_policies_list()
         """
         _response = self._raw_client.post_v1agreements_insurance_policies_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 
@@ -691,6 +703,7 @@ class AsyncAgreementsClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1AgreementsTypesListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1AgreementsTypesListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1AgreementsTypesListResponse:
         """
@@ -703,6 +716,9 @@ class AsyncAgreementsClient:
         sort : typing.Optional[typing.Sequence[PostV1AgreementsTypesListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1AgreementsTypesListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -730,7 +746,7 @@ class AsyncAgreementsClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.post_v1agreements_types_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 
@@ -1010,6 +1026,7 @@ class AsyncAgreementsClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1AgreementsAgreementsListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1AgreementsAgreementsListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1AgreementsAgreementsListResponse:
         """
@@ -1022,6 +1039,9 @@ class AsyncAgreementsClient:
         sort : typing.Optional[typing.Sequence[PostV1AgreementsAgreementsListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1AgreementsAgreementsListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -1049,7 +1069,7 @@ class AsyncAgreementsClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.post_v1agreements_agreements_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 
@@ -1219,6 +1239,7 @@ class AsyncAgreementsClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1AgreementsInsurancePoliciesListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1AgreementsInsurancePoliciesListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1AgreementsInsurancePoliciesListResponse:
         """
@@ -1231,6 +1252,9 @@ class AsyncAgreementsClient:
         sort : typing.Optional[typing.Sequence[PostV1AgreementsInsurancePoliciesListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1AgreementsInsurancePoliciesListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -1258,7 +1282,7 @@ class AsyncAgreementsClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.post_v1agreements_insurance_policies_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 

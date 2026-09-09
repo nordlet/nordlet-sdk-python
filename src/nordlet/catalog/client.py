@@ -17,7 +17,14 @@ from .types.post_v1catalog_items_create_request_translations_value import (
 from .types.post_v1catalog_items_create_request_type import PostV1CatalogItemsCreateRequestType
 from .types.post_v1catalog_items_create_response import PostV1CatalogItemsCreateResponse
 from .types.post_v1catalog_items_delete_response import PostV1CatalogItemsDeleteResponse
+from .types.post_v1catalog_items_files_list_response import PostV1CatalogItemsFilesListResponse
 from .types.post_v1catalog_items_get_response import PostV1CatalogItemsGetResponse
+from .types.post_v1catalog_items_kinds_create_request_saft_type import PostV1CatalogItemsKindsCreateRequestSaftType
+from .types.post_v1catalog_items_kinds_create_response import PostV1CatalogItemsKindsCreateResponse
+from .types.post_v1catalog_items_kinds_delete_response import PostV1CatalogItemsKindsDeleteResponse
+from .types.post_v1catalog_items_kinds_list_response import PostV1CatalogItemsKindsListResponse
+from .types.post_v1catalog_items_kinds_update_request_saft_type import PostV1CatalogItemsKindsUpdateRequestSaftType
+from .types.post_v1catalog_items_kinds_update_response import PostV1CatalogItemsKindsUpdateResponse
 from .types.post_v1catalog_items_list_request_filter_item import PostV1CatalogItemsListRequestFilterItem
 from .types.post_v1catalog_items_list_request_sort_item import PostV1CatalogItemsListRequestSortItem
 from .types.post_v1catalog_items_list_response import PostV1CatalogItemsListResponse
@@ -40,6 +47,12 @@ from .types.post_v1catalog_price_lists_items_set_request_items_item import (
 from .types.post_v1catalog_price_lists_items_set_response import PostV1CatalogPriceListsItemsSetResponse
 from .types.post_v1catalog_price_lists_list_response import PostV1CatalogPriceListsListResponse
 from .types.post_v1catalog_price_lists_update_response import PostV1CatalogPriceListsUpdateResponse
+from .types.post_v1catalog_units_create_response import PostV1CatalogUnitsCreateResponse
+from .types.post_v1catalog_units_delete_response import PostV1CatalogUnitsDeleteResponse
+from .types.post_v1catalog_units_list_response import PostV1CatalogUnitsListResponse
+from .types.post_v1catalog_units_options_request_locale import PostV1CatalogUnitsOptionsRequestLocale
+from .types.post_v1catalog_units_options_response import PostV1CatalogUnitsOptionsResponse
+from .types.post_v1catalog_units_update_response import PostV1CatalogUnitsUpdateResponse
 
 # this is used as the default value for optional parameters
 OMIT = typing.cast(typing.Any, ...)
@@ -84,6 +97,33 @@ class CatalogClient:
         document_ref: typing.Optional[str] = OMIT,
         translations: typing.Optional[typing.Dict[str, PostV1CatalogItemsCreateRequestTranslationsValue]] = OMIT,
         components: typing.Optional[typing.Sequence[PostV1CatalogItemsCreateRequestComponentsItem]] = OMIT,
+        kind_id: typing.Optional[str] = OMIT,
+        sale_account_code: typing.Optional[str] = OMIT,
+        purchase_account_code: typing.Optional[str] = OMIT,
+        expense_account_code: typing.Optional[str] = OMIT,
+        manufacturer: typing.Optional[str] = OMIT,
+        gross_mass_kg: typing.Optional[str] = OMIT,
+        min_quantity: typing.Optional[str] = OMIT,
+        cost_price: typing.Optional[str] = OMIT,
+        is_free_price: typing.Optional[bool] = OMIT,
+        external_id: typing.Optional[str] = OMIT,
+        is_returnable: typing.Optional[bool] = OMIT,
+        comment_required: typing.Optional[bool] = OMIT,
+        price_from: typing.Optional[str] = OMIT,
+        price_to: typing.Optional[str] = OMIT,
+        min_price: typing.Optional[str] = OMIT,
+        discount_percent: typing.Optional[str] = OMIT,
+        max_discount_percent: typing.Optional[str] = OMIT,
+        loyalty_points: typing.Optional[int] = OMIT,
+        department: typing.Optional[str] = OMIT,
+        age_restriction: typing.Optional[int] = OMIT,
+        package_quantity: typing.Optional[str] = OMIT,
+        tara_code: typing.Optional[str] = OMIT,
+        certificate_number: typing.Optional[str] = OMIT,
+        certificate_date: typing.Optional[str] = OMIT,
+        valid_from: typing.Optional[str] = OMIT,
+        valid_to: typing.Optional[str] = OMIT,
+        pos_flags: typing.Optional[typing.Dict[str, bool]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1CatalogItemsCreateResponse:
         """
@@ -131,6 +171,60 @@ class CatalogClient:
 
         components : typing.Optional[typing.Sequence[PostV1CatalogItemsCreateRequestComponentsItem]]
 
+        kind_id : typing.Optional[str]
+
+        sale_account_code : typing.Optional[str]
+
+        purchase_account_code : typing.Optional[str]
+
+        expense_account_code : typing.Optional[str]
+
+        manufacturer : typing.Optional[str]
+
+        gross_mass_kg : typing.Optional[str]
+
+        min_quantity : typing.Optional[str]
+
+        cost_price : typing.Optional[str]
+
+        is_free_price : typing.Optional[bool]
+
+        external_id : typing.Optional[str]
+
+        is_returnable : typing.Optional[bool]
+
+        comment_required : typing.Optional[bool]
+
+        price_from : typing.Optional[str]
+
+        price_to : typing.Optional[str]
+
+        min_price : typing.Optional[str]
+
+        discount_percent : typing.Optional[str]
+
+        max_discount_percent : typing.Optional[str]
+
+        loyalty_points : typing.Optional[int]
+
+        department : typing.Optional[str]
+
+        age_restriction : typing.Optional[int]
+
+        package_quantity : typing.Optional[str]
+
+        tara_code : typing.Optional[str]
+
+        certificate_number : typing.Optional[str]
+
+        certificate_date : typing.Optional[str]
+
+        valid_from : typing.Optional[str]
+
+        valid_to : typing.Optional[str]
+
+        pos_flags : typing.Optional[typing.Dict[str, bool]]
+
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
@@ -172,6 +266,33 @@ class CatalogClient:
             document_ref=document_ref,
             translations=translations,
             components=components,
+            kind_id=kind_id,
+            sale_account_code=sale_account_code,
+            purchase_account_code=purchase_account_code,
+            expense_account_code=expense_account_code,
+            manufacturer=manufacturer,
+            gross_mass_kg=gross_mass_kg,
+            min_quantity=min_quantity,
+            cost_price=cost_price,
+            is_free_price=is_free_price,
+            external_id=external_id,
+            is_returnable=is_returnable,
+            comment_required=comment_required,
+            price_from=price_from,
+            price_to=price_to,
+            min_price=min_price,
+            discount_percent=discount_percent,
+            max_discount_percent=max_discount_percent,
+            loyalty_points=loyalty_points,
+            department=department,
+            age_restriction=age_restriction,
+            package_quantity=package_quantity,
+            tara_code=tara_code,
+            certificate_number=certificate_number,
+            certificate_date=certificate_date,
+            valid_from=valid_from,
+            valid_to=valid_to,
+            pos_flags=pos_flags,
             request_options=request_options,
         )
         return _response.data
@@ -227,10 +348,39 @@ class CatalogClient:
         supplementary_qty_per_unit: typing.Optional[str] = OMIT,
         description: typing.Optional[str] = OMIT,
         group_id: typing.Optional[str] = OMIT,
-        attributes: typing.Optional[typing.Dict[str, str]] = OMIT,
+        attributes: typing.Optional[typing.Dict[str, typing.Optional[str]]] = OMIT,
         document_ref: typing.Optional[str] = OMIT,
-        translations: typing.Optional[typing.Dict[str, PostV1CatalogItemsUpdateRequestTranslationsValue]] = OMIT,
+        translations: typing.Optional[
+            typing.Dict[str, typing.Optional[PostV1CatalogItemsUpdateRequestTranslationsValue]]
+        ] = OMIT,
         components: typing.Optional[typing.Sequence[PostV1CatalogItemsUpdateRequestComponentsItem]] = OMIT,
+        kind_id: typing.Optional[str] = OMIT,
+        sale_account_code: typing.Optional[str] = OMIT,
+        purchase_account_code: typing.Optional[str] = OMIT,
+        expense_account_code: typing.Optional[str] = OMIT,
+        manufacturer: typing.Optional[str] = OMIT,
+        gross_mass_kg: typing.Optional[str] = OMIT,
+        min_quantity: typing.Optional[str] = OMIT,
+        cost_price: typing.Optional[str] = OMIT,
+        is_free_price: typing.Optional[bool] = OMIT,
+        external_id: typing.Optional[str] = OMIT,
+        is_returnable: typing.Optional[bool] = OMIT,
+        comment_required: typing.Optional[bool] = OMIT,
+        price_from: typing.Optional[str] = OMIT,
+        price_to: typing.Optional[str] = OMIT,
+        min_price: typing.Optional[str] = OMIT,
+        discount_percent: typing.Optional[str] = OMIT,
+        max_discount_percent: typing.Optional[str] = OMIT,
+        loyalty_points: typing.Optional[int] = OMIT,
+        department: typing.Optional[str] = OMIT,
+        age_restriction: typing.Optional[int] = OMIT,
+        package_quantity: typing.Optional[str] = OMIT,
+        tara_code: typing.Optional[str] = OMIT,
+        certificate_number: typing.Optional[str] = OMIT,
+        certificate_date: typing.Optional[str] = OMIT,
+        valid_from: typing.Optional[str] = OMIT,
+        valid_to: typing.Optional[str] = OMIT,
+        pos_flags: typing.Optional[typing.Dict[str, typing.Optional[bool]]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1CatalogItemsUpdateResponse:
         """
@@ -272,13 +422,67 @@ class CatalogClient:
 
         group_id : typing.Optional[str]
 
-        attributes : typing.Optional[typing.Dict[str, str]]
+        attributes : typing.Optional[typing.Dict[str, typing.Optional[str]]]
 
         document_ref : typing.Optional[str]
 
-        translations : typing.Optional[typing.Dict[str, PostV1CatalogItemsUpdateRequestTranslationsValue]]
+        translations : typing.Optional[typing.Dict[str, typing.Optional[PostV1CatalogItemsUpdateRequestTranslationsValue]]]
 
         components : typing.Optional[typing.Sequence[PostV1CatalogItemsUpdateRequestComponentsItem]]
+
+        kind_id : typing.Optional[str]
+
+        sale_account_code : typing.Optional[str]
+
+        purchase_account_code : typing.Optional[str]
+
+        expense_account_code : typing.Optional[str]
+
+        manufacturer : typing.Optional[str]
+
+        gross_mass_kg : typing.Optional[str]
+
+        min_quantity : typing.Optional[str]
+
+        cost_price : typing.Optional[str]
+
+        is_free_price : typing.Optional[bool]
+
+        external_id : typing.Optional[str]
+
+        is_returnable : typing.Optional[bool]
+
+        comment_required : typing.Optional[bool]
+
+        price_from : typing.Optional[str]
+
+        price_to : typing.Optional[str]
+
+        min_price : typing.Optional[str]
+
+        discount_percent : typing.Optional[str]
+
+        max_discount_percent : typing.Optional[str]
+
+        loyalty_points : typing.Optional[int]
+
+        department : typing.Optional[str]
+
+        age_restriction : typing.Optional[int]
+
+        package_quantity : typing.Optional[str]
+
+        tara_code : typing.Optional[str]
+
+        certificate_number : typing.Optional[str]
+
+        certificate_date : typing.Optional[str]
+
+        valid_from : typing.Optional[str]
+
+        valid_to : typing.Optional[str]
+
+        pos_flags : typing.Optional[typing.Dict[str, typing.Optional[bool]]]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -322,6 +526,33 @@ class CatalogClient:
             document_ref=document_ref,
             translations=translations,
             components=components,
+            kind_id=kind_id,
+            sale_account_code=sale_account_code,
+            purchase_account_code=purchase_account_code,
+            expense_account_code=expense_account_code,
+            manufacturer=manufacturer,
+            gross_mass_kg=gross_mass_kg,
+            min_quantity=min_quantity,
+            cost_price=cost_price,
+            is_free_price=is_free_price,
+            external_id=external_id,
+            is_returnable=is_returnable,
+            comment_required=comment_required,
+            price_from=price_from,
+            price_to=price_to,
+            min_price=min_price,
+            discount_percent=discount_percent,
+            max_discount_percent=max_discount_percent,
+            loyalty_points=loyalty_points,
+            department=department,
+            age_restriction=age_restriction,
+            package_quantity=package_quantity,
+            tara_code=tara_code,
+            certificate_number=certificate_number,
+            certificate_date=certificate_date,
+            valid_from=valid_from,
+            valid_to=valid_to,
+            pos_flags=pos_flags,
             request_options=request_options,
         )
         return _response.data
@@ -363,6 +594,7 @@ class CatalogClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1CatalogItemsListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1CatalogItemsListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1CatalogItemsListResponse:
         """
@@ -375,6 +607,9 @@ class CatalogClient:
         sort : typing.Optional[typing.Sequence[PostV1CatalogItemsListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1CatalogItemsListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -394,8 +629,376 @@ class CatalogClient:
         client.catalog.post_v1catalog_items_list()
         """
         _response = self._raw_client.post_v1catalog_items_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
+        return _response.data
+
+    def post_v1catalog_items_files_list(
+        self, *, item_id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1CatalogItemsFilesListResponse:
+        """
+        Parameters
+        ----------
+        item_id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1CatalogItemsFilesListResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.catalog.post_v1catalog_items_files_list(
+            item_id="itemId",
+        )
+        """
+        _response = self._raw_client.post_v1catalog_items_files_list(item_id=item_id, request_options=request_options)
+        return _response.data
+
+    def post_v1catalog_items_kinds_create(
+        self,
+        *,
+        code: str,
+        name: str,
+        saft_type: typing.Optional[PostV1CatalogItemsKindsCreateRequestSaftType] = OMIT,
+        quantity_accounting: typing.Optional[bool] = OMIT,
+        sort_order: typing.Optional[int] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1CatalogItemsKindsCreateResponse:
+        """
+        Parameters
+        ----------
+        code : str
+
+        name : str
+
+        saft_type : typing.Optional[PostV1CatalogItemsKindsCreateRequestSaftType]
+
+        quantity_accounting : typing.Optional[bool]
+
+        sort_order : typing.Optional[int]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1CatalogItemsKindsCreateResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.catalog.post_v1catalog_items_kinds_create(
+            code="code",
+            name="name",
+        )
+        """
+        _response = self._raw_client.post_v1catalog_items_kinds_create(
+            code=code,
+            name=name,
+            saft_type=saft_type,
+            quantity_accounting=quantity_accounting,
+            sort_order=sort_order,
+            request_options=request_options,
+        )
+        return _response.data
+
+    def post_v1catalog_items_kinds_update(
+        self,
+        *,
+        id: str,
+        code: typing.Optional[str] = OMIT,
+        name: typing.Optional[str] = OMIT,
+        saft_type: typing.Optional[PostV1CatalogItemsKindsUpdateRequestSaftType] = OMIT,
+        quantity_accounting: typing.Optional[bool] = OMIT,
+        sort_order: typing.Optional[int] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1CatalogItemsKindsUpdateResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        code : typing.Optional[str]
+
+        name : typing.Optional[str]
+
+        saft_type : typing.Optional[PostV1CatalogItemsKindsUpdateRequestSaftType]
+
+        quantity_accounting : typing.Optional[bool]
+
+        sort_order : typing.Optional[int]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1CatalogItemsKindsUpdateResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.catalog.post_v1catalog_items_kinds_update(
+            id="id",
+        )
+        """
+        _response = self._raw_client.post_v1catalog_items_kinds_update(
+            id=id,
+            code=code,
+            name=name,
+            saft_type=saft_type,
+            quantity_accounting=quantity_accounting,
+            sort_order=sort_order,
+            request_options=request_options,
+        )
+        return _response.data
+
+    def post_v1catalog_items_kinds_delete(
+        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1CatalogItemsKindsDeleteResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1CatalogItemsKindsDeleteResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.catalog.post_v1catalog_items_kinds_delete(
+            id="id",
+        )
+        """
+        _response = self._raw_client.post_v1catalog_items_kinds_delete(id=id, request_options=request_options)
+        return _response.data
+
+    def post_v1catalog_items_kinds_list(
+        self, *, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1CatalogItemsKindsListResponse:
+        """
+        Parameters
+        ----------
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1CatalogItemsKindsListResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.catalog.post_v1catalog_items_kinds_list()
+        """
+        _response = self._raw_client.post_v1catalog_items_kinds_list(request_options=request_options)
+        return _response.data
+
+    def post_v1catalog_units_create(
+        self,
+        *,
+        code: str,
+        name: str,
+        is_active: typing.Optional[bool] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1CatalogUnitsCreateResponse:
+        """
+        Parameters
+        ----------
+        code : str
+
+        name : str
+
+        is_active : typing.Optional[bool]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1CatalogUnitsCreateResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.catalog.post_v1catalog_units_create(
+            code="code",
+            name="name",
+        )
+        """
+        _response = self._raw_client.post_v1catalog_units_create(
+            code=code, name=name, is_active=is_active, request_options=request_options
+        )
+        return _response.data
+
+    def post_v1catalog_units_update(
+        self,
+        *,
+        id: str,
+        code: typing.Optional[str] = OMIT,
+        name: typing.Optional[str] = OMIT,
+        is_active: typing.Optional[bool] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1CatalogUnitsUpdateResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        code : typing.Optional[str]
+
+        name : typing.Optional[str]
+
+        is_active : typing.Optional[bool]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1CatalogUnitsUpdateResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.catalog.post_v1catalog_units_update(
+            id="id",
+        )
+        """
+        _response = self._raw_client.post_v1catalog_units_update(
+            id=id, code=code, name=name, is_active=is_active, request_options=request_options
+        )
+        return _response.data
+
+    def post_v1catalog_units_delete(
+        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1CatalogUnitsDeleteResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1CatalogUnitsDeleteResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.catalog.post_v1catalog_units_delete(
+            id="id",
+        )
+        """
+        _response = self._raw_client.post_v1catalog_units_delete(id=id, request_options=request_options)
+        return _response.data
+
+    def post_v1catalog_units_list(
+        self, *, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1CatalogUnitsListResponse:
+        """
+        Parameters
+        ----------
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1CatalogUnitsListResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.catalog.post_v1catalog_units_list()
+        """
+        _response = self._raw_client.post_v1catalog_units_list(request_options=request_options)
+        return _response.data
+
+    def post_v1catalog_units_options(
+        self,
+        *,
+        locale: typing.Optional[PostV1CatalogUnitsOptionsRequestLocale] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1CatalogUnitsOptionsResponse:
+        """
+        Parameters
+        ----------
+        locale : typing.Optional[PostV1CatalogUnitsOptionsRequestLocale]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1CatalogUnitsOptionsResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.catalog.post_v1catalog_units_options()
+        """
+        _response = self._raw_client.post_v1catalog_units_options(locale=locale, request_options=request_options)
         return _response.data
 
     def post_v1catalog_item_groups_create(
@@ -933,6 +1536,33 @@ class AsyncCatalogClient:
         document_ref: typing.Optional[str] = OMIT,
         translations: typing.Optional[typing.Dict[str, PostV1CatalogItemsCreateRequestTranslationsValue]] = OMIT,
         components: typing.Optional[typing.Sequence[PostV1CatalogItemsCreateRequestComponentsItem]] = OMIT,
+        kind_id: typing.Optional[str] = OMIT,
+        sale_account_code: typing.Optional[str] = OMIT,
+        purchase_account_code: typing.Optional[str] = OMIT,
+        expense_account_code: typing.Optional[str] = OMIT,
+        manufacturer: typing.Optional[str] = OMIT,
+        gross_mass_kg: typing.Optional[str] = OMIT,
+        min_quantity: typing.Optional[str] = OMIT,
+        cost_price: typing.Optional[str] = OMIT,
+        is_free_price: typing.Optional[bool] = OMIT,
+        external_id: typing.Optional[str] = OMIT,
+        is_returnable: typing.Optional[bool] = OMIT,
+        comment_required: typing.Optional[bool] = OMIT,
+        price_from: typing.Optional[str] = OMIT,
+        price_to: typing.Optional[str] = OMIT,
+        min_price: typing.Optional[str] = OMIT,
+        discount_percent: typing.Optional[str] = OMIT,
+        max_discount_percent: typing.Optional[str] = OMIT,
+        loyalty_points: typing.Optional[int] = OMIT,
+        department: typing.Optional[str] = OMIT,
+        age_restriction: typing.Optional[int] = OMIT,
+        package_quantity: typing.Optional[str] = OMIT,
+        tara_code: typing.Optional[str] = OMIT,
+        certificate_number: typing.Optional[str] = OMIT,
+        certificate_date: typing.Optional[str] = OMIT,
+        valid_from: typing.Optional[str] = OMIT,
+        valid_to: typing.Optional[str] = OMIT,
+        pos_flags: typing.Optional[typing.Dict[str, bool]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1CatalogItemsCreateResponse:
         """
@@ -979,6 +1609,60 @@ class AsyncCatalogClient:
         translations : typing.Optional[typing.Dict[str, PostV1CatalogItemsCreateRequestTranslationsValue]]
 
         components : typing.Optional[typing.Sequence[PostV1CatalogItemsCreateRequestComponentsItem]]
+
+        kind_id : typing.Optional[str]
+
+        sale_account_code : typing.Optional[str]
+
+        purchase_account_code : typing.Optional[str]
+
+        expense_account_code : typing.Optional[str]
+
+        manufacturer : typing.Optional[str]
+
+        gross_mass_kg : typing.Optional[str]
+
+        min_quantity : typing.Optional[str]
+
+        cost_price : typing.Optional[str]
+
+        is_free_price : typing.Optional[bool]
+
+        external_id : typing.Optional[str]
+
+        is_returnable : typing.Optional[bool]
+
+        comment_required : typing.Optional[bool]
+
+        price_from : typing.Optional[str]
+
+        price_to : typing.Optional[str]
+
+        min_price : typing.Optional[str]
+
+        discount_percent : typing.Optional[str]
+
+        max_discount_percent : typing.Optional[str]
+
+        loyalty_points : typing.Optional[int]
+
+        department : typing.Optional[str]
+
+        age_restriction : typing.Optional[int]
+
+        package_quantity : typing.Optional[str]
+
+        tara_code : typing.Optional[str]
+
+        certificate_number : typing.Optional[str]
+
+        certificate_date : typing.Optional[str]
+
+        valid_from : typing.Optional[str]
+
+        valid_to : typing.Optional[str]
+
+        pos_flags : typing.Optional[typing.Dict[str, bool]]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -1029,6 +1713,33 @@ class AsyncCatalogClient:
             document_ref=document_ref,
             translations=translations,
             components=components,
+            kind_id=kind_id,
+            sale_account_code=sale_account_code,
+            purchase_account_code=purchase_account_code,
+            expense_account_code=expense_account_code,
+            manufacturer=manufacturer,
+            gross_mass_kg=gross_mass_kg,
+            min_quantity=min_quantity,
+            cost_price=cost_price,
+            is_free_price=is_free_price,
+            external_id=external_id,
+            is_returnable=is_returnable,
+            comment_required=comment_required,
+            price_from=price_from,
+            price_to=price_to,
+            min_price=min_price,
+            discount_percent=discount_percent,
+            max_discount_percent=max_discount_percent,
+            loyalty_points=loyalty_points,
+            department=department,
+            age_restriction=age_restriction,
+            package_quantity=package_quantity,
+            tara_code=tara_code,
+            certificate_number=certificate_number,
+            certificate_date=certificate_date,
+            valid_from=valid_from,
+            valid_to=valid_to,
+            pos_flags=pos_flags,
             request_options=request_options,
         )
         return _response.data
@@ -1092,10 +1803,39 @@ class AsyncCatalogClient:
         supplementary_qty_per_unit: typing.Optional[str] = OMIT,
         description: typing.Optional[str] = OMIT,
         group_id: typing.Optional[str] = OMIT,
-        attributes: typing.Optional[typing.Dict[str, str]] = OMIT,
+        attributes: typing.Optional[typing.Dict[str, typing.Optional[str]]] = OMIT,
         document_ref: typing.Optional[str] = OMIT,
-        translations: typing.Optional[typing.Dict[str, PostV1CatalogItemsUpdateRequestTranslationsValue]] = OMIT,
+        translations: typing.Optional[
+            typing.Dict[str, typing.Optional[PostV1CatalogItemsUpdateRequestTranslationsValue]]
+        ] = OMIT,
         components: typing.Optional[typing.Sequence[PostV1CatalogItemsUpdateRequestComponentsItem]] = OMIT,
+        kind_id: typing.Optional[str] = OMIT,
+        sale_account_code: typing.Optional[str] = OMIT,
+        purchase_account_code: typing.Optional[str] = OMIT,
+        expense_account_code: typing.Optional[str] = OMIT,
+        manufacturer: typing.Optional[str] = OMIT,
+        gross_mass_kg: typing.Optional[str] = OMIT,
+        min_quantity: typing.Optional[str] = OMIT,
+        cost_price: typing.Optional[str] = OMIT,
+        is_free_price: typing.Optional[bool] = OMIT,
+        external_id: typing.Optional[str] = OMIT,
+        is_returnable: typing.Optional[bool] = OMIT,
+        comment_required: typing.Optional[bool] = OMIT,
+        price_from: typing.Optional[str] = OMIT,
+        price_to: typing.Optional[str] = OMIT,
+        min_price: typing.Optional[str] = OMIT,
+        discount_percent: typing.Optional[str] = OMIT,
+        max_discount_percent: typing.Optional[str] = OMIT,
+        loyalty_points: typing.Optional[int] = OMIT,
+        department: typing.Optional[str] = OMIT,
+        age_restriction: typing.Optional[int] = OMIT,
+        package_quantity: typing.Optional[str] = OMIT,
+        tara_code: typing.Optional[str] = OMIT,
+        certificate_number: typing.Optional[str] = OMIT,
+        certificate_date: typing.Optional[str] = OMIT,
+        valid_from: typing.Optional[str] = OMIT,
+        valid_to: typing.Optional[str] = OMIT,
+        pos_flags: typing.Optional[typing.Dict[str, typing.Optional[bool]]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1CatalogItemsUpdateResponse:
         """
@@ -1137,13 +1877,67 @@ class AsyncCatalogClient:
 
         group_id : typing.Optional[str]
 
-        attributes : typing.Optional[typing.Dict[str, str]]
+        attributes : typing.Optional[typing.Dict[str, typing.Optional[str]]]
 
         document_ref : typing.Optional[str]
 
-        translations : typing.Optional[typing.Dict[str, PostV1CatalogItemsUpdateRequestTranslationsValue]]
+        translations : typing.Optional[typing.Dict[str, typing.Optional[PostV1CatalogItemsUpdateRequestTranslationsValue]]]
 
         components : typing.Optional[typing.Sequence[PostV1CatalogItemsUpdateRequestComponentsItem]]
+
+        kind_id : typing.Optional[str]
+
+        sale_account_code : typing.Optional[str]
+
+        purchase_account_code : typing.Optional[str]
+
+        expense_account_code : typing.Optional[str]
+
+        manufacturer : typing.Optional[str]
+
+        gross_mass_kg : typing.Optional[str]
+
+        min_quantity : typing.Optional[str]
+
+        cost_price : typing.Optional[str]
+
+        is_free_price : typing.Optional[bool]
+
+        external_id : typing.Optional[str]
+
+        is_returnable : typing.Optional[bool]
+
+        comment_required : typing.Optional[bool]
+
+        price_from : typing.Optional[str]
+
+        price_to : typing.Optional[str]
+
+        min_price : typing.Optional[str]
+
+        discount_percent : typing.Optional[str]
+
+        max_discount_percent : typing.Optional[str]
+
+        loyalty_points : typing.Optional[int]
+
+        department : typing.Optional[str]
+
+        age_restriction : typing.Optional[int]
+
+        package_quantity : typing.Optional[str]
+
+        tara_code : typing.Optional[str]
+
+        certificate_number : typing.Optional[str]
+
+        certificate_date : typing.Optional[str]
+
+        valid_from : typing.Optional[str]
+
+        valid_to : typing.Optional[str]
+
+        pos_flags : typing.Optional[typing.Dict[str, typing.Optional[bool]]]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -1195,6 +1989,33 @@ class AsyncCatalogClient:
             document_ref=document_ref,
             translations=translations,
             components=components,
+            kind_id=kind_id,
+            sale_account_code=sale_account_code,
+            purchase_account_code=purchase_account_code,
+            expense_account_code=expense_account_code,
+            manufacturer=manufacturer,
+            gross_mass_kg=gross_mass_kg,
+            min_quantity=min_quantity,
+            cost_price=cost_price,
+            is_free_price=is_free_price,
+            external_id=external_id,
+            is_returnable=is_returnable,
+            comment_required=comment_required,
+            price_from=price_from,
+            price_to=price_to,
+            min_price=min_price,
+            discount_percent=discount_percent,
+            max_discount_percent=max_discount_percent,
+            loyalty_points=loyalty_points,
+            department=department,
+            age_restriction=age_restriction,
+            package_quantity=package_quantity,
+            tara_code=tara_code,
+            certificate_number=certificate_number,
+            certificate_date=certificate_date,
+            valid_from=valid_from,
+            valid_to=valid_to,
+            pos_flags=pos_flags,
             request_options=request_options,
         )
         return _response.data
@@ -1244,6 +2065,7 @@ class AsyncCatalogClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1CatalogItemsListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1CatalogItemsListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1CatalogItemsListResponse:
         """
@@ -1256,6 +2078,9 @@ class AsyncCatalogClient:
         sort : typing.Optional[typing.Sequence[PostV1CatalogItemsListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1CatalogItemsListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -1283,8 +2108,458 @@ class AsyncCatalogClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.post_v1catalog_items_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
+        return _response.data
+
+    async def post_v1catalog_items_files_list(
+        self, *, item_id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1CatalogItemsFilesListResponse:
+        """
+        Parameters
+        ----------
+        item_id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1CatalogItemsFilesListResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.catalog.post_v1catalog_items_files_list(
+                item_id="itemId",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1catalog_items_files_list(
+            item_id=item_id, request_options=request_options
+        )
+        return _response.data
+
+    async def post_v1catalog_items_kinds_create(
+        self,
+        *,
+        code: str,
+        name: str,
+        saft_type: typing.Optional[PostV1CatalogItemsKindsCreateRequestSaftType] = OMIT,
+        quantity_accounting: typing.Optional[bool] = OMIT,
+        sort_order: typing.Optional[int] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1CatalogItemsKindsCreateResponse:
+        """
+        Parameters
+        ----------
+        code : str
+
+        name : str
+
+        saft_type : typing.Optional[PostV1CatalogItemsKindsCreateRequestSaftType]
+
+        quantity_accounting : typing.Optional[bool]
+
+        sort_order : typing.Optional[int]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1CatalogItemsKindsCreateResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.catalog.post_v1catalog_items_kinds_create(
+                code="code",
+                name="name",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1catalog_items_kinds_create(
+            code=code,
+            name=name,
+            saft_type=saft_type,
+            quantity_accounting=quantity_accounting,
+            sort_order=sort_order,
+            request_options=request_options,
+        )
+        return _response.data
+
+    async def post_v1catalog_items_kinds_update(
+        self,
+        *,
+        id: str,
+        code: typing.Optional[str] = OMIT,
+        name: typing.Optional[str] = OMIT,
+        saft_type: typing.Optional[PostV1CatalogItemsKindsUpdateRequestSaftType] = OMIT,
+        quantity_accounting: typing.Optional[bool] = OMIT,
+        sort_order: typing.Optional[int] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1CatalogItemsKindsUpdateResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        code : typing.Optional[str]
+
+        name : typing.Optional[str]
+
+        saft_type : typing.Optional[PostV1CatalogItemsKindsUpdateRequestSaftType]
+
+        quantity_accounting : typing.Optional[bool]
+
+        sort_order : typing.Optional[int]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1CatalogItemsKindsUpdateResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.catalog.post_v1catalog_items_kinds_update(
+                id="id",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1catalog_items_kinds_update(
+            id=id,
+            code=code,
+            name=name,
+            saft_type=saft_type,
+            quantity_accounting=quantity_accounting,
+            sort_order=sort_order,
+            request_options=request_options,
+        )
+        return _response.data
+
+    async def post_v1catalog_items_kinds_delete(
+        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1CatalogItemsKindsDeleteResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1CatalogItemsKindsDeleteResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.catalog.post_v1catalog_items_kinds_delete(
+                id="id",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1catalog_items_kinds_delete(id=id, request_options=request_options)
+        return _response.data
+
+    async def post_v1catalog_items_kinds_list(
+        self, *, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1CatalogItemsKindsListResponse:
+        """
+        Parameters
+        ----------
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1CatalogItemsKindsListResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.catalog.post_v1catalog_items_kinds_list()
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1catalog_items_kinds_list(request_options=request_options)
+        return _response.data
+
+    async def post_v1catalog_units_create(
+        self,
+        *,
+        code: str,
+        name: str,
+        is_active: typing.Optional[bool] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1CatalogUnitsCreateResponse:
+        """
+        Parameters
+        ----------
+        code : str
+
+        name : str
+
+        is_active : typing.Optional[bool]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1CatalogUnitsCreateResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.catalog.post_v1catalog_units_create(
+                code="code",
+                name="name",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1catalog_units_create(
+            code=code, name=name, is_active=is_active, request_options=request_options
+        )
+        return _response.data
+
+    async def post_v1catalog_units_update(
+        self,
+        *,
+        id: str,
+        code: typing.Optional[str] = OMIT,
+        name: typing.Optional[str] = OMIT,
+        is_active: typing.Optional[bool] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1CatalogUnitsUpdateResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        code : typing.Optional[str]
+
+        name : typing.Optional[str]
+
+        is_active : typing.Optional[bool]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1CatalogUnitsUpdateResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.catalog.post_v1catalog_units_update(
+                id="id",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1catalog_units_update(
+            id=id, code=code, name=name, is_active=is_active, request_options=request_options
+        )
+        return _response.data
+
+    async def post_v1catalog_units_delete(
+        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1CatalogUnitsDeleteResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1CatalogUnitsDeleteResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.catalog.post_v1catalog_units_delete(
+                id="id",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1catalog_units_delete(id=id, request_options=request_options)
+        return _response.data
+
+    async def post_v1catalog_units_list(
+        self, *, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1CatalogUnitsListResponse:
+        """
+        Parameters
+        ----------
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1CatalogUnitsListResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.catalog.post_v1catalog_units_list()
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1catalog_units_list(request_options=request_options)
+        return _response.data
+
+    async def post_v1catalog_units_options(
+        self,
+        *,
+        locale: typing.Optional[PostV1CatalogUnitsOptionsRequestLocale] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1CatalogUnitsOptionsResponse:
+        """
+        Parameters
+        ----------
+        locale : typing.Optional[PostV1CatalogUnitsOptionsRequestLocale]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1CatalogUnitsOptionsResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.catalog.post_v1catalog_units_options()
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1catalog_units_options(locale=locale, request_options=request_options)
         return _response.data
 
     async def post_v1catalog_item_groups_create(

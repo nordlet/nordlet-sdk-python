@@ -364,6 +364,7 @@ class RawEcommerceClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1EcommerceOrdersListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1EcommerceOrdersListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[PostV1EcommerceOrdersListResponse]:
         """
@@ -376,6 +377,9 @@ class RawEcommerceClient:
         sort : typing.Optional[typing.Sequence[PostV1EcommerceOrdersListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1EcommerceOrdersListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -401,6 +405,7 @@ class RawEcommerceClient:
                     annotation=typing.Sequence[PostV1EcommerceOrdersListRequestFilterItem],
                     direction="write",
                 ),
+                "totals": totals,
             },
             headers={
                 "content-type": "application/json",
@@ -1558,6 +1563,7 @@ class AsyncRawEcommerceClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1EcommerceOrdersListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1EcommerceOrdersListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[PostV1EcommerceOrdersListResponse]:
         """
@@ -1570,6 +1576,9 @@ class AsyncRawEcommerceClient:
         sort : typing.Optional[typing.Sequence[PostV1EcommerceOrdersListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1EcommerceOrdersListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -1595,6 +1604,7 @@ class AsyncRawEcommerceClient:
                     annotation=typing.Sequence[PostV1EcommerceOrdersListRequestFilterItem],
                     direction="write",
                 ),
+                "totals": totals,
             },
             headers={
                 "content-type": "application/json",

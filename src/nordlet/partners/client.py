@@ -5,6 +5,28 @@ import typing
 from ..core.client_wrapper import AsyncClientWrapper, SyncClientWrapper
 from ..core.request_options import RequestOptions
 from .raw_client import AsyncRawPartnersClient, RawPartnersClient
+from .types.post_v1leads_convert_request_partner_type import PostV1LeadsConvertRequestPartnerType
+from .types.post_v1leads_convert_response import PostV1LeadsConvertResponse
+from .types.post_v1leads_create_request_documents_item import PostV1LeadsCreateRequestDocumentsItem
+from .types.post_v1leads_create_request_status import PostV1LeadsCreateRequestStatus
+from .types.post_v1leads_create_response import PostV1LeadsCreateResponse
+from .types.post_v1leads_delete_response import PostV1LeadsDeleteResponse
+from .types.post_v1leads_files_list_response import PostV1LeadsFilesListResponse
+from .types.post_v1leads_get_response import PostV1LeadsGetResponse
+from .types.post_v1leads_list_request_filter_item import PostV1LeadsListRequestFilterItem
+from .types.post_v1leads_list_request_sort_item import PostV1LeadsListRequestSortItem
+from .types.post_v1leads_list_response import PostV1LeadsListResponse
+from .types.post_v1leads_notes_create_response import PostV1LeadsNotesCreateResponse
+from .types.post_v1leads_notes_delete_response import PostV1LeadsNotesDeleteResponse
+from .types.post_v1leads_notes_list_response import PostV1LeadsNotesListResponse
+from .types.post_v1leads_sources_create_response import PostV1LeadsSourcesCreateResponse
+from .types.post_v1leads_sources_delete_response import PostV1LeadsSourcesDeleteResponse
+from .types.post_v1leads_sources_list_response import PostV1LeadsSourcesListResponse
+from .types.post_v1leads_sources_options_response import PostV1LeadsSourcesOptionsResponse
+from .types.post_v1leads_sources_update_response import PostV1LeadsSourcesUpdateResponse
+from .types.post_v1leads_update_request_documents_item import PostV1LeadsUpdateRequestDocumentsItem
+from .types.post_v1leads_update_request_status import PostV1LeadsUpdateRequestStatus
+from .types.post_v1leads_update_response import PostV1LeadsUpdateResponse
 from .types.post_v1partners_addresses_create_request_type import PostV1PartnersAddressesCreateRequestType
 from .types.post_v1partners_addresses_create_response import PostV1PartnersAddressesCreateResponse
 from .types.post_v1partners_addresses_delete_response import PostV1PartnersAddressesDeleteResponse
@@ -29,11 +51,28 @@ from .types.post_v1partners_contacts_list_request_sort_item import PostV1Partner
 from .types.post_v1partners_contacts_list_response import PostV1PartnersContactsListResponse
 from .types.post_v1partners_contacts_update_response import PostV1PartnersContactsUpdateResponse
 from .types.post_v1partners_create_request_address import PostV1PartnersCreateRequestAddress
+from .types.post_v1partners_create_request_correspondence_address import (
+    PostV1PartnersCreateRequestCorrespondenceAddress,
+)
+from .types.post_v1partners_create_request_legal_country_class import PostV1PartnersCreateRequestLegalCountryClass
 from .types.post_v1partners_create_request_type import PostV1PartnersCreateRequestType
 from .types.post_v1partners_create_response import PostV1PartnersCreateResponse
 from .types.post_v1partners_credit_check_response import PostV1PartnersCreditCheckResponse
+from .types.post_v1partners_debt_reminders_list_request_filter_item import (
+    PostV1PartnersDebtRemindersListRequestFilterItem,
+)
+from .types.post_v1partners_debt_reminders_list_request_sort_item import PostV1PartnersDebtRemindersListRequestSortItem
+from .types.post_v1partners_debt_reminders_list_response import PostV1PartnersDebtRemindersListResponse
+from .types.post_v1partners_debt_reminders_preview_response import PostV1PartnersDebtRemindersPreviewResponse
 from .types.post_v1partners_delete_response import PostV1PartnersDeleteResponse
+from .types.post_v1partners_files_list_response import PostV1PartnersFilesListResponse
 from .types.post_v1partners_find_or_create_request_address import PostV1PartnersFindOrCreateRequestAddress
+from .types.post_v1partners_find_or_create_request_correspondence_address import (
+    PostV1PartnersFindOrCreateRequestCorrespondenceAddress,
+)
+from .types.post_v1partners_find_or_create_request_legal_country_class import (
+    PostV1PartnersFindOrCreateRequestLegalCountryClass,
+)
 from .types.post_v1partners_find_or_create_request_type import PostV1PartnersFindOrCreateRequestType
 from .types.post_v1partners_find_or_create_response import PostV1PartnersFindOrCreateResponse
 from .types.post_v1partners_get_response import PostV1PartnersGetResponse
@@ -56,6 +95,10 @@ from .types.post_v1partners_statuses_delete_response import PostV1PartnersStatus
 from .types.post_v1partners_statuses_list_response import PostV1PartnersStatusesListResponse
 from .types.post_v1partners_statuses_update_response import PostV1PartnersStatusesUpdateResponse
 from .types.post_v1partners_update_request_address import PostV1PartnersUpdateRequestAddress
+from .types.post_v1partners_update_request_correspondence_address import (
+    PostV1PartnersUpdateRequestCorrespondenceAddress,
+)
+from .types.post_v1partners_update_request_legal_country_class import PostV1PartnersUpdateRequestLegalCountryClass
 from .types.post_v1partners_update_request_type import PostV1PartnersUpdateRequestType
 from .types.post_v1partners_update_response import PostV1PartnersUpdateResponse
 from .types.post_v1partners_validate_vat_response import PostV1PartnersValidateVatResponse
@@ -243,6 +286,7 @@ class PartnersClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1PartnersAddressesListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1PartnersAddressesListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1PartnersAddressesListResponse:
         """
@@ -255,6 +299,9 @@ class PartnersClient:
         sort : typing.Optional[typing.Sequence[PostV1PartnersAddressesListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1PartnersAddressesListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -274,7 +321,7 @@ class PartnersClient:
         client.partners.post_v1partners_addresses_list()
         """
         _response = self._raw_client.post_v1partners_addresses_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 
@@ -422,6 +469,7 @@ class PartnersClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1PartnersContactsListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1PartnersContactsListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1PartnersContactsListResponse:
         """
@@ -434,6 +482,9 @@ class PartnersClient:
         sort : typing.Optional[typing.Sequence[PostV1PartnersContactsListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1PartnersContactsListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -453,7 +504,7 @@ class PartnersClient:
         client.partners.post_v1partners_contacts_list()
         """
         _response = self._raw_client.post_v1partners_contacts_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 
@@ -607,6 +658,7 @@ class PartnersClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1PartnersBankAccountsListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1PartnersBankAccountsListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1PartnersBankAccountsListResponse:
         """
@@ -619,6 +671,9 @@ class PartnersClient:
         sort : typing.Optional[typing.Sequence[PostV1PartnersBankAccountsListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1PartnersBankAccountsListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -638,7 +693,111 @@ class PartnersClient:
         client.partners.post_v1partners_bank_accounts_list()
         """
         _response = self._raw_client.post_v1partners_bank_accounts_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
+        )
+        return _response.data
+
+    def post_v1partners_files_list(
+        self, *, partner_id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1PartnersFilesListResponse:
+        """
+        Parameters
+        ----------
+        partner_id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1PartnersFilesListResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.partners.post_v1partners_files_list(
+            partner_id="partnerId",
+        )
+        """
+        _response = self._raw_client.post_v1partners_files_list(partner_id=partner_id, request_options=request_options)
+        return _response.data
+
+    def reminders_the_overnight_debt_reminder_job_would_send_today_for_this_company(
+        self, *, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1PartnersDebtRemindersPreviewResponse:
+        """
+        Parameters
+        ----------
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1PartnersDebtRemindersPreviewResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.partners.reminders_the_overnight_debt_reminder_job_would_send_today_for_this_company()
+        """
+        _response = self._raw_client.reminders_the_overnight_debt_reminder_job_would_send_today_for_this_company(
+            request_options=request_options
+        )
+        return _response.data
+
+    def post_v1partners_debt_reminders_list(
+        self,
+        *,
+        page: typing.Optional[int] = OMIT,
+        page_size: typing.Optional[int] = OMIT,
+        sort: typing.Optional[typing.Sequence[PostV1PartnersDebtRemindersListRequestSortItem]] = OMIT,
+        filter: typing.Optional[typing.Sequence[PostV1PartnersDebtRemindersListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1PartnersDebtRemindersListResponse:
+        """
+        Parameters
+        ----------
+        page : typing.Optional[int]
+
+        page_size : typing.Optional[int]
+
+        sort : typing.Optional[typing.Sequence[PostV1PartnersDebtRemindersListRequestSortItem]]
+
+        filter : typing.Optional[typing.Sequence[PostV1PartnersDebtRemindersListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1PartnersDebtRemindersListResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.partners.post_v1partners_debt_reminders_list()
+        """
+        _response = self._raw_client.post_v1partners_debt_reminders_list(
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 
@@ -685,6 +844,7 @@ class PartnersClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1PartnersVatReviewsListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1PartnersVatReviewsListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1PartnersVatReviewsListResponse:
         """
@@ -697,6 +857,9 @@ class PartnersClient:
         sort : typing.Optional[typing.Sequence[PostV1PartnersVatReviewsListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1PartnersVatReviewsListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -716,7 +879,7 @@ class PartnersClient:
         client.partners.post_v1partners_vat_reviews_list()
         """
         _response = self._raw_client.post_v1partners_vat_reviews_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 
@@ -782,8 +945,25 @@ class PartnersClient:
         group_id: typing.Optional[str] = OMIT,
         status_id: typing.Optional[str] = OMIT,
         address: typing.Optional[PostV1PartnersCreateRequestAddress] = OMIT,
+        correspondence_address: typing.Optional[PostV1PartnersCreateRequestCorrespondenceAddress] = OMIT,
         notes: typing.Optional[str] = OMIT,
         document_ref: typing.Optional[str] = OMIT,
+        short_name: typing.Optional[str] = OMIT,
+        website: typing.Optional[str] = OMIT,
+        fax: typing.Optional[str] = OMIT,
+        eori_code: typing.Optional[str] = OMIT,
+        other_code: typing.Optional[str] = OMIT,
+        foreign_tax_number: typing.Optional[str] = OMIT,
+        auto_debt_reminder: typing.Optional[bool] = OMIT,
+        late_interest_percent: typing.Optional[str] = OMIT,
+        first_call_date: typing.Optional[str] = OMIT,
+        last_call_date: typing.Optional[str] = OMIT,
+        next_call_date: typing.Optional[str] = OMIT,
+        rating: typing.Optional[int] = OMIT,
+        is_employee: typing.Optional[bool] = OMIT,
+        is_group_member: typing.Optional[bool] = OMIT,
+        is_active: typing.Optional[bool] = OMIT,
+        legal_country_class: typing.Optional[PostV1PartnersCreateRequestLegalCountryClass] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1PartnersCreateResponse:
         """
@@ -823,9 +1003,43 @@ class PartnersClient:
 
         address : typing.Optional[PostV1PartnersCreateRequestAddress]
 
+        correspondence_address : typing.Optional[PostV1PartnersCreateRequestCorrespondenceAddress]
+
         notes : typing.Optional[str]
 
         document_ref : typing.Optional[str]
+
+        short_name : typing.Optional[str]
+
+        website : typing.Optional[str]
+
+        fax : typing.Optional[str]
+
+        eori_code : typing.Optional[str]
+
+        other_code : typing.Optional[str]
+
+        foreign_tax_number : typing.Optional[str]
+
+        auto_debt_reminder : typing.Optional[bool]
+
+        late_interest_percent : typing.Optional[str]
+
+        first_call_date : typing.Optional[str]
+
+        last_call_date : typing.Optional[str]
+
+        next_call_date : typing.Optional[str]
+
+        rating : typing.Optional[int]
+
+        is_employee : typing.Optional[bool]
+
+        is_group_member : typing.Optional[bool]
+
+        is_active : typing.Optional[bool]
+
+        legal_country_class : typing.Optional[PostV1PartnersCreateRequestLegalCountryClass]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -864,8 +1078,25 @@ class PartnersClient:
             group_id=group_id,
             status_id=status_id,
             address=address,
+            correspondence_address=correspondence_address,
             notes=notes,
             document_ref=document_ref,
+            short_name=short_name,
+            website=website,
+            fax=fax,
+            eori_code=eori_code,
+            other_code=other_code,
+            foreign_tax_number=foreign_tax_number,
+            auto_debt_reminder=auto_debt_reminder,
+            late_interest_percent=late_interest_percent,
+            first_call_date=first_call_date,
+            last_call_date=last_call_date,
+            next_call_date=next_call_date,
+            rating=rating,
+            is_employee=is_employee,
+            is_group_member=is_group_member,
+            is_active=is_active,
+            legal_country_class=legal_country_class,
             request_options=request_options,
         )
         return _response.data
@@ -890,8 +1121,25 @@ class PartnersClient:
         group_id: typing.Optional[str] = OMIT,
         status_id: typing.Optional[str] = OMIT,
         address: typing.Optional[PostV1PartnersFindOrCreateRequestAddress] = OMIT,
+        correspondence_address: typing.Optional[PostV1PartnersFindOrCreateRequestCorrespondenceAddress] = OMIT,
         notes: typing.Optional[str] = OMIT,
         document_ref: typing.Optional[str] = OMIT,
+        short_name: typing.Optional[str] = OMIT,
+        website: typing.Optional[str] = OMIT,
+        fax: typing.Optional[str] = OMIT,
+        eori_code: typing.Optional[str] = OMIT,
+        other_code: typing.Optional[str] = OMIT,
+        foreign_tax_number: typing.Optional[str] = OMIT,
+        auto_debt_reminder: typing.Optional[bool] = OMIT,
+        late_interest_percent: typing.Optional[str] = OMIT,
+        first_call_date: typing.Optional[str] = OMIT,
+        last_call_date: typing.Optional[str] = OMIT,
+        next_call_date: typing.Optional[str] = OMIT,
+        rating: typing.Optional[int] = OMIT,
+        is_employee: typing.Optional[bool] = OMIT,
+        is_group_member: typing.Optional[bool] = OMIT,
+        is_active: typing.Optional[bool] = OMIT,
+        legal_country_class: typing.Optional[PostV1PartnersFindOrCreateRequestLegalCountryClass] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1PartnersFindOrCreateResponse:
         """
@@ -931,9 +1179,43 @@ class PartnersClient:
 
         address : typing.Optional[PostV1PartnersFindOrCreateRequestAddress]
 
+        correspondence_address : typing.Optional[PostV1PartnersFindOrCreateRequestCorrespondenceAddress]
+
         notes : typing.Optional[str]
 
         document_ref : typing.Optional[str]
+
+        short_name : typing.Optional[str]
+
+        website : typing.Optional[str]
+
+        fax : typing.Optional[str]
+
+        eori_code : typing.Optional[str]
+
+        other_code : typing.Optional[str]
+
+        foreign_tax_number : typing.Optional[str]
+
+        auto_debt_reminder : typing.Optional[bool]
+
+        late_interest_percent : typing.Optional[str]
+
+        first_call_date : typing.Optional[str]
+
+        last_call_date : typing.Optional[str]
+
+        next_call_date : typing.Optional[str]
+
+        rating : typing.Optional[int]
+
+        is_employee : typing.Optional[bool]
+
+        is_group_member : typing.Optional[bool]
+
+        is_active : typing.Optional[bool]
+
+        legal_country_class : typing.Optional[PostV1PartnersFindOrCreateRequestLegalCountryClass]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -972,8 +1254,25 @@ class PartnersClient:
             group_id=group_id,
             status_id=status_id,
             address=address,
+            correspondence_address=correspondence_address,
             notes=notes,
             document_ref=document_ref,
+            short_name=short_name,
+            website=website,
+            fax=fax,
+            eori_code=eori_code,
+            other_code=other_code,
+            foreign_tax_number=foreign_tax_number,
+            auto_debt_reminder=auto_debt_reminder,
+            late_interest_percent=late_interest_percent,
+            first_call_date=first_call_date,
+            last_call_date=last_call_date,
+            next_call_date=next_call_date,
+            rating=rating,
+            is_employee=is_employee,
+            is_group_member=is_group_member,
+            is_active=is_active,
+            legal_country_class=legal_country_class,
             request_options=request_options,
         )
         return _response.data
@@ -1029,8 +1328,25 @@ class PartnersClient:
         group_id: typing.Optional[str] = OMIT,
         status_id: typing.Optional[str] = OMIT,
         address: typing.Optional[PostV1PartnersUpdateRequestAddress] = OMIT,
+        correspondence_address: typing.Optional[PostV1PartnersUpdateRequestCorrespondenceAddress] = OMIT,
         notes: typing.Optional[str] = OMIT,
         document_ref: typing.Optional[str] = OMIT,
+        short_name: typing.Optional[str] = OMIT,
+        website: typing.Optional[str] = OMIT,
+        fax: typing.Optional[str] = OMIT,
+        eori_code: typing.Optional[str] = OMIT,
+        other_code: typing.Optional[str] = OMIT,
+        foreign_tax_number: typing.Optional[str] = OMIT,
+        auto_debt_reminder: typing.Optional[bool] = OMIT,
+        late_interest_percent: typing.Optional[str] = OMIT,
+        first_call_date: typing.Optional[str] = OMIT,
+        last_call_date: typing.Optional[str] = OMIT,
+        next_call_date: typing.Optional[str] = OMIT,
+        rating: typing.Optional[int] = OMIT,
+        is_employee: typing.Optional[bool] = OMIT,
+        is_group_member: typing.Optional[bool] = OMIT,
+        is_active: typing.Optional[bool] = OMIT,
+        legal_country_class: typing.Optional[PostV1PartnersUpdateRequestLegalCountryClass] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1PartnersUpdateResponse:
         """
@@ -1072,9 +1388,43 @@ class PartnersClient:
 
         address : typing.Optional[PostV1PartnersUpdateRequestAddress]
 
+        correspondence_address : typing.Optional[PostV1PartnersUpdateRequestCorrespondenceAddress]
+
         notes : typing.Optional[str]
 
         document_ref : typing.Optional[str]
+
+        short_name : typing.Optional[str]
+
+        website : typing.Optional[str]
+
+        fax : typing.Optional[str]
+
+        eori_code : typing.Optional[str]
+
+        other_code : typing.Optional[str]
+
+        foreign_tax_number : typing.Optional[str]
+
+        auto_debt_reminder : typing.Optional[bool]
+
+        late_interest_percent : typing.Optional[str]
+
+        first_call_date : typing.Optional[str]
+
+        last_call_date : typing.Optional[str]
+
+        next_call_date : typing.Optional[str]
+
+        rating : typing.Optional[int]
+
+        is_employee : typing.Optional[bool]
+
+        is_group_member : typing.Optional[bool]
+
+        is_active : typing.Optional[bool]
+
+        legal_country_class : typing.Optional[PostV1PartnersUpdateRequestLegalCountryClass]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -1114,8 +1464,25 @@ class PartnersClient:
             group_id=group_id,
             status_id=status_id,
             address=address,
+            correspondence_address=correspondence_address,
             notes=notes,
             document_ref=document_ref,
+            short_name=short_name,
+            website=website,
+            fax=fax,
+            eori_code=eori_code,
+            other_code=other_code,
+            foreign_tax_number=foreign_tax_number,
+            auto_debt_reminder=auto_debt_reminder,
+            late_interest_percent=late_interest_percent,
+            first_call_date=first_call_date,
+            last_call_date=last_call_date,
+            next_call_date=next_call_date,
+            rating=rating,
+            is_employee=is_employee,
+            is_group_member=is_group_member,
+            is_active=is_active,
+            legal_country_class=legal_country_class,
             request_options=request_options,
         )
         return _response.data
@@ -1191,6 +1558,7 @@ class PartnersClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1PartnersListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1PartnersListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1PartnersListResponse:
         """
@@ -1203,6 +1571,9 @@ class PartnersClient:
         sort : typing.Optional[typing.Sequence[PostV1PartnersListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1PartnersListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -1222,7 +1593,7 @@ class PartnersClient:
         client.partners.post_v1partners_list()
         """
         _response = self._raw_client.post_v1partners_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 
@@ -1669,6 +2040,7 @@ class PartnersClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1PartnersInquiriesListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1PartnersInquiriesListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1PartnersInquiriesListResponse:
         """
@@ -1681,6 +2053,9 @@ class PartnersClient:
         sort : typing.Optional[typing.Sequence[PostV1PartnersInquiriesListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1PartnersInquiriesListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -1700,7 +2075,7 @@ class PartnersClient:
         client.partners.post_v1partners_inquiries_list()
         """
         _response = self._raw_client.post_v1partners_inquiries_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 
@@ -1739,6 +2114,620 @@ class PartnersClient:
         """
         _response = self._raw_client.post_v1partners_credit_check(
             partner_id=partner_id, additional_amount=additional_amount, request_options=request_options
+        )
+        return _response.data
+
+    def post_v1leads_create(
+        self,
+        *,
+        name: str,
+        contact_name: typing.Optional[str] = OMIT,
+        email: typing.Optional[str] = OMIT,
+        phone: typing.Optional[str] = OMIT,
+        website: typing.Optional[str] = OMIT,
+        country_code: typing.Optional[str] = OMIT,
+        source_id: typing.Optional[str] = OMIT,
+        status: typing.Optional[PostV1LeadsCreateRequestStatus] = OMIT,
+        estimated_value: typing.Optional[str] = OMIT,
+        currency: typing.Optional[str] = OMIT,
+        description: typing.Optional[str] = OMIT,
+        assigned_user_id: typing.Optional[str] = OMIT,
+        documents: typing.Optional[typing.Sequence[PostV1LeadsCreateRequestDocumentsItem]] = OMIT,
+        notes: typing.Optional[typing.Sequence[str]] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1LeadsCreateResponse:
+        """
+        Parameters
+        ----------
+        name : str
+
+        contact_name : typing.Optional[str]
+
+        email : typing.Optional[str]
+
+        phone : typing.Optional[str]
+
+        website : typing.Optional[str]
+
+        country_code : typing.Optional[str]
+
+        source_id : typing.Optional[str]
+
+        status : typing.Optional[PostV1LeadsCreateRequestStatus]
+
+        estimated_value : typing.Optional[str]
+
+        currency : typing.Optional[str]
+
+        description : typing.Optional[str]
+
+        assigned_user_id : typing.Optional[str]
+
+        documents : typing.Optional[typing.Sequence[PostV1LeadsCreateRequestDocumentsItem]]
+
+        notes : typing.Optional[typing.Sequence[str]]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1LeadsCreateResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.partners.post_v1leads_create(
+            name="name",
+        )
+        """
+        _response = self._raw_client.post_v1leads_create(
+            name=name,
+            contact_name=contact_name,
+            email=email,
+            phone=phone,
+            website=website,
+            country_code=country_code,
+            source_id=source_id,
+            status=status,
+            estimated_value=estimated_value,
+            currency=currency,
+            description=description,
+            assigned_user_id=assigned_user_id,
+            documents=documents,
+            notes=notes,
+            request_options=request_options,
+        )
+        return _response.data
+
+    def post_v1leads_get(
+        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1LeadsGetResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1LeadsGetResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.partners.post_v1leads_get(
+            id="id",
+        )
+        """
+        _response = self._raw_client.post_v1leads_get(id=id, request_options=request_options)
+        return _response.data
+
+    def post_v1leads_update(
+        self,
+        *,
+        id: str,
+        name: typing.Optional[str] = OMIT,
+        contact_name: typing.Optional[str] = OMIT,
+        email: typing.Optional[str] = OMIT,
+        phone: typing.Optional[str] = OMIT,
+        website: typing.Optional[str] = OMIT,
+        country_code: typing.Optional[str] = OMIT,
+        source_id: typing.Optional[str] = OMIT,
+        status: typing.Optional[PostV1LeadsUpdateRequestStatus] = OMIT,
+        estimated_value: typing.Optional[str] = OMIT,
+        currency: typing.Optional[str] = OMIT,
+        description: typing.Optional[str] = OMIT,
+        assigned_user_id: typing.Optional[str] = OMIT,
+        documents: typing.Optional[typing.Sequence[PostV1LeadsUpdateRequestDocumentsItem]] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1LeadsUpdateResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        name : typing.Optional[str]
+
+        contact_name : typing.Optional[str]
+
+        email : typing.Optional[str]
+
+        phone : typing.Optional[str]
+
+        website : typing.Optional[str]
+
+        country_code : typing.Optional[str]
+
+        source_id : typing.Optional[str]
+
+        status : typing.Optional[PostV1LeadsUpdateRequestStatus]
+
+        estimated_value : typing.Optional[str]
+
+        currency : typing.Optional[str]
+
+        description : typing.Optional[str]
+
+        assigned_user_id : typing.Optional[str]
+
+        documents : typing.Optional[typing.Sequence[PostV1LeadsUpdateRequestDocumentsItem]]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1LeadsUpdateResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.partners.post_v1leads_update(
+            id="id",
+        )
+        """
+        _response = self._raw_client.post_v1leads_update(
+            id=id,
+            name=name,
+            contact_name=contact_name,
+            email=email,
+            phone=phone,
+            website=website,
+            country_code=country_code,
+            source_id=source_id,
+            status=status,
+            estimated_value=estimated_value,
+            currency=currency,
+            description=description,
+            assigned_user_id=assigned_user_id,
+            documents=documents,
+            request_options=request_options,
+        )
+        return _response.data
+
+    def post_v1leads_delete(
+        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1LeadsDeleteResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1LeadsDeleteResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.partners.post_v1leads_delete(
+            id="id",
+        )
+        """
+        _response = self._raw_client.post_v1leads_delete(id=id, request_options=request_options)
+        return _response.data
+
+    def post_v1leads_list(
+        self,
+        *,
+        page: typing.Optional[int] = OMIT,
+        page_size: typing.Optional[int] = OMIT,
+        sort: typing.Optional[typing.Sequence[PostV1LeadsListRequestSortItem]] = OMIT,
+        filter: typing.Optional[typing.Sequence[PostV1LeadsListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1LeadsListResponse:
+        """
+        Parameters
+        ----------
+        page : typing.Optional[int]
+
+        page_size : typing.Optional[int]
+
+        sort : typing.Optional[typing.Sequence[PostV1LeadsListRequestSortItem]]
+
+        filter : typing.Optional[typing.Sequence[PostV1LeadsListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1LeadsListResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.partners.post_v1leads_list()
+        """
+        _response = self._raw_client.post_v1leads_list(
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
+        )
+        return _response.data
+
+    def post_v1leads_notes_create(
+        self, *, lead_id: str, body: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1LeadsNotesCreateResponse:
+        """
+        Parameters
+        ----------
+        lead_id : str
+
+        body : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1LeadsNotesCreateResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.partners.post_v1leads_notes_create(
+            lead_id="leadId",
+            body="body",
+        )
+        """
+        _response = self._raw_client.post_v1leads_notes_create(
+            lead_id=lead_id, body=body, request_options=request_options
+        )
+        return _response.data
+
+    def post_v1leads_notes_delete(
+        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1LeadsNotesDeleteResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1LeadsNotesDeleteResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.partners.post_v1leads_notes_delete(
+            id="id",
+        )
+        """
+        _response = self._raw_client.post_v1leads_notes_delete(id=id, request_options=request_options)
+        return _response.data
+
+    def post_v1leads_notes_list(
+        self, *, lead_id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1LeadsNotesListResponse:
+        """
+        Parameters
+        ----------
+        lead_id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1LeadsNotesListResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.partners.post_v1leads_notes_list(
+            lead_id="leadId",
+        )
+        """
+        _response = self._raw_client.post_v1leads_notes_list(lead_id=lead_id, request_options=request_options)
+        return _response.data
+
+    def post_v1leads_files_list(
+        self, *, lead_id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1LeadsFilesListResponse:
+        """
+        Parameters
+        ----------
+        lead_id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1LeadsFilesListResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.partners.post_v1leads_files_list(
+            lead_id="leadId",
+        )
+        """
+        _response = self._raw_client.post_v1leads_files_list(lead_id=lead_id, request_options=request_options)
+        return _response.data
+
+    def post_v1leads_sources_create(
+        self,
+        *,
+        name: str,
+        is_active: typing.Optional[bool] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1LeadsSourcesCreateResponse:
+        """
+        Parameters
+        ----------
+        name : str
+
+        is_active : typing.Optional[bool]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1LeadsSourcesCreateResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.partners.post_v1leads_sources_create(
+            name="name",
+        )
+        """
+        _response = self._raw_client.post_v1leads_sources_create(
+            name=name, is_active=is_active, request_options=request_options
+        )
+        return _response.data
+
+    def post_v1leads_sources_update(
+        self,
+        *,
+        id: str,
+        name: typing.Optional[str] = OMIT,
+        is_active: typing.Optional[bool] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1LeadsSourcesUpdateResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        name : typing.Optional[str]
+
+        is_active : typing.Optional[bool]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1LeadsSourcesUpdateResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.partners.post_v1leads_sources_update(
+            id="id",
+        )
+        """
+        _response = self._raw_client.post_v1leads_sources_update(
+            id=id, name=name, is_active=is_active, request_options=request_options
+        )
+        return _response.data
+
+    def post_v1leads_sources_delete(
+        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1LeadsSourcesDeleteResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1LeadsSourcesDeleteResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.partners.post_v1leads_sources_delete(
+            id="id",
+        )
+        """
+        _response = self._raw_client.post_v1leads_sources_delete(id=id, request_options=request_options)
+        return _response.data
+
+    def post_v1leads_sources_list(
+        self, *, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1LeadsSourcesListResponse:
+        """
+        Parameters
+        ----------
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1LeadsSourcesListResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.partners.post_v1leads_sources_list()
+        """
+        _response = self._raw_client.post_v1leads_sources_list(request_options=request_options)
+        return _response.data
+
+    def post_v1leads_sources_options(
+        self, *, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1LeadsSourcesOptionsResponse:
+        """
+        Parameters
+        ----------
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1LeadsSourcesOptionsResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.partners.post_v1leads_sources_options()
+        """
+        _response = self._raw_client.post_v1leads_sources_options(request_options=request_options)
+        return _response.data
+
+    def post_v1leads_convert(
+        self,
+        *,
+        id: str,
+        partner_type: typing.Optional[PostV1LeadsConvertRequestPartnerType] = OMIT,
+        code: typing.Optional[str] = OMIT,
+        vat_code: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1LeadsConvertResponse:
+        """
+        Create a customer partner from the lead, move the lead files to the partner, copy the lead notes into the partner notes and mark the lead as converted.
+
+        Parameters
+        ----------
+        id : str
+
+        partner_type : typing.Optional[PostV1LeadsConvertRequestPartnerType]
+
+        code : typing.Optional[str]
+
+        vat_code : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1LeadsConvertResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.partners.post_v1leads_convert(
+            id="id",
+        )
+        """
+        _response = self._raw_client.post_v1leads_convert(
+            id=id, partner_type=partner_type, code=code, vat_code=vat_code, request_options=request_options
         )
         return _response.data
 
@@ -1939,6 +2928,7 @@ class AsyncPartnersClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1PartnersAddressesListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1PartnersAddressesListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1PartnersAddressesListResponse:
         """
@@ -1951,6 +2941,9 @@ class AsyncPartnersClient:
         sort : typing.Optional[typing.Sequence[PostV1PartnersAddressesListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1PartnersAddressesListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -1978,7 +2971,7 @@ class AsyncPartnersClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.post_v1partners_addresses_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 
@@ -2150,6 +3143,7 @@ class AsyncPartnersClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1PartnersContactsListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1PartnersContactsListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1PartnersContactsListResponse:
         """
@@ -2162,6 +3156,9 @@ class AsyncPartnersClient:
         sort : typing.Optional[typing.Sequence[PostV1PartnersContactsListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1PartnersContactsListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -2189,7 +3186,7 @@ class AsyncPartnersClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.post_v1partners_contacts_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 
@@ -2367,6 +3364,7 @@ class AsyncPartnersClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1PartnersBankAccountsListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1PartnersBankAccountsListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1PartnersBankAccountsListResponse:
         """
@@ -2379,6 +3377,9 @@ class AsyncPartnersClient:
         sort : typing.Optional[typing.Sequence[PostV1PartnersBankAccountsListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1PartnersBankAccountsListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -2406,7 +3407,137 @@ class AsyncPartnersClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.post_v1partners_bank_accounts_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
+        )
+        return _response.data
+
+    async def post_v1partners_files_list(
+        self, *, partner_id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1PartnersFilesListResponse:
+        """
+        Parameters
+        ----------
+        partner_id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1PartnersFilesListResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.partners.post_v1partners_files_list(
+                partner_id="partnerId",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1partners_files_list(
+            partner_id=partner_id, request_options=request_options
+        )
+        return _response.data
+
+    async def reminders_the_overnight_debt_reminder_job_would_send_today_for_this_company(
+        self, *, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1PartnersDebtRemindersPreviewResponse:
+        """
+        Parameters
+        ----------
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1PartnersDebtRemindersPreviewResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.partners.reminders_the_overnight_debt_reminder_job_would_send_today_for_this_company()
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.reminders_the_overnight_debt_reminder_job_would_send_today_for_this_company(
+            request_options=request_options
+        )
+        return _response.data
+
+    async def post_v1partners_debt_reminders_list(
+        self,
+        *,
+        page: typing.Optional[int] = OMIT,
+        page_size: typing.Optional[int] = OMIT,
+        sort: typing.Optional[typing.Sequence[PostV1PartnersDebtRemindersListRequestSortItem]] = OMIT,
+        filter: typing.Optional[typing.Sequence[PostV1PartnersDebtRemindersListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1PartnersDebtRemindersListResponse:
+        """
+        Parameters
+        ----------
+        page : typing.Optional[int]
+
+        page_size : typing.Optional[int]
+
+        sort : typing.Optional[typing.Sequence[PostV1PartnersDebtRemindersListRequestSortItem]]
+
+        filter : typing.Optional[typing.Sequence[PostV1PartnersDebtRemindersListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1PartnersDebtRemindersListResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.partners.post_v1partners_debt_reminders_list()
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1partners_debt_reminders_list(
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 
@@ -2461,6 +3592,7 @@ class AsyncPartnersClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1PartnersVatReviewsListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1PartnersVatReviewsListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1PartnersVatReviewsListResponse:
         """
@@ -2473,6 +3605,9 @@ class AsyncPartnersClient:
         sort : typing.Optional[typing.Sequence[PostV1PartnersVatReviewsListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1PartnersVatReviewsListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -2500,7 +3635,7 @@ class AsyncPartnersClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.post_v1partners_vat_reviews_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 
@@ -2574,8 +3709,25 @@ class AsyncPartnersClient:
         group_id: typing.Optional[str] = OMIT,
         status_id: typing.Optional[str] = OMIT,
         address: typing.Optional[PostV1PartnersCreateRequestAddress] = OMIT,
+        correspondence_address: typing.Optional[PostV1PartnersCreateRequestCorrespondenceAddress] = OMIT,
         notes: typing.Optional[str] = OMIT,
         document_ref: typing.Optional[str] = OMIT,
+        short_name: typing.Optional[str] = OMIT,
+        website: typing.Optional[str] = OMIT,
+        fax: typing.Optional[str] = OMIT,
+        eori_code: typing.Optional[str] = OMIT,
+        other_code: typing.Optional[str] = OMIT,
+        foreign_tax_number: typing.Optional[str] = OMIT,
+        auto_debt_reminder: typing.Optional[bool] = OMIT,
+        late_interest_percent: typing.Optional[str] = OMIT,
+        first_call_date: typing.Optional[str] = OMIT,
+        last_call_date: typing.Optional[str] = OMIT,
+        next_call_date: typing.Optional[str] = OMIT,
+        rating: typing.Optional[int] = OMIT,
+        is_employee: typing.Optional[bool] = OMIT,
+        is_group_member: typing.Optional[bool] = OMIT,
+        is_active: typing.Optional[bool] = OMIT,
+        legal_country_class: typing.Optional[PostV1PartnersCreateRequestLegalCountryClass] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1PartnersCreateResponse:
         """
@@ -2615,9 +3767,43 @@ class AsyncPartnersClient:
 
         address : typing.Optional[PostV1PartnersCreateRequestAddress]
 
+        correspondence_address : typing.Optional[PostV1PartnersCreateRequestCorrespondenceAddress]
+
         notes : typing.Optional[str]
 
         document_ref : typing.Optional[str]
+
+        short_name : typing.Optional[str]
+
+        website : typing.Optional[str]
+
+        fax : typing.Optional[str]
+
+        eori_code : typing.Optional[str]
+
+        other_code : typing.Optional[str]
+
+        foreign_tax_number : typing.Optional[str]
+
+        auto_debt_reminder : typing.Optional[bool]
+
+        late_interest_percent : typing.Optional[str]
+
+        first_call_date : typing.Optional[str]
+
+        last_call_date : typing.Optional[str]
+
+        next_call_date : typing.Optional[str]
+
+        rating : typing.Optional[int]
+
+        is_employee : typing.Optional[bool]
+
+        is_group_member : typing.Optional[bool]
+
+        is_active : typing.Optional[bool]
+
+        legal_country_class : typing.Optional[PostV1PartnersCreateRequestLegalCountryClass]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -2664,8 +3850,25 @@ class AsyncPartnersClient:
             group_id=group_id,
             status_id=status_id,
             address=address,
+            correspondence_address=correspondence_address,
             notes=notes,
             document_ref=document_ref,
+            short_name=short_name,
+            website=website,
+            fax=fax,
+            eori_code=eori_code,
+            other_code=other_code,
+            foreign_tax_number=foreign_tax_number,
+            auto_debt_reminder=auto_debt_reminder,
+            late_interest_percent=late_interest_percent,
+            first_call_date=first_call_date,
+            last_call_date=last_call_date,
+            next_call_date=next_call_date,
+            rating=rating,
+            is_employee=is_employee,
+            is_group_member=is_group_member,
+            is_active=is_active,
+            legal_country_class=legal_country_class,
             request_options=request_options,
         )
         return _response.data
@@ -2690,8 +3893,25 @@ class AsyncPartnersClient:
         group_id: typing.Optional[str] = OMIT,
         status_id: typing.Optional[str] = OMIT,
         address: typing.Optional[PostV1PartnersFindOrCreateRequestAddress] = OMIT,
+        correspondence_address: typing.Optional[PostV1PartnersFindOrCreateRequestCorrespondenceAddress] = OMIT,
         notes: typing.Optional[str] = OMIT,
         document_ref: typing.Optional[str] = OMIT,
+        short_name: typing.Optional[str] = OMIT,
+        website: typing.Optional[str] = OMIT,
+        fax: typing.Optional[str] = OMIT,
+        eori_code: typing.Optional[str] = OMIT,
+        other_code: typing.Optional[str] = OMIT,
+        foreign_tax_number: typing.Optional[str] = OMIT,
+        auto_debt_reminder: typing.Optional[bool] = OMIT,
+        late_interest_percent: typing.Optional[str] = OMIT,
+        first_call_date: typing.Optional[str] = OMIT,
+        last_call_date: typing.Optional[str] = OMIT,
+        next_call_date: typing.Optional[str] = OMIT,
+        rating: typing.Optional[int] = OMIT,
+        is_employee: typing.Optional[bool] = OMIT,
+        is_group_member: typing.Optional[bool] = OMIT,
+        is_active: typing.Optional[bool] = OMIT,
+        legal_country_class: typing.Optional[PostV1PartnersFindOrCreateRequestLegalCountryClass] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1PartnersFindOrCreateResponse:
         """
@@ -2731,9 +3951,43 @@ class AsyncPartnersClient:
 
         address : typing.Optional[PostV1PartnersFindOrCreateRequestAddress]
 
+        correspondence_address : typing.Optional[PostV1PartnersFindOrCreateRequestCorrespondenceAddress]
+
         notes : typing.Optional[str]
 
         document_ref : typing.Optional[str]
+
+        short_name : typing.Optional[str]
+
+        website : typing.Optional[str]
+
+        fax : typing.Optional[str]
+
+        eori_code : typing.Optional[str]
+
+        other_code : typing.Optional[str]
+
+        foreign_tax_number : typing.Optional[str]
+
+        auto_debt_reminder : typing.Optional[bool]
+
+        late_interest_percent : typing.Optional[str]
+
+        first_call_date : typing.Optional[str]
+
+        last_call_date : typing.Optional[str]
+
+        next_call_date : typing.Optional[str]
+
+        rating : typing.Optional[int]
+
+        is_employee : typing.Optional[bool]
+
+        is_group_member : typing.Optional[bool]
+
+        is_active : typing.Optional[bool]
+
+        legal_country_class : typing.Optional[PostV1PartnersFindOrCreateRequestLegalCountryClass]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -2780,8 +4034,25 @@ class AsyncPartnersClient:
             group_id=group_id,
             status_id=status_id,
             address=address,
+            correspondence_address=correspondence_address,
             notes=notes,
             document_ref=document_ref,
+            short_name=short_name,
+            website=website,
+            fax=fax,
+            eori_code=eori_code,
+            other_code=other_code,
+            foreign_tax_number=foreign_tax_number,
+            auto_debt_reminder=auto_debt_reminder,
+            late_interest_percent=late_interest_percent,
+            first_call_date=first_call_date,
+            last_call_date=last_call_date,
+            next_call_date=next_call_date,
+            rating=rating,
+            is_employee=is_employee,
+            is_group_member=is_group_member,
+            is_active=is_active,
+            legal_country_class=legal_country_class,
             request_options=request_options,
         )
         return _response.data
@@ -2845,8 +4116,25 @@ class AsyncPartnersClient:
         group_id: typing.Optional[str] = OMIT,
         status_id: typing.Optional[str] = OMIT,
         address: typing.Optional[PostV1PartnersUpdateRequestAddress] = OMIT,
+        correspondence_address: typing.Optional[PostV1PartnersUpdateRequestCorrespondenceAddress] = OMIT,
         notes: typing.Optional[str] = OMIT,
         document_ref: typing.Optional[str] = OMIT,
+        short_name: typing.Optional[str] = OMIT,
+        website: typing.Optional[str] = OMIT,
+        fax: typing.Optional[str] = OMIT,
+        eori_code: typing.Optional[str] = OMIT,
+        other_code: typing.Optional[str] = OMIT,
+        foreign_tax_number: typing.Optional[str] = OMIT,
+        auto_debt_reminder: typing.Optional[bool] = OMIT,
+        late_interest_percent: typing.Optional[str] = OMIT,
+        first_call_date: typing.Optional[str] = OMIT,
+        last_call_date: typing.Optional[str] = OMIT,
+        next_call_date: typing.Optional[str] = OMIT,
+        rating: typing.Optional[int] = OMIT,
+        is_employee: typing.Optional[bool] = OMIT,
+        is_group_member: typing.Optional[bool] = OMIT,
+        is_active: typing.Optional[bool] = OMIT,
+        legal_country_class: typing.Optional[PostV1PartnersUpdateRequestLegalCountryClass] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1PartnersUpdateResponse:
         """
@@ -2888,9 +4176,43 @@ class AsyncPartnersClient:
 
         address : typing.Optional[PostV1PartnersUpdateRequestAddress]
 
+        correspondence_address : typing.Optional[PostV1PartnersUpdateRequestCorrespondenceAddress]
+
         notes : typing.Optional[str]
 
         document_ref : typing.Optional[str]
+
+        short_name : typing.Optional[str]
+
+        website : typing.Optional[str]
+
+        fax : typing.Optional[str]
+
+        eori_code : typing.Optional[str]
+
+        other_code : typing.Optional[str]
+
+        foreign_tax_number : typing.Optional[str]
+
+        auto_debt_reminder : typing.Optional[bool]
+
+        late_interest_percent : typing.Optional[str]
+
+        first_call_date : typing.Optional[str]
+
+        last_call_date : typing.Optional[str]
+
+        next_call_date : typing.Optional[str]
+
+        rating : typing.Optional[int]
+
+        is_employee : typing.Optional[bool]
+
+        is_group_member : typing.Optional[bool]
+
+        is_active : typing.Optional[bool]
+
+        legal_country_class : typing.Optional[PostV1PartnersUpdateRequestLegalCountryClass]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -2938,8 +4260,25 @@ class AsyncPartnersClient:
             group_id=group_id,
             status_id=status_id,
             address=address,
+            correspondence_address=correspondence_address,
             notes=notes,
             document_ref=document_ref,
+            short_name=short_name,
+            website=website,
+            fax=fax,
+            eori_code=eori_code,
+            other_code=other_code,
+            foreign_tax_number=foreign_tax_number,
+            auto_debt_reminder=auto_debt_reminder,
+            late_interest_percent=late_interest_percent,
+            first_call_date=first_call_date,
+            last_call_date=last_call_date,
+            next_call_date=next_call_date,
+            rating=rating,
+            is_employee=is_employee,
+            is_group_member=is_group_member,
+            is_active=is_active,
+            legal_country_class=legal_country_class,
             request_options=request_options,
         )
         return _response.data
@@ -3031,6 +4370,7 @@ class AsyncPartnersClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1PartnersListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1PartnersListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1PartnersListResponse:
         """
@@ -3043,6 +4383,9 @@ class AsyncPartnersClient:
         sort : typing.Optional[typing.Sequence[PostV1PartnersListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1PartnersListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -3070,7 +4413,7 @@ class AsyncPartnersClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.post_v1partners_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 
@@ -3605,6 +4948,7 @@ class AsyncPartnersClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1PartnersInquiriesListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1PartnersInquiriesListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1PartnersInquiriesListResponse:
         """
@@ -3617,6 +4961,9 @@ class AsyncPartnersClient:
         sort : typing.Optional[typing.Sequence[PostV1PartnersInquiriesListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1PartnersInquiriesListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -3644,7 +4991,7 @@ class AsyncPartnersClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.post_v1partners_inquiries_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 
@@ -3691,5 +5038,739 @@ class AsyncPartnersClient:
         """
         _response = await self._raw_client.post_v1partners_credit_check(
             partner_id=partner_id, additional_amount=additional_amount, request_options=request_options
+        )
+        return _response.data
+
+    async def post_v1leads_create(
+        self,
+        *,
+        name: str,
+        contact_name: typing.Optional[str] = OMIT,
+        email: typing.Optional[str] = OMIT,
+        phone: typing.Optional[str] = OMIT,
+        website: typing.Optional[str] = OMIT,
+        country_code: typing.Optional[str] = OMIT,
+        source_id: typing.Optional[str] = OMIT,
+        status: typing.Optional[PostV1LeadsCreateRequestStatus] = OMIT,
+        estimated_value: typing.Optional[str] = OMIT,
+        currency: typing.Optional[str] = OMIT,
+        description: typing.Optional[str] = OMIT,
+        assigned_user_id: typing.Optional[str] = OMIT,
+        documents: typing.Optional[typing.Sequence[PostV1LeadsCreateRequestDocumentsItem]] = OMIT,
+        notes: typing.Optional[typing.Sequence[str]] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1LeadsCreateResponse:
+        """
+        Parameters
+        ----------
+        name : str
+
+        contact_name : typing.Optional[str]
+
+        email : typing.Optional[str]
+
+        phone : typing.Optional[str]
+
+        website : typing.Optional[str]
+
+        country_code : typing.Optional[str]
+
+        source_id : typing.Optional[str]
+
+        status : typing.Optional[PostV1LeadsCreateRequestStatus]
+
+        estimated_value : typing.Optional[str]
+
+        currency : typing.Optional[str]
+
+        description : typing.Optional[str]
+
+        assigned_user_id : typing.Optional[str]
+
+        documents : typing.Optional[typing.Sequence[PostV1LeadsCreateRequestDocumentsItem]]
+
+        notes : typing.Optional[typing.Sequence[str]]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1LeadsCreateResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.partners.post_v1leads_create(
+                name="name",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1leads_create(
+            name=name,
+            contact_name=contact_name,
+            email=email,
+            phone=phone,
+            website=website,
+            country_code=country_code,
+            source_id=source_id,
+            status=status,
+            estimated_value=estimated_value,
+            currency=currency,
+            description=description,
+            assigned_user_id=assigned_user_id,
+            documents=documents,
+            notes=notes,
+            request_options=request_options,
+        )
+        return _response.data
+
+    async def post_v1leads_get(
+        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1LeadsGetResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1LeadsGetResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.partners.post_v1leads_get(
+                id="id",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1leads_get(id=id, request_options=request_options)
+        return _response.data
+
+    async def post_v1leads_update(
+        self,
+        *,
+        id: str,
+        name: typing.Optional[str] = OMIT,
+        contact_name: typing.Optional[str] = OMIT,
+        email: typing.Optional[str] = OMIT,
+        phone: typing.Optional[str] = OMIT,
+        website: typing.Optional[str] = OMIT,
+        country_code: typing.Optional[str] = OMIT,
+        source_id: typing.Optional[str] = OMIT,
+        status: typing.Optional[PostV1LeadsUpdateRequestStatus] = OMIT,
+        estimated_value: typing.Optional[str] = OMIT,
+        currency: typing.Optional[str] = OMIT,
+        description: typing.Optional[str] = OMIT,
+        assigned_user_id: typing.Optional[str] = OMIT,
+        documents: typing.Optional[typing.Sequence[PostV1LeadsUpdateRequestDocumentsItem]] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1LeadsUpdateResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        name : typing.Optional[str]
+
+        contact_name : typing.Optional[str]
+
+        email : typing.Optional[str]
+
+        phone : typing.Optional[str]
+
+        website : typing.Optional[str]
+
+        country_code : typing.Optional[str]
+
+        source_id : typing.Optional[str]
+
+        status : typing.Optional[PostV1LeadsUpdateRequestStatus]
+
+        estimated_value : typing.Optional[str]
+
+        currency : typing.Optional[str]
+
+        description : typing.Optional[str]
+
+        assigned_user_id : typing.Optional[str]
+
+        documents : typing.Optional[typing.Sequence[PostV1LeadsUpdateRequestDocumentsItem]]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1LeadsUpdateResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.partners.post_v1leads_update(
+                id="id",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1leads_update(
+            id=id,
+            name=name,
+            contact_name=contact_name,
+            email=email,
+            phone=phone,
+            website=website,
+            country_code=country_code,
+            source_id=source_id,
+            status=status,
+            estimated_value=estimated_value,
+            currency=currency,
+            description=description,
+            assigned_user_id=assigned_user_id,
+            documents=documents,
+            request_options=request_options,
+        )
+        return _response.data
+
+    async def post_v1leads_delete(
+        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1LeadsDeleteResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1LeadsDeleteResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.partners.post_v1leads_delete(
+                id="id",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1leads_delete(id=id, request_options=request_options)
+        return _response.data
+
+    async def post_v1leads_list(
+        self,
+        *,
+        page: typing.Optional[int] = OMIT,
+        page_size: typing.Optional[int] = OMIT,
+        sort: typing.Optional[typing.Sequence[PostV1LeadsListRequestSortItem]] = OMIT,
+        filter: typing.Optional[typing.Sequence[PostV1LeadsListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1LeadsListResponse:
+        """
+        Parameters
+        ----------
+        page : typing.Optional[int]
+
+        page_size : typing.Optional[int]
+
+        sort : typing.Optional[typing.Sequence[PostV1LeadsListRequestSortItem]]
+
+        filter : typing.Optional[typing.Sequence[PostV1LeadsListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1LeadsListResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.partners.post_v1leads_list()
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1leads_list(
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
+        )
+        return _response.data
+
+    async def post_v1leads_notes_create(
+        self, *, lead_id: str, body: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1LeadsNotesCreateResponse:
+        """
+        Parameters
+        ----------
+        lead_id : str
+
+        body : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1LeadsNotesCreateResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.partners.post_v1leads_notes_create(
+                lead_id="leadId",
+                body="body",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1leads_notes_create(
+            lead_id=lead_id, body=body, request_options=request_options
+        )
+        return _response.data
+
+    async def post_v1leads_notes_delete(
+        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1LeadsNotesDeleteResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1LeadsNotesDeleteResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.partners.post_v1leads_notes_delete(
+                id="id",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1leads_notes_delete(id=id, request_options=request_options)
+        return _response.data
+
+    async def post_v1leads_notes_list(
+        self, *, lead_id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1LeadsNotesListResponse:
+        """
+        Parameters
+        ----------
+        lead_id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1LeadsNotesListResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.partners.post_v1leads_notes_list(
+                lead_id="leadId",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1leads_notes_list(lead_id=lead_id, request_options=request_options)
+        return _response.data
+
+    async def post_v1leads_files_list(
+        self, *, lead_id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1LeadsFilesListResponse:
+        """
+        Parameters
+        ----------
+        lead_id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1LeadsFilesListResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.partners.post_v1leads_files_list(
+                lead_id="leadId",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1leads_files_list(lead_id=lead_id, request_options=request_options)
+        return _response.data
+
+    async def post_v1leads_sources_create(
+        self,
+        *,
+        name: str,
+        is_active: typing.Optional[bool] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1LeadsSourcesCreateResponse:
+        """
+        Parameters
+        ----------
+        name : str
+
+        is_active : typing.Optional[bool]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1LeadsSourcesCreateResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.partners.post_v1leads_sources_create(
+                name="name",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1leads_sources_create(
+            name=name, is_active=is_active, request_options=request_options
+        )
+        return _response.data
+
+    async def post_v1leads_sources_update(
+        self,
+        *,
+        id: str,
+        name: typing.Optional[str] = OMIT,
+        is_active: typing.Optional[bool] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1LeadsSourcesUpdateResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        name : typing.Optional[str]
+
+        is_active : typing.Optional[bool]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1LeadsSourcesUpdateResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.partners.post_v1leads_sources_update(
+                id="id",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1leads_sources_update(
+            id=id, name=name, is_active=is_active, request_options=request_options
+        )
+        return _response.data
+
+    async def post_v1leads_sources_delete(
+        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1LeadsSourcesDeleteResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1LeadsSourcesDeleteResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.partners.post_v1leads_sources_delete(
+                id="id",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1leads_sources_delete(id=id, request_options=request_options)
+        return _response.data
+
+    async def post_v1leads_sources_list(
+        self, *, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1LeadsSourcesListResponse:
+        """
+        Parameters
+        ----------
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1LeadsSourcesListResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.partners.post_v1leads_sources_list()
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1leads_sources_list(request_options=request_options)
+        return _response.data
+
+    async def post_v1leads_sources_options(
+        self, *, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1LeadsSourcesOptionsResponse:
+        """
+        Parameters
+        ----------
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1LeadsSourcesOptionsResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.partners.post_v1leads_sources_options()
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1leads_sources_options(request_options=request_options)
+        return _response.data
+
+    async def post_v1leads_convert(
+        self,
+        *,
+        id: str,
+        partner_type: typing.Optional[PostV1LeadsConvertRequestPartnerType] = OMIT,
+        code: typing.Optional[str] = OMIT,
+        vat_code: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1LeadsConvertResponse:
+        """
+        Create a customer partner from the lead, move the lead files to the partner, copy the lead notes into the partner notes and mark the lead as converted.
+
+        Parameters
+        ----------
+        id : str
+
+        partner_type : typing.Optional[PostV1LeadsConvertRequestPartnerType]
+
+        code : typing.Optional[str]
+
+        vat_code : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1LeadsConvertResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.partners.post_v1leads_convert(
+                id="id",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1leads_convert(
+            id=id, partner_type=partner_type, code=code, vat_code=vat_code, request_options=request_options
         )
         return _response.data

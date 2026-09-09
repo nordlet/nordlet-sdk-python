@@ -207,6 +207,7 @@ class RawAssetsClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1AssetsGroupsListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1AssetsGroupsListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[PostV1AssetsGroupsListResponse]:
         """
@@ -219,6 +220,9 @@ class RawAssetsClient:
         sort : typing.Optional[typing.Sequence[PostV1AssetsGroupsListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1AssetsGroupsListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -242,6 +246,7 @@ class RawAssetsClient:
                     annotation=typing.Sequence[PostV1AssetsGroupsListRequestFilterItem],
                     direction="write",
                 ),
+                "totals": totals,
             },
             headers={
                 "content-type": "application/json",
@@ -676,6 +681,7 @@ class RawAssetsClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1AssetsAssetsListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1AssetsAssetsListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[PostV1AssetsAssetsListResponse]:
         """
@@ -688,6 +694,9 @@ class RawAssetsClient:
         sort : typing.Optional[typing.Sequence[PostV1AssetsAssetsListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1AssetsAssetsListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -711,6 +720,7 @@ class RawAssetsClient:
                     annotation=typing.Sequence[PostV1AssetsAssetsListRequestFilterItem],
                     direction="write",
                 ),
+                "totals": totals,
             },
             headers={
                 "content-type": "application/json",
@@ -1425,6 +1435,7 @@ class AsyncRawAssetsClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1AssetsGroupsListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1AssetsGroupsListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[PostV1AssetsGroupsListResponse]:
         """
@@ -1437,6 +1448,9 @@ class AsyncRawAssetsClient:
         sort : typing.Optional[typing.Sequence[PostV1AssetsGroupsListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1AssetsGroupsListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -1460,6 +1474,7 @@ class AsyncRawAssetsClient:
                     annotation=typing.Sequence[PostV1AssetsGroupsListRequestFilterItem],
                     direction="write",
                 ),
+                "totals": totals,
             },
             headers={
                 "content-type": "application/json",
@@ -1894,6 +1909,7 @@ class AsyncRawAssetsClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1AssetsAssetsListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1AssetsAssetsListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[PostV1AssetsAssetsListResponse]:
         """
@@ -1906,6 +1922,9 @@ class AsyncRawAssetsClient:
         sort : typing.Optional[typing.Sequence[PostV1AssetsAssetsListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1AssetsAssetsListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -1929,6 +1948,7 @@ class AsyncRawAssetsClient:
                     annotation=typing.Sequence[PostV1AssetsAssetsListRequestFilterItem],
                     direction="write",
                 ),
+                "totals": totals,
             },
             headers={
                 "content-type": "application/json",

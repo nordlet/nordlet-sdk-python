@@ -11,6 +11,8 @@ from ...core.serialization import FieldMetadata
 class PostV1PartnersListResponseRowsItemAddress(UniversalBaseModel):
     street: typing.Optional[str] = None
     city: typing.Optional[str] = None
+    municipality: typing.Optional[str] = None
+    county: typing.Optional[str] = None
     postal_code: typing_extensions.Annotated[
         typing.Optional[str], FieldMetadata(alias="postalCode"), pydantic.Field(alias="postalCode")
     ] = None

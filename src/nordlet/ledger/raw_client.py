@@ -90,6 +90,7 @@ class RawLedgerClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1LedgerAccountsListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1LedgerAccountsListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[PostV1LedgerAccountsListResponse]:
         """
@@ -102,6 +103,9 @@ class RawLedgerClient:
         sort : typing.Optional[typing.Sequence[PostV1LedgerAccountsListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1LedgerAccountsListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -125,6 +129,7 @@ class RawLedgerClient:
                     annotation=typing.Sequence[PostV1LedgerAccountsListRequestFilterItem],
                     direction="write",
                 ),
+                "totals": totals,
             },
             headers={
                 "content-type": "application/json",
@@ -695,6 +700,7 @@ class RawLedgerClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1LedgerPeriodsListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1LedgerPeriodsListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[PostV1LedgerPeriodsListResponse]:
         """
@@ -707,6 +713,9 @@ class RawLedgerClient:
         sort : typing.Optional[typing.Sequence[PostV1LedgerPeriodsListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1LedgerPeriodsListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -730,6 +739,7 @@ class RawLedgerClient:
                     annotation=typing.Sequence[PostV1LedgerPeriodsListRequestFilterItem],
                     direction="write",
                 ),
+                "totals": totals,
             },
             headers={
                 "content-type": "application/json",
@@ -1127,6 +1137,7 @@ class RawLedgerClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1LedgerJournalTransactionsListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1LedgerJournalTransactionsListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[PostV1LedgerJournalTransactionsListResponse]:
         """
@@ -1139,6 +1150,9 @@ class RawLedgerClient:
         sort : typing.Optional[typing.Sequence[PostV1LedgerJournalTransactionsListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1LedgerJournalTransactionsListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -1164,6 +1178,7 @@ class RawLedgerClient:
                     annotation=typing.Sequence[PostV1LedgerJournalTransactionsListRequestFilterItem],
                     direction="write",
                 ),
+                "totals": totals,
             },
             headers={
                 "content-type": "application/json",
@@ -1581,6 +1596,7 @@ class RawLedgerClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1LedgerCostCentersListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1LedgerCostCentersListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[PostV1LedgerCostCentersListResponse]:
         """
@@ -1593,6 +1609,9 @@ class RawLedgerClient:
         sort : typing.Optional[typing.Sequence[PostV1LedgerCostCentersListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1LedgerCostCentersListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -1618,6 +1637,7 @@ class RawLedgerClient:
                     annotation=typing.Sequence[PostV1LedgerCostCentersListRequestFilterItem],
                     direction="write",
                 ),
+                "totals": totals,
             },
             headers={
                 "content-type": "application/json",
@@ -2158,6 +2178,7 @@ class RawLedgerClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1LedgerCostCenterGroupsListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1LedgerCostCenterGroupsListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[PostV1LedgerCostCenterGroupsListResponse]:
         """
@@ -2170,6 +2191,9 @@ class RawLedgerClient:
         sort : typing.Optional[typing.Sequence[PostV1LedgerCostCenterGroupsListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1LedgerCostCenterGroupsListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -2195,6 +2219,7 @@ class RawLedgerClient:
                     annotation=typing.Sequence[PostV1LedgerCostCenterGroupsListRequestFilterItem],
                     direction="write",
                 ),
+                "totals": totals,
             },
             headers={
                 "content-type": "application/json",
@@ -3066,6 +3091,7 @@ class RawLedgerClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1LedgerOwnersListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1LedgerOwnersListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[PostV1LedgerOwnersListResponse]:
         """
@@ -3078,6 +3104,9 @@ class RawLedgerClient:
         sort : typing.Optional[typing.Sequence[PostV1LedgerOwnersListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1LedgerOwnersListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -3101,6 +3130,7 @@ class RawLedgerClient:
                     annotation=typing.Sequence[PostV1LedgerOwnersListRequestFilterItem],
                     direction="write",
                 ),
+                "totals": totals,
             },
             headers={
                 "content-type": "application/json",
@@ -3512,6 +3542,7 @@ class AsyncRawLedgerClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1LedgerAccountsListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1LedgerAccountsListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[PostV1LedgerAccountsListResponse]:
         """
@@ -3524,6 +3555,9 @@ class AsyncRawLedgerClient:
         sort : typing.Optional[typing.Sequence[PostV1LedgerAccountsListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1LedgerAccountsListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -3547,6 +3581,7 @@ class AsyncRawLedgerClient:
                     annotation=typing.Sequence[PostV1LedgerAccountsListRequestFilterItem],
                     direction="write",
                 ),
+                "totals": totals,
             },
             headers={
                 "content-type": "application/json",
@@ -4117,6 +4152,7 @@ class AsyncRawLedgerClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1LedgerPeriodsListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1LedgerPeriodsListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[PostV1LedgerPeriodsListResponse]:
         """
@@ -4129,6 +4165,9 @@ class AsyncRawLedgerClient:
         sort : typing.Optional[typing.Sequence[PostV1LedgerPeriodsListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1LedgerPeriodsListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -4152,6 +4191,7 @@ class AsyncRawLedgerClient:
                     annotation=typing.Sequence[PostV1LedgerPeriodsListRequestFilterItem],
                     direction="write",
                 ),
+                "totals": totals,
             },
             headers={
                 "content-type": "application/json",
@@ -4549,6 +4589,7 @@ class AsyncRawLedgerClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1LedgerJournalTransactionsListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1LedgerJournalTransactionsListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[PostV1LedgerJournalTransactionsListResponse]:
         """
@@ -4561,6 +4602,9 @@ class AsyncRawLedgerClient:
         sort : typing.Optional[typing.Sequence[PostV1LedgerJournalTransactionsListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1LedgerJournalTransactionsListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -4586,6 +4630,7 @@ class AsyncRawLedgerClient:
                     annotation=typing.Sequence[PostV1LedgerJournalTransactionsListRequestFilterItem],
                     direction="write",
                 ),
+                "totals": totals,
             },
             headers={
                 "content-type": "application/json",
@@ -5003,6 +5048,7 @@ class AsyncRawLedgerClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1LedgerCostCentersListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1LedgerCostCentersListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[PostV1LedgerCostCentersListResponse]:
         """
@@ -5015,6 +5061,9 @@ class AsyncRawLedgerClient:
         sort : typing.Optional[typing.Sequence[PostV1LedgerCostCentersListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1LedgerCostCentersListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -5040,6 +5089,7 @@ class AsyncRawLedgerClient:
                     annotation=typing.Sequence[PostV1LedgerCostCentersListRequestFilterItem],
                     direction="write",
                 ),
+                "totals": totals,
             },
             headers={
                 "content-type": "application/json",
@@ -5580,6 +5630,7 @@ class AsyncRawLedgerClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1LedgerCostCenterGroupsListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1LedgerCostCenterGroupsListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[PostV1LedgerCostCenterGroupsListResponse]:
         """
@@ -5592,6 +5643,9 @@ class AsyncRawLedgerClient:
         sort : typing.Optional[typing.Sequence[PostV1LedgerCostCenterGroupsListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1LedgerCostCenterGroupsListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -5617,6 +5671,7 @@ class AsyncRawLedgerClient:
                     annotation=typing.Sequence[PostV1LedgerCostCenterGroupsListRequestFilterItem],
                     direction="write",
                 ),
+                "totals": totals,
             },
             headers={
                 "content-type": "application/json",
@@ -6488,6 +6543,7 @@ class AsyncRawLedgerClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1LedgerOwnersListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1LedgerOwnersListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[PostV1LedgerOwnersListResponse]:
         """
@@ -6500,6 +6556,9 @@ class AsyncRawLedgerClient:
         sort : typing.Optional[typing.Sequence[PostV1LedgerOwnersListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1LedgerOwnersListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -6523,6 +6582,7 @@ class AsyncRawLedgerClient:
                     annotation=typing.Sequence[PostV1LedgerOwnersListRequestFilterItem],
                     direction="write",
                 ),
+                "totals": totals,
             },
             headers={
                 "content-type": "application/json",

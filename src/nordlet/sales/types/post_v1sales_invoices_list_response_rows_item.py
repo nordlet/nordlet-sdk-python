@@ -67,6 +67,42 @@ class PostV1SalesInvoicesListResponseRowsItem(UniversalBaseModel):
     document_ref: typing_extensions.Annotated[
         typing.Optional[str], FieldMetadata(alias="documentRef"), pydantic.Field(alias="documentRef")
     ] = None
+    operation_type_id: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="operationTypeId"), pydantic.Field(alias="operationTypeId")
+    ] = None
+    document_series_id: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="documentSeriesId"), pydantic.Field(alias="documentSeriesId")
+    ] = None
+    series_label: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="seriesLabel"), pydantic.Field(alias="seriesLabel")
+    ] = None
+    discount_percent: typing_extensions.Annotated[
+        str, FieldMetadata(alias="discountPercent"), pydantic.Field(alias="discountPercent")
+    ]
+    order_number: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="orderNumber"), pydantic.Field(alias="orderNumber")
+    ] = None
+    issued_by_name: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="issuedByName"), pydantic.Field(alias="issuedByName")
+    ] = None
+    issued_by_title: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="issuedByTitle"), pydantic.Field(alias="issuedByTitle")
+    ] = None
+    received_by_name: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="receivedByName"), pydantic.Field(alias="receivedByName")
+    ] = None
+    received_by_title: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="receivedByTitle"), pydantic.Field(alias="receivedByTitle")
+    ] = None
+    locked_at: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="lockedAt"), pydantic.Field(alias="lockedAt")
+    ] = None
+    locked_by: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="lockedBy"), pydantic.Field(alias="lockedBy")
+    ] = None
+    pay_token: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="payToken"), pydantic.Field(alias="payToken")
+    ] = None
     created_at: typing_extensions.Annotated[str, FieldMetadata(alias="createdAt"), pydantic.Field(alias="createdAt")]
     updated_at: typing_extensions.Annotated[str, FieldMetadata(alias="updatedAt"), pydantic.Field(alias="updatedAt")]
 

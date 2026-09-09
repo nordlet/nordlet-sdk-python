@@ -364,6 +364,7 @@ class RawPosClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1PosDevicesListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1PosDevicesListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[PostV1PosDevicesListResponse]:
         """
@@ -376,6 +377,9 @@ class RawPosClient:
         sort : typing.Optional[typing.Sequence[PostV1PosDevicesListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1PosDevicesListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -397,6 +401,7 @@ class RawPosClient:
                 "filter": convert_and_respect_annotation_metadata(
                     object_=filter, annotation=typing.Sequence[PostV1PosDevicesListRequestFilterItem], direction="write"
                 ),
+                "totals": totals,
             },
             headers={
                 "content-type": "application/json",
@@ -855,6 +860,7 @@ class RawPosClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1PosReportsListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1PosReportsListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[PostV1PosReportsListResponse]:
         """
@@ -867,6 +873,9 @@ class RawPosClient:
         sort : typing.Optional[typing.Sequence[PostV1PosReportsListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1PosReportsListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -888,6 +897,7 @@ class RawPosClient:
                 "filter": convert_and_respect_annotation_metadata(
                     object_=filter, annotation=typing.Sequence[PostV1PosReportsListRequestFilterItem], direction="write"
                 ),
+                "totals": totals,
             },
             headers={
                 "content-type": "application/json",
@@ -1330,6 +1340,7 @@ class AsyncRawPosClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1PosDevicesListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1PosDevicesListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[PostV1PosDevicesListResponse]:
         """
@@ -1342,6 +1353,9 @@ class AsyncRawPosClient:
         sort : typing.Optional[typing.Sequence[PostV1PosDevicesListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1PosDevicesListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -1363,6 +1377,7 @@ class AsyncRawPosClient:
                 "filter": convert_and_respect_annotation_metadata(
                     object_=filter, annotation=typing.Sequence[PostV1PosDevicesListRequestFilterItem], direction="write"
                 ),
+                "totals": totals,
             },
             headers={
                 "content-type": "application/json",
@@ -1821,6 +1836,7 @@ class AsyncRawPosClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1PosReportsListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1PosReportsListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[PostV1PosReportsListResponse]:
         """
@@ -1833,6 +1849,9 @@ class AsyncRawPosClient:
         sort : typing.Optional[typing.Sequence[PostV1PosReportsListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1PosReportsListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -1854,6 +1873,7 @@ class AsyncRawPosClient:
                 "filter": convert_and_respect_annotation_metadata(
                     object_=filter, annotation=typing.Sequence[PostV1PosReportsListRequestFilterItem], direction="write"
                 ),
+                "totals": totals,
             },
             headers={
                 "content-type": "application/json",

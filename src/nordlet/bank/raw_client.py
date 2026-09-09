@@ -69,15 +69,21 @@ from .types.post_v1bank_mandates_list_request_filter_item import PostV1BankManda
 from .types.post_v1bank_mandates_list_request_sort_item import PostV1BankMandatesListRequestSortItem
 from .types.post_v1bank_mandates_list_response import PostV1BankMandatesListResponse
 from .types.post_v1bank_mandates_update_response import PostV1BankMandatesUpdateResponse
+from .types.post_v1bank_match_rules_create_response import PostV1BankMatchRulesCreateResponse
+from .types.post_v1bank_match_rules_delete_response import PostV1BankMatchRulesDeleteResponse
+from .types.post_v1bank_match_rules_list_response import PostV1BankMatchRulesListResponse
+from .types.post_v1bank_match_rules_update_response import PostV1BankMatchRulesUpdateResponse
 from .types.post_v1bank_payments_export_response import PostV1BankPaymentsExportResponse
 from .types.post_v1bank_settlements_get_response import PostV1BankSettlementsGetResponse
 from .types.post_v1bank_settlements_import_request_provider import PostV1BankSettlementsImportRequestProvider
 from .types.post_v1bank_settlements_import_response import PostV1BankSettlementsImportResponse
+from .types.post_v1bank_settlements_link_response import PostV1BankSettlementsLinkResponse
 from .types.post_v1bank_settlements_list_request_filter_item import PostV1BankSettlementsListRequestFilterItem
 from .types.post_v1bank_settlements_list_request_sort_item import PostV1BankSettlementsListRequestSortItem
 from .types.post_v1bank_settlements_list_response import PostV1BankSettlementsListResponse
 from .types.post_v1bank_settlements_match_response import PostV1BankSettlementsMatchResponse
 from .types.post_v1bank_settlements_post_response import PostV1BankSettlementsPostResponse
+from .types.post_v1bank_settlements_unlink_response import PostV1BankSettlementsUnlinkResponse
 from .types.post_v1bank_statements_import_request_format import PostV1BankStatementsImportRequestFormat
 from .types.post_v1bank_statements_import_response import PostV1BankStatementsImportResponse
 from .types.post_v1bank_transactions_import_request_transactions_item import (
@@ -263,6 +269,7 @@ class RawBankClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1BankAccountsListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1BankAccountsListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[PostV1BankAccountsListResponse]:
         """
@@ -275,6 +282,9 @@ class RawBankClient:
         sort : typing.Optional[typing.Sequence[PostV1BankAccountsListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1BankAccountsListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -298,6 +308,7 @@ class RawBankClient:
                     annotation=typing.Sequence[PostV1BankAccountsListRequestFilterItem],
                     direction="write",
                 ),
+                "totals": totals,
             },
             headers={
                 "content-type": "application/json",
@@ -719,6 +730,7 @@ class RawBankClient:
         content: str,
         template_id: typing.Optional[str] = OMIT,
         format: typing.Optional[PostV1BankStatementsImportRequestFormat] = OMIT,
+        transfers_csv: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[PostV1BankStatementsImportResponse]:
         """
@@ -731,6 +743,9 @@ class RawBankClient:
         template_id : typing.Optional[str]
 
         format : typing.Optional[PostV1BankStatementsImportRequestFormat]
+
+        transfers_csv : typing.Optional[str]
+            Stripe transfers export (plain CSV or base64) used to post lender payouts and commissions
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -748,6 +763,7 @@ class RawBankClient:
                 "templateId": template_id,
                 "format": format,
                 "content": content,
+                "transfersCsv": transfers_csv,
             },
             headers={
                 "content-type": "application/json",
@@ -869,6 +885,7 @@ class RawBankClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1BankTransactionsListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1BankTransactionsListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[PostV1BankTransactionsListResponse]:
         """
@@ -881,6 +898,9 @@ class RawBankClient:
         sort : typing.Optional[typing.Sequence[PostV1BankTransactionsListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1BankTransactionsListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -906,6 +926,7 @@ class RawBankClient:
                     annotation=typing.Sequence[PostV1BankTransactionsListRequestFilterItem],
                     direction="write",
                 ),
+                "totals": totals,
             },
             headers={
                 "content-type": "application/json",
@@ -1482,6 +1503,12 @@ class RawBankClient:
         company_meta_field: typing.Optional[str] = OMIT,
         invoice_item_id: typing.Optional[str] = OMIT,
         advance_invoices: typing.Optional[bool] = OMIT,
+        authorization_operation_type_id: typing.Optional[str] = OMIT,
+        payout_operation_type_id: typing.Optional[str] = OMIT,
+        commission_operation_type_id: typing.Optional[str] = OMIT,
+        lender_meta_field: typing.Optional[str] = OMIT,
+        partial_refund_label: typing.Optional[str] = OMIT,
+        full_refund_label: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[PostV1BankImportTemplatesCreateResponse]:
         """
@@ -1504,6 +1531,18 @@ class RawBankClient:
         invoice_item_id : typing.Optional[str]
 
         advance_invoices : typing.Optional[bool]
+
+        authorization_operation_type_id : typing.Optional[str]
+
+        payout_operation_type_id : typing.Optional[str]
+
+        commission_operation_type_id : typing.Optional[str]
+
+        lender_meta_field : typing.Optional[str]
+
+        partial_refund_label : typing.Optional[str]
+
+        full_refund_label : typing.Optional[str]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -1530,6 +1569,12 @@ class RawBankClient:
                 "companyMetaField": company_meta_field,
                 "invoiceItemId": invoice_item_id,
                 "advanceInvoices": advance_invoices,
+                "authorizationOperationTypeId": authorization_operation_type_id,
+                "payoutOperationTypeId": payout_operation_type_id,
+                "commissionOperationTypeId": commission_operation_type_id,
+                "lenderMetaField": lender_meta_field,
+                "partialRefundLabel": partial_refund_label,
+                "fullRefundLabel": full_refund_label,
             },
             headers={
                 "content-type": "application/json",
@@ -1657,6 +1702,12 @@ class RawBankClient:
         company_meta_field: typing.Optional[str] = OMIT,
         invoice_item_id: typing.Optional[str] = OMIT,
         advance_invoices: typing.Optional[bool] = OMIT,
+        authorization_operation_type_id: typing.Optional[str] = OMIT,
+        payout_operation_type_id: typing.Optional[str] = OMIT,
+        commission_operation_type_id: typing.Optional[str] = OMIT,
+        lender_meta_field: typing.Optional[str] = OMIT,
+        partial_refund_label: typing.Optional[str] = OMIT,
+        full_refund_label: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[PostV1BankImportTemplatesUpdateResponse]:
         """
@@ -1681,6 +1732,18 @@ class RawBankClient:
         invoice_item_id : typing.Optional[str]
 
         advance_invoices : typing.Optional[bool]
+
+        authorization_operation_type_id : typing.Optional[str]
+
+        payout_operation_type_id : typing.Optional[str]
+
+        commission_operation_type_id : typing.Optional[str]
+
+        lender_meta_field : typing.Optional[str]
+
+        partial_refund_label : typing.Optional[str]
+
+        full_refund_label : typing.Optional[str]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -1707,6 +1770,12 @@ class RawBankClient:
                 "companyMetaField": company_meta_field,
                 "invoiceItemId": invoice_item_id,
                 "advanceInvoices": advance_invoices,
+                "authorizationOperationTypeId": authorization_operation_type_id,
+                "payoutOperationTypeId": payout_operation_type_id,
+                "commissionOperationTypeId": commission_operation_type_id,
+                "lenderMetaField": lender_meta_field,
+                "partialRefundLabel": partial_refund_label,
+                "fullRefundLabel": full_refund_label,
                 "id": id,
             },
             headers={
@@ -2099,6 +2168,7 @@ class RawBankClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1BankImportTemplatesListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1BankImportTemplatesListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[PostV1BankImportTemplatesListResponse]:
         """
@@ -2111,6 +2181,9 @@ class RawBankClient:
         sort : typing.Optional[typing.Sequence[PostV1BankImportTemplatesListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1BankImportTemplatesListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -2136,6 +2209,7 @@ class RawBankClient:
                     annotation=typing.Sequence[PostV1BankImportTemplatesListRequestFilterItem],
                     direction="write",
                 ),
+                "totals": totals,
             },
             headers={
                 "content-type": "application/json",
@@ -2149,6 +2223,600 @@ class RawBankClient:
                     PostV1BankImportTemplatesListResponse,
                     parse_obj_as(
                         type_=PostV1BankImportTemplatesListResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return HttpResponse(response=_response, data=_data)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 422:
+                raise UnprocessableEntityError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
+    def post_v1bank_match_rules_create(
+        self,
+        *,
+        name: str,
+        pattern: str,
+        provider: typing.Optional[str] = OMIT,
+        payout_id_prefix: typing.Optional[str] = OMIT,
+        bank_account_id: typing.Optional[str] = OMIT,
+        date_window_days: typing.Optional[int] = OMIT,
+        is_active: typing.Optional[bool] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> HttpResponse[PostV1BankMatchRulesCreateResponse]:
+        """
+        Parameters
+        ----------
+        name : str
+
+        pattern : str
+
+        provider : typing.Optional[str]
+
+        payout_id_prefix : typing.Optional[str]
+
+        bank_account_id : typing.Optional[str]
+
+        date_window_days : typing.Optional[int]
+
+        is_active : typing.Optional[bool]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        HttpResponse[PostV1BankMatchRulesCreateResponse]
+            Default Response
+        """
+        _response = self._client_wrapper.httpx_client.request(
+            "v1/bank/match-rules/create",
+            method="POST",
+            json={
+                "name": name,
+                "provider": provider,
+                "pattern": pattern,
+                "payoutIdPrefix": payout_id_prefix,
+                "bankAccountId": bank_account_id,
+                "dateWindowDays": date_window_days,
+                "isActive": is_active,
+            },
+            headers={
+                "content-type": "application/json",
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    PostV1BankMatchRulesCreateResponse,
+                    parse_obj_as(
+                        type_=PostV1BankMatchRulesCreateResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return HttpResponse(response=_response, data=_data)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 422:
+                raise UnprocessableEntityError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
+    def post_v1bank_match_rules_update(
+        self,
+        *,
+        id: str,
+        name: typing.Optional[str] = OMIT,
+        provider: typing.Optional[str] = OMIT,
+        pattern: typing.Optional[str] = OMIT,
+        payout_id_prefix: typing.Optional[str] = OMIT,
+        bank_account_id: typing.Optional[str] = OMIT,
+        date_window_days: typing.Optional[int] = OMIT,
+        is_active: typing.Optional[bool] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> HttpResponse[PostV1BankMatchRulesUpdateResponse]:
+        """
+        Parameters
+        ----------
+        id : str
+
+        name : typing.Optional[str]
+
+        provider : typing.Optional[str]
+
+        pattern : typing.Optional[str]
+
+        payout_id_prefix : typing.Optional[str]
+
+        bank_account_id : typing.Optional[str]
+
+        date_window_days : typing.Optional[int]
+
+        is_active : typing.Optional[bool]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        HttpResponse[PostV1BankMatchRulesUpdateResponse]
+            Default Response
+        """
+        _response = self._client_wrapper.httpx_client.request(
+            "v1/bank/match-rules/update",
+            method="POST",
+            json={
+                "id": id,
+                "name": name,
+                "provider": provider,
+                "pattern": pattern,
+                "payoutIdPrefix": payout_id_prefix,
+                "bankAccountId": bank_account_id,
+                "dateWindowDays": date_window_days,
+                "isActive": is_active,
+            },
+            headers={
+                "content-type": "application/json",
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    PostV1BankMatchRulesUpdateResponse,
+                    parse_obj_as(
+                        type_=PostV1BankMatchRulesUpdateResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return HttpResponse(response=_response, data=_data)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 422:
+                raise UnprocessableEntityError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
+    def post_v1bank_match_rules_delete(
+        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> HttpResponse[PostV1BankMatchRulesDeleteResponse]:
+        """
+        Parameters
+        ----------
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        HttpResponse[PostV1BankMatchRulesDeleteResponse]
+            Default Response
+        """
+        _response = self._client_wrapper.httpx_client.request(
+            "v1/bank/match-rules/delete",
+            method="POST",
+            json={
+                "id": id,
+            },
+            headers={
+                "content-type": "application/json",
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    PostV1BankMatchRulesDeleteResponse,
+                    parse_obj_as(
+                        type_=PostV1BankMatchRulesDeleteResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return HttpResponse(response=_response, data=_data)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 422:
+                raise UnprocessableEntityError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
+    def post_v1bank_match_rules_list(
+        self, *, request_options: typing.Optional[RequestOptions] = None
+    ) -> HttpResponse[PostV1BankMatchRulesListResponse]:
+        """
+        Parameters
+        ----------
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        HttpResponse[PostV1BankMatchRulesListResponse]
+            Default Response
+        """
+        _response = self._client_wrapper.httpx_client.request(
+            "v1/bank/match-rules/list",
+            method="POST",
+            json={},
+            headers={
+                "content-type": "application/json",
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    PostV1BankMatchRulesListResponse,
+                    parse_obj_as(
+                        type_=PostV1BankMatchRulesListResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -2847,6 +3515,7 @@ class RawBankClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1BankMandatesListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1BankMandatesListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[PostV1BankMandatesListResponse]:
         """
@@ -2859,6 +3528,9 @@ class RawBankClient:
         sort : typing.Optional[typing.Sequence[PostV1BankMandatesListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1BankMandatesListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -2882,6 +3554,7 @@ class RawBankClient:
                     annotation=typing.Sequence[PostV1BankMandatesListRequestFilterItem],
                     direction="write",
                 ),
+                "totals": totals,
             },
             headers={
                 "content-type": "application/json",
@@ -3437,6 +4110,7 @@ class RawBankClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1BankSettlementsListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1BankSettlementsListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[PostV1BankSettlementsListResponse]:
         """
@@ -3449,6 +4123,9 @@ class RawBankClient:
         sort : typing.Optional[typing.Sequence[PostV1BankSettlementsListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1BankSettlementsListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -3474,6 +4151,7 @@ class RawBankClient:
                     annotation=typing.Sequence[PostV1BankSettlementsListRequestFilterItem],
                     direction="write",
                 ),
+                "totals": totals,
             },
             headers={
                 "content-type": "application/json",
@@ -3764,6 +4442,283 @@ class RawBankClient:
                     PostV1BankSettlementsMatchResponse,
                     parse_obj_as(
                         type_=PostV1BankSettlementsMatchResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return HttpResponse(response=_response, data=_data)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 422:
+                raise UnprocessableEntityError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
+    def post_v1bank_settlements_link(
+        self, *, id: str, bank_transaction_id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> HttpResponse[PostV1BankSettlementsLinkResponse]:
+        """
+        Attach the incoming bank-statement line that carries this payout to the settlement batch.
+
+        Parameters
+        ----------
+        id : str
+
+        bank_transaction_id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        HttpResponse[PostV1BankSettlementsLinkResponse]
+            Default Response
+        """
+        _response = self._client_wrapper.httpx_client.request(
+            "v1/bank/settlements/link",
+            method="POST",
+            json={
+                "id": id,
+                "bankTransactionId": bank_transaction_id,
+            },
+            headers={
+                "content-type": "application/json",
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    PostV1BankSettlementsLinkResponse,
+                    parse_obj_as(
+                        type_=PostV1BankSettlementsLinkResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return HttpResponse(response=_response, data=_data)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 422:
+                raise UnprocessableEntityError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
+    def post_v1bank_settlements_unlink(
+        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> HttpResponse[PostV1BankSettlementsUnlinkResponse]:
+        """
+        Detach the bank-statement line from the settlement batch and return the line to unmatched.
+
+        Parameters
+        ----------
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        HttpResponse[PostV1BankSettlementsUnlinkResponse]
+            Default Response
+        """
+        _response = self._client_wrapper.httpx_client.request(
+            "v1/bank/settlements/unlink",
+            method="POST",
+            json={
+                "id": id,
+            },
+            headers={
+                "content-type": "application/json",
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    PostV1BankSettlementsUnlinkResponse,
+                    parse_obj_as(
+                        type_=PostV1BankSettlementsUnlinkResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -4584,6 +5539,7 @@ class RawBankClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1BankFeedsConnectionsListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1BankFeedsConnectionsListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[PostV1BankFeedsConnectionsListResponse]:
         """
@@ -4596,6 +5552,9 @@ class RawBankClient:
         sort : typing.Optional[typing.Sequence[PostV1BankFeedsConnectionsListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1BankFeedsConnectionsListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -4621,6 +5580,7 @@ class RawBankClient:
                     annotation=typing.Sequence[PostV1BankFeedsConnectionsListRequestFilterItem],
                     direction="write",
                 ),
+                "totals": totals,
             },
             headers={
                 "content-type": "application/json",
@@ -5486,6 +6446,7 @@ class AsyncRawBankClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1BankAccountsListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1BankAccountsListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[PostV1BankAccountsListResponse]:
         """
@@ -5498,6 +6459,9 @@ class AsyncRawBankClient:
         sort : typing.Optional[typing.Sequence[PostV1BankAccountsListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1BankAccountsListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -5521,6 +6485,7 @@ class AsyncRawBankClient:
                     annotation=typing.Sequence[PostV1BankAccountsListRequestFilterItem],
                     direction="write",
                 ),
+                "totals": totals,
             },
             headers={
                 "content-type": "application/json",
@@ -5942,6 +6907,7 @@ class AsyncRawBankClient:
         content: str,
         template_id: typing.Optional[str] = OMIT,
         format: typing.Optional[PostV1BankStatementsImportRequestFormat] = OMIT,
+        transfers_csv: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[PostV1BankStatementsImportResponse]:
         """
@@ -5954,6 +6920,9 @@ class AsyncRawBankClient:
         template_id : typing.Optional[str]
 
         format : typing.Optional[PostV1BankStatementsImportRequestFormat]
+
+        transfers_csv : typing.Optional[str]
+            Stripe transfers export (plain CSV or base64) used to post lender payouts and commissions
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -5971,6 +6940,7 @@ class AsyncRawBankClient:
                 "templateId": template_id,
                 "format": format,
                 "content": content,
+                "transfersCsv": transfers_csv,
             },
             headers={
                 "content-type": "application/json",
@@ -6092,6 +7062,7 @@ class AsyncRawBankClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1BankTransactionsListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1BankTransactionsListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[PostV1BankTransactionsListResponse]:
         """
@@ -6104,6 +7075,9 @@ class AsyncRawBankClient:
         sort : typing.Optional[typing.Sequence[PostV1BankTransactionsListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1BankTransactionsListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -6129,6 +7103,7 @@ class AsyncRawBankClient:
                     annotation=typing.Sequence[PostV1BankTransactionsListRequestFilterItem],
                     direction="write",
                 ),
+                "totals": totals,
             },
             headers={
                 "content-type": "application/json",
@@ -6705,6 +7680,12 @@ class AsyncRawBankClient:
         company_meta_field: typing.Optional[str] = OMIT,
         invoice_item_id: typing.Optional[str] = OMIT,
         advance_invoices: typing.Optional[bool] = OMIT,
+        authorization_operation_type_id: typing.Optional[str] = OMIT,
+        payout_operation_type_id: typing.Optional[str] = OMIT,
+        commission_operation_type_id: typing.Optional[str] = OMIT,
+        lender_meta_field: typing.Optional[str] = OMIT,
+        partial_refund_label: typing.Optional[str] = OMIT,
+        full_refund_label: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[PostV1BankImportTemplatesCreateResponse]:
         """
@@ -6727,6 +7708,18 @@ class AsyncRawBankClient:
         invoice_item_id : typing.Optional[str]
 
         advance_invoices : typing.Optional[bool]
+
+        authorization_operation_type_id : typing.Optional[str]
+
+        payout_operation_type_id : typing.Optional[str]
+
+        commission_operation_type_id : typing.Optional[str]
+
+        lender_meta_field : typing.Optional[str]
+
+        partial_refund_label : typing.Optional[str]
+
+        full_refund_label : typing.Optional[str]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -6753,6 +7746,12 @@ class AsyncRawBankClient:
                 "companyMetaField": company_meta_field,
                 "invoiceItemId": invoice_item_id,
                 "advanceInvoices": advance_invoices,
+                "authorizationOperationTypeId": authorization_operation_type_id,
+                "payoutOperationTypeId": payout_operation_type_id,
+                "commissionOperationTypeId": commission_operation_type_id,
+                "lenderMetaField": lender_meta_field,
+                "partialRefundLabel": partial_refund_label,
+                "fullRefundLabel": full_refund_label,
             },
             headers={
                 "content-type": "application/json",
@@ -6880,6 +7879,12 @@ class AsyncRawBankClient:
         company_meta_field: typing.Optional[str] = OMIT,
         invoice_item_id: typing.Optional[str] = OMIT,
         advance_invoices: typing.Optional[bool] = OMIT,
+        authorization_operation_type_id: typing.Optional[str] = OMIT,
+        payout_operation_type_id: typing.Optional[str] = OMIT,
+        commission_operation_type_id: typing.Optional[str] = OMIT,
+        lender_meta_field: typing.Optional[str] = OMIT,
+        partial_refund_label: typing.Optional[str] = OMIT,
+        full_refund_label: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[PostV1BankImportTemplatesUpdateResponse]:
         """
@@ -6904,6 +7909,18 @@ class AsyncRawBankClient:
         invoice_item_id : typing.Optional[str]
 
         advance_invoices : typing.Optional[bool]
+
+        authorization_operation_type_id : typing.Optional[str]
+
+        payout_operation_type_id : typing.Optional[str]
+
+        commission_operation_type_id : typing.Optional[str]
+
+        lender_meta_field : typing.Optional[str]
+
+        partial_refund_label : typing.Optional[str]
+
+        full_refund_label : typing.Optional[str]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -6930,6 +7947,12 @@ class AsyncRawBankClient:
                 "companyMetaField": company_meta_field,
                 "invoiceItemId": invoice_item_id,
                 "advanceInvoices": advance_invoices,
+                "authorizationOperationTypeId": authorization_operation_type_id,
+                "payoutOperationTypeId": payout_operation_type_id,
+                "commissionOperationTypeId": commission_operation_type_id,
+                "lenderMetaField": lender_meta_field,
+                "partialRefundLabel": partial_refund_label,
+                "fullRefundLabel": full_refund_label,
                 "id": id,
             },
             headers={
@@ -7322,6 +8345,7 @@ class AsyncRawBankClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1BankImportTemplatesListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1BankImportTemplatesListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[PostV1BankImportTemplatesListResponse]:
         """
@@ -7334,6 +8358,9 @@ class AsyncRawBankClient:
         sort : typing.Optional[typing.Sequence[PostV1BankImportTemplatesListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1BankImportTemplatesListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -7359,6 +8386,7 @@ class AsyncRawBankClient:
                     annotation=typing.Sequence[PostV1BankImportTemplatesListRequestFilterItem],
                     direction="write",
                 ),
+                "totals": totals,
             },
             headers={
                 "content-type": "application/json",
@@ -7372,6 +8400,600 @@ class AsyncRawBankClient:
                     PostV1BankImportTemplatesListResponse,
                     parse_obj_as(
                         type_=PostV1BankImportTemplatesListResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return AsyncHttpResponse(response=_response, data=_data)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 422:
+                raise UnprocessableEntityError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
+    async def post_v1bank_match_rules_create(
+        self,
+        *,
+        name: str,
+        pattern: str,
+        provider: typing.Optional[str] = OMIT,
+        payout_id_prefix: typing.Optional[str] = OMIT,
+        bank_account_id: typing.Optional[str] = OMIT,
+        date_window_days: typing.Optional[int] = OMIT,
+        is_active: typing.Optional[bool] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> AsyncHttpResponse[PostV1BankMatchRulesCreateResponse]:
+        """
+        Parameters
+        ----------
+        name : str
+
+        pattern : str
+
+        provider : typing.Optional[str]
+
+        payout_id_prefix : typing.Optional[str]
+
+        bank_account_id : typing.Optional[str]
+
+        date_window_days : typing.Optional[int]
+
+        is_active : typing.Optional[bool]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        AsyncHttpResponse[PostV1BankMatchRulesCreateResponse]
+            Default Response
+        """
+        _response = await self._client_wrapper.httpx_client.request(
+            "v1/bank/match-rules/create",
+            method="POST",
+            json={
+                "name": name,
+                "provider": provider,
+                "pattern": pattern,
+                "payoutIdPrefix": payout_id_prefix,
+                "bankAccountId": bank_account_id,
+                "dateWindowDays": date_window_days,
+                "isActive": is_active,
+            },
+            headers={
+                "content-type": "application/json",
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    PostV1BankMatchRulesCreateResponse,
+                    parse_obj_as(
+                        type_=PostV1BankMatchRulesCreateResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return AsyncHttpResponse(response=_response, data=_data)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 422:
+                raise UnprocessableEntityError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
+    async def post_v1bank_match_rules_update(
+        self,
+        *,
+        id: str,
+        name: typing.Optional[str] = OMIT,
+        provider: typing.Optional[str] = OMIT,
+        pattern: typing.Optional[str] = OMIT,
+        payout_id_prefix: typing.Optional[str] = OMIT,
+        bank_account_id: typing.Optional[str] = OMIT,
+        date_window_days: typing.Optional[int] = OMIT,
+        is_active: typing.Optional[bool] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> AsyncHttpResponse[PostV1BankMatchRulesUpdateResponse]:
+        """
+        Parameters
+        ----------
+        id : str
+
+        name : typing.Optional[str]
+
+        provider : typing.Optional[str]
+
+        pattern : typing.Optional[str]
+
+        payout_id_prefix : typing.Optional[str]
+
+        bank_account_id : typing.Optional[str]
+
+        date_window_days : typing.Optional[int]
+
+        is_active : typing.Optional[bool]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        AsyncHttpResponse[PostV1BankMatchRulesUpdateResponse]
+            Default Response
+        """
+        _response = await self._client_wrapper.httpx_client.request(
+            "v1/bank/match-rules/update",
+            method="POST",
+            json={
+                "id": id,
+                "name": name,
+                "provider": provider,
+                "pattern": pattern,
+                "payoutIdPrefix": payout_id_prefix,
+                "bankAccountId": bank_account_id,
+                "dateWindowDays": date_window_days,
+                "isActive": is_active,
+            },
+            headers={
+                "content-type": "application/json",
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    PostV1BankMatchRulesUpdateResponse,
+                    parse_obj_as(
+                        type_=PostV1BankMatchRulesUpdateResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return AsyncHttpResponse(response=_response, data=_data)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 422:
+                raise UnprocessableEntityError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
+    async def post_v1bank_match_rules_delete(
+        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> AsyncHttpResponse[PostV1BankMatchRulesDeleteResponse]:
+        """
+        Parameters
+        ----------
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        AsyncHttpResponse[PostV1BankMatchRulesDeleteResponse]
+            Default Response
+        """
+        _response = await self._client_wrapper.httpx_client.request(
+            "v1/bank/match-rules/delete",
+            method="POST",
+            json={
+                "id": id,
+            },
+            headers={
+                "content-type": "application/json",
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    PostV1BankMatchRulesDeleteResponse,
+                    parse_obj_as(
+                        type_=PostV1BankMatchRulesDeleteResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return AsyncHttpResponse(response=_response, data=_data)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 422:
+                raise UnprocessableEntityError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
+    async def post_v1bank_match_rules_list(
+        self, *, request_options: typing.Optional[RequestOptions] = None
+    ) -> AsyncHttpResponse[PostV1BankMatchRulesListResponse]:
+        """
+        Parameters
+        ----------
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        AsyncHttpResponse[PostV1BankMatchRulesListResponse]
+            Default Response
+        """
+        _response = await self._client_wrapper.httpx_client.request(
+            "v1/bank/match-rules/list",
+            method="POST",
+            json={},
+            headers={
+                "content-type": "application/json",
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    PostV1BankMatchRulesListResponse,
+                    parse_obj_as(
+                        type_=PostV1BankMatchRulesListResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -8070,6 +9692,7 @@ class AsyncRawBankClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1BankMandatesListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1BankMandatesListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[PostV1BankMandatesListResponse]:
         """
@@ -8082,6 +9705,9 @@ class AsyncRawBankClient:
         sort : typing.Optional[typing.Sequence[PostV1BankMandatesListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1BankMandatesListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -8105,6 +9731,7 @@ class AsyncRawBankClient:
                     annotation=typing.Sequence[PostV1BankMandatesListRequestFilterItem],
                     direction="write",
                 ),
+                "totals": totals,
             },
             headers={
                 "content-type": "application/json",
@@ -8660,6 +10287,7 @@ class AsyncRawBankClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1BankSettlementsListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1BankSettlementsListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[PostV1BankSettlementsListResponse]:
         """
@@ -8672,6 +10300,9 @@ class AsyncRawBankClient:
         sort : typing.Optional[typing.Sequence[PostV1BankSettlementsListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1BankSettlementsListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -8697,6 +10328,7 @@ class AsyncRawBankClient:
                     annotation=typing.Sequence[PostV1BankSettlementsListRequestFilterItem],
                     direction="write",
                 ),
+                "totals": totals,
             },
             headers={
                 "content-type": "application/json",
@@ -8987,6 +10619,283 @@ class AsyncRawBankClient:
                     PostV1BankSettlementsMatchResponse,
                     parse_obj_as(
                         type_=PostV1BankSettlementsMatchResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return AsyncHttpResponse(response=_response, data=_data)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 422:
+                raise UnprocessableEntityError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
+    async def post_v1bank_settlements_link(
+        self, *, id: str, bank_transaction_id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> AsyncHttpResponse[PostV1BankSettlementsLinkResponse]:
+        """
+        Attach the incoming bank-statement line that carries this payout to the settlement batch.
+
+        Parameters
+        ----------
+        id : str
+
+        bank_transaction_id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        AsyncHttpResponse[PostV1BankSettlementsLinkResponse]
+            Default Response
+        """
+        _response = await self._client_wrapper.httpx_client.request(
+            "v1/bank/settlements/link",
+            method="POST",
+            json={
+                "id": id,
+                "bankTransactionId": bank_transaction_id,
+            },
+            headers={
+                "content-type": "application/json",
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    PostV1BankSettlementsLinkResponse,
+                    parse_obj_as(
+                        type_=PostV1BankSettlementsLinkResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return AsyncHttpResponse(response=_response, data=_data)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 422:
+                raise UnprocessableEntityError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
+    async def post_v1bank_settlements_unlink(
+        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> AsyncHttpResponse[PostV1BankSettlementsUnlinkResponse]:
+        """
+        Detach the bank-statement line from the settlement batch and return the line to unmatched.
+
+        Parameters
+        ----------
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        AsyncHttpResponse[PostV1BankSettlementsUnlinkResponse]
+            Default Response
+        """
+        _response = await self._client_wrapper.httpx_client.request(
+            "v1/bank/settlements/unlink",
+            method="POST",
+            json={
+                "id": id,
+            },
+            headers={
+                "content-type": "application/json",
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    PostV1BankSettlementsUnlinkResponse,
+                    parse_obj_as(
+                        type_=PostV1BankSettlementsUnlinkResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -9807,6 +11716,7 @@ class AsyncRawBankClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1BankFeedsConnectionsListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1BankFeedsConnectionsListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[PostV1BankFeedsConnectionsListResponse]:
         """
@@ -9819,6 +11729,9 @@ class AsyncRawBankClient:
         sort : typing.Optional[typing.Sequence[PostV1BankFeedsConnectionsListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1BankFeedsConnectionsListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -9844,6 +11757,7 @@ class AsyncRawBankClient:
                     annotation=typing.Sequence[PostV1BankFeedsConnectionsListRequestFilterItem],
                     direction="write",
                 ),
+                "totals": totals,
             },
             headers={
                 "content-type": "application/json",

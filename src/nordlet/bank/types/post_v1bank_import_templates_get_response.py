@@ -35,6 +35,30 @@ class PostV1BankImportTemplatesGetResponse(UniversalBaseModel):
     advance_invoices: typing_extensions.Annotated[
         bool, FieldMetadata(alias="advanceInvoices"), pydantic.Field(alias="advanceInvoices")
     ]
+    authorization_operation_type_id: typing_extensions.Annotated[
+        typing.Optional[str],
+        FieldMetadata(alias="authorizationOperationTypeId"),
+        pydantic.Field(alias="authorizationOperationTypeId"),
+    ] = None
+    payout_operation_type_id: typing_extensions.Annotated[
+        typing.Optional[str],
+        FieldMetadata(alias="payoutOperationTypeId"),
+        pydantic.Field(alias="payoutOperationTypeId"),
+    ] = None
+    commission_operation_type_id: typing_extensions.Annotated[
+        typing.Optional[str],
+        FieldMetadata(alias="commissionOperationTypeId"),
+        pydantic.Field(alias="commissionOperationTypeId"),
+    ] = None
+    lender_meta_field: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="lenderMetaField"), pydantic.Field(alias="lenderMetaField")
+    ] = None
+    partial_refund_label: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="partialRefundLabel"), pydantic.Field(alias="partialRefundLabel")
+    ] = None
+    full_refund_label: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="fullRefundLabel"), pydantic.Field(alias="fullRefundLabel")
+    ] = None
     created_at: typing_extensions.Annotated[str, FieldMetadata(alias="createdAt"), pydantic.Field(alias="createdAt")]
     updated_at: typing_extensions.Annotated[str, FieldMetadata(alias="updatedAt"), pydantic.Field(alias="updatedAt")]
 

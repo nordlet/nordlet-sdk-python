@@ -31,7 +31,14 @@ from .types.post_v1catalog_items_create_request_translations_value import (
 from .types.post_v1catalog_items_create_request_type import PostV1CatalogItemsCreateRequestType
 from .types.post_v1catalog_items_create_response import PostV1CatalogItemsCreateResponse
 from .types.post_v1catalog_items_delete_response import PostV1CatalogItemsDeleteResponse
+from .types.post_v1catalog_items_files_list_response import PostV1CatalogItemsFilesListResponse
 from .types.post_v1catalog_items_get_response import PostV1CatalogItemsGetResponse
+from .types.post_v1catalog_items_kinds_create_request_saft_type import PostV1CatalogItemsKindsCreateRequestSaftType
+from .types.post_v1catalog_items_kinds_create_response import PostV1CatalogItemsKindsCreateResponse
+from .types.post_v1catalog_items_kinds_delete_response import PostV1CatalogItemsKindsDeleteResponse
+from .types.post_v1catalog_items_kinds_list_response import PostV1CatalogItemsKindsListResponse
+from .types.post_v1catalog_items_kinds_update_request_saft_type import PostV1CatalogItemsKindsUpdateRequestSaftType
+from .types.post_v1catalog_items_kinds_update_response import PostV1CatalogItemsKindsUpdateResponse
 from .types.post_v1catalog_items_list_request_filter_item import PostV1CatalogItemsListRequestFilterItem
 from .types.post_v1catalog_items_list_request_sort_item import PostV1CatalogItemsListRequestSortItem
 from .types.post_v1catalog_items_list_response import PostV1CatalogItemsListResponse
@@ -54,6 +61,12 @@ from .types.post_v1catalog_price_lists_items_set_request_items_item import (
 from .types.post_v1catalog_price_lists_items_set_response import PostV1CatalogPriceListsItemsSetResponse
 from .types.post_v1catalog_price_lists_list_response import PostV1CatalogPriceListsListResponse
 from .types.post_v1catalog_price_lists_update_response import PostV1CatalogPriceListsUpdateResponse
+from .types.post_v1catalog_units_create_response import PostV1CatalogUnitsCreateResponse
+from .types.post_v1catalog_units_delete_response import PostV1CatalogUnitsDeleteResponse
+from .types.post_v1catalog_units_list_response import PostV1CatalogUnitsListResponse
+from .types.post_v1catalog_units_options_request_locale import PostV1CatalogUnitsOptionsRequestLocale
+from .types.post_v1catalog_units_options_response import PostV1CatalogUnitsOptionsResponse
+from .types.post_v1catalog_units_update_response import PostV1CatalogUnitsUpdateResponse
 from pydantic import ValidationError
 
 # this is used as the default value for optional parameters
@@ -88,6 +101,33 @@ class RawCatalogClient:
         document_ref: typing.Optional[str] = OMIT,
         translations: typing.Optional[typing.Dict[str, PostV1CatalogItemsCreateRequestTranslationsValue]] = OMIT,
         components: typing.Optional[typing.Sequence[PostV1CatalogItemsCreateRequestComponentsItem]] = OMIT,
+        kind_id: typing.Optional[str] = OMIT,
+        sale_account_code: typing.Optional[str] = OMIT,
+        purchase_account_code: typing.Optional[str] = OMIT,
+        expense_account_code: typing.Optional[str] = OMIT,
+        manufacturer: typing.Optional[str] = OMIT,
+        gross_mass_kg: typing.Optional[str] = OMIT,
+        min_quantity: typing.Optional[str] = OMIT,
+        cost_price: typing.Optional[str] = OMIT,
+        is_free_price: typing.Optional[bool] = OMIT,
+        external_id: typing.Optional[str] = OMIT,
+        is_returnable: typing.Optional[bool] = OMIT,
+        comment_required: typing.Optional[bool] = OMIT,
+        price_from: typing.Optional[str] = OMIT,
+        price_to: typing.Optional[str] = OMIT,
+        min_price: typing.Optional[str] = OMIT,
+        discount_percent: typing.Optional[str] = OMIT,
+        max_discount_percent: typing.Optional[str] = OMIT,
+        loyalty_points: typing.Optional[int] = OMIT,
+        department: typing.Optional[str] = OMIT,
+        age_restriction: typing.Optional[int] = OMIT,
+        package_quantity: typing.Optional[str] = OMIT,
+        tara_code: typing.Optional[str] = OMIT,
+        certificate_number: typing.Optional[str] = OMIT,
+        certificate_date: typing.Optional[str] = OMIT,
+        valid_from: typing.Optional[str] = OMIT,
+        valid_to: typing.Optional[str] = OMIT,
+        pos_flags: typing.Optional[typing.Dict[str, bool]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[PostV1CatalogItemsCreateResponse]:
         """
@@ -135,6 +175,60 @@ class RawCatalogClient:
 
         components : typing.Optional[typing.Sequence[PostV1CatalogItemsCreateRequestComponentsItem]]
 
+        kind_id : typing.Optional[str]
+
+        sale_account_code : typing.Optional[str]
+
+        purchase_account_code : typing.Optional[str]
+
+        expense_account_code : typing.Optional[str]
+
+        manufacturer : typing.Optional[str]
+
+        gross_mass_kg : typing.Optional[str]
+
+        min_quantity : typing.Optional[str]
+
+        cost_price : typing.Optional[str]
+
+        is_free_price : typing.Optional[bool]
+
+        external_id : typing.Optional[str]
+
+        is_returnable : typing.Optional[bool]
+
+        comment_required : typing.Optional[bool]
+
+        price_from : typing.Optional[str]
+
+        price_to : typing.Optional[str]
+
+        min_price : typing.Optional[str]
+
+        discount_percent : typing.Optional[str]
+
+        max_discount_percent : typing.Optional[str]
+
+        loyalty_points : typing.Optional[int]
+
+        department : typing.Optional[str]
+
+        age_restriction : typing.Optional[int]
+
+        package_quantity : typing.Optional[str]
+
+        tara_code : typing.Optional[str]
+
+        certificate_number : typing.Optional[str]
+
+        certificate_date : typing.Optional[str]
+
+        valid_from : typing.Optional[str]
+
+        valid_to : typing.Optional[str]
+
+        pos_flags : typing.Optional[typing.Dict[str, bool]]
+
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
@@ -176,6 +270,33 @@ class RawCatalogClient:
                     annotation=typing.Sequence[PostV1CatalogItemsCreateRequestComponentsItem],
                     direction="write",
                 ),
+                "kindId": kind_id,
+                "saleAccountCode": sale_account_code,
+                "purchaseAccountCode": purchase_account_code,
+                "expenseAccountCode": expense_account_code,
+                "manufacturer": manufacturer,
+                "grossMassKg": gross_mass_kg,
+                "minQuantity": min_quantity,
+                "costPrice": cost_price,
+                "isFreePrice": is_free_price,
+                "externalId": external_id,
+                "isReturnable": is_returnable,
+                "commentRequired": comment_required,
+                "priceFrom": price_from,
+                "priceTo": price_to,
+                "minPrice": min_price,
+                "discountPercent": discount_percent,
+                "maxDiscountPercent": max_discount_percent,
+                "loyaltyPoints": loyalty_points,
+                "department": department,
+                "ageRestriction": age_restriction,
+                "packageQuantity": package_quantity,
+                "taraCode": tara_code,
+                "certificateNumber": certificate_number,
+                "certificateDate": certificate_date,
+                "validFrom": valid_from,
+                "validTo": valid_to,
+                "posFlags": pos_flags,
             },
             headers={
                 "content-type": "application/json",
@@ -446,10 +567,39 @@ class RawCatalogClient:
         supplementary_qty_per_unit: typing.Optional[str] = OMIT,
         description: typing.Optional[str] = OMIT,
         group_id: typing.Optional[str] = OMIT,
-        attributes: typing.Optional[typing.Dict[str, str]] = OMIT,
+        attributes: typing.Optional[typing.Dict[str, typing.Optional[str]]] = OMIT,
         document_ref: typing.Optional[str] = OMIT,
-        translations: typing.Optional[typing.Dict[str, PostV1CatalogItemsUpdateRequestTranslationsValue]] = OMIT,
+        translations: typing.Optional[
+            typing.Dict[str, typing.Optional[PostV1CatalogItemsUpdateRequestTranslationsValue]]
+        ] = OMIT,
         components: typing.Optional[typing.Sequence[PostV1CatalogItemsUpdateRequestComponentsItem]] = OMIT,
+        kind_id: typing.Optional[str] = OMIT,
+        sale_account_code: typing.Optional[str] = OMIT,
+        purchase_account_code: typing.Optional[str] = OMIT,
+        expense_account_code: typing.Optional[str] = OMIT,
+        manufacturer: typing.Optional[str] = OMIT,
+        gross_mass_kg: typing.Optional[str] = OMIT,
+        min_quantity: typing.Optional[str] = OMIT,
+        cost_price: typing.Optional[str] = OMIT,
+        is_free_price: typing.Optional[bool] = OMIT,
+        external_id: typing.Optional[str] = OMIT,
+        is_returnable: typing.Optional[bool] = OMIT,
+        comment_required: typing.Optional[bool] = OMIT,
+        price_from: typing.Optional[str] = OMIT,
+        price_to: typing.Optional[str] = OMIT,
+        min_price: typing.Optional[str] = OMIT,
+        discount_percent: typing.Optional[str] = OMIT,
+        max_discount_percent: typing.Optional[str] = OMIT,
+        loyalty_points: typing.Optional[int] = OMIT,
+        department: typing.Optional[str] = OMIT,
+        age_restriction: typing.Optional[int] = OMIT,
+        package_quantity: typing.Optional[str] = OMIT,
+        tara_code: typing.Optional[str] = OMIT,
+        certificate_number: typing.Optional[str] = OMIT,
+        certificate_date: typing.Optional[str] = OMIT,
+        valid_from: typing.Optional[str] = OMIT,
+        valid_to: typing.Optional[str] = OMIT,
+        pos_flags: typing.Optional[typing.Dict[str, typing.Optional[bool]]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[PostV1CatalogItemsUpdateResponse]:
         """
@@ -491,13 +641,67 @@ class RawCatalogClient:
 
         group_id : typing.Optional[str]
 
-        attributes : typing.Optional[typing.Dict[str, str]]
+        attributes : typing.Optional[typing.Dict[str, typing.Optional[str]]]
 
         document_ref : typing.Optional[str]
 
-        translations : typing.Optional[typing.Dict[str, PostV1CatalogItemsUpdateRequestTranslationsValue]]
+        translations : typing.Optional[typing.Dict[str, typing.Optional[PostV1CatalogItemsUpdateRequestTranslationsValue]]]
 
         components : typing.Optional[typing.Sequence[PostV1CatalogItemsUpdateRequestComponentsItem]]
+
+        kind_id : typing.Optional[str]
+
+        sale_account_code : typing.Optional[str]
+
+        purchase_account_code : typing.Optional[str]
+
+        expense_account_code : typing.Optional[str]
+
+        manufacturer : typing.Optional[str]
+
+        gross_mass_kg : typing.Optional[str]
+
+        min_quantity : typing.Optional[str]
+
+        cost_price : typing.Optional[str]
+
+        is_free_price : typing.Optional[bool]
+
+        external_id : typing.Optional[str]
+
+        is_returnable : typing.Optional[bool]
+
+        comment_required : typing.Optional[bool]
+
+        price_from : typing.Optional[str]
+
+        price_to : typing.Optional[str]
+
+        min_price : typing.Optional[str]
+
+        discount_percent : typing.Optional[str]
+
+        max_discount_percent : typing.Optional[str]
+
+        loyalty_points : typing.Optional[int]
+
+        department : typing.Optional[str]
+
+        age_restriction : typing.Optional[int]
+
+        package_quantity : typing.Optional[str]
+
+        tara_code : typing.Optional[str]
+
+        certificate_number : typing.Optional[str]
+
+        certificate_date : typing.Optional[str]
+
+        valid_from : typing.Optional[str]
+
+        valid_to : typing.Optional[str]
+
+        pos_flags : typing.Optional[typing.Dict[str, typing.Optional[bool]]]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -533,7 +737,9 @@ class RawCatalogClient:
                 "documentRef": document_ref,
                 "translations": convert_and_respect_annotation_metadata(
                     object_=translations,
-                    annotation=typing.Dict[str, PostV1CatalogItemsUpdateRequestTranslationsValue],
+                    annotation=typing.Optional[
+                        typing.Dict[str, typing.Optional[PostV1CatalogItemsUpdateRequestTranslationsValue]]
+                    ],
                     direction="write",
                 ),
                 "components": convert_and_respect_annotation_metadata(
@@ -541,6 +747,33 @@ class RawCatalogClient:
                     annotation=typing.Sequence[PostV1CatalogItemsUpdateRequestComponentsItem],
                     direction="write",
                 ),
+                "kindId": kind_id,
+                "saleAccountCode": sale_account_code,
+                "purchaseAccountCode": purchase_account_code,
+                "expenseAccountCode": expense_account_code,
+                "manufacturer": manufacturer,
+                "grossMassKg": gross_mass_kg,
+                "minQuantity": min_quantity,
+                "costPrice": cost_price,
+                "isFreePrice": is_free_price,
+                "externalId": external_id,
+                "isReturnable": is_returnable,
+                "commentRequired": comment_required,
+                "priceFrom": price_from,
+                "priceTo": price_to,
+                "minPrice": min_price,
+                "discountPercent": discount_percent,
+                "maxDiscountPercent": max_discount_percent,
+                "loyaltyPoints": loyalty_points,
+                "department": department,
+                "ageRestriction": age_restriction,
+                "packageQuantity": package_quantity,
+                "taraCode": tara_code,
+                "certificateNumber": certificate_number,
+                "certificateDate": certificate_date,
+                "validFrom": valid_from,
+                "validTo": valid_to,
+                "posFlags": pos_flags,
             },
             headers={
                 "content-type": "application/json",
@@ -797,6 +1030,7 @@ class RawCatalogClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1CatalogItemsListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1CatalogItemsListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[PostV1CatalogItemsListResponse]:
         """
@@ -809,6 +1043,9 @@ class RawCatalogClient:
         sort : typing.Optional[typing.Sequence[PostV1CatalogItemsListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1CatalogItemsListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -832,6 +1069,7 @@ class RawCatalogClient:
                     annotation=typing.Sequence[PostV1CatalogItemsListRequestFilterItem],
                     direction="write",
                 ),
+                "totals": totals,
             },
             headers={
                 "content-type": "application/json",
@@ -845,6 +1083,1419 @@ class RawCatalogClient:
                     PostV1CatalogItemsListResponse,
                     parse_obj_as(
                         type_=PostV1CatalogItemsListResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return HttpResponse(response=_response, data=_data)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 422:
+                raise UnprocessableEntityError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
+    def post_v1catalog_items_files_list(
+        self, *, item_id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> HttpResponse[PostV1CatalogItemsFilesListResponse]:
+        """
+        Parameters
+        ----------
+        item_id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        HttpResponse[PostV1CatalogItemsFilesListResponse]
+            Default Response
+        """
+        _response = self._client_wrapper.httpx_client.request(
+            "v1/catalog/items/files/list",
+            method="POST",
+            json={
+                "itemId": item_id,
+            },
+            headers={
+                "content-type": "application/json",
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    PostV1CatalogItemsFilesListResponse,
+                    parse_obj_as(
+                        type_=PostV1CatalogItemsFilesListResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return HttpResponse(response=_response, data=_data)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 422:
+                raise UnprocessableEntityError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
+    def post_v1catalog_items_kinds_create(
+        self,
+        *,
+        code: str,
+        name: str,
+        saft_type: typing.Optional[PostV1CatalogItemsKindsCreateRequestSaftType] = OMIT,
+        quantity_accounting: typing.Optional[bool] = OMIT,
+        sort_order: typing.Optional[int] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> HttpResponse[PostV1CatalogItemsKindsCreateResponse]:
+        """
+        Parameters
+        ----------
+        code : str
+
+        name : str
+
+        saft_type : typing.Optional[PostV1CatalogItemsKindsCreateRequestSaftType]
+
+        quantity_accounting : typing.Optional[bool]
+
+        sort_order : typing.Optional[int]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        HttpResponse[PostV1CatalogItemsKindsCreateResponse]
+            Default Response
+        """
+        _response = self._client_wrapper.httpx_client.request(
+            "v1/catalog/items/kinds/create",
+            method="POST",
+            json={
+                "code": code,
+                "name": name,
+                "saftType": saft_type,
+                "quantityAccounting": quantity_accounting,
+                "sortOrder": sort_order,
+            },
+            headers={
+                "content-type": "application/json",
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    PostV1CatalogItemsKindsCreateResponse,
+                    parse_obj_as(
+                        type_=PostV1CatalogItemsKindsCreateResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return HttpResponse(response=_response, data=_data)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 422:
+                raise UnprocessableEntityError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
+    def post_v1catalog_items_kinds_update(
+        self,
+        *,
+        id: str,
+        code: typing.Optional[str] = OMIT,
+        name: typing.Optional[str] = OMIT,
+        saft_type: typing.Optional[PostV1CatalogItemsKindsUpdateRequestSaftType] = OMIT,
+        quantity_accounting: typing.Optional[bool] = OMIT,
+        sort_order: typing.Optional[int] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> HttpResponse[PostV1CatalogItemsKindsUpdateResponse]:
+        """
+        Parameters
+        ----------
+        id : str
+
+        code : typing.Optional[str]
+
+        name : typing.Optional[str]
+
+        saft_type : typing.Optional[PostV1CatalogItemsKindsUpdateRequestSaftType]
+
+        quantity_accounting : typing.Optional[bool]
+
+        sort_order : typing.Optional[int]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        HttpResponse[PostV1CatalogItemsKindsUpdateResponse]
+            Default Response
+        """
+        _response = self._client_wrapper.httpx_client.request(
+            "v1/catalog/items/kinds/update",
+            method="POST",
+            json={
+                "id": id,
+                "code": code,
+                "name": name,
+                "saftType": saft_type,
+                "quantityAccounting": quantity_accounting,
+                "sortOrder": sort_order,
+            },
+            headers={
+                "content-type": "application/json",
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    PostV1CatalogItemsKindsUpdateResponse,
+                    parse_obj_as(
+                        type_=PostV1CatalogItemsKindsUpdateResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return HttpResponse(response=_response, data=_data)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 422:
+                raise UnprocessableEntityError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
+    def post_v1catalog_items_kinds_delete(
+        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> HttpResponse[PostV1CatalogItemsKindsDeleteResponse]:
+        """
+        Parameters
+        ----------
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        HttpResponse[PostV1CatalogItemsKindsDeleteResponse]
+            Default Response
+        """
+        _response = self._client_wrapper.httpx_client.request(
+            "v1/catalog/items/kinds/delete",
+            method="POST",
+            json={
+                "id": id,
+            },
+            headers={
+                "content-type": "application/json",
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    PostV1CatalogItemsKindsDeleteResponse,
+                    parse_obj_as(
+                        type_=PostV1CatalogItemsKindsDeleteResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return HttpResponse(response=_response, data=_data)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 422:
+                raise UnprocessableEntityError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
+    def post_v1catalog_items_kinds_list(
+        self, *, request_options: typing.Optional[RequestOptions] = None
+    ) -> HttpResponse[PostV1CatalogItemsKindsListResponse]:
+        """
+        Parameters
+        ----------
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        HttpResponse[PostV1CatalogItemsKindsListResponse]
+            Default Response
+        """
+        _response = self._client_wrapper.httpx_client.request(
+            "v1/catalog/items/kinds/list",
+            method="POST",
+            json={},
+            headers={
+                "content-type": "application/json",
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    PostV1CatalogItemsKindsListResponse,
+                    parse_obj_as(
+                        type_=PostV1CatalogItemsKindsListResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return HttpResponse(response=_response, data=_data)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 422:
+                raise UnprocessableEntityError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
+    def post_v1catalog_units_create(
+        self,
+        *,
+        code: str,
+        name: str,
+        is_active: typing.Optional[bool] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> HttpResponse[PostV1CatalogUnitsCreateResponse]:
+        """
+        Parameters
+        ----------
+        code : str
+
+        name : str
+
+        is_active : typing.Optional[bool]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        HttpResponse[PostV1CatalogUnitsCreateResponse]
+            Default Response
+        """
+        _response = self._client_wrapper.httpx_client.request(
+            "v1/catalog/units/create",
+            method="POST",
+            json={
+                "code": code,
+                "name": name,
+                "isActive": is_active,
+            },
+            headers={
+                "content-type": "application/json",
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    PostV1CatalogUnitsCreateResponse,
+                    parse_obj_as(
+                        type_=PostV1CatalogUnitsCreateResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return HttpResponse(response=_response, data=_data)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 422:
+                raise UnprocessableEntityError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
+    def post_v1catalog_units_update(
+        self,
+        *,
+        id: str,
+        code: typing.Optional[str] = OMIT,
+        name: typing.Optional[str] = OMIT,
+        is_active: typing.Optional[bool] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> HttpResponse[PostV1CatalogUnitsUpdateResponse]:
+        """
+        Parameters
+        ----------
+        id : str
+
+        code : typing.Optional[str]
+
+        name : typing.Optional[str]
+
+        is_active : typing.Optional[bool]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        HttpResponse[PostV1CatalogUnitsUpdateResponse]
+            Default Response
+        """
+        _response = self._client_wrapper.httpx_client.request(
+            "v1/catalog/units/update",
+            method="POST",
+            json={
+                "id": id,
+                "code": code,
+                "name": name,
+                "isActive": is_active,
+            },
+            headers={
+                "content-type": "application/json",
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    PostV1CatalogUnitsUpdateResponse,
+                    parse_obj_as(
+                        type_=PostV1CatalogUnitsUpdateResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return HttpResponse(response=_response, data=_data)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 422:
+                raise UnprocessableEntityError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
+    def post_v1catalog_units_delete(
+        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> HttpResponse[PostV1CatalogUnitsDeleteResponse]:
+        """
+        Parameters
+        ----------
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        HttpResponse[PostV1CatalogUnitsDeleteResponse]
+            Default Response
+        """
+        _response = self._client_wrapper.httpx_client.request(
+            "v1/catalog/units/delete",
+            method="POST",
+            json={
+                "id": id,
+            },
+            headers={
+                "content-type": "application/json",
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    PostV1CatalogUnitsDeleteResponse,
+                    parse_obj_as(
+                        type_=PostV1CatalogUnitsDeleteResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return HttpResponse(response=_response, data=_data)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 422:
+                raise UnprocessableEntityError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
+    def post_v1catalog_units_list(
+        self, *, request_options: typing.Optional[RequestOptions] = None
+    ) -> HttpResponse[PostV1CatalogUnitsListResponse]:
+        """
+        Parameters
+        ----------
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        HttpResponse[PostV1CatalogUnitsListResponse]
+            Default Response
+        """
+        _response = self._client_wrapper.httpx_client.request(
+            "v1/catalog/units/list",
+            method="POST",
+            json={},
+            headers={
+                "content-type": "application/json",
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    PostV1CatalogUnitsListResponse,
+                    parse_obj_as(
+                        type_=PostV1CatalogUnitsListResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return HttpResponse(response=_response, data=_data)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 422:
+                raise UnprocessableEntityError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
+    def post_v1catalog_units_options(
+        self,
+        *,
+        locale: typing.Optional[PostV1CatalogUnitsOptionsRequestLocale] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> HttpResponse[PostV1CatalogUnitsOptionsResponse]:
+        """
+        Parameters
+        ----------
+        locale : typing.Optional[PostV1CatalogUnitsOptionsRequestLocale]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        HttpResponse[PostV1CatalogUnitsOptionsResponse]
+            Default Response
+        """
+        _response = self._client_wrapper.httpx_client.request(
+            "v1/catalog/units/options",
+            method="POST",
+            json={
+                "locale": locale,
+            },
+            headers={
+                "content-type": "application/json",
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    PostV1CatalogUnitsOptionsResponse,
+                    parse_obj_as(
+                        type_=PostV1CatalogUnitsOptionsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -2826,6 +4477,33 @@ class AsyncRawCatalogClient:
         document_ref: typing.Optional[str] = OMIT,
         translations: typing.Optional[typing.Dict[str, PostV1CatalogItemsCreateRequestTranslationsValue]] = OMIT,
         components: typing.Optional[typing.Sequence[PostV1CatalogItemsCreateRequestComponentsItem]] = OMIT,
+        kind_id: typing.Optional[str] = OMIT,
+        sale_account_code: typing.Optional[str] = OMIT,
+        purchase_account_code: typing.Optional[str] = OMIT,
+        expense_account_code: typing.Optional[str] = OMIT,
+        manufacturer: typing.Optional[str] = OMIT,
+        gross_mass_kg: typing.Optional[str] = OMIT,
+        min_quantity: typing.Optional[str] = OMIT,
+        cost_price: typing.Optional[str] = OMIT,
+        is_free_price: typing.Optional[bool] = OMIT,
+        external_id: typing.Optional[str] = OMIT,
+        is_returnable: typing.Optional[bool] = OMIT,
+        comment_required: typing.Optional[bool] = OMIT,
+        price_from: typing.Optional[str] = OMIT,
+        price_to: typing.Optional[str] = OMIT,
+        min_price: typing.Optional[str] = OMIT,
+        discount_percent: typing.Optional[str] = OMIT,
+        max_discount_percent: typing.Optional[str] = OMIT,
+        loyalty_points: typing.Optional[int] = OMIT,
+        department: typing.Optional[str] = OMIT,
+        age_restriction: typing.Optional[int] = OMIT,
+        package_quantity: typing.Optional[str] = OMIT,
+        tara_code: typing.Optional[str] = OMIT,
+        certificate_number: typing.Optional[str] = OMIT,
+        certificate_date: typing.Optional[str] = OMIT,
+        valid_from: typing.Optional[str] = OMIT,
+        valid_to: typing.Optional[str] = OMIT,
+        pos_flags: typing.Optional[typing.Dict[str, bool]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[PostV1CatalogItemsCreateResponse]:
         """
@@ -2873,6 +4551,60 @@ class AsyncRawCatalogClient:
 
         components : typing.Optional[typing.Sequence[PostV1CatalogItemsCreateRequestComponentsItem]]
 
+        kind_id : typing.Optional[str]
+
+        sale_account_code : typing.Optional[str]
+
+        purchase_account_code : typing.Optional[str]
+
+        expense_account_code : typing.Optional[str]
+
+        manufacturer : typing.Optional[str]
+
+        gross_mass_kg : typing.Optional[str]
+
+        min_quantity : typing.Optional[str]
+
+        cost_price : typing.Optional[str]
+
+        is_free_price : typing.Optional[bool]
+
+        external_id : typing.Optional[str]
+
+        is_returnable : typing.Optional[bool]
+
+        comment_required : typing.Optional[bool]
+
+        price_from : typing.Optional[str]
+
+        price_to : typing.Optional[str]
+
+        min_price : typing.Optional[str]
+
+        discount_percent : typing.Optional[str]
+
+        max_discount_percent : typing.Optional[str]
+
+        loyalty_points : typing.Optional[int]
+
+        department : typing.Optional[str]
+
+        age_restriction : typing.Optional[int]
+
+        package_quantity : typing.Optional[str]
+
+        tara_code : typing.Optional[str]
+
+        certificate_number : typing.Optional[str]
+
+        certificate_date : typing.Optional[str]
+
+        valid_from : typing.Optional[str]
+
+        valid_to : typing.Optional[str]
+
+        pos_flags : typing.Optional[typing.Dict[str, bool]]
+
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
@@ -2914,6 +4646,33 @@ class AsyncRawCatalogClient:
                     annotation=typing.Sequence[PostV1CatalogItemsCreateRequestComponentsItem],
                     direction="write",
                 ),
+                "kindId": kind_id,
+                "saleAccountCode": sale_account_code,
+                "purchaseAccountCode": purchase_account_code,
+                "expenseAccountCode": expense_account_code,
+                "manufacturer": manufacturer,
+                "grossMassKg": gross_mass_kg,
+                "minQuantity": min_quantity,
+                "costPrice": cost_price,
+                "isFreePrice": is_free_price,
+                "externalId": external_id,
+                "isReturnable": is_returnable,
+                "commentRequired": comment_required,
+                "priceFrom": price_from,
+                "priceTo": price_to,
+                "minPrice": min_price,
+                "discountPercent": discount_percent,
+                "maxDiscountPercent": max_discount_percent,
+                "loyaltyPoints": loyalty_points,
+                "department": department,
+                "ageRestriction": age_restriction,
+                "packageQuantity": package_quantity,
+                "taraCode": tara_code,
+                "certificateNumber": certificate_number,
+                "certificateDate": certificate_date,
+                "validFrom": valid_from,
+                "validTo": valid_to,
+                "posFlags": pos_flags,
             },
             headers={
                 "content-type": "application/json",
@@ -3184,10 +4943,39 @@ class AsyncRawCatalogClient:
         supplementary_qty_per_unit: typing.Optional[str] = OMIT,
         description: typing.Optional[str] = OMIT,
         group_id: typing.Optional[str] = OMIT,
-        attributes: typing.Optional[typing.Dict[str, str]] = OMIT,
+        attributes: typing.Optional[typing.Dict[str, typing.Optional[str]]] = OMIT,
         document_ref: typing.Optional[str] = OMIT,
-        translations: typing.Optional[typing.Dict[str, PostV1CatalogItemsUpdateRequestTranslationsValue]] = OMIT,
+        translations: typing.Optional[
+            typing.Dict[str, typing.Optional[PostV1CatalogItemsUpdateRequestTranslationsValue]]
+        ] = OMIT,
         components: typing.Optional[typing.Sequence[PostV1CatalogItemsUpdateRequestComponentsItem]] = OMIT,
+        kind_id: typing.Optional[str] = OMIT,
+        sale_account_code: typing.Optional[str] = OMIT,
+        purchase_account_code: typing.Optional[str] = OMIT,
+        expense_account_code: typing.Optional[str] = OMIT,
+        manufacturer: typing.Optional[str] = OMIT,
+        gross_mass_kg: typing.Optional[str] = OMIT,
+        min_quantity: typing.Optional[str] = OMIT,
+        cost_price: typing.Optional[str] = OMIT,
+        is_free_price: typing.Optional[bool] = OMIT,
+        external_id: typing.Optional[str] = OMIT,
+        is_returnable: typing.Optional[bool] = OMIT,
+        comment_required: typing.Optional[bool] = OMIT,
+        price_from: typing.Optional[str] = OMIT,
+        price_to: typing.Optional[str] = OMIT,
+        min_price: typing.Optional[str] = OMIT,
+        discount_percent: typing.Optional[str] = OMIT,
+        max_discount_percent: typing.Optional[str] = OMIT,
+        loyalty_points: typing.Optional[int] = OMIT,
+        department: typing.Optional[str] = OMIT,
+        age_restriction: typing.Optional[int] = OMIT,
+        package_quantity: typing.Optional[str] = OMIT,
+        tara_code: typing.Optional[str] = OMIT,
+        certificate_number: typing.Optional[str] = OMIT,
+        certificate_date: typing.Optional[str] = OMIT,
+        valid_from: typing.Optional[str] = OMIT,
+        valid_to: typing.Optional[str] = OMIT,
+        pos_flags: typing.Optional[typing.Dict[str, typing.Optional[bool]]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[PostV1CatalogItemsUpdateResponse]:
         """
@@ -3229,13 +5017,67 @@ class AsyncRawCatalogClient:
 
         group_id : typing.Optional[str]
 
-        attributes : typing.Optional[typing.Dict[str, str]]
+        attributes : typing.Optional[typing.Dict[str, typing.Optional[str]]]
 
         document_ref : typing.Optional[str]
 
-        translations : typing.Optional[typing.Dict[str, PostV1CatalogItemsUpdateRequestTranslationsValue]]
+        translations : typing.Optional[typing.Dict[str, typing.Optional[PostV1CatalogItemsUpdateRequestTranslationsValue]]]
 
         components : typing.Optional[typing.Sequence[PostV1CatalogItemsUpdateRequestComponentsItem]]
+
+        kind_id : typing.Optional[str]
+
+        sale_account_code : typing.Optional[str]
+
+        purchase_account_code : typing.Optional[str]
+
+        expense_account_code : typing.Optional[str]
+
+        manufacturer : typing.Optional[str]
+
+        gross_mass_kg : typing.Optional[str]
+
+        min_quantity : typing.Optional[str]
+
+        cost_price : typing.Optional[str]
+
+        is_free_price : typing.Optional[bool]
+
+        external_id : typing.Optional[str]
+
+        is_returnable : typing.Optional[bool]
+
+        comment_required : typing.Optional[bool]
+
+        price_from : typing.Optional[str]
+
+        price_to : typing.Optional[str]
+
+        min_price : typing.Optional[str]
+
+        discount_percent : typing.Optional[str]
+
+        max_discount_percent : typing.Optional[str]
+
+        loyalty_points : typing.Optional[int]
+
+        department : typing.Optional[str]
+
+        age_restriction : typing.Optional[int]
+
+        package_quantity : typing.Optional[str]
+
+        tara_code : typing.Optional[str]
+
+        certificate_number : typing.Optional[str]
+
+        certificate_date : typing.Optional[str]
+
+        valid_from : typing.Optional[str]
+
+        valid_to : typing.Optional[str]
+
+        pos_flags : typing.Optional[typing.Dict[str, typing.Optional[bool]]]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -3271,7 +5113,9 @@ class AsyncRawCatalogClient:
                 "documentRef": document_ref,
                 "translations": convert_and_respect_annotation_metadata(
                     object_=translations,
-                    annotation=typing.Dict[str, PostV1CatalogItemsUpdateRequestTranslationsValue],
+                    annotation=typing.Optional[
+                        typing.Dict[str, typing.Optional[PostV1CatalogItemsUpdateRequestTranslationsValue]]
+                    ],
                     direction="write",
                 ),
                 "components": convert_and_respect_annotation_metadata(
@@ -3279,6 +5123,33 @@ class AsyncRawCatalogClient:
                     annotation=typing.Sequence[PostV1CatalogItemsUpdateRequestComponentsItem],
                     direction="write",
                 ),
+                "kindId": kind_id,
+                "saleAccountCode": sale_account_code,
+                "purchaseAccountCode": purchase_account_code,
+                "expenseAccountCode": expense_account_code,
+                "manufacturer": manufacturer,
+                "grossMassKg": gross_mass_kg,
+                "minQuantity": min_quantity,
+                "costPrice": cost_price,
+                "isFreePrice": is_free_price,
+                "externalId": external_id,
+                "isReturnable": is_returnable,
+                "commentRequired": comment_required,
+                "priceFrom": price_from,
+                "priceTo": price_to,
+                "minPrice": min_price,
+                "discountPercent": discount_percent,
+                "maxDiscountPercent": max_discount_percent,
+                "loyaltyPoints": loyalty_points,
+                "department": department,
+                "ageRestriction": age_restriction,
+                "packageQuantity": package_quantity,
+                "taraCode": tara_code,
+                "certificateNumber": certificate_number,
+                "certificateDate": certificate_date,
+                "validFrom": valid_from,
+                "validTo": valid_to,
+                "posFlags": pos_flags,
             },
             headers={
                 "content-type": "application/json",
@@ -3535,6 +5406,7 @@ class AsyncRawCatalogClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1CatalogItemsListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1CatalogItemsListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[PostV1CatalogItemsListResponse]:
         """
@@ -3547,6 +5419,9 @@ class AsyncRawCatalogClient:
         sort : typing.Optional[typing.Sequence[PostV1CatalogItemsListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1CatalogItemsListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -3570,6 +5445,7 @@ class AsyncRawCatalogClient:
                     annotation=typing.Sequence[PostV1CatalogItemsListRequestFilterItem],
                     direction="write",
                 ),
+                "totals": totals,
             },
             headers={
                 "content-type": "application/json",
@@ -3583,6 +5459,1419 @@ class AsyncRawCatalogClient:
                     PostV1CatalogItemsListResponse,
                     parse_obj_as(
                         type_=PostV1CatalogItemsListResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return AsyncHttpResponse(response=_response, data=_data)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 422:
+                raise UnprocessableEntityError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
+    async def post_v1catalog_items_files_list(
+        self, *, item_id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> AsyncHttpResponse[PostV1CatalogItemsFilesListResponse]:
+        """
+        Parameters
+        ----------
+        item_id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        AsyncHttpResponse[PostV1CatalogItemsFilesListResponse]
+            Default Response
+        """
+        _response = await self._client_wrapper.httpx_client.request(
+            "v1/catalog/items/files/list",
+            method="POST",
+            json={
+                "itemId": item_id,
+            },
+            headers={
+                "content-type": "application/json",
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    PostV1CatalogItemsFilesListResponse,
+                    parse_obj_as(
+                        type_=PostV1CatalogItemsFilesListResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return AsyncHttpResponse(response=_response, data=_data)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 422:
+                raise UnprocessableEntityError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
+    async def post_v1catalog_items_kinds_create(
+        self,
+        *,
+        code: str,
+        name: str,
+        saft_type: typing.Optional[PostV1CatalogItemsKindsCreateRequestSaftType] = OMIT,
+        quantity_accounting: typing.Optional[bool] = OMIT,
+        sort_order: typing.Optional[int] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> AsyncHttpResponse[PostV1CatalogItemsKindsCreateResponse]:
+        """
+        Parameters
+        ----------
+        code : str
+
+        name : str
+
+        saft_type : typing.Optional[PostV1CatalogItemsKindsCreateRequestSaftType]
+
+        quantity_accounting : typing.Optional[bool]
+
+        sort_order : typing.Optional[int]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        AsyncHttpResponse[PostV1CatalogItemsKindsCreateResponse]
+            Default Response
+        """
+        _response = await self._client_wrapper.httpx_client.request(
+            "v1/catalog/items/kinds/create",
+            method="POST",
+            json={
+                "code": code,
+                "name": name,
+                "saftType": saft_type,
+                "quantityAccounting": quantity_accounting,
+                "sortOrder": sort_order,
+            },
+            headers={
+                "content-type": "application/json",
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    PostV1CatalogItemsKindsCreateResponse,
+                    parse_obj_as(
+                        type_=PostV1CatalogItemsKindsCreateResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return AsyncHttpResponse(response=_response, data=_data)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 422:
+                raise UnprocessableEntityError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
+    async def post_v1catalog_items_kinds_update(
+        self,
+        *,
+        id: str,
+        code: typing.Optional[str] = OMIT,
+        name: typing.Optional[str] = OMIT,
+        saft_type: typing.Optional[PostV1CatalogItemsKindsUpdateRequestSaftType] = OMIT,
+        quantity_accounting: typing.Optional[bool] = OMIT,
+        sort_order: typing.Optional[int] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> AsyncHttpResponse[PostV1CatalogItemsKindsUpdateResponse]:
+        """
+        Parameters
+        ----------
+        id : str
+
+        code : typing.Optional[str]
+
+        name : typing.Optional[str]
+
+        saft_type : typing.Optional[PostV1CatalogItemsKindsUpdateRequestSaftType]
+
+        quantity_accounting : typing.Optional[bool]
+
+        sort_order : typing.Optional[int]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        AsyncHttpResponse[PostV1CatalogItemsKindsUpdateResponse]
+            Default Response
+        """
+        _response = await self._client_wrapper.httpx_client.request(
+            "v1/catalog/items/kinds/update",
+            method="POST",
+            json={
+                "id": id,
+                "code": code,
+                "name": name,
+                "saftType": saft_type,
+                "quantityAccounting": quantity_accounting,
+                "sortOrder": sort_order,
+            },
+            headers={
+                "content-type": "application/json",
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    PostV1CatalogItemsKindsUpdateResponse,
+                    parse_obj_as(
+                        type_=PostV1CatalogItemsKindsUpdateResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return AsyncHttpResponse(response=_response, data=_data)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 422:
+                raise UnprocessableEntityError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
+    async def post_v1catalog_items_kinds_delete(
+        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> AsyncHttpResponse[PostV1CatalogItemsKindsDeleteResponse]:
+        """
+        Parameters
+        ----------
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        AsyncHttpResponse[PostV1CatalogItemsKindsDeleteResponse]
+            Default Response
+        """
+        _response = await self._client_wrapper.httpx_client.request(
+            "v1/catalog/items/kinds/delete",
+            method="POST",
+            json={
+                "id": id,
+            },
+            headers={
+                "content-type": "application/json",
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    PostV1CatalogItemsKindsDeleteResponse,
+                    parse_obj_as(
+                        type_=PostV1CatalogItemsKindsDeleteResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return AsyncHttpResponse(response=_response, data=_data)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 422:
+                raise UnprocessableEntityError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
+    async def post_v1catalog_items_kinds_list(
+        self, *, request_options: typing.Optional[RequestOptions] = None
+    ) -> AsyncHttpResponse[PostV1CatalogItemsKindsListResponse]:
+        """
+        Parameters
+        ----------
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        AsyncHttpResponse[PostV1CatalogItemsKindsListResponse]
+            Default Response
+        """
+        _response = await self._client_wrapper.httpx_client.request(
+            "v1/catalog/items/kinds/list",
+            method="POST",
+            json={},
+            headers={
+                "content-type": "application/json",
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    PostV1CatalogItemsKindsListResponse,
+                    parse_obj_as(
+                        type_=PostV1CatalogItemsKindsListResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return AsyncHttpResponse(response=_response, data=_data)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 422:
+                raise UnprocessableEntityError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
+    async def post_v1catalog_units_create(
+        self,
+        *,
+        code: str,
+        name: str,
+        is_active: typing.Optional[bool] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> AsyncHttpResponse[PostV1CatalogUnitsCreateResponse]:
+        """
+        Parameters
+        ----------
+        code : str
+
+        name : str
+
+        is_active : typing.Optional[bool]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        AsyncHttpResponse[PostV1CatalogUnitsCreateResponse]
+            Default Response
+        """
+        _response = await self._client_wrapper.httpx_client.request(
+            "v1/catalog/units/create",
+            method="POST",
+            json={
+                "code": code,
+                "name": name,
+                "isActive": is_active,
+            },
+            headers={
+                "content-type": "application/json",
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    PostV1CatalogUnitsCreateResponse,
+                    parse_obj_as(
+                        type_=PostV1CatalogUnitsCreateResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return AsyncHttpResponse(response=_response, data=_data)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 422:
+                raise UnprocessableEntityError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
+    async def post_v1catalog_units_update(
+        self,
+        *,
+        id: str,
+        code: typing.Optional[str] = OMIT,
+        name: typing.Optional[str] = OMIT,
+        is_active: typing.Optional[bool] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> AsyncHttpResponse[PostV1CatalogUnitsUpdateResponse]:
+        """
+        Parameters
+        ----------
+        id : str
+
+        code : typing.Optional[str]
+
+        name : typing.Optional[str]
+
+        is_active : typing.Optional[bool]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        AsyncHttpResponse[PostV1CatalogUnitsUpdateResponse]
+            Default Response
+        """
+        _response = await self._client_wrapper.httpx_client.request(
+            "v1/catalog/units/update",
+            method="POST",
+            json={
+                "id": id,
+                "code": code,
+                "name": name,
+                "isActive": is_active,
+            },
+            headers={
+                "content-type": "application/json",
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    PostV1CatalogUnitsUpdateResponse,
+                    parse_obj_as(
+                        type_=PostV1CatalogUnitsUpdateResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return AsyncHttpResponse(response=_response, data=_data)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 422:
+                raise UnprocessableEntityError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
+    async def post_v1catalog_units_delete(
+        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> AsyncHttpResponse[PostV1CatalogUnitsDeleteResponse]:
+        """
+        Parameters
+        ----------
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        AsyncHttpResponse[PostV1CatalogUnitsDeleteResponse]
+            Default Response
+        """
+        _response = await self._client_wrapper.httpx_client.request(
+            "v1/catalog/units/delete",
+            method="POST",
+            json={
+                "id": id,
+            },
+            headers={
+                "content-type": "application/json",
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    PostV1CatalogUnitsDeleteResponse,
+                    parse_obj_as(
+                        type_=PostV1CatalogUnitsDeleteResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return AsyncHttpResponse(response=_response, data=_data)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 422:
+                raise UnprocessableEntityError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
+    async def post_v1catalog_units_list(
+        self, *, request_options: typing.Optional[RequestOptions] = None
+    ) -> AsyncHttpResponse[PostV1CatalogUnitsListResponse]:
+        """
+        Parameters
+        ----------
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        AsyncHttpResponse[PostV1CatalogUnitsListResponse]
+            Default Response
+        """
+        _response = await self._client_wrapper.httpx_client.request(
+            "v1/catalog/units/list",
+            method="POST",
+            json={},
+            headers={
+                "content-type": "application/json",
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    PostV1CatalogUnitsListResponse,
+                    parse_obj_as(
+                        type_=PostV1CatalogUnitsListResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return AsyncHttpResponse(response=_response, data=_data)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 422:
+                raise UnprocessableEntityError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
+    async def post_v1catalog_units_options(
+        self,
+        *,
+        locale: typing.Optional[PostV1CatalogUnitsOptionsRequestLocale] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> AsyncHttpResponse[PostV1CatalogUnitsOptionsResponse]:
+        """
+        Parameters
+        ----------
+        locale : typing.Optional[PostV1CatalogUnitsOptionsRequestLocale]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        AsyncHttpResponse[PostV1CatalogUnitsOptionsResponse]
+            Default Response
+        """
+        _response = await self._client_wrapper.httpx_client.request(
+            "v1/catalog/units/options",
+            method="POST",
+            json={
+                "locale": locale,
+            },
+            headers={
+                "content-type": "application/json",
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    PostV1CatalogUnitsOptionsResponse,
+                    parse_obj_as(
+                        type_=PostV1CatalogUnitsOptionsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )

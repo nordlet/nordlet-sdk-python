@@ -124,6 +124,7 @@ class FilesClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1FilesListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1FilesListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1FilesListResponse:
         """
@@ -136,6 +137,9 @@ class FilesClient:
         sort : typing.Optional[typing.Sequence[PostV1FilesListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1FilesListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -155,7 +159,7 @@ class FilesClient:
         client.files.post_v1files_list()
         """
         _response = self._raw_client.post_v1files_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 
@@ -314,6 +318,7 @@ class AsyncFilesClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1FilesListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1FilesListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1FilesListResponse:
         """
@@ -326,6 +331,9 @@ class AsyncFilesClient:
         sort : typing.Optional[typing.Sequence[PostV1FilesListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1FilesListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -353,7 +361,7 @@ class AsyncFilesClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.post_v1files_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 

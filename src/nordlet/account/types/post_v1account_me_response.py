@@ -20,6 +20,9 @@ class PostV1AccountMeResponse(UniversalBaseModel):
     ] = None
     role: typing.Optional[str] = None
     billing: PostV1AccountMeResponseBilling
+    referral_points: typing_extensions.Annotated[
+        int, FieldMetadata(alias="referralPoints"), pydantic.Field(alias="referralPoints")
+    ]
     consent: PostV1AccountMeResponseConsent
     companies: typing.List[PostV1AccountMeResponseCompaniesItem]
 

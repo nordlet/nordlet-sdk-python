@@ -73,6 +73,7 @@ class RawPurchasesClient:
         currency: typing.Optional[str] = OMIT,
         credited_invoice_id: typing.Optional[str] = OMIT,
         purchase_order_id: typing.Optional[str] = OMIT,
+        operation_type_id: typing.Optional[str] = OMIT,
         notes: typing.Optional[str] = OMIT,
         document_ref: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
@@ -98,6 +99,8 @@ class RawPurchasesClient:
 
         purchase_order_id : typing.Optional[str]
 
+        operation_type_id : typing.Optional[str]
+
         notes : typing.Optional[str]
 
         document_ref : typing.Optional[str]
@@ -122,6 +125,7 @@ class RawPurchasesClient:
                 "currency": currency,
                 "creditedInvoiceId": credited_invoice_id,
                 "purchaseOrderId": purchase_order_id,
+                "operationTypeId": operation_type_id,
                 "notes": notes,
                 "documentRef": document_ref,
                 "lines": convert_and_respect_annotation_metadata(
@@ -388,6 +392,7 @@ class RawPurchasesClient:
         due_date: typing.Optional[str] = OMIT,
         currency: typing.Optional[str] = OMIT,
         purchase_order_id: typing.Optional[str] = OMIT,
+        operation_type_id: typing.Optional[str] = OMIT,
         notes: typing.Optional[str] = OMIT,
         lines: typing.Optional[typing.Sequence[PostV1PurchasesInvoicesUpdateRequestLinesItem]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
@@ -408,6 +413,8 @@ class RawPurchasesClient:
         currency : typing.Optional[str]
 
         purchase_order_id : typing.Optional[str]
+
+        operation_type_id : typing.Optional[str]
 
         notes : typing.Optional[str]
 
@@ -432,6 +439,7 @@ class RawPurchasesClient:
                 "dueDate": due_date,
                 "currency": currency,
                 "purchaseOrderId": purchase_order_id,
+                "operationTypeId": operation_type_id,
                 "notes": notes,
                 "lines": convert_and_respect_annotation_metadata(
                     object_=lines,
@@ -840,6 +848,7 @@ class RawPurchasesClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1PurchasesInvoicesListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1PurchasesInvoicesListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[PostV1PurchasesInvoicesListResponse]:
         """
@@ -852,6 +861,9 @@ class RawPurchasesClient:
         sort : typing.Optional[typing.Sequence[PostV1PurchasesInvoicesListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1PurchasesInvoicesListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -877,6 +889,7 @@ class RawPurchasesClient:
                     annotation=typing.Sequence[PostV1PurchasesInvoicesListRequestFilterItem],
                     direction="write",
                 ),
+                "totals": totals,
             },
             headers={
                 "content-type": "application/json",
@@ -1477,6 +1490,7 @@ class RawPurchasesClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1PurchasesOrdersListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1PurchasesOrdersListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[PostV1PurchasesOrdersListResponse]:
         """
@@ -1489,6 +1503,9 @@ class RawPurchasesClient:
         sort : typing.Optional[typing.Sequence[PostV1PurchasesOrdersListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1PurchasesOrdersListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -1514,6 +1531,7 @@ class RawPurchasesClient:
                     annotation=typing.Sequence[PostV1PurchasesOrdersListRequestFilterItem],
                     direction="write",
                 ),
+                "totals": totals,
             },
             headers={
                 "content-type": "application/json",
@@ -2753,6 +2771,7 @@ class RawPurchasesClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1PurchasesReceiptsListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1PurchasesReceiptsListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[PostV1PurchasesReceiptsListResponse]:
         """
@@ -2765,6 +2784,9 @@ class RawPurchasesClient:
         sort : typing.Optional[typing.Sequence[PostV1PurchasesReceiptsListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1PurchasesReceiptsListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -2790,6 +2812,7 @@ class RawPurchasesClient:
                     annotation=typing.Sequence[PostV1PurchasesReceiptsListRequestFilterItem],
                     direction="write",
                 ),
+                "totals": totals,
             },
             headers={
                 "content-type": "application/json",
@@ -3063,6 +3086,7 @@ class AsyncRawPurchasesClient:
         currency: typing.Optional[str] = OMIT,
         credited_invoice_id: typing.Optional[str] = OMIT,
         purchase_order_id: typing.Optional[str] = OMIT,
+        operation_type_id: typing.Optional[str] = OMIT,
         notes: typing.Optional[str] = OMIT,
         document_ref: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
@@ -3088,6 +3112,8 @@ class AsyncRawPurchasesClient:
 
         purchase_order_id : typing.Optional[str]
 
+        operation_type_id : typing.Optional[str]
+
         notes : typing.Optional[str]
 
         document_ref : typing.Optional[str]
@@ -3112,6 +3138,7 @@ class AsyncRawPurchasesClient:
                 "currency": currency,
                 "creditedInvoiceId": credited_invoice_id,
                 "purchaseOrderId": purchase_order_id,
+                "operationTypeId": operation_type_id,
                 "notes": notes,
                 "documentRef": document_ref,
                 "lines": convert_and_respect_annotation_metadata(
@@ -3378,6 +3405,7 @@ class AsyncRawPurchasesClient:
         due_date: typing.Optional[str] = OMIT,
         currency: typing.Optional[str] = OMIT,
         purchase_order_id: typing.Optional[str] = OMIT,
+        operation_type_id: typing.Optional[str] = OMIT,
         notes: typing.Optional[str] = OMIT,
         lines: typing.Optional[typing.Sequence[PostV1PurchasesInvoicesUpdateRequestLinesItem]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
@@ -3398,6 +3426,8 @@ class AsyncRawPurchasesClient:
         currency : typing.Optional[str]
 
         purchase_order_id : typing.Optional[str]
+
+        operation_type_id : typing.Optional[str]
 
         notes : typing.Optional[str]
 
@@ -3422,6 +3452,7 @@ class AsyncRawPurchasesClient:
                 "dueDate": due_date,
                 "currency": currency,
                 "purchaseOrderId": purchase_order_id,
+                "operationTypeId": operation_type_id,
                 "notes": notes,
                 "lines": convert_and_respect_annotation_metadata(
                     object_=lines,
@@ -3830,6 +3861,7 @@ class AsyncRawPurchasesClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1PurchasesInvoicesListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1PurchasesInvoicesListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[PostV1PurchasesInvoicesListResponse]:
         """
@@ -3842,6 +3874,9 @@ class AsyncRawPurchasesClient:
         sort : typing.Optional[typing.Sequence[PostV1PurchasesInvoicesListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1PurchasesInvoicesListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -3867,6 +3902,7 @@ class AsyncRawPurchasesClient:
                     annotation=typing.Sequence[PostV1PurchasesInvoicesListRequestFilterItem],
                     direction="write",
                 ),
+                "totals": totals,
             },
             headers={
                 "content-type": "application/json",
@@ -4467,6 +4503,7 @@ class AsyncRawPurchasesClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1PurchasesOrdersListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1PurchasesOrdersListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[PostV1PurchasesOrdersListResponse]:
         """
@@ -4479,6 +4516,9 @@ class AsyncRawPurchasesClient:
         sort : typing.Optional[typing.Sequence[PostV1PurchasesOrdersListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1PurchasesOrdersListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -4504,6 +4544,7 @@ class AsyncRawPurchasesClient:
                     annotation=typing.Sequence[PostV1PurchasesOrdersListRequestFilterItem],
                     direction="write",
                 ),
+                "totals": totals,
             },
             headers={
                 "content-type": "application/json",
@@ -5743,6 +5784,7 @@ class AsyncRawPurchasesClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1PurchasesReceiptsListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1PurchasesReceiptsListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[PostV1PurchasesReceiptsListResponse]:
         """
@@ -5755,6 +5797,9 @@ class AsyncRawPurchasesClient:
         sort : typing.Optional[typing.Sequence[PostV1PurchasesReceiptsListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1PurchasesReceiptsListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -5780,6 +5825,7 @@ class AsyncRawPurchasesClient:
                     annotation=typing.Sequence[PostV1PurchasesReceiptsListRequestFilterItem],
                     direction="write",
                 ),
+                "totals": totals,
             },
             headers={
                 "content-type": "application/json",

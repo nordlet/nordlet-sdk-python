@@ -211,6 +211,7 @@ class RawAgreementsClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1AgreementsTypesListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1AgreementsTypesListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[PostV1AgreementsTypesListResponse]:
         """
@@ -223,6 +224,9 @@ class RawAgreementsClient:
         sort : typing.Optional[typing.Sequence[PostV1AgreementsTypesListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1AgreementsTypesListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -248,6 +252,7 @@ class RawAgreementsClient:
                     annotation=typing.Sequence[PostV1AgreementsTypesListRequestFilterItem],
                     direction="write",
                 ),
+                "totals": totals,
             },
             headers={
                 "content-type": "application/json",
@@ -1023,6 +1028,7 @@ class RawAgreementsClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1AgreementsAgreementsListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1AgreementsAgreementsListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[PostV1AgreementsAgreementsListResponse]:
         """
@@ -1035,6 +1041,9 @@ class RawAgreementsClient:
         sort : typing.Optional[typing.Sequence[PostV1AgreementsAgreementsListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1AgreementsAgreementsListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -1060,6 +1069,7 @@ class RawAgreementsClient:
                     annotation=typing.Sequence[PostV1AgreementsAgreementsListRequestFilterItem],
                     direction="write",
                 ),
+                "totals": totals,
             },
             headers={
                 "content-type": "application/json",
@@ -1624,6 +1634,7 @@ class RawAgreementsClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1AgreementsInsurancePoliciesListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1AgreementsInsurancePoliciesListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[PostV1AgreementsInsurancePoliciesListResponse]:
         """
@@ -1636,6 +1647,9 @@ class RawAgreementsClient:
         sort : typing.Optional[typing.Sequence[PostV1AgreementsInsurancePoliciesListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1AgreementsInsurancePoliciesListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -1661,6 +1675,7 @@ class RawAgreementsClient:
                     annotation=typing.Sequence[PostV1AgreementsInsurancePoliciesListRequestFilterItem],
                     direction="write",
                 ),
+                "totals": totals,
             },
             headers={
                 "content-type": "application/json",
@@ -2060,6 +2075,7 @@ class AsyncRawAgreementsClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1AgreementsTypesListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1AgreementsTypesListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[PostV1AgreementsTypesListResponse]:
         """
@@ -2072,6 +2088,9 @@ class AsyncRawAgreementsClient:
         sort : typing.Optional[typing.Sequence[PostV1AgreementsTypesListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1AgreementsTypesListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -2097,6 +2116,7 @@ class AsyncRawAgreementsClient:
                     annotation=typing.Sequence[PostV1AgreementsTypesListRequestFilterItem],
                     direction="write",
                 ),
+                "totals": totals,
             },
             headers={
                 "content-type": "application/json",
@@ -2872,6 +2892,7 @@ class AsyncRawAgreementsClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1AgreementsAgreementsListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1AgreementsAgreementsListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[PostV1AgreementsAgreementsListResponse]:
         """
@@ -2884,6 +2905,9 @@ class AsyncRawAgreementsClient:
         sort : typing.Optional[typing.Sequence[PostV1AgreementsAgreementsListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1AgreementsAgreementsListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -2909,6 +2933,7 @@ class AsyncRawAgreementsClient:
                     annotation=typing.Sequence[PostV1AgreementsAgreementsListRequestFilterItem],
                     direction="write",
                 ),
+                "totals": totals,
             },
             headers={
                 "content-type": "application/json",
@@ -3473,6 +3498,7 @@ class AsyncRawAgreementsClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1AgreementsInsurancePoliciesListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1AgreementsInsurancePoliciesListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[PostV1AgreementsInsurancePoliciesListResponse]:
         """
@@ -3485,6 +3511,9 @@ class AsyncRawAgreementsClient:
         sort : typing.Optional[typing.Sequence[PostV1AgreementsInsurancePoliciesListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1AgreementsInsurancePoliciesListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -3510,6 +3539,7 @@ class AsyncRawAgreementsClient:
                     annotation=typing.Sequence[PostV1AgreementsInsurancePoliciesListRequestFilterItem],
                     direction="write",
                 ),
+                "totals": totals,
             },
             headers={
                 "content-type": "application/json",

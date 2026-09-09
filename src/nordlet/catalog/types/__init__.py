@@ -23,11 +23,25 @@ if typing.TYPE_CHECKING:
     )
     from .post_v1catalog_items_create_response_type import PostV1CatalogItemsCreateResponseType
     from .post_v1catalog_items_delete_response import PostV1CatalogItemsDeleteResponse
+    from .post_v1catalog_items_files_list_response import PostV1CatalogItemsFilesListResponse
+    from .post_v1catalog_items_files_list_response_rows_item import PostV1CatalogItemsFilesListResponseRowsItem
     from .post_v1catalog_items_get_response import PostV1CatalogItemsGetResponse
     from .post_v1catalog_items_get_response_components_item import PostV1CatalogItemsGetResponseComponentsItem
     from .post_v1catalog_items_get_response_tracking import PostV1CatalogItemsGetResponseTracking
     from .post_v1catalog_items_get_response_translations_value import PostV1CatalogItemsGetResponseTranslationsValue
     from .post_v1catalog_items_get_response_type import PostV1CatalogItemsGetResponseType
+    from .post_v1catalog_items_kinds_create_request_saft_type import PostV1CatalogItemsKindsCreateRequestSaftType
+    from .post_v1catalog_items_kinds_create_response import PostV1CatalogItemsKindsCreateResponse
+    from .post_v1catalog_items_kinds_create_response_saft_type import PostV1CatalogItemsKindsCreateResponseSaftType
+    from .post_v1catalog_items_kinds_delete_response import PostV1CatalogItemsKindsDeleteResponse
+    from .post_v1catalog_items_kinds_list_response import PostV1CatalogItemsKindsListResponse
+    from .post_v1catalog_items_kinds_list_response_rows_item import PostV1CatalogItemsKindsListResponseRowsItem
+    from .post_v1catalog_items_kinds_list_response_rows_item_saft_type import (
+        PostV1CatalogItemsKindsListResponseRowsItemSaftType,
+    )
+    from .post_v1catalog_items_kinds_update_request_saft_type import PostV1CatalogItemsKindsUpdateRequestSaftType
+    from .post_v1catalog_items_kinds_update_response import PostV1CatalogItemsKindsUpdateResponse
+    from .post_v1catalog_items_kinds_update_response_saft_type import PostV1CatalogItemsKindsUpdateResponseSaftType
     from .post_v1catalog_items_list_request_filter_item import PostV1CatalogItemsListRequestFilterItem
     from .post_v1catalog_items_list_request_filter_item_op import PostV1CatalogItemsListRequestFilterItemOp
     from .post_v1catalog_items_list_request_filter_item_value import PostV1CatalogItemsListRequestFilterItemValue
@@ -72,6 +86,15 @@ if typing.TYPE_CHECKING:
     from .post_v1catalog_price_lists_list_response import PostV1CatalogPriceListsListResponse
     from .post_v1catalog_price_lists_list_response_rows_item import PostV1CatalogPriceListsListResponseRowsItem
     from .post_v1catalog_price_lists_update_response import PostV1CatalogPriceListsUpdateResponse
+    from .post_v1catalog_units_create_response import PostV1CatalogUnitsCreateResponse
+    from .post_v1catalog_units_delete_response import PostV1CatalogUnitsDeleteResponse
+    from .post_v1catalog_units_list_response import PostV1CatalogUnitsListResponse
+    from .post_v1catalog_units_list_response_rows_item import PostV1CatalogUnitsListResponseRowsItem
+    from .post_v1catalog_units_options_request_locale import PostV1CatalogUnitsOptionsRequestLocale
+    from .post_v1catalog_units_options_response import PostV1CatalogUnitsOptionsResponse
+    from .post_v1catalog_units_options_response_rows_item import PostV1CatalogUnitsOptionsResponseRowsItem
+    from .post_v1catalog_units_options_response_rows_item_source import PostV1CatalogUnitsOptionsResponseRowsItemSource
+    from .post_v1catalog_units_update_response import PostV1CatalogUnitsUpdateResponse
 _dynamic_imports: typing.Dict[str, str] = {
     "PostV1CatalogItemGroupsCreateResponse": ".post_v1catalog_item_groups_create_response",
     "PostV1CatalogItemGroupsDeleteResponse": ".post_v1catalog_item_groups_delete_response",
@@ -88,11 +111,23 @@ _dynamic_imports: typing.Dict[str, str] = {
     "PostV1CatalogItemsCreateResponseTranslationsValue": ".post_v1catalog_items_create_response_translations_value",
     "PostV1CatalogItemsCreateResponseType": ".post_v1catalog_items_create_response_type",
     "PostV1CatalogItemsDeleteResponse": ".post_v1catalog_items_delete_response",
+    "PostV1CatalogItemsFilesListResponse": ".post_v1catalog_items_files_list_response",
+    "PostV1CatalogItemsFilesListResponseRowsItem": ".post_v1catalog_items_files_list_response_rows_item",
     "PostV1CatalogItemsGetResponse": ".post_v1catalog_items_get_response",
     "PostV1CatalogItemsGetResponseComponentsItem": ".post_v1catalog_items_get_response_components_item",
     "PostV1CatalogItemsGetResponseTracking": ".post_v1catalog_items_get_response_tracking",
     "PostV1CatalogItemsGetResponseTranslationsValue": ".post_v1catalog_items_get_response_translations_value",
     "PostV1CatalogItemsGetResponseType": ".post_v1catalog_items_get_response_type",
+    "PostV1CatalogItemsKindsCreateRequestSaftType": ".post_v1catalog_items_kinds_create_request_saft_type",
+    "PostV1CatalogItemsKindsCreateResponse": ".post_v1catalog_items_kinds_create_response",
+    "PostV1CatalogItemsKindsCreateResponseSaftType": ".post_v1catalog_items_kinds_create_response_saft_type",
+    "PostV1CatalogItemsKindsDeleteResponse": ".post_v1catalog_items_kinds_delete_response",
+    "PostV1CatalogItemsKindsListResponse": ".post_v1catalog_items_kinds_list_response",
+    "PostV1CatalogItemsKindsListResponseRowsItem": ".post_v1catalog_items_kinds_list_response_rows_item",
+    "PostV1CatalogItemsKindsListResponseRowsItemSaftType": ".post_v1catalog_items_kinds_list_response_rows_item_saft_type",
+    "PostV1CatalogItemsKindsUpdateRequestSaftType": ".post_v1catalog_items_kinds_update_request_saft_type",
+    "PostV1CatalogItemsKindsUpdateResponse": ".post_v1catalog_items_kinds_update_response",
+    "PostV1CatalogItemsKindsUpdateResponseSaftType": ".post_v1catalog_items_kinds_update_response_saft_type",
     "PostV1CatalogItemsListRequestFilterItem": ".post_v1catalog_items_list_request_filter_item",
     "PostV1CatalogItemsListRequestFilterItemOp": ".post_v1catalog_items_list_request_filter_item_op",
     "PostV1CatalogItemsListRequestFilterItemValue": ".post_v1catalog_items_list_request_filter_item_value",
@@ -127,6 +162,15 @@ _dynamic_imports: typing.Dict[str, str] = {
     "PostV1CatalogPriceListsListResponse": ".post_v1catalog_price_lists_list_response",
     "PostV1CatalogPriceListsListResponseRowsItem": ".post_v1catalog_price_lists_list_response_rows_item",
     "PostV1CatalogPriceListsUpdateResponse": ".post_v1catalog_price_lists_update_response",
+    "PostV1CatalogUnitsCreateResponse": ".post_v1catalog_units_create_response",
+    "PostV1CatalogUnitsDeleteResponse": ".post_v1catalog_units_delete_response",
+    "PostV1CatalogUnitsListResponse": ".post_v1catalog_units_list_response",
+    "PostV1CatalogUnitsListResponseRowsItem": ".post_v1catalog_units_list_response_rows_item",
+    "PostV1CatalogUnitsOptionsRequestLocale": ".post_v1catalog_units_options_request_locale",
+    "PostV1CatalogUnitsOptionsResponse": ".post_v1catalog_units_options_response",
+    "PostV1CatalogUnitsOptionsResponseRowsItem": ".post_v1catalog_units_options_response_rows_item",
+    "PostV1CatalogUnitsOptionsResponseRowsItemSource": ".post_v1catalog_units_options_response_rows_item_source",
+    "PostV1CatalogUnitsUpdateResponse": ".post_v1catalog_units_update_response",
 }
 
 
@@ -167,11 +211,23 @@ __all__ = [
     "PostV1CatalogItemsCreateResponseTranslationsValue",
     "PostV1CatalogItemsCreateResponseType",
     "PostV1CatalogItemsDeleteResponse",
+    "PostV1CatalogItemsFilesListResponse",
+    "PostV1CatalogItemsFilesListResponseRowsItem",
     "PostV1CatalogItemsGetResponse",
     "PostV1CatalogItemsGetResponseComponentsItem",
     "PostV1CatalogItemsGetResponseTracking",
     "PostV1CatalogItemsGetResponseTranslationsValue",
     "PostV1CatalogItemsGetResponseType",
+    "PostV1CatalogItemsKindsCreateRequestSaftType",
+    "PostV1CatalogItemsKindsCreateResponse",
+    "PostV1CatalogItemsKindsCreateResponseSaftType",
+    "PostV1CatalogItemsKindsDeleteResponse",
+    "PostV1CatalogItemsKindsListResponse",
+    "PostV1CatalogItemsKindsListResponseRowsItem",
+    "PostV1CatalogItemsKindsListResponseRowsItemSaftType",
+    "PostV1CatalogItemsKindsUpdateRequestSaftType",
+    "PostV1CatalogItemsKindsUpdateResponse",
+    "PostV1CatalogItemsKindsUpdateResponseSaftType",
     "PostV1CatalogItemsListRequestFilterItem",
     "PostV1CatalogItemsListRequestFilterItemOp",
     "PostV1CatalogItemsListRequestFilterItemValue",
@@ -206,4 +262,13 @@ __all__ = [
     "PostV1CatalogPriceListsListResponse",
     "PostV1CatalogPriceListsListResponseRowsItem",
     "PostV1CatalogPriceListsUpdateResponse",
+    "PostV1CatalogUnitsCreateResponse",
+    "PostV1CatalogUnitsDeleteResponse",
+    "PostV1CatalogUnitsListResponse",
+    "PostV1CatalogUnitsListResponseRowsItem",
+    "PostV1CatalogUnitsOptionsRequestLocale",
+    "PostV1CatalogUnitsOptionsResponse",
+    "PostV1CatalogUnitsOptionsResponseRowsItem",
+    "PostV1CatalogUnitsOptionsResponseRowsItemSource",
+    "PostV1CatalogUnitsUpdateResponse",
 ]

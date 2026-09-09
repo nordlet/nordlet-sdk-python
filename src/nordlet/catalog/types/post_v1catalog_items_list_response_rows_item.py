@@ -65,6 +65,85 @@ class PostV1CatalogItemsListResponseRowsItem(UniversalBaseModel):
         typing.Dict[str, typing.Optional[PostV1CatalogItemsListResponseRowsItemTranslationsValue]]
     ] = None
     components: typing.List[PostV1CatalogItemsListResponseRowsItemComponentsItem]
+    kind_id: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="kindId"), pydantic.Field(alias="kindId")
+    ] = None
+    sale_account_code: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="saleAccountCode"), pydantic.Field(alias="saleAccountCode")
+    ] = None
+    purchase_account_code: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="purchaseAccountCode"), pydantic.Field(alias="purchaseAccountCode")
+    ] = None
+    expense_account_code: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="expenseAccountCode"), pydantic.Field(alias="expenseAccountCode")
+    ] = None
+    manufacturer: typing.Optional[str] = None
+    gross_mass_kg: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="grossMassKg"), pydantic.Field(alias="grossMassKg")
+    ] = None
+    min_quantity: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="minQuantity"), pydantic.Field(alias="minQuantity")
+    ] = None
+    cost_price: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="costPrice"), pydantic.Field(alias="costPrice")
+    ] = None
+    is_free_price: typing_extensions.Annotated[
+        bool, FieldMetadata(alias="isFreePrice"), pydantic.Field(alias="isFreePrice")
+    ]
+    external_id: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="externalId"), pydantic.Field(alias="externalId")
+    ] = None
+    is_returnable: typing_extensions.Annotated[
+        bool, FieldMetadata(alias="isReturnable"), pydantic.Field(alias="isReturnable")
+    ]
+    comment_required: typing_extensions.Annotated[
+        bool, FieldMetadata(alias="commentRequired"), pydantic.Field(alias="commentRequired")
+    ]
+    price_from: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="priceFrom"), pydantic.Field(alias="priceFrom")
+    ] = None
+    price_to: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="priceTo"), pydantic.Field(alias="priceTo")
+    ] = None
+    min_price: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="minPrice"), pydantic.Field(alias="minPrice")
+    ] = None
+    discount_percent: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="discountPercent"), pydantic.Field(alias="discountPercent")
+    ] = None
+    max_discount_percent: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="maxDiscountPercent"), pydantic.Field(alias="maxDiscountPercent")
+    ] = None
+    loyalty_points: typing_extensions.Annotated[
+        typing.Optional[int], FieldMetadata(alias="loyaltyPoints"), pydantic.Field(alias="loyaltyPoints")
+    ] = None
+    department: typing.Optional[str] = None
+    age_restriction: typing_extensions.Annotated[
+        typing.Optional[int], FieldMetadata(alias="ageRestriction"), pydantic.Field(alias="ageRestriction")
+    ] = None
+    package_quantity: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="packageQuantity"), pydantic.Field(alias="packageQuantity")
+    ] = None
+    tara_code: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="taraCode"), pydantic.Field(alias="taraCode")
+    ] = None
+    certificate_number: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="certificateNumber"), pydantic.Field(alias="certificateNumber")
+    ] = None
+    certificate_date: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="certificateDate"), pydantic.Field(alias="certificateDate")
+    ] = None
+    valid_from: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="validFrom"), pydantic.Field(alias="validFrom")
+    ] = None
+    valid_to: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="validTo"), pydantic.Field(alias="validTo")
+    ] = None
+    pos_flags: typing_extensions.Annotated[
+        typing.Optional[typing.Dict[str, typing.Optional[bool]]],
+        FieldMetadata(alias="posFlags"),
+        pydantic.Field(alias="posFlags"),
+    ] = None
     created_at: typing_extensions.Annotated[str, FieldMetadata(alias="createdAt"), pydantic.Field(alias="createdAt")]
     updated_at: typing_extensions.Annotated[str, FieldMetadata(alias="updatedAt"), pydantic.Field(alias="updatedAt")]
 

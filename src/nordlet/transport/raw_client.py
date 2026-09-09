@@ -868,6 +868,7 @@ class RawTransportClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1TransportWaybillsListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1TransportWaybillsListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[PostV1TransportWaybillsListResponse]:
         """
@@ -880,6 +881,9 @@ class RawTransportClient:
         sort : typing.Optional[typing.Sequence[PostV1TransportWaybillsListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1TransportWaybillsListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -905,6 +909,7 @@ class RawTransportClient:
                     annotation=typing.Sequence[PostV1TransportWaybillsListRequestFilterItem],
                     direction="write",
                 ),
+                "totals": totals,
             },
             headers={
                 "content-type": "application/json",
@@ -1852,6 +1857,7 @@ class AsyncRawTransportClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1TransportWaybillsListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1TransportWaybillsListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[PostV1TransportWaybillsListResponse]:
         """
@@ -1864,6 +1870,9 @@ class AsyncRawTransportClient:
         sort : typing.Optional[typing.Sequence[PostV1TransportWaybillsListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1TransportWaybillsListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -1889,6 +1898,7 @@ class AsyncRawTransportClient:
                     annotation=typing.Sequence[PostV1TransportWaybillsListRequestFilterItem],
                     direction="write",
                 ),
+                "totals": totals,
             },
             headers={
                 "content-type": "application/json",

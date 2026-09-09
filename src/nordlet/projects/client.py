@@ -170,6 +170,7 @@ class ProjectsClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1ProjectsListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1ProjectsListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1ProjectsListResponse:
         """
@@ -182,6 +183,9 @@ class ProjectsClient:
         sort : typing.Optional[typing.Sequence[PostV1ProjectsListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1ProjectsListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -201,7 +205,7 @@ class ProjectsClient:
         client.projects.post_v1projects_list()
         """
         _response = self._raw_client.post_v1projects_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 
@@ -360,6 +364,7 @@ class ProjectsClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1ProjectsTimeEntriesListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1ProjectsTimeEntriesListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1ProjectsTimeEntriesListResponse:
         """
@@ -372,6 +377,9 @@ class ProjectsClient:
         sort : typing.Optional[typing.Sequence[PostV1ProjectsTimeEntriesListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1ProjectsTimeEntriesListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -391,7 +399,7 @@ class ProjectsClient:
         client.projects.post_v1projects_time_entries_list()
         """
         _response = self._raw_client.post_v1projects_time_entries_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 
@@ -683,6 +691,7 @@ class AsyncProjectsClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1ProjectsListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1ProjectsListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1ProjectsListResponse:
         """
@@ -695,6 +704,9 @@ class AsyncProjectsClient:
         sort : typing.Optional[typing.Sequence[PostV1ProjectsListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1ProjectsListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -722,7 +734,7 @@ class AsyncProjectsClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.post_v1projects_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 
@@ -905,6 +917,7 @@ class AsyncProjectsClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1ProjectsTimeEntriesListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1ProjectsTimeEntriesListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1ProjectsTimeEntriesListResponse:
         """
@@ -917,6 +930,9 @@ class AsyncProjectsClient:
         sort : typing.Optional[typing.Sequence[PostV1ProjectsTimeEntriesListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1ProjectsTimeEntriesListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -944,7 +960,7 @@ class AsyncProjectsClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.post_v1projects_time_entries_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 

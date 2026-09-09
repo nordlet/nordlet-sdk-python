@@ -1031,6 +1031,7 @@ class ReportsClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1ReportsJobsListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1ReportsJobsListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1ReportsJobsListResponse:
         """
@@ -1043,6 +1044,9 @@ class ReportsClient:
         sort : typing.Optional[typing.Sequence[PostV1ReportsJobsListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1ReportsJobsListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -1062,7 +1066,7 @@ class ReportsClient:
         client.reports.post_v1reports_jobs_list()
         """
         _response = self._raw_client.post_v1reports_jobs_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 
@@ -2266,6 +2270,7 @@ class AsyncReportsClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1ReportsJobsListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1ReportsJobsListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1ReportsJobsListResponse:
         """
@@ -2278,6 +2283,9 @@ class AsyncReportsClient:
         sort : typing.Optional[typing.Sequence[PostV1ReportsJobsListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1ReportsJobsListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -2305,6 +2313,6 @@ class AsyncReportsClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.post_v1reports_jobs_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data

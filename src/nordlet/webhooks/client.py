@@ -86,6 +86,7 @@ class WebhooksClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1WebhooksSubscriptionsListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1WebhooksSubscriptionsListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1WebhooksSubscriptionsListResponse:
         """
@@ -98,6 +99,9 @@ class WebhooksClient:
         sort : typing.Optional[typing.Sequence[PostV1WebhooksSubscriptionsListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1WebhooksSubscriptionsListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -117,7 +121,7 @@ class WebhooksClient:
         client.webhooks.post_v1webhooks_subscriptions_list()
         """
         _response = self._raw_client.post_v1webhooks_subscriptions_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 
@@ -202,6 +206,7 @@ class WebhooksClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1WebhooksDeliveriesListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1WebhooksDeliveriesListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1WebhooksDeliveriesListResponse:
         """
@@ -214,6 +219,9 @@ class WebhooksClient:
         sort : typing.Optional[typing.Sequence[PostV1WebhooksDeliveriesListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1WebhooksDeliveriesListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -233,7 +241,7 @@ class WebhooksClient:
         client.webhooks.post_v1webhooks_deliveries_list()
         """
         _response = self._raw_client.post_v1webhooks_deliveries_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 
@@ -340,6 +348,7 @@ class AsyncWebhooksClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1WebhooksSubscriptionsListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1WebhooksSubscriptionsListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1WebhooksSubscriptionsListResponse:
         """
@@ -352,6 +361,9 @@ class AsyncWebhooksClient:
         sort : typing.Optional[typing.Sequence[PostV1WebhooksSubscriptionsListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1WebhooksSubscriptionsListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -379,7 +391,7 @@ class AsyncWebhooksClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.post_v1webhooks_subscriptions_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 
@@ -480,6 +492,7 @@ class AsyncWebhooksClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1WebhooksDeliveriesListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1WebhooksDeliveriesListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1WebhooksDeliveriesListResponse:
         """
@@ -492,6 +505,9 @@ class AsyncWebhooksClient:
         sort : typing.Optional[typing.Sequence[PostV1WebhooksDeliveriesListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1WebhooksDeliveriesListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -519,7 +535,7 @@ class AsyncWebhooksClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.post_v1webhooks_deliveries_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 

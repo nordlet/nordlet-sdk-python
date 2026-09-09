@@ -491,6 +491,7 @@ class RawProjectsClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1ProjectsListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1ProjectsListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[PostV1ProjectsListResponse]:
         """
@@ -503,6 +504,9 @@ class RawProjectsClient:
         sort : typing.Optional[typing.Sequence[PostV1ProjectsListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1ProjectsListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -524,6 +528,7 @@ class RawProjectsClient:
                 "filter": convert_and_respect_annotation_metadata(
                     object_=filter, annotation=typing.Sequence[PostV1ProjectsListRequestFilterItem], direction="write"
                 ),
+                "totals": totals,
             },
             headers={
                 "content-type": "application/json",
@@ -1100,6 +1105,7 @@ class RawProjectsClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1ProjectsTimeEntriesListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1ProjectsTimeEntriesListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[PostV1ProjectsTimeEntriesListResponse]:
         """
@@ -1112,6 +1118,9 @@ class RawProjectsClient:
         sort : typing.Optional[typing.Sequence[PostV1ProjectsTimeEntriesListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1ProjectsTimeEntriesListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -1137,6 +1146,7 @@ class RawProjectsClient:
                     annotation=typing.Sequence[PostV1ProjectsTimeEntriesListRequestFilterItem],
                     direction="write",
                 ),
+                "totals": totals,
             },
             headers={
                 "content-type": "application/json",
@@ -2030,6 +2040,7 @@ class AsyncRawProjectsClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1ProjectsListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1ProjectsListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[PostV1ProjectsListResponse]:
         """
@@ -2042,6 +2053,9 @@ class AsyncRawProjectsClient:
         sort : typing.Optional[typing.Sequence[PostV1ProjectsListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1ProjectsListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -2063,6 +2077,7 @@ class AsyncRawProjectsClient:
                 "filter": convert_and_respect_annotation_metadata(
                     object_=filter, annotation=typing.Sequence[PostV1ProjectsListRequestFilterItem], direction="write"
                 ),
+                "totals": totals,
             },
             headers={
                 "content-type": "application/json",
@@ -2639,6 +2654,7 @@ class AsyncRawProjectsClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1ProjectsTimeEntriesListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1ProjectsTimeEntriesListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[PostV1ProjectsTimeEntriesListResponse]:
         """
@@ -2651,6 +2667,9 @@ class AsyncRawProjectsClient:
         sort : typing.Optional[typing.Sequence[PostV1ProjectsTimeEntriesListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1ProjectsTimeEntriesListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -2676,6 +2695,7 @@ class AsyncRawProjectsClient:
                     annotation=typing.Sequence[PostV1ProjectsTimeEntriesListRequestFilterItem],
                     direction="write",
                 ),
+                "totals": totals,
             },
             headers={
                 "content-type": "application/json",

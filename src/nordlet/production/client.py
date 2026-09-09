@@ -203,6 +203,7 @@ class ProductionClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1ProductionWorkCentersListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1ProductionWorkCentersListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1ProductionWorkCentersListResponse:
         """
@@ -215,6 +216,9 @@ class ProductionClient:
         sort : typing.Optional[typing.Sequence[PostV1ProductionWorkCentersListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1ProductionWorkCentersListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -234,7 +238,7 @@ class ProductionClient:
         client.production.post_v1production_work_centers_list()
         """
         _response = self._raw_client.post_v1production_work_centers_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 
@@ -330,6 +334,7 @@ class ProductionClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1ProductionRoutingsListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1ProductionRoutingsListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1ProductionRoutingsListResponse:
         """
@@ -342,6 +347,9 @@ class ProductionClient:
         sort : typing.Optional[typing.Sequence[PostV1ProductionRoutingsListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1ProductionRoutingsListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -361,7 +369,7 @@ class ProductionClient:
         client.production.post_v1production_routings_list()
         """
         _response = self._raw_client.post_v1production_routings_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 
@@ -509,6 +517,7 @@ class ProductionClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1ProductionMaintenanceListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1ProductionMaintenanceListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1ProductionMaintenanceListResponse:
         """
@@ -521,6 +530,9 @@ class ProductionClient:
         sort : typing.Optional[typing.Sequence[PostV1ProductionMaintenanceListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1ProductionMaintenanceListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -540,7 +552,7 @@ class ProductionClient:
         client.production.post_v1production_maintenance_list()
         """
         _response = self._raw_client.post_v1production_maintenance_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 
@@ -646,6 +658,7 @@ class ProductionClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1ProductionBomsListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1ProductionBomsListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1ProductionBomsListResponse:
         """
@@ -658,6 +671,9 @@ class ProductionClient:
         sort : typing.Optional[typing.Sequence[PostV1ProductionBomsListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1ProductionBomsListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -677,7 +693,7 @@ class ProductionClient:
         client.production.post_v1production_boms_list()
         """
         _response = self._raw_client.post_v1production_boms_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 
@@ -870,6 +886,7 @@ class ProductionClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1ProductionQualityChecksListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1ProductionQualityChecksListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1ProductionQualityChecksListResponse:
         """
@@ -882,6 +899,9 @@ class ProductionClient:
         sort : typing.Optional[typing.Sequence[PostV1ProductionQualityChecksListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1ProductionQualityChecksListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -901,7 +921,7 @@ class ProductionClient:
         client.production.post_v1production_quality_checks_list()
         """
         _response = self._raw_client.post_v1production_quality_checks_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 
@@ -990,6 +1010,7 @@ class ProductionClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1ProductionOrdersListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1ProductionOrdersListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1ProductionOrdersListResponse:
         """
@@ -1002,6 +1023,9 @@ class ProductionClient:
         sort : typing.Optional[typing.Sequence[PostV1ProductionOrdersListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1ProductionOrdersListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -1021,7 +1045,7 @@ class ProductionClient:
         client.production.post_v1production_orders_list()
         """
         _response = self._raw_client.post_v1production_orders_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 
@@ -1185,6 +1209,7 @@ class AsyncProductionClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1ProductionWorkCentersListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1ProductionWorkCentersListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1ProductionWorkCentersListResponse:
         """
@@ -1197,6 +1222,9 @@ class AsyncProductionClient:
         sort : typing.Optional[typing.Sequence[PostV1ProductionWorkCentersListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1ProductionWorkCentersListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -1224,7 +1252,7 @@ class AsyncProductionClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.post_v1production_work_centers_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 
@@ -1336,6 +1364,7 @@ class AsyncProductionClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1ProductionRoutingsListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1ProductionRoutingsListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1ProductionRoutingsListResponse:
         """
@@ -1348,6 +1377,9 @@ class AsyncProductionClient:
         sort : typing.Optional[typing.Sequence[PostV1ProductionRoutingsListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1ProductionRoutingsListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -1375,7 +1407,7 @@ class AsyncProductionClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.post_v1production_routings_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 
@@ -1547,6 +1579,7 @@ class AsyncProductionClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1ProductionMaintenanceListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1ProductionMaintenanceListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1ProductionMaintenanceListResponse:
         """
@@ -1559,6 +1592,9 @@ class AsyncProductionClient:
         sort : typing.Optional[typing.Sequence[PostV1ProductionMaintenanceListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1ProductionMaintenanceListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -1586,7 +1622,7 @@ class AsyncProductionClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.post_v1production_maintenance_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 
@@ -1708,6 +1744,7 @@ class AsyncProductionClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1ProductionBomsListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1ProductionBomsListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1ProductionBomsListResponse:
         """
@@ -1720,6 +1757,9 @@ class AsyncProductionClient:
         sort : typing.Optional[typing.Sequence[PostV1ProductionBomsListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1ProductionBomsListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -1747,7 +1787,7 @@ class AsyncProductionClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.post_v1production_boms_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 
@@ -1972,6 +2012,7 @@ class AsyncProductionClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1ProductionQualityChecksListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1ProductionQualityChecksListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1ProductionQualityChecksListResponse:
         """
@@ -1984,6 +2025,9 @@ class AsyncProductionClient:
         sort : typing.Optional[typing.Sequence[PostV1ProductionQualityChecksListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1ProductionQualityChecksListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -2011,7 +2055,7 @@ class AsyncProductionClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.post_v1production_quality_checks_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 
@@ -2116,6 +2160,7 @@ class AsyncProductionClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1ProductionOrdersListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1ProductionOrdersListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1ProductionOrdersListResponse:
         """
@@ -2128,6 +2173,9 @@ class AsyncProductionClient:
         sort : typing.Optional[typing.Sequence[PostV1ProductionOrdersListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1ProductionOrdersListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -2155,6 +2203,6 @@ class AsyncProductionClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.post_v1production_orders_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data

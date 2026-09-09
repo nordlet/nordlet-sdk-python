@@ -86,6 +86,7 @@ class LedgerClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1LedgerAccountsListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1LedgerAccountsListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1LedgerAccountsListResponse:
         """
@@ -98,6 +99,9 @@ class LedgerClient:
         sort : typing.Optional[typing.Sequence[PostV1LedgerAccountsListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1LedgerAccountsListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -117,7 +121,7 @@ class LedgerClient:
         client.ledger.post_v1ledger_accounts_list()
         """
         _response = self._raw_client.post_v1ledger_accounts_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 
@@ -264,6 +268,7 @@ class LedgerClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1LedgerPeriodsListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1LedgerPeriodsListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1LedgerPeriodsListResponse:
         """
@@ -276,6 +281,9 @@ class LedgerClient:
         sort : typing.Optional[typing.Sequence[PostV1LedgerPeriodsListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1LedgerPeriodsListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -295,7 +303,7 @@ class LedgerClient:
         client.ledger.post_v1ledger_periods_list()
         """
         _response = self._raw_client.post_v1ledger_periods_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 
@@ -374,6 +382,7 @@ class LedgerClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1LedgerJournalTransactionsListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1LedgerJournalTransactionsListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1LedgerJournalTransactionsListResponse:
         """
@@ -386,6 +395,9 @@ class LedgerClient:
         sort : typing.Optional[typing.Sequence[PostV1LedgerJournalTransactionsListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1LedgerJournalTransactionsListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -405,7 +417,7 @@ class LedgerClient:
         client.ledger.post_v1ledger_journal_transactions_list()
         """
         _response = self._raw_client.post_v1ledger_journal_transactions_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 
@@ -502,6 +514,7 @@ class LedgerClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1LedgerCostCentersListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1LedgerCostCentersListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1LedgerCostCentersListResponse:
         """
@@ -514,6 +527,9 @@ class LedgerClient:
         sort : typing.Optional[typing.Sequence[PostV1LedgerCostCentersListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1LedgerCostCentersListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -533,7 +549,7 @@ class LedgerClient:
         client.ledger.post_v1ledger_cost_centers_list()
         """
         _response = self._raw_client.post_v1ledger_cost_centers_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 
@@ -650,6 +666,7 @@ class LedgerClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1LedgerCostCenterGroupsListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1LedgerCostCenterGroupsListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1LedgerCostCenterGroupsListResponse:
         """
@@ -662,6 +679,9 @@ class LedgerClient:
         sort : typing.Optional[typing.Sequence[PostV1LedgerCostCenterGroupsListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1LedgerCostCenterGroupsListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -681,7 +701,7 @@ class LedgerClient:
         client.ledger.post_v1ledger_cost_center_groups_list()
         """
         _response = self._raw_client.post_v1ledger_cost_center_groups_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 
@@ -918,6 +938,7 @@ class LedgerClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1LedgerOwnersListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1LedgerOwnersListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1LedgerOwnersListResponse:
         """
@@ -930,6 +951,9 @@ class LedgerClient:
         sort : typing.Optional[typing.Sequence[PostV1LedgerOwnersListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1LedgerOwnersListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -949,7 +973,7 @@ class LedgerClient:
         client.ledger.post_v1ledger_owners_list()
         """
         _response = self._raw_client.post_v1ledger_owners_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 
@@ -1055,6 +1079,7 @@ class AsyncLedgerClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1LedgerAccountsListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1LedgerAccountsListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1LedgerAccountsListResponse:
         """
@@ -1067,6 +1092,9 @@ class AsyncLedgerClient:
         sort : typing.Optional[typing.Sequence[PostV1LedgerAccountsListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1LedgerAccountsListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -1094,7 +1122,7 @@ class AsyncLedgerClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.post_v1ledger_accounts_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 
@@ -1265,6 +1293,7 @@ class AsyncLedgerClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1LedgerPeriodsListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1LedgerPeriodsListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1LedgerPeriodsListResponse:
         """
@@ -1277,6 +1306,9 @@ class AsyncLedgerClient:
         sort : typing.Optional[typing.Sequence[PostV1LedgerPeriodsListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1LedgerPeriodsListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -1304,7 +1336,7 @@ class AsyncLedgerClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.post_v1ledger_periods_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 
@@ -1401,6 +1433,7 @@ class AsyncLedgerClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1LedgerJournalTransactionsListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1LedgerJournalTransactionsListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1LedgerJournalTransactionsListResponse:
         """
@@ -1413,6 +1446,9 @@ class AsyncLedgerClient:
         sort : typing.Optional[typing.Sequence[PostV1LedgerJournalTransactionsListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1LedgerJournalTransactionsListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -1440,7 +1476,7 @@ class AsyncLedgerClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.post_v1ledger_journal_transactions_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 
@@ -1553,6 +1589,7 @@ class AsyncLedgerClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1LedgerCostCentersListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1LedgerCostCentersListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1LedgerCostCentersListResponse:
         """
@@ -1565,6 +1602,9 @@ class AsyncLedgerClient:
         sort : typing.Optional[typing.Sequence[PostV1LedgerCostCentersListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1LedgerCostCentersListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -1592,7 +1632,7 @@ class AsyncLedgerClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.post_v1ledger_cost_centers_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 
@@ -1735,6 +1775,7 @@ class AsyncLedgerClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1LedgerCostCenterGroupsListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1LedgerCostCenterGroupsListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1LedgerCostCenterGroupsListResponse:
         """
@@ -1747,6 +1788,9 @@ class AsyncLedgerClient:
         sort : typing.Optional[typing.Sequence[PostV1LedgerCostCenterGroupsListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1LedgerCostCenterGroupsListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -1774,7 +1818,7 @@ class AsyncLedgerClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.post_v1ledger_cost_center_groups_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 
@@ -2053,6 +2097,7 @@ class AsyncLedgerClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1LedgerOwnersListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1LedgerOwnersListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1LedgerOwnersListResponse:
         """
@@ -2065,6 +2110,9 @@ class AsyncLedgerClient:
         sort : typing.Optional[typing.Sequence[PostV1LedgerOwnersListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1LedgerOwnersListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -2092,7 +2140,7 @@ class AsyncLedgerClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.post_v1ledger_owners_list(
-            page=page, page_size=page_size, sort=sort, filter=filter, request_options=request_options
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 

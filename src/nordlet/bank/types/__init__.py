@@ -158,6 +158,11 @@ if typing.TYPE_CHECKING:
     from .post_v1bank_mandates_update_response_scheme import PostV1BankMandatesUpdateResponseScheme
     from .post_v1bank_mandates_update_response_sequence_type import PostV1BankMandatesUpdateResponseSequenceType
     from .post_v1bank_mandates_update_response_status import PostV1BankMandatesUpdateResponseStatus
+    from .post_v1bank_match_rules_create_response import PostV1BankMatchRulesCreateResponse
+    from .post_v1bank_match_rules_delete_response import PostV1BankMatchRulesDeleteResponse
+    from .post_v1bank_match_rules_list_response import PostV1BankMatchRulesListResponse
+    from .post_v1bank_match_rules_list_response_rows_item import PostV1BankMatchRulesListResponseRowsItem
+    from .post_v1bank_match_rules_update_response import PostV1BankMatchRulesUpdateResponse
     from .post_v1bank_payments_export_response import PostV1BankPaymentsExportResponse
     from .post_v1bank_settlements_get_response import PostV1BankSettlementsGetResponse
     from .post_v1bank_settlements_get_response_lines_item import PostV1BankSettlementsGetResponseLinesItem
@@ -172,6 +177,8 @@ if typing.TYPE_CHECKING:
         PostV1BankSettlementsImportResponseBatchesItemStatus,
     )
     from .post_v1bank_settlements_import_response_format import PostV1BankSettlementsImportResponseFormat
+    from .post_v1bank_settlements_link_response import PostV1BankSettlementsLinkResponse
+    from .post_v1bank_settlements_link_response_status import PostV1BankSettlementsLinkResponseStatus
     from .post_v1bank_settlements_list_request_filter_item import PostV1BankSettlementsListRequestFilterItem
     from .post_v1bank_settlements_list_request_filter_item_op import PostV1BankSettlementsListRequestFilterItemOp
     from .post_v1bank_settlements_list_request_filter_item_value import PostV1BankSettlementsListRequestFilterItemValue
@@ -188,6 +195,8 @@ if typing.TYPE_CHECKING:
     from .post_v1bank_settlements_post_response import PostV1BankSettlementsPostResponse
     from .post_v1bank_settlements_post_response_status import PostV1BankSettlementsPostResponseStatus
     from .post_v1bank_settlements_post_response_summary import PostV1BankSettlementsPostResponseSummary
+    from .post_v1bank_settlements_unlink_response import PostV1BankSettlementsUnlinkResponse
+    from .post_v1bank_settlements_unlink_response_status import PostV1BankSettlementsUnlinkResponseStatus
     from .post_v1bank_statements_import_request_format import PostV1BankStatementsImportRequestFormat
     from .post_v1bank_statements_import_response import PostV1BankStatementsImportResponse
     from .post_v1bank_statements_import_response_statements_item import PostV1BankStatementsImportResponseStatementsItem
@@ -322,6 +331,11 @@ _dynamic_imports: typing.Dict[str, str] = {
     "PostV1BankMandatesUpdateResponseScheme": ".post_v1bank_mandates_update_response_scheme",
     "PostV1BankMandatesUpdateResponseSequenceType": ".post_v1bank_mandates_update_response_sequence_type",
     "PostV1BankMandatesUpdateResponseStatus": ".post_v1bank_mandates_update_response_status",
+    "PostV1BankMatchRulesCreateResponse": ".post_v1bank_match_rules_create_response",
+    "PostV1BankMatchRulesDeleteResponse": ".post_v1bank_match_rules_delete_response",
+    "PostV1BankMatchRulesListResponse": ".post_v1bank_match_rules_list_response",
+    "PostV1BankMatchRulesListResponseRowsItem": ".post_v1bank_match_rules_list_response_rows_item",
+    "PostV1BankMatchRulesUpdateResponse": ".post_v1bank_match_rules_update_response",
     "PostV1BankPaymentsExportResponse": ".post_v1bank_payments_export_response",
     "PostV1BankSettlementsGetResponse": ".post_v1bank_settlements_get_response",
     "PostV1BankSettlementsGetResponseLinesItem": ".post_v1bank_settlements_get_response_lines_item",
@@ -332,6 +346,8 @@ _dynamic_imports: typing.Dict[str, str] = {
     "PostV1BankSettlementsImportResponseBatchesItem": ".post_v1bank_settlements_import_response_batches_item",
     "PostV1BankSettlementsImportResponseBatchesItemStatus": ".post_v1bank_settlements_import_response_batches_item_status",
     "PostV1BankSettlementsImportResponseFormat": ".post_v1bank_settlements_import_response_format",
+    "PostV1BankSettlementsLinkResponse": ".post_v1bank_settlements_link_response",
+    "PostV1BankSettlementsLinkResponseStatus": ".post_v1bank_settlements_link_response_status",
     "PostV1BankSettlementsListRequestFilterItem": ".post_v1bank_settlements_list_request_filter_item",
     "PostV1BankSettlementsListRequestFilterItemOp": ".post_v1bank_settlements_list_request_filter_item_op",
     "PostV1BankSettlementsListRequestFilterItemValue": ".post_v1bank_settlements_list_request_filter_item_value",
@@ -346,6 +362,8 @@ _dynamic_imports: typing.Dict[str, str] = {
     "PostV1BankSettlementsPostResponse": ".post_v1bank_settlements_post_response",
     "PostV1BankSettlementsPostResponseStatus": ".post_v1bank_settlements_post_response_status",
     "PostV1BankSettlementsPostResponseSummary": ".post_v1bank_settlements_post_response_summary",
+    "PostV1BankSettlementsUnlinkResponse": ".post_v1bank_settlements_unlink_response",
+    "PostV1BankSettlementsUnlinkResponseStatus": ".post_v1bank_settlements_unlink_response_status",
     "PostV1BankStatementsImportRequestFormat": ".post_v1bank_statements_import_request_format",
     "PostV1BankStatementsImportResponse": ".post_v1bank_statements_import_response",
     "PostV1BankStatementsImportResponseStatementsItem": ".post_v1bank_statements_import_response_statements_item",
@@ -492,6 +510,11 @@ __all__ = [
     "PostV1BankMandatesUpdateResponseScheme",
     "PostV1BankMandatesUpdateResponseSequenceType",
     "PostV1BankMandatesUpdateResponseStatus",
+    "PostV1BankMatchRulesCreateResponse",
+    "PostV1BankMatchRulesDeleteResponse",
+    "PostV1BankMatchRulesListResponse",
+    "PostV1BankMatchRulesListResponseRowsItem",
+    "PostV1BankMatchRulesUpdateResponse",
     "PostV1BankPaymentsExportResponse",
     "PostV1BankSettlementsGetResponse",
     "PostV1BankSettlementsGetResponseLinesItem",
@@ -502,6 +525,8 @@ __all__ = [
     "PostV1BankSettlementsImportResponseBatchesItem",
     "PostV1BankSettlementsImportResponseBatchesItemStatus",
     "PostV1BankSettlementsImportResponseFormat",
+    "PostV1BankSettlementsLinkResponse",
+    "PostV1BankSettlementsLinkResponseStatus",
     "PostV1BankSettlementsListRequestFilterItem",
     "PostV1BankSettlementsListRequestFilterItemOp",
     "PostV1BankSettlementsListRequestFilterItemValue",
@@ -516,6 +541,8 @@ __all__ = [
     "PostV1BankSettlementsPostResponse",
     "PostV1BankSettlementsPostResponseStatus",
     "PostV1BankSettlementsPostResponseSummary",
+    "PostV1BankSettlementsUnlinkResponse",
+    "PostV1BankSettlementsUnlinkResponseStatus",
     "PostV1BankStatementsImportRequestFormat",
     "PostV1BankStatementsImportResponse",
     "PostV1BankStatementsImportResponseStatementsItem",

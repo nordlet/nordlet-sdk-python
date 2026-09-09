@@ -353,6 +353,7 @@ class RawCashClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1CashOrdersListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1CashOrdersListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[PostV1CashOrdersListResponse]:
         """
@@ -365,6 +366,9 @@ class RawCashClient:
         sort : typing.Optional[typing.Sequence[PostV1CashOrdersListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1CashOrdersListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -386,6 +390,7 @@ class RawCashClient:
                 "filter": convert_and_respect_annotation_metadata(
                     object_=filter, annotation=typing.Sequence[PostV1CashOrdersListRequestFilterItem], direction="write"
                 ),
+                "totals": totals,
             },
             headers={
                 "content-type": "application/json",
@@ -1094,6 +1099,7 @@ class AsyncRawCashClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1CashOrdersListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1CashOrdersListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[PostV1CashOrdersListResponse]:
         """
@@ -1106,6 +1112,9 @@ class AsyncRawCashClient:
         sort : typing.Optional[typing.Sequence[PostV1CashOrdersListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1CashOrdersListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -1127,6 +1136,7 @@ class AsyncRawCashClient:
                 "filter": convert_and_respect_annotation_metadata(
                     object_=filter, annotation=typing.Sequence[PostV1CashOrdersListRequestFilterItem], direction="write"
                 ),
+                "totals": totals,
             },
             headers={
                 "content-type": "application/json",

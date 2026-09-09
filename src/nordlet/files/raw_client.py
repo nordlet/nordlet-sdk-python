@@ -332,6 +332,7 @@ class RawFilesClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1FilesListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1FilesListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[PostV1FilesListResponse]:
         """
@@ -344,6 +345,9 @@ class RawFilesClient:
         sort : typing.Optional[typing.Sequence[PostV1FilesListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1FilesListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -365,6 +369,7 @@ class RawFilesClient:
                 "filter": convert_and_respect_annotation_metadata(
                     object_=filter, annotation=typing.Sequence[PostV1FilesListRequestFilterItem], direction="write"
                 ),
+                "totals": totals,
             },
             headers={
                 "content-type": "application/json",
@@ -916,6 +921,7 @@ class AsyncRawFilesClient:
         page_size: typing.Optional[int] = OMIT,
         sort: typing.Optional[typing.Sequence[PostV1FilesListRequestSortItem]] = OMIT,
         filter: typing.Optional[typing.Sequence[PostV1FilesListRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[PostV1FilesListResponse]:
         """
@@ -928,6 +934,9 @@ class AsyncRawFilesClient:
         sort : typing.Optional[typing.Sequence[PostV1FilesListRequestSortItem]]
 
         filter : typing.Optional[typing.Sequence[PostV1FilesListRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -949,6 +958,7 @@ class AsyncRawFilesClient:
                 "filter": convert_and_respect_annotation_metadata(
                     object_=filter, annotation=typing.Sequence[PostV1FilesListRequestFilterItem], direction="write"
                 ),
+                "totals": totals,
             },
             headers={
                 "content-type": "application/json",

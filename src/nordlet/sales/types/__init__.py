@@ -6,6 +6,44 @@ import typing
 from importlib import import_module
 
 if typing.TYPE_CHECKING:
+    from .post_v1document_series_create_request_document_type import PostV1DocumentSeriesCreateRequestDocumentType
+    from .post_v1document_series_create_response import PostV1DocumentSeriesCreateResponse
+    from .post_v1document_series_delete_response import PostV1DocumentSeriesDeleteResponse
+    from .post_v1document_series_get_response import PostV1DocumentSeriesGetResponse
+    from .post_v1document_series_list_request_filter_item import PostV1DocumentSeriesListRequestFilterItem
+    from .post_v1document_series_list_request_filter_item_op import PostV1DocumentSeriesListRequestFilterItemOp
+    from .post_v1document_series_list_request_filter_item_value import PostV1DocumentSeriesListRequestFilterItemValue
+    from .post_v1document_series_list_request_filter_item_value_three_item import (
+        PostV1DocumentSeriesListRequestFilterItemValueThreeItem,
+    )
+    from .post_v1document_series_list_request_sort_item import PostV1DocumentSeriesListRequestSortItem
+    from .post_v1document_series_list_request_sort_item_dir import PostV1DocumentSeriesListRequestSortItemDir
+    from .post_v1document_series_list_response import PostV1DocumentSeriesListResponse
+    from .post_v1document_series_list_response_rows_item import PostV1DocumentSeriesListResponseRowsItem
+    from .post_v1document_series_update_request_document_type import PostV1DocumentSeriesUpdateRequestDocumentType
+    from .post_v1document_series_update_response import PostV1DocumentSeriesUpdateResponse
+    from .post_v1operation_types_create_request_invoice_type import PostV1OperationTypesCreateRequestInvoiceType
+    from .post_v1operation_types_create_response import PostV1OperationTypesCreateResponse
+    from .post_v1operation_types_create_response_invoice_type import PostV1OperationTypesCreateResponseInvoiceType
+    from .post_v1operation_types_delete_response import PostV1OperationTypesDeleteResponse
+    from .post_v1operation_types_get_response import PostV1OperationTypesGetResponse
+    from .post_v1operation_types_get_response_invoice_type import PostV1OperationTypesGetResponseInvoiceType
+    from .post_v1operation_types_list_request_filter_item import PostV1OperationTypesListRequestFilterItem
+    from .post_v1operation_types_list_request_filter_item_op import PostV1OperationTypesListRequestFilterItemOp
+    from .post_v1operation_types_list_request_filter_item_value import PostV1OperationTypesListRequestFilterItemValue
+    from .post_v1operation_types_list_request_filter_item_value_three_item import (
+        PostV1OperationTypesListRequestFilterItemValueThreeItem,
+    )
+    from .post_v1operation_types_list_request_sort_item import PostV1OperationTypesListRequestSortItem
+    from .post_v1operation_types_list_request_sort_item_dir import PostV1OperationTypesListRequestSortItemDir
+    from .post_v1operation_types_list_response import PostV1OperationTypesListResponse
+    from .post_v1operation_types_list_response_rows_item import PostV1OperationTypesListResponseRowsItem
+    from .post_v1operation_types_list_response_rows_item_invoice_type import (
+        PostV1OperationTypesListResponseRowsItemInvoiceType,
+    )
+    from .post_v1operation_types_update_request_invoice_type import PostV1OperationTypesUpdateRequestInvoiceType
+    from .post_v1operation_types_update_response import PostV1OperationTypesUpdateResponse
+    from .post_v1operation_types_update_response_invoice_type import PostV1OperationTypesUpdateResponseInvoiceType
     from .post_v1sales_acts_cancel_response import PostV1SalesActsCancelResponse
     from .post_v1sales_acts_cancel_response_status import PostV1SalesActsCancelResponseStatus
     from .post_v1sales_acts_cancel_response_type import PostV1SalesActsCancelResponseType
@@ -205,12 +243,76 @@ if typing.TYPE_CHECKING:
     from .post_v1sales_invoices_list_response_rows_item_vat_scheme import (
         PostV1SalesInvoicesListResponseRowsItemVatScheme,
     )
+    from .post_v1sales_invoices_lock_response import PostV1SalesInvoicesLockResponse
+    from .post_v1sales_invoices_lock_response_lines_item import PostV1SalesInvoicesLockResponseLinesItem
+    from .post_v1sales_invoices_lock_response_lines_item_recognition_method import (
+        PostV1SalesInvoicesLockResponseLinesItemRecognitionMethod,
+    )
+    from .post_v1sales_invoices_lock_response_lines_item_recognition_milestones_item import (
+        PostV1SalesInvoicesLockResponseLinesItemRecognitionMilestonesItem,
+    )
+    from .post_v1sales_invoices_lock_response_payment_status import PostV1SalesInvoicesLockResponsePaymentStatus
+    from .post_v1sales_invoices_lock_response_status import PostV1SalesInvoicesLockResponseStatus
+    from .post_v1sales_invoices_lock_response_type import PostV1SalesInvoicesLockResponseType
+    from .post_v1sales_invoices_lock_response_vat_evidence import PostV1SalesInvoicesLockResponseVatEvidence
+    from .post_v1sales_invoices_lock_response_vat_evidence_location import (
+        PostV1SalesInvoicesLockResponseVatEvidenceLocation,
+    )
+    from .post_v1sales_invoices_lock_response_vat_evidence_partner import (
+        PostV1SalesInvoicesLockResponseVatEvidencePartner,
+    )
+    from .post_v1sales_invoices_lock_response_vat_evidence_rate_table import (
+        PostV1SalesInvoicesLockResponseVatEvidenceRateTable,
+    )
+    from .post_v1sales_invoices_lock_response_vat_evidence_rates_item import (
+        PostV1SalesInvoicesLockResponseVatEvidenceRatesItem,
+    )
+    from .post_v1sales_invoices_lock_response_vat_evidence_scheme import (
+        PostV1SalesInvoicesLockResponseVatEvidenceScheme,
+    )
+    from .post_v1sales_invoices_lock_response_vat_evidence_vies import PostV1SalesInvoicesLockResponseVatEvidenceVies
+    from .post_v1sales_invoices_lock_response_vat_scheme import PostV1SalesInvoicesLockResponseVatScheme
+    from .post_v1sales_invoices_payment_link_response import PostV1SalesInvoicesPaymentLinkResponse
+    from .post_v1sales_invoices_payment_link_response_source import PostV1SalesInvoicesPaymentLinkResponseSource
+    from .post_v1sales_invoices_payment_settings_get_response import PostV1SalesInvoicesPaymentSettingsGetResponse
+    from .post_v1sales_invoices_payment_settings_update_response import PostV1SalesInvoicesPaymentSettingsUpdateResponse
     from .post_v1sales_invoices_pdf_request_locale import PostV1SalesInvoicesPdfRequestLocale
     from .post_v1sales_invoices_pdf_response import PostV1SalesInvoicesPdfResponse
     from .post_v1sales_invoices_peppol_send_response import PostV1SalesInvoicesPeppolSendResponse
     from .post_v1sales_invoices_peppol_xml_response import PostV1SalesInvoicesPeppolXmlResponse
     from .post_v1sales_invoices_send_request_locale import PostV1SalesInvoicesSendRequestLocale
     from .post_v1sales_invoices_send_response import PostV1SalesInvoicesSendResponse
+    from .post_v1sales_invoices_unlock_response import PostV1SalesInvoicesUnlockResponse
+    from .post_v1sales_invoices_unlock_response_lines_item import PostV1SalesInvoicesUnlockResponseLinesItem
+    from .post_v1sales_invoices_unlock_response_lines_item_recognition_method import (
+        PostV1SalesInvoicesUnlockResponseLinesItemRecognitionMethod,
+    )
+    from .post_v1sales_invoices_unlock_response_lines_item_recognition_milestones_item import (
+        PostV1SalesInvoicesUnlockResponseLinesItemRecognitionMilestonesItem,
+    )
+    from .post_v1sales_invoices_unlock_response_payment_status import PostV1SalesInvoicesUnlockResponsePaymentStatus
+    from .post_v1sales_invoices_unlock_response_status import PostV1SalesInvoicesUnlockResponseStatus
+    from .post_v1sales_invoices_unlock_response_type import PostV1SalesInvoicesUnlockResponseType
+    from .post_v1sales_invoices_unlock_response_vat_evidence import PostV1SalesInvoicesUnlockResponseVatEvidence
+    from .post_v1sales_invoices_unlock_response_vat_evidence_location import (
+        PostV1SalesInvoicesUnlockResponseVatEvidenceLocation,
+    )
+    from .post_v1sales_invoices_unlock_response_vat_evidence_partner import (
+        PostV1SalesInvoicesUnlockResponseVatEvidencePartner,
+    )
+    from .post_v1sales_invoices_unlock_response_vat_evidence_rate_table import (
+        PostV1SalesInvoicesUnlockResponseVatEvidenceRateTable,
+    )
+    from .post_v1sales_invoices_unlock_response_vat_evidence_rates_item import (
+        PostV1SalesInvoicesUnlockResponseVatEvidenceRatesItem,
+    )
+    from .post_v1sales_invoices_unlock_response_vat_evidence_scheme import (
+        PostV1SalesInvoicesUnlockResponseVatEvidenceScheme,
+    )
+    from .post_v1sales_invoices_unlock_response_vat_evidence_vies import (
+        PostV1SalesInvoicesUnlockResponseVatEvidenceVies,
+    )
+    from .post_v1sales_invoices_unlock_response_vat_scheme import PostV1SalesInvoicesUnlockResponseVatScheme
     from .post_v1sales_invoices_update_request_lines_item import PostV1SalesInvoicesUpdateRequestLinesItem
     from .post_v1sales_invoices_update_request_lines_item_quantity import (
         PostV1SalesInvoicesUpdateRequestLinesItemQuantity,
@@ -338,6 +440,38 @@ if typing.TYPE_CHECKING:
     from .post_v1sales_refund_liability_list_response_rows_item import PostV1SalesRefundLiabilityListResponseRowsItem
     from .post_v1sales_refund_liability_true_up_response import PostV1SalesRefundLiabilityTrueUpResponse
 _dynamic_imports: typing.Dict[str, str] = {
+    "PostV1DocumentSeriesCreateRequestDocumentType": ".post_v1document_series_create_request_document_type",
+    "PostV1DocumentSeriesCreateResponse": ".post_v1document_series_create_response",
+    "PostV1DocumentSeriesDeleteResponse": ".post_v1document_series_delete_response",
+    "PostV1DocumentSeriesGetResponse": ".post_v1document_series_get_response",
+    "PostV1DocumentSeriesListRequestFilterItem": ".post_v1document_series_list_request_filter_item",
+    "PostV1DocumentSeriesListRequestFilterItemOp": ".post_v1document_series_list_request_filter_item_op",
+    "PostV1DocumentSeriesListRequestFilterItemValue": ".post_v1document_series_list_request_filter_item_value",
+    "PostV1DocumentSeriesListRequestFilterItemValueThreeItem": ".post_v1document_series_list_request_filter_item_value_three_item",
+    "PostV1DocumentSeriesListRequestSortItem": ".post_v1document_series_list_request_sort_item",
+    "PostV1DocumentSeriesListRequestSortItemDir": ".post_v1document_series_list_request_sort_item_dir",
+    "PostV1DocumentSeriesListResponse": ".post_v1document_series_list_response",
+    "PostV1DocumentSeriesListResponseRowsItem": ".post_v1document_series_list_response_rows_item",
+    "PostV1DocumentSeriesUpdateRequestDocumentType": ".post_v1document_series_update_request_document_type",
+    "PostV1DocumentSeriesUpdateResponse": ".post_v1document_series_update_response",
+    "PostV1OperationTypesCreateRequestInvoiceType": ".post_v1operation_types_create_request_invoice_type",
+    "PostV1OperationTypesCreateResponse": ".post_v1operation_types_create_response",
+    "PostV1OperationTypesCreateResponseInvoiceType": ".post_v1operation_types_create_response_invoice_type",
+    "PostV1OperationTypesDeleteResponse": ".post_v1operation_types_delete_response",
+    "PostV1OperationTypesGetResponse": ".post_v1operation_types_get_response",
+    "PostV1OperationTypesGetResponseInvoiceType": ".post_v1operation_types_get_response_invoice_type",
+    "PostV1OperationTypesListRequestFilterItem": ".post_v1operation_types_list_request_filter_item",
+    "PostV1OperationTypesListRequestFilterItemOp": ".post_v1operation_types_list_request_filter_item_op",
+    "PostV1OperationTypesListRequestFilterItemValue": ".post_v1operation_types_list_request_filter_item_value",
+    "PostV1OperationTypesListRequestFilterItemValueThreeItem": ".post_v1operation_types_list_request_filter_item_value_three_item",
+    "PostV1OperationTypesListRequestSortItem": ".post_v1operation_types_list_request_sort_item",
+    "PostV1OperationTypesListRequestSortItemDir": ".post_v1operation_types_list_request_sort_item_dir",
+    "PostV1OperationTypesListResponse": ".post_v1operation_types_list_response",
+    "PostV1OperationTypesListResponseRowsItem": ".post_v1operation_types_list_response_rows_item",
+    "PostV1OperationTypesListResponseRowsItemInvoiceType": ".post_v1operation_types_list_response_rows_item_invoice_type",
+    "PostV1OperationTypesUpdateRequestInvoiceType": ".post_v1operation_types_update_request_invoice_type",
+    "PostV1OperationTypesUpdateResponse": ".post_v1operation_types_update_response",
+    "PostV1OperationTypesUpdateResponseInvoiceType": ".post_v1operation_types_update_response_invoice_type",
     "PostV1SalesActsCancelResponse": ".post_v1sales_acts_cancel_response",
     "PostV1SalesActsCancelResponseStatus": ".post_v1sales_acts_cancel_response_status",
     "PostV1SalesActsCancelResponseType": ".post_v1sales_acts_cancel_response_type",
@@ -455,12 +589,46 @@ _dynamic_imports: typing.Dict[str, str] = {
     "PostV1SalesInvoicesListResponseRowsItemStatus": ".post_v1sales_invoices_list_response_rows_item_status",
     "PostV1SalesInvoicesListResponseRowsItemType": ".post_v1sales_invoices_list_response_rows_item_type",
     "PostV1SalesInvoicesListResponseRowsItemVatScheme": ".post_v1sales_invoices_list_response_rows_item_vat_scheme",
+    "PostV1SalesInvoicesLockResponse": ".post_v1sales_invoices_lock_response",
+    "PostV1SalesInvoicesLockResponseLinesItem": ".post_v1sales_invoices_lock_response_lines_item",
+    "PostV1SalesInvoicesLockResponseLinesItemRecognitionMethod": ".post_v1sales_invoices_lock_response_lines_item_recognition_method",
+    "PostV1SalesInvoicesLockResponseLinesItemRecognitionMilestonesItem": ".post_v1sales_invoices_lock_response_lines_item_recognition_milestones_item",
+    "PostV1SalesInvoicesLockResponsePaymentStatus": ".post_v1sales_invoices_lock_response_payment_status",
+    "PostV1SalesInvoicesLockResponseStatus": ".post_v1sales_invoices_lock_response_status",
+    "PostV1SalesInvoicesLockResponseType": ".post_v1sales_invoices_lock_response_type",
+    "PostV1SalesInvoicesLockResponseVatEvidence": ".post_v1sales_invoices_lock_response_vat_evidence",
+    "PostV1SalesInvoicesLockResponseVatEvidenceLocation": ".post_v1sales_invoices_lock_response_vat_evidence_location",
+    "PostV1SalesInvoicesLockResponseVatEvidencePartner": ".post_v1sales_invoices_lock_response_vat_evidence_partner",
+    "PostV1SalesInvoicesLockResponseVatEvidenceRateTable": ".post_v1sales_invoices_lock_response_vat_evidence_rate_table",
+    "PostV1SalesInvoicesLockResponseVatEvidenceRatesItem": ".post_v1sales_invoices_lock_response_vat_evidence_rates_item",
+    "PostV1SalesInvoicesLockResponseVatEvidenceScheme": ".post_v1sales_invoices_lock_response_vat_evidence_scheme",
+    "PostV1SalesInvoicesLockResponseVatEvidenceVies": ".post_v1sales_invoices_lock_response_vat_evidence_vies",
+    "PostV1SalesInvoicesLockResponseVatScheme": ".post_v1sales_invoices_lock_response_vat_scheme",
+    "PostV1SalesInvoicesPaymentLinkResponse": ".post_v1sales_invoices_payment_link_response",
+    "PostV1SalesInvoicesPaymentLinkResponseSource": ".post_v1sales_invoices_payment_link_response_source",
+    "PostV1SalesInvoicesPaymentSettingsGetResponse": ".post_v1sales_invoices_payment_settings_get_response",
+    "PostV1SalesInvoicesPaymentSettingsUpdateResponse": ".post_v1sales_invoices_payment_settings_update_response",
     "PostV1SalesInvoicesPdfRequestLocale": ".post_v1sales_invoices_pdf_request_locale",
     "PostV1SalesInvoicesPdfResponse": ".post_v1sales_invoices_pdf_response",
     "PostV1SalesInvoicesPeppolSendResponse": ".post_v1sales_invoices_peppol_send_response",
     "PostV1SalesInvoicesPeppolXmlResponse": ".post_v1sales_invoices_peppol_xml_response",
     "PostV1SalesInvoicesSendRequestLocale": ".post_v1sales_invoices_send_request_locale",
     "PostV1SalesInvoicesSendResponse": ".post_v1sales_invoices_send_response",
+    "PostV1SalesInvoicesUnlockResponse": ".post_v1sales_invoices_unlock_response",
+    "PostV1SalesInvoicesUnlockResponseLinesItem": ".post_v1sales_invoices_unlock_response_lines_item",
+    "PostV1SalesInvoicesUnlockResponseLinesItemRecognitionMethod": ".post_v1sales_invoices_unlock_response_lines_item_recognition_method",
+    "PostV1SalesInvoicesUnlockResponseLinesItemRecognitionMilestonesItem": ".post_v1sales_invoices_unlock_response_lines_item_recognition_milestones_item",
+    "PostV1SalesInvoicesUnlockResponsePaymentStatus": ".post_v1sales_invoices_unlock_response_payment_status",
+    "PostV1SalesInvoicesUnlockResponseStatus": ".post_v1sales_invoices_unlock_response_status",
+    "PostV1SalesInvoicesUnlockResponseType": ".post_v1sales_invoices_unlock_response_type",
+    "PostV1SalesInvoicesUnlockResponseVatEvidence": ".post_v1sales_invoices_unlock_response_vat_evidence",
+    "PostV1SalesInvoicesUnlockResponseVatEvidenceLocation": ".post_v1sales_invoices_unlock_response_vat_evidence_location",
+    "PostV1SalesInvoicesUnlockResponseVatEvidencePartner": ".post_v1sales_invoices_unlock_response_vat_evidence_partner",
+    "PostV1SalesInvoicesUnlockResponseVatEvidenceRateTable": ".post_v1sales_invoices_unlock_response_vat_evidence_rate_table",
+    "PostV1SalesInvoicesUnlockResponseVatEvidenceRatesItem": ".post_v1sales_invoices_unlock_response_vat_evidence_rates_item",
+    "PostV1SalesInvoicesUnlockResponseVatEvidenceScheme": ".post_v1sales_invoices_unlock_response_vat_evidence_scheme",
+    "PostV1SalesInvoicesUnlockResponseVatEvidenceVies": ".post_v1sales_invoices_unlock_response_vat_evidence_vies",
+    "PostV1SalesInvoicesUnlockResponseVatScheme": ".post_v1sales_invoices_unlock_response_vat_scheme",
     "PostV1SalesInvoicesUpdateRequestLinesItem": ".post_v1sales_invoices_update_request_lines_item",
     "PostV1SalesInvoicesUpdateRequestLinesItemQuantity": ".post_v1sales_invoices_update_request_lines_item_quantity",
     "PostV1SalesInvoicesUpdateRequestLinesItemRecognition": ".post_v1sales_invoices_update_request_lines_item_recognition",
@@ -548,6 +716,38 @@ def __dir__():
 
 
 __all__ = [
+    "PostV1DocumentSeriesCreateRequestDocumentType",
+    "PostV1DocumentSeriesCreateResponse",
+    "PostV1DocumentSeriesDeleteResponse",
+    "PostV1DocumentSeriesGetResponse",
+    "PostV1DocumentSeriesListRequestFilterItem",
+    "PostV1DocumentSeriesListRequestFilterItemOp",
+    "PostV1DocumentSeriesListRequestFilterItemValue",
+    "PostV1DocumentSeriesListRequestFilterItemValueThreeItem",
+    "PostV1DocumentSeriesListRequestSortItem",
+    "PostV1DocumentSeriesListRequestSortItemDir",
+    "PostV1DocumentSeriesListResponse",
+    "PostV1DocumentSeriesListResponseRowsItem",
+    "PostV1DocumentSeriesUpdateRequestDocumentType",
+    "PostV1DocumentSeriesUpdateResponse",
+    "PostV1OperationTypesCreateRequestInvoiceType",
+    "PostV1OperationTypesCreateResponse",
+    "PostV1OperationTypesCreateResponseInvoiceType",
+    "PostV1OperationTypesDeleteResponse",
+    "PostV1OperationTypesGetResponse",
+    "PostV1OperationTypesGetResponseInvoiceType",
+    "PostV1OperationTypesListRequestFilterItem",
+    "PostV1OperationTypesListRequestFilterItemOp",
+    "PostV1OperationTypesListRequestFilterItemValue",
+    "PostV1OperationTypesListRequestFilterItemValueThreeItem",
+    "PostV1OperationTypesListRequestSortItem",
+    "PostV1OperationTypesListRequestSortItemDir",
+    "PostV1OperationTypesListResponse",
+    "PostV1OperationTypesListResponseRowsItem",
+    "PostV1OperationTypesListResponseRowsItemInvoiceType",
+    "PostV1OperationTypesUpdateRequestInvoiceType",
+    "PostV1OperationTypesUpdateResponse",
+    "PostV1OperationTypesUpdateResponseInvoiceType",
     "PostV1SalesActsCancelResponse",
     "PostV1SalesActsCancelResponseStatus",
     "PostV1SalesActsCancelResponseType",
@@ -665,12 +865,46 @@ __all__ = [
     "PostV1SalesInvoicesListResponseRowsItemStatus",
     "PostV1SalesInvoicesListResponseRowsItemType",
     "PostV1SalesInvoicesListResponseRowsItemVatScheme",
+    "PostV1SalesInvoicesLockResponse",
+    "PostV1SalesInvoicesLockResponseLinesItem",
+    "PostV1SalesInvoicesLockResponseLinesItemRecognitionMethod",
+    "PostV1SalesInvoicesLockResponseLinesItemRecognitionMilestonesItem",
+    "PostV1SalesInvoicesLockResponsePaymentStatus",
+    "PostV1SalesInvoicesLockResponseStatus",
+    "PostV1SalesInvoicesLockResponseType",
+    "PostV1SalesInvoicesLockResponseVatEvidence",
+    "PostV1SalesInvoicesLockResponseVatEvidenceLocation",
+    "PostV1SalesInvoicesLockResponseVatEvidencePartner",
+    "PostV1SalesInvoicesLockResponseVatEvidenceRateTable",
+    "PostV1SalesInvoicesLockResponseVatEvidenceRatesItem",
+    "PostV1SalesInvoicesLockResponseVatEvidenceScheme",
+    "PostV1SalesInvoicesLockResponseVatEvidenceVies",
+    "PostV1SalesInvoicesLockResponseVatScheme",
+    "PostV1SalesInvoicesPaymentLinkResponse",
+    "PostV1SalesInvoicesPaymentLinkResponseSource",
+    "PostV1SalesInvoicesPaymentSettingsGetResponse",
+    "PostV1SalesInvoicesPaymentSettingsUpdateResponse",
     "PostV1SalesInvoicesPdfRequestLocale",
     "PostV1SalesInvoicesPdfResponse",
     "PostV1SalesInvoicesPeppolSendResponse",
     "PostV1SalesInvoicesPeppolXmlResponse",
     "PostV1SalesInvoicesSendRequestLocale",
     "PostV1SalesInvoicesSendResponse",
+    "PostV1SalesInvoicesUnlockResponse",
+    "PostV1SalesInvoicesUnlockResponseLinesItem",
+    "PostV1SalesInvoicesUnlockResponseLinesItemRecognitionMethod",
+    "PostV1SalesInvoicesUnlockResponseLinesItemRecognitionMilestonesItem",
+    "PostV1SalesInvoicesUnlockResponsePaymentStatus",
+    "PostV1SalesInvoicesUnlockResponseStatus",
+    "PostV1SalesInvoicesUnlockResponseType",
+    "PostV1SalesInvoicesUnlockResponseVatEvidence",
+    "PostV1SalesInvoicesUnlockResponseVatEvidenceLocation",
+    "PostV1SalesInvoicesUnlockResponseVatEvidencePartner",
+    "PostV1SalesInvoicesUnlockResponseVatEvidenceRateTable",
+    "PostV1SalesInvoicesUnlockResponseVatEvidenceRatesItem",
+    "PostV1SalesInvoicesUnlockResponseVatEvidenceScheme",
+    "PostV1SalesInvoicesUnlockResponseVatEvidenceVies",
+    "PostV1SalesInvoicesUnlockResponseVatScheme",
     "PostV1SalesInvoicesUpdateRequestLinesItem",
     "PostV1SalesInvoicesUpdateRequestLinesItemQuantity",
     "PostV1SalesInvoicesUpdateRequestLinesItemRecognition",

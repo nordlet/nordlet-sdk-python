@@ -7,6 +7,8 @@ import typing_extensions
 from ...core.pydantic_utilities import IS_PYDANTIC_V2, UniversalBaseModel
 from ...core.serialization import FieldMetadata
 from .post_v1partners_get_response_address import PostV1PartnersGetResponseAddress
+from .post_v1partners_get_response_correspondence_address import PostV1PartnersGetResponseCorrespondenceAddress
+from .post_v1partners_get_response_legal_country_class import PostV1PartnersGetResponseLegalCountryClass
 from .post_v1partners_get_response_type import PostV1PartnersGetResponseType
 
 
@@ -57,9 +59,56 @@ class PostV1PartnersGetResponse(UniversalBaseModel):
         typing.Optional[str], FieldMetadata(alias="vatValidatedAt"), pydantic.Field(alias="vatValidatedAt")
     ] = None
     address: typing.Optional[PostV1PartnersGetResponseAddress] = None
+    correspondence_address: typing_extensions.Annotated[
+        typing.Optional[PostV1PartnersGetResponseCorrespondenceAddress],
+        FieldMetadata(alias="correspondenceAddress"),
+        pydantic.Field(alias="correspondenceAddress"),
+    ] = None
     notes: typing.Optional[str] = None
     document_ref: typing_extensions.Annotated[
         typing.Optional[str], FieldMetadata(alias="documentRef"), pydantic.Field(alias="documentRef")
+    ] = None
+    short_name: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="shortName"), pydantic.Field(alias="shortName")
+    ] = None
+    website: typing.Optional[str] = None
+    fax: typing.Optional[str] = None
+    eori_code: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="eoriCode"), pydantic.Field(alias="eoriCode")
+    ] = None
+    other_code: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="otherCode"), pydantic.Field(alias="otherCode")
+    ] = None
+    foreign_tax_number: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="foreignTaxNumber"), pydantic.Field(alias="foreignTaxNumber")
+    ] = None
+    auto_debt_reminder: typing_extensions.Annotated[
+        bool, FieldMetadata(alias="autoDebtReminder"), pydantic.Field(alias="autoDebtReminder")
+    ]
+    late_interest_percent: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="lateInterestPercent"), pydantic.Field(alias="lateInterestPercent")
+    ] = None
+    first_call_date: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="firstCallDate"), pydantic.Field(alias="firstCallDate")
+    ] = None
+    last_call_date: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="lastCallDate"), pydantic.Field(alias="lastCallDate")
+    ] = None
+    next_call_date: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="nextCallDate"), pydantic.Field(alias="nextCallDate")
+    ] = None
+    rating: typing.Optional[int] = None
+    is_employee: typing_extensions.Annotated[
+        bool, FieldMetadata(alias="isEmployee"), pydantic.Field(alias="isEmployee")
+    ]
+    is_group_member: typing_extensions.Annotated[
+        bool, FieldMetadata(alias="isGroupMember"), pydantic.Field(alias="isGroupMember")
+    ]
+    is_active: typing_extensions.Annotated[bool, FieldMetadata(alias="isActive"), pydantic.Field(alias="isActive")]
+    legal_country_class: typing_extensions.Annotated[
+        typing.Optional[PostV1PartnersGetResponseLegalCountryClass],
+        FieldMetadata(alias="legalCountryClass"),
+        pydantic.Field(alias="legalCountryClass"),
     ] = None
     created_at: typing_extensions.Annotated[str, FieldMetadata(alias="createdAt"), pydantic.Field(alias="createdAt")]
     updated_at: typing_extensions.Annotated[str, FieldMetadata(alias="updatedAt"), pydantic.Field(alias="updatedAt")]
