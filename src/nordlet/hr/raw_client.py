@@ -32,6 +32,7 @@ from .types.post_v1hr_employees_create_request_address import PostV1HrEmployeesC
 from .types.post_v1hr_employees_create_request_attributes_item import PostV1HrEmployeesCreateRequestAttributesItem
 from .types.post_v1hr_employees_create_response import PostV1HrEmployeesCreateResponse
 from .types.post_v1hr_employees_delete_response import PostV1HrEmployeesDeleteResponse
+from .types.post_v1hr_employees_fields_response import PostV1HrEmployeesFieldsResponse
 from .types.post_v1hr_employees_get_response import PostV1HrEmployeesGetResponse
 from .types.post_v1hr_employees_list_request_filter_item import PostV1HrEmployeesListRequestFilterItem
 from .types.post_v1hr_employees_list_request_sort_item import PostV1HrEmployeesListRequestSortItem
@@ -565,9 +566,10 @@ class RawHrClient:
         social_insurance_no: typing.Optional[str] = OMIT,
         social_insurance_start: typing.Optional[str] = OMIT,
         hire_date: typing.Optional[str] = OMIT,
-        apply_npd: typing.Optional[bool] = OMIT,
-        npd_override: typing.Optional[str] = OMIT,
+        apply_allowance: typing.Optional[bool] = OMIT,
+        allowance_override: typing.Optional[str] = OMIT,
         pension_accumulation: typing.Optional[bool] = OMIT,
+        payroll_options: typing.Optional[typing.Dict[str, str]] = OMIT,
         notes: typing.Optional[str] = OMIT,
         attributes: typing.Optional[typing.Sequence[PostV1HrEmployeesCreateRequestAttributesItem]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
@@ -599,11 +601,13 @@ class RawHrClient:
 
         hire_date : typing.Optional[str]
 
-        apply_npd : typing.Optional[bool]
+        apply_allowance : typing.Optional[bool]
 
-        npd_override : typing.Optional[str]
+        allowance_override : typing.Optional[str]
 
         pension_accumulation : typing.Optional[bool]
+
+        payroll_options : typing.Optional[typing.Dict[str, str]]
 
         notes : typing.Optional[str]
 
@@ -635,9 +639,10 @@ class RawHrClient:
                 "socialInsuranceNo": social_insurance_no,
                 "socialInsuranceStart": social_insurance_start,
                 "hireDate": hire_date,
-                "applyNpd": apply_npd,
-                "npdOverride": npd_override,
+                "applyAllowance": apply_allowance,
+                "allowanceOverride": allowance_override,
                 "pensionAccumulation": pension_accumulation,
+                "payrollOptions": payroll_options,
                 "notes": notes,
                 "attributes": convert_and_respect_annotation_metadata(
                     object_=attributes,
@@ -774,9 +779,10 @@ class RawHrClient:
         social_insurance_no: typing.Optional[str] = OMIT,
         social_insurance_start: typing.Optional[str] = OMIT,
         hire_date: typing.Optional[str] = OMIT,
-        apply_npd: typing.Optional[bool] = OMIT,
-        npd_override: typing.Optional[str] = OMIT,
+        apply_allowance: typing.Optional[bool] = OMIT,
+        allowance_override: typing.Optional[str] = OMIT,
         pension_accumulation: typing.Optional[bool] = OMIT,
+        payroll_options: typing.Optional[typing.Dict[str, str]] = OMIT,
         notes: typing.Optional[str] = OMIT,
         attributes: typing.Optional[typing.Sequence[PostV1HrEmployeesUpdateRequestAttributesItem]] = OMIT,
         termination_date: typing.Optional[str] = OMIT,
@@ -812,11 +818,13 @@ class RawHrClient:
 
         hire_date : typing.Optional[str]
 
-        apply_npd : typing.Optional[bool]
+        apply_allowance : typing.Optional[bool]
 
-        npd_override : typing.Optional[str]
+        allowance_override : typing.Optional[str]
 
         pension_accumulation : typing.Optional[bool]
+
+        payroll_options : typing.Optional[typing.Dict[str, str]]
 
         notes : typing.Optional[str]
 
@@ -846,15 +854,18 @@ class RawHrClient:
                 "email": email,
                 "phone": phone,
                 "address": convert_and_respect_annotation_metadata(
-                    object_=address, annotation=PostV1HrEmployeesUpdateRequestAddress, direction="write"
+                    object_=address,
+                    annotation=typing.Optional[PostV1HrEmployeesUpdateRequestAddress],
+                    direction="write",
                 ),
                 "iban": iban,
                 "socialInsuranceNo": social_insurance_no,
                 "socialInsuranceStart": social_insurance_start,
                 "hireDate": hire_date,
-                "applyNpd": apply_npd,
-                "npdOverride": npd_override,
+                "applyAllowance": apply_allowance,
+                "allowanceOverride": allowance_override,
                 "pensionAccumulation": pension_accumulation,
+                "payrollOptions": payroll_options,
                 "notes": notes,
                 "attributes": convert_and_respect_annotation_metadata(
                     object_=attributes,
@@ -1012,6 +1023,139 @@ class RawHrClient:
                     PostV1HrEmployeesGetResponse,
                     parse_obj_as(
                         type_=PostV1HrEmployeesGetResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return HttpResponse(response=_response, data=_data)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 422:
+                raise UnprocessableEntityError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
+    def extra_employee_details_the_country_of_the_company_asks_for(
+        self, *, request_options: typing.Optional[RequestOptions] = None
+    ) -> HttpResponse[PostV1HrEmployeesFieldsResponse]:
+        """
+        Attributes a filing of the company country needs about a person that the shared employee record does not carry, such as the sex and place of birth an Italian income certificate asks for. Their values are kept in the payrollOptions of the employee.
+
+        Parameters
+        ----------
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        HttpResponse[PostV1HrEmployeesFieldsResponse]
+            Default Response
+        """
+        _response = self._client_wrapper.httpx_client.request(
+            "v1/hr/employees/fields",
+            method="POST",
+            json={},
+            headers={
+                "content-type": "application/json",
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    PostV1HrEmployeesFieldsResponse,
+                    parse_obj_as(
+                        type_=PostV1HrEmployeesFieldsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -4622,9 +4766,10 @@ class AsyncRawHrClient:
         social_insurance_no: typing.Optional[str] = OMIT,
         social_insurance_start: typing.Optional[str] = OMIT,
         hire_date: typing.Optional[str] = OMIT,
-        apply_npd: typing.Optional[bool] = OMIT,
-        npd_override: typing.Optional[str] = OMIT,
+        apply_allowance: typing.Optional[bool] = OMIT,
+        allowance_override: typing.Optional[str] = OMIT,
         pension_accumulation: typing.Optional[bool] = OMIT,
+        payroll_options: typing.Optional[typing.Dict[str, str]] = OMIT,
         notes: typing.Optional[str] = OMIT,
         attributes: typing.Optional[typing.Sequence[PostV1HrEmployeesCreateRequestAttributesItem]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
@@ -4656,11 +4801,13 @@ class AsyncRawHrClient:
 
         hire_date : typing.Optional[str]
 
-        apply_npd : typing.Optional[bool]
+        apply_allowance : typing.Optional[bool]
 
-        npd_override : typing.Optional[str]
+        allowance_override : typing.Optional[str]
 
         pension_accumulation : typing.Optional[bool]
+
+        payroll_options : typing.Optional[typing.Dict[str, str]]
 
         notes : typing.Optional[str]
 
@@ -4692,9 +4839,10 @@ class AsyncRawHrClient:
                 "socialInsuranceNo": social_insurance_no,
                 "socialInsuranceStart": social_insurance_start,
                 "hireDate": hire_date,
-                "applyNpd": apply_npd,
-                "npdOverride": npd_override,
+                "applyAllowance": apply_allowance,
+                "allowanceOverride": allowance_override,
                 "pensionAccumulation": pension_accumulation,
+                "payrollOptions": payroll_options,
                 "notes": notes,
                 "attributes": convert_and_respect_annotation_metadata(
                     object_=attributes,
@@ -4831,9 +4979,10 @@ class AsyncRawHrClient:
         social_insurance_no: typing.Optional[str] = OMIT,
         social_insurance_start: typing.Optional[str] = OMIT,
         hire_date: typing.Optional[str] = OMIT,
-        apply_npd: typing.Optional[bool] = OMIT,
-        npd_override: typing.Optional[str] = OMIT,
+        apply_allowance: typing.Optional[bool] = OMIT,
+        allowance_override: typing.Optional[str] = OMIT,
         pension_accumulation: typing.Optional[bool] = OMIT,
+        payroll_options: typing.Optional[typing.Dict[str, str]] = OMIT,
         notes: typing.Optional[str] = OMIT,
         attributes: typing.Optional[typing.Sequence[PostV1HrEmployeesUpdateRequestAttributesItem]] = OMIT,
         termination_date: typing.Optional[str] = OMIT,
@@ -4869,11 +5018,13 @@ class AsyncRawHrClient:
 
         hire_date : typing.Optional[str]
 
-        apply_npd : typing.Optional[bool]
+        apply_allowance : typing.Optional[bool]
 
-        npd_override : typing.Optional[str]
+        allowance_override : typing.Optional[str]
 
         pension_accumulation : typing.Optional[bool]
+
+        payroll_options : typing.Optional[typing.Dict[str, str]]
 
         notes : typing.Optional[str]
 
@@ -4903,15 +5054,18 @@ class AsyncRawHrClient:
                 "email": email,
                 "phone": phone,
                 "address": convert_and_respect_annotation_metadata(
-                    object_=address, annotation=PostV1HrEmployeesUpdateRequestAddress, direction="write"
+                    object_=address,
+                    annotation=typing.Optional[PostV1HrEmployeesUpdateRequestAddress],
+                    direction="write",
                 ),
                 "iban": iban,
                 "socialInsuranceNo": social_insurance_no,
                 "socialInsuranceStart": social_insurance_start,
                 "hireDate": hire_date,
-                "applyNpd": apply_npd,
-                "npdOverride": npd_override,
+                "applyAllowance": apply_allowance,
+                "allowanceOverride": allowance_override,
                 "pensionAccumulation": pension_accumulation,
+                "payrollOptions": payroll_options,
                 "notes": notes,
                 "attributes": convert_and_respect_annotation_metadata(
                     object_=attributes,
@@ -5069,6 +5223,139 @@ class AsyncRawHrClient:
                     PostV1HrEmployeesGetResponse,
                     parse_obj_as(
                         type_=PostV1HrEmployeesGetResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return AsyncHttpResponse(response=_response, data=_data)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 422:
+                raise UnprocessableEntityError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
+    async def extra_employee_details_the_country_of_the_company_asks_for(
+        self, *, request_options: typing.Optional[RequestOptions] = None
+    ) -> AsyncHttpResponse[PostV1HrEmployeesFieldsResponse]:
+        """
+        Attributes a filing of the company country needs about a person that the shared employee record does not carry, such as the sex and place of birth an Italian income certificate asks for. Their values are kept in the payrollOptions of the employee.
+
+        Parameters
+        ----------
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        AsyncHttpResponse[PostV1HrEmployeesFieldsResponse]
+            Default Response
+        """
+        _response = await self._client_wrapper.httpx_client.request(
+            "v1/hr/employees/fields",
+            method="POST",
+            json={},
+            headers={
+                "content-type": "application/json",
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    PostV1HrEmployeesFieldsResponse,
+                    parse_obj_as(
+                        type_=PostV1HrEmployeesFieldsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )

@@ -6,6 +6,9 @@ import pydantic
 import typing_extensions
 from ...core.pydantic_utilities import IS_PYDANTIC_V2, UniversalBaseModel
 from ...core.serialization import FieldMetadata
+from .post_v1payroll_runs_create_response_component_totals_item import (
+    PostV1PayrollRunsCreateResponseComponentTotalsItem,
+)
 from .post_v1payroll_runs_create_response_lines_item import PostV1PayrollRunsCreateResponseLinesItem
 from .post_v1payroll_runs_create_response_status import PostV1PayrollRunsCreateResponseStatus
 
@@ -14,15 +17,27 @@ class PostV1PayrollRunsCreateResponse(UniversalBaseModel):
     id: str
     year: int
     month: int
+    country_code: typing_extensions.Annotated[
+        str, FieldMetadata(alias="countryCode"), pydantic.Field(alias="countryCode")
+    ]
     status: PostV1PayrollRunsCreateResponseStatus
     gross_total: typing_extensions.Annotated[str, FieldMetadata(alias="grossTotal"), pydantic.Field(alias="grossTotal")]
-    npd_total: typing_extensions.Annotated[str, FieldMetadata(alias="npdTotal"), pydantic.Field(alias="npdTotal")]
-    gpm_total: typing_extensions.Annotated[str, FieldMetadata(alias="gpmTotal"), pydantic.Field(alias="gpmTotal")]
-    sodra_employee_total: typing_extensions.Annotated[
-        str, FieldMetadata(alias="sodraEmployeeTotal"), pydantic.Field(alias="sodraEmployeeTotal")
+    tax_allowance_total: typing_extensions.Annotated[
+        str, FieldMetadata(alias="taxAllowanceTotal"), pydantic.Field(alias="taxAllowanceTotal")
     ]
-    sodra_employer_total: typing_extensions.Annotated[
-        str, FieldMetadata(alias="sodraEmployerTotal"), pydantic.Field(alias="sodraEmployerTotal")
+    income_tax_total: typing_extensions.Annotated[
+        str, FieldMetadata(alias="incomeTaxTotal"), pydantic.Field(alias="incomeTaxTotal")
+    ]
+    employee_contributions_total: typing_extensions.Annotated[
+        str, FieldMetadata(alias="employeeContributionsTotal"), pydantic.Field(alias="employeeContributionsTotal")
+    ]
+    employer_contributions_total: typing_extensions.Annotated[
+        str, FieldMetadata(alias="employerContributionsTotal"), pydantic.Field(alias="employerContributionsTotal")
+    ]
+    component_totals: typing_extensions.Annotated[
+        typing.List[PostV1PayrollRunsCreateResponseComponentTotalsItem],
+        FieldMetadata(alias="componentTotals"),
+        pydantic.Field(alias="componentTotals"),
     ]
     net_total: typing_extensions.Annotated[str, FieldMetadata(alias="netTotal"), pydantic.Field(alias="netTotal")]
     journal_transaction_id: typing_extensions.Annotated[

@@ -8,16 +8,25 @@ from .raw_client import AsyncRawAccountClient, RawAccountClient
 from .types.post_v1account_api_keys_create_response import PostV1AccountApiKeysCreateResponse
 from .types.post_v1account_api_keys_list_response import PostV1AccountApiKeysListResponse
 from .types.post_v1account_api_keys_revoke_response import PostV1AccountApiKeysRevokeResponse
+from .types.post_v1account_api_keys_rotate_response import PostV1AccountApiKeysRotateResponse
 from .types.post_v1account_companies_activate_response import PostV1AccountCompaniesActivateResponse
 from .types.post_v1account_companies_archive_response import PostV1AccountCompaniesArchiveResponse
+from .types.post_v1account_companies_create_request_accounts_kept_by import (
+    PostV1AccountCompaniesCreateRequestAccountsKeptBy,
+)
 from .types.post_v1account_companies_create_request_address import PostV1AccountCompaniesCreateRequestAddress
 from .types.post_v1account_companies_create_request_country_code import PostV1AccountCompaniesCreateRequestCountryCode
+from .types.post_v1account_companies_create_request_vat_period import PostV1AccountCompaniesCreateRequestVatPeriod
 from .types.post_v1account_companies_create_response import PostV1AccountCompaniesCreateResponse
 from .types.post_v1account_companies_delete_response import PostV1AccountCompaniesDeleteResponse
 from .types.post_v1account_companies_profile_response import PostV1AccountCompaniesProfileResponse
 from .types.post_v1account_companies_select_response import PostV1AccountCompaniesSelectResponse
+from .types.post_v1account_companies_update_request_accounts_kept_by import (
+    PostV1AccountCompaniesUpdateRequestAccountsKeptBy,
+)
 from .types.post_v1account_companies_update_request_address import PostV1AccountCompaniesUpdateRequestAddress
 from .types.post_v1account_companies_update_request_logo import PostV1AccountCompaniesUpdateRequestLogo
+from .types.post_v1account_companies_update_request_vat_period import PostV1AccountCompaniesUpdateRequestVatPeriod
 from .types.post_v1account_companies_update_response import PostV1AccountCompaniesUpdateResponse
 from .types.post_v1account_consent_accept_response import PostV1AccountConsentAcceptResponse
 from .types.post_v1account_delete_response import PostV1AccountDeleteResponse
@@ -43,7 +52,9 @@ from .types.post_v1account_members_list_response import PostV1AccountMembersList
 from .types.post_v1account_members_remove_response import PostV1AccountMembersRemoveResponse
 from .types.post_v1account_members_set_role_request_role import PostV1AccountMembersSetRoleRequestRole
 from .types.post_v1account_members_set_role_response import PostV1AccountMembersSetRoleResponse
+from .types.post_v1account_members_transfer_ownership_response import PostV1AccountMembersTransferOwnershipResponse
 from .types.post_v1account_profile_update_response import PostV1AccountProfileUpdateResponse
+from .types.post_v1account_referral_convert_response import PostV1AccountReferralConvertResponse
 from .types.post_v1account_referral_get_response import PostV1AccountReferralGetResponse
 from .types.post_v1account_sessions_list_response import PostV1AccountSessionsListResponse
 from .types.post_v1account_sessions_revoke_others_response import PostV1AccountSessionsRevokeOthersResponse
@@ -265,6 +276,44 @@ class AccountClient:
         """
         _response = self._raw_client.post_v1account_members_set_role(
             user_id=user_id, role=role, request_options=request_options
+        )
+        return _response.data
+
+    def post_v1account_members_transfer_ownership(
+        self,
+        *,
+        user_id: str,
+        move_payer: typing.Optional[bool] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1AccountMembersTransferOwnershipResponse:
+        """
+        Parameters
+        ----------
+        user_id : str
+
+        move_payer : typing.Optional[bool]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1AccountMembersTransferOwnershipResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.account.post_v1account_members_transfer_ownership(
+            user_id="userId",
+        )
+        """
+        _response = self._raw_client.post_v1account_members_transfer_ownership(
+            user_id=user_id, move_payer=move_payer, request_options=request_options
         )
         return _response.data
 
@@ -502,7 +551,7 @@ class AccountClient:
             token="YOUR_TOKEN",
         )
         client.account.post_v1account_locale_set(
-            locale="lt",
+            locale="en",
         )
         """
         _response = self._raw_client.post_v1account_locale_set(locale=locale, request_options=request_options)
@@ -516,6 +565,10 @@ class AccountClient:
         vat_code: typing.Optional[str] = OMIT,
         sme_exemption_number: typing.Optional[str] = OMIT,
         is_vat_payer: typing.Optional[bool] = OMIT,
+        vat_period: typing.Optional[PostV1AccountCompaniesCreateRequestVatPeriod] = OMIT,
+        fiscal_year_end_month: typing.Optional[int] = OMIT,
+        time_zone: typing.Optional[str] = OMIT,
+        filing_options: typing.Optional[typing.Dict[str, str]] = OMIT,
         address: typing.Optional[PostV1AccountCompaniesCreateRequestAddress] = OMIT,
         email: typing.Optional[str] = OMIT,
         phone: typing.Optional[str] = OMIT,
@@ -524,6 +577,15 @@ class AccountClient:
         peppol_id: typing.Optional[str] = OMIT,
         sepa_creditor_id: typing.Optional[str] = OMIT,
         default_invoice_currency: typing.Optional[str] = OMIT,
+        legal_form: typing.Optional[str] = OMIT,
+        registry_name: typing.Optional[str] = OMIT,
+        incorporated_on: typing.Optional[str] = OMIT,
+        share_capital: typing.Optional[str] = OMIT,
+        accounts_kept_by: typing.Optional[PostV1AccountCompaniesCreateRequestAccountsKeptBy] = OMIT,
+        bookkeeper_name: typing.Optional[str] = OMIT,
+        auditor_name: typing.Optional[str] = OMIT,
+        auditor_registration_number: typing.Optional[str] = OMIT,
+        audit_required: typing.Optional[bool] = OMIT,
         country_code: typing.Optional[PostV1AccountCompaniesCreateRequestCountryCode] = OMIT,
         is_sandbox: typing.Optional[bool] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
@@ -541,6 +603,14 @@ class AccountClient:
 
         is_vat_payer : typing.Optional[bool]
 
+        vat_period : typing.Optional[PostV1AccountCompaniesCreateRequestVatPeriod]
+
+        fiscal_year_end_month : typing.Optional[int]
+
+        time_zone : typing.Optional[str]
+
+        filing_options : typing.Optional[typing.Dict[str, str]]
+
         address : typing.Optional[PostV1AccountCompaniesCreateRequestAddress]
 
         email : typing.Optional[str]
@@ -556,6 +626,24 @@ class AccountClient:
         sepa_creditor_id : typing.Optional[str]
 
         default_invoice_currency : typing.Optional[str]
+
+        legal_form : typing.Optional[str]
+
+        registry_name : typing.Optional[str]
+
+        incorporated_on : typing.Optional[str]
+
+        share_capital : typing.Optional[str]
+
+        accounts_kept_by : typing.Optional[PostV1AccountCompaniesCreateRequestAccountsKeptBy]
+
+        bookkeeper_name : typing.Optional[str]
+
+        auditor_name : typing.Optional[str]
+
+        auditor_registration_number : typing.Optional[str]
+
+        audit_required : typing.Optional[bool]
 
         country_code : typing.Optional[PostV1AccountCompaniesCreateRequestCountryCode]
             Jurisdiction the company is registered in (immutable after creation)
@@ -588,6 +676,10 @@ class AccountClient:
             vat_code=vat_code,
             sme_exemption_number=sme_exemption_number,
             is_vat_payer=is_vat_payer,
+            vat_period=vat_period,
+            fiscal_year_end_month=fiscal_year_end_month,
+            time_zone=time_zone,
+            filing_options=filing_options,
             address=address,
             email=email,
             phone=phone,
@@ -596,6 +688,15 @@ class AccountClient:
             peppol_id=peppol_id,
             sepa_creditor_id=sepa_creditor_id,
             default_invoice_currency=default_invoice_currency,
+            legal_form=legal_form,
+            registry_name=registry_name,
+            incorporated_on=incorporated_on,
+            share_capital=share_capital,
+            accounts_kept_by=accounts_kept_by,
+            bookkeeper_name=bookkeeper_name,
+            auditor_name=auditor_name,
+            auditor_registration_number=auditor_registration_number,
+            audit_required=audit_required,
             country_code=country_code,
             is_sandbox=is_sandbox,
             request_options=request_options,
@@ -668,6 +769,10 @@ class AccountClient:
         vat_code: typing.Optional[str] = OMIT,
         sme_exemption_number: typing.Optional[str] = OMIT,
         is_vat_payer: typing.Optional[bool] = OMIT,
+        vat_period: typing.Optional[PostV1AccountCompaniesUpdateRequestVatPeriod] = OMIT,
+        fiscal_year_end_month: typing.Optional[int] = OMIT,
+        time_zone: typing.Optional[str] = OMIT,
+        filing_options: typing.Optional[typing.Dict[str, typing.Optional[str]]] = OMIT,
         address: typing.Optional[PostV1AccountCompaniesUpdateRequestAddress] = OMIT,
         email: typing.Optional[str] = OMIT,
         phone: typing.Optional[str] = OMIT,
@@ -676,6 +781,15 @@ class AccountClient:
         peppol_id: typing.Optional[str] = OMIT,
         sepa_creditor_id: typing.Optional[str] = OMIT,
         default_invoice_currency: typing.Optional[str] = OMIT,
+        legal_form: typing.Optional[str] = OMIT,
+        registry_name: typing.Optional[str] = OMIT,
+        incorporated_on: typing.Optional[str] = OMIT,
+        share_capital: typing.Optional[str] = OMIT,
+        accounts_kept_by: typing.Optional[PostV1AccountCompaniesUpdateRequestAccountsKeptBy] = OMIT,
+        bookkeeper_name: typing.Optional[str] = OMIT,
+        auditor_name: typing.Optional[str] = OMIT,
+        auditor_registration_number: typing.Optional[str] = OMIT,
+        audit_required: typing.Optional[bool] = OMIT,
         logo: typing.Optional[PostV1AccountCompaniesUpdateRequestLogo] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1AccountCompaniesUpdateResponse:
@@ -692,6 +806,14 @@ class AccountClient:
 
         is_vat_payer : typing.Optional[bool]
 
+        vat_period : typing.Optional[PostV1AccountCompaniesUpdateRequestVatPeriod]
+
+        fiscal_year_end_month : typing.Optional[int]
+
+        time_zone : typing.Optional[str]
+
+        filing_options : typing.Optional[typing.Dict[str, typing.Optional[str]]]
+
         address : typing.Optional[PostV1AccountCompaniesUpdateRequestAddress]
 
         email : typing.Optional[str]
@@ -707,6 +829,24 @@ class AccountClient:
         sepa_creditor_id : typing.Optional[str]
 
         default_invoice_currency : typing.Optional[str]
+
+        legal_form : typing.Optional[str]
+
+        registry_name : typing.Optional[str]
+
+        incorporated_on : typing.Optional[str]
+
+        share_capital : typing.Optional[str]
+
+        accounts_kept_by : typing.Optional[PostV1AccountCompaniesUpdateRequestAccountsKeptBy]
+
+        bookkeeper_name : typing.Optional[str]
+
+        auditor_name : typing.Optional[str]
+
+        auditor_registration_number : typing.Optional[str]
+
+        audit_required : typing.Optional[bool]
 
         logo : typing.Optional[PostV1AccountCompaniesUpdateRequestLogo]
 
@@ -733,6 +873,10 @@ class AccountClient:
             vat_code=vat_code,
             sme_exemption_number=sme_exemption_number,
             is_vat_payer=is_vat_payer,
+            vat_period=vat_period,
+            fiscal_year_end_month=fiscal_year_end_month,
+            time_zone=time_zone,
+            filing_options=filing_options,
             address=address,
             email=email,
             phone=phone,
@@ -741,6 +885,15 @@ class AccountClient:
             peppol_id=peppol_id,
             sepa_creditor_id=sepa_creditor_id,
             default_invoice_currency=default_invoice_currency,
+            legal_form=legal_form,
+            registry_name=registry_name,
+            incorporated_on=incorporated_on,
+            share_capital=share_capital,
+            accounts_kept_by=accounts_kept_by,
+            bookkeeper_name=bookkeeper_name,
+            auditor_name=auditor_name,
+            auditor_registration_number=auditor_registration_number,
+            audit_required=audit_required,
             logo=logo,
             request_options=request_options,
         )
@@ -847,6 +1000,7 @@ class AccountClient:
         *,
         name: str,
         scopes: typing.Optional[typing.Sequence[str]] = OMIT,
+        expires_in_days: typing.Optional[int] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1AccountApiKeysCreateResponse:
         """
@@ -855,6 +1009,8 @@ class AccountClient:
         name : str
 
         scopes : typing.Optional[typing.Sequence[str]]
+
+        expires_in_days : typing.Optional[int]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -876,7 +1032,7 @@ class AccountClient:
         )
         """
         _response = self._raw_client.post_v1account_api_keys_create(
-            name=name, scopes=scopes, request_options=request_options
+            name=name, scopes=scopes, expires_in_days=expires_in_days, request_options=request_options
         )
         return _response.data
 
@@ -904,6 +1060,47 @@ class AccountClient:
         client.account.post_v1account_api_keys_list()
         """
         _response = self._raw_client.post_v1account_api_keys_list(request_options=request_options)
+        return _response.data
+
+    def issue_a_replacement_for_an_api_key_and_set_the_old_one_to_stop_working_after_a_short_overlap(
+        self,
+        *,
+        id: str,
+        overlap_hours: typing.Optional[int] = OMIT,
+        expires_in_days: typing.Optional[int] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1AccountApiKeysRotateResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        overlap_hours : typing.Optional[int]
+
+        expires_in_days : typing.Optional[int]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1AccountApiKeysRotateResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.account.issue_a_replacement_for_an_api_key_and_set_the_old_one_to_stop_working_after_a_short_overlap(
+            id="id",
+        )
+        """
+        _response = self._raw_client.issue_a_replacement_for_an_api_key_and_set_the_old_one_to_stop_working_after_a_short_overlap(
+            id=id, overlap_hours=overlap_hours, expires_in_days=expires_in_days, request_options=request_options
+        )
         return _response.data
 
     def post_v1account_api_keys_revoke(
@@ -1205,6 +1402,36 @@ class AccountClient:
         client.account.post_v1account_referral_get()
         """
         _response = self._raw_client.post_v1account_referral_get(request_options=request_options)
+        return _response.data
+
+    def post_v1account_referral_convert(
+        self, *, points: int, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1AccountReferralConvertResponse:
+        """
+        Parameters
+        ----------
+        points : int
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1AccountReferralConvertResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.account.post_v1account_referral_convert(
+            points=1000000,
+        )
+        """
+        _response = self._raw_client.post_v1account_referral_convert(points=points, request_options=request_options)
         return _response.data
 
     def post_v1account_table_settings_get(
@@ -1571,6 +1798,52 @@ class AsyncAccountClient:
         )
         return _response.data
 
+    async def post_v1account_members_transfer_ownership(
+        self,
+        *,
+        user_id: str,
+        move_payer: typing.Optional[bool] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1AccountMembersTransferOwnershipResponse:
+        """
+        Parameters
+        ----------
+        user_id : str
+
+        move_payer : typing.Optional[bool]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1AccountMembersTransferOwnershipResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.account.post_v1account_members_transfer_ownership(
+                user_id="userId",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1account_members_transfer_ownership(
+            user_id=user_id, move_payer=move_payer, request_options=request_options
+        )
+        return _response.data
+
     async def post_v1account_members_remove(
         self, *, user_id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> PostV1AccountMembersRemoveResponse:
@@ -1860,7 +2133,7 @@ class AsyncAccountClient:
 
         async def main() -> None:
             await client.account.post_v1account_locale_set(
-                locale="lt",
+                locale="en",
             )
 
 
@@ -1877,6 +2150,10 @@ class AsyncAccountClient:
         vat_code: typing.Optional[str] = OMIT,
         sme_exemption_number: typing.Optional[str] = OMIT,
         is_vat_payer: typing.Optional[bool] = OMIT,
+        vat_period: typing.Optional[PostV1AccountCompaniesCreateRequestVatPeriod] = OMIT,
+        fiscal_year_end_month: typing.Optional[int] = OMIT,
+        time_zone: typing.Optional[str] = OMIT,
+        filing_options: typing.Optional[typing.Dict[str, str]] = OMIT,
         address: typing.Optional[PostV1AccountCompaniesCreateRequestAddress] = OMIT,
         email: typing.Optional[str] = OMIT,
         phone: typing.Optional[str] = OMIT,
@@ -1885,6 +2162,15 @@ class AsyncAccountClient:
         peppol_id: typing.Optional[str] = OMIT,
         sepa_creditor_id: typing.Optional[str] = OMIT,
         default_invoice_currency: typing.Optional[str] = OMIT,
+        legal_form: typing.Optional[str] = OMIT,
+        registry_name: typing.Optional[str] = OMIT,
+        incorporated_on: typing.Optional[str] = OMIT,
+        share_capital: typing.Optional[str] = OMIT,
+        accounts_kept_by: typing.Optional[PostV1AccountCompaniesCreateRequestAccountsKeptBy] = OMIT,
+        bookkeeper_name: typing.Optional[str] = OMIT,
+        auditor_name: typing.Optional[str] = OMIT,
+        auditor_registration_number: typing.Optional[str] = OMIT,
+        audit_required: typing.Optional[bool] = OMIT,
         country_code: typing.Optional[PostV1AccountCompaniesCreateRequestCountryCode] = OMIT,
         is_sandbox: typing.Optional[bool] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
@@ -1902,6 +2188,14 @@ class AsyncAccountClient:
 
         is_vat_payer : typing.Optional[bool]
 
+        vat_period : typing.Optional[PostV1AccountCompaniesCreateRequestVatPeriod]
+
+        fiscal_year_end_month : typing.Optional[int]
+
+        time_zone : typing.Optional[str]
+
+        filing_options : typing.Optional[typing.Dict[str, str]]
+
         address : typing.Optional[PostV1AccountCompaniesCreateRequestAddress]
 
         email : typing.Optional[str]
@@ -1917,6 +2211,24 @@ class AsyncAccountClient:
         sepa_creditor_id : typing.Optional[str]
 
         default_invoice_currency : typing.Optional[str]
+
+        legal_form : typing.Optional[str]
+
+        registry_name : typing.Optional[str]
+
+        incorporated_on : typing.Optional[str]
+
+        share_capital : typing.Optional[str]
+
+        accounts_kept_by : typing.Optional[PostV1AccountCompaniesCreateRequestAccountsKeptBy]
+
+        bookkeeper_name : typing.Optional[str]
+
+        auditor_name : typing.Optional[str]
+
+        auditor_registration_number : typing.Optional[str]
+
+        audit_required : typing.Optional[bool]
 
         country_code : typing.Optional[PostV1AccountCompaniesCreateRequestCountryCode]
             Jurisdiction the company is registered in (immutable after creation)
@@ -1957,6 +2269,10 @@ class AsyncAccountClient:
             vat_code=vat_code,
             sme_exemption_number=sme_exemption_number,
             is_vat_payer=is_vat_payer,
+            vat_period=vat_period,
+            fiscal_year_end_month=fiscal_year_end_month,
+            time_zone=time_zone,
+            filing_options=filing_options,
             address=address,
             email=email,
             phone=phone,
@@ -1965,6 +2281,15 @@ class AsyncAccountClient:
             peppol_id=peppol_id,
             sepa_creditor_id=sepa_creditor_id,
             default_invoice_currency=default_invoice_currency,
+            legal_form=legal_form,
+            registry_name=registry_name,
+            incorporated_on=incorporated_on,
+            share_capital=share_capital,
+            accounts_kept_by=accounts_kept_by,
+            bookkeeper_name=bookkeeper_name,
+            auditor_name=auditor_name,
+            auditor_registration_number=auditor_registration_number,
+            audit_required=audit_required,
             country_code=country_code,
             is_sandbox=is_sandbox,
             request_options=request_options,
@@ -2053,6 +2378,10 @@ class AsyncAccountClient:
         vat_code: typing.Optional[str] = OMIT,
         sme_exemption_number: typing.Optional[str] = OMIT,
         is_vat_payer: typing.Optional[bool] = OMIT,
+        vat_period: typing.Optional[PostV1AccountCompaniesUpdateRequestVatPeriod] = OMIT,
+        fiscal_year_end_month: typing.Optional[int] = OMIT,
+        time_zone: typing.Optional[str] = OMIT,
+        filing_options: typing.Optional[typing.Dict[str, typing.Optional[str]]] = OMIT,
         address: typing.Optional[PostV1AccountCompaniesUpdateRequestAddress] = OMIT,
         email: typing.Optional[str] = OMIT,
         phone: typing.Optional[str] = OMIT,
@@ -2061,6 +2390,15 @@ class AsyncAccountClient:
         peppol_id: typing.Optional[str] = OMIT,
         sepa_creditor_id: typing.Optional[str] = OMIT,
         default_invoice_currency: typing.Optional[str] = OMIT,
+        legal_form: typing.Optional[str] = OMIT,
+        registry_name: typing.Optional[str] = OMIT,
+        incorporated_on: typing.Optional[str] = OMIT,
+        share_capital: typing.Optional[str] = OMIT,
+        accounts_kept_by: typing.Optional[PostV1AccountCompaniesUpdateRequestAccountsKeptBy] = OMIT,
+        bookkeeper_name: typing.Optional[str] = OMIT,
+        auditor_name: typing.Optional[str] = OMIT,
+        auditor_registration_number: typing.Optional[str] = OMIT,
+        audit_required: typing.Optional[bool] = OMIT,
         logo: typing.Optional[PostV1AccountCompaniesUpdateRequestLogo] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1AccountCompaniesUpdateResponse:
@@ -2077,6 +2415,14 @@ class AsyncAccountClient:
 
         is_vat_payer : typing.Optional[bool]
 
+        vat_period : typing.Optional[PostV1AccountCompaniesUpdateRequestVatPeriod]
+
+        fiscal_year_end_month : typing.Optional[int]
+
+        time_zone : typing.Optional[str]
+
+        filing_options : typing.Optional[typing.Dict[str, typing.Optional[str]]]
+
         address : typing.Optional[PostV1AccountCompaniesUpdateRequestAddress]
 
         email : typing.Optional[str]
@@ -2092,6 +2438,24 @@ class AsyncAccountClient:
         sepa_creditor_id : typing.Optional[str]
 
         default_invoice_currency : typing.Optional[str]
+
+        legal_form : typing.Optional[str]
+
+        registry_name : typing.Optional[str]
+
+        incorporated_on : typing.Optional[str]
+
+        share_capital : typing.Optional[str]
+
+        accounts_kept_by : typing.Optional[PostV1AccountCompaniesUpdateRequestAccountsKeptBy]
+
+        bookkeeper_name : typing.Optional[str]
+
+        auditor_name : typing.Optional[str]
+
+        auditor_registration_number : typing.Optional[str]
+
+        audit_required : typing.Optional[bool]
 
         logo : typing.Optional[PostV1AccountCompaniesUpdateRequestLogo]
 
@@ -2126,6 +2490,10 @@ class AsyncAccountClient:
             vat_code=vat_code,
             sme_exemption_number=sme_exemption_number,
             is_vat_payer=is_vat_payer,
+            vat_period=vat_period,
+            fiscal_year_end_month=fiscal_year_end_month,
+            time_zone=time_zone,
+            filing_options=filing_options,
             address=address,
             email=email,
             phone=phone,
@@ -2134,6 +2502,15 @@ class AsyncAccountClient:
             peppol_id=peppol_id,
             sepa_creditor_id=sepa_creditor_id,
             default_invoice_currency=default_invoice_currency,
+            legal_form=legal_form,
+            registry_name=registry_name,
+            incorporated_on=incorporated_on,
+            share_capital=share_capital,
+            accounts_kept_by=accounts_kept_by,
+            bookkeeper_name=bookkeeper_name,
+            auditor_name=auditor_name,
+            auditor_registration_number=auditor_registration_number,
+            audit_required=audit_required,
             logo=logo,
             request_options=request_options,
         )
@@ -2264,6 +2641,7 @@ class AsyncAccountClient:
         *,
         name: str,
         scopes: typing.Optional[typing.Sequence[str]] = OMIT,
+        expires_in_days: typing.Optional[int] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1AccountApiKeysCreateResponse:
         """
@@ -2272,6 +2650,8 @@ class AsyncAccountClient:
         name : str
 
         scopes : typing.Optional[typing.Sequence[str]]
+
+        expires_in_days : typing.Optional[int]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -2301,7 +2681,7 @@ class AsyncAccountClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.post_v1account_api_keys_create(
-            name=name, scopes=scopes, request_options=request_options
+            name=name, scopes=scopes, expires_in_days=expires_in_days, request_options=request_options
         )
         return _response.data
 
@@ -2337,6 +2717,55 @@ class AsyncAccountClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.post_v1account_api_keys_list(request_options=request_options)
+        return _response.data
+
+    async def issue_a_replacement_for_an_api_key_and_set_the_old_one_to_stop_working_after_a_short_overlap(
+        self,
+        *,
+        id: str,
+        overlap_hours: typing.Optional[int] = OMIT,
+        expires_in_days: typing.Optional[int] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1AccountApiKeysRotateResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        overlap_hours : typing.Optional[int]
+
+        expires_in_days : typing.Optional[int]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1AccountApiKeysRotateResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.account.issue_a_replacement_for_an_api_key_and_set_the_old_one_to_stop_working_after_a_short_overlap(
+                id="id",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.issue_a_replacement_for_an_api_key_and_set_the_old_one_to_stop_working_after_a_short_overlap(
+            id=id, overlap_hours=overlap_hours, expires_in_days=expires_in_days, request_options=request_options
+        )
         return _response.data
 
     async def post_v1account_api_keys_revoke(
@@ -2718,6 +3147,46 @@ class AsyncAccountClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.post_v1account_referral_get(request_options=request_options)
+        return _response.data
+
+    async def post_v1account_referral_convert(
+        self, *, points: int, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1AccountReferralConvertResponse:
+        """
+        Parameters
+        ----------
+        points : int
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1AccountReferralConvertResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.account.post_v1account_referral_convert(
+                points=1000000,
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1account_referral_convert(
+            points=points, request_options=request_options
+        )
         return _response.data
 
     async def post_v1account_table_settings_get(

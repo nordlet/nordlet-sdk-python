@@ -38,12 +38,17 @@ class PostV1HrEmployeesAnonymizeResponse(UniversalBaseModel):
     termination_date: typing_extensions.Annotated[
         typing.Optional[str], FieldMetadata(alias="terminationDate"), pydantic.Field(alias="terminationDate")
     ] = None
-    apply_npd: typing_extensions.Annotated[bool, FieldMetadata(alias="applyNpd"), pydantic.Field(alias="applyNpd")]
-    npd_override: typing_extensions.Annotated[
-        typing.Optional[str], FieldMetadata(alias="npdOverride"), pydantic.Field(alias="npdOverride")
+    apply_allowance: typing_extensions.Annotated[
+        bool, FieldMetadata(alias="applyAllowance"), pydantic.Field(alias="applyAllowance")
+    ]
+    allowance_override: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="allowanceOverride"), pydantic.Field(alias="allowanceOverride")
     ] = None
     pension_accumulation: typing_extensions.Annotated[
         bool, FieldMetadata(alias="pensionAccumulation"), pydantic.Field(alias="pensionAccumulation")
+    ]
+    payroll_options: typing_extensions.Annotated[
+        typing.Dict[str, str], FieldMetadata(alias="payrollOptions"), pydantic.Field(alias="payrollOptions")
     ]
     status: PostV1HrEmployeesAnonymizeResponseStatus
     notes: typing.Optional[str] = None

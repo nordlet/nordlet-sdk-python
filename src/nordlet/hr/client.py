@@ -18,6 +18,7 @@ from .types.post_v1hr_employees_create_request_address import PostV1HrEmployeesC
 from .types.post_v1hr_employees_create_request_attributes_item import PostV1HrEmployeesCreateRequestAttributesItem
 from .types.post_v1hr_employees_create_response import PostV1HrEmployeesCreateResponse
 from .types.post_v1hr_employees_delete_response import PostV1HrEmployeesDeleteResponse
+from .types.post_v1hr_employees_fields_response import PostV1HrEmployeesFieldsResponse
 from .types.post_v1hr_employees_get_response import PostV1HrEmployeesGetResponse
 from .types.post_v1hr_employees_list_request_filter_item import PostV1HrEmployeesListRequestFilterItem
 from .types.post_v1hr_employees_list_request_sort_item import PostV1HrEmployeesListRequestSortItem
@@ -225,9 +226,10 @@ class HrClient:
         social_insurance_no: typing.Optional[str] = OMIT,
         social_insurance_start: typing.Optional[str] = OMIT,
         hire_date: typing.Optional[str] = OMIT,
-        apply_npd: typing.Optional[bool] = OMIT,
-        npd_override: typing.Optional[str] = OMIT,
+        apply_allowance: typing.Optional[bool] = OMIT,
+        allowance_override: typing.Optional[str] = OMIT,
         pension_accumulation: typing.Optional[bool] = OMIT,
+        payroll_options: typing.Optional[typing.Dict[str, str]] = OMIT,
         notes: typing.Optional[str] = OMIT,
         attributes: typing.Optional[typing.Sequence[PostV1HrEmployeesCreateRequestAttributesItem]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
@@ -259,11 +261,13 @@ class HrClient:
 
         hire_date : typing.Optional[str]
 
-        apply_npd : typing.Optional[bool]
+        apply_allowance : typing.Optional[bool]
 
-        npd_override : typing.Optional[str]
+        allowance_override : typing.Optional[str]
 
         pension_accumulation : typing.Optional[bool]
+
+        payroll_options : typing.Optional[typing.Dict[str, str]]
 
         notes : typing.Optional[str]
 
@@ -302,9 +306,10 @@ class HrClient:
             social_insurance_no=social_insurance_no,
             social_insurance_start=social_insurance_start,
             hire_date=hire_date,
-            apply_npd=apply_npd,
-            npd_override=npd_override,
+            apply_allowance=apply_allowance,
+            allowance_override=allowance_override,
             pension_accumulation=pension_accumulation,
+            payroll_options=payroll_options,
             notes=notes,
             attributes=attributes,
             request_options=request_options,
@@ -327,9 +332,10 @@ class HrClient:
         social_insurance_no: typing.Optional[str] = OMIT,
         social_insurance_start: typing.Optional[str] = OMIT,
         hire_date: typing.Optional[str] = OMIT,
-        apply_npd: typing.Optional[bool] = OMIT,
-        npd_override: typing.Optional[str] = OMIT,
+        apply_allowance: typing.Optional[bool] = OMIT,
+        allowance_override: typing.Optional[str] = OMIT,
         pension_accumulation: typing.Optional[bool] = OMIT,
+        payroll_options: typing.Optional[typing.Dict[str, str]] = OMIT,
         notes: typing.Optional[str] = OMIT,
         attributes: typing.Optional[typing.Sequence[PostV1HrEmployeesUpdateRequestAttributesItem]] = OMIT,
         termination_date: typing.Optional[str] = OMIT,
@@ -365,11 +371,13 @@ class HrClient:
 
         hire_date : typing.Optional[str]
 
-        apply_npd : typing.Optional[bool]
+        apply_allowance : typing.Optional[bool]
 
-        npd_override : typing.Optional[str]
+        allowance_override : typing.Optional[str]
 
         pension_accumulation : typing.Optional[bool]
+
+        payroll_options : typing.Optional[typing.Dict[str, str]]
 
         notes : typing.Optional[str]
 
@@ -412,9 +420,10 @@ class HrClient:
             social_insurance_no=social_insurance_no,
             social_insurance_start=social_insurance_start,
             hire_date=hire_date,
-            apply_npd=apply_npd,
-            npd_override=npd_override,
+            apply_allowance=apply_allowance,
+            allowance_override=allowance_override,
             pension_accumulation=pension_accumulation,
+            payroll_options=payroll_options,
             notes=notes,
             attributes=attributes,
             termination_date=termination_date,
@@ -451,6 +460,36 @@ class HrClient:
         )
         """
         _response = self._raw_client.post_v1hr_employees_get(id=id, request_options=request_options)
+        return _response.data
+
+    def extra_employee_details_the_country_of_the_company_asks_for(
+        self, *, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1HrEmployeesFieldsResponse:
+        """
+        Attributes a filing of the company country needs about a person that the shared employee record does not carry, such as the sex and place of birth an Italian income certificate asks for. Their values are kept in the payrollOptions of the employee.
+
+        Parameters
+        ----------
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1HrEmployeesFieldsResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.hr.extra_employee_details_the_country_of_the_company_asks_for()
+        """
+        _response = self._raw_client.extra_employee_details_the_country_of_the_company_asks_for(
+            request_options=request_options
+        )
         return _response.data
 
     def post_v1hr_employees_list(
@@ -1555,9 +1594,10 @@ class AsyncHrClient:
         social_insurance_no: typing.Optional[str] = OMIT,
         social_insurance_start: typing.Optional[str] = OMIT,
         hire_date: typing.Optional[str] = OMIT,
-        apply_npd: typing.Optional[bool] = OMIT,
-        npd_override: typing.Optional[str] = OMIT,
+        apply_allowance: typing.Optional[bool] = OMIT,
+        allowance_override: typing.Optional[str] = OMIT,
         pension_accumulation: typing.Optional[bool] = OMIT,
+        payroll_options: typing.Optional[typing.Dict[str, str]] = OMIT,
         notes: typing.Optional[str] = OMIT,
         attributes: typing.Optional[typing.Sequence[PostV1HrEmployeesCreateRequestAttributesItem]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
@@ -1589,11 +1629,13 @@ class AsyncHrClient:
 
         hire_date : typing.Optional[str]
 
-        apply_npd : typing.Optional[bool]
+        apply_allowance : typing.Optional[bool]
 
-        npd_override : typing.Optional[str]
+        allowance_override : typing.Optional[str]
 
         pension_accumulation : typing.Optional[bool]
+
+        payroll_options : typing.Optional[typing.Dict[str, str]]
 
         notes : typing.Optional[str]
 
@@ -1640,9 +1682,10 @@ class AsyncHrClient:
             social_insurance_no=social_insurance_no,
             social_insurance_start=social_insurance_start,
             hire_date=hire_date,
-            apply_npd=apply_npd,
-            npd_override=npd_override,
+            apply_allowance=apply_allowance,
+            allowance_override=allowance_override,
             pension_accumulation=pension_accumulation,
+            payroll_options=payroll_options,
             notes=notes,
             attributes=attributes,
             request_options=request_options,
@@ -1665,9 +1708,10 @@ class AsyncHrClient:
         social_insurance_no: typing.Optional[str] = OMIT,
         social_insurance_start: typing.Optional[str] = OMIT,
         hire_date: typing.Optional[str] = OMIT,
-        apply_npd: typing.Optional[bool] = OMIT,
-        npd_override: typing.Optional[str] = OMIT,
+        apply_allowance: typing.Optional[bool] = OMIT,
+        allowance_override: typing.Optional[str] = OMIT,
         pension_accumulation: typing.Optional[bool] = OMIT,
+        payroll_options: typing.Optional[typing.Dict[str, str]] = OMIT,
         notes: typing.Optional[str] = OMIT,
         attributes: typing.Optional[typing.Sequence[PostV1HrEmployeesUpdateRequestAttributesItem]] = OMIT,
         termination_date: typing.Optional[str] = OMIT,
@@ -1703,11 +1747,13 @@ class AsyncHrClient:
 
         hire_date : typing.Optional[str]
 
-        apply_npd : typing.Optional[bool]
+        apply_allowance : typing.Optional[bool]
 
-        npd_override : typing.Optional[str]
+        allowance_override : typing.Optional[str]
 
         pension_accumulation : typing.Optional[bool]
+
+        payroll_options : typing.Optional[typing.Dict[str, str]]
 
         notes : typing.Optional[str]
 
@@ -1758,9 +1804,10 @@ class AsyncHrClient:
             social_insurance_no=social_insurance_no,
             social_insurance_start=social_insurance_start,
             hire_date=hire_date,
-            apply_npd=apply_npd,
-            npd_override=npd_override,
+            apply_allowance=apply_allowance,
+            allowance_override=allowance_override,
             pension_accumulation=pension_accumulation,
+            payroll_options=payroll_options,
             notes=notes,
             attributes=attributes,
             termination_date=termination_date,
@@ -1805,6 +1852,44 @@ class AsyncHrClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.post_v1hr_employees_get(id=id, request_options=request_options)
+        return _response.data
+
+    async def extra_employee_details_the_country_of_the_company_asks_for(
+        self, *, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1HrEmployeesFieldsResponse:
+        """
+        Attributes a filing of the company country needs about a person that the shared employee record does not carry, such as the sex and place of birth an Italian income certificate asks for. Their values are kept in the payrollOptions of the employee.
+
+        Parameters
+        ----------
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1HrEmployeesFieldsResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.hr.extra_employee_details_the_country_of_the_company_asks_for()
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.extra_employee_details_the_country_of_the_company_asks_for(
+            request_options=request_options
+        )
         return _response.data
 
     async def post_v1hr_employees_list(

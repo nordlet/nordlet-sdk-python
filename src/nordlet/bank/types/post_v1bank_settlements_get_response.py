@@ -24,6 +24,9 @@ class PostV1BankSettlementsGetResponse(UniversalBaseModel):
     gross_total: typing_extensions.Annotated[str, FieldMetadata(alias="grossTotal"), pydantic.Field(alias="grossTotal")]
     fee_total: typing_extensions.Annotated[str, FieldMetadata(alias="feeTotal"), pydantic.Field(alias="feeTotal")]
     net_total: typing_extensions.Annotated[str, FieldMetadata(alias="netTotal"), pydantic.Field(alias="netTotal")]
+    fx_rate: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="fxRate"), pydantic.Field(alias="fxRate")
+    ] = None
     status: PostV1BankSettlementsGetResponseStatus
     journal_transaction_id: typing_extensions.Annotated[
         typing.Optional[str], FieldMetadata(alias="journalTransactionId"), pydantic.Field(alias="journalTransactionId")

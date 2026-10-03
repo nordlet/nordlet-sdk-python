@@ -60,6 +60,7 @@ from .types.post_v1bank_match_rules_delete_response import PostV1BankMatchRulesD
 from .types.post_v1bank_match_rules_list_response import PostV1BankMatchRulesListResponse
 from .types.post_v1bank_match_rules_update_response import PostV1BankMatchRulesUpdateResponse
 from .types.post_v1bank_payments_export_response import PostV1BankPaymentsExportResponse
+from .types.post_v1bank_settlements_commission_response import PostV1BankSettlementsCommissionResponse
 from .types.post_v1bank_settlements_get_response import PostV1BankSettlementsGetResponse
 from .types.post_v1bank_settlements_import_request_provider import PostV1BankSettlementsImportRequestProvider
 from .types.post_v1bank_settlements_import_response import PostV1BankSettlementsImportResponse
@@ -1477,6 +1478,52 @@ class BankClient:
         """
         _response = self._raw_client.post_v1bank_settlements_match(
             line_id=line_id, invoice_id=invoice_id, request_options=request_options
+        )
+        return _response.data
+
+    def set_what_the_marketplace_keeps_from_one_settlement_line_as_a_rate_or_as_an_amount(
+        self,
+        *,
+        line_id: str,
+        commission_percent: typing.Optional[str] = OMIT,
+        commission_amount: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1BankSettlementsCommissionResponse:
+        """
+        A line with its own rate or amount is split with that value when the batch is posted. A line without one falls back to the commissionPercent given to the posting call, and without that the amount goes to the suspense account. Send both fields as null to clear the line back to the fallback.
+
+        Parameters
+        ----------
+        line_id : str
+
+        commission_percent : typing.Optional[str]
+
+        commission_amount : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1BankSettlementsCommissionResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.bank.set_what_the_marketplace_keeps_from_one_settlement_line_as_a_rate_or_as_an_amount(
+            line_id="lineId",
+        )
+        """
+        _response = self._raw_client.set_what_the_marketplace_keeps_from_one_settlement_line_as_a_rate_or_as_an_amount(
+            line_id=line_id,
+            commission_percent=commission_percent,
+            commission_amount=commission_amount,
+            request_options=request_options,
         )
         return _response.data
 
@@ -3582,6 +3629,62 @@ class AsyncBankClient:
         """
         _response = await self._raw_client.post_v1bank_settlements_match(
             line_id=line_id, invoice_id=invoice_id, request_options=request_options
+        )
+        return _response.data
+
+    async def set_what_the_marketplace_keeps_from_one_settlement_line_as_a_rate_or_as_an_amount(
+        self,
+        *,
+        line_id: str,
+        commission_percent: typing.Optional[str] = OMIT,
+        commission_amount: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1BankSettlementsCommissionResponse:
+        """
+        A line with its own rate or amount is split with that value when the batch is posted. A line without one falls back to the commissionPercent given to the posting call, and without that the amount goes to the suspense account. Send both fields as null to clear the line back to the fallback.
+
+        Parameters
+        ----------
+        line_id : str
+
+        commission_percent : typing.Optional[str]
+
+        commission_amount : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1BankSettlementsCommissionResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.bank.set_what_the_marketplace_keeps_from_one_settlement_line_as_a_rate_or_as_an_amount(
+                line_id="lineId",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = (
+            await self._raw_client.set_what_the_marketplace_keeps_from_one_settlement_line_as_a_rate_or_as_an_amount(
+                line_id=line_id,
+                commission_percent=commission_percent,
+                commission_amount=commission_amount,
+                request_options=request_options,
+            )
         )
         return _response.data
 

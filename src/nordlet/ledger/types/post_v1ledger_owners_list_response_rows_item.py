@@ -7,6 +7,9 @@ import typing_extensions
 from ...core.pydantic_utilities import IS_PYDANTIC_V2, UniversalBaseModel
 from ...core.serialization import FieldMetadata
 from .post_v1ledger_owners_list_response_rows_item_address import PostV1LedgerOwnersListResponseRowsItemAddress
+from .post_v1ledger_owners_list_response_rows_item_partner_liability import (
+    PostV1LedgerOwnersListResponseRowsItemPartnerLiability,
+)
 
 
 class PostV1LedgerOwnersListResponseRowsItem(UniversalBaseModel):
@@ -29,6 +32,26 @@ class PostV1LedgerOwnersListResponseRowsItem(UniversalBaseModel):
         typing.Optional[str],
         FieldMetadata(alias="sharesAcquisitionDate"),
         pydantic.Field(alias="sharesAcquisitionDate"),
+    ] = None
+    withholding_tax_percent: typing_extensions.Annotated[
+        typing.Optional[str],
+        FieldMetadata(alias="withholdingTaxPercent"),
+        pydantic.Field(alias="withholdingTaxPercent"),
+    ] = None
+    partner_liability: typing_extensions.Annotated[
+        typing.Optional[PostV1LedgerOwnersListResponseRowsItemPartnerLiability],
+        FieldMetadata(alias="partnerLiability"),
+        pydantic.Field(alias="partnerLiability"),
+    ] = None
+    special_balance_required: typing_extensions.Annotated[
+        typing.Optional[bool],
+        FieldMetadata(alias="specialBalanceRequired"),
+        pydantic.Field(alias="specialBalanceRequired"),
+    ] = None
+    supplementary_balance_required: typing_extensions.Annotated[
+        typing.Optional[bool],
+        FieldMetadata(alias="supplementaryBalanceRequired"),
+        pydantic.Field(alias="supplementaryBalanceRequired"),
     ] = None
     address: typing.Optional[PostV1LedgerOwnersListResponseRowsItemAddress] = None
     created_at: typing_extensions.Annotated[str, FieldMetadata(alias="createdAt"), pydantic.Field(alias="createdAt")]

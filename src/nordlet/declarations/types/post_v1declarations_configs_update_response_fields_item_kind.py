@@ -3,5 +3,5 @@
 import typing
 
 PostV1DeclarationsConfigsUpdateResponseFieldsItemKind = typing.Union[
-    typing.Literal["text", "secret", "select"], typing.Any
+    typing.Literal["text", "secret", "select", "url", "certificate"], typing.Any
 ]

@@ -9,6 +9,9 @@ from ...core.serialization import FieldMetadata
 from .post_v1assets_assets_list_response_rows_item_documents_item import (
     PostV1AssetsAssetsListResponseRowsItemDocumentsItem,
 )
+from .post_v1assets_assets_list_response_rows_item_input_vat_use_changes_item import (
+    PostV1AssetsAssetsListResponseRowsItemInputVatUseChangesItem,
+)
 from .post_v1assets_assets_list_response_rows_item_status import PostV1AssetsAssetsListResponseRowsItemStatus
 
 
@@ -48,6 +51,25 @@ class PostV1AssetsAssetsListResponseRowsItem(UniversalBaseModel):
     status: PostV1AssetsAssetsListResponseRowsItemStatus
     notes: typing.Optional[str] = None
     documents: typing.Optional[typing.List[PostV1AssetsAssetsListResponseRowsItemDocumentsItem]] = None
+    input_vat_amount: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="inputVatAmount"), pydantic.Field(alias="inputVatAmount")
+    ] = None
+    input_vat_first_use_date: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="inputVatFirstUseDate"), pydantic.Field(alias="inputVatFirstUseDate")
+    ] = None
+    input_vat_deductible_percent: typing_extensions.Annotated[
+        typing.Optional[str],
+        FieldMetadata(alias="inputVatDeductiblePercent"),
+        pydantic.Field(alias="inputVatDeductiblePercent"),
+    ] = None
+    input_vat_real_estate: typing_extensions.Annotated[
+        bool, FieldMetadata(alias="inputVatRealEstate"), pydantic.Field(alias="inputVatRealEstate")
+    ]
+    input_vat_use_changes: typing_extensions.Annotated[
+        typing.List[PostV1AssetsAssetsListResponseRowsItemInputVatUseChangesItem],
+        FieldMetadata(alias="inputVatUseChanges"),
+        pydantic.Field(alias="inputVatUseChanges"),
+    ]
     created_at: typing_extensions.Annotated[str, FieldMetadata(alias="createdAt"), pydantic.Field(alias="createdAt")]
 
     if IS_PYDANTIC_V2:

@@ -2,4 +2,4 @@
 
 import typing
 
-PostV1AccountInvitesCreateRequestLocale = typing.Union[typing.Literal["lt", "en", "ru"], typing.Any]
+PostV1AccountInvitesCreateRequestLocale = typing.Union[typing.Literal["en", "lt", "de"], typing.Any]

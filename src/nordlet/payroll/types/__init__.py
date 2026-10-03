@@ -7,13 +7,37 @@ from importlib import import_module
 
 if typing.TYPE_CHECKING:
     from .post_v1payroll_calc_response import PostV1PayrollCalcResponse
+    from .post_v1payroll_calc_response_components_item import PostV1PayrollCalcResponseComponentsItem
+    from .post_v1payroll_calc_response_components_item_kind import PostV1PayrollCalcResponseComponentsItemKind
     from .post_v1payroll_departments_create_response import PostV1PayrollDepartmentsCreateResponse
     from .post_v1payroll_departments_list_response import PostV1PayrollDepartmentsListResponse
     from .post_v1payroll_departments_list_response_rows_item import PostV1PayrollDepartmentsListResponseRowsItem
+    from .post_v1payroll_lines_attendance_response import PostV1PayrollLinesAttendanceResponse
+    from .post_v1payroll_lines_attendance_response_additions_item import (
+        PostV1PayrollLinesAttendanceResponseAdditionsItem,
+    )
+    from .post_v1payroll_lines_attendance_response_components_item import (
+        PostV1PayrollLinesAttendanceResponseComponentsItem,
+    )
+    from .post_v1payroll_lines_attendance_response_components_item_kind import (
+        PostV1PayrollLinesAttendanceResponseComponentsItemKind,
+    )
+    from .post_v1payroll_lines_attendance_response_deductions_item import (
+        PostV1PayrollLinesAttendanceResponseDeductionsItem,
+    )
     from .post_v1payroll_payments_export_response import PostV1PayrollPaymentsExportResponse
     from .post_v1payroll_runs_approve_response import PostV1PayrollRunsApproveResponse
+    from .post_v1payroll_runs_approve_response_component_totals_item import (
+        PostV1PayrollRunsApproveResponseComponentTotalsItem,
+    )
+    from .post_v1payroll_runs_approve_response_component_totals_item_kind import (
+        PostV1PayrollRunsApproveResponseComponentTotalsItemKind,
+    )
     from .post_v1payroll_runs_approve_response_status import PostV1PayrollRunsApproveResponseStatus
     from .post_v1payroll_runs_cancel_response import PostV1PayrollRunsCancelResponse
+    from .post_v1payroll_runs_create_request_gross_overrides_item import (
+        PostV1PayrollRunsCreateRequestGrossOverridesItem,
+    )
     from .post_v1payroll_runs_create_request_lines_item import PostV1PayrollRunsCreateRequestLinesItem
     from .post_v1payroll_runs_create_request_lines_item_additions_item import (
         PostV1PayrollRunsCreateRequestLinesItemAdditionsItem,
@@ -22,18 +46,40 @@ if typing.TYPE_CHECKING:
         PostV1PayrollRunsCreateRequestLinesItemDeductionsItem,
     )
     from .post_v1payroll_runs_create_response import PostV1PayrollRunsCreateResponse
+    from .post_v1payroll_runs_create_response_component_totals_item import (
+        PostV1PayrollRunsCreateResponseComponentTotalsItem,
+    )
+    from .post_v1payroll_runs_create_response_component_totals_item_kind import (
+        PostV1PayrollRunsCreateResponseComponentTotalsItemKind,
+    )
     from .post_v1payroll_runs_create_response_lines_item import PostV1PayrollRunsCreateResponseLinesItem
     from .post_v1payroll_runs_create_response_lines_item_additions_item import (
         PostV1PayrollRunsCreateResponseLinesItemAdditionsItem,
+    )
+    from .post_v1payroll_runs_create_response_lines_item_components_item import (
+        PostV1PayrollRunsCreateResponseLinesItemComponentsItem,
+    )
+    from .post_v1payroll_runs_create_response_lines_item_components_item_kind import (
+        PostV1PayrollRunsCreateResponseLinesItemComponentsItemKind,
     )
     from .post_v1payroll_runs_create_response_lines_item_deductions_item import (
         PostV1PayrollRunsCreateResponseLinesItemDeductionsItem,
     )
     from .post_v1payroll_runs_create_response_status import PostV1PayrollRunsCreateResponseStatus
     from .post_v1payroll_runs_get_response import PostV1PayrollRunsGetResponse
+    from .post_v1payroll_runs_get_response_component_totals_item import PostV1PayrollRunsGetResponseComponentTotalsItem
+    from .post_v1payroll_runs_get_response_component_totals_item_kind import (
+        PostV1PayrollRunsGetResponseComponentTotalsItemKind,
+    )
     from .post_v1payroll_runs_get_response_lines_item import PostV1PayrollRunsGetResponseLinesItem
     from .post_v1payroll_runs_get_response_lines_item_additions_item import (
         PostV1PayrollRunsGetResponseLinesItemAdditionsItem,
+    )
+    from .post_v1payroll_runs_get_response_lines_item_components_item import (
+        PostV1PayrollRunsGetResponseLinesItemComponentsItem,
+    )
+    from .post_v1payroll_runs_get_response_lines_item_components_item_kind import (
+        PostV1PayrollRunsGetResponseLinesItemComponentsItemKind,
     )
     from .post_v1payroll_runs_get_response_lines_item_deductions_item import (
         PostV1PayrollRunsGetResponseLinesItemDeductionsItem,
@@ -49,30 +95,54 @@ if typing.TYPE_CHECKING:
     from .post_v1payroll_runs_list_request_sort_item_dir import PostV1PayrollRunsListRequestSortItemDir
     from .post_v1payroll_runs_list_response import PostV1PayrollRunsListResponse
     from .post_v1payroll_runs_list_response_rows_item import PostV1PayrollRunsListResponseRowsItem
+    from .post_v1payroll_runs_list_response_rows_item_component_totals_item import (
+        PostV1PayrollRunsListResponseRowsItemComponentTotalsItem,
+    )
+    from .post_v1payroll_runs_list_response_rows_item_component_totals_item_kind import (
+        PostV1PayrollRunsListResponseRowsItemComponentTotalsItemKind,
+    )
     from .post_v1payroll_runs_list_response_rows_item_status import PostV1PayrollRunsListResponseRowsItemStatus
     from .post_v1payroll_schedules_create_response import PostV1PayrollSchedulesCreateResponse
     from .post_v1payroll_schedules_list_response import PostV1PayrollSchedulesListResponse
     from .post_v1payroll_schedules_list_response_rows_item import PostV1PayrollSchedulesListResponseRowsItem
 _dynamic_imports: typing.Dict[str, str] = {
     "PostV1PayrollCalcResponse": ".post_v1payroll_calc_response",
+    "PostV1PayrollCalcResponseComponentsItem": ".post_v1payroll_calc_response_components_item",
+    "PostV1PayrollCalcResponseComponentsItemKind": ".post_v1payroll_calc_response_components_item_kind",
     "PostV1PayrollDepartmentsCreateResponse": ".post_v1payroll_departments_create_response",
     "PostV1PayrollDepartmentsListResponse": ".post_v1payroll_departments_list_response",
     "PostV1PayrollDepartmentsListResponseRowsItem": ".post_v1payroll_departments_list_response_rows_item",
+    "PostV1PayrollLinesAttendanceResponse": ".post_v1payroll_lines_attendance_response",
+    "PostV1PayrollLinesAttendanceResponseAdditionsItem": ".post_v1payroll_lines_attendance_response_additions_item",
+    "PostV1PayrollLinesAttendanceResponseComponentsItem": ".post_v1payroll_lines_attendance_response_components_item",
+    "PostV1PayrollLinesAttendanceResponseComponentsItemKind": ".post_v1payroll_lines_attendance_response_components_item_kind",
+    "PostV1PayrollLinesAttendanceResponseDeductionsItem": ".post_v1payroll_lines_attendance_response_deductions_item",
     "PostV1PayrollPaymentsExportResponse": ".post_v1payroll_payments_export_response",
     "PostV1PayrollRunsApproveResponse": ".post_v1payroll_runs_approve_response",
+    "PostV1PayrollRunsApproveResponseComponentTotalsItem": ".post_v1payroll_runs_approve_response_component_totals_item",
+    "PostV1PayrollRunsApproveResponseComponentTotalsItemKind": ".post_v1payroll_runs_approve_response_component_totals_item_kind",
     "PostV1PayrollRunsApproveResponseStatus": ".post_v1payroll_runs_approve_response_status",
     "PostV1PayrollRunsCancelResponse": ".post_v1payroll_runs_cancel_response",
+    "PostV1PayrollRunsCreateRequestGrossOverridesItem": ".post_v1payroll_runs_create_request_gross_overrides_item",
     "PostV1PayrollRunsCreateRequestLinesItem": ".post_v1payroll_runs_create_request_lines_item",
     "PostV1PayrollRunsCreateRequestLinesItemAdditionsItem": ".post_v1payroll_runs_create_request_lines_item_additions_item",
     "PostV1PayrollRunsCreateRequestLinesItemDeductionsItem": ".post_v1payroll_runs_create_request_lines_item_deductions_item",
     "PostV1PayrollRunsCreateResponse": ".post_v1payroll_runs_create_response",
+    "PostV1PayrollRunsCreateResponseComponentTotalsItem": ".post_v1payroll_runs_create_response_component_totals_item",
+    "PostV1PayrollRunsCreateResponseComponentTotalsItemKind": ".post_v1payroll_runs_create_response_component_totals_item_kind",
     "PostV1PayrollRunsCreateResponseLinesItem": ".post_v1payroll_runs_create_response_lines_item",
     "PostV1PayrollRunsCreateResponseLinesItemAdditionsItem": ".post_v1payroll_runs_create_response_lines_item_additions_item",
+    "PostV1PayrollRunsCreateResponseLinesItemComponentsItem": ".post_v1payroll_runs_create_response_lines_item_components_item",
+    "PostV1PayrollRunsCreateResponseLinesItemComponentsItemKind": ".post_v1payroll_runs_create_response_lines_item_components_item_kind",
     "PostV1PayrollRunsCreateResponseLinesItemDeductionsItem": ".post_v1payroll_runs_create_response_lines_item_deductions_item",
     "PostV1PayrollRunsCreateResponseStatus": ".post_v1payroll_runs_create_response_status",
     "PostV1PayrollRunsGetResponse": ".post_v1payroll_runs_get_response",
+    "PostV1PayrollRunsGetResponseComponentTotalsItem": ".post_v1payroll_runs_get_response_component_totals_item",
+    "PostV1PayrollRunsGetResponseComponentTotalsItemKind": ".post_v1payroll_runs_get_response_component_totals_item_kind",
     "PostV1PayrollRunsGetResponseLinesItem": ".post_v1payroll_runs_get_response_lines_item",
     "PostV1PayrollRunsGetResponseLinesItemAdditionsItem": ".post_v1payroll_runs_get_response_lines_item_additions_item",
+    "PostV1PayrollRunsGetResponseLinesItemComponentsItem": ".post_v1payroll_runs_get_response_lines_item_components_item",
+    "PostV1PayrollRunsGetResponseLinesItemComponentsItemKind": ".post_v1payroll_runs_get_response_lines_item_components_item_kind",
     "PostV1PayrollRunsGetResponseLinesItemDeductionsItem": ".post_v1payroll_runs_get_response_lines_item_deductions_item",
     "PostV1PayrollRunsGetResponseStatus": ".post_v1payroll_runs_get_response_status",
     "PostV1PayrollRunsListRequestFilterItem": ".post_v1payroll_runs_list_request_filter_item",
@@ -83,6 +153,8 @@ _dynamic_imports: typing.Dict[str, str] = {
     "PostV1PayrollRunsListRequestSortItemDir": ".post_v1payroll_runs_list_request_sort_item_dir",
     "PostV1PayrollRunsListResponse": ".post_v1payroll_runs_list_response",
     "PostV1PayrollRunsListResponseRowsItem": ".post_v1payroll_runs_list_response_rows_item",
+    "PostV1PayrollRunsListResponseRowsItemComponentTotalsItem": ".post_v1payroll_runs_list_response_rows_item_component_totals_item",
+    "PostV1PayrollRunsListResponseRowsItemComponentTotalsItemKind": ".post_v1payroll_runs_list_response_rows_item_component_totals_item_kind",
     "PostV1PayrollRunsListResponseRowsItemStatus": ".post_v1payroll_runs_list_response_rows_item_status",
     "PostV1PayrollSchedulesCreateResponse": ".post_v1payroll_schedules_create_response",
     "PostV1PayrollSchedulesListResponse": ".post_v1payroll_schedules_list_response",
@@ -113,24 +185,42 @@ def __dir__():
 
 __all__ = [
     "PostV1PayrollCalcResponse",
+    "PostV1PayrollCalcResponseComponentsItem",
+    "PostV1PayrollCalcResponseComponentsItemKind",
     "PostV1PayrollDepartmentsCreateResponse",
     "PostV1PayrollDepartmentsListResponse",
     "PostV1PayrollDepartmentsListResponseRowsItem",
+    "PostV1PayrollLinesAttendanceResponse",
+    "PostV1PayrollLinesAttendanceResponseAdditionsItem",
+    "PostV1PayrollLinesAttendanceResponseComponentsItem",
+    "PostV1PayrollLinesAttendanceResponseComponentsItemKind",
+    "PostV1PayrollLinesAttendanceResponseDeductionsItem",
     "PostV1PayrollPaymentsExportResponse",
     "PostV1PayrollRunsApproveResponse",
+    "PostV1PayrollRunsApproveResponseComponentTotalsItem",
+    "PostV1PayrollRunsApproveResponseComponentTotalsItemKind",
     "PostV1PayrollRunsApproveResponseStatus",
     "PostV1PayrollRunsCancelResponse",
+    "PostV1PayrollRunsCreateRequestGrossOverridesItem",
     "PostV1PayrollRunsCreateRequestLinesItem",
     "PostV1PayrollRunsCreateRequestLinesItemAdditionsItem",
     "PostV1PayrollRunsCreateRequestLinesItemDeductionsItem",
     "PostV1PayrollRunsCreateResponse",
+    "PostV1PayrollRunsCreateResponseComponentTotalsItem",
+    "PostV1PayrollRunsCreateResponseComponentTotalsItemKind",
     "PostV1PayrollRunsCreateResponseLinesItem",
     "PostV1PayrollRunsCreateResponseLinesItemAdditionsItem",
+    "PostV1PayrollRunsCreateResponseLinesItemComponentsItem",
+    "PostV1PayrollRunsCreateResponseLinesItemComponentsItemKind",
     "PostV1PayrollRunsCreateResponseLinesItemDeductionsItem",
     "PostV1PayrollRunsCreateResponseStatus",
     "PostV1PayrollRunsGetResponse",
+    "PostV1PayrollRunsGetResponseComponentTotalsItem",
+    "PostV1PayrollRunsGetResponseComponentTotalsItemKind",
     "PostV1PayrollRunsGetResponseLinesItem",
     "PostV1PayrollRunsGetResponseLinesItemAdditionsItem",
+    "PostV1PayrollRunsGetResponseLinesItemComponentsItem",
+    "PostV1PayrollRunsGetResponseLinesItemComponentsItemKind",
     "PostV1PayrollRunsGetResponseLinesItemDeductionsItem",
     "PostV1PayrollRunsGetResponseStatus",
     "PostV1PayrollRunsListRequestFilterItem",
@@ -141,6 +231,8 @@ __all__ = [
     "PostV1PayrollRunsListRequestSortItemDir",
     "PostV1PayrollRunsListResponse",
     "PostV1PayrollRunsListResponseRowsItem",
+    "PostV1PayrollRunsListResponseRowsItemComponentTotalsItem",
+    "PostV1PayrollRunsListResponseRowsItemComponentTotalsItemKind",
     "PostV1PayrollRunsListResponseRowsItemStatus",
     "PostV1PayrollSchedulesCreateResponse",
     "PostV1PayrollSchedulesListResponse",

@@ -6,13 +6,18 @@ from ..core.client_wrapper import AsyncClientWrapper, SyncClientWrapper
 from ..core.request_options import RequestOptions
 from .raw_client import AsyncRawLedgerClient, RawLedgerClient
 from .types.post_v1ledger_accounts_apply_template_response import PostV1LedgerAccountsApplyTemplateResponse
-from .types.post_v1ledger_accounts_create_request_translations import PostV1LedgerAccountsCreateRequestTranslations
+from .types.post_v1ledger_accounts_create_request_translations_value import (
+    PostV1LedgerAccountsCreateRequestTranslationsValue,
+)
 from .types.post_v1ledger_accounts_create_request_type import PostV1LedgerAccountsCreateRequestType
 from .types.post_v1ledger_accounts_create_response import PostV1LedgerAccountsCreateResponse
 from .types.post_v1ledger_accounts_list_request_filter_item import PostV1LedgerAccountsListRequestFilterItem
 from .types.post_v1ledger_accounts_list_request_sort_item import PostV1LedgerAccountsListRequestSortItem
 from .types.post_v1ledger_accounts_list_response import PostV1LedgerAccountsListResponse
-from .types.post_v1ledger_accounts_update_request_translations import PostV1LedgerAccountsUpdateRequestTranslations
+from .types.post_v1ledger_accounts_switch_chart_response import PostV1LedgerAccountsSwitchChartResponse
+from .types.post_v1ledger_accounts_update_request_translations_value import (
+    PostV1LedgerAccountsUpdateRequestTranslationsValue,
+)
 from .types.post_v1ledger_accounts_update_response import PostV1LedgerAccountsUpdateResponse
 from .types.post_v1ledger_cost_center_groups_create_response import PostV1LedgerCostCenterGroupsCreateResponse
 from .types.post_v1ledger_cost_center_groups_delete_response import PostV1LedgerCostCenterGroupsDeleteResponse
@@ -42,6 +47,7 @@ from .types.post_v1ledger_journal_transactions_list_request_sort_item import (
 )
 from .types.post_v1ledger_journal_transactions_list_response import PostV1LedgerJournalTransactionsListResponse
 from .types.post_v1ledger_owners_create_request_address import PostV1LedgerOwnersCreateRequestAddress
+from .types.post_v1ledger_owners_create_request_partner_liability import PostV1LedgerOwnersCreateRequestPartnerLiability
 from .types.post_v1ledger_owners_create_request_shares_type import PostV1LedgerOwnersCreateRequestSharesType
 from .types.post_v1ledger_owners_create_response import PostV1LedgerOwnersCreateResponse
 from .types.post_v1ledger_owners_delete_response import PostV1LedgerOwnersDeleteResponse
@@ -49,6 +55,7 @@ from .types.post_v1ledger_owners_list_request_filter_item import PostV1LedgerOwn
 from .types.post_v1ledger_owners_list_request_sort_item import PostV1LedgerOwnersListRequestSortItem
 from .types.post_v1ledger_owners_list_response import PostV1LedgerOwnersListResponse
 from .types.post_v1ledger_owners_update_request_address import PostV1LedgerOwnersUpdateRequestAddress
+from .types.post_v1ledger_owners_update_request_partner_liability import PostV1LedgerOwnersUpdateRequestPartnerLiability
 from .types.post_v1ledger_owners_update_request_shares_type import PostV1LedgerOwnersUpdateRequestSharesType
 from .types.post_v1ledger_owners_update_response import PostV1LedgerOwnersUpdateResponse
 from .types.post_v1ledger_periods_list_request_filter_item import PostV1LedgerPeriodsListRequestFilterItem
@@ -59,6 +66,15 @@ from .types.post_v1ledger_periods_unlock_response import PostV1LedgerPeriodsUnlo
 from .types.post_v1ledger_posting_rules_list_response import PostV1LedgerPostingRulesListResponse
 from .types.post_v1ledger_posting_rules_update_request_rules_item import PostV1LedgerPostingRulesUpdateRequestRulesItem
 from .types.post_v1ledger_posting_rules_update_response import PostV1LedgerPostingRulesUpdateResponse
+from .types.post_v1ledger_statement_rows_list_response import PostV1LedgerStatementRowsListResponse
+from .types.post_v1ledger_statement_rows_schemes_response import PostV1LedgerStatementRowsSchemesResponse
+from .types.post_v1ledger_statement_rows_set_response import PostV1LedgerStatementRowsSetResponse
+from .types.post_v1officers_create_request_role import PostV1OfficersCreateRequestRole
+from .types.post_v1officers_create_response import PostV1OfficersCreateResponse
+from .types.post_v1officers_delete_response import PostV1OfficersDeleteResponse
+from .types.post_v1officers_list_response import PostV1OfficersListResponse
+from .types.post_v1officers_update_request_role import PostV1OfficersUpdateRequestRole
+from .types.post_v1officers_update_response import PostV1OfficersUpdateResponse
 
 # this is used as the default value for optional parameters
 OMIT = typing.cast(typing.Any, ...)
@@ -131,7 +147,7 @@ class LedgerClient:
         code: str,
         name: str,
         type: PostV1LedgerAccountsCreateRequestType,
-        translations: typing.Optional[PostV1LedgerAccountsCreateRequestTranslations] = OMIT,
+        translations: typing.Optional[typing.Dict[str, PostV1LedgerAccountsCreateRequestTranslationsValue]] = OMIT,
         parent_id: typing.Optional[str] = OMIT,
         is_postable: typing.Optional[bool] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
@@ -145,7 +161,7 @@ class LedgerClient:
 
         type : PostV1LedgerAccountsCreateRequestType
 
-        translations : typing.Optional[PostV1LedgerAccountsCreateRequestTranslations]
+        translations : typing.Optional[typing.Dict[str, PostV1LedgerAccountsCreateRequestTranslationsValue]]
 
         parent_id : typing.Optional[str]
 
@@ -188,7 +204,9 @@ class LedgerClient:
         *,
         id: str,
         name: typing.Optional[str] = OMIT,
-        translations: typing.Optional[PostV1LedgerAccountsUpdateRequestTranslations] = OMIT,
+        translations: typing.Optional[
+            typing.Dict[str, typing.Optional[PostV1LedgerAccountsUpdateRequestTranslationsValue]]
+        ] = OMIT,
         parent_id: typing.Optional[str] = OMIT,
         is_postable: typing.Optional[bool] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
@@ -200,7 +218,7 @@ class LedgerClient:
 
         name : typing.Optional[str]
 
-        translations : typing.Optional[PostV1LedgerAccountsUpdateRequestTranslations]
+        translations : typing.Optional[typing.Dict[str, typing.Optional[PostV1LedgerAccountsUpdateRequestTranslationsValue]]]
 
         parent_id : typing.Optional[str]
 
@@ -259,6 +277,36 @@ class LedgerClient:
         client.ledger.post_v1ledger_accounts_apply_template()
         """
         _response = self._raw_client.post_v1ledger_accounts_apply_template(request_options=request_options)
+        return _response.data
+
+    def move_a_company_that_has_posted_nothing_yet_to_the_chart_of_accounts_of_its_country(
+        self, *, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1LedgerAccountsSwitchChartResponse:
+        """
+        Replaces the seeded chart with the chart template of the company country (the Romanian general chart for a company registered in Romania, the Lithuanian standard chart otherwise) and switches the posting defaults with it. Answers 409 when the company already uses that chart, has journal entries, holds accounts created by hand, or has settings that name an account the new chart does not have.
+
+        Parameters
+        ----------
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1LedgerAccountsSwitchChartResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.ledger.move_a_company_that_has_posted_nothing_yet_to_the_chart_of_accounts_of_its_country()
+        """
+        _response = self._raw_client.move_a_company_that_has_posted_nothing_yet_to_the_chart_of_accounts_of_its_country(
+            request_options=request_options
+        )
         return _response.data
 
     def post_v1ledger_periods_list(
@@ -779,6 +827,10 @@ class LedgerClient:
         shares_amount: typing.Optional[str] = OMIT,
         shares_type: typing.Optional[PostV1LedgerOwnersCreateRequestSharesType] = OMIT,
         shares_acquisition_date: typing.Optional[str] = OMIT,
+        withholding_tax_percent: typing.Optional[str] = OMIT,
+        partner_liability: typing.Optional[PostV1LedgerOwnersCreateRequestPartnerLiability] = OMIT,
+        special_balance_required: typing.Optional[bool] = OMIT,
+        supplementary_balance_required: typing.Optional[bool] = OMIT,
         address: typing.Optional[PostV1LedgerOwnersCreateRequestAddress] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1LedgerOwnersCreateResponse:
@@ -798,6 +850,14 @@ class LedgerClient:
         shares_type : typing.Optional[PostV1LedgerOwnersCreateRequestSharesType]
 
         shares_acquisition_date : typing.Optional[str]
+
+        withholding_tax_percent : typing.Optional[str]
+
+        partner_liability : typing.Optional[PostV1LedgerOwnersCreateRequestPartnerLiability]
+
+        special_balance_required : typing.Optional[bool]
+
+        supplementary_balance_required : typing.Optional[bool]
 
         address : typing.Optional[PostV1LedgerOwnersCreateRequestAddress]
 
@@ -828,6 +888,10 @@ class LedgerClient:
             shares_amount=shares_amount,
             shares_type=shares_type,
             shares_acquisition_date=shares_acquisition_date,
+            withholding_tax_percent=withholding_tax_percent,
+            partner_liability=partner_liability,
+            special_balance_required=special_balance_required,
+            supplementary_balance_required=supplementary_balance_required,
             address=address,
             request_options=request_options,
         )
@@ -844,6 +908,10 @@ class LedgerClient:
         shares_amount: typing.Optional[str] = OMIT,
         shares_type: typing.Optional[PostV1LedgerOwnersUpdateRequestSharesType] = OMIT,
         shares_acquisition_date: typing.Optional[str] = OMIT,
+        withholding_tax_percent: typing.Optional[str] = OMIT,
+        partner_liability: typing.Optional[PostV1LedgerOwnersUpdateRequestPartnerLiability] = OMIT,
+        special_balance_required: typing.Optional[bool] = OMIT,
+        supplementary_balance_required: typing.Optional[bool] = OMIT,
         address: typing.Optional[PostV1LedgerOwnersUpdateRequestAddress] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1LedgerOwnersUpdateResponse:
@@ -865,6 +933,14 @@ class LedgerClient:
         shares_type : typing.Optional[PostV1LedgerOwnersUpdateRequestSharesType]
 
         shares_acquisition_date : typing.Optional[str]
+
+        withholding_tax_percent : typing.Optional[str]
+
+        partner_liability : typing.Optional[PostV1LedgerOwnersUpdateRequestPartnerLiability]
+
+        special_balance_required : typing.Optional[bool]
+
+        supplementary_balance_required : typing.Optional[bool]
 
         address : typing.Optional[PostV1LedgerOwnersUpdateRequestAddress]
 
@@ -896,6 +972,10 @@ class LedgerClient:
             shares_amount=shares_amount,
             shares_type=shares_type,
             shares_acquisition_date=shares_acquisition_date,
+            withholding_tax_percent=withholding_tax_percent,
+            partner_liability=partner_liability,
+            special_balance_required=special_balance_required,
+            supplementary_balance_required=supplementary_balance_required,
             address=address,
             request_options=request_options,
         )
@@ -1056,6 +1136,314 @@ class LedgerClient:
         )
         return _response.data
 
+    def national_statement_layouts_available_to_the_company(
+        self, *, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1LedgerStatementRowsSchemesResponse:
+        """
+        The rows or codes of each return or registry deposit of the company country that are filled from account balances. Accounts fall into a row by the layout defaults for the standard chart of accounts unless mapped under Settings → Statement rows.
+
+        Parameters
+        ----------
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1LedgerStatementRowsSchemesResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.ledger.national_statement_layouts_available_to_the_company()
+        """
+        _response = self._raw_client.national_statement_layouts_available_to_the_company(
+            request_options=request_options
+        )
+        return _response.data
+
+    def accounts_placed_on_the_rows_of_a_statement_layout_with_the_row_totals_of_a_period(
+        self,
+        *,
+        scheme: str,
+        from_date: typing.Optional[str] = OMIT,
+        to_date: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1LedgerStatementRowsListResponse:
+        """
+        Parameters
+        ----------
+        scheme : str
+
+        from_date : typing.Optional[str]
+
+        to_date : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1LedgerStatementRowsListResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.ledger.accounts_placed_on_the_rows_of_a_statement_layout_with_the_row_totals_of_a_period(
+            scheme="scheme",
+        )
+        """
+        _response = self._raw_client.accounts_placed_on_the_rows_of_a_statement_layout_with_the_row_totals_of_a_period(
+            scheme=scheme, from_date=from_date, to_date=to_date, request_options=request_options
+        )
+        return _response.data
+
+    def map_an_account_or_an_account_code_prefix_to_a_row_of_a_statement_layout(
+        self,
+        *,
+        scheme: str,
+        account_code: str,
+        row_code: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1LedgerStatementRowsSetResponse:
+        """
+        A mapping on a code prefix covers every account whose code starts with it; the longest matching prefix wins. An empty rowCode removes the mapping so the layout default applies again.
+
+        Parameters
+        ----------
+        scheme : str
+
+        account_code : str
+
+        row_code : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1LedgerStatementRowsSetResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.ledger.map_an_account_or_an_account_code_prefix_to_a_row_of_a_statement_layout(
+            scheme="scheme",
+            account_code="accountCode",
+        )
+        """
+        _response = self._raw_client.map_an_account_or_an_account_code_prefix_to_a_row_of_a_statement_layout(
+            scheme=scheme, account_code=account_code, row_code=row_code, request_options=request_options
+        )
+        return _response.data
+
+    def officers_of_the_company(
+        self, *, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1OfficersListResponse:
+        """
+        Directors, board members, the company secretary, representatives and liquidators, with their personal identifier, appointment and resignation dates and whether they sign the annual accounts. Annual returns and registry deposits are built from this register.
+
+        Parameters
+        ----------
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1OfficersListResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.ledger.officers_of_the_company()
+        """
+        _response = self._raw_client.officers_of_the_company(request_options=request_options)
+        return _response.data
+
+    def record_an_officer_of_the_company(
+        self,
+        *,
+        name: str,
+        role: PostV1OfficersCreateRequestRole,
+        personal_code: typing.Optional[str] = OMIT,
+        birth_date: typing.Optional[str] = OMIT,
+        appointed_on: typing.Optional[str] = OMIT,
+        power_notary: typing.Optional[str] = OMIT,
+        resigned_on: typing.Optional[str] = OMIT,
+        signs_accounts: typing.Optional[bool] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1OfficersCreateResponse:
+        """
+        Parameters
+        ----------
+        name : str
+
+        role : PostV1OfficersCreateRequestRole
+
+        personal_code : typing.Optional[str]
+
+        birth_date : typing.Optional[str]
+
+        appointed_on : typing.Optional[str]
+
+        power_notary : typing.Optional[str]
+
+        resigned_on : typing.Optional[str]
+
+        signs_accounts : typing.Optional[bool]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1OfficersCreateResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.ledger.record_an_officer_of_the_company(
+            name="name",
+            role="director",
+        )
+        """
+        _response = self._raw_client.record_an_officer_of_the_company(
+            name=name,
+            role=role,
+            personal_code=personal_code,
+            birth_date=birth_date,
+            appointed_on=appointed_on,
+            power_notary=power_notary,
+            resigned_on=resigned_on,
+            signs_accounts=signs_accounts,
+            request_options=request_options,
+        )
+        return _response.data
+
+    def change_a_recorded_officer(
+        self,
+        *,
+        id: str,
+        name: str,
+        role: PostV1OfficersUpdateRequestRole,
+        personal_code: typing.Optional[str] = OMIT,
+        birth_date: typing.Optional[str] = OMIT,
+        appointed_on: typing.Optional[str] = OMIT,
+        power_notary: typing.Optional[str] = OMIT,
+        resigned_on: typing.Optional[str] = OMIT,
+        signs_accounts: typing.Optional[bool] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1OfficersUpdateResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        name : str
+
+        role : PostV1OfficersUpdateRequestRole
+
+        personal_code : typing.Optional[str]
+
+        birth_date : typing.Optional[str]
+
+        appointed_on : typing.Optional[str]
+
+        power_notary : typing.Optional[str]
+
+        resigned_on : typing.Optional[str]
+
+        signs_accounts : typing.Optional[bool]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1OfficersUpdateResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.ledger.change_a_recorded_officer(
+            id="id",
+            name="name",
+            role="director",
+        )
+        """
+        _response = self._raw_client.change_a_recorded_officer(
+            id=id,
+            name=name,
+            role=role,
+            personal_code=personal_code,
+            birth_date=birth_date,
+            appointed_on=appointed_on,
+            power_notary=power_notary,
+            resigned_on=resigned_on,
+            signs_accounts=signs_accounts,
+            request_options=request_options,
+        )
+        return _response.data
+
+    def remove_a_recorded_officer(
+        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1OfficersDeleteResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1OfficersDeleteResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.ledger.remove_a_recorded_officer(
+            id="id",
+        )
+        """
+        _response = self._raw_client.remove_a_recorded_officer(id=id, request_options=request_options)
+        return _response.data
+
 
 class AsyncLedgerClient:
     def __init__(self, *, client_wrapper: AsyncClientWrapper):
@@ -1132,7 +1520,7 @@ class AsyncLedgerClient:
         code: str,
         name: str,
         type: PostV1LedgerAccountsCreateRequestType,
-        translations: typing.Optional[PostV1LedgerAccountsCreateRequestTranslations] = OMIT,
+        translations: typing.Optional[typing.Dict[str, PostV1LedgerAccountsCreateRequestTranslationsValue]] = OMIT,
         parent_id: typing.Optional[str] = OMIT,
         is_postable: typing.Optional[bool] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
@@ -1146,7 +1534,7 @@ class AsyncLedgerClient:
 
         type : PostV1LedgerAccountsCreateRequestType
 
-        translations : typing.Optional[PostV1LedgerAccountsCreateRequestTranslations]
+        translations : typing.Optional[typing.Dict[str, PostV1LedgerAccountsCreateRequestTranslationsValue]]
 
         parent_id : typing.Optional[str]
 
@@ -1197,7 +1585,9 @@ class AsyncLedgerClient:
         *,
         id: str,
         name: typing.Optional[str] = OMIT,
-        translations: typing.Optional[PostV1LedgerAccountsUpdateRequestTranslations] = OMIT,
+        translations: typing.Optional[
+            typing.Dict[str, typing.Optional[PostV1LedgerAccountsUpdateRequestTranslationsValue]]
+        ] = OMIT,
         parent_id: typing.Optional[str] = OMIT,
         is_postable: typing.Optional[bool] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
@@ -1209,7 +1599,7 @@ class AsyncLedgerClient:
 
         name : typing.Optional[str]
 
-        translations : typing.Optional[PostV1LedgerAccountsUpdateRequestTranslations]
+        translations : typing.Optional[typing.Dict[str, typing.Optional[PostV1LedgerAccountsUpdateRequestTranslationsValue]]]
 
         parent_id : typing.Optional[str]
 
@@ -1284,6 +1674,46 @@ class AsyncLedgerClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.post_v1ledger_accounts_apply_template(request_options=request_options)
+        return _response.data
+
+    async def move_a_company_that_has_posted_nothing_yet_to_the_chart_of_accounts_of_its_country(
+        self, *, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1LedgerAccountsSwitchChartResponse:
+        """
+        Replaces the seeded chart with the chart template of the company country (the Romanian general chart for a company registered in Romania, the Lithuanian standard chart otherwise) and switches the posting defaults with it. Answers 409 when the company already uses that chart, has journal entries, holds accounts created by hand, or has settings that name an account the new chart does not have.
+
+        Parameters
+        ----------
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1LedgerAccountsSwitchChartResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.ledger.move_a_company_that_has_posted_nothing_yet_to_the_chart_of_accounts_of_its_country()
+
+
+        asyncio.run(main())
+        """
+        _response = (
+            await self._raw_client.move_a_company_that_has_posted_nothing_yet_to_the_chart_of_accounts_of_its_country(
+                request_options=request_options
+            )
+        )
         return _response.data
 
     async def post_v1ledger_periods_list(
@@ -1914,6 +2344,10 @@ class AsyncLedgerClient:
         shares_amount: typing.Optional[str] = OMIT,
         shares_type: typing.Optional[PostV1LedgerOwnersCreateRequestSharesType] = OMIT,
         shares_acquisition_date: typing.Optional[str] = OMIT,
+        withholding_tax_percent: typing.Optional[str] = OMIT,
+        partner_liability: typing.Optional[PostV1LedgerOwnersCreateRequestPartnerLiability] = OMIT,
+        special_balance_required: typing.Optional[bool] = OMIT,
+        supplementary_balance_required: typing.Optional[bool] = OMIT,
         address: typing.Optional[PostV1LedgerOwnersCreateRequestAddress] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1LedgerOwnersCreateResponse:
@@ -1933,6 +2367,14 @@ class AsyncLedgerClient:
         shares_type : typing.Optional[PostV1LedgerOwnersCreateRequestSharesType]
 
         shares_acquisition_date : typing.Optional[str]
+
+        withholding_tax_percent : typing.Optional[str]
+
+        partner_liability : typing.Optional[PostV1LedgerOwnersCreateRequestPartnerLiability]
+
+        special_balance_required : typing.Optional[bool]
+
+        supplementary_balance_required : typing.Optional[bool]
 
         address : typing.Optional[PostV1LedgerOwnersCreateRequestAddress]
 
@@ -1971,6 +2413,10 @@ class AsyncLedgerClient:
             shares_amount=shares_amount,
             shares_type=shares_type,
             shares_acquisition_date=shares_acquisition_date,
+            withholding_tax_percent=withholding_tax_percent,
+            partner_liability=partner_liability,
+            special_balance_required=special_balance_required,
+            supplementary_balance_required=supplementary_balance_required,
             address=address,
             request_options=request_options,
         )
@@ -1987,6 +2433,10 @@ class AsyncLedgerClient:
         shares_amount: typing.Optional[str] = OMIT,
         shares_type: typing.Optional[PostV1LedgerOwnersUpdateRequestSharesType] = OMIT,
         shares_acquisition_date: typing.Optional[str] = OMIT,
+        withholding_tax_percent: typing.Optional[str] = OMIT,
+        partner_liability: typing.Optional[PostV1LedgerOwnersUpdateRequestPartnerLiability] = OMIT,
+        special_balance_required: typing.Optional[bool] = OMIT,
+        supplementary_balance_required: typing.Optional[bool] = OMIT,
         address: typing.Optional[PostV1LedgerOwnersUpdateRequestAddress] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1LedgerOwnersUpdateResponse:
@@ -2008,6 +2458,14 @@ class AsyncLedgerClient:
         shares_type : typing.Optional[PostV1LedgerOwnersUpdateRequestSharesType]
 
         shares_acquisition_date : typing.Optional[str]
+
+        withholding_tax_percent : typing.Optional[str]
+
+        partner_liability : typing.Optional[PostV1LedgerOwnersUpdateRequestPartnerLiability]
+
+        special_balance_required : typing.Optional[bool]
+
+        supplementary_balance_required : typing.Optional[bool]
 
         address : typing.Optional[PostV1LedgerOwnersUpdateRequestAddress]
 
@@ -2047,6 +2505,10 @@ class AsyncLedgerClient:
             shares_amount=shares_amount,
             shares_type=shares_type,
             shares_acquisition_date=shares_acquisition_date,
+            withholding_tax_percent=withholding_tax_percent,
+            partner_liability=partner_liability,
+            special_balance_required=special_balance_required,
+            supplementary_balance_required=supplementary_balance_required,
             address=address,
             request_options=request_options,
         )
@@ -2239,4 +2701,370 @@ class AsyncLedgerClient:
         _response = await self._raw_client.post_v1ledger_journal_transactions_create(
             date=date, entries=entries, description=description, request_options=request_options
         )
+        return _response.data
+
+    async def national_statement_layouts_available_to_the_company(
+        self, *, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1LedgerStatementRowsSchemesResponse:
+        """
+        The rows or codes of each return or registry deposit of the company country that are filled from account balances. Accounts fall into a row by the layout defaults for the standard chart of accounts unless mapped under Settings → Statement rows.
+
+        Parameters
+        ----------
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1LedgerStatementRowsSchemesResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.ledger.national_statement_layouts_available_to_the_company()
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.national_statement_layouts_available_to_the_company(
+            request_options=request_options
+        )
+        return _response.data
+
+    async def accounts_placed_on_the_rows_of_a_statement_layout_with_the_row_totals_of_a_period(
+        self,
+        *,
+        scheme: str,
+        from_date: typing.Optional[str] = OMIT,
+        to_date: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1LedgerStatementRowsListResponse:
+        """
+        Parameters
+        ----------
+        scheme : str
+
+        from_date : typing.Optional[str]
+
+        to_date : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1LedgerStatementRowsListResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.ledger.accounts_placed_on_the_rows_of_a_statement_layout_with_the_row_totals_of_a_period(
+                scheme="scheme",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = (
+            await self._raw_client.accounts_placed_on_the_rows_of_a_statement_layout_with_the_row_totals_of_a_period(
+                scheme=scheme, from_date=from_date, to_date=to_date, request_options=request_options
+            )
+        )
+        return _response.data
+
+    async def map_an_account_or_an_account_code_prefix_to_a_row_of_a_statement_layout(
+        self,
+        *,
+        scheme: str,
+        account_code: str,
+        row_code: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1LedgerStatementRowsSetResponse:
+        """
+        A mapping on a code prefix covers every account whose code starts with it; the longest matching prefix wins. An empty rowCode removes the mapping so the layout default applies again.
+
+        Parameters
+        ----------
+        scheme : str
+
+        account_code : str
+
+        row_code : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1LedgerStatementRowsSetResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.ledger.map_an_account_or_an_account_code_prefix_to_a_row_of_a_statement_layout(
+                scheme="scheme",
+                account_code="accountCode",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.map_an_account_or_an_account_code_prefix_to_a_row_of_a_statement_layout(
+            scheme=scheme, account_code=account_code, row_code=row_code, request_options=request_options
+        )
+        return _response.data
+
+    async def officers_of_the_company(
+        self, *, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1OfficersListResponse:
+        """
+        Directors, board members, the company secretary, representatives and liquidators, with their personal identifier, appointment and resignation dates and whether they sign the annual accounts. Annual returns and registry deposits are built from this register.
+
+        Parameters
+        ----------
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1OfficersListResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.ledger.officers_of_the_company()
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.officers_of_the_company(request_options=request_options)
+        return _response.data
+
+    async def record_an_officer_of_the_company(
+        self,
+        *,
+        name: str,
+        role: PostV1OfficersCreateRequestRole,
+        personal_code: typing.Optional[str] = OMIT,
+        birth_date: typing.Optional[str] = OMIT,
+        appointed_on: typing.Optional[str] = OMIT,
+        power_notary: typing.Optional[str] = OMIT,
+        resigned_on: typing.Optional[str] = OMIT,
+        signs_accounts: typing.Optional[bool] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1OfficersCreateResponse:
+        """
+        Parameters
+        ----------
+        name : str
+
+        role : PostV1OfficersCreateRequestRole
+
+        personal_code : typing.Optional[str]
+
+        birth_date : typing.Optional[str]
+
+        appointed_on : typing.Optional[str]
+
+        power_notary : typing.Optional[str]
+
+        resigned_on : typing.Optional[str]
+
+        signs_accounts : typing.Optional[bool]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1OfficersCreateResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.ledger.record_an_officer_of_the_company(
+                name="name",
+                role="director",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.record_an_officer_of_the_company(
+            name=name,
+            role=role,
+            personal_code=personal_code,
+            birth_date=birth_date,
+            appointed_on=appointed_on,
+            power_notary=power_notary,
+            resigned_on=resigned_on,
+            signs_accounts=signs_accounts,
+            request_options=request_options,
+        )
+        return _response.data
+
+    async def change_a_recorded_officer(
+        self,
+        *,
+        id: str,
+        name: str,
+        role: PostV1OfficersUpdateRequestRole,
+        personal_code: typing.Optional[str] = OMIT,
+        birth_date: typing.Optional[str] = OMIT,
+        appointed_on: typing.Optional[str] = OMIT,
+        power_notary: typing.Optional[str] = OMIT,
+        resigned_on: typing.Optional[str] = OMIT,
+        signs_accounts: typing.Optional[bool] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1OfficersUpdateResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        name : str
+
+        role : PostV1OfficersUpdateRequestRole
+
+        personal_code : typing.Optional[str]
+
+        birth_date : typing.Optional[str]
+
+        appointed_on : typing.Optional[str]
+
+        power_notary : typing.Optional[str]
+
+        resigned_on : typing.Optional[str]
+
+        signs_accounts : typing.Optional[bool]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1OfficersUpdateResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.ledger.change_a_recorded_officer(
+                id="id",
+                name="name",
+                role="director",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.change_a_recorded_officer(
+            id=id,
+            name=name,
+            role=role,
+            personal_code=personal_code,
+            birth_date=birth_date,
+            appointed_on=appointed_on,
+            power_notary=power_notary,
+            resigned_on=resigned_on,
+            signs_accounts=signs_accounts,
+            request_options=request_options,
+        )
+        return _response.data
+
+    async def remove_a_recorded_officer(
+        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1OfficersDeleteResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1OfficersDeleteResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.ledger.remove_a_recorded_officer(
+                id="id",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.remove_a_recorded_officer(id=id, request_options=request_options)
         return _response.data

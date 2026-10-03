@@ -75,6 +75,11 @@ class RawPurchasesClient:
         purchase_order_id: typing.Optional[str] = OMIT,
         operation_type_id: typing.Optional[str] = OMIT,
         notes: typing.Optional[str] = OMIT,
+        intrastat_transport_mode: typing.Optional[str] = OMIT,
+        intrastat_delivery_terms: typing.Optional[str] = OMIT,
+        intrastat_region: typing.Optional[str] = OMIT,
+        intrastat_nature_of_transaction: typing.Optional[str] = OMIT,
+        einvoice_number: typing.Optional[str] = OMIT,
         document_ref: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[PostV1PurchasesInvoicesCreateResponse]:
@@ -103,6 +108,16 @@ class RawPurchasesClient:
 
         notes : typing.Optional[str]
 
+        intrastat_transport_mode : typing.Optional[str]
+
+        intrastat_delivery_terms : typing.Optional[str]
+
+        intrastat_region : typing.Optional[str]
+
+        intrastat_nature_of_transaction : typing.Optional[str]
+
+        einvoice_number : typing.Optional[str]
+
         document_ref : typing.Optional[str]
 
         request_options : typing.Optional[RequestOptions]
@@ -127,6 +142,11 @@ class RawPurchasesClient:
                 "purchaseOrderId": purchase_order_id,
                 "operationTypeId": operation_type_id,
                 "notes": notes,
+                "intrastatTransportMode": intrastat_transport_mode,
+                "intrastatDeliveryTerms": intrastat_delivery_terms,
+                "intrastatRegion": intrastat_region,
+                "intrastatNatureOfTransaction": intrastat_nature_of_transaction,
+                "einvoiceNumber": einvoice_number,
                 "documentRef": document_ref,
                 "lines": convert_and_respect_annotation_metadata(
                     object_=lines,
@@ -394,6 +414,11 @@ class RawPurchasesClient:
         purchase_order_id: typing.Optional[str] = OMIT,
         operation_type_id: typing.Optional[str] = OMIT,
         notes: typing.Optional[str] = OMIT,
+        intrastat_transport_mode: typing.Optional[str] = OMIT,
+        intrastat_delivery_terms: typing.Optional[str] = OMIT,
+        intrastat_region: typing.Optional[str] = OMIT,
+        intrastat_nature_of_transaction: typing.Optional[str] = OMIT,
+        einvoice_number: typing.Optional[str] = OMIT,
         lines: typing.Optional[typing.Sequence[PostV1PurchasesInvoicesUpdateRequestLinesItem]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[PostV1PurchasesInvoicesUpdateResponse]:
@@ -418,6 +443,16 @@ class RawPurchasesClient:
 
         notes : typing.Optional[str]
 
+        intrastat_transport_mode : typing.Optional[str]
+
+        intrastat_delivery_terms : typing.Optional[str]
+
+        intrastat_region : typing.Optional[str]
+
+        intrastat_nature_of_transaction : typing.Optional[str]
+
+        einvoice_number : typing.Optional[str]
+
         lines : typing.Optional[typing.Sequence[PostV1PurchasesInvoicesUpdateRequestLinesItem]]
 
         request_options : typing.Optional[RequestOptions]
@@ -441,6 +476,11 @@ class RawPurchasesClient:
                 "purchaseOrderId": purchase_order_id,
                 "operationTypeId": operation_type_id,
                 "notes": notes,
+                "intrastatTransportMode": intrastat_transport_mode,
+                "intrastatDeliveryTerms": intrastat_delivery_terms,
+                "intrastatRegion": intrastat_region,
+                "intrastatNatureOfTransaction": intrastat_nature_of_transaction,
+                "einvoiceNumber": einvoice_number,
                 "lines": convert_and_respect_annotation_metadata(
                     object_=lines,
                     annotation=typing.Sequence[PostV1PurchasesInvoicesUpdateRequestLinesItem],
@@ -3088,6 +3128,11 @@ class AsyncRawPurchasesClient:
         purchase_order_id: typing.Optional[str] = OMIT,
         operation_type_id: typing.Optional[str] = OMIT,
         notes: typing.Optional[str] = OMIT,
+        intrastat_transport_mode: typing.Optional[str] = OMIT,
+        intrastat_delivery_terms: typing.Optional[str] = OMIT,
+        intrastat_region: typing.Optional[str] = OMIT,
+        intrastat_nature_of_transaction: typing.Optional[str] = OMIT,
+        einvoice_number: typing.Optional[str] = OMIT,
         document_ref: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[PostV1PurchasesInvoicesCreateResponse]:
@@ -3116,6 +3161,16 @@ class AsyncRawPurchasesClient:
 
         notes : typing.Optional[str]
 
+        intrastat_transport_mode : typing.Optional[str]
+
+        intrastat_delivery_terms : typing.Optional[str]
+
+        intrastat_region : typing.Optional[str]
+
+        intrastat_nature_of_transaction : typing.Optional[str]
+
+        einvoice_number : typing.Optional[str]
+
         document_ref : typing.Optional[str]
 
         request_options : typing.Optional[RequestOptions]
@@ -3140,6 +3195,11 @@ class AsyncRawPurchasesClient:
                 "purchaseOrderId": purchase_order_id,
                 "operationTypeId": operation_type_id,
                 "notes": notes,
+                "intrastatTransportMode": intrastat_transport_mode,
+                "intrastatDeliveryTerms": intrastat_delivery_terms,
+                "intrastatRegion": intrastat_region,
+                "intrastatNatureOfTransaction": intrastat_nature_of_transaction,
+                "einvoiceNumber": einvoice_number,
                 "documentRef": document_ref,
                 "lines": convert_and_respect_annotation_metadata(
                     object_=lines,
@@ -3407,6 +3467,11 @@ class AsyncRawPurchasesClient:
         purchase_order_id: typing.Optional[str] = OMIT,
         operation_type_id: typing.Optional[str] = OMIT,
         notes: typing.Optional[str] = OMIT,
+        intrastat_transport_mode: typing.Optional[str] = OMIT,
+        intrastat_delivery_terms: typing.Optional[str] = OMIT,
+        intrastat_region: typing.Optional[str] = OMIT,
+        intrastat_nature_of_transaction: typing.Optional[str] = OMIT,
+        einvoice_number: typing.Optional[str] = OMIT,
         lines: typing.Optional[typing.Sequence[PostV1PurchasesInvoicesUpdateRequestLinesItem]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[PostV1PurchasesInvoicesUpdateResponse]:
@@ -3431,6 +3496,16 @@ class AsyncRawPurchasesClient:
 
         notes : typing.Optional[str]
 
+        intrastat_transport_mode : typing.Optional[str]
+
+        intrastat_delivery_terms : typing.Optional[str]
+
+        intrastat_region : typing.Optional[str]
+
+        intrastat_nature_of_transaction : typing.Optional[str]
+
+        einvoice_number : typing.Optional[str]
+
         lines : typing.Optional[typing.Sequence[PostV1PurchasesInvoicesUpdateRequestLinesItem]]
 
         request_options : typing.Optional[RequestOptions]
@@ -3454,6 +3529,11 @@ class AsyncRawPurchasesClient:
                 "purchaseOrderId": purchase_order_id,
                 "operationTypeId": operation_type_id,
                 "notes": notes,
+                "intrastatTransportMode": intrastat_transport_mode,
+                "intrastatDeliveryTerms": intrastat_delivery_terms,
+                "intrastatRegion": intrastat_region,
+                "intrastatNatureOfTransaction": intrastat_nature_of_transaction,
+                "einvoiceNumber": einvoice_number,
                 "lines": convert_and_respect_annotation_metadata(
                     object_=lines,
                     annotation=typing.Sequence[PostV1PurchasesInvoicesUpdateRequestLinesItem],

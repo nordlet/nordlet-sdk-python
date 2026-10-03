@@ -3,7 +3,9 @@
 import typing
 
 import pydantic
+import typing_extensions
 from ...core.pydantic_utilities import IS_PYDANTIC_V2, UniversalBaseModel
+from ...core.serialization import FieldMetadata
 from .post_v1declarations_configs_update_response_endpoints_item import (
     PostV1DeclarationsConfigsUpdateResponseEndpointsItem,
 )
@@ -17,6 +19,9 @@ class PostV1DeclarationsConfigsUpdateResponse(UniversalBaseModel):
     fields: typing.List[PostV1DeclarationsConfigsUpdateResponseFieldsItem]
     endpoints: typing.Optional[typing.List[PostV1DeclarationsConfigsUpdateResponseEndpointsItem]] = None
     values: typing.Dict[str, str]
+    accepts_certificate: typing_extensions.Annotated[
+        bool, FieldMetadata(alias="acceptsCertificate"), pydantic.Field(alias="acceptsCertificate")
+    ]
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

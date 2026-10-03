@@ -58,6 +58,7 @@ from .types.post_v1sales_invoices_create_request_vat_scheme import PostV1SalesIn
 from .types.post_v1sales_invoices_create_response import PostV1SalesInvoicesCreateResponse
 from .types.post_v1sales_invoices_delete_response import PostV1SalesInvoicesDeleteResponse
 from .types.post_v1sales_invoices_einvoice_send_response import PostV1SalesInvoicesEinvoiceSendResponse
+from .types.post_v1sales_invoices_einvoice_status_response import PostV1SalesInvoicesEinvoiceStatusResponse
 from .types.post_v1sales_invoices_einvoice_xml_response import PostV1SalesInvoicesEinvoiceXmlResponse
 from .types.post_v1sales_invoices_get_response import PostV1SalesInvoicesGetResponse
 from .types.post_v1sales_invoices_issue_response import PostV1SalesInvoicesIssueResponse
@@ -127,7 +128,12 @@ class RawSalesClient:
         issue_date: typing.Optional[str] = OMIT,
         due_date: typing.Optional[str] = OMIT,
         credited_invoice_id: typing.Optional[str] = OMIT,
+        agreement_id: typing.Optional[str] = OMIT,
         vat_scheme: typing.Optional[PostV1SalesInvoicesCreateRequestVatScheme] = OMIT,
+        intrastat_transport_mode: typing.Optional[str] = OMIT,
+        intrastat_delivery_terms: typing.Optional[str] = OMIT,
+        intrastat_region: typing.Optional[str] = OMIT,
+        intrastat_nature_of_transaction: typing.Optional[str] = OMIT,
         vat_country_code: typing.Optional[str] = OMIT,
         deemed_supplier: typing.Optional[bool] = OMIT,
         notes: typing.Optional[str] = OMIT,
@@ -160,7 +166,17 @@ class RawSalesClient:
 
         credited_invoice_id : typing.Optional[str]
 
+        agreement_id : typing.Optional[str]
+
         vat_scheme : typing.Optional[PostV1SalesInvoicesCreateRequestVatScheme]
+
+        intrastat_transport_mode : typing.Optional[str]
+
+        intrastat_delivery_terms : typing.Optional[str]
+
+        intrastat_region : typing.Optional[str]
+
+        intrastat_nature_of_transaction : typing.Optional[str]
 
         vat_country_code : typing.Optional[str]
 
@@ -206,7 +222,12 @@ class RawSalesClient:
                 "issueDate": issue_date,
                 "dueDate": due_date,
                 "creditedInvoiceId": credited_invoice_id,
+                "agreementId": agreement_id,
                 "vatScheme": vat_scheme,
+                "intrastatTransportMode": intrastat_transport_mode,
+                "intrastatDeliveryTerms": intrastat_delivery_terms,
+                "intrastatRegion": intrastat_region,
+                "intrastatNatureOfTransaction": intrastat_nature_of_transaction,
                 "vatCountryCode": vat_country_code,
                 "deemedSupplier": deemed_supplier,
                 "notes": notes,
@@ -1173,7 +1194,7 @@ class RawSalesClient:
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> HttpResponse[PostV1SalesInvoicesEinvoiceSendResponse]:
         """
-        Build the national e-invoicing payload and deliver it to the bridge endpoint configured for the country gateway in compliance settings. The bridge (an accredited intermediary or connector) handles the certified national channel - SdI accreditation, KSeF sessions or ANAF SPV OAuth.
+        Build the national e-invoicing payload and deliver it over the transport configured for the country gateway in compliance settings. With transport=direct the request talks to the tax authority itself - SdICoop over 2-way TLS for Italy, a KSeF session for Poland, ANAF SPV OAuth for Romania - and returns the national number as soon as the channel assigns one. With transport=bridge the payload goes to the configured bridge endpoint (an accredited intermediary or connector) instead.
 
         Parameters
         ----------
@@ -1306,15 +1327,157 @@ class RawSalesClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
+    def post_v1sales_invoices_einvoice_status(
+        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> HttpResponse[PostV1SalesInvoicesEinvoiceStatusResponse]:
+        """
+        Ask the national e-invoicing channel what happened to an invoice that was already sent, and store the answer. Italy, Poland and Romania return the outcome only on request - none of them calls back - so this is the way the national number and any rejection reason reach the invoice.
+
+        Parameters
+        ----------
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        HttpResponse[PostV1SalesInvoicesEinvoiceStatusResponse]
+            Default Response
+        """
+        _response = self._client_wrapper.httpx_client.request(
+            "v1/sales/invoices/einvoice-status",
+            method="POST",
+            json={
+                "id": id,
+            },
+            headers={
+                "content-type": "application/json",
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    PostV1SalesInvoicesEinvoiceStatusResponse,
+                    parse_obj_as(
+                        type_=PostV1SalesInvoicesEinvoiceStatusResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return HttpResponse(response=_response, data=_data)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 422:
+                raise UnprocessableEntityError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
     def post_v1sales_invoices_update(
         self,
         *,
         id: str,
         partner_id: typing.Optional[str] = OMIT,
+        agreement_id: typing.Optional[str] = OMIT,
         currency: typing.Optional[str] = OMIT,
         issue_date: typing.Optional[str] = OMIT,
         due_date: typing.Optional[str] = OMIT,
         vat_scheme: typing.Optional[PostV1SalesInvoicesUpdateRequestVatScheme] = OMIT,
+        intrastat_transport_mode: typing.Optional[str] = OMIT,
+        intrastat_delivery_terms: typing.Optional[str] = OMIT,
+        intrastat_region: typing.Optional[str] = OMIT,
+        intrastat_nature_of_transaction: typing.Optional[str] = OMIT,
         vat_country_code: typing.Optional[str] = OMIT,
         deemed_supplier: typing.Optional[bool] = OMIT,
         notes: typing.Optional[str] = OMIT,
@@ -1337,6 +1500,8 @@ class RawSalesClient:
 
         partner_id : typing.Optional[str]
 
+        agreement_id : typing.Optional[str]
+
         currency : typing.Optional[str]
 
         issue_date : typing.Optional[str]
@@ -1344,6 +1509,14 @@ class RawSalesClient:
         due_date : typing.Optional[str]
 
         vat_scheme : typing.Optional[PostV1SalesInvoicesUpdateRequestVatScheme]
+
+        intrastat_transport_mode : typing.Optional[str]
+
+        intrastat_delivery_terms : typing.Optional[str]
+
+        intrastat_region : typing.Optional[str]
+
+        intrastat_nature_of_transaction : typing.Optional[str]
 
         vat_country_code : typing.Optional[str]
 
@@ -1385,10 +1558,15 @@ class RawSalesClient:
             json={
                 "id": id,
                 "partnerId": partner_id,
+                "agreementId": agreement_id,
                 "currency": currency,
                 "issueDate": issue_date,
                 "dueDate": due_date,
                 "vatScheme": vat_scheme,
+                "intrastatTransportMode": intrastat_transport_mode,
+                "intrastatDeliveryTerms": intrastat_delivery_terms,
+                "intrastatRegion": intrastat_region,
+                "intrastatNatureOfTransaction": intrastat_nature_of_transaction,
                 "vatCountryCode": vat_country_code,
                 "deemedSupplier": deemed_supplier,
                 "notes": notes,
@@ -4932,6 +5110,8 @@ class RawSalesClient:
         operation_type_id: typing.Optional[str] = OMIT,
         number_length: typing.Optional[int] = OMIT,
         next_number: typing.Optional[int] = OMIT,
+        allocated_from: typing.Optional[int] = OMIT,
+        allocated_to: typing.Optional[int] = OMIT,
         warehouse_id: typing.Optional[str] = OMIT,
         print_series: typing.Optional[bool] = OMIT,
         is_default: typing.Optional[bool] = OMIT,
@@ -4954,6 +5134,10 @@ class RawSalesClient:
         number_length : typing.Optional[int]
 
         next_number : typing.Optional[int]
+
+        allocated_from : typing.Optional[int]
+
+        allocated_to : typing.Optional[int]
 
         warehouse_id : typing.Optional[str]
 
@@ -4982,6 +5166,8 @@ class RawSalesClient:
                 "operationTypeId": operation_type_id,
                 "numberLength": number_length,
                 "nextNumber": next_number,
+                "allocatedFrom": allocated_from,
+                "allocatedTo": allocated_to,
                 "warehouseId": warehouse_id,
                 "printSeries": print_series,
                 "isDefault": is_default,
@@ -5111,6 +5297,8 @@ class RawSalesClient:
         operation_type_id: typing.Optional[str] = OMIT,
         number_length: typing.Optional[int] = OMIT,
         next_number: typing.Optional[int] = OMIT,
+        allocated_from: typing.Optional[int] = OMIT,
+        allocated_to: typing.Optional[int] = OMIT,
         warehouse_id: typing.Optional[str] = OMIT,
         print_series: typing.Optional[bool] = OMIT,
         is_default: typing.Optional[bool] = OMIT,
@@ -5135,6 +5323,10 @@ class RawSalesClient:
         number_length : typing.Optional[int]
 
         next_number : typing.Optional[int]
+
+        allocated_from : typing.Optional[int]
+
+        allocated_to : typing.Optional[int]
 
         warehouse_id : typing.Optional[str]
 
@@ -5164,6 +5356,8 @@ class RawSalesClient:
                 "operationTypeId": operation_type_id,
                 "numberLength": number_length,
                 "nextNumber": next_number,
+                "allocatedFrom": allocated_from,
+                "allocatedTo": allocated_to,
                 "warehouseId": warehouse_id,
                 "printSeries": print_series,
                 "isDefault": is_default,
@@ -6922,7 +7116,12 @@ class AsyncRawSalesClient:
         issue_date: typing.Optional[str] = OMIT,
         due_date: typing.Optional[str] = OMIT,
         credited_invoice_id: typing.Optional[str] = OMIT,
+        agreement_id: typing.Optional[str] = OMIT,
         vat_scheme: typing.Optional[PostV1SalesInvoicesCreateRequestVatScheme] = OMIT,
+        intrastat_transport_mode: typing.Optional[str] = OMIT,
+        intrastat_delivery_terms: typing.Optional[str] = OMIT,
+        intrastat_region: typing.Optional[str] = OMIT,
+        intrastat_nature_of_transaction: typing.Optional[str] = OMIT,
         vat_country_code: typing.Optional[str] = OMIT,
         deemed_supplier: typing.Optional[bool] = OMIT,
         notes: typing.Optional[str] = OMIT,
@@ -6955,7 +7154,17 @@ class AsyncRawSalesClient:
 
         credited_invoice_id : typing.Optional[str]
 
+        agreement_id : typing.Optional[str]
+
         vat_scheme : typing.Optional[PostV1SalesInvoicesCreateRequestVatScheme]
+
+        intrastat_transport_mode : typing.Optional[str]
+
+        intrastat_delivery_terms : typing.Optional[str]
+
+        intrastat_region : typing.Optional[str]
+
+        intrastat_nature_of_transaction : typing.Optional[str]
 
         vat_country_code : typing.Optional[str]
 
@@ -7001,7 +7210,12 @@ class AsyncRawSalesClient:
                 "issueDate": issue_date,
                 "dueDate": due_date,
                 "creditedInvoiceId": credited_invoice_id,
+                "agreementId": agreement_id,
                 "vatScheme": vat_scheme,
+                "intrastatTransportMode": intrastat_transport_mode,
+                "intrastatDeliveryTerms": intrastat_delivery_terms,
+                "intrastatRegion": intrastat_region,
+                "intrastatNatureOfTransaction": intrastat_nature_of_transaction,
                 "vatCountryCode": vat_country_code,
                 "deemedSupplier": deemed_supplier,
                 "notes": notes,
@@ -7968,7 +8182,7 @@ class AsyncRawSalesClient:
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> AsyncHttpResponse[PostV1SalesInvoicesEinvoiceSendResponse]:
         """
-        Build the national e-invoicing payload and deliver it to the bridge endpoint configured for the country gateway in compliance settings. The bridge (an accredited intermediary or connector) handles the certified national channel - SdI accreditation, KSeF sessions or ANAF SPV OAuth.
+        Build the national e-invoicing payload and deliver it over the transport configured for the country gateway in compliance settings. With transport=direct the request talks to the tax authority itself - SdICoop over 2-way TLS for Italy, a KSeF session for Poland, ANAF SPV OAuth for Romania - and returns the national number as soon as the channel assigns one. With transport=bridge the payload goes to the configured bridge endpoint (an accredited intermediary or connector) instead.
 
         Parameters
         ----------
@@ -8101,15 +8315,157 @@ class AsyncRawSalesClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
+    async def post_v1sales_invoices_einvoice_status(
+        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> AsyncHttpResponse[PostV1SalesInvoicesEinvoiceStatusResponse]:
+        """
+        Ask the national e-invoicing channel what happened to an invoice that was already sent, and store the answer. Italy, Poland and Romania return the outcome only on request - none of them calls back - so this is the way the national number and any rejection reason reach the invoice.
+
+        Parameters
+        ----------
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        AsyncHttpResponse[PostV1SalesInvoicesEinvoiceStatusResponse]
+            Default Response
+        """
+        _response = await self._client_wrapper.httpx_client.request(
+            "v1/sales/invoices/einvoice-status",
+            method="POST",
+            json={
+                "id": id,
+            },
+            headers={
+                "content-type": "application/json",
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    PostV1SalesInvoicesEinvoiceStatusResponse,
+                    parse_obj_as(
+                        type_=PostV1SalesInvoicesEinvoiceStatusResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return AsyncHttpResponse(response=_response, data=_data)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 422:
+                raise UnprocessableEntityError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
     async def post_v1sales_invoices_update(
         self,
         *,
         id: str,
         partner_id: typing.Optional[str] = OMIT,
+        agreement_id: typing.Optional[str] = OMIT,
         currency: typing.Optional[str] = OMIT,
         issue_date: typing.Optional[str] = OMIT,
         due_date: typing.Optional[str] = OMIT,
         vat_scheme: typing.Optional[PostV1SalesInvoicesUpdateRequestVatScheme] = OMIT,
+        intrastat_transport_mode: typing.Optional[str] = OMIT,
+        intrastat_delivery_terms: typing.Optional[str] = OMIT,
+        intrastat_region: typing.Optional[str] = OMIT,
+        intrastat_nature_of_transaction: typing.Optional[str] = OMIT,
         vat_country_code: typing.Optional[str] = OMIT,
         deemed_supplier: typing.Optional[bool] = OMIT,
         notes: typing.Optional[str] = OMIT,
@@ -8132,6 +8488,8 @@ class AsyncRawSalesClient:
 
         partner_id : typing.Optional[str]
 
+        agreement_id : typing.Optional[str]
+
         currency : typing.Optional[str]
 
         issue_date : typing.Optional[str]
@@ -8139,6 +8497,14 @@ class AsyncRawSalesClient:
         due_date : typing.Optional[str]
 
         vat_scheme : typing.Optional[PostV1SalesInvoicesUpdateRequestVatScheme]
+
+        intrastat_transport_mode : typing.Optional[str]
+
+        intrastat_delivery_terms : typing.Optional[str]
+
+        intrastat_region : typing.Optional[str]
+
+        intrastat_nature_of_transaction : typing.Optional[str]
 
         vat_country_code : typing.Optional[str]
 
@@ -8180,10 +8546,15 @@ class AsyncRawSalesClient:
             json={
                 "id": id,
                 "partnerId": partner_id,
+                "agreementId": agreement_id,
                 "currency": currency,
                 "issueDate": issue_date,
                 "dueDate": due_date,
                 "vatScheme": vat_scheme,
+                "intrastatTransportMode": intrastat_transport_mode,
+                "intrastatDeliveryTerms": intrastat_delivery_terms,
+                "intrastatRegion": intrastat_region,
+                "intrastatNatureOfTransaction": intrastat_nature_of_transaction,
                 "vatCountryCode": vat_country_code,
                 "deemedSupplier": deemed_supplier,
                 "notes": notes,
@@ -11727,6 +12098,8 @@ class AsyncRawSalesClient:
         operation_type_id: typing.Optional[str] = OMIT,
         number_length: typing.Optional[int] = OMIT,
         next_number: typing.Optional[int] = OMIT,
+        allocated_from: typing.Optional[int] = OMIT,
+        allocated_to: typing.Optional[int] = OMIT,
         warehouse_id: typing.Optional[str] = OMIT,
         print_series: typing.Optional[bool] = OMIT,
         is_default: typing.Optional[bool] = OMIT,
@@ -11749,6 +12122,10 @@ class AsyncRawSalesClient:
         number_length : typing.Optional[int]
 
         next_number : typing.Optional[int]
+
+        allocated_from : typing.Optional[int]
+
+        allocated_to : typing.Optional[int]
 
         warehouse_id : typing.Optional[str]
 
@@ -11777,6 +12154,8 @@ class AsyncRawSalesClient:
                 "operationTypeId": operation_type_id,
                 "numberLength": number_length,
                 "nextNumber": next_number,
+                "allocatedFrom": allocated_from,
+                "allocatedTo": allocated_to,
                 "warehouseId": warehouse_id,
                 "printSeries": print_series,
                 "isDefault": is_default,
@@ -11906,6 +12285,8 @@ class AsyncRawSalesClient:
         operation_type_id: typing.Optional[str] = OMIT,
         number_length: typing.Optional[int] = OMIT,
         next_number: typing.Optional[int] = OMIT,
+        allocated_from: typing.Optional[int] = OMIT,
+        allocated_to: typing.Optional[int] = OMIT,
         warehouse_id: typing.Optional[str] = OMIT,
         print_series: typing.Optional[bool] = OMIT,
         is_default: typing.Optional[bool] = OMIT,
@@ -11930,6 +12311,10 @@ class AsyncRawSalesClient:
         number_length : typing.Optional[int]
 
         next_number : typing.Optional[int]
+
+        allocated_from : typing.Optional[int]
+
+        allocated_to : typing.Optional[int]
 
         warehouse_id : typing.Optional[str]
 
@@ -11959,6 +12344,8 @@ class AsyncRawSalesClient:
                 "operationTypeId": operation_type_id,
                 "numberLength": number_length,
                 "nextNumber": next_number,
+                "allocatedFrom": allocated_from,
+                "allocatedTo": allocated_to,
                 "warehouseId": warehouse_id,
                 "printSeries": print_series,
                 "isDefault": is_default,

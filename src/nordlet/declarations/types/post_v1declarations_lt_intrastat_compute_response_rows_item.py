@@ -21,6 +21,9 @@ class PostV1DeclarationsLtIntrastatComputeResponseRowsItem(UniversalBaseModel):
     transport_mode: typing_extensions.Annotated[
         typing.Optional[str], FieldMetadata(alias="transportMode"), pydantic.Field(alias="transportMode")
     ] = None
+    region_code: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="regionCode"), pydantic.Field(alias="regionCode")
+    ] = None
     country: str
     origin_country: typing_extensions.Annotated[
         typing.Optional[str], FieldMetadata(alias="originCountry"), pydantic.Field(alias="originCountry")

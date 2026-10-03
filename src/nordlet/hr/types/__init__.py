@@ -49,6 +49,9 @@ if typing.TYPE_CHECKING:
     from .post_v1hr_employees_create_response_attributes_item import PostV1HrEmployeesCreateResponseAttributesItem
     from .post_v1hr_employees_create_response_status import PostV1HrEmployeesCreateResponseStatus
     from .post_v1hr_employees_delete_response import PostV1HrEmployeesDeleteResponse
+    from .post_v1hr_employees_fields_response import PostV1HrEmployeesFieldsResponse
+    from .post_v1hr_employees_fields_response_fields_item import PostV1HrEmployeesFieldsResponseFieldsItem
+    from .post_v1hr_employees_fields_response_fields_item_kind import PostV1HrEmployeesFieldsResponseFieldsItemKind
     from .post_v1hr_employees_get_response import PostV1HrEmployeesGetResponse
     from .post_v1hr_employees_get_response_address import PostV1HrEmployeesGetResponseAddress
     from .post_v1hr_employees_get_response_attributes_item import PostV1HrEmployeesGetResponseAttributesItem
@@ -196,6 +199,9 @@ _dynamic_imports: typing.Dict[str, str] = {
     "PostV1HrEmployeesCreateResponseAttributesItem": ".post_v1hr_employees_create_response_attributes_item",
     "PostV1HrEmployeesCreateResponseStatus": ".post_v1hr_employees_create_response_status",
     "PostV1HrEmployeesDeleteResponse": ".post_v1hr_employees_delete_response",
+    "PostV1HrEmployeesFieldsResponse": ".post_v1hr_employees_fields_response",
+    "PostV1HrEmployeesFieldsResponseFieldsItem": ".post_v1hr_employees_fields_response_fields_item",
+    "PostV1HrEmployeesFieldsResponseFieldsItemKind": ".post_v1hr_employees_fields_response_fields_item_kind",
     "PostV1HrEmployeesGetResponse": ".post_v1hr_employees_get_response",
     "PostV1HrEmployeesGetResponseAddress": ".post_v1hr_employees_get_response_address",
     "PostV1HrEmployeesGetResponseAttributesItem": ".post_v1hr_employees_get_response_attributes_item",
@@ -337,6 +343,9 @@ __all__ = [
     "PostV1HrEmployeesCreateResponseAttributesItem",
     "PostV1HrEmployeesCreateResponseStatus",
     "PostV1HrEmployeesDeleteResponse",
+    "PostV1HrEmployeesFieldsResponse",
+    "PostV1HrEmployeesFieldsResponseFieldsItem",
+    "PostV1HrEmployeesFieldsResponseFieldsItemKind",
     "PostV1HrEmployeesGetResponse",
     "PostV1HrEmployeesGetResponseAddress",
     "PostV1HrEmployeesGetResponseAttributesItem",

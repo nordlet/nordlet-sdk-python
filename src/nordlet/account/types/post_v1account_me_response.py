@@ -18,6 +18,7 @@ class PostV1AccountMeResponse(UniversalBaseModel):
     active_company_id: typing_extensions.Annotated[
         typing.Optional[str], FieldMetadata(alias="activeCompanyId"), pydantic.Field(alias="activeCompanyId")
     ] = None
+    time_zone: typing_extensions.Annotated[str, FieldMetadata(alias="timeZone"), pydantic.Field(alias="timeZone")]
     role: typing.Optional[str] = None
     billing: PostV1AccountMeResponseBilling
     referral_points: typing_extensions.Annotated[

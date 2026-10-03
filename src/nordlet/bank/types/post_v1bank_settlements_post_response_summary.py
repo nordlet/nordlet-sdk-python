@@ -22,6 +22,10 @@ class PostV1BankSettlementsPostResponseSummary(UniversalBaseModel):
     suspense_amount: typing_extensions.Annotated[
         str, FieldMetadata(alias="suspenseAmount"), pydantic.Field(alias="suspenseAmount")
     ]
+    fx_rate: typing_extensions.Annotated[str, FieldMetadata(alias="fxRate"), pydantic.Field(alias="fxRate")]
+    exchange_difference: typing_extensions.Annotated[
+        str, FieldMetadata(alias="exchangeDifference"), pydantic.Field(alias="exchangeDifference")
+    ]
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

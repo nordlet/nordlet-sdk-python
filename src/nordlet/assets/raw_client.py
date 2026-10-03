@@ -22,10 +22,16 @@ from ..types.error_response import ErrorResponse
 from .types.post_v1assets_assets_create_request_documents_item import PostV1AssetsAssetsCreateRequestDocumentsItem
 from .types.post_v1assets_assets_create_response import PostV1AssetsAssetsCreateResponse
 from .types.post_v1assets_assets_get_response import PostV1AssetsAssetsGetResponse
+from .types.post_v1assets_assets_input_vat_request_input_vat_use_changes_item import (
+    PostV1AssetsAssetsInputVatRequestInputVatUseChangesItem,
+)
+from .types.post_v1assets_assets_input_vat_response import PostV1AssetsAssetsInputVatResponse
 from .types.post_v1assets_assets_list_request_filter_item import PostV1AssetsAssetsListRequestFilterItem
 from .types.post_v1assets_assets_list_request_sort_item import PostV1AssetsAssetsListRequestSortItem
 from .types.post_v1assets_assets_list_response import PostV1AssetsAssetsListResponse
 from .types.post_v1assets_assets_modernize_response import PostV1AssetsAssetsModernizeResponse
+from .types.post_v1assets_assets_update_request_documents_item import PostV1AssetsAssetsUpdateRequestDocumentsItem
+from .types.post_v1assets_assets_update_response import PostV1AssetsAssetsUpdateResponse
 from .types.post_v1assets_depreciation_post_response import PostV1AssetsDepreciationPostResponse
 from .types.post_v1assets_depreciation_preview_response import PostV1AssetsDepreciationPreviewResponse
 from .types.post_v1assets_groups_create_response import PostV1AssetsGroupsCreateResponse
@@ -438,6 +444,352 @@ class RawAssetsClient:
                     PostV1AssetsAssetsCreateResponse,
                     parse_obj_as(
                         type_=PostV1AssetsAssetsCreateResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return HttpResponse(response=_response, data=_data)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 422:
+                raise UnprocessableEntityError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
+    def post_v1assets_assets_update(
+        self,
+        *,
+        id: str,
+        group_id: typing.Optional[str] = OMIT,
+        code: typing.Optional[str] = OMIT,
+        name: typing.Optional[str] = OMIT,
+        acquisition_date: typing.Optional[str] = OMIT,
+        depreciation_start_date: typing.Optional[str] = OMIT,
+        acquisition_cost: typing.Optional[str] = OMIT,
+        salvage_value: typing.Optional[str] = OMIT,
+        useful_life_months: typing.Optional[int] = OMIT,
+        notes: typing.Optional[str] = OMIT,
+        documents: typing.Optional[typing.Sequence[PostV1AssetsAssetsUpdateRequestDocumentsItem]] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> HttpResponse[PostV1AssetsAssetsUpdateResponse]:
+        """
+        Parameters
+        ----------
+        id : str
+
+        group_id : typing.Optional[str]
+
+        code : typing.Optional[str]
+
+        name : typing.Optional[str]
+
+        acquisition_date : typing.Optional[str]
+
+        depreciation_start_date : typing.Optional[str]
+
+        acquisition_cost : typing.Optional[str]
+
+        salvage_value : typing.Optional[str]
+
+        useful_life_months : typing.Optional[int]
+
+        notes : typing.Optional[str]
+
+        documents : typing.Optional[typing.Sequence[PostV1AssetsAssetsUpdateRequestDocumentsItem]]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        HttpResponse[PostV1AssetsAssetsUpdateResponse]
+            Default Response
+        """
+        _response = self._client_wrapper.httpx_client.request(
+            "v1/assets/assets/update",
+            method="POST",
+            json={
+                "groupId": group_id,
+                "code": code,
+                "name": name,
+                "acquisitionDate": acquisition_date,
+                "depreciationStartDate": depreciation_start_date,
+                "acquisitionCost": acquisition_cost,
+                "salvageValue": salvage_value,
+                "usefulLifeMonths": useful_life_months,
+                "notes": notes,
+                "documents": convert_and_respect_annotation_metadata(
+                    object_=documents,
+                    annotation=typing.Sequence[PostV1AssetsAssetsUpdateRequestDocumentsItem],
+                    direction="write",
+                ),
+                "id": id,
+            },
+            headers={
+                "content-type": "application/json",
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    PostV1AssetsAssetsUpdateResponse,
+                    parse_obj_as(
+                        type_=PostV1AssetsAssetsUpdateResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return HttpResponse(response=_response, data=_data)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 422:
+                raise UnprocessableEntityError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
+    def post_v1assets_assets_input_vat(
+        self,
+        *,
+        id: str,
+        input_vat_real_estate: bool,
+        input_vat_use_changes: typing.Sequence[PostV1AssetsAssetsInputVatRequestInputVatUseChangesItem],
+        input_vat_amount: typing.Optional[str] = OMIT,
+        input_vat_first_use_date: typing.Optional[str] = OMIT,
+        input_vat_deductible_percent: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> HttpResponse[PostV1AssetsAssetsInputVatResponse]:
+        """
+        Record the input VAT facts of a capital good that the annual VAT return needs for the adjustment of the deduction over the adjustment period (Article 187 of the VAT Directive, § 15a UStG): the input VAT on the acquisition, the date of first use, the share of use for deductible turnover at first use, whether it is land or a building (ten-year period instead of five), and every later year in which the share changed or the good was sold or withdrawn. Allowed also after depreciation has been posted.
+
+        Parameters
+        ----------
+        id : str
+
+        input_vat_real_estate : bool
+
+        input_vat_use_changes : typing.Sequence[PostV1AssetsAssetsInputVatRequestInputVatUseChangesItem]
+
+        input_vat_amount : typing.Optional[str]
+
+        input_vat_first_use_date : typing.Optional[str]
+
+        input_vat_deductible_percent : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        HttpResponse[PostV1AssetsAssetsInputVatResponse]
+            Default Response
+        """
+        _response = self._client_wrapper.httpx_client.request(
+            "v1/assets/assets/input-vat",
+            method="POST",
+            json={
+                "id": id,
+                "inputVatAmount": input_vat_amount,
+                "inputVatFirstUseDate": input_vat_first_use_date,
+                "inputVatDeductiblePercent": input_vat_deductible_percent,
+                "inputVatRealEstate": input_vat_real_estate,
+                "inputVatUseChanges": convert_and_respect_annotation_metadata(
+                    object_=input_vat_use_changes,
+                    annotation=typing.Sequence[PostV1AssetsAssetsInputVatRequestInputVatUseChangesItem],
+                    direction="write",
+                ),
+            },
+            headers={
+                "content-type": "application/json",
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    PostV1AssetsAssetsInputVatResponse,
+                    parse_obj_as(
+                        type_=PostV1AssetsAssetsInputVatResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -1666,6 +2018,352 @@ class AsyncRawAssetsClient:
                     PostV1AssetsAssetsCreateResponse,
                     parse_obj_as(
                         type_=PostV1AssetsAssetsCreateResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return AsyncHttpResponse(response=_response, data=_data)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 422:
+                raise UnprocessableEntityError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
+    async def post_v1assets_assets_update(
+        self,
+        *,
+        id: str,
+        group_id: typing.Optional[str] = OMIT,
+        code: typing.Optional[str] = OMIT,
+        name: typing.Optional[str] = OMIT,
+        acquisition_date: typing.Optional[str] = OMIT,
+        depreciation_start_date: typing.Optional[str] = OMIT,
+        acquisition_cost: typing.Optional[str] = OMIT,
+        salvage_value: typing.Optional[str] = OMIT,
+        useful_life_months: typing.Optional[int] = OMIT,
+        notes: typing.Optional[str] = OMIT,
+        documents: typing.Optional[typing.Sequence[PostV1AssetsAssetsUpdateRequestDocumentsItem]] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> AsyncHttpResponse[PostV1AssetsAssetsUpdateResponse]:
+        """
+        Parameters
+        ----------
+        id : str
+
+        group_id : typing.Optional[str]
+
+        code : typing.Optional[str]
+
+        name : typing.Optional[str]
+
+        acquisition_date : typing.Optional[str]
+
+        depreciation_start_date : typing.Optional[str]
+
+        acquisition_cost : typing.Optional[str]
+
+        salvage_value : typing.Optional[str]
+
+        useful_life_months : typing.Optional[int]
+
+        notes : typing.Optional[str]
+
+        documents : typing.Optional[typing.Sequence[PostV1AssetsAssetsUpdateRequestDocumentsItem]]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        AsyncHttpResponse[PostV1AssetsAssetsUpdateResponse]
+            Default Response
+        """
+        _response = await self._client_wrapper.httpx_client.request(
+            "v1/assets/assets/update",
+            method="POST",
+            json={
+                "groupId": group_id,
+                "code": code,
+                "name": name,
+                "acquisitionDate": acquisition_date,
+                "depreciationStartDate": depreciation_start_date,
+                "acquisitionCost": acquisition_cost,
+                "salvageValue": salvage_value,
+                "usefulLifeMonths": useful_life_months,
+                "notes": notes,
+                "documents": convert_and_respect_annotation_metadata(
+                    object_=documents,
+                    annotation=typing.Sequence[PostV1AssetsAssetsUpdateRequestDocumentsItem],
+                    direction="write",
+                ),
+                "id": id,
+            },
+            headers={
+                "content-type": "application/json",
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    PostV1AssetsAssetsUpdateResponse,
+                    parse_obj_as(
+                        type_=PostV1AssetsAssetsUpdateResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return AsyncHttpResponse(response=_response, data=_data)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 422:
+                raise UnprocessableEntityError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
+    async def post_v1assets_assets_input_vat(
+        self,
+        *,
+        id: str,
+        input_vat_real_estate: bool,
+        input_vat_use_changes: typing.Sequence[PostV1AssetsAssetsInputVatRequestInputVatUseChangesItem],
+        input_vat_amount: typing.Optional[str] = OMIT,
+        input_vat_first_use_date: typing.Optional[str] = OMIT,
+        input_vat_deductible_percent: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> AsyncHttpResponse[PostV1AssetsAssetsInputVatResponse]:
+        """
+        Record the input VAT facts of a capital good that the annual VAT return needs for the adjustment of the deduction over the adjustment period (Article 187 of the VAT Directive, § 15a UStG): the input VAT on the acquisition, the date of first use, the share of use for deductible turnover at first use, whether it is land or a building (ten-year period instead of five), and every later year in which the share changed or the good was sold or withdrawn. Allowed also after depreciation has been posted.
+
+        Parameters
+        ----------
+        id : str
+
+        input_vat_real_estate : bool
+
+        input_vat_use_changes : typing.Sequence[PostV1AssetsAssetsInputVatRequestInputVatUseChangesItem]
+
+        input_vat_amount : typing.Optional[str]
+
+        input_vat_first_use_date : typing.Optional[str]
+
+        input_vat_deductible_percent : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        AsyncHttpResponse[PostV1AssetsAssetsInputVatResponse]
+            Default Response
+        """
+        _response = await self._client_wrapper.httpx_client.request(
+            "v1/assets/assets/input-vat",
+            method="POST",
+            json={
+                "id": id,
+                "inputVatAmount": input_vat_amount,
+                "inputVatFirstUseDate": input_vat_first_use_date,
+                "inputVatDeductiblePercent": input_vat_deductible_percent,
+                "inputVatRealEstate": input_vat_real_estate,
+                "inputVatUseChanges": convert_and_respect_annotation_metadata(
+                    object_=input_vat_use_changes,
+                    annotation=typing.Sequence[PostV1AssetsAssetsInputVatRequestInputVatUseChangesItem],
+                    direction="write",
+                ),
+            },
+            headers={
+                "content-type": "application/json",
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    PostV1AssetsAssetsInputVatResponse,
+                    parse_obj_as(
+                        type_=PostV1AssetsAssetsInputVatResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )

@@ -2,4 +2,4 @@
 
 import typing
 
-PostV1CatalogUnitsOptionsRequestLocale = typing.Union[typing.Literal["lt", "en"], typing.Any]
+PostV1CatalogUnitsOptionsRequestLocale = typing.Union[typing.Literal["en", "lt", "de"], typing.Any]

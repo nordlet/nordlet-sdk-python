@@ -37,6 +37,14 @@ class PostV1BillingAccountSetPlanResponse(UniversalBaseModel):
     has_subscription: typing_extensions.Annotated[
         bool, FieldMetadata(alias="hasSubscription"), pydantic.Field(alias="hasSubscription")
     ]
+    payment_failed_at: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="paymentFailedAt"), pydantic.Field(alias="paymentFailedAt")
+    ] = None
+    payment_failed_invoice_url: typing_extensions.Annotated[
+        typing.Optional[str],
+        FieldMetadata(alias="paymentFailedInvoiceUrl"),
+        pydantic.Field(alias="paymentFailedInvoiceUrl"),
+    ] = None
     month_to_date: typing_extensions.Annotated[
         PostV1BillingAccountSetPlanResponseMonthToDate,
         FieldMetadata(alias="monthToDate"),

@@ -8,9 +8,13 @@ from .raw_client import AsyncRawPayrollClient, RawPayrollClient
 from .types.post_v1payroll_calc_response import PostV1PayrollCalcResponse
 from .types.post_v1payroll_departments_create_response import PostV1PayrollDepartmentsCreateResponse
 from .types.post_v1payroll_departments_list_response import PostV1PayrollDepartmentsListResponse
+from .types.post_v1payroll_lines_attendance_response import PostV1PayrollLinesAttendanceResponse
 from .types.post_v1payroll_payments_export_response import PostV1PayrollPaymentsExportResponse
 from .types.post_v1payroll_runs_approve_response import PostV1PayrollRunsApproveResponse
 from .types.post_v1payroll_runs_cancel_response import PostV1PayrollRunsCancelResponse
+from .types.post_v1payroll_runs_create_request_gross_overrides_item import (
+    PostV1PayrollRunsCreateRequestGrossOverridesItem,
+)
 from .types.post_v1payroll_runs_create_request_lines_item import PostV1PayrollRunsCreateRequestLinesItem
 from .types.post_v1payroll_runs_create_response import PostV1PayrollRunsCreateResponse
 from .types.post_v1payroll_runs_get_response import PostV1PayrollRunsGetResponse
@@ -168,15 +172,17 @@ class PayrollClient:
         _response = self._raw_client.post_v1payroll_schedules_list(request_options=request_options)
         return _response.data
 
-    def post_v1payroll_calc(
+    def calculate_one_employee_payment_under_the_rules_of_the_company_country(
         self,
         *,
         taxable_base: str,
         date: str,
-        apply_npd: typing.Optional[bool] = OMIT,
-        npd_override: typing.Optional[str] = OMIT,
+        apply_allowance: typing.Optional[bool] = OMIT,
+        allowance_override: typing.Optional[str] = OMIT,
         pension_accumulation: typing.Optional[bool] = OMIT,
         fixed_term: typing.Optional[bool] = OMIT,
+        benefit_in_kind: typing.Optional[str] = OMIT,
+        options: typing.Optional[typing.Dict[str, str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1PayrollCalcResponse:
         """
@@ -186,13 +192,17 @@ class PayrollClient:
 
         date : str
 
-        apply_npd : typing.Optional[bool]
+        apply_allowance : typing.Optional[bool]
 
-        npd_override : typing.Optional[str]
+        allowance_override : typing.Optional[str]
 
         pension_accumulation : typing.Optional[bool]
 
         fixed_term : typing.Optional[bool]
+
+        benefit_in_kind : typing.Optional[str]
+
+        options : typing.Optional[typing.Dict[str, str]]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -209,18 +219,20 @@ class PayrollClient:
         client = Nordlet(
             token="YOUR_TOKEN",
         )
-        client.payroll.post_v1payroll_calc(
+        client.payroll.calculate_one_employee_payment_under_the_rules_of_the_company_country(
             taxable_base="taxableBase",
             date="date",
         )
         """
-        _response = self._raw_client.post_v1payroll_calc(
+        _response = self._raw_client.calculate_one_employee_payment_under_the_rules_of_the_company_country(
             taxable_base=taxable_base,
             date=date,
-            apply_npd=apply_npd,
-            npd_override=npd_override,
+            apply_allowance=apply_allowance,
+            allowance_override=allowance_override,
             pension_accumulation=pension_accumulation,
             fixed_term=fixed_term,
+            benefit_in_kind=benefit_in_kind,
+            options=options,
             request_options=request_options,
         )
         return _response.data
@@ -231,6 +243,7 @@ class PayrollClient:
         year: int,
         month: int,
         include_natura: typing.Optional[bool] = OMIT,
+        gross_overrides: typing.Optional[typing.Sequence[PostV1PayrollRunsCreateRequestGrossOverridesItem]] = OMIT,
         lines: typing.Optional[typing.Sequence[PostV1PayrollRunsCreateRequestLinesItem]] = OMIT,
         notes: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
@@ -243,6 +256,8 @@ class PayrollClient:
         month : int
 
         include_natura : typing.Optional[bool]
+
+        gross_overrides : typing.Optional[typing.Sequence[PostV1PayrollRunsCreateRequestGrossOverridesItem]]
 
         lines : typing.Optional[typing.Sequence[PostV1PayrollRunsCreateRequestLinesItem]]
 
@@ -272,6 +287,7 @@ class PayrollClient:
             year=year,
             month=month,
             include_natura=include_natura,
+            gross_overrides=gross_overrides,
             lines=lines,
             notes=notes,
             request_options=request_options,
@@ -354,6 +370,60 @@ class PayrollClient:
         )
         return _response.data
 
+    def record_the_time_a_person_worked_in_a_payroll_line(
+        self,
+        *,
+        id: str,
+        days_worked: typing.Optional[str] = OMIT,
+        hours_worked: typing.Optional[str] = OMIT,
+        registered_days: typing.Optional[str] = OMIT,
+        average_hourly_earnings: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1PayrollLinesAttendanceResponse:
+        """
+        The days and hours worked, the days on the register and the average hourly earnings that some countries report per employment. The Czech monthly employer report asks for all four. They can be set while the run is a draft.
+
+        Parameters
+        ----------
+        id : str
+
+        days_worked : typing.Optional[str]
+
+        hours_worked : typing.Optional[str]
+
+        registered_days : typing.Optional[str]
+
+        average_hourly_earnings : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1PayrollLinesAttendanceResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.payroll.record_the_time_a_person_worked_in_a_payroll_line(
+            id="id",
+        )
+        """
+        _response = self._raw_client.record_the_time_a_person_worked_in_a_payroll_line(
+            id=id,
+            days_worked=days_worked,
+            hours_worked=hours_worked,
+            registered_days=registered_days,
+            average_hourly_earnings=average_hourly_earnings,
+            request_options=request_options,
+        )
+        return _response.data
+
     def post_v1payroll_runs_approve(
         self,
         *,
@@ -363,6 +433,7 @@ class PayrollClient:
         payable_account_code: typing.Optional[str] = OMIT,
         gpm_account_code: typing.Optional[str] = OMIT,
         sodra_account_code: typing.Optional[str] = OMIT,
+        employer_social_account_code: typing.Optional[str] = OMIT,
         deduction_account_code: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1PayrollRunsApproveResponse:
@@ -380,6 +451,8 @@ class PayrollClient:
         gpm_account_code : typing.Optional[str]
 
         sodra_account_code : typing.Optional[str]
+
+        employer_social_account_code : typing.Optional[str]
 
         deduction_account_code : typing.Optional[str]
 
@@ -409,6 +482,7 @@ class PayrollClient:
             payable_account_code=payable_account_code,
             gpm_account_code=gpm_account_code,
             sodra_account_code=sodra_account_code,
+            employer_social_account_code=employer_social_account_code,
             deduction_account_code=deduction_account_code,
             request_options=request_options,
         )
@@ -666,15 +740,17 @@ class AsyncPayrollClient:
         _response = await self._raw_client.post_v1payroll_schedules_list(request_options=request_options)
         return _response.data
 
-    async def post_v1payroll_calc(
+    async def calculate_one_employee_payment_under_the_rules_of_the_company_country(
         self,
         *,
         taxable_base: str,
         date: str,
-        apply_npd: typing.Optional[bool] = OMIT,
-        npd_override: typing.Optional[str] = OMIT,
+        apply_allowance: typing.Optional[bool] = OMIT,
+        allowance_override: typing.Optional[str] = OMIT,
         pension_accumulation: typing.Optional[bool] = OMIT,
         fixed_term: typing.Optional[bool] = OMIT,
+        benefit_in_kind: typing.Optional[str] = OMIT,
+        options: typing.Optional[typing.Dict[str, str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1PayrollCalcResponse:
         """
@@ -684,13 +760,17 @@ class AsyncPayrollClient:
 
         date : str
 
-        apply_npd : typing.Optional[bool]
+        apply_allowance : typing.Optional[bool]
 
-        npd_override : typing.Optional[str]
+        allowance_override : typing.Optional[str]
 
         pension_accumulation : typing.Optional[bool]
 
         fixed_term : typing.Optional[bool]
+
+        benefit_in_kind : typing.Optional[str]
+
+        options : typing.Optional[typing.Dict[str, str]]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -712,7 +792,7 @@ class AsyncPayrollClient:
 
 
         async def main() -> None:
-            await client.payroll.post_v1payroll_calc(
+            await client.payroll.calculate_one_employee_payment_under_the_rules_of_the_company_country(
                 taxable_base="taxableBase",
                 date="date",
             )
@@ -720,13 +800,15 @@ class AsyncPayrollClient:
 
         asyncio.run(main())
         """
-        _response = await self._raw_client.post_v1payroll_calc(
+        _response = await self._raw_client.calculate_one_employee_payment_under_the_rules_of_the_company_country(
             taxable_base=taxable_base,
             date=date,
-            apply_npd=apply_npd,
-            npd_override=npd_override,
+            apply_allowance=apply_allowance,
+            allowance_override=allowance_override,
             pension_accumulation=pension_accumulation,
             fixed_term=fixed_term,
+            benefit_in_kind=benefit_in_kind,
+            options=options,
             request_options=request_options,
         )
         return _response.data
@@ -737,6 +819,7 @@ class AsyncPayrollClient:
         year: int,
         month: int,
         include_natura: typing.Optional[bool] = OMIT,
+        gross_overrides: typing.Optional[typing.Sequence[PostV1PayrollRunsCreateRequestGrossOverridesItem]] = OMIT,
         lines: typing.Optional[typing.Sequence[PostV1PayrollRunsCreateRequestLinesItem]] = OMIT,
         notes: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
@@ -749,6 +832,8 @@ class AsyncPayrollClient:
         month : int
 
         include_natura : typing.Optional[bool]
+
+        gross_overrides : typing.Optional[typing.Sequence[PostV1PayrollRunsCreateRequestGrossOverridesItem]]
 
         lines : typing.Optional[typing.Sequence[PostV1PayrollRunsCreateRequestLinesItem]]
 
@@ -786,6 +871,7 @@ class AsyncPayrollClient:
             year=year,
             month=month,
             include_natura=include_natura,
+            gross_overrides=gross_overrides,
             lines=lines,
             notes=notes,
             request_options=request_options,
@@ -884,6 +970,68 @@ class AsyncPayrollClient:
         )
         return _response.data
 
+    async def record_the_time_a_person_worked_in_a_payroll_line(
+        self,
+        *,
+        id: str,
+        days_worked: typing.Optional[str] = OMIT,
+        hours_worked: typing.Optional[str] = OMIT,
+        registered_days: typing.Optional[str] = OMIT,
+        average_hourly_earnings: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1PayrollLinesAttendanceResponse:
+        """
+        The days and hours worked, the days on the register and the average hourly earnings that some countries report per employment. The Czech monthly employer report asks for all four. They can be set while the run is a draft.
+
+        Parameters
+        ----------
+        id : str
+
+        days_worked : typing.Optional[str]
+
+        hours_worked : typing.Optional[str]
+
+        registered_days : typing.Optional[str]
+
+        average_hourly_earnings : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1PayrollLinesAttendanceResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.payroll.record_the_time_a_person_worked_in_a_payroll_line(
+                id="id",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.record_the_time_a_person_worked_in_a_payroll_line(
+            id=id,
+            days_worked=days_worked,
+            hours_worked=hours_worked,
+            registered_days=registered_days,
+            average_hourly_earnings=average_hourly_earnings,
+            request_options=request_options,
+        )
+        return _response.data
+
     async def post_v1payroll_runs_approve(
         self,
         *,
@@ -893,6 +1041,7 @@ class AsyncPayrollClient:
         payable_account_code: typing.Optional[str] = OMIT,
         gpm_account_code: typing.Optional[str] = OMIT,
         sodra_account_code: typing.Optional[str] = OMIT,
+        employer_social_account_code: typing.Optional[str] = OMIT,
         deduction_account_code: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1PayrollRunsApproveResponse:
@@ -910,6 +1059,8 @@ class AsyncPayrollClient:
         gpm_account_code : typing.Optional[str]
 
         sodra_account_code : typing.Optional[str]
+
+        employer_social_account_code : typing.Optional[str]
 
         deduction_account_code : typing.Optional[str]
 
@@ -947,6 +1098,7 @@ class AsyncPayrollClient:
             payable_account_code=payable_account_code,
             gpm_account_code=gpm_account_code,
             sodra_account_code=sodra_account_code,
+            employer_social_account_code=employer_social_account_code,
             deduction_account_code=deduction_account_code,
             request_options=request_options,
         )

@@ -7,6 +7,7 @@ import typing_extensions
 from ...core.pydantic_utilities import IS_PYDANTIC_V2, UniversalBaseModel
 from ...core.serialization import FieldMetadata
 from .post_v1account_referral_get_response_history_item import PostV1AccountReferralGetResponseHistoryItem
+from .post_v1account_referral_get_response_rates import PostV1AccountReferralGetResponseRates
 
 
 class PostV1AccountReferralGetResponse(UniversalBaseModel):
@@ -16,6 +17,7 @@ class PostV1AccountReferralGetResponse(UniversalBaseModel):
     referred_count: typing_extensions.Annotated[
         int, FieldMetadata(alias="referredCount"), pydantic.Field(alias="referredCount")
     ]
+    rates: PostV1AccountReferralGetResponseRates
     history: typing.List[PostV1AccountReferralGetResponseHistoryItem]
 
     if IS_PYDANTIC_V2:

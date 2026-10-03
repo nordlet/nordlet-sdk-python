@@ -38,6 +38,9 @@ class PostV1SalesInvoicesCreateRequestLinesItem(UniversalBaseModel):
         typing.Optional[str], FieldMetadata(alias="projectId"), pydantic.Field(alias="projectId")
     ] = None
     recognition: typing.Optional[PostV1SalesInvoicesCreateRequestLinesItemRecognition] = None
+    vat_exemption_basis: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="vatExemptionBasis"), pydantic.Field(alias="vatExemptionBasis")
+    ] = None
     standalone_selling_price: typing_extensions.Annotated[
         typing.Optional[str],
         FieldMetadata(alias="standaloneSellingPrice"),

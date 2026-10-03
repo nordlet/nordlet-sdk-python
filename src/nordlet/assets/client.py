@@ -8,10 +8,16 @@ from .raw_client import AsyncRawAssetsClient, RawAssetsClient
 from .types.post_v1assets_assets_create_request_documents_item import PostV1AssetsAssetsCreateRequestDocumentsItem
 from .types.post_v1assets_assets_create_response import PostV1AssetsAssetsCreateResponse
 from .types.post_v1assets_assets_get_response import PostV1AssetsAssetsGetResponse
+from .types.post_v1assets_assets_input_vat_request_input_vat_use_changes_item import (
+    PostV1AssetsAssetsInputVatRequestInputVatUseChangesItem,
+)
+from .types.post_v1assets_assets_input_vat_response import PostV1AssetsAssetsInputVatResponse
 from .types.post_v1assets_assets_list_request_filter_item import PostV1AssetsAssetsListRequestFilterItem
 from .types.post_v1assets_assets_list_request_sort_item import PostV1AssetsAssetsListRequestSortItem
 from .types.post_v1assets_assets_list_response import PostV1AssetsAssetsListResponse
 from .types.post_v1assets_assets_modernize_response import PostV1AssetsAssetsModernizeResponse
+from .types.post_v1assets_assets_update_request_documents_item import PostV1AssetsAssetsUpdateRequestDocumentsItem
+from .types.post_v1assets_assets_update_response import PostV1AssetsAssetsUpdateResponse
 from .types.post_v1assets_depreciation_post_response import PostV1AssetsDepreciationPostResponse
 from .types.post_v1assets_depreciation_preview_response import PostV1AssetsDepreciationPreviewResponse
 from .types.post_v1assets_groups_create_response import PostV1AssetsGroupsCreateResponse
@@ -215,6 +221,151 @@ class AssetsClient:
             useful_life_months=useful_life_months,
             notes=notes,
             documents=documents,
+            request_options=request_options,
+        )
+        return _response.data
+
+    def post_v1assets_assets_update(
+        self,
+        *,
+        id: str,
+        group_id: typing.Optional[str] = OMIT,
+        code: typing.Optional[str] = OMIT,
+        name: typing.Optional[str] = OMIT,
+        acquisition_date: typing.Optional[str] = OMIT,
+        depreciation_start_date: typing.Optional[str] = OMIT,
+        acquisition_cost: typing.Optional[str] = OMIT,
+        salvage_value: typing.Optional[str] = OMIT,
+        useful_life_months: typing.Optional[int] = OMIT,
+        notes: typing.Optional[str] = OMIT,
+        documents: typing.Optional[typing.Sequence[PostV1AssetsAssetsUpdateRequestDocumentsItem]] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1AssetsAssetsUpdateResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        group_id : typing.Optional[str]
+
+        code : typing.Optional[str]
+
+        name : typing.Optional[str]
+
+        acquisition_date : typing.Optional[str]
+
+        depreciation_start_date : typing.Optional[str]
+
+        acquisition_cost : typing.Optional[str]
+
+        salvage_value : typing.Optional[str]
+
+        useful_life_months : typing.Optional[int]
+
+        notes : typing.Optional[str]
+
+        documents : typing.Optional[typing.Sequence[PostV1AssetsAssetsUpdateRequestDocumentsItem]]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1AssetsAssetsUpdateResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.assets.post_v1assets_assets_update(
+            id="id",
+        )
+        """
+        _response = self._raw_client.post_v1assets_assets_update(
+            id=id,
+            group_id=group_id,
+            code=code,
+            name=name,
+            acquisition_date=acquisition_date,
+            depreciation_start_date=depreciation_start_date,
+            acquisition_cost=acquisition_cost,
+            salvage_value=salvage_value,
+            useful_life_months=useful_life_months,
+            notes=notes,
+            documents=documents,
+            request_options=request_options,
+        )
+        return _response.data
+
+    def post_v1assets_assets_input_vat(
+        self,
+        *,
+        id: str,
+        input_vat_real_estate: bool,
+        input_vat_use_changes: typing.Sequence[PostV1AssetsAssetsInputVatRequestInputVatUseChangesItem],
+        input_vat_amount: typing.Optional[str] = OMIT,
+        input_vat_first_use_date: typing.Optional[str] = OMIT,
+        input_vat_deductible_percent: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1AssetsAssetsInputVatResponse:
+        """
+        Record the input VAT facts of a capital good that the annual VAT return needs for the adjustment of the deduction over the adjustment period (Article 187 of the VAT Directive, § 15a UStG): the input VAT on the acquisition, the date of first use, the share of use for deductible turnover at first use, whether it is land or a building (ten-year period instead of five), and every later year in which the share changed or the good was sold or withdrawn. Allowed also after depreciation has been posted.
+
+        Parameters
+        ----------
+        id : str
+
+        input_vat_real_estate : bool
+
+        input_vat_use_changes : typing.Sequence[PostV1AssetsAssetsInputVatRequestInputVatUseChangesItem]
+
+        input_vat_amount : typing.Optional[str]
+
+        input_vat_first_use_date : typing.Optional[str]
+
+        input_vat_deductible_percent : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1AssetsAssetsInputVatResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+        from nordlet.assets import (
+            PostV1AssetsAssetsInputVatRequestInputVatUseChangesItem,
+        )
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.assets.post_v1assets_assets_input_vat(
+            id="id",
+            input_vat_real_estate=True,
+            input_vat_use_changes=[
+                PostV1AssetsAssetsInputVatRequestInputVatUseChangesItem(
+                    year=1000000,
+                    percent="percent",
+                    reason="use_change",
+                )
+            ],
+        )
+        """
+        _response = self._raw_client.post_v1assets_assets_input_vat(
+            id=id,
+            input_vat_real_estate=input_vat_real_estate,
+            input_vat_use_changes=input_vat_use_changes,
+            input_vat_amount=input_vat_amount,
+            input_vat_first_use_date=input_vat_first_use_date,
+            input_vat_deductible_percent=input_vat_deductible_percent,
             request_options=request_options,
         )
         return _response.data
@@ -636,6 +787,167 @@ class AsyncAssetsClient:
             useful_life_months=useful_life_months,
             notes=notes,
             documents=documents,
+            request_options=request_options,
+        )
+        return _response.data
+
+    async def post_v1assets_assets_update(
+        self,
+        *,
+        id: str,
+        group_id: typing.Optional[str] = OMIT,
+        code: typing.Optional[str] = OMIT,
+        name: typing.Optional[str] = OMIT,
+        acquisition_date: typing.Optional[str] = OMIT,
+        depreciation_start_date: typing.Optional[str] = OMIT,
+        acquisition_cost: typing.Optional[str] = OMIT,
+        salvage_value: typing.Optional[str] = OMIT,
+        useful_life_months: typing.Optional[int] = OMIT,
+        notes: typing.Optional[str] = OMIT,
+        documents: typing.Optional[typing.Sequence[PostV1AssetsAssetsUpdateRequestDocumentsItem]] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1AssetsAssetsUpdateResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        group_id : typing.Optional[str]
+
+        code : typing.Optional[str]
+
+        name : typing.Optional[str]
+
+        acquisition_date : typing.Optional[str]
+
+        depreciation_start_date : typing.Optional[str]
+
+        acquisition_cost : typing.Optional[str]
+
+        salvage_value : typing.Optional[str]
+
+        useful_life_months : typing.Optional[int]
+
+        notes : typing.Optional[str]
+
+        documents : typing.Optional[typing.Sequence[PostV1AssetsAssetsUpdateRequestDocumentsItem]]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1AssetsAssetsUpdateResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.assets.post_v1assets_assets_update(
+                id="id",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1assets_assets_update(
+            id=id,
+            group_id=group_id,
+            code=code,
+            name=name,
+            acquisition_date=acquisition_date,
+            depreciation_start_date=depreciation_start_date,
+            acquisition_cost=acquisition_cost,
+            salvage_value=salvage_value,
+            useful_life_months=useful_life_months,
+            notes=notes,
+            documents=documents,
+            request_options=request_options,
+        )
+        return _response.data
+
+    async def post_v1assets_assets_input_vat(
+        self,
+        *,
+        id: str,
+        input_vat_real_estate: bool,
+        input_vat_use_changes: typing.Sequence[PostV1AssetsAssetsInputVatRequestInputVatUseChangesItem],
+        input_vat_amount: typing.Optional[str] = OMIT,
+        input_vat_first_use_date: typing.Optional[str] = OMIT,
+        input_vat_deductible_percent: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1AssetsAssetsInputVatResponse:
+        """
+        Record the input VAT facts of a capital good that the annual VAT return needs for the adjustment of the deduction over the adjustment period (Article 187 of the VAT Directive, § 15a UStG): the input VAT on the acquisition, the date of first use, the share of use for deductible turnover at first use, whether it is land or a building (ten-year period instead of five), and every later year in which the share changed or the good was sold or withdrawn. Allowed also after depreciation has been posted.
+
+        Parameters
+        ----------
+        id : str
+
+        input_vat_real_estate : bool
+
+        input_vat_use_changes : typing.Sequence[PostV1AssetsAssetsInputVatRequestInputVatUseChangesItem]
+
+        input_vat_amount : typing.Optional[str]
+
+        input_vat_first_use_date : typing.Optional[str]
+
+        input_vat_deductible_percent : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1AssetsAssetsInputVatResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+        from nordlet.assets import (
+            PostV1AssetsAssetsInputVatRequestInputVatUseChangesItem,
+        )
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.assets.post_v1assets_assets_input_vat(
+                id="id",
+                input_vat_real_estate=True,
+                input_vat_use_changes=[
+                    PostV1AssetsAssetsInputVatRequestInputVatUseChangesItem(
+                        year=1000000,
+                        percent="percent",
+                        reason="use_change",
+                    )
+                ],
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1assets_assets_input_vat(
+            id=id,
+            input_vat_real_estate=input_vat_real_estate,
+            input_vat_use_changes=input_vat_use_changes,
+            input_vat_amount=input_vat_amount,
+            input_vat_first_use_date=input_vat_first_use_date,
+            input_vat_deductible_percent=input_vat_deductible_percent,
             request_options=request_options,
         )
         return _response.data

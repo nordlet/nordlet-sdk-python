@@ -6,17 +6,24 @@ import pydantic
 import typing_extensions
 from ...core.pydantic_utilities import IS_PYDANTIC_V2, UniversalBaseModel
 from ...core.serialization import FieldMetadata
+from .post_v1payroll_calc_response_components_item import PostV1PayrollCalcResponseComponentsItem
 
 
 class PostV1PayrollCalcResponse(UniversalBaseModel):
-    npd: str
-    gpm: str
-    sodra_employee: typing_extensions.Annotated[
-        str, FieldMetadata(alias="sodraEmployee"), pydantic.Field(alias="sodraEmployee")
+    country_code: typing_extensions.Annotated[
+        str, FieldMetadata(alias="countryCode"), pydantic.Field(alias="countryCode")
     ]
-    sodra_employer: typing_extensions.Annotated[
-        str, FieldMetadata(alias="sodraEmployer"), pydantic.Field(alias="sodraEmployer")
+    tax_allowance: typing_extensions.Annotated[
+        str, FieldMetadata(alias="taxAllowance"), pydantic.Field(alias="taxAllowance")
     ]
+    income_tax: typing_extensions.Annotated[str, FieldMetadata(alias="incomeTax"), pydantic.Field(alias="incomeTax")]
+    employee_contributions: typing_extensions.Annotated[
+        str, FieldMetadata(alias="employeeContributions"), pydantic.Field(alias="employeeContributions")
+    ]
+    employer_contributions: typing_extensions.Annotated[
+        str, FieldMetadata(alias="employerContributions"), pydantic.Field(alias="employerContributions")
+    ]
+    components: typing.List[PostV1PayrollCalcResponseComponentsItem]
     net: str
 
     if IS_PYDANTIC_V2:

@@ -28,6 +28,50 @@ class PostV1DeclarationsSubmissionsListResponseRowsItem(UniversalBaseModel):
         typing.Optional[str], FieldMetadata(alias="externalRef"), pydantic.Field(alias="externalRef")
     ] = None
     message: typing.Optional[str] = None
+    rule_key: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="ruleKey"), pydantic.Field(alias="ruleKey")
+    ] = None
+    period: typing.Optional[str] = None
+    document_key: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="documentKey"), pydantic.Field(alias="documentKey")
+    ] = None
+    origin: str
+    transport_system: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="transportSystem"), pydantic.Field(alias="transportSystem")
+    ] = None
+    submitted_at: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="submittedAt"), pydantic.Field(alias="submittedAt")
+    ] = None
+    accepted_at: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="acceptedAt"), pydantic.Field(alias="acceptedAt")
+    ] = None
+    rejected_at: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="rejectedAt"), pydantic.Field(alias="rejectedAt")
+    ] = None
+    checked_at: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="checkedAt"), pydantic.Field(alias="checkedAt")
+    ] = None
+    next_check_at: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="nextCheckAt"), pydantic.Field(alias="nextCheckAt")
+    ] = None
+    attempts: int
+    delivery_error: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="deliveryError"), pydantic.Field(alias="deliveryError")
+    ] = None
+    sent_sha256: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="sentSha256"), pydantic.Field(alias="sentSha256")
+    ] = None
+    certificate_fingerprint: typing_extensions.Annotated[
+        typing.Optional[str],
+        FieldMetadata(alias="certificateFingerprint"),
+        pydantic.Field(alias="certificateFingerprint"),
+    ] = None
+    submitted_by_actor_type: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="submittedByActorType"), pydantic.Field(alias="submittedByActorType")
+    ] = None
+    submitted_by_actor_id: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="submittedByActorId"), pydantic.Field(alias="submittedByActorId")
+    ] = None
     created_at: typing_extensions.Annotated[str, FieldMetadata(alias="createdAt"), pydantic.Field(alias="createdAt")]
     updated_at: typing_extensions.Annotated[str, FieldMetadata(alias="updatedAt"), pydantic.Field(alias="updatedAt")]
 

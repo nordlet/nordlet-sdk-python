@@ -22,16 +22,25 @@ from ..types.error_response import ErrorResponse
 from .types.post_v1account_api_keys_create_response import PostV1AccountApiKeysCreateResponse
 from .types.post_v1account_api_keys_list_response import PostV1AccountApiKeysListResponse
 from .types.post_v1account_api_keys_revoke_response import PostV1AccountApiKeysRevokeResponse
+from .types.post_v1account_api_keys_rotate_response import PostV1AccountApiKeysRotateResponse
 from .types.post_v1account_companies_activate_response import PostV1AccountCompaniesActivateResponse
 from .types.post_v1account_companies_archive_response import PostV1AccountCompaniesArchiveResponse
+from .types.post_v1account_companies_create_request_accounts_kept_by import (
+    PostV1AccountCompaniesCreateRequestAccountsKeptBy,
+)
 from .types.post_v1account_companies_create_request_address import PostV1AccountCompaniesCreateRequestAddress
 from .types.post_v1account_companies_create_request_country_code import PostV1AccountCompaniesCreateRequestCountryCode
+from .types.post_v1account_companies_create_request_vat_period import PostV1AccountCompaniesCreateRequestVatPeriod
 from .types.post_v1account_companies_create_response import PostV1AccountCompaniesCreateResponse
 from .types.post_v1account_companies_delete_response import PostV1AccountCompaniesDeleteResponse
 from .types.post_v1account_companies_profile_response import PostV1AccountCompaniesProfileResponse
 from .types.post_v1account_companies_select_response import PostV1AccountCompaniesSelectResponse
+from .types.post_v1account_companies_update_request_accounts_kept_by import (
+    PostV1AccountCompaniesUpdateRequestAccountsKeptBy,
+)
 from .types.post_v1account_companies_update_request_address import PostV1AccountCompaniesUpdateRequestAddress
 from .types.post_v1account_companies_update_request_logo import PostV1AccountCompaniesUpdateRequestLogo
+from .types.post_v1account_companies_update_request_vat_period import PostV1AccountCompaniesUpdateRequestVatPeriod
 from .types.post_v1account_companies_update_response import PostV1AccountCompaniesUpdateResponse
 from .types.post_v1account_consent_accept_response import PostV1AccountConsentAcceptResponse
 from .types.post_v1account_delete_response import PostV1AccountDeleteResponse
@@ -57,7 +66,9 @@ from .types.post_v1account_members_list_response import PostV1AccountMembersList
 from .types.post_v1account_members_remove_response import PostV1AccountMembersRemoveResponse
 from .types.post_v1account_members_set_role_request_role import PostV1AccountMembersSetRoleRequestRole
 from .types.post_v1account_members_set_role_response import PostV1AccountMembersSetRoleResponse
+from .types.post_v1account_members_transfer_ownership_response import PostV1AccountMembersTransferOwnershipResponse
 from .types.post_v1account_profile_update_response import PostV1AccountProfileUpdateResponse
+from .types.post_v1account_referral_convert_response import PostV1AccountReferralConvertResponse
 from .types.post_v1account_referral_get_response import PostV1AccountReferralGetResponse
 from .types.post_v1account_sessions_list_response import PostV1AccountSessionsListResponse
 from .types.post_v1account_sessions_revoke_others_response import PostV1AccountSessionsRevokeOthersResponse
@@ -798,6 +809,148 @@ class RawAccountClient:
                     PostV1AccountMembersSetRoleResponse,
                     parse_obj_as(
                         type_=PostV1AccountMembersSetRoleResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return HttpResponse(response=_response, data=_data)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 422:
+                raise UnprocessableEntityError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
+    def post_v1account_members_transfer_ownership(
+        self,
+        *,
+        user_id: str,
+        move_payer: typing.Optional[bool] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> HttpResponse[PostV1AccountMembersTransferOwnershipResponse]:
+        """
+        Parameters
+        ----------
+        user_id : str
+
+        move_payer : typing.Optional[bool]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        HttpResponse[PostV1AccountMembersTransferOwnershipResponse]
+            Default Response
+        """
+        _response = self._client_wrapper.httpx_client.request(
+            "v1/account/members/transfer-ownership",
+            method="POST",
+            json={
+                "userId": user_id,
+                "movePayer": move_payer,
+            },
+            headers={
+                "content-type": "application/json",
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    PostV1AccountMembersTransferOwnershipResponse,
+                    parse_obj_as(
+                        type_=PostV1AccountMembersTransferOwnershipResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -1878,6 +2031,10 @@ class RawAccountClient:
         vat_code: typing.Optional[str] = OMIT,
         sme_exemption_number: typing.Optional[str] = OMIT,
         is_vat_payer: typing.Optional[bool] = OMIT,
+        vat_period: typing.Optional[PostV1AccountCompaniesCreateRequestVatPeriod] = OMIT,
+        fiscal_year_end_month: typing.Optional[int] = OMIT,
+        time_zone: typing.Optional[str] = OMIT,
+        filing_options: typing.Optional[typing.Dict[str, str]] = OMIT,
         address: typing.Optional[PostV1AccountCompaniesCreateRequestAddress] = OMIT,
         email: typing.Optional[str] = OMIT,
         phone: typing.Optional[str] = OMIT,
@@ -1886,6 +2043,15 @@ class RawAccountClient:
         peppol_id: typing.Optional[str] = OMIT,
         sepa_creditor_id: typing.Optional[str] = OMIT,
         default_invoice_currency: typing.Optional[str] = OMIT,
+        legal_form: typing.Optional[str] = OMIT,
+        registry_name: typing.Optional[str] = OMIT,
+        incorporated_on: typing.Optional[str] = OMIT,
+        share_capital: typing.Optional[str] = OMIT,
+        accounts_kept_by: typing.Optional[PostV1AccountCompaniesCreateRequestAccountsKeptBy] = OMIT,
+        bookkeeper_name: typing.Optional[str] = OMIT,
+        auditor_name: typing.Optional[str] = OMIT,
+        auditor_registration_number: typing.Optional[str] = OMIT,
+        audit_required: typing.Optional[bool] = OMIT,
         country_code: typing.Optional[PostV1AccountCompaniesCreateRequestCountryCode] = OMIT,
         is_sandbox: typing.Optional[bool] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
@@ -1903,6 +2069,14 @@ class RawAccountClient:
 
         is_vat_payer : typing.Optional[bool]
 
+        vat_period : typing.Optional[PostV1AccountCompaniesCreateRequestVatPeriod]
+
+        fiscal_year_end_month : typing.Optional[int]
+
+        time_zone : typing.Optional[str]
+
+        filing_options : typing.Optional[typing.Dict[str, str]]
+
         address : typing.Optional[PostV1AccountCompaniesCreateRequestAddress]
 
         email : typing.Optional[str]
@@ -1918,6 +2092,24 @@ class RawAccountClient:
         sepa_creditor_id : typing.Optional[str]
 
         default_invoice_currency : typing.Optional[str]
+
+        legal_form : typing.Optional[str]
+
+        registry_name : typing.Optional[str]
+
+        incorporated_on : typing.Optional[str]
+
+        share_capital : typing.Optional[str]
+
+        accounts_kept_by : typing.Optional[PostV1AccountCompaniesCreateRequestAccountsKeptBy]
+
+        bookkeeper_name : typing.Optional[str]
+
+        auditor_name : typing.Optional[str]
+
+        auditor_registration_number : typing.Optional[str]
+
+        audit_required : typing.Optional[bool]
 
         country_code : typing.Optional[PostV1AccountCompaniesCreateRequestCountryCode]
             Jurisdiction the company is registered in (immutable after creation)
@@ -1942,6 +2134,10 @@ class RawAccountClient:
                 "vatCode": vat_code,
                 "smeExemptionNumber": sme_exemption_number,
                 "isVatPayer": is_vat_payer,
+                "vatPeriod": vat_period,
+                "fiscalYearEndMonth": fiscal_year_end_month,
+                "timeZone": time_zone,
+                "filingOptions": filing_options,
                 "address": convert_and_respect_annotation_metadata(
                     object_=address, annotation=PostV1AccountCompaniesCreateRequestAddress, direction="write"
                 ),
@@ -1952,6 +2148,15 @@ class RawAccountClient:
                 "peppolId": peppol_id,
                 "sepaCreditorId": sepa_creditor_id,
                 "defaultInvoiceCurrency": default_invoice_currency,
+                "legalForm": legal_form,
+                "registryName": registry_name,
+                "incorporatedOn": incorporated_on,
+                "shareCapital": share_capital,
+                "accountsKeptBy": accounts_kept_by,
+                "bookkeeperName": bookkeeper_name,
+                "auditorName": auditor_name,
+                "auditorRegistrationNumber": auditor_registration_number,
+                "auditRequired": audit_required,
                 "countryCode": country_code,
                 "isSandbox": is_sandbox,
             },
@@ -2342,6 +2547,10 @@ class RawAccountClient:
         vat_code: typing.Optional[str] = OMIT,
         sme_exemption_number: typing.Optional[str] = OMIT,
         is_vat_payer: typing.Optional[bool] = OMIT,
+        vat_period: typing.Optional[PostV1AccountCompaniesUpdateRequestVatPeriod] = OMIT,
+        fiscal_year_end_month: typing.Optional[int] = OMIT,
+        time_zone: typing.Optional[str] = OMIT,
+        filing_options: typing.Optional[typing.Dict[str, typing.Optional[str]]] = OMIT,
         address: typing.Optional[PostV1AccountCompaniesUpdateRequestAddress] = OMIT,
         email: typing.Optional[str] = OMIT,
         phone: typing.Optional[str] = OMIT,
@@ -2350,6 +2559,15 @@ class RawAccountClient:
         peppol_id: typing.Optional[str] = OMIT,
         sepa_creditor_id: typing.Optional[str] = OMIT,
         default_invoice_currency: typing.Optional[str] = OMIT,
+        legal_form: typing.Optional[str] = OMIT,
+        registry_name: typing.Optional[str] = OMIT,
+        incorporated_on: typing.Optional[str] = OMIT,
+        share_capital: typing.Optional[str] = OMIT,
+        accounts_kept_by: typing.Optional[PostV1AccountCompaniesUpdateRequestAccountsKeptBy] = OMIT,
+        bookkeeper_name: typing.Optional[str] = OMIT,
+        auditor_name: typing.Optional[str] = OMIT,
+        auditor_registration_number: typing.Optional[str] = OMIT,
+        audit_required: typing.Optional[bool] = OMIT,
         logo: typing.Optional[PostV1AccountCompaniesUpdateRequestLogo] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[PostV1AccountCompaniesUpdateResponse]:
@@ -2366,6 +2584,14 @@ class RawAccountClient:
 
         is_vat_payer : typing.Optional[bool]
 
+        vat_period : typing.Optional[PostV1AccountCompaniesUpdateRequestVatPeriod]
+
+        fiscal_year_end_month : typing.Optional[int]
+
+        time_zone : typing.Optional[str]
+
+        filing_options : typing.Optional[typing.Dict[str, typing.Optional[str]]]
+
         address : typing.Optional[PostV1AccountCompaniesUpdateRequestAddress]
 
         email : typing.Optional[str]
@@ -2381,6 +2607,24 @@ class RawAccountClient:
         sepa_creditor_id : typing.Optional[str]
 
         default_invoice_currency : typing.Optional[str]
+
+        legal_form : typing.Optional[str]
+
+        registry_name : typing.Optional[str]
+
+        incorporated_on : typing.Optional[str]
+
+        share_capital : typing.Optional[str]
+
+        accounts_kept_by : typing.Optional[PostV1AccountCompaniesUpdateRequestAccountsKeptBy]
+
+        bookkeeper_name : typing.Optional[str]
+
+        auditor_name : typing.Optional[str]
+
+        auditor_registration_number : typing.Optional[str]
+
+        audit_required : typing.Optional[bool]
 
         logo : typing.Optional[PostV1AccountCompaniesUpdateRequestLogo]
 
@@ -2401,6 +2645,10 @@ class RawAccountClient:
                 "vatCode": vat_code,
                 "smeExemptionNumber": sme_exemption_number,
                 "isVatPayer": is_vat_payer,
+                "vatPeriod": vat_period,
+                "fiscalYearEndMonth": fiscal_year_end_month,
+                "timeZone": time_zone,
+                "filingOptions": filing_options,
                 "address": convert_and_respect_annotation_metadata(
                     object_=address, annotation=PostV1AccountCompaniesUpdateRequestAddress, direction="write"
                 ),
@@ -2411,6 +2659,15 @@ class RawAccountClient:
                 "peppolId": peppol_id,
                 "sepaCreditorId": sepa_creditor_id,
                 "defaultInvoiceCurrency": default_invoice_currency,
+                "legalForm": legal_form,
+                "registryName": registry_name,
+                "incorporatedOn": incorporated_on,
+                "shareCapital": share_capital,
+                "accountsKeptBy": accounts_kept_by,
+                "bookkeeperName": bookkeeper_name,
+                "auditorName": auditor_name,
+                "auditorRegistrationNumber": auditor_registration_number,
+                "auditRequired": audit_required,
                 "logo": convert_and_respect_annotation_metadata(
                     object_=logo, annotation=PostV1AccountCompaniesUpdateRequestLogo, direction="write"
                 ),
@@ -2938,6 +3195,7 @@ class RawAccountClient:
         *,
         name: str,
         scopes: typing.Optional[typing.Sequence[str]] = OMIT,
+        expires_in_days: typing.Optional[int] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[PostV1AccountApiKeysCreateResponse]:
         """
@@ -2946,6 +3204,8 @@ class RawAccountClient:
         name : str
 
         scopes : typing.Optional[typing.Sequence[str]]
+
+        expires_in_days : typing.Optional[int]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -2961,6 +3221,7 @@ class RawAccountClient:
             json={
                 "name": name,
                 "scopes": scopes,
+                "expiresInDays": expires_in_days,
             },
             headers={
                 "content-type": "application/json",
@@ -3105,6 +3366,152 @@ class RawAccountClient:
                     PostV1AccountApiKeysListResponse,
                     parse_obj_as(
                         type_=PostV1AccountApiKeysListResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return HttpResponse(response=_response, data=_data)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 422:
+                raise UnprocessableEntityError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
+    def issue_a_replacement_for_an_api_key_and_set_the_old_one_to_stop_working_after_a_short_overlap(
+        self,
+        *,
+        id: str,
+        overlap_hours: typing.Optional[int] = OMIT,
+        expires_in_days: typing.Optional[int] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> HttpResponse[PostV1AccountApiKeysRotateResponse]:
+        """
+        Parameters
+        ----------
+        id : str
+
+        overlap_hours : typing.Optional[int]
+
+        expires_in_days : typing.Optional[int]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        HttpResponse[PostV1AccountApiKeysRotateResponse]
+            Default Response
+        """
+        _response = self._client_wrapper.httpx_client.request(
+            "v1/account/api-keys/rotate",
+            method="POST",
+            json={
+                "id": id,
+                "overlapHours": overlap_hours,
+                "expiresInDays": expires_in_days,
+            },
+            headers={
+                "content-type": "application/json",
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    PostV1AccountApiKeysRotateResponse,
+                    parse_obj_as(
+                        type_=PostV1AccountApiKeysRotateResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -4552,6 +4959,141 @@ class RawAccountClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
+    def post_v1account_referral_convert(
+        self, *, points: int, request_options: typing.Optional[RequestOptions] = None
+    ) -> HttpResponse[PostV1AccountReferralConvertResponse]:
+        """
+        Parameters
+        ----------
+        points : int
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        HttpResponse[PostV1AccountReferralConvertResponse]
+            Default Response
+        """
+        _response = self._client_wrapper.httpx_client.request(
+            "v1/account/referral/convert",
+            method="POST",
+            json={
+                "points": points,
+            },
+            headers={
+                "content-type": "application/json",
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    PostV1AccountReferralConvertResponse,
+                    parse_obj_as(
+                        type_=PostV1AccountReferralConvertResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return HttpResponse(response=_response, data=_data)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 422:
+                raise UnprocessableEntityError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
     def post_v1account_table_settings_get(
         self, *, table_key: str, request_options: typing.Optional[RequestOptions] = None
     ) -> HttpResponse[PostV1AccountTableSettingsGetResponse]:
@@ -5793,6 +6335,148 @@ class AsyncRawAccountClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
+    async def post_v1account_members_transfer_ownership(
+        self,
+        *,
+        user_id: str,
+        move_payer: typing.Optional[bool] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> AsyncHttpResponse[PostV1AccountMembersTransferOwnershipResponse]:
+        """
+        Parameters
+        ----------
+        user_id : str
+
+        move_payer : typing.Optional[bool]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        AsyncHttpResponse[PostV1AccountMembersTransferOwnershipResponse]
+            Default Response
+        """
+        _response = await self._client_wrapper.httpx_client.request(
+            "v1/account/members/transfer-ownership",
+            method="POST",
+            json={
+                "userId": user_id,
+                "movePayer": move_payer,
+            },
+            headers={
+                "content-type": "application/json",
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    PostV1AccountMembersTransferOwnershipResponse,
+                    parse_obj_as(
+                        type_=PostV1AccountMembersTransferOwnershipResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return AsyncHttpResponse(response=_response, data=_data)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 422:
+                raise UnprocessableEntityError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
     async def post_v1account_members_remove(
         self, *, user_id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> AsyncHttpResponse[PostV1AccountMembersRemoveResponse]:
@@ -6772,6 +7456,10 @@ class AsyncRawAccountClient:
         vat_code: typing.Optional[str] = OMIT,
         sme_exemption_number: typing.Optional[str] = OMIT,
         is_vat_payer: typing.Optional[bool] = OMIT,
+        vat_period: typing.Optional[PostV1AccountCompaniesCreateRequestVatPeriod] = OMIT,
+        fiscal_year_end_month: typing.Optional[int] = OMIT,
+        time_zone: typing.Optional[str] = OMIT,
+        filing_options: typing.Optional[typing.Dict[str, str]] = OMIT,
         address: typing.Optional[PostV1AccountCompaniesCreateRequestAddress] = OMIT,
         email: typing.Optional[str] = OMIT,
         phone: typing.Optional[str] = OMIT,
@@ -6780,6 +7468,15 @@ class AsyncRawAccountClient:
         peppol_id: typing.Optional[str] = OMIT,
         sepa_creditor_id: typing.Optional[str] = OMIT,
         default_invoice_currency: typing.Optional[str] = OMIT,
+        legal_form: typing.Optional[str] = OMIT,
+        registry_name: typing.Optional[str] = OMIT,
+        incorporated_on: typing.Optional[str] = OMIT,
+        share_capital: typing.Optional[str] = OMIT,
+        accounts_kept_by: typing.Optional[PostV1AccountCompaniesCreateRequestAccountsKeptBy] = OMIT,
+        bookkeeper_name: typing.Optional[str] = OMIT,
+        auditor_name: typing.Optional[str] = OMIT,
+        auditor_registration_number: typing.Optional[str] = OMIT,
+        audit_required: typing.Optional[bool] = OMIT,
         country_code: typing.Optional[PostV1AccountCompaniesCreateRequestCountryCode] = OMIT,
         is_sandbox: typing.Optional[bool] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
@@ -6797,6 +7494,14 @@ class AsyncRawAccountClient:
 
         is_vat_payer : typing.Optional[bool]
 
+        vat_period : typing.Optional[PostV1AccountCompaniesCreateRequestVatPeriod]
+
+        fiscal_year_end_month : typing.Optional[int]
+
+        time_zone : typing.Optional[str]
+
+        filing_options : typing.Optional[typing.Dict[str, str]]
+
         address : typing.Optional[PostV1AccountCompaniesCreateRequestAddress]
 
         email : typing.Optional[str]
@@ -6812,6 +7517,24 @@ class AsyncRawAccountClient:
         sepa_creditor_id : typing.Optional[str]
 
         default_invoice_currency : typing.Optional[str]
+
+        legal_form : typing.Optional[str]
+
+        registry_name : typing.Optional[str]
+
+        incorporated_on : typing.Optional[str]
+
+        share_capital : typing.Optional[str]
+
+        accounts_kept_by : typing.Optional[PostV1AccountCompaniesCreateRequestAccountsKeptBy]
+
+        bookkeeper_name : typing.Optional[str]
+
+        auditor_name : typing.Optional[str]
+
+        auditor_registration_number : typing.Optional[str]
+
+        audit_required : typing.Optional[bool]
 
         country_code : typing.Optional[PostV1AccountCompaniesCreateRequestCountryCode]
             Jurisdiction the company is registered in (immutable after creation)
@@ -6836,6 +7559,10 @@ class AsyncRawAccountClient:
                 "vatCode": vat_code,
                 "smeExemptionNumber": sme_exemption_number,
                 "isVatPayer": is_vat_payer,
+                "vatPeriod": vat_period,
+                "fiscalYearEndMonth": fiscal_year_end_month,
+                "timeZone": time_zone,
+                "filingOptions": filing_options,
                 "address": convert_and_respect_annotation_metadata(
                     object_=address, annotation=PostV1AccountCompaniesCreateRequestAddress, direction="write"
                 ),
@@ -6846,6 +7573,15 @@ class AsyncRawAccountClient:
                 "peppolId": peppol_id,
                 "sepaCreditorId": sepa_creditor_id,
                 "defaultInvoiceCurrency": default_invoice_currency,
+                "legalForm": legal_form,
+                "registryName": registry_name,
+                "incorporatedOn": incorporated_on,
+                "shareCapital": share_capital,
+                "accountsKeptBy": accounts_kept_by,
+                "bookkeeperName": bookkeeper_name,
+                "auditorName": auditor_name,
+                "auditorRegistrationNumber": auditor_registration_number,
+                "auditRequired": audit_required,
                 "countryCode": country_code,
                 "isSandbox": is_sandbox,
             },
@@ -7236,6 +7972,10 @@ class AsyncRawAccountClient:
         vat_code: typing.Optional[str] = OMIT,
         sme_exemption_number: typing.Optional[str] = OMIT,
         is_vat_payer: typing.Optional[bool] = OMIT,
+        vat_period: typing.Optional[PostV1AccountCompaniesUpdateRequestVatPeriod] = OMIT,
+        fiscal_year_end_month: typing.Optional[int] = OMIT,
+        time_zone: typing.Optional[str] = OMIT,
+        filing_options: typing.Optional[typing.Dict[str, typing.Optional[str]]] = OMIT,
         address: typing.Optional[PostV1AccountCompaniesUpdateRequestAddress] = OMIT,
         email: typing.Optional[str] = OMIT,
         phone: typing.Optional[str] = OMIT,
@@ -7244,6 +7984,15 @@ class AsyncRawAccountClient:
         peppol_id: typing.Optional[str] = OMIT,
         sepa_creditor_id: typing.Optional[str] = OMIT,
         default_invoice_currency: typing.Optional[str] = OMIT,
+        legal_form: typing.Optional[str] = OMIT,
+        registry_name: typing.Optional[str] = OMIT,
+        incorporated_on: typing.Optional[str] = OMIT,
+        share_capital: typing.Optional[str] = OMIT,
+        accounts_kept_by: typing.Optional[PostV1AccountCompaniesUpdateRequestAccountsKeptBy] = OMIT,
+        bookkeeper_name: typing.Optional[str] = OMIT,
+        auditor_name: typing.Optional[str] = OMIT,
+        auditor_registration_number: typing.Optional[str] = OMIT,
+        audit_required: typing.Optional[bool] = OMIT,
         logo: typing.Optional[PostV1AccountCompaniesUpdateRequestLogo] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[PostV1AccountCompaniesUpdateResponse]:
@@ -7260,6 +8009,14 @@ class AsyncRawAccountClient:
 
         is_vat_payer : typing.Optional[bool]
 
+        vat_period : typing.Optional[PostV1AccountCompaniesUpdateRequestVatPeriod]
+
+        fiscal_year_end_month : typing.Optional[int]
+
+        time_zone : typing.Optional[str]
+
+        filing_options : typing.Optional[typing.Dict[str, typing.Optional[str]]]
+
         address : typing.Optional[PostV1AccountCompaniesUpdateRequestAddress]
 
         email : typing.Optional[str]
@@ -7275,6 +8032,24 @@ class AsyncRawAccountClient:
         sepa_creditor_id : typing.Optional[str]
 
         default_invoice_currency : typing.Optional[str]
+
+        legal_form : typing.Optional[str]
+
+        registry_name : typing.Optional[str]
+
+        incorporated_on : typing.Optional[str]
+
+        share_capital : typing.Optional[str]
+
+        accounts_kept_by : typing.Optional[PostV1AccountCompaniesUpdateRequestAccountsKeptBy]
+
+        bookkeeper_name : typing.Optional[str]
+
+        auditor_name : typing.Optional[str]
+
+        auditor_registration_number : typing.Optional[str]
+
+        audit_required : typing.Optional[bool]
 
         logo : typing.Optional[PostV1AccountCompaniesUpdateRequestLogo]
 
@@ -7295,6 +8070,10 @@ class AsyncRawAccountClient:
                 "vatCode": vat_code,
                 "smeExemptionNumber": sme_exemption_number,
                 "isVatPayer": is_vat_payer,
+                "vatPeriod": vat_period,
+                "fiscalYearEndMonth": fiscal_year_end_month,
+                "timeZone": time_zone,
+                "filingOptions": filing_options,
                 "address": convert_and_respect_annotation_metadata(
                     object_=address, annotation=PostV1AccountCompaniesUpdateRequestAddress, direction="write"
                 ),
@@ -7305,6 +8084,15 @@ class AsyncRawAccountClient:
                 "peppolId": peppol_id,
                 "sepaCreditorId": sepa_creditor_id,
                 "defaultInvoiceCurrency": default_invoice_currency,
+                "legalForm": legal_form,
+                "registryName": registry_name,
+                "incorporatedOn": incorporated_on,
+                "shareCapital": share_capital,
+                "accountsKeptBy": accounts_kept_by,
+                "bookkeeperName": bookkeeper_name,
+                "auditorName": auditor_name,
+                "auditorRegistrationNumber": auditor_registration_number,
+                "auditRequired": audit_required,
                 "logo": convert_and_respect_annotation_metadata(
                     object_=logo, annotation=PostV1AccountCompaniesUpdateRequestLogo, direction="write"
                 ),
@@ -7832,6 +8620,7 @@ class AsyncRawAccountClient:
         *,
         name: str,
         scopes: typing.Optional[typing.Sequence[str]] = OMIT,
+        expires_in_days: typing.Optional[int] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[PostV1AccountApiKeysCreateResponse]:
         """
@@ -7840,6 +8629,8 @@ class AsyncRawAccountClient:
         name : str
 
         scopes : typing.Optional[typing.Sequence[str]]
+
+        expires_in_days : typing.Optional[int]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -7855,6 +8646,7 @@ class AsyncRawAccountClient:
             json={
                 "name": name,
                 "scopes": scopes,
+                "expiresInDays": expires_in_days,
             },
             headers={
                 "content-type": "application/json",
@@ -7999,6 +8791,152 @@ class AsyncRawAccountClient:
                     PostV1AccountApiKeysListResponse,
                     parse_obj_as(
                         type_=PostV1AccountApiKeysListResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return AsyncHttpResponse(response=_response, data=_data)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 422:
+                raise UnprocessableEntityError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
+    async def issue_a_replacement_for_an_api_key_and_set_the_old_one_to_stop_working_after_a_short_overlap(
+        self,
+        *,
+        id: str,
+        overlap_hours: typing.Optional[int] = OMIT,
+        expires_in_days: typing.Optional[int] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> AsyncHttpResponse[PostV1AccountApiKeysRotateResponse]:
+        """
+        Parameters
+        ----------
+        id : str
+
+        overlap_hours : typing.Optional[int]
+
+        expires_in_days : typing.Optional[int]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        AsyncHttpResponse[PostV1AccountApiKeysRotateResponse]
+            Default Response
+        """
+        _response = await self._client_wrapper.httpx_client.request(
+            "v1/account/api-keys/rotate",
+            method="POST",
+            json={
+                "id": id,
+                "overlapHours": overlap_hours,
+                "expiresInDays": expires_in_days,
+            },
+            headers={
+                "content-type": "application/json",
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    PostV1AccountApiKeysRotateResponse,
+                    parse_obj_as(
+                        type_=PostV1AccountApiKeysRotateResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -9345,6 +10283,141 @@ class AsyncRawAccountClient:
                     PostV1AccountReferralGetResponse,
                     parse_obj_as(
                         type_=PostV1AccountReferralGetResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return AsyncHttpResponse(response=_response, data=_data)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 422:
+                raise UnprocessableEntityError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
+    async def post_v1account_referral_convert(
+        self, *, points: int, request_options: typing.Optional[RequestOptions] = None
+    ) -> AsyncHttpResponse[PostV1AccountReferralConvertResponse]:
+        """
+        Parameters
+        ----------
+        points : int
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        AsyncHttpResponse[PostV1AccountReferralConvertResponse]
+            Default Response
+        """
+        _response = await self._client_wrapper.httpx_client.request(
+            "v1/account/referral/convert",
+            method="POST",
+            json={
+                "points": points,
+            },
+            headers={
+                "content-type": "application/json",
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    PostV1AccountReferralConvertResponse,
+                    parse_obj_as(
+                        type_=PostV1AccountReferralConvertResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )

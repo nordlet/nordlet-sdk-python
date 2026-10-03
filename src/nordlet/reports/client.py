@@ -10,9 +10,11 @@ from .types.post_v1reports_cash_flow_response import PostV1ReportsCashFlowRespon
 from .types.post_v1reports_cost_center_activity_response import PostV1ReportsCostCenterActivityResponse
 from .types.post_v1reports_cost_center_items_response import PostV1ReportsCostCenterItemsResponse
 from .types.post_v1reports_cost_centers_response import PostV1ReportsCostCentersResponse
+from .types.post_v1reports_datev_response import PostV1ReportsDatevResponse
 from .types.post_v1reports_debt_aging_request_side import PostV1ReportsDebtAgingRequestSide
 from .types.post_v1reports_debt_aging_response import PostV1ReportsDebtAgingResponse
 from .types.post_v1reports_eu_purchases_response import PostV1ReportsEuPurchasesResponse
+from .types.post_v1reports_fec_response import PostV1ReportsFecResponse
 from .types.post_v1reports_financial_statements_request_category import PostV1ReportsFinancialStatementsRequestCategory
 from .types.post_v1reports_financial_statements_response import PostV1ReportsFinancialStatementsResponse
 from .types.post_v1reports_general_journal_response import PostV1ReportsGeneralJournalResponse
@@ -28,6 +30,7 @@ from .types.post_v1reports_online_sales_response import PostV1ReportsOnlineSales
 from .types.post_v1reports_oss_response import PostV1ReportsOssResponse
 from .types.post_v1reports_partner_balances_response import PostV1ReportsPartnerBalancesResponse
 from .types.post_v1reports_pos_sales_response import PostV1ReportsPosSalesResponse
+from .types.post_v1reports_sie_response import PostV1ReportsSieResponse
 from .types.post_v1reports_size_category_response import PostV1ReportsSizeCategoryResponse
 from .types.post_v1reports_stock_aging_response import PostV1ReportsStockAgingResponse
 from .types.post_v1reports_stock_balance_response import PostV1ReportsStockBalanceResponse
@@ -571,6 +574,141 @@ class ReportsClient:
         """
         _response = self._raw_client.post_v1reports_stock_shortage(
             warehouse_id=warehouse_id, request_options=request_options
+        )
+        return _response.data
+
+    def post_v1reports_sie(
+        self,
+        *,
+        from_date: str,
+        to_date: str,
+        include_transactions: typing.Optional[bool] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1ReportsSieResponse:
+        """
+        Export the ledger of one financial year as an SIE file (the Swedish standard accounting interchange format, specification 4B). The file carries the chart of accounts, the opening and closing balance of every balance sheet account and the turnover of every result account for the year and the year before it, and, when asked for, every posted voucher of the year with its lines. Cost centres travel as dimension 1 and projects as dimension 6. Services that build a Swedish annual report read this file.
+
+        Parameters
+        ----------
+        from_date : str
+
+        to_date : str
+
+        include_transactions : typing.Optional[bool]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1ReportsSieResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.reports.post_v1reports_sie(
+            from_date="fromDate",
+            to_date="toDate",
+        )
+        """
+        _response = self._raw_client.post_v1reports_sie(
+            from_date=from_date,
+            to_date=to_date,
+            include_transactions=include_transactions,
+            request_options=request_options,
+        )
+        return _response.data
+
+    def post_v1reports_datev(
+        self,
+        *,
+        from_date: str,
+        to_date: str,
+        consultant_number: typing.Optional[str] = OMIT,
+        client_number: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1ReportsDatevResponse:
+        """
+        Export the posted ledger of a period as a DATEV Buchungsstapel file (DATEV format, category 21, version 700). Every transaction becomes one or more bookings of an amount between an account and a contra account; a transaction with more than two lines is split into pairs whose totals match it. The file is semicolon separated and written in the Windows-1252 character set DATEV expects.
+
+        Parameters
+        ----------
+        from_date : str
+
+        to_date : str
+
+        consultant_number : typing.Optional[str]
+
+        client_number : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1ReportsDatevResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.reports.post_v1reports_datev(
+            from_date="fromDate",
+            to_date="toDate",
+        )
+        """
+        _response = self._raw_client.post_v1reports_datev(
+            from_date=from_date,
+            to_date=to_date,
+            consultant_number=consultant_number,
+            client_number=client_number,
+            request_options=request_options,
+        )
+        return _response.data
+
+    def post_v1reports_fec(
+        self, *, from_date: str, to_date: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1ReportsFecResponse:
+        """
+        Export the posted ledger of a period as a French FEC file (fichier des écritures comptables, order of 29 July 2013). One line per journal entry line, with the eighteen fields the order names, in their order, after a header line. Tab separated, UTF-8, comma as the decimal separator.
+
+        Parameters
+        ----------
+        from_date : str
+
+        to_date : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1ReportsFecResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.reports.post_v1reports_fec(
+            from_date="fromDate",
+            to_date="toDate",
+        )
+        """
+        _response = self._raw_client.post_v1reports_fec(
+            from_date=from_date, to_date=to_date, request_options=request_options
         )
         return _response.data
 
@@ -1714,6 +1852,165 @@ class AsyncReportsClient:
         """
         _response = await self._raw_client.post_v1reports_stock_shortage(
             warehouse_id=warehouse_id, request_options=request_options
+        )
+        return _response.data
+
+    async def post_v1reports_sie(
+        self,
+        *,
+        from_date: str,
+        to_date: str,
+        include_transactions: typing.Optional[bool] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1ReportsSieResponse:
+        """
+        Export the ledger of one financial year as an SIE file (the Swedish standard accounting interchange format, specification 4B). The file carries the chart of accounts, the opening and closing balance of every balance sheet account and the turnover of every result account for the year and the year before it, and, when asked for, every posted voucher of the year with its lines. Cost centres travel as dimension 1 and projects as dimension 6. Services that build a Swedish annual report read this file.
+
+        Parameters
+        ----------
+        from_date : str
+
+        to_date : str
+
+        include_transactions : typing.Optional[bool]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1ReportsSieResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.reports.post_v1reports_sie(
+                from_date="fromDate",
+                to_date="toDate",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1reports_sie(
+            from_date=from_date,
+            to_date=to_date,
+            include_transactions=include_transactions,
+            request_options=request_options,
+        )
+        return _response.data
+
+    async def post_v1reports_datev(
+        self,
+        *,
+        from_date: str,
+        to_date: str,
+        consultant_number: typing.Optional[str] = OMIT,
+        client_number: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostV1ReportsDatevResponse:
+        """
+        Export the posted ledger of a period as a DATEV Buchungsstapel file (DATEV format, category 21, version 700). Every transaction becomes one or more bookings of an amount between an account and a contra account; a transaction with more than two lines is split into pairs whose totals match it. The file is semicolon separated and written in the Windows-1252 character set DATEV expects.
+
+        Parameters
+        ----------
+        from_date : str
+
+        to_date : str
+
+        consultant_number : typing.Optional[str]
+
+        client_number : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1ReportsDatevResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.reports.post_v1reports_datev(
+                from_date="fromDate",
+                to_date="toDate",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1reports_datev(
+            from_date=from_date,
+            to_date=to_date,
+            consultant_number=consultant_number,
+            client_number=client_number,
+            request_options=request_options,
+        )
+        return _response.data
+
+    async def post_v1reports_fec(
+        self, *, from_date: str, to_date: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1ReportsFecResponse:
+        """
+        Export the posted ledger of a period as a French FEC file (fichier des écritures comptables, order of 29 July 2013). One line per journal entry line, with the eighteen fields the order names, in their order, after a header line. Tab separated, UTF-8, comma as the decimal separator.
+
+        Parameters
+        ----------
+        from_date : str
+
+        to_date : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1ReportsFecResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.reports.post_v1reports_fec(
+                from_date="fromDate",
+                to_date="toDate",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1reports_fec(
+            from_date=from_date, to_date=to_date, request_options=request_options
         )
         return _response.data
 

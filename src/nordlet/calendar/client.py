@@ -7,8 +7,10 @@ from ..core.request_options import RequestOptions
 from .raw_client import AsyncRawCalendarClient, RawCalendarClient
 from .types.post_v1calendar_create_response import PostV1CalendarCreateResponse
 from .types.post_v1calendar_delete_response import PostV1CalendarDeleteResponse
+from .types.post_v1calendar_download_response import PostV1CalendarDownloadResponse
 from .types.post_v1calendar_get_response import PostV1CalendarGetResponse
 from .types.post_v1calendar_list_response import PostV1CalendarListResponse
+from .types.post_v1calendar_submit_response import PostV1CalendarSubmitResponse
 from .types.post_v1calendar_update_response import PostV1CalendarUpdateResponse
 
 # this is used as the default value for optional parameters
@@ -97,6 +99,72 @@ class CalendarClient:
         )
         """
         _response = self._raw_client.post_v1calendar_get(key=key, request_options=request_options)
+        return _response.data
+
+    def generate_the_filing_for_a_deadline_and_send_it_to_the_administration(
+        self, *, key: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1CalendarSubmitResponse:
+        """
+        Parameters
+        ----------
+        key : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1CalendarSubmitResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.calendar.generate_the_filing_for_a_deadline_and_send_it_to_the_administration(
+            key="key",
+        )
+        """
+        _response = self._raw_client.generate_the_filing_for_a_deadline_and_send_it_to_the_administration(
+            key=key, request_options=request_options
+        )
+        return _response.data
+
+    def generate_the_file_of_a_deadline_for_the_company_to_send_itself(
+        self, *, key: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1CalendarDownloadResponse:
+        """
+        Builds the file of a deadline whose format Nordlet produces but whose administration takes it only through the company's own account or program. Nothing is sent and no filing is recorded.
+
+        Parameters
+        ----------
+        key : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1CalendarDownloadResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.calendar.generate_the_file_of_a_deadline_for_the_company_to_send_itself(
+            key="key",
+        )
+        """
+        _response = self._raw_client.generate_the_file_of_a_deadline_for_the_company_to_send_itself(
+            key=key, request_options=request_options
+        )
         return _response.data
 
     def post_v1calendar_create(
@@ -320,6 +388,88 @@ class AsyncCalendarClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.post_v1calendar_get(key=key, request_options=request_options)
+        return _response.data
+
+    async def generate_the_filing_for_a_deadline_and_send_it_to_the_administration(
+        self, *, key: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1CalendarSubmitResponse:
+        """
+        Parameters
+        ----------
+        key : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1CalendarSubmitResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.calendar.generate_the_filing_for_a_deadline_and_send_it_to_the_administration(
+                key="key",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.generate_the_filing_for_a_deadline_and_send_it_to_the_administration(
+            key=key, request_options=request_options
+        )
+        return _response.data
+
+    async def generate_the_file_of_a_deadline_for_the_company_to_send_itself(
+        self, *, key: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1CalendarDownloadResponse:
+        """
+        Builds the file of a deadline whose format Nordlet produces but whose administration takes it only through the company's own account or program. Nothing is sent and no filing is recorded.
+
+        Parameters
+        ----------
+        key : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1CalendarDownloadResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.calendar.generate_the_file_of_a_deadline_for_the_company_to_send_itself(
+                key="key",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.generate_the_file_of_a_deadline_for_the_company_to_send_itself(
+            key=key, request_options=request_options
+        )
         return _response.data
 
     async def post_v1calendar_create(

@@ -6,13 +6,21 @@ import pydantic
 import typing_extensions
 from ...core.pydantic_utilities import IS_PYDANTIC_V2, UniversalBaseModel
 from ...core.serialization import FieldMetadata
+from .post_v1sales_invoices_einvoice_send_response_status import PostV1SalesInvoicesEinvoiceSendResponseStatus
+from .post_v1sales_invoices_einvoice_send_response_transport import PostV1SalesInvoicesEinvoiceSendResponseTransport
 
 
 class PostV1SalesInvoicesEinvoiceSendResponse(UniversalBaseModel):
     sent: bool
     system: str
     format: str
+    transport: PostV1SalesInvoicesEinvoiceSendResponseTransport
     message_id: typing_extensions.Annotated[str, FieldMetadata(alias="messageId"), pydantic.Field(alias="messageId")]
+    national_number: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="nationalNumber"), pydantic.Field(alias="nationalNumber")
+    ] = None
+    status: PostV1SalesInvoicesEinvoiceSendResponseStatus
+    detail: typing.Optional[str] = None
     file_id: typing_extensions.Annotated[str, FieldMetadata(alias="fileId"), pydantic.Field(alias="fileId")]
     warnings: typing.List[str]
 

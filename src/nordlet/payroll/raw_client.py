@@ -22,9 +22,13 @@ from ..types.error_response import ErrorResponse
 from .types.post_v1payroll_calc_response import PostV1PayrollCalcResponse
 from .types.post_v1payroll_departments_create_response import PostV1PayrollDepartmentsCreateResponse
 from .types.post_v1payroll_departments_list_response import PostV1PayrollDepartmentsListResponse
+from .types.post_v1payroll_lines_attendance_response import PostV1PayrollLinesAttendanceResponse
 from .types.post_v1payroll_payments_export_response import PostV1PayrollPaymentsExportResponse
 from .types.post_v1payroll_runs_approve_response import PostV1PayrollRunsApproveResponse
 from .types.post_v1payroll_runs_cancel_response import PostV1PayrollRunsCancelResponse
+from .types.post_v1payroll_runs_create_request_gross_overrides_item import (
+    PostV1PayrollRunsCreateRequestGrossOverridesItem,
+)
 from .types.post_v1payroll_runs_create_request_lines_item import PostV1PayrollRunsCreateRequestLinesItem
 from .types.post_v1payroll_runs_create_response import PostV1PayrollRunsCreateResponse
 from .types.post_v1payroll_runs_get_response import PostV1PayrollRunsGetResponse
@@ -589,15 +593,17 @@ class RawPayrollClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    def post_v1payroll_calc(
+    def calculate_one_employee_payment_under_the_rules_of_the_company_country(
         self,
         *,
         taxable_base: str,
         date: str,
-        apply_npd: typing.Optional[bool] = OMIT,
-        npd_override: typing.Optional[str] = OMIT,
+        apply_allowance: typing.Optional[bool] = OMIT,
+        allowance_override: typing.Optional[str] = OMIT,
         pension_accumulation: typing.Optional[bool] = OMIT,
         fixed_term: typing.Optional[bool] = OMIT,
+        benefit_in_kind: typing.Optional[str] = OMIT,
+        options: typing.Optional[typing.Dict[str, str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[PostV1PayrollCalcResponse]:
         """
@@ -607,13 +613,17 @@ class RawPayrollClient:
 
         date : str
 
-        apply_npd : typing.Optional[bool]
+        apply_allowance : typing.Optional[bool]
 
-        npd_override : typing.Optional[str]
+        allowance_override : typing.Optional[str]
 
         pension_accumulation : typing.Optional[bool]
 
         fixed_term : typing.Optional[bool]
+
+        benefit_in_kind : typing.Optional[str]
+
+        options : typing.Optional[typing.Dict[str, str]]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -629,10 +639,12 @@ class RawPayrollClient:
             json={
                 "taxableBase": taxable_base,
                 "date": date,
-                "applyNpd": apply_npd,
-                "npdOverride": npd_override,
+                "applyAllowance": apply_allowance,
+                "allowanceOverride": allowance_override,
                 "pensionAccumulation": pension_accumulation,
                 "fixedTerm": fixed_term,
+                "benefitInKind": benefit_in_kind,
+                "options": options,
             },
             headers={
                 "content-type": "application/json",
@@ -753,6 +765,7 @@ class RawPayrollClient:
         year: int,
         month: int,
         include_natura: typing.Optional[bool] = OMIT,
+        gross_overrides: typing.Optional[typing.Sequence[PostV1PayrollRunsCreateRequestGrossOverridesItem]] = OMIT,
         lines: typing.Optional[typing.Sequence[PostV1PayrollRunsCreateRequestLinesItem]] = OMIT,
         notes: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
@@ -765,6 +778,8 @@ class RawPayrollClient:
         month : int
 
         include_natura : typing.Optional[bool]
+
+        gross_overrides : typing.Optional[typing.Sequence[PostV1PayrollRunsCreateRequestGrossOverridesItem]]
 
         lines : typing.Optional[typing.Sequence[PostV1PayrollRunsCreateRequestLinesItem]]
 
@@ -785,6 +800,11 @@ class RawPayrollClient:
                 "year": year,
                 "month": month,
                 "includeNatura": include_natura,
+                "grossOverrides": convert_and_respect_annotation_metadata(
+                    object_=gross_overrides,
+                    annotation=typing.Sequence[PostV1PayrollRunsCreateRequestGrossOverridesItem],
+                    direction="write",
+                ),
                 "lines": convert_and_respect_annotation_metadata(
                     object_=lines,
                     annotation=typing.Sequence[PostV1PayrollRunsCreateRequestLinesItem],
@@ -1201,6 +1221,162 @@ class RawPayrollClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
+    def record_the_time_a_person_worked_in_a_payroll_line(
+        self,
+        *,
+        id: str,
+        days_worked: typing.Optional[str] = OMIT,
+        hours_worked: typing.Optional[str] = OMIT,
+        registered_days: typing.Optional[str] = OMIT,
+        average_hourly_earnings: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> HttpResponse[PostV1PayrollLinesAttendanceResponse]:
+        """
+        The days and hours worked, the days on the register and the average hourly earnings that some countries report per employment. The Czech monthly employer report asks for all four. They can be set while the run is a draft.
+
+        Parameters
+        ----------
+        id : str
+
+        days_worked : typing.Optional[str]
+
+        hours_worked : typing.Optional[str]
+
+        registered_days : typing.Optional[str]
+
+        average_hourly_earnings : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        HttpResponse[PostV1PayrollLinesAttendanceResponse]
+            Default Response
+        """
+        _response = self._client_wrapper.httpx_client.request(
+            "v1/payroll/lines/attendance",
+            method="POST",
+            json={
+                "id": id,
+                "daysWorked": days_worked,
+                "hoursWorked": hours_worked,
+                "registeredDays": registered_days,
+                "averageHourlyEarnings": average_hourly_earnings,
+            },
+            headers={
+                "content-type": "application/json",
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    PostV1PayrollLinesAttendanceResponse,
+                    parse_obj_as(
+                        type_=PostV1PayrollLinesAttendanceResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return HttpResponse(response=_response, data=_data)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 422:
+                raise UnprocessableEntityError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
     def post_v1payroll_runs_approve(
         self,
         *,
@@ -1210,6 +1386,7 @@ class RawPayrollClient:
         payable_account_code: typing.Optional[str] = OMIT,
         gpm_account_code: typing.Optional[str] = OMIT,
         sodra_account_code: typing.Optional[str] = OMIT,
+        employer_social_account_code: typing.Optional[str] = OMIT,
         deduction_account_code: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[PostV1PayrollRunsApproveResponse]:
@@ -1227,6 +1404,8 @@ class RawPayrollClient:
         gpm_account_code : typing.Optional[str]
 
         sodra_account_code : typing.Optional[str]
+
+        employer_social_account_code : typing.Optional[str]
 
         deduction_account_code : typing.Optional[str]
 
@@ -1248,6 +1427,7 @@ class RawPayrollClient:
                 "payableAccountCode": payable_account_code,
                 "gpmAccountCode": gpm_account_code,
                 "sodraAccountCode": sodra_account_code,
+                "employerSocialAccountCode": employer_social_account_code,
                 "deductionAccountCode": deduction_account_code,
             },
             headers={
@@ -2195,15 +2375,17 @@ class AsyncRawPayrollClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    async def post_v1payroll_calc(
+    async def calculate_one_employee_payment_under_the_rules_of_the_company_country(
         self,
         *,
         taxable_base: str,
         date: str,
-        apply_npd: typing.Optional[bool] = OMIT,
-        npd_override: typing.Optional[str] = OMIT,
+        apply_allowance: typing.Optional[bool] = OMIT,
+        allowance_override: typing.Optional[str] = OMIT,
         pension_accumulation: typing.Optional[bool] = OMIT,
         fixed_term: typing.Optional[bool] = OMIT,
+        benefit_in_kind: typing.Optional[str] = OMIT,
+        options: typing.Optional[typing.Dict[str, str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[PostV1PayrollCalcResponse]:
         """
@@ -2213,13 +2395,17 @@ class AsyncRawPayrollClient:
 
         date : str
 
-        apply_npd : typing.Optional[bool]
+        apply_allowance : typing.Optional[bool]
 
-        npd_override : typing.Optional[str]
+        allowance_override : typing.Optional[str]
 
         pension_accumulation : typing.Optional[bool]
 
         fixed_term : typing.Optional[bool]
+
+        benefit_in_kind : typing.Optional[str]
+
+        options : typing.Optional[typing.Dict[str, str]]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -2235,10 +2421,12 @@ class AsyncRawPayrollClient:
             json={
                 "taxableBase": taxable_base,
                 "date": date,
-                "applyNpd": apply_npd,
-                "npdOverride": npd_override,
+                "applyAllowance": apply_allowance,
+                "allowanceOverride": allowance_override,
                 "pensionAccumulation": pension_accumulation,
                 "fixedTerm": fixed_term,
+                "benefitInKind": benefit_in_kind,
+                "options": options,
             },
             headers={
                 "content-type": "application/json",
@@ -2359,6 +2547,7 @@ class AsyncRawPayrollClient:
         year: int,
         month: int,
         include_natura: typing.Optional[bool] = OMIT,
+        gross_overrides: typing.Optional[typing.Sequence[PostV1PayrollRunsCreateRequestGrossOverridesItem]] = OMIT,
         lines: typing.Optional[typing.Sequence[PostV1PayrollRunsCreateRequestLinesItem]] = OMIT,
         notes: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
@@ -2371,6 +2560,8 @@ class AsyncRawPayrollClient:
         month : int
 
         include_natura : typing.Optional[bool]
+
+        gross_overrides : typing.Optional[typing.Sequence[PostV1PayrollRunsCreateRequestGrossOverridesItem]]
 
         lines : typing.Optional[typing.Sequence[PostV1PayrollRunsCreateRequestLinesItem]]
 
@@ -2391,6 +2582,11 @@ class AsyncRawPayrollClient:
                 "year": year,
                 "month": month,
                 "includeNatura": include_natura,
+                "grossOverrides": convert_and_respect_annotation_metadata(
+                    object_=gross_overrides,
+                    annotation=typing.Sequence[PostV1PayrollRunsCreateRequestGrossOverridesItem],
+                    direction="write",
+                ),
                 "lines": convert_and_respect_annotation_metadata(
                     object_=lines,
                     annotation=typing.Sequence[PostV1PayrollRunsCreateRequestLinesItem],
@@ -2807,6 +3003,162 @@ class AsyncRawPayrollClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
+    async def record_the_time_a_person_worked_in_a_payroll_line(
+        self,
+        *,
+        id: str,
+        days_worked: typing.Optional[str] = OMIT,
+        hours_worked: typing.Optional[str] = OMIT,
+        registered_days: typing.Optional[str] = OMIT,
+        average_hourly_earnings: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> AsyncHttpResponse[PostV1PayrollLinesAttendanceResponse]:
+        """
+        The days and hours worked, the days on the register and the average hourly earnings that some countries report per employment. The Czech monthly employer report asks for all four. They can be set while the run is a draft.
+
+        Parameters
+        ----------
+        id : str
+
+        days_worked : typing.Optional[str]
+
+        hours_worked : typing.Optional[str]
+
+        registered_days : typing.Optional[str]
+
+        average_hourly_earnings : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        AsyncHttpResponse[PostV1PayrollLinesAttendanceResponse]
+            Default Response
+        """
+        _response = await self._client_wrapper.httpx_client.request(
+            "v1/payroll/lines/attendance",
+            method="POST",
+            json={
+                "id": id,
+                "daysWorked": days_worked,
+                "hoursWorked": hours_worked,
+                "registeredDays": registered_days,
+                "averageHourlyEarnings": average_hourly_earnings,
+            },
+            headers={
+                "content-type": "application/json",
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    PostV1PayrollLinesAttendanceResponse,
+                    parse_obj_as(
+                        type_=PostV1PayrollLinesAttendanceResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return AsyncHttpResponse(response=_response, data=_data)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 422:
+                raise UnprocessableEntityError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
     async def post_v1payroll_runs_approve(
         self,
         *,
@@ -2816,6 +3168,7 @@ class AsyncRawPayrollClient:
         payable_account_code: typing.Optional[str] = OMIT,
         gpm_account_code: typing.Optional[str] = OMIT,
         sodra_account_code: typing.Optional[str] = OMIT,
+        employer_social_account_code: typing.Optional[str] = OMIT,
         deduction_account_code: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[PostV1PayrollRunsApproveResponse]:
@@ -2833,6 +3186,8 @@ class AsyncRawPayrollClient:
         gpm_account_code : typing.Optional[str]
 
         sodra_account_code : typing.Optional[str]
+
+        employer_social_account_code : typing.Optional[str]
 
         deduction_account_code : typing.Optional[str]
 
@@ -2854,6 +3209,7 @@ class AsyncRawPayrollClient:
                 "payableAccountCode": payable_account_code,
                 "gpmAccountCode": gpm_account_code,
                 "sodraAccountCode": sodra_account_code,
+                "employerSocialAccountCode": employer_social_account_code,
                 "deductionAccountCode": deduction_account_code,
             },
             headers={

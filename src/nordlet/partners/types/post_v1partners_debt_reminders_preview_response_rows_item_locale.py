@@ -2,4 +2,4 @@
 
 import typing
 
-PostV1PartnersDebtRemindersPreviewResponseRowsItemLocale = typing.Union[typing.Literal["lt", "en", "ru"], typing.Any]
+PostV1PartnersDebtRemindersPreviewResponseRowsItemLocale = typing.Union[typing.Literal["en", "lt", "de"], typing.Any]

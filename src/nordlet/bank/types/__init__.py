@@ -164,6 +164,10 @@ if typing.TYPE_CHECKING:
     from .post_v1bank_match_rules_list_response_rows_item import PostV1BankMatchRulesListResponseRowsItem
     from .post_v1bank_match_rules_update_response import PostV1BankMatchRulesUpdateResponse
     from .post_v1bank_payments_export_response import PostV1BankPaymentsExportResponse
+    from .post_v1bank_settlements_commission_response import PostV1BankSettlementsCommissionResponse
+    from .post_v1bank_settlements_commission_response_match_status import (
+        PostV1BankSettlementsCommissionResponseMatchStatus,
+    )
     from .post_v1bank_settlements_get_response import PostV1BankSettlementsGetResponse
     from .post_v1bank_settlements_get_response_lines_item import PostV1BankSettlementsGetResponseLinesItem
     from .post_v1bank_settlements_get_response_lines_item_match_status import (
@@ -337,6 +341,8 @@ _dynamic_imports: typing.Dict[str, str] = {
     "PostV1BankMatchRulesListResponseRowsItem": ".post_v1bank_match_rules_list_response_rows_item",
     "PostV1BankMatchRulesUpdateResponse": ".post_v1bank_match_rules_update_response",
     "PostV1BankPaymentsExportResponse": ".post_v1bank_payments_export_response",
+    "PostV1BankSettlementsCommissionResponse": ".post_v1bank_settlements_commission_response",
+    "PostV1BankSettlementsCommissionResponseMatchStatus": ".post_v1bank_settlements_commission_response_match_status",
     "PostV1BankSettlementsGetResponse": ".post_v1bank_settlements_get_response",
     "PostV1BankSettlementsGetResponseLinesItem": ".post_v1bank_settlements_get_response_lines_item",
     "PostV1BankSettlementsGetResponseLinesItemMatchStatus": ".post_v1bank_settlements_get_response_lines_item_match_status",
@@ -516,6 +522,8 @@ __all__ = [
     "PostV1BankMatchRulesListResponseRowsItem",
     "PostV1BankMatchRulesUpdateResponse",
     "PostV1BankPaymentsExportResponse",
+    "PostV1BankSettlementsCommissionResponse",
+    "PostV1BankSettlementsCommissionResponseMatchStatus",
     "PostV1BankSettlementsGetResponse",
     "PostV1BankSettlementsGetResponseLinesItem",
     "PostV1BankSettlementsGetResponseLinesItemMatchStatus",

@@ -23,6 +23,12 @@ class PostV1DocumentSeriesCreateResponse(UniversalBaseModel):
         int, FieldMetadata(alias="numberLength"), pydantic.Field(alias="numberLength")
     ]
     next_number: typing_extensions.Annotated[int, FieldMetadata(alias="nextNumber"), pydantic.Field(alias="nextNumber")]
+    allocated_from: typing_extensions.Annotated[
+        typing.Optional[int], FieldMetadata(alias="allocatedFrom"), pydantic.Field(alias="allocatedFrom")
+    ] = None
+    allocated_to: typing_extensions.Annotated[
+        typing.Optional[int], FieldMetadata(alias="allocatedTo"), pydantic.Field(alias="allocatedTo")
+    ] = None
     warehouse_id: typing_extensions.Annotated[
         typing.Optional[str], FieldMetadata(alias="warehouseId"), pydantic.Field(alias="warehouseId")
     ] = None

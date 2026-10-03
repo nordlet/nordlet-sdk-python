@@ -52,6 +52,27 @@ class PostV1PurchasesInvoicesGetResponse(UniversalBaseModel):
         typing.Optional[str], FieldMetadata(alias="operationTypeId"), pydantic.Field(alias="operationTypeId")
     ] = None
     notes: typing.Optional[str] = None
+    intrastat_transport_mode: typing_extensions.Annotated[
+        typing.Optional[str],
+        FieldMetadata(alias="intrastatTransportMode"),
+        pydantic.Field(alias="intrastatTransportMode"),
+    ] = None
+    intrastat_delivery_terms: typing_extensions.Annotated[
+        typing.Optional[str],
+        FieldMetadata(alias="intrastatDeliveryTerms"),
+        pydantic.Field(alias="intrastatDeliveryTerms"),
+    ] = None
+    intrastat_region: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="intrastatRegion"), pydantic.Field(alias="intrastatRegion")
+    ] = None
+    intrastat_nature_of_transaction: typing_extensions.Annotated[
+        typing.Optional[str],
+        FieldMetadata(alias="intrastatNatureOfTransaction"),
+        pydantic.Field(alias="intrastatNatureOfTransaction"),
+    ] = None
+    einvoice_number: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="einvoiceNumber"), pydantic.Field(alias="einvoiceNumber")
+    ] = None
     document_ref: typing_extensions.Annotated[
         typing.Optional[str], FieldMetadata(alias="documentRef"), pydantic.Field(alias="documentRef")
     ] = None

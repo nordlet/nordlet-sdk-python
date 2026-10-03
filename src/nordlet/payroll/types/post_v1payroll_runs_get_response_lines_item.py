@@ -9,6 +9,9 @@ from ...core.serialization import FieldMetadata
 from .post_v1payroll_runs_get_response_lines_item_additions_item import (
     PostV1PayrollRunsGetResponseLinesItemAdditionsItem,
 )
+from .post_v1payroll_runs_get_response_lines_item_components_item import (
+    PostV1PayrollRunsGetResponseLinesItemComponentsItem,
+)
 from .post_v1payroll_runs_get_response_lines_item_deductions_item import (
     PostV1PayrollRunsGetResponseLinesItemDeductionsItem,
 )
@@ -30,15 +33,32 @@ class PostV1PayrollRunsGetResponseLinesItem(UniversalBaseModel):
     taxable_base: typing_extensions.Annotated[
         str, FieldMetadata(alias="taxableBase"), pydantic.Field(alias="taxableBase")
     ]
-    npd: str
-    gpm: str
-    sodra_employee: typing_extensions.Annotated[
-        str, FieldMetadata(alias="sodraEmployee"), pydantic.Field(alias="sodraEmployee")
+    tax_allowance: typing_extensions.Annotated[
+        str, FieldMetadata(alias="taxAllowance"), pydantic.Field(alias="taxAllowance")
     ]
-    sodra_employer: typing_extensions.Annotated[
-        str, FieldMetadata(alias="sodraEmployer"), pydantic.Field(alias="sodraEmployer")
+    income_tax: typing_extensions.Annotated[str, FieldMetadata(alias="incomeTax"), pydantic.Field(alias="incomeTax")]
+    employee_contributions: typing_extensions.Annotated[
+        str, FieldMetadata(alias="employeeContributions"), pydantic.Field(alias="employeeContributions")
     ]
+    employer_contributions: typing_extensions.Annotated[
+        str, FieldMetadata(alias="employerContributions"), pydantic.Field(alias="employerContributions")
+    ]
+    components: typing.List[PostV1PayrollRunsGetResponseLinesItemComponentsItem]
     net: str
+    days_worked: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="daysWorked"), pydantic.Field(alias="daysWorked")
+    ] = None
+    hours_worked: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="hoursWorked"), pydantic.Field(alias="hoursWorked")
+    ] = None
+    registered_days: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="registeredDays"), pydantic.Field(alias="registeredDays")
+    ] = None
+    average_hourly_earnings: typing_extensions.Annotated[
+        typing.Optional[str],
+        FieldMetadata(alias="averageHourlyEarnings"),
+        pydantic.Field(alias="averageHourlyEarnings"),
+    ] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

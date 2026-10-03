@@ -7,6 +7,7 @@ import typing_extensions
 from ...core.pydantic_utilities import IS_PYDANTIC_V2, UniversalBaseModel
 from ...core.serialization import FieldMetadata
 from .post_v1calendar_get_response_kind import PostV1CalendarGetResponseKind
+from .post_v1calendar_get_response_submission import PostV1CalendarGetResponseSubmission
 
 
 class PostV1CalendarGetResponse(UniversalBaseModel):
@@ -22,6 +23,12 @@ class PostV1CalendarGetResponse(UniversalBaseModel):
     notes: typing.Optional[str] = None
     done: bool
     href: typing.Optional[str] = None
+    submission: typing.Optional[PostV1CalendarGetResponseSubmission] = None
+    can_submit: typing_extensions.Annotated[bool, FieldMetadata(alias="canSubmit"), pydantic.Field(alias="canSubmit")]
+    can_download: typing_extensions.Annotated[
+        bool, FieldMetadata(alias="canDownload"), pydantic.Field(alias="canDownload")
+    ]
+    automated: bool
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

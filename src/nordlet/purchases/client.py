@@ -71,6 +71,11 @@ class PurchasesClient:
         purchase_order_id: typing.Optional[str] = OMIT,
         operation_type_id: typing.Optional[str] = OMIT,
         notes: typing.Optional[str] = OMIT,
+        intrastat_transport_mode: typing.Optional[str] = OMIT,
+        intrastat_delivery_terms: typing.Optional[str] = OMIT,
+        intrastat_region: typing.Optional[str] = OMIT,
+        intrastat_nature_of_transaction: typing.Optional[str] = OMIT,
+        einvoice_number: typing.Optional[str] = OMIT,
         document_ref: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1PurchasesInvoicesCreateResponse:
@@ -98,6 +103,16 @@ class PurchasesClient:
         operation_type_id : typing.Optional[str]
 
         notes : typing.Optional[str]
+
+        intrastat_transport_mode : typing.Optional[str]
+
+        intrastat_delivery_terms : typing.Optional[str]
+
+        intrastat_region : typing.Optional[str]
+
+        intrastat_nature_of_transaction : typing.Optional[str]
+
+        einvoice_number : typing.Optional[str]
 
         document_ref : typing.Optional[str]
 
@@ -136,6 +151,11 @@ class PurchasesClient:
             purchase_order_id=purchase_order_id,
             operation_type_id=operation_type_id,
             notes=notes,
+            intrastat_transport_mode=intrastat_transport_mode,
+            intrastat_delivery_terms=intrastat_delivery_terms,
+            intrastat_region=intrastat_region,
+            intrastat_nature_of_transaction=intrastat_nature_of_transaction,
+            einvoice_number=einvoice_number,
             document_ref=document_ref,
             request_options=request_options,
         )
@@ -183,6 +203,11 @@ class PurchasesClient:
         purchase_order_id: typing.Optional[str] = OMIT,
         operation_type_id: typing.Optional[str] = OMIT,
         notes: typing.Optional[str] = OMIT,
+        intrastat_transport_mode: typing.Optional[str] = OMIT,
+        intrastat_delivery_terms: typing.Optional[str] = OMIT,
+        intrastat_region: typing.Optional[str] = OMIT,
+        intrastat_nature_of_transaction: typing.Optional[str] = OMIT,
+        einvoice_number: typing.Optional[str] = OMIT,
         lines: typing.Optional[typing.Sequence[PostV1PurchasesInvoicesUpdateRequestLinesItem]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1PurchasesInvoicesUpdateResponse:
@@ -206,6 +231,16 @@ class PurchasesClient:
         operation_type_id : typing.Optional[str]
 
         notes : typing.Optional[str]
+
+        intrastat_transport_mode : typing.Optional[str]
+
+        intrastat_delivery_terms : typing.Optional[str]
+
+        intrastat_region : typing.Optional[str]
+
+        intrastat_nature_of_transaction : typing.Optional[str]
+
+        einvoice_number : typing.Optional[str]
 
         lines : typing.Optional[typing.Sequence[PostV1PurchasesInvoicesUpdateRequestLinesItem]]
 
@@ -238,6 +273,11 @@ class PurchasesClient:
             purchase_order_id=purchase_order_id,
             operation_type_id=operation_type_id,
             notes=notes,
+            intrastat_transport_mode=intrastat_transport_mode,
+            intrastat_delivery_terms=intrastat_delivery_terms,
+            intrastat_region=intrastat_region,
+            intrastat_nature_of_transaction=intrastat_nature_of_transaction,
+            einvoice_number=einvoice_number,
             lines=lines,
             request_options=request_options,
         )
@@ -975,6 +1015,11 @@ class AsyncPurchasesClient:
         purchase_order_id: typing.Optional[str] = OMIT,
         operation_type_id: typing.Optional[str] = OMIT,
         notes: typing.Optional[str] = OMIT,
+        intrastat_transport_mode: typing.Optional[str] = OMIT,
+        intrastat_delivery_terms: typing.Optional[str] = OMIT,
+        intrastat_region: typing.Optional[str] = OMIT,
+        intrastat_nature_of_transaction: typing.Optional[str] = OMIT,
+        einvoice_number: typing.Optional[str] = OMIT,
         document_ref: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1PurchasesInvoicesCreateResponse:
@@ -1002,6 +1047,16 @@ class AsyncPurchasesClient:
         operation_type_id : typing.Optional[str]
 
         notes : typing.Optional[str]
+
+        intrastat_transport_mode : typing.Optional[str]
+
+        intrastat_delivery_terms : typing.Optional[str]
+
+        intrastat_region : typing.Optional[str]
+
+        intrastat_nature_of_transaction : typing.Optional[str]
+
+        einvoice_number : typing.Optional[str]
 
         document_ref : typing.Optional[str]
 
@@ -1048,6 +1103,11 @@ class AsyncPurchasesClient:
             purchase_order_id=purchase_order_id,
             operation_type_id=operation_type_id,
             notes=notes,
+            intrastat_transport_mode=intrastat_transport_mode,
+            intrastat_delivery_terms=intrastat_delivery_terms,
+            intrastat_region=intrastat_region,
+            intrastat_nature_of_transaction=intrastat_nature_of_transaction,
+            einvoice_number=einvoice_number,
             document_ref=document_ref,
             request_options=request_options,
         )
@@ -1103,6 +1163,11 @@ class AsyncPurchasesClient:
         purchase_order_id: typing.Optional[str] = OMIT,
         operation_type_id: typing.Optional[str] = OMIT,
         notes: typing.Optional[str] = OMIT,
+        intrastat_transport_mode: typing.Optional[str] = OMIT,
+        intrastat_delivery_terms: typing.Optional[str] = OMIT,
+        intrastat_region: typing.Optional[str] = OMIT,
+        intrastat_nature_of_transaction: typing.Optional[str] = OMIT,
+        einvoice_number: typing.Optional[str] = OMIT,
         lines: typing.Optional[typing.Sequence[PostV1PurchasesInvoicesUpdateRequestLinesItem]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostV1PurchasesInvoicesUpdateResponse:
@@ -1126,6 +1191,16 @@ class AsyncPurchasesClient:
         operation_type_id : typing.Optional[str]
 
         notes : typing.Optional[str]
+
+        intrastat_transport_mode : typing.Optional[str]
+
+        intrastat_delivery_terms : typing.Optional[str]
+
+        intrastat_region : typing.Optional[str]
+
+        intrastat_nature_of_transaction : typing.Optional[str]
+
+        einvoice_number : typing.Optional[str]
 
         lines : typing.Optional[typing.Sequence[PostV1PurchasesInvoicesUpdateRequestLinesItem]]
 
@@ -1166,6 +1241,11 @@ class AsyncPurchasesClient:
             purchase_order_id=purchase_order_id,
             operation_type_id=operation_type_id,
             notes=notes,
+            intrastat_transport_mode=intrastat_transport_mode,
+            intrastat_delivery_terms=intrastat_delivery_terms,
+            intrastat_region=intrastat_region,
+            intrastat_nature_of_transaction=intrastat_nature_of_transaction,
+            einvoice_number=einvoice_number,
             lines=lines,
             request_options=request_options,
         )

@@ -6,8 +6,12 @@ import pydantic
 import typing_extensions
 from ...core.pydantic_utilities import IS_PYDANTIC_V2, UniversalBaseModel
 from ...core.serialization import FieldMetadata
+from .post_v1account_companies_profile_response_accounts_kept_by import (
+    PostV1AccountCompaniesProfileResponseAccountsKeptBy,
+)
 from .post_v1account_companies_profile_response_address import PostV1AccountCompaniesProfileResponseAddress
 from .post_v1account_companies_profile_response_status import PostV1AccountCompaniesProfileResponseStatus
+from .post_v1account_companies_profile_response_vat_period import PostV1AccountCompaniesProfileResponseVatPeriod
 
 
 class PostV1AccountCompaniesProfileResponse(UniversalBaseModel):
@@ -27,6 +31,24 @@ class PostV1AccountCompaniesProfileResponse(UniversalBaseModel):
     country_code: typing_extensions.Annotated[
         str, FieldMetadata(alias="countryCode"), pydantic.Field(alias="countryCode")
     ]
+    chart_template: typing_extensions.Annotated[
+        str,
+        FieldMetadata(alias="chartTemplate"),
+        pydantic.Field(alias="chartTemplate", description="Chart of accounts template the company was seeded with"),
+    ]
+    """
+    Chart of accounts template the company was seeded with
+    """
+
+    country_chart_template: typing_extensions.Annotated[
+        str,
+        FieldMetadata(alias="countryChartTemplate"),
+        pydantic.Field(alias="countryChartTemplate", description="Chart of accounts template of the company country"),
+    ]
+    """
+    Chart of accounts template of the company country
+    """
+
     base_currency: typing_extensions.Annotated[
         str, FieldMetadata(alias="baseCurrency"), pydantic.Field(alias="baseCurrency")
     ]
@@ -50,6 +72,51 @@ class PostV1AccountCompaniesProfileResponse(UniversalBaseModel):
     logo_file_id: typing_extensions.Annotated[
         typing.Optional[str], FieldMetadata(alias="logoFileId"), pydantic.Field(alias="logoFileId")
     ] = None
+    legal_form: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="legalForm"), pydantic.Field(alias="legalForm")
+    ] = None
+    registry_name: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="registryName"), pydantic.Field(alias="registryName")
+    ] = None
+    incorporated_on: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="incorporatedOn"), pydantic.Field(alias="incorporatedOn")
+    ] = None
+    share_capital: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="shareCapital"), pydantic.Field(alias="shareCapital")
+    ] = None
+    accounts_kept_by: typing_extensions.Annotated[
+        typing.Optional[PostV1AccountCompaniesProfileResponseAccountsKeptBy],
+        FieldMetadata(alias="accountsKeptBy"),
+        pydantic.Field(alias="accountsKeptBy"),
+    ] = None
+    vat_period: typing_extensions.Annotated[
+        typing.Optional[PostV1AccountCompaniesProfileResponseVatPeriod],
+        FieldMetadata(alias="vatPeriod"),
+        pydantic.Field(alias="vatPeriod"),
+    ] = None
+    fiscal_year_end_month: typing_extensions.Annotated[
+        typing.Optional[int], FieldMetadata(alias="fiscalYearEndMonth"), pydantic.Field(alias="fiscalYearEndMonth")
+    ] = None
+    time_zone: typing_extensions.Annotated[str, FieldMetadata(alias="timeZone"), pydantic.Field(alias="timeZone")]
+    filing_options: typing_extensions.Annotated[
+        typing.Optional[typing.Dict[str, typing.Optional[str]]],
+        FieldMetadata(alias="filingOptions"),
+        pydantic.Field(alias="filingOptions"),
+    ] = None
+    bookkeeper_name: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="bookkeeperName"), pydantic.Field(alias="bookkeeperName")
+    ] = None
+    auditor_name: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="auditorName"), pydantic.Field(alias="auditorName")
+    ] = None
+    auditor_registration_number: typing_extensions.Annotated[
+        typing.Optional[str],
+        FieldMetadata(alias="auditorRegistrationNumber"),
+        pydantic.Field(alias="auditorRegistrationNumber"),
+    ] = None
+    audit_required: typing_extensions.Annotated[
+        bool, FieldMetadata(alias="auditRequired"), pydantic.Field(alias="auditRequired")
+    ]
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

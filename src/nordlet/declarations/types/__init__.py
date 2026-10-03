@@ -6,6 +6,146 @@ import typing
 from importlib import import_module
 
 if typing.TYPE_CHECKING:
+    from .post_v1declarations_annual_accounts_attachments_add_request_kind import (
+        PostV1DeclarationsAnnualAccountsAttachmentsAddRequestKind,
+    )
+    from .post_v1declarations_annual_accounts_attachments_add_response import (
+        PostV1DeclarationsAnnualAccountsAttachmentsAddResponse,
+    )
+    from .post_v1declarations_annual_accounts_attachments_add_response_kind import (
+        PostV1DeclarationsAnnualAccountsAttachmentsAddResponseKind,
+    )
+    from .post_v1declarations_annual_accounts_attachments_delete_response import (
+        PostV1DeclarationsAnnualAccountsAttachmentsDeleteResponse,
+    )
+    from .post_v1declarations_annual_accounts_distributions_create_request_kind import (
+        PostV1DeclarationsAnnualAccountsDistributionsCreateRequestKind,
+    )
+    from .post_v1declarations_annual_accounts_distributions_create_response import (
+        PostV1DeclarationsAnnualAccountsDistributionsCreateResponse,
+    )
+    from .post_v1declarations_annual_accounts_distributions_create_response_kind import (
+        PostV1DeclarationsAnnualAccountsDistributionsCreateResponseKind,
+    )
+    from .post_v1declarations_annual_accounts_distributions_delete_response import (
+        PostV1DeclarationsAnnualAccountsDistributionsDeleteResponse,
+    )
+    from .post_v1declarations_annual_accounts_distributions_update_request_kind import (
+        PostV1DeclarationsAnnualAccountsDistributionsUpdateRequestKind,
+    )
+    from .post_v1declarations_annual_accounts_distributions_update_response import (
+        PostV1DeclarationsAnnualAccountsDistributionsUpdateResponse,
+    )
+    from .post_v1declarations_annual_accounts_distributions_update_response_kind import (
+        PostV1DeclarationsAnnualAccountsDistributionsUpdateResponseKind,
+    )
+    from .post_v1declarations_annual_accounts_get_response import PostV1DeclarationsAnnualAccountsGetResponse
+    from .post_v1declarations_annual_accounts_get_response_approval import (
+        PostV1DeclarationsAnnualAccountsGetResponseApproval,
+    )
+    from .post_v1declarations_annual_accounts_get_response_approval_attachments_item import (
+        PostV1DeclarationsAnnualAccountsGetResponseApprovalAttachmentsItem,
+    )
+    from .post_v1declarations_annual_accounts_get_response_approval_attachments_item_kind import (
+        PostV1DeclarationsAnnualAccountsGetResponseApprovalAttachmentsItemKind,
+    )
+    from .post_v1declarations_annual_accounts_get_response_approval_distributions_item import (
+        PostV1DeclarationsAnnualAccountsGetResponseApprovalDistributionsItem,
+    )
+    from .post_v1declarations_annual_accounts_get_response_approval_distributions_item_kind import (
+        PostV1DeclarationsAnnualAccountsGetResponseApprovalDistributionsItemKind,
+    )
+    from .post_v1declarations_annual_accounts_get_response_approval_signatures_item import (
+        PostV1DeclarationsAnnualAccountsGetResponseApprovalSignaturesItem,
+    )
+    from .post_v1declarations_annual_accounts_get_response_approval_signatures_item_director_type import (
+        PostV1DeclarationsAnnualAccountsGetResponseApprovalSignaturesItemDirectorType,
+    )
+    from .post_v1declarations_annual_accounts_set_response import PostV1DeclarationsAnnualAccountsSetResponse
+    from .post_v1declarations_annual_accounts_set_response_attachments_item import (
+        PostV1DeclarationsAnnualAccountsSetResponseAttachmentsItem,
+    )
+    from .post_v1declarations_annual_accounts_set_response_attachments_item_kind import (
+        PostV1DeclarationsAnnualAccountsSetResponseAttachmentsItemKind,
+    )
+    from .post_v1declarations_annual_accounts_set_response_distributions_item import (
+        PostV1DeclarationsAnnualAccountsSetResponseDistributionsItem,
+    )
+    from .post_v1declarations_annual_accounts_set_response_distributions_item_kind import (
+        PostV1DeclarationsAnnualAccountsSetResponseDistributionsItemKind,
+    )
+    from .post_v1declarations_annual_accounts_set_response_signatures_item import (
+        PostV1DeclarationsAnnualAccountsSetResponseSignaturesItem,
+    )
+    from .post_v1declarations_annual_accounts_set_response_signatures_item_director_type import (
+        PostV1DeclarationsAnnualAccountsSetResponseSignaturesItemDirectorType,
+    )
+    from .post_v1declarations_annual_accounts_signatures_create_request_director_type import (
+        PostV1DeclarationsAnnualAccountsSignaturesCreateRequestDirectorType,
+    )
+    from .post_v1declarations_annual_accounts_signatures_create_response import (
+        PostV1DeclarationsAnnualAccountsSignaturesCreateResponse,
+    )
+    from .post_v1declarations_annual_accounts_signatures_create_response_director_type import (
+        PostV1DeclarationsAnnualAccountsSignaturesCreateResponseDirectorType,
+    )
+    from .post_v1declarations_annual_accounts_signatures_delete_response import (
+        PostV1DeclarationsAnnualAccountsSignaturesDeleteResponse,
+    )
+    from .post_v1declarations_annual_accounts_signatures_update_request_director_type import (
+        PostV1DeclarationsAnnualAccountsSignaturesUpdateRequestDirectorType,
+    )
+    from .post_v1declarations_annual_accounts_signatures_update_response import (
+        PostV1DeclarationsAnnualAccountsSignaturesUpdateResponse,
+    )
+    from .post_v1declarations_annual_accounts_signatures_update_response_director_type import (
+        PostV1DeclarationsAnnualAccountsSignaturesUpdateResponseDirectorType,
+    )
+    from .post_v1declarations_automation_list_response import PostV1DeclarationsAutomationListResponse
+    from .post_v1declarations_automation_list_response_rows_item import PostV1DeclarationsAutomationListResponseRowsItem
+    from .post_v1declarations_automation_list_response_rows_item_certificate import (
+        PostV1DeclarationsAutomationListResponseRowsItemCertificate,
+    )
+    from .post_v1declarations_automation_update_response import PostV1DeclarationsAutomationUpdateResponse
+    from .post_v1declarations_automation_update_response_rows_item import (
+        PostV1DeclarationsAutomationUpdateResponseRowsItem,
+    )
+    from .post_v1declarations_automation_update_response_rows_item_certificate import (
+        PostV1DeclarationsAutomationUpdateResponseRowsItemCertificate,
+    )
+    from .post_v1declarations_certificates_delete_request_field_key import (
+        PostV1DeclarationsCertificatesDeleteRequestFieldKey,
+    )
+    from .post_v1declarations_certificates_delete_response import PostV1DeclarationsCertificatesDeleteResponse
+    from .post_v1declarations_certificates_delete_response_rows_item import (
+        PostV1DeclarationsCertificatesDeleteResponseRowsItem,
+    )
+    from .post_v1declarations_certificates_delete_response_rows_item_format import (
+        PostV1DeclarationsCertificatesDeleteResponseRowsItemFormat,
+    )
+    from .post_v1declarations_certificates_delete_response_rows_item_health import (
+        PostV1DeclarationsCertificatesDeleteResponseRowsItemHealth,
+    )
+    from .post_v1declarations_certificates_list_response import PostV1DeclarationsCertificatesListResponse
+    from .post_v1declarations_certificates_list_response_rows_item import (
+        PostV1DeclarationsCertificatesListResponseRowsItem,
+    )
+    from .post_v1declarations_certificates_list_response_rows_item_format import (
+        PostV1DeclarationsCertificatesListResponseRowsItemFormat,
+    )
+    from .post_v1declarations_certificates_list_response_rows_item_health import (
+        PostV1DeclarationsCertificatesListResponseRowsItemHealth,
+    )
+    from .post_v1declarations_certificates_upload_response import PostV1DeclarationsCertificatesUploadResponse
+    from .post_v1declarations_certificates_upload_response_rows_item import (
+        PostV1DeclarationsCertificatesUploadResponseRowsItem,
+    )
+    from .post_v1declarations_certificates_upload_response_rows_item_format import (
+        PostV1DeclarationsCertificatesUploadResponseRowsItemFormat,
+    )
+    from .post_v1declarations_certificates_upload_response_rows_item_health import (
+        PostV1DeclarationsCertificatesUploadResponseRowsItemHealth,
+    )
     from .post_v1declarations_configs_list_response import PostV1DeclarationsConfigsListResponse
     from .post_v1declarations_configs_list_response_rows_item import PostV1DeclarationsConfigsListResponseRowsItem
     from .post_v1declarations_configs_list_response_rows_item_endpoints_item import (
@@ -26,6 +166,175 @@ if typing.TYPE_CHECKING:
     )
     from .post_v1declarations_configs_update_response_fields_item_kind import (
         PostV1DeclarationsConfigsUpdateResponseFieldsItemKind,
+    )
+    from .post_v1declarations_cy_he32generate_response import PostV1DeclarationsCyHe32GenerateResponse
+    from .post_v1declarations_cy_he32generate_response_fields_item import (
+        PostV1DeclarationsCyHe32GenerateResponseFieldsItem,
+    )
+    from .post_v1declarations_cy_he32generate_response_members_item import (
+        PostV1DeclarationsCyHe32GenerateResponseMembersItem,
+    )
+    from .post_v1declarations_cy_he32generate_response_officers_item import (
+        PostV1DeclarationsCyHe32GenerateResponseOfficersItem,
+    )
+    from .post_v1declarations_cy_td4generate_response import PostV1DeclarationsCyTd4GenerateResponse
+    from .post_v1declarations_cy_td4generate_response_fields_item import (
+        PostV1DeclarationsCyTd4GenerateResponseFieldsItem,
+    )
+    from .post_v1declarations_de_beitragsnachweis_generate_response import (
+        PostV1DeclarationsDeBeitragsnachweisGenerateResponse,
+    )
+    from .post_v1declarations_de_beitragsnachweis_generate_response_records_item import (
+        PostV1DeclarationsDeBeitragsnachweisGenerateResponseRecordsItem,
+    )
+    from .post_v1declarations_de_beitragsnachweis_generate_response_records_item_positionen_item import (
+        PostV1DeclarationsDeBeitragsnachweisGenerateResponseRecordsItemPositionenItem,
+    )
+    from .post_v1declarations_de_deuev_generate_response import PostV1DeclarationsDeDeuevGenerateResponse
+    from .post_v1declarations_de_deuev_generate_response_records_item import (
+        PostV1DeclarationsDeDeuevGenerateResponseRecordsItem,
+    )
+    from .post_v1declarations_de_return_facts_get_response import PostV1DeclarationsDeReturnFactsGetResponse
+    from .post_v1declarations_de_return_facts_get_response_facts import PostV1DeclarationsDeReturnFactsGetResponseFacts
+    from .post_v1declarations_de_return_facts_get_response_facts_contracts_item import (
+        PostV1DeclarationsDeReturnFactsGetResponseFactsContractsItem,
+    )
+    from .post_v1declarations_de_return_facts_get_response_facts_contributions_item import (
+        PostV1DeclarationsDeReturnFactsGetResponseFactsContributionsItem,
+    )
+    from .post_v1declarations_de_return_facts_get_response_facts_contributions_item_kind import (
+        PostV1DeclarationsDeReturnFactsGetResponseFactsContributionsItemKind,
+    )
+    from .post_v1declarations_de_return_facts_get_response_facts_distributions_item import (
+        PostV1DeclarationsDeReturnFactsGetResponseFactsDistributionsItem,
+    )
+    from .post_v1declarations_de_return_facts_get_response_facts_foreign_income_item import (
+        PostV1DeclarationsDeReturnFactsGetResponseFactsForeignIncomeItem,
+    )
+    from .post_v1declarations_de_return_facts_get_response_facts_foreign_income_item_kind import (
+        PostV1DeclarationsDeReturnFactsGetResponseFactsForeignIncomeItemKind,
+    )
+    from .post_v1declarations_de_return_facts_get_response_facts_land_holdings_item import (
+        PostV1DeclarationsDeReturnFactsGetResponseFactsLandHoldingsItem,
+    )
+    from .post_v1declarations_de_return_facts_get_response_facts_land_holdings_item_category import (
+        PostV1DeclarationsDeReturnFactsGetResponseFactsLandHoldingsItemCategory,
+    )
+    from .post_v1declarations_de_return_facts_get_response_facts_municipalities_item import (
+        PostV1DeclarationsDeReturnFactsGetResponseFactsMunicipalitiesItem,
+    )
+    from .post_v1declarations_de_return_facts_get_response_facts_participations_item import (
+        PostV1DeclarationsDeReturnFactsGetResponseFactsParticipationsItem,
+    )
+    from .post_v1declarations_de_return_facts_get_response_facts_relocation import (
+        PostV1DeclarationsDeReturnFactsGetResponseFactsRelocation,
+    )
+    from .post_v1declarations_de_return_facts_get_response_facts_representative import (
+        PostV1DeclarationsDeReturnFactsGetResponseFactsRepresentative,
+    )
+    from .post_v1declarations_de_return_facts_get_response_facts_representative_role import (
+        PostV1DeclarationsDeReturnFactsGetResponseFactsRepresentativeRole,
+    )
+    from .post_v1declarations_de_return_facts_set_request_facts import PostV1DeclarationsDeReturnFactsSetRequestFacts
+    from .post_v1declarations_de_return_facts_set_request_facts_contracts_item import (
+        PostV1DeclarationsDeReturnFactsSetRequestFactsContractsItem,
+    )
+    from .post_v1declarations_de_return_facts_set_request_facts_contributions_item import (
+        PostV1DeclarationsDeReturnFactsSetRequestFactsContributionsItem,
+    )
+    from .post_v1declarations_de_return_facts_set_request_facts_contributions_item_kind import (
+        PostV1DeclarationsDeReturnFactsSetRequestFactsContributionsItemKind,
+    )
+    from .post_v1declarations_de_return_facts_set_request_facts_distributions_item import (
+        PostV1DeclarationsDeReturnFactsSetRequestFactsDistributionsItem,
+    )
+    from .post_v1declarations_de_return_facts_set_request_facts_foreign_income_item import (
+        PostV1DeclarationsDeReturnFactsSetRequestFactsForeignIncomeItem,
+    )
+    from .post_v1declarations_de_return_facts_set_request_facts_foreign_income_item_kind import (
+        PostV1DeclarationsDeReturnFactsSetRequestFactsForeignIncomeItemKind,
+    )
+    from .post_v1declarations_de_return_facts_set_request_facts_land_holdings_item import (
+        PostV1DeclarationsDeReturnFactsSetRequestFactsLandHoldingsItem,
+    )
+    from .post_v1declarations_de_return_facts_set_request_facts_land_holdings_item_category import (
+        PostV1DeclarationsDeReturnFactsSetRequestFactsLandHoldingsItemCategory,
+    )
+    from .post_v1declarations_de_return_facts_set_request_facts_municipalities_item import (
+        PostV1DeclarationsDeReturnFactsSetRequestFactsMunicipalitiesItem,
+    )
+    from .post_v1declarations_de_return_facts_set_request_facts_participations_item import (
+        PostV1DeclarationsDeReturnFactsSetRequestFactsParticipationsItem,
+    )
+    from .post_v1declarations_de_return_facts_set_request_facts_relocation import (
+        PostV1DeclarationsDeReturnFactsSetRequestFactsRelocation,
+    )
+    from .post_v1declarations_de_return_facts_set_request_facts_representative import (
+        PostV1DeclarationsDeReturnFactsSetRequestFactsRepresentative,
+    )
+    from .post_v1declarations_de_return_facts_set_request_facts_representative_role import (
+        PostV1DeclarationsDeReturnFactsSetRequestFactsRepresentativeRole,
+    )
+    from .post_v1declarations_de_return_facts_set_response import PostV1DeclarationsDeReturnFactsSetResponse
+    from .post_v1declarations_de_return_facts_set_response_facts import PostV1DeclarationsDeReturnFactsSetResponseFacts
+    from .post_v1declarations_de_return_facts_set_response_facts_contracts_item import (
+        PostV1DeclarationsDeReturnFactsSetResponseFactsContractsItem,
+    )
+    from .post_v1declarations_de_return_facts_set_response_facts_contributions_item import (
+        PostV1DeclarationsDeReturnFactsSetResponseFactsContributionsItem,
+    )
+    from .post_v1declarations_de_return_facts_set_response_facts_contributions_item_kind import (
+        PostV1DeclarationsDeReturnFactsSetResponseFactsContributionsItemKind,
+    )
+    from .post_v1declarations_de_return_facts_set_response_facts_distributions_item import (
+        PostV1DeclarationsDeReturnFactsSetResponseFactsDistributionsItem,
+    )
+    from .post_v1declarations_de_return_facts_set_response_facts_foreign_income_item import (
+        PostV1DeclarationsDeReturnFactsSetResponseFactsForeignIncomeItem,
+    )
+    from .post_v1declarations_de_return_facts_set_response_facts_foreign_income_item_kind import (
+        PostV1DeclarationsDeReturnFactsSetResponseFactsForeignIncomeItemKind,
+    )
+    from .post_v1declarations_de_return_facts_set_response_facts_land_holdings_item import (
+        PostV1DeclarationsDeReturnFactsSetResponseFactsLandHoldingsItem,
+    )
+    from .post_v1declarations_de_return_facts_set_response_facts_land_holdings_item_category import (
+        PostV1DeclarationsDeReturnFactsSetResponseFactsLandHoldingsItemCategory,
+    )
+    from .post_v1declarations_de_return_facts_set_response_facts_municipalities_item import (
+        PostV1DeclarationsDeReturnFactsSetResponseFactsMunicipalitiesItem,
+    )
+    from .post_v1declarations_de_return_facts_set_response_facts_participations_item import (
+        PostV1DeclarationsDeReturnFactsSetResponseFactsParticipationsItem,
+    )
+    from .post_v1declarations_de_return_facts_set_response_facts_relocation import (
+        PostV1DeclarationsDeReturnFactsSetResponseFactsRelocation,
+    )
+    from .post_v1declarations_de_return_facts_set_response_facts_representative import (
+        PostV1DeclarationsDeReturnFactsSetResponseFactsRepresentative,
+    )
+    from .post_v1declarations_de_return_facts_set_response_facts_representative_role import (
+        PostV1DeclarationsDeReturnFactsSetResponseFactsRepresentativeRole,
+    )
+    from .post_v1declarations_de_returns_generate_request_rule_key import (
+        PostV1DeclarationsDeReturnsGenerateRequestRuleKey,
+    )
+    from .post_v1declarations_de_returns_generate_response import PostV1DeclarationsDeReturnsGenerateResponse
+    from .post_v1declarations_dk_selskabsskat_generate_response import PostV1DeclarationsDkSelskabsskatGenerateResponse
+    from .post_v1declarations_dk_selskabsskat_generate_response_fields_item import (
+        PostV1DeclarationsDkSelskabsskatGenerateResponseFieldsItem,
+    )
+    from .post_v1declarations_ee_employment_register_send_request_event import (
+        PostV1DeclarationsEeEmploymentRegisterSendRequestEvent,
+    )
+    from .post_v1declarations_ee_employment_register_send_response import (
+        PostV1DeclarationsEeEmploymentRegisterSendResponse,
+    )
+    from .post_v1declarations_ee_employment_register_send_response_state import (
+        PostV1DeclarationsEeEmploymentRegisterSendResponseState,
+    )
+    from .post_v1declarations_es_verifactu_declaracion_responsable_response import (
+        PostV1DeclarationsEsVerifactuDeclaracionResponsableResponse,
     )
     from .post_v1declarations_eu_distance_sales_threshold_get_response import (
         PostV1DeclarationsEuDistanceSalesThresholdGetResponse,
@@ -122,6 +431,58 @@ if typing.TYPE_CHECKING:
     from .post_v1declarations_eu_vat_return_packs_list_response_packs_item_frequency import (
         PostV1DeclarationsEuVatReturnPacksListResponsePacksItemFrequency,
     )
+    from .post_v1declarations_ie_b1generate_response import PostV1DeclarationsIeB1GenerateResponse
+    from .post_v1declarations_ie_b1generate_response_directors_item import (
+        PostV1DeclarationsIeB1GenerateResponseDirectorsItem,
+    )
+    from .post_v1declarations_ie_b1generate_response_fields_item import PostV1DeclarationsIeB1GenerateResponseFieldsItem
+    from .post_v1declarations_ie_b1generate_response_members_item import (
+        PostV1DeclarationsIeB1GenerateResponseMembersItem,
+    )
+    from .post_v1declarations_ie_b1generate_response_secretary import PostV1DeclarationsIeB1GenerateResponseSecretary
+    from .post_v1declarations_ie_ct1generate_response import PostV1DeclarationsIeCt1GenerateResponse
+    from .post_v1declarations_ie_ct1generate_response_accounts import PostV1DeclarationsIeCt1GenerateResponseAccounts
+    from .post_v1declarations_ie_ct1generate_response_criteria import PostV1DeclarationsIeCt1GenerateResponseCriteria
+    from .post_v1declarations_ie_ct1generate_response_ct1 import PostV1DeclarationsIeCt1GenerateResponseCt1
+    from .post_v1declarations_ie_ct1generate_response_fields_item import (
+        PostV1DeclarationsIeCt1GenerateResponseFieldsItem,
+    )
+    from .post_v1declarations_it_sdi_purchase_preview_request_tipo_documento import (
+        PostV1DeclarationsItSdiPurchasePreviewRequestTipoDocumento,
+    )
+    from .post_v1declarations_it_sdi_purchase_preview_response import PostV1DeclarationsItSdiPurchasePreviewResponse
+    from .post_v1declarations_it_sdi_purchase_preview_response_tipo_documento import (
+        PostV1DeclarationsItSdiPurchasePreviewResponseTipoDocumento,
+    )
+    from .post_v1declarations_it_sdi_purchase_send_request_tipo_documento import (
+        PostV1DeclarationsItSdiPurchaseSendRequestTipoDocumento,
+    )
+    from .post_v1declarations_it_sdi_purchase_send_response import PostV1DeclarationsItSdiPurchaseSendResponse
+    from .post_v1declarations_it_sdi_purchase_send_response_status import (
+        PostV1DeclarationsItSdiPurchaseSendResponseStatus,
+    )
+    from .post_v1declarations_it_sdi_purchase_send_response_tipo_documento import (
+        PostV1DeclarationsItSdiPurchaseSendResponseTipoDocumento,
+    )
+    from .post_v1declarations_it_sdi_purchase_send_response_transport import (
+        PostV1DeclarationsItSdiPurchaseSendResponseTransport,
+    )
+    from .post_v1declarations_li_lohndeklaration_generate_response import (
+        PostV1DeclarationsLiLohndeklarationGenerateResponse,
+    )
+    from .post_v1declarations_li_lohndeklaration_generate_response_rows_item import (
+        PostV1DeclarationsLiLohndeklarationGenerateResponseRowsItem,
+    )
+    from .post_v1declarations_li_lohnlisten_generate_response import PostV1DeclarationsLiLohnlistenGenerateResponse
+    from .post_v1declarations_li_lohnlisten_generate_response_rows_item import (
+        PostV1DeclarationsLiLohnlistenGenerateResponseRowsItem,
+    )
+    from .post_v1declarations_lt_fr0564compute_response import PostV1DeclarationsLtFr0564ComputeResponse
+    from .post_v1declarations_lt_fr0564compute_response_counts import PostV1DeclarationsLtFr0564ComputeResponseCounts
+    from .post_v1declarations_lt_fr0564compute_response_rows_item import (
+        PostV1DeclarationsLtFr0564ComputeResponseRowsItem,
+    )
+    from .post_v1declarations_lt_fr0564compute_response_totals import PostV1DeclarationsLtFr0564ComputeResponseTotals
     from .post_v1declarations_lt_fr0600compute_response import PostV1DeclarationsLtFr0600ComputeResponse
     from .post_v1declarations_lt_fr0600compute_response_breakdown_item import (
         PostV1DeclarationsLtFr0600ComputeResponseBreakdownItem,
@@ -133,6 +494,23 @@ if typing.TYPE_CHECKING:
     from .post_v1declarations_lt_fr0600compute_response_fields_item import (
         PostV1DeclarationsLtFr0600ComputeResponseFieldsItem,
     )
+    from .post_v1declarations_lt_gpm312compute_request_payout_timing import (
+        PostV1DeclarationsLtGpm312ComputeRequestPayoutTiming,
+    )
+    from .post_v1declarations_lt_gpm312compute_response import PostV1DeclarationsLtGpm312ComputeResponse
+    from .post_v1declarations_lt_gpm312compute_response_payout_from import (
+        PostV1DeclarationsLtGpm312ComputeResponsePayoutFrom,
+    )
+    from .post_v1declarations_lt_gpm312compute_response_payout_timing import (
+        PostV1DeclarationsLtGpm312ComputeResponsePayoutTiming,
+    )
+    from .post_v1declarations_lt_gpm312compute_response_payout_to import (
+        PostV1DeclarationsLtGpm312ComputeResponsePayoutTo,
+    )
+    from .post_v1declarations_lt_gpm312compute_response_rows_item import (
+        PostV1DeclarationsLtGpm312ComputeResponseRowsItem,
+    )
+    from .post_v1declarations_lt_gpm312compute_response_totals import PostV1DeclarationsLtGpm312ComputeResponseTotals
     from .post_v1declarations_lt_gpm313compute_request_payout_timing import (
         PostV1DeclarationsLtGpm313ComputeRequestPayoutTiming,
     )
@@ -177,25 +555,146 @@ if typing.TYPE_CHECKING:
     from .post_v1declarations_lt_isaf_generate_request_data_type import PostV1DeclarationsLtIsafGenerateRequestDataType
     from .post_v1declarations_lt_isaf_generate_response import PostV1DeclarationsLtIsafGenerateResponse
     from .post_v1declarations_lt_isaf_generate_response_counts import PostV1DeclarationsLtIsafGenerateResponseCounts
+    from .post_v1declarations_lt_ivaz_amend_response import PostV1DeclarationsLtIvazAmendResponse
+    from .post_v1declarations_lt_ivaz_amend_response_counts import PostV1DeclarationsLtIvazAmendResponseCounts
+    from .post_v1declarations_lt_ivaz_cancel_request_entries_item import (
+        PostV1DeclarationsLtIvazCancelRequestEntriesItem,
+    )
+    from .post_v1declarations_lt_ivaz_cancel_request_entries_item_reason import (
+        PostV1DeclarationsLtIvazCancelRequestEntriesItemReason,
+    )
+    from .post_v1declarations_lt_ivaz_cancel_response import PostV1DeclarationsLtIvazCancelResponse
+    from .post_v1declarations_lt_ivaz_cancel_response_counts import PostV1DeclarationsLtIvazCancelResponseCounts
     from .post_v1declarations_lt_ivaz_generate_response import PostV1DeclarationsLtIvazGenerateResponse
     from .post_v1declarations_lt_ivaz_generate_response_counts import PostV1DeclarationsLtIvazGenerateResponseCounts
+    from .post_v1declarations_lt_pln204compute_response import PostV1DeclarationsLtPln204ComputeResponse
+    from .post_v1declarations_lt_pln204compute_response_annex_s_item import (
+        PostV1DeclarationsLtPln204ComputeResponseAnnexSItem,
+    )
+    from .post_v1declarations_lt_pln204compute_response_annex_z_item import (
+        PostV1DeclarationsLtPln204ComputeResponseAnnexZItem,
+    )
+    from .post_v1declarations_lt_pln204compute_response_criteria import (
+        PostV1DeclarationsLtPln204ComputeResponseCriteria,
+    )
+    from .post_v1declarations_lt_pln204compute_response_lines_item import (
+        PostV1DeclarationsLtPln204ComputeResponseLinesItem,
+    )
+    from .post_v1declarations_lt_pln204compute_response_variant import PostV1DeclarationsLtPln204ComputeResponseVariant
+    from .post_v1declarations_lt_pln204ffdata_response import PostV1DeclarationsLtPln204FfdataResponse
     from .post_v1declarations_lt_saft_generate_request_data_type import PostV1DeclarationsLtSaftGenerateRequestDataType
     from .post_v1declarations_lt_saft_generate_response import PostV1DeclarationsLtSaftGenerateResponse
     from .post_v1declarations_lt_saft_generate_response_counts import PostV1DeclarationsLtSaftGenerateResponseCounts
+    from .post_v1declarations_lt_saft_send_request_data_type import PostV1DeclarationsLtSaftSendRequestDataType
+    from .post_v1declarations_lt_saft_send_response import PostV1DeclarationsLtSaftSendResponse
+    from .post_v1declarations_lt_saft_send_response_state import PostV1DeclarationsLtSaftSendResponseState
     from .post_v1declarations_lt_sam_compute_response import PostV1DeclarationsLtSamComputeResponse
     from .post_v1declarations_lt_sam_compute_response_persons_item import (
         PostV1DeclarationsLtSamComputeResponsePersonsItem,
     )
+    from .post_v1declarations_lt_sd_ffdata_request_type import PostV1DeclarationsLtSdFfdataRequestType
+    from .post_v1declarations_lt_sd_ffdata_response import PostV1DeclarationsLtSdFfdataResponse
+    from .post_v1declarations_lt_sd_ffdata_response_type import PostV1DeclarationsLtSdFfdataResponseType
     from .post_v1declarations_lt_sd_generate_request_type import PostV1DeclarationsLtSdGenerateRequestType
     from .post_v1declarations_lt_sd_generate_response import PostV1DeclarationsLtSdGenerateResponse
     from .post_v1declarations_lt_sd_generate_response_rows_item import PostV1DeclarationsLtSdGenerateResponseRowsItem
     from .post_v1declarations_lt_sd_generate_response_type import PostV1DeclarationsLtSdGenerateResponseType
+    from .post_v1declarations_mt_annual_return_generate_response import PostV1DeclarationsMtAnnualReturnGenerateResponse
+    from .post_v1declarations_mt_annual_return_generate_response_fields_item import (
+        PostV1DeclarationsMtAnnualReturnGenerateResponseFieldsItem,
+    )
+    from .post_v1declarations_mt_annual_return_generate_response_members_item import (
+        PostV1DeclarationsMtAnnualReturnGenerateResponseMembersItem,
+    )
+    from .post_v1declarations_mt_annual_return_generate_response_officers_item import (
+        PostV1DeclarationsMtAnnualReturnGenerateResponseOfficersItem,
+    )
+    from .post_v1declarations_mt_company_tax_generate_response import PostV1DeclarationsMtCompanyTaxGenerateResponse
+    from .post_v1declarations_mt_company_tax_generate_response_fields_item import (
+        PostV1DeclarationsMtCompanyTaxGenerateResponseFieldsItem,
+    )
+    from .post_v1declarations_mt_company_tax_generate_response_tax_accounts_item import (
+        PostV1DeclarationsMtCompanyTaxGenerateResponseTaxAccountsItem,
+    )
+    from .post_v1declarations_pl_cit8generate_response import PostV1DeclarationsPlCit8GenerateResponse
+    from .post_v1declarations_pl_cit8generate_response_positions_item import (
+        PostV1DeclarationsPlCit8GenerateResponsePositionsItem,
+    )
+    from .post_v1declarations_pl_intrastat_generate_request_flow import PostV1DeclarationsPlIntrastatGenerateRequestFlow
+    from .post_v1declarations_pl_intrastat_generate_response import PostV1DeclarationsPlIntrastatGenerateResponse
+    from .post_v1declarations_pl_intrastat_generate_response_counts import (
+        PostV1DeclarationsPlIntrastatGenerateResponseCounts,
+    )
+    from .post_v1declarations_pl_intrastat_generate_response_flow import (
+        PostV1DeclarationsPlIntrastatGenerateResponseFlow,
+    )
+    from .post_v1declarations_pl_intrastat_generate_response_rows_item import (
+        PostV1DeclarationsPlIntrastatGenerateResponseRowsItem,
+    )
+    from .post_v1declarations_pl_intrastat_generate_response_totals import (
+        PostV1DeclarationsPlIntrastatGenerateResponseTotals,
+    )
+    from .post_v1declarations_pl_jpk_fa_generate_response import PostV1DeclarationsPlJpkFaGenerateResponse
+    from .post_v1declarations_pl_jpk_fa_generate_response_counts import PostV1DeclarationsPlJpkFaGenerateResponseCounts
+    from .post_v1declarations_pl_jpk_fa_generate_response_totals import PostV1DeclarationsPlJpkFaGenerateResponseTotals
+    from .post_v1declarations_pl_jpk_kr_generate_response import PostV1DeclarationsPlJpkKrGenerateResponse
+    from .post_v1declarations_pl_jpk_kr_generate_response_counts import PostV1DeclarationsPlJpkKrGenerateResponseCounts
+    from .post_v1declarations_pl_jpk_kr_generate_response_totals import PostV1DeclarationsPlJpkKrGenerateResponseTotals
+    from .post_v1declarations_pl_jpk_mag_generate_response import PostV1DeclarationsPlJpkMagGenerateResponse
+    from .post_v1declarations_pl_jpk_mag_generate_response_counts import (
+        PostV1DeclarationsPlJpkMagGenerateResponseCounts,
+    )
     from .post_v1declarations_pl_jpk_v7m_generate_response import PostV1DeclarationsPlJpkV7MGenerateResponse
     from .post_v1declarations_pl_jpk_v7m_generate_response_counts import (
         PostV1DeclarationsPlJpkV7MGenerateResponseCounts,
     )
     from .post_v1declarations_pl_jpk_v7m_generate_response_declaration_item import (
         PostV1DeclarationsPlJpkV7MGenerateResponseDeclarationItem,
+    )
+    from .post_v1declarations_pl_ksef_receipt_response import PostV1DeclarationsPlKsefReceiptResponse
+    from .post_v1declarations_pl_ksef_receipt_response_state import PostV1DeclarationsPlKsefReceiptResponseState
+    from .post_v1declarations_pl_ksef_received_fetch_response import PostV1DeclarationsPlKsefReceivedFetchResponse
+    from .post_v1declarations_pl_ksef_received_list_response import PostV1DeclarationsPlKsefReceivedListResponse
+    from .post_v1declarations_pl_ksef_received_list_response_rows_item import (
+        PostV1DeclarationsPlKsefReceivedListResponseRowsItem,
+    )
+    from .post_v1declarations_pl_pit11generate_response import PostV1DeclarationsPlPit11GenerateResponse
+    from .post_v1declarations_pl_pit11generate_response_persons_item import (
+        PostV1DeclarationsPlPit11GenerateResponsePersonsItem,
+    )
+    from .post_v1declarations_pl_vat_ue_generate_response import PostV1DeclarationsPlVatUeGenerateResponse
+    from .post_v1declarations_pl_vat_ue_generate_response_rows_item import (
+        PostV1DeclarationsPlVatUeGenerateResponseRowsItem,
+    )
+    from .post_v1declarations_pl_vat_ue_generate_response_rows_item_section import (
+        PostV1DeclarationsPlVatUeGenerateResponseRowsItemSection,
+    )
+    from .post_v1declarations_pl_vat_ue_generate_response_totals_item import (
+        PostV1DeclarationsPlVatUeGenerateResponseTotalsItem,
+    )
+    from .post_v1declarations_pl_vat_ue_generate_response_totals_item_section import (
+        PostV1DeclarationsPlVatUeGenerateResponseTotalsItemSection,
+    )
+    from .post_v1declarations_pl_zus_dra_compute_response import PostV1DeclarationsPlZusDraComputeResponse
+    from .post_v1declarations_pl_zus_dra_compute_response_rows_item import (
+        PostV1DeclarationsPlZusDraComputeResponseRowsItem,
+    )
+    from .post_v1declarations_pl_zus_dra_kedu_response import PostV1DeclarationsPlZusDraKeduResponse
+    from .post_v1declarations_pl_zus_dra_kedu_response_insured_item import (
+        PostV1DeclarationsPlZusDraKeduResponseInsuredItem,
+    )
+    from .post_v1declarations_pl_zus_dra_kedu_response_insured_item_kod_tytulu import (
+        PostV1DeclarationsPlZusDraKeduResponseInsuredItemKodTytulu,
+    )
+    from .post_v1declarations_pl_zus_dra_pdf_response import PostV1DeclarationsPlZusDraPdfResponse
+    from .post_v1declarations_ro_etransport_build_response import PostV1DeclarationsRoEtransportBuildResponse
+    from .post_v1declarations_ro_etransport_status_response import PostV1DeclarationsRoEtransportStatusResponse
+    from .post_v1declarations_ro_etransport_status_response_state import (
+        PostV1DeclarationsRoEtransportStatusResponseState,
+    )
+    from .post_v1declarations_ro_etransport_submit_response import PostV1DeclarationsRoEtransportSubmitResponse
+    from .post_v1declarations_ro_etransport_submit_response_state import (
+        PostV1DeclarationsRoEtransportSubmitResponseState,
     )
     from .post_v1declarations_submissions_create_request_data_type import (
         PostV1DeclarationsSubmissionsCreateRequestDataType,
@@ -233,7 +732,99 @@ if typing.TYPE_CHECKING:
     from .post_v1declarations_submissions_mark_request_status import PostV1DeclarationsSubmissionsMarkRequestStatus
     from .post_v1declarations_submissions_mark_response import PostV1DeclarationsSubmissionsMarkResponse
     from .post_v1declarations_submissions_mark_response_status import PostV1DeclarationsSubmissionsMarkResponseStatus
+    from .post_v1declarations_submissions_retry_response import PostV1DeclarationsSubmissionsRetryResponse
+    from .post_v1declarations_submissions_retry_response_status import PostV1DeclarationsSubmissionsRetryResponseStatus
+    from .post_v1declarations_tax_adjustments_create_request_kind import (
+        PostV1DeclarationsTaxAdjustmentsCreateRequestKind,
+    )
+    from .post_v1declarations_tax_adjustments_create_response import PostV1DeclarationsTaxAdjustmentsCreateResponse
+    from .post_v1declarations_tax_adjustments_create_response_kind import (
+        PostV1DeclarationsTaxAdjustmentsCreateResponseKind,
+    )
+    from .post_v1declarations_tax_adjustments_delete_response import PostV1DeclarationsTaxAdjustmentsDeleteResponse
+    from .post_v1declarations_tax_adjustments_list_response import PostV1DeclarationsTaxAdjustmentsListResponse
+    from .post_v1declarations_tax_adjustments_list_response_rows_item import (
+        PostV1DeclarationsTaxAdjustmentsListResponseRowsItem,
+    )
+    from .post_v1declarations_tax_adjustments_list_response_rows_item_kind import (
+        PostV1DeclarationsTaxAdjustmentsListResponseRowsItemKind,
+    )
+    from .post_v1declarations_tax_adjustments_update_request_kind import (
+        PostV1DeclarationsTaxAdjustmentsUpdateRequestKind,
+    )
+    from .post_v1declarations_tax_adjustments_update_response import PostV1DeclarationsTaxAdjustmentsUpdateResponse
+    from .post_v1declarations_tax_adjustments_update_response_kind import (
+        PostV1DeclarationsTaxAdjustmentsUpdateResponseKind,
+    )
+    from .post_v1declarations_tax_payments_create_request_kind import PostV1DeclarationsTaxPaymentsCreateRequestKind
+    from .post_v1declarations_tax_payments_create_request_tax import PostV1DeclarationsTaxPaymentsCreateRequestTax
+    from .post_v1declarations_tax_payments_create_response import PostV1DeclarationsTaxPaymentsCreateResponse
+    from .post_v1declarations_tax_payments_create_response_kind import PostV1DeclarationsTaxPaymentsCreateResponseKind
+    from .post_v1declarations_tax_payments_delete_response import PostV1DeclarationsTaxPaymentsDeleteResponse
+    from .post_v1declarations_tax_payments_list_request_tax import PostV1DeclarationsTaxPaymentsListRequestTax
+    from .post_v1declarations_tax_payments_list_response import PostV1DeclarationsTaxPaymentsListResponse
+    from .post_v1declarations_tax_payments_list_response_rows_item import (
+        PostV1DeclarationsTaxPaymentsListResponseRowsItem,
+    )
+    from .post_v1declarations_tax_payments_list_response_rows_item_kind import (
+        PostV1DeclarationsTaxPaymentsListResponseRowsItemKind,
+    )
+    from .post_v1declarations_tax_payments_update_request_kind import PostV1DeclarationsTaxPaymentsUpdateRequestKind
+    from .post_v1declarations_tax_payments_update_response import PostV1DeclarationsTaxPaymentsUpdateResponse
+    from .post_v1declarations_tax_payments_update_response_kind import PostV1DeclarationsTaxPaymentsUpdateResponseKind
 _dynamic_imports: typing.Dict[str, str] = {
+    "PostV1DeclarationsAnnualAccountsAttachmentsAddRequestKind": ".post_v1declarations_annual_accounts_attachments_add_request_kind",
+    "PostV1DeclarationsAnnualAccountsAttachmentsAddResponse": ".post_v1declarations_annual_accounts_attachments_add_response",
+    "PostV1DeclarationsAnnualAccountsAttachmentsAddResponseKind": ".post_v1declarations_annual_accounts_attachments_add_response_kind",
+    "PostV1DeclarationsAnnualAccountsAttachmentsDeleteResponse": ".post_v1declarations_annual_accounts_attachments_delete_response",
+    "PostV1DeclarationsAnnualAccountsDistributionsCreateRequestKind": ".post_v1declarations_annual_accounts_distributions_create_request_kind",
+    "PostV1DeclarationsAnnualAccountsDistributionsCreateResponse": ".post_v1declarations_annual_accounts_distributions_create_response",
+    "PostV1DeclarationsAnnualAccountsDistributionsCreateResponseKind": ".post_v1declarations_annual_accounts_distributions_create_response_kind",
+    "PostV1DeclarationsAnnualAccountsDistributionsDeleteResponse": ".post_v1declarations_annual_accounts_distributions_delete_response",
+    "PostV1DeclarationsAnnualAccountsDistributionsUpdateRequestKind": ".post_v1declarations_annual_accounts_distributions_update_request_kind",
+    "PostV1DeclarationsAnnualAccountsDistributionsUpdateResponse": ".post_v1declarations_annual_accounts_distributions_update_response",
+    "PostV1DeclarationsAnnualAccountsDistributionsUpdateResponseKind": ".post_v1declarations_annual_accounts_distributions_update_response_kind",
+    "PostV1DeclarationsAnnualAccountsGetResponse": ".post_v1declarations_annual_accounts_get_response",
+    "PostV1DeclarationsAnnualAccountsGetResponseApproval": ".post_v1declarations_annual_accounts_get_response_approval",
+    "PostV1DeclarationsAnnualAccountsGetResponseApprovalAttachmentsItem": ".post_v1declarations_annual_accounts_get_response_approval_attachments_item",
+    "PostV1DeclarationsAnnualAccountsGetResponseApprovalAttachmentsItemKind": ".post_v1declarations_annual_accounts_get_response_approval_attachments_item_kind",
+    "PostV1DeclarationsAnnualAccountsGetResponseApprovalDistributionsItem": ".post_v1declarations_annual_accounts_get_response_approval_distributions_item",
+    "PostV1DeclarationsAnnualAccountsGetResponseApprovalDistributionsItemKind": ".post_v1declarations_annual_accounts_get_response_approval_distributions_item_kind",
+    "PostV1DeclarationsAnnualAccountsGetResponseApprovalSignaturesItem": ".post_v1declarations_annual_accounts_get_response_approval_signatures_item",
+    "PostV1DeclarationsAnnualAccountsGetResponseApprovalSignaturesItemDirectorType": ".post_v1declarations_annual_accounts_get_response_approval_signatures_item_director_type",
+    "PostV1DeclarationsAnnualAccountsSetResponse": ".post_v1declarations_annual_accounts_set_response",
+    "PostV1DeclarationsAnnualAccountsSetResponseAttachmentsItem": ".post_v1declarations_annual_accounts_set_response_attachments_item",
+    "PostV1DeclarationsAnnualAccountsSetResponseAttachmentsItemKind": ".post_v1declarations_annual_accounts_set_response_attachments_item_kind",
+    "PostV1DeclarationsAnnualAccountsSetResponseDistributionsItem": ".post_v1declarations_annual_accounts_set_response_distributions_item",
+    "PostV1DeclarationsAnnualAccountsSetResponseDistributionsItemKind": ".post_v1declarations_annual_accounts_set_response_distributions_item_kind",
+    "PostV1DeclarationsAnnualAccountsSetResponseSignaturesItem": ".post_v1declarations_annual_accounts_set_response_signatures_item",
+    "PostV1DeclarationsAnnualAccountsSetResponseSignaturesItemDirectorType": ".post_v1declarations_annual_accounts_set_response_signatures_item_director_type",
+    "PostV1DeclarationsAnnualAccountsSignaturesCreateRequestDirectorType": ".post_v1declarations_annual_accounts_signatures_create_request_director_type",
+    "PostV1DeclarationsAnnualAccountsSignaturesCreateResponse": ".post_v1declarations_annual_accounts_signatures_create_response",
+    "PostV1DeclarationsAnnualAccountsSignaturesCreateResponseDirectorType": ".post_v1declarations_annual_accounts_signatures_create_response_director_type",
+    "PostV1DeclarationsAnnualAccountsSignaturesDeleteResponse": ".post_v1declarations_annual_accounts_signatures_delete_response",
+    "PostV1DeclarationsAnnualAccountsSignaturesUpdateRequestDirectorType": ".post_v1declarations_annual_accounts_signatures_update_request_director_type",
+    "PostV1DeclarationsAnnualAccountsSignaturesUpdateResponse": ".post_v1declarations_annual_accounts_signatures_update_response",
+    "PostV1DeclarationsAnnualAccountsSignaturesUpdateResponseDirectorType": ".post_v1declarations_annual_accounts_signatures_update_response_director_type",
+    "PostV1DeclarationsAutomationListResponse": ".post_v1declarations_automation_list_response",
+    "PostV1DeclarationsAutomationListResponseRowsItem": ".post_v1declarations_automation_list_response_rows_item",
+    "PostV1DeclarationsAutomationListResponseRowsItemCertificate": ".post_v1declarations_automation_list_response_rows_item_certificate",
+    "PostV1DeclarationsAutomationUpdateResponse": ".post_v1declarations_automation_update_response",
+    "PostV1DeclarationsAutomationUpdateResponseRowsItem": ".post_v1declarations_automation_update_response_rows_item",
+    "PostV1DeclarationsAutomationUpdateResponseRowsItemCertificate": ".post_v1declarations_automation_update_response_rows_item_certificate",
+    "PostV1DeclarationsCertificatesDeleteRequestFieldKey": ".post_v1declarations_certificates_delete_request_field_key",
+    "PostV1DeclarationsCertificatesDeleteResponse": ".post_v1declarations_certificates_delete_response",
+    "PostV1DeclarationsCertificatesDeleteResponseRowsItem": ".post_v1declarations_certificates_delete_response_rows_item",
+    "PostV1DeclarationsCertificatesDeleteResponseRowsItemFormat": ".post_v1declarations_certificates_delete_response_rows_item_format",
+    "PostV1DeclarationsCertificatesDeleteResponseRowsItemHealth": ".post_v1declarations_certificates_delete_response_rows_item_health",
+    "PostV1DeclarationsCertificatesListResponse": ".post_v1declarations_certificates_list_response",
+    "PostV1DeclarationsCertificatesListResponseRowsItem": ".post_v1declarations_certificates_list_response_rows_item",
+    "PostV1DeclarationsCertificatesListResponseRowsItemFormat": ".post_v1declarations_certificates_list_response_rows_item_format",
+    "PostV1DeclarationsCertificatesListResponseRowsItemHealth": ".post_v1declarations_certificates_list_response_rows_item_health",
+    "PostV1DeclarationsCertificatesUploadResponse": ".post_v1declarations_certificates_upload_response",
+    "PostV1DeclarationsCertificatesUploadResponseRowsItem": ".post_v1declarations_certificates_upload_response_rows_item",
+    "PostV1DeclarationsCertificatesUploadResponseRowsItemFormat": ".post_v1declarations_certificates_upload_response_rows_item_format",
+    "PostV1DeclarationsCertificatesUploadResponseRowsItemHealth": ".post_v1declarations_certificates_upload_response_rows_item_health",
     "PostV1DeclarationsConfigsListResponse": ".post_v1declarations_configs_list_response",
     "PostV1DeclarationsConfigsListResponseRowsItem": ".post_v1declarations_configs_list_response_rows_item",
     "PostV1DeclarationsConfigsListResponseRowsItemEndpointsItem": ".post_v1declarations_configs_list_response_rows_item_endpoints_item",
@@ -243,6 +834,69 @@ _dynamic_imports: typing.Dict[str, str] = {
     "PostV1DeclarationsConfigsUpdateResponseEndpointsItem": ".post_v1declarations_configs_update_response_endpoints_item",
     "PostV1DeclarationsConfigsUpdateResponseFieldsItem": ".post_v1declarations_configs_update_response_fields_item",
     "PostV1DeclarationsConfigsUpdateResponseFieldsItemKind": ".post_v1declarations_configs_update_response_fields_item_kind",
+    "PostV1DeclarationsCyHe32GenerateResponse": ".post_v1declarations_cy_he32generate_response",
+    "PostV1DeclarationsCyHe32GenerateResponseFieldsItem": ".post_v1declarations_cy_he32generate_response_fields_item",
+    "PostV1DeclarationsCyHe32GenerateResponseMembersItem": ".post_v1declarations_cy_he32generate_response_members_item",
+    "PostV1DeclarationsCyHe32GenerateResponseOfficersItem": ".post_v1declarations_cy_he32generate_response_officers_item",
+    "PostV1DeclarationsCyTd4GenerateResponse": ".post_v1declarations_cy_td4generate_response",
+    "PostV1DeclarationsCyTd4GenerateResponseFieldsItem": ".post_v1declarations_cy_td4generate_response_fields_item",
+    "PostV1DeclarationsDeBeitragsnachweisGenerateResponse": ".post_v1declarations_de_beitragsnachweis_generate_response",
+    "PostV1DeclarationsDeBeitragsnachweisGenerateResponseRecordsItem": ".post_v1declarations_de_beitragsnachweis_generate_response_records_item",
+    "PostV1DeclarationsDeBeitragsnachweisGenerateResponseRecordsItemPositionenItem": ".post_v1declarations_de_beitragsnachweis_generate_response_records_item_positionen_item",
+    "PostV1DeclarationsDeDeuevGenerateResponse": ".post_v1declarations_de_deuev_generate_response",
+    "PostV1DeclarationsDeDeuevGenerateResponseRecordsItem": ".post_v1declarations_de_deuev_generate_response_records_item",
+    "PostV1DeclarationsDeReturnFactsGetResponse": ".post_v1declarations_de_return_facts_get_response",
+    "PostV1DeclarationsDeReturnFactsGetResponseFacts": ".post_v1declarations_de_return_facts_get_response_facts",
+    "PostV1DeclarationsDeReturnFactsGetResponseFactsContractsItem": ".post_v1declarations_de_return_facts_get_response_facts_contracts_item",
+    "PostV1DeclarationsDeReturnFactsGetResponseFactsContributionsItem": ".post_v1declarations_de_return_facts_get_response_facts_contributions_item",
+    "PostV1DeclarationsDeReturnFactsGetResponseFactsContributionsItemKind": ".post_v1declarations_de_return_facts_get_response_facts_contributions_item_kind",
+    "PostV1DeclarationsDeReturnFactsGetResponseFactsDistributionsItem": ".post_v1declarations_de_return_facts_get_response_facts_distributions_item",
+    "PostV1DeclarationsDeReturnFactsGetResponseFactsForeignIncomeItem": ".post_v1declarations_de_return_facts_get_response_facts_foreign_income_item",
+    "PostV1DeclarationsDeReturnFactsGetResponseFactsForeignIncomeItemKind": ".post_v1declarations_de_return_facts_get_response_facts_foreign_income_item_kind",
+    "PostV1DeclarationsDeReturnFactsGetResponseFactsLandHoldingsItem": ".post_v1declarations_de_return_facts_get_response_facts_land_holdings_item",
+    "PostV1DeclarationsDeReturnFactsGetResponseFactsLandHoldingsItemCategory": ".post_v1declarations_de_return_facts_get_response_facts_land_holdings_item_category",
+    "PostV1DeclarationsDeReturnFactsGetResponseFactsMunicipalitiesItem": ".post_v1declarations_de_return_facts_get_response_facts_municipalities_item",
+    "PostV1DeclarationsDeReturnFactsGetResponseFactsParticipationsItem": ".post_v1declarations_de_return_facts_get_response_facts_participations_item",
+    "PostV1DeclarationsDeReturnFactsGetResponseFactsRelocation": ".post_v1declarations_de_return_facts_get_response_facts_relocation",
+    "PostV1DeclarationsDeReturnFactsGetResponseFactsRepresentative": ".post_v1declarations_de_return_facts_get_response_facts_representative",
+    "PostV1DeclarationsDeReturnFactsGetResponseFactsRepresentativeRole": ".post_v1declarations_de_return_facts_get_response_facts_representative_role",
+    "PostV1DeclarationsDeReturnFactsSetRequestFacts": ".post_v1declarations_de_return_facts_set_request_facts",
+    "PostV1DeclarationsDeReturnFactsSetRequestFactsContractsItem": ".post_v1declarations_de_return_facts_set_request_facts_contracts_item",
+    "PostV1DeclarationsDeReturnFactsSetRequestFactsContributionsItem": ".post_v1declarations_de_return_facts_set_request_facts_contributions_item",
+    "PostV1DeclarationsDeReturnFactsSetRequestFactsContributionsItemKind": ".post_v1declarations_de_return_facts_set_request_facts_contributions_item_kind",
+    "PostV1DeclarationsDeReturnFactsSetRequestFactsDistributionsItem": ".post_v1declarations_de_return_facts_set_request_facts_distributions_item",
+    "PostV1DeclarationsDeReturnFactsSetRequestFactsForeignIncomeItem": ".post_v1declarations_de_return_facts_set_request_facts_foreign_income_item",
+    "PostV1DeclarationsDeReturnFactsSetRequestFactsForeignIncomeItemKind": ".post_v1declarations_de_return_facts_set_request_facts_foreign_income_item_kind",
+    "PostV1DeclarationsDeReturnFactsSetRequestFactsLandHoldingsItem": ".post_v1declarations_de_return_facts_set_request_facts_land_holdings_item",
+    "PostV1DeclarationsDeReturnFactsSetRequestFactsLandHoldingsItemCategory": ".post_v1declarations_de_return_facts_set_request_facts_land_holdings_item_category",
+    "PostV1DeclarationsDeReturnFactsSetRequestFactsMunicipalitiesItem": ".post_v1declarations_de_return_facts_set_request_facts_municipalities_item",
+    "PostV1DeclarationsDeReturnFactsSetRequestFactsParticipationsItem": ".post_v1declarations_de_return_facts_set_request_facts_participations_item",
+    "PostV1DeclarationsDeReturnFactsSetRequestFactsRelocation": ".post_v1declarations_de_return_facts_set_request_facts_relocation",
+    "PostV1DeclarationsDeReturnFactsSetRequestFactsRepresentative": ".post_v1declarations_de_return_facts_set_request_facts_representative",
+    "PostV1DeclarationsDeReturnFactsSetRequestFactsRepresentativeRole": ".post_v1declarations_de_return_facts_set_request_facts_representative_role",
+    "PostV1DeclarationsDeReturnFactsSetResponse": ".post_v1declarations_de_return_facts_set_response",
+    "PostV1DeclarationsDeReturnFactsSetResponseFacts": ".post_v1declarations_de_return_facts_set_response_facts",
+    "PostV1DeclarationsDeReturnFactsSetResponseFactsContractsItem": ".post_v1declarations_de_return_facts_set_response_facts_contracts_item",
+    "PostV1DeclarationsDeReturnFactsSetResponseFactsContributionsItem": ".post_v1declarations_de_return_facts_set_response_facts_contributions_item",
+    "PostV1DeclarationsDeReturnFactsSetResponseFactsContributionsItemKind": ".post_v1declarations_de_return_facts_set_response_facts_contributions_item_kind",
+    "PostV1DeclarationsDeReturnFactsSetResponseFactsDistributionsItem": ".post_v1declarations_de_return_facts_set_response_facts_distributions_item",
+    "PostV1DeclarationsDeReturnFactsSetResponseFactsForeignIncomeItem": ".post_v1declarations_de_return_facts_set_response_facts_foreign_income_item",
+    "PostV1DeclarationsDeReturnFactsSetResponseFactsForeignIncomeItemKind": ".post_v1declarations_de_return_facts_set_response_facts_foreign_income_item_kind",
+    "PostV1DeclarationsDeReturnFactsSetResponseFactsLandHoldingsItem": ".post_v1declarations_de_return_facts_set_response_facts_land_holdings_item",
+    "PostV1DeclarationsDeReturnFactsSetResponseFactsLandHoldingsItemCategory": ".post_v1declarations_de_return_facts_set_response_facts_land_holdings_item_category",
+    "PostV1DeclarationsDeReturnFactsSetResponseFactsMunicipalitiesItem": ".post_v1declarations_de_return_facts_set_response_facts_municipalities_item",
+    "PostV1DeclarationsDeReturnFactsSetResponseFactsParticipationsItem": ".post_v1declarations_de_return_facts_set_response_facts_participations_item",
+    "PostV1DeclarationsDeReturnFactsSetResponseFactsRelocation": ".post_v1declarations_de_return_facts_set_response_facts_relocation",
+    "PostV1DeclarationsDeReturnFactsSetResponseFactsRepresentative": ".post_v1declarations_de_return_facts_set_response_facts_representative",
+    "PostV1DeclarationsDeReturnFactsSetResponseFactsRepresentativeRole": ".post_v1declarations_de_return_facts_set_response_facts_representative_role",
+    "PostV1DeclarationsDeReturnsGenerateRequestRuleKey": ".post_v1declarations_de_returns_generate_request_rule_key",
+    "PostV1DeclarationsDeReturnsGenerateResponse": ".post_v1declarations_de_returns_generate_response",
+    "PostV1DeclarationsDkSelskabsskatGenerateResponse": ".post_v1declarations_dk_selskabsskat_generate_response",
+    "PostV1DeclarationsDkSelskabsskatGenerateResponseFieldsItem": ".post_v1declarations_dk_selskabsskat_generate_response_fields_item",
+    "PostV1DeclarationsEeEmploymentRegisterSendRequestEvent": ".post_v1declarations_ee_employment_register_send_request_event",
+    "PostV1DeclarationsEeEmploymentRegisterSendResponse": ".post_v1declarations_ee_employment_register_send_response",
+    "PostV1DeclarationsEeEmploymentRegisterSendResponseState": ".post_v1declarations_ee_employment_register_send_response_state",
+    "PostV1DeclarationsEsVerifactuDeclaracionResponsableResponse": ".post_v1declarations_es_verifactu_declaracion_responsable_response",
     "PostV1DeclarationsEuDistanceSalesThresholdGetResponse": ".post_v1declarations_eu_distance_sales_threshold_get_response",
     "PostV1DeclarationsEuDistanceSalesThresholdGetResponseCurrentYear": ".post_v1declarations_eu_distance_sales_threshold_get_response_current_year",
     "PostV1DeclarationsEuDistanceSalesThresholdGetResponsePrecedingYear": ".post_v1declarations_eu_distance_sales_threshold_get_response_preceding_year",
@@ -282,11 +936,44 @@ _dynamic_imports: typing.Dict[str, str] = {
     "PostV1DeclarationsEuVatReturnPacksListResponse": ".post_v1declarations_eu_vat_return_packs_list_response",
     "PostV1DeclarationsEuVatReturnPacksListResponsePacksItem": ".post_v1declarations_eu_vat_return_packs_list_response_packs_item",
     "PostV1DeclarationsEuVatReturnPacksListResponsePacksItemFrequency": ".post_v1declarations_eu_vat_return_packs_list_response_packs_item_frequency",
+    "PostV1DeclarationsIeB1GenerateResponse": ".post_v1declarations_ie_b1generate_response",
+    "PostV1DeclarationsIeB1GenerateResponseDirectorsItem": ".post_v1declarations_ie_b1generate_response_directors_item",
+    "PostV1DeclarationsIeB1GenerateResponseFieldsItem": ".post_v1declarations_ie_b1generate_response_fields_item",
+    "PostV1DeclarationsIeB1GenerateResponseMembersItem": ".post_v1declarations_ie_b1generate_response_members_item",
+    "PostV1DeclarationsIeB1GenerateResponseSecretary": ".post_v1declarations_ie_b1generate_response_secretary",
+    "PostV1DeclarationsIeCt1GenerateResponse": ".post_v1declarations_ie_ct1generate_response",
+    "PostV1DeclarationsIeCt1GenerateResponseAccounts": ".post_v1declarations_ie_ct1generate_response_accounts",
+    "PostV1DeclarationsIeCt1GenerateResponseCriteria": ".post_v1declarations_ie_ct1generate_response_criteria",
+    "PostV1DeclarationsIeCt1GenerateResponseCt1": ".post_v1declarations_ie_ct1generate_response_ct1",
+    "PostV1DeclarationsIeCt1GenerateResponseFieldsItem": ".post_v1declarations_ie_ct1generate_response_fields_item",
+    "PostV1DeclarationsItSdiPurchasePreviewRequestTipoDocumento": ".post_v1declarations_it_sdi_purchase_preview_request_tipo_documento",
+    "PostV1DeclarationsItSdiPurchasePreviewResponse": ".post_v1declarations_it_sdi_purchase_preview_response",
+    "PostV1DeclarationsItSdiPurchasePreviewResponseTipoDocumento": ".post_v1declarations_it_sdi_purchase_preview_response_tipo_documento",
+    "PostV1DeclarationsItSdiPurchaseSendRequestTipoDocumento": ".post_v1declarations_it_sdi_purchase_send_request_tipo_documento",
+    "PostV1DeclarationsItSdiPurchaseSendResponse": ".post_v1declarations_it_sdi_purchase_send_response",
+    "PostV1DeclarationsItSdiPurchaseSendResponseStatus": ".post_v1declarations_it_sdi_purchase_send_response_status",
+    "PostV1DeclarationsItSdiPurchaseSendResponseTipoDocumento": ".post_v1declarations_it_sdi_purchase_send_response_tipo_documento",
+    "PostV1DeclarationsItSdiPurchaseSendResponseTransport": ".post_v1declarations_it_sdi_purchase_send_response_transport",
+    "PostV1DeclarationsLiLohndeklarationGenerateResponse": ".post_v1declarations_li_lohndeklaration_generate_response",
+    "PostV1DeclarationsLiLohndeklarationGenerateResponseRowsItem": ".post_v1declarations_li_lohndeklaration_generate_response_rows_item",
+    "PostV1DeclarationsLiLohnlistenGenerateResponse": ".post_v1declarations_li_lohnlisten_generate_response",
+    "PostV1DeclarationsLiLohnlistenGenerateResponseRowsItem": ".post_v1declarations_li_lohnlisten_generate_response_rows_item",
+    "PostV1DeclarationsLtFr0564ComputeResponse": ".post_v1declarations_lt_fr0564compute_response",
+    "PostV1DeclarationsLtFr0564ComputeResponseCounts": ".post_v1declarations_lt_fr0564compute_response_counts",
+    "PostV1DeclarationsLtFr0564ComputeResponseRowsItem": ".post_v1declarations_lt_fr0564compute_response_rows_item",
+    "PostV1DeclarationsLtFr0564ComputeResponseTotals": ".post_v1declarations_lt_fr0564compute_response_totals",
     "PostV1DeclarationsLtFr0600ComputeResponse": ".post_v1declarations_lt_fr0600compute_response",
     "PostV1DeclarationsLtFr0600ComputeResponseBreakdownItem": ".post_v1declarations_lt_fr0600compute_response_breakdown_item",
     "PostV1DeclarationsLtFr0600ComputeResponseBreakdownItemDirection": ".post_v1declarations_lt_fr0600compute_response_breakdown_item_direction",
     "PostV1DeclarationsLtFr0600ComputeResponseCounts": ".post_v1declarations_lt_fr0600compute_response_counts",
     "PostV1DeclarationsLtFr0600ComputeResponseFieldsItem": ".post_v1declarations_lt_fr0600compute_response_fields_item",
+    "PostV1DeclarationsLtGpm312ComputeRequestPayoutTiming": ".post_v1declarations_lt_gpm312compute_request_payout_timing",
+    "PostV1DeclarationsLtGpm312ComputeResponse": ".post_v1declarations_lt_gpm312compute_response",
+    "PostV1DeclarationsLtGpm312ComputeResponsePayoutFrom": ".post_v1declarations_lt_gpm312compute_response_payout_from",
+    "PostV1DeclarationsLtGpm312ComputeResponsePayoutTiming": ".post_v1declarations_lt_gpm312compute_response_payout_timing",
+    "PostV1DeclarationsLtGpm312ComputeResponsePayoutTo": ".post_v1declarations_lt_gpm312compute_response_payout_to",
+    "PostV1DeclarationsLtGpm312ComputeResponseRowsItem": ".post_v1declarations_lt_gpm312compute_response_rows_item",
+    "PostV1DeclarationsLtGpm312ComputeResponseTotals": ".post_v1declarations_lt_gpm312compute_response_totals",
     "PostV1DeclarationsLtGpm313ComputeRequestPayoutTiming": ".post_v1declarations_lt_gpm313compute_request_payout_timing",
     "PostV1DeclarationsLtGpm313ComputeResponse": ".post_v1declarations_lt_gpm313compute_response",
     "PostV1DeclarationsLtGpm313ComputeResponseFieldsItem": ".post_v1declarations_lt_gpm313compute_response_fields_item",
@@ -307,20 +994,85 @@ _dynamic_imports: typing.Dict[str, str] = {
     "PostV1DeclarationsLtIsafGenerateRequestDataType": ".post_v1declarations_lt_isaf_generate_request_data_type",
     "PostV1DeclarationsLtIsafGenerateResponse": ".post_v1declarations_lt_isaf_generate_response",
     "PostV1DeclarationsLtIsafGenerateResponseCounts": ".post_v1declarations_lt_isaf_generate_response_counts",
+    "PostV1DeclarationsLtIvazAmendResponse": ".post_v1declarations_lt_ivaz_amend_response",
+    "PostV1DeclarationsLtIvazAmendResponseCounts": ".post_v1declarations_lt_ivaz_amend_response_counts",
+    "PostV1DeclarationsLtIvazCancelRequestEntriesItem": ".post_v1declarations_lt_ivaz_cancel_request_entries_item",
+    "PostV1DeclarationsLtIvazCancelRequestEntriesItemReason": ".post_v1declarations_lt_ivaz_cancel_request_entries_item_reason",
+    "PostV1DeclarationsLtIvazCancelResponse": ".post_v1declarations_lt_ivaz_cancel_response",
+    "PostV1DeclarationsLtIvazCancelResponseCounts": ".post_v1declarations_lt_ivaz_cancel_response_counts",
     "PostV1DeclarationsLtIvazGenerateResponse": ".post_v1declarations_lt_ivaz_generate_response",
     "PostV1DeclarationsLtIvazGenerateResponseCounts": ".post_v1declarations_lt_ivaz_generate_response_counts",
+    "PostV1DeclarationsLtPln204ComputeResponse": ".post_v1declarations_lt_pln204compute_response",
+    "PostV1DeclarationsLtPln204ComputeResponseAnnexSItem": ".post_v1declarations_lt_pln204compute_response_annex_s_item",
+    "PostV1DeclarationsLtPln204ComputeResponseAnnexZItem": ".post_v1declarations_lt_pln204compute_response_annex_z_item",
+    "PostV1DeclarationsLtPln204ComputeResponseCriteria": ".post_v1declarations_lt_pln204compute_response_criteria",
+    "PostV1DeclarationsLtPln204ComputeResponseLinesItem": ".post_v1declarations_lt_pln204compute_response_lines_item",
+    "PostV1DeclarationsLtPln204ComputeResponseVariant": ".post_v1declarations_lt_pln204compute_response_variant",
+    "PostV1DeclarationsLtPln204FfdataResponse": ".post_v1declarations_lt_pln204ffdata_response",
     "PostV1DeclarationsLtSaftGenerateRequestDataType": ".post_v1declarations_lt_saft_generate_request_data_type",
     "PostV1DeclarationsLtSaftGenerateResponse": ".post_v1declarations_lt_saft_generate_response",
     "PostV1DeclarationsLtSaftGenerateResponseCounts": ".post_v1declarations_lt_saft_generate_response_counts",
+    "PostV1DeclarationsLtSaftSendRequestDataType": ".post_v1declarations_lt_saft_send_request_data_type",
+    "PostV1DeclarationsLtSaftSendResponse": ".post_v1declarations_lt_saft_send_response",
+    "PostV1DeclarationsLtSaftSendResponseState": ".post_v1declarations_lt_saft_send_response_state",
     "PostV1DeclarationsLtSamComputeResponse": ".post_v1declarations_lt_sam_compute_response",
     "PostV1DeclarationsLtSamComputeResponsePersonsItem": ".post_v1declarations_lt_sam_compute_response_persons_item",
+    "PostV1DeclarationsLtSdFfdataRequestType": ".post_v1declarations_lt_sd_ffdata_request_type",
+    "PostV1DeclarationsLtSdFfdataResponse": ".post_v1declarations_lt_sd_ffdata_response",
+    "PostV1DeclarationsLtSdFfdataResponseType": ".post_v1declarations_lt_sd_ffdata_response_type",
     "PostV1DeclarationsLtSdGenerateRequestType": ".post_v1declarations_lt_sd_generate_request_type",
     "PostV1DeclarationsLtSdGenerateResponse": ".post_v1declarations_lt_sd_generate_response",
     "PostV1DeclarationsLtSdGenerateResponseRowsItem": ".post_v1declarations_lt_sd_generate_response_rows_item",
     "PostV1DeclarationsLtSdGenerateResponseType": ".post_v1declarations_lt_sd_generate_response_type",
+    "PostV1DeclarationsMtAnnualReturnGenerateResponse": ".post_v1declarations_mt_annual_return_generate_response",
+    "PostV1DeclarationsMtAnnualReturnGenerateResponseFieldsItem": ".post_v1declarations_mt_annual_return_generate_response_fields_item",
+    "PostV1DeclarationsMtAnnualReturnGenerateResponseMembersItem": ".post_v1declarations_mt_annual_return_generate_response_members_item",
+    "PostV1DeclarationsMtAnnualReturnGenerateResponseOfficersItem": ".post_v1declarations_mt_annual_return_generate_response_officers_item",
+    "PostV1DeclarationsMtCompanyTaxGenerateResponse": ".post_v1declarations_mt_company_tax_generate_response",
+    "PostV1DeclarationsMtCompanyTaxGenerateResponseFieldsItem": ".post_v1declarations_mt_company_tax_generate_response_fields_item",
+    "PostV1DeclarationsMtCompanyTaxGenerateResponseTaxAccountsItem": ".post_v1declarations_mt_company_tax_generate_response_tax_accounts_item",
+    "PostV1DeclarationsPlCit8GenerateResponse": ".post_v1declarations_pl_cit8generate_response",
+    "PostV1DeclarationsPlCit8GenerateResponsePositionsItem": ".post_v1declarations_pl_cit8generate_response_positions_item",
+    "PostV1DeclarationsPlIntrastatGenerateRequestFlow": ".post_v1declarations_pl_intrastat_generate_request_flow",
+    "PostV1DeclarationsPlIntrastatGenerateResponse": ".post_v1declarations_pl_intrastat_generate_response",
+    "PostV1DeclarationsPlIntrastatGenerateResponseCounts": ".post_v1declarations_pl_intrastat_generate_response_counts",
+    "PostV1DeclarationsPlIntrastatGenerateResponseFlow": ".post_v1declarations_pl_intrastat_generate_response_flow",
+    "PostV1DeclarationsPlIntrastatGenerateResponseRowsItem": ".post_v1declarations_pl_intrastat_generate_response_rows_item",
+    "PostV1DeclarationsPlIntrastatGenerateResponseTotals": ".post_v1declarations_pl_intrastat_generate_response_totals",
+    "PostV1DeclarationsPlJpkFaGenerateResponse": ".post_v1declarations_pl_jpk_fa_generate_response",
+    "PostV1DeclarationsPlJpkFaGenerateResponseCounts": ".post_v1declarations_pl_jpk_fa_generate_response_counts",
+    "PostV1DeclarationsPlJpkFaGenerateResponseTotals": ".post_v1declarations_pl_jpk_fa_generate_response_totals",
+    "PostV1DeclarationsPlJpkKrGenerateResponse": ".post_v1declarations_pl_jpk_kr_generate_response",
+    "PostV1DeclarationsPlJpkKrGenerateResponseCounts": ".post_v1declarations_pl_jpk_kr_generate_response_counts",
+    "PostV1DeclarationsPlJpkKrGenerateResponseTotals": ".post_v1declarations_pl_jpk_kr_generate_response_totals",
+    "PostV1DeclarationsPlJpkMagGenerateResponse": ".post_v1declarations_pl_jpk_mag_generate_response",
+    "PostV1DeclarationsPlJpkMagGenerateResponseCounts": ".post_v1declarations_pl_jpk_mag_generate_response_counts",
     "PostV1DeclarationsPlJpkV7MGenerateResponse": ".post_v1declarations_pl_jpk_v7m_generate_response",
     "PostV1DeclarationsPlJpkV7MGenerateResponseCounts": ".post_v1declarations_pl_jpk_v7m_generate_response_counts",
     "PostV1DeclarationsPlJpkV7MGenerateResponseDeclarationItem": ".post_v1declarations_pl_jpk_v7m_generate_response_declaration_item",
+    "PostV1DeclarationsPlKsefReceiptResponse": ".post_v1declarations_pl_ksef_receipt_response",
+    "PostV1DeclarationsPlKsefReceiptResponseState": ".post_v1declarations_pl_ksef_receipt_response_state",
+    "PostV1DeclarationsPlKsefReceivedFetchResponse": ".post_v1declarations_pl_ksef_received_fetch_response",
+    "PostV1DeclarationsPlKsefReceivedListResponse": ".post_v1declarations_pl_ksef_received_list_response",
+    "PostV1DeclarationsPlKsefReceivedListResponseRowsItem": ".post_v1declarations_pl_ksef_received_list_response_rows_item",
+    "PostV1DeclarationsPlPit11GenerateResponse": ".post_v1declarations_pl_pit11generate_response",
+    "PostV1DeclarationsPlPit11GenerateResponsePersonsItem": ".post_v1declarations_pl_pit11generate_response_persons_item",
+    "PostV1DeclarationsPlVatUeGenerateResponse": ".post_v1declarations_pl_vat_ue_generate_response",
+    "PostV1DeclarationsPlVatUeGenerateResponseRowsItem": ".post_v1declarations_pl_vat_ue_generate_response_rows_item",
+    "PostV1DeclarationsPlVatUeGenerateResponseRowsItemSection": ".post_v1declarations_pl_vat_ue_generate_response_rows_item_section",
+    "PostV1DeclarationsPlVatUeGenerateResponseTotalsItem": ".post_v1declarations_pl_vat_ue_generate_response_totals_item",
+    "PostV1DeclarationsPlVatUeGenerateResponseTotalsItemSection": ".post_v1declarations_pl_vat_ue_generate_response_totals_item_section",
+    "PostV1DeclarationsPlZusDraComputeResponse": ".post_v1declarations_pl_zus_dra_compute_response",
+    "PostV1DeclarationsPlZusDraComputeResponseRowsItem": ".post_v1declarations_pl_zus_dra_compute_response_rows_item",
+    "PostV1DeclarationsPlZusDraKeduResponse": ".post_v1declarations_pl_zus_dra_kedu_response",
+    "PostV1DeclarationsPlZusDraKeduResponseInsuredItem": ".post_v1declarations_pl_zus_dra_kedu_response_insured_item",
+    "PostV1DeclarationsPlZusDraKeduResponseInsuredItemKodTytulu": ".post_v1declarations_pl_zus_dra_kedu_response_insured_item_kod_tytulu",
+    "PostV1DeclarationsPlZusDraPdfResponse": ".post_v1declarations_pl_zus_dra_pdf_response",
+    "PostV1DeclarationsRoEtransportBuildResponse": ".post_v1declarations_ro_etransport_build_response",
+    "PostV1DeclarationsRoEtransportStatusResponse": ".post_v1declarations_ro_etransport_status_response",
+    "PostV1DeclarationsRoEtransportStatusResponseState": ".post_v1declarations_ro_etransport_status_response_state",
+    "PostV1DeclarationsRoEtransportSubmitResponse": ".post_v1declarations_ro_etransport_submit_response",
+    "PostV1DeclarationsRoEtransportSubmitResponseState": ".post_v1declarations_ro_etransport_submit_response_state",
     "PostV1DeclarationsSubmissionsCreateRequestDataType": ".post_v1declarations_submissions_create_request_data_type",
     "PostV1DeclarationsSubmissionsCreateRequestObligation": ".post_v1declarations_submissions_create_request_obligation",
     "PostV1DeclarationsSubmissionsCreateResponse": ".post_v1declarations_submissions_create_response",
@@ -337,6 +1089,30 @@ _dynamic_imports: typing.Dict[str, str] = {
     "PostV1DeclarationsSubmissionsMarkRequestStatus": ".post_v1declarations_submissions_mark_request_status",
     "PostV1DeclarationsSubmissionsMarkResponse": ".post_v1declarations_submissions_mark_response",
     "PostV1DeclarationsSubmissionsMarkResponseStatus": ".post_v1declarations_submissions_mark_response_status",
+    "PostV1DeclarationsSubmissionsRetryResponse": ".post_v1declarations_submissions_retry_response",
+    "PostV1DeclarationsSubmissionsRetryResponseStatus": ".post_v1declarations_submissions_retry_response_status",
+    "PostV1DeclarationsTaxAdjustmentsCreateRequestKind": ".post_v1declarations_tax_adjustments_create_request_kind",
+    "PostV1DeclarationsTaxAdjustmentsCreateResponse": ".post_v1declarations_tax_adjustments_create_response",
+    "PostV1DeclarationsTaxAdjustmentsCreateResponseKind": ".post_v1declarations_tax_adjustments_create_response_kind",
+    "PostV1DeclarationsTaxAdjustmentsDeleteResponse": ".post_v1declarations_tax_adjustments_delete_response",
+    "PostV1DeclarationsTaxAdjustmentsListResponse": ".post_v1declarations_tax_adjustments_list_response",
+    "PostV1DeclarationsTaxAdjustmentsListResponseRowsItem": ".post_v1declarations_tax_adjustments_list_response_rows_item",
+    "PostV1DeclarationsTaxAdjustmentsListResponseRowsItemKind": ".post_v1declarations_tax_adjustments_list_response_rows_item_kind",
+    "PostV1DeclarationsTaxAdjustmentsUpdateRequestKind": ".post_v1declarations_tax_adjustments_update_request_kind",
+    "PostV1DeclarationsTaxAdjustmentsUpdateResponse": ".post_v1declarations_tax_adjustments_update_response",
+    "PostV1DeclarationsTaxAdjustmentsUpdateResponseKind": ".post_v1declarations_tax_adjustments_update_response_kind",
+    "PostV1DeclarationsTaxPaymentsCreateRequestKind": ".post_v1declarations_tax_payments_create_request_kind",
+    "PostV1DeclarationsTaxPaymentsCreateRequestTax": ".post_v1declarations_tax_payments_create_request_tax",
+    "PostV1DeclarationsTaxPaymentsCreateResponse": ".post_v1declarations_tax_payments_create_response",
+    "PostV1DeclarationsTaxPaymentsCreateResponseKind": ".post_v1declarations_tax_payments_create_response_kind",
+    "PostV1DeclarationsTaxPaymentsDeleteResponse": ".post_v1declarations_tax_payments_delete_response",
+    "PostV1DeclarationsTaxPaymentsListRequestTax": ".post_v1declarations_tax_payments_list_request_tax",
+    "PostV1DeclarationsTaxPaymentsListResponse": ".post_v1declarations_tax_payments_list_response",
+    "PostV1DeclarationsTaxPaymentsListResponseRowsItem": ".post_v1declarations_tax_payments_list_response_rows_item",
+    "PostV1DeclarationsTaxPaymentsListResponseRowsItemKind": ".post_v1declarations_tax_payments_list_response_rows_item_kind",
+    "PostV1DeclarationsTaxPaymentsUpdateRequestKind": ".post_v1declarations_tax_payments_update_request_kind",
+    "PostV1DeclarationsTaxPaymentsUpdateResponse": ".post_v1declarations_tax_payments_update_response",
+    "PostV1DeclarationsTaxPaymentsUpdateResponseKind": ".post_v1declarations_tax_payments_update_response_kind",
 }
 
 
@@ -362,6 +1138,58 @@ def __dir__():
 
 
 __all__ = [
+    "PostV1DeclarationsAnnualAccountsAttachmentsAddRequestKind",
+    "PostV1DeclarationsAnnualAccountsAttachmentsAddResponse",
+    "PostV1DeclarationsAnnualAccountsAttachmentsAddResponseKind",
+    "PostV1DeclarationsAnnualAccountsAttachmentsDeleteResponse",
+    "PostV1DeclarationsAnnualAccountsDistributionsCreateRequestKind",
+    "PostV1DeclarationsAnnualAccountsDistributionsCreateResponse",
+    "PostV1DeclarationsAnnualAccountsDistributionsCreateResponseKind",
+    "PostV1DeclarationsAnnualAccountsDistributionsDeleteResponse",
+    "PostV1DeclarationsAnnualAccountsDistributionsUpdateRequestKind",
+    "PostV1DeclarationsAnnualAccountsDistributionsUpdateResponse",
+    "PostV1DeclarationsAnnualAccountsDistributionsUpdateResponseKind",
+    "PostV1DeclarationsAnnualAccountsGetResponse",
+    "PostV1DeclarationsAnnualAccountsGetResponseApproval",
+    "PostV1DeclarationsAnnualAccountsGetResponseApprovalAttachmentsItem",
+    "PostV1DeclarationsAnnualAccountsGetResponseApprovalAttachmentsItemKind",
+    "PostV1DeclarationsAnnualAccountsGetResponseApprovalDistributionsItem",
+    "PostV1DeclarationsAnnualAccountsGetResponseApprovalDistributionsItemKind",
+    "PostV1DeclarationsAnnualAccountsGetResponseApprovalSignaturesItem",
+    "PostV1DeclarationsAnnualAccountsGetResponseApprovalSignaturesItemDirectorType",
+    "PostV1DeclarationsAnnualAccountsSetResponse",
+    "PostV1DeclarationsAnnualAccountsSetResponseAttachmentsItem",
+    "PostV1DeclarationsAnnualAccountsSetResponseAttachmentsItemKind",
+    "PostV1DeclarationsAnnualAccountsSetResponseDistributionsItem",
+    "PostV1DeclarationsAnnualAccountsSetResponseDistributionsItemKind",
+    "PostV1DeclarationsAnnualAccountsSetResponseSignaturesItem",
+    "PostV1DeclarationsAnnualAccountsSetResponseSignaturesItemDirectorType",
+    "PostV1DeclarationsAnnualAccountsSignaturesCreateRequestDirectorType",
+    "PostV1DeclarationsAnnualAccountsSignaturesCreateResponse",
+    "PostV1DeclarationsAnnualAccountsSignaturesCreateResponseDirectorType",
+    "PostV1DeclarationsAnnualAccountsSignaturesDeleteResponse",
+    "PostV1DeclarationsAnnualAccountsSignaturesUpdateRequestDirectorType",
+    "PostV1DeclarationsAnnualAccountsSignaturesUpdateResponse",
+    "PostV1DeclarationsAnnualAccountsSignaturesUpdateResponseDirectorType",
+    "PostV1DeclarationsAutomationListResponse",
+    "PostV1DeclarationsAutomationListResponseRowsItem",
+    "PostV1DeclarationsAutomationListResponseRowsItemCertificate",
+    "PostV1DeclarationsAutomationUpdateResponse",
+    "PostV1DeclarationsAutomationUpdateResponseRowsItem",
+    "PostV1DeclarationsAutomationUpdateResponseRowsItemCertificate",
+    "PostV1DeclarationsCertificatesDeleteRequestFieldKey",
+    "PostV1DeclarationsCertificatesDeleteResponse",
+    "PostV1DeclarationsCertificatesDeleteResponseRowsItem",
+    "PostV1DeclarationsCertificatesDeleteResponseRowsItemFormat",
+    "PostV1DeclarationsCertificatesDeleteResponseRowsItemHealth",
+    "PostV1DeclarationsCertificatesListResponse",
+    "PostV1DeclarationsCertificatesListResponseRowsItem",
+    "PostV1DeclarationsCertificatesListResponseRowsItemFormat",
+    "PostV1DeclarationsCertificatesListResponseRowsItemHealth",
+    "PostV1DeclarationsCertificatesUploadResponse",
+    "PostV1DeclarationsCertificatesUploadResponseRowsItem",
+    "PostV1DeclarationsCertificatesUploadResponseRowsItemFormat",
+    "PostV1DeclarationsCertificatesUploadResponseRowsItemHealth",
     "PostV1DeclarationsConfigsListResponse",
     "PostV1DeclarationsConfigsListResponseRowsItem",
     "PostV1DeclarationsConfigsListResponseRowsItemEndpointsItem",
@@ -371,6 +1199,69 @@ __all__ = [
     "PostV1DeclarationsConfigsUpdateResponseEndpointsItem",
     "PostV1DeclarationsConfigsUpdateResponseFieldsItem",
     "PostV1DeclarationsConfigsUpdateResponseFieldsItemKind",
+    "PostV1DeclarationsCyHe32GenerateResponse",
+    "PostV1DeclarationsCyHe32GenerateResponseFieldsItem",
+    "PostV1DeclarationsCyHe32GenerateResponseMembersItem",
+    "PostV1DeclarationsCyHe32GenerateResponseOfficersItem",
+    "PostV1DeclarationsCyTd4GenerateResponse",
+    "PostV1DeclarationsCyTd4GenerateResponseFieldsItem",
+    "PostV1DeclarationsDeBeitragsnachweisGenerateResponse",
+    "PostV1DeclarationsDeBeitragsnachweisGenerateResponseRecordsItem",
+    "PostV1DeclarationsDeBeitragsnachweisGenerateResponseRecordsItemPositionenItem",
+    "PostV1DeclarationsDeDeuevGenerateResponse",
+    "PostV1DeclarationsDeDeuevGenerateResponseRecordsItem",
+    "PostV1DeclarationsDeReturnFactsGetResponse",
+    "PostV1DeclarationsDeReturnFactsGetResponseFacts",
+    "PostV1DeclarationsDeReturnFactsGetResponseFactsContractsItem",
+    "PostV1DeclarationsDeReturnFactsGetResponseFactsContributionsItem",
+    "PostV1DeclarationsDeReturnFactsGetResponseFactsContributionsItemKind",
+    "PostV1DeclarationsDeReturnFactsGetResponseFactsDistributionsItem",
+    "PostV1DeclarationsDeReturnFactsGetResponseFactsForeignIncomeItem",
+    "PostV1DeclarationsDeReturnFactsGetResponseFactsForeignIncomeItemKind",
+    "PostV1DeclarationsDeReturnFactsGetResponseFactsLandHoldingsItem",
+    "PostV1DeclarationsDeReturnFactsGetResponseFactsLandHoldingsItemCategory",
+    "PostV1DeclarationsDeReturnFactsGetResponseFactsMunicipalitiesItem",
+    "PostV1DeclarationsDeReturnFactsGetResponseFactsParticipationsItem",
+    "PostV1DeclarationsDeReturnFactsGetResponseFactsRelocation",
+    "PostV1DeclarationsDeReturnFactsGetResponseFactsRepresentative",
+    "PostV1DeclarationsDeReturnFactsGetResponseFactsRepresentativeRole",
+    "PostV1DeclarationsDeReturnFactsSetRequestFacts",
+    "PostV1DeclarationsDeReturnFactsSetRequestFactsContractsItem",
+    "PostV1DeclarationsDeReturnFactsSetRequestFactsContributionsItem",
+    "PostV1DeclarationsDeReturnFactsSetRequestFactsContributionsItemKind",
+    "PostV1DeclarationsDeReturnFactsSetRequestFactsDistributionsItem",
+    "PostV1DeclarationsDeReturnFactsSetRequestFactsForeignIncomeItem",
+    "PostV1DeclarationsDeReturnFactsSetRequestFactsForeignIncomeItemKind",
+    "PostV1DeclarationsDeReturnFactsSetRequestFactsLandHoldingsItem",
+    "PostV1DeclarationsDeReturnFactsSetRequestFactsLandHoldingsItemCategory",
+    "PostV1DeclarationsDeReturnFactsSetRequestFactsMunicipalitiesItem",
+    "PostV1DeclarationsDeReturnFactsSetRequestFactsParticipationsItem",
+    "PostV1DeclarationsDeReturnFactsSetRequestFactsRelocation",
+    "PostV1DeclarationsDeReturnFactsSetRequestFactsRepresentative",
+    "PostV1DeclarationsDeReturnFactsSetRequestFactsRepresentativeRole",
+    "PostV1DeclarationsDeReturnFactsSetResponse",
+    "PostV1DeclarationsDeReturnFactsSetResponseFacts",
+    "PostV1DeclarationsDeReturnFactsSetResponseFactsContractsItem",
+    "PostV1DeclarationsDeReturnFactsSetResponseFactsContributionsItem",
+    "PostV1DeclarationsDeReturnFactsSetResponseFactsContributionsItemKind",
+    "PostV1DeclarationsDeReturnFactsSetResponseFactsDistributionsItem",
+    "PostV1DeclarationsDeReturnFactsSetResponseFactsForeignIncomeItem",
+    "PostV1DeclarationsDeReturnFactsSetResponseFactsForeignIncomeItemKind",
+    "PostV1DeclarationsDeReturnFactsSetResponseFactsLandHoldingsItem",
+    "PostV1DeclarationsDeReturnFactsSetResponseFactsLandHoldingsItemCategory",
+    "PostV1DeclarationsDeReturnFactsSetResponseFactsMunicipalitiesItem",
+    "PostV1DeclarationsDeReturnFactsSetResponseFactsParticipationsItem",
+    "PostV1DeclarationsDeReturnFactsSetResponseFactsRelocation",
+    "PostV1DeclarationsDeReturnFactsSetResponseFactsRepresentative",
+    "PostV1DeclarationsDeReturnFactsSetResponseFactsRepresentativeRole",
+    "PostV1DeclarationsDeReturnsGenerateRequestRuleKey",
+    "PostV1DeclarationsDeReturnsGenerateResponse",
+    "PostV1DeclarationsDkSelskabsskatGenerateResponse",
+    "PostV1DeclarationsDkSelskabsskatGenerateResponseFieldsItem",
+    "PostV1DeclarationsEeEmploymentRegisterSendRequestEvent",
+    "PostV1DeclarationsEeEmploymentRegisterSendResponse",
+    "PostV1DeclarationsEeEmploymentRegisterSendResponseState",
+    "PostV1DeclarationsEsVerifactuDeclaracionResponsableResponse",
     "PostV1DeclarationsEuDistanceSalesThresholdGetResponse",
     "PostV1DeclarationsEuDistanceSalesThresholdGetResponseCurrentYear",
     "PostV1DeclarationsEuDistanceSalesThresholdGetResponsePrecedingYear",
@@ -410,11 +1301,44 @@ __all__ = [
     "PostV1DeclarationsEuVatReturnPacksListResponse",
     "PostV1DeclarationsEuVatReturnPacksListResponsePacksItem",
     "PostV1DeclarationsEuVatReturnPacksListResponsePacksItemFrequency",
+    "PostV1DeclarationsIeB1GenerateResponse",
+    "PostV1DeclarationsIeB1GenerateResponseDirectorsItem",
+    "PostV1DeclarationsIeB1GenerateResponseFieldsItem",
+    "PostV1DeclarationsIeB1GenerateResponseMembersItem",
+    "PostV1DeclarationsIeB1GenerateResponseSecretary",
+    "PostV1DeclarationsIeCt1GenerateResponse",
+    "PostV1DeclarationsIeCt1GenerateResponseAccounts",
+    "PostV1DeclarationsIeCt1GenerateResponseCriteria",
+    "PostV1DeclarationsIeCt1GenerateResponseCt1",
+    "PostV1DeclarationsIeCt1GenerateResponseFieldsItem",
+    "PostV1DeclarationsItSdiPurchasePreviewRequestTipoDocumento",
+    "PostV1DeclarationsItSdiPurchasePreviewResponse",
+    "PostV1DeclarationsItSdiPurchasePreviewResponseTipoDocumento",
+    "PostV1DeclarationsItSdiPurchaseSendRequestTipoDocumento",
+    "PostV1DeclarationsItSdiPurchaseSendResponse",
+    "PostV1DeclarationsItSdiPurchaseSendResponseStatus",
+    "PostV1DeclarationsItSdiPurchaseSendResponseTipoDocumento",
+    "PostV1DeclarationsItSdiPurchaseSendResponseTransport",
+    "PostV1DeclarationsLiLohndeklarationGenerateResponse",
+    "PostV1DeclarationsLiLohndeklarationGenerateResponseRowsItem",
+    "PostV1DeclarationsLiLohnlistenGenerateResponse",
+    "PostV1DeclarationsLiLohnlistenGenerateResponseRowsItem",
+    "PostV1DeclarationsLtFr0564ComputeResponse",
+    "PostV1DeclarationsLtFr0564ComputeResponseCounts",
+    "PostV1DeclarationsLtFr0564ComputeResponseRowsItem",
+    "PostV1DeclarationsLtFr0564ComputeResponseTotals",
     "PostV1DeclarationsLtFr0600ComputeResponse",
     "PostV1DeclarationsLtFr0600ComputeResponseBreakdownItem",
     "PostV1DeclarationsLtFr0600ComputeResponseBreakdownItemDirection",
     "PostV1DeclarationsLtFr0600ComputeResponseCounts",
     "PostV1DeclarationsLtFr0600ComputeResponseFieldsItem",
+    "PostV1DeclarationsLtGpm312ComputeRequestPayoutTiming",
+    "PostV1DeclarationsLtGpm312ComputeResponse",
+    "PostV1DeclarationsLtGpm312ComputeResponsePayoutFrom",
+    "PostV1DeclarationsLtGpm312ComputeResponsePayoutTiming",
+    "PostV1DeclarationsLtGpm312ComputeResponsePayoutTo",
+    "PostV1DeclarationsLtGpm312ComputeResponseRowsItem",
+    "PostV1DeclarationsLtGpm312ComputeResponseTotals",
     "PostV1DeclarationsLtGpm313ComputeRequestPayoutTiming",
     "PostV1DeclarationsLtGpm313ComputeResponse",
     "PostV1DeclarationsLtGpm313ComputeResponseFieldsItem",
@@ -435,20 +1359,85 @@ __all__ = [
     "PostV1DeclarationsLtIsafGenerateRequestDataType",
     "PostV1DeclarationsLtIsafGenerateResponse",
     "PostV1DeclarationsLtIsafGenerateResponseCounts",
+    "PostV1DeclarationsLtIvazAmendResponse",
+    "PostV1DeclarationsLtIvazAmendResponseCounts",
+    "PostV1DeclarationsLtIvazCancelRequestEntriesItem",
+    "PostV1DeclarationsLtIvazCancelRequestEntriesItemReason",
+    "PostV1DeclarationsLtIvazCancelResponse",
+    "PostV1DeclarationsLtIvazCancelResponseCounts",
     "PostV1DeclarationsLtIvazGenerateResponse",
     "PostV1DeclarationsLtIvazGenerateResponseCounts",
+    "PostV1DeclarationsLtPln204ComputeResponse",
+    "PostV1DeclarationsLtPln204ComputeResponseAnnexSItem",
+    "PostV1DeclarationsLtPln204ComputeResponseAnnexZItem",
+    "PostV1DeclarationsLtPln204ComputeResponseCriteria",
+    "PostV1DeclarationsLtPln204ComputeResponseLinesItem",
+    "PostV1DeclarationsLtPln204ComputeResponseVariant",
+    "PostV1DeclarationsLtPln204FfdataResponse",
     "PostV1DeclarationsLtSaftGenerateRequestDataType",
     "PostV1DeclarationsLtSaftGenerateResponse",
     "PostV1DeclarationsLtSaftGenerateResponseCounts",
+    "PostV1DeclarationsLtSaftSendRequestDataType",
+    "PostV1DeclarationsLtSaftSendResponse",
+    "PostV1DeclarationsLtSaftSendResponseState",
     "PostV1DeclarationsLtSamComputeResponse",
     "PostV1DeclarationsLtSamComputeResponsePersonsItem",
+    "PostV1DeclarationsLtSdFfdataRequestType",
+    "PostV1DeclarationsLtSdFfdataResponse",
+    "PostV1DeclarationsLtSdFfdataResponseType",
     "PostV1DeclarationsLtSdGenerateRequestType",
     "PostV1DeclarationsLtSdGenerateResponse",
     "PostV1DeclarationsLtSdGenerateResponseRowsItem",
     "PostV1DeclarationsLtSdGenerateResponseType",
+    "PostV1DeclarationsMtAnnualReturnGenerateResponse",
+    "PostV1DeclarationsMtAnnualReturnGenerateResponseFieldsItem",
+    "PostV1DeclarationsMtAnnualReturnGenerateResponseMembersItem",
+    "PostV1DeclarationsMtAnnualReturnGenerateResponseOfficersItem",
+    "PostV1DeclarationsMtCompanyTaxGenerateResponse",
+    "PostV1DeclarationsMtCompanyTaxGenerateResponseFieldsItem",
+    "PostV1DeclarationsMtCompanyTaxGenerateResponseTaxAccountsItem",
+    "PostV1DeclarationsPlCit8GenerateResponse",
+    "PostV1DeclarationsPlCit8GenerateResponsePositionsItem",
+    "PostV1DeclarationsPlIntrastatGenerateRequestFlow",
+    "PostV1DeclarationsPlIntrastatGenerateResponse",
+    "PostV1DeclarationsPlIntrastatGenerateResponseCounts",
+    "PostV1DeclarationsPlIntrastatGenerateResponseFlow",
+    "PostV1DeclarationsPlIntrastatGenerateResponseRowsItem",
+    "PostV1DeclarationsPlIntrastatGenerateResponseTotals",
+    "PostV1DeclarationsPlJpkFaGenerateResponse",
+    "PostV1DeclarationsPlJpkFaGenerateResponseCounts",
+    "PostV1DeclarationsPlJpkFaGenerateResponseTotals",
+    "PostV1DeclarationsPlJpkKrGenerateResponse",
+    "PostV1DeclarationsPlJpkKrGenerateResponseCounts",
+    "PostV1DeclarationsPlJpkKrGenerateResponseTotals",
+    "PostV1DeclarationsPlJpkMagGenerateResponse",
+    "PostV1DeclarationsPlJpkMagGenerateResponseCounts",
     "PostV1DeclarationsPlJpkV7MGenerateResponse",
     "PostV1DeclarationsPlJpkV7MGenerateResponseCounts",
     "PostV1DeclarationsPlJpkV7MGenerateResponseDeclarationItem",
+    "PostV1DeclarationsPlKsefReceiptResponse",
+    "PostV1DeclarationsPlKsefReceiptResponseState",
+    "PostV1DeclarationsPlKsefReceivedFetchResponse",
+    "PostV1DeclarationsPlKsefReceivedListResponse",
+    "PostV1DeclarationsPlKsefReceivedListResponseRowsItem",
+    "PostV1DeclarationsPlPit11GenerateResponse",
+    "PostV1DeclarationsPlPit11GenerateResponsePersonsItem",
+    "PostV1DeclarationsPlVatUeGenerateResponse",
+    "PostV1DeclarationsPlVatUeGenerateResponseRowsItem",
+    "PostV1DeclarationsPlVatUeGenerateResponseRowsItemSection",
+    "PostV1DeclarationsPlVatUeGenerateResponseTotalsItem",
+    "PostV1DeclarationsPlVatUeGenerateResponseTotalsItemSection",
+    "PostV1DeclarationsPlZusDraComputeResponse",
+    "PostV1DeclarationsPlZusDraComputeResponseRowsItem",
+    "PostV1DeclarationsPlZusDraKeduResponse",
+    "PostV1DeclarationsPlZusDraKeduResponseInsuredItem",
+    "PostV1DeclarationsPlZusDraKeduResponseInsuredItemKodTytulu",
+    "PostV1DeclarationsPlZusDraPdfResponse",
+    "PostV1DeclarationsRoEtransportBuildResponse",
+    "PostV1DeclarationsRoEtransportStatusResponse",
+    "PostV1DeclarationsRoEtransportStatusResponseState",
+    "PostV1DeclarationsRoEtransportSubmitResponse",
+    "PostV1DeclarationsRoEtransportSubmitResponseState",
     "PostV1DeclarationsSubmissionsCreateRequestDataType",
     "PostV1DeclarationsSubmissionsCreateRequestObligation",
     "PostV1DeclarationsSubmissionsCreateResponse",
@@ -465,4 +1454,28 @@ __all__ = [
     "PostV1DeclarationsSubmissionsMarkRequestStatus",
     "PostV1DeclarationsSubmissionsMarkResponse",
     "PostV1DeclarationsSubmissionsMarkResponseStatus",
+    "PostV1DeclarationsSubmissionsRetryResponse",
+    "PostV1DeclarationsSubmissionsRetryResponseStatus",
+    "PostV1DeclarationsTaxAdjustmentsCreateRequestKind",
+    "PostV1DeclarationsTaxAdjustmentsCreateResponse",
+    "PostV1DeclarationsTaxAdjustmentsCreateResponseKind",
+    "PostV1DeclarationsTaxAdjustmentsDeleteResponse",
+    "PostV1DeclarationsTaxAdjustmentsListResponse",
+    "PostV1DeclarationsTaxAdjustmentsListResponseRowsItem",
+    "PostV1DeclarationsTaxAdjustmentsListResponseRowsItemKind",
+    "PostV1DeclarationsTaxAdjustmentsUpdateRequestKind",
+    "PostV1DeclarationsTaxAdjustmentsUpdateResponse",
+    "PostV1DeclarationsTaxAdjustmentsUpdateResponseKind",
+    "PostV1DeclarationsTaxPaymentsCreateRequestKind",
+    "PostV1DeclarationsTaxPaymentsCreateRequestTax",
+    "PostV1DeclarationsTaxPaymentsCreateResponse",
+    "PostV1DeclarationsTaxPaymentsCreateResponseKind",
+    "PostV1DeclarationsTaxPaymentsDeleteResponse",
+    "PostV1DeclarationsTaxPaymentsListRequestTax",
+    "PostV1DeclarationsTaxPaymentsListResponse",
+    "PostV1DeclarationsTaxPaymentsListResponseRowsItem",
+    "PostV1DeclarationsTaxPaymentsListResponseRowsItemKind",
+    "PostV1DeclarationsTaxPaymentsUpdateRequestKind",
+    "PostV1DeclarationsTaxPaymentsUpdateResponse",
+    "PostV1DeclarationsTaxPaymentsUpdateResponseKind",
 ]

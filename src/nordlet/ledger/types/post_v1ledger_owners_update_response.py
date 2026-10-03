@@ -7,6 +7,7 @@ import typing_extensions
 from ...core.pydantic_utilities import IS_PYDANTIC_V2, UniversalBaseModel
 from ...core.serialization import FieldMetadata
 from .post_v1ledger_owners_update_response_address import PostV1LedgerOwnersUpdateResponseAddress
+from .post_v1ledger_owners_update_response_partner_liability import PostV1LedgerOwnersUpdateResponsePartnerLiability
 
 
 class PostV1LedgerOwnersUpdateResponse(UniversalBaseModel):
@@ -29,6 +30,26 @@ class PostV1LedgerOwnersUpdateResponse(UniversalBaseModel):
         typing.Optional[str],
         FieldMetadata(alias="sharesAcquisitionDate"),
         pydantic.Field(alias="sharesAcquisitionDate"),
+    ] = None
+    withholding_tax_percent: typing_extensions.Annotated[
+        typing.Optional[str],
+        FieldMetadata(alias="withholdingTaxPercent"),
+        pydantic.Field(alias="withholdingTaxPercent"),
+    ] = None
+    partner_liability: typing_extensions.Annotated[
+        typing.Optional[PostV1LedgerOwnersUpdateResponsePartnerLiability],
+        FieldMetadata(alias="partnerLiability"),
+        pydantic.Field(alias="partnerLiability"),
+    ] = None
+    special_balance_required: typing_extensions.Annotated[
+        typing.Optional[bool],
+        FieldMetadata(alias="specialBalanceRequired"),
+        pydantic.Field(alias="specialBalanceRequired"),
+    ] = None
+    supplementary_balance_required: typing_extensions.Annotated[
+        typing.Optional[bool],
+        FieldMetadata(alias="supplementaryBalanceRequired"),
+        pydantic.Field(alias="supplementaryBalanceRequired"),
     ] = None
     address: typing.Optional[PostV1LedgerOwnersUpdateResponseAddress] = None
     created_at: typing_extensions.Annotated[str, FieldMetadata(alias="createdAt"), pydantic.Field(alias="createdAt")]

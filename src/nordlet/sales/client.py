@@ -44,6 +44,7 @@ from .types.post_v1sales_invoices_create_request_vat_scheme import PostV1SalesIn
 from .types.post_v1sales_invoices_create_response import PostV1SalesInvoicesCreateResponse
 from .types.post_v1sales_invoices_delete_response import PostV1SalesInvoicesDeleteResponse
 from .types.post_v1sales_invoices_einvoice_send_response import PostV1SalesInvoicesEinvoiceSendResponse
+from .types.post_v1sales_invoices_einvoice_status_response import PostV1SalesInvoicesEinvoiceStatusResponse
 from .types.post_v1sales_invoices_einvoice_xml_response import PostV1SalesInvoicesEinvoiceXmlResponse
 from .types.post_v1sales_invoices_get_response import PostV1SalesInvoicesGetResponse
 from .types.post_v1sales_invoices_issue_response import PostV1SalesInvoicesIssueResponse
@@ -123,7 +124,12 @@ class SalesClient:
         issue_date: typing.Optional[str] = OMIT,
         due_date: typing.Optional[str] = OMIT,
         credited_invoice_id: typing.Optional[str] = OMIT,
+        agreement_id: typing.Optional[str] = OMIT,
         vat_scheme: typing.Optional[PostV1SalesInvoicesCreateRequestVatScheme] = OMIT,
+        intrastat_transport_mode: typing.Optional[str] = OMIT,
+        intrastat_delivery_terms: typing.Optional[str] = OMIT,
+        intrastat_region: typing.Optional[str] = OMIT,
+        intrastat_nature_of_transaction: typing.Optional[str] = OMIT,
         vat_country_code: typing.Optional[str] = OMIT,
         deemed_supplier: typing.Optional[bool] = OMIT,
         notes: typing.Optional[str] = OMIT,
@@ -156,7 +162,17 @@ class SalesClient:
 
         credited_invoice_id : typing.Optional[str]
 
+        agreement_id : typing.Optional[str]
+
         vat_scheme : typing.Optional[PostV1SalesInvoicesCreateRequestVatScheme]
+
+        intrastat_transport_mode : typing.Optional[str]
+
+        intrastat_delivery_terms : typing.Optional[str]
+
+        intrastat_region : typing.Optional[str]
+
+        intrastat_nature_of_transaction : typing.Optional[str]
 
         vat_country_code : typing.Optional[str]
 
@@ -213,7 +229,12 @@ class SalesClient:
             issue_date=issue_date,
             due_date=due_date,
             credited_invoice_id=credited_invoice_id,
+            agreement_id=agreement_id,
             vat_scheme=vat_scheme,
+            intrastat_transport_mode=intrastat_transport_mode,
+            intrastat_delivery_terms=intrastat_delivery_terms,
+            intrastat_region=intrastat_region,
+            intrastat_nature_of_transaction=intrastat_nature_of_transaction,
             vat_country_code=vat_country_code,
             deemed_supplier=deemed_supplier,
             notes=notes,
@@ -434,7 +455,7 @@ class SalesClient:
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> PostV1SalesInvoicesEinvoiceSendResponse:
         """
-        Build the national e-invoicing payload and deliver it to the bridge endpoint configured for the country gateway in compliance settings. The bridge (an accredited intermediary or connector) handles the certified national channel - SdI accreditation, KSeF sessions or ANAF SPV OAuth.
+        Build the national e-invoicing payload and deliver it over the transport configured for the country gateway in compliance settings. With transport=direct the request talks to the tax authority itself - SdICoop over 2-way TLS for Italy, a KSeF session for Poland, ANAF SPV OAuth for Romania - and returns the national number as soon as the channel assigns one. With transport=bridge the payload goes to the configured bridge endpoint (an accredited intermediary or connector) instead.
 
         Parameters
         ----------
@@ -462,15 +483,52 @@ class SalesClient:
         _response = self._raw_client.post_v1sales_invoices_einvoice_send(id=id, request_options=request_options)
         return _response.data
 
+    def post_v1sales_invoices_einvoice_status(
+        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1SalesInvoicesEinvoiceStatusResponse:
+        """
+        Ask the national e-invoicing channel what happened to an invoice that was already sent, and store the answer. Italy, Poland and Romania return the outcome only on request - none of them calls back - so this is the way the national number and any rejection reason reach the invoice.
+
+        Parameters
+        ----------
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1SalesInvoicesEinvoiceStatusResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.sales.post_v1sales_invoices_einvoice_status(
+            id="id",
+        )
+        """
+        _response = self._raw_client.post_v1sales_invoices_einvoice_status(id=id, request_options=request_options)
+        return _response.data
+
     def post_v1sales_invoices_update(
         self,
         *,
         id: str,
         partner_id: typing.Optional[str] = OMIT,
+        agreement_id: typing.Optional[str] = OMIT,
         currency: typing.Optional[str] = OMIT,
         issue_date: typing.Optional[str] = OMIT,
         due_date: typing.Optional[str] = OMIT,
         vat_scheme: typing.Optional[PostV1SalesInvoicesUpdateRequestVatScheme] = OMIT,
+        intrastat_transport_mode: typing.Optional[str] = OMIT,
+        intrastat_delivery_terms: typing.Optional[str] = OMIT,
+        intrastat_region: typing.Optional[str] = OMIT,
+        intrastat_nature_of_transaction: typing.Optional[str] = OMIT,
         vat_country_code: typing.Optional[str] = OMIT,
         deemed_supplier: typing.Optional[bool] = OMIT,
         notes: typing.Optional[str] = OMIT,
@@ -493,6 +551,8 @@ class SalesClient:
 
         partner_id : typing.Optional[str]
 
+        agreement_id : typing.Optional[str]
+
         currency : typing.Optional[str]
 
         issue_date : typing.Optional[str]
@@ -500,6 +560,14 @@ class SalesClient:
         due_date : typing.Optional[str]
 
         vat_scheme : typing.Optional[PostV1SalesInvoicesUpdateRequestVatScheme]
+
+        intrastat_transport_mode : typing.Optional[str]
+
+        intrastat_delivery_terms : typing.Optional[str]
+
+        intrastat_region : typing.Optional[str]
+
+        intrastat_nature_of_transaction : typing.Optional[str]
 
         vat_country_code : typing.Optional[str]
 
@@ -549,10 +617,15 @@ class SalesClient:
         _response = self._raw_client.post_v1sales_invoices_update(
             id=id,
             partner_id=partner_id,
+            agreement_id=agreement_id,
             currency=currency,
             issue_date=issue_date,
             due_date=due_date,
             vat_scheme=vat_scheme,
+            intrastat_transport_mode=intrastat_transport_mode,
+            intrastat_delivery_terms=intrastat_delivery_terms,
+            intrastat_region=intrastat_region,
+            intrastat_nature_of_transaction=intrastat_nature_of_transaction,
             vat_country_code=vat_country_code,
             deemed_supplier=deemed_supplier,
             notes=notes,
@@ -1640,6 +1713,8 @@ class SalesClient:
         operation_type_id: typing.Optional[str] = OMIT,
         number_length: typing.Optional[int] = OMIT,
         next_number: typing.Optional[int] = OMIT,
+        allocated_from: typing.Optional[int] = OMIT,
+        allocated_to: typing.Optional[int] = OMIT,
         warehouse_id: typing.Optional[str] = OMIT,
         print_series: typing.Optional[bool] = OMIT,
         is_default: typing.Optional[bool] = OMIT,
@@ -1662,6 +1737,10 @@ class SalesClient:
         number_length : typing.Optional[int]
 
         next_number : typing.Optional[int]
+
+        allocated_from : typing.Optional[int]
+
+        allocated_to : typing.Optional[int]
 
         warehouse_id : typing.Optional[str]
 
@@ -1698,6 +1777,8 @@ class SalesClient:
             operation_type_id=operation_type_id,
             number_length=number_length,
             next_number=next_number,
+            allocated_from=allocated_from,
+            allocated_to=allocated_to,
             warehouse_id=warehouse_id,
             print_series=print_series,
             is_default=is_default,
@@ -1717,6 +1798,8 @@ class SalesClient:
         operation_type_id: typing.Optional[str] = OMIT,
         number_length: typing.Optional[int] = OMIT,
         next_number: typing.Optional[int] = OMIT,
+        allocated_from: typing.Optional[int] = OMIT,
+        allocated_to: typing.Optional[int] = OMIT,
         warehouse_id: typing.Optional[str] = OMIT,
         print_series: typing.Optional[bool] = OMIT,
         is_default: typing.Optional[bool] = OMIT,
@@ -1741,6 +1824,10 @@ class SalesClient:
         number_length : typing.Optional[int]
 
         next_number : typing.Optional[int]
+
+        allocated_from : typing.Optional[int]
+
+        allocated_to : typing.Optional[int]
 
         warehouse_id : typing.Optional[str]
 
@@ -1778,6 +1865,8 @@ class SalesClient:
             operation_type_id=operation_type_id,
             number_length=number_length,
             next_number=next_number,
+            allocated_from=allocated_from,
+            allocated_to=allocated_to,
             warehouse_id=warehouse_id,
             print_series=print_series,
             is_default=is_default,
@@ -2251,7 +2340,12 @@ class AsyncSalesClient:
         issue_date: typing.Optional[str] = OMIT,
         due_date: typing.Optional[str] = OMIT,
         credited_invoice_id: typing.Optional[str] = OMIT,
+        agreement_id: typing.Optional[str] = OMIT,
         vat_scheme: typing.Optional[PostV1SalesInvoicesCreateRequestVatScheme] = OMIT,
+        intrastat_transport_mode: typing.Optional[str] = OMIT,
+        intrastat_delivery_terms: typing.Optional[str] = OMIT,
+        intrastat_region: typing.Optional[str] = OMIT,
+        intrastat_nature_of_transaction: typing.Optional[str] = OMIT,
         vat_country_code: typing.Optional[str] = OMIT,
         deemed_supplier: typing.Optional[bool] = OMIT,
         notes: typing.Optional[str] = OMIT,
@@ -2284,7 +2378,17 @@ class AsyncSalesClient:
 
         credited_invoice_id : typing.Optional[str]
 
+        agreement_id : typing.Optional[str]
+
         vat_scheme : typing.Optional[PostV1SalesInvoicesCreateRequestVatScheme]
+
+        intrastat_transport_mode : typing.Optional[str]
+
+        intrastat_delivery_terms : typing.Optional[str]
+
+        intrastat_region : typing.Optional[str]
+
+        intrastat_nature_of_transaction : typing.Optional[str]
 
         vat_country_code : typing.Optional[str]
 
@@ -2349,7 +2453,12 @@ class AsyncSalesClient:
             issue_date=issue_date,
             due_date=due_date,
             credited_invoice_id=credited_invoice_id,
+            agreement_id=agreement_id,
             vat_scheme=vat_scheme,
+            intrastat_transport_mode=intrastat_transport_mode,
+            intrastat_delivery_terms=intrastat_delivery_terms,
+            intrastat_region=intrastat_region,
+            intrastat_nature_of_transaction=intrastat_nature_of_transaction,
             vat_country_code=vat_country_code,
             deemed_supplier=deemed_supplier,
             notes=notes,
@@ -2620,7 +2729,7 @@ class AsyncSalesClient:
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> PostV1SalesInvoicesEinvoiceSendResponse:
         """
-        Build the national e-invoicing payload and deliver it to the bridge endpoint configured for the country gateway in compliance settings. The bridge (an accredited intermediary or connector) handles the certified national channel - SdI accreditation, KSeF sessions or ANAF SPV OAuth.
+        Build the national e-invoicing payload and deliver it over the transport configured for the country gateway in compliance settings. With transport=direct the request talks to the tax authority itself - SdICoop over 2-way TLS for Italy, a KSeF session for Poland, ANAF SPV OAuth for Romania - and returns the national number as soon as the channel assigns one. With transport=bridge the payload goes to the configured bridge endpoint (an accredited intermediary or connector) instead.
 
         Parameters
         ----------
@@ -2656,15 +2765,60 @@ class AsyncSalesClient:
         _response = await self._raw_client.post_v1sales_invoices_einvoice_send(id=id, request_options=request_options)
         return _response.data
 
+    async def post_v1sales_invoices_einvoice_status(
+        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostV1SalesInvoicesEinvoiceStatusResponse:
+        """
+        Ask the national e-invoicing channel what happened to an invoice that was already sent, and store the answer. Italy, Poland and Romania return the outcome only on request - none of them calls back - so this is the way the national number and any rejection reason reach the invoice.
+
+        Parameters
+        ----------
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostV1SalesInvoicesEinvoiceStatusResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.sales.post_v1sales_invoices_einvoice_status(
+                id="id",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.post_v1sales_invoices_einvoice_status(id=id, request_options=request_options)
+        return _response.data
+
     async def post_v1sales_invoices_update(
         self,
         *,
         id: str,
         partner_id: typing.Optional[str] = OMIT,
+        agreement_id: typing.Optional[str] = OMIT,
         currency: typing.Optional[str] = OMIT,
         issue_date: typing.Optional[str] = OMIT,
         due_date: typing.Optional[str] = OMIT,
         vat_scheme: typing.Optional[PostV1SalesInvoicesUpdateRequestVatScheme] = OMIT,
+        intrastat_transport_mode: typing.Optional[str] = OMIT,
+        intrastat_delivery_terms: typing.Optional[str] = OMIT,
+        intrastat_region: typing.Optional[str] = OMIT,
+        intrastat_nature_of_transaction: typing.Optional[str] = OMIT,
         vat_country_code: typing.Optional[str] = OMIT,
         deemed_supplier: typing.Optional[bool] = OMIT,
         notes: typing.Optional[str] = OMIT,
@@ -2687,6 +2841,8 @@ class AsyncSalesClient:
 
         partner_id : typing.Optional[str]
 
+        agreement_id : typing.Optional[str]
+
         currency : typing.Optional[str]
 
         issue_date : typing.Optional[str]
@@ -2694,6 +2850,14 @@ class AsyncSalesClient:
         due_date : typing.Optional[str]
 
         vat_scheme : typing.Optional[PostV1SalesInvoicesUpdateRequestVatScheme]
+
+        intrastat_transport_mode : typing.Optional[str]
+
+        intrastat_delivery_terms : typing.Optional[str]
+
+        intrastat_region : typing.Optional[str]
+
+        intrastat_nature_of_transaction : typing.Optional[str]
 
         vat_country_code : typing.Optional[str]
 
@@ -2751,10 +2915,15 @@ class AsyncSalesClient:
         _response = await self._raw_client.post_v1sales_invoices_update(
             id=id,
             partner_id=partner_id,
+            agreement_id=agreement_id,
             currency=currency,
             issue_date=issue_date,
             due_date=due_date,
             vat_scheme=vat_scheme,
+            intrastat_transport_mode=intrastat_transport_mode,
+            intrastat_delivery_terms=intrastat_delivery_terms,
+            intrastat_region=intrastat_region,
+            intrastat_nature_of_transaction=intrastat_nature_of_transaction,
             vat_country_code=vat_country_code,
             deemed_supplier=deemed_supplier,
             notes=notes,
@@ -4018,6 +4187,8 @@ class AsyncSalesClient:
         operation_type_id: typing.Optional[str] = OMIT,
         number_length: typing.Optional[int] = OMIT,
         next_number: typing.Optional[int] = OMIT,
+        allocated_from: typing.Optional[int] = OMIT,
+        allocated_to: typing.Optional[int] = OMIT,
         warehouse_id: typing.Optional[str] = OMIT,
         print_series: typing.Optional[bool] = OMIT,
         is_default: typing.Optional[bool] = OMIT,
@@ -4040,6 +4211,10 @@ class AsyncSalesClient:
         number_length : typing.Optional[int]
 
         next_number : typing.Optional[int]
+
+        allocated_from : typing.Optional[int]
+
+        allocated_to : typing.Optional[int]
 
         warehouse_id : typing.Optional[str]
 
@@ -4084,6 +4259,8 @@ class AsyncSalesClient:
             operation_type_id=operation_type_id,
             number_length=number_length,
             next_number=next_number,
+            allocated_from=allocated_from,
+            allocated_to=allocated_to,
             warehouse_id=warehouse_id,
             print_series=print_series,
             is_default=is_default,
@@ -4103,6 +4280,8 @@ class AsyncSalesClient:
         operation_type_id: typing.Optional[str] = OMIT,
         number_length: typing.Optional[int] = OMIT,
         next_number: typing.Optional[int] = OMIT,
+        allocated_from: typing.Optional[int] = OMIT,
+        allocated_to: typing.Optional[int] = OMIT,
         warehouse_id: typing.Optional[str] = OMIT,
         print_series: typing.Optional[bool] = OMIT,
         is_default: typing.Optional[bool] = OMIT,
@@ -4127,6 +4306,10 @@ class AsyncSalesClient:
         number_length : typing.Optional[int]
 
         next_number : typing.Optional[int]
+
+        allocated_from : typing.Optional[int]
+
+        allocated_to : typing.Optional[int]
 
         warehouse_id : typing.Optional[str]
 
@@ -4172,6 +4355,8 @@ class AsyncSalesClient:
             operation_type_id=operation_type_id,
             number_length=number_length,
             next_number=next_number,
+            allocated_from=allocated_from,
+            allocated_to=allocated_to,
             warehouse_id=warehouse_id,
             print_series=print_series,
             is_default=is_default,

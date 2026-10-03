@@ -24,6 +24,12 @@ class PostV1BankSettlementsMatchResponse(UniversalBaseModel):
     charge_id: typing_extensions.Annotated[
         typing.Optional[str], FieldMetadata(alias="chargeId"), pydantic.Field(alias="chargeId")
     ] = None
+    commission_percent: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="commissionPercent"), pydantic.Field(alias="commissionPercent")
+    ] = None
+    commission_amount: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="commissionAmount"), pydantic.Field(alias="commissionAmount")
+    ] = None
     reference: typing.Optional[str] = None
     matched_invoice_id: typing_extensions.Annotated[
         typing.Optional[str], FieldMetadata(alias="matchedInvoiceId"), pydantic.Field(alias="matchedInvoiceId")

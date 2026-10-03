@@ -9,10 +9,37 @@ if typing.TYPE_CHECKING:
     from .post_v1assets_assets_create_request_documents_item import PostV1AssetsAssetsCreateRequestDocumentsItem
     from .post_v1assets_assets_create_response import PostV1AssetsAssetsCreateResponse
     from .post_v1assets_assets_create_response_documents_item import PostV1AssetsAssetsCreateResponseDocumentsItem
+    from .post_v1assets_assets_create_response_input_vat_use_changes_item import (
+        PostV1AssetsAssetsCreateResponseInputVatUseChangesItem,
+    )
+    from .post_v1assets_assets_create_response_input_vat_use_changes_item_reason import (
+        PostV1AssetsAssetsCreateResponseInputVatUseChangesItemReason,
+    )
     from .post_v1assets_assets_create_response_status import PostV1AssetsAssetsCreateResponseStatus
     from .post_v1assets_assets_get_response import PostV1AssetsAssetsGetResponse
     from .post_v1assets_assets_get_response_documents_item import PostV1AssetsAssetsGetResponseDocumentsItem
+    from .post_v1assets_assets_get_response_input_vat_use_changes_item import (
+        PostV1AssetsAssetsGetResponseInputVatUseChangesItem,
+    )
+    from .post_v1assets_assets_get_response_input_vat_use_changes_item_reason import (
+        PostV1AssetsAssetsGetResponseInputVatUseChangesItemReason,
+    )
     from .post_v1assets_assets_get_response_status import PostV1AssetsAssetsGetResponseStatus
+    from .post_v1assets_assets_input_vat_request_input_vat_use_changes_item import (
+        PostV1AssetsAssetsInputVatRequestInputVatUseChangesItem,
+    )
+    from .post_v1assets_assets_input_vat_request_input_vat_use_changes_item_reason import (
+        PostV1AssetsAssetsInputVatRequestInputVatUseChangesItemReason,
+    )
+    from .post_v1assets_assets_input_vat_response import PostV1AssetsAssetsInputVatResponse
+    from .post_v1assets_assets_input_vat_response_documents_item import PostV1AssetsAssetsInputVatResponseDocumentsItem
+    from .post_v1assets_assets_input_vat_response_input_vat_use_changes_item import (
+        PostV1AssetsAssetsInputVatResponseInputVatUseChangesItem,
+    )
+    from .post_v1assets_assets_input_vat_response_input_vat_use_changes_item_reason import (
+        PostV1AssetsAssetsInputVatResponseInputVatUseChangesItemReason,
+    )
+    from .post_v1assets_assets_input_vat_response_status import PostV1AssetsAssetsInputVatResponseStatus
     from .post_v1assets_assets_list_request_filter_item import PostV1AssetsAssetsListRequestFilterItem
     from .post_v1assets_assets_list_request_filter_item_op import PostV1AssetsAssetsListRequestFilterItemOp
     from .post_v1assets_assets_list_request_filter_item_value import PostV1AssetsAssetsListRequestFilterItemValue
@@ -26,10 +53,32 @@ if typing.TYPE_CHECKING:
     from .post_v1assets_assets_list_response_rows_item_documents_item import (
         PostV1AssetsAssetsListResponseRowsItemDocumentsItem,
     )
+    from .post_v1assets_assets_list_response_rows_item_input_vat_use_changes_item import (
+        PostV1AssetsAssetsListResponseRowsItemInputVatUseChangesItem,
+    )
+    from .post_v1assets_assets_list_response_rows_item_input_vat_use_changes_item_reason import (
+        PostV1AssetsAssetsListResponseRowsItemInputVatUseChangesItemReason,
+    )
     from .post_v1assets_assets_list_response_rows_item_status import PostV1AssetsAssetsListResponseRowsItemStatus
     from .post_v1assets_assets_modernize_response import PostV1AssetsAssetsModernizeResponse
     from .post_v1assets_assets_modernize_response_documents_item import PostV1AssetsAssetsModernizeResponseDocumentsItem
+    from .post_v1assets_assets_modernize_response_input_vat_use_changes_item import (
+        PostV1AssetsAssetsModernizeResponseInputVatUseChangesItem,
+    )
+    from .post_v1assets_assets_modernize_response_input_vat_use_changes_item_reason import (
+        PostV1AssetsAssetsModernizeResponseInputVatUseChangesItemReason,
+    )
     from .post_v1assets_assets_modernize_response_status import PostV1AssetsAssetsModernizeResponseStatus
+    from .post_v1assets_assets_update_request_documents_item import PostV1AssetsAssetsUpdateRequestDocumentsItem
+    from .post_v1assets_assets_update_response import PostV1AssetsAssetsUpdateResponse
+    from .post_v1assets_assets_update_response_documents_item import PostV1AssetsAssetsUpdateResponseDocumentsItem
+    from .post_v1assets_assets_update_response_input_vat_use_changes_item import (
+        PostV1AssetsAssetsUpdateResponseInputVatUseChangesItem,
+    )
+    from .post_v1assets_assets_update_response_input_vat_use_changes_item_reason import (
+        PostV1AssetsAssetsUpdateResponseInputVatUseChangesItemReason,
+    )
+    from .post_v1assets_assets_update_response_status import PostV1AssetsAssetsUpdateResponseStatus
     from .post_v1assets_depreciation_post_response import PostV1AssetsDepreciationPostResponse
     from .post_v1assets_depreciation_preview_response import PostV1AssetsDepreciationPreviewResponse
     from .post_v1assets_depreciation_preview_response_rows_item import PostV1AssetsDepreciationPreviewResponseRowsItem
@@ -48,10 +97,21 @@ _dynamic_imports: typing.Dict[str, str] = {
     "PostV1AssetsAssetsCreateRequestDocumentsItem": ".post_v1assets_assets_create_request_documents_item",
     "PostV1AssetsAssetsCreateResponse": ".post_v1assets_assets_create_response",
     "PostV1AssetsAssetsCreateResponseDocumentsItem": ".post_v1assets_assets_create_response_documents_item",
+    "PostV1AssetsAssetsCreateResponseInputVatUseChangesItem": ".post_v1assets_assets_create_response_input_vat_use_changes_item",
+    "PostV1AssetsAssetsCreateResponseInputVatUseChangesItemReason": ".post_v1assets_assets_create_response_input_vat_use_changes_item_reason",
     "PostV1AssetsAssetsCreateResponseStatus": ".post_v1assets_assets_create_response_status",
     "PostV1AssetsAssetsGetResponse": ".post_v1assets_assets_get_response",
     "PostV1AssetsAssetsGetResponseDocumentsItem": ".post_v1assets_assets_get_response_documents_item",
+    "PostV1AssetsAssetsGetResponseInputVatUseChangesItem": ".post_v1assets_assets_get_response_input_vat_use_changes_item",
+    "PostV1AssetsAssetsGetResponseInputVatUseChangesItemReason": ".post_v1assets_assets_get_response_input_vat_use_changes_item_reason",
     "PostV1AssetsAssetsGetResponseStatus": ".post_v1assets_assets_get_response_status",
+    "PostV1AssetsAssetsInputVatRequestInputVatUseChangesItem": ".post_v1assets_assets_input_vat_request_input_vat_use_changes_item",
+    "PostV1AssetsAssetsInputVatRequestInputVatUseChangesItemReason": ".post_v1assets_assets_input_vat_request_input_vat_use_changes_item_reason",
+    "PostV1AssetsAssetsInputVatResponse": ".post_v1assets_assets_input_vat_response",
+    "PostV1AssetsAssetsInputVatResponseDocumentsItem": ".post_v1assets_assets_input_vat_response_documents_item",
+    "PostV1AssetsAssetsInputVatResponseInputVatUseChangesItem": ".post_v1assets_assets_input_vat_response_input_vat_use_changes_item",
+    "PostV1AssetsAssetsInputVatResponseInputVatUseChangesItemReason": ".post_v1assets_assets_input_vat_response_input_vat_use_changes_item_reason",
+    "PostV1AssetsAssetsInputVatResponseStatus": ".post_v1assets_assets_input_vat_response_status",
     "PostV1AssetsAssetsListRequestFilterItem": ".post_v1assets_assets_list_request_filter_item",
     "PostV1AssetsAssetsListRequestFilterItemOp": ".post_v1assets_assets_list_request_filter_item_op",
     "PostV1AssetsAssetsListRequestFilterItemValue": ".post_v1assets_assets_list_request_filter_item_value",
@@ -61,10 +121,20 @@ _dynamic_imports: typing.Dict[str, str] = {
     "PostV1AssetsAssetsListResponse": ".post_v1assets_assets_list_response",
     "PostV1AssetsAssetsListResponseRowsItem": ".post_v1assets_assets_list_response_rows_item",
     "PostV1AssetsAssetsListResponseRowsItemDocumentsItem": ".post_v1assets_assets_list_response_rows_item_documents_item",
+    "PostV1AssetsAssetsListResponseRowsItemInputVatUseChangesItem": ".post_v1assets_assets_list_response_rows_item_input_vat_use_changes_item",
+    "PostV1AssetsAssetsListResponseRowsItemInputVatUseChangesItemReason": ".post_v1assets_assets_list_response_rows_item_input_vat_use_changes_item_reason",
     "PostV1AssetsAssetsListResponseRowsItemStatus": ".post_v1assets_assets_list_response_rows_item_status",
     "PostV1AssetsAssetsModernizeResponse": ".post_v1assets_assets_modernize_response",
     "PostV1AssetsAssetsModernizeResponseDocumentsItem": ".post_v1assets_assets_modernize_response_documents_item",
+    "PostV1AssetsAssetsModernizeResponseInputVatUseChangesItem": ".post_v1assets_assets_modernize_response_input_vat_use_changes_item",
+    "PostV1AssetsAssetsModernizeResponseInputVatUseChangesItemReason": ".post_v1assets_assets_modernize_response_input_vat_use_changes_item_reason",
     "PostV1AssetsAssetsModernizeResponseStatus": ".post_v1assets_assets_modernize_response_status",
+    "PostV1AssetsAssetsUpdateRequestDocumentsItem": ".post_v1assets_assets_update_request_documents_item",
+    "PostV1AssetsAssetsUpdateResponse": ".post_v1assets_assets_update_response",
+    "PostV1AssetsAssetsUpdateResponseDocumentsItem": ".post_v1assets_assets_update_response_documents_item",
+    "PostV1AssetsAssetsUpdateResponseInputVatUseChangesItem": ".post_v1assets_assets_update_response_input_vat_use_changes_item",
+    "PostV1AssetsAssetsUpdateResponseInputVatUseChangesItemReason": ".post_v1assets_assets_update_response_input_vat_use_changes_item_reason",
+    "PostV1AssetsAssetsUpdateResponseStatus": ".post_v1assets_assets_update_response_status",
     "PostV1AssetsDepreciationPostResponse": ".post_v1assets_depreciation_post_response",
     "PostV1AssetsDepreciationPreviewResponse": ".post_v1assets_depreciation_preview_response",
     "PostV1AssetsDepreciationPreviewResponseRowsItem": ".post_v1assets_depreciation_preview_response_rows_item",
@@ -105,10 +175,21 @@ __all__ = [
     "PostV1AssetsAssetsCreateRequestDocumentsItem",
     "PostV1AssetsAssetsCreateResponse",
     "PostV1AssetsAssetsCreateResponseDocumentsItem",
+    "PostV1AssetsAssetsCreateResponseInputVatUseChangesItem",
+    "PostV1AssetsAssetsCreateResponseInputVatUseChangesItemReason",
     "PostV1AssetsAssetsCreateResponseStatus",
     "PostV1AssetsAssetsGetResponse",
     "PostV1AssetsAssetsGetResponseDocumentsItem",
+    "PostV1AssetsAssetsGetResponseInputVatUseChangesItem",
+    "PostV1AssetsAssetsGetResponseInputVatUseChangesItemReason",
     "PostV1AssetsAssetsGetResponseStatus",
+    "PostV1AssetsAssetsInputVatRequestInputVatUseChangesItem",
+    "PostV1AssetsAssetsInputVatRequestInputVatUseChangesItemReason",
+    "PostV1AssetsAssetsInputVatResponse",
+    "PostV1AssetsAssetsInputVatResponseDocumentsItem",
+    "PostV1AssetsAssetsInputVatResponseInputVatUseChangesItem",
+    "PostV1AssetsAssetsInputVatResponseInputVatUseChangesItemReason",
+    "PostV1AssetsAssetsInputVatResponseStatus",
     "PostV1AssetsAssetsListRequestFilterItem",
     "PostV1AssetsAssetsListRequestFilterItemOp",
     "PostV1AssetsAssetsListRequestFilterItemValue",
@@ -118,10 +199,20 @@ __all__ = [
     "PostV1AssetsAssetsListResponse",
     "PostV1AssetsAssetsListResponseRowsItem",
     "PostV1AssetsAssetsListResponseRowsItemDocumentsItem",
+    "PostV1AssetsAssetsListResponseRowsItemInputVatUseChangesItem",
+    "PostV1AssetsAssetsListResponseRowsItemInputVatUseChangesItemReason",
     "PostV1AssetsAssetsListResponseRowsItemStatus",
     "PostV1AssetsAssetsModernizeResponse",
     "PostV1AssetsAssetsModernizeResponseDocumentsItem",
+    "PostV1AssetsAssetsModernizeResponseInputVatUseChangesItem",
+    "PostV1AssetsAssetsModernizeResponseInputVatUseChangesItemReason",
     "PostV1AssetsAssetsModernizeResponseStatus",
+    "PostV1AssetsAssetsUpdateRequestDocumentsItem",
+    "PostV1AssetsAssetsUpdateResponse",
+    "PostV1AssetsAssetsUpdateResponseDocumentsItem",
+    "PostV1AssetsAssetsUpdateResponseInputVatUseChangesItem",
+    "PostV1AssetsAssetsUpdateResponseInputVatUseChangesItemReason",
+    "PostV1AssetsAssetsUpdateResponseStatus",
     "PostV1AssetsDepreciationPostResponse",
     "PostV1AssetsDepreciationPreviewResponse",
     "PostV1AssetsDepreciationPreviewResponseRowsItem",

@@ -6,14 +6,13 @@ import pydantic
 import typing_extensions
 from ...core.pydantic_utilities import IS_PYDANTIC_V2, UniversalBaseModel
 from ...core.serialization import FieldMetadata
-from .post_v1reference_countries_list_response_rows_item_names import PostV1ReferenceCountriesListResponseRowsItemNames
 
 
 class PostV1ReferenceCountriesListResponseRowsItem(UniversalBaseModel):
     code: str
     is_eu: typing_extensions.Annotated[bool, FieldMetadata(alias="isEu"), pydantic.Field(alias="isEu")]
     is_eea: typing_extensions.Annotated[bool, FieldMetadata(alias="isEea"), pydantic.Field(alias="isEea")]
-    names: PostV1ReferenceCountriesListResponseRowsItemNames
+    names: typing.Dict[str, str]
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

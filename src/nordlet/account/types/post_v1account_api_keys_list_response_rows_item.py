@@ -15,6 +15,12 @@ class PostV1AccountApiKeysListResponseRowsItem(UniversalBaseModel):
     last_used_at: typing_extensions.Annotated[
         typing.Optional[str], FieldMetadata(alias="lastUsedAt"), pydantic.Field(alias="lastUsedAt")
     ] = None
+    expires_at: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="expiresAt"), pydantic.Field(alias="expiresAt")
+    ] = None
+    replaced_by_key_id: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="replacedByKeyId"), pydantic.Field(alias="replacedByKeyId")
+    ] = None
     revoked_at: typing_extensions.Annotated[
         typing.Optional[str], FieldMetadata(alias="revokedAt"), pydantic.Field(alias="revokedAt")
     ] = None

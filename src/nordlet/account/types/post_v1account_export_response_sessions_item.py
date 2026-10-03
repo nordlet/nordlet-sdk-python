@@ -13,6 +13,15 @@ class PostV1AccountExportResponseSessionsItem(UniversalBaseModel):
     company_id: typing_extensions.Annotated[
         typing.Optional[str], FieldMetadata(alias="companyId"), pydantic.Field(alias="companyId")
     ] = None
+    ip_address: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="ipAddress"), pydantic.Field(alias="ipAddress")
+    ] = None
+    user_agent: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="userAgent"), pydantic.Field(alias="userAgent")
+    ] = None
+    last_seen_at: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="lastSeenAt"), pydantic.Field(alias="lastSeenAt")
+    ] = None
     created_at: typing_extensions.Annotated[str, FieldMetadata(alias="createdAt"), pydantic.Field(alias="createdAt")]
     expires_at: typing_extensions.Annotated[str, FieldMetadata(alias="expiresAt"), pydantic.Field(alias="expiresAt")]
     current: bool

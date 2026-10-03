@@ -13,7 +13,6 @@ class PostV1AccountInvitesCreateResponse(UniversalBaseModel):
     email: str
     role: str
     expires_at: typing_extensions.Annotated[str, FieldMetadata(alias="expiresAt"), pydantic.Field(alias="expiresAt")]
-    invite_url: typing_extensions.Annotated[str, FieldMetadata(alias="inviteUrl"), pydantic.Field(alias="inviteUrl")]
     email_sent: typing_extensions.Annotated[bool, FieldMetadata(alias="emailSent"), pydantic.Field(alias="emailSent")]
 
     if IS_PYDANTIC_V2:

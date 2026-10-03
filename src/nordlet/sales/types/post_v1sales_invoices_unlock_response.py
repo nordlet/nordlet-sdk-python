@@ -36,6 +36,9 @@ class PostV1SalesInvoicesUnlockResponse(UniversalBaseModel):
         typing.Optional[str], FieldMetadata(alias="dueDate"), pydantic.Field(alias="dueDate")
     ] = None
     currency: str
+    fx_rate: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="fxRate"), pydantic.Field(alias="fxRate")
+    ] = None
     net_total: typing_extensions.Annotated[str, FieldMetadata(alias="netTotal"), pydantic.Field(alias="netTotal")]
     vat_total: typing_extensions.Annotated[str, FieldMetadata(alias="vatTotal"), pydantic.Field(alias="vatTotal")]
     gross_total: typing_extensions.Annotated[str, FieldMetadata(alias="grossTotal"), pydantic.Field(alias="grossTotal")]
@@ -56,6 +59,24 @@ class PostV1SalesInvoicesUnlockResponse(UniversalBaseModel):
         typing.Optional[PostV1SalesInvoicesUnlockResponseVatScheme],
         FieldMetadata(alias="vatScheme"),
         pydantic.Field(alias="vatScheme"),
+    ] = None
+    intrastat_transport_mode: typing_extensions.Annotated[
+        typing.Optional[str],
+        FieldMetadata(alias="intrastatTransportMode"),
+        pydantic.Field(alias="intrastatTransportMode"),
+    ] = None
+    intrastat_delivery_terms: typing_extensions.Annotated[
+        typing.Optional[str],
+        FieldMetadata(alias="intrastatDeliveryTerms"),
+        pydantic.Field(alias="intrastatDeliveryTerms"),
+    ] = None
+    intrastat_region: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="intrastatRegion"), pydantic.Field(alias="intrastatRegion")
+    ] = None
+    intrastat_nature_of_transaction: typing_extensions.Annotated[
+        typing.Optional[str],
+        FieldMetadata(alias="intrastatNatureOfTransaction"),
+        pydantic.Field(alias="intrastatNatureOfTransaction"),
     ] = None
     vat_country_code: typing_extensions.Annotated[
         typing.Optional[str], FieldMetadata(alias="vatCountryCode"), pydantic.Field(alias="vatCountryCode")
@@ -102,6 +123,30 @@ class PostV1SalesInvoicesUnlockResponse(UniversalBaseModel):
     ] = None
     pay_token: typing_extensions.Annotated[
         typing.Optional[str], FieldMetadata(alias="payToken"), pydantic.Field(alias="payToken")
+    ] = None
+    einvoice_system: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="einvoiceSystem"), pydantic.Field(alias="einvoiceSystem")
+    ] = None
+    einvoice_transport: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="einvoiceTransport"), pydantic.Field(alias="einvoiceTransport")
+    ] = None
+    einvoice_message_id: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="einvoiceMessageId"), pydantic.Field(alias="einvoiceMessageId")
+    ] = None
+    einvoice_number: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="einvoiceNumber"), pydantic.Field(alias="einvoiceNumber")
+    ] = None
+    einvoice_status: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="einvoiceStatus"), pydantic.Field(alias="einvoiceStatus")
+    ] = None
+    einvoice_detail: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="einvoiceDetail"), pydantic.Field(alias="einvoiceDetail")
+    ] = None
+    einvoice_sent_at: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="einvoiceSentAt"), pydantic.Field(alias="einvoiceSentAt")
+    ] = None
+    einvoice_checked_at: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="einvoiceCheckedAt"), pydantic.Field(alias="einvoiceCheckedAt")
     ] = None
     created_at: typing_extensions.Annotated[str, FieldMetadata(alias="createdAt"), pydantic.Field(alias="createdAt")]
     updated_at: typing_extensions.Annotated[str, FieldMetadata(alias="updatedAt"), pydantic.Field(alias="updatedAt")]

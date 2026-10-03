@@ -7,16 +7,14 @@ from importlib import import_module
 
 if typing.TYPE_CHECKING:
     from .post_v1ledger_accounts_apply_template_response import PostV1LedgerAccountsApplyTemplateResponse
-    from .post_v1ledger_accounts_create_request_translations import PostV1LedgerAccountsCreateRequestTranslations
-    from .post_v1ledger_accounts_create_request_translations_en import PostV1LedgerAccountsCreateRequestTranslationsEn
-    from .post_v1ledger_accounts_create_request_translations_lt import PostV1LedgerAccountsCreateRequestTranslationsLt
-    from .post_v1ledger_accounts_create_request_translations_ru import PostV1LedgerAccountsCreateRequestTranslationsRu
+    from .post_v1ledger_accounts_create_request_translations_value import (
+        PostV1LedgerAccountsCreateRequestTranslationsValue,
+    )
     from .post_v1ledger_accounts_create_request_type import PostV1LedgerAccountsCreateRequestType
     from .post_v1ledger_accounts_create_response import PostV1LedgerAccountsCreateResponse
-    from .post_v1ledger_accounts_create_response_translations import PostV1LedgerAccountsCreateResponseTranslations
-    from .post_v1ledger_accounts_create_response_translations_en import PostV1LedgerAccountsCreateResponseTranslationsEn
-    from .post_v1ledger_accounts_create_response_translations_lt import PostV1LedgerAccountsCreateResponseTranslationsLt
-    from .post_v1ledger_accounts_create_response_translations_ru import PostV1LedgerAccountsCreateResponseTranslationsRu
+    from .post_v1ledger_accounts_create_response_translations_value import (
+        PostV1LedgerAccountsCreateResponseTranslationsValue,
+    )
     from .post_v1ledger_accounts_create_response_type import PostV1LedgerAccountsCreateResponseType
     from .post_v1ledger_accounts_list_request_filter_item import PostV1LedgerAccountsListRequestFilterItem
     from .post_v1ledger_accounts_list_request_filter_item_op import PostV1LedgerAccountsListRequestFilterItemOp
@@ -28,28 +26,18 @@ if typing.TYPE_CHECKING:
     from .post_v1ledger_accounts_list_request_sort_item_dir import PostV1LedgerAccountsListRequestSortItemDir
     from .post_v1ledger_accounts_list_response import PostV1LedgerAccountsListResponse
     from .post_v1ledger_accounts_list_response_rows_item import PostV1LedgerAccountsListResponseRowsItem
-    from .post_v1ledger_accounts_list_response_rows_item_translations import (
-        PostV1LedgerAccountsListResponseRowsItemTranslations,
-    )
-    from .post_v1ledger_accounts_list_response_rows_item_translations_en import (
-        PostV1LedgerAccountsListResponseRowsItemTranslationsEn,
-    )
-    from .post_v1ledger_accounts_list_response_rows_item_translations_lt import (
-        PostV1LedgerAccountsListResponseRowsItemTranslationsLt,
-    )
-    from .post_v1ledger_accounts_list_response_rows_item_translations_ru import (
-        PostV1LedgerAccountsListResponseRowsItemTranslationsRu,
+    from .post_v1ledger_accounts_list_response_rows_item_translations_value import (
+        PostV1LedgerAccountsListResponseRowsItemTranslationsValue,
     )
     from .post_v1ledger_accounts_list_response_rows_item_type import PostV1LedgerAccountsListResponseRowsItemType
-    from .post_v1ledger_accounts_update_request_translations import PostV1LedgerAccountsUpdateRequestTranslations
-    from .post_v1ledger_accounts_update_request_translations_en import PostV1LedgerAccountsUpdateRequestTranslationsEn
-    from .post_v1ledger_accounts_update_request_translations_lt import PostV1LedgerAccountsUpdateRequestTranslationsLt
-    from .post_v1ledger_accounts_update_request_translations_ru import PostV1LedgerAccountsUpdateRequestTranslationsRu
+    from .post_v1ledger_accounts_switch_chart_response import PostV1LedgerAccountsSwitchChartResponse
+    from .post_v1ledger_accounts_update_request_translations_value import (
+        PostV1LedgerAccountsUpdateRequestTranslationsValue,
+    )
     from .post_v1ledger_accounts_update_response import PostV1LedgerAccountsUpdateResponse
-    from .post_v1ledger_accounts_update_response_translations import PostV1LedgerAccountsUpdateResponseTranslations
-    from .post_v1ledger_accounts_update_response_translations_en import PostV1LedgerAccountsUpdateResponseTranslationsEn
-    from .post_v1ledger_accounts_update_response_translations_lt import PostV1LedgerAccountsUpdateResponseTranslationsLt
-    from .post_v1ledger_accounts_update_response_translations_ru import PostV1LedgerAccountsUpdateResponseTranslationsRu
+    from .post_v1ledger_accounts_update_response_translations_value import (
+        PostV1LedgerAccountsUpdateResponseTranslationsValue,
+    )
     from .post_v1ledger_accounts_update_response_type import PostV1LedgerAccountsUpdateResponseType
     from .post_v1ledger_cost_center_groups_create_response import PostV1LedgerCostCenterGroupsCreateResponse
     from .post_v1ledger_cost_center_groups_delete_response import PostV1LedgerCostCenterGroupsDeleteResponse
@@ -126,9 +114,11 @@ if typing.TYPE_CHECKING:
         PostV1LedgerJournalTransactionsListResponseRowsItemStatus,
     )
     from .post_v1ledger_owners_create_request_address import PostV1LedgerOwnersCreateRequestAddress
+    from .post_v1ledger_owners_create_request_partner_liability import PostV1LedgerOwnersCreateRequestPartnerLiability
     from .post_v1ledger_owners_create_request_shares_type import PostV1LedgerOwnersCreateRequestSharesType
     from .post_v1ledger_owners_create_response import PostV1LedgerOwnersCreateResponse
     from .post_v1ledger_owners_create_response_address import PostV1LedgerOwnersCreateResponseAddress
+    from .post_v1ledger_owners_create_response_partner_liability import PostV1LedgerOwnersCreateResponsePartnerLiability
     from .post_v1ledger_owners_delete_response import PostV1LedgerOwnersDeleteResponse
     from .post_v1ledger_owners_list_request_filter_item import PostV1LedgerOwnersListRequestFilterItem
     from .post_v1ledger_owners_list_request_filter_item_op import PostV1LedgerOwnersListRequestFilterItemOp
@@ -141,10 +131,15 @@ if typing.TYPE_CHECKING:
     from .post_v1ledger_owners_list_response import PostV1LedgerOwnersListResponse
     from .post_v1ledger_owners_list_response_rows_item import PostV1LedgerOwnersListResponseRowsItem
     from .post_v1ledger_owners_list_response_rows_item_address import PostV1LedgerOwnersListResponseRowsItemAddress
+    from .post_v1ledger_owners_list_response_rows_item_partner_liability import (
+        PostV1LedgerOwnersListResponseRowsItemPartnerLiability,
+    )
     from .post_v1ledger_owners_update_request_address import PostV1LedgerOwnersUpdateRequestAddress
+    from .post_v1ledger_owners_update_request_partner_liability import PostV1LedgerOwnersUpdateRequestPartnerLiability
     from .post_v1ledger_owners_update_request_shares_type import PostV1LedgerOwnersUpdateRequestSharesType
     from .post_v1ledger_owners_update_response import PostV1LedgerOwnersUpdateResponse
     from .post_v1ledger_owners_update_response_address import PostV1LedgerOwnersUpdateResponseAddress
+    from .post_v1ledger_owners_update_response_partner_liability import PostV1LedgerOwnersUpdateResponsePartnerLiability
     from .post_v1ledger_periods_list_request_filter_item import PostV1LedgerPeriodsListRequestFilterItem
     from .post_v1ledger_periods_list_request_filter_item_op import PostV1LedgerPeriodsListRequestFilterItemOp
     from .post_v1ledger_periods_list_request_filter_item_value import PostV1LedgerPeriodsListRequestFilterItemValue
@@ -168,18 +163,51 @@ if typing.TYPE_CHECKING:
     )
     from .post_v1ledger_posting_rules_update_response import PostV1LedgerPostingRulesUpdateResponse
     from .post_v1ledger_posting_rules_update_response_rows_item import PostV1LedgerPostingRulesUpdateResponseRowsItem
+    from .post_v1ledger_statement_rows_list_response import PostV1LedgerStatementRowsListResponse
+    from .post_v1ledger_statement_rows_list_response_accounts_item import (
+        PostV1LedgerStatementRowsListResponseAccountsItem,
+    )
+    from .post_v1ledger_statement_rows_list_response_accounts_item_source import (
+        PostV1LedgerStatementRowsListResponseAccountsItemSource,
+    )
+    from .post_v1ledger_statement_rows_list_response_rows_item import PostV1LedgerStatementRowsListResponseRowsItem
+    from .post_v1ledger_statement_rows_list_response_rows_item_statement import (
+        PostV1LedgerStatementRowsListResponseRowsItemStatement,
+    )
+    from .post_v1ledger_statement_rows_list_response_scheme import PostV1LedgerStatementRowsListResponseScheme
+    from .post_v1ledger_statement_rows_list_response_scheme_rows_item import (
+        PostV1LedgerStatementRowsListResponseSchemeRowsItem,
+    )
+    from .post_v1ledger_statement_rows_list_response_scheme_rows_item_statement import (
+        PostV1LedgerStatementRowsListResponseSchemeRowsItemStatement,
+    )
+    from .post_v1ledger_statement_rows_schemes_response import PostV1LedgerStatementRowsSchemesResponse
+    from .post_v1ledger_statement_rows_schemes_response_rows_item import (
+        PostV1LedgerStatementRowsSchemesResponseRowsItem,
+    )
+    from .post_v1ledger_statement_rows_schemes_response_rows_item_rows_item import (
+        PostV1LedgerStatementRowsSchemesResponseRowsItemRowsItem,
+    )
+    from .post_v1ledger_statement_rows_schemes_response_rows_item_rows_item_statement import (
+        PostV1LedgerStatementRowsSchemesResponseRowsItemRowsItemStatement,
+    )
+    from .post_v1ledger_statement_rows_set_response import PostV1LedgerStatementRowsSetResponse
+    from .post_v1officers_create_request_role import PostV1OfficersCreateRequestRole
+    from .post_v1officers_create_response import PostV1OfficersCreateResponse
+    from .post_v1officers_create_response_role import PostV1OfficersCreateResponseRole
+    from .post_v1officers_delete_response import PostV1OfficersDeleteResponse
+    from .post_v1officers_list_response import PostV1OfficersListResponse
+    from .post_v1officers_list_response_rows_item import PostV1OfficersListResponseRowsItem
+    from .post_v1officers_list_response_rows_item_role import PostV1OfficersListResponseRowsItemRole
+    from .post_v1officers_update_request_role import PostV1OfficersUpdateRequestRole
+    from .post_v1officers_update_response import PostV1OfficersUpdateResponse
+    from .post_v1officers_update_response_role import PostV1OfficersUpdateResponseRole
 _dynamic_imports: typing.Dict[str, str] = {
     "PostV1LedgerAccountsApplyTemplateResponse": ".post_v1ledger_accounts_apply_template_response",
-    "PostV1LedgerAccountsCreateRequestTranslations": ".post_v1ledger_accounts_create_request_translations",
-    "PostV1LedgerAccountsCreateRequestTranslationsEn": ".post_v1ledger_accounts_create_request_translations_en",
-    "PostV1LedgerAccountsCreateRequestTranslationsLt": ".post_v1ledger_accounts_create_request_translations_lt",
-    "PostV1LedgerAccountsCreateRequestTranslationsRu": ".post_v1ledger_accounts_create_request_translations_ru",
+    "PostV1LedgerAccountsCreateRequestTranslationsValue": ".post_v1ledger_accounts_create_request_translations_value",
     "PostV1LedgerAccountsCreateRequestType": ".post_v1ledger_accounts_create_request_type",
     "PostV1LedgerAccountsCreateResponse": ".post_v1ledger_accounts_create_response",
-    "PostV1LedgerAccountsCreateResponseTranslations": ".post_v1ledger_accounts_create_response_translations",
-    "PostV1LedgerAccountsCreateResponseTranslationsEn": ".post_v1ledger_accounts_create_response_translations_en",
-    "PostV1LedgerAccountsCreateResponseTranslationsLt": ".post_v1ledger_accounts_create_response_translations_lt",
-    "PostV1LedgerAccountsCreateResponseTranslationsRu": ".post_v1ledger_accounts_create_response_translations_ru",
+    "PostV1LedgerAccountsCreateResponseTranslationsValue": ".post_v1ledger_accounts_create_response_translations_value",
     "PostV1LedgerAccountsCreateResponseType": ".post_v1ledger_accounts_create_response_type",
     "PostV1LedgerAccountsListRequestFilterItem": ".post_v1ledger_accounts_list_request_filter_item",
     "PostV1LedgerAccountsListRequestFilterItemOp": ".post_v1ledger_accounts_list_request_filter_item_op",
@@ -189,20 +217,12 @@ _dynamic_imports: typing.Dict[str, str] = {
     "PostV1LedgerAccountsListRequestSortItemDir": ".post_v1ledger_accounts_list_request_sort_item_dir",
     "PostV1LedgerAccountsListResponse": ".post_v1ledger_accounts_list_response",
     "PostV1LedgerAccountsListResponseRowsItem": ".post_v1ledger_accounts_list_response_rows_item",
-    "PostV1LedgerAccountsListResponseRowsItemTranslations": ".post_v1ledger_accounts_list_response_rows_item_translations",
-    "PostV1LedgerAccountsListResponseRowsItemTranslationsEn": ".post_v1ledger_accounts_list_response_rows_item_translations_en",
-    "PostV1LedgerAccountsListResponseRowsItemTranslationsLt": ".post_v1ledger_accounts_list_response_rows_item_translations_lt",
-    "PostV1LedgerAccountsListResponseRowsItemTranslationsRu": ".post_v1ledger_accounts_list_response_rows_item_translations_ru",
+    "PostV1LedgerAccountsListResponseRowsItemTranslationsValue": ".post_v1ledger_accounts_list_response_rows_item_translations_value",
     "PostV1LedgerAccountsListResponseRowsItemType": ".post_v1ledger_accounts_list_response_rows_item_type",
-    "PostV1LedgerAccountsUpdateRequestTranslations": ".post_v1ledger_accounts_update_request_translations",
-    "PostV1LedgerAccountsUpdateRequestTranslationsEn": ".post_v1ledger_accounts_update_request_translations_en",
-    "PostV1LedgerAccountsUpdateRequestTranslationsLt": ".post_v1ledger_accounts_update_request_translations_lt",
-    "PostV1LedgerAccountsUpdateRequestTranslationsRu": ".post_v1ledger_accounts_update_request_translations_ru",
+    "PostV1LedgerAccountsSwitchChartResponse": ".post_v1ledger_accounts_switch_chart_response",
+    "PostV1LedgerAccountsUpdateRequestTranslationsValue": ".post_v1ledger_accounts_update_request_translations_value",
     "PostV1LedgerAccountsUpdateResponse": ".post_v1ledger_accounts_update_response",
-    "PostV1LedgerAccountsUpdateResponseTranslations": ".post_v1ledger_accounts_update_response_translations",
-    "PostV1LedgerAccountsUpdateResponseTranslationsEn": ".post_v1ledger_accounts_update_response_translations_en",
-    "PostV1LedgerAccountsUpdateResponseTranslationsLt": ".post_v1ledger_accounts_update_response_translations_lt",
-    "PostV1LedgerAccountsUpdateResponseTranslationsRu": ".post_v1ledger_accounts_update_response_translations_ru",
+    "PostV1LedgerAccountsUpdateResponseTranslationsValue": ".post_v1ledger_accounts_update_response_translations_value",
     "PostV1LedgerAccountsUpdateResponseType": ".post_v1ledger_accounts_update_response_type",
     "PostV1LedgerCostCenterGroupsCreateResponse": ".post_v1ledger_cost_center_groups_create_response",
     "PostV1LedgerCostCenterGroupsDeleteResponse": ".post_v1ledger_cost_center_groups_delete_response",
@@ -241,9 +261,11 @@ _dynamic_imports: typing.Dict[str, str] = {
     "PostV1LedgerJournalTransactionsListResponseRowsItem": ".post_v1ledger_journal_transactions_list_response_rows_item",
     "PostV1LedgerJournalTransactionsListResponseRowsItemStatus": ".post_v1ledger_journal_transactions_list_response_rows_item_status",
     "PostV1LedgerOwnersCreateRequestAddress": ".post_v1ledger_owners_create_request_address",
+    "PostV1LedgerOwnersCreateRequestPartnerLiability": ".post_v1ledger_owners_create_request_partner_liability",
     "PostV1LedgerOwnersCreateRequestSharesType": ".post_v1ledger_owners_create_request_shares_type",
     "PostV1LedgerOwnersCreateResponse": ".post_v1ledger_owners_create_response",
     "PostV1LedgerOwnersCreateResponseAddress": ".post_v1ledger_owners_create_response_address",
+    "PostV1LedgerOwnersCreateResponsePartnerLiability": ".post_v1ledger_owners_create_response_partner_liability",
     "PostV1LedgerOwnersDeleteResponse": ".post_v1ledger_owners_delete_response",
     "PostV1LedgerOwnersListRequestFilterItem": ".post_v1ledger_owners_list_request_filter_item",
     "PostV1LedgerOwnersListRequestFilterItemOp": ".post_v1ledger_owners_list_request_filter_item_op",
@@ -254,10 +276,13 @@ _dynamic_imports: typing.Dict[str, str] = {
     "PostV1LedgerOwnersListResponse": ".post_v1ledger_owners_list_response",
     "PostV1LedgerOwnersListResponseRowsItem": ".post_v1ledger_owners_list_response_rows_item",
     "PostV1LedgerOwnersListResponseRowsItemAddress": ".post_v1ledger_owners_list_response_rows_item_address",
+    "PostV1LedgerOwnersListResponseRowsItemPartnerLiability": ".post_v1ledger_owners_list_response_rows_item_partner_liability",
     "PostV1LedgerOwnersUpdateRequestAddress": ".post_v1ledger_owners_update_request_address",
+    "PostV1LedgerOwnersUpdateRequestPartnerLiability": ".post_v1ledger_owners_update_request_partner_liability",
     "PostV1LedgerOwnersUpdateRequestSharesType": ".post_v1ledger_owners_update_request_shares_type",
     "PostV1LedgerOwnersUpdateResponse": ".post_v1ledger_owners_update_response",
     "PostV1LedgerOwnersUpdateResponseAddress": ".post_v1ledger_owners_update_response_address",
+    "PostV1LedgerOwnersUpdateResponsePartnerLiability": ".post_v1ledger_owners_update_response_partner_liability",
     "PostV1LedgerPeriodsListRequestFilterItem": ".post_v1ledger_periods_list_request_filter_item",
     "PostV1LedgerPeriodsListRequestFilterItemOp": ".post_v1ledger_periods_list_request_filter_item_op",
     "PostV1LedgerPeriodsListRequestFilterItemValue": ".post_v1ledger_periods_list_request_filter_item_value",
@@ -277,6 +302,29 @@ _dynamic_imports: typing.Dict[str, str] = {
     "PostV1LedgerPostingRulesUpdateRequestRulesItemKey": ".post_v1ledger_posting_rules_update_request_rules_item_key",
     "PostV1LedgerPostingRulesUpdateResponse": ".post_v1ledger_posting_rules_update_response",
     "PostV1LedgerPostingRulesUpdateResponseRowsItem": ".post_v1ledger_posting_rules_update_response_rows_item",
+    "PostV1LedgerStatementRowsListResponse": ".post_v1ledger_statement_rows_list_response",
+    "PostV1LedgerStatementRowsListResponseAccountsItem": ".post_v1ledger_statement_rows_list_response_accounts_item",
+    "PostV1LedgerStatementRowsListResponseAccountsItemSource": ".post_v1ledger_statement_rows_list_response_accounts_item_source",
+    "PostV1LedgerStatementRowsListResponseRowsItem": ".post_v1ledger_statement_rows_list_response_rows_item",
+    "PostV1LedgerStatementRowsListResponseRowsItemStatement": ".post_v1ledger_statement_rows_list_response_rows_item_statement",
+    "PostV1LedgerStatementRowsListResponseScheme": ".post_v1ledger_statement_rows_list_response_scheme",
+    "PostV1LedgerStatementRowsListResponseSchemeRowsItem": ".post_v1ledger_statement_rows_list_response_scheme_rows_item",
+    "PostV1LedgerStatementRowsListResponseSchemeRowsItemStatement": ".post_v1ledger_statement_rows_list_response_scheme_rows_item_statement",
+    "PostV1LedgerStatementRowsSchemesResponse": ".post_v1ledger_statement_rows_schemes_response",
+    "PostV1LedgerStatementRowsSchemesResponseRowsItem": ".post_v1ledger_statement_rows_schemes_response_rows_item",
+    "PostV1LedgerStatementRowsSchemesResponseRowsItemRowsItem": ".post_v1ledger_statement_rows_schemes_response_rows_item_rows_item",
+    "PostV1LedgerStatementRowsSchemesResponseRowsItemRowsItemStatement": ".post_v1ledger_statement_rows_schemes_response_rows_item_rows_item_statement",
+    "PostV1LedgerStatementRowsSetResponse": ".post_v1ledger_statement_rows_set_response",
+    "PostV1OfficersCreateRequestRole": ".post_v1officers_create_request_role",
+    "PostV1OfficersCreateResponse": ".post_v1officers_create_response",
+    "PostV1OfficersCreateResponseRole": ".post_v1officers_create_response_role",
+    "PostV1OfficersDeleteResponse": ".post_v1officers_delete_response",
+    "PostV1OfficersListResponse": ".post_v1officers_list_response",
+    "PostV1OfficersListResponseRowsItem": ".post_v1officers_list_response_rows_item",
+    "PostV1OfficersListResponseRowsItemRole": ".post_v1officers_list_response_rows_item_role",
+    "PostV1OfficersUpdateRequestRole": ".post_v1officers_update_request_role",
+    "PostV1OfficersUpdateResponse": ".post_v1officers_update_response",
+    "PostV1OfficersUpdateResponseRole": ".post_v1officers_update_response_role",
 }
 
 
@@ -303,16 +351,10 @@ def __dir__():
 
 __all__ = [
     "PostV1LedgerAccountsApplyTemplateResponse",
-    "PostV1LedgerAccountsCreateRequestTranslations",
-    "PostV1LedgerAccountsCreateRequestTranslationsEn",
-    "PostV1LedgerAccountsCreateRequestTranslationsLt",
-    "PostV1LedgerAccountsCreateRequestTranslationsRu",
+    "PostV1LedgerAccountsCreateRequestTranslationsValue",
     "PostV1LedgerAccountsCreateRequestType",
     "PostV1LedgerAccountsCreateResponse",
-    "PostV1LedgerAccountsCreateResponseTranslations",
-    "PostV1LedgerAccountsCreateResponseTranslationsEn",
-    "PostV1LedgerAccountsCreateResponseTranslationsLt",
-    "PostV1LedgerAccountsCreateResponseTranslationsRu",
+    "PostV1LedgerAccountsCreateResponseTranslationsValue",
     "PostV1LedgerAccountsCreateResponseType",
     "PostV1LedgerAccountsListRequestFilterItem",
     "PostV1LedgerAccountsListRequestFilterItemOp",
@@ -322,20 +364,12 @@ __all__ = [
     "PostV1LedgerAccountsListRequestSortItemDir",
     "PostV1LedgerAccountsListResponse",
     "PostV1LedgerAccountsListResponseRowsItem",
-    "PostV1LedgerAccountsListResponseRowsItemTranslations",
-    "PostV1LedgerAccountsListResponseRowsItemTranslationsEn",
-    "PostV1LedgerAccountsListResponseRowsItemTranslationsLt",
-    "PostV1LedgerAccountsListResponseRowsItemTranslationsRu",
+    "PostV1LedgerAccountsListResponseRowsItemTranslationsValue",
     "PostV1LedgerAccountsListResponseRowsItemType",
-    "PostV1LedgerAccountsUpdateRequestTranslations",
-    "PostV1LedgerAccountsUpdateRequestTranslationsEn",
-    "PostV1LedgerAccountsUpdateRequestTranslationsLt",
-    "PostV1LedgerAccountsUpdateRequestTranslationsRu",
+    "PostV1LedgerAccountsSwitchChartResponse",
+    "PostV1LedgerAccountsUpdateRequestTranslationsValue",
     "PostV1LedgerAccountsUpdateResponse",
-    "PostV1LedgerAccountsUpdateResponseTranslations",
-    "PostV1LedgerAccountsUpdateResponseTranslationsEn",
-    "PostV1LedgerAccountsUpdateResponseTranslationsLt",
-    "PostV1LedgerAccountsUpdateResponseTranslationsRu",
+    "PostV1LedgerAccountsUpdateResponseTranslationsValue",
     "PostV1LedgerAccountsUpdateResponseType",
     "PostV1LedgerCostCenterGroupsCreateResponse",
     "PostV1LedgerCostCenterGroupsDeleteResponse",
@@ -374,9 +408,11 @@ __all__ = [
     "PostV1LedgerJournalTransactionsListResponseRowsItem",
     "PostV1LedgerJournalTransactionsListResponseRowsItemStatus",
     "PostV1LedgerOwnersCreateRequestAddress",
+    "PostV1LedgerOwnersCreateRequestPartnerLiability",
     "PostV1LedgerOwnersCreateRequestSharesType",
     "PostV1LedgerOwnersCreateResponse",
     "PostV1LedgerOwnersCreateResponseAddress",
+    "PostV1LedgerOwnersCreateResponsePartnerLiability",
     "PostV1LedgerOwnersDeleteResponse",
     "PostV1LedgerOwnersListRequestFilterItem",
     "PostV1LedgerOwnersListRequestFilterItemOp",
@@ -387,10 +423,13 @@ __all__ = [
     "PostV1LedgerOwnersListResponse",
     "PostV1LedgerOwnersListResponseRowsItem",
     "PostV1LedgerOwnersListResponseRowsItemAddress",
+    "PostV1LedgerOwnersListResponseRowsItemPartnerLiability",
     "PostV1LedgerOwnersUpdateRequestAddress",
+    "PostV1LedgerOwnersUpdateRequestPartnerLiability",
     "PostV1LedgerOwnersUpdateRequestSharesType",
     "PostV1LedgerOwnersUpdateResponse",
     "PostV1LedgerOwnersUpdateResponseAddress",
+    "PostV1LedgerOwnersUpdateResponsePartnerLiability",
     "PostV1LedgerPeriodsListRequestFilterItem",
     "PostV1LedgerPeriodsListRequestFilterItemOp",
     "PostV1LedgerPeriodsListRequestFilterItemValue",
@@ -410,4 +449,27 @@ __all__ = [
     "PostV1LedgerPostingRulesUpdateRequestRulesItemKey",
     "PostV1LedgerPostingRulesUpdateResponse",
     "PostV1LedgerPostingRulesUpdateResponseRowsItem",
+    "PostV1LedgerStatementRowsListResponse",
+    "PostV1LedgerStatementRowsListResponseAccountsItem",
+    "PostV1LedgerStatementRowsListResponseAccountsItemSource",
+    "PostV1LedgerStatementRowsListResponseRowsItem",
+    "PostV1LedgerStatementRowsListResponseRowsItemStatement",
+    "PostV1LedgerStatementRowsListResponseScheme",
+    "PostV1LedgerStatementRowsListResponseSchemeRowsItem",
+    "PostV1LedgerStatementRowsListResponseSchemeRowsItemStatement",
+    "PostV1LedgerStatementRowsSchemesResponse",
+    "PostV1LedgerStatementRowsSchemesResponseRowsItem",
+    "PostV1LedgerStatementRowsSchemesResponseRowsItemRowsItem",
+    "PostV1LedgerStatementRowsSchemesResponseRowsItemRowsItemStatement",
+    "PostV1LedgerStatementRowsSetResponse",
+    "PostV1OfficersCreateRequestRole",
+    "PostV1OfficersCreateResponse",
+    "PostV1OfficersCreateResponseRole",
+    "PostV1OfficersDeleteResponse",
+    "PostV1OfficersListResponse",
+    "PostV1OfficersListResponseRowsItem",
+    "PostV1OfficersListResponseRowsItemRole",
+    "PostV1OfficersUpdateRequestRole",
+    "PostV1OfficersUpdateResponse",
+    "PostV1OfficersUpdateResponseRole",
 ]

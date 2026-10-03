@@ -34,6 +34,9 @@ class PostV1SalesInvoicesApplyAdvanceResponseLinesItem(UniversalBaseModel):
     vat_classifier_code: typing_extensions.Annotated[
         typing.Optional[str], FieldMetadata(alias="vatClassifierCode"), pydantic.Field(alias="vatClassifierCode")
     ] = None
+    vat_exemption_basis: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="vatExemptionBasis"), pydantic.Field(alias="vatExemptionBasis")
+    ] = None
     cost_center_id: typing_extensions.Annotated[
         typing.Optional[str], FieldMetadata(alias="costCenterId"), pydantic.Field(alias="costCenterId")
     ] = None

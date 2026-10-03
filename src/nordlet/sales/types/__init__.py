@@ -168,6 +168,13 @@ if typing.TYPE_CHECKING:
     from .post_v1sales_invoices_create_response_vat_scheme import PostV1SalesInvoicesCreateResponseVatScheme
     from .post_v1sales_invoices_delete_response import PostV1SalesInvoicesDeleteResponse
     from .post_v1sales_invoices_einvoice_send_response import PostV1SalesInvoicesEinvoiceSendResponse
+    from .post_v1sales_invoices_einvoice_send_response_status import PostV1SalesInvoicesEinvoiceSendResponseStatus
+    from .post_v1sales_invoices_einvoice_send_response_transport import PostV1SalesInvoicesEinvoiceSendResponseTransport
+    from .post_v1sales_invoices_einvoice_status_response import PostV1SalesInvoicesEinvoiceStatusResponse
+    from .post_v1sales_invoices_einvoice_status_response_status import PostV1SalesInvoicesEinvoiceStatusResponseStatus
+    from .post_v1sales_invoices_einvoice_status_response_transport import (
+        PostV1SalesInvoicesEinvoiceStatusResponseTransport,
+    )
     from .post_v1sales_invoices_einvoice_xml_response import PostV1SalesInvoicesEinvoiceXmlResponse
     from .post_v1sales_invoices_get_response import PostV1SalesInvoicesGetResponse
     from .post_v1sales_invoices_get_response_lines_item import PostV1SalesInvoicesGetResponseLinesItem
@@ -546,6 +553,11 @@ _dynamic_imports: typing.Dict[str, str] = {
     "PostV1SalesInvoicesCreateResponseVatScheme": ".post_v1sales_invoices_create_response_vat_scheme",
     "PostV1SalesInvoicesDeleteResponse": ".post_v1sales_invoices_delete_response",
     "PostV1SalesInvoicesEinvoiceSendResponse": ".post_v1sales_invoices_einvoice_send_response",
+    "PostV1SalesInvoicesEinvoiceSendResponseStatus": ".post_v1sales_invoices_einvoice_send_response_status",
+    "PostV1SalesInvoicesEinvoiceSendResponseTransport": ".post_v1sales_invoices_einvoice_send_response_transport",
+    "PostV1SalesInvoicesEinvoiceStatusResponse": ".post_v1sales_invoices_einvoice_status_response",
+    "PostV1SalesInvoicesEinvoiceStatusResponseStatus": ".post_v1sales_invoices_einvoice_status_response_status",
+    "PostV1SalesInvoicesEinvoiceStatusResponseTransport": ".post_v1sales_invoices_einvoice_status_response_transport",
     "PostV1SalesInvoicesEinvoiceXmlResponse": ".post_v1sales_invoices_einvoice_xml_response",
     "PostV1SalesInvoicesGetResponse": ".post_v1sales_invoices_get_response",
     "PostV1SalesInvoicesGetResponseLinesItem": ".post_v1sales_invoices_get_response_lines_item",
@@ -822,6 +834,11 @@ __all__ = [
     "PostV1SalesInvoicesCreateResponseVatScheme",
     "PostV1SalesInvoicesDeleteResponse",
     "PostV1SalesInvoicesEinvoiceSendResponse",
+    "PostV1SalesInvoicesEinvoiceSendResponseStatus",
+    "PostV1SalesInvoicesEinvoiceSendResponseTransport",
+    "PostV1SalesInvoicesEinvoiceStatusResponse",
+    "PostV1SalesInvoicesEinvoiceStatusResponseStatus",
+    "PostV1SalesInvoicesEinvoiceStatusResponseTransport",
     "PostV1SalesInvoicesEinvoiceXmlResponse",
     "PostV1SalesInvoicesGetResponse",
     "PostV1SalesInvoicesGetResponseLinesItem",

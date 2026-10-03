@@ -18,6 +18,11 @@ class PostV1AccountMeResponseBilling(UniversalBaseModel):
     trial_ends_at: typing_extensions.Annotated[
         typing.Optional[str], FieldMetadata(alias="trialEndsAt"), pydantic.Field(alias="trialEndsAt")
     ] = None
+    payer_user_id: typing_extensions.Annotated[
+        str, FieldMetadata(alias="payerUserId"), pydantic.Field(alias="payerUserId")
+    ]
+    payer_email: typing_extensions.Annotated[str, FieldMetadata(alias="payerEmail"), pydantic.Field(alias="payerEmail")]
+    is_payer: typing_extensions.Annotated[bool, FieldMetadata(alias="isPayer"), pydantic.Field(alias="isPayer")]
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2
