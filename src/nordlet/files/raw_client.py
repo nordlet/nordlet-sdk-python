@@ -12,19 +12,21 @@ from ..core.request_options import RequestOptions
 from ..core.serialization import convert_and_respect_annotation_metadata
 from ..errors.bad_request_error import BadRequestError
 from ..errors.conflict_error import ConflictError
+from ..errors.content_too_large_error import ContentTooLargeError
 from ..errors.forbidden_error import ForbiddenError
 from ..errors.internal_server_error import InternalServerError
 from ..errors.not_found_error import NotFoundError
+from ..errors.payment_required_error import PaymentRequiredError
 from ..errors.too_many_requests_error import TooManyRequestsError
 from ..errors.unauthorized_error import UnauthorizedError
 from ..errors.unprocessable_entity_error import UnprocessableEntityError
 from ..types.error_response import ErrorResponse
-from .types.post_v1files_delete_response import PostV1FilesDeleteResponse
-from .types.post_v1files_get_response import PostV1FilesGetResponse
-from .types.post_v1files_list_request_filter_item import PostV1FilesListRequestFilterItem
-from .types.post_v1files_list_request_sort_item import PostV1FilesListRequestSortItem
-from .types.post_v1files_list_response import PostV1FilesListResponse
-from .types.post_v1files_upload_response import PostV1FilesUploadResponse
+from .types.delete_files_response import DeleteFilesResponse
+from .types.get_files_response import GetFilesResponse
+from .types.list_files_request_filter_item import ListFilesRequestFilterItem
+from .types.list_files_request_sort_item import ListFilesRequestSortItem
+from .types.list_files_response import ListFilesResponse
+from .types.upload_files_response import UploadFilesResponse
 from pydantic import ValidationError
 
 # this is used as the default value for optional parameters
@@ -35,7 +37,7 @@ class RawFilesClient:
     def __init__(self, *, client_wrapper: SyncClientWrapper):
         self._client_wrapper = client_wrapper
 
-    def post_v1files_upload(
+    def upload(
         self,
         *,
         entity: str,
@@ -44,7 +46,7 @@ class RawFilesClient:
         content: str,
         entity_id: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> HttpResponse[PostV1FilesUploadResponse]:
+    ) -> HttpResponse[UploadFilesResponse]:
         """
         Parameters
         ----------
@@ -53,6 +55,7 @@ class RawFilesClient:
         file_name : str
 
         mime_type : str
+            Stored as the bare media type; only PNG, JPEG, GIF, WebP and PDF files are shown in the browser, every other type is downloaded
 
         content : str
             Base64-encoded file content
@@ -64,7 +67,7 @@ class RawFilesClient:
 
         Returns
         -------
-        HttpResponse[PostV1FilesUploadResponse]
+        HttpResponse[UploadFilesResponse]
             Default Response
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -86,9 +89,9 @@ class RawFilesClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1FilesUploadResponse,
+                    UploadFilesResponse,
                     parse_obj_as(
-                        type_=PostV1FilesUploadResponse,  # type: ignore
+                        type_=UploadFilesResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -106,6 +109,17 @@ class RawFilesClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -139,6 +153,17 @@ class RawFilesClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -190,9 +215,9 @@ class RawFilesClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    def post_v1files_get(
+    def get(
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
-    ) -> HttpResponse[PostV1FilesGetResponse]:
+    ) -> HttpResponse[GetFilesResponse]:
         """
         Parameters
         ----------
@@ -203,7 +228,7 @@ class RawFilesClient:
 
         Returns
         -------
-        HttpResponse[PostV1FilesGetResponse]
+        HttpResponse[GetFilesResponse]
             Default Response
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -221,9 +246,9 @@ class RawFilesClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1FilesGetResponse,
+                    GetFilesResponse,
                     parse_obj_as(
-                        type_=PostV1FilesGetResponse,  # type: ignore
+                        type_=GetFilesResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -241,6 +266,17 @@ class RawFilesClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -274,6 +310,17 @@ class RawFilesClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -325,16 +372,16 @@ class RawFilesClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    def post_v1files_list(
+    def list(
         self,
         *,
         page: typing.Optional[int] = OMIT,
         page_size: typing.Optional[int] = OMIT,
-        sort: typing.Optional[typing.Sequence[PostV1FilesListRequestSortItem]] = OMIT,
-        filter: typing.Optional[typing.Sequence[PostV1FilesListRequestFilterItem]] = OMIT,
+        sort: typing.Optional[typing.Sequence[ListFilesRequestSortItem]] = OMIT,
+        filter: typing.Optional[typing.Sequence[ListFilesRequestFilterItem]] = OMIT,
         totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> HttpResponse[PostV1FilesListResponse]:
+    ) -> HttpResponse[ListFilesResponse]:
         """
         Parameters
         ----------
@@ -342,9 +389,9 @@ class RawFilesClient:
 
         page_size : typing.Optional[int]
 
-        sort : typing.Optional[typing.Sequence[PostV1FilesListRequestSortItem]]
+        sort : typing.Optional[typing.Sequence[ListFilesRequestSortItem]]
 
-        filter : typing.Optional[typing.Sequence[PostV1FilesListRequestFilterItem]]
+        filter : typing.Optional[typing.Sequence[ListFilesRequestFilterItem]]
 
         totals : typing.Optional[typing.Sequence[str]]
             Numeric fields to sum over every row matching the filter (not only the current page)
@@ -354,7 +401,7 @@ class RawFilesClient:
 
         Returns
         -------
-        HttpResponse[PostV1FilesListResponse]
+        HttpResponse[ListFilesResponse]
             Default Response
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -364,10 +411,10 @@ class RawFilesClient:
                 "page": page,
                 "pageSize": page_size,
                 "sort": convert_and_respect_annotation_metadata(
-                    object_=sort, annotation=typing.Sequence[PostV1FilesListRequestSortItem], direction="write"
+                    object_=sort, annotation=typing.Sequence[ListFilesRequestSortItem], direction="write"
                 ),
                 "filter": convert_and_respect_annotation_metadata(
-                    object_=filter, annotation=typing.Sequence[PostV1FilesListRequestFilterItem], direction="write"
+                    object_=filter, annotation=typing.Sequence[ListFilesRequestFilterItem], direction="write"
                 ),
                 "totals": totals,
             },
@@ -380,9 +427,9 @@ class RawFilesClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1FilesListResponse,
+                    ListFilesResponse,
                     parse_obj_as(
-                        type_=PostV1FilesListResponse,  # type: ignore
+                        type_=ListFilesResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -400,6 +447,17 @@ class RawFilesClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -433,6 +491,17 @@ class RawFilesClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -484,9 +553,9 @@ class RawFilesClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    def post_v1files_delete(
+    def delete(
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
-    ) -> HttpResponse[PostV1FilesDeleteResponse]:
+    ) -> HttpResponse[DeleteFilesResponse]:
         """
         Parameters
         ----------
@@ -497,7 +566,7 @@ class RawFilesClient:
 
         Returns
         -------
-        HttpResponse[PostV1FilesDeleteResponse]
+        HttpResponse[DeleteFilesResponse]
             Default Response
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -515,9 +584,9 @@ class RawFilesClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1FilesDeleteResponse,
+                    DeleteFilesResponse,
                     parse_obj_as(
-                        type_=PostV1FilesDeleteResponse,  # type: ignore
+                        type_=DeleteFilesResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -535,6 +604,17 @@ class RawFilesClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -568,6 +648,17 @@ class RawFilesClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -624,7 +715,7 @@ class AsyncRawFilesClient:
     def __init__(self, *, client_wrapper: AsyncClientWrapper):
         self._client_wrapper = client_wrapper
 
-    async def post_v1files_upload(
+    async def upload(
         self,
         *,
         entity: str,
@@ -633,7 +724,7 @@ class AsyncRawFilesClient:
         content: str,
         entity_id: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> AsyncHttpResponse[PostV1FilesUploadResponse]:
+    ) -> AsyncHttpResponse[UploadFilesResponse]:
         """
         Parameters
         ----------
@@ -642,6 +733,7 @@ class AsyncRawFilesClient:
         file_name : str
 
         mime_type : str
+            Stored as the bare media type; only PNG, JPEG, GIF, WebP and PDF files are shown in the browser, every other type is downloaded
 
         content : str
             Base64-encoded file content
@@ -653,7 +745,7 @@ class AsyncRawFilesClient:
 
         Returns
         -------
-        AsyncHttpResponse[PostV1FilesUploadResponse]
+        AsyncHttpResponse[UploadFilesResponse]
             Default Response
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -675,9 +767,9 @@ class AsyncRawFilesClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1FilesUploadResponse,
+                    UploadFilesResponse,
                     parse_obj_as(
-                        type_=PostV1FilesUploadResponse,  # type: ignore
+                        type_=UploadFilesResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -695,6 +787,17 @@ class AsyncRawFilesClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -728,6 +831,17 @@ class AsyncRawFilesClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -779,9 +893,9 @@ class AsyncRawFilesClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    async def post_v1files_get(
+    async def get(
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
-    ) -> AsyncHttpResponse[PostV1FilesGetResponse]:
+    ) -> AsyncHttpResponse[GetFilesResponse]:
         """
         Parameters
         ----------
@@ -792,7 +906,7 @@ class AsyncRawFilesClient:
 
         Returns
         -------
-        AsyncHttpResponse[PostV1FilesGetResponse]
+        AsyncHttpResponse[GetFilesResponse]
             Default Response
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -810,9 +924,9 @@ class AsyncRawFilesClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1FilesGetResponse,
+                    GetFilesResponse,
                     parse_obj_as(
-                        type_=PostV1FilesGetResponse,  # type: ignore
+                        type_=GetFilesResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -830,6 +944,17 @@ class AsyncRawFilesClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -863,6 +988,17 @@ class AsyncRawFilesClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -914,16 +1050,16 @@ class AsyncRawFilesClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    async def post_v1files_list(
+    async def list(
         self,
         *,
         page: typing.Optional[int] = OMIT,
         page_size: typing.Optional[int] = OMIT,
-        sort: typing.Optional[typing.Sequence[PostV1FilesListRequestSortItem]] = OMIT,
-        filter: typing.Optional[typing.Sequence[PostV1FilesListRequestFilterItem]] = OMIT,
+        sort: typing.Optional[typing.Sequence[ListFilesRequestSortItem]] = OMIT,
+        filter: typing.Optional[typing.Sequence[ListFilesRequestFilterItem]] = OMIT,
         totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> AsyncHttpResponse[PostV1FilesListResponse]:
+    ) -> AsyncHttpResponse[ListFilesResponse]:
         """
         Parameters
         ----------
@@ -931,9 +1067,9 @@ class AsyncRawFilesClient:
 
         page_size : typing.Optional[int]
 
-        sort : typing.Optional[typing.Sequence[PostV1FilesListRequestSortItem]]
+        sort : typing.Optional[typing.Sequence[ListFilesRequestSortItem]]
 
-        filter : typing.Optional[typing.Sequence[PostV1FilesListRequestFilterItem]]
+        filter : typing.Optional[typing.Sequence[ListFilesRequestFilterItem]]
 
         totals : typing.Optional[typing.Sequence[str]]
             Numeric fields to sum over every row matching the filter (not only the current page)
@@ -943,7 +1079,7 @@ class AsyncRawFilesClient:
 
         Returns
         -------
-        AsyncHttpResponse[PostV1FilesListResponse]
+        AsyncHttpResponse[ListFilesResponse]
             Default Response
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -953,10 +1089,10 @@ class AsyncRawFilesClient:
                 "page": page,
                 "pageSize": page_size,
                 "sort": convert_and_respect_annotation_metadata(
-                    object_=sort, annotation=typing.Sequence[PostV1FilesListRequestSortItem], direction="write"
+                    object_=sort, annotation=typing.Sequence[ListFilesRequestSortItem], direction="write"
                 ),
                 "filter": convert_and_respect_annotation_metadata(
-                    object_=filter, annotation=typing.Sequence[PostV1FilesListRequestFilterItem], direction="write"
+                    object_=filter, annotation=typing.Sequence[ListFilesRequestFilterItem], direction="write"
                 ),
                 "totals": totals,
             },
@@ -969,9 +1105,9 @@ class AsyncRawFilesClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1FilesListResponse,
+                    ListFilesResponse,
                     parse_obj_as(
-                        type_=PostV1FilesListResponse,  # type: ignore
+                        type_=ListFilesResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -989,6 +1125,17 @@ class AsyncRawFilesClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -1022,6 +1169,17 @@ class AsyncRawFilesClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -1073,9 +1231,9 @@ class AsyncRawFilesClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    async def post_v1files_delete(
+    async def delete(
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
-    ) -> AsyncHttpResponse[PostV1FilesDeleteResponse]:
+    ) -> AsyncHttpResponse[DeleteFilesResponse]:
         """
         Parameters
         ----------
@@ -1086,7 +1244,7 @@ class AsyncRawFilesClient:
 
         Returns
         -------
-        AsyncHttpResponse[PostV1FilesDeleteResponse]
+        AsyncHttpResponse[DeleteFilesResponse]
             Default Response
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -1104,9 +1262,9 @@ class AsyncRawFilesClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1FilesDeleteResponse,
+                    DeleteFilesResponse,
                     parse_obj_as(
-                        type_=PostV1FilesDeleteResponse,  # type: ignore
+                        type_=DeleteFilesResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -1124,6 +1282,17 @@ class AsyncRawFilesClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -1157,6 +1326,17 @@ class AsyncRawFilesClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,

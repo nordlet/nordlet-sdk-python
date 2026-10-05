@@ -6,99 +6,91 @@ import typing
 from importlib import import_module
 
 if typing.TYPE_CHECKING:
-    from .post_v1fleet_assignments_create_response import PostV1FleetAssignmentsCreateResponse
-    from .post_v1fleet_assignments_end_response import PostV1FleetAssignmentsEndResponse
-    from .post_v1fleet_assignments_list_request_filter_item import PostV1FleetAssignmentsListRequestFilterItem
-    from .post_v1fleet_assignments_list_request_filter_item_op import PostV1FleetAssignmentsListRequestFilterItemOp
-    from .post_v1fleet_assignments_list_request_filter_item_value import (
-        PostV1FleetAssignmentsListRequestFilterItemValue,
+    from .assignments_create_fleet_response import AssignmentsCreateFleetResponse
+    from .assignments_end_fleet_response import AssignmentsEndFleetResponse
+    from .assignments_list_fleet_request_filter_item import AssignmentsListFleetRequestFilterItem
+    from .assignments_list_fleet_request_filter_item_op import AssignmentsListFleetRequestFilterItemOp
+    from .assignments_list_fleet_request_filter_item_value import AssignmentsListFleetRequestFilterItemValue
+    from .assignments_list_fleet_request_filter_item_value_three_item import (
+        AssignmentsListFleetRequestFilterItemValueThreeItem,
     )
-    from .post_v1fleet_assignments_list_request_filter_item_value_three_item import (
-        PostV1FleetAssignmentsListRequestFilterItemValueThreeItem,
+    from .assignments_list_fleet_request_sort_item import AssignmentsListFleetRequestSortItem
+    from .assignments_list_fleet_request_sort_item_dir import AssignmentsListFleetRequestSortItemDir
+    from .assignments_list_fleet_response import AssignmentsListFleetResponse
+    from .assignments_list_fleet_response_rows_item import AssignmentsListFleetResponseRowsItem
+    from .natura_preview_fleet_response import NaturaPreviewFleetResponse
+    from .natura_preview_fleet_response_rows_item import NaturaPreviewFleetResponseRowsItem
+    from .vehicles_create_fleet_request_documents_item import VehiclesCreateFleetRequestDocumentsItem
+    from .vehicles_create_fleet_request_fuel_type import VehiclesCreateFleetRequestFuelType
+    from .vehicles_create_fleet_response import VehiclesCreateFleetResponse
+    from .vehicles_create_fleet_response_current_assignment import VehiclesCreateFleetResponseCurrentAssignment
+    from .vehicles_create_fleet_response_documents_item import VehiclesCreateFleetResponseDocumentsItem
+    from .vehicles_create_fleet_response_status import VehiclesCreateFleetResponseStatus
+    from .vehicles_get_fleet_response import VehiclesGetFleetResponse
+    from .vehicles_get_fleet_response_current_assignment import VehiclesGetFleetResponseCurrentAssignment
+    from .vehicles_get_fleet_response_documents_item import VehiclesGetFleetResponseDocumentsItem
+    from .vehicles_get_fleet_response_status import VehiclesGetFleetResponseStatus
+    from .vehicles_list_fleet_request_filter_item import VehiclesListFleetRequestFilterItem
+    from .vehicles_list_fleet_request_filter_item_op import VehiclesListFleetRequestFilterItemOp
+    from .vehicles_list_fleet_request_filter_item_value import VehiclesListFleetRequestFilterItemValue
+    from .vehicles_list_fleet_request_filter_item_value_three_item import (
+        VehiclesListFleetRequestFilterItemValueThreeItem,
     )
-    from .post_v1fleet_assignments_list_request_sort_item import PostV1FleetAssignmentsListRequestSortItem
-    from .post_v1fleet_assignments_list_request_sort_item_dir import PostV1FleetAssignmentsListRequestSortItemDir
-    from .post_v1fleet_assignments_list_response import PostV1FleetAssignmentsListResponse
-    from .post_v1fleet_assignments_list_response_rows_item import PostV1FleetAssignmentsListResponseRowsItem
-    from .post_v1fleet_natura_preview_response import PostV1FleetNaturaPreviewResponse
-    from .post_v1fleet_natura_preview_response_rows_item import PostV1FleetNaturaPreviewResponseRowsItem
-    from .post_v1fleet_vehicles_create_request_documents_item import PostV1FleetVehiclesCreateRequestDocumentsItem
-    from .post_v1fleet_vehicles_create_request_fuel_type import PostV1FleetVehiclesCreateRequestFuelType
-    from .post_v1fleet_vehicles_create_response import PostV1FleetVehiclesCreateResponse
-    from .post_v1fleet_vehicles_create_response_current_assignment import (
-        PostV1FleetVehiclesCreateResponseCurrentAssignment,
+    from .vehicles_list_fleet_request_sort_item import VehiclesListFleetRequestSortItem
+    from .vehicles_list_fleet_request_sort_item_dir import VehiclesListFleetRequestSortItemDir
+    from .vehicles_list_fleet_response import VehiclesListFleetResponse
+    from .vehicles_list_fleet_response_rows_item import VehiclesListFleetResponseRowsItem
+    from .vehicles_list_fleet_response_rows_item_current_assignment import (
+        VehiclesListFleetResponseRowsItemCurrentAssignment,
     )
-    from .post_v1fleet_vehicles_create_response_documents_item import PostV1FleetVehiclesCreateResponseDocumentsItem
-    from .post_v1fleet_vehicles_create_response_status import PostV1FleetVehiclesCreateResponseStatus
-    from .post_v1fleet_vehicles_get_response import PostV1FleetVehiclesGetResponse
-    from .post_v1fleet_vehicles_get_response_current_assignment import PostV1FleetVehiclesGetResponseCurrentAssignment
-    from .post_v1fleet_vehicles_get_response_documents_item import PostV1FleetVehiclesGetResponseDocumentsItem
-    from .post_v1fleet_vehicles_get_response_status import PostV1FleetVehiclesGetResponseStatus
-    from .post_v1fleet_vehicles_list_request_filter_item import PostV1FleetVehiclesListRequestFilterItem
-    from .post_v1fleet_vehicles_list_request_filter_item_op import PostV1FleetVehiclesListRequestFilterItemOp
-    from .post_v1fleet_vehicles_list_request_filter_item_value import PostV1FleetVehiclesListRequestFilterItemValue
-    from .post_v1fleet_vehicles_list_request_filter_item_value_three_item import (
-        PostV1FleetVehiclesListRequestFilterItemValueThreeItem,
-    )
-    from .post_v1fleet_vehicles_list_request_sort_item import PostV1FleetVehiclesListRequestSortItem
-    from .post_v1fleet_vehicles_list_request_sort_item_dir import PostV1FleetVehiclesListRequestSortItemDir
-    from .post_v1fleet_vehicles_list_response import PostV1FleetVehiclesListResponse
-    from .post_v1fleet_vehicles_list_response_rows_item import PostV1FleetVehiclesListResponseRowsItem
-    from .post_v1fleet_vehicles_list_response_rows_item_current_assignment import (
-        PostV1FleetVehiclesListResponseRowsItemCurrentAssignment,
-    )
-    from .post_v1fleet_vehicles_list_response_rows_item_documents_item import (
-        PostV1FleetVehiclesListResponseRowsItemDocumentsItem,
-    )
-    from .post_v1fleet_vehicles_list_response_rows_item_status import PostV1FleetVehiclesListResponseRowsItemStatus
-    from .post_v1fleet_vehicles_update_request_fuel_type import PostV1FleetVehiclesUpdateRequestFuelType
-    from .post_v1fleet_vehicles_update_request_status import PostV1FleetVehiclesUpdateRequestStatus
-    from .post_v1fleet_vehicles_update_response import PostV1FleetVehiclesUpdateResponse
-    from .post_v1fleet_vehicles_update_response_current_assignment import (
-        PostV1FleetVehiclesUpdateResponseCurrentAssignment,
-    )
-    from .post_v1fleet_vehicles_update_response_documents_item import PostV1FleetVehiclesUpdateResponseDocumentsItem
-    from .post_v1fleet_vehicles_update_response_status import PostV1FleetVehiclesUpdateResponseStatus
+    from .vehicles_list_fleet_response_rows_item_documents_item import VehiclesListFleetResponseRowsItemDocumentsItem
+    from .vehicles_list_fleet_response_rows_item_status import VehiclesListFleetResponseRowsItemStatus
+    from .vehicles_update_fleet_request_fuel_type import VehiclesUpdateFleetRequestFuelType
+    from .vehicles_update_fleet_request_status import VehiclesUpdateFleetRequestStatus
+    from .vehicles_update_fleet_response import VehiclesUpdateFleetResponse
+    from .vehicles_update_fleet_response_current_assignment import VehiclesUpdateFleetResponseCurrentAssignment
+    from .vehicles_update_fleet_response_documents_item import VehiclesUpdateFleetResponseDocumentsItem
+    from .vehicles_update_fleet_response_status import VehiclesUpdateFleetResponseStatus
 _dynamic_imports: typing.Dict[str, str] = {
-    "PostV1FleetAssignmentsCreateResponse": ".post_v1fleet_assignments_create_response",
-    "PostV1FleetAssignmentsEndResponse": ".post_v1fleet_assignments_end_response",
-    "PostV1FleetAssignmentsListRequestFilterItem": ".post_v1fleet_assignments_list_request_filter_item",
-    "PostV1FleetAssignmentsListRequestFilterItemOp": ".post_v1fleet_assignments_list_request_filter_item_op",
-    "PostV1FleetAssignmentsListRequestFilterItemValue": ".post_v1fleet_assignments_list_request_filter_item_value",
-    "PostV1FleetAssignmentsListRequestFilterItemValueThreeItem": ".post_v1fleet_assignments_list_request_filter_item_value_three_item",
-    "PostV1FleetAssignmentsListRequestSortItem": ".post_v1fleet_assignments_list_request_sort_item",
-    "PostV1FleetAssignmentsListRequestSortItemDir": ".post_v1fleet_assignments_list_request_sort_item_dir",
-    "PostV1FleetAssignmentsListResponse": ".post_v1fleet_assignments_list_response",
-    "PostV1FleetAssignmentsListResponseRowsItem": ".post_v1fleet_assignments_list_response_rows_item",
-    "PostV1FleetNaturaPreviewResponse": ".post_v1fleet_natura_preview_response",
-    "PostV1FleetNaturaPreviewResponseRowsItem": ".post_v1fleet_natura_preview_response_rows_item",
-    "PostV1FleetVehiclesCreateRequestDocumentsItem": ".post_v1fleet_vehicles_create_request_documents_item",
-    "PostV1FleetVehiclesCreateRequestFuelType": ".post_v1fleet_vehicles_create_request_fuel_type",
-    "PostV1FleetVehiclesCreateResponse": ".post_v1fleet_vehicles_create_response",
-    "PostV1FleetVehiclesCreateResponseCurrentAssignment": ".post_v1fleet_vehicles_create_response_current_assignment",
-    "PostV1FleetVehiclesCreateResponseDocumentsItem": ".post_v1fleet_vehicles_create_response_documents_item",
-    "PostV1FleetVehiclesCreateResponseStatus": ".post_v1fleet_vehicles_create_response_status",
-    "PostV1FleetVehiclesGetResponse": ".post_v1fleet_vehicles_get_response",
-    "PostV1FleetVehiclesGetResponseCurrentAssignment": ".post_v1fleet_vehicles_get_response_current_assignment",
-    "PostV1FleetVehiclesGetResponseDocumentsItem": ".post_v1fleet_vehicles_get_response_documents_item",
-    "PostV1FleetVehiclesGetResponseStatus": ".post_v1fleet_vehicles_get_response_status",
-    "PostV1FleetVehiclesListRequestFilterItem": ".post_v1fleet_vehicles_list_request_filter_item",
-    "PostV1FleetVehiclesListRequestFilterItemOp": ".post_v1fleet_vehicles_list_request_filter_item_op",
-    "PostV1FleetVehiclesListRequestFilterItemValue": ".post_v1fleet_vehicles_list_request_filter_item_value",
-    "PostV1FleetVehiclesListRequestFilterItemValueThreeItem": ".post_v1fleet_vehicles_list_request_filter_item_value_three_item",
-    "PostV1FleetVehiclesListRequestSortItem": ".post_v1fleet_vehicles_list_request_sort_item",
-    "PostV1FleetVehiclesListRequestSortItemDir": ".post_v1fleet_vehicles_list_request_sort_item_dir",
-    "PostV1FleetVehiclesListResponse": ".post_v1fleet_vehicles_list_response",
-    "PostV1FleetVehiclesListResponseRowsItem": ".post_v1fleet_vehicles_list_response_rows_item",
-    "PostV1FleetVehiclesListResponseRowsItemCurrentAssignment": ".post_v1fleet_vehicles_list_response_rows_item_current_assignment",
-    "PostV1FleetVehiclesListResponseRowsItemDocumentsItem": ".post_v1fleet_vehicles_list_response_rows_item_documents_item",
-    "PostV1FleetVehiclesListResponseRowsItemStatus": ".post_v1fleet_vehicles_list_response_rows_item_status",
-    "PostV1FleetVehiclesUpdateRequestFuelType": ".post_v1fleet_vehicles_update_request_fuel_type",
-    "PostV1FleetVehiclesUpdateRequestStatus": ".post_v1fleet_vehicles_update_request_status",
-    "PostV1FleetVehiclesUpdateResponse": ".post_v1fleet_vehicles_update_response",
-    "PostV1FleetVehiclesUpdateResponseCurrentAssignment": ".post_v1fleet_vehicles_update_response_current_assignment",
-    "PostV1FleetVehiclesUpdateResponseDocumentsItem": ".post_v1fleet_vehicles_update_response_documents_item",
-    "PostV1FleetVehiclesUpdateResponseStatus": ".post_v1fleet_vehicles_update_response_status",
+    "AssignmentsCreateFleetResponse": ".assignments_create_fleet_response",
+    "AssignmentsEndFleetResponse": ".assignments_end_fleet_response",
+    "AssignmentsListFleetRequestFilterItem": ".assignments_list_fleet_request_filter_item",
+    "AssignmentsListFleetRequestFilterItemOp": ".assignments_list_fleet_request_filter_item_op",
+    "AssignmentsListFleetRequestFilterItemValue": ".assignments_list_fleet_request_filter_item_value",
+    "AssignmentsListFleetRequestFilterItemValueThreeItem": ".assignments_list_fleet_request_filter_item_value_three_item",
+    "AssignmentsListFleetRequestSortItem": ".assignments_list_fleet_request_sort_item",
+    "AssignmentsListFleetRequestSortItemDir": ".assignments_list_fleet_request_sort_item_dir",
+    "AssignmentsListFleetResponse": ".assignments_list_fleet_response",
+    "AssignmentsListFleetResponseRowsItem": ".assignments_list_fleet_response_rows_item",
+    "NaturaPreviewFleetResponse": ".natura_preview_fleet_response",
+    "NaturaPreviewFleetResponseRowsItem": ".natura_preview_fleet_response_rows_item",
+    "VehiclesCreateFleetRequestDocumentsItem": ".vehicles_create_fleet_request_documents_item",
+    "VehiclesCreateFleetRequestFuelType": ".vehicles_create_fleet_request_fuel_type",
+    "VehiclesCreateFleetResponse": ".vehicles_create_fleet_response",
+    "VehiclesCreateFleetResponseCurrentAssignment": ".vehicles_create_fleet_response_current_assignment",
+    "VehiclesCreateFleetResponseDocumentsItem": ".vehicles_create_fleet_response_documents_item",
+    "VehiclesCreateFleetResponseStatus": ".vehicles_create_fleet_response_status",
+    "VehiclesGetFleetResponse": ".vehicles_get_fleet_response",
+    "VehiclesGetFleetResponseCurrentAssignment": ".vehicles_get_fleet_response_current_assignment",
+    "VehiclesGetFleetResponseDocumentsItem": ".vehicles_get_fleet_response_documents_item",
+    "VehiclesGetFleetResponseStatus": ".vehicles_get_fleet_response_status",
+    "VehiclesListFleetRequestFilterItem": ".vehicles_list_fleet_request_filter_item",
+    "VehiclesListFleetRequestFilterItemOp": ".vehicles_list_fleet_request_filter_item_op",
+    "VehiclesListFleetRequestFilterItemValue": ".vehicles_list_fleet_request_filter_item_value",
+    "VehiclesListFleetRequestFilterItemValueThreeItem": ".vehicles_list_fleet_request_filter_item_value_three_item",
+    "VehiclesListFleetRequestSortItem": ".vehicles_list_fleet_request_sort_item",
+    "VehiclesListFleetRequestSortItemDir": ".vehicles_list_fleet_request_sort_item_dir",
+    "VehiclesListFleetResponse": ".vehicles_list_fleet_response",
+    "VehiclesListFleetResponseRowsItem": ".vehicles_list_fleet_response_rows_item",
+    "VehiclesListFleetResponseRowsItemCurrentAssignment": ".vehicles_list_fleet_response_rows_item_current_assignment",
+    "VehiclesListFleetResponseRowsItemDocumentsItem": ".vehicles_list_fleet_response_rows_item_documents_item",
+    "VehiclesListFleetResponseRowsItemStatus": ".vehicles_list_fleet_response_rows_item_status",
+    "VehiclesUpdateFleetRequestFuelType": ".vehicles_update_fleet_request_fuel_type",
+    "VehiclesUpdateFleetRequestStatus": ".vehicles_update_fleet_request_status",
+    "VehiclesUpdateFleetResponse": ".vehicles_update_fleet_response",
+    "VehiclesUpdateFleetResponseCurrentAssignment": ".vehicles_update_fleet_response_current_assignment",
+    "VehiclesUpdateFleetResponseDocumentsItem": ".vehicles_update_fleet_response_documents_item",
+    "VehiclesUpdateFleetResponseStatus": ".vehicles_update_fleet_response_status",
 }
 
 
@@ -124,43 +116,43 @@ def __dir__():
 
 
 __all__ = [
-    "PostV1FleetAssignmentsCreateResponse",
-    "PostV1FleetAssignmentsEndResponse",
-    "PostV1FleetAssignmentsListRequestFilterItem",
-    "PostV1FleetAssignmentsListRequestFilterItemOp",
-    "PostV1FleetAssignmentsListRequestFilterItemValue",
-    "PostV1FleetAssignmentsListRequestFilterItemValueThreeItem",
-    "PostV1FleetAssignmentsListRequestSortItem",
-    "PostV1FleetAssignmentsListRequestSortItemDir",
-    "PostV1FleetAssignmentsListResponse",
-    "PostV1FleetAssignmentsListResponseRowsItem",
-    "PostV1FleetNaturaPreviewResponse",
-    "PostV1FleetNaturaPreviewResponseRowsItem",
-    "PostV1FleetVehiclesCreateRequestDocumentsItem",
-    "PostV1FleetVehiclesCreateRequestFuelType",
-    "PostV1FleetVehiclesCreateResponse",
-    "PostV1FleetVehiclesCreateResponseCurrentAssignment",
-    "PostV1FleetVehiclesCreateResponseDocumentsItem",
-    "PostV1FleetVehiclesCreateResponseStatus",
-    "PostV1FleetVehiclesGetResponse",
-    "PostV1FleetVehiclesGetResponseCurrentAssignment",
-    "PostV1FleetVehiclesGetResponseDocumentsItem",
-    "PostV1FleetVehiclesGetResponseStatus",
-    "PostV1FleetVehiclesListRequestFilterItem",
-    "PostV1FleetVehiclesListRequestFilterItemOp",
-    "PostV1FleetVehiclesListRequestFilterItemValue",
-    "PostV1FleetVehiclesListRequestFilterItemValueThreeItem",
-    "PostV1FleetVehiclesListRequestSortItem",
-    "PostV1FleetVehiclesListRequestSortItemDir",
-    "PostV1FleetVehiclesListResponse",
-    "PostV1FleetVehiclesListResponseRowsItem",
-    "PostV1FleetVehiclesListResponseRowsItemCurrentAssignment",
-    "PostV1FleetVehiclesListResponseRowsItemDocumentsItem",
-    "PostV1FleetVehiclesListResponseRowsItemStatus",
-    "PostV1FleetVehiclesUpdateRequestFuelType",
-    "PostV1FleetVehiclesUpdateRequestStatus",
-    "PostV1FleetVehiclesUpdateResponse",
-    "PostV1FleetVehiclesUpdateResponseCurrentAssignment",
-    "PostV1FleetVehiclesUpdateResponseDocumentsItem",
-    "PostV1FleetVehiclesUpdateResponseStatus",
+    "AssignmentsCreateFleetResponse",
+    "AssignmentsEndFleetResponse",
+    "AssignmentsListFleetRequestFilterItem",
+    "AssignmentsListFleetRequestFilterItemOp",
+    "AssignmentsListFleetRequestFilterItemValue",
+    "AssignmentsListFleetRequestFilterItemValueThreeItem",
+    "AssignmentsListFleetRequestSortItem",
+    "AssignmentsListFleetRequestSortItemDir",
+    "AssignmentsListFleetResponse",
+    "AssignmentsListFleetResponseRowsItem",
+    "NaturaPreviewFleetResponse",
+    "NaturaPreviewFleetResponseRowsItem",
+    "VehiclesCreateFleetRequestDocumentsItem",
+    "VehiclesCreateFleetRequestFuelType",
+    "VehiclesCreateFleetResponse",
+    "VehiclesCreateFleetResponseCurrentAssignment",
+    "VehiclesCreateFleetResponseDocumentsItem",
+    "VehiclesCreateFleetResponseStatus",
+    "VehiclesGetFleetResponse",
+    "VehiclesGetFleetResponseCurrentAssignment",
+    "VehiclesGetFleetResponseDocumentsItem",
+    "VehiclesGetFleetResponseStatus",
+    "VehiclesListFleetRequestFilterItem",
+    "VehiclesListFleetRequestFilterItemOp",
+    "VehiclesListFleetRequestFilterItemValue",
+    "VehiclesListFleetRequestFilterItemValueThreeItem",
+    "VehiclesListFleetRequestSortItem",
+    "VehiclesListFleetRequestSortItemDir",
+    "VehiclesListFleetResponse",
+    "VehiclesListFleetResponseRowsItem",
+    "VehiclesListFleetResponseRowsItemCurrentAssignment",
+    "VehiclesListFleetResponseRowsItemDocumentsItem",
+    "VehiclesListFleetResponseRowsItemStatus",
+    "VehiclesUpdateFleetRequestFuelType",
+    "VehiclesUpdateFleetRequestStatus",
+    "VehiclesUpdateFleetResponse",
+    "VehiclesUpdateFleetResponseCurrentAssignment",
+    "VehiclesUpdateFleetResponseDocumentsItem",
+    "VehiclesUpdateFleetResponseStatus",
 ]

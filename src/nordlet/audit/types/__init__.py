@@ -6,25 +6,25 @@ import typing
 from importlib import import_module
 
 if typing.TYPE_CHECKING:
-    from .post_v1audit_list_request_filter_item import PostV1AuditListRequestFilterItem
-    from .post_v1audit_list_request_filter_item_op import PostV1AuditListRequestFilterItemOp
-    from .post_v1audit_list_request_filter_item_value import PostV1AuditListRequestFilterItemValue
-    from .post_v1audit_list_request_filter_item_value_three_item import PostV1AuditListRequestFilterItemValueThreeItem
-    from .post_v1audit_list_request_sort_item import PostV1AuditListRequestSortItem
-    from .post_v1audit_list_request_sort_item_dir import PostV1AuditListRequestSortItemDir
-    from .post_v1audit_list_response import PostV1AuditListResponse
-    from .post_v1audit_list_response_rows_item import PostV1AuditListResponseRowsItem
-    from .post_v1audit_list_response_rows_item_actor_type import PostV1AuditListResponseRowsItemActorType
+    from .list_audit_request_filter_item import ListAuditRequestFilterItem
+    from .list_audit_request_filter_item_op import ListAuditRequestFilterItemOp
+    from .list_audit_request_filter_item_value import ListAuditRequestFilterItemValue
+    from .list_audit_request_filter_item_value_three_item import ListAuditRequestFilterItemValueThreeItem
+    from .list_audit_request_sort_item import ListAuditRequestSortItem
+    from .list_audit_request_sort_item_dir import ListAuditRequestSortItemDir
+    from .list_audit_response import ListAuditResponse
+    from .list_audit_response_rows_item import ListAuditResponseRowsItem
+    from .list_audit_response_rows_item_actor_type import ListAuditResponseRowsItemActorType
 _dynamic_imports: typing.Dict[str, str] = {
-    "PostV1AuditListRequestFilterItem": ".post_v1audit_list_request_filter_item",
-    "PostV1AuditListRequestFilterItemOp": ".post_v1audit_list_request_filter_item_op",
-    "PostV1AuditListRequestFilterItemValue": ".post_v1audit_list_request_filter_item_value",
-    "PostV1AuditListRequestFilterItemValueThreeItem": ".post_v1audit_list_request_filter_item_value_three_item",
-    "PostV1AuditListRequestSortItem": ".post_v1audit_list_request_sort_item",
-    "PostV1AuditListRequestSortItemDir": ".post_v1audit_list_request_sort_item_dir",
-    "PostV1AuditListResponse": ".post_v1audit_list_response",
-    "PostV1AuditListResponseRowsItem": ".post_v1audit_list_response_rows_item",
-    "PostV1AuditListResponseRowsItemActorType": ".post_v1audit_list_response_rows_item_actor_type",
+    "ListAuditRequestFilterItem": ".list_audit_request_filter_item",
+    "ListAuditRequestFilterItemOp": ".list_audit_request_filter_item_op",
+    "ListAuditRequestFilterItemValue": ".list_audit_request_filter_item_value",
+    "ListAuditRequestFilterItemValueThreeItem": ".list_audit_request_filter_item_value_three_item",
+    "ListAuditRequestSortItem": ".list_audit_request_sort_item",
+    "ListAuditRequestSortItemDir": ".list_audit_request_sort_item_dir",
+    "ListAuditResponse": ".list_audit_response",
+    "ListAuditResponseRowsItem": ".list_audit_response_rows_item",
+    "ListAuditResponseRowsItemActorType": ".list_audit_response_rows_item_actor_type",
 }
 
 
@@ -50,13 +50,13 @@ def __dir__():
 
 
 __all__ = [
-    "PostV1AuditListRequestFilterItem",
-    "PostV1AuditListRequestFilterItemOp",
-    "PostV1AuditListRequestFilterItemValue",
-    "PostV1AuditListRequestFilterItemValueThreeItem",
-    "PostV1AuditListRequestSortItem",
-    "PostV1AuditListRequestSortItemDir",
-    "PostV1AuditListResponse",
-    "PostV1AuditListResponseRowsItem",
-    "PostV1AuditListResponseRowsItemActorType",
+    "ListAuditRequestFilterItem",
+    "ListAuditRequestFilterItemOp",
+    "ListAuditRequestFilterItemValue",
+    "ListAuditRequestFilterItemValueThreeItem",
+    "ListAuditRequestSortItem",
+    "ListAuditRequestSortItemDir",
+    "ListAuditResponse",
+    "ListAuditResponseRowsItem",
+    "ListAuditResponseRowsItemActorType",
 ]

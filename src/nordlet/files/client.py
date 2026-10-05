@@ -5,12 +5,12 @@ import typing
 from ..core.client_wrapper import AsyncClientWrapper, SyncClientWrapper
 from ..core.request_options import RequestOptions
 from .raw_client import AsyncRawFilesClient, RawFilesClient
-from .types.post_v1files_delete_response import PostV1FilesDeleteResponse
-from .types.post_v1files_get_response import PostV1FilesGetResponse
-from .types.post_v1files_list_request_filter_item import PostV1FilesListRequestFilterItem
-from .types.post_v1files_list_request_sort_item import PostV1FilesListRequestSortItem
-from .types.post_v1files_list_response import PostV1FilesListResponse
-from .types.post_v1files_upload_response import PostV1FilesUploadResponse
+from .types.delete_files_response import DeleteFilesResponse
+from .types.get_files_response import GetFilesResponse
+from .types.list_files_request_filter_item import ListFilesRequestFilterItem
+from .types.list_files_request_sort_item import ListFilesRequestSortItem
+from .types.list_files_response import ListFilesResponse
+from .types.upload_files_response import UploadFilesResponse
 
 # this is used as the default value for optional parameters
 OMIT = typing.cast(typing.Any, ...)
@@ -31,7 +31,7 @@ class FilesClient:
         """
         return self._raw_client
 
-    def post_v1files_upload(
+    def upload(
         self,
         *,
         entity: str,
@@ -40,7 +40,7 @@ class FilesClient:
         content: str,
         entity_id: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> PostV1FilesUploadResponse:
+    ) -> UploadFilesResponse:
         """
         Parameters
         ----------
@@ -49,6 +49,7 @@ class FilesClient:
         file_name : str
 
         mime_type : str
+            Stored as the bare media type; only PNG, JPEG, GIF, WebP and PDF files are shown in the browser, every other type is downloaded
 
         content : str
             Base64-encoded file content
@@ -60,7 +61,7 @@ class FilesClient:
 
         Returns
         -------
-        PostV1FilesUploadResponse
+        UploadFilesResponse
             Default Response
 
         Examples
@@ -70,14 +71,14 @@ class FilesClient:
         client = Nordlet(
             token="YOUR_TOKEN",
         )
-        client.files.post_v1files_upload(
+        client.files.upload(
             entity="entity",
             file_name="fileName",
             mime_type="mimeType",
             content="content",
         )
         """
-        _response = self._raw_client.post_v1files_upload(
+        _response = self._raw_client.upload(
             entity=entity,
             file_name=file_name,
             mime_type=mime_type,
@@ -87,9 +88,7 @@ class FilesClient:
         )
         return _response.data
 
-    def post_v1files_get(
-        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
-    ) -> PostV1FilesGetResponse:
+    def get(self, *, id: str, request_options: typing.Optional[RequestOptions] = None) -> GetFilesResponse:
         """
         Parameters
         ----------
@@ -100,7 +99,7 @@ class FilesClient:
 
         Returns
         -------
-        PostV1FilesGetResponse
+        GetFilesResponse
             Default Response
 
         Examples
@@ -110,23 +109,23 @@ class FilesClient:
         client = Nordlet(
             token="YOUR_TOKEN",
         )
-        client.files.post_v1files_get(
+        client.files.get(
             id="id",
         )
         """
-        _response = self._raw_client.post_v1files_get(id=id, request_options=request_options)
+        _response = self._raw_client.get(id=id, request_options=request_options)
         return _response.data
 
-    def post_v1files_list(
+    def list(
         self,
         *,
         page: typing.Optional[int] = OMIT,
         page_size: typing.Optional[int] = OMIT,
-        sort: typing.Optional[typing.Sequence[PostV1FilesListRequestSortItem]] = OMIT,
-        filter: typing.Optional[typing.Sequence[PostV1FilesListRequestFilterItem]] = OMIT,
+        sort: typing.Optional[typing.Sequence[ListFilesRequestSortItem]] = OMIT,
+        filter: typing.Optional[typing.Sequence[ListFilesRequestFilterItem]] = OMIT,
         totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> PostV1FilesListResponse:
+    ) -> ListFilesResponse:
         """
         Parameters
         ----------
@@ -134,9 +133,9 @@ class FilesClient:
 
         page_size : typing.Optional[int]
 
-        sort : typing.Optional[typing.Sequence[PostV1FilesListRequestSortItem]]
+        sort : typing.Optional[typing.Sequence[ListFilesRequestSortItem]]
 
-        filter : typing.Optional[typing.Sequence[PostV1FilesListRequestFilterItem]]
+        filter : typing.Optional[typing.Sequence[ListFilesRequestFilterItem]]
 
         totals : typing.Optional[typing.Sequence[str]]
             Numeric fields to sum over every row matching the filter (not only the current page)
@@ -146,7 +145,7 @@ class FilesClient:
 
         Returns
         -------
-        PostV1FilesListResponse
+        ListFilesResponse
             Default Response
 
         Examples
@@ -156,16 +155,14 @@ class FilesClient:
         client = Nordlet(
             token="YOUR_TOKEN",
         )
-        client.files.post_v1files_list()
+        client.files.list()
         """
-        _response = self._raw_client.post_v1files_list(
+        _response = self._raw_client.list(
             page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 
-    def post_v1files_delete(
-        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
-    ) -> PostV1FilesDeleteResponse:
+    def delete(self, *, id: str, request_options: typing.Optional[RequestOptions] = None) -> DeleteFilesResponse:
         """
         Parameters
         ----------
@@ -176,7 +173,7 @@ class FilesClient:
 
         Returns
         -------
-        PostV1FilesDeleteResponse
+        DeleteFilesResponse
             Default Response
 
         Examples
@@ -186,11 +183,11 @@ class FilesClient:
         client = Nordlet(
             token="YOUR_TOKEN",
         )
-        client.files.post_v1files_delete(
+        client.files.delete(
             id="id",
         )
         """
-        _response = self._raw_client.post_v1files_delete(id=id, request_options=request_options)
+        _response = self._raw_client.delete(id=id, request_options=request_options)
         return _response.data
 
 
@@ -209,7 +206,7 @@ class AsyncFilesClient:
         """
         return self._raw_client
 
-    async def post_v1files_upload(
+    async def upload(
         self,
         *,
         entity: str,
@@ -218,7 +215,7 @@ class AsyncFilesClient:
         content: str,
         entity_id: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> PostV1FilesUploadResponse:
+    ) -> UploadFilesResponse:
         """
         Parameters
         ----------
@@ -227,6 +224,7 @@ class AsyncFilesClient:
         file_name : str
 
         mime_type : str
+            Stored as the bare media type; only PNG, JPEG, GIF, WebP and PDF files are shown in the browser, every other type is downloaded
 
         content : str
             Base64-encoded file content
@@ -238,7 +236,7 @@ class AsyncFilesClient:
 
         Returns
         -------
-        PostV1FilesUploadResponse
+        UploadFilesResponse
             Default Response
 
         Examples
@@ -253,7 +251,7 @@ class AsyncFilesClient:
 
 
         async def main() -> None:
-            await client.files.post_v1files_upload(
+            await client.files.upload(
                 entity="entity",
                 file_name="fileName",
                 mime_type="mimeType",
@@ -263,7 +261,7 @@ class AsyncFilesClient:
 
         asyncio.run(main())
         """
-        _response = await self._raw_client.post_v1files_upload(
+        _response = await self._raw_client.upload(
             entity=entity,
             file_name=file_name,
             mime_type=mime_type,
@@ -273,9 +271,7 @@ class AsyncFilesClient:
         )
         return _response.data
 
-    async def post_v1files_get(
-        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
-    ) -> PostV1FilesGetResponse:
+    async def get(self, *, id: str, request_options: typing.Optional[RequestOptions] = None) -> GetFilesResponse:
         """
         Parameters
         ----------
@@ -286,7 +282,7 @@ class AsyncFilesClient:
 
         Returns
         -------
-        PostV1FilesGetResponse
+        GetFilesResponse
             Default Response
 
         Examples
@@ -301,26 +297,26 @@ class AsyncFilesClient:
 
 
         async def main() -> None:
-            await client.files.post_v1files_get(
+            await client.files.get(
                 id="id",
             )
 
 
         asyncio.run(main())
         """
-        _response = await self._raw_client.post_v1files_get(id=id, request_options=request_options)
+        _response = await self._raw_client.get(id=id, request_options=request_options)
         return _response.data
 
-    async def post_v1files_list(
+    async def list(
         self,
         *,
         page: typing.Optional[int] = OMIT,
         page_size: typing.Optional[int] = OMIT,
-        sort: typing.Optional[typing.Sequence[PostV1FilesListRequestSortItem]] = OMIT,
-        filter: typing.Optional[typing.Sequence[PostV1FilesListRequestFilterItem]] = OMIT,
+        sort: typing.Optional[typing.Sequence[ListFilesRequestSortItem]] = OMIT,
+        filter: typing.Optional[typing.Sequence[ListFilesRequestFilterItem]] = OMIT,
         totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> PostV1FilesListResponse:
+    ) -> ListFilesResponse:
         """
         Parameters
         ----------
@@ -328,9 +324,9 @@ class AsyncFilesClient:
 
         page_size : typing.Optional[int]
 
-        sort : typing.Optional[typing.Sequence[PostV1FilesListRequestSortItem]]
+        sort : typing.Optional[typing.Sequence[ListFilesRequestSortItem]]
 
-        filter : typing.Optional[typing.Sequence[PostV1FilesListRequestFilterItem]]
+        filter : typing.Optional[typing.Sequence[ListFilesRequestFilterItem]]
 
         totals : typing.Optional[typing.Sequence[str]]
             Numeric fields to sum over every row matching the filter (not only the current page)
@@ -340,7 +336,7 @@ class AsyncFilesClient:
 
         Returns
         -------
-        PostV1FilesListResponse
+        ListFilesResponse
             Default Response
 
         Examples
@@ -355,19 +351,17 @@ class AsyncFilesClient:
 
 
         async def main() -> None:
-            await client.files.post_v1files_list()
+            await client.files.list()
 
 
         asyncio.run(main())
         """
-        _response = await self._raw_client.post_v1files_list(
+        _response = await self._raw_client.list(
             page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 
-    async def post_v1files_delete(
-        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
-    ) -> PostV1FilesDeleteResponse:
+    async def delete(self, *, id: str, request_options: typing.Optional[RequestOptions] = None) -> DeleteFilesResponse:
         """
         Parameters
         ----------
@@ -378,7 +372,7 @@ class AsyncFilesClient:
 
         Returns
         -------
-        PostV1FilesDeleteResponse
+        DeleteFilesResponse
             Default Response
 
         Examples
@@ -393,12 +387,12 @@ class AsyncFilesClient:
 
 
         async def main() -> None:
-            await client.files.post_v1files_delete(
+            await client.files.delete(
                 id="id",
             )
 
 
         asyncio.run(main())
         """
-        _response = await self._raw_client.post_v1files_delete(id=id, request_options=request_options)
+        _response = await self._raw_client.delete(id=id, request_options=request_options)
         return _response.data

@@ -13,214 +13,176 @@ from ..core.request_options import RequestOptions
 from ..core.serialization import convert_and_respect_annotation_metadata
 from ..errors.bad_request_error import BadRequestError
 from ..errors.conflict_error import ConflictError
+from ..errors.content_too_large_error import ContentTooLargeError
 from ..errors.forbidden_error import ForbiddenError
 from ..errors.internal_server_error import InternalServerError
 from ..errors.not_found_error import NotFoundError
+from ..errors.payment_required_error import PaymentRequiredError
 from ..errors.too_many_requests_error import TooManyRequestsError
 from ..errors.unauthorized_error import UnauthorizedError
 from ..errors.unprocessable_entity_error import UnprocessableEntityError
 from ..types.error_response import ErrorResponse
-from .types.post_v1declarations_annual_accounts_attachments_add_request_kind import (
-    PostV1DeclarationsAnnualAccountsAttachmentsAddRequestKind,
+from .types.annual_accounts_attachments_add_declarations_request_kind import (
+    AnnualAccountsAttachmentsAddDeclarationsRequestKind,
 )
-from .types.post_v1declarations_annual_accounts_attachments_add_response import (
-    PostV1DeclarationsAnnualAccountsAttachmentsAddResponse,
+from .types.annual_accounts_attachments_add_declarations_response import (
+    AnnualAccountsAttachmentsAddDeclarationsResponse,
 )
-from .types.post_v1declarations_annual_accounts_attachments_delete_response import (
-    PostV1DeclarationsAnnualAccountsAttachmentsDeleteResponse,
+from .types.annual_accounts_attachments_delete_declarations_response import (
+    AnnualAccountsAttachmentsDeleteDeclarationsResponse,
 )
-from .types.post_v1declarations_annual_accounts_distributions_create_request_kind import (
-    PostV1DeclarationsAnnualAccountsDistributionsCreateRequestKind,
+from .types.annual_accounts_distributions_create_declarations_request_kind import (
+    AnnualAccountsDistributionsCreateDeclarationsRequestKind,
 )
-from .types.post_v1declarations_annual_accounts_distributions_create_response import (
-    PostV1DeclarationsAnnualAccountsDistributionsCreateResponse,
+from .types.annual_accounts_distributions_create_declarations_response import (
+    AnnualAccountsDistributionsCreateDeclarationsResponse,
 )
-from .types.post_v1declarations_annual_accounts_distributions_delete_response import (
-    PostV1DeclarationsAnnualAccountsDistributionsDeleteResponse,
+from .types.annual_accounts_distributions_delete_declarations_response import (
+    AnnualAccountsDistributionsDeleteDeclarationsResponse,
 )
-from .types.post_v1declarations_annual_accounts_distributions_update_request_kind import (
-    PostV1DeclarationsAnnualAccountsDistributionsUpdateRequestKind,
+from .types.annual_accounts_distributions_update_declarations_request_kind import (
+    AnnualAccountsDistributionsUpdateDeclarationsRequestKind,
 )
-from .types.post_v1declarations_annual_accounts_distributions_update_response import (
-    PostV1DeclarationsAnnualAccountsDistributionsUpdateResponse,
+from .types.annual_accounts_distributions_update_declarations_response import (
+    AnnualAccountsDistributionsUpdateDeclarationsResponse,
 )
-from .types.post_v1declarations_annual_accounts_get_response import PostV1DeclarationsAnnualAccountsGetResponse
-from .types.post_v1declarations_annual_accounts_set_response import PostV1DeclarationsAnnualAccountsSetResponse
-from .types.post_v1declarations_annual_accounts_signatures_create_request_director_type import (
-    PostV1DeclarationsAnnualAccountsSignaturesCreateRequestDirectorType,
+from .types.annual_accounts_get_declarations_response import AnnualAccountsGetDeclarationsResponse
+from .types.annual_accounts_set_declarations_response import AnnualAccountsSetDeclarationsResponse
+from .types.annual_accounts_signatures_create_declarations_request_director_type import (
+    AnnualAccountsSignaturesCreateDeclarationsRequestDirectorType,
 )
-from .types.post_v1declarations_annual_accounts_signatures_create_response import (
-    PostV1DeclarationsAnnualAccountsSignaturesCreateResponse,
+from .types.annual_accounts_signatures_create_declarations_response import (
+    AnnualAccountsSignaturesCreateDeclarationsResponse,
 )
-from .types.post_v1declarations_annual_accounts_signatures_delete_response import (
-    PostV1DeclarationsAnnualAccountsSignaturesDeleteResponse,
+from .types.annual_accounts_signatures_delete_declarations_response import (
+    AnnualAccountsSignaturesDeleteDeclarationsResponse,
 )
-from .types.post_v1declarations_annual_accounts_signatures_update_request_director_type import (
-    PostV1DeclarationsAnnualAccountsSignaturesUpdateRequestDirectorType,
+from .types.annual_accounts_signatures_update_declarations_request_director_type import (
+    AnnualAccountsSignaturesUpdateDeclarationsRequestDirectorType,
 )
-from .types.post_v1declarations_annual_accounts_signatures_update_response import (
-    PostV1DeclarationsAnnualAccountsSignaturesUpdateResponse,
+from .types.annual_accounts_signatures_update_declarations_response import (
+    AnnualAccountsSignaturesUpdateDeclarationsResponse,
 )
-from .types.post_v1declarations_automation_list_response import PostV1DeclarationsAutomationListResponse
-from .types.post_v1declarations_automation_update_response import PostV1DeclarationsAutomationUpdateResponse
-from .types.post_v1declarations_certificates_delete_request_field_key import (
-    PostV1DeclarationsCertificatesDeleteRequestFieldKey,
+from .types.automation_list_declarations_response import AutomationListDeclarationsResponse
+from .types.automation_update_declarations_response import AutomationUpdateDeclarationsResponse
+from .types.certificates_delete_declarations_request_field_key import CertificatesDeleteDeclarationsRequestFieldKey
+from .types.certificates_delete_declarations_response import CertificatesDeleteDeclarationsResponse
+from .types.certificates_list_declarations_response import CertificatesListDeclarationsResponse
+from .types.certificates_upload_declarations_response import CertificatesUploadDeclarationsResponse
+from .types.configs_list_declarations_response import ConfigsListDeclarationsResponse
+from .types.configs_update_declarations_response import ConfigsUpdateDeclarationsResponse
+from .types.cy_he32generate_declarations_response import CyHe32GenerateDeclarationsResponse
+from .types.cy_td4generate_declarations_response import CyTd4GenerateDeclarationsResponse
+from .types.de_beitragsnachweis_generate_declarations_response import DeBeitragsnachweisGenerateDeclarationsResponse
+from .types.de_deuev_generate_declarations_response import DeDeuevGenerateDeclarationsResponse
+from .types.de_return_facts_get_declarations_response import DeReturnFactsGetDeclarationsResponse
+from .types.de_return_facts_set_declarations_request_facts import DeReturnFactsSetDeclarationsRequestFacts
+from .types.de_return_facts_set_declarations_response import DeReturnFactsSetDeclarationsResponse
+from .types.de_returns_generate_declarations_request_rule_key import DeReturnsGenerateDeclarationsRequestRuleKey
+from .types.de_returns_generate_declarations_response import DeReturnsGenerateDeclarationsResponse
+from .types.dk_selskabsskat_generate_declarations_response import DkSelskabsskatGenerateDeclarationsResponse
+from .types.ee_employment_register_send_declarations_request_event import (
+    EeEmploymentRegisterSendDeclarationsRequestEvent,
 )
-from .types.post_v1declarations_certificates_delete_response import PostV1DeclarationsCertificatesDeleteResponse
-from .types.post_v1declarations_certificates_list_response import PostV1DeclarationsCertificatesListResponse
-from .types.post_v1declarations_certificates_upload_response import PostV1DeclarationsCertificatesUploadResponse
-from .types.post_v1declarations_configs_list_response import PostV1DeclarationsConfigsListResponse
-from .types.post_v1declarations_configs_update_response import PostV1DeclarationsConfigsUpdateResponse
-from .types.post_v1declarations_cy_he32generate_response import PostV1DeclarationsCyHe32GenerateResponse
-from .types.post_v1declarations_cy_td4generate_response import PostV1DeclarationsCyTd4GenerateResponse
-from .types.post_v1declarations_de_beitragsnachweis_generate_response import (
-    PostV1DeclarationsDeBeitragsnachweisGenerateResponse,
+from .types.ee_employment_register_send_declarations_response import EeEmploymentRegisterSendDeclarationsResponse
+from .types.es_verifactu_declaracion_responsable_declarations_response import (
+    EsVerifactuDeclaracionResponsableDeclarationsResponse,
 )
-from .types.post_v1declarations_de_deuev_generate_response import PostV1DeclarationsDeDeuevGenerateResponse
-from .types.post_v1declarations_de_return_facts_get_response import PostV1DeclarationsDeReturnFactsGetResponse
-from .types.post_v1declarations_de_return_facts_set_request_facts import PostV1DeclarationsDeReturnFactsSetRequestFacts
-from .types.post_v1declarations_de_return_facts_set_response import PostV1DeclarationsDeReturnFactsSetResponse
-from .types.post_v1declarations_de_returns_generate_request_rule_key import (
-    PostV1DeclarationsDeReturnsGenerateRequestRuleKey,
+from .types.eu_distance_sales_threshold_get_declarations_response import EuDistanceSalesThresholdGetDeclarationsResponse
+from .types.eu_ioss_compute_declarations_response import EuIossComputeDeclarationsResponse
+from .types.eu_oss_compute_declarations_response import EuOssComputeDeclarationsResponse
+from .types.eu_sme_cross_border_report_compute_declarations_response import (
+    EuSmeCrossBorderReportComputeDeclarationsResponse,
 )
-from .types.post_v1declarations_de_returns_generate_response import PostV1DeclarationsDeReturnsGenerateResponse
-from .types.post_v1declarations_dk_selskabsskat_generate_response import (
-    PostV1DeclarationsDkSelskabsskatGenerateResponse,
+from .types.eu_sme_threshold_get_declarations_response import EuSmeThresholdGetDeclarationsResponse
+from .types.eu_sme_thresholds_list_declarations_response import EuSmeThresholdsListDeclarationsResponse
+from .types.eu_union_turnover_get_declarations_response import EuUnionTurnoverGetDeclarationsResponse
+from .types.eu_vat_return_compute_declarations_response import EuVatReturnComputeDeclarationsResponse
+from .types.eu_vat_return_packs_list_declarations_response import EuVatReturnPacksListDeclarationsResponse
+from .types.ie_b1generate_declarations_response import IeB1GenerateDeclarationsResponse
+from .types.ie_ct1generate_declarations_response import IeCt1GenerateDeclarationsResponse
+from .types.it_sdi_purchase_preview_declarations_request_tipo_documento import (
+    ItSdiPurchasePreviewDeclarationsRequestTipoDocumento,
 )
-from .types.post_v1declarations_ee_employment_register_send_request_event import (
-    PostV1DeclarationsEeEmploymentRegisterSendRequestEvent,
+from .types.it_sdi_purchase_preview_declarations_response import ItSdiPurchasePreviewDeclarationsResponse
+from .types.it_sdi_purchase_send_declarations_request_tipo_documento import (
+    ItSdiPurchaseSendDeclarationsRequestTipoDocumento,
 )
-from .types.post_v1declarations_ee_employment_register_send_response import (
-    PostV1DeclarationsEeEmploymentRegisterSendResponse,
+from .types.it_sdi_purchase_send_declarations_response import ItSdiPurchaseSendDeclarationsResponse
+from .types.li_lohndeklaration_generate_declarations_response import LiLohndeklarationGenerateDeclarationsResponse
+from .types.li_lohnlisten_generate_declarations_response import LiLohnlistenGenerateDeclarationsResponse
+from .types.lt_fr0564compute_declarations_response import LtFr0564ComputeDeclarationsResponse
+from .types.lt_fr0600compute_declarations_response import LtFr0600ComputeDeclarationsResponse
+from .types.lt_gpm312compute_declarations_request_payout_timing import LtGpm312ComputeDeclarationsRequestPayoutTiming
+from .types.lt_gpm312compute_declarations_response import LtGpm312ComputeDeclarationsResponse
+from .types.lt_gpm313compute_declarations_request_payout_timing import LtGpm313ComputeDeclarationsRequestPayoutTiming
+from .types.lt_gpm313compute_declarations_response import LtGpm313ComputeDeclarationsResponse
+from .types.lt_intrastat_compute_declarations_request_flow import LtIntrastatComputeDeclarationsRequestFlow
+from .types.lt_intrastat_compute_declarations_request_transport_mode import (
+    LtIntrastatComputeDeclarationsRequestTransportMode,
 )
-from .types.post_v1declarations_es_verifactu_declaracion_responsable_response import (
-    PostV1DeclarationsEsVerifactuDeclaracionResponsableResponse,
-)
-from .types.post_v1declarations_eu_distance_sales_threshold_get_response import (
-    PostV1DeclarationsEuDistanceSalesThresholdGetResponse,
-)
-from .types.post_v1declarations_eu_ioss_compute_response import PostV1DeclarationsEuIossComputeResponse
-from .types.post_v1declarations_eu_oss_compute_response import PostV1DeclarationsEuOssComputeResponse
-from .types.post_v1declarations_eu_sme_cross_border_report_compute_response import (
-    PostV1DeclarationsEuSmeCrossBorderReportComputeResponse,
-)
-from .types.post_v1declarations_eu_sme_threshold_get_response import PostV1DeclarationsEuSmeThresholdGetResponse
-from .types.post_v1declarations_eu_sme_thresholds_list_response import PostV1DeclarationsEuSmeThresholdsListResponse
-from .types.post_v1declarations_eu_union_turnover_get_response import PostV1DeclarationsEuUnionTurnoverGetResponse
-from .types.post_v1declarations_eu_vat_return_compute_response import PostV1DeclarationsEuVatReturnComputeResponse
-from .types.post_v1declarations_eu_vat_return_packs_list_response import PostV1DeclarationsEuVatReturnPacksListResponse
-from .types.post_v1declarations_ie_b1generate_response import PostV1DeclarationsIeB1GenerateResponse
-from .types.post_v1declarations_ie_ct1generate_response import PostV1DeclarationsIeCt1GenerateResponse
-from .types.post_v1declarations_it_sdi_purchase_preview_request_tipo_documento import (
-    PostV1DeclarationsItSdiPurchasePreviewRequestTipoDocumento,
-)
-from .types.post_v1declarations_it_sdi_purchase_preview_response import PostV1DeclarationsItSdiPurchasePreviewResponse
-from .types.post_v1declarations_it_sdi_purchase_send_request_tipo_documento import (
-    PostV1DeclarationsItSdiPurchaseSendRequestTipoDocumento,
-)
-from .types.post_v1declarations_it_sdi_purchase_send_response import PostV1DeclarationsItSdiPurchaseSendResponse
-from .types.post_v1declarations_li_lohndeklaration_generate_response import (
-    PostV1DeclarationsLiLohndeklarationGenerateResponse,
-)
-from .types.post_v1declarations_li_lohnlisten_generate_response import PostV1DeclarationsLiLohnlistenGenerateResponse
-from .types.post_v1declarations_lt_fr0564compute_response import PostV1DeclarationsLtFr0564ComputeResponse
-from .types.post_v1declarations_lt_fr0600compute_response import PostV1DeclarationsLtFr0600ComputeResponse
-from .types.post_v1declarations_lt_gpm312compute_request_payout_timing import (
-    PostV1DeclarationsLtGpm312ComputeRequestPayoutTiming,
-)
-from .types.post_v1declarations_lt_gpm312compute_response import PostV1DeclarationsLtGpm312ComputeResponse
-from .types.post_v1declarations_lt_gpm313compute_request_payout_timing import (
-    PostV1DeclarationsLtGpm313ComputeRequestPayoutTiming,
-)
-from .types.post_v1declarations_lt_gpm313compute_response import PostV1DeclarationsLtGpm313ComputeResponse
-from .types.post_v1declarations_lt_intrastat_compute_request_flow import PostV1DeclarationsLtIntrastatComputeRequestFlow
-from .types.post_v1declarations_lt_intrastat_compute_request_transport_mode import (
-    PostV1DeclarationsLtIntrastatComputeRequestTransportMode,
-)
-from .types.post_v1declarations_lt_intrastat_compute_response import PostV1DeclarationsLtIntrastatComputeResponse
-from .types.post_v1declarations_lt_intrastat_obligation_response import PostV1DeclarationsLtIntrastatObligationResponse
-from .types.post_v1declarations_lt_isaf_generate_request_data_type import (
-    PostV1DeclarationsLtIsafGenerateRequestDataType,
-)
-from .types.post_v1declarations_lt_isaf_generate_response import PostV1DeclarationsLtIsafGenerateResponse
-from .types.post_v1declarations_lt_ivaz_amend_response import PostV1DeclarationsLtIvazAmendResponse
-from .types.post_v1declarations_lt_ivaz_cancel_request_entries_item import (
-    PostV1DeclarationsLtIvazCancelRequestEntriesItem,
-)
-from .types.post_v1declarations_lt_ivaz_cancel_response import PostV1DeclarationsLtIvazCancelResponse
-from .types.post_v1declarations_lt_ivaz_generate_response import PostV1DeclarationsLtIvazGenerateResponse
-from .types.post_v1declarations_lt_pln204compute_response import PostV1DeclarationsLtPln204ComputeResponse
-from .types.post_v1declarations_lt_pln204ffdata_response import PostV1DeclarationsLtPln204FfdataResponse
-from .types.post_v1declarations_lt_saft_generate_request_data_type import (
-    PostV1DeclarationsLtSaftGenerateRequestDataType,
-)
-from .types.post_v1declarations_lt_saft_generate_response import PostV1DeclarationsLtSaftGenerateResponse
-from .types.post_v1declarations_lt_saft_send_request_data_type import PostV1DeclarationsLtSaftSendRequestDataType
-from .types.post_v1declarations_lt_saft_send_response import PostV1DeclarationsLtSaftSendResponse
-from .types.post_v1declarations_lt_sam_compute_response import PostV1DeclarationsLtSamComputeResponse
-from .types.post_v1declarations_lt_sd_ffdata_request_type import PostV1DeclarationsLtSdFfdataRequestType
-from .types.post_v1declarations_lt_sd_ffdata_response import PostV1DeclarationsLtSdFfdataResponse
-from .types.post_v1declarations_lt_sd_generate_request_type import PostV1DeclarationsLtSdGenerateRequestType
-from .types.post_v1declarations_lt_sd_generate_response import PostV1DeclarationsLtSdGenerateResponse
-from .types.post_v1declarations_mt_annual_return_generate_response import (
-    PostV1DeclarationsMtAnnualReturnGenerateResponse,
-)
-from .types.post_v1declarations_mt_company_tax_generate_response import PostV1DeclarationsMtCompanyTaxGenerateResponse
-from .types.post_v1declarations_pl_cit8generate_response import PostV1DeclarationsPlCit8GenerateResponse
-from .types.post_v1declarations_pl_intrastat_generate_request_flow import (
-    PostV1DeclarationsPlIntrastatGenerateRequestFlow,
-)
-from .types.post_v1declarations_pl_intrastat_generate_response import PostV1DeclarationsPlIntrastatGenerateResponse
-from .types.post_v1declarations_pl_jpk_fa_generate_response import PostV1DeclarationsPlJpkFaGenerateResponse
-from .types.post_v1declarations_pl_jpk_kr_generate_response import PostV1DeclarationsPlJpkKrGenerateResponse
-from .types.post_v1declarations_pl_jpk_mag_generate_response import PostV1DeclarationsPlJpkMagGenerateResponse
-from .types.post_v1declarations_pl_jpk_v7m_generate_response import PostV1DeclarationsPlJpkV7MGenerateResponse
-from .types.post_v1declarations_pl_ksef_receipt_response import PostV1DeclarationsPlKsefReceiptResponse
-from .types.post_v1declarations_pl_ksef_received_fetch_response import PostV1DeclarationsPlKsefReceivedFetchResponse
-from .types.post_v1declarations_pl_ksef_received_list_response import PostV1DeclarationsPlKsefReceivedListResponse
-from .types.post_v1declarations_pl_pit11generate_response import PostV1DeclarationsPlPit11GenerateResponse
-from .types.post_v1declarations_pl_vat_ue_generate_response import PostV1DeclarationsPlVatUeGenerateResponse
-from .types.post_v1declarations_pl_zus_dra_compute_response import PostV1DeclarationsPlZusDraComputeResponse
-from .types.post_v1declarations_pl_zus_dra_kedu_response import PostV1DeclarationsPlZusDraKeduResponse
-from .types.post_v1declarations_pl_zus_dra_pdf_response import PostV1DeclarationsPlZusDraPdfResponse
-from .types.post_v1declarations_ro_etransport_build_response import PostV1DeclarationsRoEtransportBuildResponse
-from .types.post_v1declarations_ro_etransport_status_response import PostV1DeclarationsRoEtransportStatusResponse
-from .types.post_v1declarations_ro_etransport_submit_response import PostV1DeclarationsRoEtransportSubmitResponse
-from .types.post_v1declarations_submissions_create_request_data_type import (
-    PostV1DeclarationsSubmissionsCreateRequestDataType,
-)
-from .types.post_v1declarations_submissions_create_request_obligation import (
-    PostV1DeclarationsSubmissionsCreateRequestObligation,
-)
-from .types.post_v1declarations_submissions_create_response import PostV1DeclarationsSubmissionsCreateResponse
-from .types.post_v1declarations_submissions_list_request_filter_item import (
-    PostV1DeclarationsSubmissionsListRequestFilterItem,
-)
-from .types.post_v1declarations_submissions_list_request_sort_item import (
-    PostV1DeclarationsSubmissionsListRequestSortItem,
-)
-from .types.post_v1declarations_submissions_list_response import PostV1DeclarationsSubmissionsListResponse
-from .types.post_v1declarations_submissions_mark_request_status import PostV1DeclarationsSubmissionsMarkRequestStatus
-from .types.post_v1declarations_submissions_mark_response import PostV1DeclarationsSubmissionsMarkResponse
-from .types.post_v1declarations_submissions_retry_response import PostV1DeclarationsSubmissionsRetryResponse
-from .types.post_v1declarations_tax_adjustments_create_request_kind import (
-    PostV1DeclarationsTaxAdjustmentsCreateRequestKind,
-)
-from .types.post_v1declarations_tax_adjustments_create_response import PostV1DeclarationsTaxAdjustmentsCreateResponse
-from .types.post_v1declarations_tax_adjustments_delete_response import PostV1DeclarationsTaxAdjustmentsDeleteResponse
-from .types.post_v1declarations_tax_adjustments_list_response import PostV1DeclarationsTaxAdjustmentsListResponse
-from .types.post_v1declarations_tax_adjustments_update_request_kind import (
-    PostV1DeclarationsTaxAdjustmentsUpdateRequestKind,
-)
-from .types.post_v1declarations_tax_adjustments_update_response import PostV1DeclarationsTaxAdjustmentsUpdateResponse
-from .types.post_v1declarations_tax_payments_create_request_kind import PostV1DeclarationsTaxPaymentsCreateRequestKind
-from .types.post_v1declarations_tax_payments_create_request_tax import PostV1DeclarationsTaxPaymentsCreateRequestTax
-from .types.post_v1declarations_tax_payments_create_response import PostV1DeclarationsTaxPaymentsCreateResponse
-from .types.post_v1declarations_tax_payments_delete_response import PostV1DeclarationsTaxPaymentsDeleteResponse
-from .types.post_v1declarations_tax_payments_list_request_tax import PostV1DeclarationsTaxPaymentsListRequestTax
-from .types.post_v1declarations_tax_payments_list_response import PostV1DeclarationsTaxPaymentsListResponse
-from .types.post_v1declarations_tax_payments_update_request_kind import PostV1DeclarationsTaxPaymentsUpdateRequestKind
-from .types.post_v1declarations_tax_payments_update_response import PostV1DeclarationsTaxPaymentsUpdateResponse
+from .types.lt_intrastat_compute_declarations_response import LtIntrastatComputeDeclarationsResponse
+from .types.lt_intrastat_obligation_declarations_response import LtIntrastatObligationDeclarationsResponse
+from .types.lt_isaf_generate_declarations_request_data_type import LtIsafGenerateDeclarationsRequestDataType
+from .types.lt_isaf_generate_declarations_response import LtIsafGenerateDeclarationsResponse
+from .types.lt_ivaz_amend_declarations_response import LtIvazAmendDeclarationsResponse
+from .types.lt_ivaz_cancel_declarations_request_entries_item import LtIvazCancelDeclarationsRequestEntriesItem
+from .types.lt_ivaz_cancel_declarations_response import LtIvazCancelDeclarationsResponse
+from .types.lt_ivaz_generate_declarations_response import LtIvazGenerateDeclarationsResponse
+from .types.lt_pln204compute_declarations_response import LtPln204ComputeDeclarationsResponse
+from .types.lt_pln204ffdata_declarations_response import LtPln204FfdataDeclarationsResponse
+from .types.lt_saft_generate_declarations_request_data_type import LtSaftGenerateDeclarationsRequestDataType
+from .types.lt_saft_generate_declarations_response import LtSaftGenerateDeclarationsResponse
+from .types.lt_saft_send_declarations_request_data_type import LtSaftSendDeclarationsRequestDataType
+from .types.lt_saft_send_declarations_response import LtSaftSendDeclarationsResponse
+from .types.lt_sam_compute_declarations_response import LtSamComputeDeclarationsResponse
+from .types.lt_sd_ffdata_declarations_request_type import LtSdFfdataDeclarationsRequestType
+from .types.lt_sd_ffdata_declarations_response import LtSdFfdataDeclarationsResponse
+from .types.lt_sd_generate_declarations_request_type import LtSdGenerateDeclarationsRequestType
+from .types.lt_sd_generate_declarations_response import LtSdGenerateDeclarationsResponse
+from .types.mt_annual_return_generate_declarations_response import MtAnnualReturnGenerateDeclarationsResponse
+from .types.mt_company_tax_generate_declarations_response import MtCompanyTaxGenerateDeclarationsResponse
+from .types.pl_cit8generate_declarations_response import PlCit8GenerateDeclarationsResponse
+from .types.pl_intrastat_generate_declarations_request_flow import PlIntrastatGenerateDeclarationsRequestFlow
+from .types.pl_intrastat_generate_declarations_response import PlIntrastatGenerateDeclarationsResponse
+from .types.pl_jpk_fa_generate_declarations_response import PlJpkFaGenerateDeclarationsResponse
+from .types.pl_jpk_kr_generate_declarations_response import PlJpkKrGenerateDeclarationsResponse
+from .types.pl_jpk_mag_generate_declarations_response import PlJpkMagGenerateDeclarationsResponse
+from .types.pl_jpk_v7m_generate_declarations_response import PlJpkV7MGenerateDeclarationsResponse
+from .types.pl_ksef_receipt_declarations_response import PlKsefReceiptDeclarationsResponse
+from .types.pl_ksef_received_fetch_declarations_response import PlKsefReceivedFetchDeclarationsResponse
+from .types.pl_ksef_received_list_declarations_response import PlKsefReceivedListDeclarationsResponse
+from .types.pl_pit11generate_declarations_response import PlPit11GenerateDeclarationsResponse
+from .types.pl_vat_ue_generate_declarations_response import PlVatUeGenerateDeclarationsResponse
+from .types.pl_zus_dra_compute_declarations_response import PlZusDraComputeDeclarationsResponse
+from .types.pl_zus_dra_kedu_declarations_response import PlZusDraKeduDeclarationsResponse
+from .types.pl_zus_dra_pdf_declarations_response import PlZusDraPdfDeclarationsResponse
+from .types.ro_etransport_build_declarations_response import RoEtransportBuildDeclarationsResponse
+from .types.ro_etransport_status_declarations_response import RoEtransportStatusDeclarationsResponse
+from .types.ro_etransport_submit_declarations_response import RoEtransportSubmitDeclarationsResponse
+from .types.submissions_create_declarations_request_data_type import SubmissionsCreateDeclarationsRequestDataType
+from .types.submissions_create_declarations_request_obligation import SubmissionsCreateDeclarationsRequestObligation
+from .types.submissions_create_declarations_response import SubmissionsCreateDeclarationsResponse
+from .types.submissions_list_declarations_request_filter_item import SubmissionsListDeclarationsRequestFilterItem
+from .types.submissions_list_declarations_request_sort_item import SubmissionsListDeclarationsRequestSortItem
+from .types.submissions_list_declarations_response import SubmissionsListDeclarationsResponse
+from .types.submissions_mark_declarations_request_status import SubmissionsMarkDeclarationsRequestStatus
+from .types.submissions_mark_declarations_response import SubmissionsMarkDeclarationsResponse
+from .types.submissions_retry_declarations_response import SubmissionsRetryDeclarationsResponse
+from .types.tax_adjustments_create_declarations_request_kind import TaxAdjustmentsCreateDeclarationsRequestKind
+from .types.tax_adjustments_create_declarations_response import TaxAdjustmentsCreateDeclarationsResponse
+from .types.tax_adjustments_delete_declarations_response import TaxAdjustmentsDeleteDeclarationsResponse
+from .types.tax_adjustments_list_declarations_response import TaxAdjustmentsListDeclarationsResponse
+from .types.tax_adjustments_update_declarations_request_kind import TaxAdjustmentsUpdateDeclarationsRequestKind
+from .types.tax_adjustments_update_declarations_response import TaxAdjustmentsUpdateDeclarationsResponse
+from .types.tax_payments_create_declarations_request_kind import TaxPaymentsCreateDeclarationsRequestKind
+from .types.tax_payments_create_declarations_request_tax import TaxPaymentsCreateDeclarationsRequestTax
+from .types.tax_payments_create_declarations_response import TaxPaymentsCreateDeclarationsResponse
+from .types.tax_payments_delete_declarations_response import TaxPaymentsDeleteDeclarationsResponse
+from .types.tax_payments_list_declarations_request_tax import TaxPaymentsListDeclarationsRequestTax
+from .types.tax_payments_list_declarations_response import TaxPaymentsListDeclarationsResponse
+from .types.tax_payments_update_declarations_request_kind import TaxPaymentsUpdateDeclarationsRequestKind
+from .types.tax_payments_update_declarations_response import TaxPaymentsUpdateDeclarationsResponse
 from pydantic import ValidationError
 
 # this is used as the default value for optional parameters
@@ -231,22 +193,22 @@ class RawDeclarationsClient:
     def __init__(self, *, client_wrapper: SyncClientWrapper):
         self._client_wrapper = client_wrapper
 
-    def post_v1declarations_lt_intrastat_compute(
+    def lt_intrastat_compute(
         self,
         *,
         year: int,
         month: int,
-        flow: PostV1DeclarationsLtIntrastatComputeRequestFlow,
+        flow: LtIntrastatComputeDeclarationsRequestFlow,
         transaction_nature: typing.Optional[str] = OMIT,
         delivery_terms: typing.Optional[str] = OMIT,
-        transport_mode: typing.Optional[PostV1DeclarationsLtIntrastatComputeRequestTransportMode] = OMIT,
+        transport_mode: typing.Optional[LtIntrastatComputeDeclarationsRequestTransportMode] = OMIT,
         region_code: typing.Optional[str] = OMIT,
         statistical_value_required: typing.Optional[bool] = OMIT,
         preparation_time_hours: typing.Optional[int] = OMIT,
         preparation_time_minutes: typing.Optional[int] = OMIT,
         persist: typing.Optional[bool] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> HttpResponse[PostV1DeclarationsLtIntrastatComputeResponse]:
+    ) -> HttpResponse[LtIntrastatComputeDeclarationsResponse]:
         """
         Parameters
         ----------
@@ -254,13 +216,13 @@ class RawDeclarationsClient:
 
         month : int
 
-        flow : PostV1DeclarationsLtIntrastatComputeRequestFlow
+        flow : LtIntrastatComputeDeclarationsRequestFlow
 
         transaction_nature : typing.Optional[str]
 
         delivery_terms : typing.Optional[str]
 
-        transport_mode : typing.Optional[PostV1DeclarationsLtIntrastatComputeRequestTransportMode]
+        transport_mode : typing.Optional[LtIntrastatComputeDeclarationsRequestTransportMode]
 
         region_code : typing.Optional[str]
 
@@ -277,7 +239,7 @@ class RawDeclarationsClient:
 
         Returns
         -------
-        HttpResponse[PostV1DeclarationsLtIntrastatComputeResponse]
+        HttpResponse[LtIntrastatComputeDeclarationsResponse]
             Default Response
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -305,9 +267,9 @@ class RawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsLtIntrastatComputeResponse,
+                    LtIntrastatComputeDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsLtIntrastatComputeResponse,  # type: ignore
+                        type_=LtIntrastatComputeDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -325,6 +287,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -358,6 +331,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -409,13 +393,13 @@ class RawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    def post_v1declarations_lt_ivaz_generate(
+    def lt_ivaz_generate(
         self,
         *,
         waybill_ids: typing.Sequence[str],
         persist: typing.Optional[bool] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> HttpResponse[PostV1DeclarationsLtIvazGenerateResponse]:
+    ) -> HttpResponse[LtIvazGenerateDeclarationsResponse]:
         """
         Parameters
         ----------
@@ -428,7 +412,7 @@ class RawDeclarationsClient:
 
         Returns
         -------
-        HttpResponse[PostV1DeclarationsLtIvazGenerateResponse]
+        HttpResponse[LtIvazGenerateDeclarationsResponse]
             Default Response
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -447,9 +431,9 @@ class RawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsLtIvazGenerateResponse,
+                    LtIvazGenerateDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsLtIvazGenerateResponse,  # type: ignore
+                        type_=LtIvazGenerateDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -467,6 +451,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -500,6 +495,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -551,9 +557,9 @@ class RawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    def post_v1declarations_lt_intrastat_obligation(
+    def lt_intrastat_obligation(
         self, *, year: int, request_options: typing.Optional[RequestOptions] = None
-    ) -> HttpResponse[PostV1DeclarationsLtIntrastatObligationResponse]:
+    ) -> HttpResponse[LtIntrastatObligationDeclarationsResponse]:
         """
         Parameters
         ----------
@@ -564,7 +570,7 @@ class RawDeclarationsClient:
 
         Returns
         -------
-        HttpResponse[PostV1DeclarationsLtIntrastatObligationResponse]
+        HttpResponse[LtIntrastatObligationDeclarationsResponse]
             Default Response
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -582,9 +588,9 @@ class RawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsLtIntrastatObligationResponse,
+                    LtIntrastatObligationDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsLtIntrastatObligationResponse,  # type: ignore
+                        type_=LtIntrastatObligationDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -602,6 +608,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -635,6 +652,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -686,14 +714,14 @@ class RawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    def post_v1declarations_lt_isaf_generate(
+    def lt_isaf_generate(
         self,
         *,
         year: int,
         month: int,
-        data_type: typing.Optional[PostV1DeclarationsLtIsafGenerateRequestDataType] = OMIT,
+        data_type: typing.Optional[LtIsafGenerateDeclarationsRequestDataType] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> HttpResponse[PostV1DeclarationsLtIsafGenerateResponse]:
+    ) -> HttpResponse[LtIsafGenerateDeclarationsResponse]:
         """
         Parameters
         ----------
@@ -701,14 +729,14 @@ class RawDeclarationsClient:
 
         month : int
 
-        data_type : typing.Optional[PostV1DeclarationsLtIsafGenerateRequestDataType]
+        data_type : typing.Optional[LtIsafGenerateDeclarationsRequestDataType]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
         Returns
         -------
-        HttpResponse[PostV1DeclarationsLtIsafGenerateResponse]
+        HttpResponse[LtIsafGenerateDeclarationsResponse]
             Default Response
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -728,9 +756,9 @@ class RawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsLtIsafGenerateResponse,
+                    LtIsafGenerateDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsLtIsafGenerateResponse,  # type: ignore
+                        type_=LtIsafGenerateDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -748,6 +776,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -781,6 +820,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -832,7 +882,7 @@ class RawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    def post_v1declarations_lt_fr0600compute(
+    def lt_fr0600compute(
         self,
         *,
         year: int,
@@ -840,7 +890,7 @@ class RawDeclarationsClient:
         months: typing.Optional[int] = OMIT,
         deduction_percent: typing.Optional[int] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> HttpResponse[PostV1DeclarationsLtFr0600ComputeResponse]:
+    ) -> HttpResponse[LtFr0600ComputeDeclarationsResponse]:
         """
         Parameters
         ----------
@@ -857,7 +907,7 @@ class RawDeclarationsClient:
 
         Returns
         -------
-        HttpResponse[PostV1DeclarationsLtFr0600ComputeResponse]
+        HttpResponse[LtFr0600ComputeDeclarationsResponse]
             Default Response
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -878,9 +928,9 @@ class RawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsLtFr0600ComputeResponse,
+                    LtFr0600ComputeDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsLtFr0600ComputeResponse,  # type: ignore
+                        type_=LtFr0600ComputeDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -898,6 +948,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -931,6 +992,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -982,15 +1054,15 @@ class RawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    def post_v1declarations_lt_gpm313compute(
+    def lt_gpm313compute(
         self,
         *,
         year: int,
         month: int,
-        payout_timing: typing.Optional[PostV1DeclarationsLtGpm313ComputeRequestPayoutTiming] = OMIT,
+        payout_timing: typing.Optional[LtGpm313ComputeDeclarationsRequestPayoutTiming] = OMIT,
         payment_day: typing.Optional[int] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> HttpResponse[PostV1DeclarationsLtGpm313ComputeResponse]:
+    ) -> HttpResponse[LtGpm313ComputeDeclarationsResponse]:
         """
         Parameters
         ----------
@@ -998,7 +1070,7 @@ class RawDeclarationsClient:
 
         month : int
 
-        payout_timing : typing.Optional[PostV1DeclarationsLtGpm313ComputeRequestPayoutTiming]
+        payout_timing : typing.Optional[LtGpm313ComputeDeclarationsRequestPayoutTiming]
 
         payment_day : typing.Optional[int]
 
@@ -1007,7 +1079,7 @@ class RawDeclarationsClient:
 
         Returns
         -------
-        HttpResponse[PostV1DeclarationsLtGpm313ComputeResponse]
+        HttpResponse[LtGpm313ComputeDeclarationsResponse]
             Default Response
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -1028,9 +1100,9 @@ class RawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsLtGpm313ComputeResponse,
+                    LtGpm313ComputeDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsLtGpm313ComputeResponse,  # type: ignore
+                        type_=LtGpm313ComputeDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -1048,6 +1120,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -1081,6 +1164,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -1132,9 +1226,9 @@ class RawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    def post_v1declarations_lt_sam_compute(
+    def lt_sam_compute(
         self, *, year: int, month: int, request_options: typing.Optional[RequestOptions] = None
-    ) -> HttpResponse[PostV1DeclarationsLtSamComputeResponse]:
+    ) -> HttpResponse[LtSamComputeDeclarationsResponse]:
         """
         Parameters
         ----------
@@ -1147,7 +1241,7 @@ class RawDeclarationsClient:
 
         Returns
         -------
-        HttpResponse[PostV1DeclarationsLtSamComputeResponse]
+        HttpResponse[LtSamComputeDeclarationsResponse]
             Default Response
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -1166,9 +1260,9 @@ class RawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsLtSamComputeResponse,
+                    LtSamComputeDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsLtSamComputeResponse,  # type: ignore
+                        type_=LtSamComputeDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -1186,6 +1280,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -1219,6 +1324,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -1270,29 +1386,29 @@ class RawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    def post_v1declarations_lt_sd_generate(
+    def lt_sd_generate(
         self,
         *,
-        type: PostV1DeclarationsLtSdGenerateRequestType,
-        from_date: str,
-        to_date: str,
+        type: LtSdGenerateDeclarationsRequestType,
+        from_date: dt.date,
+        to_date: dt.date,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> HttpResponse[PostV1DeclarationsLtSdGenerateResponse]:
+    ) -> HttpResponse[LtSdGenerateDeclarationsResponse]:
         """
         Parameters
         ----------
-        type : PostV1DeclarationsLtSdGenerateRequestType
+        type : LtSdGenerateDeclarationsRequestType
 
-        from_date : str
+        from_date : dt.date
 
-        to_date : str
+        to_date : dt.date
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
         Returns
         -------
-        HttpResponse[PostV1DeclarationsLtSdGenerateResponse]
+        HttpResponse[LtSdGenerateDeclarationsResponse]
             Default Response
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -1312,9 +1428,9 @@ class RawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsLtSdGenerateResponse,
+                    LtSdGenerateDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsLtSdGenerateResponse,  # type: ignore
+                        type_=LtSdGenerateDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -1332,6 +1448,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -1365,6 +1492,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -1416,23 +1554,23 @@ class RawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    def post_v1declarations_lt_saft_generate(
+    def lt_saft_generate(
         self,
         *,
-        from_date: str,
-        to_date: str,
-        data_type: typing.Optional[PostV1DeclarationsLtSaftGenerateRequestDataType] = OMIT,
+        from_date: dt.date,
+        to_date: dt.date,
+        data_type: typing.Optional[LtSaftGenerateDeclarationsRequestDataType] = OMIT,
         persist: typing.Optional[bool] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> HttpResponse[PostV1DeclarationsLtSaftGenerateResponse]:
+    ) -> HttpResponse[LtSaftGenerateDeclarationsResponse]:
         """
         Parameters
         ----------
-        from_date : str
+        from_date : dt.date
 
-        to_date : str
+        to_date : dt.date
 
-        data_type : typing.Optional[PostV1DeclarationsLtSaftGenerateRequestDataType]
+        data_type : typing.Optional[LtSaftGenerateDeclarationsRequestDataType]
 
         persist : typing.Optional[bool]
 
@@ -1441,7 +1579,7 @@ class RawDeclarationsClient:
 
         Returns
         -------
-        HttpResponse[PostV1DeclarationsLtSaftGenerateResponse]
+        HttpResponse[LtSaftGenerateDeclarationsResponse]
             Default Response
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -1462,9 +1600,9 @@ class RawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsLtSaftGenerateResponse,
+                    LtSaftGenerateDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsLtSaftGenerateResponse,  # type: ignore
+                        type_=LtSaftGenerateDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -1482,6 +1620,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -1515,6 +1664,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -1566,13 +1726,13 @@ class RawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    def post_v1declarations_lt_ivaz_amend(
+    def lt_ivaz_amend(
         self,
         *,
         waybill_ids: typing.Sequence[str],
         persist: typing.Optional[bool] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> HttpResponse[PostV1DeclarationsLtIvazAmendResponse]:
+    ) -> HttpResponse[LtIvazAmendDeclarationsResponse]:
         """
         Parameters
         ----------
@@ -1585,7 +1745,7 @@ class RawDeclarationsClient:
 
         Returns
         -------
-        HttpResponse[PostV1DeclarationsLtIvazAmendResponse]
+        HttpResponse[LtIvazAmendDeclarationsResponse]
             Default Response
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -1604,9 +1764,9 @@ class RawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsLtIvazAmendResponse,
+                    LtIvazAmendDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsLtIvazAmendResponse,  # type: ignore
+                        type_=LtIvazAmendDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -1624,6 +1784,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -1657,6 +1828,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -1708,17 +1890,17 @@ class RawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    def post_v1declarations_lt_ivaz_cancel(
+    def lt_ivaz_cancel(
         self,
         *,
-        entries: typing.Sequence[PostV1DeclarationsLtIvazCancelRequestEntriesItem],
+        entries: typing.Sequence[LtIvazCancelDeclarationsRequestEntriesItem],
         persist: typing.Optional[bool] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> HttpResponse[PostV1DeclarationsLtIvazCancelResponse]:
+    ) -> HttpResponse[LtIvazCancelDeclarationsResponse]:
         """
         Parameters
         ----------
-        entries : typing.Sequence[PostV1DeclarationsLtIvazCancelRequestEntriesItem]
+        entries : typing.Sequence[LtIvazCancelDeclarationsRequestEntriesItem]
 
         persist : typing.Optional[bool]
 
@@ -1727,7 +1909,7 @@ class RawDeclarationsClient:
 
         Returns
         -------
-        HttpResponse[PostV1DeclarationsLtIvazCancelResponse]
+        HttpResponse[LtIvazCancelDeclarationsResponse]
             Default Response
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -1736,7 +1918,7 @@ class RawDeclarationsClient:
             json={
                 "entries": convert_and_respect_annotation_metadata(
                     object_=entries,
-                    annotation=typing.Sequence[PostV1DeclarationsLtIvazCancelRequestEntriesItem],
+                    annotation=typing.Sequence[LtIvazCancelDeclarationsRequestEntriesItem],
                     direction="write",
                 ),
                 "persist": persist,
@@ -1750,9 +1932,9 @@ class RawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsLtIvazCancelResponse,
+                    LtIvazCancelDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsLtIvazCancelResponse,  # type: ignore
+                        type_=LtIvazCancelDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -1770,6 +1952,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -1803,6 +1996,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -1854,9 +2058,9 @@ class RawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    def post_v1declarations_lt_fr0564compute(
+    def lt_fr0564compute(
         self, *, year: int, month: int, request_options: typing.Optional[RequestOptions] = None
-    ) -> HttpResponse[PostV1DeclarationsLtFr0564ComputeResponse]:
+    ) -> HttpResponse[LtFr0564ComputeDeclarationsResponse]:
         """
         Parameters
         ----------
@@ -1869,7 +2073,7 @@ class RawDeclarationsClient:
 
         Returns
         -------
-        HttpResponse[PostV1DeclarationsLtFr0564ComputeResponse]
+        HttpResponse[LtFr0564ComputeDeclarationsResponse]
             Default Response
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -1888,9 +2092,9 @@ class RawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsLtFr0564ComputeResponse,
+                    LtFr0564ComputeDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsLtFr0564ComputeResponse,  # type: ignore
+                        type_=LtFr0564ComputeDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -1908,6 +2112,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -1941,6 +2156,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -1992,26 +2218,26 @@ class RawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    def post_v1declarations_lt_gpm312compute(
+    def lt_gpm312compute(
         self,
         *,
         year: int,
-        payout_timing: typing.Optional[PostV1DeclarationsLtGpm312ComputeRequestPayoutTiming] = OMIT,
+        payout_timing: typing.Optional[LtGpm312ComputeDeclarationsRequestPayoutTiming] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> HttpResponse[PostV1DeclarationsLtGpm312ComputeResponse]:
+    ) -> HttpResponse[LtGpm312ComputeDeclarationsResponse]:
         """
         Parameters
         ----------
         year : int
 
-        payout_timing : typing.Optional[PostV1DeclarationsLtGpm312ComputeRequestPayoutTiming]
+        payout_timing : typing.Optional[LtGpm312ComputeDeclarationsRequestPayoutTiming]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
         Returns
         -------
-        HttpResponse[PostV1DeclarationsLtGpm312ComputeResponse]
+        HttpResponse[LtGpm312ComputeDeclarationsResponse]
             Default Response
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -2030,9 +2256,9 @@ class RawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsLtGpm312ComputeResponse,
+                    LtGpm312ComputeDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsLtGpm312ComputeResponse,  # type: ignore
+                        type_=LtGpm312ComputeDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -2050,6 +2276,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -2083,6 +2320,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -2134,9 +2382,9 @@ class RawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    def post_v1declarations_lt_pln204compute(
+    def lt_pln204compute(
         self, *, year: int, request_options: typing.Optional[RequestOptions] = None
-    ) -> HttpResponse[PostV1DeclarationsLtPln204ComputeResponse]:
+    ) -> HttpResponse[LtPln204ComputeDeclarationsResponse]:
         """
         Parameters
         ----------
@@ -2147,7 +2395,7 @@ class RawDeclarationsClient:
 
         Returns
         -------
-        HttpResponse[PostV1DeclarationsLtPln204ComputeResponse]
+        HttpResponse[LtPln204ComputeDeclarationsResponse]
             Default Response
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -2165,9 +2413,9 @@ class RawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsLtPln204ComputeResponse,
+                    LtPln204ComputeDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsLtPln204ComputeResponse,  # type: ignore
+                        type_=LtPln204ComputeDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -2185,6 +2433,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -2218,6 +2477,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -2269,9 +2539,9 @@ class RawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    def post_v1declarations_eu_oss_compute(
+    def eu_oss_compute(
         self, *, year: int, quarter: int, request_options: typing.Optional[RequestOptions] = None
-    ) -> HttpResponse[PostV1DeclarationsEuOssComputeResponse]:
+    ) -> HttpResponse[EuOssComputeDeclarationsResponse]:
         """
         Parameters
         ----------
@@ -2284,7 +2554,7 @@ class RawDeclarationsClient:
 
         Returns
         -------
-        HttpResponse[PostV1DeclarationsEuOssComputeResponse]
+        HttpResponse[EuOssComputeDeclarationsResponse]
             Default Response
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -2303,9 +2573,9 @@ class RawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsEuOssComputeResponse,
+                    EuOssComputeDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsEuOssComputeResponse,  # type: ignore
+                        type_=EuOssComputeDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -2323,6 +2593,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -2356,6 +2637,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -2407,9 +2699,9 @@ class RawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    def post_v1declarations_eu_ioss_compute(
+    def eu_ioss_compute(
         self, *, year: int, month: int, request_options: typing.Optional[RequestOptions] = None
-    ) -> HttpResponse[PostV1DeclarationsEuIossComputeResponse]:
+    ) -> HttpResponse[EuIossComputeDeclarationsResponse]:
         """
         Parameters
         ----------
@@ -2422,7 +2714,7 @@ class RawDeclarationsClient:
 
         Returns
         -------
-        HttpResponse[PostV1DeclarationsEuIossComputeResponse]
+        HttpResponse[EuIossComputeDeclarationsResponse]
             Default Response
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -2441,9 +2733,9 @@ class RawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsEuIossComputeResponse,
+                    EuIossComputeDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsEuIossComputeResponse,  # type: ignore
+                        type_=EuIossComputeDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -2461,6 +2753,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -2494,6 +2797,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -2545,20 +2859,20 @@ class RawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    def post_v1declarations_eu_distance_sales_threshold_get(
-        self, *, date: typing.Optional[str] = OMIT, request_options: typing.Optional[RequestOptions] = None
-    ) -> HttpResponse[PostV1DeclarationsEuDistanceSalesThresholdGetResponse]:
+    def eu_distance_sales_threshold_get(
+        self, *, date: typing.Optional[dt.date] = OMIT, request_options: typing.Optional[RequestOptions] = None
+    ) -> HttpResponse[EuDistanceSalesThresholdGetDeclarationsResponse]:
         """
         Parameters
         ----------
-        date : typing.Optional[str]
+        date : typing.Optional[dt.date]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
         Returns
         -------
-        HttpResponse[PostV1DeclarationsEuDistanceSalesThresholdGetResponse]
+        HttpResponse[EuDistanceSalesThresholdGetDeclarationsResponse]
             Default Response
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -2576,9 +2890,9 @@ class RawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsEuDistanceSalesThresholdGetResponse,
+                    EuDistanceSalesThresholdGetDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsEuDistanceSalesThresholdGetResponse,  # type: ignore
+                        type_=EuDistanceSalesThresholdGetDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -2596,6 +2910,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -2629,6 +2954,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -2680,20 +3016,20 @@ class RawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    def post_v1declarations_eu_union_turnover_get(
-        self, *, date: typing.Optional[str] = OMIT, request_options: typing.Optional[RequestOptions] = None
-    ) -> HttpResponse[PostV1DeclarationsEuUnionTurnoverGetResponse]:
+    def eu_union_turnover_get(
+        self, *, date: typing.Optional[dt.date] = OMIT, request_options: typing.Optional[RequestOptions] = None
+    ) -> HttpResponse[EuUnionTurnoverGetDeclarationsResponse]:
         """
         Parameters
         ----------
-        date : typing.Optional[str]
+        date : typing.Optional[dt.date]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
         Returns
         -------
-        HttpResponse[PostV1DeclarationsEuUnionTurnoverGetResponse]
+        HttpResponse[EuUnionTurnoverGetDeclarationsResponse]
             Default Response
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -2711,9 +3047,9 @@ class RawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsEuUnionTurnoverGetResponse,
+                    EuUnionTurnoverGetDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsEuUnionTurnoverGetResponse,  # type: ignore
+                        type_=EuUnionTurnoverGetDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -2731,6 +3067,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -2764,6 +3111,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -2815,9 +3173,9 @@ class RawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    def post_v1declarations_eu_sme_cross_border_report_compute(
+    def eu_sme_cross_border_report_compute(
         self, *, year: int, quarter: int, request_options: typing.Optional[RequestOptions] = None
-    ) -> HttpResponse[PostV1DeclarationsEuSmeCrossBorderReportComputeResponse]:
+    ) -> HttpResponse[EuSmeCrossBorderReportComputeDeclarationsResponse]:
         """
         Parameters
         ----------
@@ -2830,7 +3188,7 @@ class RawDeclarationsClient:
 
         Returns
         -------
-        HttpResponse[PostV1DeclarationsEuSmeCrossBorderReportComputeResponse]
+        HttpResponse[EuSmeCrossBorderReportComputeDeclarationsResponse]
             Default Response
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -2849,9 +3207,9 @@ class RawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsEuSmeCrossBorderReportComputeResponse,
+                    EuSmeCrossBorderReportComputeDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsEuSmeCrossBorderReportComputeResponse,  # type: ignore
+                        type_=EuSmeCrossBorderReportComputeDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -2869,6 +3227,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -2902,6 +3271,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -2953,9 +3333,9 @@ class RawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    def post_v1declarations_eu_sme_thresholds_list(
+    def eu_sme_thresholds_list(
         self, *, request_options: typing.Optional[RequestOptions] = None
-    ) -> HttpResponse[PostV1DeclarationsEuSmeThresholdsListResponse]:
+    ) -> HttpResponse[EuSmeThresholdsListDeclarationsResponse]:
         """
         Parameters
         ----------
@@ -2964,7 +3344,7 @@ class RawDeclarationsClient:
 
         Returns
         -------
-        HttpResponse[PostV1DeclarationsEuSmeThresholdsListResponse]
+        HttpResponse[EuSmeThresholdsListDeclarationsResponse]
             Default Response
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -2980,9 +3360,9 @@ class RawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsEuSmeThresholdsListResponse,
+                    EuSmeThresholdsListDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsEuSmeThresholdsListResponse,  # type: ignore
+                        type_=EuSmeThresholdsListDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -3000,6 +3380,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -3033,6 +3424,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -3084,20 +3486,20 @@ class RawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    def post_v1declarations_eu_sme_threshold_get(
-        self, *, date: typing.Optional[str] = OMIT, request_options: typing.Optional[RequestOptions] = None
-    ) -> HttpResponse[PostV1DeclarationsEuSmeThresholdGetResponse]:
+    def eu_sme_threshold_get(
+        self, *, date: typing.Optional[dt.date] = OMIT, request_options: typing.Optional[RequestOptions] = None
+    ) -> HttpResponse[EuSmeThresholdGetDeclarationsResponse]:
         """
         Parameters
         ----------
-        date : typing.Optional[str]
+        date : typing.Optional[dt.date]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
         Returns
         -------
-        HttpResponse[PostV1DeclarationsEuSmeThresholdGetResponse]
+        HttpResponse[EuSmeThresholdGetDeclarationsResponse]
             Default Response
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -3115,9 +3517,9 @@ class RawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsEuSmeThresholdGetResponse,
+                    EuSmeThresholdGetDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsEuSmeThresholdGetResponse,  # type: ignore
+                        type_=EuSmeThresholdGetDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -3135,6 +3537,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -3168,6 +3581,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -3219,9 +3643,9 @@ class RawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    def post_v1declarations_eu_vat_return_packs_list(
+    def eu_vat_return_packs_list(
         self, *, request_options: typing.Optional[RequestOptions] = None
-    ) -> HttpResponse[PostV1DeclarationsEuVatReturnPacksListResponse]:
+    ) -> HttpResponse[EuVatReturnPacksListDeclarationsResponse]:
         """
         Parameters
         ----------
@@ -3230,7 +3654,7 @@ class RawDeclarationsClient:
 
         Returns
         -------
-        HttpResponse[PostV1DeclarationsEuVatReturnPacksListResponse]
+        HttpResponse[EuVatReturnPacksListDeclarationsResponse]
             Default Response
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -3246,9 +3670,9 @@ class RawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsEuVatReturnPacksListResponse,
+                    EuVatReturnPacksListDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsEuVatReturnPacksListResponse,  # type: ignore
+                        type_=EuVatReturnPacksListDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -3266,6 +3690,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -3299,6 +3734,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -3350,7 +3796,7 @@ class RawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    def post_v1declarations_eu_vat_return_compute(
+    def eu_vat_return_compute(
         self,
         *,
         country_code: str,
@@ -3358,7 +3804,7 @@ class RawDeclarationsClient:
         month: int,
         months: typing.Optional[int] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> HttpResponse[PostV1DeclarationsEuVatReturnComputeResponse]:
+    ) -> HttpResponse[EuVatReturnComputeDeclarationsResponse]:
         """
         Parameters
         ----------
@@ -3375,7 +3821,7 @@ class RawDeclarationsClient:
 
         Returns
         -------
-        HttpResponse[PostV1DeclarationsEuVatReturnComputeResponse]
+        HttpResponse[EuVatReturnComputeDeclarationsResponse]
             Default Response
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -3396,9 +3842,9 @@ class RawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsEuVatReturnComputeResponse,
+                    EuVatReturnComputeDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsEuVatReturnComputeResponse,  # type: ignore
+                        type_=EuVatReturnComputeDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -3416,6 +3862,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -3449,6 +3906,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -3500,7 +3968,7 @@ class RawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    def post_v1declarations_pl_jpk_v7m_generate(
+    def pl_jpk_v7m_generate(
         self,
         *,
         year: int,
@@ -3509,7 +3977,7 @@ class RawDeclarationsClient:
         email: str,
         cel_zlozenia: typing.Optional[int] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> HttpResponse[PostV1DeclarationsPlJpkV7MGenerateResponse]:
+    ) -> HttpResponse[PlJpkV7MGenerateDeclarationsResponse]:
         """
         Generate the Polish JPK_V7M(3) file (VAT declaration with evidence) for a month, per the MF schema in force since February 2026. Amounts must already be in PLN; rows are marked BFK until a KSeF integration supplies invoice numbers. Review the warnings before submitting via e-dokumenty.mf.gov.pl.
 
@@ -3530,7 +3998,7 @@ class RawDeclarationsClient:
 
         Returns
         -------
-        HttpResponse[PostV1DeclarationsPlJpkV7MGenerateResponse]
+        HttpResponse[PlJpkV7MGenerateDeclarationsResponse]
             Default Response
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -3552,9 +4020,9 @@ class RawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsPlJpkV7MGenerateResponse,
+                    PlJpkV7MGenerateDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsPlJpkV7MGenerateResponse,  # type: ignore
+                        type_=PlJpkV7MGenerateDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -3572,6 +4040,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -3605,6 +4084,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -3656,9 +4146,9 @@ class RawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    def post_v1declarations_pl_vat_ue_generate(
+    def pl_vat_ue_generate(
         self, *, year: int, month: int, request_options: typing.Optional[RequestOptions] = None
-    ) -> HttpResponse[PostV1DeclarationsPlVatUeGenerateResponse]:
+    ) -> HttpResponse[PlVatUeGenerateDeclarationsResponse]:
         """
         Build the rows of the Polish recapitulative statement VAT-UE for a month: section C intra-Community supplies of goods, section D intra-Community acquisitions, section E services taxed where the customer is established. Amounts are full złoty per counterparty. The VAT-UE(5) file itself goes out from the EU sales list deadline in the calendar.
 
@@ -3673,7 +4163,7 @@ class RawDeclarationsClient:
 
         Returns
         -------
-        HttpResponse[PostV1DeclarationsPlVatUeGenerateResponse]
+        HttpResponse[PlVatUeGenerateDeclarationsResponse]
             Default Response
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -3692,9 +4182,9 @@ class RawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsPlVatUeGenerateResponse,
+                    PlVatUeGenerateDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsPlVatUeGenerateResponse,  # type: ignore
+                        type_=PlVatUeGenerateDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -3712,6 +4202,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -3745,6 +4246,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -3796,15 +4308,15 @@ class RawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    def post_v1declarations_pl_intrastat_generate(
+    def pl_intrastat_generate(
         self,
         *,
         year: int,
         month: int,
-        flow: PostV1DeclarationsPlIntrastatGenerateRequestFlow,
+        flow: PlIntrastatGenerateDeclarationsRequestFlow,
         transaction_nature: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> HttpResponse[PostV1DeclarationsPlIntrastatGenerateResponse]:
+    ) -> HttpResponse[PlIntrastatGenerateDeclarationsResponse]:
         """
         Build the rows of the Polish INTRASTAT declaration for a month, arrivals or dispatches, grouped by CN code, partner country, country of origin, partner VAT number, nature of transaction, transport and delivery terms. Values are whole złoty converted at the invoice rate; credit notes with goods lines are returns (code 21). Goods without a CN code are left out and named in the warnings. The IST message itself goes out from the Intrastat deadline in the calendar.
 
@@ -3814,7 +4326,7 @@ class RawDeclarationsClient:
 
         month : int
 
-        flow : PostV1DeclarationsPlIntrastatGenerateRequestFlow
+        flow : PlIntrastatGenerateDeclarationsRequestFlow
 
         transaction_nature : typing.Optional[str]
 
@@ -3823,7 +4335,7 @@ class RawDeclarationsClient:
 
         Returns
         -------
-        HttpResponse[PostV1DeclarationsPlIntrastatGenerateResponse]
+        HttpResponse[PlIntrastatGenerateDeclarationsResponse]
             Default Response
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -3844,9 +4356,9 @@ class RawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsPlIntrastatGenerateResponse,
+                    PlIntrastatGenerateDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsPlIntrastatGenerateResponse,  # type: ignore
+                        type_=PlIntrastatGenerateDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -3864,6 +4376,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -3897,6 +4420,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -3948,7 +4482,7 @@ class RawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    def post_v1declarations_pl_ksef_received_list(
+    def pl_ksef_received_list(
         self,
         *,
         from_: dt.datetime,
@@ -3956,7 +4490,7 @@ class RawDeclarationsClient:
         page_size: typing.Optional[int] = OMIT,
         page_offset: typing.Optional[int] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> HttpResponse[PostV1DeclarationsPlKsefReceivedListResponse]:
+    ) -> HttpResponse[PlKsefReceivedListDeclarationsResponse]:
         """
         List the invoices KSeF holds for this company as the buyer, for a window of acquisition timestamps. Each row carries the KSeF number and, when the document number matches a registered purchase invoice, the invoice it belongs to.
 
@@ -3975,7 +4509,7 @@ class RawDeclarationsClient:
 
         Returns
         -------
-        HttpResponse[PostV1DeclarationsPlKsefReceivedListResponse]
+        HttpResponse[PlKsefReceivedListDeclarationsResponse]
             Default Response
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -3996,9 +4530,9 @@ class RawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsPlKsefReceivedListResponse,
+                    PlKsefReceivedListDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsPlKsefReceivedListResponse,  # type: ignore
+                        type_=PlKsefReceivedListDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -4016,6 +4550,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -4049,6 +4594,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -4100,13 +4656,13 @@ class RawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    def post_v1declarations_pl_ksef_received_fetch(
+    def pl_ksef_received_fetch(
         self,
         *,
         ksef_number: str,
         purchase_invoice_id: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> HttpResponse[PostV1DeclarationsPlKsefReceivedFetchResponse]:
+    ) -> HttpResponse[PlKsefReceivedFetchDeclarationsResponse]:
         """
         Read one invoice out of KSeF by its national number. With a purchase invoice given, the KSeF number is written onto that invoice, which is what makes the purchase row of JPK_V7M carry NrKSeF instead of the BFK marker.
 
@@ -4121,7 +4677,7 @@ class RawDeclarationsClient:
 
         Returns
         -------
-        HttpResponse[PostV1DeclarationsPlKsefReceivedFetchResponse]
+        HttpResponse[PlKsefReceivedFetchDeclarationsResponse]
             Default Response
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -4140,9 +4696,9 @@ class RawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsPlKsefReceivedFetchResponse,
+                    PlKsefReceivedFetchDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsPlKsefReceivedFetchResponse,  # type: ignore
+                        type_=PlKsefReceivedFetchDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -4160,6 +4716,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -4193,6 +4760,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -4244,12 +4822,12 @@ class RawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    def post_v1declarations_pl_ksef_receipt(
+    def pl_ksef_receipt(
         self,
         *,
         session_reference_number: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> HttpResponse[PostV1DeclarationsPlKsefReceiptResponse]:
+    ) -> HttpResponse[PlKsefReceiptDeclarationsResponse]:
         """
         The UPO for a KSeF session. KSeF issues one receipt per session rather than per invoice, so the session reference number from the send is what identifies it.
 
@@ -4262,7 +4840,7 @@ class RawDeclarationsClient:
 
         Returns
         -------
-        HttpResponse[PostV1DeclarationsPlKsefReceiptResponse]
+        HttpResponse[PlKsefReceiptDeclarationsResponse]
             Default Response
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -4280,9 +4858,9 @@ class RawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsPlKsefReceiptResponse,
+                    PlKsefReceiptDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsPlKsefReceiptResponse,  # type: ignore
+                        type_=PlKsefReceiptDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -4300,6 +4878,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -4333,6 +4922,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -4384,9 +4984,9 @@ class RawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    def tax_adjustments_recorded_for_a_tax_year(
+    def tax_adjustments_list(
         self, *, year: int, request_options: typing.Optional[RequestOptions] = None
-    ) -> HttpResponse[PostV1DeclarationsTaxAdjustmentsListResponse]:
+    ) -> HttpResponse[TaxAdjustmentsListDeclarationsResponse]:
         """
         The differences between the accounting result and the taxable profit: non-deductible expenses, income added to or left out of the tax base, extra deductible expenses, donations, losses carried forward, reliefs and tax credits. The annual corporate income tax return is built from them.
 
@@ -4399,7 +4999,7 @@ class RawDeclarationsClient:
 
         Returns
         -------
-        HttpResponse[PostV1DeclarationsTaxAdjustmentsListResponse]
+        HttpResponse[TaxAdjustmentsListDeclarationsResponse]
             Default Response
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -4417,9 +5017,9 @@ class RawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsTaxAdjustmentsListResponse,
+                    TaxAdjustmentsListDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsTaxAdjustmentsListResponse,  # type: ignore
+                        type_=TaxAdjustmentsListDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -4437,6 +5037,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -4470,6 +5081,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -4521,22 +5143,22 @@ class RawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    def record_a_tax_adjustment_for_a_tax_year(
+    def tax_adjustments_create(
         self,
         *,
         year: int,
-        kind: PostV1DeclarationsTaxAdjustmentsCreateRequestKind,
+        kind: TaxAdjustmentsCreateDeclarationsRequestKind,
         amount: str,
         description: str,
         code: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> HttpResponse[PostV1DeclarationsTaxAdjustmentsCreateResponse]:
+    ) -> HttpResponse[TaxAdjustmentsCreateDeclarationsResponse]:
         """
         Parameters
         ----------
         year : int
 
-        kind : PostV1DeclarationsTaxAdjustmentsCreateRequestKind
+        kind : TaxAdjustmentsCreateDeclarationsRequestKind
 
         amount : str
 
@@ -4549,7 +5171,7 @@ class RawDeclarationsClient:
 
         Returns
         -------
-        HttpResponse[PostV1DeclarationsTaxAdjustmentsCreateResponse]
+        HttpResponse[TaxAdjustmentsCreateDeclarationsResponse]
             Default Response
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -4571,9 +5193,9 @@ class RawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsTaxAdjustmentsCreateResponse,
+                    TaxAdjustmentsCreateDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsTaxAdjustmentsCreateResponse,  # type: ignore
+                        type_=TaxAdjustmentsCreateDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -4591,6 +5213,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -4624,6 +5257,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -4675,22 +5319,22 @@ class RawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    def change_a_recorded_tax_adjustment(
+    def tax_adjustments_update(
         self,
         *,
         id: str,
-        kind: typing.Optional[PostV1DeclarationsTaxAdjustmentsUpdateRequestKind] = OMIT,
+        kind: typing.Optional[TaxAdjustmentsUpdateDeclarationsRequestKind] = OMIT,
         code: typing.Optional[str] = OMIT,
         amount: typing.Optional[str] = OMIT,
         description: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> HttpResponse[PostV1DeclarationsTaxAdjustmentsUpdateResponse]:
+    ) -> HttpResponse[TaxAdjustmentsUpdateDeclarationsResponse]:
         """
         Parameters
         ----------
         id : str
 
-        kind : typing.Optional[PostV1DeclarationsTaxAdjustmentsUpdateRequestKind]
+        kind : typing.Optional[TaxAdjustmentsUpdateDeclarationsRequestKind]
 
         code : typing.Optional[str]
 
@@ -4703,7 +5347,7 @@ class RawDeclarationsClient:
 
         Returns
         -------
-        HttpResponse[PostV1DeclarationsTaxAdjustmentsUpdateResponse]
+        HttpResponse[TaxAdjustmentsUpdateDeclarationsResponse]
             Default Response
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -4725,9 +5369,9 @@ class RawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsTaxAdjustmentsUpdateResponse,
+                    TaxAdjustmentsUpdateDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsTaxAdjustmentsUpdateResponse,  # type: ignore
+                        type_=TaxAdjustmentsUpdateDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -4745,6 +5389,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -4778,6 +5433,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -4829,9 +5495,9 @@ class RawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    def remove_a_recorded_tax_adjustment(
+    def tax_adjustments_delete(
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
-    ) -> HttpResponse[PostV1DeclarationsTaxAdjustmentsDeleteResponse]:
+    ) -> HttpResponse[TaxAdjustmentsDeleteDeclarationsResponse]:
         """
         Parameters
         ----------
@@ -4842,7 +5508,7 @@ class RawDeclarationsClient:
 
         Returns
         -------
-        HttpResponse[PostV1DeclarationsTaxAdjustmentsDeleteResponse]
+        HttpResponse[TaxAdjustmentsDeleteDeclarationsResponse]
             Default Response
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -4860,9 +5526,9 @@ class RawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsTaxAdjustmentsDeleteResponse,
+                    TaxAdjustmentsDeleteDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsTaxAdjustmentsDeleteResponse,  # type: ignore
+                        type_=TaxAdjustmentsDeleteDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -4880,6 +5546,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -4913,6 +5590,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -4964,20 +5652,20 @@ class RawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    def payments_already_made_towards_a_tax_of_a_year(
+    def tax_payments_list(
         self,
         *,
-        tax: PostV1DeclarationsTaxPaymentsListRequestTax,
+        tax: TaxPaymentsListDeclarationsRequestTax,
         year: int,
         month: typing.Optional[int] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> HttpResponse[PostV1DeclarationsTaxPaymentsListResponse]:
+    ) -> HttpResponse[TaxPaymentsListDeclarationsResponse]:
         """
         What the company has paid the administration towards a tax before the return is filed: payments on account, tax withheld at source by others, a final settlement, and a refund received. Returns report these on their own lines, so the amount they ask for is the balance.
 
         Parameters
         ----------
-        tax : PostV1DeclarationsTaxPaymentsListRequestTax
+        tax : TaxPaymentsListDeclarationsRequestTax
 
         year : int
 
@@ -4988,7 +5676,7 @@ class RawDeclarationsClient:
 
         Returns
         -------
-        HttpResponse[PostV1DeclarationsTaxPaymentsListResponse]
+        HttpResponse[TaxPaymentsListDeclarationsResponse]
             Default Response
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -5008,9 +5696,9 @@ class RawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsTaxPaymentsListResponse,
+                    TaxPaymentsListDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsTaxPaymentsListResponse,  # type: ignore
+                        type_=TaxPaymentsListDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -5028,6 +5716,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -5061,6 +5760,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -5112,31 +5822,31 @@ class RawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    def record_a_payment_made_towards_a_tax(
+    def tax_payments_create(
         self,
         *,
-        tax: PostV1DeclarationsTaxPaymentsCreateRequestTax,
+        tax: TaxPaymentsCreateDeclarationsRequestTax,
         year: int,
-        kind: PostV1DeclarationsTaxPaymentsCreateRequestKind,
+        kind: TaxPaymentsCreateDeclarationsRequestKind,
         amount: str,
-        paid_on: str,
+        paid_on: dt.date,
         description: str,
         month: typing.Optional[int] = OMIT,
         reference: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> HttpResponse[PostV1DeclarationsTaxPaymentsCreateResponse]:
+    ) -> HttpResponse[TaxPaymentsCreateDeclarationsResponse]:
         """
         Parameters
         ----------
-        tax : PostV1DeclarationsTaxPaymentsCreateRequestTax
+        tax : TaxPaymentsCreateDeclarationsRequestTax
 
         year : int
 
-        kind : PostV1DeclarationsTaxPaymentsCreateRequestKind
+        kind : TaxPaymentsCreateDeclarationsRequestKind
 
         amount : str
 
-        paid_on : str
+        paid_on : dt.date
 
         description : str
 
@@ -5149,7 +5859,7 @@ class RawDeclarationsClient:
 
         Returns
         -------
-        HttpResponse[PostV1DeclarationsTaxPaymentsCreateResponse]
+        HttpResponse[TaxPaymentsCreateDeclarationsResponse]
             Default Response
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -5174,9 +5884,9 @@ class RawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsTaxPaymentsCreateResponse,
+                    TaxPaymentsCreateDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsTaxPaymentsCreateResponse,  # type: ignore
+                        type_=TaxPaymentsCreateDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -5194,6 +5904,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -5227,6 +5948,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -5278,27 +6010,27 @@ class RawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    def change_a_recorded_tax_payment(
+    def tax_payments_update(
         self,
         *,
         id: str,
-        kind: typing.Optional[PostV1DeclarationsTaxPaymentsUpdateRequestKind] = OMIT,
+        kind: typing.Optional[TaxPaymentsUpdateDeclarationsRequestKind] = OMIT,
         amount: typing.Optional[str] = OMIT,
-        paid_on: typing.Optional[str] = OMIT,
+        paid_on: typing.Optional[dt.date] = OMIT,
         reference: typing.Optional[str] = OMIT,
         description: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> HttpResponse[PostV1DeclarationsTaxPaymentsUpdateResponse]:
+    ) -> HttpResponse[TaxPaymentsUpdateDeclarationsResponse]:
         """
         Parameters
         ----------
         id : str
 
-        kind : typing.Optional[PostV1DeclarationsTaxPaymentsUpdateRequestKind]
+        kind : typing.Optional[TaxPaymentsUpdateDeclarationsRequestKind]
 
         amount : typing.Optional[str]
 
-        paid_on : typing.Optional[str]
+        paid_on : typing.Optional[dt.date]
 
         reference : typing.Optional[str]
 
@@ -5309,7 +6041,7 @@ class RawDeclarationsClient:
 
         Returns
         -------
-        HttpResponse[PostV1DeclarationsTaxPaymentsUpdateResponse]
+        HttpResponse[TaxPaymentsUpdateDeclarationsResponse]
             Default Response
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -5332,9 +6064,9 @@ class RawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsTaxPaymentsUpdateResponse,
+                    TaxPaymentsUpdateDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsTaxPaymentsUpdateResponse,  # type: ignore
+                        type_=TaxPaymentsUpdateDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -5352,6 +6084,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -5385,6 +6128,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -5436,9 +6190,9 @@ class RawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    def remove_a_recorded_tax_payment(
+    def tax_payments_delete(
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
-    ) -> HttpResponse[PostV1DeclarationsTaxPaymentsDeleteResponse]:
+    ) -> HttpResponse[TaxPaymentsDeleteDeclarationsResponse]:
         """
         Parameters
         ----------
@@ -5449,7 +6203,7 @@ class RawDeclarationsClient:
 
         Returns
         -------
-        HttpResponse[PostV1DeclarationsTaxPaymentsDeleteResponse]
+        HttpResponse[TaxPaymentsDeleteDeclarationsResponse]
             Default Response
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -5467,9 +6221,9 @@ class RawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsTaxPaymentsDeleteResponse,
+                    TaxPaymentsDeleteDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsTaxPaymentsDeleteResponse,  # type: ignore
+                        type_=TaxPaymentsDeleteDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -5487,6 +6241,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -5520,6 +6285,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -5571,9 +6347,9 @@ class RawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    def adoption_and_signing_facts_of_the_annual_accounts_of_a_year(
+    def annual_accounts_get(
         self, *, year: int, request_options: typing.Optional[RequestOptions] = None
-    ) -> HttpResponse[PostV1DeclarationsAnnualAccountsGetResponse]:
+    ) -> HttpResponse[AnnualAccountsGetDeclarationsResponse]:
         """
         Whether the general meeting adopted the annual accounts and on which date, the date the accounts were prepared, and which directors signed them. The annual accounts filed with the trade register are built from these facts.
 
@@ -5586,7 +6362,7 @@ class RawDeclarationsClient:
 
         Returns
         -------
-        HttpResponse[PostV1DeclarationsAnnualAccountsGetResponse]
+        HttpResponse[AnnualAccountsGetDeclarationsResponse]
             Default Response
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -5604,9 +6380,9 @@ class RawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsAnnualAccountsGetResponse,
+                    AnnualAccountsGetDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsAnnualAccountsGetResponse,  # type: ignore
+                        type_=AnnualAccountsGetDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -5624,6 +6400,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -5657,6 +6444,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -5708,25 +6506,25 @@ class RawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    def record_the_adoption_and_preparation_of_the_annual_accounts_of_a_year(
+    def annual_accounts_set(
         self,
         *,
         year: int,
         adopted: bool,
-        date_of_preparation: str,
-        adoption_date: typing.Optional[str] = OMIT,
+        date_of_preparation: dt.date,
+        adoption_date: typing.Optional[dt.date] = OMIT,
         audited: typing.Optional[bool] = OMIT,
         audit_report_qualified: typing.Optional[bool] = OMIT,
         auditor_not_elected: typing.Optional[bool] = OMIT,
         notes_text: typing.Optional[str] = OMIT,
         management_report_text: typing.Optional[str] = OMIT,
         auditor_report_text: typing.Optional[str] = OMIT,
-        auditor_report_date: typing.Optional[str] = OMIT,
+        auditor_report_date: typing.Optional[dt.date] = OMIT,
         result_to_reserves: typing.Optional[str] = OMIT,
         result_to_loss_compensation: typing.Optional[str] = OMIT,
         result_to_remainder: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> HttpResponse[PostV1DeclarationsAnnualAccountsSetResponse]:
+    ) -> HttpResponse[AnnualAccountsSetDeclarationsResponse]:
         """
         Parameters
         ----------
@@ -5734,9 +6532,9 @@ class RawDeclarationsClient:
 
         adopted : bool
 
-        date_of_preparation : str
+        date_of_preparation : dt.date
 
-        adoption_date : typing.Optional[str]
+        adoption_date : typing.Optional[dt.date]
 
         audited : typing.Optional[bool]
 
@@ -5750,7 +6548,7 @@ class RawDeclarationsClient:
 
         auditor_report_text : typing.Optional[str]
 
-        auditor_report_date : typing.Optional[str]
+        auditor_report_date : typing.Optional[dt.date]
 
         result_to_reserves : typing.Optional[str]
 
@@ -5763,7 +6561,7 @@ class RawDeclarationsClient:
 
         Returns
         -------
-        HttpResponse[PostV1DeclarationsAnnualAccountsSetResponse]
+        HttpResponse[AnnualAccountsSetDeclarationsResponse]
             Default Response
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -5794,9 +6592,9 @@ class RawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsAnnualAccountsSetResponse,
+                    AnnualAccountsSetDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsAnnualAccountsSetResponse,  # type: ignore
+                        type_=AnnualAccountsSetDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -5814,6 +6612,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -5847,6 +6656,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -5898,18 +6718,18 @@ class RawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    def record_whether_a_director_signed_the_annual_accounts_of_a_year(
+    def annual_accounts_signatures_create(
         self,
         *,
         year: int,
         director_name: str,
-        director_type: PostV1DeclarationsAnnualAccountsSignaturesCreateRequestDirectorType,
+        director_type: AnnualAccountsSignaturesCreateDeclarationsRequestDirectorType,
         signed: bool,
-        signed_on: typing.Optional[str] = OMIT,
-        signed_at: typing.Optional[str] = OMIT,
+        signed_on: typing.Optional[dt.date] = OMIT,
+        signed_at: typing.Optional[dt.datetime] = OMIT,
         reason_not_signed: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> HttpResponse[PostV1DeclarationsAnnualAccountsSignaturesCreateResponse]:
+    ) -> HttpResponse[AnnualAccountsSignaturesCreateDeclarationsResponse]:
         """
         Parameters
         ----------
@@ -5917,13 +6737,13 @@ class RawDeclarationsClient:
 
         director_name : str
 
-        director_type : PostV1DeclarationsAnnualAccountsSignaturesCreateRequestDirectorType
+        director_type : AnnualAccountsSignaturesCreateDeclarationsRequestDirectorType
 
         signed : bool
 
-        signed_on : typing.Optional[str]
+        signed_on : typing.Optional[dt.date]
 
-        signed_at : typing.Optional[str]
+        signed_at : typing.Optional[dt.datetime]
 
         reason_not_signed : typing.Optional[str]
 
@@ -5932,7 +6752,7 @@ class RawDeclarationsClient:
 
         Returns
         -------
-        HttpResponse[PostV1DeclarationsAnnualAccountsSignaturesCreateResponse]
+        HttpResponse[AnnualAccountsSignaturesCreateDeclarationsResponse]
             Default Response
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -5956,9 +6776,9 @@ class RawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsAnnualAccountsSignaturesCreateResponse,
+                    AnnualAccountsSignaturesCreateDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsAnnualAccountsSignaturesCreateResponse,  # type: ignore
+                        type_=AnnualAccountsSignaturesCreateDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -5976,6 +6796,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -6009,6 +6840,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -6060,18 +6902,18 @@ class RawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    def change_a_recorded_director_signature(
+    def annual_accounts_signatures_update(
         self,
         *,
         id: str,
         director_name: str,
-        director_type: PostV1DeclarationsAnnualAccountsSignaturesUpdateRequestDirectorType,
+        director_type: AnnualAccountsSignaturesUpdateDeclarationsRequestDirectorType,
         signed: bool,
-        signed_on: typing.Optional[str] = OMIT,
-        signed_at: typing.Optional[str] = OMIT,
+        signed_on: typing.Optional[dt.date] = OMIT,
+        signed_at: typing.Optional[dt.datetime] = OMIT,
         reason_not_signed: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> HttpResponse[PostV1DeclarationsAnnualAccountsSignaturesUpdateResponse]:
+    ) -> HttpResponse[AnnualAccountsSignaturesUpdateDeclarationsResponse]:
         """
         Parameters
         ----------
@@ -6079,13 +6921,13 @@ class RawDeclarationsClient:
 
         director_name : str
 
-        director_type : PostV1DeclarationsAnnualAccountsSignaturesUpdateRequestDirectorType
+        director_type : AnnualAccountsSignaturesUpdateDeclarationsRequestDirectorType
 
         signed : bool
 
-        signed_on : typing.Optional[str]
+        signed_on : typing.Optional[dt.date]
 
-        signed_at : typing.Optional[str]
+        signed_at : typing.Optional[dt.datetime]
 
         reason_not_signed : typing.Optional[str]
 
@@ -6094,7 +6936,7 @@ class RawDeclarationsClient:
 
         Returns
         -------
-        HttpResponse[PostV1DeclarationsAnnualAccountsSignaturesUpdateResponse]
+        HttpResponse[AnnualAccountsSignaturesUpdateDeclarationsResponse]
             Default Response
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -6118,9 +6960,9 @@ class RawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsAnnualAccountsSignaturesUpdateResponse,
+                    AnnualAccountsSignaturesUpdateDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsAnnualAccountsSignaturesUpdateResponse,  # type: ignore
+                        type_=AnnualAccountsSignaturesUpdateDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -6138,6 +6980,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -6171,6 +7024,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -6222,9 +7086,9 @@ class RawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    def remove_a_recorded_director_signature(
+    def annual_accounts_signatures_delete(
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
-    ) -> HttpResponse[PostV1DeclarationsAnnualAccountsSignaturesDeleteResponse]:
+    ) -> HttpResponse[AnnualAccountsSignaturesDeleteDeclarationsResponse]:
         """
         Parameters
         ----------
@@ -6235,7 +7099,7 @@ class RawDeclarationsClient:
 
         Returns
         -------
-        HttpResponse[PostV1DeclarationsAnnualAccountsSignaturesDeleteResponse]
+        HttpResponse[AnnualAccountsSignaturesDeleteDeclarationsResponse]
             Default Response
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -6253,9 +7117,9 @@ class RawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsAnnualAccountsSignaturesDeleteResponse,
+                    AnnualAccountsSignaturesDeleteDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsAnnualAccountsSignaturesDeleteResponse,  # type: ignore
+                        type_=AnnualAccountsSignaturesDeleteDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -6273,6 +7137,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -6306,6 +7181,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -6357,24 +7243,24 @@ class RawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    def record_a_decision_to_distribute_profit_a_dividend_an_interim_dividend_or_a_payment_treated_as_one(
+    def annual_accounts_distributions_create(
         self,
         *,
         year: int,
-        decided_on: str,
-        kind: PostV1DeclarationsAnnualAccountsDistributionsCreateRequestKind,
+        decided_on: dt.date,
+        kind: AnnualAccountsDistributionsCreateDeclarationsRequestKind,
         amount: str,
         description: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> HttpResponse[PostV1DeclarationsAnnualAccountsDistributionsCreateResponse]:
+    ) -> HttpResponse[AnnualAccountsDistributionsCreateDeclarationsResponse]:
         """
         Parameters
         ----------
         year : int
 
-        decided_on : str
+        decided_on : dt.date
 
-        kind : PostV1DeclarationsAnnualAccountsDistributionsCreateRequestKind
+        kind : AnnualAccountsDistributionsCreateDeclarationsRequestKind
 
         amount : str
 
@@ -6385,7 +7271,7 @@ class RawDeclarationsClient:
 
         Returns
         -------
-        HttpResponse[PostV1DeclarationsAnnualAccountsDistributionsCreateResponse]
+        HttpResponse[AnnualAccountsDistributionsCreateDeclarationsResponse]
             Default Response
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -6407,9 +7293,9 @@ class RawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsAnnualAccountsDistributionsCreateResponse,
+                    AnnualAccountsDistributionsCreateDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsAnnualAccountsDistributionsCreateResponse,  # type: ignore
+                        type_=AnnualAccountsDistributionsCreateDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -6427,6 +7313,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -6460,6 +7357,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -6511,24 +7419,24 @@ class RawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    def change_a_recorded_profit_distribution(
+    def annual_accounts_distributions_update(
         self,
         *,
         id: str,
-        decided_on: str,
-        kind: PostV1DeclarationsAnnualAccountsDistributionsUpdateRequestKind,
+        decided_on: dt.date,
+        kind: AnnualAccountsDistributionsUpdateDeclarationsRequestKind,
         amount: str,
         description: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> HttpResponse[PostV1DeclarationsAnnualAccountsDistributionsUpdateResponse]:
+    ) -> HttpResponse[AnnualAccountsDistributionsUpdateDeclarationsResponse]:
         """
         Parameters
         ----------
         id : str
 
-        decided_on : str
+        decided_on : dt.date
 
-        kind : PostV1DeclarationsAnnualAccountsDistributionsUpdateRequestKind
+        kind : AnnualAccountsDistributionsUpdateDeclarationsRequestKind
 
         amount : str
 
@@ -6539,7 +7447,7 @@ class RawDeclarationsClient:
 
         Returns
         -------
-        HttpResponse[PostV1DeclarationsAnnualAccountsDistributionsUpdateResponse]
+        HttpResponse[AnnualAccountsDistributionsUpdateDeclarationsResponse]
             Default Response
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -6561,9 +7469,9 @@ class RawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsAnnualAccountsDistributionsUpdateResponse,
+                    AnnualAccountsDistributionsUpdateDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsAnnualAccountsDistributionsUpdateResponse,  # type: ignore
+                        type_=AnnualAccountsDistributionsUpdateDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -6581,6 +7489,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -6614,6 +7533,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -6665,9 +7595,9 @@ class RawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    def remove_a_recorded_profit_distribution(
+    def annual_accounts_distributions_delete(
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
-    ) -> HttpResponse[PostV1DeclarationsAnnualAccountsDistributionsDeleteResponse]:
+    ) -> HttpResponse[AnnualAccountsDistributionsDeleteDeclarationsResponse]:
         """
         Parameters
         ----------
@@ -6678,7 +7608,7 @@ class RawDeclarationsClient:
 
         Returns
         -------
-        HttpResponse[PostV1DeclarationsAnnualAccountsDistributionsDeleteResponse]
+        HttpResponse[AnnualAccountsDistributionsDeleteDeclarationsResponse]
             Default Response
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -6696,9 +7626,9 @@ class RawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsAnnualAccountsDistributionsDeleteResponse,
+                    AnnualAccountsDistributionsDeleteDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsAnnualAccountsDistributionsDeleteResponse,  # type: ignore
+                        type_=AnnualAccountsDistributionsDeleteDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -6716,6 +7646,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -6749,6 +7690,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -6800,15 +7752,15 @@ class RawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    def attach_an_uploaded_document_to_the_annual_accounts_of_a_year(
+    def annual_accounts_attachments_add(
         self,
         *,
         year: int,
-        kind: PostV1DeclarationsAnnualAccountsAttachmentsAddRequestKind,
+        kind: AnnualAccountsAttachmentsAddDeclarationsRequestKind,
         ref: str,
         name: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> HttpResponse[PostV1DeclarationsAnnualAccountsAttachmentsAddResponse]:
+    ) -> HttpResponse[AnnualAccountsAttachmentsAddDeclarationsResponse]:
         """
         Links a file uploaded through files/upload (its storageKey) to the annual accounts of the year as the notes, the management report, the auditor statement, the profit appropriation resolution, the approval certificate, the general data sheet, the full report as a pdf, or another document. Deposits that must carry these documents take them from here.
 
@@ -6816,7 +7768,7 @@ class RawDeclarationsClient:
         ----------
         year : int
 
-        kind : PostV1DeclarationsAnnualAccountsAttachmentsAddRequestKind
+        kind : AnnualAccountsAttachmentsAddDeclarationsRequestKind
 
         ref : str
 
@@ -6827,7 +7779,7 @@ class RawDeclarationsClient:
 
         Returns
         -------
-        HttpResponse[PostV1DeclarationsAnnualAccountsAttachmentsAddResponse]
+        HttpResponse[AnnualAccountsAttachmentsAddDeclarationsResponse]
             Default Response
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -6848,9 +7800,9 @@ class RawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsAnnualAccountsAttachmentsAddResponse,
+                    AnnualAccountsAttachmentsAddDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsAnnualAccountsAttachmentsAddResponse,  # type: ignore
+                        type_=AnnualAccountsAttachmentsAddDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -6868,6 +7820,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -6901,6 +7864,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -6952,9 +7926,9 @@ class RawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    def remove_a_document_attached_to_the_annual_accounts_and_delete_its_file(
+    def annual_accounts_attachments_delete(
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
-    ) -> HttpResponse[PostV1DeclarationsAnnualAccountsAttachmentsDeleteResponse]:
+    ) -> HttpResponse[AnnualAccountsAttachmentsDeleteDeclarationsResponse]:
         """
         Parameters
         ----------
@@ -6965,7 +7939,7 @@ class RawDeclarationsClient:
 
         Returns
         -------
-        HttpResponse[PostV1DeclarationsAnnualAccountsAttachmentsDeleteResponse]
+        HttpResponse[AnnualAccountsAttachmentsDeleteDeclarationsResponse]
             Default Response
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -6983,9 +7957,9 @@ class RawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsAnnualAccountsAttachmentsDeleteResponse,
+                    AnnualAccountsAttachmentsDeleteDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsAnnualAccountsAttachmentsDeleteResponse,  # type: ignore
+                        type_=AnnualAccountsAttachmentsDeleteDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -7003,6 +7977,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -7036,6 +8021,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -7087,9 +8083,9 @@ class RawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    def post_v1declarations_cy_td4generate(
+    def cy_td4generate(
         self, *, year: int, request_options: typing.Optional[RequestOptions] = None
-    ) -> HttpResponse[PostV1DeclarationsCyTd4GenerateResponse]:
+    ) -> HttpResponse[CyTd4GenerateDeclarationsResponse]:
         """
         Compute the company income tax return TD4 of a tax year from the ledger and the recorded tax adjustments: the accounting profit, the add-backs, deductions, capital allowances and losses brought forward, the chargeable income, the corporation tax at the rate of the year and the double tax relief, as the fields the company keys into TAXISnet or Tax For All. The Tax Department publishes no upload layout for the TD4; the XML is a working file.
 
@@ -7102,7 +8098,7 @@ class RawDeclarationsClient:
 
         Returns
         -------
-        HttpResponse[PostV1DeclarationsCyTd4GenerateResponse]
+        HttpResponse[CyTd4GenerateDeclarationsResponse]
             Default Response
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -7120,9 +8116,9 @@ class RawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsCyTd4GenerateResponse,
+                    CyTd4GenerateDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsCyTd4GenerateResponse,  # type: ignore
+                        type_=CyTd4GenerateDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -7140,6 +8136,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -7173,6 +8180,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -7224,9 +8242,9 @@ class RawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    def post_v1declarations_cy_he32generate(
+    def cy_he32generate(
         self, *, year: int, request_options: typing.Optional[RequestOptions] = None
-    ) -> HttpResponse[PostV1DeclarationsCyHe32GenerateResponse]:
+    ) -> HttpResponse[CyHe32GenerateDeclarationsResponse]:
         """
         Build the annual return HE32 of a year: the figures the Registrar’s e-filing screens ask for (company number, registered office, made-up-to date, share capital, register of members, directors and secretary, annual general meeting date, the accounts summary), the working file, and the printed form HE32(I) filled in as a PDF for signing and for keying into the Registrar’s system, which takes the return only through its own screens.
 
@@ -7239,7 +8257,7 @@ class RawDeclarationsClient:
 
         Returns
         -------
-        HttpResponse[PostV1DeclarationsCyHe32GenerateResponse]
+        HttpResponse[CyHe32GenerateDeclarationsResponse]
             Default Response
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -7257,9 +8275,9 @@ class RawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsCyHe32GenerateResponse,
+                    CyHe32GenerateDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsCyHe32GenerateResponse,  # type: ignore
+                        type_=CyHe32GenerateDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -7277,6 +8295,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -7310,6 +8339,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -7361,19 +8401,19 @@ class RawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    def post_v1declarations_de_returns_generate(
+    def de_returns_generate(
         self,
         *,
-        rule_key: PostV1DeclarationsDeReturnsGenerateRequestRuleKey,
+        rule_key: DeReturnsGenerateDeclarationsRequestRuleKey,
         period: str,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> HttpResponse[PostV1DeclarationsDeReturnsGenerateResponse]:
+    ) -> HttpResponse[DeReturnsGenerateDeclarationsResponse]:
         """
         Build one of the German returns that ELSTER accepts only through a licensed ERiC transmission (E-Bilanz, Körperschaftsteuer, Gewerbesteuer with its Zerlegungserklärung, annual VAT return, Lohnsteuer-Anmeldung, Lohnsteuerbescheinigung) for the company to send through its own ELSTER-capable program. The period is the year, or YYYY-MM for the monthly Lohnsteuer-Anmeldung.
 
         Parameters
         ----------
-        rule_key : PostV1DeclarationsDeReturnsGenerateRequestRuleKey
+        rule_key : DeReturnsGenerateDeclarationsRequestRuleKey
 
         period : str
 
@@ -7382,7 +8422,7 @@ class RawDeclarationsClient:
 
         Returns
         -------
-        HttpResponse[PostV1DeclarationsDeReturnsGenerateResponse]
+        HttpResponse[DeReturnsGenerateDeclarationsResponse]
             Default Response
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -7401,9 +8441,9 @@ class RawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsDeReturnsGenerateResponse,
+                    DeReturnsGenerateDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsDeReturnsGenerateResponse,  # type: ignore
+                        type_=DeReturnsGenerateDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -7421,6 +8461,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -7454,6 +8505,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -7505,9 +8567,9 @@ class RawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    def post_v1declarations_de_return_facts_get(
+    def de_return_facts_get(
         self, *, year: int, request_options: typing.Optional[RequestOptions] = None
-    ) -> HttpResponse[PostV1DeclarationsDeReturnFactsGetResponse]:
+    ) -> HttpResponse[DeReturnFactsGetDeclarationsResponse]:
         """
         The facts of one year that the German annual returns (Körperschaftsteuer, Gewerbesteuer, Umsatzsteuererklärung) need and the ledger does not hold: changes of shareholders, contracts with shareholders, the tax contribution account, loss carry-back, the donation carry-forward, the business premises with the municipalities for the apportionment of the trade tax, the land values or property tax and the participations for the trade tax additions and reductions, the foreign income per country for the Anlage AESt, the date of leaving the small-business scheme and the Anlage UN answers of a company seated abroad. A key that is absent has not been answered.
 
@@ -7520,7 +8582,7 @@ class RawDeclarationsClient:
 
         Returns
         -------
-        HttpResponse[PostV1DeclarationsDeReturnFactsGetResponse]
+        HttpResponse[DeReturnFactsGetDeclarationsResponse]
             Default Response
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -7538,9 +8600,9 @@ class RawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsDeReturnFactsGetResponse,
+                    DeReturnFactsGetDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsDeReturnFactsGetResponse,  # type: ignore
+                        type_=DeReturnFactsGetDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -7558,6 +8620,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -7591,6 +8664,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -7642,13 +8726,13 @@ class RawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    def post_v1declarations_de_return_facts_set(
+    def de_return_facts_set(
         self,
         *,
         year: int,
-        facts: PostV1DeclarationsDeReturnFactsSetRequestFacts,
+        facts: DeReturnFactsSetDeclarationsRequestFacts,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> HttpResponse[PostV1DeclarationsDeReturnFactsSetResponse]:
+    ) -> HttpResponse[DeReturnFactsSetDeclarationsResponse]:
         """
         Replace the facts of one year for the German annual returns. The returns built afterwards read them; a key left out stays unanswered.
 
@@ -7656,14 +8740,14 @@ class RawDeclarationsClient:
         ----------
         year : int
 
-        facts : PostV1DeclarationsDeReturnFactsSetRequestFacts
+        facts : DeReturnFactsSetDeclarationsRequestFacts
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
         Returns
         -------
-        HttpResponse[PostV1DeclarationsDeReturnFactsSetResponse]
+        HttpResponse[DeReturnFactsSetDeclarationsResponse]
             Default Response
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -7672,7 +8756,7 @@ class RawDeclarationsClient:
             json={
                 "year": year,
                 "facts": convert_and_respect_annotation_metadata(
-                    object_=facts, annotation=PostV1DeclarationsDeReturnFactsSetRequestFacts, direction="write"
+                    object_=facts, annotation=DeReturnFactsSetDeclarationsRequestFacts, direction="write"
                 ),
             },
             headers={
@@ -7684,9 +8768,9 @@ class RawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsDeReturnFactsSetResponse,
+                    DeReturnFactsSetDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsDeReturnFactsSetResponse,  # type: ignore
+                        type_=DeReturnFactsSetDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -7704,6 +8788,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -7737,6 +8832,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -7788,9 +8894,9 @@ class RawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    def post_v1declarations_de_deuev_generate(
+    def de_deuev_generate(
         self, *, year: int, month: int, request_options: typing.Optional[RequestOptions] = None
-    ) -> HttpResponse[PostV1DeclarationsDeDeuevGenerateResponse]:
+    ) -> HttpResponse[DeDeuevGenerateDeclarationsResponse]:
         """
         Build the DEÜV notifications of a month (Anmeldung for every start, Abmeldung for every leaving, in December the Jahresmeldung for everyone employed on 31 December) as DSME records with the DBME, DBNA, DBGB and DBAN blocks of Anlage 4 in force from 2026, from the approved payroll runs and the employee record, for the company's own transmission channel.
 
@@ -7805,7 +8911,7 @@ class RawDeclarationsClient:
 
         Returns
         -------
-        HttpResponse[PostV1DeclarationsDeDeuevGenerateResponse]
+        HttpResponse[DeDeuevGenerateDeclarationsResponse]
             Default Response
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -7824,9 +8930,9 @@ class RawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsDeDeuevGenerateResponse,
+                    DeDeuevGenerateDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsDeDeuevGenerateResponse,  # type: ignore
+                        type_=DeDeuevGenerateDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -7844,6 +8950,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -7877,6 +8994,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -7928,9 +9056,9 @@ class RawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    def post_v1declarations_de_beitragsnachweis_generate(
+    def de_beitragsnachweis_generate(
         self, *, year: int, month: int, request_options: typing.Optional[RequestOptions] = None
-    ) -> HttpResponse[PostV1DeclarationsDeBeitragsnachweisGenerateResponse]:
+    ) -> HttpResponse[DeBeitragsnachweisGenerateDeclarationsResponse]:
         """
         Build the monthly contribution statement to the health insurers (Beitragsnachweis) from the payroll run: one fixed-length record BW02 per insurer, in the record layout in force from 2026, ready for the company's own transmission channel.
 
@@ -7945,7 +9073,7 @@ class RawDeclarationsClient:
 
         Returns
         -------
-        HttpResponse[PostV1DeclarationsDeBeitragsnachweisGenerateResponse]
+        HttpResponse[DeBeitragsnachweisGenerateDeclarationsResponse]
             Default Response
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -7964,9 +9092,9 @@ class RawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsDeBeitragsnachweisGenerateResponse,
+                    DeBeitragsnachweisGenerateDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsDeBeitragsnachweisGenerateResponse,  # type: ignore
+                        type_=DeBeitragsnachweisGenerateDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -7984,6 +9112,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -8017,6 +9156,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -8068,9 +9218,9 @@ class RawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    def post_v1declarations_dk_selskabsskat_generate(
+    def dk_selskabsskat_generate(
         self, *, year: int, request_options: typing.Optional[RequestOptions] = None
-    ) -> HttpResponse[PostV1DeclarationsDkSelskabsskatGenerateResponse]:
+    ) -> HttpResponse[DkSelskabsskatGenerateDeclarationsResponse]:
         """
         Compute the oplysningsskema for selskaber (selskabsselvangivelsen) of an income year from the ledger and the recorded tax adjustments: accounting result before tax, tax adjustments, losses carried forward, taxable income, the 22 % corporation tax, reliefs and the balance, as the rubrikker the company keys into TastSelv Selskabsskat (DIAS). Skatteforvaltningen publishes no file format for the return; the XML is a working file.
 
@@ -8083,7 +9233,7 @@ class RawDeclarationsClient:
 
         Returns
         -------
-        HttpResponse[PostV1DeclarationsDkSelskabsskatGenerateResponse]
+        HttpResponse[DkSelskabsskatGenerateDeclarationsResponse]
             Default Response
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -8101,9 +9251,9 @@ class RawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsDkSelskabsskatGenerateResponse,
+                    DkSelskabsskatGenerateDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsDkSelskabsskatGenerateResponse,  # type: ignore
+                        type_=DkSelskabsskatGenerateDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -8121,6 +9271,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -8154,6 +9315,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -8205,13 +9377,13 @@ class RawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    def post_v1declarations_ee_employment_register_send(
+    def ee_employment_register_send(
         self,
         *,
         contract_id: str,
-        event: PostV1DeclarationsEeEmploymentRegisterSendRequestEvent,
+        event: EeEmploymentRegisterSendDeclarationsRequestEvent,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> HttpResponse[PostV1DeclarationsEeEmploymentRegisterSendResponse]:
+    ) -> HttpResponse[EeEmploymentRegisterSendDeclarationsResponse]:
         """
         Send one employment register (töötamise register) entry for an employment contract to e-MTA over X-tee: the start of work, or its end with the reason recorded on the contract.
 
@@ -8219,14 +9391,14 @@ class RawDeclarationsClient:
         ----------
         contract_id : str
 
-        event : PostV1DeclarationsEeEmploymentRegisterSendRequestEvent
+        event : EeEmploymentRegisterSendDeclarationsRequestEvent
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
         Returns
         -------
-        HttpResponse[PostV1DeclarationsEeEmploymentRegisterSendResponse]
+        HttpResponse[EeEmploymentRegisterSendDeclarationsResponse]
             Default Response
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -8245,9 +9417,9 @@ class RawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsEeEmploymentRegisterSendResponse,
+                    EeEmploymentRegisterSendDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsEeEmploymentRegisterSendResponse,  # type: ignore
+                        type_=EeEmploymentRegisterSendDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -8265,6 +9437,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -8298,6 +9481,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -8349,9 +9543,9 @@ class RawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    def post_v1declarations_es_verifactu_declaracion_responsable(
+    def es_verifactu_declaracion_responsable(
         self, *, request_options: typing.Optional[RequestOptions] = None
-    ) -> HttpResponse[PostV1DeclarationsEsVerifactuDeclaracionResponsableResponse]:
+    ) -> HttpResponse[EsVerifactuDeclaracionResponsableDeclarationsResponse]:
         """
         Nordlet's declaración responsable for its VERI*FACTU invoicing system (Orden HAC/1177/2024, art. 15), as a PDF and as plain text.
 
@@ -8362,7 +9556,7 @@ class RawDeclarationsClient:
 
         Returns
         -------
-        HttpResponse[PostV1DeclarationsEsVerifactuDeclaracionResponsableResponse]
+        HttpResponse[EsVerifactuDeclaracionResponsableDeclarationsResponse]
             Default Response
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -8378,9 +9572,9 @@ class RawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsEsVerifactuDeclaracionResponsableResponse,
+                    EsVerifactuDeclaracionResponsableDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsEsVerifactuDeclaracionResponsableResponse,  # type: ignore
+                        type_=EsVerifactuDeclaracionResponsableDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -8398,6 +9592,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -8431,6 +9636,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -8482,9 +9698,9 @@ class RawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    def post_v1declarations_ie_ct1generate(
+    def ie_ct1generate(
         self, *, year: int, request_options: typing.Optional[RequestOptions] = None
-    ) -> HttpResponse[PostV1DeclarationsIeCt1GenerateResponse]:
+    ) -> HttpResponse[IeCt1GenerateDeclarationsResponse]:
         """
         Build the Form CT1 of an accounting year as the ROS version 26 XML and the accompanying financial statements as inline XBRL on the FRS 102 Irish Extension 2026 taxonomy Revenue accepts, both from the ledger, the recorded tax adjustments, the annual accounts record and the officers, for upload through the company’s own ROS account. Says whether the company is above the iXBRL deferral limits (balance sheet total €4.4 million, turnover €8.8 million, 50 employees).
 
@@ -8497,7 +9713,7 @@ class RawDeclarationsClient:
 
         Returns
         -------
-        HttpResponse[PostV1DeclarationsIeCt1GenerateResponse]
+        HttpResponse[IeCt1GenerateDeclarationsResponse]
             Default Response
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -8515,9 +9731,9 @@ class RawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsIeCt1GenerateResponse,
+                    IeCt1GenerateDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsIeCt1GenerateResponse,  # type: ignore
+                        type_=IeCt1GenerateDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -8535,6 +9751,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -8568,6 +9795,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -8619,9 +9857,9 @@ class RawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    def post_v1declarations_ie_b1generate(
+    def ie_b1generate(
         self, *, year: int, request_options: typing.Optional[RequestOptions] = None
-    ) -> HttpResponse[PostV1DeclarationsIeB1GenerateResponse]:
+    ) -> HttpResponse[IeB1GenerateDeclarationsResponse]:
         """
         Build the working paper for the Form B1 annual return of a financial year — company details, registered office, directors and secretary from Settings → Officers, the members from Settings → Shareholders, the issued share capital and the figures of the financial statements — in the order the CORE screens ask for them. The CRO publishes no file format for the B1, so it is keyed into CORE.
 
@@ -8634,7 +9872,7 @@ class RawDeclarationsClient:
 
         Returns
         -------
-        HttpResponse[PostV1DeclarationsIeB1GenerateResponse]
+        HttpResponse[IeB1GenerateDeclarationsResponse]
             Default Response
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -8652,9 +9890,9 @@ class RawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsIeB1GenerateResponse,
+                    IeB1GenerateDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsIeB1GenerateResponse,  # type: ignore
+                        type_=IeB1GenerateDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -8672,6 +9910,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -8705,6 +9954,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -8756,14 +10016,14 @@ class RawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    def post_v1declarations_it_sdi_purchase_send(
+    def it_sdi_purchase_send(
         self,
         *,
         purchase_invoice_id: str,
         vat_rate_percent: typing.Optional[str] = OMIT,
-        tipo_documento: typing.Optional[PostV1DeclarationsItSdiPurchaseSendRequestTipoDocumento] = OMIT,
+        tipo_documento: typing.Optional[ItSdiPurchaseSendDeclarationsRequestTipoDocumento] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> HttpResponse[PostV1DeclarationsItSdiPurchaseSendResponse]:
+    ) -> HttpResponse[ItSdiPurchaseSendDeclarationsResponse]:
         """
         Build the TD16-TD19 integration document for a registered purchase invoice and send it to the Sistema di Interscambio. Since July 2022 a purchase from a supplier established abroad is reported this way instead of the esterometro. The Italian VAT rate to self-assess is a judgement about the supply: pass vatRatePercent unless the purchase lines already carry it, otherwise the request is refused rather than guessed.
 
@@ -8773,14 +10033,14 @@ class RawDeclarationsClient:
 
         vat_rate_percent : typing.Optional[str]
 
-        tipo_documento : typing.Optional[PostV1DeclarationsItSdiPurchaseSendRequestTipoDocumento]
+        tipo_documento : typing.Optional[ItSdiPurchaseSendDeclarationsRequestTipoDocumento]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
         Returns
         -------
-        HttpResponse[PostV1DeclarationsItSdiPurchaseSendResponse]
+        HttpResponse[ItSdiPurchaseSendDeclarationsResponse]
             Default Response
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -8800,9 +10060,9 @@ class RawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsItSdiPurchaseSendResponse,
+                    ItSdiPurchaseSendDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsItSdiPurchaseSendResponse,  # type: ignore
+                        type_=ItSdiPurchaseSendDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -8820,6 +10080,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -8853,6 +10124,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -8904,14 +10186,14 @@ class RawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    def post_v1declarations_it_sdi_purchase_preview(
+    def it_sdi_purchase_preview(
         self,
         *,
         purchase_invoice_id: str,
         vat_rate_percent: typing.Optional[str] = OMIT,
-        tipo_documento: typing.Optional[PostV1DeclarationsItSdiPurchasePreviewRequestTipoDocumento] = OMIT,
+        tipo_documento: typing.Optional[ItSdiPurchasePreviewDeclarationsRequestTipoDocumento] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> HttpResponse[PostV1DeclarationsItSdiPurchasePreviewResponse]:
+    ) -> HttpResponse[ItSdiPurchasePreviewDeclarationsResponse]:
         """
         Render the TD16-TD19 integration document for a registered purchase invoice without sending it, so the rate and the document type can be checked first.
 
@@ -8921,14 +10203,14 @@ class RawDeclarationsClient:
 
         vat_rate_percent : typing.Optional[str]
 
-        tipo_documento : typing.Optional[PostV1DeclarationsItSdiPurchasePreviewRequestTipoDocumento]
+        tipo_documento : typing.Optional[ItSdiPurchasePreviewDeclarationsRequestTipoDocumento]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
         Returns
         -------
-        HttpResponse[PostV1DeclarationsItSdiPurchasePreviewResponse]
+        HttpResponse[ItSdiPurchasePreviewDeclarationsResponse]
             Default Response
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -8948,9 +10230,9 @@ class RawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsItSdiPurchasePreviewResponse,
+                    ItSdiPurchasePreviewDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsItSdiPurchasePreviewResponse,  # type: ignore
+                        type_=ItSdiPurchasePreviewDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -8968,6 +10250,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -9001,6 +10294,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -9052,34 +10356,37 @@ class RawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    def post_v1declarations_lt_saft_send(
+    def lt_saft_send(
         self,
         *,
-        from_date: str,
-        to_date: str,
-        data_type: typing.Optional[PostV1DeclarationsLtSaftSendRequestDataType] = OMIT,
+        from_date: dt.date,
+        to_date: dt.date,
+        data_type: typing.Optional[LtSaftSendDeclarationsRequestDataType] = OMIT,
         confirm: typing.Optional[bool] = OMIT,
+        amend: typing.Optional[bool] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> HttpResponse[PostV1DeclarationsLtSaftSendResponse]:
+    ) -> HttpResponse[LtSaftSendDeclarationsResponse]:
         """
-        Upload the SAF-T file to i.SAF-T over the iSAFTUploaderService web service and start its processing. The submission itself is confirmed separately, because after confirmation the file can no longer be corrected.
+        Upload the SAF-T file to i.SAF-T over the iSAFTUploaderService web service and start its processing. The file, the case reference and the status are kept as a declaration submission (submissionId), whose outcome Nordlet then checks with i.SAF-T. The submission itself is confirmed separately, because after confirmation the file can no longer be corrected. A range and data type already sent is sent again only with amend: true.
 
         Parameters
         ----------
-        from_date : str
+        from_date : dt.date
 
-        to_date : str
+        to_date : dt.date
 
-        data_type : typing.Optional[PostV1DeclarationsLtSaftSendRequestDataType]
+        data_type : typing.Optional[LtSaftSendDeclarationsRequestDataType]
 
         confirm : typing.Optional[bool]
+
+        amend : typing.Optional[bool]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
         Returns
         -------
-        HttpResponse[PostV1DeclarationsLtSaftSendResponse]
+        HttpResponse[LtSaftSendDeclarationsResponse]
             Default Response
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -9090,6 +10397,7 @@ class RawDeclarationsClient:
                 "toDate": to_date,
                 "dataType": data_type,
                 "confirm": confirm,
+                "amend": amend,
             },
             headers={
                 "content-type": "application/json",
@@ -9100,9 +10408,9 @@ class RawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsLtSaftSendResponse,
+                    LtSaftSendDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsLtSaftSendResponse,  # type: ignore
+                        type_=LtSaftSendDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -9120,6 +10428,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -9153,6 +10472,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -9204,26 +10534,26 @@ class RawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    def post_v1declarations_lt_sd_ffdata(
+    def lt_sd_ffdata(
         self,
         *,
-        type: PostV1DeclarationsLtSdFfdataRequestType,
-        from_date: str,
-        to_date: str,
+        type: LtSdFfdataDeclarationsRequestType,
+        from_date: dt.date,
+        to_date: dt.date,
         manager_full_name: typing.Optional[str] = OMIT,
         preparator_details: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> HttpResponse[PostV1DeclarationsLtSdFfdataResponse]:
+    ) -> HttpResponse[LtSdFfdataDeclarationsResponse]:
         """
         Render the Sodra 1-SD or 2-SD notice for the contracts starting or ending in the range as an .ffdata document for EDAS.
 
         Parameters
         ----------
-        type : PostV1DeclarationsLtSdFfdataRequestType
+        type : LtSdFfdataDeclarationsRequestType
 
-        from_date : str
+        from_date : dt.date
 
-        to_date : str
+        to_date : dt.date
 
         manager_full_name : typing.Optional[str]
 
@@ -9234,7 +10564,7 @@ class RawDeclarationsClient:
 
         Returns
         -------
-        HttpResponse[PostV1DeclarationsLtSdFfdataResponse]
+        HttpResponse[LtSdFfdataDeclarationsResponse]
             Default Response
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -9256,9 +10586,9 @@ class RawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsLtSdFfdataResponse,
+                    LtSdFfdataDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsLtSdFfdataResponse,  # type: ignore
+                        type_=LtSdFfdataDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -9276,6 +10606,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -9309,6 +10650,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -9360,9 +10712,9 @@ class RawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    def post_v1declarations_lt_pln204ffdata(
+    def lt_pln204ffdata(
         self, *, year: int, request_options: typing.Optional[RequestOptions] = None
-    ) -> HttpResponse[PostV1DeclarationsLtPln204FfdataResponse]:
+    ) -> HttpResponse[LtPln204FfdataDeclarationsResponse]:
         """
         Render the annual corporate income tax return PLN204 as an .ffdata document, including the PLN204S and PLN204Z annexes, from the ledger and the tax adjustments recorded for that year.
 
@@ -9375,7 +10727,7 @@ class RawDeclarationsClient:
 
         Returns
         -------
-        HttpResponse[PostV1DeclarationsLtPln204FfdataResponse]
+        HttpResponse[LtPln204FfdataDeclarationsResponse]
             Default Response
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -9393,9 +10745,9 @@ class RawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsLtPln204FfdataResponse,
+                    LtPln204FfdataDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsLtPln204FfdataResponse,  # type: ignore
+                        type_=LtPln204FfdataDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -9413,6 +10765,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -9446,6 +10809,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -9497,9 +10871,9 @@ class RawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    def post_v1declarations_mt_company_tax_generate(
+    def mt_company_tax_generate(
         self, *, year: int, request_options: typing.Optional[RequestOptions] = None
-    ) -> HttpResponse[PostV1DeclarationsMtCompanyTaxGenerateResponse]:
+    ) -> HttpResponse[MtCompanyTaxGenerateDeclarationsResponse]:
         """
         Compute the company income tax return and self-assessment of a year of assessment from the ledger and the recorded tax adjustments: the accounting profit before tax, the add-backs and deductions, the approved donations, capital allowances and losses carried forward, the chargeable income, the 35 % charge, the relief against the tax and the allocation of the distributable profit to the five tax accounts. The Malta Tax and Customs Administration issues the return as a personalised spreadsheet to the registered tax practitioner and publishes no layout, so the XML is a working file and the figures are keyed into that spreadsheet.
 
@@ -9512,7 +10886,7 @@ class RawDeclarationsClient:
 
         Returns
         -------
-        HttpResponse[PostV1DeclarationsMtCompanyTaxGenerateResponse]
+        HttpResponse[MtCompanyTaxGenerateDeclarationsResponse]
             Default Response
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -9530,9 +10904,9 @@ class RawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsMtCompanyTaxGenerateResponse,
+                    MtCompanyTaxGenerateDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsMtCompanyTaxGenerateResponse,  # type: ignore
+                        type_=MtCompanyTaxGenerateDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -9550,6 +10924,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -9583,6 +10968,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -9634,9 +11030,9 @@ class RawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    def post_v1declarations_mt_annual_return_generate(
+    def mt_annual_return_generate(
         self, *, year: int, request_options: typing.Optional[RequestOptions] = None
-    ) -> HttpResponse[PostV1DeclarationsMtAnnualReturnGenerateResponse]:
+    ) -> HttpResponse[MtAnnualReturnGenerateDeclarationsResponse]:
         """
         Build the annual return of a year: the company number, registered office and made-up-to date, the share capital, the register of members, the directors and the company secretary and the accounts summary, as the figures the Malta Business Registry asks for on its own screens, plus the printed Annual Return Form of the Seventh Schedule filled in as a PDF for signing.
 
@@ -9649,7 +11045,7 @@ class RawDeclarationsClient:
 
         Returns
         -------
-        HttpResponse[PostV1DeclarationsMtAnnualReturnGenerateResponse]
+        HttpResponse[MtAnnualReturnGenerateDeclarationsResponse]
             Default Response
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -9667,9 +11063,9 @@ class RawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsMtAnnualReturnGenerateResponse,
+                    MtAnnualReturnGenerateDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsMtAnnualReturnGenerateResponse,  # type: ignore
+                        type_=MtAnnualReturnGenerateDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -9687,6 +11083,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -9720,6 +11127,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -9771,24 +11189,24 @@ class RawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    def post_v1declarations_pl_jpk_fa_generate(
-        self, *, date_from: str, date_to: str, request_options: typing.Optional[RequestOptions] = None
-    ) -> HttpResponse[PostV1DeclarationsPlJpkFaGenerateResponse]:
+    def pl_jpk_fa_generate(
+        self, *, date_from: dt.date, date_to: dt.date, request_options: typing.Optional[RequestOptions] = None
+    ) -> HttpResponse[PlJpkFaGenerateDeclarationsResponse]:
         """
         Generate JPK_FA(4), the on-demand structure with every sales invoice issued in a period, its VAT bases per rate and one row per invoice line. Filed only when the tax office asks for it.
 
         Parameters
         ----------
-        date_from : str
+        date_from : dt.date
 
-        date_to : str
+        date_to : dt.date
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
         Returns
         -------
-        HttpResponse[PostV1DeclarationsPlJpkFaGenerateResponse]
+        HttpResponse[PlJpkFaGenerateDeclarationsResponse]
             Default Response
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -9807,9 +11225,9 @@ class RawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsPlJpkFaGenerateResponse,
+                    PlJpkFaGenerateDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsPlJpkFaGenerateResponse,  # type: ignore
+                        type_=PlJpkFaGenerateDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -9827,6 +11245,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -9860,6 +11289,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -9911,24 +11351,24 @@ class RawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    def post_v1declarations_pl_jpk_kr_generate(
-        self, *, date_from: str, date_to: str, request_options: typing.Optional[RequestOptions] = None
-    ) -> HttpResponse[PostV1DeclarationsPlJpkKrGenerateResponse]:
+    def pl_jpk_kr_generate(
+        self, *, date_from: dt.date, date_to: dt.date, request_options: typing.Optional[RequestOptions] = None
+    ) -> HttpResponse[PlJpkKrGenerateDeclarationsResponse]:
         """
         Generate JPK_KR(1), the on-demand structure with the chart of accounts and its opening balances and turnover, the journal and the double entries behind it. Filed only when the tax office asks for it.
 
         Parameters
         ----------
-        date_from : str
+        date_from : dt.date
 
-        date_to : str
+        date_to : dt.date
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
         Returns
         -------
-        HttpResponse[PostV1DeclarationsPlJpkKrGenerateResponse]
+        HttpResponse[PlJpkKrGenerateDeclarationsResponse]
             Default Response
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -9947,9 +11387,9 @@ class RawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsPlJpkKrGenerateResponse,
+                    PlJpkKrGenerateDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsPlJpkKrGenerateResponse,  # type: ignore
+                        type_=PlJpkKrGenerateDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -9967,6 +11407,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -10000,6 +11451,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -10051,22 +11513,22 @@ class RawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    def post_v1declarations_pl_jpk_mag_generate(
+    def pl_jpk_mag_generate(
         self,
         *,
-        date_from: str,
-        date_to: str,
+        date_from: dt.date,
+        date_to: dt.date,
         warehouse_id: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> HttpResponse[PostV1DeclarationsPlJpkMagGenerateResponse]:
+    ) -> HttpResponse[PlJpkMagGenerateDeclarationsResponse]:
         """
         Generate JPK_MAG(2), the on-demand structure with the warehouse documents of one warehouse: goods received from outside (PZ) or internally (PW) and issued to a customer (WZ) or internally (RW). Filed only when the tax office asks for it.
 
         Parameters
         ----------
-        date_from : str
+        date_from : dt.date
 
-        date_to : str
+        date_to : dt.date
 
         warehouse_id : typing.Optional[str]
 
@@ -10075,7 +11537,7 @@ class RawDeclarationsClient:
 
         Returns
         -------
-        HttpResponse[PostV1DeclarationsPlJpkMagGenerateResponse]
+        HttpResponse[PlJpkMagGenerateDeclarationsResponse]
             Default Response
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -10095,9 +11557,9 @@ class RawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsPlJpkMagGenerateResponse,
+                    PlJpkMagGenerateDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsPlJpkMagGenerateResponse,  # type: ignore
+                        type_=PlJpkMagGenerateDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -10115,6 +11577,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -10148,6 +11621,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -10199,9 +11683,9 @@ class RawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    def post_v1declarations_pl_pit11generate(
+    def pl_pit11generate(
         self, *, year: int, request_options: typing.Optional[RequestOptions] = None
-    ) -> HttpResponse[PostV1DeclarationsPlPit11GenerateResponse]:
+    ) -> HttpResponse[PlPit11GenerateDeclarationsResponse]:
         """
         Generate PIT-11(29) for every person on the payroll of one year: the pay, the deductible costs, the advance withheld and the social and health contributions taken off it. One document per person, because that is how the form is filed.
 
@@ -10214,7 +11698,7 @@ class RawDeclarationsClient:
 
         Returns
         -------
-        HttpResponse[PostV1DeclarationsPlPit11GenerateResponse]
+        HttpResponse[PlPit11GenerateDeclarationsResponse]
             Default Response
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -10232,9 +11716,9 @@ class RawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsPlPit11GenerateResponse,
+                    PlPit11GenerateDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsPlPit11GenerateResponse,  # type: ignore
+                        type_=PlPit11GenerateDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -10252,6 +11736,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -10285,6 +11780,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -10336,9 +11842,9 @@ class RawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    def post_v1declarations_pl_cit8generate(
+    def pl_cit8generate(
         self, *, year: int, request_options: typing.Optional[RequestOptions] = None
-    ) -> HttpResponse[PostV1DeclarationsPlCit8GenerateResponse]:
+    ) -> HttpResponse[PlCit8GenerateDeclarationsResponse]:
         """
         Generate CIT-8(34), the annual corporate income tax return, from the ledger of the year and the recorded tax adjustments. The tax office code and the small-taxpayer setting come from the e-Deklaracje compliance settings, the seat address from the JPK gateway settings. Names the annexes the figures would need, which are not produced.
 
@@ -10351,7 +11857,7 @@ class RawDeclarationsClient:
 
         Returns
         -------
-        HttpResponse[PostV1DeclarationsPlCit8GenerateResponse]
+        HttpResponse[PlCit8GenerateDeclarationsResponse]
             Default Response
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -10369,9 +11875,9 @@ class RawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsPlCit8GenerateResponse,
+                    PlCit8GenerateDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsPlCit8GenerateResponse,  # type: ignore
+                        type_=PlCit8GenerateDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -10389,6 +11895,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -10422,6 +11939,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -10473,9 +12001,9 @@ class RawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    def post_v1declarations_pl_zus_dra_compute(
+    def pl_zus_dra_compute(
         self, *, year: int, month: int, request_options: typing.Optional[RequestOptions] = None
-    ) -> HttpResponse[PostV1DeclarationsPlZusDraComputeResponse]:
+    ) -> HttpResponse[PlZusDraComputeDeclarationsResponse]:
         """
         Compute the monthly ZUS DRA settlement from the payroll run of one month: the pension, disability, sickness, accident and health insurance contributions and the Labour Fund, Solidarity Fund and guaranteed benefits fund charges, each split between the insured person and the payer. The amounts are carried into Płatnik or ePłatnik by hand.
 
@@ -10490,7 +12018,7 @@ class RawDeclarationsClient:
 
         Returns
         -------
-        HttpResponse[PostV1DeclarationsPlZusDraComputeResponse]
+        HttpResponse[PlZusDraComputeDeclarationsResponse]
             Default Response
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -10509,9 +12037,9 @@ class RawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsPlZusDraComputeResponse,
+                    PlZusDraComputeDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsPlZusDraComputeResponse,  # type: ignore
+                        type_=PlZusDraComputeDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -10529,6 +12057,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -10562,6 +12101,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -10613,9 +12163,9 @@ class RawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    def post_v1declarations_pl_zus_dra_kedu(
+    def pl_zus_dra_kedu(
         self, *, year: int, month: int, request_options: typing.Optional[RequestOptions] = None
-    ) -> HttpResponse[PostV1DeclarationsPlZusDraKeduResponse]:
+    ) -> HttpResponse[PlZusDraKeduDeclarationsResponse]:
         """
         Build the KEDU file for one month: the ZUS DRA settlement and one ZUS RCA report per person on the payroll, in the schema kedu_5_4 that Płatnik and ePłatnik import. The payer REGON, short name and declaration deadline code come from the ZUS compliance settings; the insurance title code and working time of each person from the employee record.
 
@@ -10630,7 +12180,7 @@ class RawDeclarationsClient:
 
         Returns
         -------
-        HttpResponse[PostV1DeclarationsPlZusDraKeduResponse]
+        HttpResponse[PlZusDraKeduDeclarationsResponse]
             Default Response
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -10649,9 +12199,9 @@ class RawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsPlZusDraKeduResponse,
+                    PlZusDraKeduDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsPlZusDraKeduResponse,  # type: ignore
+                        type_=PlZusDraKeduDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -10669,6 +12219,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -10702,6 +12263,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -10753,9 +12325,9 @@ class RawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    def post_v1declarations_pl_zus_dra_pdf(
+    def pl_zus_dra_pdf(
         self, *, year: int, month: int, request_options: typing.Optional[RequestOptions] = None
-    ) -> HttpResponse[PostV1DeclarationsPlZusDraPdfResponse]:
+    ) -> HttpResponse[PlZusDraPdfDeclarationsResponse]:
         """
         Fill the published ZUS DRA form for one month and return it as a PDF. The amounts, the payer identity and the deadline code are the same ones the KEDU file carries; blocks the payroll does not hold (paid benefits, bridging pensions, income declaration of a self-paying person) stay empty.
 
@@ -10770,7 +12342,7 @@ class RawDeclarationsClient:
 
         Returns
         -------
-        HttpResponse[PostV1DeclarationsPlZusDraPdfResponse]
+        HttpResponse[PlZusDraPdfDeclarationsResponse]
             Default Response
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -10789,9 +12361,9 @@ class RawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsPlZusDraPdfResponse,
+                    PlZusDraPdfDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsPlZusDraPdfResponse,  # type: ignore
+                        type_=PlZusDraPdfDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -10809,6 +12381,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -10842,6 +12425,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -10893,9 +12487,9 @@ class RawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    def post_v1declarations_ro_etransport_build(
+    def ro_etransport_build(
         self, *, waybill_id: str, request_options: typing.Optional[RequestOptions] = None
-    ) -> HttpResponse[PostV1DeclarationsRoEtransportBuildResponse]:
+    ) -> HttpResponse[RoEtransportBuildDeclarationsResponse]:
         """
         Build the RO e-Transport declaration for an issued waybill: goods with their tariff codes and masses, the commercial partner, the route and the vehicle. The XML follows the ANAF eTransport v2 schema and is kept as a file on the waybill. Anything listed in blockers has to be filled in before /etransport/send will accept it.
 
@@ -10908,7 +12502,7 @@ class RawDeclarationsClient:
 
         Returns
         -------
-        HttpResponse[PostV1DeclarationsRoEtransportBuildResponse]
+        HttpResponse[RoEtransportBuildDeclarationsResponse]
             Default Response
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -10926,9 +12520,9 @@ class RawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsRoEtransportBuildResponse,
+                    RoEtransportBuildDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsRoEtransportBuildResponse,  # type: ignore
+                        type_=RoEtransportBuildDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -10946,6 +12540,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -10979,6 +12584,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -11030,9 +12646,9 @@ class RawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    def post_v1declarations_ro_etransport_submit(
+    def ro_etransport_submit(
         self, *, waybill_id: str, request_options: typing.Optional[RequestOptions] = None
-    ) -> HttpResponse[PostV1DeclarationsRoEtransportSubmitResponse]:
+    ) -> HttpResponse[RoEtransportSubmitDeclarationsResponse]:
         """
         Hand the RO e-Transport declaration for an issued waybill to ANAF under the SPV OAuth token in compliance settings, and return the upload index the UIT is read back with. Answers 422 while any field the ANAF validator requires is still missing.
 
@@ -11045,7 +12661,7 @@ class RawDeclarationsClient:
 
         Returns
         -------
-        HttpResponse[PostV1DeclarationsRoEtransportSubmitResponse]
+        HttpResponse[RoEtransportSubmitDeclarationsResponse]
             Default Response
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -11063,9 +12679,9 @@ class RawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsRoEtransportSubmitResponse,
+                    RoEtransportSubmitDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsRoEtransportSubmitResponse,  # type: ignore
+                        type_=RoEtransportSubmitDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -11083,6 +12699,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -11116,6 +12743,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -11167,9 +12805,9 @@ class RawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    def post_v1declarations_ro_etransport_status(
+    def ro_etransport_status(
         self, *, reference: str, request_options: typing.Optional[RequestOptions] = None
-    ) -> HttpResponse[PostV1DeclarationsRoEtransportStatusResponse]:
+    ) -> HttpResponse[RoEtransportStatusDeclarationsResponse]:
         """
         Read the outcome of an e-Transport declaration from ANAF by its upload index, under the SPV OAuth token in compliance settings. Returns the UIT code once the declaration validates.
 
@@ -11182,7 +12820,7 @@ class RawDeclarationsClient:
 
         Returns
         -------
-        HttpResponse[PostV1DeclarationsRoEtransportStatusResponse]
+        HttpResponse[RoEtransportStatusDeclarationsResponse]
             Default Response
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -11200,9 +12838,9 @@ class RawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsRoEtransportStatusResponse,
+                    RoEtransportStatusDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsRoEtransportStatusResponse,  # type: ignore
+                        type_=RoEtransportStatusDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -11220,6 +12858,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -11253,6 +12902,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -11304,9 +12964,9 @@ class RawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    def post_v1declarations_li_lohndeklaration_generate(
+    def li_lohndeklaration_generate(
         self, *, year: int, request_options: typing.Optional[RequestOptions] = None
-    ) -> HttpResponse[PostV1DeclarationsLiLohndeklarationGenerateResponse]:
+    ) -> HttpResponse[LiLohndeklarationGenerateDeclarationsResponse]:
         """
         Build the annual wage declaration (Lohndeklaration) to the AHV-IV-FAK from the approved payroll runs of the year as the CSV that AHVeasy imports under Lohndeklaration → CSV-Import der Lohndaten: one row per employee with the 18 columns of the AHVeasy template, the AHV-liable wage and the ALV wage.
 
@@ -11319,7 +12979,7 @@ class RawDeclarationsClient:
 
         Returns
         -------
-        HttpResponse[PostV1DeclarationsLiLohndeklarationGenerateResponse]
+        HttpResponse[LiLohndeklarationGenerateDeclarationsResponse]
             Default Response
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -11337,9 +12997,9 @@ class RawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsLiLohndeklarationGenerateResponse,
+                    LiLohndeklarationGenerateDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsLiLohndeklarationGenerateResponse,  # type: ignore
+                        type_=LiLohndeklarationGenerateDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -11357,6 +13017,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -11390,6 +13061,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -11441,9 +13123,9 @@ class RawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    def post_v1declarations_li_lohnlisten_generate(
+    def li_lohnlisten_generate(
         self, *, year: int, request_options: typing.Optional[RequestOptions] = None
-    ) -> HttpResponse[PostV1DeclarationsLiLohnlistenGenerateResponse]:
+    ) -> HttpResponse[LiLohnlistenGenerateDeclarationsResponse]:
         """
         Build the annual wage list (Lohnliste) of a Liechtenstein employer from the approved payroll runs of the year as the XLSX file the tax administration's eLohnausweis / eLohnlisten application imports: one row per employee with PEID, name, birth date, address, gross wage, wage tax withheld and the settlement period.
 
@@ -11456,7 +13138,7 @@ class RawDeclarationsClient:
 
         Returns
         -------
-        HttpResponse[PostV1DeclarationsLiLohnlistenGenerateResponse]
+        HttpResponse[LiLohnlistenGenerateDeclarationsResponse]
             Default Response
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -11474,9 +13156,9 @@ class RawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsLiLohnlistenGenerateResponse,
+                    LiLohnlistenGenerateDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsLiLohnlistenGenerateResponse,  # type: ignore
+                        type_=LiLohnlistenGenerateDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -11494,6 +13176,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -11527,6 +13220,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -11578,9 +13282,9 @@ class RawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    def post_v1declarations_configs_list(
+    def configs_list(
         self, *, request_options: typing.Optional[RequestOptions] = None
-    ) -> HttpResponse[PostV1DeclarationsConfigsListResponse]:
+    ) -> HttpResponse[ConfigsListDeclarationsResponse]:
         """
         Parameters
         ----------
@@ -11589,7 +13293,7 @@ class RawDeclarationsClient:
 
         Returns
         -------
-        HttpResponse[PostV1DeclarationsConfigsListResponse]
+        HttpResponse[ConfigsListDeclarationsResponse]
             Default Response
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -11605,9 +13309,9 @@ class RawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsConfigsListResponse,
+                    ConfigsListDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsConfigsListResponse,  # type: ignore
+                        type_=ConfigsListDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -11625,6 +13329,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -11658,6 +13373,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -11709,9 +13435,9 @@ class RawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    def post_v1declarations_configs_update(
+    def configs_update(
         self, *, system: str, config: typing.Dict[str, str], request_options: typing.Optional[RequestOptions] = None
-    ) -> HttpResponse[PostV1DeclarationsConfigsUpdateResponse]:
+    ) -> HttpResponse[ConfigsUpdateDeclarationsResponse]:
         """
         Parameters
         ----------
@@ -11724,7 +13450,7 @@ class RawDeclarationsClient:
 
         Returns
         -------
-        HttpResponse[PostV1DeclarationsConfigsUpdateResponse]
+        HttpResponse[ConfigsUpdateDeclarationsResponse]
             Default Response
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -11743,9 +13469,9 @@ class RawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsConfigsUpdateResponse,
+                    ConfigsUpdateDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsConfigsUpdateResponse,  # type: ignore
+                        type_=ConfigsUpdateDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -11763,6 +13489,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -11796,6 +13533,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -11847,7 +13595,7 @@ class RawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    def store_the_certificate_or_private_key_a_filing_system_authenticates_with(
+    def certificates_upload(
         self,
         *,
         system: str,
@@ -11855,7 +13603,7 @@ class RawDeclarationsClient:
         content: str,
         passphrase: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> HttpResponse[PostV1DeclarationsCertificatesUploadResponse]:
+    ) -> HttpResponse[CertificatesUploadDeclarationsResponse]:
         """
         Parameters
         ----------
@@ -11873,7 +13621,7 @@ class RawDeclarationsClient:
 
         Returns
         -------
-        HttpResponse[PostV1DeclarationsCertificatesUploadResponse]
+        HttpResponse[CertificatesUploadDeclarationsResponse]
             Default Response
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -11894,9 +13642,9 @@ class RawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsCertificatesUploadResponse,
+                    CertificatesUploadDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsCertificatesUploadResponse,  # type: ignore
+                        type_=CertificatesUploadDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -11914,6 +13662,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -11947,6 +13706,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -11998,9 +13768,9 @@ class RawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    def post_v1declarations_certificates_list(
+    def certificates_list(
         self, *, request_options: typing.Optional[RequestOptions] = None
-    ) -> HttpResponse[PostV1DeclarationsCertificatesListResponse]:
+    ) -> HttpResponse[CertificatesListDeclarationsResponse]:
         """
         Parameters
         ----------
@@ -12009,7 +13779,7 @@ class RawDeclarationsClient:
 
         Returns
         -------
-        HttpResponse[PostV1DeclarationsCertificatesListResponse]
+        HttpResponse[CertificatesListDeclarationsResponse]
             Default Response
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -12025,9 +13795,9 @@ class RawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsCertificatesListResponse,
+                    CertificatesListDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsCertificatesListResponse,  # type: ignore
+                        type_=CertificatesListDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -12045,6 +13815,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -12078,6 +13859,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -12129,26 +13921,26 @@ class RawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    def post_v1declarations_certificates_delete(
+    def certificates_delete(
         self,
         *,
         system: str,
-        field_key: PostV1DeclarationsCertificatesDeleteRequestFieldKey,
+        field_key: CertificatesDeleteDeclarationsRequestFieldKey,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> HttpResponse[PostV1DeclarationsCertificatesDeleteResponse]:
+    ) -> HttpResponse[CertificatesDeleteDeclarationsResponse]:
         """
         Parameters
         ----------
         system : str
 
-        field_key : PostV1DeclarationsCertificatesDeleteRequestFieldKey
+        field_key : CertificatesDeleteDeclarationsRequestFieldKey
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
         Returns
         -------
-        HttpResponse[PostV1DeclarationsCertificatesDeleteResponse]
+        HttpResponse[CertificatesDeleteDeclarationsResponse]
             Default Response
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -12167,9 +13959,9 @@ class RawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsCertificatesDeleteResponse,
+                    CertificatesDeleteDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsCertificatesDeleteResponse,  # type: ignore
+                        type_=CertificatesDeleteDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -12187,6 +13979,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -12220,6 +14023,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -12271,9 +14085,9 @@ class RawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    def which_deadlines_nordlet_can_file_by_itself_for_this_company_and_which_are_switched_on(
+    def automation_list(
         self, *, request_options: typing.Optional[RequestOptions] = None
-    ) -> HttpResponse[PostV1DeclarationsAutomationListResponse]:
+    ) -> HttpResponse[AutomationListDeclarationsResponse]:
         """
         Parameters
         ----------
@@ -12282,7 +14096,7 @@ class RawDeclarationsClient:
 
         Returns
         -------
-        HttpResponse[PostV1DeclarationsAutomationListResponse]
+        HttpResponse[AutomationListDeclarationsResponse]
             Default Response
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -12298,9 +14112,9 @@ class RawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsAutomationListResponse,
+                    AutomationListDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsAutomationListResponse,  # type: ignore
+                        type_=AutomationListDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -12318,6 +14132,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -12351,6 +14176,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -12402,9 +14238,9 @@ class RawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    def post_v1declarations_automation_update(
+    def automation_update(
         self, *, rule_key: str, enabled: bool, request_options: typing.Optional[RequestOptions] = None
-    ) -> HttpResponse[PostV1DeclarationsAutomationUpdateResponse]:
+    ) -> HttpResponse[AutomationUpdateDeclarationsResponse]:
         """
         Parameters
         ----------
@@ -12417,7 +14253,7 @@ class RawDeclarationsClient:
 
         Returns
         -------
-        HttpResponse[PostV1DeclarationsAutomationUpdateResponse]
+        HttpResponse[AutomationUpdateDeclarationsResponse]
             Default Response
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -12436,9 +14272,9 @@ class RawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsAutomationUpdateResponse,
+                    AutomationUpdateDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsAutomationUpdateResponse,  # type: ignore
+                        type_=AutomationUpdateDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -12456,6 +14292,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -12489,6 +14336,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -12540,9 +14398,9 @@ class RawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    def send_a_filing_whose_delivery_failed_once_more_with_the_bytes_that_were_generated(
+    def submissions_retry(
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
-    ) -> HttpResponse[PostV1DeclarationsSubmissionsRetryResponse]:
+    ) -> HttpResponse[SubmissionsRetryDeclarationsResponse]:
         """
         Parameters
         ----------
@@ -12553,7 +14411,7 @@ class RawDeclarationsClient:
 
         Returns
         -------
-        HttpResponse[PostV1DeclarationsSubmissionsRetryResponse]
+        HttpResponse[SubmissionsRetryDeclarationsResponse]
             Default Response
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -12571,9 +14429,9 @@ class RawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsSubmissionsRetryResponse,
+                    SubmissionsRetryDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsSubmissionsRetryResponse,  # type: ignore
+                        type_=SubmissionsRetryDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -12591,6 +14449,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -12624,6 +14493,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -12675,32 +14555,32 @@ class RawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    def post_v1declarations_submissions_create(
+    def submissions_create(
         self,
         *,
-        obligation: PostV1DeclarationsSubmissionsCreateRequestObligation,
+        obligation: SubmissionsCreateDeclarationsRequestObligation,
         year: int,
         month: int,
-        data_type: typing.Optional[PostV1DeclarationsSubmissionsCreateRequestDataType] = OMIT,
+        data_type: typing.Optional[SubmissionsCreateDeclarationsRequestDataType] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> HttpResponse[PostV1DeclarationsSubmissionsCreateResponse]:
+    ) -> HttpResponse[SubmissionsCreateDeclarationsResponse]:
         """
         Parameters
         ----------
-        obligation : PostV1DeclarationsSubmissionsCreateRequestObligation
+        obligation : SubmissionsCreateDeclarationsRequestObligation
 
         year : int
 
         month : int
 
-        data_type : typing.Optional[PostV1DeclarationsSubmissionsCreateRequestDataType]
+        data_type : typing.Optional[SubmissionsCreateDeclarationsRequestDataType]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
         Returns
         -------
-        HttpResponse[PostV1DeclarationsSubmissionsCreateResponse]
+        HttpResponse[SubmissionsCreateDeclarationsResponse]
             Default Response
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -12721,9 +14601,9 @@ class RawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsSubmissionsCreateResponse,
+                    SubmissionsCreateDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsSubmissionsCreateResponse,  # type: ignore
+                        type_=SubmissionsCreateDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -12741,6 +14621,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -12774,6 +14665,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -12825,21 +14727,21 @@ class RawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    def post_v1declarations_submissions_mark(
+    def submissions_mark(
         self,
         *,
         id: str,
-        status: PostV1DeclarationsSubmissionsMarkRequestStatus,
+        status: SubmissionsMarkDeclarationsRequestStatus,
         external_ref: typing.Optional[str] = OMIT,
         message: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> HttpResponse[PostV1DeclarationsSubmissionsMarkResponse]:
+    ) -> HttpResponse[SubmissionsMarkDeclarationsResponse]:
         """
         Parameters
         ----------
         id : str
 
-        status : PostV1DeclarationsSubmissionsMarkRequestStatus
+        status : SubmissionsMarkDeclarationsRequestStatus
 
         external_ref : typing.Optional[str]
 
@@ -12850,7 +14752,7 @@ class RawDeclarationsClient:
 
         Returns
         -------
-        HttpResponse[PostV1DeclarationsSubmissionsMarkResponse]
+        HttpResponse[SubmissionsMarkDeclarationsResponse]
             Default Response
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -12871,9 +14773,9 @@ class RawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsSubmissionsMarkResponse,
+                    SubmissionsMarkDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsSubmissionsMarkResponse,  # type: ignore
+                        type_=SubmissionsMarkDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -12891,6 +14793,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -12924,6 +14837,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -12975,16 +14899,16 @@ class RawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    def post_v1declarations_submissions_list(
+    def submissions_list(
         self,
         *,
         page: typing.Optional[int] = OMIT,
         page_size: typing.Optional[int] = OMIT,
-        sort: typing.Optional[typing.Sequence[PostV1DeclarationsSubmissionsListRequestSortItem]] = OMIT,
-        filter: typing.Optional[typing.Sequence[PostV1DeclarationsSubmissionsListRequestFilterItem]] = OMIT,
+        sort: typing.Optional[typing.Sequence[SubmissionsListDeclarationsRequestSortItem]] = OMIT,
+        filter: typing.Optional[typing.Sequence[SubmissionsListDeclarationsRequestFilterItem]] = OMIT,
         totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> HttpResponse[PostV1DeclarationsSubmissionsListResponse]:
+    ) -> HttpResponse[SubmissionsListDeclarationsResponse]:
         """
         Parameters
         ----------
@@ -12992,9 +14916,9 @@ class RawDeclarationsClient:
 
         page_size : typing.Optional[int]
 
-        sort : typing.Optional[typing.Sequence[PostV1DeclarationsSubmissionsListRequestSortItem]]
+        sort : typing.Optional[typing.Sequence[SubmissionsListDeclarationsRequestSortItem]]
 
-        filter : typing.Optional[typing.Sequence[PostV1DeclarationsSubmissionsListRequestFilterItem]]
+        filter : typing.Optional[typing.Sequence[SubmissionsListDeclarationsRequestFilterItem]]
 
         totals : typing.Optional[typing.Sequence[str]]
             Numeric fields to sum over every row matching the filter (not only the current page)
@@ -13004,7 +14928,7 @@ class RawDeclarationsClient:
 
         Returns
         -------
-        HttpResponse[PostV1DeclarationsSubmissionsListResponse]
+        HttpResponse[SubmissionsListDeclarationsResponse]
             Default Response
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -13015,12 +14939,12 @@ class RawDeclarationsClient:
                 "pageSize": page_size,
                 "sort": convert_and_respect_annotation_metadata(
                     object_=sort,
-                    annotation=typing.Sequence[PostV1DeclarationsSubmissionsListRequestSortItem],
+                    annotation=typing.Sequence[SubmissionsListDeclarationsRequestSortItem],
                     direction="write",
                 ),
                 "filter": convert_and_respect_annotation_metadata(
                     object_=filter,
-                    annotation=typing.Sequence[PostV1DeclarationsSubmissionsListRequestFilterItem],
+                    annotation=typing.Sequence[SubmissionsListDeclarationsRequestFilterItem],
                     direction="write",
                 ),
                 "totals": totals,
@@ -13034,9 +14958,9 @@ class RawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsSubmissionsListResponse,
+                    SubmissionsListDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsSubmissionsListResponse,  # type: ignore
+                        type_=SubmissionsListDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -13054,6 +14978,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -13087,6 +15022,17 @@ class RawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -13143,22 +15089,22 @@ class AsyncRawDeclarationsClient:
     def __init__(self, *, client_wrapper: AsyncClientWrapper):
         self._client_wrapper = client_wrapper
 
-    async def post_v1declarations_lt_intrastat_compute(
+    async def lt_intrastat_compute(
         self,
         *,
         year: int,
         month: int,
-        flow: PostV1DeclarationsLtIntrastatComputeRequestFlow,
+        flow: LtIntrastatComputeDeclarationsRequestFlow,
         transaction_nature: typing.Optional[str] = OMIT,
         delivery_terms: typing.Optional[str] = OMIT,
-        transport_mode: typing.Optional[PostV1DeclarationsLtIntrastatComputeRequestTransportMode] = OMIT,
+        transport_mode: typing.Optional[LtIntrastatComputeDeclarationsRequestTransportMode] = OMIT,
         region_code: typing.Optional[str] = OMIT,
         statistical_value_required: typing.Optional[bool] = OMIT,
         preparation_time_hours: typing.Optional[int] = OMIT,
         preparation_time_minutes: typing.Optional[int] = OMIT,
         persist: typing.Optional[bool] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> AsyncHttpResponse[PostV1DeclarationsLtIntrastatComputeResponse]:
+    ) -> AsyncHttpResponse[LtIntrastatComputeDeclarationsResponse]:
         """
         Parameters
         ----------
@@ -13166,13 +15112,13 @@ class AsyncRawDeclarationsClient:
 
         month : int
 
-        flow : PostV1DeclarationsLtIntrastatComputeRequestFlow
+        flow : LtIntrastatComputeDeclarationsRequestFlow
 
         transaction_nature : typing.Optional[str]
 
         delivery_terms : typing.Optional[str]
 
-        transport_mode : typing.Optional[PostV1DeclarationsLtIntrastatComputeRequestTransportMode]
+        transport_mode : typing.Optional[LtIntrastatComputeDeclarationsRequestTransportMode]
 
         region_code : typing.Optional[str]
 
@@ -13189,7 +15135,7 @@ class AsyncRawDeclarationsClient:
 
         Returns
         -------
-        AsyncHttpResponse[PostV1DeclarationsLtIntrastatComputeResponse]
+        AsyncHttpResponse[LtIntrastatComputeDeclarationsResponse]
             Default Response
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -13217,9 +15163,9 @@ class AsyncRawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsLtIntrastatComputeResponse,
+                    LtIntrastatComputeDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsLtIntrastatComputeResponse,  # type: ignore
+                        type_=LtIntrastatComputeDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -13237,6 +15183,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -13270,6 +15227,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -13321,13 +15289,13 @@ class AsyncRawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    async def post_v1declarations_lt_ivaz_generate(
+    async def lt_ivaz_generate(
         self,
         *,
         waybill_ids: typing.Sequence[str],
         persist: typing.Optional[bool] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> AsyncHttpResponse[PostV1DeclarationsLtIvazGenerateResponse]:
+    ) -> AsyncHttpResponse[LtIvazGenerateDeclarationsResponse]:
         """
         Parameters
         ----------
@@ -13340,7 +15308,7 @@ class AsyncRawDeclarationsClient:
 
         Returns
         -------
-        AsyncHttpResponse[PostV1DeclarationsLtIvazGenerateResponse]
+        AsyncHttpResponse[LtIvazGenerateDeclarationsResponse]
             Default Response
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -13359,9 +15327,9 @@ class AsyncRawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsLtIvazGenerateResponse,
+                    LtIvazGenerateDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsLtIvazGenerateResponse,  # type: ignore
+                        type_=LtIvazGenerateDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -13379,6 +15347,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -13412,6 +15391,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -13463,9 +15453,9 @@ class AsyncRawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    async def post_v1declarations_lt_intrastat_obligation(
+    async def lt_intrastat_obligation(
         self, *, year: int, request_options: typing.Optional[RequestOptions] = None
-    ) -> AsyncHttpResponse[PostV1DeclarationsLtIntrastatObligationResponse]:
+    ) -> AsyncHttpResponse[LtIntrastatObligationDeclarationsResponse]:
         """
         Parameters
         ----------
@@ -13476,7 +15466,7 @@ class AsyncRawDeclarationsClient:
 
         Returns
         -------
-        AsyncHttpResponse[PostV1DeclarationsLtIntrastatObligationResponse]
+        AsyncHttpResponse[LtIntrastatObligationDeclarationsResponse]
             Default Response
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -13494,9 +15484,9 @@ class AsyncRawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsLtIntrastatObligationResponse,
+                    LtIntrastatObligationDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsLtIntrastatObligationResponse,  # type: ignore
+                        type_=LtIntrastatObligationDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -13514,6 +15504,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -13547,6 +15548,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -13598,14 +15610,14 @@ class AsyncRawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    async def post_v1declarations_lt_isaf_generate(
+    async def lt_isaf_generate(
         self,
         *,
         year: int,
         month: int,
-        data_type: typing.Optional[PostV1DeclarationsLtIsafGenerateRequestDataType] = OMIT,
+        data_type: typing.Optional[LtIsafGenerateDeclarationsRequestDataType] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> AsyncHttpResponse[PostV1DeclarationsLtIsafGenerateResponse]:
+    ) -> AsyncHttpResponse[LtIsafGenerateDeclarationsResponse]:
         """
         Parameters
         ----------
@@ -13613,14 +15625,14 @@ class AsyncRawDeclarationsClient:
 
         month : int
 
-        data_type : typing.Optional[PostV1DeclarationsLtIsafGenerateRequestDataType]
+        data_type : typing.Optional[LtIsafGenerateDeclarationsRequestDataType]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
         Returns
         -------
-        AsyncHttpResponse[PostV1DeclarationsLtIsafGenerateResponse]
+        AsyncHttpResponse[LtIsafGenerateDeclarationsResponse]
             Default Response
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -13640,9 +15652,9 @@ class AsyncRawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsLtIsafGenerateResponse,
+                    LtIsafGenerateDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsLtIsafGenerateResponse,  # type: ignore
+                        type_=LtIsafGenerateDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -13660,6 +15672,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -13693,6 +15716,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -13744,7 +15778,7 @@ class AsyncRawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    async def post_v1declarations_lt_fr0600compute(
+    async def lt_fr0600compute(
         self,
         *,
         year: int,
@@ -13752,7 +15786,7 @@ class AsyncRawDeclarationsClient:
         months: typing.Optional[int] = OMIT,
         deduction_percent: typing.Optional[int] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> AsyncHttpResponse[PostV1DeclarationsLtFr0600ComputeResponse]:
+    ) -> AsyncHttpResponse[LtFr0600ComputeDeclarationsResponse]:
         """
         Parameters
         ----------
@@ -13769,7 +15803,7 @@ class AsyncRawDeclarationsClient:
 
         Returns
         -------
-        AsyncHttpResponse[PostV1DeclarationsLtFr0600ComputeResponse]
+        AsyncHttpResponse[LtFr0600ComputeDeclarationsResponse]
             Default Response
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -13790,9 +15824,9 @@ class AsyncRawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsLtFr0600ComputeResponse,
+                    LtFr0600ComputeDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsLtFr0600ComputeResponse,  # type: ignore
+                        type_=LtFr0600ComputeDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -13810,6 +15844,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -13843,6 +15888,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -13894,15 +15950,15 @@ class AsyncRawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    async def post_v1declarations_lt_gpm313compute(
+    async def lt_gpm313compute(
         self,
         *,
         year: int,
         month: int,
-        payout_timing: typing.Optional[PostV1DeclarationsLtGpm313ComputeRequestPayoutTiming] = OMIT,
+        payout_timing: typing.Optional[LtGpm313ComputeDeclarationsRequestPayoutTiming] = OMIT,
         payment_day: typing.Optional[int] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> AsyncHttpResponse[PostV1DeclarationsLtGpm313ComputeResponse]:
+    ) -> AsyncHttpResponse[LtGpm313ComputeDeclarationsResponse]:
         """
         Parameters
         ----------
@@ -13910,7 +15966,7 @@ class AsyncRawDeclarationsClient:
 
         month : int
 
-        payout_timing : typing.Optional[PostV1DeclarationsLtGpm313ComputeRequestPayoutTiming]
+        payout_timing : typing.Optional[LtGpm313ComputeDeclarationsRequestPayoutTiming]
 
         payment_day : typing.Optional[int]
 
@@ -13919,7 +15975,7 @@ class AsyncRawDeclarationsClient:
 
         Returns
         -------
-        AsyncHttpResponse[PostV1DeclarationsLtGpm313ComputeResponse]
+        AsyncHttpResponse[LtGpm313ComputeDeclarationsResponse]
             Default Response
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -13940,9 +15996,9 @@ class AsyncRawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsLtGpm313ComputeResponse,
+                    LtGpm313ComputeDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsLtGpm313ComputeResponse,  # type: ignore
+                        type_=LtGpm313ComputeDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -13960,6 +16016,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -13993,6 +16060,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -14044,9 +16122,9 @@ class AsyncRawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    async def post_v1declarations_lt_sam_compute(
+    async def lt_sam_compute(
         self, *, year: int, month: int, request_options: typing.Optional[RequestOptions] = None
-    ) -> AsyncHttpResponse[PostV1DeclarationsLtSamComputeResponse]:
+    ) -> AsyncHttpResponse[LtSamComputeDeclarationsResponse]:
         """
         Parameters
         ----------
@@ -14059,7 +16137,7 @@ class AsyncRawDeclarationsClient:
 
         Returns
         -------
-        AsyncHttpResponse[PostV1DeclarationsLtSamComputeResponse]
+        AsyncHttpResponse[LtSamComputeDeclarationsResponse]
             Default Response
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -14078,9 +16156,9 @@ class AsyncRawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsLtSamComputeResponse,
+                    LtSamComputeDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsLtSamComputeResponse,  # type: ignore
+                        type_=LtSamComputeDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -14098,6 +16176,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -14131,6 +16220,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -14182,29 +16282,29 @@ class AsyncRawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    async def post_v1declarations_lt_sd_generate(
+    async def lt_sd_generate(
         self,
         *,
-        type: PostV1DeclarationsLtSdGenerateRequestType,
-        from_date: str,
-        to_date: str,
+        type: LtSdGenerateDeclarationsRequestType,
+        from_date: dt.date,
+        to_date: dt.date,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> AsyncHttpResponse[PostV1DeclarationsLtSdGenerateResponse]:
+    ) -> AsyncHttpResponse[LtSdGenerateDeclarationsResponse]:
         """
         Parameters
         ----------
-        type : PostV1DeclarationsLtSdGenerateRequestType
+        type : LtSdGenerateDeclarationsRequestType
 
-        from_date : str
+        from_date : dt.date
 
-        to_date : str
+        to_date : dt.date
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
         Returns
         -------
-        AsyncHttpResponse[PostV1DeclarationsLtSdGenerateResponse]
+        AsyncHttpResponse[LtSdGenerateDeclarationsResponse]
             Default Response
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -14224,9 +16324,9 @@ class AsyncRawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsLtSdGenerateResponse,
+                    LtSdGenerateDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsLtSdGenerateResponse,  # type: ignore
+                        type_=LtSdGenerateDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -14244,6 +16344,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -14277,6 +16388,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -14328,23 +16450,23 @@ class AsyncRawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    async def post_v1declarations_lt_saft_generate(
+    async def lt_saft_generate(
         self,
         *,
-        from_date: str,
-        to_date: str,
-        data_type: typing.Optional[PostV1DeclarationsLtSaftGenerateRequestDataType] = OMIT,
+        from_date: dt.date,
+        to_date: dt.date,
+        data_type: typing.Optional[LtSaftGenerateDeclarationsRequestDataType] = OMIT,
         persist: typing.Optional[bool] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> AsyncHttpResponse[PostV1DeclarationsLtSaftGenerateResponse]:
+    ) -> AsyncHttpResponse[LtSaftGenerateDeclarationsResponse]:
         """
         Parameters
         ----------
-        from_date : str
+        from_date : dt.date
 
-        to_date : str
+        to_date : dt.date
 
-        data_type : typing.Optional[PostV1DeclarationsLtSaftGenerateRequestDataType]
+        data_type : typing.Optional[LtSaftGenerateDeclarationsRequestDataType]
 
         persist : typing.Optional[bool]
 
@@ -14353,7 +16475,7 @@ class AsyncRawDeclarationsClient:
 
         Returns
         -------
-        AsyncHttpResponse[PostV1DeclarationsLtSaftGenerateResponse]
+        AsyncHttpResponse[LtSaftGenerateDeclarationsResponse]
             Default Response
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -14374,9 +16496,9 @@ class AsyncRawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsLtSaftGenerateResponse,
+                    LtSaftGenerateDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsLtSaftGenerateResponse,  # type: ignore
+                        type_=LtSaftGenerateDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -14394,6 +16516,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -14427,6 +16560,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -14478,13 +16622,13 @@ class AsyncRawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    async def post_v1declarations_lt_ivaz_amend(
+    async def lt_ivaz_amend(
         self,
         *,
         waybill_ids: typing.Sequence[str],
         persist: typing.Optional[bool] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> AsyncHttpResponse[PostV1DeclarationsLtIvazAmendResponse]:
+    ) -> AsyncHttpResponse[LtIvazAmendDeclarationsResponse]:
         """
         Parameters
         ----------
@@ -14497,7 +16641,7 @@ class AsyncRawDeclarationsClient:
 
         Returns
         -------
-        AsyncHttpResponse[PostV1DeclarationsLtIvazAmendResponse]
+        AsyncHttpResponse[LtIvazAmendDeclarationsResponse]
             Default Response
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -14516,9 +16660,9 @@ class AsyncRawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsLtIvazAmendResponse,
+                    LtIvazAmendDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsLtIvazAmendResponse,  # type: ignore
+                        type_=LtIvazAmendDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -14536,6 +16680,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -14569,6 +16724,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -14620,17 +16786,17 @@ class AsyncRawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    async def post_v1declarations_lt_ivaz_cancel(
+    async def lt_ivaz_cancel(
         self,
         *,
-        entries: typing.Sequence[PostV1DeclarationsLtIvazCancelRequestEntriesItem],
+        entries: typing.Sequence[LtIvazCancelDeclarationsRequestEntriesItem],
         persist: typing.Optional[bool] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> AsyncHttpResponse[PostV1DeclarationsLtIvazCancelResponse]:
+    ) -> AsyncHttpResponse[LtIvazCancelDeclarationsResponse]:
         """
         Parameters
         ----------
-        entries : typing.Sequence[PostV1DeclarationsLtIvazCancelRequestEntriesItem]
+        entries : typing.Sequence[LtIvazCancelDeclarationsRequestEntriesItem]
 
         persist : typing.Optional[bool]
 
@@ -14639,7 +16805,7 @@ class AsyncRawDeclarationsClient:
 
         Returns
         -------
-        AsyncHttpResponse[PostV1DeclarationsLtIvazCancelResponse]
+        AsyncHttpResponse[LtIvazCancelDeclarationsResponse]
             Default Response
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -14648,7 +16814,7 @@ class AsyncRawDeclarationsClient:
             json={
                 "entries": convert_and_respect_annotation_metadata(
                     object_=entries,
-                    annotation=typing.Sequence[PostV1DeclarationsLtIvazCancelRequestEntriesItem],
+                    annotation=typing.Sequence[LtIvazCancelDeclarationsRequestEntriesItem],
                     direction="write",
                 ),
                 "persist": persist,
@@ -14662,9 +16828,9 @@ class AsyncRawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsLtIvazCancelResponse,
+                    LtIvazCancelDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsLtIvazCancelResponse,  # type: ignore
+                        type_=LtIvazCancelDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -14682,6 +16848,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -14715,6 +16892,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -14766,9 +16954,9 @@ class AsyncRawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    async def post_v1declarations_lt_fr0564compute(
+    async def lt_fr0564compute(
         self, *, year: int, month: int, request_options: typing.Optional[RequestOptions] = None
-    ) -> AsyncHttpResponse[PostV1DeclarationsLtFr0564ComputeResponse]:
+    ) -> AsyncHttpResponse[LtFr0564ComputeDeclarationsResponse]:
         """
         Parameters
         ----------
@@ -14781,7 +16969,7 @@ class AsyncRawDeclarationsClient:
 
         Returns
         -------
-        AsyncHttpResponse[PostV1DeclarationsLtFr0564ComputeResponse]
+        AsyncHttpResponse[LtFr0564ComputeDeclarationsResponse]
             Default Response
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -14800,9 +16988,9 @@ class AsyncRawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsLtFr0564ComputeResponse,
+                    LtFr0564ComputeDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsLtFr0564ComputeResponse,  # type: ignore
+                        type_=LtFr0564ComputeDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -14820,6 +17008,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -14853,6 +17052,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -14904,26 +17114,26 @@ class AsyncRawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    async def post_v1declarations_lt_gpm312compute(
+    async def lt_gpm312compute(
         self,
         *,
         year: int,
-        payout_timing: typing.Optional[PostV1DeclarationsLtGpm312ComputeRequestPayoutTiming] = OMIT,
+        payout_timing: typing.Optional[LtGpm312ComputeDeclarationsRequestPayoutTiming] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> AsyncHttpResponse[PostV1DeclarationsLtGpm312ComputeResponse]:
+    ) -> AsyncHttpResponse[LtGpm312ComputeDeclarationsResponse]:
         """
         Parameters
         ----------
         year : int
 
-        payout_timing : typing.Optional[PostV1DeclarationsLtGpm312ComputeRequestPayoutTiming]
+        payout_timing : typing.Optional[LtGpm312ComputeDeclarationsRequestPayoutTiming]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
         Returns
         -------
-        AsyncHttpResponse[PostV1DeclarationsLtGpm312ComputeResponse]
+        AsyncHttpResponse[LtGpm312ComputeDeclarationsResponse]
             Default Response
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -14942,9 +17152,9 @@ class AsyncRawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsLtGpm312ComputeResponse,
+                    LtGpm312ComputeDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsLtGpm312ComputeResponse,  # type: ignore
+                        type_=LtGpm312ComputeDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -14962,6 +17172,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -14995,6 +17216,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -15046,9 +17278,9 @@ class AsyncRawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    async def post_v1declarations_lt_pln204compute(
+    async def lt_pln204compute(
         self, *, year: int, request_options: typing.Optional[RequestOptions] = None
-    ) -> AsyncHttpResponse[PostV1DeclarationsLtPln204ComputeResponse]:
+    ) -> AsyncHttpResponse[LtPln204ComputeDeclarationsResponse]:
         """
         Parameters
         ----------
@@ -15059,7 +17291,7 @@ class AsyncRawDeclarationsClient:
 
         Returns
         -------
-        AsyncHttpResponse[PostV1DeclarationsLtPln204ComputeResponse]
+        AsyncHttpResponse[LtPln204ComputeDeclarationsResponse]
             Default Response
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -15077,9 +17309,9 @@ class AsyncRawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsLtPln204ComputeResponse,
+                    LtPln204ComputeDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsLtPln204ComputeResponse,  # type: ignore
+                        type_=LtPln204ComputeDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -15097,6 +17329,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -15130,6 +17373,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -15181,9 +17435,9 @@ class AsyncRawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    async def post_v1declarations_eu_oss_compute(
+    async def eu_oss_compute(
         self, *, year: int, quarter: int, request_options: typing.Optional[RequestOptions] = None
-    ) -> AsyncHttpResponse[PostV1DeclarationsEuOssComputeResponse]:
+    ) -> AsyncHttpResponse[EuOssComputeDeclarationsResponse]:
         """
         Parameters
         ----------
@@ -15196,7 +17450,7 @@ class AsyncRawDeclarationsClient:
 
         Returns
         -------
-        AsyncHttpResponse[PostV1DeclarationsEuOssComputeResponse]
+        AsyncHttpResponse[EuOssComputeDeclarationsResponse]
             Default Response
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -15215,9 +17469,9 @@ class AsyncRawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsEuOssComputeResponse,
+                    EuOssComputeDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsEuOssComputeResponse,  # type: ignore
+                        type_=EuOssComputeDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -15235,6 +17489,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -15268,6 +17533,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -15319,9 +17595,9 @@ class AsyncRawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    async def post_v1declarations_eu_ioss_compute(
+    async def eu_ioss_compute(
         self, *, year: int, month: int, request_options: typing.Optional[RequestOptions] = None
-    ) -> AsyncHttpResponse[PostV1DeclarationsEuIossComputeResponse]:
+    ) -> AsyncHttpResponse[EuIossComputeDeclarationsResponse]:
         """
         Parameters
         ----------
@@ -15334,7 +17610,7 @@ class AsyncRawDeclarationsClient:
 
         Returns
         -------
-        AsyncHttpResponse[PostV1DeclarationsEuIossComputeResponse]
+        AsyncHttpResponse[EuIossComputeDeclarationsResponse]
             Default Response
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -15353,9 +17629,9 @@ class AsyncRawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsEuIossComputeResponse,
+                    EuIossComputeDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsEuIossComputeResponse,  # type: ignore
+                        type_=EuIossComputeDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -15373,6 +17649,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -15406,6 +17693,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -15457,20 +17755,20 @@ class AsyncRawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    async def post_v1declarations_eu_distance_sales_threshold_get(
-        self, *, date: typing.Optional[str] = OMIT, request_options: typing.Optional[RequestOptions] = None
-    ) -> AsyncHttpResponse[PostV1DeclarationsEuDistanceSalesThresholdGetResponse]:
+    async def eu_distance_sales_threshold_get(
+        self, *, date: typing.Optional[dt.date] = OMIT, request_options: typing.Optional[RequestOptions] = None
+    ) -> AsyncHttpResponse[EuDistanceSalesThresholdGetDeclarationsResponse]:
         """
         Parameters
         ----------
-        date : typing.Optional[str]
+        date : typing.Optional[dt.date]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
         Returns
         -------
-        AsyncHttpResponse[PostV1DeclarationsEuDistanceSalesThresholdGetResponse]
+        AsyncHttpResponse[EuDistanceSalesThresholdGetDeclarationsResponse]
             Default Response
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -15488,9 +17786,9 @@ class AsyncRawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsEuDistanceSalesThresholdGetResponse,
+                    EuDistanceSalesThresholdGetDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsEuDistanceSalesThresholdGetResponse,  # type: ignore
+                        type_=EuDistanceSalesThresholdGetDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -15508,6 +17806,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -15541,6 +17850,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -15592,20 +17912,20 @@ class AsyncRawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    async def post_v1declarations_eu_union_turnover_get(
-        self, *, date: typing.Optional[str] = OMIT, request_options: typing.Optional[RequestOptions] = None
-    ) -> AsyncHttpResponse[PostV1DeclarationsEuUnionTurnoverGetResponse]:
+    async def eu_union_turnover_get(
+        self, *, date: typing.Optional[dt.date] = OMIT, request_options: typing.Optional[RequestOptions] = None
+    ) -> AsyncHttpResponse[EuUnionTurnoverGetDeclarationsResponse]:
         """
         Parameters
         ----------
-        date : typing.Optional[str]
+        date : typing.Optional[dt.date]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
         Returns
         -------
-        AsyncHttpResponse[PostV1DeclarationsEuUnionTurnoverGetResponse]
+        AsyncHttpResponse[EuUnionTurnoverGetDeclarationsResponse]
             Default Response
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -15623,9 +17943,9 @@ class AsyncRawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsEuUnionTurnoverGetResponse,
+                    EuUnionTurnoverGetDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsEuUnionTurnoverGetResponse,  # type: ignore
+                        type_=EuUnionTurnoverGetDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -15643,6 +17963,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -15676,6 +18007,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -15727,9 +18069,9 @@ class AsyncRawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    async def post_v1declarations_eu_sme_cross_border_report_compute(
+    async def eu_sme_cross_border_report_compute(
         self, *, year: int, quarter: int, request_options: typing.Optional[RequestOptions] = None
-    ) -> AsyncHttpResponse[PostV1DeclarationsEuSmeCrossBorderReportComputeResponse]:
+    ) -> AsyncHttpResponse[EuSmeCrossBorderReportComputeDeclarationsResponse]:
         """
         Parameters
         ----------
@@ -15742,7 +18084,7 @@ class AsyncRawDeclarationsClient:
 
         Returns
         -------
-        AsyncHttpResponse[PostV1DeclarationsEuSmeCrossBorderReportComputeResponse]
+        AsyncHttpResponse[EuSmeCrossBorderReportComputeDeclarationsResponse]
             Default Response
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -15761,9 +18103,9 @@ class AsyncRawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsEuSmeCrossBorderReportComputeResponse,
+                    EuSmeCrossBorderReportComputeDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsEuSmeCrossBorderReportComputeResponse,  # type: ignore
+                        type_=EuSmeCrossBorderReportComputeDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -15781,6 +18123,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -15814,6 +18167,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -15865,9 +18229,9 @@ class AsyncRawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    async def post_v1declarations_eu_sme_thresholds_list(
+    async def eu_sme_thresholds_list(
         self, *, request_options: typing.Optional[RequestOptions] = None
-    ) -> AsyncHttpResponse[PostV1DeclarationsEuSmeThresholdsListResponse]:
+    ) -> AsyncHttpResponse[EuSmeThresholdsListDeclarationsResponse]:
         """
         Parameters
         ----------
@@ -15876,7 +18240,7 @@ class AsyncRawDeclarationsClient:
 
         Returns
         -------
-        AsyncHttpResponse[PostV1DeclarationsEuSmeThresholdsListResponse]
+        AsyncHttpResponse[EuSmeThresholdsListDeclarationsResponse]
             Default Response
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -15892,9 +18256,9 @@ class AsyncRawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsEuSmeThresholdsListResponse,
+                    EuSmeThresholdsListDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsEuSmeThresholdsListResponse,  # type: ignore
+                        type_=EuSmeThresholdsListDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -15912,6 +18276,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -15945,6 +18320,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -15996,20 +18382,20 @@ class AsyncRawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    async def post_v1declarations_eu_sme_threshold_get(
-        self, *, date: typing.Optional[str] = OMIT, request_options: typing.Optional[RequestOptions] = None
-    ) -> AsyncHttpResponse[PostV1DeclarationsEuSmeThresholdGetResponse]:
+    async def eu_sme_threshold_get(
+        self, *, date: typing.Optional[dt.date] = OMIT, request_options: typing.Optional[RequestOptions] = None
+    ) -> AsyncHttpResponse[EuSmeThresholdGetDeclarationsResponse]:
         """
         Parameters
         ----------
-        date : typing.Optional[str]
+        date : typing.Optional[dt.date]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
         Returns
         -------
-        AsyncHttpResponse[PostV1DeclarationsEuSmeThresholdGetResponse]
+        AsyncHttpResponse[EuSmeThresholdGetDeclarationsResponse]
             Default Response
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -16027,9 +18413,9 @@ class AsyncRawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsEuSmeThresholdGetResponse,
+                    EuSmeThresholdGetDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsEuSmeThresholdGetResponse,  # type: ignore
+                        type_=EuSmeThresholdGetDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -16047,6 +18433,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -16080,6 +18477,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -16131,9 +18539,9 @@ class AsyncRawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    async def post_v1declarations_eu_vat_return_packs_list(
+    async def eu_vat_return_packs_list(
         self, *, request_options: typing.Optional[RequestOptions] = None
-    ) -> AsyncHttpResponse[PostV1DeclarationsEuVatReturnPacksListResponse]:
+    ) -> AsyncHttpResponse[EuVatReturnPacksListDeclarationsResponse]:
         """
         Parameters
         ----------
@@ -16142,7 +18550,7 @@ class AsyncRawDeclarationsClient:
 
         Returns
         -------
-        AsyncHttpResponse[PostV1DeclarationsEuVatReturnPacksListResponse]
+        AsyncHttpResponse[EuVatReturnPacksListDeclarationsResponse]
             Default Response
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -16158,9 +18566,9 @@ class AsyncRawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsEuVatReturnPacksListResponse,
+                    EuVatReturnPacksListDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsEuVatReturnPacksListResponse,  # type: ignore
+                        type_=EuVatReturnPacksListDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -16178,6 +18586,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -16211,6 +18630,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -16262,7 +18692,7 @@ class AsyncRawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    async def post_v1declarations_eu_vat_return_compute(
+    async def eu_vat_return_compute(
         self,
         *,
         country_code: str,
@@ -16270,7 +18700,7 @@ class AsyncRawDeclarationsClient:
         month: int,
         months: typing.Optional[int] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> AsyncHttpResponse[PostV1DeclarationsEuVatReturnComputeResponse]:
+    ) -> AsyncHttpResponse[EuVatReturnComputeDeclarationsResponse]:
         """
         Parameters
         ----------
@@ -16287,7 +18717,7 @@ class AsyncRawDeclarationsClient:
 
         Returns
         -------
-        AsyncHttpResponse[PostV1DeclarationsEuVatReturnComputeResponse]
+        AsyncHttpResponse[EuVatReturnComputeDeclarationsResponse]
             Default Response
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -16308,9 +18738,9 @@ class AsyncRawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsEuVatReturnComputeResponse,
+                    EuVatReturnComputeDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsEuVatReturnComputeResponse,  # type: ignore
+                        type_=EuVatReturnComputeDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -16328,6 +18758,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -16361,6 +18802,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -16412,7 +18864,7 @@ class AsyncRawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    async def post_v1declarations_pl_jpk_v7m_generate(
+    async def pl_jpk_v7m_generate(
         self,
         *,
         year: int,
@@ -16421,7 +18873,7 @@ class AsyncRawDeclarationsClient:
         email: str,
         cel_zlozenia: typing.Optional[int] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> AsyncHttpResponse[PostV1DeclarationsPlJpkV7MGenerateResponse]:
+    ) -> AsyncHttpResponse[PlJpkV7MGenerateDeclarationsResponse]:
         """
         Generate the Polish JPK_V7M(3) file (VAT declaration with evidence) for a month, per the MF schema in force since February 2026. Amounts must already be in PLN; rows are marked BFK until a KSeF integration supplies invoice numbers. Review the warnings before submitting via e-dokumenty.mf.gov.pl.
 
@@ -16442,7 +18894,7 @@ class AsyncRawDeclarationsClient:
 
         Returns
         -------
-        AsyncHttpResponse[PostV1DeclarationsPlJpkV7MGenerateResponse]
+        AsyncHttpResponse[PlJpkV7MGenerateDeclarationsResponse]
             Default Response
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -16464,9 +18916,9 @@ class AsyncRawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsPlJpkV7MGenerateResponse,
+                    PlJpkV7MGenerateDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsPlJpkV7MGenerateResponse,  # type: ignore
+                        type_=PlJpkV7MGenerateDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -16484,6 +18936,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -16517,6 +18980,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -16568,9 +19042,9 @@ class AsyncRawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    async def post_v1declarations_pl_vat_ue_generate(
+    async def pl_vat_ue_generate(
         self, *, year: int, month: int, request_options: typing.Optional[RequestOptions] = None
-    ) -> AsyncHttpResponse[PostV1DeclarationsPlVatUeGenerateResponse]:
+    ) -> AsyncHttpResponse[PlVatUeGenerateDeclarationsResponse]:
         """
         Build the rows of the Polish recapitulative statement VAT-UE for a month: section C intra-Community supplies of goods, section D intra-Community acquisitions, section E services taxed where the customer is established. Amounts are full złoty per counterparty. The VAT-UE(5) file itself goes out from the EU sales list deadline in the calendar.
 
@@ -16585,7 +19059,7 @@ class AsyncRawDeclarationsClient:
 
         Returns
         -------
-        AsyncHttpResponse[PostV1DeclarationsPlVatUeGenerateResponse]
+        AsyncHttpResponse[PlVatUeGenerateDeclarationsResponse]
             Default Response
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -16604,9 +19078,9 @@ class AsyncRawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsPlVatUeGenerateResponse,
+                    PlVatUeGenerateDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsPlVatUeGenerateResponse,  # type: ignore
+                        type_=PlVatUeGenerateDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -16624,6 +19098,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -16657,6 +19142,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -16708,15 +19204,15 @@ class AsyncRawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    async def post_v1declarations_pl_intrastat_generate(
+    async def pl_intrastat_generate(
         self,
         *,
         year: int,
         month: int,
-        flow: PostV1DeclarationsPlIntrastatGenerateRequestFlow,
+        flow: PlIntrastatGenerateDeclarationsRequestFlow,
         transaction_nature: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> AsyncHttpResponse[PostV1DeclarationsPlIntrastatGenerateResponse]:
+    ) -> AsyncHttpResponse[PlIntrastatGenerateDeclarationsResponse]:
         """
         Build the rows of the Polish INTRASTAT declaration for a month, arrivals or dispatches, grouped by CN code, partner country, country of origin, partner VAT number, nature of transaction, transport and delivery terms. Values are whole złoty converted at the invoice rate; credit notes with goods lines are returns (code 21). Goods without a CN code are left out and named in the warnings. The IST message itself goes out from the Intrastat deadline in the calendar.
 
@@ -16726,7 +19222,7 @@ class AsyncRawDeclarationsClient:
 
         month : int
 
-        flow : PostV1DeclarationsPlIntrastatGenerateRequestFlow
+        flow : PlIntrastatGenerateDeclarationsRequestFlow
 
         transaction_nature : typing.Optional[str]
 
@@ -16735,7 +19231,7 @@ class AsyncRawDeclarationsClient:
 
         Returns
         -------
-        AsyncHttpResponse[PostV1DeclarationsPlIntrastatGenerateResponse]
+        AsyncHttpResponse[PlIntrastatGenerateDeclarationsResponse]
             Default Response
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -16756,9 +19252,9 @@ class AsyncRawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsPlIntrastatGenerateResponse,
+                    PlIntrastatGenerateDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsPlIntrastatGenerateResponse,  # type: ignore
+                        type_=PlIntrastatGenerateDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -16776,6 +19272,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -16809,6 +19316,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -16860,7 +19378,7 @@ class AsyncRawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    async def post_v1declarations_pl_ksef_received_list(
+    async def pl_ksef_received_list(
         self,
         *,
         from_: dt.datetime,
@@ -16868,7 +19386,7 @@ class AsyncRawDeclarationsClient:
         page_size: typing.Optional[int] = OMIT,
         page_offset: typing.Optional[int] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> AsyncHttpResponse[PostV1DeclarationsPlKsefReceivedListResponse]:
+    ) -> AsyncHttpResponse[PlKsefReceivedListDeclarationsResponse]:
         """
         List the invoices KSeF holds for this company as the buyer, for a window of acquisition timestamps. Each row carries the KSeF number and, when the document number matches a registered purchase invoice, the invoice it belongs to.
 
@@ -16887,7 +19405,7 @@ class AsyncRawDeclarationsClient:
 
         Returns
         -------
-        AsyncHttpResponse[PostV1DeclarationsPlKsefReceivedListResponse]
+        AsyncHttpResponse[PlKsefReceivedListDeclarationsResponse]
             Default Response
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -16908,9 +19426,9 @@ class AsyncRawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsPlKsefReceivedListResponse,
+                    PlKsefReceivedListDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsPlKsefReceivedListResponse,  # type: ignore
+                        type_=PlKsefReceivedListDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -16928,6 +19446,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -16961,6 +19490,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -17012,13 +19552,13 @@ class AsyncRawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    async def post_v1declarations_pl_ksef_received_fetch(
+    async def pl_ksef_received_fetch(
         self,
         *,
         ksef_number: str,
         purchase_invoice_id: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> AsyncHttpResponse[PostV1DeclarationsPlKsefReceivedFetchResponse]:
+    ) -> AsyncHttpResponse[PlKsefReceivedFetchDeclarationsResponse]:
         """
         Read one invoice out of KSeF by its national number. With a purchase invoice given, the KSeF number is written onto that invoice, which is what makes the purchase row of JPK_V7M carry NrKSeF instead of the BFK marker.
 
@@ -17033,7 +19573,7 @@ class AsyncRawDeclarationsClient:
 
         Returns
         -------
-        AsyncHttpResponse[PostV1DeclarationsPlKsefReceivedFetchResponse]
+        AsyncHttpResponse[PlKsefReceivedFetchDeclarationsResponse]
             Default Response
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -17052,9 +19592,9 @@ class AsyncRawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsPlKsefReceivedFetchResponse,
+                    PlKsefReceivedFetchDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsPlKsefReceivedFetchResponse,  # type: ignore
+                        type_=PlKsefReceivedFetchDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -17072,6 +19612,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -17105,6 +19656,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -17156,12 +19718,12 @@ class AsyncRawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    async def post_v1declarations_pl_ksef_receipt(
+    async def pl_ksef_receipt(
         self,
         *,
         session_reference_number: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> AsyncHttpResponse[PostV1DeclarationsPlKsefReceiptResponse]:
+    ) -> AsyncHttpResponse[PlKsefReceiptDeclarationsResponse]:
         """
         The UPO for a KSeF session. KSeF issues one receipt per session rather than per invoice, so the session reference number from the send is what identifies it.
 
@@ -17174,7 +19736,7 @@ class AsyncRawDeclarationsClient:
 
         Returns
         -------
-        AsyncHttpResponse[PostV1DeclarationsPlKsefReceiptResponse]
+        AsyncHttpResponse[PlKsefReceiptDeclarationsResponse]
             Default Response
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -17192,9 +19754,9 @@ class AsyncRawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsPlKsefReceiptResponse,
+                    PlKsefReceiptDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsPlKsefReceiptResponse,  # type: ignore
+                        type_=PlKsefReceiptDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -17212,6 +19774,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -17245,6 +19818,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -17296,9 +19880,9 @@ class AsyncRawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    async def tax_adjustments_recorded_for_a_tax_year(
+    async def tax_adjustments_list(
         self, *, year: int, request_options: typing.Optional[RequestOptions] = None
-    ) -> AsyncHttpResponse[PostV1DeclarationsTaxAdjustmentsListResponse]:
+    ) -> AsyncHttpResponse[TaxAdjustmentsListDeclarationsResponse]:
         """
         The differences between the accounting result and the taxable profit: non-deductible expenses, income added to or left out of the tax base, extra deductible expenses, donations, losses carried forward, reliefs and tax credits. The annual corporate income tax return is built from them.
 
@@ -17311,7 +19895,7 @@ class AsyncRawDeclarationsClient:
 
         Returns
         -------
-        AsyncHttpResponse[PostV1DeclarationsTaxAdjustmentsListResponse]
+        AsyncHttpResponse[TaxAdjustmentsListDeclarationsResponse]
             Default Response
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -17329,9 +19913,9 @@ class AsyncRawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsTaxAdjustmentsListResponse,
+                    TaxAdjustmentsListDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsTaxAdjustmentsListResponse,  # type: ignore
+                        type_=TaxAdjustmentsListDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -17349,6 +19933,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -17382,6 +19977,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -17433,22 +20039,22 @@ class AsyncRawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    async def record_a_tax_adjustment_for_a_tax_year(
+    async def tax_adjustments_create(
         self,
         *,
         year: int,
-        kind: PostV1DeclarationsTaxAdjustmentsCreateRequestKind,
+        kind: TaxAdjustmentsCreateDeclarationsRequestKind,
         amount: str,
         description: str,
         code: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> AsyncHttpResponse[PostV1DeclarationsTaxAdjustmentsCreateResponse]:
+    ) -> AsyncHttpResponse[TaxAdjustmentsCreateDeclarationsResponse]:
         """
         Parameters
         ----------
         year : int
 
-        kind : PostV1DeclarationsTaxAdjustmentsCreateRequestKind
+        kind : TaxAdjustmentsCreateDeclarationsRequestKind
 
         amount : str
 
@@ -17461,7 +20067,7 @@ class AsyncRawDeclarationsClient:
 
         Returns
         -------
-        AsyncHttpResponse[PostV1DeclarationsTaxAdjustmentsCreateResponse]
+        AsyncHttpResponse[TaxAdjustmentsCreateDeclarationsResponse]
             Default Response
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -17483,9 +20089,9 @@ class AsyncRawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsTaxAdjustmentsCreateResponse,
+                    TaxAdjustmentsCreateDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsTaxAdjustmentsCreateResponse,  # type: ignore
+                        type_=TaxAdjustmentsCreateDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -17503,6 +20109,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -17536,6 +20153,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -17587,22 +20215,22 @@ class AsyncRawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    async def change_a_recorded_tax_adjustment(
+    async def tax_adjustments_update(
         self,
         *,
         id: str,
-        kind: typing.Optional[PostV1DeclarationsTaxAdjustmentsUpdateRequestKind] = OMIT,
+        kind: typing.Optional[TaxAdjustmentsUpdateDeclarationsRequestKind] = OMIT,
         code: typing.Optional[str] = OMIT,
         amount: typing.Optional[str] = OMIT,
         description: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> AsyncHttpResponse[PostV1DeclarationsTaxAdjustmentsUpdateResponse]:
+    ) -> AsyncHttpResponse[TaxAdjustmentsUpdateDeclarationsResponse]:
         """
         Parameters
         ----------
         id : str
 
-        kind : typing.Optional[PostV1DeclarationsTaxAdjustmentsUpdateRequestKind]
+        kind : typing.Optional[TaxAdjustmentsUpdateDeclarationsRequestKind]
 
         code : typing.Optional[str]
 
@@ -17615,7 +20243,7 @@ class AsyncRawDeclarationsClient:
 
         Returns
         -------
-        AsyncHttpResponse[PostV1DeclarationsTaxAdjustmentsUpdateResponse]
+        AsyncHttpResponse[TaxAdjustmentsUpdateDeclarationsResponse]
             Default Response
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -17637,9 +20265,9 @@ class AsyncRawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsTaxAdjustmentsUpdateResponse,
+                    TaxAdjustmentsUpdateDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsTaxAdjustmentsUpdateResponse,  # type: ignore
+                        type_=TaxAdjustmentsUpdateDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -17657,6 +20285,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -17690,6 +20329,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -17741,9 +20391,9 @@ class AsyncRawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    async def remove_a_recorded_tax_adjustment(
+    async def tax_adjustments_delete(
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
-    ) -> AsyncHttpResponse[PostV1DeclarationsTaxAdjustmentsDeleteResponse]:
+    ) -> AsyncHttpResponse[TaxAdjustmentsDeleteDeclarationsResponse]:
         """
         Parameters
         ----------
@@ -17754,7 +20404,7 @@ class AsyncRawDeclarationsClient:
 
         Returns
         -------
-        AsyncHttpResponse[PostV1DeclarationsTaxAdjustmentsDeleteResponse]
+        AsyncHttpResponse[TaxAdjustmentsDeleteDeclarationsResponse]
             Default Response
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -17772,9 +20422,9 @@ class AsyncRawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsTaxAdjustmentsDeleteResponse,
+                    TaxAdjustmentsDeleteDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsTaxAdjustmentsDeleteResponse,  # type: ignore
+                        type_=TaxAdjustmentsDeleteDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -17792,6 +20442,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -17825,6 +20486,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -17876,20 +20548,20 @@ class AsyncRawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    async def payments_already_made_towards_a_tax_of_a_year(
+    async def tax_payments_list(
         self,
         *,
-        tax: PostV1DeclarationsTaxPaymentsListRequestTax,
+        tax: TaxPaymentsListDeclarationsRequestTax,
         year: int,
         month: typing.Optional[int] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> AsyncHttpResponse[PostV1DeclarationsTaxPaymentsListResponse]:
+    ) -> AsyncHttpResponse[TaxPaymentsListDeclarationsResponse]:
         """
         What the company has paid the administration towards a tax before the return is filed: payments on account, tax withheld at source by others, a final settlement, and a refund received. Returns report these on their own lines, so the amount they ask for is the balance.
 
         Parameters
         ----------
-        tax : PostV1DeclarationsTaxPaymentsListRequestTax
+        tax : TaxPaymentsListDeclarationsRequestTax
 
         year : int
 
@@ -17900,7 +20572,7 @@ class AsyncRawDeclarationsClient:
 
         Returns
         -------
-        AsyncHttpResponse[PostV1DeclarationsTaxPaymentsListResponse]
+        AsyncHttpResponse[TaxPaymentsListDeclarationsResponse]
             Default Response
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -17920,9 +20592,9 @@ class AsyncRawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsTaxPaymentsListResponse,
+                    TaxPaymentsListDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsTaxPaymentsListResponse,  # type: ignore
+                        type_=TaxPaymentsListDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -17940,6 +20612,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -17973,6 +20656,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -18024,31 +20718,31 @@ class AsyncRawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    async def record_a_payment_made_towards_a_tax(
+    async def tax_payments_create(
         self,
         *,
-        tax: PostV1DeclarationsTaxPaymentsCreateRequestTax,
+        tax: TaxPaymentsCreateDeclarationsRequestTax,
         year: int,
-        kind: PostV1DeclarationsTaxPaymentsCreateRequestKind,
+        kind: TaxPaymentsCreateDeclarationsRequestKind,
         amount: str,
-        paid_on: str,
+        paid_on: dt.date,
         description: str,
         month: typing.Optional[int] = OMIT,
         reference: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> AsyncHttpResponse[PostV1DeclarationsTaxPaymentsCreateResponse]:
+    ) -> AsyncHttpResponse[TaxPaymentsCreateDeclarationsResponse]:
         """
         Parameters
         ----------
-        tax : PostV1DeclarationsTaxPaymentsCreateRequestTax
+        tax : TaxPaymentsCreateDeclarationsRequestTax
 
         year : int
 
-        kind : PostV1DeclarationsTaxPaymentsCreateRequestKind
+        kind : TaxPaymentsCreateDeclarationsRequestKind
 
         amount : str
 
-        paid_on : str
+        paid_on : dt.date
 
         description : str
 
@@ -18061,7 +20755,7 @@ class AsyncRawDeclarationsClient:
 
         Returns
         -------
-        AsyncHttpResponse[PostV1DeclarationsTaxPaymentsCreateResponse]
+        AsyncHttpResponse[TaxPaymentsCreateDeclarationsResponse]
             Default Response
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -18086,9 +20780,9 @@ class AsyncRawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsTaxPaymentsCreateResponse,
+                    TaxPaymentsCreateDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsTaxPaymentsCreateResponse,  # type: ignore
+                        type_=TaxPaymentsCreateDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -18106,6 +20800,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -18139,6 +20844,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -18190,27 +20906,27 @@ class AsyncRawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    async def change_a_recorded_tax_payment(
+    async def tax_payments_update(
         self,
         *,
         id: str,
-        kind: typing.Optional[PostV1DeclarationsTaxPaymentsUpdateRequestKind] = OMIT,
+        kind: typing.Optional[TaxPaymentsUpdateDeclarationsRequestKind] = OMIT,
         amount: typing.Optional[str] = OMIT,
-        paid_on: typing.Optional[str] = OMIT,
+        paid_on: typing.Optional[dt.date] = OMIT,
         reference: typing.Optional[str] = OMIT,
         description: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> AsyncHttpResponse[PostV1DeclarationsTaxPaymentsUpdateResponse]:
+    ) -> AsyncHttpResponse[TaxPaymentsUpdateDeclarationsResponse]:
         """
         Parameters
         ----------
         id : str
 
-        kind : typing.Optional[PostV1DeclarationsTaxPaymentsUpdateRequestKind]
+        kind : typing.Optional[TaxPaymentsUpdateDeclarationsRequestKind]
 
         amount : typing.Optional[str]
 
-        paid_on : typing.Optional[str]
+        paid_on : typing.Optional[dt.date]
 
         reference : typing.Optional[str]
 
@@ -18221,7 +20937,7 @@ class AsyncRawDeclarationsClient:
 
         Returns
         -------
-        AsyncHttpResponse[PostV1DeclarationsTaxPaymentsUpdateResponse]
+        AsyncHttpResponse[TaxPaymentsUpdateDeclarationsResponse]
             Default Response
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -18244,9 +20960,9 @@ class AsyncRawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsTaxPaymentsUpdateResponse,
+                    TaxPaymentsUpdateDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsTaxPaymentsUpdateResponse,  # type: ignore
+                        type_=TaxPaymentsUpdateDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -18264,6 +20980,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -18297,6 +21024,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -18348,9 +21086,9 @@ class AsyncRawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    async def remove_a_recorded_tax_payment(
+    async def tax_payments_delete(
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
-    ) -> AsyncHttpResponse[PostV1DeclarationsTaxPaymentsDeleteResponse]:
+    ) -> AsyncHttpResponse[TaxPaymentsDeleteDeclarationsResponse]:
         """
         Parameters
         ----------
@@ -18361,7 +21099,7 @@ class AsyncRawDeclarationsClient:
 
         Returns
         -------
-        AsyncHttpResponse[PostV1DeclarationsTaxPaymentsDeleteResponse]
+        AsyncHttpResponse[TaxPaymentsDeleteDeclarationsResponse]
             Default Response
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -18379,9 +21117,9 @@ class AsyncRawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsTaxPaymentsDeleteResponse,
+                    TaxPaymentsDeleteDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsTaxPaymentsDeleteResponse,  # type: ignore
+                        type_=TaxPaymentsDeleteDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -18399,6 +21137,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -18432,6 +21181,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -18483,9 +21243,9 @@ class AsyncRawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    async def adoption_and_signing_facts_of_the_annual_accounts_of_a_year(
+    async def annual_accounts_get(
         self, *, year: int, request_options: typing.Optional[RequestOptions] = None
-    ) -> AsyncHttpResponse[PostV1DeclarationsAnnualAccountsGetResponse]:
+    ) -> AsyncHttpResponse[AnnualAccountsGetDeclarationsResponse]:
         """
         Whether the general meeting adopted the annual accounts and on which date, the date the accounts were prepared, and which directors signed them. The annual accounts filed with the trade register are built from these facts.
 
@@ -18498,7 +21258,7 @@ class AsyncRawDeclarationsClient:
 
         Returns
         -------
-        AsyncHttpResponse[PostV1DeclarationsAnnualAccountsGetResponse]
+        AsyncHttpResponse[AnnualAccountsGetDeclarationsResponse]
             Default Response
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -18516,9 +21276,9 @@ class AsyncRawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsAnnualAccountsGetResponse,
+                    AnnualAccountsGetDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsAnnualAccountsGetResponse,  # type: ignore
+                        type_=AnnualAccountsGetDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -18536,6 +21296,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -18569,6 +21340,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -18620,25 +21402,25 @@ class AsyncRawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    async def record_the_adoption_and_preparation_of_the_annual_accounts_of_a_year(
+    async def annual_accounts_set(
         self,
         *,
         year: int,
         adopted: bool,
-        date_of_preparation: str,
-        adoption_date: typing.Optional[str] = OMIT,
+        date_of_preparation: dt.date,
+        adoption_date: typing.Optional[dt.date] = OMIT,
         audited: typing.Optional[bool] = OMIT,
         audit_report_qualified: typing.Optional[bool] = OMIT,
         auditor_not_elected: typing.Optional[bool] = OMIT,
         notes_text: typing.Optional[str] = OMIT,
         management_report_text: typing.Optional[str] = OMIT,
         auditor_report_text: typing.Optional[str] = OMIT,
-        auditor_report_date: typing.Optional[str] = OMIT,
+        auditor_report_date: typing.Optional[dt.date] = OMIT,
         result_to_reserves: typing.Optional[str] = OMIT,
         result_to_loss_compensation: typing.Optional[str] = OMIT,
         result_to_remainder: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> AsyncHttpResponse[PostV1DeclarationsAnnualAccountsSetResponse]:
+    ) -> AsyncHttpResponse[AnnualAccountsSetDeclarationsResponse]:
         """
         Parameters
         ----------
@@ -18646,9 +21428,9 @@ class AsyncRawDeclarationsClient:
 
         adopted : bool
 
-        date_of_preparation : str
+        date_of_preparation : dt.date
 
-        adoption_date : typing.Optional[str]
+        adoption_date : typing.Optional[dt.date]
 
         audited : typing.Optional[bool]
 
@@ -18662,7 +21444,7 @@ class AsyncRawDeclarationsClient:
 
         auditor_report_text : typing.Optional[str]
 
-        auditor_report_date : typing.Optional[str]
+        auditor_report_date : typing.Optional[dt.date]
 
         result_to_reserves : typing.Optional[str]
 
@@ -18675,7 +21457,7 @@ class AsyncRawDeclarationsClient:
 
         Returns
         -------
-        AsyncHttpResponse[PostV1DeclarationsAnnualAccountsSetResponse]
+        AsyncHttpResponse[AnnualAccountsSetDeclarationsResponse]
             Default Response
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -18706,9 +21488,9 @@ class AsyncRawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsAnnualAccountsSetResponse,
+                    AnnualAccountsSetDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsAnnualAccountsSetResponse,  # type: ignore
+                        type_=AnnualAccountsSetDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -18726,6 +21508,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -18759,6 +21552,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -18810,18 +21614,18 @@ class AsyncRawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    async def record_whether_a_director_signed_the_annual_accounts_of_a_year(
+    async def annual_accounts_signatures_create(
         self,
         *,
         year: int,
         director_name: str,
-        director_type: PostV1DeclarationsAnnualAccountsSignaturesCreateRequestDirectorType,
+        director_type: AnnualAccountsSignaturesCreateDeclarationsRequestDirectorType,
         signed: bool,
-        signed_on: typing.Optional[str] = OMIT,
-        signed_at: typing.Optional[str] = OMIT,
+        signed_on: typing.Optional[dt.date] = OMIT,
+        signed_at: typing.Optional[dt.datetime] = OMIT,
         reason_not_signed: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> AsyncHttpResponse[PostV1DeclarationsAnnualAccountsSignaturesCreateResponse]:
+    ) -> AsyncHttpResponse[AnnualAccountsSignaturesCreateDeclarationsResponse]:
         """
         Parameters
         ----------
@@ -18829,13 +21633,13 @@ class AsyncRawDeclarationsClient:
 
         director_name : str
 
-        director_type : PostV1DeclarationsAnnualAccountsSignaturesCreateRequestDirectorType
+        director_type : AnnualAccountsSignaturesCreateDeclarationsRequestDirectorType
 
         signed : bool
 
-        signed_on : typing.Optional[str]
+        signed_on : typing.Optional[dt.date]
 
-        signed_at : typing.Optional[str]
+        signed_at : typing.Optional[dt.datetime]
 
         reason_not_signed : typing.Optional[str]
 
@@ -18844,7 +21648,7 @@ class AsyncRawDeclarationsClient:
 
         Returns
         -------
-        AsyncHttpResponse[PostV1DeclarationsAnnualAccountsSignaturesCreateResponse]
+        AsyncHttpResponse[AnnualAccountsSignaturesCreateDeclarationsResponse]
             Default Response
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -18868,9 +21672,9 @@ class AsyncRawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsAnnualAccountsSignaturesCreateResponse,
+                    AnnualAccountsSignaturesCreateDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsAnnualAccountsSignaturesCreateResponse,  # type: ignore
+                        type_=AnnualAccountsSignaturesCreateDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -18888,6 +21692,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -18921,6 +21736,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -18972,18 +21798,18 @@ class AsyncRawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    async def change_a_recorded_director_signature(
+    async def annual_accounts_signatures_update(
         self,
         *,
         id: str,
         director_name: str,
-        director_type: PostV1DeclarationsAnnualAccountsSignaturesUpdateRequestDirectorType,
+        director_type: AnnualAccountsSignaturesUpdateDeclarationsRequestDirectorType,
         signed: bool,
-        signed_on: typing.Optional[str] = OMIT,
-        signed_at: typing.Optional[str] = OMIT,
+        signed_on: typing.Optional[dt.date] = OMIT,
+        signed_at: typing.Optional[dt.datetime] = OMIT,
         reason_not_signed: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> AsyncHttpResponse[PostV1DeclarationsAnnualAccountsSignaturesUpdateResponse]:
+    ) -> AsyncHttpResponse[AnnualAccountsSignaturesUpdateDeclarationsResponse]:
         """
         Parameters
         ----------
@@ -18991,13 +21817,13 @@ class AsyncRawDeclarationsClient:
 
         director_name : str
 
-        director_type : PostV1DeclarationsAnnualAccountsSignaturesUpdateRequestDirectorType
+        director_type : AnnualAccountsSignaturesUpdateDeclarationsRequestDirectorType
 
         signed : bool
 
-        signed_on : typing.Optional[str]
+        signed_on : typing.Optional[dt.date]
 
-        signed_at : typing.Optional[str]
+        signed_at : typing.Optional[dt.datetime]
 
         reason_not_signed : typing.Optional[str]
 
@@ -19006,7 +21832,7 @@ class AsyncRawDeclarationsClient:
 
         Returns
         -------
-        AsyncHttpResponse[PostV1DeclarationsAnnualAccountsSignaturesUpdateResponse]
+        AsyncHttpResponse[AnnualAccountsSignaturesUpdateDeclarationsResponse]
             Default Response
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -19030,9 +21856,9 @@ class AsyncRawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsAnnualAccountsSignaturesUpdateResponse,
+                    AnnualAccountsSignaturesUpdateDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsAnnualAccountsSignaturesUpdateResponse,  # type: ignore
+                        type_=AnnualAccountsSignaturesUpdateDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -19050,6 +21876,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -19083,6 +21920,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -19134,9 +21982,9 @@ class AsyncRawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    async def remove_a_recorded_director_signature(
+    async def annual_accounts_signatures_delete(
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
-    ) -> AsyncHttpResponse[PostV1DeclarationsAnnualAccountsSignaturesDeleteResponse]:
+    ) -> AsyncHttpResponse[AnnualAccountsSignaturesDeleteDeclarationsResponse]:
         """
         Parameters
         ----------
@@ -19147,7 +21995,7 @@ class AsyncRawDeclarationsClient:
 
         Returns
         -------
-        AsyncHttpResponse[PostV1DeclarationsAnnualAccountsSignaturesDeleteResponse]
+        AsyncHttpResponse[AnnualAccountsSignaturesDeleteDeclarationsResponse]
             Default Response
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -19165,9 +22013,9 @@ class AsyncRawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsAnnualAccountsSignaturesDeleteResponse,
+                    AnnualAccountsSignaturesDeleteDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsAnnualAccountsSignaturesDeleteResponse,  # type: ignore
+                        type_=AnnualAccountsSignaturesDeleteDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -19185,6 +22033,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -19218,6 +22077,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -19269,24 +22139,24 @@ class AsyncRawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    async def record_a_decision_to_distribute_profit_a_dividend_an_interim_dividend_or_a_payment_treated_as_one(
+    async def annual_accounts_distributions_create(
         self,
         *,
         year: int,
-        decided_on: str,
-        kind: PostV1DeclarationsAnnualAccountsDistributionsCreateRequestKind,
+        decided_on: dt.date,
+        kind: AnnualAccountsDistributionsCreateDeclarationsRequestKind,
         amount: str,
         description: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> AsyncHttpResponse[PostV1DeclarationsAnnualAccountsDistributionsCreateResponse]:
+    ) -> AsyncHttpResponse[AnnualAccountsDistributionsCreateDeclarationsResponse]:
         """
         Parameters
         ----------
         year : int
 
-        decided_on : str
+        decided_on : dt.date
 
-        kind : PostV1DeclarationsAnnualAccountsDistributionsCreateRequestKind
+        kind : AnnualAccountsDistributionsCreateDeclarationsRequestKind
 
         amount : str
 
@@ -19297,7 +22167,7 @@ class AsyncRawDeclarationsClient:
 
         Returns
         -------
-        AsyncHttpResponse[PostV1DeclarationsAnnualAccountsDistributionsCreateResponse]
+        AsyncHttpResponse[AnnualAccountsDistributionsCreateDeclarationsResponse]
             Default Response
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -19319,9 +22189,9 @@ class AsyncRawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsAnnualAccountsDistributionsCreateResponse,
+                    AnnualAccountsDistributionsCreateDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsAnnualAccountsDistributionsCreateResponse,  # type: ignore
+                        type_=AnnualAccountsDistributionsCreateDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -19339,6 +22209,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -19372,6 +22253,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -19423,24 +22315,24 @@ class AsyncRawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    async def change_a_recorded_profit_distribution(
+    async def annual_accounts_distributions_update(
         self,
         *,
         id: str,
-        decided_on: str,
-        kind: PostV1DeclarationsAnnualAccountsDistributionsUpdateRequestKind,
+        decided_on: dt.date,
+        kind: AnnualAccountsDistributionsUpdateDeclarationsRequestKind,
         amount: str,
         description: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> AsyncHttpResponse[PostV1DeclarationsAnnualAccountsDistributionsUpdateResponse]:
+    ) -> AsyncHttpResponse[AnnualAccountsDistributionsUpdateDeclarationsResponse]:
         """
         Parameters
         ----------
         id : str
 
-        decided_on : str
+        decided_on : dt.date
 
-        kind : PostV1DeclarationsAnnualAccountsDistributionsUpdateRequestKind
+        kind : AnnualAccountsDistributionsUpdateDeclarationsRequestKind
 
         amount : str
 
@@ -19451,7 +22343,7 @@ class AsyncRawDeclarationsClient:
 
         Returns
         -------
-        AsyncHttpResponse[PostV1DeclarationsAnnualAccountsDistributionsUpdateResponse]
+        AsyncHttpResponse[AnnualAccountsDistributionsUpdateDeclarationsResponse]
             Default Response
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -19473,9 +22365,9 @@ class AsyncRawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsAnnualAccountsDistributionsUpdateResponse,
+                    AnnualAccountsDistributionsUpdateDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsAnnualAccountsDistributionsUpdateResponse,  # type: ignore
+                        type_=AnnualAccountsDistributionsUpdateDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -19493,6 +22385,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -19526,6 +22429,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -19577,9 +22491,9 @@ class AsyncRawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    async def remove_a_recorded_profit_distribution(
+    async def annual_accounts_distributions_delete(
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
-    ) -> AsyncHttpResponse[PostV1DeclarationsAnnualAccountsDistributionsDeleteResponse]:
+    ) -> AsyncHttpResponse[AnnualAccountsDistributionsDeleteDeclarationsResponse]:
         """
         Parameters
         ----------
@@ -19590,7 +22504,7 @@ class AsyncRawDeclarationsClient:
 
         Returns
         -------
-        AsyncHttpResponse[PostV1DeclarationsAnnualAccountsDistributionsDeleteResponse]
+        AsyncHttpResponse[AnnualAccountsDistributionsDeleteDeclarationsResponse]
             Default Response
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -19608,9 +22522,9 @@ class AsyncRawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsAnnualAccountsDistributionsDeleteResponse,
+                    AnnualAccountsDistributionsDeleteDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsAnnualAccountsDistributionsDeleteResponse,  # type: ignore
+                        type_=AnnualAccountsDistributionsDeleteDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -19628,6 +22542,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -19661,6 +22586,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -19712,15 +22648,15 @@ class AsyncRawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    async def attach_an_uploaded_document_to_the_annual_accounts_of_a_year(
+    async def annual_accounts_attachments_add(
         self,
         *,
         year: int,
-        kind: PostV1DeclarationsAnnualAccountsAttachmentsAddRequestKind,
+        kind: AnnualAccountsAttachmentsAddDeclarationsRequestKind,
         ref: str,
         name: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> AsyncHttpResponse[PostV1DeclarationsAnnualAccountsAttachmentsAddResponse]:
+    ) -> AsyncHttpResponse[AnnualAccountsAttachmentsAddDeclarationsResponse]:
         """
         Links a file uploaded through files/upload (its storageKey) to the annual accounts of the year as the notes, the management report, the auditor statement, the profit appropriation resolution, the approval certificate, the general data sheet, the full report as a pdf, or another document. Deposits that must carry these documents take them from here.
 
@@ -19728,7 +22664,7 @@ class AsyncRawDeclarationsClient:
         ----------
         year : int
 
-        kind : PostV1DeclarationsAnnualAccountsAttachmentsAddRequestKind
+        kind : AnnualAccountsAttachmentsAddDeclarationsRequestKind
 
         ref : str
 
@@ -19739,7 +22675,7 @@ class AsyncRawDeclarationsClient:
 
         Returns
         -------
-        AsyncHttpResponse[PostV1DeclarationsAnnualAccountsAttachmentsAddResponse]
+        AsyncHttpResponse[AnnualAccountsAttachmentsAddDeclarationsResponse]
             Default Response
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -19760,9 +22696,9 @@ class AsyncRawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsAnnualAccountsAttachmentsAddResponse,
+                    AnnualAccountsAttachmentsAddDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsAnnualAccountsAttachmentsAddResponse,  # type: ignore
+                        type_=AnnualAccountsAttachmentsAddDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -19780,6 +22716,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -19813,6 +22760,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -19864,9 +22822,9 @@ class AsyncRawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    async def remove_a_document_attached_to_the_annual_accounts_and_delete_its_file(
+    async def annual_accounts_attachments_delete(
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
-    ) -> AsyncHttpResponse[PostV1DeclarationsAnnualAccountsAttachmentsDeleteResponse]:
+    ) -> AsyncHttpResponse[AnnualAccountsAttachmentsDeleteDeclarationsResponse]:
         """
         Parameters
         ----------
@@ -19877,7 +22835,7 @@ class AsyncRawDeclarationsClient:
 
         Returns
         -------
-        AsyncHttpResponse[PostV1DeclarationsAnnualAccountsAttachmentsDeleteResponse]
+        AsyncHttpResponse[AnnualAccountsAttachmentsDeleteDeclarationsResponse]
             Default Response
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -19895,9 +22853,9 @@ class AsyncRawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsAnnualAccountsAttachmentsDeleteResponse,
+                    AnnualAccountsAttachmentsDeleteDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsAnnualAccountsAttachmentsDeleteResponse,  # type: ignore
+                        type_=AnnualAccountsAttachmentsDeleteDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -19915,6 +22873,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -19948,6 +22917,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -19999,9 +22979,9 @@ class AsyncRawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    async def post_v1declarations_cy_td4generate(
+    async def cy_td4generate(
         self, *, year: int, request_options: typing.Optional[RequestOptions] = None
-    ) -> AsyncHttpResponse[PostV1DeclarationsCyTd4GenerateResponse]:
+    ) -> AsyncHttpResponse[CyTd4GenerateDeclarationsResponse]:
         """
         Compute the company income tax return TD4 of a tax year from the ledger and the recorded tax adjustments: the accounting profit, the add-backs, deductions, capital allowances and losses brought forward, the chargeable income, the corporation tax at the rate of the year and the double tax relief, as the fields the company keys into TAXISnet or Tax For All. The Tax Department publishes no upload layout for the TD4; the XML is a working file.
 
@@ -20014,7 +22994,7 @@ class AsyncRawDeclarationsClient:
 
         Returns
         -------
-        AsyncHttpResponse[PostV1DeclarationsCyTd4GenerateResponse]
+        AsyncHttpResponse[CyTd4GenerateDeclarationsResponse]
             Default Response
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -20032,9 +23012,9 @@ class AsyncRawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsCyTd4GenerateResponse,
+                    CyTd4GenerateDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsCyTd4GenerateResponse,  # type: ignore
+                        type_=CyTd4GenerateDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -20052,6 +23032,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -20085,6 +23076,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -20136,9 +23138,9 @@ class AsyncRawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    async def post_v1declarations_cy_he32generate(
+    async def cy_he32generate(
         self, *, year: int, request_options: typing.Optional[RequestOptions] = None
-    ) -> AsyncHttpResponse[PostV1DeclarationsCyHe32GenerateResponse]:
+    ) -> AsyncHttpResponse[CyHe32GenerateDeclarationsResponse]:
         """
         Build the annual return HE32 of a year: the figures the Registrar’s e-filing screens ask for (company number, registered office, made-up-to date, share capital, register of members, directors and secretary, annual general meeting date, the accounts summary), the working file, and the printed form HE32(I) filled in as a PDF for signing and for keying into the Registrar’s system, which takes the return only through its own screens.
 
@@ -20151,7 +23153,7 @@ class AsyncRawDeclarationsClient:
 
         Returns
         -------
-        AsyncHttpResponse[PostV1DeclarationsCyHe32GenerateResponse]
+        AsyncHttpResponse[CyHe32GenerateDeclarationsResponse]
             Default Response
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -20169,9 +23171,9 @@ class AsyncRawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsCyHe32GenerateResponse,
+                    CyHe32GenerateDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsCyHe32GenerateResponse,  # type: ignore
+                        type_=CyHe32GenerateDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -20189,6 +23191,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -20222,6 +23235,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -20273,19 +23297,19 @@ class AsyncRawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    async def post_v1declarations_de_returns_generate(
+    async def de_returns_generate(
         self,
         *,
-        rule_key: PostV1DeclarationsDeReturnsGenerateRequestRuleKey,
+        rule_key: DeReturnsGenerateDeclarationsRequestRuleKey,
         period: str,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> AsyncHttpResponse[PostV1DeclarationsDeReturnsGenerateResponse]:
+    ) -> AsyncHttpResponse[DeReturnsGenerateDeclarationsResponse]:
         """
         Build one of the German returns that ELSTER accepts only through a licensed ERiC transmission (E-Bilanz, Körperschaftsteuer, Gewerbesteuer with its Zerlegungserklärung, annual VAT return, Lohnsteuer-Anmeldung, Lohnsteuerbescheinigung) for the company to send through its own ELSTER-capable program. The period is the year, or YYYY-MM for the monthly Lohnsteuer-Anmeldung.
 
         Parameters
         ----------
-        rule_key : PostV1DeclarationsDeReturnsGenerateRequestRuleKey
+        rule_key : DeReturnsGenerateDeclarationsRequestRuleKey
 
         period : str
 
@@ -20294,7 +23318,7 @@ class AsyncRawDeclarationsClient:
 
         Returns
         -------
-        AsyncHttpResponse[PostV1DeclarationsDeReturnsGenerateResponse]
+        AsyncHttpResponse[DeReturnsGenerateDeclarationsResponse]
             Default Response
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -20313,9 +23337,9 @@ class AsyncRawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsDeReturnsGenerateResponse,
+                    DeReturnsGenerateDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsDeReturnsGenerateResponse,  # type: ignore
+                        type_=DeReturnsGenerateDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -20333,6 +23357,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -20366,6 +23401,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -20417,9 +23463,9 @@ class AsyncRawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    async def post_v1declarations_de_return_facts_get(
+    async def de_return_facts_get(
         self, *, year: int, request_options: typing.Optional[RequestOptions] = None
-    ) -> AsyncHttpResponse[PostV1DeclarationsDeReturnFactsGetResponse]:
+    ) -> AsyncHttpResponse[DeReturnFactsGetDeclarationsResponse]:
         """
         The facts of one year that the German annual returns (Körperschaftsteuer, Gewerbesteuer, Umsatzsteuererklärung) need and the ledger does not hold: changes of shareholders, contracts with shareholders, the tax contribution account, loss carry-back, the donation carry-forward, the business premises with the municipalities for the apportionment of the trade tax, the land values or property tax and the participations for the trade tax additions and reductions, the foreign income per country for the Anlage AESt, the date of leaving the small-business scheme and the Anlage UN answers of a company seated abroad. A key that is absent has not been answered.
 
@@ -20432,7 +23478,7 @@ class AsyncRawDeclarationsClient:
 
         Returns
         -------
-        AsyncHttpResponse[PostV1DeclarationsDeReturnFactsGetResponse]
+        AsyncHttpResponse[DeReturnFactsGetDeclarationsResponse]
             Default Response
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -20450,9 +23496,9 @@ class AsyncRawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsDeReturnFactsGetResponse,
+                    DeReturnFactsGetDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsDeReturnFactsGetResponse,  # type: ignore
+                        type_=DeReturnFactsGetDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -20470,6 +23516,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -20503,6 +23560,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -20554,13 +23622,13 @@ class AsyncRawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    async def post_v1declarations_de_return_facts_set(
+    async def de_return_facts_set(
         self,
         *,
         year: int,
-        facts: PostV1DeclarationsDeReturnFactsSetRequestFacts,
+        facts: DeReturnFactsSetDeclarationsRequestFacts,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> AsyncHttpResponse[PostV1DeclarationsDeReturnFactsSetResponse]:
+    ) -> AsyncHttpResponse[DeReturnFactsSetDeclarationsResponse]:
         """
         Replace the facts of one year for the German annual returns. The returns built afterwards read them; a key left out stays unanswered.
 
@@ -20568,14 +23636,14 @@ class AsyncRawDeclarationsClient:
         ----------
         year : int
 
-        facts : PostV1DeclarationsDeReturnFactsSetRequestFacts
+        facts : DeReturnFactsSetDeclarationsRequestFacts
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
         Returns
         -------
-        AsyncHttpResponse[PostV1DeclarationsDeReturnFactsSetResponse]
+        AsyncHttpResponse[DeReturnFactsSetDeclarationsResponse]
             Default Response
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -20584,7 +23652,7 @@ class AsyncRawDeclarationsClient:
             json={
                 "year": year,
                 "facts": convert_and_respect_annotation_metadata(
-                    object_=facts, annotation=PostV1DeclarationsDeReturnFactsSetRequestFacts, direction="write"
+                    object_=facts, annotation=DeReturnFactsSetDeclarationsRequestFacts, direction="write"
                 ),
             },
             headers={
@@ -20596,9 +23664,9 @@ class AsyncRawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsDeReturnFactsSetResponse,
+                    DeReturnFactsSetDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsDeReturnFactsSetResponse,  # type: ignore
+                        type_=DeReturnFactsSetDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -20616,6 +23684,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -20649,6 +23728,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -20700,9 +23790,9 @@ class AsyncRawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    async def post_v1declarations_de_deuev_generate(
+    async def de_deuev_generate(
         self, *, year: int, month: int, request_options: typing.Optional[RequestOptions] = None
-    ) -> AsyncHttpResponse[PostV1DeclarationsDeDeuevGenerateResponse]:
+    ) -> AsyncHttpResponse[DeDeuevGenerateDeclarationsResponse]:
         """
         Build the DEÜV notifications of a month (Anmeldung for every start, Abmeldung for every leaving, in December the Jahresmeldung for everyone employed on 31 December) as DSME records with the DBME, DBNA, DBGB and DBAN blocks of Anlage 4 in force from 2026, from the approved payroll runs and the employee record, for the company's own transmission channel.
 
@@ -20717,7 +23807,7 @@ class AsyncRawDeclarationsClient:
 
         Returns
         -------
-        AsyncHttpResponse[PostV1DeclarationsDeDeuevGenerateResponse]
+        AsyncHttpResponse[DeDeuevGenerateDeclarationsResponse]
             Default Response
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -20736,9 +23826,9 @@ class AsyncRawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsDeDeuevGenerateResponse,
+                    DeDeuevGenerateDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsDeDeuevGenerateResponse,  # type: ignore
+                        type_=DeDeuevGenerateDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -20756,6 +23846,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -20789,6 +23890,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -20840,9 +23952,9 @@ class AsyncRawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    async def post_v1declarations_de_beitragsnachweis_generate(
+    async def de_beitragsnachweis_generate(
         self, *, year: int, month: int, request_options: typing.Optional[RequestOptions] = None
-    ) -> AsyncHttpResponse[PostV1DeclarationsDeBeitragsnachweisGenerateResponse]:
+    ) -> AsyncHttpResponse[DeBeitragsnachweisGenerateDeclarationsResponse]:
         """
         Build the monthly contribution statement to the health insurers (Beitragsnachweis) from the payroll run: one fixed-length record BW02 per insurer, in the record layout in force from 2026, ready for the company's own transmission channel.
 
@@ -20857,7 +23969,7 @@ class AsyncRawDeclarationsClient:
 
         Returns
         -------
-        AsyncHttpResponse[PostV1DeclarationsDeBeitragsnachweisGenerateResponse]
+        AsyncHttpResponse[DeBeitragsnachweisGenerateDeclarationsResponse]
             Default Response
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -20876,9 +23988,9 @@ class AsyncRawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsDeBeitragsnachweisGenerateResponse,
+                    DeBeitragsnachweisGenerateDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsDeBeitragsnachweisGenerateResponse,  # type: ignore
+                        type_=DeBeitragsnachweisGenerateDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -20896,6 +24008,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -20929,6 +24052,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -20980,9 +24114,9 @@ class AsyncRawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    async def post_v1declarations_dk_selskabsskat_generate(
+    async def dk_selskabsskat_generate(
         self, *, year: int, request_options: typing.Optional[RequestOptions] = None
-    ) -> AsyncHttpResponse[PostV1DeclarationsDkSelskabsskatGenerateResponse]:
+    ) -> AsyncHttpResponse[DkSelskabsskatGenerateDeclarationsResponse]:
         """
         Compute the oplysningsskema for selskaber (selskabsselvangivelsen) of an income year from the ledger and the recorded tax adjustments: accounting result before tax, tax adjustments, losses carried forward, taxable income, the 22 % corporation tax, reliefs and the balance, as the rubrikker the company keys into TastSelv Selskabsskat (DIAS). Skatteforvaltningen publishes no file format for the return; the XML is a working file.
 
@@ -20995,7 +24129,7 @@ class AsyncRawDeclarationsClient:
 
         Returns
         -------
-        AsyncHttpResponse[PostV1DeclarationsDkSelskabsskatGenerateResponse]
+        AsyncHttpResponse[DkSelskabsskatGenerateDeclarationsResponse]
             Default Response
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -21013,9 +24147,9 @@ class AsyncRawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsDkSelskabsskatGenerateResponse,
+                    DkSelskabsskatGenerateDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsDkSelskabsskatGenerateResponse,  # type: ignore
+                        type_=DkSelskabsskatGenerateDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -21033,6 +24167,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -21066,6 +24211,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -21117,13 +24273,13 @@ class AsyncRawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    async def post_v1declarations_ee_employment_register_send(
+    async def ee_employment_register_send(
         self,
         *,
         contract_id: str,
-        event: PostV1DeclarationsEeEmploymentRegisterSendRequestEvent,
+        event: EeEmploymentRegisterSendDeclarationsRequestEvent,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> AsyncHttpResponse[PostV1DeclarationsEeEmploymentRegisterSendResponse]:
+    ) -> AsyncHttpResponse[EeEmploymentRegisterSendDeclarationsResponse]:
         """
         Send one employment register (töötamise register) entry for an employment contract to e-MTA over X-tee: the start of work, or its end with the reason recorded on the contract.
 
@@ -21131,14 +24287,14 @@ class AsyncRawDeclarationsClient:
         ----------
         contract_id : str
 
-        event : PostV1DeclarationsEeEmploymentRegisterSendRequestEvent
+        event : EeEmploymentRegisterSendDeclarationsRequestEvent
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
         Returns
         -------
-        AsyncHttpResponse[PostV1DeclarationsEeEmploymentRegisterSendResponse]
+        AsyncHttpResponse[EeEmploymentRegisterSendDeclarationsResponse]
             Default Response
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -21157,9 +24313,9 @@ class AsyncRawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsEeEmploymentRegisterSendResponse,
+                    EeEmploymentRegisterSendDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsEeEmploymentRegisterSendResponse,  # type: ignore
+                        type_=EeEmploymentRegisterSendDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -21177,6 +24333,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -21210,6 +24377,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -21261,9 +24439,9 @@ class AsyncRawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    async def post_v1declarations_es_verifactu_declaracion_responsable(
+    async def es_verifactu_declaracion_responsable(
         self, *, request_options: typing.Optional[RequestOptions] = None
-    ) -> AsyncHttpResponse[PostV1DeclarationsEsVerifactuDeclaracionResponsableResponse]:
+    ) -> AsyncHttpResponse[EsVerifactuDeclaracionResponsableDeclarationsResponse]:
         """
         Nordlet's declaración responsable for its VERI*FACTU invoicing system (Orden HAC/1177/2024, art. 15), as a PDF and as plain text.
 
@@ -21274,7 +24452,7 @@ class AsyncRawDeclarationsClient:
 
         Returns
         -------
-        AsyncHttpResponse[PostV1DeclarationsEsVerifactuDeclaracionResponsableResponse]
+        AsyncHttpResponse[EsVerifactuDeclaracionResponsableDeclarationsResponse]
             Default Response
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -21290,9 +24468,9 @@ class AsyncRawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsEsVerifactuDeclaracionResponsableResponse,
+                    EsVerifactuDeclaracionResponsableDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsEsVerifactuDeclaracionResponsableResponse,  # type: ignore
+                        type_=EsVerifactuDeclaracionResponsableDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -21310,6 +24488,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -21343,6 +24532,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -21394,9 +24594,9 @@ class AsyncRawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    async def post_v1declarations_ie_ct1generate(
+    async def ie_ct1generate(
         self, *, year: int, request_options: typing.Optional[RequestOptions] = None
-    ) -> AsyncHttpResponse[PostV1DeclarationsIeCt1GenerateResponse]:
+    ) -> AsyncHttpResponse[IeCt1GenerateDeclarationsResponse]:
         """
         Build the Form CT1 of an accounting year as the ROS version 26 XML and the accompanying financial statements as inline XBRL on the FRS 102 Irish Extension 2026 taxonomy Revenue accepts, both from the ledger, the recorded tax adjustments, the annual accounts record and the officers, for upload through the company’s own ROS account. Says whether the company is above the iXBRL deferral limits (balance sheet total €4.4 million, turnover €8.8 million, 50 employees).
 
@@ -21409,7 +24609,7 @@ class AsyncRawDeclarationsClient:
 
         Returns
         -------
-        AsyncHttpResponse[PostV1DeclarationsIeCt1GenerateResponse]
+        AsyncHttpResponse[IeCt1GenerateDeclarationsResponse]
             Default Response
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -21427,9 +24627,9 @@ class AsyncRawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsIeCt1GenerateResponse,
+                    IeCt1GenerateDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsIeCt1GenerateResponse,  # type: ignore
+                        type_=IeCt1GenerateDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -21447,6 +24647,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -21480,6 +24691,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -21531,9 +24753,9 @@ class AsyncRawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    async def post_v1declarations_ie_b1generate(
+    async def ie_b1generate(
         self, *, year: int, request_options: typing.Optional[RequestOptions] = None
-    ) -> AsyncHttpResponse[PostV1DeclarationsIeB1GenerateResponse]:
+    ) -> AsyncHttpResponse[IeB1GenerateDeclarationsResponse]:
         """
         Build the working paper for the Form B1 annual return of a financial year — company details, registered office, directors and secretary from Settings → Officers, the members from Settings → Shareholders, the issued share capital and the figures of the financial statements — in the order the CORE screens ask for them. The CRO publishes no file format for the B1, so it is keyed into CORE.
 
@@ -21546,7 +24768,7 @@ class AsyncRawDeclarationsClient:
 
         Returns
         -------
-        AsyncHttpResponse[PostV1DeclarationsIeB1GenerateResponse]
+        AsyncHttpResponse[IeB1GenerateDeclarationsResponse]
             Default Response
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -21564,9 +24786,9 @@ class AsyncRawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsIeB1GenerateResponse,
+                    IeB1GenerateDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsIeB1GenerateResponse,  # type: ignore
+                        type_=IeB1GenerateDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -21584,6 +24806,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -21617,6 +24850,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -21668,14 +24912,14 @@ class AsyncRawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    async def post_v1declarations_it_sdi_purchase_send(
+    async def it_sdi_purchase_send(
         self,
         *,
         purchase_invoice_id: str,
         vat_rate_percent: typing.Optional[str] = OMIT,
-        tipo_documento: typing.Optional[PostV1DeclarationsItSdiPurchaseSendRequestTipoDocumento] = OMIT,
+        tipo_documento: typing.Optional[ItSdiPurchaseSendDeclarationsRequestTipoDocumento] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> AsyncHttpResponse[PostV1DeclarationsItSdiPurchaseSendResponse]:
+    ) -> AsyncHttpResponse[ItSdiPurchaseSendDeclarationsResponse]:
         """
         Build the TD16-TD19 integration document for a registered purchase invoice and send it to the Sistema di Interscambio. Since July 2022 a purchase from a supplier established abroad is reported this way instead of the esterometro. The Italian VAT rate to self-assess is a judgement about the supply: pass vatRatePercent unless the purchase lines already carry it, otherwise the request is refused rather than guessed.
 
@@ -21685,14 +24929,14 @@ class AsyncRawDeclarationsClient:
 
         vat_rate_percent : typing.Optional[str]
 
-        tipo_documento : typing.Optional[PostV1DeclarationsItSdiPurchaseSendRequestTipoDocumento]
+        tipo_documento : typing.Optional[ItSdiPurchaseSendDeclarationsRequestTipoDocumento]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
         Returns
         -------
-        AsyncHttpResponse[PostV1DeclarationsItSdiPurchaseSendResponse]
+        AsyncHttpResponse[ItSdiPurchaseSendDeclarationsResponse]
             Default Response
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -21712,9 +24956,9 @@ class AsyncRawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsItSdiPurchaseSendResponse,
+                    ItSdiPurchaseSendDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsItSdiPurchaseSendResponse,  # type: ignore
+                        type_=ItSdiPurchaseSendDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -21732,6 +24976,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -21765,6 +25020,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -21816,14 +25082,14 @@ class AsyncRawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    async def post_v1declarations_it_sdi_purchase_preview(
+    async def it_sdi_purchase_preview(
         self,
         *,
         purchase_invoice_id: str,
         vat_rate_percent: typing.Optional[str] = OMIT,
-        tipo_documento: typing.Optional[PostV1DeclarationsItSdiPurchasePreviewRequestTipoDocumento] = OMIT,
+        tipo_documento: typing.Optional[ItSdiPurchasePreviewDeclarationsRequestTipoDocumento] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> AsyncHttpResponse[PostV1DeclarationsItSdiPurchasePreviewResponse]:
+    ) -> AsyncHttpResponse[ItSdiPurchasePreviewDeclarationsResponse]:
         """
         Render the TD16-TD19 integration document for a registered purchase invoice without sending it, so the rate and the document type can be checked first.
 
@@ -21833,14 +25099,14 @@ class AsyncRawDeclarationsClient:
 
         vat_rate_percent : typing.Optional[str]
 
-        tipo_documento : typing.Optional[PostV1DeclarationsItSdiPurchasePreviewRequestTipoDocumento]
+        tipo_documento : typing.Optional[ItSdiPurchasePreviewDeclarationsRequestTipoDocumento]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
         Returns
         -------
-        AsyncHttpResponse[PostV1DeclarationsItSdiPurchasePreviewResponse]
+        AsyncHttpResponse[ItSdiPurchasePreviewDeclarationsResponse]
             Default Response
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -21860,9 +25126,9 @@ class AsyncRawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsItSdiPurchasePreviewResponse,
+                    ItSdiPurchasePreviewDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsItSdiPurchasePreviewResponse,  # type: ignore
+                        type_=ItSdiPurchasePreviewDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -21880,6 +25146,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -21913,6 +25190,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -21964,34 +25252,37 @@ class AsyncRawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    async def post_v1declarations_lt_saft_send(
+    async def lt_saft_send(
         self,
         *,
-        from_date: str,
-        to_date: str,
-        data_type: typing.Optional[PostV1DeclarationsLtSaftSendRequestDataType] = OMIT,
+        from_date: dt.date,
+        to_date: dt.date,
+        data_type: typing.Optional[LtSaftSendDeclarationsRequestDataType] = OMIT,
         confirm: typing.Optional[bool] = OMIT,
+        amend: typing.Optional[bool] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> AsyncHttpResponse[PostV1DeclarationsLtSaftSendResponse]:
+    ) -> AsyncHttpResponse[LtSaftSendDeclarationsResponse]:
         """
-        Upload the SAF-T file to i.SAF-T over the iSAFTUploaderService web service and start its processing. The submission itself is confirmed separately, because after confirmation the file can no longer be corrected.
+        Upload the SAF-T file to i.SAF-T over the iSAFTUploaderService web service and start its processing. The file, the case reference and the status are kept as a declaration submission (submissionId), whose outcome Nordlet then checks with i.SAF-T. The submission itself is confirmed separately, because after confirmation the file can no longer be corrected. A range and data type already sent is sent again only with amend: true.
 
         Parameters
         ----------
-        from_date : str
+        from_date : dt.date
 
-        to_date : str
+        to_date : dt.date
 
-        data_type : typing.Optional[PostV1DeclarationsLtSaftSendRequestDataType]
+        data_type : typing.Optional[LtSaftSendDeclarationsRequestDataType]
 
         confirm : typing.Optional[bool]
+
+        amend : typing.Optional[bool]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
         Returns
         -------
-        AsyncHttpResponse[PostV1DeclarationsLtSaftSendResponse]
+        AsyncHttpResponse[LtSaftSendDeclarationsResponse]
             Default Response
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -22002,6 +25293,7 @@ class AsyncRawDeclarationsClient:
                 "toDate": to_date,
                 "dataType": data_type,
                 "confirm": confirm,
+                "amend": amend,
             },
             headers={
                 "content-type": "application/json",
@@ -22012,9 +25304,9 @@ class AsyncRawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsLtSaftSendResponse,
+                    LtSaftSendDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsLtSaftSendResponse,  # type: ignore
+                        type_=LtSaftSendDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -22032,6 +25324,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -22065,6 +25368,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -22116,26 +25430,26 @@ class AsyncRawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    async def post_v1declarations_lt_sd_ffdata(
+    async def lt_sd_ffdata(
         self,
         *,
-        type: PostV1DeclarationsLtSdFfdataRequestType,
-        from_date: str,
-        to_date: str,
+        type: LtSdFfdataDeclarationsRequestType,
+        from_date: dt.date,
+        to_date: dt.date,
         manager_full_name: typing.Optional[str] = OMIT,
         preparator_details: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> AsyncHttpResponse[PostV1DeclarationsLtSdFfdataResponse]:
+    ) -> AsyncHttpResponse[LtSdFfdataDeclarationsResponse]:
         """
         Render the Sodra 1-SD or 2-SD notice for the contracts starting or ending in the range as an .ffdata document for EDAS.
 
         Parameters
         ----------
-        type : PostV1DeclarationsLtSdFfdataRequestType
+        type : LtSdFfdataDeclarationsRequestType
 
-        from_date : str
+        from_date : dt.date
 
-        to_date : str
+        to_date : dt.date
 
         manager_full_name : typing.Optional[str]
 
@@ -22146,7 +25460,7 @@ class AsyncRawDeclarationsClient:
 
         Returns
         -------
-        AsyncHttpResponse[PostV1DeclarationsLtSdFfdataResponse]
+        AsyncHttpResponse[LtSdFfdataDeclarationsResponse]
             Default Response
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -22168,9 +25482,9 @@ class AsyncRawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsLtSdFfdataResponse,
+                    LtSdFfdataDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsLtSdFfdataResponse,  # type: ignore
+                        type_=LtSdFfdataDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -22188,6 +25502,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -22221,6 +25546,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -22272,9 +25608,9 @@ class AsyncRawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    async def post_v1declarations_lt_pln204ffdata(
+    async def lt_pln204ffdata(
         self, *, year: int, request_options: typing.Optional[RequestOptions] = None
-    ) -> AsyncHttpResponse[PostV1DeclarationsLtPln204FfdataResponse]:
+    ) -> AsyncHttpResponse[LtPln204FfdataDeclarationsResponse]:
         """
         Render the annual corporate income tax return PLN204 as an .ffdata document, including the PLN204S and PLN204Z annexes, from the ledger and the tax adjustments recorded for that year.
 
@@ -22287,7 +25623,7 @@ class AsyncRawDeclarationsClient:
 
         Returns
         -------
-        AsyncHttpResponse[PostV1DeclarationsLtPln204FfdataResponse]
+        AsyncHttpResponse[LtPln204FfdataDeclarationsResponse]
             Default Response
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -22305,9 +25641,9 @@ class AsyncRawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsLtPln204FfdataResponse,
+                    LtPln204FfdataDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsLtPln204FfdataResponse,  # type: ignore
+                        type_=LtPln204FfdataDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -22325,6 +25661,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -22358,6 +25705,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -22409,9 +25767,9 @@ class AsyncRawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    async def post_v1declarations_mt_company_tax_generate(
+    async def mt_company_tax_generate(
         self, *, year: int, request_options: typing.Optional[RequestOptions] = None
-    ) -> AsyncHttpResponse[PostV1DeclarationsMtCompanyTaxGenerateResponse]:
+    ) -> AsyncHttpResponse[MtCompanyTaxGenerateDeclarationsResponse]:
         """
         Compute the company income tax return and self-assessment of a year of assessment from the ledger and the recorded tax adjustments: the accounting profit before tax, the add-backs and deductions, the approved donations, capital allowances and losses carried forward, the chargeable income, the 35 % charge, the relief against the tax and the allocation of the distributable profit to the five tax accounts. The Malta Tax and Customs Administration issues the return as a personalised spreadsheet to the registered tax practitioner and publishes no layout, so the XML is a working file and the figures are keyed into that spreadsheet.
 
@@ -22424,7 +25782,7 @@ class AsyncRawDeclarationsClient:
 
         Returns
         -------
-        AsyncHttpResponse[PostV1DeclarationsMtCompanyTaxGenerateResponse]
+        AsyncHttpResponse[MtCompanyTaxGenerateDeclarationsResponse]
             Default Response
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -22442,9 +25800,9 @@ class AsyncRawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsMtCompanyTaxGenerateResponse,
+                    MtCompanyTaxGenerateDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsMtCompanyTaxGenerateResponse,  # type: ignore
+                        type_=MtCompanyTaxGenerateDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -22462,6 +25820,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -22495,6 +25864,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -22546,9 +25926,9 @@ class AsyncRawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    async def post_v1declarations_mt_annual_return_generate(
+    async def mt_annual_return_generate(
         self, *, year: int, request_options: typing.Optional[RequestOptions] = None
-    ) -> AsyncHttpResponse[PostV1DeclarationsMtAnnualReturnGenerateResponse]:
+    ) -> AsyncHttpResponse[MtAnnualReturnGenerateDeclarationsResponse]:
         """
         Build the annual return of a year: the company number, registered office and made-up-to date, the share capital, the register of members, the directors and the company secretary and the accounts summary, as the figures the Malta Business Registry asks for on its own screens, plus the printed Annual Return Form of the Seventh Schedule filled in as a PDF for signing.
 
@@ -22561,7 +25941,7 @@ class AsyncRawDeclarationsClient:
 
         Returns
         -------
-        AsyncHttpResponse[PostV1DeclarationsMtAnnualReturnGenerateResponse]
+        AsyncHttpResponse[MtAnnualReturnGenerateDeclarationsResponse]
             Default Response
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -22579,9 +25959,9 @@ class AsyncRawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsMtAnnualReturnGenerateResponse,
+                    MtAnnualReturnGenerateDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsMtAnnualReturnGenerateResponse,  # type: ignore
+                        type_=MtAnnualReturnGenerateDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -22599,6 +25979,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -22632,6 +26023,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -22683,24 +26085,24 @@ class AsyncRawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    async def post_v1declarations_pl_jpk_fa_generate(
-        self, *, date_from: str, date_to: str, request_options: typing.Optional[RequestOptions] = None
-    ) -> AsyncHttpResponse[PostV1DeclarationsPlJpkFaGenerateResponse]:
+    async def pl_jpk_fa_generate(
+        self, *, date_from: dt.date, date_to: dt.date, request_options: typing.Optional[RequestOptions] = None
+    ) -> AsyncHttpResponse[PlJpkFaGenerateDeclarationsResponse]:
         """
         Generate JPK_FA(4), the on-demand structure with every sales invoice issued in a period, its VAT bases per rate and one row per invoice line. Filed only when the tax office asks for it.
 
         Parameters
         ----------
-        date_from : str
+        date_from : dt.date
 
-        date_to : str
+        date_to : dt.date
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
         Returns
         -------
-        AsyncHttpResponse[PostV1DeclarationsPlJpkFaGenerateResponse]
+        AsyncHttpResponse[PlJpkFaGenerateDeclarationsResponse]
             Default Response
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -22719,9 +26121,9 @@ class AsyncRawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsPlJpkFaGenerateResponse,
+                    PlJpkFaGenerateDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsPlJpkFaGenerateResponse,  # type: ignore
+                        type_=PlJpkFaGenerateDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -22739,6 +26141,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -22772,6 +26185,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -22823,24 +26247,24 @@ class AsyncRawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    async def post_v1declarations_pl_jpk_kr_generate(
-        self, *, date_from: str, date_to: str, request_options: typing.Optional[RequestOptions] = None
-    ) -> AsyncHttpResponse[PostV1DeclarationsPlJpkKrGenerateResponse]:
+    async def pl_jpk_kr_generate(
+        self, *, date_from: dt.date, date_to: dt.date, request_options: typing.Optional[RequestOptions] = None
+    ) -> AsyncHttpResponse[PlJpkKrGenerateDeclarationsResponse]:
         """
         Generate JPK_KR(1), the on-demand structure with the chart of accounts and its opening balances and turnover, the journal and the double entries behind it. Filed only when the tax office asks for it.
 
         Parameters
         ----------
-        date_from : str
+        date_from : dt.date
 
-        date_to : str
+        date_to : dt.date
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
         Returns
         -------
-        AsyncHttpResponse[PostV1DeclarationsPlJpkKrGenerateResponse]
+        AsyncHttpResponse[PlJpkKrGenerateDeclarationsResponse]
             Default Response
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -22859,9 +26283,9 @@ class AsyncRawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsPlJpkKrGenerateResponse,
+                    PlJpkKrGenerateDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsPlJpkKrGenerateResponse,  # type: ignore
+                        type_=PlJpkKrGenerateDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -22879,6 +26303,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -22912,6 +26347,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -22963,22 +26409,22 @@ class AsyncRawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    async def post_v1declarations_pl_jpk_mag_generate(
+    async def pl_jpk_mag_generate(
         self,
         *,
-        date_from: str,
-        date_to: str,
+        date_from: dt.date,
+        date_to: dt.date,
         warehouse_id: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> AsyncHttpResponse[PostV1DeclarationsPlJpkMagGenerateResponse]:
+    ) -> AsyncHttpResponse[PlJpkMagGenerateDeclarationsResponse]:
         """
         Generate JPK_MAG(2), the on-demand structure with the warehouse documents of one warehouse: goods received from outside (PZ) or internally (PW) and issued to a customer (WZ) or internally (RW). Filed only when the tax office asks for it.
 
         Parameters
         ----------
-        date_from : str
+        date_from : dt.date
 
-        date_to : str
+        date_to : dt.date
 
         warehouse_id : typing.Optional[str]
 
@@ -22987,7 +26433,7 @@ class AsyncRawDeclarationsClient:
 
         Returns
         -------
-        AsyncHttpResponse[PostV1DeclarationsPlJpkMagGenerateResponse]
+        AsyncHttpResponse[PlJpkMagGenerateDeclarationsResponse]
             Default Response
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -23007,9 +26453,9 @@ class AsyncRawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsPlJpkMagGenerateResponse,
+                    PlJpkMagGenerateDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsPlJpkMagGenerateResponse,  # type: ignore
+                        type_=PlJpkMagGenerateDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -23027,6 +26473,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -23060,6 +26517,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -23111,9 +26579,9 @@ class AsyncRawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    async def post_v1declarations_pl_pit11generate(
+    async def pl_pit11generate(
         self, *, year: int, request_options: typing.Optional[RequestOptions] = None
-    ) -> AsyncHttpResponse[PostV1DeclarationsPlPit11GenerateResponse]:
+    ) -> AsyncHttpResponse[PlPit11GenerateDeclarationsResponse]:
         """
         Generate PIT-11(29) for every person on the payroll of one year: the pay, the deductible costs, the advance withheld and the social and health contributions taken off it. One document per person, because that is how the form is filed.
 
@@ -23126,7 +26594,7 @@ class AsyncRawDeclarationsClient:
 
         Returns
         -------
-        AsyncHttpResponse[PostV1DeclarationsPlPit11GenerateResponse]
+        AsyncHttpResponse[PlPit11GenerateDeclarationsResponse]
             Default Response
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -23144,9 +26612,9 @@ class AsyncRawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsPlPit11GenerateResponse,
+                    PlPit11GenerateDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsPlPit11GenerateResponse,  # type: ignore
+                        type_=PlPit11GenerateDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -23164,6 +26632,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -23197,6 +26676,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -23248,9 +26738,9 @@ class AsyncRawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    async def post_v1declarations_pl_cit8generate(
+    async def pl_cit8generate(
         self, *, year: int, request_options: typing.Optional[RequestOptions] = None
-    ) -> AsyncHttpResponse[PostV1DeclarationsPlCit8GenerateResponse]:
+    ) -> AsyncHttpResponse[PlCit8GenerateDeclarationsResponse]:
         """
         Generate CIT-8(34), the annual corporate income tax return, from the ledger of the year and the recorded tax adjustments. The tax office code and the small-taxpayer setting come from the e-Deklaracje compliance settings, the seat address from the JPK gateway settings. Names the annexes the figures would need, which are not produced.
 
@@ -23263,7 +26753,7 @@ class AsyncRawDeclarationsClient:
 
         Returns
         -------
-        AsyncHttpResponse[PostV1DeclarationsPlCit8GenerateResponse]
+        AsyncHttpResponse[PlCit8GenerateDeclarationsResponse]
             Default Response
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -23281,9 +26771,9 @@ class AsyncRawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsPlCit8GenerateResponse,
+                    PlCit8GenerateDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsPlCit8GenerateResponse,  # type: ignore
+                        type_=PlCit8GenerateDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -23301,6 +26791,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -23334,6 +26835,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -23385,9 +26897,9 @@ class AsyncRawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    async def post_v1declarations_pl_zus_dra_compute(
+    async def pl_zus_dra_compute(
         self, *, year: int, month: int, request_options: typing.Optional[RequestOptions] = None
-    ) -> AsyncHttpResponse[PostV1DeclarationsPlZusDraComputeResponse]:
+    ) -> AsyncHttpResponse[PlZusDraComputeDeclarationsResponse]:
         """
         Compute the monthly ZUS DRA settlement from the payroll run of one month: the pension, disability, sickness, accident and health insurance contributions and the Labour Fund, Solidarity Fund and guaranteed benefits fund charges, each split between the insured person and the payer. The amounts are carried into Płatnik or ePłatnik by hand.
 
@@ -23402,7 +26914,7 @@ class AsyncRawDeclarationsClient:
 
         Returns
         -------
-        AsyncHttpResponse[PostV1DeclarationsPlZusDraComputeResponse]
+        AsyncHttpResponse[PlZusDraComputeDeclarationsResponse]
             Default Response
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -23421,9 +26933,9 @@ class AsyncRawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsPlZusDraComputeResponse,
+                    PlZusDraComputeDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsPlZusDraComputeResponse,  # type: ignore
+                        type_=PlZusDraComputeDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -23441,6 +26953,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -23474,6 +26997,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -23525,9 +27059,9 @@ class AsyncRawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    async def post_v1declarations_pl_zus_dra_kedu(
+    async def pl_zus_dra_kedu(
         self, *, year: int, month: int, request_options: typing.Optional[RequestOptions] = None
-    ) -> AsyncHttpResponse[PostV1DeclarationsPlZusDraKeduResponse]:
+    ) -> AsyncHttpResponse[PlZusDraKeduDeclarationsResponse]:
         """
         Build the KEDU file for one month: the ZUS DRA settlement and one ZUS RCA report per person on the payroll, in the schema kedu_5_4 that Płatnik and ePłatnik import. The payer REGON, short name and declaration deadline code come from the ZUS compliance settings; the insurance title code and working time of each person from the employee record.
 
@@ -23542,7 +27076,7 @@ class AsyncRawDeclarationsClient:
 
         Returns
         -------
-        AsyncHttpResponse[PostV1DeclarationsPlZusDraKeduResponse]
+        AsyncHttpResponse[PlZusDraKeduDeclarationsResponse]
             Default Response
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -23561,9 +27095,9 @@ class AsyncRawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsPlZusDraKeduResponse,
+                    PlZusDraKeduDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsPlZusDraKeduResponse,  # type: ignore
+                        type_=PlZusDraKeduDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -23581,6 +27115,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -23614,6 +27159,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -23665,9 +27221,9 @@ class AsyncRawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    async def post_v1declarations_pl_zus_dra_pdf(
+    async def pl_zus_dra_pdf(
         self, *, year: int, month: int, request_options: typing.Optional[RequestOptions] = None
-    ) -> AsyncHttpResponse[PostV1DeclarationsPlZusDraPdfResponse]:
+    ) -> AsyncHttpResponse[PlZusDraPdfDeclarationsResponse]:
         """
         Fill the published ZUS DRA form for one month and return it as a PDF. The amounts, the payer identity and the deadline code are the same ones the KEDU file carries; blocks the payroll does not hold (paid benefits, bridging pensions, income declaration of a self-paying person) stay empty.
 
@@ -23682,7 +27238,7 @@ class AsyncRawDeclarationsClient:
 
         Returns
         -------
-        AsyncHttpResponse[PostV1DeclarationsPlZusDraPdfResponse]
+        AsyncHttpResponse[PlZusDraPdfDeclarationsResponse]
             Default Response
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -23701,9 +27257,9 @@ class AsyncRawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsPlZusDraPdfResponse,
+                    PlZusDraPdfDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsPlZusDraPdfResponse,  # type: ignore
+                        type_=PlZusDraPdfDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -23721,6 +27277,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -23754,6 +27321,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -23805,9 +27383,9 @@ class AsyncRawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    async def post_v1declarations_ro_etransport_build(
+    async def ro_etransport_build(
         self, *, waybill_id: str, request_options: typing.Optional[RequestOptions] = None
-    ) -> AsyncHttpResponse[PostV1DeclarationsRoEtransportBuildResponse]:
+    ) -> AsyncHttpResponse[RoEtransportBuildDeclarationsResponse]:
         """
         Build the RO e-Transport declaration for an issued waybill: goods with their tariff codes and masses, the commercial partner, the route and the vehicle. The XML follows the ANAF eTransport v2 schema and is kept as a file on the waybill. Anything listed in blockers has to be filled in before /etransport/send will accept it.
 
@@ -23820,7 +27398,7 @@ class AsyncRawDeclarationsClient:
 
         Returns
         -------
-        AsyncHttpResponse[PostV1DeclarationsRoEtransportBuildResponse]
+        AsyncHttpResponse[RoEtransportBuildDeclarationsResponse]
             Default Response
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -23838,9 +27416,9 @@ class AsyncRawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsRoEtransportBuildResponse,
+                    RoEtransportBuildDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsRoEtransportBuildResponse,  # type: ignore
+                        type_=RoEtransportBuildDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -23858,6 +27436,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -23891,6 +27480,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -23942,9 +27542,9 @@ class AsyncRawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    async def post_v1declarations_ro_etransport_submit(
+    async def ro_etransport_submit(
         self, *, waybill_id: str, request_options: typing.Optional[RequestOptions] = None
-    ) -> AsyncHttpResponse[PostV1DeclarationsRoEtransportSubmitResponse]:
+    ) -> AsyncHttpResponse[RoEtransportSubmitDeclarationsResponse]:
         """
         Hand the RO e-Transport declaration for an issued waybill to ANAF under the SPV OAuth token in compliance settings, and return the upload index the UIT is read back with. Answers 422 while any field the ANAF validator requires is still missing.
 
@@ -23957,7 +27557,7 @@ class AsyncRawDeclarationsClient:
 
         Returns
         -------
-        AsyncHttpResponse[PostV1DeclarationsRoEtransportSubmitResponse]
+        AsyncHttpResponse[RoEtransportSubmitDeclarationsResponse]
             Default Response
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -23975,9 +27575,9 @@ class AsyncRawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsRoEtransportSubmitResponse,
+                    RoEtransportSubmitDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsRoEtransportSubmitResponse,  # type: ignore
+                        type_=RoEtransportSubmitDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -23995,6 +27595,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -24028,6 +27639,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -24079,9 +27701,9 @@ class AsyncRawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    async def post_v1declarations_ro_etransport_status(
+    async def ro_etransport_status(
         self, *, reference: str, request_options: typing.Optional[RequestOptions] = None
-    ) -> AsyncHttpResponse[PostV1DeclarationsRoEtransportStatusResponse]:
+    ) -> AsyncHttpResponse[RoEtransportStatusDeclarationsResponse]:
         """
         Read the outcome of an e-Transport declaration from ANAF by its upload index, under the SPV OAuth token in compliance settings. Returns the UIT code once the declaration validates.
 
@@ -24094,7 +27716,7 @@ class AsyncRawDeclarationsClient:
 
         Returns
         -------
-        AsyncHttpResponse[PostV1DeclarationsRoEtransportStatusResponse]
+        AsyncHttpResponse[RoEtransportStatusDeclarationsResponse]
             Default Response
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -24112,9 +27734,9 @@ class AsyncRawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsRoEtransportStatusResponse,
+                    RoEtransportStatusDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsRoEtransportStatusResponse,  # type: ignore
+                        type_=RoEtransportStatusDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -24132,6 +27754,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -24165,6 +27798,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -24216,9 +27860,9 @@ class AsyncRawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    async def post_v1declarations_li_lohndeklaration_generate(
+    async def li_lohndeklaration_generate(
         self, *, year: int, request_options: typing.Optional[RequestOptions] = None
-    ) -> AsyncHttpResponse[PostV1DeclarationsLiLohndeklarationGenerateResponse]:
+    ) -> AsyncHttpResponse[LiLohndeklarationGenerateDeclarationsResponse]:
         """
         Build the annual wage declaration (Lohndeklaration) to the AHV-IV-FAK from the approved payroll runs of the year as the CSV that AHVeasy imports under Lohndeklaration → CSV-Import der Lohndaten: one row per employee with the 18 columns of the AHVeasy template, the AHV-liable wage and the ALV wage.
 
@@ -24231,7 +27875,7 @@ class AsyncRawDeclarationsClient:
 
         Returns
         -------
-        AsyncHttpResponse[PostV1DeclarationsLiLohndeklarationGenerateResponse]
+        AsyncHttpResponse[LiLohndeklarationGenerateDeclarationsResponse]
             Default Response
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -24249,9 +27893,9 @@ class AsyncRawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsLiLohndeklarationGenerateResponse,
+                    LiLohndeklarationGenerateDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsLiLohndeklarationGenerateResponse,  # type: ignore
+                        type_=LiLohndeklarationGenerateDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -24269,6 +27913,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -24302,6 +27957,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -24353,9 +28019,9 @@ class AsyncRawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    async def post_v1declarations_li_lohnlisten_generate(
+    async def li_lohnlisten_generate(
         self, *, year: int, request_options: typing.Optional[RequestOptions] = None
-    ) -> AsyncHttpResponse[PostV1DeclarationsLiLohnlistenGenerateResponse]:
+    ) -> AsyncHttpResponse[LiLohnlistenGenerateDeclarationsResponse]:
         """
         Build the annual wage list (Lohnliste) of a Liechtenstein employer from the approved payroll runs of the year as the XLSX file the tax administration's eLohnausweis / eLohnlisten application imports: one row per employee with PEID, name, birth date, address, gross wage, wage tax withheld and the settlement period.
 
@@ -24368,7 +28034,7 @@ class AsyncRawDeclarationsClient:
 
         Returns
         -------
-        AsyncHttpResponse[PostV1DeclarationsLiLohnlistenGenerateResponse]
+        AsyncHttpResponse[LiLohnlistenGenerateDeclarationsResponse]
             Default Response
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -24386,9 +28052,9 @@ class AsyncRawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsLiLohnlistenGenerateResponse,
+                    LiLohnlistenGenerateDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsLiLohnlistenGenerateResponse,  # type: ignore
+                        type_=LiLohnlistenGenerateDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -24406,6 +28072,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -24439,6 +28116,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -24490,9 +28178,9 @@ class AsyncRawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    async def post_v1declarations_configs_list(
+    async def configs_list(
         self, *, request_options: typing.Optional[RequestOptions] = None
-    ) -> AsyncHttpResponse[PostV1DeclarationsConfigsListResponse]:
+    ) -> AsyncHttpResponse[ConfigsListDeclarationsResponse]:
         """
         Parameters
         ----------
@@ -24501,7 +28189,7 @@ class AsyncRawDeclarationsClient:
 
         Returns
         -------
-        AsyncHttpResponse[PostV1DeclarationsConfigsListResponse]
+        AsyncHttpResponse[ConfigsListDeclarationsResponse]
             Default Response
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -24517,9 +28205,9 @@ class AsyncRawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsConfigsListResponse,
+                    ConfigsListDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsConfigsListResponse,  # type: ignore
+                        type_=ConfigsListDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -24537,6 +28225,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -24570,6 +28269,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -24621,9 +28331,9 @@ class AsyncRawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    async def post_v1declarations_configs_update(
+    async def configs_update(
         self, *, system: str, config: typing.Dict[str, str], request_options: typing.Optional[RequestOptions] = None
-    ) -> AsyncHttpResponse[PostV1DeclarationsConfigsUpdateResponse]:
+    ) -> AsyncHttpResponse[ConfigsUpdateDeclarationsResponse]:
         """
         Parameters
         ----------
@@ -24636,7 +28346,7 @@ class AsyncRawDeclarationsClient:
 
         Returns
         -------
-        AsyncHttpResponse[PostV1DeclarationsConfigsUpdateResponse]
+        AsyncHttpResponse[ConfigsUpdateDeclarationsResponse]
             Default Response
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -24655,9 +28365,9 @@ class AsyncRawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsConfigsUpdateResponse,
+                    ConfigsUpdateDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsConfigsUpdateResponse,  # type: ignore
+                        type_=ConfigsUpdateDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -24675,6 +28385,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -24708,6 +28429,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -24759,7 +28491,7 @@ class AsyncRawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    async def store_the_certificate_or_private_key_a_filing_system_authenticates_with(
+    async def certificates_upload(
         self,
         *,
         system: str,
@@ -24767,7 +28499,7 @@ class AsyncRawDeclarationsClient:
         content: str,
         passphrase: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> AsyncHttpResponse[PostV1DeclarationsCertificatesUploadResponse]:
+    ) -> AsyncHttpResponse[CertificatesUploadDeclarationsResponse]:
         """
         Parameters
         ----------
@@ -24785,7 +28517,7 @@ class AsyncRawDeclarationsClient:
 
         Returns
         -------
-        AsyncHttpResponse[PostV1DeclarationsCertificatesUploadResponse]
+        AsyncHttpResponse[CertificatesUploadDeclarationsResponse]
             Default Response
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -24806,9 +28538,9 @@ class AsyncRawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsCertificatesUploadResponse,
+                    CertificatesUploadDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsCertificatesUploadResponse,  # type: ignore
+                        type_=CertificatesUploadDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -24826,6 +28558,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -24859,6 +28602,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -24910,9 +28664,9 @@ class AsyncRawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    async def post_v1declarations_certificates_list(
+    async def certificates_list(
         self, *, request_options: typing.Optional[RequestOptions] = None
-    ) -> AsyncHttpResponse[PostV1DeclarationsCertificatesListResponse]:
+    ) -> AsyncHttpResponse[CertificatesListDeclarationsResponse]:
         """
         Parameters
         ----------
@@ -24921,7 +28675,7 @@ class AsyncRawDeclarationsClient:
 
         Returns
         -------
-        AsyncHttpResponse[PostV1DeclarationsCertificatesListResponse]
+        AsyncHttpResponse[CertificatesListDeclarationsResponse]
             Default Response
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -24937,9 +28691,9 @@ class AsyncRawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsCertificatesListResponse,
+                    CertificatesListDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsCertificatesListResponse,  # type: ignore
+                        type_=CertificatesListDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -24957,6 +28711,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -24990,6 +28755,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -25041,26 +28817,26 @@ class AsyncRawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    async def post_v1declarations_certificates_delete(
+    async def certificates_delete(
         self,
         *,
         system: str,
-        field_key: PostV1DeclarationsCertificatesDeleteRequestFieldKey,
+        field_key: CertificatesDeleteDeclarationsRequestFieldKey,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> AsyncHttpResponse[PostV1DeclarationsCertificatesDeleteResponse]:
+    ) -> AsyncHttpResponse[CertificatesDeleteDeclarationsResponse]:
         """
         Parameters
         ----------
         system : str
 
-        field_key : PostV1DeclarationsCertificatesDeleteRequestFieldKey
+        field_key : CertificatesDeleteDeclarationsRequestFieldKey
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
         Returns
         -------
-        AsyncHttpResponse[PostV1DeclarationsCertificatesDeleteResponse]
+        AsyncHttpResponse[CertificatesDeleteDeclarationsResponse]
             Default Response
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -25079,9 +28855,9 @@ class AsyncRawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsCertificatesDeleteResponse,
+                    CertificatesDeleteDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsCertificatesDeleteResponse,  # type: ignore
+                        type_=CertificatesDeleteDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -25099,6 +28875,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -25132,6 +28919,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -25183,9 +28981,9 @@ class AsyncRawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    async def which_deadlines_nordlet_can_file_by_itself_for_this_company_and_which_are_switched_on(
+    async def automation_list(
         self, *, request_options: typing.Optional[RequestOptions] = None
-    ) -> AsyncHttpResponse[PostV1DeclarationsAutomationListResponse]:
+    ) -> AsyncHttpResponse[AutomationListDeclarationsResponse]:
         """
         Parameters
         ----------
@@ -25194,7 +28992,7 @@ class AsyncRawDeclarationsClient:
 
         Returns
         -------
-        AsyncHttpResponse[PostV1DeclarationsAutomationListResponse]
+        AsyncHttpResponse[AutomationListDeclarationsResponse]
             Default Response
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -25210,9 +29008,9 @@ class AsyncRawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsAutomationListResponse,
+                    AutomationListDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsAutomationListResponse,  # type: ignore
+                        type_=AutomationListDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -25230,6 +29028,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -25263,6 +29072,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -25314,9 +29134,9 @@ class AsyncRawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    async def post_v1declarations_automation_update(
+    async def automation_update(
         self, *, rule_key: str, enabled: bool, request_options: typing.Optional[RequestOptions] = None
-    ) -> AsyncHttpResponse[PostV1DeclarationsAutomationUpdateResponse]:
+    ) -> AsyncHttpResponse[AutomationUpdateDeclarationsResponse]:
         """
         Parameters
         ----------
@@ -25329,7 +29149,7 @@ class AsyncRawDeclarationsClient:
 
         Returns
         -------
-        AsyncHttpResponse[PostV1DeclarationsAutomationUpdateResponse]
+        AsyncHttpResponse[AutomationUpdateDeclarationsResponse]
             Default Response
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -25348,9 +29168,9 @@ class AsyncRawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsAutomationUpdateResponse,
+                    AutomationUpdateDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsAutomationUpdateResponse,  # type: ignore
+                        type_=AutomationUpdateDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -25368,6 +29188,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -25401,6 +29232,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -25452,9 +29294,9 @@ class AsyncRawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    async def send_a_filing_whose_delivery_failed_once_more_with_the_bytes_that_were_generated(
+    async def submissions_retry(
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
-    ) -> AsyncHttpResponse[PostV1DeclarationsSubmissionsRetryResponse]:
+    ) -> AsyncHttpResponse[SubmissionsRetryDeclarationsResponse]:
         """
         Parameters
         ----------
@@ -25465,7 +29307,7 @@ class AsyncRawDeclarationsClient:
 
         Returns
         -------
-        AsyncHttpResponse[PostV1DeclarationsSubmissionsRetryResponse]
+        AsyncHttpResponse[SubmissionsRetryDeclarationsResponse]
             Default Response
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -25483,9 +29325,9 @@ class AsyncRawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsSubmissionsRetryResponse,
+                    SubmissionsRetryDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsSubmissionsRetryResponse,  # type: ignore
+                        type_=SubmissionsRetryDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -25503,6 +29345,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -25536,6 +29389,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -25587,32 +29451,32 @@ class AsyncRawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    async def post_v1declarations_submissions_create(
+    async def submissions_create(
         self,
         *,
-        obligation: PostV1DeclarationsSubmissionsCreateRequestObligation,
+        obligation: SubmissionsCreateDeclarationsRequestObligation,
         year: int,
         month: int,
-        data_type: typing.Optional[PostV1DeclarationsSubmissionsCreateRequestDataType] = OMIT,
+        data_type: typing.Optional[SubmissionsCreateDeclarationsRequestDataType] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> AsyncHttpResponse[PostV1DeclarationsSubmissionsCreateResponse]:
+    ) -> AsyncHttpResponse[SubmissionsCreateDeclarationsResponse]:
         """
         Parameters
         ----------
-        obligation : PostV1DeclarationsSubmissionsCreateRequestObligation
+        obligation : SubmissionsCreateDeclarationsRequestObligation
 
         year : int
 
         month : int
 
-        data_type : typing.Optional[PostV1DeclarationsSubmissionsCreateRequestDataType]
+        data_type : typing.Optional[SubmissionsCreateDeclarationsRequestDataType]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
         Returns
         -------
-        AsyncHttpResponse[PostV1DeclarationsSubmissionsCreateResponse]
+        AsyncHttpResponse[SubmissionsCreateDeclarationsResponse]
             Default Response
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -25633,9 +29497,9 @@ class AsyncRawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsSubmissionsCreateResponse,
+                    SubmissionsCreateDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsSubmissionsCreateResponse,  # type: ignore
+                        type_=SubmissionsCreateDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -25653,6 +29517,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -25686,6 +29561,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -25737,21 +29623,21 @@ class AsyncRawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    async def post_v1declarations_submissions_mark(
+    async def submissions_mark(
         self,
         *,
         id: str,
-        status: PostV1DeclarationsSubmissionsMarkRequestStatus,
+        status: SubmissionsMarkDeclarationsRequestStatus,
         external_ref: typing.Optional[str] = OMIT,
         message: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> AsyncHttpResponse[PostV1DeclarationsSubmissionsMarkResponse]:
+    ) -> AsyncHttpResponse[SubmissionsMarkDeclarationsResponse]:
         """
         Parameters
         ----------
         id : str
 
-        status : PostV1DeclarationsSubmissionsMarkRequestStatus
+        status : SubmissionsMarkDeclarationsRequestStatus
 
         external_ref : typing.Optional[str]
 
@@ -25762,7 +29648,7 @@ class AsyncRawDeclarationsClient:
 
         Returns
         -------
-        AsyncHttpResponse[PostV1DeclarationsSubmissionsMarkResponse]
+        AsyncHttpResponse[SubmissionsMarkDeclarationsResponse]
             Default Response
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -25783,9 +29669,9 @@ class AsyncRawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsSubmissionsMarkResponse,
+                    SubmissionsMarkDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsSubmissionsMarkResponse,  # type: ignore
+                        type_=SubmissionsMarkDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -25803,6 +29689,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -25836,6 +29733,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -25887,16 +29795,16 @@ class AsyncRawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    async def post_v1declarations_submissions_list(
+    async def submissions_list(
         self,
         *,
         page: typing.Optional[int] = OMIT,
         page_size: typing.Optional[int] = OMIT,
-        sort: typing.Optional[typing.Sequence[PostV1DeclarationsSubmissionsListRequestSortItem]] = OMIT,
-        filter: typing.Optional[typing.Sequence[PostV1DeclarationsSubmissionsListRequestFilterItem]] = OMIT,
+        sort: typing.Optional[typing.Sequence[SubmissionsListDeclarationsRequestSortItem]] = OMIT,
+        filter: typing.Optional[typing.Sequence[SubmissionsListDeclarationsRequestFilterItem]] = OMIT,
         totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> AsyncHttpResponse[PostV1DeclarationsSubmissionsListResponse]:
+    ) -> AsyncHttpResponse[SubmissionsListDeclarationsResponse]:
         """
         Parameters
         ----------
@@ -25904,9 +29812,9 @@ class AsyncRawDeclarationsClient:
 
         page_size : typing.Optional[int]
 
-        sort : typing.Optional[typing.Sequence[PostV1DeclarationsSubmissionsListRequestSortItem]]
+        sort : typing.Optional[typing.Sequence[SubmissionsListDeclarationsRequestSortItem]]
 
-        filter : typing.Optional[typing.Sequence[PostV1DeclarationsSubmissionsListRequestFilterItem]]
+        filter : typing.Optional[typing.Sequence[SubmissionsListDeclarationsRequestFilterItem]]
 
         totals : typing.Optional[typing.Sequence[str]]
             Numeric fields to sum over every row matching the filter (not only the current page)
@@ -25916,7 +29824,7 @@ class AsyncRawDeclarationsClient:
 
         Returns
         -------
-        AsyncHttpResponse[PostV1DeclarationsSubmissionsListResponse]
+        AsyncHttpResponse[SubmissionsListDeclarationsResponse]
             Default Response
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -25927,12 +29835,12 @@ class AsyncRawDeclarationsClient:
                 "pageSize": page_size,
                 "sort": convert_and_respect_annotation_metadata(
                     object_=sort,
-                    annotation=typing.Sequence[PostV1DeclarationsSubmissionsListRequestSortItem],
+                    annotation=typing.Sequence[SubmissionsListDeclarationsRequestSortItem],
                     direction="write",
                 ),
                 "filter": convert_and_respect_annotation_metadata(
                     object_=filter,
-                    annotation=typing.Sequence[PostV1DeclarationsSubmissionsListRequestFilterItem],
+                    annotation=typing.Sequence[SubmissionsListDeclarationsRequestFilterItem],
                     direction="write",
                 ),
                 "totals": totals,
@@ -25946,9 +29854,9 @@ class AsyncRawDeclarationsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1DeclarationsSubmissionsListResponse,
+                    SubmissionsListDeclarationsResponse,
                     parse_obj_as(
-                        type_=PostV1DeclarationsSubmissionsListResponse,  # type: ignore
+                        type_=SubmissionsListDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -25966,6 +29874,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -25999,6 +29918,17 @@ class AsyncRawDeclarationsClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,

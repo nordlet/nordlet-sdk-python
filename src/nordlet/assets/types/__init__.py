@@ -6,147 +6,169 @@ import typing
 from importlib import import_module
 
 if typing.TYPE_CHECKING:
-    from .post_v1assets_assets_create_request_documents_item import PostV1AssetsAssetsCreateRequestDocumentsItem
-    from .post_v1assets_assets_create_response import PostV1AssetsAssetsCreateResponse
-    from .post_v1assets_assets_create_response_documents_item import PostV1AssetsAssetsCreateResponseDocumentsItem
-    from .post_v1assets_assets_create_response_input_vat_use_changes_item import (
-        PostV1AssetsAssetsCreateResponseInputVatUseChangesItem,
+    from .assets_create_assets_request_documents_item import AssetsCreateAssetsRequestDocumentsItem
+    from .assets_create_assets_response import AssetsCreateAssetsResponse
+    from .assets_create_assets_response_disposal_reason import AssetsCreateAssetsResponseDisposalReason
+    from .assets_create_assets_response_documents_item import AssetsCreateAssetsResponseDocumentsItem
+    from .assets_create_assets_response_input_vat_use_changes_item import (
+        AssetsCreateAssetsResponseInputVatUseChangesItem,
     )
-    from .post_v1assets_assets_create_response_input_vat_use_changes_item_reason import (
-        PostV1AssetsAssetsCreateResponseInputVatUseChangesItemReason,
+    from .assets_create_assets_response_input_vat_use_changes_item_reason import (
+        AssetsCreateAssetsResponseInputVatUseChangesItemReason,
     )
-    from .post_v1assets_assets_create_response_status import PostV1AssetsAssetsCreateResponseStatus
-    from .post_v1assets_assets_get_response import PostV1AssetsAssetsGetResponse
-    from .post_v1assets_assets_get_response_documents_item import PostV1AssetsAssetsGetResponseDocumentsItem
-    from .post_v1assets_assets_get_response_input_vat_use_changes_item import (
-        PostV1AssetsAssetsGetResponseInputVatUseChangesItem,
+    from .assets_create_assets_response_status import AssetsCreateAssetsResponseStatus
+    from .assets_dispose_assets_request_reason import AssetsDisposeAssetsRequestReason
+    from .assets_dispose_assets_response import AssetsDisposeAssetsResponse
+    from .assets_dispose_assets_response_disposal_reason import AssetsDisposeAssetsResponseDisposalReason
+    from .assets_dispose_assets_response_documents_item import AssetsDisposeAssetsResponseDocumentsItem
+    from .assets_dispose_assets_response_input_vat_use_changes_item import (
+        AssetsDisposeAssetsResponseInputVatUseChangesItem,
     )
-    from .post_v1assets_assets_get_response_input_vat_use_changes_item_reason import (
-        PostV1AssetsAssetsGetResponseInputVatUseChangesItemReason,
+    from .assets_dispose_assets_response_input_vat_use_changes_item_reason import (
+        AssetsDisposeAssetsResponseInputVatUseChangesItemReason,
     )
-    from .post_v1assets_assets_get_response_status import PostV1AssetsAssetsGetResponseStatus
-    from .post_v1assets_assets_input_vat_request_input_vat_use_changes_item import (
-        PostV1AssetsAssetsInputVatRequestInputVatUseChangesItem,
+    from .assets_dispose_assets_response_status import AssetsDisposeAssetsResponseStatus
+    from .assets_get_assets_response import AssetsGetAssetsResponse
+    from .assets_get_assets_response_disposal_reason import AssetsGetAssetsResponseDisposalReason
+    from .assets_get_assets_response_documents_item import AssetsGetAssetsResponseDocumentsItem
+    from .assets_get_assets_response_input_vat_use_changes_item import AssetsGetAssetsResponseInputVatUseChangesItem
+    from .assets_get_assets_response_input_vat_use_changes_item_reason import (
+        AssetsGetAssetsResponseInputVatUseChangesItemReason,
     )
-    from .post_v1assets_assets_input_vat_request_input_vat_use_changes_item_reason import (
-        PostV1AssetsAssetsInputVatRequestInputVatUseChangesItemReason,
+    from .assets_get_assets_response_status import AssetsGetAssetsResponseStatus
+    from .assets_input_vat_assets_request_input_vat_use_changes_item import (
+        AssetsInputVatAssetsRequestInputVatUseChangesItem,
     )
-    from .post_v1assets_assets_input_vat_response import PostV1AssetsAssetsInputVatResponse
-    from .post_v1assets_assets_input_vat_response_documents_item import PostV1AssetsAssetsInputVatResponseDocumentsItem
-    from .post_v1assets_assets_input_vat_response_input_vat_use_changes_item import (
-        PostV1AssetsAssetsInputVatResponseInputVatUseChangesItem,
+    from .assets_input_vat_assets_request_input_vat_use_changes_item_reason import (
+        AssetsInputVatAssetsRequestInputVatUseChangesItemReason,
     )
-    from .post_v1assets_assets_input_vat_response_input_vat_use_changes_item_reason import (
-        PostV1AssetsAssetsInputVatResponseInputVatUseChangesItemReason,
+    from .assets_input_vat_assets_response import AssetsInputVatAssetsResponse
+    from .assets_input_vat_assets_response_disposal_reason import AssetsInputVatAssetsResponseDisposalReason
+    from .assets_input_vat_assets_response_documents_item import AssetsInputVatAssetsResponseDocumentsItem
+    from .assets_input_vat_assets_response_input_vat_use_changes_item import (
+        AssetsInputVatAssetsResponseInputVatUseChangesItem,
     )
-    from .post_v1assets_assets_input_vat_response_status import PostV1AssetsAssetsInputVatResponseStatus
-    from .post_v1assets_assets_list_request_filter_item import PostV1AssetsAssetsListRequestFilterItem
-    from .post_v1assets_assets_list_request_filter_item_op import PostV1AssetsAssetsListRequestFilterItemOp
-    from .post_v1assets_assets_list_request_filter_item_value import PostV1AssetsAssetsListRequestFilterItemValue
-    from .post_v1assets_assets_list_request_filter_item_value_three_item import (
-        PostV1AssetsAssetsListRequestFilterItemValueThreeItem,
+    from .assets_input_vat_assets_response_input_vat_use_changes_item_reason import (
+        AssetsInputVatAssetsResponseInputVatUseChangesItemReason,
     )
-    from .post_v1assets_assets_list_request_sort_item import PostV1AssetsAssetsListRequestSortItem
-    from .post_v1assets_assets_list_request_sort_item_dir import PostV1AssetsAssetsListRequestSortItemDir
-    from .post_v1assets_assets_list_response import PostV1AssetsAssetsListResponse
-    from .post_v1assets_assets_list_response_rows_item import PostV1AssetsAssetsListResponseRowsItem
-    from .post_v1assets_assets_list_response_rows_item_documents_item import (
-        PostV1AssetsAssetsListResponseRowsItemDocumentsItem,
+    from .assets_input_vat_assets_response_status import AssetsInputVatAssetsResponseStatus
+    from .assets_list_assets_request_filter_item import AssetsListAssetsRequestFilterItem
+    from .assets_list_assets_request_filter_item_op import AssetsListAssetsRequestFilterItemOp
+    from .assets_list_assets_request_filter_item_value import AssetsListAssetsRequestFilterItemValue
+    from .assets_list_assets_request_filter_item_value_three_item import AssetsListAssetsRequestFilterItemValueThreeItem
+    from .assets_list_assets_request_sort_item import AssetsListAssetsRequestSortItem
+    from .assets_list_assets_request_sort_item_dir import AssetsListAssetsRequestSortItemDir
+    from .assets_list_assets_response import AssetsListAssetsResponse
+    from .assets_list_assets_response_rows_item import AssetsListAssetsResponseRowsItem
+    from .assets_list_assets_response_rows_item_disposal_reason import AssetsListAssetsResponseRowsItemDisposalReason
+    from .assets_list_assets_response_rows_item_documents_item import AssetsListAssetsResponseRowsItemDocumentsItem
+    from .assets_list_assets_response_rows_item_input_vat_use_changes_item import (
+        AssetsListAssetsResponseRowsItemInputVatUseChangesItem,
     )
-    from .post_v1assets_assets_list_response_rows_item_input_vat_use_changes_item import (
-        PostV1AssetsAssetsListResponseRowsItemInputVatUseChangesItem,
+    from .assets_list_assets_response_rows_item_input_vat_use_changes_item_reason import (
+        AssetsListAssetsResponseRowsItemInputVatUseChangesItemReason,
     )
-    from .post_v1assets_assets_list_response_rows_item_input_vat_use_changes_item_reason import (
-        PostV1AssetsAssetsListResponseRowsItemInputVatUseChangesItemReason,
+    from .assets_list_assets_response_rows_item_status import AssetsListAssetsResponseRowsItemStatus
+    from .assets_modernize_assets_response import AssetsModernizeAssetsResponse
+    from .assets_modernize_assets_response_disposal_reason import AssetsModernizeAssetsResponseDisposalReason
+    from .assets_modernize_assets_response_documents_item import AssetsModernizeAssetsResponseDocumentsItem
+    from .assets_modernize_assets_response_input_vat_use_changes_item import (
+        AssetsModernizeAssetsResponseInputVatUseChangesItem,
     )
-    from .post_v1assets_assets_list_response_rows_item_status import PostV1AssetsAssetsListResponseRowsItemStatus
-    from .post_v1assets_assets_modernize_response import PostV1AssetsAssetsModernizeResponse
-    from .post_v1assets_assets_modernize_response_documents_item import PostV1AssetsAssetsModernizeResponseDocumentsItem
-    from .post_v1assets_assets_modernize_response_input_vat_use_changes_item import (
-        PostV1AssetsAssetsModernizeResponseInputVatUseChangesItem,
+    from .assets_modernize_assets_response_input_vat_use_changes_item_reason import (
+        AssetsModernizeAssetsResponseInputVatUseChangesItemReason,
     )
-    from .post_v1assets_assets_modernize_response_input_vat_use_changes_item_reason import (
-        PostV1AssetsAssetsModernizeResponseInputVatUseChangesItemReason,
+    from .assets_modernize_assets_response_status import AssetsModernizeAssetsResponseStatus
+    from .assets_update_assets_request_documents_item import AssetsUpdateAssetsRequestDocumentsItem
+    from .assets_update_assets_response import AssetsUpdateAssetsResponse
+    from .assets_update_assets_response_disposal_reason import AssetsUpdateAssetsResponseDisposalReason
+    from .assets_update_assets_response_documents_item import AssetsUpdateAssetsResponseDocumentsItem
+    from .assets_update_assets_response_input_vat_use_changes_item import (
+        AssetsUpdateAssetsResponseInputVatUseChangesItem,
     )
-    from .post_v1assets_assets_modernize_response_status import PostV1AssetsAssetsModernizeResponseStatus
-    from .post_v1assets_assets_update_request_documents_item import PostV1AssetsAssetsUpdateRequestDocumentsItem
-    from .post_v1assets_assets_update_response import PostV1AssetsAssetsUpdateResponse
-    from .post_v1assets_assets_update_response_documents_item import PostV1AssetsAssetsUpdateResponseDocumentsItem
-    from .post_v1assets_assets_update_response_input_vat_use_changes_item import (
-        PostV1AssetsAssetsUpdateResponseInputVatUseChangesItem,
+    from .assets_update_assets_response_input_vat_use_changes_item_reason import (
+        AssetsUpdateAssetsResponseInputVatUseChangesItemReason,
     )
-    from .post_v1assets_assets_update_response_input_vat_use_changes_item_reason import (
-        PostV1AssetsAssetsUpdateResponseInputVatUseChangesItemReason,
-    )
-    from .post_v1assets_assets_update_response_status import PostV1AssetsAssetsUpdateResponseStatus
-    from .post_v1assets_depreciation_post_response import PostV1AssetsDepreciationPostResponse
-    from .post_v1assets_depreciation_preview_response import PostV1AssetsDepreciationPreviewResponse
-    from .post_v1assets_depreciation_preview_response_rows_item import PostV1AssetsDepreciationPreviewResponseRowsItem
-    from .post_v1assets_groups_create_response import PostV1AssetsGroupsCreateResponse
-    from .post_v1assets_groups_list_request_filter_item import PostV1AssetsGroupsListRequestFilterItem
-    from .post_v1assets_groups_list_request_filter_item_op import PostV1AssetsGroupsListRequestFilterItemOp
-    from .post_v1assets_groups_list_request_filter_item_value import PostV1AssetsGroupsListRequestFilterItemValue
-    from .post_v1assets_groups_list_request_filter_item_value_three_item import (
-        PostV1AssetsGroupsListRequestFilterItemValueThreeItem,
-    )
-    from .post_v1assets_groups_list_request_sort_item import PostV1AssetsGroupsListRequestSortItem
-    from .post_v1assets_groups_list_request_sort_item_dir import PostV1AssetsGroupsListRequestSortItemDir
-    from .post_v1assets_groups_list_response import PostV1AssetsGroupsListResponse
-    from .post_v1assets_groups_list_response_rows_item import PostV1AssetsGroupsListResponseRowsItem
+    from .assets_update_assets_response_status import AssetsUpdateAssetsResponseStatus
+    from .depreciation_post_assets_response import DepreciationPostAssetsResponse
+    from .depreciation_preview_assets_response import DepreciationPreviewAssetsResponse
+    from .depreciation_preview_assets_response_rows_item import DepreciationPreviewAssetsResponseRowsItem
+    from .groups_create_assets_response import GroupsCreateAssetsResponse
+    from .groups_list_assets_request_filter_item import GroupsListAssetsRequestFilterItem
+    from .groups_list_assets_request_filter_item_op import GroupsListAssetsRequestFilterItemOp
+    from .groups_list_assets_request_filter_item_value import GroupsListAssetsRequestFilterItemValue
+    from .groups_list_assets_request_filter_item_value_three_item import GroupsListAssetsRequestFilterItemValueThreeItem
+    from .groups_list_assets_request_sort_item import GroupsListAssetsRequestSortItem
+    from .groups_list_assets_request_sort_item_dir import GroupsListAssetsRequestSortItemDir
+    from .groups_list_assets_response import GroupsListAssetsResponse
+    from .groups_list_assets_response_rows_item import GroupsListAssetsResponseRowsItem
 _dynamic_imports: typing.Dict[str, str] = {
-    "PostV1AssetsAssetsCreateRequestDocumentsItem": ".post_v1assets_assets_create_request_documents_item",
-    "PostV1AssetsAssetsCreateResponse": ".post_v1assets_assets_create_response",
-    "PostV1AssetsAssetsCreateResponseDocumentsItem": ".post_v1assets_assets_create_response_documents_item",
-    "PostV1AssetsAssetsCreateResponseInputVatUseChangesItem": ".post_v1assets_assets_create_response_input_vat_use_changes_item",
-    "PostV1AssetsAssetsCreateResponseInputVatUseChangesItemReason": ".post_v1assets_assets_create_response_input_vat_use_changes_item_reason",
-    "PostV1AssetsAssetsCreateResponseStatus": ".post_v1assets_assets_create_response_status",
-    "PostV1AssetsAssetsGetResponse": ".post_v1assets_assets_get_response",
-    "PostV1AssetsAssetsGetResponseDocumentsItem": ".post_v1assets_assets_get_response_documents_item",
-    "PostV1AssetsAssetsGetResponseInputVatUseChangesItem": ".post_v1assets_assets_get_response_input_vat_use_changes_item",
-    "PostV1AssetsAssetsGetResponseInputVatUseChangesItemReason": ".post_v1assets_assets_get_response_input_vat_use_changes_item_reason",
-    "PostV1AssetsAssetsGetResponseStatus": ".post_v1assets_assets_get_response_status",
-    "PostV1AssetsAssetsInputVatRequestInputVatUseChangesItem": ".post_v1assets_assets_input_vat_request_input_vat_use_changes_item",
-    "PostV1AssetsAssetsInputVatRequestInputVatUseChangesItemReason": ".post_v1assets_assets_input_vat_request_input_vat_use_changes_item_reason",
-    "PostV1AssetsAssetsInputVatResponse": ".post_v1assets_assets_input_vat_response",
-    "PostV1AssetsAssetsInputVatResponseDocumentsItem": ".post_v1assets_assets_input_vat_response_documents_item",
-    "PostV1AssetsAssetsInputVatResponseInputVatUseChangesItem": ".post_v1assets_assets_input_vat_response_input_vat_use_changes_item",
-    "PostV1AssetsAssetsInputVatResponseInputVatUseChangesItemReason": ".post_v1assets_assets_input_vat_response_input_vat_use_changes_item_reason",
-    "PostV1AssetsAssetsInputVatResponseStatus": ".post_v1assets_assets_input_vat_response_status",
-    "PostV1AssetsAssetsListRequestFilterItem": ".post_v1assets_assets_list_request_filter_item",
-    "PostV1AssetsAssetsListRequestFilterItemOp": ".post_v1assets_assets_list_request_filter_item_op",
-    "PostV1AssetsAssetsListRequestFilterItemValue": ".post_v1assets_assets_list_request_filter_item_value",
-    "PostV1AssetsAssetsListRequestFilterItemValueThreeItem": ".post_v1assets_assets_list_request_filter_item_value_three_item",
-    "PostV1AssetsAssetsListRequestSortItem": ".post_v1assets_assets_list_request_sort_item",
-    "PostV1AssetsAssetsListRequestSortItemDir": ".post_v1assets_assets_list_request_sort_item_dir",
-    "PostV1AssetsAssetsListResponse": ".post_v1assets_assets_list_response",
-    "PostV1AssetsAssetsListResponseRowsItem": ".post_v1assets_assets_list_response_rows_item",
-    "PostV1AssetsAssetsListResponseRowsItemDocumentsItem": ".post_v1assets_assets_list_response_rows_item_documents_item",
-    "PostV1AssetsAssetsListResponseRowsItemInputVatUseChangesItem": ".post_v1assets_assets_list_response_rows_item_input_vat_use_changes_item",
-    "PostV1AssetsAssetsListResponseRowsItemInputVatUseChangesItemReason": ".post_v1assets_assets_list_response_rows_item_input_vat_use_changes_item_reason",
-    "PostV1AssetsAssetsListResponseRowsItemStatus": ".post_v1assets_assets_list_response_rows_item_status",
-    "PostV1AssetsAssetsModernizeResponse": ".post_v1assets_assets_modernize_response",
-    "PostV1AssetsAssetsModernizeResponseDocumentsItem": ".post_v1assets_assets_modernize_response_documents_item",
-    "PostV1AssetsAssetsModernizeResponseInputVatUseChangesItem": ".post_v1assets_assets_modernize_response_input_vat_use_changes_item",
-    "PostV1AssetsAssetsModernizeResponseInputVatUseChangesItemReason": ".post_v1assets_assets_modernize_response_input_vat_use_changes_item_reason",
-    "PostV1AssetsAssetsModernizeResponseStatus": ".post_v1assets_assets_modernize_response_status",
-    "PostV1AssetsAssetsUpdateRequestDocumentsItem": ".post_v1assets_assets_update_request_documents_item",
-    "PostV1AssetsAssetsUpdateResponse": ".post_v1assets_assets_update_response",
-    "PostV1AssetsAssetsUpdateResponseDocumentsItem": ".post_v1assets_assets_update_response_documents_item",
-    "PostV1AssetsAssetsUpdateResponseInputVatUseChangesItem": ".post_v1assets_assets_update_response_input_vat_use_changes_item",
-    "PostV1AssetsAssetsUpdateResponseInputVatUseChangesItemReason": ".post_v1assets_assets_update_response_input_vat_use_changes_item_reason",
-    "PostV1AssetsAssetsUpdateResponseStatus": ".post_v1assets_assets_update_response_status",
-    "PostV1AssetsDepreciationPostResponse": ".post_v1assets_depreciation_post_response",
-    "PostV1AssetsDepreciationPreviewResponse": ".post_v1assets_depreciation_preview_response",
-    "PostV1AssetsDepreciationPreviewResponseRowsItem": ".post_v1assets_depreciation_preview_response_rows_item",
-    "PostV1AssetsGroupsCreateResponse": ".post_v1assets_groups_create_response",
-    "PostV1AssetsGroupsListRequestFilterItem": ".post_v1assets_groups_list_request_filter_item",
-    "PostV1AssetsGroupsListRequestFilterItemOp": ".post_v1assets_groups_list_request_filter_item_op",
-    "PostV1AssetsGroupsListRequestFilterItemValue": ".post_v1assets_groups_list_request_filter_item_value",
-    "PostV1AssetsGroupsListRequestFilterItemValueThreeItem": ".post_v1assets_groups_list_request_filter_item_value_three_item",
-    "PostV1AssetsGroupsListRequestSortItem": ".post_v1assets_groups_list_request_sort_item",
-    "PostV1AssetsGroupsListRequestSortItemDir": ".post_v1assets_groups_list_request_sort_item_dir",
-    "PostV1AssetsGroupsListResponse": ".post_v1assets_groups_list_response",
-    "PostV1AssetsGroupsListResponseRowsItem": ".post_v1assets_groups_list_response_rows_item",
+    "AssetsCreateAssetsRequestDocumentsItem": ".assets_create_assets_request_documents_item",
+    "AssetsCreateAssetsResponse": ".assets_create_assets_response",
+    "AssetsCreateAssetsResponseDisposalReason": ".assets_create_assets_response_disposal_reason",
+    "AssetsCreateAssetsResponseDocumentsItem": ".assets_create_assets_response_documents_item",
+    "AssetsCreateAssetsResponseInputVatUseChangesItem": ".assets_create_assets_response_input_vat_use_changes_item",
+    "AssetsCreateAssetsResponseInputVatUseChangesItemReason": ".assets_create_assets_response_input_vat_use_changes_item_reason",
+    "AssetsCreateAssetsResponseStatus": ".assets_create_assets_response_status",
+    "AssetsDisposeAssetsRequestReason": ".assets_dispose_assets_request_reason",
+    "AssetsDisposeAssetsResponse": ".assets_dispose_assets_response",
+    "AssetsDisposeAssetsResponseDisposalReason": ".assets_dispose_assets_response_disposal_reason",
+    "AssetsDisposeAssetsResponseDocumentsItem": ".assets_dispose_assets_response_documents_item",
+    "AssetsDisposeAssetsResponseInputVatUseChangesItem": ".assets_dispose_assets_response_input_vat_use_changes_item",
+    "AssetsDisposeAssetsResponseInputVatUseChangesItemReason": ".assets_dispose_assets_response_input_vat_use_changes_item_reason",
+    "AssetsDisposeAssetsResponseStatus": ".assets_dispose_assets_response_status",
+    "AssetsGetAssetsResponse": ".assets_get_assets_response",
+    "AssetsGetAssetsResponseDisposalReason": ".assets_get_assets_response_disposal_reason",
+    "AssetsGetAssetsResponseDocumentsItem": ".assets_get_assets_response_documents_item",
+    "AssetsGetAssetsResponseInputVatUseChangesItem": ".assets_get_assets_response_input_vat_use_changes_item",
+    "AssetsGetAssetsResponseInputVatUseChangesItemReason": ".assets_get_assets_response_input_vat_use_changes_item_reason",
+    "AssetsGetAssetsResponseStatus": ".assets_get_assets_response_status",
+    "AssetsInputVatAssetsRequestInputVatUseChangesItem": ".assets_input_vat_assets_request_input_vat_use_changes_item",
+    "AssetsInputVatAssetsRequestInputVatUseChangesItemReason": ".assets_input_vat_assets_request_input_vat_use_changes_item_reason",
+    "AssetsInputVatAssetsResponse": ".assets_input_vat_assets_response",
+    "AssetsInputVatAssetsResponseDisposalReason": ".assets_input_vat_assets_response_disposal_reason",
+    "AssetsInputVatAssetsResponseDocumentsItem": ".assets_input_vat_assets_response_documents_item",
+    "AssetsInputVatAssetsResponseInputVatUseChangesItem": ".assets_input_vat_assets_response_input_vat_use_changes_item",
+    "AssetsInputVatAssetsResponseInputVatUseChangesItemReason": ".assets_input_vat_assets_response_input_vat_use_changes_item_reason",
+    "AssetsInputVatAssetsResponseStatus": ".assets_input_vat_assets_response_status",
+    "AssetsListAssetsRequestFilterItem": ".assets_list_assets_request_filter_item",
+    "AssetsListAssetsRequestFilterItemOp": ".assets_list_assets_request_filter_item_op",
+    "AssetsListAssetsRequestFilterItemValue": ".assets_list_assets_request_filter_item_value",
+    "AssetsListAssetsRequestFilterItemValueThreeItem": ".assets_list_assets_request_filter_item_value_three_item",
+    "AssetsListAssetsRequestSortItem": ".assets_list_assets_request_sort_item",
+    "AssetsListAssetsRequestSortItemDir": ".assets_list_assets_request_sort_item_dir",
+    "AssetsListAssetsResponse": ".assets_list_assets_response",
+    "AssetsListAssetsResponseRowsItem": ".assets_list_assets_response_rows_item",
+    "AssetsListAssetsResponseRowsItemDisposalReason": ".assets_list_assets_response_rows_item_disposal_reason",
+    "AssetsListAssetsResponseRowsItemDocumentsItem": ".assets_list_assets_response_rows_item_documents_item",
+    "AssetsListAssetsResponseRowsItemInputVatUseChangesItem": ".assets_list_assets_response_rows_item_input_vat_use_changes_item",
+    "AssetsListAssetsResponseRowsItemInputVatUseChangesItemReason": ".assets_list_assets_response_rows_item_input_vat_use_changes_item_reason",
+    "AssetsListAssetsResponseRowsItemStatus": ".assets_list_assets_response_rows_item_status",
+    "AssetsModernizeAssetsResponse": ".assets_modernize_assets_response",
+    "AssetsModernizeAssetsResponseDisposalReason": ".assets_modernize_assets_response_disposal_reason",
+    "AssetsModernizeAssetsResponseDocumentsItem": ".assets_modernize_assets_response_documents_item",
+    "AssetsModernizeAssetsResponseInputVatUseChangesItem": ".assets_modernize_assets_response_input_vat_use_changes_item",
+    "AssetsModernizeAssetsResponseInputVatUseChangesItemReason": ".assets_modernize_assets_response_input_vat_use_changes_item_reason",
+    "AssetsModernizeAssetsResponseStatus": ".assets_modernize_assets_response_status",
+    "AssetsUpdateAssetsRequestDocumentsItem": ".assets_update_assets_request_documents_item",
+    "AssetsUpdateAssetsResponse": ".assets_update_assets_response",
+    "AssetsUpdateAssetsResponseDisposalReason": ".assets_update_assets_response_disposal_reason",
+    "AssetsUpdateAssetsResponseDocumentsItem": ".assets_update_assets_response_documents_item",
+    "AssetsUpdateAssetsResponseInputVatUseChangesItem": ".assets_update_assets_response_input_vat_use_changes_item",
+    "AssetsUpdateAssetsResponseInputVatUseChangesItemReason": ".assets_update_assets_response_input_vat_use_changes_item_reason",
+    "AssetsUpdateAssetsResponseStatus": ".assets_update_assets_response_status",
+    "DepreciationPostAssetsResponse": ".depreciation_post_assets_response",
+    "DepreciationPreviewAssetsResponse": ".depreciation_preview_assets_response",
+    "DepreciationPreviewAssetsResponseRowsItem": ".depreciation_preview_assets_response_rows_item",
+    "GroupsCreateAssetsResponse": ".groups_create_assets_response",
+    "GroupsListAssetsRequestFilterItem": ".groups_list_assets_request_filter_item",
+    "GroupsListAssetsRequestFilterItemOp": ".groups_list_assets_request_filter_item_op",
+    "GroupsListAssetsRequestFilterItemValue": ".groups_list_assets_request_filter_item_value",
+    "GroupsListAssetsRequestFilterItemValueThreeItem": ".groups_list_assets_request_filter_item_value_three_item",
+    "GroupsListAssetsRequestSortItem": ".groups_list_assets_request_sort_item",
+    "GroupsListAssetsRequestSortItemDir": ".groups_list_assets_request_sort_item_dir",
+    "GroupsListAssetsResponse": ".groups_list_assets_response",
+    "GroupsListAssetsResponseRowsItem": ".groups_list_assets_response_rows_item",
 }
 
 
@@ -172,57 +194,70 @@ def __dir__():
 
 
 __all__ = [
-    "PostV1AssetsAssetsCreateRequestDocumentsItem",
-    "PostV1AssetsAssetsCreateResponse",
-    "PostV1AssetsAssetsCreateResponseDocumentsItem",
-    "PostV1AssetsAssetsCreateResponseInputVatUseChangesItem",
-    "PostV1AssetsAssetsCreateResponseInputVatUseChangesItemReason",
-    "PostV1AssetsAssetsCreateResponseStatus",
-    "PostV1AssetsAssetsGetResponse",
-    "PostV1AssetsAssetsGetResponseDocumentsItem",
-    "PostV1AssetsAssetsGetResponseInputVatUseChangesItem",
-    "PostV1AssetsAssetsGetResponseInputVatUseChangesItemReason",
-    "PostV1AssetsAssetsGetResponseStatus",
-    "PostV1AssetsAssetsInputVatRequestInputVatUseChangesItem",
-    "PostV1AssetsAssetsInputVatRequestInputVatUseChangesItemReason",
-    "PostV1AssetsAssetsInputVatResponse",
-    "PostV1AssetsAssetsInputVatResponseDocumentsItem",
-    "PostV1AssetsAssetsInputVatResponseInputVatUseChangesItem",
-    "PostV1AssetsAssetsInputVatResponseInputVatUseChangesItemReason",
-    "PostV1AssetsAssetsInputVatResponseStatus",
-    "PostV1AssetsAssetsListRequestFilterItem",
-    "PostV1AssetsAssetsListRequestFilterItemOp",
-    "PostV1AssetsAssetsListRequestFilterItemValue",
-    "PostV1AssetsAssetsListRequestFilterItemValueThreeItem",
-    "PostV1AssetsAssetsListRequestSortItem",
-    "PostV1AssetsAssetsListRequestSortItemDir",
-    "PostV1AssetsAssetsListResponse",
-    "PostV1AssetsAssetsListResponseRowsItem",
-    "PostV1AssetsAssetsListResponseRowsItemDocumentsItem",
-    "PostV1AssetsAssetsListResponseRowsItemInputVatUseChangesItem",
-    "PostV1AssetsAssetsListResponseRowsItemInputVatUseChangesItemReason",
-    "PostV1AssetsAssetsListResponseRowsItemStatus",
-    "PostV1AssetsAssetsModernizeResponse",
-    "PostV1AssetsAssetsModernizeResponseDocumentsItem",
-    "PostV1AssetsAssetsModernizeResponseInputVatUseChangesItem",
-    "PostV1AssetsAssetsModernizeResponseInputVatUseChangesItemReason",
-    "PostV1AssetsAssetsModernizeResponseStatus",
-    "PostV1AssetsAssetsUpdateRequestDocumentsItem",
-    "PostV1AssetsAssetsUpdateResponse",
-    "PostV1AssetsAssetsUpdateResponseDocumentsItem",
-    "PostV1AssetsAssetsUpdateResponseInputVatUseChangesItem",
-    "PostV1AssetsAssetsUpdateResponseInputVatUseChangesItemReason",
-    "PostV1AssetsAssetsUpdateResponseStatus",
-    "PostV1AssetsDepreciationPostResponse",
-    "PostV1AssetsDepreciationPreviewResponse",
-    "PostV1AssetsDepreciationPreviewResponseRowsItem",
-    "PostV1AssetsGroupsCreateResponse",
-    "PostV1AssetsGroupsListRequestFilterItem",
-    "PostV1AssetsGroupsListRequestFilterItemOp",
-    "PostV1AssetsGroupsListRequestFilterItemValue",
-    "PostV1AssetsGroupsListRequestFilterItemValueThreeItem",
-    "PostV1AssetsGroupsListRequestSortItem",
-    "PostV1AssetsGroupsListRequestSortItemDir",
-    "PostV1AssetsGroupsListResponse",
-    "PostV1AssetsGroupsListResponseRowsItem",
+    "AssetsCreateAssetsRequestDocumentsItem",
+    "AssetsCreateAssetsResponse",
+    "AssetsCreateAssetsResponseDisposalReason",
+    "AssetsCreateAssetsResponseDocumentsItem",
+    "AssetsCreateAssetsResponseInputVatUseChangesItem",
+    "AssetsCreateAssetsResponseInputVatUseChangesItemReason",
+    "AssetsCreateAssetsResponseStatus",
+    "AssetsDisposeAssetsRequestReason",
+    "AssetsDisposeAssetsResponse",
+    "AssetsDisposeAssetsResponseDisposalReason",
+    "AssetsDisposeAssetsResponseDocumentsItem",
+    "AssetsDisposeAssetsResponseInputVatUseChangesItem",
+    "AssetsDisposeAssetsResponseInputVatUseChangesItemReason",
+    "AssetsDisposeAssetsResponseStatus",
+    "AssetsGetAssetsResponse",
+    "AssetsGetAssetsResponseDisposalReason",
+    "AssetsGetAssetsResponseDocumentsItem",
+    "AssetsGetAssetsResponseInputVatUseChangesItem",
+    "AssetsGetAssetsResponseInputVatUseChangesItemReason",
+    "AssetsGetAssetsResponseStatus",
+    "AssetsInputVatAssetsRequestInputVatUseChangesItem",
+    "AssetsInputVatAssetsRequestInputVatUseChangesItemReason",
+    "AssetsInputVatAssetsResponse",
+    "AssetsInputVatAssetsResponseDisposalReason",
+    "AssetsInputVatAssetsResponseDocumentsItem",
+    "AssetsInputVatAssetsResponseInputVatUseChangesItem",
+    "AssetsInputVatAssetsResponseInputVatUseChangesItemReason",
+    "AssetsInputVatAssetsResponseStatus",
+    "AssetsListAssetsRequestFilterItem",
+    "AssetsListAssetsRequestFilterItemOp",
+    "AssetsListAssetsRequestFilterItemValue",
+    "AssetsListAssetsRequestFilterItemValueThreeItem",
+    "AssetsListAssetsRequestSortItem",
+    "AssetsListAssetsRequestSortItemDir",
+    "AssetsListAssetsResponse",
+    "AssetsListAssetsResponseRowsItem",
+    "AssetsListAssetsResponseRowsItemDisposalReason",
+    "AssetsListAssetsResponseRowsItemDocumentsItem",
+    "AssetsListAssetsResponseRowsItemInputVatUseChangesItem",
+    "AssetsListAssetsResponseRowsItemInputVatUseChangesItemReason",
+    "AssetsListAssetsResponseRowsItemStatus",
+    "AssetsModernizeAssetsResponse",
+    "AssetsModernizeAssetsResponseDisposalReason",
+    "AssetsModernizeAssetsResponseDocumentsItem",
+    "AssetsModernizeAssetsResponseInputVatUseChangesItem",
+    "AssetsModernizeAssetsResponseInputVatUseChangesItemReason",
+    "AssetsModernizeAssetsResponseStatus",
+    "AssetsUpdateAssetsRequestDocumentsItem",
+    "AssetsUpdateAssetsResponse",
+    "AssetsUpdateAssetsResponseDisposalReason",
+    "AssetsUpdateAssetsResponseDocumentsItem",
+    "AssetsUpdateAssetsResponseInputVatUseChangesItem",
+    "AssetsUpdateAssetsResponseInputVatUseChangesItemReason",
+    "AssetsUpdateAssetsResponseStatus",
+    "DepreciationPostAssetsResponse",
+    "DepreciationPreviewAssetsResponse",
+    "DepreciationPreviewAssetsResponseRowsItem",
+    "GroupsCreateAssetsResponse",
+    "GroupsListAssetsRequestFilterItem",
+    "GroupsListAssetsRequestFilterItemOp",
+    "GroupsListAssetsRequestFilterItemValue",
+    "GroupsListAssetsRequestFilterItemValueThreeItem",
+    "GroupsListAssetsRequestSortItem",
+    "GroupsListAssetsRequestSortItemDir",
+    "GroupsListAssetsResponse",
+    "GroupsListAssetsResponseRowsItem",
 ]

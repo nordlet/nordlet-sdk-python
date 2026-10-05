@@ -6,18 +6,18 @@ import typing
 from ..core.client_wrapper import AsyncClientWrapper, SyncClientWrapper
 from ..core.request_options import RequestOptions
 from .raw_client import AsyncRawEcommerceClient, RawEcommerceClient
-from .types.post_v1ecommerce_orders_cancel_response import PostV1EcommerceOrdersCancelResponse
-from .types.post_v1ecommerce_orders_create_request_lines_item import PostV1EcommerceOrdersCreateRequestLinesItem
-from .types.post_v1ecommerce_orders_create_request_partner import PostV1EcommerceOrdersCreateRequestPartner
-from .types.post_v1ecommerce_orders_create_response import PostV1EcommerceOrdersCreateResponse
-from .types.post_v1ecommerce_orders_fulfill_response import PostV1EcommerceOrdersFulfillResponse
-from .types.post_v1ecommerce_orders_get_response import PostV1EcommerceOrdersGetResponse
-from .types.post_v1ecommerce_orders_list_request_filter_item import PostV1EcommerceOrdersListRequestFilterItem
-from .types.post_v1ecommerce_orders_list_request_sort_item import PostV1EcommerceOrdersListRequestSortItem
-from .types.post_v1ecommerce_orders_list_response import PostV1EcommerceOrdersListResponse
-from .types.post_v1ecommerce_orders_reserve_response import PostV1EcommerceOrdersReserveResponse
-from .types.post_v1ecommerce_products_list_response import PostV1EcommerceProductsListResponse
-from .types.post_v1ecommerce_stock_list_response import PostV1EcommerceStockListResponse
+from .types.orders_cancel_ecommerce_response import OrdersCancelEcommerceResponse
+from .types.orders_create_ecommerce_request_lines_item import OrdersCreateEcommerceRequestLinesItem
+from .types.orders_create_ecommerce_request_partner import OrdersCreateEcommerceRequestPartner
+from .types.orders_create_ecommerce_response import OrdersCreateEcommerceResponse
+from .types.orders_fulfill_ecommerce_response import OrdersFulfillEcommerceResponse
+from .types.orders_get_ecommerce_response import OrdersGetEcommerceResponse
+from .types.orders_list_ecommerce_request_filter_item import OrdersListEcommerceRequestFilterItem
+from .types.orders_list_ecommerce_request_sort_item import OrdersListEcommerceRequestSortItem
+from .types.orders_list_ecommerce_response import OrdersListEcommerceResponse
+from .types.orders_reserve_ecommerce_response import OrdersReserveEcommerceResponse
+from .types.products_list_ecommerce_response import ProductsListEcommerceResponse
+from .types.stock_list_ecommerce_response import StockListEcommerceResponse
 
 # this is used as the default value for optional parameters
 OMIT = typing.cast(typing.Any, ...)
@@ -38,25 +38,25 @@ class EcommerceClient:
         """
         return self._raw_client
 
-    def post_v1ecommerce_orders_create(
+    def orders_create(
         self,
         *,
-        lines: typing.Sequence[PostV1EcommerceOrdersCreateRequestLinesItem],
+        lines: typing.Sequence[OrdersCreateEcommerceRequestLinesItem],
         channel: typing.Optional[str] = OMIT,
         external_ref: typing.Optional[str] = OMIT,
         partner_id: typing.Optional[str] = OMIT,
-        partner: typing.Optional[PostV1EcommerceOrdersCreateRequestPartner] = OMIT,
+        partner: typing.Optional[OrdersCreateEcommerceRequestPartner] = OMIT,
         warehouse_id: typing.Optional[str] = OMIT,
         currency: typing.Optional[str] = OMIT,
         ship_to_country_code: typing.Optional[str] = OMIT,
         marketplace: typing.Optional[str] = OMIT,
         notes: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> PostV1EcommerceOrdersCreateResponse:
+    ) -> OrdersCreateEcommerceResponse:
         """
         Parameters
         ----------
-        lines : typing.Sequence[PostV1EcommerceOrdersCreateRequestLinesItem]
+        lines : typing.Sequence[OrdersCreateEcommerceRequestLinesItem]
 
         channel : typing.Optional[str]
 
@@ -64,7 +64,7 @@ class EcommerceClient:
 
         partner_id : typing.Optional[str]
 
-        partner : typing.Optional[PostV1EcommerceOrdersCreateRequestPartner]
+        partner : typing.Optional[OrdersCreateEcommerceRequestPartner]
 
         warehouse_id : typing.Optional[str]
 
@@ -81,28 +81,28 @@ class EcommerceClient:
 
         Returns
         -------
-        PostV1EcommerceOrdersCreateResponse
+        OrdersCreateEcommerceResponse
             Default Response
 
         Examples
         --------
         from nordlet import Nordlet
-        from nordlet.ecommerce import PostV1EcommerceOrdersCreateRequestLinesItem
+        from nordlet.ecommerce import OrdersCreateEcommerceRequestLinesItem
 
         client = Nordlet(
             token="YOUR_TOKEN",
         )
-        client.ecommerce.post_v1ecommerce_orders_create(
+        client.ecommerce.orders_create(
             lines=[
-                PostV1EcommerceOrdersCreateRequestLinesItem(
+                OrdersCreateEcommerceRequestLinesItem(
                     description="description",
-                    quantity="quantity",
-                    unit_price_excl_vat="unitPriceExclVat",
+                    quantity="121.0000",
+                    unit_price_excl_vat="121.0000",
                 )
             ],
         )
         """
-        _response = self._raw_client.post_v1ecommerce_orders_create(
+        _response = self._raw_client.orders_create(
             lines=lines,
             channel=channel,
             external_ref=external_ref,
@@ -117,9 +117,9 @@ class EcommerceClient:
         )
         return _response.data
 
-    def post_v1ecommerce_orders_get(
+    def orders_get(
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
-    ) -> PostV1EcommerceOrdersGetResponse:
+    ) -> OrdersGetEcommerceResponse:
         """
         Parameters
         ----------
@@ -130,7 +130,7 @@ class EcommerceClient:
 
         Returns
         -------
-        PostV1EcommerceOrdersGetResponse
+        OrdersGetEcommerceResponse
             Default Response
 
         Examples
@@ -140,23 +140,23 @@ class EcommerceClient:
         client = Nordlet(
             token="YOUR_TOKEN",
         )
-        client.ecommerce.post_v1ecommerce_orders_get(
+        client.ecommerce.orders_get(
             id="id",
         )
         """
-        _response = self._raw_client.post_v1ecommerce_orders_get(id=id, request_options=request_options)
+        _response = self._raw_client.orders_get(id=id, request_options=request_options)
         return _response.data
 
-    def post_v1ecommerce_orders_list(
+    def orders_list(
         self,
         *,
         page: typing.Optional[int] = OMIT,
         page_size: typing.Optional[int] = OMIT,
-        sort: typing.Optional[typing.Sequence[PostV1EcommerceOrdersListRequestSortItem]] = OMIT,
-        filter: typing.Optional[typing.Sequence[PostV1EcommerceOrdersListRequestFilterItem]] = OMIT,
+        sort: typing.Optional[typing.Sequence[OrdersListEcommerceRequestSortItem]] = OMIT,
+        filter: typing.Optional[typing.Sequence[OrdersListEcommerceRequestFilterItem]] = OMIT,
         totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> PostV1EcommerceOrdersListResponse:
+    ) -> OrdersListEcommerceResponse:
         """
         Parameters
         ----------
@@ -164,9 +164,9 @@ class EcommerceClient:
 
         page_size : typing.Optional[int]
 
-        sort : typing.Optional[typing.Sequence[PostV1EcommerceOrdersListRequestSortItem]]
+        sort : typing.Optional[typing.Sequence[OrdersListEcommerceRequestSortItem]]
 
-        filter : typing.Optional[typing.Sequence[PostV1EcommerceOrdersListRequestFilterItem]]
+        filter : typing.Optional[typing.Sequence[OrdersListEcommerceRequestFilterItem]]
 
         totals : typing.Optional[typing.Sequence[str]]
             Numeric fields to sum over every row matching the filter (not only the current page)
@@ -176,7 +176,7 @@ class EcommerceClient:
 
         Returns
         -------
-        PostV1EcommerceOrdersListResponse
+        OrdersListEcommerceResponse
             Default Response
 
         Examples
@@ -186,20 +186,20 @@ class EcommerceClient:
         client = Nordlet(
             token="YOUR_TOKEN",
         )
-        client.ecommerce.post_v1ecommerce_orders_list()
+        client.ecommerce.orders_list()
         """
-        _response = self._raw_client.post_v1ecommerce_orders_list(
+        _response = self._raw_client.orders_list(
             page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 
-    def post_v1ecommerce_orders_reserve(
+    def orders_reserve(
         self,
         *,
         id: str,
         warehouse_id: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> PostV1EcommerceOrdersReserveResponse:
+    ) -> OrdersReserveEcommerceResponse:
         """
         Parameters
         ----------
@@ -212,7 +212,7 @@ class EcommerceClient:
 
         Returns
         -------
-        PostV1EcommerceOrdersReserveResponse
+        OrdersReserveEcommerceResponse
             Default Response
 
         Examples
@@ -222,30 +222,28 @@ class EcommerceClient:
         client = Nordlet(
             token="YOUR_TOKEN",
         )
-        client.ecommerce.post_v1ecommerce_orders_reserve(
+        client.ecommerce.orders_reserve(
             id="id",
         )
         """
-        _response = self._raw_client.post_v1ecommerce_orders_reserve(
-            id=id, warehouse_id=warehouse_id, request_options=request_options
-        )
+        _response = self._raw_client.orders_reserve(id=id, warehouse_id=warehouse_id, request_options=request_options)
         return _response.data
 
-    def post_v1ecommerce_orders_fulfill(
+    def orders_fulfill(
         self,
         *,
         id: str,
-        date: typing.Optional[str] = OMIT,
+        date: typing.Optional[dt.date] = OMIT,
         cogs_account_code: typing.Optional[str] = OMIT,
         inventory_account_code: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> PostV1EcommerceOrdersFulfillResponse:
+    ) -> OrdersFulfillEcommerceResponse:
         """
         Parameters
         ----------
         id : str
 
-        date : typing.Optional[str]
+        date : typing.Optional[dt.date]
 
         cogs_account_code : typing.Optional[str]
 
@@ -256,7 +254,7 @@ class EcommerceClient:
 
         Returns
         -------
-        PostV1EcommerceOrdersFulfillResponse
+        OrdersFulfillEcommerceResponse
             Default Response
 
         Examples
@@ -266,11 +264,11 @@ class EcommerceClient:
         client = Nordlet(
             token="YOUR_TOKEN",
         )
-        client.ecommerce.post_v1ecommerce_orders_fulfill(
+        client.ecommerce.orders_fulfill(
             id="id",
         )
         """
-        _response = self._raw_client.post_v1ecommerce_orders_fulfill(
+        _response = self._raw_client.orders_fulfill(
             id=id,
             date=date,
             cogs_account_code=cogs_account_code,
@@ -279,9 +277,9 @@ class EcommerceClient:
         )
         return _response.data
 
-    def post_v1ecommerce_orders_cancel(
+    def orders_cancel(
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
-    ) -> PostV1EcommerceOrdersCancelResponse:
+    ) -> OrdersCancelEcommerceResponse:
         """
         Parameters
         ----------
@@ -292,7 +290,7 @@ class EcommerceClient:
 
         Returns
         -------
-        PostV1EcommerceOrdersCancelResponse
+        OrdersCancelEcommerceResponse
             Default Response
 
         Examples
@@ -302,14 +300,14 @@ class EcommerceClient:
         client = Nordlet(
             token="YOUR_TOKEN",
         )
-        client.ecommerce.post_v1ecommerce_orders_cancel(
+        client.ecommerce.orders_cancel(
             id="id",
         )
         """
-        _response = self._raw_client.post_v1ecommerce_orders_cancel(id=id, request_options=request_options)
+        _response = self._raw_client.orders_cancel(id=id, request_options=request_options)
         return _response.data
 
-    def post_v1ecommerce_products_list(
+    def products_list(
         self,
         *,
         warehouse_id: typing.Optional[str] = OMIT,
@@ -318,7 +316,7 @@ class EcommerceClient:
         page: typing.Optional[int] = OMIT,
         page_size: typing.Optional[int] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> PostV1EcommerceProductsListResponse:
+    ) -> ProductsListEcommerceResponse:
         """
         Parameters
         ----------
@@ -337,7 +335,7 @@ class EcommerceClient:
 
         Returns
         -------
-        PostV1EcommerceProductsListResponse
+        ProductsListEcommerceResponse
             Default Response
 
         Examples
@@ -347,9 +345,9 @@ class EcommerceClient:
         client = Nordlet(
             token="YOUR_TOKEN",
         )
-        client.ecommerce.post_v1ecommerce_products_list()
+        client.ecommerce.products_list()
         """
-        _response = self._raw_client.post_v1ecommerce_products_list(
+        _response = self._raw_client.products_list(
             warehouse_id=warehouse_id,
             price_list_id=price_list_id,
             updated_since=updated_since,
@@ -359,9 +357,9 @@ class EcommerceClient:
         )
         return _response.data
 
-    def post_v1ecommerce_stock_list(
+    def stock_list(
         self, *, warehouse_id: typing.Optional[str] = OMIT, request_options: typing.Optional[RequestOptions] = None
-    ) -> PostV1EcommerceStockListResponse:
+    ) -> StockListEcommerceResponse:
         """
         Parameters
         ----------
@@ -372,7 +370,7 @@ class EcommerceClient:
 
         Returns
         -------
-        PostV1EcommerceStockListResponse
+        StockListEcommerceResponse
             Default Response
 
         Examples
@@ -382,11 +380,9 @@ class EcommerceClient:
         client = Nordlet(
             token="YOUR_TOKEN",
         )
-        client.ecommerce.post_v1ecommerce_stock_list()
+        client.ecommerce.stock_list()
         """
-        _response = self._raw_client.post_v1ecommerce_stock_list(
-            warehouse_id=warehouse_id, request_options=request_options
-        )
+        _response = self._raw_client.stock_list(warehouse_id=warehouse_id, request_options=request_options)
         return _response.data
 
 
@@ -405,25 +401,25 @@ class AsyncEcommerceClient:
         """
         return self._raw_client
 
-    async def post_v1ecommerce_orders_create(
+    async def orders_create(
         self,
         *,
-        lines: typing.Sequence[PostV1EcommerceOrdersCreateRequestLinesItem],
+        lines: typing.Sequence[OrdersCreateEcommerceRequestLinesItem],
         channel: typing.Optional[str] = OMIT,
         external_ref: typing.Optional[str] = OMIT,
         partner_id: typing.Optional[str] = OMIT,
-        partner: typing.Optional[PostV1EcommerceOrdersCreateRequestPartner] = OMIT,
+        partner: typing.Optional[OrdersCreateEcommerceRequestPartner] = OMIT,
         warehouse_id: typing.Optional[str] = OMIT,
         currency: typing.Optional[str] = OMIT,
         ship_to_country_code: typing.Optional[str] = OMIT,
         marketplace: typing.Optional[str] = OMIT,
         notes: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> PostV1EcommerceOrdersCreateResponse:
+    ) -> OrdersCreateEcommerceResponse:
         """
         Parameters
         ----------
-        lines : typing.Sequence[PostV1EcommerceOrdersCreateRequestLinesItem]
+        lines : typing.Sequence[OrdersCreateEcommerceRequestLinesItem]
 
         channel : typing.Optional[str]
 
@@ -431,7 +427,7 @@ class AsyncEcommerceClient:
 
         partner_id : typing.Optional[str]
 
-        partner : typing.Optional[PostV1EcommerceOrdersCreateRequestPartner]
+        partner : typing.Optional[OrdersCreateEcommerceRequestPartner]
 
         warehouse_id : typing.Optional[str]
 
@@ -448,7 +444,7 @@ class AsyncEcommerceClient:
 
         Returns
         -------
-        PostV1EcommerceOrdersCreateResponse
+        OrdersCreateEcommerceResponse
             Default Response
 
         Examples
@@ -456,7 +452,7 @@ class AsyncEcommerceClient:
         import asyncio
 
         from nordlet import AsyncNordlet
-        from nordlet.ecommerce import PostV1EcommerceOrdersCreateRequestLinesItem
+        from nordlet.ecommerce import OrdersCreateEcommerceRequestLinesItem
 
         client = AsyncNordlet(
             token="YOUR_TOKEN",
@@ -464,12 +460,12 @@ class AsyncEcommerceClient:
 
 
         async def main() -> None:
-            await client.ecommerce.post_v1ecommerce_orders_create(
+            await client.ecommerce.orders_create(
                 lines=[
-                    PostV1EcommerceOrdersCreateRequestLinesItem(
+                    OrdersCreateEcommerceRequestLinesItem(
                         description="description",
-                        quantity="quantity",
-                        unit_price_excl_vat="unitPriceExclVat",
+                        quantity="121.0000",
+                        unit_price_excl_vat="121.0000",
                     )
                 ],
             )
@@ -477,7 +473,7 @@ class AsyncEcommerceClient:
 
         asyncio.run(main())
         """
-        _response = await self._raw_client.post_v1ecommerce_orders_create(
+        _response = await self._raw_client.orders_create(
             lines=lines,
             channel=channel,
             external_ref=external_ref,
@@ -492,9 +488,9 @@ class AsyncEcommerceClient:
         )
         return _response.data
 
-    async def post_v1ecommerce_orders_get(
+    async def orders_get(
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
-    ) -> PostV1EcommerceOrdersGetResponse:
+    ) -> OrdersGetEcommerceResponse:
         """
         Parameters
         ----------
@@ -505,7 +501,7 @@ class AsyncEcommerceClient:
 
         Returns
         -------
-        PostV1EcommerceOrdersGetResponse
+        OrdersGetEcommerceResponse
             Default Response
 
         Examples
@@ -520,26 +516,26 @@ class AsyncEcommerceClient:
 
 
         async def main() -> None:
-            await client.ecommerce.post_v1ecommerce_orders_get(
+            await client.ecommerce.orders_get(
                 id="id",
             )
 
 
         asyncio.run(main())
         """
-        _response = await self._raw_client.post_v1ecommerce_orders_get(id=id, request_options=request_options)
+        _response = await self._raw_client.orders_get(id=id, request_options=request_options)
         return _response.data
 
-    async def post_v1ecommerce_orders_list(
+    async def orders_list(
         self,
         *,
         page: typing.Optional[int] = OMIT,
         page_size: typing.Optional[int] = OMIT,
-        sort: typing.Optional[typing.Sequence[PostV1EcommerceOrdersListRequestSortItem]] = OMIT,
-        filter: typing.Optional[typing.Sequence[PostV1EcommerceOrdersListRequestFilterItem]] = OMIT,
+        sort: typing.Optional[typing.Sequence[OrdersListEcommerceRequestSortItem]] = OMIT,
+        filter: typing.Optional[typing.Sequence[OrdersListEcommerceRequestFilterItem]] = OMIT,
         totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> PostV1EcommerceOrdersListResponse:
+    ) -> OrdersListEcommerceResponse:
         """
         Parameters
         ----------
@@ -547,9 +543,9 @@ class AsyncEcommerceClient:
 
         page_size : typing.Optional[int]
 
-        sort : typing.Optional[typing.Sequence[PostV1EcommerceOrdersListRequestSortItem]]
+        sort : typing.Optional[typing.Sequence[OrdersListEcommerceRequestSortItem]]
 
-        filter : typing.Optional[typing.Sequence[PostV1EcommerceOrdersListRequestFilterItem]]
+        filter : typing.Optional[typing.Sequence[OrdersListEcommerceRequestFilterItem]]
 
         totals : typing.Optional[typing.Sequence[str]]
             Numeric fields to sum over every row matching the filter (not only the current page)
@@ -559,7 +555,7 @@ class AsyncEcommerceClient:
 
         Returns
         -------
-        PostV1EcommerceOrdersListResponse
+        OrdersListEcommerceResponse
             Default Response
 
         Examples
@@ -574,23 +570,23 @@ class AsyncEcommerceClient:
 
 
         async def main() -> None:
-            await client.ecommerce.post_v1ecommerce_orders_list()
+            await client.ecommerce.orders_list()
 
 
         asyncio.run(main())
         """
-        _response = await self._raw_client.post_v1ecommerce_orders_list(
+        _response = await self._raw_client.orders_list(
             page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 
-    async def post_v1ecommerce_orders_reserve(
+    async def orders_reserve(
         self,
         *,
         id: str,
         warehouse_id: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> PostV1EcommerceOrdersReserveResponse:
+    ) -> OrdersReserveEcommerceResponse:
         """
         Parameters
         ----------
@@ -603,7 +599,7 @@ class AsyncEcommerceClient:
 
         Returns
         -------
-        PostV1EcommerceOrdersReserveResponse
+        OrdersReserveEcommerceResponse
             Default Response
 
         Examples
@@ -618,33 +614,33 @@ class AsyncEcommerceClient:
 
 
         async def main() -> None:
-            await client.ecommerce.post_v1ecommerce_orders_reserve(
+            await client.ecommerce.orders_reserve(
                 id="id",
             )
 
 
         asyncio.run(main())
         """
-        _response = await self._raw_client.post_v1ecommerce_orders_reserve(
+        _response = await self._raw_client.orders_reserve(
             id=id, warehouse_id=warehouse_id, request_options=request_options
         )
         return _response.data
 
-    async def post_v1ecommerce_orders_fulfill(
+    async def orders_fulfill(
         self,
         *,
         id: str,
-        date: typing.Optional[str] = OMIT,
+        date: typing.Optional[dt.date] = OMIT,
         cogs_account_code: typing.Optional[str] = OMIT,
         inventory_account_code: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> PostV1EcommerceOrdersFulfillResponse:
+    ) -> OrdersFulfillEcommerceResponse:
         """
         Parameters
         ----------
         id : str
 
-        date : typing.Optional[str]
+        date : typing.Optional[dt.date]
 
         cogs_account_code : typing.Optional[str]
 
@@ -655,7 +651,7 @@ class AsyncEcommerceClient:
 
         Returns
         -------
-        PostV1EcommerceOrdersFulfillResponse
+        OrdersFulfillEcommerceResponse
             Default Response
 
         Examples
@@ -670,14 +666,14 @@ class AsyncEcommerceClient:
 
 
         async def main() -> None:
-            await client.ecommerce.post_v1ecommerce_orders_fulfill(
+            await client.ecommerce.orders_fulfill(
                 id="id",
             )
 
 
         asyncio.run(main())
         """
-        _response = await self._raw_client.post_v1ecommerce_orders_fulfill(
+        _response = await self._raw_client.orders_fulfill(
             id=id,
             date=date,
             cogs_account_code=cogs_account_code,
@@ -686,9 +682,9 @@ class AsyncEcommerceClient:
         )
         return _response.data
 
-    async def post_v1ecommerce_orders_cancel(
+    async def orders_cancel(
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
-    ) -> PostV1EcommerceOrdersCancelResponse:
+    ) -> OrdersCancelEcommerceResponse:
         """
         Parameters
         ----------
@@ -699,7 +695,7 @@ class AsyncEcommerceClient:
 
         Returns
         -------
-        PostV1EcommerceOrdersCancelResponse
+        OrdersCancelEcommerceResponse
             Default Response
 
         Examples
@@ -714,17 +710,17 @@ class AsyncEcommerceClient:
 
 
         async def main() -> None:
-            await client.ecommerce.post_v1ecommerce_orders_cancel(
+            await client.ecommerce.orders_cancel(
                 id="id",
             )
 
 
         asyncio.run(main())
         """
-        _response = await self._raw_client.post_v1ecommerce_orders_cancel(id=id, request_options=request_options)
+        _response = await self._raw_client.orders_cancel(id=id, request_options=request_options)
         return _response.data
 
-    async def post_v1ecommerce_products_list(
+    async def products_list(
         self,
         *,
         warehouse_id: typing.Optional[str] = OMIT,
@@ -733,7 +729,7 @@ class AsyncEcommerceClient:
         page: typing.Optional[int] = OMIT,
         page_size: typing.Optional[int] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> PostV1EcommerceProductsListResponse:
+    ) -> ProductsListEcommerceResponse:
         """
         Parameters
         ----------
@@ -752,7 +748,7 @@ class AsyncEcommerceClient:
 
         Returns
         -------
-        PostV1EcommerceProductsListResponse
+        ProductsListEcommerceResponse
             Default Response
 
         Examples
@@ -767,12 +763,12 @@ class AsyncEcommerceClient:
 
 
         async def main() -> None:
-            await client.ecommerce.post_v1ecommerce_products_list()
+            await client.ecommerce.products_list()
 
 
         asyncio.run(main())
         """
-        _response = await self._raw_client.post_v1ecommerce_products_list(
+        _response = await self._raw_client.products_list(
             warehouse_id=warehouse_id,
             price_list_id=price_list_id,
             updated_since=updated_since,
@@ -782,9 +778,9 @@ class AsyncEcommerceClient:
         )
         return _response.data
 
-    async def post_v1ecommerce_stock_list(
+    async def stock_list(
         self, *, warehouse_id: typing.Optional[str] = OMIT, request_options: typing.Optional[RequestOptions] = None
-    ) -> PostV1EcommerceStockListResponse:
+    ) -> StockListEcommerceResponse:
         """
         Parameters
         ----------
@@ -795,7 +791,7 @@ class AsyncEcommerceClient:
 
         Returns
         -------
-        PostV1EcommerceStockListResponse
+        StockListEcommerceResponse
             Default Response
 
         Examples
@@ -810,12 +806,10 @@ class AsyncEcommerceClient:
 
 
         async def main() -> None:
-            await client.ecommerce.post_v1ecommerce_stock_list()
+            await client.ecommerce.stock_list()
 
 
         asyncio.run(main())
         """
-        _response = await self._raw_client.post_v1ecommerce_stock_list(
-            warehouse_id=warehouse_id, request_options=request_options
-        )
+        _response = await self._raw_client.stock_list(warehouse_id=warehouse_id, request_options=request_options)
         return _response.data

@@ -6,203 +6,185 @@ import typing
 from importlib import import_module
 
 if typing.TYPE_CHECKING:
-    from .post_v1consolidation_groups_create_response import PostV1ConsolidationGroupsCreateResponse
-    from .post_v1consolidation_groups_delete_response import PostV1ConsolidationGroupsDeleteResponse
-    from .post_v1consolidation_groups_get_response import PostV1ConsolidationGroupsGetResponse
-    from .post_v1consolidation_groups_get_response_members_item import PostV1ConsolidationGroupsGetResponseMembersItem
-    from .post_v1consolidation_groups_get_response_members_item_method import (
-        PostV1ConsolidationGroupsGetResponseMembersItemMethod,
+    from .groups_create_consolidation_response import GroupsCreateConsolidationResponse
+    from .groups_delete_consolidation_response import GroupsDeleteConsolidationResponse
+    from .groups_get_consolidation_response import GroupsGetConsolidationResponse
+    from .groups_get_consolidation_response_members_item import GroupsGetConsolidationResponseMembersItem
+    from .groups_get_consolidation_response_members_item_method import GroupsGetConsolidationResponseMembersItemMethod
+    from .groups_list_consolidation_response import GroupsListConsolidationResponse
+    from .groups_list_consolidation_response_rows_item import GroupsListConsolidationResponseRowsItem
+    from .groups_update_consolidation_response import GroupsUpdateConsolidationResponse
+    from .intercompany_candidates_consolidation_response import IntercompanyCandidatesConsolidationResponse
+    from .intercompany_candidates_consolidation_response_rows_item import (
+        IntercompanyCandidatesConsolidationResponseRowsItem,
     )
-    from .post_v1consolidation_groups_list_response import PostV1ConsolidationGroupsListResponse
-    from .post_v1consolidation_groups_list_response_rows_item import PostV1ConsolidationGroupsListResponseRowsItem
-    from .post_v1consolidation_groups_update_response import PostV1ConsolidationGroupsUpdateResponse
-    from .post_v1consolidation_intercompany_candidates_response import PostV1ConsolidationIntercompanyCandidatesResponse
-    from .post_v1consolidation_intercompany_candidates_response_rows_item import (
-        PostV1ConsolidationIntercompanyCandidatesResponseRowsItem,
+    from .intercompany_candidates_consolidation_response_rows_item_matched_on import (
+        IntercompanyCandidatesConsolidationResponseRowsItemMatchedOn,
     )
-    from .post_v1consolidation_intercompany_candidates_response_rows_item_matched_on import (
-        PostV1ConsolidationIntercompanyCandidatesResponseRowsItemMatchedOn,
+    from .intercompany_links_list_consolidation_response import IntercompanyLinksListConsolidationResponse
+    from .intercompany_links_list_consolidation_response_rows_item import (
+        IntercompanyLinksListConsolidationResponseRowsItem,
     )
-    from .post_v1consolidation_intercompany_links_list_response import PostV1ConsolidationIntercompanyLinksListResponse
-    from .post_v1consolidation_intercompany_links_list_response_rows_item import (
-        PostV1ConsolidationIntercompanyLinksListResponseRowsItem,
+    from .intercompany_links_remove_consolidation_response import IntercompanyLinksRemoveConsolidationResponse
+    from .intercompany_links_set_consolidation_response import IntercompanyLinksSetConsolidationResponse
+    from .intercompany_report_consolidation_response import IntercompanyReportConsolidationResponse
+    from .intercompany_report_consolidation_response_directions_item import (
+        IntercompanyReportConsolidationResponseDirectionsItem,
     )
-    from .post_v1consolidation_intercompany_links_remove_response import (
-        PostV1ConsolidationIntercompanyLinksRemoveResponse,
+    from .intercompany_report_consolidation_response_directions_item_documents_item import (
+        IntercompanyReportConsolidationResponseDirectionsItemDocumentsItem,
     )
-    from .post_v1consolidation_intercompany_links_set_response import PostV1ConsolidationIntercompanyLinksSetResponse
-    from .post_v1consolidation_intercompany_report_response import PostV1ConsolidationIntercompanyReportResponse
-    from .post_v1consolidation_intercompany_report_response_directions_item import (
-        PostV1ConsolidationIntercompanyReportResponseDirectionsItem,
+    from .intercompany_report_consolidation_response_directions_item_documents_item_counterpart import (
+        IntercompanyReportConsolidationResponseDirectionsItemDocumentsItemCounterpart,
     )
-    from .post_v1consolidation_intercompany_report_response_directions_item_documents_item import (
-        PostV1ConsolidationIntercompanyReportResponseDirectionsItemDocumentsItem,
+    from .intercompany_report_consolidation_response_directions_item_documents_item_counterpart_payment_status import (
+        IntercompanyReportConsolidationResponseDirectionsItemDocumentsItemCounterpartPaymentStatus,
     )
-    from .post_v1consolidation_intercompany_report_response_directions_item_documents_item_counterpart import (
-        PostV1ConsolidationIntercompanyReportResponseDirectionsItemDocumentsItemCounterpart,
+    from .intercompany_report_consolidation_response_directions_item_documents_item_counterpart_status import (
+        IntercompanyReportConsolidationResponseDirectionsItemDocumentsItemCounterpartStatus,
     )
-    from .post_v1consolidation_intercompany_report_response_directions_item_documents_item_counterpart_payment_status import (
-        PostV1ConsolidationIntercompanyReportResponseDirectionsItemDocumentsItemCounterpartPaymentStatus,
+    from .intercompany_report_consolidation_response_directions_item_documents_item_match import (
+        IntercompanyReportConsolidationResponseDirectionsItemDocumentsItemMatch,
     )
-    from .post_v1consolidation_intercompany_report_response_directions_item_documents_item_counterpart_status import (
-        PostV1ConsolidationIntercompanyReportResponseDirectionsItemDocumentsItemCounterpartStatus,
+    from .intercompany_report_consolidation_response_directions_item_documents_item_payment_status import (
+        IntercompanyReportConsolidationResponseDirectionsItemDocumentsItemPaymentStatus,
     )
-    from .post_v1consolidation_intercompany_report_response_directions_item_documents_item_match import (
-        PostV1ConsolidationIntercompanyReportResponseDirectionsItemDocumentsItemMatch,
+    from .intercompany_report_consolidation_response_directions_item_documents_item_type import (
+        IntercompanyReportConsolidationResponseDirectionsItemDocumentsItemType,
     )
-    from .post_v1consolidation_intercompany_report_response_directions_item_documents_item_payment_status import (
-        PostV1ConsolidationIntercompanyReportResponseDirectionsItemDocumentsItemPaymentStatus,
+    from .intercompany_report_consolidation_response_directions_item_totals_item import (
+        IntercompanyReportConsolidationResponseDirectionsItemTotalsItem,
     )
-    from .post_v1consolidation_intercompany_report_response_directions_item_documents_item_type import (
-        PostV1ConsolidationIntercompanyReportResponseDirectionsItemDocumentsItemType,
+    from .intercompany_report_consolidation_response_directions_item_unmatched_purchases_item import (
+        IntercompanyReportConsolidationResponseDirectionsItemUnmatchedPurchasesItem,
     )
-    from .post_v1consolidation_intercompany_report_response_directions_item_totals_item import (
-        PostV1ConsolidationIntercompanyReportResponseDirectionsItemTotalsItem,
+    from .intercompany_report_consolidation_response_directions_item_unmatched_purchases_item_status import (
+        IntercompanyReportConsolidationResponseDirectionsItemUnmatchedPurchasesItemStatus,
     )
-    from .post_v1consolidation_intercompany_report_response_directions_item_unmatched_purchases_item import (
-        PostV1ConsolidationIntercompanyReportResponseDirectionsItemUnmatchedPurchasesItem,
+    from .members_add_consolidation_request_method import MembersAddConsolidationRequestMethod
+    from .members_add_consolidation_response import MembersAddConsolidationResponse
+    from .members_add_consolidation_response_method import MembersAddConsolidationResponseMethod
+    from .members_remove_consolidation_response import MembersRemoveConsolidationResponse
+    from .report_consolidation_request_category import ReportConsolidationRequestCategory
+    from .report_consolidation_request_eliminations_item import ReportConsolidationRequestEliminationsItem
+    from .report_consolidation_response import ReportConsolidationResponse
+    from .report_consolidation_response_cash_flow import ReportConsolidationResponseCashFlow
+    from .report_consolidation_response_cash_flow_financing import ReportConsolidationResponseCashFlowFinancing
+    from .report_consolidation_response_cash_flow_financing_rows_item import (
+        ReportConsolidationResponseCashFlowFinancingRowsItem,
     )
-    from .post_v1consolidation_intercompany_report_response_directions_item_unmatched_purchases_item_status import (
-        PostV1ConsolidationIntercompanyReportResponseDirectionsItemUnmatchedPurchasesItemStatus,
+    from .report_consolidation_response_cash_flow_investing import ReportConsolidationResponseCashFlowInvesting
+    from .report_consolidation_response_cash_flow_investing_rows_item import (
+        ReportConsolidationResponseCashFlowInvestingRowsItem,
     )
-    from .post_v1consolidation_members_add_request_method import PostV1ConsolidationMembersAddRequestMethod
-    from .post_v1consolidation_members_add_response import PostV1ConsolidationMembersAddResponse
-    from .post_v1consolidation_members_add_response_method import PostV1ConsolidationMembersAddResponseMethod
-    from .post_v1consolidation_members_remove_response import PostV1ConsolidationMembersRemoveResponse
-    from .post_v1consolidation_report_request_category import PostV1ConsolidationReportRequestCategory
-    from .post_v1consolidation_report_request_eliminations_item import PostV1ConsolidationReportRequestEliminationsItem
-    from .post_v1consolidation_report_response import PostV1ConsolidationReportResponse
-    from .post_v1consolidation_report_response_cash_flow import PostV1ConsolidationReportResponseCashFlow
-    from .post_v1consolidation_report_response_cash_flow_financing import (
-        PostV1ConsolidationReportResponseCashFlowFinancing,
+    from .report_consolidation_response_cash_flow_operating import ReportConsolidationResponseCashFlowOperating
+    from .report_consolidation_response_cash_flow_operating_rows_item import (
+        ReportConsolidationResponseCashFlowOperatingRowsItem,
     )
-    from .post_v1consolidation_report_response_cash_flow_financing_rows_item import (
-        PostV1ConsolidationReportResponseCashFlowFinancingRowsItem,
+    from .report_consolidation_response_category import ReportConsolidationResponseCategory
+    from .report_consolidation_response_eliminations import ReportConsolidationResponseEliminations
+    from .report_consolidation_response_eliminations_applied_item import (
+        ReportConsolidationResponseEliminationsAppliedItem,
     )
-    from .post_v1consolidation_report_response_cash_flow_investing import (
-        PostV1ConsolidationReportResponseCashFlowInvesting,
+    from .report_consolidation_response_equity_method import ReportConsolidationResponseEquityMethod
+    from .report_consolidation_response_intercompany_candidates_item import (
+        ReportConsolidationResponseIntercompanyCandidatesItem,
     )
-    from .post_v1consolidation_report_response_cash_flow_investing_rows_item import (
-        PostV1ConsolidationReportResponseCashFlowInvestingRowsItem,
+    from .report_consolidation_response_intercompany_candidates_item_matched_on import (
+        ReportConsolidationResponseIntercompanyCandidatesItemMatchedOn,
     )
-    from .post_v1consolidation_report_response_cash_flow_operating import (
-        PostV1ConsolidationReportResponseCashFlowOperating,
+    from .report_consolidation_response_members_item import ReportConsolidationResponseMembersItem
+    from .report_consolidation_response_members_item_method import ReportConsolidationResponseMembersItemMethod
+    from .report_consolidation_response_non_controlling_interest import (
+        ReportConsolidationResponseNonControllingInterest,
     )
-    from .post_v1consolidation_report_response_cash_flow_operating_rows_item import (
-        PostV1ConsolidationReportResponseCashFlowOperatingRowsItem,
+    from .report_consolidation_response_statements import ReportConsolidationResponseStatements
+    from .report_consolidation_response_statements_balance_sheet import (
+        ReportConsolidationResponseStatementsBalanceSheet,
     )
-    from .post_v1consolidation_report_response_category import PostV1ConsolidationReportResponseCategory
-    from .post_v1consolidation_report_response_eliminations import PostV1ConsolidationReportResponseEliminations
-    from .post_v1consolidation_report_response_eliminations_applied_item import (
-        PostV1ConsolidationReportResponseEliminationsAppliedItem,
+    from .report_consolidation_response_statements_balance_sheet_detail import (
+        ReportConsolidationResponseStatementsBalanceSheetDetail,
     )
-    from .post_v1consolidation_report_response_equity_method import PostV1ConsolidationReportResponseEquityMethod
-    from .post_v1consolidation_report_response_intercompany_candidates_item import (
-        PostV1ConsolidationReportResponseIntercompanyCandidatesItem,
+    from .report_consolidation_response_statements_balance_sheet_detail_current_assets import (
+        ReportConsolidationResponseStatementsBalanceSheetDetailCurrentAssets,
     )
-    from .post_v1consolidation_report_response_intercompany_candidates_item_matched_on import (
-        PostV1ConsolidationReportResponseIntercompanyCandidatesItemMatchedOn,
+    from .report_consolidation_response_statements_balance_sheet_detail_equity import (
+        ReportConsolidationResponseStatementsBalanceSheetDetailEquity,
     )
-    from .post_v1consolidation_report_response_members_item import PostV1ConsolidationReportResponseMembersItem
-    from .post_v1consolidation_report_response_members_item_method import (
-        PostV1ConsolidationReportResponseMembersItemMethod,
+    from .report_consolidation_response_statements_balance_sheet_detail_liabilities import (
+        ReportConsolidationResponseStatementsBalanceSheetDetailLiabilities,
     )
-    from .post_v1consolidation_report_response_non_controlling_interest import (
-        PostV1ConsolidationReportResponseNonControllingInterest,
+    from .report_consolidation_response_statements_balance_sheet_detail_non_current_assets import (
+        ReportConsolidationResponseStatementsBalanceSheetDetailNonCurrentAssets,
     )
-    from .post_v1consolidation_report_response_statements import PostV1ConsolidationReportResponseStatements
-    from .post_v1consolidation_report_response_statements_balance_sheet import (
-        PostV1ConsolidationReportResponseStatementsBalanceSheet,
+    from .report_consolidation_response_statements_category import ReportConsolidationResponseStatementsCategory
+    from .report_consolidation_response_statements_profit_loss import ReportConsolidationResponseStatementsProfitLoss
+    from .report_consolidation_response_statements_profit_loss_detail import (
+        ReportConsolidationResponseStatementsProfitLossDetail,
     )
-    from .post_v1consolidation_report_response_statements_balance_sheet_detail import (
-        PostV1ConsolidationReportResponseStatementsBalanceSheetDetail,
-    )
-    from .post_v1consolidation_report_response_statements_balance_sheet_detail_current_assets import (
-        PostV1ConsolidationReportResponseStatementsBalanceSheetDetailCurrentAssets,
-    )
-    from .post_v1consolidation_report_response_statements_balance_sheet_detail_equity import (
-        PostV1ConsolidationReportResponseStatementsBalanceSheetDetailEquity,
-    )
-    from .post_v1consolidation_report_response_statements_balance_sheet_detail_liabilities import (
-        PostV1ConsolidationReportResponseStatementsBalanceSheetDetailLiabilities,
-    )
-    from .post_v1consolidation_report_response_statements_balance_sheet_detail_non_current_assets import (
-        PostV1ConsolidationReportResponseStatementsBalanceSheetDetailNonCurrentAssets,
-    )
-    from .post_v1consolidation_report_response_statements_category import (
-        PostV1ConsolidationReportResponseStatementsCategory,
-    )
-    from .post_v1consolidation_report_response_statements_profit_loss import (
-        PostV1ConsolidationReportResponseStatementsProfitLoss,
-    )
-    from .post_v1consolidation_report_response_statements_profit_loss_detail import (
-        PostV1ConsolidationReportResponseStatementsProfitLossDetail,
-    )
-    from .post_v1consolidation_report_response_trial_balance_item import (
-        PostV1ConsolidationReportResponseTrialBalanceItem,
-    )
+    from .report_consolidation_response_trial_balance_item import ReportConsolidationResponseTrialBalanceItem
 _dynamic_imports: typing.Dict[str, str] = {
-    "PostV1ConsolidationGroupsCreateResponse": ".post_v1consolidation_groups_create_response",
-    "PostV1ConsolidationGroupsDeleteResponse": ".post_v1consolidation_groups_delete_response",
-    "PostV1ConsolidationGroupsGetResponse": ".post_v1consolidation_groups_get_response",
-    "PostV1ConsolidationGroupsGetResponseMembersItem": ".post_v1consolidation_groups_get_response_members_item",
-    "PostV1ConsolidationGroupsGetResponseMembersItemMethod": ".post_v1consolidation_groups_get_response_members_item_method",
-    "PostV1ConsolidationGroupsListResponse": ".post_v1consolidation_groups_list_response",
-    "PostV1ConsolidationGroupsListResponseRowsItem": ".post_v1consolidation_groups_list_response_rows_item",
-    "PostV1ConsolidationGroupsUpdateResponse": ".post_v1consolidation_groups_update_response",
-    "PostV1ConsolidationIntercompanyCandidatesResponse": ".post_v1consolidation_intercompany_candidates_response",
-    "PostV1ConsolidationIntercompanyCandidatesResponseRowsItem": ".post_v1consolidation_intercompany_candidates_response_rows_item",
-    "PostV1ConsolidationIntercompanyCandidatesResponseRowsItemMatchedOn": ".post_v1consolidation_intercompany_candidates_response_rows_item_matched_on",
-    "PostV1ConsolidationIntercompanyLinksListResponse": ".post_v1consolidation_intercompany_links_list_response",
-    "PostV1ConsolidationIntercompanyLinksListResponseRowsItem": ".post_v1consolidation_intercompany_links_list_response_rows_item",
-    "PostV1ConsolidationIntercompanyLinksRemoveResponse": ".post_v1consolidation_intercompany_links_remove_response",
-    "PostV1ConsolidationIntercompanyLinksSetResponse": ".post_v1consolidation_intercompany_links_set_response",
-    "PostV1ConsolidationIntercompanyReportResponse": ".post_v1consolidation_intercompany_report_response",
-    "PostV1ConsolidationIntercompanyReportResponseDirectionsItem": ".post_v1consolidation_intercompany_report_response_directions_item",
-    "PostV1ConsolidationIntercompanyReportResponseDirectionsItemDocumentsItem": ".post_v1consolidation_intercompany_report_response_directions_item_documents_item",
-    "PostV1ConsolidationIntercompanyReportResponseDirectionsItemDocumentsItemCounterpart": ".post_v1consolidation_intercompany_report_response_directions_item_documents_item_counterpart",
-    "PostV1ConsolidationIntercompanyReportResponseDirectionsItemDocumentsItemCounterpartPaymentStatus": ".post_v1consolidation_intercompany_report_response_directions_item_documents_item_counterpart_payment_status",
-    "PostV1ConsolidationIntercompanyReportResponseDirectionsItemDocumentsItemCounterpartStatus": ".post_v1consolidation_intercompany_report_response_directions_item_documents_item_counterpart_status",
-    "PostV1ConsolidationIntercompanyReportResponseDirectionsItemDocumentsItemMatch": ".post_v1consolidation_intercompany_report_response_directions_item_documents_item_match",
-    "PostV1ConsolidationIntercompanyReportResponseDirectionsItemDocumentsItemPaymentStatus": ".post_v1consolidation_intercompany_report_response_directions_item_documents_item_payment_status",
-    "PostV1ConsolidationIntercompanyReportResponseDirectionsItemDocumentsItemType": ".post_v1consolidation_intercompany_report_response_directions_item_documents_item_type",
-    "PostV1ConsolidationIntercompanyReportResponseDirectionsItemTotalsItem": ".post_v1consolidation_intercompany_report_response_directions_item_totals_item",
-    "PostV1ConsolidationIntercompanyReportResponseDirectionsItemUnmatchedPurchasesItem": ".post_v1consolidation_intercompany_report_response_directions_item_unmatched_purchases_item",
-    "PostV1ConsolidationIntercompanyReportResponseDirectionsItemUnmatchedPurchasesItemStatus": ".post_v1consolidation_intercompany_report_response_directions_item_unmatched_purchases_item_status",
-    "PostV1ConsolidationMembersAddRequestMethod": ".post_v1consolidation_members_add_request_method",
-    "PostV1ConsolidationMembersAddResponse": ".post_v1consolidation_members_add_response",
-    "PostV1ConsolidationMembersAddResponseMethod": ".post_v1consolidation_members_add_response_method",
-    "PostV1ConsolidationMembersRemoveResponse": ".post_v1consolidation_members_remove_response",
-    "PostV1ConsolidationReportRequestCategory": ".post_v1consolidation_report_request_category",
-    "PostV1ConsolidationReportRequestEliminationsItem": ".post_v1consolidation_report_request_eliminations_item",
-    "PostV1ConsolidationReportResponse": ".post_v1consolidation_report_response",
-    "PostV1ConsolidationReportResponseCashFlow": ".post_v1consolidation_report_response_cash_flow",
-    "PostV1ConsolidationReportResponseCashFlowFinancing": ".post_v1consolidation_report_response_cash_flow_financing",
-    "PostV1ConsolidationReportResponseCashFlowFinancingRowsItem": ".post_v1consolidation_report_response_cash_flow_financing_rows_item",
-    "PostV1ConsolidationReportResponseCashFlowInvesting": ".post_v1consolidation_report_response_cash_flow_investing",
-    "PostV1ConsolidationReportResponseCashFlowInvestingRowsItem": ".post_v1consolidation_report_response_cash_flow_investing_rows_item",
-    "PostV1ConsolidationReportResponseCashFlowOperating": ".post_v1consolidation_report_response_cash_flow_operating",
-    "PostV1ConsolidationReportResponseCashFlowOperatingRowsItem": ".post_v1consolidation_report_response_cash_flow_operating_rows_item",
-    "PostV1ConsolidationReportResponseCategory": ".post_v1consolidation_report_response_category",
-    "PostV1ConsolidationReportResponseEliminations": ".post_v1consolidation_report_response_eliminations",
-    "PostV1ConsolidationReportResponseEliminationsAppliedItem": ".post_v1consolidation_report_response_eliminations_applied_item",
-    "PostV1ConsolidationReportResponseEquityMethod": ".post_v1consolidation_report_response_equity_method",
-    "PostV1ConsolidationReportResponseIntercompanyCandidatesItem": ".post_v1consolidation_report_response_intercompany_candidates_item",
-    "PostV1ConsolidationReportResponseIntercompanyCandidatesItemMatchedOn": ".post_v1consolidation_report_response_intercompany_candidates_item_matched_on",
-    "PostV1ConsolidationReportResponseMembersItem": ".post_v1consolidation_report_response_members_item",
-    "PostV1ConsolidationReportResponseMembersItemMethod": ".post_v1consolidation_report_response_members_item_method",
-    "PostV1ConsolidationReportResponseNonControllingInterest": ".post_v1consolidation_report_response_non_controlling_interest",
-    "PostV1ConsolidationReportResponseStatements": ".post_v1consolidation_report_response_statements",
-    "PostV1ConsolidationReportResponseStatementsBalanceSheet": ".post_v1consolidation_report_response_statements_balance_sheet",
-    "PostV1ConsolidationReportResponseStatementsBalanceSheetDetail": ".post_v1consolidation_report_response_statements_balance_sheet_detail",
-    "PostV1ConsolidationReportResponseStatementsBalanceSheetDetailCurrentAssets": ".post_v1consolidation_report_response_statements_balance_sheet_detail_current_assets",
-    "PostV1ConsolidationReportResponseStatementsBalanceSheetDetailEquity": ".post_v1consolidation_report_response_statements_balance_sheet_detail_equity",
-    "PostV1ConsolidationReportResponseStatementsBalanceSheetDetailLiabilities": ".post_v1consolidation_report_response_statements_balance_sheet_detail_liabilities",
-    "PostV1ConsolidationReportResponseStatementsBalanceSheetDetailNonCurrentAssets": ".post_v1consolidation_report_response_statements_balance_sheet_detail_non_current_assets",
-    "PostV1ConsolidationReportResponseStatementsCategory": ".post_v1consolidation_report_response_statements_category",
-    "PostV1ConsolidationReportResponseStatementsProfitLoss": ".post_v1consolidation_report_response_statements_profit_loss",
-    "PostV1ConsolidationReportResponseStatementsProfitLossDetail": ".post_v1consolidation_report_response_statements_profit_loss_detail",
-    "PostV1ConsolidationReportResponseTrialBalanceItem": ".post_v1consolidation_report_response_trial_balance_item",
+    "GroupsCreateConsolidationResponse": ".groups_create_consolidation_response",
+    "GroupsDeleteConsolidationResponse": ".groups_delete_consolidation_response",
+    "GroupsGetConsolidationResponse": ".groups_get_consolidation_response",
+    "GroupsGetConsolidationResponseMembersItem": ".groups_get_consolidation_response_members_item",
+    "GroupsGetConsolidationResponseMembersItemMethod": ".groups_get_consolidation_response_members_item_method",
+    "GroupsListConsolidationResponse": ".groups_list_consolidation_response",
+    "GroupsListConsolidationResponseRowsItem": ".groups_list_consolidation_response_rows_item",
+    "GroupsUpdateConsolidationResponse": ".groups_update_consolidation_response",
+    "IntercompanyCandidatesConsolidationResponse": ".intercompany_candidates_consolidation_response",
+    "IntercompanyCandidatesConsolidationResponseRowsItem": ".intercompany_candidates_consolidation_response_rows_item",
+    "IntercompanyCandidatesConsolidationResponseRowsItemMatchedOn": ".intercompany_candidates_consolidation_response_rows_item_matched_on",
+    "IntercompanyLinksListConsolidationResponse": ".intercompany_links_list_consolidation_response",
+    "IntercompanyLinksListConsolidationResponseRowsItem": ".intercompany_links_list_consolidation_response_rows_item",
+    "IntercompanyLinksRemoveConsolidationResponse": ".intercompany_links_remove_consolidation_response",
+    "IntercompanyLinksSetConsolidationResponse": ".intercompany_links_set_consolidation_response",
+    "IntercompanyReportConsolidationResponse": ".intercompany_report_consolidation_response",
+    "IntercompanyReportConsolidationResponseDirectionsItem": ".intercompany_report_consolidation_response_directions_item",
+    "IntercompanyReportConsolidationResponseDirectionsItemDocumentsItem": ".intercompany_report_consolidation_response_directions_item_documents_item",
+    "IntercompanyReportConsolidationResponseDirectionsItemDocumentsItemCounterpart": ".intercompany_report_consolidation_response_directions_item_documents_item_counterpart",
+    "IntercompanyReportConsolidationResponseDirectionsItemDocumentsItemCounterpartPaymentStatus": ".intercompany_report_consolidation_response_directions_item_documents_item_counterpart_payment_status",
+    "IntercompanyReportConsolidationResponseDirectionsItemDocumentsItemCounterpartStatus": ".intercompany_report_consolidation_response_directions_item_documents_item_counterpart_status",
+    "IntercompanyReportConsolidationResponseDirectionsItemDocumentsItemMatch": ".intercompany_report_consolidation_response_directions_item_documents_item_match",
+    "IntercompanyReportConsolidationResponseDirectionsItemDocumentsItemPaymentStatus": ".intercompany_report_consolidation_response_directions_item_documents_item_payment_status",
+    "IntercompanyReportConsolidationResponseDirectionsItemDocumentsItemType": ".intercompany_report_consolidation_response_directions_item_documents_item_type",
+    "IntercompanyReportConsolidationResponseDirectionsItemTotalsItem": ".intercompany_report_consolidation_response_directions_item_totals_item",
+    "IntercompanyReportConsolidationResponseDirectionsItemUnmatchedPurchasesItem": ".intercompany_report_consolidation_response_directions_item_unmatched_purchases_item",
+    "IntercompanyReportConsolidationResponseDirectionsItemUnmatchedPurchasesItemStatus": ".intercompany_report_consolidation_response_directions_item_unmatched_purchases_item_status",
+    "MembersAddConsolidationRequestMethod": ".members_add_consolidation_request_method",
+    "MembersAddConsolidationResponse": ".members_add_consolidation_response",
+    "MembersAddConsolidationResponseMethod": ".members_add_consolidation_response_method",
+    "MembersRemoveConsolidationResponse": ".members_remove_consolidation_response",
+    "ReportConsolidationRequestCategory": ".report_consolidation_request_category",
+    "ReportConsolidationRequestEliminationsItem": ".report_consolidation_request_eliminations_item",
+    "ReportConsolidationResponse": ".report_consolidation_response",
+    "ReportConsolidationResponseCashFlow": ".report_consolidation_response_cash_flow",
+    "ReportConsolidationResponseCashFlowFinancing": ".report_consolidation_response_cash_flow_financing",
+    "ReportConsolidationResponseCashFlowFinancingRowsItem": ".report_consolidation_response_cash_flow_financing_rows_item",
+    "ReportConsolidationResponseCashFlowInvesting": ".report_consolidation_response_cash_flow_investing",
+    "ReportConsolidationResponseCashFlowInvestingRowsItem": ".report_consolidation_response_cash_flow_investing_rows_item",
+    "ReportConsolidationResponseCashFlowOperating": ".report_consolidation_response_cash_flow_operating",
+    "ReportConsolidationResponseCashFlowOperatingRowsItem": ".report_consolidation_response_cash_flow_operating_rows_item",
+    "ReportConsolidationResponseCategory": ".report_consolidation_response_category",
+    "ReportConsolidationResponseEliminations": ".report_consolidation_response_eliminations",
+    "ReportConsolidationResponseEliminationsAppliedItem": ".report_consolidation_response_eliminations_applied_item",
+    "ReportConsolidationResponseEquityMethod": ".report_consolidation_response_equity_method",
+    "ReportConsolidationResponseIntercompanyCandidatesItem": ".report_consolidation_response_intercompany_candidates_item",
+    "ReportConsolidationResponseIntercompanyCandidatesItemMatchedOn": ".report_consolidation_response_intercompany_candidates_item_matched_on",
+    "ReportConsolidationResponseMembersItem": ".report_consolidation_response_members_item",
+    "ReportConsolidationResponseMembersItemMethod": ".report_consolidation_response_members_item_method",
+    "ReportConsolidationResponseNonControllingInterest": ".report_consolidation_response_non_controlling_interest",
+    "ReportConsolidationResponseStatements": ".report_consolidation_response_statements",
+    "ReportConsolidationResponseStatementsBalanceSheet": ".report_consolidation_response_statements_balance_sheet",
+    "ReportConsolidationResponseStatementsBalanceSheetDetail": ".report_consolidation_response_statements_balance_sheet_detail",
+    "ReportConsolidationResponseStatementsBalanceSheetDetailCurrentAssets": ".report_consolidation_response_statements_balance_sheet_detail_current_assets",
+    "ReportConsolidationResponseStatementsBalanceSheetDetailEquity": ".report_consolidation_response_statements_balance_sheet_detail_equity",
+    "ReportConsolidationResponseStatementsBalanceSheetDetailLiabilities": ".report_consolidation_response_statements_balance_sheet_detail_liabilities",
+    "ReportConsolidationResponseStatementsBalanceSheetDetailNonCurrentAssets": ".report_consolidation_response_statements_balance_sheet_detail_non_current_assets",
+    "ReportConsolidationResponseStatementsCategory": ".report_consolidation_response_statements_category",
+    "ReportConsolidationResponseStatementsProfitLoss": ".report_consolidation_response_statements_profit_loss",
+    "ReportConsolidationResponseStatementsProfitLossDetail": ".report_consolidation_response_statements_profit_loss_detail",
+    "ReportConsolidationResponseTrialBalanceItem": ".report_consolidation_response_trial_balance_item",
 }
 
 
@@ -228,65 +210,65 @@ def __dir__():
 
 
 __all__ = [
-    "PostV1ConsolidationGroupsCreateResponse",
-    "PostV1ConsolidationGroupsDeleteResponse",
-    "PostV1ConsolidationGroupsGetResponse",
-    "PostV1ConsolidationGroupsGetResponseMembersItem",
-    "PostV1ConsolidationGroupsGetResponseMembersItemMethod",
-    "PostV1ConsolidationGroupsListResponse",
-    "PostV1ConsolidationGroupsListResponseRowsItem",
-    "PostV1ConsolidationGroupsUpdateResponse",
-    "PostV1ConsolidationIntercompanyCandidatesResponse",
-    "PostV1ConsolidationIntercompanyCandidatesResponseRowsItem",
-    "PostV1ConsolidationIntercompanyCandidatesResponseRowsItemMatchedOn",
-    "PostV1ConsolidationIntercompanyLinksListResponse",
-    "PostV1ConsolidationIntercompanyLinksListResponseRowsItem",
-    "PostV1ConsolidationIntercompanyLinksRemoveResponse",
-    "PostV1ConsolidationIntercompanyLinksSetResponse",
-    "PostV1ConsolidationIntercompanyReportResponse",
-    "PostV1ConsolidationIntercompanyReportResponseDirectionsItem",
-    "PostV1ConsolidationIntercompanyReportResponseDirectionsItemDocumentsItem",
-    "PostV1ConsolidationIntercompanyReportResponseDirectionsItemDocumentsItemCounterpart",
-    "PostV1ConsolidationIntercompanyReportResponseDirectionsItemDocumentsItemCounterpartPaymentStatus",
-    "PostV1ConsolidationIntercompanyReportResponseDirectionsItemDocumentsItemCounterpartStatus",
-    "PostV1ConsolidationIntercompanyReportResponseDirectionsItemDocumentsItemMatch",
-    "PostV1ConsolidationIntercompanyReportResponseDirectionsItemDocumentsItemPaymentStatus",
-    "PostV1ConsolidationIntercompanyReportResponseDirectionsItemDocumentsItemType",
-    "PostV1ConsolidationIntercompanyReportResponseDirectionsItemTotalsItem",
-    "PostV1ConsolidationIntercompanyReportResponseDirectionsItemUnmatchedPurchasesItem",
-    "PostV1ConsolidationIntercompanyReportResponseDirectionsItemUnmatchedPurchasesItemStatus",
-    "PostV1ConsolidationMembersAddRequestMethod",
-    "PostV1ConsolidationMembersAddResponse",
-    "PostV1ConsolidationMembersAddResponseMethod",
-    "PostV1ConsolidationMembersRemoveResponse",
-    "PostV1ConsolidationReportRequestCategory",
-    "PostV1ConsolidationReportRequestEliminationsItem",
-    "PostV1ConsolidationReportResponse",
-    "PostV1ConsolidationReportResponseCashFlow",
-    "PostV1ConsolidationReportResponseCashFlowFinancing",
-    "PostV1ConsolidationReportResponseCashFlowFinancingRowsItem",
-    "PostV1ConsolidationReportResponseCashFlowInvesting",
-    "PostV1ConsolidationReportResponseCashFlowInvestingRowsItem",
-    "PostV1ConsolidationReportResponseCashFlowOperating",
-    "PostV1ConsolidationReportResponseCashFlowOperatingRowsItem",
-    "PostV1ConsolidationReportResponseCategory",
-    "PostV1ConsolidationReportResponseEliminations",
-    "PostV1ConsolidationReportResponseEliminationsAppliedItem",
-    "PostV1ConsolidationReportResponseEquityMethod",
-    "PostV1ConsolidationReportResponseIntercompanyCandidatesItem",
-    "PostV1ConsolidationReportResponseIntercompanyCandidatesItemMatchedOn",
-    "PostV1ConsolidationReportResponseMembersItem",
-    "PostV1ConsolidationReportResponseMembersItemMethod",
-    "PostV1ConsolidationReportResponseNonControllingInterest",
-    "PostV1ConsolidationReportResponseStatements",
-    "PostV1ConsolidationReportResponseStatementsBalanceSheet",
-    "PostV1ConsolidationReportResponseStatementsBalanceSheetDetail",
-    "PostV1ConsolidationReportResponseStatementsBalanceSheetDetailCurrentAssets",
-    "PostV1ConsolidationReportResponseStatementsBalanceSheetDetailEquity",
-    "PostV1ConsolidationReportResponseStatementsBalanceSheetDetailLiabilities",
-    "PostV1ConsolidationReportResponseStatementsBalanceSheetDetailNonCurrentAssets",
-    "PostV1ConsolidationReportResponseStatementsCategory",
-    "PostV1ConsolidationReportResponseStatementsProfitLoss",
-    "PostV1ConsolidationReportResponseStatementsProfitLossDetail",
-    "PostV1ConsolidationReportResponseTrialBalanceItem",
+    "GroupsCreateConsolidationResponse",
+    "GroupsDeleteConsolidationResponse",
+    "GroupsGetConsolidationResponse",
+    "GroupsGetConsolidationResponseMembersItem",
+    "GroupsGetConsolidationResponseMembersItemMethod",
+    "GroupsListConsolidationResponse",
+    "GroupsListConsolidationResponseRowsItem",
+    "GroupsUpdateConsolidationResponse",
+    "IntercompanyCandidatesConsolidationResponse",
+    "IntercompanyCandidatesConsolidationResponseRowsItem",
+    "IntercompanyCandidatesConsolidationResponseRowsItemMatchedOn",
+    "IntercompanyLinksListConsolidationResponse",
+    "IntercompanyLinksListConsolidationResponseRowsItem",
+    "IntercompanyLinksRemoveConsolidationResponse",
+    "IntercompanyLinksSetConsolidationResponse",
+    "IntercompanyReportConsolidationResponse",
+    "IntercompanyReportConsolidationResponseDirectionsItem",
+    "IntercompanyReportConsolidationResponseDirectionsItemDocumentsItem",
+    "IntercompanyReportConsolidationResponseDirectionsItemDocumentsItemCounterpart",
+    "IntercompanyReportConsolidationResponseDirectionsItemDocumentsItemCounterpartPaymentStatus",
+    "IntercompanyReportConsolidationResponseDirectionsItemDocumentsItemCounterpartStatus",
+    "IntercompanyReportConsolidationResponseDirectionsItemDocumentsItemMatch",
+    "IntercompanyReportConsolidationResponseDirectionsItemDocumentsItemPaymentStatus",
+    "IntercompanyReportConsolidationResponseDirectionsItemDocumentsItemType",
+    "IntercompanyReportConsolidationResponseDirectionsItemTotalsItem",
+    "IntercompanyReportConsolidationResponseDirectionsItemUnmatchedPurchasesItem",
+    "IntercompanyReportConsolidationResponseDirectionsItemUnmatchedPurchasesItemStatus",
+    "MembersAddConsolidationRequestMethod",
+    "MembersAddConsolidationResponse",
+    "MembersAddConsolidationResponseMethod",
+    "MembersRemoveConsolidationResponse",
+    "ReportConsolidationRequestCategory",
+    "ReportConsolidationRequestEliminationsItem",
+    "ReportConsolidationResponse",
+    "ReportConsolidationResponseCashFlow",
+    "ReportConsolidationResponseCashFlowFinancing",
+    "ReportConsolidationResponseCashFlowFinancingRowsItem",
+    "ReportConsolidationResponseCashFlowInvesting",
+    "ReportConsolidationResponseCashFlowInvestingRowsItem",
+    "ReportConsolidationResponseCashFlowOperating",
+    "ReportConsolidationResponseCashFlowOperatingRowsItem",
+    "ReportConsolidationResponseCategory",
+    "ReportConsolidationResponseEliminations",
+    "ReportConsolidationResponseEliminationsAppliedItem",
+    "ReportConsolidationResponseEquityMethod",
+    "ReportConsolidationResponseIntercompanyCandidatesItem",
+    "ReportConsolidationResponseIntercompanyCandidatesItemMatchedOn",
+    "ReportConsolidationResponseMembersItem",
+    "ReportConsolidationResponseMembersItemMethod",
+    "ReportConsolidationResponseNonControllingInterest",
+    "ReportConsolidationResponseStatements",
+    "ReportConsolidationResponseStatementsBalanceSheet",
+    "ReportConsolidationResponseStatementsBalanceSheetDetail",
+    "ReportConsolidationResponseStatementsBalanceSheetDetailCurrentAssets",
+    "ReportConsolidationResponseStatementsBalanceSheetDetailEquity",
+    "ReportConsolidationResponseStatementsBalanceSheetDetailLiabilities",
+    "ReportConsolidationResponseStatementsBalanceSheetDetailNonCurrentAssets",
+    "ReportConsolidationResponseStatementsCategory",
+    "ReportConsolidationResponseStatementsProfitLoss",
+    "ReportConsolidationResponseStatementsProfitLossDetail",
+    "ReportConsolidationResponseTrialBalanceItem",
 ]

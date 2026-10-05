@@ -6,325 +6,265 @@ import typing
 from importlib import import_module
 
 if typing.TYPE_CHECKING:
-    from .post_v1ledger_accounts_apply_template_response import PostV1LedgerAccountsApplyTemplateResponse
-    from .post_v1ledger_accounts_create_request_translations_value import (
-        PostV1LedgerAccountsCreateRequestTranslationsValue,
+    from .accounts_apply_template_ledger_response import AccountsApplyTemplateLedgerResponse
+    from .accounts_create_ledger_request_translations_value import AccountsCreateLedgerRequestTranslationsValue
+    from .accounts_create_ledger_request_type import AccountsCreateLedgerRequestType
+    from .accounts_create_ledger_response import AccountsCreateLedgerResponse
+    from .accounts_create_ledger_response_translations_value import AccountsCreateLedgerResponseTranslationsValue
+    from .accounts_create_ledger_response_type import AccountsCreateLedgerResponseType
+    from .accounts_list_ledger_request_filter_item import AccountsListLedgerRequestFilterItem
+    from .accounts_list_ledger_request_filter_item_op import AccountsListLedgerRequestFilterItemOp
+    from .accounts_list_ledger_request_filter_item_value import AccountsListLedgerRequestFilterItemValue
+    from .accounts_list_ledger_request_filter_item_value_three_item import (
+        AccountsListLedgerRequestFilterItemValueThreeItem,
     )
-    from .post_v1ledger_accounts_create_request_type import PostV1LedgerAccountsCreateRequestType
-    from .post_v1ledger_accounts_create_response import PostV1LedgerAccountsCreateResponse
-    from .post_v1ledger_accounts_create_response_translations_value import (
-        PostV1LedgerAccountsCreateResponseTranslationsValue,
+    from .accounts_list_ledger_request_sort_item import AccountsListLedgerRequestSortItem
+    from .accounts_list_ledger_request_sort_item_dir import AccountsListLedgerRequestSortItemDir
+    from .accounts_list_ledger_response import AccountsListLedgerResponse
+    from .accounts_list_ledger_response_rows_item import AccountsListLedgerResponseRowsItem
+    from .accounts_list_ledger_response_rows_item_translations_value import (
+        AccountsListLedgerResponseRowsItemTranslationsValue,
     )
-    from .post_v1ledger_accounts_create_response_type import PostV1LedgerAccountsCreateResponseType
-    from .post_v1ledger_accounts_list_request_filter_item import PostV1LedgerAccountsListRequestFilterItem
-    from .post_v1ledger_accounts_list_request_filter_item_op import PostV1LedgerAccountsListRequestFilterItemOp
-    from .post_v1ledger_accounts_list_request_filter_item_value import PostV1LedgerAccountsListRequestFilterItemValue
-    from .post_v1ledger_accounts_list_request_filter_item_value_three_item import (
-        PostV1LedgerAccountsListRequestFilterItemValueThreeItem,
+    from .accounts_list_ledger_response_rows_item_type import AccountsListLedgerResponseRowsItemType
+    from .accounts_switch_chart_ledger_response import AccountsSwitchChartLedgerResponse
+    from .accounts_update_ledger_request_translations_value import AccountsUpdateLedgerRequestTranslationsValue
+    from .accounts_update_ledger_response import AccountsUpdateLedgerResponse
+    from .accounts_update_ledger_response_translations_value import AccountsUpdateLedgerResponseTranslationsValue
+    from .accounts_update_ledger_response_type import AccountsUpdateLedgerResponseType
+    from .cost_center_groups_create_ledger_response import CostCenterGroupsCreateLedgerResponse
+    from .cost_center_groups_delete_ledger_response import CostCenterGroupsDeleteLedgerResponse
+    from .cost_center_groups_list_ledger_request_filter_item import CostCenterGroupsListLedgerRequestFilterItem
+    from .cost_center_groups_list_ledger_request_filter_item_op import CostCenterGroupsListLedgerRequestFilterItemOp
+    from .cost_center_groups_list_ledger_request_filter_item_value import (
+        CostCenterGroupsListLedgerRequestFilterItemValue,
     )
-    from .post_v1ledger_accounts_list_request_sort_item import PostV1LedgerAccountsListRequestSortItem
-    from .post_v1ledger_accounts_list_request_sort_item_dir import PostV1LedgerAccountsListRequestSortItemDir
-    from .post_v1ledger_accounts_list_response import PostV1LedgerAccountsListResponse
-    from .post_v1ledger_accounts_list_response_rows_item import PostV1LedgerAccountsListResponseRowsItem
-    from .post_v1ledger_accounts_list_response_rows_item_translations_value import (
-        PostV1LedgerAccountsListResponseRowsItemTranslationsValue,
+    from .cost_center_groups_list_ledger_request_filter_item_value_three_item import (
+        CostCenterGroupsListLedgerRequestFilterItemValueThreeItem,
     )
-    from .post_v1ledger_accounts_list_response_rows_item_type import PostV1LedgerAccountsListResponseRowsItemType
-    from .post_v1ledger_accounts_switch_chart_response import PostV1LedgerAccountsSwitchChartResponse
-    from .post_v1ledger_accounts_update_request_translations_value import (
-        PostV1LedgerAccountsUpdateRequestTranslationsValue,
+    from .cost_center_groups_list_ledger_request_sort_item import CostCenterGroupsListLedgerRequestSortItem
+    from .cost_center_groups_list_ledger_request_sort_item_dir import CostCenterGroupsListLedgerRequestSortItemDir
+    from .cost_center_groups_list_ledger_response import CostCenterGroupsListLedgerResponse
+    from .cost_center_groups_list_ledger_response_rows_item import CostCenterGroupsListLedgerResponseRowsItem
+    from .cost_center_groups_update_ledger_response import CostCenterGroupsUpdateLedgerResponse
+    from .cost_centers_create_ledger_response import CostCentersCreateLedgerResponse
+    from .cost_centers_list_ledger_request_filter_item import CostCentersListLedgerRequestFilterItem
+    from .cost_centers_list_ledger_request_filter_item_op import CostCentersListLedgerRequestFilterItemOp
+    from .cost_centers_list_ledger_request_filter_item_value import CostCentersListLedgerRequestFilterItemValue
+    from .cost_centers_list_ledger_request_filter_item_value_three_item import (
+        CostCentersListLedgerRequestFilterItemValueThreeItem,
     )
-    from .post_v1ledger_accounts_update_response import PostV1LedgerAccountsUpdateResponse
-    from .post_v1ledger_accounts_update_response_translations_value import (
-        PostV1LedgerAccountsUpdateResponseTranslationsValue,
+    from .cost_centers_list_ledger_request_sort_item import CostCentersListLedgerRequestSortItem
+    from .cost_centers_list_ledger_request_sort_item_dir import CostCentersListLedgerRequestSortItemDir
+    from .cost_centers_list_ledger_response import CostCentersListLedgerResponse
+    from .cost_centers_list_ledger_response_rows_item import CostCentersListLedgerResponseRowsItem
+    from .cost_centers_update_ledger_response import CostCentersUpdateLedgerResponse
+    from .journal_transactions_create_ledger_request_entries_item import (
+        JournalTransactionsCreateLedgerRequestEntriesItem,
     )
-    from .post_v1ledger_accounts_update_response_type import PostV1LedgerAccountsUpdateResponseType
-    from .post_v1ledger_cost_center_groups_create_response import PostV1LedgerCostCenterGroupsCreateResponse
-    from .post_v1ledger_cost_center_groups_delete_response import PostV1LedgerCostCenterGroupsDeleteResponse
-    from .post_v1ledger_cost_center_groups_list_request_filter_item import (
-        PostV1LedgerCostCenterGroupsListRequestFilterItem,
+    from .journal_transactions_create_ledger_response import JournalTransactionsCreateLedgerResponse
+    from .journal_transactions_create_ledger_response_status import JournalTransactionsCreateLedgerResponseStatus
+    from .journal_transactions_get_ledger_response import JournalTransactionsGetLedgerResponse
+    from .journal_transactions_get_ledger_response_entries_item import JournalTransactionsGetLedgerResponseEntriesItem
+    from .journal_transactions_get_ledger_response_status import JournalTransactionsGetLedgerResponseStatus
+    from .journal_transactions_list_ledger_request_filter_item import JournalTransactionsListLedgerRequestFilterItem
+    from .journal_transactions_list_ledger_request_filter_item_op import (
+        JournalTransactionsListLedgerRequestFilterItemOp,
     )
-    from .post_v1ledger_cost_center_groups_list_request_filter_item_op import (
-        PostV1LedgerCostCenterGroupsListRequestFilterItemOp,
+    from .journal_transactions_list_ledger_request_filter_item_value import (
+        JournalTransactionsListLedgerRequestFilterItemValue,
     )
-    from .post_v1ledger_cost_center_groups_list_request_filter_item_value import (
-        PostV1LedgerCostCenterGroupsListRequestFilterItemValue,
+    from .journal_transactions_list_ledger_request_filter_item_value_three_item import (
+        JournalTransactionsListLedgerRequestFilterItemValueThreeItem,
     )
-    from .post_v1ledger_cost_center_groups_list_request_filter_item_value_three_item import (
-        PostV1LedgerCostCenterGroupsListRequestFilterItemValueThreeItem,
+    from .journal_transactions_list_ledger_request_sort_item import JournalTransactionsListLedgerRequestSortItem
+    from .journal_transactions_list_ledger_request_sort_item_dir import JournalTransactionsListLedgerRequestSortItemDir
+    from .journal_transactions_list_ledger_response import JournalTransactionsListLedgerResponse
+    from .journal_transactions_list_ledger_response_rows_item import JournalTransactionsListLedgerResponseRowsItem
+    from .journal_transactions_list_ledger_response_rows_item_status import (
+        JournalTransactionsListLedgerResponseRowsItemStatus,
     )
-    from .post_v1ledger_cost_center_groups_list_request_sort_item import PostV1LedgerCostCenterGroupsListRequestSortItem
-    from .post_v1ledger_cost_center_groups_list_request_sort_item_dir import (
-        PostV1LedgerCostCenterGroupsListRequestSortItemDir,
+    from .owners_create_ledger_request_address import OwnersCreateLedgerRequestAddress
+    from .owners_create_ledger_request_partner_liability import OwnersCreateLedgerRequestPartnerLiability
+    from .owners_create_ledger_request_shares_type import OwnersCreateLedgerRequestSharesType
+    from .owners_create_ledger_response import OwnersCreateLedgerResponse
+    from .owners_create_ledger_response_address import OwnersCreateLedgerResponseAddress
+    from .owners_create_ledger_response_partner_liability import OwnersCreateLedgerResponsePartnerLiability
+    from .owners_delete_ledger_response import OwnersDeleteLedgerResponse
+    from .owners_list_ledger_request_filter_item import OwnersListLedgerRequestFilterItem
+    from .owners_list_ledger_request_filter_item_op import OwnersListLedgerRequestFilterItemOp
+    from .owners_list_ledger_request_filter_item_value import OwnersListLedgerRequestFilterItemValue
+    from .owners_list_ledger_request_filter_item_value_three_item import OwnersListLedgerRequestFilterItemValueThreeItem
+    from .owners_list_ledger_request_sort_item import OwnersListLedgerRequestSortItem
+    from .owners_list_ledger_request_sort_item_dir import OwnersListLedgerRequestSortItemDir
+    from .owners_list_ledger_response import OwnersListLedgerResponse
+    from .owners_list_ledger_response_rows_item import OwnersListLedgerResponseRowsItem
+    from .owners_list_ledger_response_rows_item_address import OwnersListLedgerResponseRowsItemAddress
+    from .owners_list_ledger_response_rows_item_partner_liability import (
+        OwnersListLedgerResponseRowsItemPartnerLiability,
     )
-    from .post_v1ledger_cost_center_groups_list_response import PostV1LedgerCostCenterGroupsListResponse
-    from .post_v1ledger_cost_center_groups_list_response_rows_item import (
-        PostV1LedgerCostCenterGroupsListResponseRowsItem,
+    from .owners_update_ledger_request_address import OwnersUpdateLedgerRequestAddress
+    from .owners_update_ledger_request_partner_liability import OwnersUpdateLedgerRequestPartnerLiability
+    from .owners_update_ledger_request_shares_type import OwnersUpdateLedgerRequestSharesType
+    from .owners_update_ledger_response import OwnersUpdateLedgerResponse
+    from .owners_update_ledger_response_address import OwnersUpdateLedgerResponseAddress
+    from .owners_update_ledger_response_partner_liability import OwnersUpdateLedgerResponsePartnerLiability
+    from .periods_list_ledger_request_filter_item import PeriodsListLedgerRequestFilterItem
+    from .periods_list_ledger_request_filter_item_op import PeriodsListLedgerRequestFilterItemOp
+    from .periods_list_ledger_request_filter_item_value import PeriodsListLedgerRequestFilterItemValue
+    from .periods_list_ledger_request_filter_item_value_three_item import (
+        PeriodsListLedgerRequestFilterItemValueThreeItem,
     )
-    from .post_v1ledger_cost_center_groups_update_response import PostV1LedgerCostCenterGroupsUpdateResponse
-    from .post_v1ledger_cost_centers_create_response import PostV1LedgerCostCentersCreateResponse
-    from .post_v1ledger_cost_centers_list_request_filter_item import PostV1LedgerCostCentersListRequestFilterItem
-    from .post_v1ledger_cost_centers_list_request_filter_item_op import PostV1LedgerCostCentersListRequestFilterItemOp
-    from .post_v1ledger_cost_centers_list_request_filter_item_value import (
-        PostV1LedgerCostCentersListRequestFilterItemValue,
+    from .periods_list_ledger_request_sort_item import PeriodsListLedgerRequestSortItem
+    from .periods_list_ledger_request_sort_item_dir import PeriodsListLedgerRequestSortItemDir
+    from .periods_list_ledger_response import PeriodsListLedgerResponse
+    from .periods_list_ledger_response_rows_item import PeriodsListLedgerResponseRowsItem
+    from .periods_list_ledger_response_rows_item_status import PeriodsListLedgerResponseRowsItemStatus
+    from .periods_lock_ledger_response import PeriodsLockLedgerResponse
+    from .periods_lock_ledger_response_status import PeriodsLockLedgerResponseStatus
+    from .periods_unlock_ledger_response import PeriodsUnlockLedgerResponse
+    from .periods_unlock_ledger_response_status import PeriodsUnlockLedgerResponseStatus
+    from .posting_rules_list_ledger_response import PostingRulesListLedgerResponse
+    from .posting_rules_list_ledger_response_rows_item import PostingRulesListLedgerResponseRowsItem
+    from .posting_rules_update_ledger_request_rules_item import PostingRulesUpdateLedgerRequestRulesItem
+    from .posting_rules_update_ledger_request_rules_item_key import PostingRulesUpdateLedgerRequestRulesItemKey
+    from .posting_rules_update_ledger_response import PostingRulesUpdateLedgerResponse
+    from .posting_rules_update_ledger_response_rows_item import PostingRulesUpdateLedgerResponseRowsItem
+    from .statement_rows_list_ledger_response import StatementRowsListLedgerResponse
+    from .statement_rows_list_ledger_response_accounts_item import StatementRowsListLedgerResponseAccountsItem
+    from .statement_rows_list_ledger_response_accounts_item_source import (
+        StatementRowsListLedgerResponseAccountsItemSource,
     )
-    from .post_v1ledger_cost_centers_list_request_filter_item_value_three_item import (
-        PostV1LedgerCostCentersListRequestFilterItemValueThreeItem,
+    from .statement_rows_list_ledger_response_rows_item import StatementRowsListLedgerResponseRowsItem
+    from .statement_rows_list_ledger_response_rows_item_statement import (
+        StatementRowsListLedgerResponseRowsItemStatement,
     )
-    from .post_v1ledger_cost_centers_list_request_sort_item import PostV1LedgerCostCentersListRequestSortItem
-    from .post_v1ledger_cost_centers_list_request_sort_item_dir import PostV1LedgerCostCentersListRequestSortItemDir
-    from .post_v1ledger_cost_centers_list_response import PostV1LedgerCostCentersListResponse
-    from .post_v1ledger_cost_centers_list_response_rows_item import PostV1LedgerCostCentersListResponseRowsItem
-    from .post_v1ledger_cost_centers_update_response import PostV1LedgerCostCentersUpdateResponse
-    from .post_v1ledger_journal_transactions_create_request_entries_item import (
-        PostV1LedgerJournalTransactionsCreateRequestEntriesItem,
+    from .statement_rows_list_ledger_response_scheme import StatementRowsListLedgerResponseScheme
+    from .statement_rows_list_ledger_response_scheme_rows_item import StatementRowsListLedgerResponseSchemeRowsItem
+    from .statement_rows_list_ledger_response_scheme_rows_item_statement import (
+        StatementRowsListLedgerResponseSchemeRowsItemStatement,
     )
-    from .post_v1ledger_journal_transactions_create_response import PostV1LedgerJournalTransactionsCreateResponse
-    from .post_v1ledger_journal_transactions_create_response_status import (
-        PostV1LedgerJournalTransactionsCreateResponseStatus,
+    from .statement_rows_schemes_ledger_response import StatementRowsSchemesLedgerResponse
+    from .statement_rows_schemes_ledger_response_rows_item import StatementRowsSchemesLedgerResponseRowsItem
+    from .statement_rows_schemes_ledger_response_rows_item_rows_item import (
+        StatementRowsSchemesLedgerResponseRowsItemRowsItem,
     )
-    from .post_v1ledger_journal_transactions_get_response import PostV1LedgerJournalTransactionsGetResponse
-    from .post_v1ledger_journal_transactions_get_response_entries_item import (
-        PostV1LedgerJournalTransactionsGetResponseEntriesItem,
+    from .statement_rows_schemes_ledger_response_rows_item_rows_item_statement import (
+        StatementRowsSchemesLedgerResponseRowsItemRowsItemStatement,
     )
-    from .post_v1ledger_journal_transactions_get_response_status import PostV1LedgerJournalTransactionsGetResponseStatus
-    from .post_v1ledger_journal_transactions_list_request_filter_item import (
-        PostV1LedgerJournalTransactionsListRequestFilterItem,
-    )
-    from .post_v1ledger_journal_transactions_list_request_filter_item_op import (
-        PostV1LedgerJournalTransactionsListRequestFilterItemOp,
-    )
-    from .post_v1ledger_journal_transactions_list_request_filter_item_value import (
-        PostV1LedgerJournalTransactionsListRequestFilterItemValue,
-    )
-    from .post_v1ledger_journal_transactions_list_request_filter_item_value_three_item import (
-        PostV1LedgerJournalTransactionsListRequestFilterItemValueThreeItem,
-    )
-    from .post_v1ledger_journal_transactions_list_request_sort_item import (
-        PostV1LedgerJournalTransactionsListRequestSortItem,
-    )
-    from .post_v1ledger_journal_transactions_list_request_sort_item_dir import (
-        PostV1LedgerJournalTransactionsListRequestSortItemDir,
-    )
-    from .post_v1ledger_journal_transactions_list_response import PostV1LedgerJournalTransactionsListResponse
-    from .post_v1ledger_journal_transactions_list_response_rows_item import (
-        PostV1LedgerJournalTransactionsListResponseRowsItem,
-    )
-    from .post_v1ledger_journal_transactions_list_response_rows_item_status import (
-        PostV1LedgerJournalTransactionsListResponseRowsItemStatus,
-    )
-    from .post_v1ledger_owners_create_request_address import PostV1LedgerOwnersCreateRequestAddress
-    from .post_v1ledger_owners_create_request_partner_liability import PostV1LedgerOwnersCreateRequestPartnerLiability
-    from .post_v1ledger_owners_create_request_shares_type import PostV1LedgerOwnersCreateRequestSharesType
-    from .post_v1ledger_owners_create_response import PostV1LedgerOwnersCreateResponse
-    from .post_v1ledger_owners_create_response_address import PostV1LedgerOwnersCreateResponseAddress
-    from .post_v1ledger_owners_create_response_partner_liability import PostV1LedgerOwnersCreateResponsePartnerLiability
-    from .post_v1ledger_owners_delete_response import PostV1LedgerOwnersDeleteResponse
-    from .post_v1ledger_owners_list_request_filter_item import PostV1LedgerOwnersListRequestFilterItem
-    from .post_v1ledger_owners_list_request_filter_item_op import PostV1LedgerOwnersListRequestFilterItemOp
-    from .post_v1ledger_owners_list_request_filter_item_value import PostV1LedgerOwnersListRequestFilterItemValue
-    from .post_v1ledger_owners_list_request_filter_item_value_three_item import (
-        PostV1LedgerOwnersListRequestFilterItemValueThreeItem,
-    )
-    from .post_v1ledger_owners_list_request_sort_item import PostV1LedgerOwnersListRequestSortItem
-    from .post_v1ledger_owners_list_request_sort_item_dir import PostV1LedgerOwnersListRequestSortItemDir
-    from .post_v1ledger_owners_list_response import PostV1LedgerOwnersListResponse
-    from .post_v1ledger_owners_list_response_rows_item import PostV1LedgerOwnersListResponseRowsItem
-    from .post_v1ledger_owners_list_response_rows_item_address import PostV1LedgerOwnersListResponseRowsItemAddress
-    from .post_v1ledger_owners_list_response_rows_item_partner_liability import (
-        PostV1LedgerOwnersListResponseRowsItemPartnerLiability,
-    )
-    from .post_v1ledger_owners_update_request_address import PostV1LedgerOwnersUpdateRequestAddress
-    from .post_v1ledger_owners_update_request_partner_liability import PostV1LedgerOwnersUpdateRequestPartnerLiability
-    from .post_v1ledger_owners_update_request_shares_type import PostV1LedgerOwnersUpdateRequestSharesType
-    from .post_v1ledger_owners_update_response import PostV1LedgerOwnersUpdateResponse
-    from .post_v1ledger_owners_update_response_address import PostV1LedgerOwnersUpdateResponseAddress
-    from .post_v1ledger_owners_update_response_partner_liability import PostV1LedgerOwnersUpdateResponsePartnerLiability
-    from .post_v1ledger_periods_list_request_filter_item import PostV1LedgerPeriodsListRequestFilterItem
-    from .post_v1ledger_periods_list_request_filter_item_op import PostV1LedgerPeriodsListRequestFilterItemOp
-    from .post_v1ledger_periods_list_request_filter_item_value import PostV1LedgerPeriodsListRequestFilterItemValue
-    from .post_v1ledger_periods_list_request_filter_item_value_three_item import (
-        PostV1LedgerPeriodsListRequestFilterItemValueThreeItem,
-    )
-    from .post_v1ledger_periods_list_request_sort_item import PostV1LedgerPeriodsListRequestSortItem
-    from .post_v1ledger_periods_list_request_sort_item_dir import PostV1LedgerPeriodsListRequestSortItemDir
-    from .post_v1ledger_periods_list_response import PostV1LedgerPeriodsListResponse
-    from .post_v1ledger_periods_list_response_rows_item import PostV1LedgerPeriodsListResponseRowsItem
-    from .post_v1ledger_periods_list_response_rows_item_status import PostV1LedgerPeriodsListResponseRowsItemStatus
-    from .post_v1ledger_periods_lock_response import PostV1LedgerPeriodsLockResponse
-    from .post_v1ledger_periods_lock_response_status import PostV1LedgerPeriodsLockResponseStatus
-    from .post_v1ledger_periods_unlock_response import PostV1LedgerPeriodsUnlockResponse
-    from .post_v1ledger_periods_unlock_response_status import PostV1LedgerPeriodsUnlockResponseStatus
-    from .post_v1ledger_posting_rules_list_response import PostV1LedgerPostingRulesListResponse
-    from .post_v1ledger_posting_rules_list_response_rows_item import PostV1LedgerPostingRulesListResponseRowsItem
-    from .post_v1ledger_posting_rules_update_request_rules_item import PostV1LedgerPostingRulesUpdateRequestRulesItem
-    from .post_v1ledger_posting_rules_update_request_rules_item_key import (
-        PostV1LedgerPostingRulesUpdateRequestRulesItemKey,
-    )
-    from .post_v1ledger_posting_rules_update_response import PostV1LedgerPostingRulesUpdateResponse
-    from .post_v1ledger_posting_rules_update_response_rows_item import PostV1LedgerPostingRulesUpdateResponseRowsItem
-    from .post_v1ledger_statement_rows_list_response import PostV1LedgerStatementRowsListResponse
-    from .post_v1ledger_statement_rows_list_response_accounts_item import (
-        PostV1LedgerStatementRowsListResponseAccountsItem,
-    )
-    from .post_v1ledger_statement_rows_list_response_accounts_item_source import (
-        PostV1LedgerStatementRowsListResponseAccountsItemSource,
-    )
-    from .post_v1ledger_statement_rows_list_response_rows_item import PostV1LedgerStatementRowsListResponseRowsItem
-    from .post_v1ledger_statement_rows_list_response_rows_item_statement import (
-        PostV1LedgerStatementRowsListResponseRowsItemStatement,
-    )
-    from .post_v1ledger_statement_rows_list_response_scheme import PostV1LedgerStatementRowsListResponseScheme
-    from .post_v1ledger_statement_rows_list_response_scheme_rows_item import (
-        PostV1LedgerStatementRowsListResponseSchemeRowsItem,
-    )
-    from .post_v1ledger_statement_rows_list_response_scheme_rows_item_statement import (
-        PostV1LedgerStatementRowsListResponseSchemeRowsItemStatement,
-    )
-    from .post_v1ledger_statement_rows_schemes_response import PostV1LedgerStatementRowsSchemesResponse
-    from .post_v1ledger_statement_rows_schemes_response_rows_item import (
-        PostV1LedgerStatementRowsSchemesResponseRowsItem,
-    )
-    from .post_v1ledger_statement_rows_schemes_response_rows_item_rows_item import (
-        PostV1LedgerStatementRowsSchemesResponseRowsItemRowsItem,
-    )
-    from .post_v1ledger_statement_rows_schemes_response_rows_item_rows_item_statement import (
-        PostV1LedgerStatementRowsSchemesResponseRowsItemRowsItemStatement,
-    )
-    from .post_v1ledger_statement_rows_set_response import PostV1LedgerStatementRowsSetResponse
-    from .post_v1officers_create_request_role import PostV1OfficersCreateRequestRole
-    from .post_v1officers_create_response import PostV1OfficersCreateResponse
-    from .post_v1officers_create_response_role import PostV1OfficersCreateResponseRole
-    from .post_v1officers_delete_response import PostV1OfficersDeleteResponse
-    from .post_v1officers_list_response import PostV1OfficersListResponse
-    from .post_v1officers_list_response_rows_item import PostV1OfficersListResponseRowsItem
-    from .post_v1officers_list_response_rows_item_role import PostV1OfficersListResponseRowsItemRole
-    from .post_v1officers_update_request_role import PostV1OfficersUpdateRequestRole
-    from .post_v1officers_update_response import PostV1OfficersUpdateResponse
-    from .post_v1officers_update_response_role import PostV1OfficersUpdateResponseRole
+    from .statement_rows_set_ledger_response import StatementRowsSetLedgerResponse
 _dynamic_imports: typing.Dict[str, str] = {
-    "PostV1LedgerAccountsApplyTemplateResponse": ".post_v1ledger_accounts_apply_template_response",
-    "PostV1LedgerAccountsCreateRequestTranslationsValue": ".post_v1ledger_accounts_create_request_translations_value",
-    "PostV1LedgerAccountsCreateRequestType": ".post_v1ledger_accounts_create_request_type",
-    "PostV1LedgerAccountsCreateResponse": ".post_v1ledger_accounts_create_response",
-    "PostV1LedgerAccountsCreateResponseTranslationsValue": ".post_v1ledger_accounts_create_response_translations_value",
-    "PostV1LedgerAccountsCreateResponseType": ".post_v1ledger_accounts_create_response_type",
-    "PostV1LedgerAccountsListRequestFilterItem": ".post_v1ledger_accounts_list_request_filter_item",
-    "PostV1LedgerAccountsListRequestFilterItemOp": ".post_v1ledger_accounts_list_request_filter_item_op",
-    "PostV1LedgerAccountsListRequestFilterItemValue": ".post_v1ledger_accounts_list_request_filter_item_value",
-    "PostV1LedgerAccountsListRequestFilterItemValueThreeItem": ".post_v1ledger_accounts_list_request_filter_item_value_three_item",
-    "PostV1LedgerAccountsListRequestSortItem": ".post_v1ledger_accounts_list_request_sort_item",
-    "PostV1LedgerAccountsListRequestSortItemDir": ".post_v1ledger_accounts_list_request_sort_item_dir",
-    "PostV1LedgerAccountsListResponse": ".post_v1ledger_accounts_list_response",
-    "PostV1LedgerAccountsListResponseRowsItem": ".post_v1ledger_accounts_list_response_rows_item",
-    "PostV1LedgerAccountsListResponseRowsItemTranslationsValue": ".post_v1ledger_accounts_list_response_rows_item_translations_value",
-    "PostV1LedgerAccountsListResponseRowsItemType": ".post_v1ledger_accounts_list_response_rows_item_type",
-    "PostV1LedgerAccountsSwitchChartResponse": ".post_v1ledger_accounts_switch_chart_response",
-    "PostV1LedgerAccountsUpdateRequestTranslationsValue": ".post_v1ledger_accounts_update_request_translations_value",
-    "PostV1LedgerAccountsUpdateResponse": ".post_v1ledger_accounts_update_response",
-    "PostV1LedgerAccountsUpdateResponseTranslationsValue": ".post_v1ledger_accounts_update_response_translations_value",
-    "PostV1LedgerAccountsUpdateResponseType": ".post_v1ledger_accounts_update_response_type",
-    "PostV1LedgerCostCenterGroupsCreateResponse": ".post_v1ledger_cost_center_groups_create_response",
-    "PostV1LedgerCostCenterGroupsDeleteResponse": ".post_v1ledger_cost_center_groups_delete_response",
-    "PostV1LedgerCostCenterGroupsListRequestFilterItem": ".post_v1ledger_cost_center_groups_list_request_filter_item",
-    "PostV1LedgerCostCenterGroupsListRequestFilterItemOp": ".post_v1ledger_cost_center_groups_list_request_filter_item_op",
-    "PostV1LedgerCostCenterGroupsListRequestFilterItemValue": ".post_v1ledger_cost_center_groups_list_request_filter_item_value",
-    "PostV1LedgerCostCenterGroupsListRequestFilterItemValueThreeItem": ".post_v1ledger_cost_center_groups_list_request_filter_item_value_three_item",
-    "PostV1LedgerCostCenterGroupsListRequestSortItem": ".post_v1ledger_cost_center_groups_list_request_sort_item",
-    "PostV1LedgerCostCenterGroupsListRequestSortItemDir": ".post_v1ledger_cost_center_groups_list_request_sort_item_dir",
-    "PostV1LedgerCostCenterGroupsListResponse": ".post_v1ledger_cost_center_groups_list_response",
-    "PostV1LedgerCostCenterGroupsListResponseRowsItem": ".post_v1ledger_cost_center_groups_list_response_rows_item",
-    "PostV1LedgerCostCenterGroupsUpdateResponse": ".post_v1ledger_cost_center_groups_update_response",
-    "PostV1LedgerCostCentersCreateResponse": ".post_v1ledger_cost_centers_create_response",
-    "PostV1LedgerCostCentersListRequestFilterItem": ".post_v1ledger_cost_centers_list_request_filter_item",
-    "PostV1LedgerCostCentersListRequestFilterItemOp": ".post_v1ledger_cost_centers_list_request_filter_item_op",
-    "PostV1LedgerCostCentersListRequestFilterItemValue": ".post_v1ledger_cost_centers_list_request_filter_item_value",
-    "PostV1LedgerCostCentersListRequestFilterItemValueThreeItem": ".post_v1ledger_cost_centers_list_request_filter_item_value_three_item",
-    "PostV1LedgerCostCentersListRequestSortItem": ".post_v1ledger_cost_centers_list_request_sort_item",
-    "PostV1LedgerCostCentersListRequestSortItemDir": ".post_v1ledger_cost_centers_list_request_sort_item_dir",
-    "PostV1LedgerCostCentersListResponse": ".post_v1ledger_cost_centers_list_response",
-    "PostV1LedgerCostCentersListResponseRowsItem": ".post_v1ledger_cost_centers_list_response_rows_item",
-    "PostV1LedgerCostCentersUpdateResponse": ".post_v1ledger_cost_centers_update_response",
-    "PostV1LedgerJournalTransactionsCreateRequestEntriesItem": ".post_v1ledger_journal_transactions_create_request_entries_item",
-    "PostV1LedgerJournalTransactionsCreateResponse": ".post_v1ledger_journal_transactions_create_response",
-    "PostV1LedgerJournalTransactionsCreateResponseStatus": ".post_v1ledger_journal_transactions_create_response_status",
-    "PostV1LedgerJournalTransactionsGetResponse": ".post_v1ledger_journal_transactions_get_response",
-    "PostV1LedgerJournalTransactionsGetResponseEntriesItem": ".post_v1ledger_journal_transactions_get_response_entries_item",
-    "PostV1LedgerJournalTransactionsGetResponseStatus": ".post_v1ledger_journal_transactions_get_response_status",
-    "PostV1LedgerJournalTransactionsListRequestFilterItem": ".post_v1ledger_journal_transactions_list_request_filter_item",
-    "PostV1LedgerJournalTransactionsListRequestFilterItemOp": ".post_v1ledger_journal_transactions_list_request_filter_item_op",
-    "PostV1LedgerJournalTransactionsListRequestFilterItemValue": ".post_v1ledger_journal_transactions_list_request_filter_item_value",
-    "PostV1LedgerJournalTransactionsListRequestFilterItemValueThreeItem": ".post_v1ledger_journal_transactions_list_request_filter_item_value_three_item",
-    "PostV1LedgerJournalTransactionsListRequestSortItem": ".post_v1ledger_journal_transactions_list_request_sort_item",
-    "PostV1LedgerJournalTransactionsListRequestSortItemDir": ".post_v1ledger_journal_transactions_list_request_sort_item_dir",
-    "PostV1LedgerJournalTransactionsListResponse": ".post_v1ledger_journal_transactions_list_response",
-    "PostV1LedgerJournalTransactionsListResponseRowsItem": ".post_v1ledger_journal_transactions_list_response_rows_item",
-    "PostV1LedgerJournalTransactionsListResponseRowsItemStatus": ".post_v1ledger_journal_transactions_list_response_rows_item_status",
-    "PostV1LedgerOwnersCreateRequestAddress": ".post_v1ledger_owners_create_request_address",
-    "PostV1LedgerOwnersCreateRequestPartnerLiability": ".post_v1ledger_owners_create_request_partner_liability",
-    "PostV1LedgerOwnersCreateRequestSharesType": ".post_v1ledger_owners_create_request_shares_type",
-    "PostV1LedgerOwnersCreateResponse": ".post_v1ledger_owners_create_response",
-    "PostV1LedgerOwnersCreateResponseAddress": ".post_v1ledger_owners_create_response_address",
-    "PostV1LedgerOwnersCreateResponsePartnerLiability": ".post_v1ledger_owners_create_response_partner_liability",
-    "PostV1LedgerOwnersDeleteResponse": ".post_v1ledger_owners_delete_response",
-    "PostV1LedgerOwnersListRequestFilterItem": ".post_v1ledger_owners_list_request_filter_item",
-    "PostV1LedgerOwnersListRequestFilterItemOp": ".post_v1ledger_owners_list_request_filter_item_op",
-    "PostV1LedgerOwnersListRequestFilterItemValue": ".post_v1ledger_owners_list_request_filter_item_value",
-    "PostV1LedgerOwnersListRequestFilterItemValueThreeItem": ".post_v1ledger_owners_list_request_filter_item_value_three_item",
-    "PostV1LedgerOwnersListRequestSortItem": ".post_v1ledger_owners_list_request_sort_item",
-    "PostV1LedgerOwnersListRequestSortItemDir": ".post_v1ledger_owners_list_request_sort_item_dir",
-    "PostV1LedgerOwnersListResponse": ".post_v1ledger_owners_list_response",
-    "PostV1LedgerOwnersListResponseRowsItem": ".post_v1ledger_owners_list_response_rows_item",
-    "PostV1LedgerOwnersListResponseRowsItemAddress": ".post_v1ledger_owners_list_response_rows_item_address",
-    "PostV1LedgerOwnersListResponseRowsItemPartnerLiability": ".post_v1ledger_owners_list_response_rows_item_partner_liability",
-    "PostV1LedgerOwnersUpdateRequestAddress": ".post_v1ledger_owners_update_request_address",
-    "PostV1LedgerOwnersUpdateRequestPartnerLiability": ".post_v1ledger_owners_update_request_partner_liability",
-    "PostV1LedgerOwnersUpdateRequestSharesType": ".post_v1ledger_owners_update_request_shares_type",
-    "PostV1LedgerOwnersUpdateResponse": ".post_v1ledger_owners_update_response",
-    "PostV1LedgerOwnersUpdateResponseAddress": ".post_v1ledger_owners_update_response_address",
-    "PostV1LedgerOwnersUpdateResponsePartnerLiability": ".post_v1ledger_owners_update_response_partner_liability",
-    "PostV1LedgerPeriodsListRequestFilterItem": ".post_v1ledger_periods_list_request_filter_item",
-    "PostV1LedgerPeriodsListRequestFilterItemOp": ".post_v1ledger_periods_list_request_filter_item_op",
-    "PostV1LedgerPeriodsListRequestFilterItemValue": ".post_v1ledger_periods_list_request_filter_item_value",
-    "PostV1LedgerPeriodsListRequestFilterItemValueThreeItem": ".post_v1ledger_periods_list_request_filter_item_value_three_item",
-    "PostV1LedgerPeriodsListRequestSortItem": ".post_v1ledger_periods_list_request_sort_item",
-    "PostV1LedgerPeriodsListRequestSortItemDir": ".post_v1ledger_periods_list_request_sort_item_dir",
-    "PostV1LedgerPeriodsListResponse": ".post_v1ledger_periods_list_response",
-    "PostV1LedgerPeriodsListResponseRowsItem": ".post_v1ledger_periods_list_response_rows_item",
-    "PostV1LedgerPeriodsListResponseRowsItemStatus": ".post_v1ledger_periods_list_response_rows_item_status",
-    "PostV1LedgerPeriodsLockResponse": ".post_v1ledger_periods_lock_response",
-    "PostV1LedgerPeriodsLockResponseStatus": ".post_v1ledger_periods_lock_response_status",
-    "PostV1LedgerPeriodsUnlockResponse": ".post_v1ledger_periods_unlock_response",
-    "PostV1LedgerPeriodsUnlockResponseStatus": ".post_v1ledger_periods_unlock_response_status",
-    "PostV1LedgerPostingRulesListResponse": ".post_v1ledger_posting_rules_list_response",
-    "PostV1LedgerPostingRulesListResponseRowsItem": ".post_v1ledger_posting_rules_list_response_rows_item",
-    "PostV1LedgerPostingRulesUpdateRequestRulesItem": ".post_v1ledger_posting_rules_update_request_rules_item",
-    "PostV1LedgerPostingRulesUpdateRequestRulesItemKey": ".post_v1ledger_posting_rules_update_request_rules_item_key",
-    "PostV1LedgerPostingRulesUpdateResponse": ".post_v1ledger_posting_rules_update_response",
-    "PostV1LedgerPostingRulesUpdateResponseRowsItem": ".post_v1ledger_posting_rules_update_response_rows_item",
-    "PostV1LedgerStatementRowsListResponse": ".post_v1ledger_statement_rows_list_response",
-    "PostV1LedgerStatementRowsListResponseAccountsItem": ".post_v1ledger_statement_rows_list_response_accounts_item",
-    "PostV1LedgerStatementRowsListResponseAccountsItemSource": ".post_v1ledger_statement_rows_list_response_accounts_item_source",
-    "PostV1LedgerStatementRowsListResponseRowsItem": ".post_v1ledger_statement_rows_list_response_rows_item",
-    "PostV1LedgerStatementRowsListResponseRowsItemStatement": ".post_v1ledger_statement_rows_list_response_rows_item_statement",
-    "PostV1LedgerStatementRowsListResponseScheme": ".post_v1ledger_statement_rows_list_response_scheme",
-    "PostV1LedgerStatementRowsListResponseSchemeRowsItem": ".post_v1ledger_statement_rows_list_response_scheme_rows_item",
-    "PostV1LedgerStatementRowsListResponseSchemeRowsItemStatement": ".post_v1ledger_statement_rows_list_response_scheme_rows_item_statement",
-    "PostV1LedgerStatementRowsSchemesResponse": ".post_v1ledger_statement_rows_schemes_response",
-    "PostV1LedgerStatementRowsSchemesResponseRowsItem": ".post_v1ledger_statement_rows_schemes_response_rows_item",
-    "PostV1LedgerStatementRowsSchemesResponseRowsItemRowsItem": ".post_v1ledger_statement_rows_schemes_response_rows_item_rows_item",
-    "PostV1LedgerStatementRowsSchemesResponseRowsItemRowsItemStatement": ".post_v1ledger_statement_rows_schemes_response_rows_item_rows_item_statement",
-    "PostV1LedgerStatementRowsSetResponse": ".post_v1ledger_statement_rows_set_response",
-    "PostV1OfficersCreateRequestRole": ".post_v1officers_create_request_role",
-    "PostV1OfficersCreateResponse": ".post_v1officers_create_response",
-    "PostV1OfficersCreateResponseRole": ".post_v1officers_create_response_role",
-    "PostV1OfficersDeleteResponse": ".post_v1officers_delete_response",
-    "PostV1OfficersListResponse": ".post_v1officers_list_response",
-    "PostV1OfficersListResponseRowsItem": ".post_v1officers_list_response_rows_item",
-    "PostV1OfficersListResponseRowsItemRole": ".post_v1officers_list_response_rows_item_role",
-    "PostV1OfficersUpdateRequestRole": ".post_v1officers_update_request_role",
-    "PostV1OfficersUpdateResponse": ".post_v1officers_update_response",
-    "PostV1OfficersUpdateResponseRole": ".post_v1officers_update_response_role",
+    "AccountsApplyTemplateLedgerResponse": ".accounts_apply_template_ledger_response",
+    "AccountsCreateLedgerRequestTranslationsValue": ".accounts_create_ledger_request_translations_value",
+    "AccountsCreateLedgerRequestType": ".accounts_create_ledger_request_type",
+    "AccountsCreateLedgerResponse": ".accounts_create_ledger_response",
+    "AccountsCreateLedgerResponseTranslationsValue": ".accounts_create_ledger_response_translations_value",
+    "AccountsCreateLedgerResponseType": ".accounts_create_ledger_response_type",
+    "AccountsListLedgerRequestFilterItem": ".accounts_list_ledger_request_filter_item",
+    "AccountsListLedgerRequestFilterItemOp": ".accounts_list_ledger_request_filter_item_op",
+    "AccountsListLedgerRequestFilterItemValue": ".accounts_list_ledger_request_filter_item_value",
+    "AccountsListLedgerRequestFilterItemValueThreeItem": ".accounts_list_ledger_request_filter_item_value_three_item",
+    "AccountsListLedgerRequestSortItem": ".accounts_list_ledger_request_sort_item",
+    "AccountsListLedgerRequestSortItemDir": ".accounts_list_ledger_request_sort_item_dir",
+    "AccountsListLedgerResponse": ".accounts_list_ledger_response",
+    "AccountsListLedgerResponseRowsItem": ".accounts_list_ledger_response_rows_item",
+    "AccountsListLedgerResponseRowsItemTranslationsValue": ".accounts_list_ledger_response_rows_item_translations_value",
+    "AccountsListLedgerResponseRowsItemType": ".accounts_list_ledger_response_rows_item_type",
+    "AccountsSwitchChartLedgerResponse": ".accounts_switch_chart_ledger_response",
+    "AccountsUpdateLedgerRequestTranslationsValue": ".accounts_update_ledger_request_translations_value",
+    "AccountsUpdateLedgerResponse": ".accounts_update_ledger_response",
+    "AccountsUpdateLedgerResponseTranslationsValue": ".accounts_update_ledger_response_translations_value",
+    "AccountsUpdateLedgerResponseType": ".accounts_update_ledger_response_type",
+    "CostCenterGroupsCreateLedgerResponse": ".cost_center_groups_create_ledger_response",
+    "CostCenterGroupsDeleteLedgerResponse": ".cost_center_groups_delete_ledger_response",
+    "CostCenterGroupsListLedgerRequestFilterItem": ".cost_center_groups_list_ledger_request_filter_item",
+    "CostCenterGroupsListLedgerRequestFilterItemOp": ".cost_center_groups_list_ledger_request_filter_item_op",
+    "CostCenterGroupsListLedgerRequestFilterItemValue": ".cost_center_groups_list_ledger_request_filter_item_value",
+    "CostCenterGroupsListLedgerRequestFilterItemValueThreeItem": ".cost_center_groups_list_ledger_request_filter_item_value_three_item",
+    "CostCenterGroupsListLedgerRequestSortItem": ".cost_center_groups_list_ledger_request_sort_item",
+    "CostCenterGroupsListLedgerRequestSortItemDir": ".cost_center_groups_list_ledger_request_sort_item_dir",
+    "CostCenterGroupsListLedgerResponse": ".cost_center_groups_list_ledger_response",
+    "CostCenterGroupsListLedgerResponseRowsItem": ".cost_center_groups_list_ledger_response_rows_item",
+    "CostCenterGroupsUpdateLedgerResponse": ".cost_center_groups_update_ledger_response",
+    "CostCentersCreateLedgerResponse": ".cost_centers_create_ledger_response",
+    "CostCentersListLedgerRequestFilterItem": ".cost_centers_list_ledger_request_filter_item",
+    "CostCentersListLedgerRequestFilterItemOp": ".cost_centers_list_ledger_request_filter_item_op",
+    "CostCentersListLedgerRequestFilterItemValue": ".cost_centers_list_ledger_request_filter_item_value",
+    "CostCentersListLedgerRequestFilterItemValueThreeItem": ".cost_centers_list_ledger_request_filter_item_value_three_item",
+    "CostCentersListLedgerRequestSortItem": ".cost_centers_list_ledger_request_sort_item",
+    "CostCentersListLedgerRequestSortItemDir": ".cost_centers_list_ledger_request_sort_item_dir",
+    "CostCentersListLedgerResponse": ".cost_centers_list_ledger_response",
+    "CostCentersListLedgerResponseRowsItem": ".cost_centers_list_ledger_response_rows_item",
+    "CostCentersUpdateLedgerResponse": ".cost_centers_update_ledger_response",
+    "JournalTransactionsCreateLedgerRequestEntriesItem": ".journal_transactions_create_ledger_request_entries_item",
+    "JournalTransactionsCreateLedgerResponse": ".journal_transactions_create_ledger_response",
+    "JournalTransactionsCreateLedgerResponseStatus": ".journal_transactions_create_ledger_response_status",
+    "JournalTransactionsGetLedgerResponse": ".journal_transactions_get_ledger_response",
+    "JournalTransactionsGetLedgerResponseEntriesItem": ".journal_transactions_get_ledger_response_entries_item",
+    "JournalTransactionsGetLedgerResponseStatus": ".journal_transactions_get_ledger_response_status",
+    "JournalTransactionsListLedgerRequestFilterItem": ".journal_transactions_list_ledger_request_filter_item",
+    "JournalTransactionsListLedgerRequestFilterItemOp": ".journal_transactions_list_ledger_request_filter_item_op",
+    "JournalTransactionsListLedgerRequestFilterItemValue": ".journal_transactions_list_ledger_request_filter_item_value",
+    "JournalTransactionsListLedgerRequestFilterItemValueThreeItem": ".journal_transactions_list_ledger_request_filter_item_value_three_item",
+    "JournalTransactionsListLedgerRequestSortItem": ".journal_transactions_list_ledger_request_sort_item",
+    "JournalTransactionsListLedgerRequestSortItemDir": ".journal_transactions_list_ledger_request_sort_item_dir",
+    "JournalTransactionsListLedgerResponse": ".journal_transactions_list_ledger_response",
+    "JournalTransactionsListLedgerResponseRowsItem": ".journal_transactions_list_ledger_response_rows_item",
+    "JournalTransactionsListLedgerResponseRowsItemStatus": ".journal_transactions_list_ledger_response_rows_item_status",
+    "OwnersCreateLedgerRequestAddress": ".owners_create_ledger_request_address",
+    "OwnersCreateLedgerRequestPartnerLiability": ".owners_create_ledger_request_partner_liability",
+    "OwnersCreateLedgerRequestSharesType": ".owners_create_ledger_request_shares_type",
+    "OwnersCreateLedgerResponse": ".owners_create_ledger_response",
+    "OwnersCreateLedgerResponseAddress": ".owners_create_ledger_response_address",
+    "OwnersCreateLedgerResponsePartnerLiability": ".owners_create_ledger_response_partner_liability",
+    "OwnersDeleteLedgerResponse": ".owners_delete_ledger_response",
+    "OwnersListLedgerRequestFilterItem": ".owners_list_ledger_request_filter_item",
+    "OwnersListLedgerRequestFilterItemOp": ".owners_list_ledger_request_filter_item_op",
+    "OwnersListLedgerRequestFilterItemValue": ".owners_list_ledger_request_filter_item_value",
+    "OwnersListLedgerRequestFilterItemValueThreeItem": ".owners_list_ledger_request_filter_item_value_three_item",
+    "OwnersListLedgerRequestSortItem": ".owners_list_ledger_request_sort_item",
+    "OwnersListLedgerRequestSortItemDir": ".owners_list_ledger_request_sort_item_dir",
+    "OwnersListLedgerResponse": ".owners_list_ledger_response",
+    "OwnersListLedgerResponseRowsItem": ".owners_list_ledger_response_rows_item",
+    "OwnersListLedgerResponseRowsItemAddress": ".owners_list_ledger_response_rows_item_address",
+    "OwnersListLedgerResponseRowsItemPartnerLiability": ".owners_list_ledger_response_rows_item_partner_liability",
+    "OwnersUpdateLedgerRequestAddress": ".owners_update_ledger_request_address",
+    "OwnersUpdateLedgerRequestPartnerLiability": ".owners_update_ledger_request_partner_liability",
+    "OwnersUpdateLedgerRequestSharesType": ".owners_update_ledger_request_shares_type",
+    "OwnersUpdateLedgerResponse": ".owners_update_ledger_response",
+    "OwnersUpdateLedgerResponseAddress": ".owners_update_ledger_response_address",
+    "OwnersUpdateLedgerResponsePartnerLiability": ".owners_update_ledger_response_partner_liability",
+    "PeriodsListLedgerRequestFilterItem": ".periods_list_ledger_request_filter_item",
+    "PeriodsListLedgerRequestFilterItemOp": ".periods_list_ledger_request_filter_item_op",
+    "PeriodsListLedgerRequestFilterItemValue": ".periods_list_ledger_request_filter_item_value",
+    "PeriodsListLedgerRequestFilterItemValueThreeItem": ".periods_list_ledger_request_filter_item_value_three_item",
+    "PeriodsListLedgerRequestSortItem": ".periods_list_ledger_request_sort_item",
+    "PeriodsListLedgerRequestSortItemDir": ".periods_list_ledger_request_sort_item_dir",
+    "PeriodsListLedgerResponse": ".periods_list_ledger_response",
+    "PeriodsListLedgerResponseRowsItem": ".periods_list_ledger_response_rows_item",
+    "PeriodsListLedgerResponseRowsItemStatus": ".periods_list_ledger_response_rows_item_status",
+    "PeriodsLockLedgerResponse": ".periods_lock_ledger_response",
+    "PeriodsLockLedgerResponseStatus": ".periods_lock_ledger_response_status",
+    "PeriodsUnlockLedgerResponse": ".periods_unlock_ledger_response",
+    "PeriodsUnlockLedgerResponseStatus": ".periods_unlock_ledger_response_status",
+    "PostingRulesListLedgerResponse": ".posting_rules_list_ledger_response",
+    "PostingRulesListLedgerResponseRowsItem": ".posting_rules_list_ledger_response_rows_item",
+    "PostingRulesUpdateLedgerRequestRulesItem": ".posting_rules_update_ledger_request_rules_item",
+    "PostingRulesUpdateLedgerRequestRulesItemKey": ".posting_rules_update_ledger_request_rules_item_key",
+    "PostingRulesUpdateLedgerResponse": ".posting_rules_update_ledger_response",
+    "PostingRulesUpdateLedgerResponseRowsItem": ".posting_rules_update_ledger_response_rows_item",
+    "StatementRowsListLedgerResponse": ".statement_rows_list_ledger_response",
+    "StatementRowsListLedgerResponseAccountsItem": ".statement_rows_list_ledger_response_accounts_item",
+    "StatementRowsListLedgerResponseAccountsItemSource": ".statement_rows_list_ledger_response_accounts_item_source",
+    "StatementRowsListLedgerResponseRowsItem": ".statement_rows_list_ledger_response_rows_item",
+    "StatementRowsListLedgerResponseRowsItemStatement": ".statement_rows_list_ledger_response_rows_item_statement",
+    "StatementRowsListLedgerResponseScheme": ".statement_rows_list_ledger_response_scheme",
+    "StatementRowsListLedgerResponseSchemeRowsItem": ".statement_rows_list_ledger_response_scheme_rows_item",
+    "StatementRowsListLedgerResponseSchemeRowsItemStatement": ".statement_rows_list_ledger_response_scheme_rows_item_statement",
+    "StatementRowsSchemesLedgerResponse": ".statement_rows_schemes_ledger_response",
+    "StatementRowsSchemesLedgerResponseRowsItem": ".statement_rows_schemes_ledger_response_rows_item",
+    "StatementRowsSchemesLedgerResponseRowsItemRowsItem": ".statement_rows_schemes_ledger_response_rows_item_rows_item",
+    "StatementRowsSchemesLedgerResponseRowsItemRowsItemStatement": ".statement_rows_schemes_ledger_response_rows_item_rows_item_statement",
+    "StatementRowsSetLedgerResponse": ".statement_rows_set_ledger_response",
 }
 
 
@@ -350,126 +290,116 @@ def __dir__():
 
 
 __all__ = [
-    "PostV1LedgerAccountsApplyTemplateResponse",
-    "PostV1LedgerAccountsCreateRequestTranslationsValue",
-    "PostV1LedgerAccountsCreateRequestType",
-    "PostV1LedgerAccountsCreateResponse",
-    "PostV1LedgerAccountsCreateResponseTranslationsValue",
-    "PostV1LedgerAccountsCreateResponseType",
-    "PostV1LedgerAccountsListRequestFilterItem",
-    "PostV1LedgerAccountsListRequestFilterItemOp",
-    "PostV1LedgerAccountsListRequestFilterItemValue",
-    "PostV1LedgerAccountsListRequestFilterItemValueThreeItem",
-    "PostV1LedgerAccountsListRequestSortItem",
-    "PostV1LedgerAccountsListRequestSortItemDir",
-    "PostV1LedgerAccountsListResponse",
-    "PostV1LedgerAccountsListResponseRowsItem",
-    "PostV1LedgerAccountsListResponseRowsItemTranslationsValue",
-    "PostV1LedgerAccountsListResponseRowsItemType",
-    "PostV1LedgerAccountsSwitchChartResponse",
-    "PostV1LedgerAccountsUpdateRequestTranslationsValue",
-    "PostV1LedgerAccountsUpdateResponse",
-    "PostV1LedgerAccountsUpdateResponseTranslationsValue",
-    "PostV1LedgerAccountsUpdateResponseType",
-    "PostV1LedgerCostCenterGroupsCreateResponse",
-    "PostV1LedgerCostCenterGroupsDeleteResponse",
-    "PostV1LedgerCostCenterGroupsListRequestFilterItem",
-    "PostV1LedgerCostCenterGroupsListRequestFilterItemOp",
-    "PostV1LedgerCostCenterGroupsListRequestFilterItemValue",
-    "PostV1LedgerCostCenterGroupsListRequestFilterItemValueThreeItem",
-    "PostV1LedgerCostCenterGroupsListRequestSortItem",
-    "PostV1LedgerCostCenterGroupsListRequestSortItemDir",
-    "PostV1LedgerCostCenterGroupsListResponse",
-    "PostV1LedgerCostCenterGroupsListResponseRowsItem",
-    "PostV1LedgerCostCenterGroupsUpdateResponse",
-    "PostV1LedgerCostCentersCreateResponse",
-    "PostV1LedgerCostCentersListRequestFilterItem",
-    "PostV1LedgerCostCentersListRequestFilterItemOp",
-    "PostV1LedgerCostCentersListRequestFilterItemValue",
-    "PostV1LedgerCostCentersListRequestFilterItemValueThreeItem",
-    "PostV1LedgerCostCentersListRequestSortItem",
-    "PostV1LedgerCostCentersListRequestSortItemDir",
-    "PostV1LedgerCostCentersListResponse",
-    "PostV1LedgerCostCentersListResponseRowsItem",
-    "PostV1LedgerCostCentersUpdateResponse",
-    "PostV1LedgerJournalTransactionsCreateRequestEntriesItem",
-    "PostV1LedgerJournalTransactionsCreateResponse",
-    "PostV1LedgerJournalTransactionsCreateResponseStatus",
-    "PostV1LedgerJournalTransactionsGetResponse",
-    "PostV1LedgerJournalTransactionsGetResponseEntriesItem",
-    "PostV1LedgerJournalTransactionsGetResponseStatus",
-    "PostV1LedgerJournalTransactionsListRequestFilterItem",
-    "PostV1LedgerJournalTransactionsListRequestFilterItemOp",
-    "PostV1LedgerJournalTransactionsListRequestFilterItemValue",
-    "PostV1LedgerJournalTransactionsListRequestFilterItemValueThreeItem",
-    "PostV1LedgerJournalTransactionsListRequestSortItem",
-    "PostV1LedgerJournalTransactionsListRequestSortItemDir",
-    "PostV1LedgerJournalTransactionsListResponse",
-    "PostV1LedgerJournalTransactionsListResponseRowsItem",
-    "PostV1LedgerJournalTransactionsListResponseRowsItemStatus",
-    "PostV1LedgerOwnersCreateRequestAddress",
-    "PostV1LedgerOwnersCreateRequestPartnerLiability",
-    "PostV1LedgerOwnersCreateRequestSharesType",
-    "PostV1LedgerOwnersCreateResponse",
-    "PostV1LedgerOwnersCreateResponseAddress",
-    "PostV1LedgerOwnersCreateResponsePartnerLiability",
-    "PostV1LedgerOwnersDeleteResponse",
-    "PostV1LedgerOwnersListRequestFilterItem",
-    "PostV1LedgerOwnersListRequestFilterItemOp",
-    "PostV1LedgerOwnersListRequestFilterItemValue",
-    "PostV1LedgerOwnersListRequestFilterItemValueThreeItem",
-    "PostV1LedgerOwnersListRequestSortItem",
-    "PostV1LedgerOwnersListRequestSortItemDir",
-    "PostV1LedgerOwnersListResponse",
-    "PostV1LedgerOwnersListResponseRowsItem",
-    "PostV1LedgerOwnersListResponseRowsItemAddress",
-    "PostV1LedgerOwnersListResponseRowsItemPartnerLiability",
-    "PostV1LedgerOwnersUpdateRequestAddress",
-    "PostV1LedgerOwnersUpdateRequestPartnerLiability",
-    "PostV1LedgerOwnersUpdateRequestSharesType",
-    "PostV1LedgerOwnersUpdateResponse",
-    "PostV1LedgerOwnersUpdateResponseAddress",
-    "PostV1LedgerOwnersUpdateResponsePartnerLiability",
-    "PostV1LedgerPeriodsListRequestFilterItem",
-    "PostV1LedgerPeriodsListRequestFilterItemOp",
-    "PostV1LedgerPeriodsListRequestFilterItemValue",
-    "PostV1LedgerPeriodsListRequestFilterItemValueThreeItem",
-    "PostV1LedgerPeriodsListRequestSortItem",
-    "PostV1LedgerPeriodsListRequestSortItemDir",
-    "PostV1LedgerPeriodsListResponse",
-    "PostV1LedgerPeriodsListResponseRowsItem",
-    "PostV1LedgerPeriodsListResponseRowsItemStatus",
-    "PostV1LedgerPeriodsLockResponse",
-    "PostV1LedgerPeriodsLockResponseStatus",
-    "PostV1LedgerPeriodsUnlockResponse",
-    "PostV1LedgerPeriodsUnlockResponseStatus",
-    "PostV1LedgerPostingRulesListResponse",
-    "PostV1LedgerPostingRulesListResponseRowsItem",
-    "PostV1LedgerPostingRulesUpdateRequestRulesItem",
-    "PostV1LedgerPostingRulesUpdateRequestRulesItemKey",
-    "PostV1LedgerPostingRulesUpdateResponse",
-    "PostV1LedgerPostingRulesUpdateResponseRowsItem",
-    "PostV1LedgerStatementRowsListResponse",
-    "PostV1LedgerStatementRowsListResponseAccountsItem",
-    "PostV1LedgerStatementRowsListResponseAccountsItemSource",
-    "PostV1LedgerStatementRowsListResponseRowsItem",
-    "PostV1LedgerStatementRowsListResponseRowsItemStatement",
-    "PostV1LedgerStatementRowsListResponseScheme",
-    "PostV1LedgerStatementRowsListResponseSchemeRowsItem",
-    "PostV1LedgerStatementRowsListResponseSchemeRowsItemStatement",
-    "PostV1LedgerStatementRowsSchemesResponse",
-    "PostV1LedgerStatementRowsSchemesResponseRowsItem",
-    "PostV1LedgerStatementRowsSchemesResponseRowsItemRowsItem",
-    "PostV1LedgerStatementRowsSchemesResponseRowsItemRowsItemStatement",
-    "PostV1LedgerStatementRowsSetResponse",
-    "PostV1OfficersCreateRequestRole",
-    "PostV1OfficersCreateResponse",
-    "PostV1OfficersCreateResponseRole",
-    "PostV1OfficersDeleteResponse",
-    "PostV1OfficersListResponse",
-    "PostV1OfficersListResponseRowsItem",
-    "PostV1OfficersListResponseRowsItemRole",
-    "PostV1OfficersUpdateRequestRole",
-    "PostV1OfficersUpdateResponse",
-    "PostV1OfficersUpdateResponseRole",
+    "AccountsApplyTemplateLedgerResponse",
+    "AccountsCreateLedgerRequestTranslationsValue",
+    "AccountsCreateLedgerRequestType",
+    "AccountsCreateLedgerResponse",
+    "AccountsCreateLedgerResponseTranslationsValue",
+    "AccountsCreateLedgerResponseType",
+    "AccountsListLedgerRequestFilterItem",
+    "AccountsListLedgerRequestFilterItemOp",
+    "AccountsListLedgerRequestFilterItemValue",
+    "AccountsListLedgerRequestFilterItemValueThreeItem",
+    "AccountsListLedgerRequestSortItem",
+    "AccountsListLedgerRequestSortItemDir",
+    "AccountsListLedgerResponse",
+    "AccountsListLedgerResponseRowsItem",
+    "AccountsListLedgerResponseRowsItemTranslationsValue",
+    "AccountsListLedgerResponseRowsItemType",
+    "AccountsSwitchChartLedgerResponse",
+    "AccountsUpdateLedgerRequestTranslationsValue",
+    "AccountsUpdateLedgerResponse",
+    "AccountsUpdateLedgerResponseTranslationsValue",
+    "AccountsUpdateLedgerResponseType",
+    "CostCenterGroupsCreateLedgerResponse",
+    "CostCenterGroupsDeleteLedgerResponse",
+    "CostCenterGroupsListLedgerRequestFilterItem",
+    "CostCenterGroupsListLedgerRequestFilterItemOp",
+    "CostCenterGroupsListLedgerRequestFilterItemValue",
+    "CostCenterGroupsListLedgerRequestFilterItemValueThreeItem",
+    "CostCenterGroupsListLedgerRequestSortItem",
+    "CostCenterGroupsListLedgerRequestSortItemDir",
+    "CostCenterGroupsListLedgerResponse",
+    "CostCenterGroupsListLedgerResponseRowsItem",
+    "CostCenterGroupsUpdateLedgerResponse",
+    "CostCentersCreateLedgerResponse",
+    "CostCentersListLedgerRequestFilterItem",
+    "CostCentersListLedgerRequestFilterItemOp",
+    "CostCentersListLedgerRequestFilterItemValue",
+    "CostCentersListLedgerRequestFilterItemValueThreeItem",
+    "CostCentersListLedgerRequestSortItem",
+    "CostCentersListLedgerRequestSortItemDir",
+    "CostCentersListLedgerResponse",
+    "CostCentersListLedgerResponseRowsItem",
+    "CostCentersUpdateLedgerResponse",
+    "JournalTransactionsCreateLedgerRequestEntriesItem",
+    "JournalTransactionsCreateLedgerResponse",
+    "JournalTransactionsCreateLedgerResponseStatus",
+    "JournalTransactionsGetLedgerResponse",
+    "JournalTransactionsGetLedgerResponseEntriesItem",
+    "JournalTransactionsGetLedgerResponseStatus",
+    "JournalTransactionsListLedgerRequestFilterItem",
+    "JournalTransactionsListLedgerRequestFilterItemOp",
+    "JournalTransactionsListLedgerRequestFilterItemValue",
+    "JournalTransactionsListLedgerRequestFilterItemValueThreeItem",
+    "JournalTransactionsListLedgerRequestSortItem",
+    "JournalTransactionsListLedgerRequestSortItemDir",
+    "JournalTransactionsListLedgerResponse",
+    "JournalTransactionsListLedgerResponseRowsItem",
+    "JournalTransactionsListLedgerResponseRowsItemStatus",
+    "OwnersCreateLedgerRequestAddress",
+    "OwnersCreateLedgerRequestPartnerLiability",
+    "OwnersCreateLedgerRequestSharesType",
+    "OwnersCreateLedgerResponse",
+    "OwnersCreateLedgerResponseAddress",
+    "OwnersCreateLedgerResponsePartnerLiability",
+    "OwnersDeleteLedgerResponse",
+    "OwnersListLedgerRequestFilterItem",
+    "OwnersListLedgerRequestFilterItemOp",
+    "OwnersListLedgerRequestFilterItemValue",
+    "OwnersListLedgerRequestFilterItemValueThreeItem",
+    "OwnersListLedgerRequestSortItem",
+    "OwnersListLedgerRequestSortItemDir",
+    "OwnersListLedgerResponse",
+    "OwnersListLedgerResponseRowsItem",
+    "OwnersListLedgerResponseRowsItemAddress",
+    "OwnersListLedgerResponseRowsItemPartnerLiability",
+    "OwnersUpdateLedgerRequestAddress",
+    "OwnersUpdateLedgerRequestPartnerLiability",
+    "OwnersUpdateLedgerRequestSharesType",
+    "OwnersUpdateLedgerResponse",
+    "OwnersUpdateLedgerResponseAddress",
+    "OwnersUpdateLedgerResponsePartnerLiability",
+    "PeriodsListLedgerRequestFilterItem",
+    "PeriodsListLedgerRequestFilterItemOp",
+    "PeriodsListLedgerRequestFilterItemValue",
+    "PeriodsListLedgerRequestFilterItemValueThreeItem",
+    "PeriodsListLedgerRequestSortItem",
+    "PeriodsListLedgerRequestSortItemDir",
+    "PeriodsListLedgerResponse",
+    "PeriodsListLedgerResponseRowsItem",
+    "PeriodsListLedgerResponseRowsItemStatus",
+    "PeriodsLockLedgerResponse",
+    "PeriodsLockLedgerResponseStatus",
+    "PeriodsUnlockLedgerResponse",
+    "PeriodsUnlockLedgerResponseStatus",
+    "PostingRulesListLedgerResponse",
+    "PostingRulesListLedgerResponseRowsItem",
+    "PostingRulesUpdateLedgerRequestRulesItem",
+    "PostingRulesUpdateLedgerRequestRulesItemKey",
+    "PostingRulesUpdateLedgerResponse",
+    "PostingRulesUpdateLedgerResponseRowsItem",
+    "StatementRowsListLedgerResponse",
+    "StatementRowsListLedgerResponseAccountsItem",
+    "StatementRowsListLedgerResponseAccountsItemSource",
+    "StatementRowsListLedgerResponseRowsItem",
+    "StatementRowsListLedgerResponseRowsItemStatement",
+    "StatementRowsListLedgerResponseScheme",
+    "StatementRowsListLedgerResponseSchemeRowsItem",
+    "StatementRowsListLedgerResponseSchemeRowsItemStatement",
+    "StatementRowsSchemesLedgerResponse",
+    "StatementRowsSchemesLedgerResponseRowsItem",
+    "StatementRowsSchemesLedgerResponseRowsItemRowsItem",
+    "StatementRowsSchemesLedgerResponseRowsItemRowsItemStatement",
+    "StatementRowsSetLedgerResponse",
 ]

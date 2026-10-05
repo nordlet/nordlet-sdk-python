@@ -41,7 +41,7 @@ client = Nordlet(
     token="<token>",
 )
 
-client.reference.post_v1reference_exchange_rates_sync()
+client.reference.exchange_rates_sync()
 ```
 
 ## Environments
@@ -72,7 +72,7 @@ client = AsyncNordlet(
 
 
 async def main() -> None:
-    await client.reference.post_v1reference_exchange_rates_sync()
+    await client.reference.exchange_rates_sync()
 
 
 asyncio.run(main())
@@ -87,7 +87,7 @@ will be thrown.
 from nordlet.core.api_error import ApiError
 
 try:
-    client.reference.post_v1reference_exchange_rates_sync(...)
+    client.reference.exchange_rates_sync(...)
 except ApiError as e:
     print(e.status_code)
     print(e.body)
@@ -104,7 +104,7 @@ The `.with_raw_response` property returns a "raw" client that can be used to acc
 from nordlet import Nordlet
 
 client = Nordlet(...)
-response = client.reference.with_raw_response.post_v1reference_exchange_rates_sync(...)
+response = client.reference.with_raw_response.exchange_rates_sync(...)
 print(response.headers)  # access the response headers
 print(response.status_code)  # access the response status code
 print(response.data)  # access the underlying object
@@ -135,7 +135,7 @@ Which status codes are retried depends on the `retryStatusCodes` generator confi
 Use the `max_retries` request option to configure this behavior.
 
 ```python
-client.reference.post_v1reference_exchange_rates_sync(..., request_options={
+client.reference.exchange_rates_sync(..., request_options={
     "max_retries": 1
 })
 ```
@@ -150,7 +150,7 @@ from nordlet import Nordlet
 client = Nordlet(..., timeout=20.0)
 
 # Override timeout for a specific method
-client.reference.post_v1reference_exchange_rates_sync(..., request_options={
+client.reference.exchange_rates_sync(..., request_options={
     "timeout": 1
 })
 ```

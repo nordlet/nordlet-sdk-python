@@ -6,235 +6,223 @@ import typing
 from importlib import import_module
 
 if typing.TYPE_CHECKING:
-    from .post_v1reports_advance_reconciliation_response import PostV1ReportsAdvanceReconciliationResponse
-    from .post_v1reports_advance_reconciliation_response_rows_item import (
-        PostV1ReportsAdvanceReconciliationResponseRowsItem,
+    from .advance_reconciliation_reports_response import AdvanceReconciliationReportsResponse
+    from .advance_reconciliation_reports_response_rows_item import AdvanceReconciliationReportsResponseRowsItem
+    from .cash_flow_reports_response import CashFlowReportsResponse
+    from .cash_flow_reports_response_financing import CashFlowReportsResponseFinancing
+    from .cash_flow_reports_response_financing_rows_item import CashFlowReportsResponseFinancingRowsItem
+    from .cash_flow_reports_response_investing import CashFlowReportsResponseInvesting
+    from .cash_flow_reports_response_investing_rows_item import CashFlowReportsResponseInvestingRowsItem
+    from .cash_flow_reports_response_operating import CashFlowReportsResponseOperating
+    from .cash_flow_reports_response_operating_rows_item import CashFlowReportsResponseOperatingRowsItem
+    from .cost_center_activity_reports_response import CostCenterActivityReportsResponse
+    from .cost_center_activity_reports_response_cost_center import CostCenterActivityReportsResponseCostCenter
+    from .cost_center_activity_reports_response_rows_item import CostCenterActivityReportsResponseRowsItem
+    from .cost_center_items_reports_response import CostCenterItemsReportsResponse
+    from .cost_center_items_reports_response_rows_item import CostCenterItemsReportsResponseRowsItem
+    from .cost_centers_reports_response import CostCentersReportsResponse
+    from .cost_centers_reports_response_rows_item import CostCentersReportsResponseRowsItem
+    from .datev_reports_response import DatevReportsResponse
+    from .debt_aging_reports_request_side import DebtAgingReportsRequestSide
+    from .debt_aging_reports_response import DebtAgingReportsResponse
+    from .debt_aging_reports_response_rows_item import DebtAgingReportsResponseRowsItem
+    from .eu_purchases_reports_response import EuPurchasesReportsResponse
+    from .eu_purchases_reports_response_rows_item import EuPurchasesReportsResponseRowsItem
+    from .eu_purchases_reports_response_totals import EuPurchasesReportsResponseTotals
+    from .fec_reports_response import FecReportsResponse
+    from .financial_statements_reports_request_category import FinancialStatementsReportsRequestCategory
+    from .financial_statements_reports_response import FinancialStatementsReportsResponse
+    from .financial_statements_reports_response_balance_sheet import FinancialStatementsReportsResponseBalanceSheet
+    from .financial_statements_reports_response_balance_sheet_detail import (
+        FinancialStatementsReportsResponseBalanceSheetDetail,
     )
-    from .post_v1reports_cash_flow_response import PostV1ReportsCashFlowResponse
-    from .post_v1reports_cash_flow_response_financing import PostV1ReportsCashFlowResponseFinancing
-    from .post_v1reports_cash_flow_response_financing_rows_item import PostV1ReportsCashFlowResponseFinancingRowsItem
-    from .post_v1reports_cash_flow_response_investing import PostV1ReportsCashFlowResponseInvesting
-    from .post_v1reports_cash_flow_response_investing_rows_item import PostV1ReportsCashFlowResponseInvestingRowsItem
-    from .post_v1reports_cash_flow_response_operating import PostV1ReportsCashFlowResponseOperating
-    from .post_v1reports_cash_flow_response_operating_rows_item import PostV1ReportsCashFlowResponseOperatingRowsItem
-    from .post_v1reports_cost_center_activity_response import PostV1ReportsCostCenterActivityResponse
-    from .post_v1reports_cost_center_activity_response_cost_center import (
-        PostV1ReportsCostCenterActivityResponseCostCenter,
+    from .financial_statements_reports_response_balance_sheet_detail_current_assets import (
+        FinancialStatementsReportsResponseBalanceSheetDetailCurrentAssets,
     )
-    from .post_v1reports_cost_center_activity_response_rows_item import PostV1ReportsCostCenterActivityResponseRowsItem
-    from .post_v1reports_cost_center_items_response import PostV1ReportsCostCenterItemsResponse
-    from .post_v1reports_cost_center_items_response_rows_item import PostV1ReportsCostCenterItemsResponseRowsItem
-    from .post_v1reports_cost_centers_response import PostV1ReportsCostCentersResponse
-    from .post_v1reports_cost_centers_response_rows_item import PostV1ReportsCostCentersResponseRowsItem
-    from .post_v1reports_datev_response import PostV1ReportsDatevResponse
-    from .post_v1reports_debt_aging_request_side import PostV1ReportsDebtAgingRequestSide
-    from .post_v1reports_debt_aging_response import PostV1ReportsDebtAgingResponse
-    from .post_v1reports_debt_aging_response_rows_item import PostV1ReportsDebtAgingResponseRowsItem
-    from .post_v1reports_eu_purchases_response import PostV1ReportsEuPurchasesResponse
-    from .post_v1reports_eu_purchases_response_rows_item import PostV1ReportsEuPurchasesResponseRowsItem
-    from .post_v1reports_eu_purchases_response_totals import PostV1ReportsEuPurchasesResponseTotals
-    from .post_v1reports_fec_response import PostV1ReportsFecResponse
-    from .post_v1reports_financial_statements_request_category import PostV1ReportsFinancialStatementsRequestCategory
-    from .post_v1reports_financial_statements_response import PostV1ReportsFinancialStatementsResponse
-    from .post_v1reports_financial_statements_response_balance_sheet import (
-        PostV1ReportsFinancialStatementsResponseBalanceSheet,
+    from .financial_statements_reports_response_balance_sheet_detail_equity import (
+        FinancialStatementsReportsResponseBalanceSheetDetailEquity,
     )
-    from .post_v1reports_financial_statements_response_balance_sheet_detail import (
-        PostV1ReportsFinancialStatementsResponseBalanceSheetDetail,
+    from .financial_statements_reports_response_balance_sheet_detail_liabilities import (
+        FinancialStatementsReportsResponseBalanceSheetDetailLiabilities,
     )
-    from .post_v1reports_financial_statements_response_balance_sheet_detail_current_assets import (
-        PostV1ReportsFinancialStatementsResponseBalanceSheetDetailCurrentAssets,
+    from .financial_statements_reports_response_balance_sheet_detail_non_current_assets import (
+        FinancialStatementsReportsResponseBalanceSheetDetailNonCurrentAssets,
     )
-    from .post_v1reports_financial_statements_response_balance_sheet_detail_equity import (
-        PostV1ReportsFinancialStatementsResponseBalanceSheetDetailEquity,
+    from .financial_statements_reports_response_cash_flow import FinancialStatementsReportsResponseCashFlow
+    from .financial_statements_reports_response_category import FinancialStatementsReportsResponseCategory
+    from .financial_statements_reports_response_equity_changes_item import (
+        FinancialStatementsReportsResponseEquityChangesItem,
     )
-    from .post_v1reports_financial_statements_response_balance_sheet_detail_liabilities import (
-        PostV1ReportsFinancialStatementsResponseBalanceSheetDetailLiabilities,
+    from .financial_statements_reports_response_profit_loss import FinancialStatementsReportsResponseProfitLoss
+    from .financial_statements_reports_response_profit_loss_detail import (
+        FinancialStatementsReportsResponseProfitLossDetail,
     )
-    from .post_v1reports_financial_statements_response_balance_sheet_detail_non_current_assets import (
-        PostV1ReportsFinancialStatementsResponseBalanceSheetDetailNonCurrentAssets,
+    from .general_journal_reports_response import GeneralJournalReportsResponse
+    from .general_journal_reports_response_rows_item import GeneralJournalReportsResponseRowsItem
+    from .general_journal_reports_response_rows_item_entries_item import (
+        GeneralJournalReportsResponseRowsItemEntriesItem,
     )
-    from .post_v1reports_financial_statements_response_cash_flow import PostV1ReportsFinancialStatementsResponseCashFlow
-    from .post_v1reports_financial_statements_response_category import PostV1ReportsFinancialStatementsResponseCategory
-    from .post_v1reports_financial_statements_response_equity_changes_item import (
-        PostV1ReportsFinancialStatementsResponseEquityChangesItem,
-    )
-    from .post_v1reports_financial_statements_response_profit_loss import (
-        PostV1ReportsFinancialStatementsResponseProfitLoss,
-    )
-    from .post_v1reports_financial_statements_response_profit_loss_detail import (
-        PostV1ReportsFinancialStatementsResponseProfitLossDetail,
-    )
-    from .post_v1reports_general_journal_response import PostV1ReportsGeneralJournalResponse
-    from .post_v1reports_general_journal_response_rows_item import PostV1ReportsGeneralJournalResponseRowsItem
-    from .post_v1reports_general_journal_response_rows_item_entries_item import (
-        PostV1ReportsGeneralJournalResponseRowsItemEntriesItem,
-    )
-    from .post_v1reports_gl_detail_response import PostV1ReportsGlDetailResponse
-    from .post_v1reports_gl_detail_response_account import PostV1ReportsGlDetailResponseAccount
-    from .post_v1reports_gl_detail_response_rows_item import PostV1ReportsGlDetailResponseRowsItem
-    from .post_v1reports_jobs_create_request_formats_item import PostV1ReportsJobsCreateRequestFormatsItem
-    from .post_v1reports_jobs_create_response import PostV1ReportsJobsCreateResponse
-    from .post_v1reports_jobs_create_response_outputs_item import PostV1ReportsJobsCreateResponseOutputsItem
-    from .post_v1reports_jobs_create_response_status import PostV1ReportsJobsCreateResponseStatus
-    from .post_v1reports_jobs_get_response import PostV1ReportsJobsGetResponse
-    from .post_v1reports_jobs_get_response_outputs_item import PostV1ReportsJobsGetResponseOutputsItem
-    from .post_v1reports_jobs_get_response_status import PostV1ReportsJobsGetResponseStatus
-    from .post_v1reports_jobs_list_request_filter_item import PostV1ReportsJobsListRequestFilterItem
-    from .post_v1reports_jobs_list_request_filter_item_op import PostV1ReportsJobsListRequestFilterItemOp
-    from .post_v1reports_jobs_list_request_filter_item_value import PostV1ReportsJobsListRequestFilterItemValue
-    from .post_v1reports_jobs_list_request_filter_item_value_three_item import (
-        PostV1ReportsJobsListRequestFilterItemValueThreeItem,
-    )
-    from .post_v1reports_jobs_list_request_sort_item import PostV1ReportsJobsListRequestSortItem
-    from .post_v1reports_jobs_list_request_sort_item_dir import PostV1ReportsJobsListRequestSortItemDir
-    from .post_v1reports_jobs_list_response import PostV1ReportsJobsListResponse
-    from .post_v1reports_jobs_list_response_rows_item import PostV1ReportsJobsListResponseRowsItem
-    from .post_v1reports_jobs_list_response_rows_item_outputs_item import (
-        PostV1ReportsJobsListResponseRowsItemOutputsItem,
-    )
-    from .post_v1reports_jobs_list_response_rows_item_status import PostV1ReportsJobsListResponseRowsItemStatus
-    from .post_v1reports_monthly_summary_response import PostV1ReportsMonthlySummaryResponse
-    from .post_v1reports_monthly_summary_response_rows_item import PostV1ReportsMonthlySummaryResponseRowsItem
-    from .post_v1reports_online_sales_response import PostV1ReportsOnlineSalesResponse
-    from .post_v1reports_online_sales_response_rows_item import PostV1ReportsOnlineSalesResponseRowsItem
-    from .post_v1reports_oss_response import PostV1ReportsOssResponse
-    from .post_v1reports_oss_response_rows_item import PostV1ReportsOssResponseRowsItem
-    from .post_v1reports_oss_response_totals import PostV1ReportsOssResponseTotals
-    from .post_v1reports_partner_balances_response import PostV1ReportsPartnerBalancesResponse
-    from .post_v1reports_partner_balances_response_rows_item import PostV1ReportsPartnerBalancesResponseRowsItem
-    from .post_v1reports_pos_sales_response import PostV1ReportsPosSalesResponse
-    from .post_v1reports_pos_sales_response_by_rate_item import PostV1ReportsPosSalesResponseByRateItem
-    from .post_v1reports_pos_sales_response_rows_item import PostV1ReportsPosSalesResponseRowsItem
-    from .post_v1reports_pos_sales_response_totals import PostV1ReportsPosSalesResponseTotals
-    from .post_v1reports_sie_response import PostV1ReportsSieResponse
-    from .post_v1reports_size_category_response import PostV1ReportsSizeCategoryResponse
-    from .post_v1reports_size_category_response_category import PostV1ReportsSizeCategoryResponseCategory
-    from .post_v1reports_size_category_response_criteria import PostV1ReportsSizeCategoryResponseCriteria
-    from .post_v1reports_size_category_response_thresholds_value import PostV1ReportsSizeCategoryResponseThresholdsValue
-    from .post_v1reports_stock_aging_response import PostV1ReportsStockAgingResponse
-    from .post_v1reports_stock_aging_response_rows_item import PostV1ReportsStockAgingResponseRowsItem
-    from .post_v1reports_stock_balance_response import PostV1ReportsStockBalanceResponse
-    from .post_v1reports_stock_balance_response_rows_item import PostV1ReportsStockBalanceResponseRowsItem
-    from .post_v1reports_stock_movement_response import PostV1ReportsStockMovementResponse
-    from .post_v1reports_stock_movement_response_rows_item import PostV1ReportsStockMovementResponseRowsItem
-    from .post_v1reports_stock_shortage_response import PostV1ReportsStockShortageResponse
-    from .post_v1reports_stock_shortage_response_rows_item import PostV1ReportsStockShortageResponseRowsItem
-    from .post_v1reports_trial_balance_response import PostV1ReportsTrialBalanceResponse
-    from .post_v1reports_trial_balance_response_rows_item import PostV1ReportsTrialBalanceResponseRowsItem
-    from .post_v1reports_trial_balance_response_rows_item_type import PostV1ReportsTrialBalanceResponseRowsItemType
-    from .post_v1reports_trial_balance_response_totals import PostV1ReportsTrialBalanceResponseTotals
-    from .post_v1reports_vat_detail_request_side import PostV1ReportsVatDetailRequestSide
-    from .post_v1reports_vat_detail_response import PostV1ReportsVatDetailResponse
-    from .post_v1reports_vat_detail_response_rows_item import PostV1ReportsVatDetailResponseRowsItem
-    from .post_v1reports_vat_detail_response_totals import PostV1ReportsVatDetailResponseTotals
-    from .post_v1reports_vat_summary_request_side import PostV1ReportsVatSummaryRequestSide
-    from .post_v1reports_vat_summary_response import PostV1ReportsVatSummaryResponse
-    from .post_v1reports_vat_summary_response_rows_item import PostV1ReportsVatSummaryResponseRowsItem
-    from .post_v1reports_vat_summary_response_totals import PostV1ReportsVatSummaryResponseTotals
-    from .post_v1reports_write_off_acts_response import PostV1ReportsWriteOffActsResponse
-    from .post_v1reports_write_off_acts_response_rows_item import PostV1ReportsWriteOffActsResponseRowsItem
+    from .gl_detail_reports_response import GlDetailReportsResponse
+    from .gl_detail_reports_response_account import GlDetailReportsResponseAccount
+    from .gl_detail_reports_response_rows_item import GlDetailReportsResponseRowsItem
+    from .jobs_create_reports_request_formats_item import JobsCreateReportsRequestFormatsItem
+    from .jobs_create_reports_response import JobsCreateReportsResponse
+    from .jobs_create_reports_response_outputs_item import JobsCreateReportsResponseOutputsItem
+    from .jobs_create_reports_response_status import JobsCreateReportsResponseStatus
+    from .jobs_get_reports_response import JobsGetReportsResponse
+    from .jobs_get_reports_response_outputs_item import JobsGetReportsResponseOutputsItem
+    from .jobs_get_reports_response_status import JobsGetReportsResponseStatus
+    from .jobs_list_reports_request_filter_item import JobsListReportsRequestFilterItem
+    from .jobs_list_reports_request_filter_item_op import JobsListReportsRequestFilterItemOp
+    from .jobs_list_reports_request_filter_item_value import JobsListReportsRequestFilterItemValue
+    from .jobs_list_reports_request_filter_item_value_three_item import JobsListReportsRequestFilterItemValueThreeItem
+    from .jobs_list_reports_request_sort_item import JobsListReportsRequestSortItem
+    from .jobs_list_reports_request_sort_item_dir import JobsListReportsRequestSortItemDir
+    from .jobs_list_reports_response import JobsListReportsResponse
+    from .jobs_list_reports_response_rows_item import JobsListReportsResponseRowsItem
+    from .jobs_list_reports_response_rows_item_outputs_item import JobsListReportsResponseRowsItemOutputsItem
+    from .jobs_list_reports_response_rows_item_status import JobsListReportsResponseRowsItemStatus
+    from .monthly_summary_reports_response import MonthlySummaryReportsResponse
+    from .monthly_summary_reports_response_rows_item import MonthlySummaryReportsResponseRowsItem
+    from .online_sales_reports_response import OnlineSalesReportsResponse
+    from .online_sales_reports_response_rows_item import OnlineSalesReportsResponseRowsItem
+    from .oss_reports_response import OssReportsResponse
+    from .oss_reports_response_rows_item import OssReportsResponseRowsItem
+    from .oss_reports_response_totals import OssReportsResponseTotals
+    from .partner_balances_reports_response import PartnerBalancesReportsResponse
+    from .partner_balances_reports_response_rows_item import PartnerBalancesReportsResponseRowsItem
+    from .pos_sales_reports_response import PosSalesReportsResponse
+    from .pos_sales_reports_response_by_rate_item import PosSalesReportsResponseByRateItem
+    from .pos_sales_reports_response_rows_item import PosSalesReportsResponseRowsItem
+    from .pos_sales_reports_response_totals import PosSalesReportsResponseTotals
+    from .sie_reports_response import SieReportsResponse
+    from .size_category_reports_response import SizeCategoryReportsResponse
+    from .size_category_reports_response_category import SizeCategoryReportsResponseCategory
+    from .size_category_reports_response_criteria import SizeCategoryReportsResponseCriteria
+    from .size_category_reports_response_thresholds_value import SizeCategoryReportsResponseThresholdsValue
+    from .stock_aging_reports_response import StockAgingReportsResponse
+    from .stock_aging_reports_response_rows_item import StockAgingReportsResponseRowsItem
+    from .stock_balance_reports_response import StockBalanceReportsResponse
+    from .stock_balance_reports_response_rows_item import StockBalanceReportsResponseRowsItem
+    from .stock_movement_reports_response import StockMovementReportsResponse
+    from .stock_movement_reports_response_rows_item import StockMovementReportsResponseRowsItem
+    from .stock_shortage_reports_response import StockShortageReportsResponse
+    from .stock_shortage_reports_response_rows_item import StockShortageReportsResponseRowsItem
+    from .trial_balance_reports_response import TrialBalanceReportsResponse
+    from .trial_balance_reports_response_rows_item import TrialBalanceReportsResponseRowsItem
+    from .trial_balance_reports_response_rows_item_type import TrialBalanceReportsResponseRowsItemType
+    from .trial_balance_reports_response_totals import TrialBalanceReportsResponseTotals
+    from .vat_detail_reports_request_side import VatDetailReportsRequestSide
+    from .vat_detail_reports_response import VatDetailReportsResponse
+    from .vat_detail_reports_response_rows_item import VatDetailReportsResponseRowsItem
+    from .vat_detail_reports_response_totals import VatDetailReportsResponseTotals
+    from .vat_summary_reports_request_side import VatSummaryReportsRequestSide
+    from .vat_summary_reports_response import VatSummaryReportsResponse
+    from .vat_summary_reports_response_rows_item import VatSummaryReportsResponseRowsItem
+    from .vat_summary_reports_response_totals import VatSummaryReportsResponseTotals
+    from .write_off_acts_reports_response import WriteOffActsReportsResponse
+    from .write_off_acts_reports_response_rows_item import WriteOffActsReportsResponseRowsItem
 _dynamic_imports: typing.Dict[str, str] = {
-    "PostV1ReportsAdvanceReconciliationResponse": ".post_v1reports_advance_reconciliation_response",
-    "PostV1ReportsAdvanceReconciliationResponseRowsItem": ".post_v1reports_advance_reconciliation_response_rows_item",
-    "PostV1ReportsCashFlowResponse": ".post_v1reports_cash_flow_response",
-    "PostV1ReportsCashFlowResponseFinancing": ".post_v1reports_cash_flow_response_financing",
-    "PostV1ReportsCashFlowResponseFinancingRowsItem": ".post_v1reports_cash_flow_response_financing_rows_item",
-    "PostV1ReportsCashFlowResponseInvesting": ".post_v1reports_cash_flow_response_investing",
-    "PostV1ReportsCashFlowResponseInvestingRowsItem": ".post_v1reports_cash_flow_response_investing_rows_item",
-    "PostV1ReportsCashFlowResponseOperating": ".post_v1reports_cash_flow_response_operating",
-    "PostV1ReportsCashFlowResponseOperatingRowsItem": ".post_v1reports_cash_flow_response_operating_rows_item",
-    "PostV1ReportsCostCenterActivityResponse": ".post_v1reports_cost_center_activity_response",
-    "PostV1ReportsCostCenterActivityResponseCostCenter": ".post_v1reports_cost_center_activity_response_cost_center",
-    "PostV1ReportsCostCenterActivityResponseRowsItem": ".post_v1reports_cost_center_activity_response_rows_item",
-    "PostV1ReportsCostCenterItemsResponse": ".post_v1reports_cost_center_items_response",
-    "PostV1ReportsCostCenterItemsResponseRowsItem": ".post_v1reports_cost_center_items_response_rows_item",
-    "PostV1ReportsCostCentersResponse": ".post_v1reports_cost_centers_response",
-    "PostV1ReportsCostCentersResponseRowsItem": ".post_v1reports_cost_centers_response_rows_item",
-    "PostV1ReportsDatevResponse": ".post_v1reports_datev_response",
-    "PostV1ReportsDebtAgingRequestSide": ".post_v1reports_debt_aging_request_side",
-    "PostV1ReportsDebtAgingResponse": ".post_v1reports_debt_aging_response",
-    "PostV1ReportsDebtAgingResponseRowsItem": ".post_v1reports_debt_aging_response_rows_item",
-    "PostV1ReportsEuPurchasesResponse": ".post_v1reports_eu_purchases_response",
-    "PostV1ReportsEuPurchasesResponseRowsItem": ".post_v1reports_eu_purchases_response_rows_item",
-    "PostV1ReportsEuPurchasesResponseTotals": ".post_v1reports_eu_purchases_response_totals",
-    "PostV1ReportsFecResponse": ".post_v1reports_fec_response",
-    "PostV1ReportsFinancialStatementsRequestCategory": ".post_v1reports_financial_statements_request_category",
-    "PostV1ReportsFinancialStatementsResponse": ".post_v1reports_financial_statements_response",
-    "PostV1ReportsFinancialStatementsResponseBalanceSheet": ".post_v1reports_financial_statements_response_balance_sheet",
-    "PostV1ReportsFinancialStatementsResponseBalanceSheetDetail": ".post_v1reports_financial_statements_response_balance_sheet_detail",
-    "PostV1ReportsFinancialStatementsResponseBalanceSheetDetailCurrentAssets": ".post_v1reports_financial_statements_response_balance_sheet_detail_current_assets",
-    "PostV1ReportsFinancialStatementsResponseBalanceSheetDetailEquity": ".post_v1reports_financial_statements_response_balance_sheet_detail_equity",
-    "PostV1ReportsFinancialStatementsResponseBalanceSheetDetailLiabilities": ".post_v1reports_financial_statements_response_balance_sheet_detail_liabilities",
-    "PostV1ReportsFinancialStatementsResponseBalanceSheetDetailNonCurrentAssets": ".post_v1reports_financial_statements_response_balance_sheet_detail_non_current_assets",
-    "PostV1ReportsFinancialStatementsResponseCashFlow": ".post_v1reports_financial_statements_response_cash_flow",
-    "PostV1ReportsFinancialStatementsResponseCategory": ".post_v1reports_financial_statements_response_category",
-    "PostV1ReportsFinancialStatementsResponseEquityChangesItem": ".post_v1reports_financial_statements_response_equity_changes_item",
-    "PostV1ReportsFinancialStatementsResponseProfitLoss": ".post_v1reports_financial_statements_response_profit_loss",
-    "PostV1ReportsFinancialStatementsResponseProfitLossDetail": ".post_v1reports_financial_statements_response_profit_loss_detail",
-    "PostV1ReportsGeneralJournalResponse": ".post_v1reports_general_journal_response",
-    "PostV1ReportsGeneralJournalResponseRowsItem": ".post_v1reports_general_journal_response_rows_item",
-    "PostV1ReportsGeneralJournalResponseRowsItemEntriesItem": ".post_v1reports_general_journal_response_rows_item_entries_item",
-    "PostV1ReportsGlDetailResponse": ".post_v1reports_gl_detail_response",
-    "PostV1ReportsGlDetailResponseAccount": ".post_v1reports_gl_detail_response_account",
-    "PostV1ReportsGlDetailResponseRowsItem": ".post_v1reports_gl_detail_response_rows_item",
-    "PostV1ReportsJobsCreateRequestFormatsItem": ".post_v1reports_jobs_create_request_formats_item",
-    "PostV1ReportsJobsCreateResponse": ".post_v1reports_jobs_create_response",
-    "PostV1ReportsJobsCreateResponseOutputsItem": ".post_v1reports_jobs_create_response_outputs_item",
-    "PostV1ReportsJobsCreateResponseStatus": ".post_v1reports_jobs_create_response_status",
-    "PostV1ReportsJobsGetResponse": ".post_v1reports_jobs_get_response",
-    "PostV1ReportsJobsGetResponseOutputsItem": ".post_v1reports_jobs_get_response_outputs_item",
-    "PostV1ReportsJobsGetResponseStatus": ".post_v1reports_jobs_get_response_status",
-    "PostV1ReportsJobsListRequestFilterItem": ".post_v1reports_jobs_list_request_filter_item",
-    "PostV1ReportsJobsListRequestFilterItemOp": ".post_v1reports_jobs_list_request_filter_item_op",
-    "PostV1ReportsJobsListRequestFilterItemValue": ".post_v1reports_jobs_list_request_filter_item_value",
-    "PostV1ReportsJobsListRequestFilterItemValueThreeItem": ".post_v1reports_jobs_list_request_filter_item_value_three_item",
-    "PostV1ReportsJobsListRequestSortItem": ".post_v1reports_jobs_list_request_sort_item",
-    "PostV1ReportsJobsListRequestSortItemDir": ".post_v1reports_jobs_list_request_sort_item_dir",
-    "PostV1ReportsJobsListResponse": ".post_v1reports_jobs_list_response",
-    "PostV1ReportsJobsListResponseRowsItem": ".post_v1reports_jobs_list_response_rows_item",
-    "PostV1ReportsJobsListResponseRowsItemOutputsItem": ".post_v1reports_jobs_list_response_rows_item_outputs_item",
-    "PostV1ReportsJobsListResponseRowsItemStatus": ".post_v1reports_jobs_list_response_rows_item_status",
-    "PostV1ReportsMonthlySummaryResponse": ".post_v1reports_monthly_summary_response",
-    "PostV1ReportsMonthlySummaryResponseRowsItem": ".post_v1reports_monthly_summary_response_rows_item",
-    "PostV1ReportsOnlineSalesResponse": ".post_v1reports_online_sales_response",
-    "PostV1ReportsOnlineSalesResponseRowsItem": ".post_v1reports_online_sales_response_rows_item",
-    "PostV1ReportsOssResponse": ".post_v1reports_oss_response",
-    "PostV1ReportsOssResponseRowsItem": ".post_v1reports_oss_response_rows_item",
-    "PostV1ReportsOssResponseTotals": ".post_v1reports_oss_response_totals",
-    "PostV1ReportsPartnerBalancesResponse": ".post_v1reports_partner_balances_response",
-    "PostV1ReportsPartnerBalancesResponseRowsItem": ".post_v1reports_partner_balances_response_rows_item",
-    "PostV1ReportsPosSalesResponse": ".post_v1reports_pos_sales_response",
-    "PostV1ReportsPosSalesResponseByRateItem": ".post_v1reports_pos_sales_response_by_rate_item",
-    "PostV1ReportsPosSalesResponseRowsItem": ".post_v1reports_pos_sales_response_rows_item",
-    "PostV1ReportsPosSalesResponseTotals": ".post_v1reports_pos_sales_response_totals",
-    "PostV1ReportsSieResponse": ".post_v1reports_sie_response",
-    "PostV1ReportsSizeCategoryResponse": ".post_v1reports_size_category_response",
-    "PostV1ReportsSizeCategoryResponseCategory": ".post_v1reports_size_category_response_category",
-    "PostV1ReportsSizeCategoryResponseCriteria": ".post_v1reports_size_category_response_criteria",
-    "PostV1ReportsSizeCategoryResponseThresholdsValue": ".post_v1reports_size_category_response_thresholds_value",
-    "PostV1ReportsStockAgingResponse": ".post_v1reports_stock_aging_response",
-    "PostV1ReportsStockAgingResponseRowsItem": ".post_v1reports_stock_aging_response_rows_item",
-    "PostV1ReportsStockBalanceResponse": ".post_v1reports_stock_balance_response",
-    "PostV1ReportsStockBalanceResponseRowsItem": ".post_v1reports_stock_balance_response_rows_item",
-    "PostV1ReportsStockMovementResponse": ".post_v1reports_stock_movement_response",
-    "PostV1ReportsStockMovementResponseRowsItem": ".post_v1reports_stock_movement_response_rows_item",
-    "PostV1ReportsStockShortageResponse": ".post_v1reports_stock_shortage_response",
-    "PostV1ReportsStockShortageResponseRowsItem": ".post_v1reports_stock_shortage_response_rows_item",
-    "PostV1ReportsTrialBalanceResponse": ".post_v1reports_trial_balance_response",
-    "PostV1ReportsTrialBalanceResponseRowsItem": ".post_v1reports_trial_balance_response_rows_item",
-    "PostV1ReportsTrialBalanceResponseRowsItemType": ".post_v1reports_trial_balance_response_rows_item_type",
-    "PostV1ReportsTrialBalanceResponseTotals": ".post_v1reports_trial_balance_response_totals",
-    "PostV1ReportsVatDetailRequestSide": ".post_v1reports_vat_detail_request_side",
-    "PostV1ReportsVatDetailResponse": ".post_v1reports_vat_detail_response",
-    "PostV1ReportsVatDetailResponseRowsItem": ".post_v1reports_vat_detail_response_rows_item",
-    "PostV1ReportsVatDetailResponseTotals": ".post_v1reports_vat_detail_response_totals",
-    "PostV1ReportsVatSummaryRequestSide": ".post_v1reports_vat_summary_request_side",
-    "PostV1ReportsVatSummaryResponse": ".post_v1reports_vat_summary_response",
-    "PostV1ReportsVatSummaryResponseRowsItem": ".post_v1reports_vat_summary_response_rows_item",
-    "PostV1ReportsVatSummaryResponseTotals": ".post_v1reports_vat_summary_response_totals",
-    "PostV1ReportsWriteOffActsResponse": ".post_v1reports_write_off_acts_response",
-    "PostV1ReportsWriteOffActsResponseRowsItem": ".post_v1reports_write_off_acts_response_rows_item",
+    "AdvanceReconciliationReportsResponse": ".advance_reconciliation_reports_response",
+    "AdvanceReconciliationReportsResponseRowsItem": ".advance_reconciliation_reports_response_rows_item",
+    "CashFlowReportsResponse": ".cash_flow_reports_response",
+    "CashFlowReportsResponseFinancing": ".cash_flow_reports_response_financing",
+    "CashFlowReportsResponseFinancingRowsItem": ".cash_flow_reports_response_financing_rows_item",
+    "CashFlowReportsResponseInvesting": ".cash_flow_reports_response_investing",
+    "CashFlowReportsResponseInvestingRowsItem": ".cash_flow_reports_response_investing_rows_item",
+    "CashFlowReportsResponseOperating": ".cash_flow_reports_response_operating",
+    "CashFlowReportsResponseOperatingRowsItem": ".cash_flow_reports_response_operating_rows_item",
+    "CostCenterActivityReportsResponse": ".cost_center_activity_reports_response",
+    "CostCenterActivityReportsResponseCostCenter": ".cost_center_activity_reports_response_cost_center",
+    "CostCenterActivityReportsResponseRowsItem": ".cost_center_activity_reports_response_rows_item",
+    "CostCenterItemsReportsResponse": ".cost_center_items_reports_response",
+    "CostCenterItemsReportsResponseRowsItem": ".cost_center_items_reports_response_rows_item",
+    "CostCentersReportsResponse": ".cost_centers_reports_response",
+    "CostCentersReportsResponseRowsItem": ".cost_centers_reports_response_rows_item",
+    "DatevReportsResponse": ".datev_reports_response",
+    "DebtAgingReportsRequestSide": ".debt_aging_reports_request_side",
+    "DebtAgingReportsResponse": ".debt_aging_reports_response",
+    "DebtAgingReportsResponseRowsItem": ".debt_aging_reports_response_rows_item",
+    "EuPurchasesReportsResponse": ".eu_purchases_reports_response",
+    "EuPurchasesReportsResponseRowsItem": ".eu_purchases_reports_response_rows_item",
+    "EuPurchasesReportsResponseTotals": ".eu_purchases_reports_response_totals",
+    "FecReportsResponse": ".fec_reports_response",
+    "FinancialStatementsReportsRequestCategory": ".financial_statements_reports_request_category",
+    "FinancialStatementsReportsResponse": ".financial_statements_reports_response",
+    "FinancialStatementsReportsResponseBalanceSheet": ".financial_statements_reports_response_balance_sheet",
+    "FinancialStatementsReportsResponseBalanceSheetDetail": ".financial_statements_reports_response_balance_sheet_detail",
+    "FinancialStatementsReportsResponseBalanceSheetDetailCurrentAssets": ".financial_statements_reports_response_balance_sheet_detail_current_assets",
+    "FinancialStatementsReportsResponseBalanceSheetDetailEquity": ".financial_statements_reports_response_balance_sheet_detail_equity",
+    "FinancialStatementsReportsResponseBalanceSheetDetailLiabilities": ".financial_statements_reports_response_balance_sheet_detail_liabilities",
+    "FinancialStatementsReportsResponseBalanceSheetDetailNonCurrentAssets": ".financial_statements_reports_response_balance_sheet_detail_non_current_assets",
+    "FinancialStatementsReportsResponseCashFlow": ".financial_statements_reports_response_cash_flow",
+    "FinancialStatementsReportsResponseCategory": ".financial_statements_reports_response_category",
+    "FinancialStatementsReportsResponseEquityChangesItem": ".financial_statements_reports_response_equity_changes_item",
+    "FinancialStatementsReportsResponseProfitLoss": ".financial_statements_reports_response_profit_loss",
+    "FinancialStatementsReportsResponseProfitLossDetail": ".financial_statements_reports_response_profit_loss_detail",
+    "GeneralJournalReportsResponse": ".general_journal_reports_response",
+    "GeneralJournalReportsResponseRowsItem": ".general_journal_reports_response_rows_item",
+    "GeneralJournalReportsResponseRowsItemEntriesItem": ".general_journal_reports_response_rows_item_entries_item",
+    "GlDetailReportsResponse": ".gl_detail_reports_response",
+    "GlDetailReportsResponseAccount": ".gl_detail_reports_response_account",
+    "GlDetailReportsResponseRowsItem": ".gl_detail_reports_response_rows_item",
+    "JobsCreateReportsRequestFormatsItem": ".jobs_create_reports_request_formats_item",
+    "JobsCreateReportsResponse": ".jobs_create_reports_response",
+    "JobsCreateReportsResponseOutputsItem": ".jobs_create_reports_response_outputs_item",
+    "JobsCreateReportsResponseStatus": ".jobs_create_reports_response_status",
+    "JobsGetReportsResponse": ".jobs_get_reports_response",
+    "JobsGetReportsResponseOutputsItem": ".jobs_get_reports_response_outputs_item",
+    "JobsGetReportsResponseStatus": ".jobs_get_reports_response_status",
+    "JobsListReportsRequestFilterItem": ".jobs_list_reports_request_filter_item",
+    "JobsListReportsRequestFilterItemOp": ".jobs_list_reports_request_filter_item_op",
+    "JobsListReportsRequestFilterItemValue": ".jobs_list_reports_request_filter_item_value",
+    "JobsListReportsRequestFilterItemValueThreeItem": ".jobs_list_reports_request_filter_item_value_three_item",
+    "JobsListReportsRequestSortItem": ".jobs_list_reports_request_sort_item",
+    "JobsListReportsRequestSortItemDir": ".jobs_list_reports_request_sort_item_dir",
+    "JobsListReportsResponse": ".jobs_list_reports_response",
+    "JobsListReportsResponseRowsItem": ".jobs_list_reports_response_rows_item",
+    "JobsListReportsResponseRowsItemOutputsItem": ".jobs_list_reports_response_rows_item_outputs_item",
+    "JobsListReportsResponseRowsItemStatus": ".jobs_list_reports_response_rows_item_status",
+    "MonthlySummaryReportsResponse": ".monthly_summary_reports_response",
+    "MonthlySummaryReportsResponseRowsItem": ".monthly_summary_reports_response_rows_item",
+    "OnlineSalesReportsResponse": ".online_sales_reports_response",
+    "OnlineSalesReportsResponseRowsItem": ".online_sales_reports_response_rows_item",
+    "OssReportsResponse": ".oss_reports_response",
+    "OssReportsResponseRowsItem": ".oss_reports_response_rows_item",
+    "OssReportsResponseTotals": ".oss_reports_response_totals",
+    "PartnerBalancesReportsResponse": ".partner_balances_reports_response",
+    "PartnerBalancesReportsResponseRowsItem": ".partner_balances_reports_response_rows_item",
+    "PosSalesReportsResponse": ".pos_sales_reports_response",
+    "PosSalesReportsResponseByRateItem": ".pos_sales_reports_response_by_rate_item",
+    "PosSalesReportsResponseRowsItem": ".pos_sales_reports_response_rows_item",
+    "PosSalesReportsResponseTotals": ".pos_sales_reports_response_totals",
+    "SieReportsResponse": ".sie_reports_response",
+    "SizeCategoryReportsResponse": ".size_category_reports_response",
+    "SizeCategoryReportsResponseCategory": ".size_category_reports_response_category",
+    "SizeCategoryReportsResponseCriteria": ".size_category_reports_response_criteria",
+    "SizeCategoryReportsResponseThresholdsValue": ".size_category_reports_response_thresholds_value",
+    "StockAgingReportsResponse": ".stock_aging_reports_response",
+    "StockAgingReportsResponseRowsItem": ".stock_aging_reports_response_rows_item",
+    "StockBalanceReportsResponse": ".stock_balance_reports_response",
+    "StockBalanceReportsResponseRowsItem": ".stock_balance_reports_response_rows_item",
+    "StockMovementReportsResponse": ".stock_movement_reports_response",
+    "StockMovementReportsResponseRowsItem": ".stock_movement_reports_response_rows_item",
+    "StockShortageReportsResponse": ".stock_shortage_reports_response",
+    "StockShortageReportsResponseRowsItem": ".stock_shortage_reports_response_rows_item",
+    "TrialBalanceReportsResponse": ".trial_balance_reports_response",
+    "TrialBalanceReportsResponseRowsItem": ".trial_balance_reports_response_rows_item",
+    "TrialBalanceReportsResponseRowsItemType": ".trial_balance_reports_response_rows_item_type",
+    "TrialBalanceReportsResponseTotals": ".trial_balance_reports_response_totals",
+    "VatDetailReportsRequestSide": ".vat_detail_reports_request_side",
+    "VatDetailReportsResponse": ".vat_detail_reports_response",
+    "VatDetailReportsResponseRowsItem": ".vat_detail_reports_response_rows_item",
+    "VatDetailReportsResponseTotals": ".vat_detail_reports_response_totals",
+    "VatSummaryReportsRequestSide": ".vat_summary_reports_request_side",
+    "VatSummaryReportsResponse": ".vat_summary_reports_response",
+    "VatSummaryReportsResponseRowsItem": ".vat_summary_reports_response_rows_item",
+    "VatSummaryReportsResponseTotals": ".vat_summary_reports_response_totals",
+    "WriteOffActsReportsResponse": ".write_off_acts_reports_response",
+    "WriteOffActsReportsResponseRowsItem": ".write_off_acts_reports_response_rows_item",
 }
 
 
@@ -260,104 +248,104 @@ def __dir__():
 
 
 __all__ = [
-    "PostV1ReportsAdvanceReconciliationResponse",
-    "PostV1ReportsAdvanceReconciliationResponseRowsItem",
-    "PostV1ReportsCashFlowResponse",
-    "PostV1ReportsCashFlowResponseFinancing",
-    "PostV1ReportsCashFlowResponseFinancingRowsItem",
-    "PostV1ReportsCashFlowResponseInvesting",
-    "PostV1ReportsCashFlowResponseInvestingRowsItem",
-    "PostV1ReportsCashFlowResponseOperating",
-    "PostV1ReportsCashFlowResponseOperatingRowsItem",
-    "PostV1ReportsCostCenterActivityResponse",
-    "PostV1ReportsCostCenterActivityResponseCostCenter",
-    "PostV1ReportsCostCenterActivityResponseRowsItem",
-    "PostV1ReportsCostCenterItemsResponse",
-    "PostV1ReportsCostCenterItemsResponseRowsItem",
-    "PostV1ReportsCostCentersResponse",
-    "PostV1ReportsCostCentersResponseRowsItem",
-    "PostV1ReportsDatevResponse",
-    "PostV1ReportsDebtAgingRequestSide",
-    "PostV1ReportsDebtAgingResponse",
-    "PostV1ReportsDebtAgingResponseRowsItem",
-    "PostV1ReportsEuPurchasesResponse",
-    "PostV1ReportsEuPurchasesResponseRowsItem",
-    "PostV1ReportsEuPurchasesResponseTotals",
-    "PostV1ReportsFecResponse",
-    "PostV1ReportsFinancialStatementsRequestCategory",
-    "PostV1ReportsFinancialStatementsResponse",
-    "PostV1ReportsFinancialStatementsResponseBalanceSheet",
-    "PostV1ReportsFinancialStatementsResponseBalanceSheetDetail",
-    "PostV1ReportsFinancialStatementsResponseBalanceSheetDetailCurrentAssets",
-    "PostV1ReportsFinancialStatementsResponseBalanceSheetDetailEquity",
-    "PostV1ReportsFinancialStatementsResponseBalanceSheetDetailLiabilities",
-    "PostV1ReportsFinancialStatementsResponseBalanceSheetDetailNonCurrentAssets",
-    "PostV1ReportsFinancialStatementsResponseCashFlow",
-    "PostV1ReportsFinancialStatementsResponseCategory",
-    "PostV1ReportsFinancialStatementsResponseEquityChangesItem",
-    "PostV1ReportsFinancialStatementsResponseProfitLoss",
-    "PostV1ReportsFinancialStatementsResponseProfitLossDetail",
-    "PostV1ReportsGeneralJournalResponse",
-    "PostV1ReportsGeneralJournalResponseRowsItem",
-    "PostV1ReportsGeneralJournalResponseRowsItemEntriesItem",
-    "PostV1ReportsGlDetailResponse",
-    "PostV1ReportsGlDetailResponseAccount",
-    "PostV1ReportsGlDetailResponseRowsItem",
-    "PostV1ReportsJobsCreateRequestFormatsItem",
-    "PostV1ReportsJobsCreateResponse",
-    "PostV1ReportsJobsCreateResponseOutputsItem",
-    "PostV1ReportsJobsCreateResponseStatus",
-    "PostV1ReportsJobsGetResponse",
-    "PostV1ReportsJobsGetResponseOutputsItem",
-    "PostV1ReportsJobsGetResponseStatus",
-    "PostV1ReportsJobsListRequestFilterItem",
-    "PostV1ReportsJobsListRequestFilterItemOp",
-    "PostV1ReportsJobsListRequestFilterItemValue",
-    "PostV1ReportsJobsListRequestFilterItemValueThreeItem",
-    "PostV1ReportsJobsListRequestSortItem",
-    "PostV1ReportsJobsListRequestSortItemDir",
-    "PostV1ReportsJobsListResponse",
-    "PostV1ReportsJobsListResponseRowsItem",
-    "PostV1ReportsJobsListResponseRowsItemOutputsItem",
-    "PostV1ReportsJobsListResponseRowsItemStatus",
-    "PostV1ReportsMonthlySummaryResponse",
-    "PostV1ReportsMonthlySummaryResponseRowsItem",
-    "PostV1ReportsOnlineSalesResponse",
-    "PostV1ReportsOnlineSalesResponseRowsItem",
-    "PostV1ReportsOssResponse",
-    "PostV1ReportsOssResponseRowsItem",
-    "PostV1ReportsOssResponseTotals",
-    "PostV1ReportsPartnerBalancesResponse",
-    "PostV1ReportsPartnerBalancesResponseRowsItem",
-    "PostV1ReportsPosSalesResponse",
-    "PostV1ReportsPosSalesResponseByRateItem",
-    "PostV1ReportsPosSalesResponseRowsItem",
-    "PostV1ReportsPosSalesResponseTotals",
-    "PostV1ReportsSieResponse",
-    "PostV1ReportsSizeCategoryResponse",
-    "PostV1ReportsSizeCategoryResponseCategory",
-    "PostV1ReportsSizeCategoryResponseCriteria",
-    "PostV1ReportsSizeCategoryResponseThresholdsValue",
-    "PostV1ReportsStockAgingResponse",
-    "PostV1ReportsStockAgingResponseRowsItem",
-    "PostV1ReportsStockBalanceResponse",
-    "PostV1ReportsStockBalanceResponseRowsItem",
-    "PostV1ReportsStockMovementResponse",
-    "PostV1ReportsStockMovementResponseRowsItem",
-    "PostV1ReportsStockShortageResponse",
-    "PostV1ReportsStockShortageResponseRowsItem",
-    "PostV1ReportsTrialBalanceResponse",
-    "PostV1ReportsTrialBalanceResponseRowsItem",
-    "PostV1ReportsTrialBalanceResponseRowsItemType",
-    "PostV1ReportsTrialBalanceResponseTotals",
-    "PostV1ReportsVatDetailRequestSide",
-    "PostV1ReportsVatDetailResponse",
-    "PostV1ReportsVatDetailResponseRowsItem",
-    "PostV1ReportsVatDetailResponseTotals",
-    "PostV1ReportsVatSummaryRequestSide",
-    "PostV1ReportsVatSummaryResponse",
-    "PostV1ReportsVatSummaryResponseRowsItem",
-    "PostV1ReportsVatSummaryResponseTotals",
-    "PostV1ReportsWriteOffActsResponse",
-    "PostV1ReportsWriteOffActsResponseRowsItem",
+    "AdvanceReconciliationReportsResponse",
+    "AdvanceReconciliationReportsResponseRowsItem",
+    "CashFlowReportsResponse",
+    "CashFlowReportsResponseFinancing",
+    "CashFlowReportsResponseFinancingRowsItem",
+    "CashFlowReportsResponseInvesting",
+    "CashFlowReportsResponseInvestingRowsItem",
+    "CashFlowReportsResponseOperating",
+    "CashFlowReportsResponseOperatingRowsItem",
+    "CostCenterActivityReportsResponse",
+    "CostCenterActivityReportsResponseCostCenter",
+    "CostCenterActivityReportsResponseRowsItem",
+    "CostCenterItemsReportsResponse",
+    "CostCenterItemsReportsResponseRowsItem",
+    "CostCentersReportsResponse",
+    "CostCentersReportsResponseRowsItem",
+    "DatevReportsResponse",
+    "DebtAgingReportsRequestSide",
+    "DebtAgingReportsResponse",
+    "DebtAgingReportsResponseRowsItem",
+    "EuPurchasesReportsResponse",
+    "EuPurchasesReportsResponseRowsItem",
+    "EuPurchasesReportsResponseTotals",
+    "FecReportsResponse",
+    "FinancialStatementsReportsRequestCategory",
+    "FinancialStatementsReportsResponse",
+    "FinancialStatementsReportsResponseBalanceSheet",
+    "FinancialStatementsReportsResponseBalanceSheetDetail",
+    "FinancialStatementsReportsResponseBalanceSheetDetailCurrentAssets",
+    "FinancialStatementsReportsResponseBalanceSheetDetailEquity",
+    "FinancialStatementsReportsResponseBalanceSheetDetailLiabilities",
+    "FinancialStatementsReportsResponseBalanceSheetDetailNonCurrentAssets",
+    "FinancialStatementsReportsResponseCashFlow",
+    "FinancialStatementsReportsResponseCategory",
+    "FinancialStatementsReportsResponseEquityChangesItem",
+    "FinancialStatementsReportsResponseProfitLoss",
+    "FinancialStatementsReportsResponseProfitLossDetail",
+    "GeneralJournalReportsResponse",
+    "GeneralJournalReportsResponseRowsItem",
+    "GeneralJournalReportsResponseRowsItemEntriesItem",
+    "GlDetailReportsResponse",
+    "GlDetailReportsResponseAccount",
+    "GlDetailReportsResponseRowsItem",
+    "JobsCreateReportsRequestFormatsItem",
+    "JobsCreateReportsResponse",
+    "JobsCreateReportsResponseOutputsItem",
+    "JobsCreateReportsResponseStatus",
+    "JobsGetReportsResponse",
+    "JobsGetReportsResponseOutputsItem",
+    "JobsGetReportsResponseStatus",
+    "JobsListReportsRequestFilterItem",
+    "JobsListReportsRequestFilterItemOp",
+    "JobsListReportsRequestFilterItemValue",
+    "JobsListReportsRequestFilterItemValueThreeItem",
+    "JobsListReportsRequestSortItem",
+    "JobsListReportsRequestSortItemDir",
+    "JobsListReportsResponse",
+    "JobsListReportsResponseRowsItem",
+    "JobsListReportsResponseRowsItemOutputsItem",
+    "JobsListReportsResponseRowsItemStatus",
+    "MonthlySummaryReportsResponse",
+    "MonthlySummaryReportsResponseRowsItem",
+    "OnlineSalesReportsResponse",
+    "OnlineSalesReportsResponseRowsItem",
+    "OssReportsResponse",
+    "OssReportsResponseRowsItem",
+    "OssReportsResponseTotals",
+    "PartnerBalancesReportsResponse",
+    "PartnerBalancesReportsResponseRowsItem",
+    "PosSalesReportsResponse",
+    "PosSalesReportsResponseByRateItem",
+    "PosSalesReportsResponseRowsItem",
+    "PosSalesReportsResponseTotals",
+    "SieReportsResponse",
+    "SizeCategoryReportsResponse",
+    "SizeCategoryReportsResponseCategory",
+    "SizeCategoryReportsResponseCriteria",
+    "SizeCategoryReportsResponseThresholdsValue",
+    "StockAgingReportsResponse",
+    "StockAgingReportsResponseRowsItem",
+    "StockBalanceReportsResponse",
+    "StockBalanceReportsResponseRowsItem",
+    "StockMovementReportsResponse",
+    "StockMovementReportsResponseRowsItem",
+    "StockShortageReportsResponse",
+    "StockShortageReportsResponseRowsItem",
+    "TrialBalanceReportsResponse",
+    "TrialBalanceReportsResponseRowsItem",
+    "TrialBalanceReportsResponseRowsItemType",
+    "TrialBalanceReportsResponseTotals",
+    "VatDetailReportsRequestSide",
+    "VatDetailReportsResponse",
+    "VatDetailReportsResponseRowsItem",
+    "VatDetailReportsResponseTotals",
+    "VatSummaryReportsRequestSide",
+    "VatSummaryReportsResponse",
+    "VatSummaryReportsResponseRowsItem",
+    "VatSummaryReportsResponseTotals",
+    "WriteOffActsReportsResponse",
+    "WriteOffActsReportsResponseRowsItem",
 ]

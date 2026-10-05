@@ -6,145 +6,123 @@ import typing
 from importlib import import_module
 
 if typing.TYPE_CHECKING:
-    from .post_v1capture_documents_confirm_request_lines_item import PostV1CaptureDocumentsConfirmRequestLinesItem
-    from .post_v1capture_documents_confirm_request_lines_item_quantity import (
-        PostV1CaptureDocumentsConfirmRequestLinesItemQuantity,
+    from .documents_confirm_capture_request_lines_item import DocumentsConfirmCaptureRequestLinesItem
+    from .documents_confirm_capture_request_lines_item_quantity import DocumentsConfirmCaptureRequestLinesItemQuantity
+    from .documents_confirm_capture_request_new_supplier import DocumentsConfirmCaptureRequestNewSupplier
+    from .documents_confirm_capture_response import DocumentsConfirmCaptureResponse
+    from .documents_confirm_capture_response_capture import DocumentsConfirmCaptureResponseCapture
+    from .documents_confirm_capture_response_capture_extraction import DocumentsConfirmCaptureResponseCaptureExtraction
+    from .documents_confirm_capture_response_capture_extraction_lines_item import (
+        DocumentsConfirmCaptureResponseCaptureExtractionLinesItem,
     )
-    from .post_v1capture_documents_confirm_request_new_supplier import PostV1CaptureDocumentsConfirmRequestNewSupplier
-    from .post_v1capture_documents_confirm_response import PostV1CaptureDocumentsConfirmResponse
-    from .post_v1capture_documents_confirm_response_capture import PostV1CaptureDocumentsConfirmResponseCapture
-    from .post_v1capture_documents_confirm_response_capture_extraction import (
-        PostV1CaptureDocumentsConfirmResponseCaptureExtraction,
+    from .documents_confirm_capture_response_capture_extraction_supplier import (
+        DocumentsConfirmCaptureResponseCaptureExtractionSupplier,
     )
-    from .post_v1capture_documents_confirm_response_capture_extraction_lines_item import (
-        PostV1CaptureDocumentsConfirmResponseCaptureExtractionLinesItem,
+    from .documents_confirm_capture_response_capture_status import DocumentsConfirmCaptureResponseCaptureStatus
+    from .documents_confirm_capture_response_invoice import DocumentsConfirmCaptureResponseInvoice
+    from .documents_confirm_capture_response_invoice_lines_item import DocumentsConfirmCaptureResponseInvoiceLinesItem
+    from .documents_confirm_capture_response_invoice_payment_status import (
+        DocumentsConfirmCaptureResponseInvoicePaymentStatus,
     )
-    from .post_v1capture_documents_confirm_response_capture_extraction_supplier import (
-        PostV1CaptureDocumentsConfirmResponseCaptureExtractionSupplier,
+    from .documents_confirm_capture_response_invoice_status import DocumentsConfirmCaptureResponseInvoiceStatus
+    from .documents_confirm_capture_response_invoice_type import DocumentsConfirmCaptureResponseInvoiceType
+    from .documents_delete_capture_response import DocumentsDeleteCaptureResponse
+    from .documents_extract_capture_response import DocumentsExtractCaptureResponse
+    from .documents_extract_capture_response_extraction import DocumentsExtractCaptureResponseExtraction
+    from .documents_extract_capture_response_extraction_lines_item import (
+        DocumentsExtractCaptureResponseExtractionLinesItem,
     )
-    from .post_v1capture_documents_confirm_response_capture_status import (
-        PostV1CaptureDocumentsConfirmResponseCaptureStatus,
+    from .documents_extract_capture_response_extraction_supplier import (
+        DocumentsExtractCaptureResponseExtractionSupplier,
     )
-    from .post_v1capture_documents_confirm_response_invoice import PostV1CaptureDocumentsConfirmResponseInvoice
-    from .post_v1capture_documents_confirm_response_invoice_lines_item import (
-        PostV1CaptureDocumentsConfirmResponseInvoiceLinesItem,
+    from .documents_extract_capture_response_status import DocumentsExtractCaptureResponseStatus
+    from .documents_get_capture_response import DocumentsGetCaptureResponse
+    from .documents_get_capture_response_extraction import DocumentsGetCaptureResponseExtraction
+    from .documents_get_capture_response_extraction_lines_item import DocumentsGetCaptureResponseExtractionLinesItem
+    from .documents_get_capture_response_extraction_supplier import DocumentsGetCaptureResponseExtractionSupplier
+    from .documents_get_capture_response_status import DocumentsGetCaptureResponseStatus
+    from .documents_list_capture_request_filter_item import DocumentsListCaptureRequestFilterItem
+    from .documents_list_capture_request_filter_item_op import DocumentsListCaptureRequestFilterItemOp
+    from .documents_list_capture_request_filter_item_value import DocumentsListCaptureRequestFilterItemValue
+    from .documents_list_capture_request_filter_item_value_three_item import (
+        DocumentsListCaptureRequestFilterItemValueThreeItem,
     )
-    from .post_v1capture_documents_confirm_response_invoice_payment_status import (
-        PostV1CaptureDocumentsConfirmResponseInvoicePaymentStatus,
+    from .documents_list_capture_request_sort_item import DocumentsListCaptureRequestSortItem
+    from .documents_list_capture_request_sort_item_dir import DocumentsListCaptureRequestSortItemDir
+    from .documents_list_capture_response import DocumentsListCaptureResponse
+    from .documents_list_capture_response_rows_item import DocumentsListCaptureResponseRowsItem
+    from .documents_list_capture_response_rows_item_extraction import DocumentsListCaptureResponseRowsItemExtraction
+    from .documents_list_capture_response_rows_item_extraction_lines_item import (
+        DocumentsListCaptureResponseRowsItemExtractionLinesItem,
     )
-    from .post_v1capture_documents_confirm_response_invoice_status import (
-        PostV1CaptureDocumentsConfirmResponseInvoiceStatus,
+    from .documents_list_capture_response_rows_item_extraction_supplier import (
+        DocumentsListCaptureResponseRowsItemExtractionSupplier,
     )
-    from .post_v1capture_documents_confirm_response_invoice_type import PostV1CaptureDocumentsConfirmResponseInvoiceType
-    from .post_v1capture_documents_delete_response import PostV1CaptureDocumentsDeleteResponse
-    from .post_v1capture_documents_extract_response import PostV1CaptureDocumentsExtractResponse
-    from .post_v1capture_documents_extract_response_extraction import PostV1CaptureDocumentsExtractResponseExtraction
-    from .post_v1capture_documents_extract_response_extraction_lines_item import (
-        PostV1CaptureDocumentsExtractResponseExtractionLinesItem,
+    from .documents_list_capture_response_rows_item_status import DocumentsListCaptureResponseRowsItemStatus
+    from .documents_upload_capture_response import DocumentsUploadCaptureResponse
+    from .documents_upload_capture_response_extraction import DocumentsUploadCaptureResponseExtraction
+    from .documents_upload_capture_response_extraction_lines_item import (
+        DocumentsUploadCaptureResponseExtractionLinesItem,
     )
-    from .post_v1capture_documents_extract_response_extraction_supplier import (
-        PostV1CaptureDocumentsExtractResponseExtractionSupplier,
-    )
-    from .post_v1capture_documents_extract_response_status import PostV1CaptureDocumentsExtractResponseStatus
-    from .post_v1capture_documents_get_response import PostV1CaptureDocumentsGetResponse
-    from .post_v1capture_documents_get_response_extraction import PostV1CaptureDocumentsGetResponseExtraction
-    from .post_v1capture_documents_get_response_extraction_lines_item import (
-        PostV1CaptureDocumentsGetResponseExtractionLinesItem,
-    )
-    from .post_v1capture_documents_get_response_extraction_supplier import (
-        PostV1CaptureDocumentsGetResponseExtractionSupplier,
-    )
-    from .post_v1capture_documents_get_response_status import PostV1CaptureDocumentsGetResponseStatus
-    from .post_v1capture_documents_list_request_filter_item import PostV1CaptureDocumentsListRequestFilterItem
-    from .post_v1capture_documents_list_request_filter_item_op import PostV1CaptureDocumentsListRequestFilterItemOp
-    from .post_v1capture_documents_list_request_filter_item_value import (
-        PostV1CaptureDocumentsListRequestFilterItemValue,
-    )
-    from .post_v1capture_documents_list_request_filter_item_value_three_item import (
-        PostV1CaptureDocumentsListRequestFilterItemValueThreeItem,
-    )
-    from .post_v1capture_documents_list_request_sort_item import PostV1CaptureDocumentsListRequestSortItem
-    from .post_v1capture_documents_list_request_sort_item_dir import PostV1CaptureDocumentsListRequestSortItemDir
-    from .post_v1capture_documents_list_response import PostV1CaptureDocumentsListResponse
-    from .post_v1capture_documents_list_response_rows_item import PostV1CaptureDocumentsListResponseRowsItem
-    from .post_v1capture_documents_list_response_rows_item_extraction import (
-        PostV1CaptureDocumentsListResponseRowsItemExtraction,
-    )
-    from .post_v1capture_documents_list_response_rows_item_extraction_lines_item import (
-        PostV1CaptureDocumentsListResponseRowsItemExtractionLinesItem,
-    )
-    from .post_v1capture_documents_list_response_rows_item_extraction_supplier import (
-        PostV1CaptureDocumentsListResponseRowsItemExtractionSupplier,
-    )
-    from .post_v1capture_documents_list_response_rows_item_status import (
-        PostV1CaptureDocumentsListResponseRowsItemStatus,
-    )
-    from .post_v1capture_documents_upload_response import PostV1CaptureDocumentsUploadResponse
-    from .post_v1capture_documents_upload_response_extraction import PostV1CaptureDocumentsUploadResponseExtraction
-    from .post_v1capture_documents_upload_response_extraction_lines_item import (
-        PostV1CaptureDocumentsUploadResponseExtractionLinesItem,
-    )
-    from .post_v1capture_documents_upload_response_extraction_supplier import (
-        PostV1CaptureDocumentsUploadResponseExtractionSupplier,
-    )
-    from .post_v1capture_documents_upload_response_status import PostV1CaptureDocumentsUploadResponseStatus
-    from .post_v1capture_inbound_email_request_attachments_item import PostV1CaptureInboundEmailRequestAttachmentsItem
-    from .post_v1capture_inbound_email_request_to import PostV1CaptureInboundEmailRequestTo
-    from .post_v1capture_inbound_email_request_to_full_item import PostV1CaptureInboundEmailRequestToFullItem
-    from .post_v1capture_inbound_email_response import PostV1CaptureInboundEmailResponse
-    from .post_v1capture_settings_get_response import PostV1CaptureSettingsGetResponse
-    from .post_v1capture_settings_regenerate_intake_response import PostV1CaptureSettingsRegenerateIntakeResponse
-    from .post_v1capture_settings_update_response import PostV1CaptureSettingsUpdateResponse
+    from .documents_upload_capture_response_extraction_supplier import DocumentsUploadCaptureResponseExtractionSupplier
+    from .documents_upload_capture_response_status import DocumentsUploadCaptureResponseStatus
+    from .inbound_email_capture_request_attachments_item import InboundEmailCaptureRequestAttachmentsItem
+    from .inbound_email_capture_request_to import InboundEmailCaptureRequestTo
+    from .inbound_email_capture_request_to_full_item import InboundEmailCaptureRequestToFullItem
+    from .inbound_email_capture_response import InboundEmailCaptureResponse
+    from .settings_get_capture_response import SettingsGetCaptureResponse
+    from .settings_regenerate_intake_capture_response import SettingsRegenerateIntakeCaptureResponse
+    from .settings_update_capture_response import SettingsUpdateCaptureResponse
 _dynamic_imports: typing.Dict[str, str] = {
-    "PostV1CaptureDocumentsConfirmRequestLinesItem": ".post_v1capture_documents_confirm_request_lines_item",
-    "PostV1CaptureDocumentsConfirmRequestLinesItemQuantity": ".post_v1capture_documents_confirm_request_lines_item_quantity",
-    "PostV1CaptureDocumentsConfirmRequestNewSupplier": ".post_v1capture_documents_confirm_request_new_supplier",
-    "PostV1CaptureDocumentsConfirmResponse": ".post_v1capture_documents_confirm_response",
-    "PostV1CaptureDocumentsConfirmResponseCapture": ".post_v1capture_documents_confirm_response_capture",
-    "PostV1CaptureDocumentsConfirmResponseCaptureExtraction": ".post_v1capture_documents_confirm_response_capture_extraction",
-    "PostV1CaptureDocumentsConfirmResponseCaptureExtractionLinesItem": ".post_v1capture_documents_confirm_response_capture_extraction_lines_item",
-    "PostV1CaptureDocumentsConfirmResponseCaptureExtractionSupplier": ".post_v1capture_documents_confirm_response_capture_extraction_supplier",
-    "PostV1CaptureDocumentsConfirmResponseCaptureStatus": ".post_v1capture_documents_confirm_response_capture_status",
-    "PostV1CaptureDocumentsConfirmResponseInvoice": ".post_v1capture_documents_confirm_response_invoice",
-    "PostV1CaptureDocumentsConfirmResponseInvoiceLinesItem": ".post_v1capture_documents_confirm_response_invoice_lines_item",
-    "PostV1CaptureDocumentsConfirmResponseInvoicePaymentStatus": ".post_v1capture_documents_confirm_response_invoice_payment_status",
-    "PostV1CaptureDocumentsConfirmResponseInvoiceStatus": ".post_v1capture_documents_confirm_response_invoice_status",
-    "PostV1CaptureDocumentsConfirmResponseInvoiceType": ".post_v1capture_documents_confirm_response_invoice_type",
-    "PostV1CaptureDocumentsDeleteResponse": ".post_v1capture_documents_delete_response",
-    "PostV1CaptureDocumentsExtractResponse": ".post_v1capture_documents_extract_response",
-    "PostV1CaptureDocumentsExtractResponseExtraction": ".post_v1capture_documents_extract_response_extraction",
-    "PostV1CaptureDocumentsExtractResponseExtractionLinesItem": ".post_v1capture_documents_extract_response_extraction_lines_item",
-    "PostV1CaptureDocumentsExtractResponseExtractionSupplier": ".post_v1capture_documents_extract_response_extraction_supplier",
-    "PostV1CaptureDocumentsExtractResponseStatus": ".post_v1capture_documents_extract_response_status",
-    "PostV1CaptureDocumentsGetResponse": ".post_v1capture_documents_get_response",
-    "PostV1CaptureDocumentsGetResponseExtraction": ".post_v1capture_documents_get_response_extraction",
-    "PostV1CaptureDocumentsGetResponseExtractionLinesItem": ".post_v1capture_documents_get_response_extraction_lines_item",
-    "PostV1CaptureDocumentsGetResponseExtractionSupplier": ".post_v1capture_documents_get_response_extraction_supplier",
-    "PostV1CaptureDocumentsGetResponseStatus": ".post_v1capture_documents_get_response_status",
-    "PostV1CaptureDocumentsListRequestFilterItem": ".post_v1capture_documents_list_request_filter_item",
-    "PostV1CaptureDocumentsListRequestFilterItemOp": ".post_v1capture_documents_list_request_filter_item_op",
-    "PostV1CaptureDocumentsListRequestFilterItemValue": ".post_v1capture_documents_list_request_filter_item_value",
-    "PostV1CaptureDocumentsListRequestFilterItemValueThreeItem": ".post_v1capture_documents_list_request_filter_item_value_three_item",
-    "PostV1CaptureDocumentsListRequestSortItem": ".post_v1capture_documents_list_request_sort_item",
-    "PostV1CaptureDocumentsListRequestSortItemDir": ".post_v1capture_documents_list_request_sort_item_dir",
-    "PostV1CaptureDocumentsListResponse": ".post_v1capture_documents_list_response",
-    "PostV1CaptureDocumentsListResponseRowsItem": ".post_v1capture_documents_list_response_rows_item",
-    "PostV1CaptureDocumentsListResponseRowsItemExtraction": ".post_v1capture_documents_list_response_rows_item_extraction",
-    "PostV1CaptureDocumentsListResponseRowsItemExtractionLinesItem": ".post_v1capture_documents_list_response_rows_item_extraction_lines_item",
-    "PostV1CaptureDocumentsListResponseRowsItemExtractionSupplier": ".post_v1capture_documents_list_response_rows_item_extraction_supplier",
-    "PostV1CaptureDocumentsListResponseRowsItemStatus": ".post_v1capture_documents_list_response_rows_item_status",
-    "PostV1CaptureDocumentsUploadResponse": ".post_v1capture_documents_upload_response",
-    "PostV1CaptureDocumentsUploadResponseExtraction": ".post_v1capture_documents_upload_response_extraction",
-    "PostV1CaptureDocumentsUploadResponseExtractionLinesItem": ".post_v1capture_documents_upload_response_extraction_lines_item",
-    "PostV1CaptureDocumentsUploadResponseExtractionSupplier": ".post_v1capture_documents_upload_response_extraction_supplier",
-    "PostV1CaptureDocumentsUploadResponseStatus": ".post_v1capture_documents_upload_response_status",
-    "PostV1CaptureInboundEmailRequestAttachmentsItem": ".post_v1capture_inbound_email_request_attachments_item",
-    "PostV1CaptureInboundEmailRequestTo": ".post_v1capture_inbound_email_request_to",
-    "PostV1CaptureInboundEmailRequestToFullItem": ".post_v1capture_inbound_email_request_to_full_item",
-    "PostV1CaptureInboundEmailResponse": ".post_v1capture_inbound_email_response",
-    "PostV1CaptureSettingsGetResponse": ".post_v1capture_settings_get_response",
-    "PostV1CaptureSettingsRegenerateIntakeResponse": ".post_v1capture_settings_regenerate_intake_response",
-    "PostV1CaptureSettingsUpdateResponse": ".post_v1capture_settings_update_response",
+    "DocumentsConfirmCaptureRequestLinesItem": ".documents_confirm_capture_request_lines_item",
+    "DocumentsConfirmCaptureRequestLinesItemQuantity": ".documents_confirm_capture_request_lines_item_quantity",
+    "DocumentsConfirmCaptureRequestNewSupplier": ".documents_confirm_capture_request_new_supplier",
+    "DocumentsConfirmCaptureResponse": ".documents_confirm_capture_response",
+    "DocumentsConfirmCaptureResponseCapture": ".documents_confirm_capture_response_capture",
+    "DocumentsConfirmCaptureResponseCaptureExtraction": ".documents_confirm_capture_response_capture_extraction",
+    "DocumentsConfirmCaptureResponseCaptureExtractionLinesItem": ".documents_confirm_capture_response_capture_extraction_lines_item",
+    "DocumentsConfirmCaptureResponseCaptureExtractionSupplier": ".documents_confirm_capture_response_capture_extraction_supplier",
+    "DocumentsConfirmCaptureResponseCaptureStatus": ".documents_confirm_capture_response_capture_status",
+    "DocumentsConfirmCaptureResponseInvoice": ".documents_confirm_capture_response_invoice",
+    "DocumentsConfirmCaptureResponseInvoiceLinesItem": ".documents_confirm_capture_response_invoice_lines_item",
+    "DocumentsConfirmCaptureResponseInvoicePaymentStatus": ".documents_confirm_capture_response_invoice_payment_status",
+    "DocumentsConfirmCaptureResponseInvoiceStatus": ".documents_confirm_capture_response_invoice_status",
+    "DocumentsConfirmCaptureResponseInvoiceType": ".documents_confirm_capture_response_invoice_type",
+    "DocumentsDeleteCaptureResponse": ".documents_delete_capture_response",
+    "DocumentsExtractCaptureResponse": ".documents_extract_capture_response",
+    "DocumentsExtractCaptureResponseExtraction": ".documents_extract_capture_response_extraction",
+    "DocumentsExtractCaptureResponseExtractionLinesItem": ".documents_extract_capture_response_extraction_lines_item",
+    "DocumentsExtractCaptureResponseExtractionSupplier": ".documents_extract_capture_response_extraction_supplier",
+    "DocumentsExtractCaptureResponseStatus": ".documents_extract_capture_response_status",
+    "DocumentsGetCaptureResponse": ".documents_get_capture_response",
+    "DocumentsGetCaptureResponseExtraction": ".documents_get_capture_response_extraction",
+    "DocumentsGetCaptureResponseExtractionLinesItem": ".documents_get_capture_response_extraction_lines_item",
+    "DocumentsGetCaptureResponseExtractionSupplier": ".documents_get_capture_response_extraction_supplier",
+    "DocumentsGetCaptureResponseStatus": ".documents_get_capture_response_status",
+    "DocumentsListCaptureRequestFilterItem": ".documents_list_capture_request_filter_item",
+    "DocumentsListCaptureRequestFilterItemOp": ".documents_list_capture_request_filter_item_op",
+    "DocumentsListCaptureRequestFilterItemValue": ".documents_list_capture_request_filter_item_value",
+    "DocumentsListCaptureRequestFilterItemValueThreeItem": ".documents_list_capture_request_filter_item_value_three_item",
+    "DocumentsListCaptureRequestSortItem": ".documents_list_capture_request_sort_item",
+    "DocumentsListCaptureRequestSortItemDir": ".documents_list_capture_request_sort_item_dir",
+    "DocumentsListCaptureResponse": ".documents_list_capture_response",
+    "DocumentsListCaptureResponseRowsItem": ".documents_list_capture_response_rows_item",
+    "DocumentsListCaptureResponseRowsItemExtraction": ".documents_list_capture_response_rows_item_extraction",
+    "DocumentsListCaptureResponseRowsItemExtractionLinesItem": ".documents_list_capture_response_rows_item_extraction_lines_item",
+    "DocumentsListCaptureResponseRowsItemExtractionSupplier": ".documents_list_capture_response_rows_item_extraction_supplier",
+    "DocumentsListCaptureResponseRowsItemStatus": ".documents_list_capture_response_rows_item_status",
+    "DocumentsUploadCaptureResponse": ".documents_upload_capture_response",
+    "DocumentsUploadCaptureResponseExtraction": ".documents_upload_capture_response_extraction",
+    "DocumentsUploadCaptureResponseExtractionLinesItem": ".documents_upload_capture_response_extraction_lines_item",
+    "DocumentsUploadCaptureResponseExtractionSupplier": ".documents_upload_capture_response_extraction_supplier",
+    "DocumentsUploadCaptureResponseStatus": ".documents_upload_capture_response_status",
+    "InboundEmailCaptureRequestAttachmentsItem": ".inbound_email_capture_request_attachments_item",
+    "InboundEmailCaptureRequestTo": ".inbound_email_capture_request_to",
+    "InboundEmailCaptureRequestToFullItem": ".inbound_email_capture_request_to_full_item",
+    "InboundEmailCaptureResponse": ".inbound_email_capture_response",
+    "SettingsGetCaptureResponse": ".settings_get_capture_response",
+    "SettingsRegenerateIntakeCaptureResponse": ".settings_regenerate_intake_capture_response",
+    "SettingsUpdateCaptureResponse": ".settings_update_capture_response",
 }
 
 
@@ -170,53 +148,53 @@ def __dir__():
 
 
 __all__ = [
-    "PostV1CaptureDocumentsConfirmRequestLinesItem",
-    "PostV1CaptureDocumentsConfirmRequestLinesItemQuantity",
-    "PostV1CaptureDocumentsConfirmRequestNewSupplier",
-    "PostV1CaptureDocumentsConfirmResponse",
-    "PostV1CaptureDocumentsConfirmResponseCapture",
-    "PostV1CaptureDocumentsConfirmResponseCaptureExtraction",
-    "PostV1CaptureDocumentsConfirmResponseCaptureExtractionLinesItem",
-    "PostV1CaptureDocumentsConfirmResponseCaptureExtractionSupplier",
-    "PostV1CaptureDocumentsConfirmResponseCaptureStatus",
-    "PostV1CaptureDocumentsConfirmResponseInvoice",
-    "PostV1CaptureDocumentsConfirmResponseInvoiceLinesItem",
-    "PostV1CaptureDocumentsConfirmResponseInvoicePaymentStatus",
-    "PostV1CaptureDocumentsConfirmResponseInvoiceStatus",
-    "PostV1CaptureDocumentsConfirmResponseInvoiceType",
-    "PostV1CaptureDocumentsDeleteResponse",
-    "PostV1CaptureDocumentsExtractResponse",
-    "PostV1CaptureDocumentsExtractResponseExtraction",
-    "PostV1CaptureDocumentsExtractResponseExtractionLinesItem",
-    "PostV1CaptureDocumentsExtractResponseExtractionSupplier",
-    "PostV1CaptureDocumentsExtractResponseStatus",
-    "PostV1CaptureDocumentsGetResponse",
-    "PostV1CaptureDocumentsGetResponseExtraction",
-    "PostV1CaptureDocumentsGetResponseExtractionLinesItem",
-    "PostV1CaptureDocumentsGetResponseExtractionSupplier",
-    "PostV1CaptureDocumentsGetResponseStatus",
-    "PostV1CaptureDocumentsListRequestFilterItem",
-    "PostV1CaptureDocumentsListRequestFilterItemOp",
-    "PostV1CaptureDocumentsListRequestFilterItemValue",
-    "PostV1CaptureDocumentsListRequestFilterItemValueThreeItem",
-    "PostV1CaptureDocumentsListRequestSortItem",
-    "PostV1CaptureDocumentsListRequestSortItemDir",
-    "PostV1CaptureDocumentsListResponse",
-    "PostV1CaptureDocumentsListResponseRowsItem",
-    "PostV1CaptureDocumentsListResponseRowsItemExtraction",
-    "PostV1CaptureDocumentsListResponseRowsItemExtractionLinesItem",
-    "PostV1CaptureDocumentsListResponseRowsItemExtractionSupplier",
-    "PostV1CaptureDocumentsListResponseRowsItemStatus",
-    "PostV1CaptureDocumentsUploadResponse",
-    "PostV1CaptureDocumentsUploadResponseExtraction",
-    "PostV1CaptureDocumentsUploadResponseExtractionLinesItem",
-    "PostV1CaptureDocumentsUploadResponseExtractionSupplier",
-    "PostV1CaptureDocumentsUploadResponseStatus",
-    "PostV1CaptureInboundEmailRequestAttachmentsItem",
-    "PostV1CaptureInboundEmailRequestTo",
-    "PostV1CaptureInboundEmailRequestToFullItem",
-    "PostV1CaptureInboundEmailResponse",
-    "PostV1CaptureSettingsGetResponse",
-    "PostV1CaptureSettingsRegenerateIntakeResponse",
-    "PostV1CaptureSettingsUpdateResponse",
+    "DocumentsConfirmCaptureRequestLinesItem",
+    "DocumentsConfirmCaptureRequestLinesItemQuantity",
+    "DocumentsConfirmCaptureRequestNewSupplier",
+    "DocumentsConfirmCaptureResponse",
+    "DocumentsConfirmCaptureResponseCapture",
+    "DocumentsConfirmCaptureResponseCaptureExtraction",
+    "DocumentsConfirmCaptureResponseCaptureExtractionLinesItem",
+    "DocumentsConfirmCaptureResponseCaptureExtractionSupplier",
+    "DocumentsConfirmCaptureResponseCaptureStatus",
+    "DocumentsConfirmCaptureResponseInvoice",
+    "DocumentsConfirmCaptureResponseInvoiceLinesItem",
+    "DocumentsConfirmCaptureResponseInvoicePaymentStatus",
+    "DocumentsConfirmCaptureResponseInvoiceStatus",
+    "DocumentsConfirmCaptureResponseInvoiceType",
+    "DocumentsDeleteCaptureResponse",
+    "DocumentsExtractCaptureResponse",
+    "DocumentsExtractCaptureResponseExtraction",
+    "DocumentsExtractCaptureResponseExtractionLinesItem",
+    "DocumentsExtractCaptureResponseExtractionSupplier",
+    "DocumentsExtractCaptureResponseStatus",
+    "DocumentsGetCaptureResponse",
+    "DocumentsGetCaptureResponseExtraction",
+    "DocumentsGetCaptureResponseExtractionLinesItem",
+    "DocumentsGetCaptureResponseExtractionSupplier",
+    "DocumentsGetCaptureResponseStatus",
+    "DocumentsListCaptureRequestFilterItem",
+    "DocumentsListCaptureRequestFilterItemOp",
+    "DocumentsListCaptureRequestFilterItemValue",
+    "DocumentsListCaptureRequestFilterItemValueThreeItem",
+    "DocumentsListCaptureRequestSortItem",
+    "DocumentsListCaptureRequestSortItemDir",
+    "DocumentsListCaptureResponse",
+    "DocumentsListCaptureResponseRowsItem",
+    "DocumentsListCaptureResponseRowsItemExtraction",
+    "DocumentsListCaptureResponseRowsItemExtractionLinesItem",
+    "DocumentsListCaptureResponseRowsItemExtractionSupplier",
+    "DocumentsListCaptureResponseRowsItemStatus",
+    "DocumentsUploadCaptureResponse",
+    "DocumentsUploadCaptureResponseExtraction",
+    "DocumentsUploadCaptureResponseExtractionLinesItem",
+    "DocumentsUploadCaptureResponseExtractionSupplier",
+    "DocumentsUploadCaptureResponseStatus",
+    "InboundEmailCaptureRequestAttachmentsItem",
+    "InboundEmailCaptureRequestTo",
+    "InboundEmailCaptureRequestToFullItem",
+    "InboundEmailCaptureResponse",
+    "SettingsGetCaptureResponse",
+    "SettingsRegenerateIntakeCaptureResponse",
+    "SettingsUpdateCaptureResponse",
 ]

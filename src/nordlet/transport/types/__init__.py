@@ -6,63 +6,59 @@ import typing
 from importlib import import_module
 
 if typing.TYPE_CHECKING:
-    from .post_v1transport_waybills_cancel_response import PostV1TransportWaybillsCancelResponse
-    from .post_v1transport_waybills_cancel_response_status import PostV1TransportWaybillsCancelResponseStatus
-    from .post_v1transport_waybills_create_request_lines_item import PostV1TransportWaybillsCreateRequestLinesItem
-    from .post_v1transport_waybills_create_response import PostV1TransportWaybillsCreateResponse
-    from .post_v1transport_waybills_create_response_lines_item import PostV1TransportWaybillsCreateResponseLinesItem
-    from .post_v1transport_waybills_create_response_status import PostV1TransportWaybillsCreateResponseStatus
-    from .post_v1transport_waybills_get_response import PostV1TransportWaybillsGetResponse
-    from .post_v1transport_waybills_get_response_lines_item import PostV1TransportWaybillsGetResponseLinesItem
-    from .post_v1transport_waybills_get_response_status import PostV1TransportWaybillsGetResponseStatus
-    from .post_v1transport_waybills_issue_response import PostV1TransportWaybillsIssueResponse
-    from .post_v1transport_waybills_issue_response_lines_item import PostV1TransportWaybillsIssueResponseLinesItem
-    from .post_v1transport_waybills_issue_response_status import PostV1TransportWaybillsIssueResponseStatus
-    from .post_v1transport_waybills_list_request_filter_item import PostV1TransportWaybillsListRequestFilterItem
-    from .post_v1transport_waybills_list_request_filter_item_op import PostV1TransportWaybillsListRequestFilterItemOp
-    from .post_v1transport_waybills_list_request_filter_item_value import (
-        PostV1TransportWaybillsListRequestFilterItemValue,
+    from .waybills_cancel_transport_response import WaybillsCancelTransportResponse
+    from .waybills_cancel_transport_response_status import WaybillsCancelTransportResponseStatus
+    from .waybills_create_transport_request_lines_item import WaybillsCreateTransportRequestLinesItem
+    from .waybills_create_transport_response import WaybillsCreateTransportResponse
+    from .waybills_create_transport_response_lines_item import WaybillsCreateTransportResponseLinesItem
+    from .waybills_create_transport_response_status import WaybillsCreateTransportResponseStatus
+    from .waybills_get_transport_response import WaybillsGetTransportResponse
+    from .waybills_get_transport_response_lines_item import WaybillsGetTransportResponseLinesItem
+    from .waybills_get_transport_response_status import WaybillsGetTransportResponseStatus
+    from .waybills_issue_transport_response import WaybillsIssueTransportResponse
+    from .waybills_issue_transport_response_lines_item import WaybillsIssueTransportResponseLinesItem
+    from .waybills_issue_transport_response_status import WaybillsIssueTransportResponseStatus
+    from .waybills_list_transport_request_filter_item import WaybillsListTransportRequestFilterItem
+    from .waybills_list_transport_request_filter_item_op import WaybillsListTransportRequestFilterItemOp
+    from .waybills_list_transport_request_filter_item_value import WaybillsListTransportRequestFilterItemValue
+    from .waybills_list_transport_request_filter_item_value_three_item import (
+        WaybillsListTransportRequestFilterItemValueThreeItem,
     )
-    from .post_v1transport_waybills_list_request_filter_item_value_three_item import (
-        PostV1TransportWaybillsListRequestFilterItemValueThreeItem,
-    )
-    from .post_v1transport_waybills_list_request_sort_item import PostV1TransportWaybillsListRequestSortItem
-    from .post_v1transport_waybills_list_request_sort_item_dir import PostV1TransportWaybillsListRequestSortItemDir
-    from .post_v1transport_waybills_list_response import PostV1TransportWaybillsListResponse
-    from .post_v1transport_waybills_list_response_rows_item import PostV1TransportWaybillsListResponseRowsItem
-    from .post_v1transport_waybills_list_response_rows_item_status import (
-        PostV1TransportWaybillsListResponseRowsItemStatus,
-    )
-    from .post_v1transport_waybills_update_request_lines_item import PostV1TransportWaybillsUpdateRequestLinesItem
-    from .post_v1transport_waybills_update_response import PostV1TransportWaybillsUpdateResponse
-    from .post_v1transport_waybills_update_response_lines_item import PostV1TransportWaybillsUpdateResponseLinesItem
-    from .post_v1transport_waybills_update_response_status import PostV1TransportWaybillsUpdateResponseStatus
+    from .waybills_list_transport_request_sort_item import WaybillsListTransportRequestSortItem
+    from .waybills_list_transport_request_sort_item_dir import WaybillsListTransportRequestSortItemDir
+    from .waybills_list_transport_response import WaybillsListTransportResponse
+    from .waybills_list_transport_response_rows_item import WaybillsListTransportResponseRowsItem
+    from .waybills_list_transport_response_rows_item_status import WaybillsListTransportResponseRowsItemStatus
+    from .waybills_update_transport_request_lines_item import WaybillsUpdateTransportRequestLinesItem
+    from .waybills_update_transport_response import WaybillsUpdateTransportResponse
+    from .waybills_update_transport_response_lines_item import WaybillsUpdateTransportResponseLinesItem
+    from .waybills_update_transport_response_status import WaybillsUpdateTransportResponseStatus
 _dynamic_imports: typing.Dict[str, str] = {
-    "PostV1TransportWaybillsCancelResponse": ".post_v1transport_waybills_cancel_response",
-    "PostV1TransportWaybillsCancelResponseStatus": ".post_v1transport_waybills_cancel_response_status",
-    "PostV1TransportWaybillsCreateRequestLinesItem": ".post_v1transport_waybills_create_request_lines_item",
-    "PostV1TransportWaybillsCreateResponse": ".post_v1transport_waybills_create_response",
-    "PostV1TransportWaybillsCreateResponseLinesItem": ".post_v1transport_waybills_create_response_lines_item",
-    "PostV1TransportWaybillsCreateResponseStatus": ".post_v1transport_waybills_create_response_status",
-    "PostV1TransportWaybillsGetResponse": ".post_v1transport_waybills_get_response",
-    "PostV1TransportWaybillsGetResponseLinesItem": ".post_v1transport_waybills_get_response_lines_item",
-    "PostV1TransportWaybillsGetResponseStatus": ".post_v1transport_waybills_get_response_status",
-    "PostV1TransportWaybillsIssueResponse": ".post_v1transport_waybills_issue_response",
-    "PostV1TransportWaybillsIssueResponseLinesItem": ".post_v1transport_waybills_issue_response_lines_item",
-    "PostV1TransportWaybillsIssueResponseStatus": ".post_v1transport_waybills_issue_response_status",
-    "PostV1TransportWaybillsListRequestFilterItem": ".post_v1transport_waybills_list_request_filter_item",
-    "PostV1TransportWaybillsListRequestFilterItemOp": ".post_v1transport_waybills_list_request_filter_item_op",
-    "PostV1TransportWaybillsListRequestFilterItemValue": ".post_v1transport_waybills_list_request_filter_item_value",
-    "PostV1TransportWaybillsListRequestFilterItemValueThreeItem": ".post_v1transport_waybills_list_request_filter_item_value_three_item",
-    "PostV1TransportWaybillsListRequestSortItem": ".post_v1transport_waybills_list_request_sort_item",
-    "PostV1TransportWaybillsListRequestSortItemDir": ".post_v1transport_waybills_list_request_sort_item_dir",
-    "PostV1TransportWaybillsListResponse": ".post_v1transport_waybills_list_response",
-    "PostV1TransportWaybillsListResponseRowsItem": ".post_v1transport_waybills_list_response_rows_item",
-    "PostV1TransportWaybillsListResponseRowsItemStatus": ".post_v1transport_waybills_list_response_rows_item_status",
-    "PostV1TransportWaybillsUpdateRequestLinesItem": ".post_v1transport_waybills_update_request_lines_item",
-    "PostV1TransportWaybillsUpdateResponse": ".post_v1transport_waybills_update_response",
-    "PostV1TransportWaybillsUpdateResponseLinesItem": ".post_v1transport_waybills_update_response_lines_item",
-    "PostV1TransportWaybillsUpdateResponseStatus": ".post_v1transport_waybills_update_response_status",
+    "WaybillsCancelTransportResponse": ".waybills_cancel_transport_response",
+    "WaybillsCancelTransportResponseStatus": ".waybills_cancel_transport_response_status",
+    "WaybillsCreateTransportRequestLinesItem": ".waybills_create_transport_request_lines_item",
+    "WaybillsCreateTransportResponse": ".waybills_create_transport_response",
+    "WaybillsCreateTransportResponseLinesItem": ".waybills_create_transport_response_lines_item",
+    "WaybillsCreateTransportResponseStatus": ".waybills_create_transport_response_status",
+    "WaybillsGetTransportResponse": ".waybills_get_transport_response",
+    "WaybillsGetTransportResponseLinesItem": ".waybills_get_transport_response_lines_item",
+    "WaybillsGetTransportResponseStatus": ".waybills_get_transport_response_status",
+    "WaybillsIssueTransportResponse": ".waybills_issue_transport_response",
+    "WaybillsIssueTransportResponseLinesItem": ".waybills_issue_transport_response_lines_item",
+    "WaybillsIssueTransportResponseStatus": ".waybills_issue_transport_response_status",
+    "WaybillsListTransportRequestFilterItem": ".waybills_list_transport_request_filter_item",
+    "WaybillsListTransportRequestFilterItemOp": ".waybills_list_transport_request_filter_item_op",
+    "WaybillsListTransportRequestFilterItemValue": ".waybills_list_transport_request_filter_item_value",
+    "WaybillsListTransportRequestFilterItemValueThreeItem": ".waybills_list_transport_request_filter_item_value_three_item",
+    "WaybillsListTransportRequestSortItem": ".waybills_list_transport_request_sort_item",
+    "WaybillsListTransportRequestSortItemDir": ".waybills_list_transport_request_sort_item_dir",
+    "WaybillsListTransportResponse": ".waybills_list_transport_response",
+    "WaybillsListTransportResponseRowsItem": ".waybills_list_transport_response_rows_item",
+    "WaybillsListTransportResponseRowsItemStatus": ".waybills_list_transport_response_rows_item_status",
+    "WaybillsUpdateTransportRequestLinesItem": ".waybills_update_transport_request_lines_item",
+    "WaybillsUpdateTransportResponse": ".waybills_update_transport_response",
+    "WaybillsUpdateTransportResponseLinesItem": ".waybills_update_transport_response_lines_item",
+    "WaybillsUpdateTransportResponseStatus": ".waybills_update_transport_response_status",
 }
 
 
@@ -88,29 +84,29 @@ def __dir__():
 
 
 __all__ = [
-    "PostV1TransportWaybillsCancelResponse",
-    "PostV1TransportWaybillsCancelResponseStatus",
-    "PostV1TransportWaybillsCreateRequestLinesItem",
-    "PostV1TransportWaybillsCreateResponse",
-    "PostV1TransportWaybillsCreateResponseLinesItem",
-    "PostV1TransportWaybillsCreateResponseStatus",
-    "PostV1TransportWaybillsGetResponse",
-    "PostV1TransportWaybillsGetResponseLinesItem",
-    "PostV1TransportWaybillsGetResponseStatus",
-    "PostV1TransportWaybillsIssueResponse",
-    "PostV1TransportWaybillsIssueResponseLinesItem",
-    "PostV1TransportWaybillsIssueResponseStatus",
-    "PostV1TransportWaybillsListRequestFilterItem",
-    "PostV1TransportWaybillsListRequestFilterItemOp",
-    "PostV1TransportWaybillsListRequestFilterItemValue",
-    "PostV1TransportWaybillsListRequestFilterItemValueThreeItem",
-    "PostV1TransportWaybillsListRequestSortItem",
-    "PostV1TransportWaybillsListRequestSortItemDir",
-    "PostV1TransportWaybillsListResponse",
-    "PostV1TransportWaybillsListResponseRowsItem",
-    "PostV1TransportWaybillsListResponseRowsItemStatus",
-    "PostV1TransportWaybillsUpdateRequestLinesItem",
-    "PostV1TransportWaybillsUpdateResponse",
-    "PostV1TransportWaybillsUpdateResponseLinesItem",
-    "PostV1TransportWaybillsUpdateResponseStatus",
+    "WaybillsCancelTransportResponse",
+    "WaybillsCancelTransportResponseStatus",
+    "WaybillsCreateTransportRequestLinesItem",
+    "WaybillsCreateTransportResponse",
+    "WaybillsCreateTransportResponseLinesItem",
+    "WaybillsCreateTransportResponseStatus",
+    "WaybillsGetTransportResponse",
+    "WaybillsGetTransportResponseLinesItem",
+    "WaybillsGetTransportResponseStatus",
+    "WaybillsIssueTransportResponse",
+    "WaybillsIssueTransportResponseLinesItem",
+    "WaybillsIssueTransportResponseStatus",
+    "WaybillsListTransportRequestFilterItem",
+    "WaybillsListTransportRequestFilterItemOp",
+    "WaybillsListTransportRequestFilterItemValue",
+    "WaybillsListTransportRequestFilterItemValueThreeItem",
+    "WaybillsListTransportRequestSortItem",
+    "WaybillsListTransportRequestSortItemDir",
+    "WaybillsListTransportResponse",
+    "WaybillsListTransportResponseRowsItem",
+    "WaybillsListTransportResponseRowsItemStatus",
+    "WaybillsUpdateTransportRequestLinesItem",
+    "WaybillsUpdateTransportResponse",
+    "WaybillsUpdateTransportResponseLinesItem",
+    "WaybillsUpdateTransportResponseStatus",
 ]

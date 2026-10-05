@@ -13,23 +13,25 @@ from ..core.request_options import RequestOptions
 from ..core.serialization import convert_and_respect_annotation_metadata
 from ..errors.bad_request_error import BadRequestError
 from ..errors.conflict_error import ConflictError
+from ..errors.content_too_large_error import ContentTooLargeError
 from ..errors.forbidden_error import ForbiddenError
 from ..errors.internal_server_error import InternalServerError
 from ..errors.not_found_error import NotFoundError
+from ..errors.payment_required_error import PaymentRequiredError
 from ..errors.too_many_requests_error import TooManyRequestsError
 from ..errors.unauthorized_error import UnauthorizedError
 from ..errors.unprocessable_entity_error import UnprocessableEntityError
 from ..types.error_response import ErrorResponse
-from .types.post_v1transport_waybills_cancel_response import PostV1TransportWaybillsCancelResponse
-from .types.post_v1transport_waybills_create_request_lines_item import PostV1TransportWaybillsCreateRequestLinesItem
-from .types.post_v1transport_waybills_create_response import PostV1TransportWaybillsCreateResponse
-from .types.post_v1transport_waybills_get_response import PostV1TransportWaybillsGetResponse
-from .types.post_v1transport_waybills_issue_response import PostV1TransportWaybillsIssueResponse
-from .types.post_v1transport_waybills_list_request_filter_item import PostV1TransportWaybillsListRequestFilterItem
-from .types.post_v1transport_waybills_list_request_sort_item import PostV1TransportWaybillsListRequestSortItem
-from .types.post_v1transport_waybills_list_response import PostV1TransportWaybillsListResponse
-from .types.post_v1transport_waybills_update_request_lines_item import PostV1TransportWaybillsUpdateRequestLinesItem
-from .types.post_v1transport_waybills_update_response import PostV1TransportWaybillsUpdateResponse
+from .types.waybills_cancel_transport_response import WaybillsCancelTransportResponse
+from .types.waybills_create_transport_request_lines_item import WaybillsCreateTransportRequestLinesItem
+from .types.waybills_create_transport_response import WaybillsCreateTransportResponse
+from .types.waybills_get_transport_response import WaybillsGetTransportResponse
+from .types.waybills_issue_transport_response import WaybillsIssueTransportResponse
+from .types.waybills_list_transport_request_filter_item import WaybillsListTransportRequestFilterItem
+from .types.waybills_list_transport_request_sort_item import WaybillsListTransportRequestSortItem
+from .types.waybills_list_transport_response import WaybillsListTransportResponse
+from .types.waybills_update_transport_request_lines_item import WaybillsUpdateTransportRequestLinesItem
+from .types.waybills_update_transport_response import WaybillsUpdateTransportResponse
 from pydantic import ValidationError
 
 # this is used as the default value for optional parameters
@@ -40,7 +42,7 @@ class RawTransportClient:
     def __init__(self, *, client_wrapper: SyncClientWrapper):
         self._client_wrapper = client_wrapper
 
-    def post_v1transport_waybills_create(
+    def waybills_create(
         self,
         *,
         consignee_partner_id: str,
@@ -48,7 +50,7 @@ class RawTransportClient:
         load_address: str,
         unload_address: str,
         transporter_partner_id: typing.Optional[str] = OMIT,
-        document_date: typing.Optional[str] = OMIT,
+        document_date: typing.Optional[dt.date] = OMIT,
         estimated_arrival_at: typing.Optional[dt.datetime] = OMIT,
         vehicle_plate: typing.Optional[str] = OMIT,
         trailer_plate: typing.Optional[str] = OMIT,
@@ -59,9 +61,9 @@ class RawTransportClient:
         sale_invoice_id: typing.Optional[str] = OMIT,
         notes: typing.Optional[str] = OMIT,
         series: typing.Optional[str] = OMIT,
-        lines: typing.Optional[typing.Sequence[PostV1TransportWaybillsCreateRequestLinesItem]] = OMIT,
+        lines: typing.Optional[typing.Sequence[WaybillsCreateTransportRequestLinesItem]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> HttpResponse[PostV1TransportWaybillsCreateResponse]:
+    ) -> HttpResponse[WaybillsCreateTransportResponse]:
         """
         Parameters
         ----------
@@ -75,7 +77,7 @@ class RawTransportClient:
 
         transporter_partner_id : typing.Optional[str]
 
-        document_date : typing.Optional[str]
+        document_date : typing.Optional[dt.date]
 
         estimated_arrival_at : typing.Optional[dt.datetime]
 
@@ -97,14 +99,14 @@ class RawTransportClient:
 
         series : typing.Optional[str]
 
-        lines : typing.Optional[typing.Sequence[PostV1TransportWaybillsCreateRequestLinesItem]]
+        lines : typing.Optional[typing.Sequence[WaybillsCreateTransportRequestLinesItem]]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
         Returns
         -------
-        HttpResponse[PostV1TransportWaybillsCreateResponse]
+        HttpResponse[WaybillsCreateTransportResponse]
             Default Response
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -129,7 +131,7 @@ class RawTransportClient:
                 "series": series,
                 "lines": convert_and_respect_annotation_metadata(
                     object_=lines,
-                    annotation=typing.Sequence[PostV1TransportWaybillsCreateRequestLinesItem],
+                    annotation=typing.Sequence[WaybillsCreateTransportRequestLinesItem],
                     direction="write",
                 ),
             },
@@ -142,9 +144,9 @@ class RawTransportClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1TransportWaybillsCreateResponse,
+                    WaybillsCreateTransportResponse,
                     parse_obj_as(
-                        type_=PostV1TransportWaybillsCreateResponse,  # type: ignore
+                        type_=WaybillsCreateTransportResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -162,6 +164,17 @@ class RawTransportClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -195,6 +208,17 @@ class RawTransportClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -246,13 +270,13 @@ class RawTransportClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    def post_v1transport_waybills_update(
+    def waybills_update(
         self,
         *,
         id: str,
         consignee_partner_id: typing.Optional[str] = OMIT,
         transporter_partner_id: typing.Optional[str] = OMIT,
-        document_date: typing.Optional[str] = OMIT,
+        document_date: typing.Optional[dt.date] = OMIT,
         dispatch_at: typing.Optional[dt.datetime] = OMIT,
         estimated_arrival_at: typing.Optional[dt.datetime] = OMIT,
         vehicle_plate: typing.Optional[str] = OMIT,
@@ -266,9 +290,9 @@ class RawTransportClient:
         sale_invoice_id: typing.Optional[str] = OMIT,
         notes: typing.Optional[str] = OMIT,
         series: typing.Optional[str] = OMIT,
-        lines: typing.Optional[typing.Sequence[PostV1TransportWaybillsUpdateRequestLinesItem]] = OMIT,
+        lines: typing.Optional[typing.Sequence[WaybillsUpdateTransportRequestLinesItem]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> HttpResponse[PostV1TransportWaybillsUpdateResponse]:
+    ) -> HttpResponse[WaybillsUpdateTransportResponse]:
         """
         Parameters
         ----------
@@ -278,7 +302,7 @@ class RawTransportClient:
 
         transporter_partner_id : typing.Optional[str]
 
-        document_date : typing.Optional[str]
+        document_date : typing.Optional[dt.date]
 
         dispatch_at : typing.Optional[dt.datetime]
 
@@ -306,14 +330,14 @@ class RawTransportClient:
 
         series : typing.Optional[str]
 
-        lines : typing.Optional[typing.Sequence[PostV1TransportWaybillsUpdateRequestLinesItem]]
+        lines : typing.Optional[typing.Sequence[WaybillsUpdateTransportRequestLinesItem]]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
         Returns
         -------
-        HttpResponse[PostV1TransportWaybillsUpdateResponse]
+        HttpResponse[WaybillsUpdateTransportResponse]
             Default Response
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -338,7 +362,7 @@ class RawTransportClient:
                 "series": series,
                 "lines": convert_and_respect_annotation_metadata(
                     object_=lines,
-                    annotation=typing.Sequence[PostV1TransportWaybillsUpdateRequestLinesItem],
+                    annotation=typing.Sequence[WaybillsUpdateTransportRequestLinesItem],
                     direction="write",
                 ),
                 "id": id,
@@ -352,9 +376,9 @@ class RawTransportClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1TransportWaybillsUpdateResponse,
+                    WaybillsUpdateTransportResponse,
                     parse_obj_as(
-                        type_=PostV1TransportWaybillsUpdateResponse,  # type: ignore
+                        type_=WaybillsUpdateTransportResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -372,6 +396,17 @@ class RawTransportClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -405,6 +440,17 @@ class RawTransportClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -456,9 +502,9 @@ class RawTransportClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    def post_v1transport_waybills_issue(
+    def waybills_issue(
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
-    ) -> HttpResponse[PostV1TransportWaybillsIssueResponse]:
+    ) -> HttpResponse[WaybillsIssueTransportResponse]:
         """
         Parameters
         ----------
@@ -469,7 +515,7 @@ class RawTransportClient:
 
         Returns
         -------
-        HttpResponse[PostV1TransportWaybillsIssueResponse]
+        HttpResponse[WaybillsIssueTransportResponse]
             Default Response
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -487,9 +533,9 @@ class RawTransportClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1TransportWaybillsIssueResponse,
+                    WaybillsIssueTransportResponse,
                     parse_obj_as(
-                        type_=PostV1TransportWaybillsIssueResponse,  # type: ignore
+                        type_=WaybillsIssueTransportResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -507,6 +553,17 @@ class RawTransportClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -540,6 +597,17 @@ class RawTransportClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -591,9 +659,9 @@ class RawTransportClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    def post_v1transport_waybills_cancel(
+    def waybills_cancel(
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
-    ) -> HttpResponse[PostV1TransportWaybillsCancelResponse]:
+    ) -> HttpResponse[WaybillsCancelTransportResponse]:
         """
         Parameters
         ----------
@@ -604,7 +672,7 @@ class RawTransportClient:
 
         Returns
         -------
-        HttpResponse[PostV1TransportWaybillsCancelResponse]
+        HttpResponse[WaybillsCancelTransportResponse]
             Default Response
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -622,9 +690,9 @@ class RawTransportClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1TransportWaybillsCancelResponse,
+                    WaybillsCancelTransportResponse,
                     parse_obj_as(
-                        type_=PostV1TransportWaybillsCancelResponse,  # type: ignore
+                        type_=WaybillsCancelTransportResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -642,6 +710,17 @@ class RawTransportClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -675,6 +754,17 @@ class RawTransportClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -726,9 +816,9 @@ class RawTransportClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    def post_v1transport_waybills_get(
+    def waybills_get(
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
-    ) -> HttpResponse[PostV1TransportWaybillsGetResponse]:
+    ) -> HttpResponse[WaybillsGetTransportResponse]:
         """
         Parameters
         ----------
@@ -739,7 +829,7 @@ class RawTransportClient:
 
         Returns
         -------
-        HttpResponse[PostV1TransportWaybillsGetResponse]
+        HttpResponse[WaybillsGetTransportResponse]
             Default Response
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -757,9 +847,9 @@ class RawTransportClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1TransportWaybillsGetResponse,
+                    WaybillsGetTransportResponse,
                     parse_obj_as(
-                        type_=PostV1TransportWaybillsGetResponse,  # type: ignore
+                        type_=WaybillsGetTransportResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -777,6 +867,17 @@ class RawTransportClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -810,6 +911,17 @@ class RawTransportClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -861,16 +973,16 @@ class RawTransportClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    def post_v1transport_waybills_list(
+    def waybills_list(
         self,
         *,
         page: typing.Optional[int] = OMIT,
         page_size: typing.Optional[int] = OMIT,
-        sort: typing.Optional[typing.Sequence[PostV1TransportWaybillsListRequestSortItem]] = OMIT,
-        filter: typing.Optional[typing.Sequence[PostV1TransportWaybillsListRequestFilterItem]] = OMIT,
+        sort: typing.Optional[typing.Sequence[WaybillsListTransportRequestSortItem]] = OMIT,
+        filter: typing.Optional[typing.Sequence[WaybillsListTransportRequestFilterItem]] = OMIT,
         totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> HttpResponse[PostV1TransportWaybillsListResponse]:
+    ) -> HttpResponse[WaybillsListTransportResponse]:
         """
         Parameters
         ----------
@@ -878,9 +990,9 @@ class RawTransportClient:
 
         page_size : typing.Optional[int]
 
-        sort : typing.Optional[typing.Sequence[PostV1TransportWaybillsListRequestSortItem]]
+        sort : typing.Optional[typing.Sequence[WaybillsListTransportRequestSortItem]]
 
-        filter : typing.Optional[typing.Sequence[PostV1TransportWaybillsListRequestFilterItem]]
+        filter : typing.Optional[typing.Sequence[WaybillsListTransportRequestFilterItem]]
 
         totals : typing.Optional[typing.Sequence[str]]
             Numeric fields to sum over every row matching the filter (not only the current page)
@@ -890,7 +1002,7 @@ class RawTransportClient:
 
         Returns
         -------
-        HttpResponse[PostV1TransportWaybillsListResponse]
+        HttpResponse[WaybillsListTransportResponse]
             Default Response
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -900,13 +1012,11 @@ class RawTransportClient:
                 "page": page,
                 "pageSize": page_size,
                 "sort": convert_and_respect_annotation_metadata(
-                    object_=sort,
-                    annotation=typing.Sequence[PostV1TransportWaybillsListRequestSortItem],
-                    direction="write",
+                    object_=sort, annotation=typing.Sequence[WaybillsListTransportRequestSortItem], direction="write"
                 ),
                 "filter": convert_and_respect_annotation_metadata(
                     object_=filter,
-                    annotation=typing.Sequence[PostV1TransportWaybillsListRequestFilterItem],
+                    annotation=typing.Sequence[WaybillsListTransportRequestFilterItem],
                     direction="write",
                 ),
                 "totals": totals,
@@ -920,9 +1030,9 @@ class RawTransportClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1TransportWaybillsListResponse,
+                    WaybillsListTransportResponse,
                     parse_obj_as(
-                        type_=PostV1TransportWaybillsListResponse,  # type: ignore
+                        type_=WaybillsListTransportResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -940,6 +1050,17 @@ class RawTransportClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -973,6 +1094,17 @@ class RawTransportClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -1029,7 +1161,7 @@ class AsyncRawTransportClient:
     def __init__(self, *, client_wrapper: AsyncClientWrapper):
         self._client_wrapper = client_wrapper
 
-    async def post_v1transport_waybills_create(
+    async def waybills_create(
         self,
         *,
         consignee_partner_id: str,
@@ -1037,7 +1169,7 @@ class AsyncRawTransportClient:
         load_address: str,
         unload_address: str,
         transporter_partner_id: typing.Optional[str] = OMIT,
-        document_date: typing.Optional[str] = OMIT,
+        document_date: typing.Optional[dt.date] = OMIT,
         estimated_arrival_at: typing.Optional[dt.datetime] = OMIT,
         vehicle_plate: typing.Optional[str] = OMIT,
         trailer_plate: typing.Optional[str] = OMIT,
@@ -1048,9 +1180,9 @@ class AsyncRawTransportClient:
         sale_invoice_id: typing.Optional[str] = OMIT,
         notes: typing.Optional[str] = OMIT,
         series: typing.Optional[str] = OMIT,
-        lines: typing.Optional[typing.Sequence[PostV1TransportWaybillsCreateRequestLinesItem]] = OMIT,
+        lines: typing.Optional[typing.Sequence[WaybillsCreateTransportRequestLinesItem]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> AsyncHttpResponse[PostV1TransportWaybillsCreateResponse]:
+    ) -> AsyncHttpResponse[WaybillsCreateTransportResponse]:
         """
         Parameters
         ----------
@@ -1064,7 +1196,7 @@ class AsyncRawTransportClient:
 
         transporter_partner_id : typing.Optional[str]
 
-        document_date : typing.Optional[str]
+        document_date : typing.Optional[dt.date]
 
         estimated_arrival_at : typing.Optional[dt.datetime]
 
@@ -1086,14 +1218,14 @@ class AsyncRawTransportClient:
 
         series : typing.Optional[str]
 
-        lines : typing.Optional[typing.Sequence[PostV1TransportWaybillsCreateRequestLinesItem]]
+        lines : typing.Optional[typing.Sequence[WaybillsCreateTransportRequestLinesItem]]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
         Returns
         -------
-        AsyncHttpResponse[PostV1TransportWaybillsCreateResponse]
+        AsyncHttpResponse[WaybillsCreateTransportResponse]
             Default Response
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -1118,7 +1250,7 @@ class AsyncRawTransportClient:
                 "series": series,
                 "lines": convert_and_respect_annotation_metadata(
                     object_=lines,
-                    annotation=typing.Sequence[PostV1TransportWaybillsCreateRequestLinesItem],
+                    annotation=typing.Sequence[WaybillsCreateTransportRequestLinesItem],
                     direction="write",
                 ),
             },
@@ -1131,9 +1263,9 @@ class AsyncRawTransportClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1TransportWaybillsCreateResponse,
+                    WaybillsCreateTransportResponse,
                     parse_obj_as(
-                        type_=PostV1TransportWaybillsCreateResponse,  # type: ignore
+                        type_=WaybillsCreateTransportResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -1151,6 +1283,17 @@ class AsyncRawTransportClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -1184,6 +1327,17 @@ class AsyncRawTransportClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -1235,13 +1389,13 @@ class AsyncRawTransportClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    async def post_v1transport_waybills_update(
+    async def waybills_update(
         self,
         *,
         id: str,
         consignee_partner_id: typing.Optional[str] = OMIT,
         transporter_partner_id: typing.Optional[str] = OMIT,
-        document_date: typing.Optional[str] = OMIT,
+        document_date: typing.Optional[dt.date] = OMIT,
         dispatch_at: typing.Optional[dt.datetime] = OMIT,
         estimated_arrival_at: typing.Optional[dt.datetime] = OMIT,
         vehicle_plate: typing.Optional[str] = OMIT,
@@ -1255,9 +1409,9 @@ class AsyncRawTransportClient:
         sale_invoice_id: typing.Optional[str] = OMIT,
         notes: typing.Optional[str] = OMIT,
         series: typing.Optional[str] = OMIT,
-        lines: typing.Optional[typing.Sequence[PostV1TransportWaybillsUpdateRequestLinesItem]] = OMIT,
+        lines: typing.Optional[typing.Sequence[WaybillsUpdateTransportRequestLinesItem]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> AsyncHttpResponse[PostV1TransportWaybillsUpdateResponse]:
+    ) -> AsyncHttpResponse[WaybillsUpdateTransportResponse]:
         """
         Parameters
         ----------
@@ -1267,7 +1421,7 @@ class AsyncRawTransportClient:
 
         transporter_partner_id : typing.Optional[str]
 
-        document_date : typing.Optional[str]
+        document_date : typing.Optional[dt.date]
 
         dispatch_at : typing.Optional[dt.datetime]
 
@@ -1295,14 +1449,14 @@ class AsyncRawTransportClient:
 
         series : typing.Optional[str]
 
-        lines : typing.Optional[typing.Sequence[PostV1TransportWaybillsUpdateRequestLinesItem]]
+        lines : typing.Optional[typing.Sequence[WaybillsUpdateTransportRequestLinesItem]]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
         Returns
         -------
-        AsyncHttpResponse[PostV1TransportWaybillsUpdateResponse]
+        AsyncHttpResponse[WaybillsUpdateTransportResponse]
             Default Response
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -1327,7 +1481,7 @@ class AsyncRawTransportClient:
                 "series": series,
                 "lines": convert_and_respect_annotation_metadata(
                     object_=lines,
-                    annotation=typing.Sequence[PostV1TransportWaybillsUpdateRequestLinesItem],
+                    annotation=typing.Sequence[WaybillsUpdateTransportRequestLinesItem],
                     direction="write",
                 ),
                 "id": id,
@@ -1341,9 +1495,9 @@ class AsyncRawTransportClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1TransportWaybillsUpdateResponse,
+                    WaybillsUpdateTransportResponse,
                     parse_obj_as(
-                        type_=PostV1TransportWaybillsUpdateResponse,  # type: ignore
+                        type_=WaybillsUpdateTransportResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -1361,6 +1515,17 @@ class AsyncRawTransportClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -1394,6 +1559,17 @@ class AsyncRawTransportClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -1445,9 +1621,9 @@ class AsyncRawTransportClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    async def post_v1transport_waybills_issue(
+    async def waybills_issue(
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
-    ) -> AsyncHttpResponse[PostV1TransportWaybillsIssueResponse]:
+    ) -> AsyncHttpResponse[WaybillsIssueTransportResponse]:
         """
         Parameters
         ----------
@@ -1458,7 +1634,7 @@ class AsyncRawTransportClient:
 
         Returns
         -------
-        AsyncHttpResponse[PostV1TransportWaybillsIssueResponse]
+        AsyncHttpResponse[WaybillsIssueTransportResponse]
             Default Response
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -1476,9 +1652,9 @@ class AsyncRawTransportClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1TransportWaybillsIssueResponse,
+                    WaybillsIssueTransportResponse,
                     parse_obj_as(
-                        type_=PostV1TransportWaybillsIssueResponse,  # type: ignore
+                        type_=WaybillsIssueTransportResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -1496,6 +1672,17 @@ class AsyncRawTransportClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -1529,6 +1716,17 @@ class AsyncRawTransportClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -1580,9 +1778,9 @@ class AsyncRawTransportClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    async def post_v1transport_waybills_cancel(
+    async def waybills_cancel(
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
-    ) -> AsyncHttpResponse[PostV1TransportWaybillsCancelResponse]:
+    ) -> AsyncHttpResponse[WaybillsCancelTransportResponse]:
         """
         Parameters
         ----------
@@ -1593,7 +1791,7 @@ class AsyncRawTransportClient:
 
         Returns
         -------
-        AsyncHttpResponse[PostV1TransportWaybillsCancelResponse]
+        AsyncHttpResponse[WaybillsCancelTransportResponse]
             Default Response
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -1611,9 +1809,9 @@ class AsyncRawTransportClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1TransportWaybillsCancelResponse,
+                    WaybillsCancelTransportResponse,
                     parse_obj_as(
-                        type_=PostV1TransportWaybillsCancelResponse,  # type: ignore
+                        type_=WaybillsCancelTransportResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -1631,6 +1829,17 @@ class AsyncRawTransportClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -1664,6 +1873,17 @@ class AsyncRawTransportClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -1715,9 +1935,9 @@ class AsyncRawTransportClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    async def post_v1transport_waybills_get(
+    async def waybills_get(
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
-    ) -> AsyncHttpResponse[PostV1TransportWaybillsGetResponse]:
+    ) -> AsyncHttpResponse[WaybillsGetTransportResponse]:
         """
         Parameters
         ----------
@@ -1728,7 +1948,7 @@ class AsyncRawTransportClient:
 
         Returns
         -------
-        AsyncHttpResponse[PostV1TransportWaybillsGetResponse]
+        AsyncHttpResponse[WaybillsGetTransportResponse]
             Default Response
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -1746,9 +1966,9 @@ class AsyncRawTransportClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1TransportWaybillsGetResponse,
+                    WaybillsGetTransportResponse,
                     parse_obj_as(
-                        type_=PostV1TransportWaybillsGetResponse,  # type: ignore
+                        type_=WaybillsGetTransportResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -1766,6 +1986,17 @@ class AsyncRawTransportClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -1799,6 +2030,17 @@ class AsyncRawTransportClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -1850,16 +2092,16 @@ class AsyncRawTransportClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    async def post_v1transport_waybills_list(
+    async def waybills_list(
         self,
         *,
         page: typing.Optional[int] = OMIT,
         page_size: typing.Optional[int] = OMIT,
-        sort: typing.Optional[typing.Sequence[PostV1TransportWaybillsListRequestSortItem]] = OMIT,
-        filter: typing.Optional[typing.Sequence[PostV1TransportWaybillsListRequestFilterItem]] = OMIT,
+        sort: typing.Optional[typing.Sequence[WaybillsListTransportRequestSortItem]] = OMIT,
+        filter: typing.Optional[typing.Sequence[WaybillsListTransportRequestFilterItem]] = OMIT,
         totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> AsyncHttpResponse[PostV1TransportWaybillsListResponse]:
+    ) -> AsyncHttpResponse[WaybillsListTransportResponse]:
         """
         Parameters
         ----------
@@ -1867,9 +2109,9 @@ class AsyncRawTransportClient:
 
         page_size : typing.Optional[int]
 
-        sort : typing.Optional[typing.Sequence[PostV1TransportWaybillsListRequestSortItem]]
+        sort : typing.Optional[typing.Sequence[WaybillsListTransportRequestSortItem]]
 
-        filter : typing.Optional[typing.Sequence[PostV1TransportWaybillsListRequestFilterItem]]
+        filter : typing.Optional[typing.Sequence[WaybillsListTransportRequestFilterItem]]
 
         totals : typing.Optional[typing.Sequence[str]]
             Numeric fields to sum over every row matching the filter (not only the current page)
@@ -1879,7 +2121,7 @@ class AsyncRawTransportClient:
 
         Returns
         -------
-        AsyncHttpResponse[PostV1TransportWaybillsListResponse]
+        AsyncHttpResponse[WaybillsListTransportResponse]
             Default Response
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -1889,13 +2131,11 @@ class AsyncRawTransportClient:
                 "page": page,
                 "pageSize": page_size,
                 "sort": convert_and_respect_annotation_metadata(
-                    object_=sort,
-                    annotation=typing.Sequence[PostV1TransportWaybillsListRequestSortItem],
-                    direction="write",
+                    object_=sort, annotation=typing.Sequence[WaybillsListTransportRequestSortItem], direction="write"
                 ),
                 "filter": convert_and_respect_annotation_metadata(
                     object_=filter,
-                    annotation=typing.Sequence[PostV1TransportWaybillsListRequestFilterItem],
+                    annotation=typing.Sequence[WaybillsListTransportRequestFilterItem],
                     direction="write",
                 ),
                 "totals": totals,
@@ -1909,9 +2149,9 @@ class AsyncRawTransportClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1TransportWaybillsListResponse,
+                    WaybillsListTransportResponse,
                     parse_obj_as(
-                        type_=PostV1TransportWaybillsListResponse,  # type: ignore
+                        type_=WaybillsListTransportResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -1929,6 +2169,17 @@ class AsyncRawTransportClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -1962,6 +2213,17 @@ class AsyncRawTransportClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,

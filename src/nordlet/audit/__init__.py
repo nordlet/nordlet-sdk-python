@@ -7,26 +7,26 @@ from importlib import import_module
 
 if typing.TYPE_CHECKING:
     from .types import (
-        PostV1AuditListRequestFilterItem,
-        PostV1AuditListRequestFilterItemOp,
-        PostV1AuditListRequestFilterItemValue,
-        PostV1AuditListRequestFilterItemValueThreeItem,
-        PostV1AuditListRequestSortItem,
-        PostV1AuditListRequestSortItemDir,
-        PostV1AuditListResponse,
-        PostV1AuditListResponseRowsItem,
-        PostV1AuditListResponseRowsItemActorType,
+        ListAuditRequestFilterItem,
+        ListAuditRequestFilterItemOp,
+        ListAuditRequestFilterItemValue,
+        ListAuditRequestFilterItemValueThreeItem,
+        ListAuditRequestSortItem,
+        ListAuditRequestSortItemDir,
+        ListAuditResponse,
+        ListAuditResponseRowsItem,
+        ListAuditResponseRowsItemActorType,
     )
 _dynamic_imports: typing.Dict[str, str] = {
-    "PostV1AuditListRequestFilterItem": ".types",
-    "PostV1AuditListRequestFilterItemOp": ".types",
-    "PostV1AuditListRequestFilterItemValue": ".types",
-    "PostV1AuditListRequestFilterItemValueThreeItem": ".types",
-    "PostV1AuditListRequestSortItem": ".types",
-    "PostV1AuditListRequestSortItemDir": ".types",
-    "PostV1AuditListResponse": ".types",
-    "PostV1AuditListResponseRowsItem": ".types",
-    "PostV1AuditListResponseRowsItemActorType": ".types",
+    "ListAuditRequestFilterItem": ".types",
+    "ListAuditRequestFilterItemOp": ".types",
+    "ListAuditRequestFilterItemValue": ".types",
+    "ListAuditRequestFilterItemValueThreeItem": ".types",
+    "ListAuditRequestSortItem": ".types",
+    "ListAuditRequestSortItemDir": ".types",
+    "ListAuditResponse": ".types",
+    "ListAuditResponseRowsItem": ".types",
+    "ListAuditResponseRowsItemActorType": ".types",
 }
 
 
@@ -52,13 +52,13 @@ def __dir__():
 
 
 __all__ = [
-    "PostV1AuditListRequestFilterItem",
-    "PostV1AuditListRequestFilterItemOp",
-    "PostV1AuditListRequestFilterItemValue",
-    "PostV1AuditListRequestFilterItemValueThreeItem",
-    "PostV1AuditListRequestSortItem",
-    "PostV1AuditListRequestSortItemDir",
-    "PostV1AuditListResponse",
-    "PostV1AuditListResponseRowsItem",
-    "PostV1AuditListResponseRowsItemActorType",
+    "ListAuditRequestFilterItem",
+    "ListAuditRequestFilterItemOp",
+    "ListAuditRequestFilterItemValue",
+    "ListAuditRequestFilterItemValueThreeItem",
+    "ListAuditRequestSortItem",
+    "ListAuditRequestSortItemDir",
+    "ListAuditResponse",
+    "ListAuditResponseRowsItem",
+    "ListAuditResponseRowsItemActorType",
 ]

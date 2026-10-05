@@ -6,185 +6,175 @@ import typing
 from importlib import import_module
 
 if typing.TYPE_CHECKING:
-    from .post_v1account_api_keys_create_response import PostV1AccountApiKeysCreateResponse
-    from .post_v1account_api_keys_list_response import PostV1AccountApiKeysListResponse
-    from .post_v1account_api_keys_list_response_rows_item import PostV1AccountApiKeysListResponseRowsItem
-    from .post_v1account_api_keys_revoke_response import PostV1AccountApiKeysRevokeResponse
-    from .post_v1account_api_keys_rotate_response import PostV1AccountApiKeysRotateResponse
-    from .post_v1account_companies_activate_response import PostV1AccountCompaniesActivateResponse
-    from .post_v1account_companies_archive_response import PostV1AccountCompaniesArchiveResponse
-    from .post_v1account_companies_create_request_accounts_kept_by import (
-        PostV1AccountCompaniesCreateRequestAccountsKeptBy,
-    )
-    from .post_v1account_companies_create_request_address import PostV1AccountCompaniesCreateRequestAddress
-    from .post_v1account_companies_create_request_country_code import PostV1AccountCompaniesCreateRequestCountryCode
-    from .post_v1account_companies_create_request_vat_period import PostV1AccountCompaniesCreateRequestVatPeriod
-    from .post_v1account_companies_create_response import PostV1AccountCompaniesCreateResponse
-    from .post_v1account_companies_delete_response import PostV1AccountCompaniesDeleteResponse
-    from .post_v1account_companies_profile_response import PostV1AccountCompaniesProfileResponse
-    from .post_v1account_companies_profile_response_accounts_kept_by import (
-        PostV1AccountCompaniesProfileResponseAccountsKeptBy,
-    )
-    from .post_v1account_companies_profile_response_address import PostV1AccountCompaniesProfileResponseAddress
-    from .post_v1account_companies_profile_response_status import PostV1AccountCompaniesProfileResponseStatus
-    from .post_v1account_companies_profile_response_vat_period import PostV1AccountCompaniesProfileResponseVatPeriod
-    from .post_v1account_companies_select_response import PostV1AccountCompaniesSelectResponse
-    from .post_v1account_companies_update_request_accounts_kept_by import (
-        PostV1AccountCompaniesUpdateRequestAccountsKeptBy,
-    )
-    from .post_v1account_companies_update_request_address import PostV1AccountCompaniesUpdateRequestAddress
-    from .post_v1account_companies_update_request_logo import PostV1AccountCompaniesUpdateRequestLogo
-    from .post_v1account_companies_update_request_vat_period import PostV1AccountCompaniesUpdateRequestVatPeriod
-    from .post_v1account_companies_update_response import PostV1AccountCompaniesUpdateResponse
-    from .post_v1account_companies_update_response_accounts_kept_by import (
-        PostV1AccountCompaniesUpdateResponseAccountsKeptBy,
-    )
-    from .post_v1account_companies_update_response_address import PostV1AccountCompaniesUpdateResponseAddress
-    from .post_v1account_companies_update_response_status import PostV1AccountCompaniesUpdateResponseStatus
-    from .post_v1account_companies_update_response_vat_period import PostV1AccountCompaniesUpdateResponseVatPeriod
-    from .post_v1account_consent_accept_response import PostV1AccountConsentAcceptResponse
-    from .post_v1account_delete_response import PostV1AccountDeleteResponse
-    from .post_v1account_email_change_request_request_locale import PostV1AccountEmailChangeRequestRequestLocale
-    from .post_v1account_email_change_request_response import PostV1AccountEmailChangeRequestResponse
-    from .post_v1account_export_response import PostV1AccountExportResponse
-    from .post_v1account_export_response_audit_entries_item import PostV1AccountExportResponseAuditEntriesItem
-    from .post_v1account_export_response_billing import PostV1AccountExportResponseBilling
-    from .post_v1account_export_response_consent import PostV1AccountExportResponseConsent
-    from .post_v1account_export_response_credit_transactions_item import (
-        PostV1AccountExportResponseCreditTransactionsItem,
-    )
-    from .post_v1account_export_response_memberships_item import PostV1AccountExportResponseMembershipsItem
-    from .post_v1account_export_response_sessions_item import PostV1AccountExportResponseSessionsItem
-    from .post_v1account_export_response_user import PostV1AccountExportResponseUser
-    from .post_v1account_invites_accept_request_locale import PostV1AccountInvitesAcceptRequestLocale
-    from .post_v1account_invites_accept_response import PostV1AccountInvitesAcceptResponse
-    from .post_v1account_invites_accept_response_user import PostV1AccountInvitesAcceptResponseUser
-    from .post_v1account_invites_create_request_locale import PostV1AccountInvitesCreateRequestLocale
-    from .post_v1account_invites_create_request_role import PostV1AccountInvitesCreateRequestRole
-    from .post_v1account_invites_create_response import PostV1AccountInvitesCreateResponse
-    from .post_v1account_invites_get_response import PostV1AccountInvitesGetResponse
-    from .post_v1account_invites_list_response import PostV1AccountInvitesListResponse
-    from .post_v1account_invites_list_response_rows_item import PostV1AccountInvitesListResponseRowsItem
-    from .post_v1account_invites_revoke_response import PostV1AccountInvitesRevokeResponse
-    from .post_v1account_locale_set_request_locale import PostV1AccountLocaleSetRequestLocale
-    from .post_v1account_locale_set_response import PostV1AccountLocaleSetResponse
-    from .post_v1account_locale_set_response_scope import PostV1AccountLocaleSetResponseScope
-    from .post_v1account_login_link_consume_response import PostV1AccountLoginLinkConsumeResponse
-    from .post_v1account_login_link_consume_response_user import PostV1AccountLoginLinkConsumeResponseUser
-    from .post_v1account_login_link_request_request_locale import PostV1AccountLoginLinkRequestRequestLocale
-    from .post_v1account_login_link_request_response import PostV1AccountLoginLinkRequestResponse
-    from .post_v1account_logout_response import PostV1AccountLogoutResponse
-    from .post_v1account_me_response import PostV1AccountMeResponse
-    from .post_v1account_me_response_billing import PostV1AccountMeResponseBilling
-    from .post_v1account_me_response_billing_status import PostV1AccountMeResponseBillingStatus
-    from .post_v1account_me_response_companies_item import PostV1AccountMeResponseCompaniesItem
-    from .post_v1account_me_response_companies_item_status import PostV1AccountMeResponseCompaniesItemStatus
-    from .post_v1account_me_response_consent import PostV1AccountMeResponseConsent
-    from .post_v1account_me_response_user import PostV1AccountMeResponseUser
-    from .post_v1account_members_list_response import PostV1AccountMembersListResponse
-    from .post_v1account_members_list_response_rows_item import PostV1AccountMembersListResponseRowsItem
-    from .post_v1account_members_remove_response import PostV1AccountMembersRemoveResponse
-    from .post_v1account_members_set_role_request_role import PostV1AccountMembersSetRoleRequestRole
-    from .post_v1account_members_set_role_response import PostV1AccountMembersSetRoleResponse
-    from .post_v1account_members_transfer_ownership_response import PostV1AccountMembersTransferOwnershipResponse
-    from .post_v1account_profile_update_response import PostV1AccountProfileUpdateResponse
-    from .post_v1account_referral_convert_response import PostV1AccountReferralConvertResponse
-    from .post_v1account_referral_get_response import PostV1AccountReferralGetResponse
-    from .post_v1account_referral_get_response_history_item import PostV1AccountReferralGetResponseHistoryItem
-    from .post_v1account_referral_get_response_rates import PostV1AccountReferralGetResponseRates
-    from .post_v1account_sessions_list_response import PostV1AccountSessionsListResponse
-    from .post_v1account_sessions_list_response_rows_item import PostV1AccountSessionsListResponseRowsItem
-    from .post_v1account_sessions_revoke_others_response import PostV1AccountSessionsRevokeOthersResponse
-    from .post_v1account_sessions_revoke_response import PostV1AccountSessionsRevokeResponse
-    from .post_v1account_table_settings_get_response import PostV1AccountTableSettingsGetResponse
-    from .post_v1account_table_settings_list_response import PostV1AccountTableSettingsListResponse
-    from .post_v1account_table_settings_list_response_rows_item import PostV1AccountTableSettingsListResponseRowsItem
-    from .post_v1account_table_settings_set_response import PostV1AccountTableSettingsSetResponse
+    from .api_keys_create_account_response import ApiKeysCreateAccountResponse
+    from .api_keys_list_account_response import ApiKeysListAccountResponse
+    from .api_keys_list_account_response_rows_item import ApiKeysListAccountResponseRowsItem
+    from .api_keys_revoke_account_response import ApiKeysRevokeAccountResponse
+    from .api_keys_rotate_account_response import ApiKeysRotateAccountResponse
+    from .companies_activate_account_response import CompaniesActivateAccountResponse
+    from .companies_archive_account_response import CompaniesArchiveAccountResponse
+    from .companies_create_account_request_accounts_kept_by import CompaniesCreateAccountRequestAccountsKeptBy
+    from .companies_create_account_request_address import CompaniesCreateAccountRequestAddress
+    from .companies_create_account_request_country_code import CompaniesCreateAccountRequestCountryCode
+    from .companies_create_account_request_vat_period import CompaniesCreateAccountRequestVatPeriod
+    from .companies_create_account_response import CompaniesCreateAccountResponse
+    from .companies_delete_account_response import CompaniesDeleteAccountResponse
+    from .companies_profile_account_response import CompaniesProfileAccountResponse
+    from .companies_profile_account_response_accounts_kept_by import CompaniesProfileAccountResponseAccountsKeptBy
+    from .companies_profile_account_response_address import CompaniesProfileAccountResponseAddress
+    from .companies_profile_account_response_status import CompaniesProfileAccountResponseStatus
+    from .companies_profile_account_response_vat_period import CompaniesProfileAccountResponseVatPeriod
+    from .companies_select_account_response import CompaniesSelectAccountResponse
+    from .companies_update_account_request_accounts_kept_by import CompaniesUpdateAccountRequestAccountsKeptBy
+    from .companies_update_account_request_address import CompaniesUpdateAccountRequestAddress
+    from .companies_update_account_request_logo import CompaniesUpdateAccountRequestLogo
+    from .companies_update_account_request_vat_period import CompaniesUpdateAccountRequestVatPeriod
+    from .companies_update_account_response import CompaniesUpdateAccountResponse
+    from .companies_update_account_response_accounts_kept_by import CompaniesUpdateAccountResponseAccountsKeptBy
+    from .companies_update_account_response_address import CompaniesUpdateAccountResponseAddress
+    from .companies_update_account_response_status import CompaniesUpdateAccountResponseStatus
+    from .companies_update_account_response_vat_period import CompaniesUpdateAccountResponseVatPeriod
+    from .consent_accept_account_response import ConsentAcceptAccountResponse
+    from .delete_account_response import DeleteAccountResponse
+    from .email_change_request_account_request_locale import EmailChangeRequestAccountRequestLocale
+    from .email_change_request_account_response import EmailChangeRequestAccountResponse
+    from .export_account_response import ExportAccountResponse
+    from .export_account_response_audit_entries_item import ExportAccountResponseAuditEntriesItem
+    from .export_account_response_billing import ExportAccountResponseBilling
+    from .export_account_response_consent import ExportAccountResponseConsent
+    from .export_account_response_credit_transactions_item import ExportAccountResponseCreditTransactionsItem
+    from .export_account_response_memberships_item import ExportAccountResponseMembershipsItem
+    from .export_account_response_sessions_item import ExportAccountResponseSessionsItem
+    from .export_account_response_user import ExportAccountResponseUser
+    from .invites_accept_account_request_locale import InvitesAcceptAccountRequestLocale
+    from .invites_accept_account_response import InvitesAcceptAccountResponse
+    from .invites_accept_account_response_user import InvitesAcceptAccountResponseUser
+    from .invites_create_account_request_locale import InvitesCreateAccountRequestLocale
+    from .invites_create_account_request_role import InvitesCreateAccountRequestRole
+    from .invites_create_account_response import InvitesCreateAccountResponse
+    from .invites_get_account_response import InvitesGetAccountResponse
+    from .invites_list_account_response import InvitesListAccountResponse
+    from .invites_list_account_response_rows_item import InvitesListAccountResponseRowsItem
+    from .invites_revoke_account_response import InvitesRevokeAccountResponse
+    from .locale_set_account_request_locale import LocaleSetAccountRequestLocale
+    from .locale_set_account_response import LocaleSetAccountResponse
+    from .locale_set_account_response_scope import LocaleSetAccountResponseScope
+    from .login_link_consume_account_response import LoginLinkConsumeAccountResponse
+    from .login_link_consume_account_response_user import LoginLinkConsumeAccountResponseUser
+    from .login_link_request_account_request_locale import LoginLinkRequestAccountRequestLocale
+    from .login_link_request_account_response import LoginLinkRequestAccountResponse
+    from .logout_account_response import LogoutAccountResponse
+    from .me_account_response import MeAccountResponse
+    from .me_account_response_billing import MeAccountResponseBilling
+    from .me_account_response_billing_status import MeAccountResponseBillingStatus
+    from .me_account_response_companies_item import MeAccountResponseCompaniesItem
+    from .me_account_response_companies_item_status import MeAccountResponseCompaniesItemStatus
+    from .me_account_response_consent import MeAccountResponseConsent
+    from .me_account_response_user import MeAccountResponseUser
+    from .members_list_account_response import MembersListAccountResponse
+    from .members_list_account_response_rows_item import MembersListAccountResponseRowsItem
+    from .members_remove_account_response import MembersRemoveAccountResponse
+    from .members_set_role_account_request_role import MembersSetRoleAccountRequestRole
+    from .members_set_role_account_response import MembersSetRoleAccountResponse
+    from .members_transfer_ownership_account_response import MembersTransferOwnershipAccountResponse
+    from .profile_update_account_response import ProfileUpdateAccountResponse
+    from .referral_convert_account_response import ReferralConvertAccountResponse
+    from .referral_get_account_response import ReferralGetAccountResponse
+    from .referral_get_account_response_history_item import ReferralGetAccountResponseHistoryItem
+    from .referral_get_account_response_rates import ReferralGetAccountResponseRates
+    from .sessions_list_account_response import SessionsListAccountResponse
+    from .sessions_list_account_response_rows_item import SessionsListAccountResponseRowsItem
+    from .sessions_revoke_account_response import SessionsRevokeAccountResponse
+    from .sessions_revoke_others_account_response import SessionsRevokeOthersAccountResponse
+    from .table_settings_get_account_response import TableSettingsGetAccountResponse
+    from .table_settings_list_account_response import TableSettingsListAccountResponse
+    from .table_settings_list_account_response_rows_item import TableSettingsListAccountResponseRowsItem
+    from .table_settings_set_account_response import TableSettingsSetAccountResponse
 _dynamic_imports: typing.Dict[str, str] = {
-    "PostV1AccountApiKeysCreateResponse": ".post_v1account_api_keys_create_response",
-    "PostV1AccountApiKeysListResponse": ".post_v1account_api_keys_list_response",
-    "PostV1AccountApiKeysListResponseRowsItem": ".post_v1account_api_keys_list_response_rows_item",
-    "PostV1AccountApiKeysRevokeResponse": ".post_v1account_api_keys_revoke_response",
-    "PostV1AccountApiKeysRotateResponse": ".post_v1account_api_keys_rotate_response",
-    "PostV1AccountCompaniesActivateResponse": ".post_v1account_companies_activate_response",
-    "PostV1AccountCompaniesArchiveResponse": ".post_v1account_companies_archive_response",
-    "PostV1AccountCompaniesCreateRequestAccountsKeptBy": ".post_v1account_companies_create_request_accounts_kept_by",
-    "PostV1AccountCompaniesCreateRequestAddress": ".post_v1account_companies_create_request_address",
-    "PostV1AccountCompaniesCreateRequestCountryCode": ".post_v1account_companies_create_request_country_code",
-    "PostV1AccountCompaniesCreateRequestVatPeriod": ".post_v1account_companies_create_request_vat_period",
-    "PostV1AccountCompaniesCreateResponse": ".post_v1account_companies_create_response",
-    "PostV1AccountCompaniesDeleteResponse": ".post_v1account_companies_delete_response",
-    "PostV1AccountCompaniesProfileResponse": ".post_v1account_companies_profile_response",
-    "PostV1AccountCompaniesProfileResponseAccountsKeptBy": ".post_v1account_companies_profile_response_accounts_kept_by",
-    "PostV1AccountCompaniesProfileResponseAddress": ".post_v1account_companies_profile_response_address",
-    "PostV1AccountCompaniesProfileResponseStatus": ".post_v1account_companies_profile_response_status",
-    "PostV1AccountCompaniesProfileResponseVatPeriod": ".post_v1account_companies_profile_response_vat_period",
-    "PostV1AccountCompaniesSelectResponse": ".post_v1account_companies_select_response",
-    "PostV1AccountCompaniesUpdateRequestAccountsKeptBy": ".post_v1account_companies_update_request_accounts_kept_by",
-    "PostV1AccountCompaniesUpdateRequestAddress": ".post_v1account_companies_update_request_address",
-    "PostV1AccountCompaniesUpdateRequestLogo": ".post_v1account_companies_update_request_logo",
-    "PostV1AccountCompaniesUpdateRequestVatPeriod": ".post_v1account_companies_update_request_vat_period",
-    "PostV1AccountCompaniesUpdateResponse": ".post_v1account_companies_update_response",
-    "PostV1AccountCompaniesUpdateResponseAccountsKeptBy": ".post_v1account_companies_update_response_accounts_kept_by",
-    "PostV1AccountCompaniesUpdateResponseAddress": ".post_v1account_companies_update_response_address",
-    "PostV1AccountCompaniesUpdateResponseStatus": ".post_v1account_companies_update_response_status",
-    "PostV1AccountCompaniesUpdateResponseVatPeriod": ".post_v1account_companies_update_response_vat_period",
-    "PostV1AccountConsentAcceptResponse": ".post_v1account_consent_accept_response",
-    "PostV1AccountDeleteResponse": ".post_v1account_delete_response",
-    "PostV1AccountEmailChangeRequestRequestLocale": ".post_v1account_email_change_request_request_locale",
-    "PostV1AccountEmailChangeRequestResponse": ".post_v1account_email_change_request_response",
-    "PostV1AccountExportResponse": ".post_v1account_export_response",
-    "PostV1AccountExportResponseAuditEntriesItem": ".post_v1account_export_response_audit_entries_item",
-    "PostV1AccountExportResponseBilling": ".post_v1account_export_response_billing",
-    "PostV1AccountExportResponseConsent": ".post_v1account_export_response_consent",
-    "PostV1AccountExportResponseCreditTransactionsItem": ".post_v1account_export_response_credit_transactions_item",
-    "PostV1AccountExportResponseMembershipsItem": ".post_v1account_export_response_memberships_item",
-    "PostV1AccountExportResponseSessionsItem": ".post_v1account_export_response_sessions_item",
-    "PostV1AccountExportResponseUser": ".post_v1account_export_response_user",
-    "PostV1AccountInvitesAcceptRequestLocale": ".post_v1account_invites_accept_request_locale",
-    "PostV1AccountInvitesAcceptResponse": ".post_v1account_invites_accept_response",
-    "PostV1AccountInvitesAcceptResponseUser": ".post_v1account_invites_accept_response_user",
-    "PostV1AccountInvitesCreateRequestLocale": ".post_v1account_invites_create_request_locale",
-    "PostV1AccountInvitesCreateRequestRole": ".post_v1account_invites_create_request_role",
-    "PostV1AccountInvitesCreateResponse": ".post_v1account_invites_create_response",
-    "PostV1AccountInvitesGetResponse": ".post_v1account_invites_get_response",
-    "PostV1AccountInvitesListResponse": ".post_v1account_invites_list_response",
-    "PostV1AccountInvitesListResponseRowsItem": ".post_v1account_invites_list_response_rows_item",
-    "PostV1AccountInvitesRevokeResponse": ".post_v1account_invites_revoke_response",
-    "PostV1AccountLocaleSetRequestLocale": ".post_v1account_locale_set_request_locale",
-    "PostV1AccountLocaleSetResponse": ".post_v1account_locale_set_response",
-    "PostV1AccountLocaleSetResponseScope": ".post_v1account_locale_set_response_scope",
-    "PostV1AccountLoginLinkConsumeResponse": ".post_v1account_login_link_consume_response",
-    "PostV1AccountLoginLinkConsumeResponseUser": ".post_v1account_login_link_consume_response_user",
-    "PostV1AccountLoginLinkRequestRequestLocale": ".post_v1account_login_link_request_request_locale",
-    "PostV1AccountLoginLinkRequestResponse": ".post_v1account_login_link_request_response",
-    "PostV1AccountLogoutResponse": ".post_v1account_logout_response",
-    "PostV1AccountMeResponse": ".post_v1account_me_response",
-    "PostV1AccountMeResponseBilling": ".post_v1account_me_response_billing",
-    "PostV1AccountMeResponseBillingStatus": ".post_v1account_me_response_billing_status",
-    "PostV1AccountMeResponseCompaniesItem": ".post_v1account_me_response_companies_item",
-    "PostV1AccountMeResponseCompaniesItemStatus": ".post_v1account_me_response_companies_item_status",
-    "PostV1AccountMeResponseConsent": ".post_v1account_me_response_consent",
-    "PostV1AccountMeResponseUser": ".post_v1account_me_response_user",
-    "PostV1AccountMembersListResponse": ".post_v1account_members_list_response",
-    "PostV1AccountMembersListResponseRowsItem": ".post_v1account_members_list_response_rows_item",
-    "PostV1AccountMembersRemoveResponse": ".post_v1account_members_remove_response",
-    "PostV1AccountMembersSetRoleRequestRole": ".post_v1account_members_set_role_request_role",
-    "PostV1AccountMembersSetRoleResponse": ".post_v1account_members_set_role_response",
-    "PostV1AccountMembersTransferOwnershipResponse": ".post_v1account_members_transfer_ownership_response",
-    "PostV1AccountProfileUpdateResponse": ".post_v1account_profile_update_response",
-    "PostV1AccountReferralConvertResponse": ".post_v1account_referral_convert_response",
-    "PostV1AccountReferralGetResponse": ".post_v1account_referral_get_response",
-    "PostV1AccountReferralGetResponseHistoryItem": ".post_v1account_referral_get_response_history_item",
-    "PostV1AccountReferralGetResponseRates": ".post_v1account_referral_get_response_rates",
-    "PostV1AccountSessionsListResponse": ".post_v1account_sessions_list_response",
-    "PostV1AccountSessionsListResponseRowsItem": ".post_v1account_sessions_list_response_rows_item",
-    "PostV1AccountSessionsRevokeOthersResponse": ".post_v1account_sessions_revoke_others_response",
-    "PostV1AccountSessionsRevokeResponse": ".post_v1account_sessions_revoke_response",
-    "PostV1AccountTableSettingsGetResponse": ".post_v1account_table_settings_get_response",
-    "PostV1AccountTableSettingsListResponse": ".post_v1account_table_settings_list_response",
-    "PostV1AccountTableSettingsListResponseRowsItem": ".post_v1account_table_settings_list_response_rows_item",
-    "PostV1AccountTableSettingsSetResponse": ".post_v1account_table_settings_set_response",
+    "ApiKeysCreateAccountResponse": ".api_keys_create_account_response",
+    "ApiKeysListAccountResponse": ".api_keys_list_account_response",
+    "ApiKeysListAccountResponseRowsItem": ".api_keys_list_account_response_rows_item",
+    "ApiKeysRevokeAccountResponse": ".api_keys_revoke_account_response",
+    "ApiKeysRotateAccountResponse": ".api_keys_rotate_account_response",
+    "CompaniesActivateAccountResponse": ".companies_activate_account_response",
+    "CompaniesArchiveAccountResponse": ".companies_archive_account_response",
+    "CompaniesCreateAccountRequestAccountsKeptBy": ".companies_create_account_request_accounts_kept_by",
+    "CompaniesCreateAccountRequestAddress": ".companies_create_account_request_address",
+    "CompaniesCreateAccountRequestCountryCode": ".companies_create_account_request_country_code",
+    "CompaniesCreateAccountRequestVatPeriod": ".companies_create_account_request_vat_period",
+    "CompaniesCreateAccountResponse": ".companies_create_account_response",
+    "CompaniesDeleteAccountResponse": ".companies_delete_account_response",
+    "CompaniesProfileAccountResponse": ".companies_profile_account_response",
+    "CompaniesProfileAccountResponseAccountsKeptBy": ".companies_profile_account_response_accounts_kept_by",
+    "CompaniesProfileAccountResponseAddress": ".companies_profile_account_response_address",
+    "CompaniesProfileAccountResponseStatus": ".companies_profile_account_response_status",
+    "CompaniesProfileAccountResponseVatPeriod": ".companies_profile_account_response_vat_period",
+    "CompaniesSelectAccountResponse": ".companies_select_account_response",
+    "CompaniesUpdateAccountRequestAccountsKeptBy": ".companies_update_account_request_accounts_kept_by",
+    "CompaniesUpdateAccountRequestAddress": ".companies_update_account_request_address",
+    "CompaniesUpdateAccountRequestLogo": ".companies_update_account_request_logo",
+    "CompaniesUpdateAccountRequestVatPeriod": ".companies_update_account_request_vat_period",
+    "CompaniesUpdateAccountResponse": ".companies_update_account_response",
+    "CompaniesUpdateAccountResponseAccountsKeptBy": ".companies_update_account_response_accounts_kept_by",
+    "CompaniesUpdateAccountResponseAddress": ".companies_update_account_response_address",
+    "CompaniesUpdateAccountResponseStatus": ".companies_update_account_response_status",
+    "CompaniesUpdateAccountResponseVatPeriod": ".companies_update_account_response_vat_period",
+    "ConsentAcceptAccountResponse": ".consent_accept_account_response",
+    "DeleteAccountResponse": ".delete_account_response",
+    "EmailChangeRequestAccountRequestLocale": ".email_change_request_account_request_locale",
+    "EmailChangeRequestAccountResponse": ".email_change_request_account_response",
+    "ExportAccountResponse": ".export_account_response",
+    "ExportAccountResponseAuditEntriesItem": ".export_account_response_audit_entries_item",
+    "ExportAccountResponseBilling": ".export_account_response_billing",
+    "ExportAccountResponseConsent": ".export_account_response_consent",
+    "ExportAccountResponseCreditTransactionsItem": ".export_account_response_credit_transactions_item",
+    "ExportAccountResponseMembershipsItem": ".export_account_response_memberships_item",
+    "ExportAccountResponseSessionsItem": ".export_account_response_sessions_item",
+    "ExportAccountResponseUser": ".export_account_response_user",
+    "InvitesAcceptAccountRequestLocale": ".invites_accept_account_request_locale",
+    "InvitesAcceptAccountResponse": ".invites_accept_account_response",
+    "InvitesAcceptAccountResponseUser": ".invites_accept_account_response_user",
+    "InvitesCreateAccountRequestLocale": ".invites_create_account_request_locale",
+    "InvitesCreateAccountRequestRole": ".invites_create_account_request_role",
+    "InvitesCreateAccountResponse": ".invites_create_account_response",
+    "InvitesGetAccountResponse": ".invites_get_account_response",
+    "InvitesListAccountResponse": ".invites_list_account_response",
+    "InvitesListAccountResponseRowsItem": ".invites_list_account_response_rows_item",
+    "InvitesRevokeAccountResponse": ".invites_revoke_account_response",
+    "LocaleSetAccountRequestLocale": ".locale_set_account_request_locale",
+    "LocaleSetAccountResponse": ".locale_set_account_response",
+    "LocaleSetAccountResponseScope": ".locale_set_account_response_scope",
+    "LoginLinkConsumeAccountResponse": ".login_link_consume_account_response",
+    "LoginLinkConsumeAccountResponseUser": ".login_link_consume_account_response_user",
+    "LoginLinkRequestAccountRequestLocale": ".login_link_request_account_request_locale",
+    "LoginLinkRequestAccountResponse": ".login_link_request_account_response",
+    "LogoutAccountResponse": ".logout_account_response",
+    "MeAccountResponse": ".me_account_response",
+    "MeAccountResponseBilling": ".me_account_response_billing",
+    "MeAccountResponseBillingStatus": ".me_account_response_billing_status",
+    "MeAccountResponseCompaniesItem": ".me_account_response_companies_item",
+    "MeAccountResponseCompaniesItemStatus": ".me_account_response_companies_item_status",
+    "MeAccountResponseConsent": ".me_account_response_consent",
+    "MeAccountResponseUser": ".me_account_response_user",
+    "MembersListAccountResponse": ".members_list_account_response",
+    "MembersListAccountResponseRowsItem": ".members_list_account_response_rows_item",
+    "MembersRemoveAccountResponse": ".members_remove_account_response",
+    "MembersSetRoleAccountRequestRole": ".members_set_role_account_request_role",
+    "MembersSetRoleAccountResponse": ".members_set_role_account_response",
+    "MembersTransferOwnershipAccountResponse": ".members_transfer_ownership_account_response",
+    "ProfileUpdateAccountResponse": ".profile_update_account_response",
+    "ReferralConvertAccountResponse": ".referral_convert_account_response",
+    "ReferralGetAccountResponse": ".referral_get_account_response",
+    "ReferralGetAccountResponseHistoryItem": ".referral_get_account_response_history_item",
+    "ReferralGetAccountResponseRates": ".referral_get_account_response_rates",
+    "SessionsListAccountResponse": ".sessions_list_account_response",
+    "SessionsListAccountResponseRowsItem": ".sessions_list_account_response_rows_item",
+    "SessionsRevokeAccountResponse": ".sessions_revoke_account_response",
+    "SessionsRevokeOthersAccountResponse": ".sessions_revoke_others_account_response",
+    "TableSettingsGetAccountResponse": ".table_settings_get_account_response",
+    "TableSettingsListAccountResponse": ".table_settings_list_account_response",
+    "TableSettingsListAccountResponseRowsItem": ".table_settings_list_account_response_rows_item",
+    "TableSettingsSetAccountResponse": ".table_settings_set_account_response",
 }
 
 
@@ -210,88 +200,88 @@ def __dir__():
 
 
 __all__ = [
-    "PostV1AccountApiKeysCreateResponse",
-    "PostV1AccountApiKeysListResponse",
-    "PostV1AccountApiKeysListResponseRowsItem",
-    "PostV1AccountApiKeysRevokeResponse",
-    "PostV1AccountApiKeysRotateResponse",
-    "PostV1AccountCompaniesActivateResponse",
-    "PostV1AccountCompaniesArchiveResponse",
-    "PostV1AccountCompaniesCreateRequestAccountsKeptBy",
-    "PostV1AccountCompaniesCreateRequestAddress",
-    "PostV1AccountCompaniesCreateRequestCountryCode",
-    "PostV1AccountCompaniesCreateRequestVatPeriod",
-    "PostV1AccountCompaniesCreateResponse",
-    "PostV1AccountCompaniesDeleteResponse",
-    "PostV1AccountCompaniesProfileResponse",
-    "PostV1AccountCompaniesProfileResponseAccountsKeptBy",
-    "PostV1AccountCompaniesProfileResponseAddress",
-    "PostV1AccountCompaniesProfileResponseStatus",
-    "PostV1AccountCompaniesProfileResponseVatPeriod",
-    "PostV1AccountCompaniesSelectResponse",
-    "PostV1AccountCompaniesUpdateRequestAccountsKeptBy",
-    "PostV1AccountCompaniesUpdateRequestAddress",
-    "PostV1AccountCompaniesUpdateRequestLogo",
-    "PostV1AccountCompaniesUpdateRequestVatPeriod",
-    "PostV1AccountCompaniesUpdateResponse",
-    "PostV1AccountCompaniesUpdateResponseAccountsKeptBy",
-    "PostV1AccountCompaniesUpdateResponseAddress",
-    "PostV1AccountCompaniesUpdateResponseStatus",
-    "PostV1AccountCompaniesUpdateResponseVatPeriod",
-    "PostV1AccountConsentAcceptResponse",
-    "PostV1AccountDeleteResponse",
-    "PostV1AccountEmailChangeRequestRequestLocale",
-    "PostV1AccountEmailChangeRequestResponse",
-    "PostV1AccountExportResponse",
-    "PostV1AccountExportResponseAuditEntriesItem",
-    "PostV1AccountExportResponseBilling",
-    "PostV1AccountExportResponseConsent",
-    "PostV1AccountExportResponseCreditTransactionsItem",
-    "PostV1AccountExportResponseMembershipsItem",
-    "PostV1AccountExportResponseSessionsItem",
-    "PostV1AccountExportResponseUser",
-    "PostV1AccountInvitesAcceptRequestLocale",
-    "PostV1AccountInvitesAcceptResponse",
-    "PostV1AccountInvitesAcceptResponseUser",
-    "PostV1AccountInvitesCreateRequestLocale",
-    "PostV1AccountInvitesCreateRequestRole",
-    "PostV1AccountInvitesCreateResponse",
-    "PostV1AccountInvitesGetResponse",
-    "PostV1AccountInvitesListResponse",
-    "PostV1AccountInvitesListResponseRowsItem",
-    "PostV1AccountInvitesRevokeResponse",
-    "PostV1AccountLocaleSetRequestLocale",
-    "PostV1AccountLocaleSetResponse",
-    "PostV1AccountLocaleSetResponseScope",
-    "PostV1AccountLoginLinkConsumeResponse",
-    "PostV1AccountLoginLinkConsumeResponseUser",
-    "PostV1AccountLoginLinkRequestRequestLocale",
-    "PostV1AccountLoginLinkRequestResponse",
-    "PostV1AccountLogoutResponse",
-    "PostV1AccountMeResponse",
-    "PostV1AccountMeResponseBilling",
-    "PostV1AccountMeResponseBillingStatus",
-    "PostV1AccountMeResponseCompaniesItem",
-    "PostV1AccountMeResponseCompaniesItemStatus",
-    "PostV1AccountMeResponseConsent",
-    "PostV1AccountMeResponseUser",
-    "PostV1AccountMembersListResponse",
-    "PostV1AccountMembersListResponseRowsItem",
-    "PostV1AccountMembersRemoveResponse",
-    "PostV1AccountMembersSetRoleRequestRole",
-    "PostV1AccountMembersSetRoleResponse",
-    "PostV1AccountMembersTransferOwnershipResponse",
-    "PostV1AccountProfileUpdateResponse",
-    "PostV1AccountReferralConvertResponse",
-    "PostV1AccountReferralGetResponse",
-    "PostV1AccountReferralGetResponseHistoryItem",
-    "PostV1AccountReferralGetResponseRates",
-    "PostV1AccountSessionsListResponse",
-    "PostV1AccountSessionsListResponseRowsItem",
-    "PostV1AccountSessionsRevokeOthersResponse",
-    "PostV1AccountSessionsRevokeResponse",
-    "PostV1AccountTableSettingsGetResponse",
-    "PostV1AccountTableSettingsListResponse",
-    "PostV1AccountTableSettingsListResponseRowsItem",
-    "PostV1AccountTableSettingsSetResponse",
+    "ApiKeysCreateAccountResponse",
+    "ApiKeysListAccountResponse",
+    "ApiKeysListAccountResponseRowsItem",
+    "ApiKeysRevokeAccountResponse",
+    "ApiKeysRotateAccountResponse",
+    "CompaniesActivateAccountResponse",
+    "CompaniesArchiveAccountResponse",
+    "CompaniesCreateAccountRequestAccountsKeptBy",
+    "CompaniesCreateAccountRequestAddress",
+    "CompaniesCreateAccountRequestCountryCode",
+    "CompaniesCreateAccountRequestVatPeriod",
+    "CompaniesCreateAccountResponse",
+    "CompaniesDeleteAccountResponse",
+    "CompaniesProfileAccountResponse",
+    "CompaniesProfileAccountResponseAccountsKeptBy",
+    "CompaniesProfileAccountResponseAddress",
+    "CompaniesProfileAccountResponseStatus",
+    "CompaniesProfileAccountResponseVatPeriod",
+    "CompaniesSelectAccountResponse",
+    "CompaniesUpdateAccountRequestAccountsKeptBy",
+    "CompaniesUpdateAccountRequestAddress",
+    "CompaniesUpdateAccountRequestLogo",
+    "CompaniesUpdateAccountRequestVatPeriod",
+    "CompaniesUpdateAccountResponse",
+    "CompaniesUpdateAccountResponseAccountsKeptBy",
+    "CompaniesUpdateAccountResponseAddress",
+    "CompaniesUpdateAccountResponseStatus",
+    "CompaniesUpdateAccountResponseVatPeriod",
+    "ConsentAcceptAccountResponse",
+    "DeleteAccountResponse",
+    "EmailChangeRequestAccountRequestLocale",
+    "EmailChangeRequestAccountResponse",
+    "ExportAccountResponse",
+    "ExportAccountResponseAuditEntriesItem",
+    "ExportAccountResponseBilling",
+    "ExportAccountResponseConsent",
+    "ExportAccountResponseCreditTransactionsItem",
+    "ExportAccountResponseMembershipsItem",
+    "ExportAccountResponseSessionsItem",
+    "ExportAccountResponseUser",
+    "InvitesAcceptAccountRequestLocale",
+    "InvitesAcceptAccountResponse",
+    "InvitesAcceptAccountResponseUser",
+    "InvitesCreateAccountRequestLocale",
+    "InvitesCreateAccountRequestRole",
+    "InvitesCreateAccountResponse",
+    "InvitesGetAccountResponse",
+    "InvitesListAccountResponse",
+    "InvitesListAccountResponseRowsItem",
+    "InvitesRevokeAccountResponse",
+    "LocaleSetAccountRequestLocale",
+    "LocaleSetAccountResponse",
+    "LocaleSetAccountResponseScope",
+    "LoginLinkConsumeAccountResponse",
+    "LoginLinkConsumeAccountResponseUser",
+    "LoginLinkRequestAccountRequestLocale",
+    "LoginLinkRequestAccountResponse",
+    "LogoutAccountResponse",
+    "MeAccountResponse",
+    "MeAccountResponseBilling",
+    "MeAccountResponseBillingStatus",
+    "MeAccountResponseCompaniesItem",
+    "MeAccountResponseCompaniesItemStatus",
+    "MeAccountResponseConsent",
+    "MeAccountResponseUser",
+    "MembersListAccountResponse",
+    "MembersListAccountResponseRowsItem",
+    "MembersRemoveAccountResponse",
+    "MembersSetRoleAccountRequestRole",
+    "MembersSetRoleAccountResponse",
+    "MembersTransferOwnershipAccountResponse",
+    "ProfileUpdateAccountResponse",
+    "ReferralConvertAccountResponse",
+    "ReferralGetAccountResponse",
+    "ReferralGetAccountResponseHistoryItem",
+    "ReferralGetAccountResponseRates",
+    "SessionsListAccountResponse",
+    "SessionsListAccountResponseRowsItem",
+    "SessionsRevokeAccountResponse",
+    "SessionsRevokeOthersAccountResponse",
+    "TableSettingsGetAccountResponse",
+    "TableSettingsListAccountResponse",
+    "TableSettingsListAccountResponseRowsItem",
+    "TableSettingsSetAccountResponse",
 ]

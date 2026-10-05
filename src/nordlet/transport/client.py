@@ -6,16 +6,16 @@ import typing
 from ..core.client_wrapper import AsyncClientWrapper, SyncClientWrapper
 from ..core.request_options import RequestOptions
 from .raw_client import AsyncRawTransportClient, RawTransportClient
-from .types.post_v1transport_waybills_cancel_response import PostV1TransportWaybillsCancelResponse
-from .types.post_v1transport_waybills_create_request_lines_item import PostV1TransportWaybillsCreateRequestLinesItem
-from .types.post_v1transport_waybills_create_response import PostV1TransportWaybillsCreateResponse
-from .types.post_v1transport_waybills_get_response import PostV1TransportWaybillsGetResponse
-from .types.post_v1transport_waybills_issue_response import PostV1TransportWaybillsIssueResponse
-from .types.post_v1transport_waybills_list_request_filter_item import PostV1TransportWaybillsListRequestFilterItem
-from .types.post_v1transport_waybills_list_request_sort_item import PostV1TransportWaybillsListRequestSortItem
-from .types.post_v1transport_waybills_list_response import PostV1TransportWaybillsListResponse
-from .types.post_v1transport_waybills_update_request_lines_item import PostV1TransportWaybillsUpdateRequestLinesItem
-from .types.post_v1transport_waybills_update_response import PostV1TransportWaybillsUpdateResponse
+from .types.waybills_cancel_transport_response import WaybillsCancelTransportResponse
+from .types.waybills_create_transport_request_lines_item import WaybillsCreateTransportRequestLinesItem
+from .types.waybills_create_transport_response import WaybillsCreateTransportResponse
+from .types.waybills_get_transport_response import WaybillsGetTransportResponse
+from .types.waybills_issue_transport_response import WaybillsIssueTransportResponse
+from .types.waybills_list_transport_request_filter_item import WaybillsListTransportRequestFilterItem
+from .types.waybills_list_transport_request_sort_item import WaybillsListTransportRequestSortItem
+from .types.waybills_list_transport_response import WaybillsListTransportResponse
+from .types.waybills_update_transport_request_lines_item import WaybillsUpdateTransportRequestLinesItem
+from .types.waybills_update_transport_response import WaybillsUpdateTransportResponse
 
 # this is used as the default value for optional parameters
 OMIT = typing.cast(typing.Any, ...)
@@ -36,7 +36,7 @@ class TransportClient:
         """
         return self._raw_client
 
-    def post_v1transport_waybills_create(
+    def waybills_create(
         self,
         *,
         consignee_partner_id: str,
@@ -44,7 +44,7 @@ class TransportClient:
         load_address: str,
         unload_address: str,
         transporter_partner_id: typing.Optional[str] = OMIT,
-        document_date: typing.Optional[str] = OMIT,
+        document_date: typing.Optional[dt.date] = OMIT,
         estimated_arrival_at: typing.Optional[dt.datetime] = OMIT,
         vehicle_plate: typing.Optional[str] = OMIT,
         trailer_plate: typing.Optional[str] = OMIT,
@@ -55,9 +55,9 @@ class TransportClient:
         sale_invoice_id: typing.Optional[str] = OMIT,
         notes: typing.Optional[str] = OMIT,
         series: typing.Optional[str] = OMIT,
-        lines: typing.Optional[typing.Sequence[PostV1TransportWaybillsCreateRequestLinesItem]] = OMIT,
+        lines: typing.Optional[typing.Sequence[WaybillsCreateTransportRequestLinesItem]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> PostV1TransportWaybillsCreateResponse:
+    ) -> WaybillsCreateTransportResponse:
         """
         Parameters
         ----------
@@ -71,7 +71,7 @@ class TransportClient:
 
         transporter_partner_id : typing.Optional[str]
 
-        document_date : typing.Optional[str]
+        document_date : typing.Optional[dt.date]
 
         estimated_arrival_at : typing.Optional[dt.datetime]
 
@@ -93,14 +93,14 @@ class TransportClient:
 
         series : typing.Optional[str]
 
-        lines : typing.Optional[typing.Sequence[PostV1TransportWaybillsCreateRequestLinesItem]]
+        lines : typing.Optional[typing.Sequence[WaybillsCreateTransportRequestLinesItem]]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
         Returns
         -------
-        PostV1TransportWaybillsCreateResponse
+        WaybillsCreateTransportResponse
             Default Response
 
         Examples
@@ -112,7 +112,7 @@ class TransportClient:
         client = Nordlet(
             token="YOUR_TOKEN",
         )
-        client.transport.post_v1transport_waybills_create(
+        client.transport.waybills_create(
             consignee_partner_id="consigneePartnerId",
             dispatch_at=datetime.datetime.fromisoformat(
                 "2024-01-15 09:30:00+00:00",
@@ -121,7 +121,7 @@ class TransportClient:
             unload_address="unloadAddress",
         )
         """
-        _response = self._raw_client.post_v1transport_waybills_create(
+        _response = self._raw_client.waybills_create(
             consignee_partner_id=consignee_partner_id,
             dispatch_at=dispatch_at,
             load_address=load_address,
@@ -143,13 +143,13 @@ class TransportClient:
         )
         return _response.data
 
-    def post_v1transport_waybills_update(
+    def waybills_update(
         self,
         *,
         id: str,
         consignee_partner_id: typing.Optional[str] = OMIT,
         transporter_partner_id: typing.Optional[str] = OMIT,
-        document_date: typing.Optional[str] = OMIT,
+        document_date: typing.Optional[dt.date] = OMIT,
         dispatch_at: typing.Optional[dt.datetime] = OMIT,
         estimated_arrival_at: typing.Optional[dt.datetime] = OMIT,
         vehicle_plate: typing.Optional[str] = OMIT,
@@ -163,9 +163,9 @@ class TransportClient:
         sale_invoice_id: typing.Optional[str] = OMIT,
         notes: typing.Optional[str] = OMIT,
         series: typing.Optional[str] = OMIT,
-        lines: typing.Optional[typing.Sequence[PostV1TransportWaybillsUpdateRequestLinesItem]] = OMIT,
+        lines: typing.Optional[typing.Sequence[WaybillsUpdateTransportRequestLinesItem]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> PostV1TransportWaybillsUpdateResponse:
+    ) -> WaybillsUpdateTransportResponse:
         """
         Parameters
         ----------
@@ -175,7 +175,7 @@ class TransportClient:
 
         transporter_partner_id : typing.Optional[str]
 
-        document_date : typing.Optional[str]
+        document_date : typing.Optional[dt.date]
 
         dispatch_at : typing.Optional[dt.datetime]
 
@@ -203,14 +203,14 @@ class TransportClient:
 
         series : typing.Optional[str]
 
-        lines : typing.Optional[typing.Sequence[PostV1TransportWaybillsUpdateRequestLinesItem]]
+        lines : typing.Optional[typing.Sequence[WaybillsUpdateTransportRequestLinesItem]]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
         Returns
         -------
-        PostV1TransportWaybillsUpdateResponse
+        WaybillsUpdateTransportResponse
             Default Response
 
         Examples
@@ -220,11 +220,11 @@ class TransportClient:
         client = Nordlet(
             token="YOUR_TOKEN",
         )
-        client.transport.post_v1transport_waybills_update(
+        client.transport.waybills_update(
             id="id",
         )
         """
-        _response = self._raw_client.post_v1transport_waybills_update(
+        _response = self._raw_client.waybills_update(
             id=id,
             consignee_partner_id=consignee_partner_id,
             transporter_partner_id=transporter_partner_id,
@@ -247,9 +247,9 @@ class TransportClient:
         )
         return _response.data
 
-    def post_v1transport_waybills_issue(
+    def waybills_issue(
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
-    ) -> PostV1TransportWaybillsIssueResponse:
+    ) -> WaybillsIssueTransportResponse:
         """
         Parameters
         ----------
@@ -260,7 +260,7 @@ class TransportClient:
 
         Returns
         -------
-        PostV1TransportWaybillsIssueResponse
+        WaybillsIssueTransportResponse
             Default Response
 
         Examples
@@ -270,16 +270,16 @@ class TransportClient:
         client = Nordlet(
             token="YOUR_TOKEN",
         )
-        client.transport.post_v1transport_waybills_issue(
+        client.transport.waybills_issue(
             id="id",
         )
         """
-        _response = self._raw_client.post_v1transport_waybills_issue(id=id, request_options=request_options)
+        _response = self._raw_client.waybills_issue(id=id, request_options=request_options)
         return _response.data
 
-    def post_v1transport_waybills_cancel(
+    def waybills_cancel(
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
-    ) -> PostV1TransportWaybillsCancelResponse:
+    ) -> WaybillsCancelTransportResponse:
         """
         Parameters
         ----------
@@ -290,7 +290,7 @@ class TransportClient:
 
         Returns
         -------
-        PostV1TransportWaybillsCancelResponse
+        WaybillsCancelTransportResponse
             Default Response
 
         Examples
@@ -300,16 +300,16 @@ class TransportClient:
         client = Nordlet(
             token="YOUR_TOKEN",
         )
-        client.transport.post_v1transport_waybills_cancel(
+        client.transport.waybills_cancel(
             id="id",
         )
         """
-        _response = self._raw_client.post_v1transport_waybills_cancel(id=id, request_options=request_options)
+        _response = self._raw_client.waybills_cancel(id=id, request_options=request_options)
         return _response.data
 
-    def post_v1transport_waybills_get(
+    def waybills_get(
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
-    ) -> PostV1TransportWaybillsGetResponse:
+    ) -> WaybillsGetTransportResponse:
         """
         Parameters
         ----------
@@ -320,7 +320,7 @@ class TransportClient:
 
         Returns
         -------
-        PostV1TransportWaybillsGetResponse
+        WaybillsGetTransportResponse
             Default Response
 
         Examples
@@ -330,23 +330,23 @@ class TransportClient:
         client = Nordlet(
             token="YOUR_TOKEN",
         )
-        client.transport.post_v1transport_waybills_get(
+        client.transport.waybills_get(
             id="id",
         )
         """
-        _response = self._raw_client.post_v1transport_waybills_get(id=id, request_options=request_options)
+        _response = self._raw_client.waybills_get(id=id, request_options=request_options)
         return _response.data
 
-    def post_v1transport_waybills_list(
+    def waybills_list(
         self,
         *,
         page: typing.Optional[int] = OMIT,
         page_size: typing.Optional[int] = OMIT,
-        sort: typing.Optional[typing.Sequence[PostV1TransportWaybillsListRequestSortItem]] = OMIT,
-        filter: typing.Optional[typing.Sequence[PostV1TransportWaybillsListRequestFilterItem]] = OMIT,
+        sort: typing.Optional[typing.Sequence[WaybillsListTransportRequestSortItem]] = OMIT,
+        filter: typing.Optional[typing.Sequence[WaybillsListTransportRequestFilterItem]] = OMIT,
         totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> PostV1TransportWaybillsListResponse:
+    ) -> WaybillsListTransportResponse:
         """
         Parameters
         ----------
@@ -354,9 +354,9 @@ class TransportClient:
 
         page_size : typing.Optional[int]
 
-        sort : typing.Optional[typing.Sequence[PostV1TransportWaybillsListRequestSortItem]]
+        sort : typing.Optional[typing.Sequence[WaybillsListTransportRequestSortItem]]
 
-        filter : typing.Optional[typing.Sequence[PostV1TransportWaybillsListRequestFilterItem]]
+        filter : typing.Optional[typing.Sequence[WaybillsListTransportRequestFilterItem]]
 
         totals : typing.Optional[typing.Sequence[str]]
             Numeric fields to sum over every row matching the filter (not only the current page)
@@ -366,7 +366,7 @@ class TransportClient:
 
         Returns
         -------
-        PostV1TransportWaybillsListResponse
+        WaybillsListTransportResponse
             Default Response
 
         Examples
@@ -376,9 +376,9 @@ class TransportClient:
         client = Nordlet(
             token="YOUR_TOKEN",
         )
-        client.transport.post_v1transport_waybills_list()
+        client.transport.waybills_list()
         """
-        _response = self._raw_client.post_v1transport_waybills_list(
+        _response = self._raw_client.waybills_list(
             page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
@@ -399,7 +399,7 @@ class AsyncTransportClient:
         """
         return self._raw_client
 
-    async def post_v1transport_waybills_create(
+    async def waybills_create(
         self,
         *,
         consignee_partner_id: str,
@@ -407,7 +407,7 @@ class AsyncTransportClient:
         load_address: str,
         unload_address: str,
         transporter_partner_id: typing.Optional[str] = OMIT,
-        document_date: typing.Optional[str] = OMIT,
+        document_date: typing.Optional[dt.date] = OMIT,
         estimated_arrival_at: typing.Optional[dt.datetime] = OMIT,
         vehicle_plate: typing.Optional[str] = OMIT,
         trailer_plate: typing.Optional[str] = OMIT,
@@ -418,9 +418,9 @@ class AsyncTransportClient:
         sale_invoice_id: typing.Optional[str] = OMIT,
         notes: typing.Optional[str] = OMIT,
         series: typing.Optional[str] = OMIT,
-        lines: typing.Optional[typing.Sequence[PostV1TransportWaybillsCreateRequestLinesItem]] = OMIT,
+        lines: typing.Optional[typing.Sequence[WaybillsCreateTransportRequestLinesItem]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> PostV1TransportWaybillsCreateResponse:
+    ) -> WaybillsCreateTransportResponse:
         """
         Parameters
         ----------
@@ -434,7 +434,7 @@ class AsyncTransportClient:
 
         transporter_partner_id : typing.Optional[str]
 
-        document_date : typing.Optional[str]
+        document_date : typing.Optional[dt.date]
 
         estimated_arrival_at : typing.Optional[dt.datetime]
 
@@ -456,14 +456,14 @@ class AsyncTransportClient:
 
         series : typing.Optional[str]
 
-        lines : typing.Optional[typing.Sequence[PostV1TransportWaybillsCreateRequestLinesItem]]
+        lines : typing.Optional[typing.Sequence[WaybillsCreateTransportRequestLinesItem]]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
         Returns
         -------
-        PostV1TransportWaybillsCreateResponse
+        WaybillsCreateTransportResponse
             Default Response
 
         Examples
@@ -479,7 +479,7 @@ class AsyncTransportClient:
 
 
         async def main() -> None:
-            await client.transport.post_v1transport_waybills_create(
+            await client.transport.waybills_create(
                 consignee_partner_id="consigneePartnerId",
                 dispatch_at=datetime.datetime.fromisoformat(
                     "2024-01-15 09:30:00+00:00",
@@ -491,7 +491,7 @@ class AsyncTransportClient:
 
         asyncio.run(main())
         """
-        _response = await self._raw_client.post_v1transport_waybills_create(
+        _response = await self._raw_client.waybills_create(
             consignee_partner_id=consignee_partner_id,
             dispatch_at=dispatch_at,
             load_address=load_address,
@@ -513,13 +513,13 @@ class AsyncTransportClient:
         )
         return _response.data
 
-    async def post_v1transport_waybills_update(
+    async def waybills_update(
         self,
         *,
         id: str,
         consignee_partner_id: typing.Optional[str] = OMIT,
         transporter_partner_id: typing.Optional[str] = OMIT,
-        document_date: typing.Optional[str] = OMIT,
+        document_date: typing.Optional[dt.date] = OMIT,
         dispatch_at: typing.Optional[dt.datetime] = OMIT,
         estimated_arrival_at: typing.Optional[dt.datetime] = OMIT,
         vehicle_plate: typing.Optional[str] = OMIT,
@@ -533,9 +533,9 @@ class AsyncTransportClient:
         sale_invoice_id: typing.Optional[str] = OMIT,
         notes: typing.Optional[str] = OMIT,
         series: typing.Optional[str] = OMIT,
-        lines: typing.Optional[typing.Sequence[PostV1TransportWaybillsUpdateRequestLinesItem]] = OMIT,
+        lines: typing.Optional[typing.Sequence[WaybillsUpdateTransportRequestLinesItem]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> PostV1TransportWaybillsUpdateResponse:
+    ) -> WaybillsUpdateTransportResponse:
         """
         Parameters
         ----------
@@ -545,7 +545,7 @@ class AsyncTransportClient:
 
         transporter_partner_id : typing.Optional[str]
 
-        document_date : typing.Optional[str]
+        document_date : typing.Optional[dt.date]
 
         dispatch_at : typing.Optional[dt.datetime]
 
@@ -573,14 +573,14 @@ class AsyncTransportClient:
 
         series : typing.Optional[str]
 
-        lines : typing.Optional[typing.Sequence[PostV1TransportWaybillsUpdateRequestLinesItem]]
+        lines : typing.Optional[typing.Sequence[WaybillsUpdateTransportRequestLinesItem]]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
         Returns
         -------
-        PostV1TransportWaybillsUpdateResponse
+        WaybillsUpdateTransportResponse
             Default Response
 
         Examples
@@ -595,14 +595,14 @@ class AsyncTransportClient:
 
 
         async def main() -> None:
-            await client.transport.post_v1transport_waybills_update(
+            await client.transport.waybills_update(
                 id="id",
             )
 
 
         asyncio.run(main())
         """
-        _response = await self._raw_client.post_v1transport_waybills_update(
+        _response = await self._raw_client.waybills_update(
             id=id,
             consignee_partner_id=consignee_partner_id,
             transporter_partner_id=transporter_partner_id,
@@ -625,9 +625,9 @@ class AsyncTransportClient:
         )
         return _response.data
 
-    async def post_v1transport_waybills_issue(
+    async def waybills_issue(
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
-    ) -> PostV1TransportWaybillsIssueResponse:
+    ) -> WaybillsIssueTransportResponse:
         """
         Parameters
         ----------
@@ -638,7 +638,7 @@ class AsyncTransportClient:
 
         Returns
         -------
-        PostV1TransportWaybillsIssueResponse
+        WaybillsIssueTransportResponse
             Default Response
 
         Examples
@@ -653,19 +653,19 @@ class AsyncTransportClient:
 
 
         async def main() -> None:
-            await client.transport.post_v1transport_waybills_issue(
+            await client.transport.waybills_issue(
                 id="id",
             )
 
 
         asyncio.run(main())
         """
-        _response = await self._raw_client.post_v1transport_waybills_issue(id=id, request_options=request_options)
+        _response = await self._raw_client.waybills_issue(id=id, request_options=request_options)
         return _response.data
 
-    async def post_v1transport_waybills_cancel(
+    async def waybills_cancel(
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
-    ) -> PostV1TransportWaybillsCancelResponse:
+    ) -> WaybillsCancelTransportResponse:
         """
         Parameters
         ----------
@@ -676,7 +676,7 @@ class AsyncTransportClient:
 
         Returns
         -------
-        PostV1TransportWaybillsCancelResponse
+        WaybillsCancelTransportResponse
             Default Response
 
         Examples
@@ -691,19 +691,19 @@ class AsyncTransportClient:
 
 
         async def main() -> None:
-            await client.transport.post_v1transport_waybills_cancel(
+            await client.transport.waybills_cancel(
                 id="id",
             )
 
 
         asyncio.run(main())
         """
-        _response = await self._raw_client.post_v1transport_waybills_cancel(id=id, request_options=request_options)
+        _response = await self._raw_client.waybills_cancel(id=id, request_options=request_options)
         return _response.data
 
-    async def post_v1transport_waybills_get(
+    async def waybills_get(
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
-    ) -> PostV1TransportWaybillsGetResponse:
+    ) -> WaybillsGetTransportResponse:
         """
         Parameters
         ----------
@@ -714,7 +714,7 @@ class AsyncTransportClient:
 
         Returns
         -------
-        PostV1TransportWaybillsGetResponse
+        WaybillsGetTransportResponse
             Default Response
 
         Examples
@@ -729,26 +729,26 @@ class AsyncTransportClient:
 
 
         async def main() -> None:
-            await client.transport.post_v1transport_waybills_get(
+            await client.transport.waybills_get(
                 id="id",
             )
 
 
         asyncio.run(main())
         """
-        _response = await self._raw_client.post_v1transport_waybills_get(id=id, request_options=request_options)
+        _response = await self._raw_client.waybills_get(id=id, request_options=request_options)
         return _response.data
 
-    async def post_v1transport_waybills_list(
+    async def waybills_list(
         self,
         *,
         page: typing.Optional[int] = OMIT,
         page_size: typing.Optional[int] = OMIT,
-        sort: typing.Optional[typing.Sequence[PostV1TransportWaybillsListRequestSortItem]] = OMIT,
-        filter: typing.Optional[typing.Sequence[PostV1TransportWaybillsListRequestFilterItem]] = OMIT,
+        sort: typing.Optional[typing.Sequence[WaybillsListTransportRequestSortItem]] = OMIT,
+        filter: typing.Optional[typing.Sequence[WaybillsListTransportRequestFilterItem]] = OMIT,
         totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> PostV1TransportWaybillsListResponse:
+    ) -> WaybillsListTransportResponse:
         """
         Parameters
         ----------
@@ -756,9 +756,9 @@ class AsyncTransportClient:
 
         page_size : typing.Optional[int]
 
-        sort : typing.Optional[typing.Sequence[PostV1TransportWaybillsListRequestSortItem]]
+        sort : typing.Optional[typing.Sequence[WaybillsListTransportRequestSortItem]]
 
-        filter : typing.Optional[typing.Sequence[PostV1TransportWaybillsListRequestFilterItem]]
+        filter : typing.Optional[typing.Sequence[WaybillsListTransportRequestFilterItem]]
 
         totals : typing.Optional[typing.Sequence[str]]
             Numeric fields to sum over every row matching the filter (not only the current page)
@@ -768,7 +768,7 @@ class AsyncTransportClient:
 
         Returns
         -------
-        PostV1TransportWaybillsListResponse
+        WaybillsListTransportResponse
             Default Response
 
         Examples
@@ -783,12 +783,12 @@ class AsyncTransportClient:
 
 
         async def main() -> None:
-            await client.transport.post_v1transport_waybills_list()
+            await client.transport.waybills_list()
 
 
         asyncio.run(main())
         """
-        _response = await self._raw_client.post_v1transport_waybills_list(
+        _response = await self._raw_client.waybills_list(
             page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data

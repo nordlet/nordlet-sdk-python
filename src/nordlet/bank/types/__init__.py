@@ -6,393 +6,343 @@ import typing
 from importlib import import_module
 
 if typing.TYPE_CHECKING:
-    from .post_v1bank_accounts_create_response import PostV1BankAccountsCreateResponse
-    from .post_v1bank_accounts_list_request_filter_item import PostV1BankAccountsListRequestFilterItem
-    from .post_v1bank_accounts_list_request_filter_item_op import PostV1BankAccountsListRequestFilterItemOp
-    from .post_v1bank_accounts_list_request_filter_item_value import PostV1BankAccountsListRequestFilterItemValue
-    from .post_v1bank_accounts_list_request_filter_item_value_three_item import (
-        PostV1BankAccountsListRequestFilterItemValueThreeItem,
+    from .accounts_create_bank_response import AccountsCreateBankResponse
+    from .accounts_list_bank_request_filter_item import AccountsListBankRequestFilterItem
+    from .accounts_list_bank_request_filter_item_op import AccountsListBankRequestFilterItemOp
+    from .accounts_list_bank_request_filter_item_value import AccountsListBankRequestFilterItemValue
+    from .accounts_list_bank_request_filter_item_value_three_item import AccountsListBankRequestFilterItemValueThreeItem
+    from .accounts_list_bank_request_sort_item import AccountsListBankRequestSortItem
+    from .accounts_list_bank_request_sort_item_dir import AccountsListBankRequestSortItemDir
+    from .accounts_list_bank_response import AccountsListBankResponse
+    from .accounts_list_bank_response_rows_item import AccountsListBankResponseRowsItem
+    from .accounts_update_bank_response import AccountsUpdateBankResponse
+    from .direct_debits_export_bank_response import DirectDebitsExportBankResponse
+    from .feeds_accounts_configure_bank_request_sync_schedule import FeedsAccountsConfigureBankRequestSyncSchedule
+    from .feeds_accounts_configure_bank_response import FeedsAccountsConfigureBankResponse
+    from .feeds_accounts_configure_bank_response_sync_schedule import FeedsAccountsConfigureBankResponseSyncSchedule
+    from .feeds_accounts_link_bank_request_create_bank_account import FeedsAccountsLinkBankRequestCreateBankAccount
+    from .feeds_accounts_link_bank_response import FeedsAccountsLinkBankResponse
+    from .feeds_accounts_link_bank_response_sync_schedule import FeedsAccountsLinkBankResponseSyncSchedule
+    from .feeds_banks_list_bank_response import FeedsBanksListBankResponse
+    from .feeds_banks_list_bank_response_banks_item import FeedsBanksListBankResponseBanksItem
+    from .feeds_banks_list_bank_response_banks_item_psu_types_item import (
+        FeedsBanksListBankResponseBanksItemPsuTypesItem,
     )
-    from .post_v1bank_accounts_list_request_sort_item import PostV1BankAccountsListRequestSortItem
-    from .post_v1bank_accounts_list_request_sort_item_dir import PostV1BankAccountsListRequestSortItemDir
-    from .post_v1bank_accounts_list_response import PostV1BankAccountsListResponse
-    from .post_v1bank_accounts_list_response_rows_item import PostV1BankAccountsListResponseRowsItem
-    from .post_v1bank_accounts_update_response import PostV1BankAccountsUpdateResponse
-    from .post_v1bank_direct_debits_export_response import PostV1BankDirectDebitsExportResponse
-    from .post_v1bank_feeds_accounts_configure_request_sync_schedule import (
-        PostV1BankFeedsAccountsConfigureRequestSyncSchedule,
+    from .feeds_connections_complete_bank_response import FeedsConnectionsCompleteBankResponse
+    from .feeds_connections_complete_bank_response_accounts_item import FeedsConnectionsCompleteBankResponseAccountsItem
+    from .feeds_connections_complete_bank_response_accounts_item_sync_schedule import (
+        FeedsConnectionsCompleteBankResponseAccountsItemSyncSchedule,
     )
-    from .post_v1bank_feeds_accounts_configure_response import PostV1BankFeedsAccountsConfigureResponse
-    from .post_v1bank_feeds_accounts_configure_response_sync_schedule import (
-        PostV1BankFeedsAccountsConfigureResponseSyncSchedule,
+    from .feeds_connections_complete_bank_response_psu_type import FeedsConnectionsCompleteBankResponsePsuType
+    from .feeds_connections_complete_bank_response_status import FeedsConnectionsCompleteBankResponseStatus
+    from .feeds_connections_delete_bank_response import FeedsConnectionsDeleteBankResponse
+    from .feeds_connections_get_bank_response import FeedsConnectionsGetBankResponse
+    from .feeds_connections_get_bank_response_accounts_item import FeedsConnectionsGetBankResponseAccountsItem
+    from .feeds_connections_get_bank_response_accounts_item_sync_schedule import (
+        FeedsConnectionsGetBankResponseAccountsItemSyncSchedule,
     )
-    from .post_v1bank_feeds_accounts_link_request_create_bank_account import (
-        PostV1BankFeedsAccountsLinkRequestCreateBankAccount,
+    from .feeds_connections_get_bank_response_psu_type import FeedsConnectionsGetBankResponsePsuType
+    from .feeds_connections_get_bank_response_status import FeedsConnectionsGetBankResponseStatus
+    from .feeds_connections_list_bank_request_filter_item import FeedsConnectionsListBankRequestFilterItem
+    from .feeds_connections_list_bank_request_filter_item_op import FeedsConnectionsListBankRequestFilterItemOp
+    from .feeds_connections_list_bank_request_filter_item_value import FeedsConnectionsListBankRequestFilterItemValue
+    from .feeds_connections_list_bank_request_filter_item_value_three_item import (
+        FeedsConnectionsListBankRequestFilterItemValueThreeItem,
     )
-    from .post_v1bank_feeds_accounts_link_response import PostV1BankFeedsAccountsLinkResponse
-    from .post_v1bank_feeds_accounts_link_response_sync_schedule import PostV1BankFeedsAccountsLinkResponseSyncSchedule
-    from .post_v1bank_feeds_banks_list_response import PostV1BankFeedsBanksListResponse
-    from .post_v1bank_feeds_banks_list_response_banks_item import PostV1BankFeedsBanksListResponseBanksItem
-    from .post_v1bank_feeds_banks_list_response_banks_item_psu_types_item import (
-        PostV1BankFeedsBanksListResponseBanksItemPsuTypesItem,
+    from .feeds_connections_list_bank_request_sort_item import FeedsConnectionsListBankRequestSortItem
+    from .feeds_connections_list_bank_request_sort_item_dir import FeedsConnectionsListBankRequestSortItemDir
+    from .feeds_connections_list_bank_response import FeedsConnectionsListBankResponse
+    from .feeds_connections_list_bank_response_rows_item import FeedsConnectionsListBankResponseRowsItem
+    from .feeds_connections_list_bank_response_rows_item_psu_type import FeedsConnectionsListBankResponseRowsItemPsuType
+    from .feeds_connections_list_bank_response_rows_item_status import FeedsConnectionsListBankResponseRowsItemStatus
+    from .feeds_connections_start_bank_request_psu_type import FeedsConnectionsStartBankRequestPsuType
+    from .feeds_connections_start_bank_response import FeedsConnectionsStartBankResponse
+    from .feeds_sync_bank_response import FeedsSyncBankResponse
+    from .feeds_sync_bank_response_accounts_item import FeedsSyncBankResponseAccountsItem
+    from .import_templates_create_bank_request_fields_item import ImportTemplatesCreateBankRequestFieldsItem
+    from .import_templates_create_bank_request_type import ImportTemplatesCreateBankRequestType
+    from .import_templates_create_bank_response import ImportTemplatesCreateBankResponse
+    from .import_templates_create_bank_response_fields_item import ImportTemplatesCreateBankResponseFieldsItem
+    from .import_templates_create_bank_response_type import ImportTemplatesCreateBankResponseType
+    from .import_templates_delete_bank_response import ImportTemplatesDeleteBankResponse
+    from .import_templates_get_bank_response import ImportTemplatesGetBankResponse
+    from .import_templates_get_bank_response_fields_item import ImportTemplatesGetBankResponseFieldsItem
+    from .import_templates_get_bank_response_type import ImportTemplatesGetBankResponseType
+    from .import_templates_list_bank_request_filter_item import ImportTemplatesListBankRequestFilterItem
+    from .import_templates_list_bank_request_filter_item_op import ImportTemplatesListBankRequestFilterItemOp
+    from .import_templates_list_bank_request_filter_item_value import ImportTemplatesListBankRequestFilterItemValue
+    from .import_templates_list_bank_request_filter_item_value_three_item import (
+        ImportTemplatesListBankRequestFilterItemValueThreeItem,
     )
-    from .post_v1bank_feeds_connections_complete_response import PostV1BankFeedsConnectionsCompleteResponse
-    from .post_v1bank_feeds_connections_complete_response_accounts_item import (
-        PostV1BankFeedsConnectionsCompleteResponseAccountsItem,
+    from .import_templates_list_bank_request_sort_item import ImportTemplatesListBankRequestSortItem
+    from .import_templates_list_bank_request_sort_item_dir import ImportTemplatesListBankRequestSortItemDir
+    from .import_templates_list_bank_response import ImportTemplatesListBankResponse
+    from .import_templates_list_bank_response_rows_item import ImportTemplatesListBankResponseRowsItem
+    from .import_templates_list_bank_response_rows_item_fields_item import (
+        ImportTemplatesListBankResponseRowsItemFieldsItem,
     )
-    from .post_v1bank_feeds_connections_complete_response_accounts_item_sync_schedule import (
-        PostV1BankFeedsConnectionsCompleteResponseAccountsItemSyncSchedule,
+    from .import_templates_list_bank_response_rows_item_type import ImportTemplatesListBankResponseRowsItemType
+    from .import_templates_update_bank_request_fields_item import ImportTemplatesUpdateBankRequestFieldsItem
+    from .import_templates_update_bank_request_type import ImportTemplatesUpdateBankRequestType
+    from .import_templates_update_bank_response import ImportTemplatesUpdateBankResponse
+    from .import_templates_update_bank_response_fields_item import ImportTemplatesUpdateBankResponseFieldsItem
+    from .import_templates_update_bank_response_type import ImportTemplatesUpdateBankResponseType
+    from .mandates_cancel_bank_response import MandatesCancelBankResponse
+    from .mandates_cancel_bank_response_scheme import MandatesCancelBankResponseScheme
+    from .mandates_cancel_bank_response_sequence_type import MandatesCancelBankResponseSequenceType
+    from .mandates_cancel_bank_response_status import MandatesCancelBankResponseStatus
+    from .mandates_create_bank_request_scheme import MandatesCreateBankRequestScheme
+    from .mandates_create_bank_request_sequence_type import MandatesCreateBankRequestSequenceType
+    from .mandates_create_bank_response import MandatesCreateBankResponse
+    from .mandates_create_bank_response_scheme import MandatesCreateBankResponseScheme
+    from .mandates_create_bank_response_sequence_type import MandatesCreateBankResponseSequenceType
+    from .mandates_create_bank_response_status import MandatesCreateBankResponseStatus
+    from .mandates_get_bank_response import MandatesGetBankResponse
+    from .mandates_get_bank_response_scheme import MandatesGetBankResponseScheme
+    from .mandates_get_bank_response_sequence_type import MandatesGetBankResponseSequenceType
+    from .mandates_get_bank_response_status import MandatesGetBankResponseStatus
+    from .mandates_list_bank_request_filter_item import MandatesListBankRequestFilterItem
+    from .mandates_list_bank_request_filter_item_op import MandatesListBankRequestFilterItemOp
+    from .mandates_list_bank_request_filter_item_value import MandatesListBankRequestFilterItemValue
+    from .mandates_list_bank_request_filter_item_value_three_item import MandatesListBankRequestFilterItemValueThreeItem
+    from .mandates_list_bank_request_sort_item import MandatesListBankRequestSortItem
+    from .mandates_list_bank_request_sort_item_dir import MandatesListBankRequestSortItemDir
+    from .mandates_list_bank_response import MandatesListBankResponse
+    from .mandates_list_bank_response_rows_item import MandatesListBankResponseRowsItem
+    from .mandates_list_bank_response_rows_item_scheme import MandatesListBankResponseRowsItemScheme
+    from .mandates_list_bank_response_rows_item_sequence_type import MandatesListBankResponseRowsItemSequenceType
+    from .mandates_list_bank_response_rows_item_status import MandatesListBankResponseRowsItemStatus
+    from .mandates_update_bank_response import MandatesUpdateBankResponse
+    from .mandates_update_bank_response_scheme import MandatesUpdateBankResponseScheme
+    from .mandates_update_bank_response_sequence_type import MandatesUpdateBankResponseSequenceType
+    from .mandates_update_bank_response_status import MandatesUpdateBankResponseStatus
+    from .match_rules_create_bank_response import MatchRulesCreateBankResponse
+    from .match_rules_delete_bank_response import MatchRulesDeleteBankResponse
+    from .match_rules_list_bank_response import MatchRulesListBankResponse
+    from .match_rules_list_bank_response_rows_item import MatchRulesListBankResponseRowsItem
+    from .match_rules_update_bank_response import MatchRulesUpdateBankResponse
+    from .payments_export_bank_response import PaymentsExportBankResponse
+    from .settlements_commission_bank_response import SettlementsCommissionBankResponse
+    from .settlements_commission_bank_response_match_status import SettlementsCommissionBankResponseMatchStatus
+    from .settlements_get_bank_response import SettlementsGetBankResponse
+    from .settlements_get_bank_response_lines_item import SettlementsGetBankResponseLinesItem
+    from .settlements_get_bank_response_lines_item_match_status import SettlementsGetBankResponseLinesItemMatchStatus
+    from .settlements_get_bank_response_status import SettlementsGetBankResponseStatus
+    from .settlements_import_bank_request_provider import SettlementsImportBankRequestProvider
+    from .settlements_import_bank_response import SettlementsImportBankResponse
+    from .settlements_import_bank_response_batches_item import SettlementsImportBankResponseBatchesItem
+    from .settlements_import_bank_response_batches_item_status import SettlementsImportBankResponseBatchesItemStatus
+    from .settlements_import_bank_response_format import SettlementsImportBankResponseFormat
+    from .settlements_link_bank_response import SettlementsLinkBankResponse
+    from .settlements_link_bank_response_status import SettlementsLinkBankResponseStatus
+    from .settlements_list_bank_request_filter_item import SettlementsListBankRequestFilterItem
+    from .settlements_list_bank_request_filter_item_op import SettlementsListBankRequestFilterItemOp
+    from .settlements_list_bank_request_filter_item_value import SettlementsListBankRequestFilterItemValue
+    from .settlements_list_bank_request_filter_item_value_three_item import (
+        SettlementsListBankRequestFilterItemValueThreeItem,
     )
-    from .post_v1bank_feeds_connections_complete_response_psu_type import (
-        PostV1BankFeedsConnectionsCompleteResponsePsuType,
+    from .settlements_list_bank_request_sort_item import SettlementsListBankRequestSortItem
+    from .settlements_list_bank_request_sort_item_dir import SettlementsListBankRequestSortItemDir
+    from .settlements_list_bank_response import SettlementsListBankResponse
+    from .settlements_list_bank_response_rows_item import SettlementsListBankResponseRowsItem
+    from .settlements_list_bank_response_rows_item_status import SettlementsListBankResponseRowsItemStatus
+    from .settlements_match_bank_response import SettlementsMatchBankResponse
+    from .settlements_match_bank_response_match_status import SettlementsMatchBankResponseMatchStatus
+    from .settlements_post_bank_response import SettlementsPostBankResponse
+    from .settlements_post_bank_response_status import SettlementsPostBankResponseStatus
+    from .settlements_post_bank_response_summary import SettlementsPostBankResponseSummary
+    from .settlements_unlink_bank_response import SettlementsUnlinkBankResponse
+    from .settlements_unlink_bank_response_status import SettlementsUnlinkBankResponseStatus
+    from .statements_import_bank_request_format import StatementsImportBankRequestFormat
+    from .statements_import_bank_response import StatementsImportBankResponse
+    from .statements_import_bank_response_statements_item import StatementsImportBankResponseStatementsItem
+    from .transactions_import_bank_request_transactions_item import TransactionsImportBankRequestTransactionsItem
+    from .transactions_import_bank_response import TransactionsImportBankResponse
+    from .transactions_list_bank_request_filter_item import TransactionsListBankRequestFilterItem
+    from .transactions_list_bank_request_filter_item_op import TransactionsListBankRequestFilterItemOp
+    from .transactions_list_bank_request_filter_item_value import TransactionsListBankRequestFilterItemValue
+    from .transactions_list_bank_request_filter_item_value_three_item import (
+        TransactionsListBankRequestFilterItemValueThreeItem,
     )
-    from .post_v1bank_feeds_connections_complete_response_status import PostV1BankFeedsConnectionsCompleteResponseStatus
-    from .post_v1bank_feeds_connections_delete_response import PostV1BankFeedsConnectionsDeleteResponse
-    from .post_v1bank_feeds_connections_get_response import PostV1BankFeedsConnectionsGetResponse
-    from .post_v1bank_feeds_connections_get_response_accounts_item import (
-        PostV1BankFeedsConnectionsGetResponseAccountsItem,
+    from .transactions_list_bank_request_sort_item import TransactionsListBankRequestSortItem
+    from .transactions_list_bank_request_sort_item_dir import TransactionsListBankRequestSortItemDir
+    from .transactions_list_bank_response import TransactionsListBankResponse
+    from .transactions_list_bank_response_rows_item import TransactionsListBankResponseRowsItem
+    from .transactions_list_bank_response_rows_item_status import TransactionsListBankResponseRowsItemStatus
+    from .transactions_match_bank_request_document_type import TransactionsMatchBankRequestDocumentType
+    from .transactions_match_bank_response import TransactionsMatchBankResponse
+    from .transactions_match_bank_response_status import TransactionsMatchBankResponseStatus
+    from .transactions_record_bank_request_document_type import TransactionsRecordBankRequestDocumentType
+    from .transactions_record_bank_response import TransactionsRecordBankResponse
+    from .transactions_record_bank_response_status import TransactionsRecordBankResponseStatus
+    from .transactions_suggest_matches_bank_response import TransactionsSuggestMatchesBankResponse
+    from .transactions_suggest_matches_bank_response_suggestions_item import (
+        TransactionsSuggestMatchesBankResponseSuggestionsItem,
     )
-    from .post_v1bank_feeds_connections_get_response_accounts_item_sync_schedule import (
-        PostV1BankFeedsConnectionsGetResponseAccountsItemSyncSchedule,
+    from .transactions_suggest_matches_bank_response_suggestions_item_document_type import (
+        TransactionsSuggestMatchesBankResponseSuggestionsItemDocumentType,
     )
-    from .post_v1bank_feeds_connections_get_response_psu_type import PostV1BankFeedsConnectionsGetResponsePsuType
-    from .post_v1bank_feeds_connections_get_response_status import PostV1BankFeedsConnectionsGetResponseStatus
-    from .post_v1bank_feeds_connections_list_request_filter_item import PostV1BankFeedsConnectionsListRequestFilterItem
-    from .post_v1bank_feeds_connections_list_request_filter_item_op import (
-        PostV1BankFeedsConnectionsListRequestFilterItemOp,
-    )
-    from .post_v1bank_feeds_connections_list_request_filter_item_value import (
-        PostV1BankFeedsConnectionsListRequestFilterItemValue,
-    )
-    from .post_v1bank_feeds_connections_list_request_filter_item_value_three_item import (
-        PostV1BankFeedsConnectionsListRequestFilterItemValueThreeItem,
-    )
-    from .post_v1bank_feeds_connections_list_request_sort_item import PostV1BankFeedsConnectionsListRequestSortItem
-    from .post_v1bank_feeds_connections_list_request_sort_item_dir import (
-        PostV1BankFeedsConnectionsListRequestSortItemDir,
-    )
-    from .post_v1bank_feeds_connections_list_response import PostV1BankFeedsConnectionsListResponse
-    from .post_v1bank_feeds_connections_list_response_rows_item import PostV1BankFeedsConnectionsListResponseRowsItem
-    from .post_v1bank_feeds_connections_list_response_rows_item_psu_type import (
-        PostV1BankFeedsConnectionsListResponseRowsItemPsuType,
-    )
-    from .post_v1bank_feeds_connections_list_response_rows_item_status import (
-        PostV1BankFeedsConnectionsListResponseRowsItemStatus,
-    )
-    from .post_v1bank_feeds_connections_start_request_psu_type import PostV1BankFeedsConnectionsStartRequestPsuType
-    from .post_v1bank_feeds_connections_start_response import PostV1BankFeedsConnectionsStartResponse
-    from .post_v1bank_feeds_sync_response import PostV1BankFeedsSyncResponse
-    from .post_v1bank_feeds_sync_response_accounts_item import PostV1BankFeedsSyncResponseAccountsItem
-    from .post_v1bank_import_templates_create_request_fields_item import (
-        PostV1BankImportTemplatesCreateRequestFieldsItem,
-    )
-    from .post_v1bank_import_templates_create_request_type import PostV1BankImportTemplatesCreateRequestType
-    from .post_v1bank_import_templates_create_response import PostV1BankImportTemplatesCreateResponse
-    from .post_v1bank_import_templates_create_response_fields_item import (
-        PostV1BankImportTemplatesCreateResponseFieldsItem,
-    )
-    from .post_v1bank_import_templates_create_response_type import PostV1BankImportTemplatesCreateResponseType
-    from .post_v1bank_import_templates_delete_response import PostV1BankImportTemplatesDeleteResponse
-    from .post_v1bank_import_templates_get_response import PostV1BankImportTemplatesGetResponse
-    from .post_v1bank_import_templates_get_response_fields_item import PostV1BankImportTemplatesGetResponseFieldsItem
-    from .post_v1bank_import_templates_get_response_type import PostV1BankImportTemplatesGetResponseType
-    from .post_v1bank_import_templates_list_request_filter_item import PostV1BankImportTemplatesListRequestFilterItem
-    from .post_v1bank_import_templates_list_request_filter_item_op import (
-        PostV1BankImportTemplatesListRequestFilterItemOp,
-    )
-    from .post_v1bank_import_templates_list_request_filter_item_value import (
-        PostV1BankImportTemplatesListRequestFilterItemValue,
-    )
-    from .post_v1bank_import_templates_list_request_filter_item_value_three_item import (
-        PostV1BankImportTemplatesListRequestFilterItemValueThreeItem,
-    )
-    from .post_v1bank_import_templates_list_request_sort_item import PostV1BankImportTemplatesListRequestSortItem
-    from .post_v1bank_import_templates_list_request_sort_item_dir import PostV1BankImportTemplatesListRequestSortItemDir
-    from .post_v1bank_import_templates_list_response import PostV1BankImportTemplatesListResponse
-    from .post_v1bank_import_templates_list_response_rows_item import PostV1BankImportTemplatesListResponseRowsItem
-    from .post_v1bank_import_templates_list_response_rows_item_fields_item import (
-        PostV1BankImportTemplatesListResponseRowsItemFieldsItem,
-    )
-    from .post_v1bank_import_templates_list_response_rows_item_type import (
-        PostV1BankImportTemplatesListResponseRowsItemType,
-    )
-    from .post_v1bank_import_templates_update_request_fields_item import (
-        PostV1BankImportTemplatesUpdateRequestFieldsItem,
-    )
-    from .post_v1bank_import_templates_update_request_type import PostV1BankImportTemplatesUpdateRequestType
-    from .post_v1bank_import_templates_update_response import PostV1BankImportTemplatesUpdateResponse
-    from .post_v1bank_import_templates_update_response_fields_item import (
-        PostV1BankImportTemplatesUpdateResponseFieldsItem,
-    )
-    from .post_v1bank_import_templates_update_response_type import PostV1BankImportTemplatesUpdateResponseType
-    from .post_v1bank_mandates_cancel_response import PostV1BankMandatesCancelResponse
-    from .post_v1bank_mandates_cancel_response_scheme import PostV1BankMandatesCancelResponseScheme
-    from .post_v1bank_mandates_cancel_response_sequence_type import PostV1BankMandatesCancelResponseSequenceType
-    from .post_v1bank_mandates_cancel_response_status import PostV1BankMandatesCancelResponseStatus
-    from .post_v1bank_mandates_create_request_scheme import PostV1BankMandatesCreateRequestScheme
-    from .post_v1bank_mandates_create_request_sequence_type import PostV1BankMandatesCreateRequestSequenceType
-    from .post_v1bank_mandates_create_response import PostV1BankMandatesCreateResponse
-    from .post_v1bank_mandates_create_response_scheme import PostV1BankMandatesCreateResponseScheme
-    from .post_v1bank_mandates_create_response_sequence_type import PostV1BankMandatesCreateResponseSequenceType
-    from .post_v1bank_mandates_create_response_status import PostV1BankMandatesCreateResponseStatus
-    from .post_v1bank_mandates_get_response import PostV1BankMandatesGetResponse
-    from .post_v1bank_mandates_get_response_scheme import PostV1BankMandatesGetResponseScheme
-    from .post_v1bank_mandates_get_response_sequence_type import PostV1BankMandatesGetResponseSequenceType
-    from .post_v1bank_mandates_get_response_status import PostV1BankMandatesGetResponseStatus
-    from .post_v1bank_mandates_list_request_filter_item import PostV1BankMandatesListRequestFilterItem
-    from .post_v1bank_mandates_list_request_filter_item_op import PostV1BankMandatesListRequestFilterItemOp
-    from .post_v1bank_mandates_list_request_filter_item_value import PostV1BankMandatesListRequestFilterItemValue
-    from .post_v1bank_mandates_list_request_filter_item_value_three_item import (
-        PostV1BankMandatesListRequestFilterItemValueThreeItem,
-    )
-    from .post_v1bank_mandates_list_request_sort_item import PostV1BankMandatesListRequestSortItem
-    from .post_v1bank_mandates_list_request_sort_item_dir import PostV1BankMandatesListRequestSortItemDir
-    from .post_v1bank_mandates_list_response import PostV1BankMandatesListResponse
-    from .post_v1bank_mandates_list_response_rows_item import PostV1BankMandatesListResponseRowsItem
-    from .post_v1bank_mandates_list_response_rows_item_scheme import PostV1BankMandatesListResponseRowsItemScheme
-    from .post_v1bank_mandates_list_response_rows_item_sequence_type import (
-        PostV1BankMandatesListResponseRowsItemSequenceType,
-    )
-    from .post_v1bank_mandates_list_response_rows_item_status import PostV1BankMandatesListResponseRowsItemStatus
-    from .post_v1bank_mandates_update_response import PostV1BankMandatesUpdateResponse
-    from .post_v1bank_mandates_update_response_scheme import PostV1BankMandatesUpdateResponseScheme
-    from .post_v1bank_mandates_update_response_sequence_type import PostV1BankMandatesUpdateResponseSequenceType
-    from .post_v1bank_mandates_update_response_status import PostV1BankMandatesUpdateResponseStatus
-    from .post_v1bank_match_rules_create_response import PostV1BankMatchRulesCreateResponse
-    from .post_v1bank_match_rules_delete_response import PostV1BankMatchRulesDeleteResponse
-    from .post_v1bank_match_rules_list_response import PostV1BankMatchRulesListResponse
-    from .post_v1bank_match_rules_list_response_rows_item import PostV1BankMatchRulesListResponseRowsItem
-    from .post_v1bank_match_rules_update_response import PostV1BankMatchRulesUpdateResponse
-    from .post_v1bank_payments_export_response import PostV1BankPaymentsExportResponse
-    from .post_v1bank_settlements_commission_response import PostV1BankSettlementsCommissionResponse
-    from .post_v1bank_settlements_commission_response_match_status import (
-        PostV1BankSettlementsCommissionResponseMatchStatus,
-    )
-    from .post_v1bank_settlements_get_response import PostV1BankSettlementsGetResponse
-    from .post_v1bank_settlements_get_response_lines_item import PostV1BankSettlementsGetResponseLinesItem
-    from .post_v1bank_settlements_get_response_lines_item_match_status import (
-        PostV1BankSettlementsGetResponseLinesItemMatchStatus,
-    )
-    from .post_v1bank_settlements_get_response_status import PostV1BankSettlementsGetResponseStatus
-    from .post_v1bank_settlements_import_request_provider import PostV1BankSettlementsImportRequestProvider
-    from .post_v1bank_settlements_import_response import PostV1BankSettlementsImportResponse
-    from .post_v1bank_settlements_import_response_batches_item import PostV1BankSettlementsImportResponseBatchesItem
-    from .post_v1bank_settlements_import_response_batches_item_status import (
-        PostV1BankSettlementsImportResponseBatchesItemStatus,
-    )
-    from .post_v1bank_settlements_import_response_format import PostV1BankSettlementsImportResponseFormat
-    from .post_v1bank_settlements_link_response import PostV1BankSettlementsLinkResponse
-    from .post_v1bank_settlements_link_response_status import PostV1BankSettlementsLinkResponseStatus
-    from .post_v1bank_settlements_list_request_filter_item import PostV1BankSettlementsListRequestFilterItem
-    from .post_v1bank_settlements_list_request_filter_item_op import PostV1BankSettlementsListRequestFilterItemOp
-    from .post_v1bank_settlements_list_request_filter_item_value import PostV1BankSettlementsListRequestFilterItemValue
-    from .post_v1bank_settlements_list_request_filter_item_value_three_item import (
-        PostV1BankSettlementsListRequestFilterItemValueThreeItem,
-    )
-    from .post_v1bank_settlements_list_request_sort_item import PostV1BankSettlementsListRequestSortItem
-    from .post_v1bank_settlements_list_request_sort_item_dir import PostV1BankSettlementsListRequestSortItemDir
-    from .post_v1bank_settlements_list_response import PostV1BankSettlementsListResponse
-    from .post_v1bank_settlements_list_response_rows_item import PostV1BankSettlementsListResponseRowsItem
-    from .post_v1bank_settlements_list_response_rows_item_status import PostV1BankSettlementsListResponseRowsItemStatus
-    from .post_v1bank_settlements_match_response import PostV1BankSettlementsMatchResponse
-    from .post_v1bank_settlements_match_response_match_status import PostV1BankSettlementsMatchResponseMatchStatus
-    from .post_v1bank_settlements_post_response import PostV1BankSettlementsPostResponse
-    from .post_v1bank_settlements_post_response_status import PostV1BankSettlementsPostResponseStatus
-    from .post_v1bank_settlements_post_response_summary import PostV1BankSettlementsPostResponseSummary
-    from .post_v1bank_settlements_unlink_response import PostV1BankSettlementsUnlinkResponse
-    from .post_v1bank_settlements_unlink_response_status import PostV1BankSettlementsUnlinkResponseStatus
-    from .post_v1bank_statements_import_request_format import PostV1BankStatementsImportRequestFormat
-    from .post_v1bank_statements_import_response import PostV1BankStatementsImportResponse
-    from .post_v1bank_statements_import_response_statements_item import PostV1BankStatementsImportResponseStatementsItem
-    from .post_v1bank_transactions_import_request_transactions_item import (
-        PostV1BankTransactionsImportRequestTransactionsItem,
-    )
-    from .post_v1bank_transactions_import_response import PostV1BankTransactionsImportResponse
-    from .post_v1bank_transactions_list_request_filter_item import PostV1BankTransactionsListRequestFilterItem
-    from .post_v1bank_transactions_list_request_filter_item_op import PostV1BankTransactionsListRequestFilterItemOp
-    from .post_v1bank_transactions_list_request_filter_item_value import (
-        PostV1BankTransactionsListRequestFilterItemValue,
-    )
-    from .post_v1bank_transactions_list_request_filter_item_value_three_item import (
-        PostV1BankTransactionsListRequestFilterItemValueThreeItem,
-    )
-    from .post_v1bank_transactions_list_request_sort_item import PostV1BankTransactionsListRequestSortItem
-    from .post_v1bank_transactions_list_request_sort_item_dir import PostV1BankTransactionsListRequestSortItemDir
-    from .post_v1bank_transactions_list_response import PostV1BankTransactionsListResponse
-    from .post_v1bank_transactions_list_response_rows_item import PostV1BankTransactionsListResponseRowsItem
-    from .post_v1bank_transactions_list_response_rows_item_status import (
-        PostV1BankTransactionsListResponseRowsItemStatus,
-    )
-    from .post_v1bank_transactions_match_request_document_type import PostV1BankTransactionsMatchRequestDocumentType
-    from .post_v1bank_transactions_match_response import PostV1BankTransactionsMatchResponse
-    from .post_v1bank_transactions_match_response_status import PostV1BankTransactionsMatchResponseStatus
-    from .post_v1bank_transactions_record_request_document_type import PostV1BankTransactionsRecordRequestDocumentType
-    from .post_v1bank_transactions_record_response import PostV1BankTransactionsRecordResponse
-    from .post_v1bank_transactions_record_response_status import PostV1BankTransactionsRecordResponseStatus
-    from .post_v1bank_transactions_suggest_matches_response import PostV1BankTransactionsSuggestMatchesResponse
-    from .post_v1bank_transactions_suggest_matches_response_suggestions_item import (
-        PostV1BankTransactionsSuggestMatchesResponseSuggestionsItem,
-    )
-    from .post_v1bank_transactions_suggest_matches_response_suggestions_item_document_type import (
-        PostV1BankTransactionsSuggestMatchesResponseSuggestionsItemDocumentType,
-    )
+    from .transactions_unmatch_bank_response import TransactionsUnmatchBankResponse
+    from .transactions_unmatch_bank_response_status import TransactionsUnmatchBankResponseStatus
 _dynamic_imports: typing.Dict[str, str] = {
-    "PostV1BankAccountsCreateResponse": ".post_v1bank_accounts_create_response",
-    "PostV1BankAccountsListRequestFilterItem": ".post_v1bank_accounts_list_request_filter_item",
-    "PostV1BankAccountsListRequestFilterItemOp": ".post_v1bank_accounts_list_request_filter_item_op",
-    "PostV1BankAccountsListRequestFilterItemValue": ".post_v1bank_accounts_list_request_filter_item_value",
-    "PostV1BankAccountsListRequestFilterItemValueThreeItem": ".post_v1bank_accounts_list_request_filter_item_value_three_item",
-    "PostV1BankAccountsListRequestSortItem": ".post_v1bank_accounts_list_request_sort_item",
-    "PostV1BankAccountsListRequestSortItemDir": ".post_v1bank_accounts_list_request_sort_item_dir",
-    "PostV1BankAccountsListResponse": ".post_v1bank_accounts_list_response",
-    "PostV1BankAccountsListResponseRowsItem": ".post_v1bank_accounts_list_response_rows_item",
-    "PostV1BankAccountsUpdateResponse": ".post_v1bank_accounts_update_response",
-    "PostV1BankDirectDebitsExportResponse": ".post_v1bank_direct_debits_export_response",
-    "PostV1BankFeedsAccountsConfigureRequestSyncSchedule": ".post_v1bank_feeds_accounts_configure_request_sync_schedule",
-    "PostV1BankFeedsAccountsConfigureResponse": ".post_v1bank_feeds_accounts_configure_response",
-    "PostV1BankFeedsAccountsConfigureResponseSyncSchedule": ".post_v1bank_feeds_accounts_configure_response_sync_schedule",
-    "PostV1BankFeedsAccountsLinkRequestCreateBankAccount": ".post_v1bank_feeds_accounts_link_request_create_bank_account",
-    "PostV1BankFeedsAccountsLinkResponse": ".post_v1bank_feeds_accounts_link_response",
-    "PostV1BankFeedsAccountsLinkResponseSyncSchedule": ".post_v1bank_feeds_accounts_link_response_sync_schedule",
-    "PostV1BankFeedsBanksListResponse": ".post_v1bank_feeds_banks_list_response",
-    "PostV1BankFeedsBanksListResponseBanksItem": ".post_v1bank_feeds_banks_list_response_banks_item",
-    "PostV1BankFeedsBanksListResponseBanksItemPsuTypesItem": ".post_v1bank_feeds_banks_list_response_banks_item_psu_types_item",
-    "PostV1BankFeedsConnectionsCompleteResponse": ".post_v1bank_feeds_connections_complete_response",
-    "PostV1BankFeedsConnectionsCompleteResponseAccountsItem": ".post_v1bank_feeds_connections_complete_response_accounts_item",
-    "PostV1BankFeedsConnectionsCompleteResponseAccountsItemSyncSchedule": ".post_v1bank_feeds_connections_complete_response_accounts_item_sync_schedule",
-    "PostV1BankFeedsConnectionsCompleteResponsePsuType": ".post_v1bank_feeds_connections_complete_response_psu_type",
-    "PostV1BankFeedsConnectionsCompleteResponseStatus": ".post_v1bank_feeds_connections_complete_response_status",
-    "PostV1BankFeedsConnectionsDeleteResponse": ".post_v1bank_feeds_connections_delete_response",
-    "PostV1BankFeedsConnectionsGetResponse": ".post_v1bank_feeds_connections_get_response",
-    "PostV1BankFeedsConnectionsGetResponseAccountsItem": ".post_v1bank_feeds_connections_get_response_accounts_item",
-    "PostV1BankFeedsConnectionsGetResponseAccountsItemSyncSchedule": ".post_v1bank_feeds_connections_get_response_accounts_item_sync_schedule",
-    "PostV1BankFeedsConnectionsGetResponsePsuType": ".post_v1bank_feeds_connections_get_response_psu_type",
-    "PostV1BankFeedsConnectionsGetResponseStatus": ".post_v1bank_feeds_connections_get_response_status",
-    "PostV1BankFeedsConnectionsListRequestFilterItem": ".post_v1bank_feeds_connections_list_request_filter_item",
-    "PostV1BankFeedsConnectionsListRequestFilterItemOp": ".post_v1bank_feeds_connections_list_request_filter_item_op",
-    "PostV1BankFeedsConnectionsListRequestFilterItemValue": ".post_v1bank_feeds_connections_list_request_filter_item_value",
-    "PostV1BankFeedsConnectionsListRequestFilterItemValueThreeItem": ".post_v1bank_feeds_connections_list_request_filter_item_value_three_item",
-    "PostV1BankFeedsConnectionsListRequestSortItem": ".post_v1bank_feeds_connections_list_request_sort_item",
-    "PostV1BankFeedsConnectionsListRequestSortItemDir": ".post_v1bank_feeds_connections_list_request_sort_item_dir",
-    "PostV1BankFeedsConnectionsListResponse": ".post_v1bank_feeds_connections_list_response",
-    "PostV1BankFeedsConnectionsListResponseRowsItem": ".post_v1bank_feeds_connections_list_response_rows_item",
-    "PostV1BankFeedsConnectionsListResponseRowsItemPsuType": ".post_v1bank_feeds_connections_list_response_rows_item_psu_type",
-    "PostV1BankFeedsConnectionsListResponseRowsItemStatus": ".post_v1bank_feeds_connections_list_response_rows_item_status",
-    "PostV1BankFeedsConnectionsStartRequestPsuType": ".post_v1bank_feeds_connections_start_request_psu_type",
-    "PostV1BankFeedsConnectionsStartResponse": ".post_v1bank_feeds_connections_start_response",
-    "PostV1BankFeedsSyncResponse": ".post_v1bank_feeds_sync_response",
-    "PostV1BankFeedsSyncResponseAccountsItem": ".post_v1bank_feeds_sync_response_accounts_item",
-    "PostV1BankImportTemplatesCreateRequestFieldsItem": ".post_v1bank_import_templates_create_request_fields_item",
-    "PostV1BankImportTemplatesCreateRequestType": ".post_v1bank_import_templates_create_request_type",
-    "PostV1BankImportTemplatesCreateResponse": ".post_v1bank_import_templates_create_response",
-    "PostV1BankImportTemplatesCreateResponseFieldsItem": ".post_v1bank_import_templates_create_response_fields_item",
-    "PostV1BankImportTemplatesCreateResponseType": ".post_v1bank_import_templates_create_response_type",
-    "PostV1BankImportTemplatesDeleteResponse": ".post_v1bank_import_templates_delete_response",
-    "PostV1BankImportTemplatesGetResponse": ".post_v1bank_import_templates_get_response",
-    "PostV1BankImportTemplatesGetResponseFieldsItem": ".post_v1bank_import_templates_get_response_fields_item",
-    "PostV1BankImportTemplatesGetResponseType": ".post_v1bank_import_templates_get_response_type",
-    "PostV1BankImportTemplatesListRequestFilterItem": ".post_v1bank_import_templates_list_request_filter_item",
-    "PostV1BankImportTemplatesListRequestFilterItemOp": ".post_v1bank_import_templates_list_request_filter_item_op",
-    "PostV1BankImportTemplatesListRequestFilterItemValue": ".post_v1bank_import_templates_list_request_filter_item_value",
-    "PostV1BankImportTemplatesListRequestFilterItemValueThreeItem": ".post_v1bank_import_templates_list_request_filter_item_value_three_item",
-    "PostV1BankImportTemplatesListRequestSortItem": ".post_v1bank_import_templates_list_request_sort_item",
-    "PostV1BankImportTemplatesListRequestSortItemDir": ".post_v1bank_import_templates_list_request_sort_item_dir",
-    "PostV1BankImportTemplatesListResponse": ".post_v1bank_import_templates_list_response",
-    "PostV1BankImportTemplatesListResponseRowsItem": ".post_v1bank_import_templates_list_response_rows_item",
-    "PostV1BankImportTemplatesListResponseRowsItemFieldsItem": ".post_v1bank_import_templates_list_response_rows_item_fields_item",
-    "PostV1BankImportTemplatesListResponseRowsItemType": ".post_v1bank_import_templates_list_response_rows_item_type",
-    "PostV1BankImportTemplatesUpdateRequestFieldsItem": ".post_v1bank_import_templates_update_request_fields_item",
-    "PostV1BankImportTemplatesUpdateRequestType": ".post_v1bank_import_templates_update_request_type",
-    "PostV1BankImportTemplatesUpdateResponse": ".post_v1bank_import_templates_update_response",
-    "PostV1BankImportTemplatesUpdateResponseFieldsItem": ".post_v1bank_import_templates_update_response_fields_item",
-    "PostV1BankImportTemplatesUpdateResponseType": ".post_v1bank_import_templates_update_response_type",
-    "PostV1BankMandatesCancelResponse": ".post_v1bank_mandates_cancel_response",
-    "PostV1BankMandatesCancelResponseScheme": ".post_v1bank_mandates_cancel_response_scheme",
-    "PostV1BankMandatesCancelResponseSequenceType": ".post_v1bank_mandates_cancel_response_sequence_type",
-    "PostV1BankMandatesCancelResponseStatus": ".post_v1bank_mandates_cancel_response_status",
-    "PostV1BankMandatesCreateRequestScheme": ".post_v1bank_mandates_create_request_scheme",
-    "PostV1BankMandatesCreateRequestSequenceType": ".post_v1bank_mandates_create_request_sequence_type",
-    "PostV1BankMandatesCreateResponse": ".post_v1bank_mandates_create_response",
-    "PostV1BankMandatesCreateResponseScheme": ".post_v1bank_mandates_create_response_scheme",
-    "PostV1BankMandatesCreateResponseSequenceType": ".post_v1bank_mandates_create_response_sequence_type",
-    "PostV1BankMandatesCreateResponseStatus": ".post_v1bank_mandates_create_response_status",
-    "PostV1BankMandatesGetResponse": ".post_v1bank_mandates_get_response",
-    "PostV1BankMandatesGetResponseScheme": ".post_v1bank_mandates_get_response_scheme",
-    "PostV1BankMandatesGetResponseSequenceType": ".post_v1bank_mandates_get_response_sequence_type",
-    "PostV1BankMandatesGetResponseStatus": ".post_v1bank_mandates_get_response_status",
-    "PostV1BankMandatesListRequestFilterItem": ".post_v1bank_mandates_list_request_filter_item",
-    "PostV1BankMandatesListRequestFilterItemOp": ".post_v1bank_mandates_list_request_filter_item_op",
-    "PostV1BankMandatesListRequestFilterItemValue": ".post_v1bank_mandates_list_request_filter_item_value",
-    "PostV1BankMandatesListRequestFilterItemValueThreeItem": ".post_v1bank_mandates_list_request_filter_item_value_three_item",
-    "PostV1BankMandatesListRequestSortItem": ".post_v1bank_mandates_list_request_sort_item",
-    "PostV1BankMandatesListRequestSortItemDir": ".post_v1bank_mandates_list_request_sort_item_dir",
-    "PostV1BankMandatesListResponse": ".post_v1bank_mandates_list_response",
-    "PostV1BankMandatesListResponseRowsItem": ".post_v1bank_mandates_list_response_rows_item",
-    "PostV1BankMandatesListResponseRowsItemScheme": ".post_v1bank_mandates_list_response_rows_item_scheme",
-    "PostV1BankMandatesListResponseRowsItemSequenceType": ".post_v1bank_mandates_list_response_rows_item_sequence_type",
-    "PostV1BankMandatesListResponseRowsItemStatus": ".post_v1bank_mandates_list_response_rows_item_status",
-    "PostV1BankMandatesUpdateResponse": ".post_v1bank_mandates_update_response",
-    "PostV1BankMandatesUpdateResponseScheme": ".post_v1bank_mandates_update_response_scheme",
-    "PostV1BankMandatesUpdateResponseSequenceType": ".post_v1bank_mandates_update_response_sequence_type",
-    "PostV1BankMandatesUpdateResponseStatus": ".post_v1bank_mandates_update_response_status",
-    "PostV1BankMatchRulesCreateResponse": ".post_v1bank_match_rules_create_response",
-    "PostV1BankMatchRulesDeleteResponse": ".post_v1bank_match_rules_delete_response",
-    "PostV1BankMatchRulesListResponse": ".post_v1bank_match_rules_list_response",
-    "PostV1BankMatchRulesListResponseRowsItem": ".post_v1bank_match_rules_list_response_rows_item",
-    "PostV1BankMatchRulesUpdateResponse": ".post_v1bank_match_rules_update_response",
-    "PostV1BankPaymentsExportResponse": ".post_v1bank_payments_export_response",
-    "PostV1BankSettlementsCommissionResponse": ".post_v1bank_settlements_commission_response",
-    "PostV1BankSettlementsCommissionResponseMatchStatus": ".post_v1bank_settlements_commission_response_match_status",
-    "PostV1BankSettlementsGetResponse": ".post_v1bank_settlements_get_response",
-    "PostV1BankSettlementsGetResponseLinesItem": ".post_v1bank_settlements_get_response_lines_item",
-    "PostV1BankSettlementsGetResponseLinesItemMatchStatus": ".post_v1bank_settlements_get_response_lines_item_match_status",
-    "PostV1BankSettlementsGetResponseStatus": ".post_v1bank_settlements_get_response_status",
-    "PostV1BankSettlementsImportRequestProvider": ".post_v1bank_settlements_import_request_provider",
-    "PostV1BankSettlementsImportResponse": ".post_v1bank_settlements_import_response",
-    "PostV1BankSettlementsImportResponseBatchesItem": ".post_v1bank_settlements_import_response_batches_item",
-    "PostV1BankSettlementsImportResponseBatchesItemStatus": ".post_v1bank_settlements_import_response_batches_item_status",
-    "PostV1BankSettlementsImportResponseFormat": ".post_v1bank_settlements_import_response_format",
-    "PostV1BankSettlementsLinkResponse": ".post_v1bank_settlements_link_response",
-    "PostV1BankSettlementsLinkResponseStatus": ".post_v1bank_settlements_link_response_status",
-    "PostV1BankSettlementsListRequestFilterItem": ".post_v1bank_settlements_list_request_filter_item",
-    "PostV1BankSettlementsListRequestFilterItemOp": ".post_v1bank_settlements_list_request_filter_item_op",
-    "PostV1BankSettlementsListRequestFilterItemValue": ".post_v1bank_settlements_list_request_filter_item_value",
-    "PostV1BankSettlementsListRequestFilterItemValueThreeItem": ".post_v1bank_settlements_list_request_filter_item_value_three_item",
-    "PostV1BankSettlementsListRequestSortItem": ".post_v1bank_settlements_list_request_sort_item",
-    "PostV1BankSettlementsListRequestSortItemDir": ".post_v1bank_settlements_list_request_sort_item_dir",
-    "PostV1BankSettlementsListResponse": ".post_v1bank_settlements_list_response",
-    "PostV1BankSettlementsListResponseRowsItem": ".post_v1bank_settlements_list_response_rows_item",
-    "PostV1BankSettlementsListResponseRowsItemStatus": ".post_v1bank_settlements_list_response_rows_item_status",
-    "PostV1BankSettlementsMatchResponse": ".post_v1bank_settlements_match_response",
-    "PostV1BankSettlementsMatchResponseMatchStatus": ".post_v1bank_settlements_match_response_match_status",
-    "PostV1BankSettlementsPostResponse": ".post_v1bank_settlements_post_response",
-    "PostV1BankSettlementsPostResponseStatus": ".post_v1bank_settlements_post_response_status",
-    "PostV1BankSettlementsPostResponseSummary": ".post_v1bank_settlements_post_response_summary",
-    "PostV1BankSettlementsUnlinkResponse": ".post_v1bank_settlements_unlink_response",
-    "PostV1BankSettlementsUnlinkResponseStatus": ".post_v1bank_settlements_unlink_response_status",
-    "PostV1BankStatementsImportRequestFormat": ".post_v1bank_statements_import_request_format",
-    "PostV1BankStatementsImportResponse": ".post_v1bank_statements_import_response",
-    "PostV1BankStatementsImportResponseStatementsItem": ".post_v1bank_statements_import_response_statements_item",
-    "PostV1BankTransactionsImportRequestTransactionsItem": ".post_v1bank_transactions_import_request_transactions_item",
-    "PostV1BankTransactionsImportResponse": ".post_v1bank_transactions_import_response",
-    "PostV1BankTransactionsListRequestFilterItem": ".post_v1bank_transactions_list_request_filter_item",
-    "PostV1BankTransactionsListRequestFilterItemOp": ".post_v1bank_transactions_list_request_filter_item_op",
-    "PostV1BankTransactionsListRequestFilterItemValue": ".post_v1bank_transactions_list_request_filter_item_value",
-    "PostV1BankTransactionsListRequestFilterItemValueThreeItem": ".post_v1bank_transactions_list_request_filter_item_value_three_item",
-    "PostV1BankTransactionsListRequestSortItem": ".post_v1bank_transactions_list_request_sort_item",
-    "PostV1BankTransactionsListRequestSortItemDir": ".post_v1bank_transactions_list_request_sort_item_dir",
-    "PostV1BankTransactionsListResponse": ".post_v1bank_transactions_list_response",
-    "PostV1BankTransactionsListResponseRowsItem": ".post_v1bank_transactions_list_response_rows_item",
-    "PostV1BankTransactionsListResponseRowsItemStatus": ".post_v1bank_transactions_list_response_rows_item_status",
-    "PostV1BankTransactionsMatchRequestDocumentType": ".post_v1bank_transactions_match_request_document_type",
-    "PostV1BankTransactionsMatchResponse": ".post_v1bank_transactions_match_response",
-    "PostV1BankTransactionsMatchResponseStatus": ".post_v1bank_transactions_match_response_status",
-    "PostV1BankTransactionsRecordRequestDocumentType": ".post_v1bank_transactions_record_request_document_type",
-    "PostV1BankTransactionsRecordResponse": ".post_v1bank_transactions_record_response",
-    "PostV1BankTransactionsRecordResponseStatus": ".post_v1bank_transactions_record_response_status",
-    "PostV1BankTransactionsSuggestMatchesResponse": ".post_v1bank_transactions_suggest_matches_response",
-    "PostV1BankTransactionsSuggestMatchesResponseSuggestionsItem": ".post_v1bank_transactions_suggest_matches_response_suggestions_item",
-    "PostV1BankTransactionsSuggestMatchesResponseSuggestionsItemDocumentType": ".post_v1bank_transactions_suggest_matches_response_suggestions_item_document_type",
+    "AccountsCreateBankResponse": ".accounts_create_bank_response",
+    "AccountsListBankRequestFilterItem": ".accounts_list_bank_request_filter_item",
+    "AccountsListBankRequestFilterItemOp": ".accounts_list_bank_request_filter_item_op",
+    "AccountsListBankRequestFilterItemValue": ".accounts_list_bank_request_filter_item_value",
+    "AccountsListBankRequestFilterItemValueThreeItem": ".accounts_list_bank_request_filter_item_value_three_item",
+    "AccountsListBankRequestSortItem": ".accounts_list_bank_request_sort_item",
+    "AccountsListBankRequestSortItemDir": ".accounts_list_bank_request_sort_item_dir",
+    "AccountsListBankResponse": ".accounts_list_bank_response",
+    "AccountsListBankResponseRowsItem": ".accounts_list_bank_response_rows_item",
+    "AccountsUpdateBankResponse": ".accounts_update_bank_response",
+    "DirectDebitsExportBankResponse": ".direct_debits_export_bank_response",
+    "FeedsAccountsConfigureBankRequestSyncSchedule": ".feeds_accounts_configure_bank_request_sync_schedule",
+    "FeedsAccountsConfigureBankResponse": ".feeds_accounts_configure_bank_response",
+    "FeedsAccountsConfigureBankResponseSyncSchedule": ".feeds_accounts_configure_bank_response_sync_schedule",
+    "FeedsAccountsLinkBankRequestCreateBankAccount": ".feeds_accounts_link_bank_request_create_bank_account",
+    "FeedsAccountsLinkBankResponse": ".feeds_accounts_link_bank_response",
+    "FeedsAccountsLinkBankResponseSyncSchedule": ".feeds_accounts_link_bank_response_sync_schedule",
+    "FeedsBanksListBankResponse": ".feeds_banks_list_bank_response",
+    "FeedsBanksListBankResponseBanksItem": ".feeds_banks_list_bank_response_banks_item",
+    "FeedsBanksListBankResponseBanksItemPsuTypesItem": ".feeds_banks_list_bank_response_banks_item_psu_types_item",
+    "FeedsConnectionsCompleteBankResponse": ".feeds_connections_complete_bank_response",
+    "FeedsConnectionsCompleteBankResponseAccountsItem": ".feeds_connections_complete_bank_response_accounts_item",
+    "FeedsConnectionsCompleteBankResponseAccountsItemSyncSchedule": ".feeds_connections_complete_bank_response_accounts_item_sync_schedule",
+    "FeedsConnectionsCompleteBankResponsePsuType": ".feeds_connections_complete_bank_response_psu_type",
+    "FeedsConnectionsCompleteBankResponseStatus": ".feeds_connections_complete_bank_response_status",
+    "FeedsConnectionsDeleteBankResponse": ".feeds_connections_delete_bank_response",
+    "FeedsConnectionsGetBankResponse": ".feeds_connections_get_bank_response",
+    "FeedsConnectionsGetBankResponseAccountsItem": ".feeds_connections_get_bank_response_accounts_item",
+    "FeedsConnectionsGetBankResponseAccountsItemSyncSchedule": ".feeds_connections_get_bank_response_accounts_item_sync_schedule",
+    "FeedsConnectionsGetBankResponsePsuType": ".feeds_connections_get_bank_response_psu_type",
+    "FeedsConnectionsGetBankResponseStatus": ".feeds_connections_get_bank_response_status",
+    "FeedsConnectionsListBankRequestFilterItem": ".feeds_connections_list_bank_request_filter_item",
+    "FeedsConnectionsListBankRequestFilterItemOp": ".feeds_connections_list_bank_request_filter_item_op",
+    "FeedsConnectionsListBankRequestFilterItemValue": ".feeds_connections_list_bank_request_filter_item_value",
+    "FeedsConnectionsListBankRequestFilterItemValueThreeItem": ".feeds_connections_list_bank_request_filter_item_value_three_item",
+    "FeedsConnectionsListBankRequestSortItem": ".feeds_connections_list_bank_request_sort_item",
+    "FeedsConnectionsListBankRequestSortItemDir": ".feeds_connections_list_bank_request_sort_item_dir",
+    "FeedsConnectionsListBankResponse": ".feeds_connections_list_bank_response",
+    "FeedsConnectionsListBankResponseRowsItem": ".feeds_connections_list_bank_response_rows_item",
+    "FeedsConnectionsListBankResponseRowsItemPsuType": ".feeds_connections_list_bank_response_rows_item_psu_type",
+    "FeedsConnectionsListBankResponseRowsItemStatus": ".feeds_connections_list_bank_response_rows_item_status",
+    "FeedsConnectionsStartBankRequestPsuType": ".feeds_connections_start_bank_request_psu_type",
+    "FeedsConnectionsStartBankResponse": ".feeds_connections_start_bank_response",
+    "FeedsSyncBankResponse": ".feeds_sync_bank_response",
+    "FeedsSyncBankResponseAccountsItem": ".feeds_sync_bank_response_accounts_item",
+    "ImportTemplatesCreateBankRequestFieldsItem": ".import_templates_create_bank_request_fields_item",
+    "ImportTemplatesCreateBankRequestType": ".import_templates_create_bank_request_type",
+    "ImportTemplatesCreateBankResponse": ".import_templates_create_bank_response",
+    "ImportTemplatesCreateBankResponseFieldsItem": ".import_templates_create_bank_response_fields_item",
+    "ImportTemplatesCreateBankResponseType": ".import_templates_create_bank_response_type",
+    "ImportTemplatesDeleteBankResponse": ".import_templates_delete_bank_response",
+    "ImportTemplatesGetBankResponse": ".import_templates_get_bank_response",
+    "ImportTemplatesGetBankResponseFieldsItem": ".import_templates_get_bank_response_fields_item",
+    "ImportTemplatesGetBankResponseType": ".import_templates_get_bank_response_type",
+    "ImportTemplatesListBankRequestFilterItem": ".import_templates_list_bank_request_filter_item",
+    "ImportTemplatesListBankRequestFilterItemOp": ".import_templates_list_bank_request_filter_item_op",
+    "ImportTemplatesListBankRequestFilterItemValue": ".import_templates_list_bank_request_filter_item_value",
+    "ImportTemplatesListBankRequestFilterItemValueThreeItem": ".import_templates_list_bank_request_filter_item_value_three_item",
+    "ImportTemplatesListBankRequestSortItem": ".import_templates_list_bank_request_sort_item",
+    "ImportTemplatesListBankRequestSortItemDir": ".import_templates_list_bank_request_sort_item_dir",
+    "ImportTemplatesListBankResponse": ".import_templates_list_bank_response",
+    "ImportTemplatesListBankResponseRowsItem": ".import_templates_list_bank_response_rows_item",
+    "ImportTemplatesListBankResponseRowsItemFieldsItem": ".import_templates_list_bank_response_rows_item_fields_item",
+    "ImportTemplatesListBankResponseRowsItemType": ".import_templates_list_bank_response_rows_item_type",
+    "ImportTemplatesUpdateBankRequestFieldsItem": ".import_templates_update_bank_request_fields_item",
+    "ImportTemplatesUpdateBankRequestType": ".import_templates_update_bank_request_type",
+    "ImportTemplatesUpdateBankResponse": ".import_templates_update_bank_response",
+    "ImportTemplatesUpdateBankResponseFieldsItem": ".import_templates_update_bank_response_fields_item",
+    "ImportTemplatesUpdateBankResponseType": ".import_templates_update_bank_response_type",
+    "MandatesCancelBankResponse": ".mandates_cancel_bank_response",
+    "MandatesCancelBankResponseScheme": ".mandates_cancel_bank_response_scheme",
+    "MandatesCancelBankResponseSequenceType": ".mandates_cancel_bank_response_sequence_type",
+    "MandatesCancelBankResponseStatus": ".mandates_cancel_bank_response_status",
+    "MandatesCreateBankRequestScheme": ".mandates_create_bank_request_scheme",
+    "MandatesCreateBankRequestSequenceType": ".mandates_create_bank_request_sequence_type",
+    "MandatesCreateBankResponse": ".mandates_create_bank_response",
+    "MandatesCreateBankResponseScheme": ".mandates_create_bank_response_scheme",
+    "MandatesCreateBankResponseSequenceType": ".mandates_create_bank_response_sequence_type",
+    "MandatesCreateBankResponseStatus": ".mandates_create_bank_response_status",
+    "MandatesGetBankResponse": ".mandates_get_bank_response",
+    "MandatesGetBankResponseScheme": ".mandates_get_bank_response_scheme",
+    "MandatesGetBankResponseSequenceType": ".mandates_get_bank_response_sequence_type",
+    "MandatesGetBankResponseStatus": ".mandates_get_bank_response_status",
+    "MandatesListBankRequestFilterItem": ".mandates_list_bank_request_filter_item",
+    "MandatesListBankRequestFilterItemOp": ".mandates_list_bank_request_filter_item_op",
+    "MandatesListBankRequestFilterItemValue": ".mandates_list_bank_request_filter_item_value",
+    "MandatesListBankRequestFilterItemValueThreeItem": ".mandates_list_bank_request_filter_item_value_three_item",
+    "MandatesListBankRequestSortItem": ".mandates_list_bank_request_sort_item",
+    "MandatesListBankRequestSortItemDir": ".mandates_list_bank_request_sort_item_dir",
+    "MandatesListBankResponse": ".mandates_list_bank_response",
+    "MandatesListBankResponseRowsItem": ".mandates_list_bank_response_rows_item",
+    "MandatesListBankResponseRowsItemScheme": ".mandates_list_bank_response_rows_item_scheme",
+    "MandatesListBankResponseRowsItemSequenceType": ".mandates_list_bank_response_rows_item_sequence_type",
+    "MandatesListBankResponseRowsItemStatus": ".mandates_list_bank_response_rows_item_status",
+    "MandatesUpdateBankResponse": ".mandates_update_bank_response",
+    "MandatesUpdateBankResponseScheme": ".mandates_update_bank_response_scheme",
+    "MandatesUpdateBankResponseSequenceType": ".mandates_update_bank_response_sequence_type",
+    "MandatesUpdateBankResponseStatus": ".mandates_update_bank_response_status",
+    "MatchRulesCreateBankResponse": ".match_rules_create_bank_response",
+    "MatchRulesDeleteBankResponse": ".match_rules_delete_bank_response",
+    "MatchRulesListBankResponse": ".match_rules_list_bank_response",
+    "MatchRulesListBankResponseRowsItem": ".match_rules_list_bank_response_rows_item",
+    "MatchRulesUpdateBankResponse": ".match_rules_update_bank_response",
+    "PaymentsExportBankResponse": ".payments_export_bank_response",
+    "SettlementsCommissionBankResponse": ".settlements_commission_bank_response",
+    "SettlementsCommissionBankResponseMatchStatus": ".settlements_commission_bank_response_match_status",
+    "SettlementsGetBankResponse": ".settlements_get_bank_response",
+    "SettlementsGetBankResponseLinesItem": ".settlements_get_bank_response_lines_item",
+    "SettlementsGetBankResponseLinesItemMatchStatus": ".settlements_get_bank_response_lines_item_match_status",
+    "SettlementsGetBankResponseStatus": ".settlements_get_bank_response_status",
+    "SettlementsImportBankRequestProvider": ".settlements_import_bank_request_provider",
+    "SettlementsImportBankResponse": ".settlements_import_bank_response",
+    "SettlementsImportBankResponseBatchesItem": ".settlements_import_bank_response_batches_item",
+    "SettlementsImportBankResponseBatchesItemStatus": ".settlements_import_bank_response_batches_item_status",
+    "SettlementsImportBankResponseFormat": ".settlements_import_bank_response_format",
+    "SettlementsLinkBankResponse": ".settlements_link_bank_response",
+    "SettlementsLinkBankResponseStatus": ".settlements_link_bank_response_status",
+    "SettlementsListBankRequestFilterItem": ".settlements_list_bank_request_filter_item",
+    "SettlementsListBankRequestFilterItemOp": ".settlements_list_bank_request_filter_item_op",
+    "SettlementsListBankRequestFilterItemValue": ".settlements_list_bank_request_filter_item_value",
+    "SettlementsListBankRequestFilterItemValueThreeItem": ".settlements_list_bank_request_filter_item_value_three_item",
+    "SettlementsListBankRequestSortItem": ".settlements_list_bank_request_sort_item",
+    "SettlementsListBankRequestSortItemDir": ".settlements_list_bank_request_sort_item_dir",
+    "SettlementsListBankResponse": ".settlements_list_bank_response",
+    "SettlementsListBankResponseRowsItem": ".settlements_list_bank_response_rows_item",
+    "SettlementsListBankResponseRowsItemStatus": ".settlements_list_bank_response_rows_item_status",
+    "SettlementsMatchBankResponse": ".settlements_match_bank_response",
+    "SettlementsMatchBankResponseMatchStatus": ".settlements_match_bank_response_match_status",
+    "SettlementsPostBankResponse": ".settlements_post_bank_response",
+    "SettlementsPostBankResponseStatus": ".settlements_post_bank_response_status",
+    "SettlementsPostBankResponseSummary": ".settlements_post_bank_response_summary",
+    "SettlementsUnlinkBankResponse": ".settlements_unlink_bank_response",
+    "SettlementsUnlinkBankResponseStatus": ".settlements_unlink_bank_response_status",
+    "StatementsImportBankRequestFormat": ".statements_import_bank_request_format",
+    "StatementsImportBankResponse": ".statements_import_bank_response",
+    "StatementsImportBankResponseStatementsItem": ".statements_import_bank_response_statements_item",
+    "TransactionsImportBankRequestTransactionsItem": ".transactions_import_bank_request_transactions_item",
+    "TransactionsImportBankResponse": ".transactions_import_bank_response",
+    "TransactionsListBankRequestFilterItem": ".transactions_list_bank_request_filter_item",
+    "TransactionsListBankRequestFilterItemOp": ".transactions_list_bank_request_filter_item_op",
+    "TransactionsListBankRequestFilterItemValue": ".transactions_list_bank_request_filter_item_value",
+    "TransactionsListBankRequestFilterItemValueThreeItem": ".transactions_list_bank_request_filter_item_value_three_item",
+    "TransactionsListBankRequestSortItem": ".transactions_list_bank_request_sort_item",
+    "TransactionsListBankRequestSortItemDir": ".transactions_list_bank_request_sort_item_dir",
+    "TransactionsListBankResponse": ".transactions_list_bank_response",
+    "TransactionsListBankResponseRowsItem": ".transactions_list_bank_response_rows_item",
+    "TransactionsListBankResponseRowsItemStatus": ".transactions_list_bank_response_rows_item_status",
+    "TransactionsMatchBankRequestDocumentType": ".transactions_match_bank_request_document_type",
+    "TransactionsMatchBankResponse": ".transactions_match_bank_response",
+    "TransactionsMatchBankResponseStatus": ".transactions_match_bank_response_status",
+    "TransactionsRecordBankRequestDocumentType": ".transactions_record_bank_request_document_type",
+    "TransactionsRecordBankResponse": ".transactions_record_bank_response",
+    "TransactionsRecordBankResponseStatus": ".transactions_record_bank_response_status",
+    "TransactionsSuggestMatchesBankResponse": ".transactions_suggest_matches_bank_response",
+    "TransactionsSuggestMatchesBankResponseSuggestionsItem": ".transactions_suggest_matches_bank_response_suggestions_item",
+    "TransactionsSuggestMatchesBankResponseSuggestionsItemDocumentType": ".transactions_suggest_matches_bank_response_suggestions_item_document_type",
+    "TransactionsUnmatchBankResponse": ".transactions_unmatch_bank_response",
+    "TransactionsUnmatchBankResponseStatus": ".transactions_unmatch_bank_response_status",
 }
 
 
@@ -418,160 +368,162 @@ def __dir__():
 
 
 __all__ = [
-    "PostV1BankAccountsCreateResponse",
-    "PostV1BankAccountsListRequestFilterItem",
-    "PostV1BankAccountsListRequestFilterItemOp",
-    "PostV1BankAccountsListRequestFilterItemValue",
-    "PostV1BankAccountsListRequestFilterItemValueThreeItem",
-    "PostV1BankAccountsListRequestSortItem",
-    "PostV1BankAccountsListRequestSortItemDir",
-    "PostV1BankAccountsListResponse",
-    "PostV1BankAccountsListResponseRowsItem",
-    "PostV1BankAccountsUpdateResponse",
-    "PostV1BankDirectDebitsExportResponse",
-    "PostV1BankFeedsAccountsConfigureRequestSyncSchedule",
-    "PostV1BankFeedsAccountsConfigureResponse",
-    "PostV1BankFeedsAccountsConfigureResponseSyncSchedule",
-    "PostV1BankFeedsAccountsLinkRequestCreateBankAccount",
-    "PostV1BankFeedsAccountsLinkResponse",
-    "PostV1BankFeedsAccountsLinkResponseSyncSchedule",
-    "PostV1BankFeedsBanksListResponse",
-    "PostV1BankFeedsBanksListResponseBanksItem",
-    "PostV1BankFeedsBanksListResponseBanksItemPsuTypesItem",
-    "PostV1BankFeedsConnectionsCompleteResponse",
-    "PostV1BankFeedsConnectionsCompleteResponseAccountsItem",
-    "PostV1BankFeedsConnectionsCompleteResponseAccountsItemSyncSchedule",
-    "PostV1BankFeedsConnectionsCompleteResponsePsuType",
-    "PostV1BankFeedsConnectionsCompleteResponseStatus",
-    "PostV1BankFeedsConnectionsDeleteResponse",
-    "PostV1BankFeedsConnectionsGetResponse",
-    "PostV1BankFeedsConnectionsGetResponseAccountsItem",
-    "PostV1BankFeedsConnectionsGetResponseAccountsItemSyncSchedule",
-    "PostV1BankFeedsConnectionsGetResponsePsuType",
-    "PostV1BankFeedsConnectionsGetResponseStatus",
-    "PostV1BankFeedsConnectionsListRequestFilterItem",
-    "PostV1BankFeedsConnectionsListRequestFilterItemOp",
-    "PostV1BankFeedsConnectionsListRequestFilterItemValue",
-    "PostV1BankFeedsConnectionsListRequestFilterItemValueThreeItem",
-    "PostV1BankFeedsConnectionsListRequestSortItem",
-    "PostV1BankFeedsConnectionsListRequestSortItemDir",
-    "PostV1BankFeedsConnectionsListResponse",
-    "PostV1BankFeedsConnectionsListResponseRowsItem",
-    "PostV1BankFeedsConnectionsListResponseRowsItemPsuType",
-    "PostV1BankFeedsConnectionsListResponseRowsItemStatus",
-    "PostV1BankFeedsConnectionsStartRequestPsuType",
-    "PostV1BankFeedsConnectionsStartResponse",
-    "PostV1BankFeedsSyncResponse",
-    "PostV1BankFeedsSyncResponseAccountsItem",
-    "PostV1BankImportTemplatesCreateRequestFieldsItem",
-    "PostV1BankImportTemplatesCreateRequestType",
-    "PostV1BankImportTemplatesCreateResponse",
-    "PostV1BankImportTemplatesCreateResponseFieldsItem",
-    "PostV1BankImportTemplatesCreateResponseType",
-    "PostV1BankImportTemplatesDeleteResponse",
-    "PostV1BankImportTemplatesGetResponse",
-    "PostV1BankImportTemplatesGetResponseFieldsItem",
-    "PostV1BankImportTemplatesGetResponseType",
-    "PostV1BankImportTemplatesListRequestFilterItem",
-    "PostV1BankImportTemplatesListRequestFilterItemOp",
-    "PostV1BankImportTemplatesListRequestFilterItemValue",
-    "PostV1BankImportTemplatesListRequestFilterItemValueThreeItem",
-    "PostV1BankImportTemplatesListRequestSortItem",
-    "PostV1BankImportTemplatesListRequestSortItemDir",
-    "PostV1BankImportTemplatesListResponse",
-    "PostV1BankImportTemplatesListResponseRowsItem",
-    "PostV1BankImportTemplatesListResponseRowsItemFieldsItem",
-    "PostV1BankImportTemplatesListResponseRowsItemType",
-    "PostV1BankImportTemplatesUpdateRequestFieldsItem",
-    "PostV1BankImportTemplatesUpdateRequestType",
-    "PostV1BankImportTemplatesUpdateResponse",
-    "PostV1BankImportTemplatesUpdateResponseFieldsItem",
-    "PostV1BankImportTemplatesUpdateResponseType",
-    "PostV1BankMandatesCancelResponse",
-    "PostV1BankMandatesCancelResponseScheme",
-    "PostV1BankMandatesCancelResponseSequenceType",
-    "PostV1BankMandatesCancelResponseStatus",
-    "PostV1BankMandatesCreateRequestScheme",
-    "PostV1BankMandatesCreateRequestSequenceType",
-    "PostV1BankMandatesCreateResponse",
-    "PostV1BankMandatesCreateResponseScheme",
-    "PostV1BankMandatesCreateResponseSequenceType",
-    "PostV1BankMandatesCreateResponseStatus",
-    "PostV1BankMandatesGetResponse",
-    "PostV1BankMandatesGetResponseScheme",
-    "PostV1BankMandatesGetResponseSequenceType",
-    "PostV1BankMandatesGetResponseStatus",
-    "PostV1BankMandatesListRequestFilterItem",
-    "PostV1BankMandatesListRequestFilterItemOp",
-    "PostV1BankMandatesListRequestFilterItemValue",
-    "PostV1BankMandatesListRequestFilterItemValueThreeItem",
-    "PostV1BankMandatesListRequestSortItem",
-    "PostV1BankMandatesListRequestSortItemDir",
-    "PostV1BankMandatesListResponse",
-    "PostV1BankMandatesListResponseRowsItem",
-    "PostV1BankMandatesListResponseRowsItemScheme",
-    "PostV1BankMandatesListResponseRowsItemSequenceType",
-    "PostV1BankMandatesListResponseRowsItemStatus",
-    "PostV1BankMandatesUpdateResponse",
-    "PostV1BankMandatesUpdateResponseScheme",
-    "PostV1BankMandatesUpdateResponseSequenceType",
-    "PostV1BankMandatesUpdateResponseStatus",
-    "PostV1BankMatchRulesCreateResponse",
-    "PostV1BankMatchRulesDeleteResponse",
-    "PostV1BankMatchRulesListResponse",
-    "PostV1BankMatchRulesListResponseRowsItem",
-    "PostV1BankMatchRulesUpdateResponse",
-    "PostV1BankPaymentsExportResponse",
-    "PostV1BankSettlementsCommissionResponse",
-    "PostV1BankSettlementsCommissionResponseMatchStatus",
-    "PostV1BankSettlementsGetResponse",
-    "PostV1BankSettlementsGetResponseLinesItem",
-    "PostV1BankSettlementsGetResponseLinesItemMatchStatus",
-    "PostV1BankSettlementsGetResponseStatus",
-    "PostV1BankSettlementsImportRequestProvider",
-    "PostV1BankSettlementsImportResponse",
-    "PostV1BankSettlementsImportResponseBatchesItem",
-    "PostV1BankSettlementsImportResponseBatchesItemStatus",
-    "PostV1BankSettlementsImportResponseFormat",
-    "PostV1BankSettlementsLinkResponse",
-    "PostV1BankSettlementsLinkResponseStatus",
-    "PostV1BankSettlementsListRequestFilterItem",
-    "PostV1BankSettlementsListRequestFilterItemOp",
-    "PostV1BankSettlementsListRequestFilterItemValue",
-    "PostV1BankSettlementsListRequestFilterItemValueThreeItem",
-    "PostV1BankSettlementsListRequestSortItem",
-    "PostV1BankSettlementsListRequestSortItemDir",
-    "PostV1BankSettlementsListResponse",
-    "PostV1BankSettlementsListResponseRowsItem",
-    "PostV1BankSettlementsListResponseRowsItemStatus",
-    "PostV1BankSettlementsMatchResponse",
-    "PostV1BankSettlementsMatchResponseMatchStatus",
-    "PostV1BankSettlementsPostResponse",
-    "PostV1BankSettlementsPostResponseStatus",
-    "PostV1BankSettlementsPostResponseSummary",
-    "PostV1BankSettlementsUnlinkResponse",
-    "PostV1BankSettlementsUnlinkResponseStatus",
-    "PostV1BankStatementsImportRequestFormat",
-    "PostV1BankStatementsImportResponse",
-    "PostV1BankStatementsImportResponseStatementsItem",
-    "PostV1BankTransactionsImportRequestTransactionsItem",
-    "PostV1BankTransactionsImportResponse",
-    "PostV1BankTransactionsListRequestFilterItem",
-    "PostV1BankTransactionsListRequestFilterItemOp",
-    "PostV1BankTransactionsListRequestFilterItemValue",
-    "PostV1BankTransactionsListRequestFilterItemValueThreeItem",
-    "PostV1BankTransactionsListRequestSortItem",
-    "PostV1BankTransactionsListRequestSortItemDir",
-    "PostV1BankTransactionsListResponse",
-    "PostV1BankTransactionsListResponseRowsItem",
-    "PostV1BankTransactionsListResponseRowsItemStatus",
-    "PostV1BankTransactionsMatchRequestDocumentType",
-    "PostV1BankTransactionsMatchResponse",
-    "PostV1BankTransactionsMatchResponseStatus",
-    "PostV1BankTransactionsRecordRequestDocumentType",
-    "PostV1BankTransactionsRecordResponse",
-    "PostV1BankTransactionsRecordResponseStatus",
-    "PostV1BankTransactionsSuggestMatchesResponse",
-    "PostV1BankTransactionsSuggestMatchesResponseSuggestionsItem",
-    "PostV1BankTransactionsSuggestMatchesResponseSuggestionsItemDocumentType",
+    "AccountsCreateBankResponse",
+    "AccountsListBankRequestFilterItem",
+    "AccountsListBankRequestFilterItemOp",
+    "AccountsListBankRequestFilterItemValue",
+    "AccountsListBankRequestFilterItemValueThreeItem",
+    "AccountsListBankRequestSortItem",
+    "AccountsListBankRequestSortItemDir",
+    "AccountsListBankResponse",
+    "AccountsListBankResponseRowsItem",
+    "AccountsUpdateBankResponse",
+    "DirectDebitsExportBankResponse",
+    "FeedsAccountsConfigureBankRequestSyncSchedule",
+    "FeedsAccountsConfigureBankResponse",
+    "FeedsAccountsConfigureBankResponseSyncSchedule",
+    "FeedsAccountsLinkBankRequestCreateBankAccount",
+    "FeedsAccountsLinkBankResponse",
+    "FeedsAccountsLinkBankResponseSyncSchedule",
+    "FeedsBanksListBankResponse",
+    "FeedsBanksListBankResponseBanksItem",
+    "FeedsBanksListBankResponseBanksItemPsuTypesItem",
+    "FeedsConnectionsCompleteBankResponse",
+    "FeedsConnectionsCompleteBankResponseAccountsItem",
+    "FeedsConnectionsCompleteBankResponseAccountsItemSyncSchedule",
+    "FeedsConnectionsCompleteBankResponsePsuType",
+    "FeedsConnectionsCompleteBankResponseStatus",
+    "FeedsConnectionsDeleteBankResponse",
+    "FeedsConnectionsGetBankResponse",
+    "FeedsConnectionsGetBankResponseAccountsItem",
+    "FeedsConnectionsGetBankResponseAccountsItemSyncSchedule",
+    "FeedsConnectionsGetBankResponsePsuType",
+    "FeedsConnectionsGetBankResponseStatus",
+    "FeedsConnectionsListBankRequestFilterItem",
+    "FeedsConnectionsListBankRequestFilterItemOp",
+    "FeedsConnectionsListBankRequestFilterItemValue",
+    "FeedsConnectionsListBankRequestFilterItemValueThreeItem",
+    "FeedsConnectionsListBankRequestSortItem",
+    "FeedsConnectionsListBankRequestSortItemDir",
+    "FeedsConnectionsListBankResponse",
+    "FeedsConnectionsListBankResponseRowsItem",
+    "FeedsConnectionsListBankResponseRowsItemPsuType",
+    "FeedsConnectionsListBankResponseRowsItemStatus",
+    "FeedsConnectionsStartBankRequestPsuType",
+    "FeedsConnectionsStartBankResponse",
+    "FeedsSyncBankResponse",
+    "FeedsSyncBankResponseAccountsItem",
+    "ImportTemplatesCreateBankRequestFieldsItem",
+    "ImportTemplatesCreateBankRequestType",
+    "ImportTemplatesCreateBankResponse",
+    "ImportTemplatesCreateBankResponseFieldsItem",
+    "ImportTemplatesCreateBankResponseType",
+    "ImportTemplatesDeleteBankResponse",
+    "ImportTemplatesGetBankResponse",
+    "ImportTemplatesGetBankResponseFieldsItem",
+    "ImportTemplatesGetBankResponseType",
+    "ImportTemplatesListBankRequestFilterItem",
+    "ImportTemplatesListBankRequestFilterItemOp",
+    "ImportTemplatesListBankRequestFilterItemValue",
+    "ImportTemplatesListBankRequestFilterItemValueThreeItem",
+    "ImportTemplatesListBankRequestSortItem",
+    "ImportTemplatesListBankRequestSortItemDir",
+    "ImportTemplatesListBankResponse",
+    "ImportTemplatesListBankResponseRowsItem",
+    "ImportTemplatesListBankResponseRowsItemFieldsItem",
+    "ImportTemplatesListBankResponseRowsItemType",
+    "ImportTemplatesUpdateBankRequestFieldsItem",
+    "ImportTemplatesUpdateBankRequestType",
+    "ImportTemplatesUpdateBankResponse",
+    "ImportTemplatesUpdateBankResponseFieldsItem",
+    "ImportTemplatesUpdateBankResponseType",
+    "MandatesCancelBankResponse",
+    "MandatesCancelBankResponseScheme",
+    "MandatesCancelBankResponseSequenceType",
+    "MandatesCancelBankResponseStatus",
+    "MandatesCreateBankRequestScheme",
+    "MandatesCreateBankRequestSequenceType",
+    "MandatesCreateBankResponse",
+    "MandatesCreateBankResponseScheme",
+    "MandatesCreateBankResponseSequenceType",
+    "MandatesCreateBankResponseStatus",
+    "MandatesGetBankResponse",
+    "MandatesGetBankResponseScheme",
+    "MandatesGetBankResponseSequenceType",
+    "MandatesGetBankResponseStatus",
+    "MandatesListBankRequestFilterItem",
+    "MandatesListBankRequestFilterItemOp",
+    "MandatesListBankRequestFilterItemValue",
+    "MandatesListBankRequestFilterItemValueThreeItem",
+    "MandatesListBankRequestSortItem",
+    "MandatesListBankRequestSortItemDir",
+    "MandatesListBankResponse",
+    "MandatesListBankResponseRowsItem",
+    "MandatesListBankResponseRowsItemScheme",
+    "MandatesListBankResponseRowsItemSequenceType",
+    "MandatesListBankResponseRowsItemStatus",
+    "MandatesUpdateBankResponse",
+    "MandatesUpdateBankResponseScheme",
+    "MandatesUpdateBankResponseSequenceType",
+    "MandatesUpdateBankResponseStatus",
+    "MatchRulesCreateBankResponse",
+    "MatchRulesDeleteBankResponse",
+    "MatchRulesListBankResponse",
+    "MatchRulesListBankResponseRowsItem",
+    "MatchRulesUpdateBankResponse",
+    "PaymentsExportBankResponse",
+    "SettlementsCommissionBankResponse",
+    "SettlementsCommissionBankResponseMatchStatus",
+    "SettlementsGetBankResponse",
+    "SettlementsGetBankResponseLinesItem",
+    "SettlementsGetBankResponseLinesItemMatchStatus",
+    "SettlementsGetBankResponseStatus",
+    "SettlementsImportBankRequestProvider",
+    "SettlementsImportBankResponse",
+    "SettlementsImportBankResponseBatchesItem",
+    "SettlementsImportBankResponseBatchesItemStatus",
+    "SettlementsImportBankResponseFormat",
+    "SettlementsLinkBankResponse",
+    "SettlementsLinkBankResponseStatus",
+    "SettlementsListBankRequestFilterItem",
+    "SettlementsListBankRequestFilterItemOp",
+    "SettlementsListBankRequestFilterItemValue",
+    "SettlementsListBankRequestFilterItemValueThreeItem",
+    "SettlementsListBankRequestSortItem",
+    "SettlementsListBankRequestSortItemDir",
+    "SettlementsListBankResponse",
+    "SettlementsListBankResponseRowsItem",
+    "SettlementsListBankResponseRowsItemStatus",
+    "SettlementsMatchBankResponse",
+    "SettlementsMatchBankResponseMatchStatus",
+    "SettlementsPostBankResponse",
+    "SettlementsPostBankResponseStatus",
+    "SettlementsPostBankResponseSummary",
+    "SettlementsUnlinkBankResponse",
+    "SettlementsUnlinkBankResponseStatus",
+    "StatementsImportBankRequestFormat",
+    "StatementsImportBankResponse",
+    "StatementsImportBankResponseStatementsItem",
+    "TransactionsImportBankRequestTransactionsItem",
+    "TransactionsImportBankResponse",
+    "TransactionsListBankRequestFilterItem",
+    "TransactionsListBankRequestFilterItemOp",
+    "TransactionsListBankRequestFilterItemValue",
+    "TransactionsListBankRequestFilterItemValueThreeItem",
+    "TransactionsListBankRequestSortItem",
+    "TransactionsListBankRequestSortItemDir",
+    "TransactionsListBankResponse",
+    "TransactionsListBankResponseRowsItem",
+    "TransactionsListBankResponseRowsItemStatus",
+    "TransactionsMatchBankRequestDocumentType",
+    "TransactionsMatchBankResponse",
+    "TransactionsMatchBankResponseStatus",
+    "TransactionsRecordBankRequestDocumentType",
+    "TransactionsRecordBankResponse",
+    "TransactionsRecordBankResponseStatus",
+    "TransactionsSuggestMatchesBankResponse",
+    "TransactionsSuggestMatchesBankResponseSuggestionsItem",
+    "TransactionsSuggestMatchesBankResponseSuggestionsItemDocumentType",
+    "TransactionsUnmatchBankResponse",
+    "TransactionsUnmatchBankResponseStatus",
 ]

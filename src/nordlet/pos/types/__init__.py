@@ -6,59 +6,55 @@ import typing
 from importlib import import_module
 
 if typing.TYPE_CHECKING:
-    from .post_v1pos_devices_create_response import PostV1PosDevicesCreateResponse
-    from .post_v1pos_devices_list_request_filter_item import PostV1PosDevicesListRequestFilterItem
-    from .post_v1pos_devices_list_request_filter_item_op import PostV1PosDevicesListRequestFilterItemOp
-    from .post_v1pos_devices_list_request_filter_item_value import PostV1PosDevicesListRequestFilterItemValue
-    from .post_v1pos_devices_list_request_filter_item_value_three_item import (
-        PostV1PosDevicesListRequestFilterItemValueThreeItem,
-    )
-    from .post_v1pos_devices_list_request_sort_item import PostV1PosDevicesListRequestSortItem
-    from .post_v1pos_devices_list_request_sort_item_dir import PostV1PosDevicesListRequestSortItemDir
-    from .post_v1pos_devices_list_response import PostV1PosDevicesListResponse
-    from .post_v1pos_devices_list_response_rows_item import PostV1PosDevicesListResponseRowsItem
-    from .post_v1pos_devices_update_response import PostV1PosDevicesUpdateResponse
-    from .post_v1pos_reports_create_request_item_lines_item import PostV1PosReportsCreateRequestItemLinesItem
-    from .post_v1pos_reports_create_request_vat_lines_item import PostV1PosReportsCreateRequestVatLinesItem
-    from .post_v1pos_reports_create_response import PostV1PosReportsCreateResponse
-    from .post_v1pos_reports_create_response_vat_lines_item import PostV1PosReportsCreateResponseVatLinesItem
-    from .post_v1pos_reports_get_response import PostV1PosReportsGetResponse
-    from .post_v1pos_reports_get_response_vat_lines_item import PostV1PosReportsGetResponseVatLinesItem
-    from .post_v1pos_reports_list_request_filter_item import PostV1PosReportsListRequestFilterItem
-    from .post_v1pos_reports_list_request_filter_item_op import PostV1PosReportsListRequestFilterItemOp
-    from .post_v1pos_reports_list_request_filter_item_value import PostV1PosReportsListRequestFilterItemValue
-    from .post_v1pos_reports_list_request_filter_item_value_three_item import (
-        PostV1PosReportsListRequestFilterItemValueThreeItem,
-    )
-    from .post_v1pos_reports_list_request_sort_item import PostV1PosReportsListRequestSortItem
-    from .post_v1pos_reports_list_request_sort_item_dir import PostV1PosReportsListRequestSortItemDir
-    from .post_v1pos_reports_list_response import PostV1PosReportsListResponse
-    from .post_v1pos_reports_list_response_rows_item import PostV1PosReportsListResponseRowsItem
+    from .devices_create_pos_response import DevicesCreatePosResponse
+    from .devices_list_pos_request_filter_item import DevicesListPosRequestFilterItem
+    from .devices_list_pos_request_filter_item_op import DevicesListPosRequestFilterItemOp
+    from .devices_list_pos_request_filter_item_value import DevicesListPosRequestFilterItemValue
+    from .devices_list_pos_request_filter_item_value_three_item import DevicesListPosRequestFilterItemValueThreeItem
+    from .devices_list_pos_request_sort_item import DevicesListPosRequestSortItem
+    from .devices_list_pos_request_sort_item_dir import DevicesListPosRequestSortItemDir
+    from .devices_list_pos_response import DevicesListPosResponse
+    from .devices_list_pos_response_rows_item import DevicesListPosResponseRowsItem
+    from .devices_update_pos_response import DevicesUpdatePosResponse
+    from .reports_create_pos_request_item_lines_item import ReportsCreatePosRequestItemLinesItem
+    from .reports_create_pos_request_vat_lines_item import ReportsCreatePosRequestVatLinesItem
+    from .reports_create_pos_response import ReportsCreatePosResponse
+    from .reports_create_pos_response_vat_lines_item import ReportsCreatePosResponseVatLinesItem
+    from .reports_get_pos_response import ReportsGetPosResponse
+    from .reports_get_pos_response_vat_lines_item import ReportsGetPosResponseVatLinesItem
+    from .reports_list_pos_request_filter_item import ReportsListPosRequestFilterItem
+    from .reports_list_pos_request_filter_item_op import ReportsListPosRequestFilterItemOp
+    from .reports_list_pos_request_filter_item_value import ReportsListPosRequestFilterItemValue
+    from .reports_list_pos_request_filter_item_value_three_item import ReportsListPosRequestFilterItemValueThreeItem
+    from .reports_list_pos_request_sort_item import ReportsListPosRequestSortItem
+    from .reports_list_pos_request_sort_item_dir import ReportsListPosRequestSortItemDir
+    from .reports_list_pos_response import ReportsListPosResponse
+    from .reports_list_pos_response_rows_item import ReportsListPosResponseRowsItem
 _dynamic_imports: typing.Dict[str, str] = {
-    "PostV1PosDevicesCreateResponse": ".post_v1pos_devices_create_response",
-    "PostV1PosDevicesListRequestFilterItem": ".post_v1pos_devices_list_request_filter_item",
-    "PostV1PosDevicesListRequestFilterItemOp": ".post_v1pos_devices_list_request_filter_item_op",
-    "PostV1PosDevicesListRequestFilterItemValue": ".post_v1pos_devices_list_request_filter_item_value",
-    "PostV1PosDevicesListRequestFilterItemValueThreeItem": ".post_v1pos_devices_list_request_filter_item_value_three_item",
-    "PostV1PosDevicesListRequestSortItem": ".post_v1pos_devices_list_request_sort_item",
-    "PostV1PosDevicesListRequestSortItemDir": ".post_v1pos_devices_list_request_sort_item_dir",
-    "PostV1PosDevicesListResponse": ".post_v1pos_devices_list_response",
-    "PostV1PosDevicesListResponseRowsItem": ".post_v1pos_devices_list_response_rows_item",
-    "PostV1PosDevicesUpdateResponse": ".post_v1pos_devices_update_response",
-    "PostV1PosReportsCreateRequestItemLinesItem": ".post_v1pos_reports_create_request_item_lines_item",
-    "PostV1PosReportsCreateRequestVatLinesItem": ".post_v1pos_reports_create_request_vat_lines_item",
-    "PostV1PosReportsCreateResponse": ".post_v1pos_reports_create_response",
-    "PostV1PosReportsCreateResponseVatLinesItem": ".post_v1pos_reports_create_response_vat_lines_item",
-    "PostV1PosReportsGetResponse": ".post_v1pos_reports_get_response",
-    "PostV1PosReportsGetResponseVatLinesItem": ".post_v1pos_reports_get_response_vat_lines_item",
-    "PostV1PosReportsListRequestFilterItem": ".post_v1pos_reports_list_request_filter_item",
-    "PostV1PosReportsListRequestFilterItemOp": ".post_v1pos_reports_list_request_filter_item_op",
-    "PostV1PosReportsListRequestFilterItemValue": ".post_v1pos_reports_list_request_filter_item_value",
-    "PostV1PosReportsListRequestFilterItemValueThreeItem": ".post_v1pos_reports_list_request_filter_item_value_three_item",
-    "PostV1PosReportsListRequestSortItem": ".post_v1pos_reports_list_request_sort_item",
-    "PostV1PosReportsListRequestSortItemDir": ".post_v1pos_reports_list_request_sort_item_dir",
-    "PostV1PosReportsListResponse": ".post_v1pos_reports_list_response",
-    "PostV1PosReportsListResponseRowsItem": ".post_v1pos_reports_list_response_rows_item",
+    "DevicesCreatePosResponse": ".devices_create_pos_response",
+    "DevicesListPosRequestFilterItem": ".devices_list_pos_request_filter_item",
+    "DevicesListPosRequestFilterItemOp": ".devices_list_pos_request_filter_item_op",
+    "DevicesListPosRequestFilterItemValue": ".devices_list_pos_request_filter_item_value",
+    "DevicesListPosRequestFilterItemValueThreeItem": ".devices_list_pos_request_filter_item_value_three_item",
+    "DevicesListPosRequestSortItem": ".devices_list_pos_request_sort_item",
+    "DevicesListPosRequestSortItemDir": ".devices_list_pos_request_sort_item_dir",
+    "DevicesListPosResponse": ".devices_list_pos_response",
+    "DevicesListPosResponseRowsItem": ".devices_list_pos_response_rows_item",
+    "DevicesUpdatePosResponse": ".devices_update_pos_response",
+    "ReportsCreatePosRequestItemLinesItem": ".reports_create_pos_request_item_lines_item",
+    "ReportsCreatePosRequestVatLinesItem": ".reports_create_pos_request_vat_lines_item",
+    "ReportsCreatePosResponse": ".reports_create_pos_response",
+    "ReportsCreatePosResponseVatLinesItem": ".reports_create_pos_response_vat_lines_item",
+    "ReportsGetPosResponse": ".reports_get_pos_response",
+    "ReportsGetPosResponseVatLinesItem": ".reports_get_pos_response_vat_lines_item",
+    "ReportsListPosRequestFilterItem": ".reports_list_pos_request_filter_item",
+    "ReportsListPosRequestFilterItemOp": ".reports_list_pos_request_filter_item_op",
+    "ReportsListPosRequestFilterItemValue": ".reports_list_pos_request_filter_item_value",
+    "ReportsListPosRequestFilterItemValueThreeItem": ".reports_list_pos_request_filter_item_value_three_item",
+    "ReportsListPosRequestSortItem": ".reports_list_pos_request_sort_item",
+    "ReportsListPosRequestSortItemDir": ".reports_list_pos_request_sort_item_dir",
+    "ReportsListPosResponse": ".reports_list_pos_response",
+    "ReportsListPosResponseRowsItem": ".reports_list_pos_response_rows_item",
 }
 
 
@@ -84,28 +80,28 @@ def __dir__():
 
 
 __all__ = [
-    "PostV1PosDevicesCreateResponse",
-    "PostV1PosDevicesListRequestFilterItem",
-    "PostV1PosDevicesListRequestFilterItemOp",
-    "PostV1PosDevicesListRequestFilterItemValue",
-    "PostV1PosDevicesListRequestFilterItemValueThreeItem",
-    "PostV1PosDevicesListRequestSortItem",
-    "PostV1PosDevicesListRequestSortItemDir",
-    "PostV1PosDevicesListResponse",
-    "PostV1PosDevicesListResponseRowsItem",
-    "PostV1PosDevicesUpdateResponse",
-    "PostV1PosReportsCreateRequestItemLinesItem",
-    "PostV1PosReportsCreateRequestVatLinesItem",
-    "PostV1PosReportsCreateResponse",
-    "PostV1PosReportsCreateResponseVatLinesItem",
-    "PostV1PosReportsGetResponse",
-    "PostV1PosReportsGetResponseVatLinesItem",
-    "PostV1PosReportsListRequestFilterItem",
-    "PostV1PosReportsListRequestFilterItemOp",
-    "PostV1PosReportsListRequestFilterItemValue",
-    "PostV1PosReportsListRequestFilterItemValueThreeItem",
-    "PostV1PosReportsListRequestSortItem",
-    "PostV1PosReportsListRequestSortItemDir",
-    "PostV1PosReportsListResponse",
-    "PostV1PosReportsListResponseRowsItem",
+    "DevicesCreatePosResponse",
+    "DevicesListPosRequestFilterItem",
+    "DevicesListPosRequestFilterItemOp",
+    "DevicesListPosRequestFilterItemValue",
+    "DevicesListPosRequestFilterItemValueThreeItem",
+    "DevicesListPosRequestSortItem",
+    "DevicesListPosRequestSortItemDir",
+    "DevicesListPosResponse",
+    "DevicesListPosResponseRowsItem",
+    "DevicesUpdatePosResponse",
+    "ReportsCreatePosRequestItemLinesItem",
+    "ReportsCreatePosRequestVatLinesItem",
+    "ReportsCreatePosResponse",
+    "ReportsCreatePosResponseVatLinesItem",
+    "ReportsGetPosResponse",
+    "ReportsGetPosResponseVatLinesItem",
+    "ReportsListPosRequestFilterItem",
+    "ReportsListPosRequestFilterItemOp",
+    "ReportsListPosRequestFilterItemValue",
+    "ReportsListPosRequestFilterItemValueThreeItem",
+    "ReportsListPosRequestSortItem",
+    "ReportsListPosRequestSortItemDir",
+    "ReportsListPosResponse",
+    "ReportsListPosResponseRowsItem",
 ]

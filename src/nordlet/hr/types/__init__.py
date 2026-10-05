@@ -6,281 +6,253 @@ import typing
 from importlib import import_module
 
 if typing.TYPE_CHECKING:
-    from .post_v1hr_contracts_create_request_salary_type import PostV1HrContractsCreateRequestSalaryType
-    from .post_v1hr_contracts_create_request_type import PostV1HrContractsCreateRequestType
-    from .post_v1hr_contracts_create_response import PostV1HrContractsCreateResponse
-    from .post_v1hr_contracts_create_response_salary_type import PostV1HrContractsCreateResponseSalaryType
-    from .post_v1hr_contracts_create_response_status import PostV1HrContractsCreateResponseStatus
-    from .post_v1hr_contracts_create_response_type import PostV1HrContractsCreateResponseType
-    from .post_v1hr_contracts_create_response_work_hours_unit import PostV1HrContractsCreateResponseWorkHoursUnit
-    from .post_v1hr_contracts_end_response import PostV1HrContractsEndResponse
-    from .post_v1hr_contracts_end_response_salary_type import PostV1HrContractsEndResponseSalaryType
-    from .post_v1hr_contracts_end_response_status import PostV1HrContractsEndResponseStatus
-    from .post_v1hr_contracts_end_response_type import PostV1HrContractsEndResponseType
-    from .post_v1hr_contracts_end_response_work_hours_unit import PostV1HrContractsEndResponseWorkHoursUnit
-    from .post_v1hr_contracts_list_request_filter_item import PostV1HrContractsListRequestFilterItem
-    from .post_v1hr_contracts_list_request_filter_item_op import PostV1HrContractsListRequestFilterItemOp
-    from .post_v1hr_contracts_list_request_filter_item_value import PostV1HrContractsListRequestFilterItemValue
-    from .post_v1hr_contracts_list_request_filter_item_value_three_item import (
-        PostV1HrContractsListRequestFilterItemValueThreeItem,
+    from .contracts_create_hr_request_salary_type import ContractsCreateHrRequestSalaryType
+    from .contracts_create_hr_request_type import ContractsCreateHrRequestType
+    from .contracts_create_hr_response import ContractsCreateHrResponse
+    from .contracts_create_hr_response_salary_type import ContractsCreateHrResponseSalaryType
+    from .contracts_create_hr_response_status import ContractsCreateHrResponseStatus
+    from .contracts_create_hr_response_type import ContractsCreateHrResponseType
+    from .contracts_create_hr_response_work_hours_unit import ContractsCreateHrResponseWorkHoursUnit
+    from .contracts_end_hr_response import ContractsEndHrResponse
+    from .contracts_end_hr_response_salary_type import ContractsEndHrResponseSalaryType
+    from .contracts_end_hr_response_status import ContractsEndHrResponseStatus
+    from .contracts_end_hr_response_type import ContractsEndHrResponseType
+    from .contracts_end_hr_response_work_hours_unit import ContractsEndHrResponseWorkHoursUnit
+    from .contracts_list_hr_request_filter_item import ContractsListHrRequestFilterItem
+    from .contracts_list_hr_request_filter_item_op import ContractsListHrRequestFilterItemOp
+    from .contracts_list_hr_request_filter_item_value import ContractsListHrRequestFilterItemValue
+    from .contracts_list_hr_request_filter_item_value_three_item import ContractsListHrRequestFilterItemValueThreeItem
+    from .contracts_list_hr_request_sort_item import ContractsListHrRequestSortItem
+    from .contracts_list_hr_request_sort_item_dir import ContractsListHrRequestSortItemDir
+    from .contracts_list_hr_response import ContractsListHrResponse
+    from .contracts_list_hr_response_rows_item import ContractsListHrResponseRowsItem
+    from .contracts_list_hr_response_rows_item_salary_type import ContractsListHrResponseRowsItemSalaryType
+    from .contracts_list_hr_response_rows_item_status import ContractsListHrResponseRowsItemStatus
+    from .contracts_list_hr_response_rows_item_type import ContractsListHrResponseRowsItemType
+    from .contracts_list_hr_response_rows_item_work_hours_unit import ContractsListHrResponseRowsItemWorkHoursUnit
+    from .employees_anonymize_hr_response import EmployeesAnonymizeHrResponse
+    from .employees_anonymize_hr_response_address import EmployeesAnonymizeHrResponseAddress
+    from .employees_anonymize_hr_response_attributes_item import EmployeesAnonymizeHrResponseAttributesItem
+    from .employees_anonymize_hr_response_status import EmployeesAnonymizeHrResponseStatus
+    from .employees_attachments_list_hr_response import EmployeesAttachmentsListHrResponse
+    from .employees_attachments_list_hr_response_rows_item import EmployeesAttachmentsListHrResponseRowsItem
+    from .employees_create_hr_request_address import EmployeesCreateHrRequestAddress
+    from .employees_create_hr_request_attributes_item import EmployeesCreateHrRequestAttributesItem
+    from .employees_create_hr_response import EmployeesCreateHrResponse
+    from .employees_create_hr_response_address import EmployeesCreateHrResponseAddress
+    from .employees_create_hr_response_attributes_item import EmployeesCreateHrResponseAttributesItem
+    from .employees_create_hr_response_status import EmployeesCreateHrResponseStatus
+    from .employees_delete_hr_response import EmployeesDeleteHrResponse
+    from .employees_fields_hr_response import EmployeesFieldsHrResponse
+    from .employees_fields_hr_response_fields_item import EmployeesFieldsHrResponseFieldsItem
+    from .employees_fields_hr_response_fields_item_kind import EmployeesFieldsHrResponseFieldsItemKind
+    from .employees_get_hr_response import EmployeesGetHrResponse
+    from .employees_get_hr_response_address import EmployeesGetHrResponseAddress
+    from .employees_get_hr_response_attributes_item import EmployeesGetHrResponseAttributesItem
+    from .employees_get_hr_response_status import EmployeesGetHrResponseStatus
+    from .employees_list_hr_request_filter_item import EmployeesListHrRequestFilterItem
+    from .employees_list_hr_request_filter_item_op import EmployeesListHrRequestFilterItemOp
+    from .employees_list_hr_request_filter_item_value import EmployeesListHrRequestFilterItemValue
+    from .employees_list_hr_request_filter_item_value_three_item import EmployeesListHrRequestFilterItemValueThreeItem
+    from .employees_list_hr_request_sort_item import EmployeesListHrRequestSortItem
+    from .employees_list_hr_request_sort_item_dir import EmployeesListHrRequestSortItemDir
+    from .employees_list_hr_response import EmployeesListHrResponse
+    from .employees_list_hr_response_rows_item import EmployeesListHrResponseRowsItem
+    from .employees_list_hr_response_rows_item_address import EmployeesListHrResponseRowsItemAddress
+    from .employees_list_hr_response_rows_item_attributes_item import EmployeesListHrResponseRowsItemAttributesItem
+    from .employees_list_hr_response_rows_item_status import EmployeesListHrResponseRowsItemStatus
+    from .employees_records_create_hr_request_type import EmployeesRecordsCreateHrRequestType
+    from .employees_records_create_hr_response import EmployeesRecordsCreateHrResponse
+    from .employees_records_create_hr_response_type import EmployeesRecordsCreateHrResponseType
+    from .employees_records_delete_hr_response import EmployeesRecordsDeleteHrResponse
+    from .employees_records_list_hr_request_filter_item import EmployeesRecordsListHrRequestFilterItem
+    from .employees_records_list_hr_request_filter_item_op import EmployeesRecordsListHrRequestFilterItemOp
+    from .employees_records_list_hr_request_filter_item_value import EmployeesRecordsListHrRequestFilterItemValue
+    from .employees_records_list_hr_request_filter_item_value_three_item import (
+        EmployeesRecordsListHrRequestFilterItemValueThreeItem,
     )
-    from .post_v1hr_contracts_list_request_sort_item import PostV1HrContractsListRequestSortItem
-    from .post_v1hr_contracts_list_request_sort_item_dir import PostV1HrContractsListRequestSortItemDir
-    from .post_v1hr_contracts_list_response import PostV1HrContractsListResponse
-    from .post_v1hr_contracts_list_response_rows_item import PostV1HrContractsListResponseRowsItem
-    from .post_v1hr_contracts_list_response_rows_item_salary_type import PostV1HrContractsListResponseRowsItemSalaryType
-    from .post_v1hr_contracts_list_response_rows_item_status import PostV1HrContractsListResponseRowsItemStatus
-    from .post_v1hr_contracts_list_response_rows_item_type import PostV1HrContractsListResponseRowsItemType
-    from .post_v1hr_contracts_list_response_rows_item_work_hours_unit import (
-        PostV1HrContractsListResponseRowsItemWorkHoursUnit,
+    from .employees_records_list_hr_request_sort_item import EmployeesRecordsListHrRequestSortItem
+    from .employees_records_list_hr_request_sort_item_dir import EmployeesRecordsListHrRequestSortItemDir
+    from .employees_records_list_hr_response import EmployeesRecordsListHrResponse
+    from .employees_records_list_hr_response_rows_item import EmployeesRecordsListHrResponseRowsItem
+    from .employees_records_list_hr_response_rows_item_type import EmployeesRecordsListHrResponseRowsItemType
+    from .employees_records_update_hr_request_type import EmployeesRecordsUpdateHrRequestType
+    from .employees_records_update_hr_response import EmployeesRecordsUpdateHrResponse
+    from .employees_records_update_hr_response_type import EmployeesRecordsUpdateHrResponseType
+    from .employees_update_hr_request_address import EmployeesUpdateHrRequestAddress
+    from .employees_update_hr_request_attributes_item import EmployeesUpdateHrRequestAttributesItem
+    from .employees_update_hr_request_status import EmployeesUpdateHrRequestStatus
+    from .employees_update_hr_response import EmployeesUpdateHrResponse
+    from .employees_update_hr_response_address import EmployeesUpdateHrResponseAddress
+    from .employees_update_hr_response_attributes_item import EmployeesUpdateHrResponseAttributesItem
+    from .employees_update_hr_response_status import EmployeesUpdateHrResponseStatus
+    from .incapacity_certificates_create_hr_response import IncapacityCertificatesCreateHrResponse
+    from .incapacity_certificates_list_hr_request_filter_item import IncapacityCertificatesListHrRequestFilterItem
+    from .incapacity_certificates_list_hr_request_filter_item_op import IncapacityCertificatesListHrRequestFilterItemOp
+    from .incapacity_certificates_list_hr_request_filter_item_value import (
+        IncapacityCertificatesListHrRequestFilterItemValue,
     )
-    from .post_v1hr_employees_anonymize_response import PostV1HrEmployeesAnonymizeResponse
-    from .post_v1hr_employees_anonymize_response_address import PostV1HrEmployeesAnonymizeResponseAddress
-    from .post_v1hr_employees_anonymize_response_attributes_item import PostV1HrEmployeesAnonymizeResponseAttributesItem
-    from .post_v1hr_employees_anonymize_response_status import PostV1HrEmployeesAnonymizeResponseStatus
-    from .post_v1hr_employees_attachments_list_response import PostV1HrEmployeesAttachmentsListResponse
-    from .post_v1hr_employees_attachments_list_response_rows_item import (
-        PostV1HrEmployeesAttachmentsListResponseRowsItem,
+    from .incapacity_certificates_list_hr_request_filter_item_value_three_item import (
+        IncapacityCertificatesListHrRequestFilterItemValueThreeItem,
     )
-    from .post_v1hr_employees_create_request_address import PostV1HrEmployeesCreateRequestAddress
-    from .post_v1hr_employees_create_request_attributes_item import PostV1HrEmployeesCreateRequestAttributesItem
-    from .post_v1hr_employees_create_response import PostV1HrEmployeesCreateResponse
-    from .post_v1hr_employees_create_response_address import PostV1HrEmployeesCreateResponseAddress
-    from .post_v1hr_employees_create_response_attributes_item import PostV1HrEmployeesCreateResponseAttributesItem
-    from .post_v1hr_employees_create_response_status import PostV1HrEmployeesCreateResponseStatus
-    from .post_v1hr_employees_delete_response import PostV1HrEmployeesDeleteResponse
-    from .post_v1hr_employees_fields_response import PostV1HrEmployeesFieldsResponse
-    from .post_v1hr_employees_fields_response_fields_item import PostV1HrEmployeesFieldsResponseFieldsItem
-    from .post_v1hr_employees_fields_response_fields_item_kind import PostV1HrEmployeesFieldsResponseFieldsItemKind
-    from .post_v1hr_employees_get_response import PostV1HrEmployeesGetResponse
-    from .post_v1hr_employees_get_response_address import PostV1HrEmployeesGetResponseAddress
-    from .post_v1hr_employees_get_response_attributes_item import PostV1HrEmployeesGetResponseAttributesItem
-    from .post_v1hr_employees_get_response_status import PostV1HrEmployeesGetResponseStatus
-    from .post_v1hr_employees_list_request_filter_item import PostV1HrEmployeesListRequestFilterItem
-    from .post_v1hr_employees_list_request_filter_item_op import PostV1HrEmployeesListRequestFilterItemOp
-    from .post_v1hr_employees_list_request_filter_item_value import PostV1HrEmployeesListRequestFilterItemValue
-    from .post_v1hr_employees_list_request_filter_item_value_three_item import (
-        PostV1HrEmployeesListRequestFilterItemValueThreeItem,
+    from .incapacity_certificates_list_hr_request_sort_item import IncapacityCertificatesListHrRequestSortItem
+    from .incapacity_certificates_list_hr_request_sort_item_dir import IncapacityCertificatesListHrRequestSortItemDir
+    from .incapacity_certificates_list_hr_response import IncapacityCertificatesListHrResponse
+    from .incapacity_certificates_list_hr_response_rows_item import IncapacityCertificatesListHrResponseRowsItem
+    from .leave_balances_list_hr_response import LeaveBalancesListHrResponse
+    from .leave_balances_list_hr_response_rows_item import LeaveBalancesListHrResponseRowsItem
+    from .leave_balances_set_hr_response import LeaveBalancesSetHrResponse
+    from .positions_create_hr_request_translations_value import PositionsCreateHrRequestTranslationsValue
+    from .positions_create_hr_response import PositionsCreateHrResponse
+    from .positions_create_hr_response_translations_value import PositionsCreateHrResponseTranslationsValue
+    from .positions_list_hr_request_filter_item import PositionsListHrRequestFilterItem
+    from .positions_list_hr_request_filter_item_op import PositionsListHrRequestFilterItemOp
+    from .positions_list_hr_request_filter_item_value import PositionsListHrRequestFilterItemValue
+    from .positions_list_hr_request_filter_item_value_three_item import PositionsListHrRequestFilterItemValueThreeItem
+    from .positions_list_hr_request_sort_item import PositionsListHrRequestSortItem
+    from .positions_list_hr_request_sort_item_dir import PositionsListHrRequestSortItemDir
+    from .positions_list_hr_response import PositionsListHrResponse
+    from .positions_list_hr_response_rows_item import PositionsListHrResponseRowsItem
+    from .positions_list_hr_response_rows_item_translations_value import (
+        PositionsListHrResponseRowsItemTranslationsValue,
     )
-    from .post_v1hr_employees_list_request_sort_item import PostV1HrEmployeesListRequestSortItem
-    from .post_v1hr_employees_list_request_sort_item_dir import PostV1HrEmployeesListRequestSortItemDir
-    from .post_v1hr_employees_list_response import PostV1HrEmployeesListResponse
-    from .post_v1hr_employees_list_response_rows_item import PostV1HrEmployeesListResponseRowsItem
-    from .post_v1hr_employees_list_response_rows_item_address import PostV1HrEmployeesListResponseRowsItemAddress
-    from .post_v1hr_employees_list_response_rows_item_attributes_item import (
-        PostV1HrEmployeesListResponseRowsItemAttributesItem,
-    )
-    from .post_v1hr_employees_list_response_rows_item_status import PostV1HrEmployeesListResponseRowsItemStatus
-    from .post_v1hr_employees_records_create_request_type import PostV1HrEmployeesRecordsCreateRequestType
-    from .post_v1hr_employees_records_create_response import PostV1HrEmployeesRecordsCreateResponse
-    from .post_v1hr_employees_records_create_response_type import PostV1HrEmployeesRecordsCreateResponseType
-    from .post_v1hr_employees_records_delete_response import PostV1HrEmployeesRecordsDeleteResponse
-    from .post_v1hr_employees_records_list_request_filter_item import PostV1HrEmployeesRecordsListRequestFilterItem
-    from .post_v1hr_employees_records_list_request_filter_item_op import PostV1HrEmployeesRecordsListRequestFilterItemOp
-    from .post_v1hr_employees_records_list_request_filter_item_value import (
-        PostV1HrEmployeesRecordsListRequestFilterItemValue,
-    )
-    from .post_v1hr_employees_records_list_request_filter_item_value_three_item import (
-        PostV1HrEmployeesRecordsListRequestFilterItemValueThreeItem,
-    )
-    from .post_v1hr_employees_records_list_request_sort_item import PostV1HrEmployeesRecordsListRequestSortItem
-    from .post_v1hr_employees_records_list_request_sort_item_dir import PostV1HrEmployeesRecordsListRequestSortItemDir
-    from .post_v1hr_employees_records_list_response import PostV1HrEmployeesRecordsListResponse
-    from .post_v1hr_employees_records_list_response_rows_item import PostV1HrEmployeesRecordsListResponseRowsItem
-    from .post_v1hr_employees_records_list_response_rows_item_type import (
-        PostV1HrEmployeesRecordsListResponseRowsItemType,
-    )
-    from .post_v1hr_employees_records_update_request_type import PostV1HrEmployeesRecordsUpdateRequestType
-    from .post_v1hr_employees_records_update_response import PostV1HrEmployeesRecordsUpdateResponse
-    from .post_v1hr_employees_records_update_response_type import PostV1HrEmployeesRecordsUpdateResponseType
-    from .post_v1hr_employees_update_request_address import PostV1HrEmployeesUpdateRequestAddress
-    from .post_v1hr_employees_update_request_attributes_item import PostV1HrEmployeesUpdateRequestAttributesItem
-    from .post_v1hr_employees_update_request_status import PostV1HrEmployeesUpdateRequestStatus
-    from .post_v1hr_employees_update_response import PostV1HrEmployeesUpdateResponse
-    from .post_v1hr_employees_update_response_address import PostV1HrEmployeesUpdateResponseAddress
-    from .post_v1hr_employees_update_response_attributes_item import PostV1HrEmployeesUpdateResponseAttributesItem
-    from .post_v1hr_employees_update_response_status import PostV1HrEmployeesUpdateResponseStatus
-    from .post_v1hr_incapacity_certificates_create_response import PostV1HrIncapacityCertificatesCreateResponse
-    from .post_v1hr_incapacity_certificates_list_request_filter_item import (
-        PostV1HrIncapacityCertificatesListRequestFilterItem,
-    )
-    from .post_v1hr_incapacity_certificates_list_request_filter_item_op import (
-        PostV1HrIncapacityCertificatesListRequestFilterItemOp,
-    )
-    from .post_v1hr_incapacity_certificates_list_request_filter_item_value import (
-        PostV1HrIncapacityCertificatesListRequestFilterItemValue,
-    )
-    from .post_v1hr_incapacity_certificates_list_request_filter_item_value_three_item import (
-        PostV1HrIncapacityCertificatesListRequestFilterItemValueThreeItem,
-    )
-    from .post_v1hr_incapacity_certificates_list_request_sort_item import (
-        PostV1HrIncapacityCertificatesListRequestSortItem,
-    )
-    from .post_v1hr_incapacity_certificates_list_request_sort_item_dir import (
-        PostV1HrIncapacityCertificatesListRequestSortItemDir,
-    )
-    from .post_v1hr_incapacity_certificates_list_response import PostV1HrIncapacityCertificatesListResponse
-    from .post_v1hr_incapacity_certificates_list_response_rows_item import (
-        PostV1HrIncapacityCertificatesListResponseRowsItem,
-    )
-    from .post_v1hr_leave_balances_list_response import PostV1HrLeaveBalancesListResponse
-    from .post_v1hr_leave_balances_list_response_rows_item import PostV1HrLeaveBalancesListResponseRowsItem
-    from .post_v1hr_leave_balances_set_response import PostV1HrLeaveBalancesSetResponse
-    from .post_v1hr_positions_create_request_translations_value import PostV1HrPositionsCreateRequestTranslationsValue
-    from .post_v1hr_positions_create_response import PostV1HrPositionsCreateResponse
-    from .post_v1hr_positions_create_response_translations_value import PostV1HrPositionsCreateResponseTranslationsValue
-    from .post_v1hr_positions_list_request_filter_item import PostV1HrPositionsListRequestFilterItem
-    from .post_v1hr_positions_list_request_filter_item_op import PostV1HrPositionsListRequestFilterItemOp
-    from .post_v1hr_positions_list_request_filter_item_value import PostV1HrPositionsListRequestFilterItemValue
-    from .post_v1hr_positions_list_request_filter_item_value_three_item import (
-        PostV1HrPositionsListRequestFilterItemValueThreeItem,
-    )
-    from .post_v1hr_positions_list_request_sort_item import PostV1HrPositionsListRequestSortItem
-    from .post_v1hr_positions_list_request_sort_item_dir import PostV1HrPositionsListRequestSortItemDir
-    from .post_v1hr_positions_list_response import PostV1HrPositionsListResponse
-    from .post_v1hr_positions_list_response_rows_item import PostV1HrPositionsListResponseRowsItem
-    from .post_v1hr_positions_list_response_rows_item_translations_value import (
-        PostV1HrPositionsListResponseRowsItemTranslationsValue,
-    )
-    from .post_v1hr_positions_update_request_translations_value import PostV1HrPositionsUpdateRequestTranslationsValue
-    from .post_v1hr_positions_update_response import PostV1HrPositionsUpdateResponse
-    from .post_v1hr_positions_update_response_translations_value import PostV1HrPositionsUpdateResponseTranslationsValue
-    from .post_v1hr_timesheets_delete_response import PostV1HrTimesheetsDeleteResponse
-    from .post_v1hr_timesheets_generate_response import PostV1HrTimesheetsGenerateResponse
-    from .post_v1hr_timesheets_get_response import PostV1HrTimesheetsGetResponse
-    from .post_v1hr_timesheets_get_response_days_item import PostV1HrTimesheetsGetResponseDaysItem
-    from .post_v1hr_timesheets_get_response_days_item_type import PostV1HrTimesheetsGetResponseDaysItemType
-    from .post_v1hr_timesheets_list_response import PostV1HrTimesheetsListResponse
-    from .post_v1hr_timesheets_list_response_rows_item import PostV1HrTimesheetsListResponseRowsItem
-    from .post_v1hr_timesheets_list_response_rows_item_days_item import PostV1HrTimesheetsListResponseRowsItemDaysItem
-    from .post_v1hr_timesheets_list_response_rows_item_days_item_type import (
-        PostV1HrTimesheetsListResponseRowsItemDaysItemType,
-    )
-    from .post_v1hr_timesheets_upsert_request_days_item import PostV1HrTimesheetsUpsertRequestDaysItem
-    from .post_v1hr_timesheets_upsert_request_days_item_type import PostV1HrTimesheetsUpsertRequestDaysItemType
-    from .post_v1hr_timesheets_upsert_response import PostV1HrTimesheetsUpsertResponse
-    from .post_v1hr_timesheets_upsert_response_days_item import PostV1HrTimesheetsUpsertResponseDaysItem
-    from .post_v1hr_timesheets_upsert_response_days_item_type import PostV1HrTimesheetsUpsertResponseDaysItemType
+    from .positions_update_hr_request_translations_value import PositionsUpdateHrRequestTranslationsValue
+    from .positions_update_hr_response import PositionsUpdateHrResponse
+    from .positions_update_hr_response_translations_value import PositionsUpdateHrResponseTranslationsValue
+    from .timesheets_delete_hr_response import TimesheetsDeleteHrResponse
+    from .timesheets_generate_hr_response import TimesheetsGenerateHrResponse
+    from .timesheets_get_hr_response import TimesheetsGetHrResponse
+    from .timesheets_get_hr_response_days_item import TimesheetsGetHrResponseDaysItem
+    from .timesheets_get_hr_response_days_item_type import TimesheetsGetHrResponseDaysItemType
+    from .timesheets_list_hr_response import TimesheetsListHrResponse
+    from .timesheets_list_hr_response_rows_item import TimesheetsListHrResponseRowsItem
+    from .timesheets_list_hr_response_rows_item_days_item import TimesheetsListHrResponseRowsItemDaysItem
+    from .timesheets_list_hr_response_rows_item_days_item_type import TimesheetsListHrResponseRowsItemDaysItemType
+    from .timesheets_upsert_hr_request_days_item import TimesheetsUpsertHrRequestDaysItem
+    from .timesheets_upsert_hr_request_days_item_type import TimesheetsUpsertHrRequestDaysItemType
+    from .timesheets_upsert_hr_response import TimesheetsUpsertHrResponse
+    from .timesheets_upsert_hr_response_days_item import TimesheetsUpsertHrResponseDaysItem
+    from .timesheets_upsert_hr_response_days_item_type import TimesheetsUpsertHrResponseDaysItemType
 _dynamic_imports: typing.Dict[str, str] = {
-    "PostV1HrContractsCreateRequestSalaryType": ".post_v1hr_contracts_create_request_salary_type",
-    "PostV1HrContractsCreateRequestType": ".post_v1hr_contracts_create_request_type",
-    "PostV1HrContractsCreateResponse": ".post_v1hr_contracts_create_response",
-    "PostV1HrContractsCreateResponseSalaryType": ".post_v1hr_contracts_create_response_salary_type",
-    "PostV1HrContractsCreateResponseStatus": ".post_v1hr_contracts_create_response_status",
-    "PostV1HrContractsCreateResponseType": ".post_v1hr_contracts_create_response_type",
-    "PostV1HrContractsCreateResponseWorkHoursUnit": ".post_v1hr_contracts_create_response_work_hours_unit",
-    "PostV1HrContractsEndResponse": ".post_v1hr_contracts_end_response",
-    "PostV1HrContractsEndResponseSalaryType": ".post_v1hr_contracts_end_response_salary_type",
-    "PostV1HrContractsEndResponseStatus": ".post_v1hr_contracts_end_response_status",
-    "PostV1HrContractsEndResponseType": ".post_v1hr_contracts_end_response_type",
-    "PostV1HrContractsEndResponseWorkHoursUnit": ".post_v1hr_contracts_end_response_work_hours_unit",
-    "PostV1HrContractsListRequestFilterItem": ".post_v1hr_contracts_list_request_filter_item",
-    "PostV1HrContractsListRequestFilterItemOp": ".post_v1hr_contracts_list_request_filter_item_op",
-    "PostV1HrContractsListRequestFilterItemValue": ".post_v1hr_contracts_list_request_filter_item_value",
-    "PostV1HrContractsListRequestFilterItemValueThreeItem": ".post_v1hr_contracts_list_request_filter_item_value_three_item",
-    "PostV1HrContractsListRequestSortItem": ".post_v1hr_contracts_list_request_sort_item",
-    "PostV1HrContractsListRequestSortItemDir": ".post_v1hr_contracts_list_request_sort_item_dir",
-    "PostV1HrContractsListResponse": ".post_v1hr_contracts_list_response",
-    "PostV1HrContractsListResponseRowsItem": ".post_v1hr_contracts_list_response_rows_item",
-    "PostV1HrContractsListResponseRowsItemSalaryType": ".post_v1hr_contracts_list_response_rows_item_salary_type",
-    "PostV1HrContractsListResponseRowsItemStatus": ".post_v1hr_contracts_list_response_rows_item_status",
-    "PostV1HrContractsListResponseRowsItemType": ".post_v1hr_contracts_list_response_rows_item_type",
-    "PostV1HrContractsListResponseRowsItemWorkHoursUnit": ".post_v1hr_contracts_list_response_rows_item_work_hours_unit",
-    "PostV1HrEmployeesAnonymizeResponse": ".post_v1hr_employees_anonymize_response",
-    "PostV1HrEmployeesAnonymizeResponseAddress": ".post_v1hr_employees_anonymize_response_address",
-    "PostV1HrEmployeesAnonymizeResponseAttributesItem": ".post_v1hr_employees_anonymize_response_attributes_item",
-    "PostV1HrEmployeesAnonymizeResponseStatus": ".post_v1hr_employees_anonymize_response_status",
-    "PostV1HrEmployeesAttachmentsListResponse": ".post_v1hr_employees_attachments_list_response",
-    "PostV1HrEmployeesAttachmentsListResponseRowsItem": ".post_v1hr_employees_attachments_list_response_rows_item",
-    "PostV1HrEmployeesCreateRequestAddress": ".post_v1hr_employees_create_request_address",
-    "PostV1HrEmployeesCreateRequestAttributesItem": ".post_v1hr_employees_create_request_attributes_item",
-    "PostV1HrEmployeesCreateResponse": ".post_v1hr_employees_create_response",
-    "PostV1HrEmployeesCreateResponseAddress": ".post_v1hr_employees_create_response_address",
-    "PostV1HrEmployeesCreateResponseAttributesItem": ".post_v1hr_employees_create_response_attributes_item",
-    "PostV1HrEmployeesCreateResponseStatus": ".post_v1hr_employees_create_response_status",
-    "PostV1HrEmployeesDeleteResponse": ".post_v1hr_employees_delete_response",
-    "PostV1HrEmployeesFieldsResponse": ".post_v1hr_employees_fields_response",
-    "PostV1HrEmployeesFieldsResponseFieldsItem": ".post_v1hr_employees_fields_response_fields_item",
-    "PostV1HrEmployeesFieldsResponseFieldsItemKind": ".post_v1hr_employees_fields_response_fields_item_kind",
-    "PostV1HrEmployeesGetResponse": ".post_v1hr_employees_get_response",
-    "PostV1HrEmployeesGetResponseAddress": ".post_v1hr_employees_get_response_address",
-    "PostV1HrEmployeesGetResponseAttributesItem": ".post_v1hr_employees_get_response_attributes_item",
-    "PostV1HrEmployeesGetResponseStatus": ".post_v1hr_employees_get_response_status",
-    "PostV1HrEmployeesListRequestFilterItem": ".post_v1hr_employees_list_request_filter_item",
-    "PostV1HrEmployeesListRequestFilterItemOp": ".post_v1hr_employees_list_request_filter_item_op",
-    "PostV1HrEmployeesListRequestFilterItemValue": ".post_v1hr_employees_list_request_filter_item_value",
-    "PostV1HrEmployeesListRequestFilterItemValueThreeItem": ".post_v1hr_employees_list_request_filter_item_value_three_item",
-    "PostV1HrEmployeesListRequestSortItem": ".post_v1hr_employees_list_request_sort_item",
-    "PostV1HrEmployeesListRequestSortItemDir": ".post_v1hr_employees_list_request_sort_item_dir",
-    "PostV1HrEmployeesListResponse": ".post_v1hr_employees_list_response",
-    "PostV1HrEmployeesListResponseRowsItem": ".post_v1hr_employees_list_response_rows_item",
-    "PostV1HrEmployeesListResponseRowsItemAddress": ".post_v1hr_employees_list_response_rows_item_address",
-    "PostV1HrEmployeesListResponseRowsItemAttributesItem": ".post_v1hr_employees_list_response_rows_item_attributes_item",
-    "PostV1HrEmployeesListResponseRowsItemStatus": ".post_v1hr_employees_list_response_rows_item_status",
-    "PostV1HrEmployeesRecordsCreateRequestType": ".post_v1hr_employees_records_create_request_type",
-    "PostV1HrEmployeesRecordsCreateResponse": ".post_v1hr_employees_records_create_response",
-    "PostV1HrEmployeesRecordsCreateResponseType": ".post_v1hr_employees_records_create_response_type",
-    "PostV1HrEmployeesRecordsDeleteResponse": ".post_v1hr_employees_records_delete_response",
-    "PostV1HrEmployeesRecordsListRequestFilterItem": ".post_v1hr_employees_records_list_request_filter_item",
-    "PostV1HrEmployeesRecordsListRequestFilterItemOp": ".post_v1hr_employees_records_list_request_filter_item_op",
-    "PostV1HrEmployeesRecordsListRequestFilterItemValue": ".post_v1hr_employees_records_list_request_filter_item_value",
-    "PostV1HrEmployeesRecordsListRequestFilterItemValueThreeItem": ".post_v1hr_employees_records_list_request_filter_item_value_three_item",
-    "PostV1HrEmployeesRecordsListRequestSortItem": ".post_v1hr_employees_records_list_request_sort_item",
-    "PostV1HrEmployeesRecordsListRequestSortItemDir": ".post_v1hr_employees_records_list_request_sort_item_dir",
-    "PostV1HrEmployeesRecordsListResponse": ".post_v1hr_employees_records_list_response",
-    "PostV1HrEmployeesRecordsListResponseRowsItem": ".post_v1hr_employees_records_list_response_rows_item",
-    "PostV1HrEmployeesRecordsListResponseRowsItemType": ".post_v1hr_employees_records_list_response_rows_item_type",
-    "PostV1HrEmployeesRecordsUpdateRequestType": ".post_v1hr_employees_records_update_request_type",
-    "PostV1HrEmployeesRecordsUpdateResponse": ".post_v1hr_employees_records_update_response",
-    "PostV1HrEmployeesRecordsUpdateResponseType": ".post_v1hr_employees_records_update_response_type",
-    "PostV1HrEmployeesUpdateRequestAddress": ".post_v1hr_employees_update_request_address",
-    "PostV1HrEmployeesUpdateRequestAttributesItem": ".post_v1hr_employees_update_request_attributes_item",
-    "PostV1HrEmployeesUpdateRequestStatus": ".post_v1hr_employees_update_request_status",
-    "PostV1HrEmployeesUpdateResponse": ".post_v1hr_employees_update_response",
-    "PostV1HrEmployeesUpdateResponseAddress": ".post_v1hr_employees_update_response_address",
-    "PostV1HrEmployeesUpdateResponseAttributesItem": ".post_v1hr_employees_update_response_attributes_item",
-    "PostV1HrEmployeesUpdateResponseStatus": ".post_v1hr_employees_update_response_status",
-    "PostV1HrIncapacityCertificatesCreateResponse": ".post_v1hr_incapacity_certificates_create_response",
-    "PostV1HrIncapacityCertificatesListRequestFilterItem": ".post_v1hr_incapacity_certificates_list_request_filter_item",
-    "PostV1HrIncapacityCertificatesListRequestFilterItemOp": ".post_v1hr_incapacity_certificates_list_request_filter_item_op",
-    "PostV1HrIncapacityCertificatesListRequestFilterItemValue": ".post_v1hr_incapacity_certificates_list_request_filter_item_value",
-    "PostV1HrIncapacityCertificatesListRequestFilterItemValueThreeItem": ".post_v1hr_incapacity_certificates_list_request_filter_item_value_three_item",
-    "PostV1HrIncapacityCertificatesListRequestSortItem": ".post_v1hr_incapacity_certificates_list_request_sort_item",
-    "PostV1HrIncapacityCertificatesListRequestSortItemDir": ".post_v1hr_incapacity_certificates_list_request_sort_item_dir",
-    "PostV1HrIncapacityCertificatesListResponse": ".post_v1hr_incapacity_certificates_list_response",
-    "PostV1HrIncapacityCertificatesListResponseRowsItem": ".post_v1hr_incapacity_certificates_list_response_rows_item",
-    "PostV1HrLeaveBalancesListResponse": ".post_v1hr_leave_balances_list_response",
-    "PostV1HrLeaveBalancesListResponseRowsItem": ".post_v1hr_leave_balances_list_response_rows_item",
-    "PostV1HrLeaveBalancesSetResponse": ".post_v1hr_leave_balances_set_response",
-    "PostV1HrPositionsCreateRequestTranslationsValue": ".post_v1hr_positions_create_request_translations_value",
-    "PostV1HrPositionsCreateResponse": ".post_v1hr_positions_create_response",
-    "PostV1HrPositionsCreateResponseTranslationsValue": ".post_v1hr_positions_create_response_translations_value",
-    "PostV1HrPositionsListRequestFilterItem": ".post_v1hr_positions_list_request_filter_item",
-    "PostV1HrPositionsListRequestFilterItemOp": ".post_v1hr_positions_list_request_filter_item_op",
-    "PostV1HrPositionsListRequestFilterItemValue": ".post_v1hr_positions_list_request_filter_item_value",
-    "PostV1HrPositionsListRequestFilterItemValueThreeItem": ".post_v1hr_positions_list_request_filter_item_value_three_item",
-    "PostV1HrPositionsListRequestSortItem": ".post_v1hr_positions_list_request_sort_item",
-    "PostV1HrPositionsListRequestSortItemDir": ".post_v1hr_positions_list_request_sort_item_dir",
-    "PostV1HrPositionsListResponse": ".post_v1hr_positions_list_response",
-    "PostV1HrPositionsListResponseRowsItem": ".post_v1hr_positions_list_response_rows_item",
-    "PostV1HrPositionsListResponseRowsItemTranslationsValue": ".post_v1hr_positions_list_response_rows_item_translations_value",
-    "PostV1HrPositionsUpdateRequestTranslationsValue": ".post_v1hr_positions_update_request_translations_value",
-    "PostV1HrPositionsUpdateResponse": ".post_v1hr_positions_update_response",
-    "PostV1HrPositionsUpdateResponseTranslationsValue": ".post_v1hr_positions_update_response_translations_value",
-    "PostV1HrTimesheetsDeleteResponse": ".post_v1hr_timesheets_delete_response",
-    "PostV1HrTimesheetsGenerateResponse": ".post_v1hr_timesheets_generate_response",
-    "PostV1HrTimesheetsGetResponse": ".post_v1hr_timesheets_get_response",
-    "PostV1HrTimesheetsGetResponseDaysItem": ".post_v1hr_timesheets_get_response_days_item",
-    "PostV1HrTimesheetsGetResponseDaysItemType": ".post_v1hr_timesheets_get_response_days_item_type",
-    "PostV1HrTimesheetsListResponse": ".post_v1hr_timesheets_list_response",
-    "PostV1HrTimesheetsListResponseRowsItem": ".post_v1hr_timesheets_list_response_rows_item",
-    "PostV1HrTimesheetsListResponseRowsItemDaysItem": ".post_v1hr_timesheets_list_response_rows_item_days_item",
-    "PostV1HrTimesheetsListResponseRowsItemDaysItemType": ".post_v1hr_timesheets_list_response_rows_item_days_item_type",
-    "PostV1HrTimesheetsUpsertRequestDaysItem": ".post_v1hr_timesheets_upsert_request_days_item",
-    "PostV1HrTimesheetsUpsertRequestDaysItemType": ".post_v1hr_timesheets_upsert_request_days_item_type",
-    "PostV1HrTimesheetsUpsertResponse": ".post_v1hr_timesheets_upsert_response",
-    "PostV1HrTimesheetsUpsertResponseDaysItem": ".post_v1hr_timesheets_upsert_response_days_item",
-    "PostV1HrTimesheetsUpsertResponseDaysItemType": ".post_v1hr_timesheets_upsert_response_days_item_type",
+    "ContractsCreateHrRequestSalaryType": ".contracts_create_hr_request_salary_type",
+    "ContractsCreateHrRequestType": ".contracts_create_hr_request_type",
+    "ContractsCreateHrResponse": ".contracts_create_hr_response",
+    "ContractsCreateHrResponseSalaryType": ".contracts_create_hr_response_salary_type",
+    "ContractsCreateHrResponseStatus": ".contracts_create_hr_response_status",
+    "ContractsCreateHrResponseType": ".contracts_create_hr_response_type",
+    "ContractsCreateHrResponseWorkHoursUnit": ".contracts_create_hr_response_work_hours_unit",
+    "ContractsEndHrResponse": ".contracts_end_hr_response",
+    "ContractsEndHrResponseSalaryType": ".contracts_end_hr_response_salary_type",
+    "ContractsEndHrResponseStatus": ".contracts_end_hr_response_status",
+    "ContractsEndHrResponseType": ".contracts_end_hr_response_type",
+    "ContractsEndHrResponseWorkHoursUnit": ".contracts_end_hr_response_work_hours_unit",
+    "ContractsListHrRequestFilterItem": ".contracts_list_hr_request_filter_item",
+    "ContractsListHrRequestFilterItemOp": ".contracts_list_hr_request_filter_item_op",
+    "ContractsListHrRequestFilterItemValue": ".contracts_list_hr_request_filter_item_value",
+    "ContractsListHrRequestFilterItemValueThreeItem": ".contracts_list_hr_request_filter_item_value_three_item",
+    "ContractsListHrRequestSortItem": ".contracts_list_hr_request_sort_item",
+    "ContractsListHrRequestSortItemDir": ".contracts_list_hr_request_sort_item_dir",
+    "ContractsListHrResponse": ".contracts_list_hr_response",
+    "ContractsListHrResponseRowsItem": ".contracts_list_hr_response_rows_item",
+    "ContractsListHrResponseRowsItemSalaryType": ".contracts_list_hr_response_rows_item_salary_type",
+    "ContractsListHrResponseRowsItemStatus": ".contracts_list_hr_response_rows_item_status",
+    "ContractsListHrResponseRowsItemType": ".contracts_list_hr_response_rows_item_type",
+    "ContractsListHrResponseRowsItemWorkHoursUnit": ".contracts_list_hr_response_rows_item_work_hours_unit",
+    "EmployeesAnonymizeHrResponse": ".employees_anonymize_hr_response",
+    "EmployeesAnonymizeHrResponseAddress": ".employees_anonymize_hr_response_address",
+    "EmployeesAnonymizeHrResponseAttributesItem": ".employees_anonymize_hr_response_attributes_item",
+    "EmployeesAnonymizeHrResponseStatus": ".employees_anonymize_hr_response_status",
+    "EmployeesAttachmentsListHrResponse": ".employees_attachments_list_hr_response",
+    "EmployeesAttachmentsListHrResponseRowsItem": ".employees_attachments_list_hr_response_rows_item",
+    "EmployeesCreateHrRequestAddress": ".employees_create_hr_request_address",
+    "EmployeesCreateHrRequestAttributesItem": ".employees_create_hr_request_attributes_item",
+    "EmployeesCreateHrResponse": ".employees_create_hr_response",
+    "EmployeesCreateHrResponseAddress": ".employees_create_hr_response_address",
+    "EmployeesCreateHrResponseAttributesItem": ".employees_create_hr_response_attributes_item",
+    "EmployeesCreateHrResponseStatus": ".employees_create_hr_response_status",
+    "EmployeesDeleteHrResponse": ".employees_delete_hr_response",
+    "EmployeesFieldsHrResponse": ".employees_fields_hr_response",
+    "EmployeesFieldsHrResponseFieldsItem": ".employees_fields_hr_response_fields_item",
+    "EmployeesFieldsHrResponseFieldsItemKind": ".employees_fields_hr_response_fields_item_kind",
+    "EmployeesGetHrResponse": ".employees_get_hr_response",
+    "EmployeesGetHrResponseAddress": ".employees_get_hr_response_address",
+    "EmployeesGetHrResponseAttributesItem": ".employees_get_hr_response_attributes_item",
+    "EmployeesGetHrResponseStatus": ".employees_get_hr_response_status",
+    "EmployeesListHrRequestFilterItem": ".employees_list_hr_request_filter_item",
+    "EmployeesListHrRequestFilterItemOp": ".employees_list_hr_request_filter_item_op",
+    "EmployeesListHrRequestFilterItemValue": ".employees_list_hr_request_filter_item_value",
+    "EmployeesListHrRequestFilterItemValueThreeItem": ".employees_list_hr_request_filter_item_value_three_item",
+    "EmployeesListHrRequestSortItem": ".employees_list_hr_request_sort_item",
+    "EmployeesListHrRequestSortItemDir": ".employees_list_hr_request_sort_item_dir",
+    "EmployeesListHrResponse": ".employees_list_hr_response",
+    "EmployeesListHrResponseRowsItem": ".employees_list_hr_response_rows_item",
+    "EmployeesListHrResponseRowsItemAddress": ".employees_list_hr_response_rows_item_address",
+    "EmployeesListHrResponseRowsItemAttributesItem": ".employees_list_hr_response_rows_item_attributes_item",
+    "EmployeesListHrResponseRowsItemStatus": ".employees_list_hr_response_rows_item_status",
+    "EmployeesRecordsCreateHrRequestType": ".employees_records_create_hr_request_type",
+    "EmployeesRecordsCreateHrResponse": ".employees_records_create_hr_response",
+    "EmployeesRecordsCreateHrResponseType": ".employees_records_create_hr_response_type",
+    "EmployeesRecordsDeleteHrResponse": ".employees_records_delete_hr_response",
+    "EmployeesRecordsListHrRequestFilterItem": ".employees_records_list_hr_request_filter_item",
+    "EmployeesRecordsListHrRequestFilterItemOp": ".employees_records_list_hr_request_filter_item_op",
+    "EmployeesRecordsListHrRequestFilterItemValue": ".employees_records_list_hr_request_filter_item_value",
+    "EmployeesRecordsListHrRequestFilterItemValueThreeItem": ".employees_records_list_hr_request_filter_item_value_three_item",
+    "EmployeesRecordsListHrRequestSortItem": ".employees_records_list_hr_request_sort_item",
+    "EmployeesRecordsListHrRequestSortItemDir": ".employees_records_list_hr_request_sort_item_dir",
+    "EmployeesRecordsListHrResponse": ".employees_records_list_hr_response",
+    "EmployeesRecordsListHrResponseRowsItem": ".employees_records_list_hr_response_rows_item",
+    "EmployeesRecordsListHrResponseRowsItemType": ".employees_records_list_hr_response_rows_item_type",
+    "EmployeesRecordsUpdateHrRequestType": ".employees_records_update_hr_request_type",
+    "EmployeesRecordsUpdateHrResponse": ".employees_records_update_hr_response",
+    "EmployeesRecordsUpdateHrResponseType": ".employees_records_update_hr_response_type",
+    "EmployeesUpdateHrRequestAddress": ".employees_update_hr_request_address",
+    "EmployeesUpdateHrRequestAttributesItem": ".employees_update_hr_request_attributes_item",
+    "EmployeesUpdateHrRequestStatus": ".employees_update_hr_request_status",
+    "EmployeesUpdateHrResponse": ".employees_update_hr_response",
+    "EmployeesUpdateHrResponseAddress": ".employees_update_hr_response_address",
+    "EmployeesUpdateHrResponseAttributesItem": ".employees_update_hr_response_attributes_item",
+    "EmployeesUpdateHrResponseStatus": ".employees_update_hr_response_status",
+    "IncapacityCertificatesCreateHrResponse": ".incapacity_certificates_create_hr_response",
+    "IncapacityCertificatesListHrRequestFilterItem": ".incapacity_certificates_list_hr_request_filter_item",
+    "IncapacityCertificatesListHrRequestFilterItemOp": ".incapacity_certificates_list_hr_request_filter_item_op",
+    "IncapacityCertificatesListHrRequestFilterItemValue": ".incapacity_certificates_list_hr_request_filter_item_value",
+    "IncapacityCertificatesListHrRequestFilterItemValueThreeItem": ".incapacity_certificates_list_hr_request_filter_item_value_three_item",
+    "IncapacityCertificatesListHrRequestSortItem": ".incapacity_certificates_list_hr_request_sort_item",
+    "IncapacityCertificatesListHrRequestSortItemDir": ".incapacity_certificates_list_hr_request_sort_item_dir",
+    "IncapacityCertificatesListHrResponse": ".incapacity_certificates_list_hr_response",
+    "IncapacityCertificatesListHrResponseRowsItem": ".incapacity_certificates_list_hr_response_rows_item",
+    "LeaveBalancesListHrResponse": ".leave_balances_list_hr_response",
+    "LeaveBalancesListHrResponseRowsItem": ".leave_balances_list_hr_response_rows_item",
+    "LeaveBalancesSetHrResponse": ".leave_balances_set_hr_response",
+    "PositionsCreateHrRequestTranslationsValue": ".positions_create_hr_request_translations_value",
+    "PositionsCreateHrResponse": ".positions_create_hr_response",
+    "PositionsCreateHrResponseTranslationsValue": ".positions_create_hr_response_translations_value",
+    "PositionsListHrRequestFilterItem": ".positions_list_hr_request_filter_item",
+    "PositionsListHrRequestFilterItemOp": ".positions_list_hr_request_filter_item_op",
+    "PositionsListHrRequestFilterItemValue": ".positions_list_hr_request_filter_item_value",
+    "PositionsListHrRequestFilterItemValueThreeItem": ".positions_list_hr_request_filter_item_value_three_item",
+    "PositionsListHrRequestSortItem": ".positions_list_hr_request_sort_item",
+    "PositionsListHrRequestSortItemDir": ".positions_list_hr_request_sort_item_dir",
+    "PositionsListHrResponse": ".positions_list_hr_response",
+    "PositionsListHrResponseRowsItem": ".positions_list_hr_response_rows_item",
+    "PositionsListHrResponseRowsItemTranslationsValue": ".positions_list_hr_response_rows_item_translations_value",
+    "PositionsUpdateHrRequestTranslationsValue": ".positions_update_hr_request_translations_value",
+    "PositionsUpdateHrResponse": ".positions_update_hr_response",
+    "PositionsUpdateHrResponseTranslationsValue": ".positions_update_hr_response_translations_value",
+    "TimesheetsDeleteHrResponse": ".timesheets_delete_hr_response",
+    "TimesheetsGenerateHrResponse": ".timesheets_generate_hr_response",
+    "TimesheetsGetHrResponse": ".timesheets_get_hr_response",
+    "TimesheetsGetHrResponseDaysItem": ".timesheets_get_hr_response_days_item",
+    "TimesheetsGetHrResponseDaysItemType": ".timesheets_get_hr_response_days_item_type",
+    "TimesheetsListHrResponse": ".timesheets_list_hr_response",
+    "TimesheetsListHrResponseRowsItem": ".timesheets_list_hr_response_rows_item",
+    "TimesheetsListHrResponseRowsItemDaysItem": ".timesheets_list_hr_response_rows_item_days_item",
+    "TimesheetsListHrResponseRowsItemDaysItemType": ".timesheets_list_hr_response_rows_item_days_item_type",
+    "TimesheetsUpsertHrRequestDaysItem": ".timesheets_upsert_hr_request_days_item",
+    "TimesheetsUpsertHrRequestDaysItemType": ".timesheets_upsert_hr_request_days_item_type",
+    "TimesheetsUpsertHrResponse": ".timesheets_upsert_hr_response",
+    "TimesheetsUpsertHrResponseDaysItem": ".timesheets_upsert_hr_response_days_item",
+    "TimesheetsUpsertHrResponseDaysItemType": ".timesheets_upsert_hr_response_days_item_type",
 }
 
 
@@ -306,123 +278,123 @@ def __dir__():
 
 
 __all__ = [
-    "PostV1HrContractsCreateRequestSalaryType",
-    "PostV1HrContractsCreateRequestType",
-    "PostV1HrContractsCreateResponse",
-    "PostV1HrContractsCreateResponseSalaryType",
-    "PostV1HrContractsCreateResponseStatus",
-    "PostV1HrContractsCreateResponseType",
-    "PostV1HrContractsCreateResponseWorkHoursUnit",
-    "PostV1HrContractsEndResponse",
-    "PostV1HrContractsEndResponseSalaryType",
-    "PostV1HrContractsEndResponseStatus",
-    "PostV1HrContractsEndResponseType",
-    "PostV1HrContractsEndResponseWorkHoursUnit",
-    "PostV1HrContractsListRequestFilterItem",
-    "PostV1HrContractsListRequestFilterItemOp",
-    "PostV1HrContractsListRequestFilterItemValue",
-    "PostV1HrContractsListRequestFilterItemValueThreeItem",
-    "PostV1HrContractsListRequestSortItem",
-    "PostV1HrContractsListRequestSortItemDir",
-    "PostV1HrContractsListResponse",
-    "PostV1HrContractsListResponseRowsItem",
-    "PostV1HrContractsListResponseRowsItemSalaryType",
-    "PostV1HrContractsListResponseRowsItemStatus",
-    "PostV1HrContractsListResponseRowsItemType",
-    "PostV1HrContractsListResponseRowsItemWorkHoursUnit",
-    "PostV1HrEmployeesAnonymizeResponse",
-    "PostV1HrEmployeesAnonymizeResponseAddress",
-    "PostV1HrEmployeesAnonymizeResponseAttributesItem",
-    "PostV1HrEmployeesAnonymizeResponseStatus",
-    "PostV1HrEmployeesAttachmentsListResponse",
-    "PostV1HrEmployeesAttachmentsListResponseRowsItem",
-    "PostV1HrEmployeesCreateRequestAddress",
-    "PostV1HrEmployeesCreateRequestAttributesItem",
-    "PostV1HrEmployeesCreateResponse",
-    "PostV1HrEmployeesCreateResponseAddress",
-    "PostV1HrEmployeesCreateResponseAttributesItem",
-    "PostV1HrEmployeesCreateResponseStatus",
-    "PostV1HrEmployeesDeleteResponse",
-    "PostV1HrEmployeesFieldsResponse",
-    "PostV1HrEmployeesFieldsResponseFieldsItem",
-    "PostV1HrEmployeesFieldsResponseFieldsItemKind",
-    "PostV1HrEmployeesGetResponse",
-    "PostV1HrEmployeesGetResponseAddress",
-    "PostV1HrEmployeesGetResponseAttributesItem",
-    "PostV1HrEmployeesGetResponseStatus",
-    "PostV1HrEmployeesListRequestFilterItem",
-    "PostV1HrEmployeesListRequestFilterItemOp",
-    "PostV1HrEmployeesListRequestFilterItemValue",
-    "PostV1HrEmployeesListRequestFilterItemValueThreeItem",
-    "PostV1HrEmployeesListRequestSortItem",
-    "PostV1HrEmployeesListRequestSortItemDir",
-    "PostV1HrEmployeesListResponse",
-    "PostV1HrEmployeesListResponseRowsItem",
-    "PostV1HrEmployeesListResponseRowsItemAddress",
-    "PostV1HrEmployeesListResponseRowsItemAttributesItem",
-    "PostV1HrEmployeesListResponseRowsItemStatus",
-    "PostV1HrEmployeesRecordsCreateRequestType",
-    "PostV1HrEmployeesRecordsCreateResponse",
-    "PostV1HrEmployeesRecordsCreateResponseType",
-    "PostV1HrEmployeesRecordsDeleteResponse",
-    "PostV1HrEmployeesRecordsListRequestFilterItem",
-    "PostV1HrEmployeesRecordsListRequestFilterItemOp",
-    "PostV1HrEmployeesRecordsListRequestFilterItemValue",
-    "PostV1HrEmployeesRecordsListRequestFilterItemValueThreeItem",
-    "PostV1HrEmployeesRecordsListRequestSortItem",
-    "PostV1HrEmployeesRecordsListRequestSortItemDir",
-    "PostV1HrEmployeesRecordsListResponse",
-    "PostV1HrEmployeesRecordsListResponseRowsItem",
-    "PostV1HrEmployeesRecordsListResponseRowsItemType",
-    "PostV1HrEmployeesRecordsUpdateRequestType",
-    "PostV1HrEmployeesRecordsUpdateResponse",
-    "PostV1HrEmployeesRecordsUpdateResponseType",
-    "PostV1HrEmployeesUpdateRequestAddress",
-    "PostV1HrEmployeesUpdateRequestAttributesItem",
-    "PostV1HrEmployeesUpdateRequestStatus",
-    "PostV1HrEmployeesUpdateResponse",
-    "PostV1HrEmployeesUpdateResponseAddress",
-    "PostV1HrEmployeesUpdateResponseAttributesItem",
-    "PostV1HrEmployeesUpdateResponseStatus",
-    "PostV1HrIncapacityCertificatesCreateResponse",
-    "PostV1HrIncapacityCertificatesListRequestFilterItem",
-    "PostV1HrIncapacityCertificatesListRequestFilterItemOp",
-    "PostV1HrIncapacityCertificatesListRequestFilterItemValue",
-    "PostV1HrIncapacityCertificatesListRequestFilterItemValueThreeItem",
-    "PostV1HrIncapacityCertificatesListRequestSortItem",
-    "PostV1HrIncapacityCertificatesListRequestSortItemDir",
-    "PostV1HrIncapacityCertificatesListResponse",
-    "PostV1HrIncapacityCertificatesListResponseRowsItem",
-    "PostV1HrLeaveBalancesListResponse",
-    "PostV1HrLeaveBalancesListResponseRowsItem",
-    "PostV1HrLeaveBalancesSetResponse",
-    "PostV1HrPositionsCreateRequestTranslationsValue",
-    "PostV1HrPositionsCreateResponse",
-    "PostV1HrPositionsCreateResponseTranslationsValue",
-    "PostV1HrPositionsListRequestFilterItem",
-    "PostV1HrPositionsListRequestFilterItemOp",
-    "PostV1HrPositionsListRequestFilterItemValue",
-    "PostV1HrPositionsListRequestFilterItemValueThreeItem",
-    "PostV1HrPositionsListRequestSortItem",
-    "PostV1HrPositionsListRequestSortItemDir",
-    "PostV1HrPositionsListResponse",
-    "PostV1HrPositionsListResponseRowsItem",
-    "PostV1HrPositionsListResponseRowsItemTranslationsValue",
-    "PostV1HrPositionsUpdateRequestTranslationsValue",
-    "PostV1HrPositionsUpdateResponse",
-    "PostV1HrPositionsUpdateResponseTranslationsValue",
-    "PostV1HrTimesheetsDeleteResponse",
-    "PostV1HrTimesheetsGenerateResponse",
-    "PostV1HrTimesheetsGetResponse",
-    "PostV1HrTimesheetsGetResponseDaysItem",
-    "PostV1HrTimesheetsGetResponseDaysItemType",
-    "PostV1HrTimesheetsListResponse",
-    "PostV1HrTimesheetsListResponseRowsItem",
-    "PostV1HrTimesheetsListResponseRowsItemDaysItem",
-    "PostV1HrTimesheetsListResponseRowsItemDaysItemType",
-    "PostV1HrTimesheetsUpsertRequestDaysItem",
-    "PostV1HrTimesheetsUpsertRequestDaysItemType",
-    "PostV1HrTimesheetsUpsertResponse",
-    "PostV1HrTimesheetsUpsertResponseDaysItem",
-    "PostV1HrTimesheetsUpsertResponseDaysItemType",
+    "ContractsCreateHrRequestSalaryType",
+    "ContractsCreateHrRequestType",
+    "ContractsCreateHrResponse",
+    "ContractsCreateHrResponseSalaryType",
+    "ContractsCreateHrResponseStatus",
+    "ContractsCreateHrResponseType",
+    "ContractsCreateHrResponseWorkHoursUnit",
+    "ContractsEndHrResponse",
+    "ContractsEndHrResponseSalaryType",
+    "ContractsEndHrResponseStatus",
+    "ContractsEndHrResponseType",
+    "ContractsEndHrResponseWorkHoursUnit",
+    "ContractsListHrRequestFilterItem",
+    "ContractsListHrRequestFilterItemOp",
+    "ContractsListHrRequestFilterItemValue",
+    "ContractsListHrRequestFilterItemValueThreeItem",
+    "ContractsListHrRequestSortItem",
+    "ContractsListHrRequestSortItemDir",
+    "ContractsListHrResponse",
+    "ContractsListHrResponseRowsItem",
+    "ContractsListHrResponseRowsItemSalaryType",
+    "ContractsListHrResponseRowsItemStatus",
+    "ContractsListHrResponseRowsItemType",
+    "ContractsListHrResponseRowsItemWorkHoursUnit",
+    "EmployeesAnonymizeHrResponse",
+    "EmployeesAnonymizeHrResponseAddress",
+    "EmployeesAnonymizeHrResponseAttributesItem",
+    "EmployeesAnonymizeHrResponseStatus",
+    "EmployeesAttachmentsListHrResponse",
+    "EmployeesAttachmentsListHrResponseRowsItem",
+    "EmployeesCreateHrRequestAddress",
+    "EmployeesCreateHrRequestAttributesItem",
+    "EmployeesCreateHrResponse",
+    "EmployeesCreateHrResponseAddress",
+    "EmployeesCreateHrResponseAttributesItem",
+    "EmployeesCreateHrResponseStatus",
+    "EmployeesDeleteHrResponse",
+    "EmployeesFieldsHrResponse",
+    "EmployeesFieldsHrResponseFieldsItem",
+    "EmployeesFieldsHrResponseFieldsItemKind",
+    "EmployeesGetHrResponse",
+    "EmployeesGetHrResponseAddress",
+    "EmployeesGetHrResponseAttributesItem",
+    "EmployeesGetHrResponseStatus",
+    "EmployeesListHrRequestFilterItem",
+    "EmployeesListHrRequestFilterItemOp",
+    "EmployeesListHrRequestFilterItemValue",
+    "EmployeesListHrRequestFilterItemValueThreeItem",
+    "EmployeesListHrRequestSortItem",
+    "EmployeesListHrRequestSortItemDir",
+    "EmployeesListHrResponse",
+    "EmployeesListHrResponseRowsItem",
+    "EmployeesListHrResponseRowsItemAddress",
+    "EmployeesListHrResponseRowsItemAttributesItem",
+    "EmployeesListHrResponseRowsItemStatus",
+    "EmployeesRecordsCreateHrRequestType",
+    "EmployeesRecordsCreateHrResponse",
+    "EmployeesRecordsCreateHrResponseType",
+    "EmployeesRecordsDeleteHrResponse",
+    "EmployeesRecordsListHrRequestFilterItem",
+    "EmployeesRecordsListHrRequestFilterItemOp",
+    "EmployeesRecordsListHrRequestFilterItemValue",
+    "EmployeesRecordsListHrRequestFilterItemValueThreeItem",
+    "EmployeesRecordsListHrRequestSortItem",
+    "EmployeesRecordsListHrRequestSortItemDir",
+    "EmployeesRecordsListHrResponse",
+    "EmployeesRecordsListHrResponseRowsItem",
+    "EmployeesRecordsListHrResponseRowsItemType",
+    "EmployeesRecordsUpdateHrRequestType",
+    "EmployeesRecordsUpdateHrResponse",
+    "EmployeesRecordsUpdateHrResponseType",
+    "EmployeesUpdateHrRequestAddress",
+    "EmployeesUpdateHrRequestAttributesItem",
+    "EmployeesUpdateHrRequestStatus",
+    "EmployeesUpdateHrResponse",
+    "EmployeesUpdateHrResponseAddress",
+    "EmployeesUpdateHrResponseAttributesItem",
+    "EmployeesUpdateHrResponseStatus",
+    "IncapacityCertificatesCreateHrResponse",
+    "IncapacityCertificatesListHrRequestFilterItem",
+    "IncapacityCertificatesListHrRequestFilterItemOp",
+    "IncapacityCertificatesListHrRequestFilterItemValue",
+    "IncapacityCertificatesListHrRequestFilterItemValueThreeItem",
+    "IncapacityCertificatesListHrRequestSortItem",
+    "IncapacityCertificatesListHrRequestSortItemDir",
+    "IncapacityCertificatesListHrResponse",
+    "IncapacityCertificatesListHrResponseRowsItem",
+    "LeaveBalancesListHrResponse",
+    "LeaveBalancesListHrResponseRowsItem",
+    "LeaveBalancesSetHrResponse",
+    "PositionsCreateHrRequestTranslationsValue",
+    "PositionsCreateHrResponse",
+    "PositionsCreateHrResponseTranslationsValue",
+    "PositionsListHrRequestFilterItem",
+    "PositionsListHrRequestFilterItemOp",
+    "PositionsListHrRequestFilterItemValue",
+    "PositionsListHrRequestFilterItemValueThreeItem",
+    "PositionsListHrRequestSortItem",
+    "PositionsListHrRequestSortItemDir",
+    "PositionsListHrResponse",
+    "PositionsListHrResponseRowsItem",
+    "PositionsListHrResponseRowsItemTranslationsValue",
+    "PositionsUpdateHrRequestTranslationsValue",
+    "PositionsUpdateHrResponse",
+    "PositionsUpdateHrResponseTranslationsValue",
+    "TimesheetsDeleteHrResponse",
+    "TimesheetsGenerateHrResponse",
+    "TimesheetsGetHrResponse",
+    "TimesheetsGetHrResponseDaysItem",
+    "TimesheetsGetHrResponseDaysItemType",
+    "TimesheetsListHrResponse",
+    "TimesheetsListHrResponseRowsItem",
+    "TimesheetsListHrResponseRowsItemDaysItem",
+    "TimesheetsListHrResponseRowsItemDaysItemType",
+    "TimesheetsUpsertHrRequestDaysItem",
+    "TimesheetsUpsertHrRequestDaysItemType",
+    "TimesheetsUpsertHrResponse",
+    "TimesheetsUpsertHrResponseDaysItem",
+    "TimesheetsUpsertHrResponseDaysItemType",
 ]

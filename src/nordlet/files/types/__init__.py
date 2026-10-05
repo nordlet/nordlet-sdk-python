@@ -6,29 +6,29 @@ import typing
 from importlib import import_module
 
 if typing.TYPE_CHECKING:
-    from .post_v1files_delete_response import PostV1FilesDeleteResponse
-    from .post_v1files_get_response import PostV1FilesGetResponse
-    from .post_v1files_list_request_filter_item import PostV1FilesListRequestFilterItem
-    from .post_v1files_list_request_filter_item_op import PostV1FilesListRequestFilterItemOp
-    from .post_v1files_list_request_filter_item_value import PostV1FilesListRequestFilterItemValue
-    from .post_v1files_list_request_filter_item_value_three_item import PostV1FilesListRequestFilterItemValueThreeItem
-    from .post_v1files_list_request_sort_item import PostV1FilesListRequestSortItem
-    from .post_v1files_list_request_sort_item_dir import PostV1FilesListRequestSortItemDir
-    from .post_v1files_list_response import PostV1FilesListResponse
-    from .post_v1files_list_response_rows_item import PostV1FilesListResponseRowsItem
-    from .post_v1files_upload_response import PostV1FilesUploadResponse
+    from .delete_files_response import DeleteFilesResponse
+    from .get_files_response import GetFilesResponse
+    from .list_files_request_filter_item import ListFilesRequestFilterItem
+    from .list_files_request_filter_item_op import ListFilesRequestFilterItemOp
+    from .list_files_request_filter_item_value import ListFilesRequestFilterItemValue
+    from .list_files_request_filter_item_value_three_item import ListFilesRequestFilterItemValueThreeItem
+    from .list_files_request_sort_item import ListFilesRequestSortItem
+    from .list_files_request_sort_item_dir import ListFilesRequestSortItemDir
+    from .list_files_response import ListFilesResponse
+    from .list_files_response_rows_item import ListFilesResponseRowsItem
+    from .upload_files_response import UploadFilesResponse
 _dynamic_imports: typing.Dict[str, str] = {
-    "PostV1FilesDeleteResponse": ".post_v1files_delete_response",
-    "PostV1FilesGetResponse": ".post_v1files_get_response",
-    "PostV1FilesListRequestFilterItem": ".post_v1files_list_request_filter_item",
-    "PostV1FilesListRequestFilterItemOp": ".post_v1files_list_request_filter_item_op",
-    "PostV1FilesListRequestFilterItemValue": ".post_v1files_list_request_filter_item_value",
-    "PostV1FilesListRequestFilterItemValueThreeItem": ".post_v1files_list_request_filter_item_value_three_item",
-    "PostV1FilesListRequestSortItem": ".post_v1files_list_request_sort_item",
-    "PostV1FilesListRequestSortItemDir": ".post_v1files_list_request_sort_item_dir",
-    "PostV1FilesListResponse": ".post_v1files_list_response",
-    "PostV1FilesListResponseRowsItem": ".post_v1files_list_response_rows_item",
-    "PostV1FilesUploadResponse": ".post_v1files_upload_response",
+    "DeleteFilesResponse": ".delete_files_response",
+    "GetFilesResponse": ".get_files_response",
+    "ListFilesRequestFilterItem": ".list_files_request_filter_item",
+    "ListFilesRequestFilterItemOp": ".list_files_request_filter_item_op",
+    "ListFilesRequestFilterItemValue": ".list_files_request_filter_item_value",
+    "ListFilesRequestFilterItemValueThreeItem": ".list_files_request_filter_item_value_three_item",
+    "ListFilesRequestSortItem": ".list_files_request_sort_item",
+    "ListFilesRequestSortItemDir": ".list_files_request_sort_item_dir",
+    "ListFilesResponse": ".list_files_response",
+    "ListFilesResponseRowsItem": ".list_files_response_rows_item",
+    "UploadFilesResponse": ".upload_files_response",
 }
 
 
@@ -54,15 +54,15 @@ def __dir__():
 
 
 __all__ = [
-    "PostV1FilesDeleteResponse",
-    "PostV1FilesGetResponse",
-    "PostV1FilesListRequestFilterItem",
-    "PostV1FilesListRequestFilterItemOp",
-    "PostV1FilesListRequestFilterItemValue",
-    "PostV1FilesListRequestFilterItemValueThreeItem",
-    "PostV1FilesListRequestSortItem",
-    "PostV1FilesListRequestSortItemDir",
-    "PostV1FilesListResponse",
-    "PostV1FilesListResponseRowsItem",
-    "PostV1FilesUploadResponse",
+    "DeleteFilesResponse",
+    "GetFilesResponse",
+    "ListFilesRequestFilterItem",
+    "ListFilesRequestFilterItemOp",
+    "ListFilesRequestFilterItemValue",
+    "ListFilesRequestFilterItemValueThreeItem",
+    "ListFilesRequestSortItem",
+    "ListFilesRequestSortItemDir",
+    "ListFilesResponse",
+    "ListFilesResponseRowsItem",
+    "UploadFilesResponse",
 ]

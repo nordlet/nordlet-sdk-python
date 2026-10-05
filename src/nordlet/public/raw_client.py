@@ -12,14 +12,16 @@ from ..core.pydantic_utilities import parse_obj_as
 from ..core.request_options import RequestOptions
 from ..errors.bad_request_error import BadRequestError
 from ..errors.conflict_error import ConflictError
+from ..errors.content_too_large_error import ContentTooLargeError
 from ..errors.forbidden_error import ForbiddenError
 from ..errors.internal_server_error import InternalServerError
 from ..errors.not_found_error import NotFoundError
+from ..errors.payment_required_error import PaymentRequiredError
 from ..errors.too_many_requests_error import TooManyRequestsError
 from ..errors.unauthorized_error import UnauthorizedError
 from ..errors.unprocessable_entity_error import UnprocessableEntityError
 from ..types.error_response import ErrorResponse
-from .types.post_v1public_integration_requests_response import PostV1PublicIntegrationRequestsResponse
+from .types.integration_requests_public_response import IntegrationRequestsPublicResponse
 from pydantic import ValidationError
 
 # this is used as the default value for optional parameters
@@ -30,7 +32,7 @@ class RawPublicClient:
     def __init__(self, *, client_wrapper: SyncClientWrapper):
         self._client_wrapper = client_wrapper
 
-    def post_v1public_integration_requests(
+    def integration_requests(
         self,
         *,
         integration: str,
@@ -40,7 +42,7 @@ class RawPublicClient:
         details: typing.Optional[str] = OMIT,
         website: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> HttpResponse[PostV1PublicIntegrationRequestsResponse]:
+    ) -> HttpResponse[IntegrationRequestsPublicResponse]:
         """
         Parameters
         ----------
@@ -61,7 +63,7 @@ class RawPublicClient:
 
         Returns
         -------
-        HttpResponse[PostV1PublicIntegrationRequestsResponse]
+        HttpResponse[IntegrationRequestsPublicResponse]
             Default Response
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -84,9 +86,9 @@ class RawPublicClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1PublicIntegrationRequestsResponse,
+                    IntegrationRequestsPublicResponse,
                     parse_obj_as(
-                        type_=PostV1PublicIntegrationRequestsResponse,  # type: ignore
+                        type_=IntegrationRequestsPublicResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -104,6 +106,17 @@ class RawPublicClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -137,6 +150,17 @@ class RawPublicClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -188,9 +212,7 @@ class RawPublicClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    def get_v1public_pay_token(
-        self, token: str, *, request_options: typing.Optional[RequestOptions] = None
-    ) -> HttpResponse[None]:
+    def pay(self, token: str, *, request_options: typing.Optional[RequestOptions] = None) -> HttpResponse[None]:
         """
         Parameters
         ----------
@@ -233,6 +255,17 @@ class RawPublicClient:
                         ),
                     ),
                 )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
             if _response.status_code == 403:
                 raise ForbiddenError(
                     headers=dict(_response.headers),
@@ -257,6 +290,17 @@ class RawPublicClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -313,7 +357,7 @@ class AsyncRawPublicClient:
     def __init__(self, *, client_wrapper: AsyncClientWrapper):
         self._client_wrapper = client_wrapper
 
-    async def post_v1public_integration_requests(
+    async def integration_requests(
         self,
         *,
         integration: str,
@@ -323,7 +367,7 @@ class AsyncRawPublicClient:
         details: typing.Optional[str] = OMIT,
         website: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> AsyncHttpResponse[PostV1PublicIntegrationRequestsResponse]:
+    ) -> AsyncHttpResponse[IntegrationRequestsPublicResponse]:
         """
         Parameters
         ----------
@@ -344,7 +388,7 @@ class AsyncRawPublicClient:
 
         Returns
         -------
-        AsyncHttpResponse[PostV1PublicIntegrationRequestsResponse]
+        AsyncHttpResponse[IntegrationRequestsPublicResponse]
             Default Response
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -367,9 +411,9 @@ class AsyncRawPublicClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1PublicIntegrationRequestsResponse,
+                    IntegrationRequestsPublicResponse,
                     parse_obj_as(
-                        type_=PostV1PublicIntegrationRequestsResponse,  # type: ignore
+                        type_=IntegrationRequestsPublicResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -387,6 +431,17 @@ class AsyncRawPublicClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -420,6 +475,17 @@ class AsyncRawPublicClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -471,7 +537,7 @@ class AsyncRawPublicClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    async def get_v1public_pay_token(
+    async def pay(
         self, token: str, *, request_options: typing.Optional[RequestOptions] = None
     ) -> AsyncHttpResponse[None]:
         """
@@ -516,6 +582,17 @@ class AsyncRawPublicClient:
                         ),
                     ),
                 )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
             if _response.status_code == 403:
                 raise ForbiddenError(
                     headers=dict(_response.headers),
@@ -540,6 +617,17 @@ class AsyncRawPublicClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,

@@ -6,171 +6,137 @@ import typing
 from importlib import import_module
 
 if typing.TYPE_CHECKING:
-    from .post_v1agreements_agreements_billing_run_response import PostV1AgreementsAgreementsBillingRunResponse
-    from .post_v1agreements_agreements_billing_run_response_errors_item import (
-        PostV1AgreementsAgreementsBillingRunResponseErrorsItem,
+    from .types_list_agreements_response import TypesListAgreementsResponse
+    from .types_list_agreements_response_rows_item import TypesListAgreementsResponseRowsItem
+    from .types_list_agreements_request_filter_item import TypesListAgreementsRequestFilterItem
+    from .types_list_agreements_request_filter_item_value import TypesListAgreementsRequestFilterItemValue
+    from .types_list_agreements_request_filter_item_value_three_item import (
+        TypesListAgreementsRequestFilterItemValueThreeItem,
     )
-    from .post_v1agreements_agreements_billing_run_response_generated_item import (
-        PostV1AgreementsAgreementsBillingRunResponseGeneratedItem,
+    from .types_list_agreements_request_filter_item_op import TypesListAgreementsRequestFilterItemOp
+    from .types_list_agreements_request_sort_item import TypesListAgreementsRequestSortItem
+    from .types_list_agreements_request_sort_item_dir import TypesListAgreementsRequestSortItemDir
+    from .types_create_agreements_response import TypesCreateAgreementsResponse
+    from .agreements_billing_run_agreements_response import AgreementsBillingRunAgreementsResponse
+    from .agreements_billing_run_agreements_response_errors_item import AgreementsBillingRunAgreementsResponseErrorsItem
+    from .agreements_billing_run_agreements_response_generated_item import (
+        AgreementsBillingRunAgreementsResponseGeneratedItem,
     )
-    from .post_v1agreements_agreements_create_request_billing_period import (
-        PostV1AgreementsAgreementsCreateRequestBillingPeriod,
+    from .agreements_create_agreements_request_billing_period import AgreementsCreateAgreementsRequestBillingPeriod
+    from .agreements_create_agreements_request_items_item import AgreementsCreateAgreementsRequestItemsItem
+    from .agreements_create_agreements_request_kind import AgreementsCreateAgreementsRequestKind
+    from .agreements_create_agreements_request_status import AgreementsCreateAgreementsRequestStatus
+    from .agreements_create_agreements_response import AgreementsCreateAgreementsResponse
+    from .agreements_create_agreements_response_billing_period import AgreementsCreateAgreementsResponseBillingPeriod
+    from .agreements_create_agreements_response_items_item import AgreementsCreateAgreementsResponseItemsItem
+    from .agreements_create_agreements_response_kind import AgreementsCreateAgreementsResponseKind
+    from .agreements_create_agreements_response_status import AgreementsCreateAgreementsResponseStatus
+    from .agreements_delete_agreements_response import AgreementsDeleteAgreementsResponse
+    from .agreements_generate_invoice_agreements_response import AgreementsGenerateInvoiceAgreementsResponse
+    from .agreements_get_agreements_response import AgreementsGetAgreementsResponse
+    from .agreements_get_agreements_response_billing_period import AgreementsGetAgreementsResponseBillingPeriod
+    from .agreements_get_agreements_response_items_item import AgreementsGetAgreementsResponseItemsItem
+    from .agreements_get_agreements_response_kind import AgreementsGetAgreementsResponseKind
+    from .agreements_get_agreements_response_status import AgreementsGetAgreementsResponseStatus
+    from .agreements_list_agreements_request_filter_item import AgreementsListAgreementsRequestFilterItem
+    from .agreements_list_agreements_request_filter_item_op import AgreementsListAgreementsRequestFilterItemOp
+    from .agreements_list_agreements_request_filter_item_value import AgreementsListAgreementsRequestFilterItemValue
+    from .agreements_list_agreements_request_filter_item_value_three_item import (
+        AgreementsListAgreementsRequestFilterItemValueThreeItem,
     )
-    from .post_v1agreements_agreements_create_request_items_item import PostV1AgreementsAgreementsCreateRequestItemsItem
-    from .post_v1agreements_agreements_create_request_kind import PostV1AgreementsAgreementsCreateRequestKind
-    from .post_v1agreements_agreements_create_request_status import PostV1AgreementsAgreementsCreateRequestStatus
-    from .post_v1agreements_agreements_create_response import PostV1AgreementsAgreementsCreateResponse
-    from .post_v1agreements_agreements_create_response_billing_period import (
-        PostV1AgreementsAgreementsCreateResponseBillingPeriod,
+    from .agreements_list_agreements_request_sort_item import AgreementsListAgreementsRequestSortItem
+    from .agreements_list_agreements_request_sort_item_dir import AgreementsListAgreementsRequestSortItemDir
+    from .agreements_list_agreements_response import AgreementsListAgreementsResponse
+    from .agreements_list_agreements_response_rows_item import AgreementsListAgreementsResponseRowsItem
+    from .agreements_list_agreements_response_rows_item_billing_period import (
+        AgreementsListAgreementsResponseRowsItemBillingPeriod,
     )
-    from .post_v1agreements_agreements_create_response_items_item import (
-        PostV1AgreementsAgreementsCreateResponseItemsItem,
+    from .agreements_list_agreements_response_rows_item_kind import AgreementsListAgreementsResponseRowsItemKind
+    from .agreements_list_agreements_response_rows_item_status import AgreementsListAgreementsResponseRowsItemStatus
+    from .agreements_update_agreements_request_billing_period import AgreementsUpdateAgreementsRequestBillingPeriod
+    from .agreements_update_agreements_request_kind import AgreementsUpdateAgreementsRequestKind
+    from .agreements_update_agreements_request_status import AgreementsUpdateAgreementsRequestStatus
+    from .agreements_update_agreements_response import AgreementsUpdateAgreementsResponse
+    from .agreements_update_agreements_response_billing_period import AgreementsUpdateAgreementsResponseBillingPeriod
+    from .agreements_update_agreements_response_items_item import AgreementsUpdateAgreementsResponseItemsItem
+    from .agreements_update_agreements_response_kind import AgreementsUpdateAgreementsResponseKind
+    from .agreements_update_agreements_response_status import AgreementsUpdateAgreementsResponseStatus
+    from .insurance_policies_create_agreements_response import InsurancePoliciesCreateAgreementsResponse
+    from .insurance_policies_delete_agreements_response import InsurancePoliciesDeleteAgreementsResponse
+    from .insurance_policies_list_agreements_request_filter_item import InsurancePoliciesListAgreementsRequestFilterItem
+    from .insurance_policies_list_agreements_request_filter_item_op import (
+        InsurancePoliciesListAgreementsRequestFilterItemOp,
     )
-    from .post_v1agreements_agreements_create_response_kind import PostV1AgreementsAgreementsCreateResponseKind
-    from .post_v1agreements_agreements_create_response_status import PostV1AgreementsAgreementsCreateResponseStatus
-    from .post_v1agreements_agreements_delete_response import PostV1AgreementsAgreementsDeleteResponse
-    from .post_v1agreements_agreements_generate_invoice_response import (
-        PostV1AgreementsAgreementsGenerateInvoiceResponse,
+    from .insurance_policies_list_agreements_request_filter_item_value import (
+        InsurancePoliciesListAgreementsRequestFilterItemValue,
     )
-    from .post_v1agreements_agreements_get_response import PostV1AgreementsAgreementsGetResponse
-    from .post_v1agreements_agreements_get_response_billing_period import (
-        PostV1AgreementsAgreementsGetResponseBillingPeriod,
+    from .insurance_policies_list_agreements_request_filter_item_value_three_item import (
+        InsurancePoliciesListAgreementsRequestFilterItemValueThreeItem,
     )
-    from .post_v1agreements_agreements_get_response_items_item import PostV1AgreementsAgreementsGetResponseItemsItem
-    from .post_v1agreements_agreements_get_response_kind import PostV1AgreementsAgreementsGetResponseKind
-    from .post_v1agreements_agreements_get_response_status import PostV1AgreementsAgreementsGetResponseStatus
-    from .post_v1agreements_agreements_list_request_filter_item import PostV1AgreementsAgreementsListRequestFilterItem
-    from .post_v1agreements_agreements_list_request_filter_item_op import (
-        PostV1AgreementsAgreementsListRequestFilterItemOp,
+    from .insurance_policies_list_agreements_request_sort_item import InsurancePoliciesListAgreementsRequestSortItem
+    from .insurance_policies_list_agreements_request_sort_item_dir import (
+        InsurancePoliciesListAgreementsRequestSortItemDir,
     )
-    from .post_v1agreements_agreements_list_request_filter_item_value import (
-        PostV1AgreementsAgreementsListRequestFilterItemValue,
-    )
-    from .post_v1agreements_agreements_list_request_filter_item_value_three_item import (
-        PostV1AgreementsAgreementsListRequestFilterItemValueThreeItem,
-    )
-    from .post_v1agreements_agreements_list_request_sort_item import PostV1AgreementsAgreementsListRequestSortItem
-    from .post_v1agreements_agreements_list_request_sort_item_dir import (
-        PostV1AgreementsAgreementsListRequestSortItemDir,
-    )
-    from .post_v1agreements_agreements_list_response import PostV1AgreementsAgreementsListResponse
-    from .post_v1agreements_agreements_list_response_rows_item import PostV1AgreementsAgreementsListResponseRowsItem
-    from .post_v1agreements_agreements_list_response_rows_item_billing_period import (
-        PostV1AgreementsAgreementsListResponseRowsItemBillingPeriod,
-    )
-    from .post_v1agreements_agreements_list_response_rows_item_kind import (
-        PostV1AgreementsAgreementsListResponseRowsItemKind,
-    )
-    from .post_v1agreements_agreements_list_response_rows_item_status import (
-        PostV1AgreementsAgreementsListResponseRowsItemStatus,
-    )
-    from .post_v1agreements_agreements_update_request_billing_period import (
-        PostV1AgreementsAgreementsUpdateRequestBillingPeriod,
-    )
-    from .post_v1agreements_agreements_update_request_kind import PostV1AgreementsAgreementsUpdateRequestKind
-    from .post_v1agreements_agreements_update_request_status import PostV1AgreementsAgreementsUpdateRequestStatus
-    from .post_v1agreements_agreements_update_response import PostV1AgreementsAgreementsUpdateResponse
-    from .post_v1agreements_agreements_update_response_billing_period import (
-        PostV1AgreementsAgreementsUpdateResponseBillingPeriod,
-    )
-    from .post_v1agreements_agreements_update_response_items_item import (
-        PostV1AgreementsAgreementsUpdateResponseItemsItem,
-    )
-    from .post_v1agreements_agreements_update_response_kind import PostV1AgreementsAgreementsUpdateResponseKind
-    from .post_v1agreements_agreements_update_response_status import PostV1AgreementsAgreementsUpdateResponseStatus
-    from .post_v1agreements_insurance_policies_create_response import PostV1AgreementsInsurancePoliciesCreateResponse
-    from .post_v1agreements_insurance_policies_delete_response import PostV1AgreementsInsurancePoliciesDeleteResponse
-    from .post_v1agreements_insurance_policies_list_request_filter_item import (
-        PostV1AgreementsInsurancePoliciesListRequestFilterItem,
-    )
-    from .post_v1agreements_insurance_policies_list_request_filter_item_op import (
-        PostV1AgreementsInsurancePoliciesListRequestFilterItemOp,
-    )
-    from .post_v1agreements_insurance_policies_list_request_filter_item_value import (
-        PostV1AgreementsInsurancePoliciesListRequestFilterItemValue,
-    )
-    from .post_v1agreements_insurance_policies_list_request_filter_item_value_three_item import (
-        PostV1AgreementsInsurancePoliciesListRequestFilterItemValueThreeItem,
-    )
-    from .post_v1agreements_insurance_policies_list_request_sort_item import (
-        PostV1AgreementsInsurancePoliciesListRequestSortItem,
-    )
-    from .post_v1agreements_insurance_policies_list_request_sort_item_dir import (
-        PostV1AgreementsInsurancePoliciesListRequestSortItemDir,
-    )
-    from .post_v1agreements_insurance_policies_list_response import PostV1AgreementsInsurancePoliciesListResponse
-    from .post_v1agreements_insurance_policies_list_response_rows_item import (
-        PostV1AgreementsInsurancePoliciesListResponseRowsItem,
-    )
-    from .post_v1agreements_types_create_response import PostV1AgreementsTypesCreateResponse
-    from .post_v1agreements_types_list_request_filter_item import PostV1AgreementsTypesListRequestFilterItem
-    from .post_v1agreements_types_list_request_filter_item_op import PostV1AgreementsTypesListRequestFilterItemOp
-    from .post_v1agreements_types_list_request_filter_item_value import PostV1AgreementsTypesListRequestFilterItemValue
-    from .post_v1agreements_types_list_request_filter_item_value_three_item import (
-        PostV1AgreementsTypesListRequestFilterItemValueThreeItem,
-    )
-    from .post_v1agreements_types_list_request_sort_item import PostV1AgreementsTypesListRequestSortItem
-    from .post_v1agreements_types_list_request_sort_item_dir import PostV1AgreementsTypesListRequestSortItemDir
-    from .post_v1agreements_types_list_response import PostV1AgreementsTypesListResponse
-    from .post_v1agreements_types_list_response_rows_item import PostV1AgreementsTypesListResponseRowsItem
+    from .insurance_policies_list_agreements_response import InsurancePoliciesListAgreementsResponse
+    from .insurance_policies_list_agreements_response_rows_item import InsurancePoliciesListAgreementsResponseRowsItem
 _dynamic_imports: typing.Dict[str, str] = {
-    "PostV1AgreementsAgreementsBillingRunResponse": ".post_v1agreements_agreements_billing_run_response",
-    "PostV1AgreementsAgreementsBillingRunResponseErrorsItem": ".post_v1agreements_agreements_billing_run_response_errors_item",
-    "PostV1AgreementsAgreementsBillingRunResponseGeneratedItem": ".post_v1agreements_agreements_billing_run_response_generated_item",
-    "PostV1AgreementsAgreementsCreateRequestBillingPeriod": ".post_v1agreements_agreements_create_request_billing_period",
-    "PostV1AgreementsAgreementsCreateRequestItemsItem": ".post_v1agreements_agreements_create_request_items_item",
-    "PostV1AgreementsAgreementsCreateRequestKind": ".post_v1agreements_agreements_create_request_kind",
-    "PostV1AgreementsAgreementsCreateRequestStatus": ".post_v1agreements_agreements_create_request_status",
-    "PostV1AgreementsAgreementsCreateResponse": ".post_v1agreements_agreements_create_response",
-    "PostV1AgreementsAgreementsCreateResponseBillingPeriod": ".post_v1agreements_agreements_create_response_billing_period",
-    "PostV1AgreementsAgreementsCreateResponseItemsItem": ".post_v1agreements_agreements_create_response_items_item",
-    "PostV1AgreementsAgreementsCreateResponseKind": ".post_v1agreements_agreements_create_response_kind",
-    "PostV1AgreementsAgreementsCreateResponseStatus": ".post_v1agreements_agreements_create_response_status",
-    "PostV1AgreementsAgreementsDeleteResponse": ".post_v1agreements_agreements_delete_response",
-    "PostV1AgreementsAgreementsGenerateInvoiceResponse": ".post_v1agreements_agreements_generate_invoice_response",
-    "PostV1AgreementsAgreementsGetResponse": ".post_v1agreements_agreements_get_response",
-    "PostV1AgreementsAgreementsGetResponseBillingPeriod": ".post_v1agreements_agreements_get_response_billing_period",
-    "PostV1AgreementsAgreementsGetResponseItemsItem": ".post_v1agreements_agreements_get_response_items_item",
-    "PostV1AgreementsAgreementsGetResponseKind": ".post_v1agreements_agreements_get_response_kind",
-    "PostV1AgreementsAgreementsGetResponseStatus": ".post_v1agreements_agreements_get_response_status",
-    "PostV1AgreementsAgreementsListRequestFilterItem": ".post_v1agreements_agreements_list_request_filter_item",
-    "PostV1AgreementsAgreementsListRequestFilterItemOp": ".post_v1agreements_agreements_list_request_filter_item_op",
-    "PostV1AgreementsAgreementsListRequestFilterItemValue": ".post_v1agreements_agreements_list_request_filter_item_value",
-    "PostV1AgreementsAgreementsListRequestFilterItemValueThreeItem": ".post_v1agreements_agreements_list_request_filter_item_value_three_item",
-    "PostV1AgreementsAgreementsListRequestSortItem": ".post_v1agreements_agreements_list_request_sort_item",
-    "PostV1AgreementsAgreementsListRequestSortItemDir": ".post_v1agreements_agreements_list_request_sort_item_dir",
-    "PostV1AgreementsAgreementsListResponse": ".post_v1agreements_agreements_list_response",
-    "PostV1AgreementsAgreementsListResponseRowsItem": ".post_v1agreements_agreements_list_response_rows_item",
-    "PostV1AgreementsAgreementsListResponseRowsItemBillingPeriod": ".post_v1agreements_agreements_list_response_rows_item_billing_period",
-    "PostV1AgreementsAgreementsListResponseRowsItemKind": ".post_v1agreements_agreements_list_response_rows_item_kind",
-    "PostV1AgreementsAgreementsListResponseRowsItemStatus": ".post_v1agreements_agreements_list_response_rows_item_status",
-    "PostV1AgreementsAgreementsUpdateRequestBillingPeriod": ".post_v1agreements_agreements_update_request_billing_period",
-    "PostV1AgreementsAgreementsUpdateRequestKind": ".post_v1agreements_agreements_update_request_kind",
-    "PostV1AgreementsAgreementsUpdateRequestStatus": ".post_v1agreements_agreements_update_request_status",
-    "PostV1AgreementsAgreementsUpdateResponse": ".post_v1agreements_agreements_update_response",
-    "PostV1AgreementsAgreementsUpdateResponseBillingPeriod": ".post_v1agreements_agreements_update_response_billing_period",
-    "PostV1AgreementsAgreementsUpdateResponseItemsItem": ".post_v1agreements_agreements_update_response_items_item",
-    "PostV1AgreementsAgreementsUpdateResponseKind": ".post_v1agreements_agreements_update_response_kind",
-    "PostV1AgreementsAgreementsUpdateResponseStatus": ".post_v1agreements_agreements_update_response_status",
-    "PostV1AgreementsInsurancePoliciesCreateResponse": ".post_v1agreements_insurance_policies_create_response",
-    "PostV1AgreementsInsurancePoliciesDeleteResponse": ".post_v1agreements_insurance_policies_delete_response",
-    "PostV1AgreementsInsurancePoliciesListRequestFilterItem": ".post_v1agreements_insurance_policies_list_request_filter_item",
-    "PostV1AgreementsInsurancePoliciesListRequestFilterItemOp": ".post_v1agreements_insurance_policies_list_request_filter_item_op",
-    "PostV1AgreementsInsurancePoliciesListRequestFilterItemValue": ".post_v1agreements_insurance_policies_list_request_filter_item_value",
-    "PostV1AgreementsInsurancePoliciesListRequestFilterItemValueThreeItem": ".post_v1agreements_insurance_policies_list_request_filter_item_value_three_item",
-    "PostV1AgreementsInsurancePoliciesListRequestSortItem": ".post_v1agreements_insurance_policies_list_request_sort_item",
-    "PostV1AgreementsInsurancePoliciesListRequestSortItemDir": ".post_v1agreements_insurance_policies_list_request_sort_item_dir",
-    "PostV1AgreementsInsurancePoliciesListResponse": ".post_v1agreements_insurance_policies_list_response",
-    "PostV1AgreementsInsurancePoliciesListResponseRowsItem": ".post_v1agreements_insurance_policies_list_response_rows_item",
-    "PostV1AgreementsTypesCreateResponse": ".post_v1agreements_types_create_response",
-    "PostV1AgreementsTypesListRequestFilterItem": ".post_v1agreements_types_list_request_filter_item",
-    "PostV1AgreementsTypesListRequestFilterItemOp": ".post_v1agreements_types_list_request_filter_item_op",
-    "PostV1AgreementsTypesListRequestFilterItemValue": ".post_v1agreements_types_list_request_filter_item_value",
-    "PostV1AgreementsTypesListRequestFilterItemValueThreeItem": ".post_v1agreements_types_list_request_filter_item_value_three_item",
-    "PostV1AgreementsTypesListRequestSortItem": ".post_v1agreements_types_list_request_sort_item",
-    "PostV1AgreementsTypesListRequestSortItemDir": ".post_v1agreements_types_list_request_sort_item_dir",
-    "PostV1AgreementsTypesListResponse": ".post_v1agreements_types_list_response",
-    "PostV1AgreementsTypesListResponseRowsItem": ".post_v1agreements_types_list_response_rows_item",
+    "AgreementsBillingRunAgreementsResponse": ".agreements_billing_run_agreements_response",
+    "AgreementsBillingRunAgreementsResponseErrorsItem": ".agreements_billing_run_agreements_response_errors_item",
+    "AgreementsBillingRunAgreementsResponseGeneratedItem": ".agreements_billing_run_agreements_response_generated_item",
+    "AgreementsCreateAgreementsRequestBillingPeriod": ".agreements_create_agreements_request_billing_period",
+    "AgreementsCreateAgreementsRequestItemsItem": ".agreements_create_agreements_request_items_item",
+    "AgreementsCreateAgreementsRequestKind": ".agreements_create_agreements_request_kind",
+    "AgreementsCreateAgreementsRequestStatus": ".agreements_create_agreements_request_status",
+    "AgreementsCreateAgreementsResponse": ".agreements_create_agreements_response",
+    "AgreementsCreateAgreementsResponseBillingPeriod": ".agreements_create_agreements_response_billing_period",
+    "AgreementsCreateAgreementsResponseItemsItem": ".agreements_create_agreements_response_items_item",
+    "AgreementsCreateAgreementsResponseKind": ".agreements_create_agreements_response_kind",
+    "AgreementsCreateAgreementsResponseStatus": ".agreements_create_agreements_response_status",
+    "AgreementsDeleteAgreementsResponse": ".agreements_delete_agreements_response",
+    "AgreementsGenerateInvoiceAgreementsResponse": ".agreements_generate_invoice_agreements_response",
+    "AgreementsGetAgreementsResponse": ".agreements_get_agreements_response",
+    "AgreementsGetAgreementsResponseBillingPeriod": ".agreements_get_agreements_response_billing_period",
+    "AgreementsGetAgreementsResponseItemsItem": ".agreements_get_agreements_response_items_item",
+    "AgreementsGetAgreementsResponseKind": ".agreements_get_agreements_response_kind",
+    "AgreementsGetAgreementsResponseStatus": ".agreements_get_agreements_response_status",
+    "AgreementsListAgreementsRequestFilterItem": ".agreements_list_agreements_request_filter_item",
+    "AgreementsListAgreementsRequestFilterItemOp": ".agreements_list_agreements_request_filter_item_op",
+    "AgreementsListAgreementsRequestFilterItemValue": ".agreements_list_agreements_request_filter_item_value",
+    "AgreementsListAgreementsRequestFilterItemValueThreeItem": ".agreements_list_agreements_request_filter_item_value_three_item",
+    "AgreementsListAgreementsRequestSortItem": ".agreements_list_agreements_request_sort_item",
+    "AgreementsListAgreementsRequestSortItemDir": ".agreements_list_agreements_request_sort_item_dir",
+    "AgreementsListAgreementsResponse": ".agreements_list_agreements_response",
+    "AgreementsListAgreementsResponseRowsItem": ".agreements_list_agreements_response_rows_item",
+    "AgreementsListAgreementsResponseRowsItemBillingPeriod": ".agreements_list_agreements_response_rows_item_billing_period",
+    "AgreementsListAgreementsResponseRowsItemKind": ".agreements_list_agreements_response_rows_item_kind",
+    "AgreementsListAgreementsResponseRowsItemStatus": ".agreements_list_agreements_response_rows_item_status",
+    "AgreementsUpdateAgreementsRequestBillingPeriod": ".agreements_update_agreements_request_billing_period",
+    "AgreementsUpdateAgreementsRequestKind": ".agreements_update_agreements_request_kind",
+    "AgreementsUpdateAgreementsRequestStatus": ".agreements_update_agreements_request_status",
+    "AgreementsUpdateAgreementsResponse": ".agreements_update_agreements_response",
+    "AgreementsUpdateAgreementsResponseBillingPeriod": ".agreements_update_agreements_response_billing_period",
+    "AgreementsUpdateAgreementsResponseItemsItem": ".agreements_update_agreements_response_items_item",
+    "AgreementsUpdateAgreementsResponseKind": ".agreements_update_agreements_response_kind",
+    "AgreementsUpdateAgreementsResponseStatus": ".agreements_update_agreements_response_status",
+    "InsurancePoliciesCreateAgreementsResponse": ".insurance_policies_create_agreements_response",
+    "InsurancePoliciesDeleteAgreementsResponse": ".insurance_policies_delete_agreements_response",
+    "InsurancePoliciesListAgreementsRequestFilterItem": ".insurance_policies_list_agreements_request_filter_item",
+    "InsurancePoliciesListAgreementsRequestFilterItemOp": ".insurance_policies_list_agreements_request_filter_item_op",
+    "InsurancePoliciesListAgreementsRequestFilterItemValue": ".insurance_policies_list_agreements_request_filter_item_value",
+    "InsurancePoliciesListAgreementsRequestFilterItemValueThreeItem": ".insurance_policies_list_agreements_request_filter_item_value_three_item",
+    "InsurancePoliciesListAgreementsRequestSortItem": ".insurance_policies_list_agreements_request_sort_item",
+    "InsurancePoliciesListAgreementsRequestSortItemDir": ".insurance_policies_list_agreements_request_sort_item_dir",
+    "InsurancePoliciesListAgreementsResponse": ".insurance_policies_list_agreements_response",
+    "InsurancePoliciesListAgreementsResponseRowsItem": ".insurance_policies_list_agreements_response_rows_item",
+    "TypesCreateAgreementsResponse": ".types_create_agreements_response",
+    "TypesListAgreementsRequestFilterItem": ".types_list_agreements_request_filter_item",
+    "TypesListAgreementsRequestFilterItemOp": ".types_list_agreements_request_filter_item_op",
+    "TypesListAgreementsRequestFilterItemValue": ".types_list_agreements_request_filter_item_value",
+    "TypesListAgreementsRequestFilterItemValueThreeItem": ".types_list_agreements_request_filter_item_value_three_item",
+    "TypesListAgreementsRequestSortItem": ".types_list_agreements_request_sort_item",
+    "TypesListAgreementsRequestSortItemDir": ".types_list_agreements_request_sort_item_dir",
+    "TypesListAgreementsResponse": ".types_list_agreements_response",
+    "TypesListAgreementsResponseRowsItem": ".types_list_agreements_response_rows_item",
 }
 
 
@@ -196,61 +162,61 @@ def __dir__():
 
 
 __all__ = [
-    "PostV1AgreementsAgreementsBillingRunResponse",
-    "PostV1AgreementsAgreementsBillingRunResponseErrorsItem",
-    "PostV1AgreementsAgreementsBillingRunResponseGeneratedItem",
-    "PostV1AgreementsAgreementsCreateRequestBillingPeriod",
-    "PostV1AgreementsAgreementsCreateRequestItemsItem",
-    "PostV1AgreementsAgreementsCreateRequestKind",
-    "PostV1AgreementsAgreementsCreateRequestStatus",
-    "PostV1AgreementsAgreementsCreateResponse",
-    "PostV1AgreementsAgreementsCreateResponseBillingPeriod",
-    "PostV1AgreementsAgreementsCreateResponseItemsItem",
-    "PostV1AgreementsAgreementsCreateResponseKind",
-    "PostV1AgreementsAgreementsCreateResponseStatus",
-    "PostV1AgreementsAgreementsDeleteResponse",
-    "PostV1AgreementsAgreementsGenerateInvoiceResponse",
-    "PostV1AgreementsAgreementsGetResponse",
-    "PostV1AgreementsAgreementsGetResponseBillingPeriod",
-    "PostV1AgreementsAgreementsGetResponseItemsItem",
-    "PostV1AgreementsAgreementsGetResponseKind",
-    "PostV1AgreementsAgreementsGetResponseStatus",
-    "PostV1AgreementsAgreementsListRequestFilterItem",
-    "PostV1AgreementsAgreementsListRequestFilterItemOp",
-    "PostV1AgreementsAgreementsListRequestFilterItemValue",
-    "PostV1AgreementsAgreementsListRequestFilterItemValueThreeItem",
-    "PostV1AgreementsAgreementsListRequestSortItem",
-    "PostV1AgreementsAgreementsListRequestSortItemDir",
-    "PostV1AgreementsAgreementsListResponse",
-    "PostV1AgreementsAgreementsListResponseRowsItem",
-    "PostV1AgreementsAgreementsListResponseRowsItemBillingPeriod",
-    "PostV1AgreementsAgreementsListResponseRowsItemKind",
-    "PostV1AgreementsAgreementsListResponseRowsItemStatus",
-    "PostV1AgreementsAgreementsUpdateRequestBillingPeriod",
-    "PostV1AgreementsAgreementsUpdateRequestKind",
-    "PostV1AgreementsAgreementsUpdateRequestStatus",
-    "PostV1AgreementsAgreementsUpdateResponse",
-    "PostV1AgreementsAgreementsUpdateResponseBillingPeriod",
-    "PostV1AgreementsAgreementsUpdateResponseItemsItem",
-    "PostV1AgreementsAgreementsUpdateResponseKind",
-    "PostV1AgreementsAgreementsUpdateResponseStatus",
-    "PostV1AgreementsInsurancePoliciesCreateResponse",
-    "PostV1AgreementsInsurancePoliciesDeleteResponse",
-    "PostV1AgreementsInsurancePoliciesListRequestFilterItem",
-    "PostV1AgreementsInsurancePoliciesListRequestFilterItemOp",
-    "PostV1AgreementsInsurancePoliciesListRequestFilterItemValue",
-    "PostV1AgreementsInsurancePoliciesListRequestFilterItemValueThreeItem",
-    "PostV1AgreementsInsurancePoliciesListRequestSortItem",
-    "PostV1AgreementsInsurancePoliciesListRequestSortItemDir",
-    "PostV1AgreementsInsurancePoliciesListResponse",
-    "PostV1AgreementsInsurancePoliciesListResponseRowsItem",
-    "PostV1AgreementsTypesCreateResponse",
-    "PostV1AgreementsTypesListRequestFilterItem",
-    "PostV1AgreementsTypesListRequestFilterItemOp",
-    "PostV1AgreementsTypesListRequestFilterItemValue",
-    "PostV1AgreementsTypesListRequestFilterItemValueThreeItem",
-    "PostV1AgreementsTypesListRequestSortItem",
-    "PostV1AgreementsTypesListRequestSortItemDir",
-    "PostV1AgreementsTypesListResponse",
-    "PostV1AgreementsTypesListResponseRowsItem",
+    "AgreementsBillingRunAgreementsResponse",
+    "AgreementsBillingRunAgreementsResponseErrorsItem",
+    "AgreementsBillingRunAgreementsResponseGeneratedItem",
+    "AgreementsCreateAgreementsRequestBillingPeriod",
+    "AgreementsCreateAgreementsRequestItemsItem",
+    "AgreementsCreateAgreementsRequestKind",
+    "AgreementsCreateAgreementsRequestStatus",
+    "AgreementsCreateAgreementsResponse",
+    "AgreementsCreateAgreementsResponseBillingPeriod",
+    "AgreementsCreateAgreementsResponseItemsItem",
+    "AgreementsCreateAgreementsResponseKind",
+    "AgreementsCreateAgreementsResponseStatus",
+    "AgreementsDeleteAgreementsResponse",
+    "AgreementsGenerateInvoiceAgreementsResponse",
+    "AgreementsGetAgreementsResponse",
+    "AgreementsGetAgreementsResponseBillingPeriod",
+    "AgreementsGetAgreementsResponseItemsItem",
+    "AgreementsGetAgreementsResponseKind",
+    "AgreementsGetAgreementsResponseStatus",
+    "AgreementsListAgreementsRequestFilterItem",
+    "AgreementsListAgreementsRequestFilterItemOp",
+    "AgreementsListAgreementsRequestFilterItemValue",
+    "AgreementsListAgreementsRequestFilterItemValueThreeItem",
+    "AgreementsListAgreementsRequestSortItem",
+    "AgreementsListAgreementsRequestSortItemDir",
+    "AgreementsListAgreementsResponse",
+    "AgreementsListAgreementsResponseRowsItem",
+    "AgreementsListAgreementsResponseRowsItemBillingPeriod",
+    "AgreementsListAgreementsResponseRowsItemKind",
+    "AgreementsListAgreementsResponseRowsItemStatus",
+    "AgreementsUpdateAgreementsRequestBillingPeriod",
+    "AgreementsUpdateAgreementsRequestKind",
+    "AgreementsUpdateAgreementsRequestStatus",
+    "AgreementsUpdateAgreementsResponse",
+    "AgreementsUpdateAgreementsResponseBillingPeriod",
+    "AgreementsUpdateAgreementsResponseItemsItem",
+    "AgreementsUpdateAgreementsResponseKind",
+    "AgreementsUpdateAgreementsResponseStatus",
+    "InsurancePoliciesCreateAgreementsResponse",
+    "InsurancePoliciesDeleteAgreementsResponse",
+    "InsurancePoliciesListAgreementsRequestFilterItem",
+    "InsurancePoliciesListAgreementsRequestFilterItemOp",
+    "InsurancePoliciesListAgreementsRequestFilterItemValue",
+    "InsurancePoliciesListAgreementsRequestFilterItemValueThreeItem",
+    "InsurancePoliciesListAgreementsRequestSortItem",
+    "InsurancePoliciesListAgreementsRequestSortItemDir",
+    "InsurancePoliciesListAgreementsResponse",
+    "InsurancePoliciesListAgreementsResponseRowsItem",
+    "TypesCreateAgreementsResponse",
+    "TypesListAgreementsRequestFilterItem",
+    "TypesListAgreementsRequestFilterItemOp",
+    "TypesListAgreementsRequestFilterItemValue",
+    "TypesListAgreementsRequestFilterItemValueThreeItem",
+    "TypesListAgreementsRequestSortItem",
+    "TypesListAgreementsRequestSortItemDir",
+    "TypesListAgreementsResponse",
+    "TypesListAgreementsResponseRowsItem",
 ]

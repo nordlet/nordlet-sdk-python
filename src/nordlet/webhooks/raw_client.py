@@ -12,25 +12,27 @@ from ..core.request_options import RequestOptions
 from ..core.serialization import convert_and_respect_annotation_metadata
 from ..errors.bad_request_error import BadRequestError
 from ..errors.conflict_error import ConflictError
+from ..errors.content_too_large_error import ContentTooLargeError
 from ..errors.forbidden_error import ForbiddenError
 from ..errors.internal_server_error import InternalServerError
 from ..errors.not_found_error import NotFoundError
+from ..errors.payment_required_error import PaymentRequiredError
 from ..errors.too_many_requests_error import TooManyRequestsError
 from ..errors.unauthorized_error import UnauthorizedError
 from ..errors.unprocessable_entity_error import UnprocessableEntityError
 from ..types.error_response import ErrorResponse
-from .types.post_v1webhooks_deliveries_list_request_filter_item import PostV1WebhooksDeliveriesListRequestFilterItem
-from .types.post_v1webhooks_deliveries_list_request_sort_item import PostV1WebhooksDeliveriesListRequestSortItem
-from .types.post_v1webhooks_deliveries_list_response import PostV1WebhooksDeliveriesListResponse
-from .types.post_v1webhooks_deliveries_redeliver_response import PostV1WebhooksDeliveriesRedeliverResponse
-from .types.post_v1webhooks_subscriptions_create_response import PostV1WebhooksSubscriptionsCreateResponse
-from .types.post_v1webhooks_subscriptions_delete_response import PostV1WebhooksSubscriptionsDeleteResponse
-from .types.post_v1webhooks_subscriptions_list_request_filter_item import (
-    PostV1WebhooksSubscriptionsListRequestFilterItem,
-)
-from .types.post_v1webhooks_subscriptions_list_request_sort_item import PostV1WebhooksSubscriptionsListRequestSortItem
-from .types.post_v1webhooks_subscriptions_list_response import PostV1WebhooksSubscriptionsListResponse
-from .types.post_v1webhooks_subscriptions_update_response import PostV1WebhooksSubscriptionsUpdateResponse
+from .types.deliveries_list_webhooks_request_filter_item import DeliveriesListWebhooksRequestFilterItem
+from .types.deliveries_list_webhooks_request_sort_item import DeliveriesListWebhooksRequestSortItem
+from .types.deliveries_list_webhooks_response import DeliveriesListWebhooksResponse
+from .types.deliveries_redeliver_webhooks_response import DeliveriesRedeliverWebhooksResponse
+from .types.subscriptions_create_webhooks_request_events_item import SubscriptionsCreateWebhooksRequestEventsItem
+from .types.subscriptions_create_webhooks_response import SubscriptionsCreateWebhooksResponse
+from .types.subscriptions_delete_webhooks_response import SubscriptionsDeleteWebhooksResponse
+from .types.subscriptions_list_webhooks_request_filter_item import SubscriptionsListWebhooksRequestFilterItem
+from .types.subscriptions_list_webhooks_request_sort_item import SubscriptionsListWebhooksRequestSortItem
+from .types.subscriptions_list_webhooks_response import SubscriptionsListWebhooksResponse
+from .types.subscriptions_update_webhooks_request_events_item import SubscriptionsUpdateWebhooksRequestEventsItem
+from .types.subscriptions_update_webhooks_response import SubscriptionsUpdateWebhooksResponse
 from pydantic import ValidationError
 
 # this is used as the default value for optional parameters
@@ -41,20 +43,20 @@ class RawWebhooksClient:
     def __init__(self, *, client_wrapper: SyncClientWrapper):
         self._client_wrapper = client_wrapper
 
-    def post_v1webhooks_subscriptions_create(
+    def subscriptions_create(
         self,
         *,
         url: str,
-        events: typing.Sequence[str],
+        events: typing.Sequence[SubscriptionsCreateWebhooksRequestEventsItem],
         secret: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> HttpResponse[PostV1WebhooksSubscriptionsCreateResponse]:
+    ) -> HttpResponse[SubscriptionsCreateWebhooksResponse]:
         """
         Parameters
         ----------
         url : str
 
-        events : typing.Sequence[str]
+        events : typing.Sequence[SubscriptionsCreateWebhooksRequestEventsItem]
 
         secret : typing.Optional[str]
 
@@ -63,7 +65,7 @@ class RawWebhooksClient:
 
         Returns
         -------
-        HttpResponse[PostV1WebhooksSubscriptionsCreateResponse]
+        HttpResponse[SubscriptionsCreateWebhooksResponse]
             Default Response
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -83,9 +85,9 @@ class RawWebhooksClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1WebhooksSubscriptionsCreateResponse,
+                    SubscriptionsCreateWebhooksResponse,
                     parse_obj_as(
-                        type_=PostV1WebhooksSubscriptionsCreateResponse,  # type: ignore
+                        type_=SubscriptionsCreateWebhooksResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -103,6 +105,17 @@ class RawWebhooksClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -136,6 +149,17 @@ class RawWebhooksClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -187,16 +211,16 @@ class RawWebhooksClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    def post_v1webhooks_subscriptions_list(
+    def subscriptions_list(
         self,
         *,
         page: typing.Optional[int] = OMIT,
         page_size: typing.Optional[int] = OMIT,
-        sort: typing.Optional[typing.Sequence[PostV1WebhooksSubscriptionsListRequestSortItem]] = OMIT,
-        filter: typing.Optional[typing.Sequence[PostV1WebhooksSubscriptionsListRequestFilterItem]] = OMIT,
+        sort: typing.Optional[typing.Sequence[SubscriptionsListWebhooksRequestSortItem]] = OMIT,
+        filter: typing.Optional[typing.Sequence[SubscriptionsListWebhooksRequestFilterItem]] = OMIT,
         totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> HttpResponse[PostV1WebhooksSubscriptionsListResponse]:
+    ) -> HttpResponse[SubscriptionsListWebhooksResponse]:
         """
         Parameters
         ----------
@@ -204,9 +228,9 @@ class RawWebhooksClient:
 
         page_size : typing.Optional[int]
 
-        sort : typing.Optional[typing.Sequence[PostV1WebhooksSubscriptionsListRequestSortItem]]
+        sort : typing.Optional[typing.Sequence[SubscriptionsListWebhooksRequestSortItem]]
 
-        filter : typing.Optional[typing.Sequence[PostV1WebhooksSubscriptionsListRequestFilterItem]]
+        filter : typing.Optional[typing.Sequence[SubscriptionsListWebhooksRequestFilterItem]]
 
         totals : typing.Optional[typing.Sequence[str]]
             Numeric fields to sum over every row matching the filter (not only the current page)
@@ -216,7 +240,7 @@ class RawWebhooksClient:
 
         Returns
         -------
-        HttpResponse[PostV1WebhooksSubscriptionsListResponse]
+        HttpResponse[SubscriptionsListWebhooksResponse]
             Default Response
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -227,12 +251,12 @@ class RawWebhooksClient:
                 "pageSize": page_size,
                 "sort": convert_and_respect_annotation_metadata(
                     object_=sort,
-                    annotation=typing.Sequence[PostV1WebhooksSubscriptionsListRequestSortItem],
+                    annotation=typing.Sequence[SubscriptionsListWebhooksRequestSortItem],
                     direction="write",
                 ),
                 "filter": convert_and_respect_annotation_metadata(
                     object_=filter,
-                    annotation=typing.Sequence[PostV1WebhooksSubscriptionsListRequestFilterItem],
+                    annotation=typing.Sequence[SubscriptionsListWebhooksRequestFilterItem],
                     direction="write",
                 ),
                 "totals": totals,
@@ -246,9 +270,9 @@ class RawWebhooksClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1WebhooksSubscriptionsListResponse,
+                    SubscriptionsListWebhooksResponse,
                     parse_obj_as(
-                        type_=PostV1WebhooksSubscriptionsListResponse,  # type: ignore
+                        type_=SubscriptionsListWebhooksResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -266,6 +290,17 @@ class RawWebhooksClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -299,6 +334,17 @@ class RawWebhooksClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -350,15 +396,15 @@ class RawWebhooksClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    def post_v1webhooks_subscriptions_update(
+    def subscriptions_update(
         self,
         *,
         id: str,
         url: typing.Optional[str] = OMIT,
-        events: typing.Optional[typing.Sequence[str]] = OMIT,
+        events: typing.Optional[typing.Sequence[SubscriptionsUpdateWebhooksRequestEventsItem]] = OMIT,
         is_active: typing.Optional[bool] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> HttpResponse[PostV1WebhooksSubscriptionsUpdateResponse]:
+    ) -> HttpResponse[SubscriptionsUpdateWebhooksResponse]:
         """
         Parameters
         ----------
@@ -366,7 +412,7 @@ class RawWebhooksClient:
 
         url : typing.Optional[str]
 
-        events : typing.Optional[typing.Sequence[str]]
+        events : typing.Optional[typing.Sequence[SubscriptionsUpdateWebhooksRequestEventsItem]]
 
         is_active : typing.Optional[bool]
 
@@ -375,7 +421,7 @@ class RawWebhooksClient:
 
         Returns
         -------
-        HttpResponse[PostV1WebhooksSubscriptionsUpdateResponse]
+        HttpResponse[SubscriptionsUpdateWebhooksResponse]
             Default Response
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -396,9 +442,9 @@ class RawWebhooksClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1WebhooksSubscriptionsUpdateResponse,
+                    SubscriptionsUpdateWebhooksResponse,
                     parse_obj_as(
-                        type_=PostV1WebhooksSubscriptionsUpdateResponse,  # type: ignore
+                        type_=SubscriptionsUpdateWebhooksResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -416,6 +462,17 @@ class RawWebhooksClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -449,6 +506,17 @@ class RawWebhooksClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -500,9 +568,9 @@ class RawWebhooksClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    def post_v1webhooks_subscriptions_delete(
+    def subscriptions_delete(
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
-    ) -> HttpResponse[PostV1WebhooksSubscriptionsDeleteResponse]:
+    ) -> HttpResponse[SubscriptionsDeleteWebhooksResponse]:
         """
         Parameters
         ----------
@@ -513,7 +581,7 @@ class RawWebhooksClient:
 
         Returns
         -------
-        HttpResponse[PostV1WebhooksSubscriptionsDeleteResponse]
+        HttpResponse[SubscriptionsDeleteWebhooksResponse]
             Default Response
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -531,9 +599,9 @@ class RawWebhooksClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1WebhooksSubscriptionsDeleteResponse,
+                    SubscriptionsDeleteWebhooksResponse,
                     parse_obj_as(
-                        type_=PostV1WebhooksSubscriptionsDeleteResponse,  # type: ignore
+                        type_=SubscriptionsDeleteWebhooksResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -551,6 +619,17 @@ class RawWebhooksClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -584,6 +663,17 @@ class RawWebhooksClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -635,16 +725,16 @@ class RawWebhooksClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    def post_v1webhooks_deliveries_list(
+    def deliveries_list(
         self,
         *,
         page: typing.Optional[int] = OMIT,
         page_size: typing.Optional[int] = OMIT,
-        sort: typing.Optional[typing.Sequence[PostV1WebhooksDeliveriesListRequestSortItem]] = OMIT,
-        filter: typing.Optional[typing.Sequence[PostV1WebhooksDeliveriesListRequestFilterItem]] = OMIT,
+        sort: typing.Optional[typing.Sequence[DeliveriesListWebhooksRequestSortItem]] = OMIT,
+        filter: typing.Optional[typing.Sequence[DeliveriesListWebhooksRequestFilterItem]] = OMIT,
         totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> HttpResponse[PostV1WebhooksDeliveriesListResponse]:
+    ) -> HttpResponse[DeliveriesListWebhooksResponse]:
         """
         Parameters
         ----------
@@ -652,9 +742,9 @@ class RawWebhooksClient:
 
         page_size : typing.Optional[int]
 
-        sort : typing.Optional[typing.Sequence[PostV1WebhooksDeliveriesListRequestSortItem]]
+        sort : typing.Optional[typing.Sequence[DeliveriesListWebhooksRequestSortItem]]
 
-        filter : typing.Optional[typing.Sequence[PostV1WebhooksDeliveriesListRequestFilterItem]]
+        filter : typing.Optional[typing.Sequence[DeliveriesListWebhooksRequestFilterItem]]
 
         totals : typing.Optional[typing.Sequence[str]]
             Numeric fields to sum over every row matching the filter (not only the current page)
@@ -664,7 +754,7 @@ class RawWebhooksClient:
 
         Returns
         -------
-        HttpResponse[PostV1WebhooksDeliveriesListResponse]
+        HttpResponse[DeliveriesListWebhooksResponse]
             Default Response
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -674,13 +764,11 @@ class RawWebhooksClient:
                 "page": page,
                 "pageSize": page_size,
                 "sort": convert_and_respect_annotation_metadata(
-                    object_=sort,
-                    annotation=typing.Sequence[PostV1WebhooksDeliveriesListRequestSortItem],
-                    direction="write",
+                    object_=sort, annotation=typing.Sequence[DeliveriesListWebhooksRequestSortItem], direction="write"
                 ),
                 "filter": convert_and_respect_annotation_metadata(
                     object_=filter,
-                    annotation=typing.Sequence[PostV1WebhooksDeliveriesListRequestFilterItem],
+                    annotation=typing.Sequence[DeliveriesListWebhooksRequestFilterItem],
                     direction="write",
                 ),
                 "totals": totals,
@@ -694,9 +782,9 @@ class RawWebhooksClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1WebhooksDeliveriesListResponse,
+                    DeliveriesListWebhooksResponse,
                     parse_obj_as(
-                        type_=PostV1WebhooksDeliveriesListResponse,  # type: ignore
+                        type_=DeliveriesListWebhooksResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -714,6 +802,17 @@ class RawWebhooksClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -747,6 +846,17 @@ class RawWebhooksClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -798,9 +908,9 @@ class RawWebhooksClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    def post_v1webhooks_deliveries_redeliver(
+    def deliveries_redeliver(
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
-    ) -> HttpResponse[PostV1WebhooksDeliveriesRedeliverResponse]:
+    ) -> HttpResponse[DeliveriesRedeliverWebhooksResponse]:
         """
         Parameters
         ----------
@@ -811,7 +921,7 @@ class RawWebhooksClient:
 
         Returns
         -------
-        HttpResponse[PostV1WebhooksDeliveriesRedeliverResponse]
+        HttpResponse[DeliveriesRedeliverWebhooksResponse]
             Default Response
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -829,9 +939,9 @@ class RawWebhooksClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1WebhooksDeliveriesRedeliverResponse,
+                    DeliveriesRedeliverWebhooksResponse,
                     parse_obj_as(
-                        type_=PostV1WebhooksDeliveriesRedeliverResponse,  # type: ignore
+                        type_=DeliveriesRedeliverWebhooksResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -849,6 +959,17 @@ class RawWebhooksClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -882,6 +1003,17 @@ class RawWebhooksClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -938,20 +1070,20 @@ class AsyncRawWebhooksClient:
     def __init__(self, *, client_wrapper: AsyncClientWrapper):
         self._client_wrapper = client_wrapper
 
-    async def post_v1webhooks_subscriptions_create(
+    async def subscriptions_create(
         self,
         *,
         url: str,
-        events: typing.Sequence[str],
+        events: typing.Sequence[SubscriptionsCreateWebhooksRequestEventsItem],
         secret: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> AsyncHttpResponse[PostV1WebhooksSubscriptionsCreateResponse]:
+    ) -> AsyncHttpResponse[SubscriptionsCreateWebhooksResponse]:
         """
         Parameters
         ----------
         url : str
 
-        events : typing.Sequence[str]
+        events : typing.Sequence[SubscriptionsCreateWebhooksRequestEventsItem]
 
         secret : typing.Optional[str]
 
@@ -960,7 +1092,7 @@ class AsyncRawWebhooksClient:
 
         Returns
         -------
-        AsyncHttpResponse[PostV1WebhooksSubscriptionsCreateResponse]
+        AsyncHttpResponse[SubscriptionsCreateWebhooksResponse]
             Default Response
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -980,9 +1112,9 @@ class AsyncRawWebhooksClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1WebhooksSubscriptionsCreateResponse,
+                    SubscriptionsCreateWebhooksResponse,
                     parse_obj_as(
-                        type_=PostV1WebhooksSubscriptionsCreateResponse,  # type: ignore
+                        type_=SubscriptionsCreateWebhooksResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -1000,6 +1132,17 @@ class AsyncRawWebhooksClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -1033,6 +1176,17 @@ class AsyncRawWebhooksClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -1084,16 +1238,16 @@ class AsyncRawWebhooksClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    async def post_v1webhooks_subscriptions_list(
+    async def subscriptions_list(
         self,
         *,
         page: typing.Optional[int] = OMIT,
         page_size: typing.Optional[int] = OMIT,
-        sort: typing.Optional[typing.Sequence[PostV1WebhooksSubscriptionsListRequestSortItem]] = OMIT,
-        filter: typing.Optional[typing.Sequence[PostV1WebhooksSubscriptionsListRequestFilterItem]] = OMIT,
+        sort: typing.Optional[typing.Sequence[SubscriptionsListWebhooksRequestSortItem]] = OMIT,
+        filter: typing.Optional[typing.Sequence[SubscriptionsListWebhooksRequestFilterItem]] = OMIT,
         totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> AsyncHttpResponse[PostV1WebhooksSubscriptionsListResponse]:
+    ) -> AsyncHttpResponse[SubscriptionsListWebhooksResponse]:
         """
         Parameters
         ----------
@@ -1101,9 +1255,9 @@ class AsyncRawWebhooksClient:
 
         page_size : typing.Optional[int]
 
-        sort : typing.Optional[typing.Sequence[PostV1WebhooksSubscriptionsListRequestSortItem]]
+        sort : typing.Optional[typing.Sequence[SubscriptionsListWebhooksRequestSortItem]]
 
-        filter : typing.Optional[typing.Sequence[PostV1WebhooksSubscriptionsListRequestFilterItem]]
+        filter : typing.Optional[typing.Sequence[SubscriptionsListWebhooksRequestFilterItem]]
 
         totals : typing.Optional[typing.Sequence[str]]
             Numeric fields to sum over every row matching the filter (not only the current page)
@@ -1113,7 +1267,7 @@ class AsyncRawWebhooksClient:
 
         Returns
         -------
-        AsyncHttpResponse[PostV1WebhooksSubscriptionsListResponse]
+        AsyncHttpResponse[SubscriptionsListWebhooksResponse]
             Default Response
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -1124,12 +1278,12 @@ class AsyncRawWebhooksClient:
                 "pageSize": page_size,
                 "sort": convert_and_respect_annotation_metadata(
                     object_=sort,
-                    annotation=typing.Sequence[PostV1WebhooksSubscriptionsListRequestSortItem],
+                    annotation=typing.Sequence[SubscriptionsListWebhooksRequestSortItem],
                     direction="write",
                 ),
                 "filter": convert_and_respect_annotation_metadata(
                     object_=filter,
-                    annotation=typing.Sequence[PostV1WebhooksSubscriptionsListRequestFilterItem],
+                    annotation=typing.Sequence[SubscriptionsListWebhooksRequestFilterItem],
                     direction="write",
                 ),
                 "totals": totals,
@@ -1143,9 +1297,9 @@ class AsyncRawWebhooksClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1WebhooksSubscriptionsListResponse,
+                    SubscriptionsListWebhooksResponse,
                     parse_obj_as(
-                        type_=PostV1WebhooksSubscriptionsListResponse,  # type: ignore
+                        type_=SubscriptionsListWebhooksResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -1163,6 +1317,17 @@ class AsyncRawWebhooksClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -1196,6 +1361,17 @@ class AsyncRawWebhooksClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -1247,15 +1423,15 @@ class AsyncRawWebhooksClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    async def post_v1webhooks_subscriptions_update(
+    async def subscriptions_update(
         self,
         *,
         id: str,
         url: typing.Optional[str] = OMIT,
-        events: typing.Optional[typing.Sequence[str]] = OMIT,
+        events: typing.Optional[typing.Sequence[SubscriptionsUpdateWebhooksRequestEventsItem]] = OMIT,
         is_active: typing.Optional[bool] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> AsyncHttpResponse[PostV1WebhooksSubscriptionsUpdateResponse]:
+    ) -> AsyncHttpResponse[SubscriptionsUpdateWebhooksResponse]:
         """
         Parameters
         ----------
@@ -1263,7 +1439,7 @@ class AsyncRawWebhooksClient:
 
         url : typing.Optional[str]
 
-        events : typing.Optional[typing.Sequence[str]]
+        events : typing.Optional[typing.Sequence[SubscriptionsUpdateWebhooksRequestEventsItem]]
 
         is_active : typing.Optional[bool]
 
@@ -1272,7 +1448,7 @@ class AsyncRawWebhooksClient:
 
         Returns
         -------
-        AsyncHttpResponse[PostV1WebhooksSubscriptionsUpdateResponse]
+        AsyncHttpResponse[SubscriptionsUpdateWebhooksResponse]
             Default Response
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -1293,9 +1469,9 @@ class AsyncRawWebhooksClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1WebhooksSubscriptionsUpdateResponse,
+                    SubscriptionsUpdateWebhooksResponse,
                     parse_obj_as(
-                        type_=PostV1WebhooksSubscriptionsUpdateResponse,  # type: ignore
+                        type_=SubscriptionsUpdateWebhooksResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -1313,6 +1489,17 @@ class AsyncRawWebhooksClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -1346,6 +1533,17 @@ class AsyncRawWebhooksClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -1397,9 +1595,9 @@ class AsyncRawWebhooksClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    async def post_v1webhooks_subscriptions_delete(
+    async def subscriptions_delete(
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
-    ) -> AsyncHttpResponse[PostV1WebhooksSubscriptionsDeleteResponse]:
+    ) -> AsyncHttpResponse[SubscriptionsDeleteWebhooksResponse]:
         """
         Parameters
         ----------
@@ -1410,7 +1608,7 @@ class AsyncRawWebhooksClient:
 
         Returns
         -------
-        AsyncHttpResponse[PostV1WebhooksSubscriptionsDeleteResponse]
+        AsyncHttpResponse[SubscriptionsDeleteWebhooksResponse]
             Default Response
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -1428,9 +1626,9 @@ class AsyncRawWebhooksClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1WebhooksSubscriptionsDeleteResponse,
+                    SubscriptionsDeleteWebhooksResponse,
                     parse_obj_as(
-                        type_=PostV1WebhooksSubscriptionsDeleteResponse,  # type: ignore
+                        type_=SubscriptionsDeleteWebhooksResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -1448,6 +1646,17 @@ class AsyncRawWebhooksClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -1481,6 +1690,17 @@ class AsyncRawWebhooksClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -1532,16 +1752,16 @@ class AsyncRawWebhooksClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    async def post_v1webhooks_deliveries_list(
+    async def deliveries_list(
         self,
         *,
         page: typing.Optional[int] = OMIT,
         page_size: typing.Optional[int] = OMIT,
-        sort: typing.Optional[typing.Sequence[PostV1WebhooksDeliveriesListRequestSortItem]] = OMIT,
-        filter: typing.Optional[typing.Sequence[PostV1WebhooksDeliveriesListRequestFilterItem]] = OMIT,
+        sort: typing.Optional[typing.Sequence[DeliveriesListWebhooksRequestSortItem]] = OMIT,
+        filter: typing.Optional[typing.Sequence[DeliveriesListWebhooksRequestFilterItem]] = OMIT,
         totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> AsyncHttpResponse[PostV1WebhooksDeliveriesListResponse]:
+    ) -> AsyncHttpResponse[DeliveriesListWebhooksResponse]:
         """
         Parameters
         ----------
@@ -1549,9 +1769,9 @@ class AsyncRawWebhooksClient:
 
         page_size : typing.Optional[int]
 
-        sort : typing.Optional[typing.Sequence[PostV1WebhooksDeliveriesListRequestSortItem]]
+        sort : typing.Optional[typing.Sequence[DeliveriesListWebhooksRequestSortItem]]
 
-        filter : typing.Optional[typing.Sequence[PostV1WebhooksDeliveriesListRequestFilterItem]]
+        filter : typing.Optional[typing.Sequence[DeliveriesListWebhooksRequestFilterItem]]
 
         totals : typing.Optional[typing.Sequence[str]]
             Numeric fields to sum over every row matching the filter (not only the current page)
@@ -1561,7 +1781,7 @@ class AsyncRawWebhooksClient:
 
         Returns
         -------
-        AsyncHttpResponse[PostV1WebhooksDeliveriesListResponse]
+        AsyncHttpResponse[DeliveriesListWebhooksResponse]
             Default Response
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -1571,13 +1791,11 @@ class AsyncRawWebhooksClient:
                 "page": page,
                 "pageSize": page_size,
                 "sort": convert_and_respect_annotation_metadata(
-                    object_=sort,
-                    annotation=typing.Sequence[PostV1WebhooksDeliveriesListRequestSortItem],
-                    direction="write",
+                    object_=sort, annotation=typing.Sequence[DeliveriesListWebhooksRequestSortItem], direction="write"
                 ),
                 "filter": convert_and_respect_annotation_metadata(
                     object_=filter,
-                    annotation=typing.Sequence[PostV1WebhooksDeliveriesListRequestFilterItem],
+                    annotation=typing.Sequence[DeliveriesListWebhooksRequestFilterItem],
                     direction="write",
                 ),
                 "totals": totals,
@@ -1591,9 +1809,9 @@ class AsyncRawWebhooksClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1WebhooksDeliveriesListResponse,
+                    DeliveriesListWebhooksResponse,
                     parse_obj_as(
-                        type_=PostV1WebhooksDeliveriesListResponse,  # type: ignore
+                        type_=DeliveriesListWebhooksResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -1611,6 +1829,17 @@ class AsyncRawWebhooksClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -1644,6 +1873,17 @@ class AsyncRawWebhooksClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -1695,9 +1935,9 @@ class AsyncRawWebhooksClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    async def post_v1webhooks_deliveries_redeliver(
+    async def deliveries_redeliver(
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
-    ) -> AsyncHttpResponse[PostV1WebhooksDeliveriesRedeliverResponse]:
+    ) -> AsyncHttpResponse[DeliveriesRedeliverWebhooksResponse]:
         """
         Parameters
         ----------
@@ -1708,7 +1948,7 @@ class AsyncRawWebhooksClient:
 
         Returns
         -------
-        AsyncHttpResponse[PostV1WebhooksDeliveriesRedeliverResponse]
+        AsyncHttpResponse[DeliveriesRedeliverWebhooksResponse]
             Default Response
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -1726,9 +1966,9 @@ class AsyncRawWebhooksClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1WebhooksDeliveriesRedeliverResponse,
+                    DeliveriesRedeliverWebhooksResponse,
                     parse_obj_as(
-                        type_=PostV1WebhooksDeliveriesRedeliverResponse,  # type: ignore
+                        type_=DeliveriesRedeliverWebhooksResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -1746,6 +1986,17 @@ class AsyncRawWebhooksClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -1779,6 +2030,17 @@ class AsyncRawWebhooksClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,

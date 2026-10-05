@@ -22,13 +22,17 @@ if typing.TYPE_CHECKING:
     from .catalog.client import AsyncCatalogClient, CatalogClient
     from .consolidation.client import AsyncConsolidationClient, ConsolidationClient
     from .declarations.client import AsyncDeclarationsClient, DeclarationsClient
+    from .document_series.client import AsyncDocumentSeriesClient, DocumentSeriesClient
     from .ecommerce.client import AsyncEcommerceClient, EcommerceClient
     from .files.client import AsyncFilesClient, FilesClient
     from .fleet.client import AsyncFleetClient, FleetClient
     from .hr.client import AsyncHrClient, HrClient
     from .inventory.client import AsyncInventoryClient, InventoryClient
+    from .leads.client import AsyncLeadsClient, LeadsClient
     from .ledger.client import AsyncLedgerClient, LedgerClient
     from .migration.client import AsyncMigrationClient, MigrationClient
+    from .officers.client import AsyncOfficersClient, OfficersClient
+    from .operation_types.client import AsyncOperationTypesClient, OperationTypesClient
     from .partners.client import AsyncPartnersClient, PartnersClient
     from .payroll.client import AsyncPayrollClient, PayrollClient
     from .pos.client import AsyncPosClient, PosClient
@@ -129,12 +133,16 @@ class Nordlet:
         )
         self._reference: typing.Optional[ReferenceClient] = None
         self._partners: typing.Optional[PartnersClient] = None
+        self._leads: typing.Optional[LeadsClient] = None
         self._catalog: typing.Optional[CatalogClient] = None
         self._sales: typing.Optional[SalesClient] = None
+        self._operation_types: typing.Optional[OperationTypesClient] = None
+        self._document_series: typing.Optional[DocumentSeriesClient] = None
         self._purchases: typing.Optional[PurchasesClient] = None
         self._capture: typing.Optional[CaptureClient] = None
         self._declarations: typing.Optional[DeclarationsClient] = None
         self._ledger: typing.Optional[LedgerClient] = None
+        self._officers: typing.Optional[OfficersClient] = None
         self._migration: typing.Optional[MigrationClient] = None
         self._assets: typing.Optional[AssetsClient] = None
         self._hr: typing.Optional[HrClient] = None
@@ -176,6 +184,14 @@ class Nordlet:
         return self._partners
 
     @property
+    def leads(self):
+        if self._leads is None:
+            from .leads.client import LeadsClient  # noqa: E402
+
+            self._leads = LeadsClient(client_wrapper=self._client_wrapper)
+        return self._leads
+
+    @property
     def catalog(self):
         if self._catalog is None:
             from .catalog.client import CatalogClient  # noqa: E402
@@ -190,6 +206,22 @@ class Nordlet:
 
             self._sales = SalesClient(client_wrapper=self._client_wrapper)
         return self._sales
+
+    @property
+    def operation_types(self):
+        if self._operation_types is None:
+            from .operation_types.client import OperationTypesClient  # noqa: E402
+
+            self._operation_types = OperationTypesClient(client_wrapper=self._client_wrapper)
+        return self._operation_types
+
+    @property
+    def document_series(self):
+        if self._document_series is None:
+            from .document_series.client import DocumentSeriesClient  # noqa: E402
+
+            self._document_series = DocumentSeriesClient(client_wrapper=self._client_wrapper)
+        return self._document_series
 
     @property
     def purchases(self):
@@ -222,6 +254,14 @@ class Nordlet:
 
             self._ledger = LedgerClient(client_wrapper=self._client_wrapper)
         return self._ledger
+
+    @property
+    def officers(self):
+        if self._officers is None:
+            from .officers.client import OfficersClient  # noqa: E402
+
+            self._officers = OfficersClient(client_wrapper=self._client_wrapper)
+        return self._officers
 
     @property
     def migration(self):
@@ -515,12 +555,16 @@ class AsyncNordlet:
         )
         self._reference: typing.Optional[AsyncReferenceClient] = None
         self._partners: typing.Optional[AsyncPartnersClient] = None
+        self._leads: typing.Optional[AsyncLeadsClient] = None
         self._catalog: typing.Optional[AsyncCatalogClient] = None
         self._sales: typing.Optional[AsyncSalesClient] = None
+        self._operation_types: typing.Optional[AsyncOperationTypesClient] = None
+        self._document_series: typing.Optional[AsyncDocumentSeriesClient] = None
         self._purchases: typing.Optional[AsyncPurchasesClient] = None
         self._capture: typing.Optional[AsyncCaptureClient] = None
         self._declarations: typing.Optional[AsyncDeclarationsClient] = None
         self._ledger: typing.Optional[AsyncLedgerClient] = None
+        self._officers: typing.Optional[AsyncOfficersClient] = None
         self._migration: typing.Optional[AsyncMigrationClient] = None
         self._assets: typing.Optional[AsyncAssetsClient] = None
         self._hr: typing.Optional[AsyncHrClient] = None
@@ -562,6 +606,14 @@ class AsyncNordlet:
         return self._partners
 
     @property
+    def leads(self):
+        if self._leads is None:
+            from .leads.client import AsyncLeadsClient  # noqa: E402
+
+            self._leads = AsyncLeadsClient(client_wrapper=self._client_wrapper)
+        return self._leads
+
+    @property
     def catalog(self):
         if self._catalog is None:
             from .catalog.client import AsyncCatalogClient  # noqa: E402
@@ -576,6 +628,22 @@ class AsyncNordlet:
 
             self._sales = AsyncSalesClient(client_wrapper=self._client_wrapper)
         return self._sales
+
+    @property
+    def operation_types(self):
+        if self._operation_types is None:
+            from .operation_types.client import AsyncOperationTypesClient  # noqa: E402
+
+            self._operation_types = AsyncOperationTypesClient(client_wrapper=self._client_wrapper)
+        return self._operation_types
+
+    @property
+    def document_series(self):
+        if self._document_series is None:
+            from .document_series.client import AsyncDocumentSeriesClient  # noqa: E402
+
+            self._document_series = AsyncDocumentSeriesClient(client_wrapper=self._client_wrapper)
+        return self._document_series
 
     @property
     def purchases(self):
@@ -608,6 +676,14 @@ class AsyncNordlet:
 
             self._ledger = AsyncLedgerClient(client_wrapper=self._client_wrapper)
         return self._ledger
+
+    @property
+    def officers(self):
+        if self._officers is None:
+            from .officers.client import AsyncOfficersClient  # noqa: E402
+
+            self._officers = AsyncOfficersClient(client_wrapper=self._client_wrapper)
+        return self._officers
 
     @property
     def migration(self):

@@ -6,207 +6,169 @@ import typing
 from importlib import import_module
 
 if typing.TYPE_CHECKING:
-    from .post_v1inventory_landed_costs_create_request_method import PostV1InventoryLandedCostsCreateRequestMethod
-    from .post_v1inventory_landed_costs_create_response import PostV1InventoryLandedCostsCreateResponse
-    from .post_v1inventory_landed_costs_create_response_lines_item import (
-        PostV1InventoryLandedCostsCreateResponseLinesItem,
+    from .landed_costs_create_inventory_request_method import LandedCostsCreateInventoryRequestMethod
+    from .landed_costs_create_inventory_response import LandedCostsCreateInventoryResponse
+    from .landed_costs_create_inventory_response_lines_item import LandedCostsCreateInventoryResponseLinesItem
+    from .landed_costs_create_inventory_response_method import LandedCostsCreateInventoryResponseMethod
+    from .landed_costs_get_inventory_response import LandedCostsGetInventoryResponse
+    from .landed_costs_get_inventory_response_lines_item import LandedCostsGetInventoryResponseLinesItem
+    from .landed_costs_get_inventory_response_method import LandedCostsGetInventoryResponseMethod
+    from .landed_costs_list_inventory_request_filter_item import LandedCostsListInventoryRequestFilterItem
+    from .landed_costs_list_inventory_request_filter_item_op import LandedCostsListInventoryRequestFilterItemOp
+    from .landed_costs_list_inventory_request_filter_item_value import LandedCostsListInventoryRequestFilterItemValue
+    from .landed_costs_list_inventory_request_filter_item_value_three_item import (
+        LandedCostsListInventoryRequestFilterItemValueThreeItem,
     )
-    from .post_v1inventory_landed_costs_create_response_method import PostV1InventoryLandedCostsCreateResponseMethod
-    from .post_v1inventory_landed_costs_get_response import PostV1InventoryLandedCostsGetResponse
-    from .post_v1inventory_landed_costs_get_response_lines_item import PostV1InventoryLandedCostsGetResponseLinesItem
-    from .post_v1inventory_landed_costs_get_response_method import PostV1InventoryLandedCostsGetResponseMethod
-    from .post_v1inventory_landed_costs_list_request_filter_item import PostV1InventoryLandedCostsListRequestFilterItem
-    from .post_v1inventory_landed_costs_list_request_filter_item_op import (
-        PostV1InventoryLandedCostsListRequestFilterItemOp,
+    from .landed_costs_list_inventory_request_sort_item import LandedCostsListInventoryRequestSortItem
+    from .landed_costs_list_inventory_request_sort_item_dir import LandedCostsListInventoryRequestSortItemDir
+    from .landed_costs_list_inventory_response import LandedCostsListInventoryResponse
+    from .landed_costs_list_inventory_response_rows_item import LandedCostsListInventoryResponseRowsItem
+    from .landed_costs_list_inventory_response_rows_item_method import LandedCostsListInventoryResponseRowsItemMethod
+    from .lots_get_inventory_response import LotsGetInventoryResponse
+    from .lots_get_inventory_response_movements_item import LotsGetInventoryResponseMovementsItem
+    from .lots_get_inventory_response_movements_item_direction import LotsGetInventoryResponseMovementsItemDirection
+    from .lots_list_inventory_request_filter_item import LotsListInventoryRequestFilterItem
+    from .lots_list_inventory_request_filter_item_op import LotsListInventoryRequestFilterItemOp
+    from .lots_list_inventory_request_filter_item_value import LotsListInventoryRequestFilterItemValue
+    from .lots_list_inventory_request_filter_item_value_three_item import (
+        LotsListInventoryRequestFilterItemValueThreeItem,
     )
-    from .post_v1inventory_landed_costs_list_request_filter_item_value import (
-        PostV1InventoryLandedCostsListRequestFilterItemValue,
+    from .lots_list_inventory_request_sort_item import LotsListInventoryRequestSortItem
+    from .lots_list_inventory_request_sort_item_dir import LotsListInventoryRequestSortItemDir
+    from .lots_list_inventory_response import LotsListInventoryResponse
+    from .lots_list_inventory_response_rows_item import LotsListInventoryResponseRowsItem
+    from .lots_update_inventory_response import LotsUpdateInventoryResponse
+    from .reorder_rules_check_inventory_response import ReorderRulesCheckInventoryResponse
+    from .reorder_rules_check_inventory_response_rows_item import ReorderRulesCheckInventoryResponseRowsItem
+    from .reorder_rules_create_inventory_response import ReorderRulesCreateInventoryResponse
+    from .reorder_rules_delete_inventory_response import ReorderRulesDeleteInventoryResponse
+    from .reorder_rules_list_inventory_request_filter_item import ReorderRulesListInventoryRequestFilterItem
+    from .reorder_rules_list_inventory_request_filter_item_op import ReorderRulesListInventoryRequestFilterItemOp
+    from .reorder_rules_list_inventory_request_filter_item_value import ReorderRulesListInventoryRequestFilterItemValue
+    from .reorder_rules_list_inventory_request_filter_item_value_three_item import (
+        ReorderRulesListInventoryRequestFilterItemValueThreeItem,
     )
-    from .post_v1inventory_landed_costs_list_request_filter_item_value_three_item import (
-        PostV1InventoryLandedCostsListRequestFilterItemValueThreeItem,
+    from .reorder_rules_list_inventory_request_sort_item import ReorderRulesListInventoryRequestSortItem
+    from .reorder_rules_list_inventory_request_sort_item_dir import ReorderRulesListInventoryRequestSortItemDir
+    from .reorder_rules_list_inventory_response import ReorderRulesListInventoryResponse
+    from .reorder_rules_list_inventory_response_rows_item import ReorderRulesListInventoryResponseRowsItem
+    from .reorder_rules_update_inventory_response import ReorderRulesUpdateInventoryResponse
+    from .settings_get_inventory_response import SettingsGetInventoryResponse
+    from .settings_get_inventory_response_negative_stock_policy import SettingsGetInventoryResponseNegativeStockPolicy
+    from .settings_update_inventory_request_negative_stock_policy import (
+        SettingsUpdateInventoryRequestNegativeStockPolicy,
     )
-    from .post_v1inventory_landed_costs_list_request_sort_item import PostV1InventoryLandedCostsListRequestSortItem
-    from .post_v1inventory_landed_costs_list_request_sort_item_dir import (
-        PostV1InventoryLandedCostsListRequestSortItemDir,
+    from .settings_update_inventory_response import SettingsUpdateInventoryResponse
+    from .settings_update_inventory_response_negative_stock_policy import (
+        SettingsUpdateInventoryResponseNegativeStockPolicy,
     )
-    from .post_v1inventory_landed_costs_list_response import PostV1InventoryLandedCostsListResponse
-    from .post_v1inventory_landed_costs_list_response_rows_item import PostV1InventoryLandedCostsListResponseRowsItem
-    from .post_v1inventory_landed_costs_list_response_rows_item_method import (
-        PostV1InventoryLandedCostsListResponseRowsItemMethod,
+    from .stock_levels_inventory_response import StockLevelsInventoryResponse
+    from .stock_levels_inventory_response_rows_item import StockLevelsInventoryResponseRowsItem
+    from .stock_movements_list_inventory_request_filter_item import StockMovementsListInventoryRequestFilterItem
+    from .stock_movements_list_inventory_request_filter_item_op import StockMovementsListInventoryRequestFilterItemOp
+    from .stock_movements_list_inventory_request_filter_item_value import (
+        StockMovementsListInventoryRequestFilterItemValue,
     )
-    from .post_v1inventory_lots_get_response import PostV1InventoryLotsGetResponse
-    from .post_v1inventory_lots_get_response_movements_item import PostV1InventoryLotsGetResponseMovementsItem
-    from .post_v1inventory_lots_get_response_movements_item_direction import (
-        PostV1InventoryLotsGetResponseMovementsItemDirection,
+    from .stock_movements_list_inventory_request_filter_item_value_three_item import (
+        StockMovementsListInventoryRequestFilterItemValueThreeItem,
     )
-    from .post_v1inventory_lots_list_request_filter_item import PostV1InventoryLotsListRequestFilterItem
-    from .post_v1inventory_lots_list_request_filter_item_op import PostV1InventoryLotsListRequestFilterItemOp
-    from .post_v1inventory_lots_list_request_filter_item_value import PostV1InventoryLotsListRequestFilterItemValue
-    from .post_v1inventory_lots_list_request_filter_item_value_three_item import (
-        PostV1InventoryLotsListRequestFilterItemValueThreeItem,
+    from .stock_movements_list_inventory_request_sort_item import StockMovementsListInventoryRequestSortItem
+    from .stock_movements_list_inventory_request_sort_item_dir import StockMovementsListInventoryRequestSortItemDir
+    from .stock_movements_list_inventory_response import StockMovementsListInventoryResponse
+    from .stock_movements_list_inventory_response_rows_item import StockMovementsListInventoryResponseRowsItem
+    from .stock_movements_list_inventory_response_rows_item_direction import (
+        StockMovementsListInventoryResponseRowsItemDirection,
     )
-    from .post_v1inventory_lots_list_request_sort_item import PostV1InventoryLotsListRequestSortItem
-    from .post_v1inventory_lots_list_request_sort_item_dir import PostV1InventoryLotsListRequestSortItemDir
-    from .post_v1inventory_lots_list_response import PostV1InventoryLotsListResponse
-    from .post_v1inventory_lots_list_response_rows_item import PostV1InventoryLotsListResponseRowsItem
-    from .post_v1inventory_lots_update_response import PostV1InventoryLotsUpdateResponse
-    from .post_v1inventory_reorder_rules_check_response import PostV1InventoryReorderRulesCheckResponse
-    from .post_v1inventory_reorder_rules_check_response_rows_item import (
-        PostV1InventoryReorderRulesCheckResponseRowsItem,
+    from .stock_receive_inventory_response import StockReceiveInventoryResponse
+    from .stock_take_inventory_request_lines_item import StockTakeInventoryRequestLinesItem
+    from .stock_take_inventory_response import StockTakeInventoryResponse
+    from .stock_take_inventory_response_rows_item import StockTakeInventoryResponseRowsItem
+    from .stock_transfer_inventory_response import StockTransferInventoryResponse
+    from .stock_write_off_inventory_response import StockWriteOffInventoryResponse
+    from .warehouses_create_inventory_response import WarehousesCreateInventoryResponse
+    from .warehouses_list_inventory_request_filter_item import WarehousesListInventoryRequestFilterItem
+    from .warehouses_list_inventory_request_filter_item_op import WarehousesListInventoryRequestFilterItemOp
+    from .warehouses_list_inventory_request_filter_item_value import WarehousesListInventoryRequestFilterItemValue
+    from .warehouses_list_inventory_request_filter_item_value_three_item import (
+        WarehousesListInventoryRequestFilterItemValueThreeItem,
     )
-    from .post_v1inventory_reorder_rules_create_response import PostV1InventoryReorderRulesCreateResponse
-    from .post_v1inventory_reorder_rules_delete_response import PostV1InventoryReorderRulesDeleteResponse
-    from .post_v1inventory_reorder_rules_list_request_filter_item import (
-        PostV1InventoryReorderRulesListRequestFilterItem,
-    )
-    from .post_v1inventory_reorder_rules_list_request_filter_item_op import (
-        PostV1InventoryReorderRulesListRequestFilterItemOp,
-    )
-    from .post_v1inventory_reorder_rules_list_request_filter_item_value import (
-        PostV1InventoryReorderRulesListRequestFilterItemValue,
-    )
-    from .post_v1inventory_reorder_rules_list_request_filter_item_value_three_item import (
-        PostV1InventoryReorderRulesListRequestFilterItemValueThreeItem,
-    )
-    from .post_v1inventory_reorder_rules_list_request_sort_item import PostV1InventoryReorderRulesListRequestSortItem
-    from .post_v1inventory_reorder_rules_list_request_sort_item_dir import (
-        PostV1InventoryReorderRulesListRequestSortItemDir,
-    )
-    from .post_v1inventory_reorder_rules_list_response import PostV1InventoryReorderRulesListResponse
-    from .post_v1inventory_reorder_rules_list_response_rows_item import PostV1InventoryReorderRulesListResponseRowsItem
-    from .post_v1inventory_reorder_rules_update_response import PostV1InventoryReorderRulesUpdateResponse
-    from .post_v1inventory_settings_get_response import PostV1InventorySettingsGetResponse
-    from .post_v1inventory_settings_get_response_negative_stock_policy import (
-        PostV1InventorySettingsGetResponseNegativeStockPolicy,
-    )
-    from .post_v1inventory_settings_update_request_negative_stock_policy import (
-        PostV1InventorySettingsUpdateRequestNegativeStockPolicy,
-    )
-    from .post_v1inventory_settings_update_response import PostV1InventorySettingsUpdateResponse
-    from .post_v1inventory_settings_update_response_negative_stock_policy import (
-        PostV1InventorySettingsUpdateResponseNegativeStockPolicy,
-    )
-    from .post_v1inventory_stock_levels_response import PostV1InventoryStockLevelsResponse
-    from .post_v1inventory_stock_levels_response_rows_item import PostV1InventoryStockLevelsResponseRowsItem
-    from .post_v1inventory_stock_movements_list_request_filter_item import (
-        PostV1InventoryStockMovementsListRequestFilterItem,
-    )
-    from .post_v1inventory_stock_movements_list_request_filter_item_op import (
-        PostV1InventoryStockMovementsListRequestFilterItemOp,
-    )
-    from .post_v1inventory_stock_movements_list_request_filter_item_value import (
-        PostV1InventoryStockMovementsListRequestFilterItemValue,
-    )
-    from .post_v1inventory_stock_movements_list_request_filter_item_value_three_item import (
-        PostV1InventoryStockMovementsListRequestFilterItemValueThreeItem,
-    )
-    from .post_v1inventory_stock_movements_list_request_sort_item import (
-        PostV1InventoryStockMovementsListRequestSortItem,
-    )
-    from .post_v1inventory_stock_movements_list_request_sort_item_dir import (
-        PostV1InventoryStockMovementsListRequestSortItemDir,
-    )
-    from .post_v1inventory_stock_movements_list_response import PostV1InventoryStockMovementsListResponse
-    from .post_v1inventory_stock_movements_list_response_rows_item import (
-        PostV1InventoryStockMovementsListResponseRowsItem,
-    )
-    from .post_v1inventory_stock_movements_list_response_rows_item_direction import (
-        PostV1InventoryStockMovementsListResponseRowsItemDirection,
-    )
-    from .post_v1inventory_stock_receive_response import PostV1InventoryStockReceiveResponse
-    from .post_v1inventory_stock_take_request_lines_item import PostV1InventoryStockTakeRequestLinesItem
-    from .post_v1inventory_stock_take_response import PostV1InventoryStockTakeResponse
-    from .post_v1inventory_stock_take_response_rows_item import PostV1InventoryStockTakeResponseRowsItem
-    from .post_v1inventory_stock_transfer_response import PostV1InventoryStockTransferResponse
-    from .post_v1inventory_stock_write_off_response import PostV1InventoryStockWriteOffResponse
-    from .post_v1inventory_warehouses_create_response import PostV1InventoryWarehousesCreateResponse
-    from .post_v1inventory_warehouses_list_request_filter_item import PostV1InventoryWarehousesListRequestFilterItem
-    from .post_v1inventory_warehouses_list_request_filter_item_op import (
-        PostV1InventoryWarehousesListRequestFilterItemOp,
-    )
-    from .post_v1inventory_warehouses_list_request_filter_item_value import (
-        PostV1InventoryWarehousesListRequestFilterItemValue,
-    )
-    from .post_v1inventory_warehouses_list_request_filter_item_value_three_item import (
-        PostV1InventoryWarehousesListRequestFilterItemValueThreeItem,
-    )
-    from .post_v1inventory_warehouses_list_request_sort_item import PostV1InventoryWarehousesListRequestSortItem
-    from .post_v1inventory_warehouses_list_request_sort_item_dir import PostV1InventoryWarehousesListRequestSortItemDir
-    from .post_v1inventory_warehouses_list_response import PostV1InventoryWarehousesListResponse
-    from .post_v1inventory_warehouses_list_response_rows_item import PostV1InventoryWarehousesListResponseRowsItem
+    from .warehouses_list_inventory_request_sort_item import WarehousesListInventoryRequestSortItem
+    from .warehouses_list_inventory_request_sort_item_dir import WarehousesListInventoryRequestSortItemDir
+    from .warehouses_list_inventory_response import WarehousesListInventoryResponse
+    from .warehouses_list_inventory_response_rows_item import WarehousesListInventoryResponseRowsItem
 _dynamic_imports: typing.Dict[str, str] = {
-    "PostV1InventoryLandedCostsCreateRequestMethod": ".post_v1inventory_landed_costs_create_request_method",
-    "PostV1InventoryLandedCostsCreateResponse": ".post_v1inventory_landed_costs_create_response",
-    "PostV1InventoryLandedCostsCreateResponseLinesItem": ".post_v1inventory_landed_costs_create_response_lines_item",
-    "PostV1InventoryLandedCostsCreateResponseMethod": ".post_v1inventory_landed_costs_create_response_method",
-    "PostV1InventoryLandedCostsGetResponse": ".post_v1inventory_landed_costs_get_response",
-    "PostV1InventoryLandedCostsGetResponseLinesItem": ".post_v1inventory_landed_costs_get_response_lines_item",
-    "PostV1InventoryLandedCostsGetResponseMethod": ".post_v1inventory_landed_costs_get_response_method",
-    "PostV1InventoryLandedCostsListRequestFilterItem": ".post_v1inventory_landed_costs_list_request_filter_item",
-    "PostV1InventoryLandedCostsListRequestFilterItemOp": ".post_v1inventory_landed_costs_list_request_filter_item_op",
-    "PostV1InventoryLandedCostsListRequestFilterItemValue": ".post_v1inventory_landed_costs_list_request_filter_item_value",
-    "PostV1InventoryLandedCostsListRequestFilterItemValueThreeItem": ".post_v1inventory_landed_costs_list_request_filter_item_value_three_item",
-    "PostV1InventoryLandedCostsListRequestSortItem": ".post_v1inventory_landed_costs_list_request_sort_item",
-    "PostV1InventoryLandedCostsListRequestSortItemDir": ".post_v1inventory_landed_costs_list_request_sort_item_dir",
-    "PostV1InventoryLandedCostsListResponse": ".post_v1inventory_landed_costs_list_response",
-    "PostV1InventoryLandedCostsListResponseRowsItem": ".post_v1inventory_landed_costs_list_response_rows_item",
-    "PostV1InventoryLandedCostsListResponseRowsItemMethod": ".post_v1inventory_landed_costs_list_response_rows_item_method",
-    "PostV1InventoryLotsGetResponse": ".post_v1inventory_lots_get_response",
-    "PostV1InventoryLotsGetResponseMovementsItem": ".post_v1inventory_lots_get_response_movements_item",
-    "PostV1InventoryLotsGetResponseMovementsItemDirection": ".post_v1inventory_lots_get_response_movements_item_direction",
-    "PostV1InventoryLotsListRequestFilterItem": ".post_v1inventory_lots_list_request_filter_item",
-    "PostV1InventoryLotsListRequestFilterItemOp": ".post_v1inventory_lots_list_request_filter_item_op",
-    "PostV1InventoryLotsListRequestFilterItemValue": ".post_v1inventory_lots_list_request_filter_item_value",
-    "PostV1InventoryLotsListRequestFilterItemValueThreeItem": ".post_v1inventory_lots_list_request_filter_item_value_three_item",
-    "PostV1InventoryLotsListRequestSortItem": ".post_v1inventory_lots_list_request_sort_item",
-    "PostV1InventoryLotsListRequestSortItemDir": ".post_v1inventory_lots_list_request_sort_item_dir",
-    "PostV1InventoryLotsListResponse": ".post_v1inventory_lots_list_response",
-    "PostV1InventoryLotsListResponseRowsItem": ".post_v1inventory_lots_list_response_rows_item",
-    "PostV1InventoryLotsUpdateResponse": ".post_v1inventory_lots_update_response",
-    "PostV1InventoryReorderRulesCheckResponse": ".post_v1inventory_reorder_rules_check_response",
-    "PostV1InventoryReorderRulesCheckResponseRowsItem": ".post_v1inventory_reorder_rules_check_response_rows_item",
-    "PostV1InventoryReorderRulesCreateResponse": ".post_v1inventory_reorder_rules_create_response",
-    "PostV1InventoryReorderRulesDeleteResponse": ".post_v1inventory_reorder_rules_delete_response",
-    "PostV1InventoryReorderRulesListRequestFilterItem": ".post_v1inventory_reorder_rules_list_request_filter_item",
-    "PostV1InventoryReorderRulesListRequestFilterItemOp": ".post_v1inventory_reorder_rules_list_request_filter_item_op",
-    "PostV1InventoryReorderRulesListRequestFilterItemValue": ".post_v1inventory_reorder_rules_list_request_filter_item_value",
-    "PostV1InventoryReorderRulesListRequestFilterItemValueThreeItem": ".post_v1inventory_reorder_rules_list_request_filter_item_value_three_item",
-    "PostV1InventoryReorderRulesListRequestSortItem": ".post_v1inventory_reorder_rules_list_request_sort_item",
-    "PostV1InventoryReorderRulesListRequestSortItemDir": ".post_v1inventory_reorder_rules_list_request_sort_item_dir",
-    "PostV1InventoryReorderRulesListResponse": ".post_v1inventory_reorder_rules_list_response",
-    "PostV1InventoryReorderRulesListResponseRowsItem": ".post_v1inventory_reorder_rules_list_response_rows_item",
-    "PostV1InventoryReorderRulesUpdateResponse": ".post_v1inventory_reorder_rules_update_response",
-    "PostV1InventorySettingsGetResponse": ".post_v1inventory_settings_get_response",
-    "PostV1InventorySettingsGetResponseNegativeStockPolicy": ".post_v1inventory_settings_get_response_negative_stock_policy",
-    "PostV1InventorySettingsUpdateRequestNegativeStockPolicy": ".post_v1inventory_settings_update_request_negative_stock_policy",
-    "PostV1InventorySettingsUpdateResponse": ".post_v1inventory_settings_update_response",
-    "PostV1InventorySettingsUpdateResponseNegativeStockPolicy": ".post_v1inventory_settings_update_response_negative_stock_policy",
-    "PostV1InventoryStockLevelsResponse": ".post_v1inventory_stock_levels_response",
-    "PostV1InventoryStockLevelsResponseRowsItem": ".post_v1inventory_stock_levels_response_rows_item",
-    "PostV1InventoryStockMovementsListRequestFilterItem": ".post_v1inventory_stock_movements_list_request_filter_item",
-    "PostV1InventoryStockMovementsListRequestFilterItemOp": ".post_v1inventory_stock_movements_list_request_filter_item_op",
-    "PostV1InventoryStockMovementsListRequestFilterItemValue": ".post_v1inventory_stock_movements_list_request_filter_item_value",
-    "PostV1InventoryStockMovementsListRequestFilterItemValueThreeItem": ".post_v1inventory_stock_movements_list_request_filter_item_value_three_item",
-    "PostV1InventoryStockMovementsListRequestSortItem": ".post_v1inventory_stock_movements_list_request_sort_item",
-    "PostV1InventoryStockMovementsListRequestSortItemDir": ".post_v1inventory_stock_movements_list_request_sort_item_dir",
-    "PostV1InventoryStockMovementsListResponse": ".post_v1inventory_stock_movements_list_response",
-    "PostV1InventoryStockMovementsListResponseRowsItem": ".post_v1inventory_stock_movements_list_response_rows_item",
-    "PostV1InventoryStockMovementsListResponseRowsItemDirection": ".post_v1inventory_stock_movements_list_response_rows_item_direction",
-    "PostV1InventoryStockReceiveResponse": ".post_v1inventory_stock_receive_response",
-    "PostV1InventoryStockTakeRequestLinesItem": ".post_v1inventory_stock_take_request_lines_item",
-    "PostV1InventoryStockTakeResponse": ".post_v1inventory_stock_take_response",
-    "PostV1InventoryStockTakeResponseRowsItem": ".post_v1inventory_stock_take_response_rows_item",
-    "PostV1InventoryStockTransferResponse": ".post_v1inventory_stock_transfer_response",
-    "PostV1InventoryStockWriteOffResponse": ".post_v1inventory_stock_write_off_response",
-    "PostV1InventoryWarehousesCreateResponse": ".post_v1inventory_warehouses_create_response",
-    "PostV1InventoryWarehousesListRequestFilterItem": ".post_v1inventory_warehouses_list_request_filter_item",
-    "PostV1InventoryWarehousesListRequestFilterItemOp": ".post_v1inventory_warehouses_list_request_filter_item_op",
-    "PostV1InventoryWarehousesListRequestFilterItemValue": ".post_v1inventory_warehouses_list_request_filter_item_value",
-    "PostV1InventoryWarehousesListRequestFilterItemValueThreeItem": ".post_v1inventory_warehouses_list_request_filter_item_value_three_item",
-    "PostV1InventoryWarehousesListRequestSortItem": ".post_v1inventory_warehouses_list_request_sort_item",
-    "PostV1InventoryWarehousesListRequestSortItemDir": ".post_v1inventory_warehouses_list_request_sort_item_dir",
-    "PostV1InventoryWarehousesListResponse": ".post_v1inventory_warehouses_list_response",
-    "PostV1InventoryWarehousesListResponseRowsItem": ".post_v1inventory_warehouses_list_response_rows_item",
+    "LandedCostsCreateInventoryRequestMethod": ".landed_costs_create_inventory_request_method",
+    "LandedCostsCreateInventoryResponse": ".landed_costs_create_inventory_response",
+    "LandedCostsCreateInventoryResponseLinesItem": ".landed_costs_create_inventory_response_lines_item",
+    "LandedCostsCreateInventoryResponseMethod": ".landed_costs_create_inventory_response_method",
+    "LandedCostsGetInventoryResponse": ".landed_costs_get_inventory_response",
+    "LandedCostsGetInventoryResponseLinesItem": ".landed_costs_get_inventory_response_lines_item",
+    "LandedCostsGetInventoryResponseMethod": ".landed_costs_get_inventory_response_method",
+    "LandedCostsListInventoryRequestFilterItem": ".landed_costs_list_inventory_request_filter_item",
+    "LandedCostsListInventoryRequestFilterItemOp": ".landed_costs_list_inventory_request_filter_item_op",
+    "LandedCostsListInventoryRequestFilterItemValue": ".landed_costs_list_inventory_request_filter_item_value",
+    "LandedCostsListInventoryRequestFilterItemValueThreeItem": ".landed_costs_list_inventory_request_filter_item_value_three_item",
+    "LandedCostsListInventoryRequestSortItem": ".landed_costs_list_inventory_request_sort_item",
+    "LandedCostsListInventoryRequestSortItemDir": ".landed_costs_list_inventory_request_sort_item_dir",
+    "LandedCostsListInventoryResponse": ".landed_costs_list_inventory_response",
+    "LandedCostsListInventoryResponseRowsItem": ".landed_costs_list_inventory_response_rows_item",
+    "LandedCostsListInventoryResponseRowsItemMethod": ".landed_costs_list_inventory_response_rows_item_method",
+    "LotsGetInventoryResponse": ".lots_get_inventory_response",
+    "LotsGetInventoryResponseMovementsItem": ".lots_get_inventory_response_movements_item",
+    "LotsGetInventoryResponseMovementsItemDirection": ".lots_get_inventory_response_movements_item_direction",
+    "LotsListInventoryRequestFilterItem": ".lots_list_inventory_request_filter_item",
+    "LotsListInventoryRequestFilterItemOp": ".lots_list_inventory_request_filter_item_op",
+    "LotsListInventoryRequestFilterItemValue": ".lots_list_inventory_request_filter_item_value",
+    "LotsListInventoryRequestFilterItemValueThreeItem": ".lots_list_inventory_request_filter_item_value_three_item",
+    "LotsListInventoryRequestSortItem": ".lots_list_inventory_request_sort_item",
+    "LotsListInventoryRequestSortItemDir": ".lots_list_inventory_request_sort_item_dir",
+    "LotsListInventoryResponse": ".lots_list_inventory_response",
+    "LotsListInventoryResponseRowsItem": ".lots_list_inventory_response_rows_item",
+    "LotsUpdateInventoryResponse": ".lots_update_inventory_response",
+    "ReorderRulesCheckInventoryResponse": ".reorder_rules_check_inventory_response",
+    "ReorderRulesCheckInventoryResponseRowsItem": ".reorder_rules_check_inventory_response_rows_item",
+    "ReorderRulesCreateInventoryResponse": ".reorder_rules_create_inventory_response",
+    "ReorderRulesDeleteInventoryResponse": ".reorder_rules_delete_inventory_response",
+    "ReorderRulesListInventoryRequestFilterItem": ".reorder_rules_list_inventory_request_filter_item",
+    "ReorderRulesListInventoryRequestFilterItemOp": ".reorder_rules_list_inventory_request_filter_item_op",
+    "ReorderRulesListInventoryRequestFilterItemValue": ".reorder_rules_list_inventory_request_filter_item_value",
+    "ReorderRulesListInventoryRequestFilterItemValueThreeItem": ".reorder_rules_list_inventory_request_filter_item_value_three_item",
+    "ReorderRulesListInventoryRequestSortItem": ".reorder_rules_list_inventory_request_sort_item",
+    "ReorderRulesListInventoryRequestSortItemDir": ".reorder_rules_list_inventory_request_sort_item_dir",
+    "ReorderRulesListInventoryResponse": ".reorder_rules_list_inventory_response",
+    "ReorderRulesListInventoryResponseRowsItem": ".reorder_rules_list_inventory_response_rows_item",
+    "ReorderRulesUpdateInventoryResponse": ".reorder_rules_update_inventory_response",
+    "SettingsGetInventoryResponse": ".settings_get_inventory_response",
+    "SettingsGetInventoryResponseNegativeStockPolicy": ".settings_get_inventory_response_negative_stock_policy",
+    "SettingsUpdateInventoryRequestNegativeStockPolicy": ".settings_update_inventory_request_negative_stock_policy",
+    "SettingsUpdateInventoryResponse": ".settings_update_inventory_response",
+    "SettingsUpdateInventoryResponseNegativeStockPolicy": ".settings_update_inventory_response_negative_stock_policy",
+    "StockLevelsInventoryResponse": ".stock_levels_inventory_response",
+    "StockLevelsInventoryResponseRowsItem": ".stock_levels_inventory_response_rows_item",
+    "StockMovementsListInventoryRequestFilterItem": ".stock_movements_list_inventory_request_filter_item",
+    "StockMovementsListInventoryRequestFilterItemOp": ".stock_movements_list_inventory_request_filter_item_op",
+    "StockMovementsListInventoryRequestFilterItemValue": ".stock_movements_list_inventory_request_filter_item_value",
+    "StockMovementsListInventoryRequestFilterItemValueThreeItem": ".stock_movements_list_inventory_request_filter_item_value_three_item",
+    "StockMovementsListInventoryRequestSortItem": ".stock_movements_list_inventory_request_sort_item",
+    "StockMovementsListInventoryRequestSortItemDir": ".stock_movements_list_inventory_request_sort_item_dir",
+    "StockMovementsListInventoryResponse": ".stock_movements_list_inventory_response",
+    "StockMovementsListInventoryResponseRowsItem": ".stock_movements_list_inventory_response_rows_item",
+    "StockMovementsListInventoryResponseRowsItemDirection": ".stock_movements_list_inventory_response_rows_item_direction",
+    "StockReceiveInventoryResponse": ".stock_receive_inventory_response",
+    "StockTakeInventoryRequestLinesItem": ".stock_take_inventory_request_lines_item",
+    "StockTakeInventoryResponse": ".stock_take_inventory_response",
+    "StockTakeInventoryResponseRowsItem": ".stock_take_inventory_response_rows_item",
+    "StockTransferInventoryResponse": ".stock_transfer_inventory_response",
+    "StockWriteOffInventoryResponse": ".stock_write_off_inventory_response",
+    "WarehousesCreateInventoryResponse": ".warehouses_create_inventory_response",
+    "WarehousesListInventoryRequestFilterItem": ".warehouses_list_inventory_request_filter_item",
+    "WarehousesListInventoryRequestFilterItemOp": ".warehouses_list_inventory_request_filter_item_op",
+    "WarehousesListInventoryRequestFilterItemValue": ".warehouses_list_inventory_request_filter_item_value",
+    "WarehousesListInventoryRequestFilterItemValueThreeItem": ".warehouses_list_inventory_request_filter_item_value_three_item",
+    "WarehousesListInventoryRequestSortItem": ".warehouses_list_inventory_request_sort_item",
+    "WarehousesListInventoryRequestSortItemDir": ".warehouses_list_inventory_request_sort_item_dir",
+    "WarehousesListInventoryResponse": ".warehouses_list_inventory_response",
+    "WarehousesListInventoryResponseRowsItem": ".warehouses_list_inventory_response_rows_item",
 }
 
 
@@ -232,76 +194,76 @@ def __dir__():
 
 
 __all__ = [
-    "PostV1InventoryLandedCostsCreateRequestMethod",
-    "PostV1InventoryLandedCostsCreateResponse",
-    "PostV1InventoryLandedCostsCreateResponseLinesItem",
-    "PostV1InventoryLandedCostsCreateResponseMethod",
-    "PostV1InventoryLandedCostsGetResponse",
-    "PostV1InventoryLandedCostsGetResponseLinesItem",
-    "PostV1InventoryLandedCostsGetResponseMethod",
-    "PostV1InventoryLandedCostsListRequestFilterItem",
-    "PostV1InventoryLandedCostsListRequestFilterItemOp",
-    "PostV1InventoryLandedCostsListRequestFilterItemValue",
-    "PostV1InventoryLandedCostsListRequestFilterItemValueThreeItem",
-    "PostV1InventoryLandedCostsListRequestSortItem",
-    "PostV1InventoryLandedCostsListRequestSortItemDir",
-    "PostV1InventoryLandedCostsListResponse",
-    "PostV1InventoryLandedCostsListResponseRowsItem",
-    "PostV1InventoryLandedCostsListResponseRowsItemMethod",
-    "PostV1InventoryLotsGetResponse",
-    "PostV1InventoryLotsGetResponseMovementsItem",
-    "PostV1InventoryLotsGetResponseMovementsItemDirection",
-    "PostV1InventoryLotsListRequestFilterItem",
-    "PostV1InventoryLotsListRequestFilterItemOp",
-    "PostV1InventoryLotsListRequestFilterItemValue",
-    "PostV1InventoryLotsListRequestFilterItemValueThreeItem",
-    "PostV1InventoryLotsListRequestSortItem",
-    "PostV1InventoryLotsListRequestSortItemDir",
-    "PostV1InventoryLotsListResponse",
-    "PostV1InventoryLotsListResponseRowsItem",
-    "PostV1InventoryLotsUpdateResponse",
-    "PostV1InventoryReorderRulesCheckResponse",
-    "PostV1InventoryReorderRulesCheckResponseRowsItem",
-    "PostV1InventoryReorderRulesCreateResponse",
-    "PostV1InventoryReorderRulesDeleteResponse",
-    "PostV1InventoryReorderRulesListRequestFilterItem",
-    "PostV1InventoryReorderRulesListRequestFilterItemOp",
-    "PostV1InventoryReorderRulesListRequestFilterItemValue",
-    "PostV1InventoryReorderRulesListRequestFilterItemValueThreeItem",
-    "PostV1InventoryReorderRulesListRequestSortItem",
-    "PostV1InventoryReorderRulesListRequestSortItemDir",
-    "PostV1InventoryReorderRulesListResponse",
-    "PostV1InventoryReorderRulesListResponseRowsItem",
-    "PostV1InventoryReorderRulesUpdateResponse",
-    "PostV1InventorySettingsGetResponse",
-    "PostV1InventorySettingsGetResponseNegativeStockPolicy",
-    "PostV1InventorySettingsUpdateRequestNegativeStockPolicy",
-    "PostV1InventorySettingsUpdateResponse",
-    "PostV1InventorySettingsUpdateResponseNegativeStockPolicy",
-    "PostV1InventoryStockLevelsResponse",
-    "PostV1InventoryStockLevelsResponseRowsItem",
-    "PostV1InventoryStockMovementsListRequestFilterItem",
-    "PostV1InventoryStockMovementsListRequestFilterItemOp",
-    "PostV1InventoryStockMovementsListRequestFilterItemValue",
-    "PostV1InventoryStockMovementsListRequestFilterItemValueThreeItem",
-    "PostV1InventoryStockMovementsListRequestSortItem",
-    "PostV1InventoryStockMovementsListRequestSortItemDir",
-    "PostV1InventoryStockMovementsListResponse",
-    "PostV1InventoryStockMovementsListResponseRowsItem",
-    "PostV1InventoryStockMovementsListResponseRowsItemDirection",
-    "PostV1InventoryStockReceiveResponse",
-    "PostV1InventoryStockTakeRequestLinesItem",
-    "PostV1InventoryStockTakeResponse",
-    "PostV1InventoryStockTakeResponseRowsItem",
-    "PostV1InventoryStockTransferResponse",
-    "PostV1InventoryStockWriteOffResponse",
-    "PostV1InventoryWarehousesCreateResponse",
-    "PostV1InventoryWarehousesListRequestFilterItem",
-    "PostV1InventoryWarehousesListRequestFilterItemOp",
-    "PostV1InventoryWarehousesListRequestFilterItemValue",
-    "PostV1InventoryWarehousesListRequestFilterItemValueThreeItem",
-    "PostV1InventoryWarehousesListRequestSortItem",
-    "PostV1InventoryWarehousesListRequestSortItemDir",
-    "PostV1InventoryWarehousesListResponse",
-    "PostV1InventoryWarehousesListResponseRowsItem",
+    "LandedCostsCreateInventoryRequestMethod",
+    "LandedCostsCreateInventoryResponse",
+    "LandedCostsCreateInventoryResponseLinesItem",
+    "LandedCostsCreateInventoryResponseMethod",
+    "LandedCostsGetInventoryResponse",
+    "LandedCostsGetInventoryResponseLinesItem",
+    "LandedCostsGetInventoryResponseMethod",
+    "LandedCostsListInventoryRequestFilterItem",
+    "LandedCostsListInventoryRequestFilterItemOp",
+    "LandedCostsListInventoryRequestFilterItemValue",
+    "LandedCostsListInventoryRequestFilterItemValueThreeItem",
+    "LandedCostsListInventoryRequestSortItem",
+    "LandedCostsListInventoryRequestSortItemDir",
+    "LandedCostsListInventoryResponse",
+    "LandedCostsListInventoryResponseRowsItem",
+    "LandedCostsListInventoryResponseRowsItemMethod",
+    "LotsGetInventoryResponse",
+    "LotsGetInventoryResponseMovementsItem",
+    "LotsGetInventoryResponseMovementsItemDirection",
+    "LotsListInventoryRequestFilterItem",
+    "LotsListInventoryRequestFilterItemOp",
+    "LotsListInventoryRequestFilterItemValue",
+    "LotsListInventoryRequestFilterItemValueThreeItem",
+    "LotsListInventoryRequestSortItem",
+    "LotsListInventoryRequestSortItemDir",
+    "LotsListInventoryResponse",
+    "LotsListInventoryResponseRowsItem",
+    "LotsUpdateInventoryResponse",
+    "ReorderRulesCheckInventoryResponse",
+    "ReorderRulesCheckInventoryResponseRowsItem",
+    "ReorderRulesCreateInventoryResponse",
+    "ReorderRulesDeleteInventoryResponse",
+    "ReorderRulesListInventoryRequestFilterItem",
+    "ReorderRulesListInventoryRequestFilterItemOp",
+    "ReorderRulesListInventoryRequestFilterItemValue",
+    "ReorderRulesListInventoryRequestFilterItemValueThreeItem",
+    "ReorderRulesListInventoryRequestSortItem",
+    "ReorderRulesListInventoryRequestSortItemDir",
+    "ReorderRulesListInventoryResponse",
+    "ReorderRulesListInventoryResponseRowsItem",
+    "ReorderRulesUpdateInventoryResponse",
+    "SettingsGetInventoryResponse",
+    "SettingsGetInventoryResponseNegativeStockPolicy",
+    "SettingsUpdateInventoryRequestNegativeStockPolicy",
+    "SettingsUpdateInventoryResponse",
+    "SettingsUpdateInventoryResponseNegativeStockPolicy",
+    "StockLevelsInventoryResponse",
+    "StockLevelsInventoryResponseRowsItem",
+    "StockMovementsListInventoryRequestFilterItem",
+    "StockMovementsListInventoryRequestFilterItemOp",
+    "StockMovementsListInventoryRequestFilterItemValue",
+    "StockMovementsListInventoryRequestFilterItemValueThreeItem",
+    "StockMovementsListInventoryRequestSortItem",
+    "StockMovementsListInventoryRequestSortItemDir",
+    "StockMovementsListInventoryResponse",
+    "StockMovementsListInventoryResponseRowsItem",
+    "StockMovementsListInventoryResponseRowsItemDirection",
+    "StockReceiveInventoryResponse",
+    "StockTakeInventoryRequestLinesItem",
+    "StockTakeInventoryResponse",
+    "StockTakeInventoryResponseRowsItem",
+    "StockTransferInventoryResponse",
+    "StockWriteOffInventoryResponse",
+    "WarehousesCreateInventoryResponse",
+    "WarehousesListInventoryRequestFilterItem",
+    "WarehousesListInventoryRequestFilterItemOp",
+    "WarehousesListInventoryRequestFilterItemValue",
+    "WarehousesListInventoryRequestFilterItemValueThreeItem",
+    "WarehousesListInventoryRequestSortItem",
+    "WarehousesListInventoryRequestSortItemDir",
+    "WarehousesListInventoryResponse",
+    "WarehousesListInventoryResponseRowsItem",
 ]

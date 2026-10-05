@@ -6,79 +6,79 @@ import typing
 from importlib import import_module
 
 if typing.TYPE_CHECKING:
-    from .post_v1ecommerce_orders_cancel_response import PostV1EcommerceOrdersCancelResponse
-    from .post_v1ecommerce_orders_cancel_response_lines_item import PostV1EcommerceOrdersCancelResponseLinesItem
-    from .post_v1ecommerce_orders_cancel_response_status import PostV1EcommerceOrdersCancelResponseStatus
-    from .post_v1ecommerce_orders_create_request_lines_item import PostV1EcommerceOrdersCreateRequestLinesItem
-    from .post_v1ecommerce_orders_create_request_partner import PostV1EcommerceOrdersCreateRequestPartner
-    from .post_v1ecommerce_orders_create_response import PostV1EcommerceOrdersCreateResponse
-    from .post_v1ecommerce_orders_create_response_lines_item import PostV1EcommerceOrdersCreateResponseLinesItem
-    from .post_v1ecommerce_orders_create_response_status import PostV1EcommerceOrdersCreateResponseStatus
-    from .post_v1ecommerce_orders_fulfill_response import PostV1EcommerceOrdersFulfillResponse
-    from .post_v1ecommerce_orders_fulfill_response_lines_item import PostV1EcommerceOrdersFulfillResponseLinesItem
-    from .post_v1ecommerce_orders_fulfill_response_status import PostV1EcommerceOrdersFulfillResponseStatus
-    from .post_v1ecommerce_orders_get_response import PostV1EcommerceOrdersGetResponse
-    from .post_v1ecommerce_orders_get_response_lines_item import PostV1EcommerceOrdersGetResponseLinesItem
-    from .post_v1ecommerce_orders_get_response_status import PostV1EcommerceOrdersGetResponseStatus
-    from .post_v1ecommerce_orders_list_request_filter_item import PostV1EcommerceOrdersListRequestFilterItem
-    from .post_v1ecommerce_orders_list_request_filter_item_op import PostV1EcommerceOrdersListRequestFilterItemOp
-    from .post_v1ecommerce_orders_list_request_filter_item_value import PostV1EcommerceOrdersListRequestFilterItemValue
-    from .post_v1ecommerce_orders_list_request_filter_item_value_three_item import (
-        PostV1EcommerceOrdersListRequestFilterItemValueThreeItem,
+    from .orders_cancel_ecommerce_response import OrdersCancelEcommerceResponse
+    from .orders_cancel_ecommerce_response_lines_item import OrdersCancelEcommerceResponseLinesItem
+    from .orders_cancel_ecommerce_response_status import OrdersCancelEcommerceResponseStatus
+    from .orders_create_ecommerce_request_lines_item import OrdersCreateEcommerceRequestLinesItem
+    from .orders_create_ecommerce_request_partner import OrdersCreateEcommerceRequestPartner
+    from .orders_create_ecommerce_response import OrdersCreateEcommerceResponse
+    from .orders_create_ecommerce_response_lines_item import OrdersCreateEcommerceResponseLinesItem
+    from .orders_create_ecommerce_response_status import OrdersCreateEcommerceResponseStatus
+    from .orders_fulfill_ecommerce_response import OrdersFulfillEcommerceResponse
+    from .orders_fulfill_ecommerce_response_lines_item import OrdersFulfillEcommerceResponseLinesItem
+    from .orders_fulfill_ecommerce_response_status import OrdersFulfillEcommerceResponseStatus
+    from .orders_get_ecommerce_response import OrdersGetEcommerceResponse
+    from .orders_get_ecommerce_response_lines_item import OrdersGetEcommerceResponseLinesItem
+    from .orders_get_ecommerce_response_status import OrdersGetEcommerceResponseStatus
+    from .orders_list_ecommerce_request_filter_item import OrdersListEcommerceRequestFilterItem
+    from .orders_list_ecommerce_request_filter_item_op import OrdersListEcommerceRequestFilterItemOp
+    from .orders_list_ecommerce_request_filter_item_value import OrdersListEcommerceRequestFilterItemValue
+    from .orders_list_ecommerce_request_filter_item_value_three_item import (
+        OrdersListEcommerceRequestFilterItemValueThreeItem,
     )
-    from .post_v1ecommerce_orders_list_request_sort_item import PostV1EcommerceOrdersListRequestSortItem
-    from .post_v1ecommerce_orders_list_request_sort_item_dir import PostV1EcommerceOrdersListRequestSortItemDir
-    from .post_v1ecommerce_orders_list_response import PostV1EcommerceOrdersListResponse
-    from .post_v1ecommerce_orders_list_response_rows_item import PostV1EcommerceOrdersListResponseRowsItem
-    from .post_v1ecommerce_orders_list_response_rows_item_status import PostV1EcommerceOrdersListResponseRowsItemStatus
-    from .post_v1ecommerce_orders_reserve_response import PostV1EcommerceOrdersReserveResponse
-    from .post_v1ecommerce_orders_reserve_response_lines_item import PostV1EcommerceOrdersReserveResponseLinesItem
-    from .post_v1ecommerce_orders_reserve_response_status import PostV1EcommerceOrdersReserveResponseStatus
-    from .post_v1ecommerce_products_list_response import PostV1EcommerceProductsListResponse
-    from .post_v1ecommerce_products_list_response_rows_item import PostV1EcommerceProductsListResponseRowsItem
-    from .post_v1ecommerce_products_list_response_rows_item_components_item import (
-        PostV1EcommerceProductsListResponseRowsItemComponentsItem,
+    from .orders_list_ecommerce_request_sort_item import OrdersListEcommerceRequestSortItem
+    from .orders_list_ecommerce_request_sort_item_dir import OrdersListEcommerceRequestSortItemDir
+    from .orders_list_ecommerce_response import OrdersListEcommerceResponse
+    from .orders_list_ecommerce_response_rows_item import OrdersListEcommerceResponseRowsItem
+    from .orders_list_ecommerce_response_rows_item_status import OrdersListEcommerceResponseRowsItemStatus
+    from .orders_reserve_ecommerce_response import OrdersReserveEcommerceResponse
+    from .orders_reserve_ecommerce_response_lines_item import OrdersReserveEcommerceResponseLinesItem
+    from .orders_reserve_ecommerce_response_status import OrdersReserveEcommerceResponseStatus
+    from .products_list_ecommerce_response import ProductsListEcommerceResponse
+    from .products_list_ecommerce_response_rows_item import ProductsListEcommerceResponseRowsItem
+    from .products_list_ecommerce_response_rows_item_components_item import (
+        ProductsListEcommerceResponseRowsItemComponentsItem,
     )
-    from .post_v1ecommerce_products_list_response_rows_item_translations_value import (
-        PostV1EcommerceProductsListResponseRowsItemTranslationsValue,
+    from .products_list_ecommerce_response_rows_item_translations_value import (
+        ProductsListEcommerceResponseRowsItemTranslationsValue,
     )
-    from .post_v1ecommerce_products_list_response_rows_item_type import PostV1EcommerceProductsListResponseRowsItemType
-    from .post_v1ecommerce_stock_list_response import PostV1EcommerceStockListResponse
-    from .post_v1ecommerce_stock_list_response_rows_item import PostV1EcommerceStockListResponseRowsItem
+    from .products_list_ecommerce_response_rows_item_type import ProductsListEcommerceResponseRowsItemType
+    from .stock_list_ecommerce_response import StockListEcommerceResponse
+    from .stock_list_ecommerce_response_rows_item import StockListEcommerceResponseRowsItem
 _dynamic_imports: typing.Dict[str, str] = {
-    "PostV1EcommerceOrdersCancelResponse": ".post_v1ecommerce_orders_cancel_response",
-    "PostV1EcommerceOrdersCancelResponseLinesItem": ".post_v1ecommerce_orders_cancel_response_lines_item",
-    "PostV1EcommerceOrdersCancelResponseStatus": ".post_v1ecommerce_orders_cancel_response_status",
-    "PostV1EcommerceOrdersCreateRequestLinesItem": ".post_v1ecommerce_orders_create_request_lines_item",
-    "PostV1EcommerceOrdersCreateRequestPartner": ".post_v1ecommerce_orders_create_request_partner",
-    "PostV1EcommerceOrdersCreateResponse": ".post_v1ecommerce_orders_create_response",
-    "PostV1EcommerceOrdersCreateResponseLinesItem": ".post_v1ecommerce_orders_create_response_lines_item",
-    "PostV1EcommerceOrdersCreateResponseStatus": ".post_v1ecommerce_orders_create_response_status",
-    "PostV1EcommerceOrdersFulfillResponse": ".post_v1ecommerce_orders_fulfill_response",
-    "PostV1EcommerceOrdersFulfillResponseLinesItem": ".post_v1ecommerce_orders_fulfill_response_lines_item",
-    "PostV1EcommerceOrdersFulfillResponseStatus": ".post_v1ecommerce_orders_fulfill_response_status",
-    "PostV1EcommerceOrdersGetResponse": ".post_v1ecommerce_orders_get_response",
-    "PostV1EcommerceOrdersGetResponseLinesItem": ".post_v1ecommerce_orders_get_response_lines_item",
-    "PostV1EcommerceOrdersGetResponseStatus": ".post_v1ecommerce_orders_get_response_status",
-    "PostV1EcommerceOrdersListRequestFilterItem": ".post_v1ecommerce_orders_list_request_filter_item",
-    "PostV1EcommerceOrdersListRequestFilterItemOp": ".post_v1ecommerce_orders_list_request_filter_item_op",
-    "PostV1EcommerceOrdersListRequestFilterItemValue": ".post_v1ecommerce_orders_list_request_filter_item_value",
-    "PostV1EcommerceOrdersListRequestFilterItemValueThreeItem": ".post_v1ecommerce_orders_list_request_filter_item_value_three_item",
-    "PostV1EcommerceOrdersListRequestSortItem": ".post_v1ecommerce_orders_list_request_sort_item",
-    "PostV1EcommerceOrdersListRequestSortItemDir": ".post_v1ecommerce_orders_list_request_sort_item_dir",
-    "PostV1EcommerceOrdersListResponse": ".post_v1ecommerce_orders_list_response",
-    "PostV1EcommerceOrdersListResponseRowsItem": ".post_v1ecommerce_orders_list_response_rows_item",
-    "PostV1EcommerceOrdersListResponseRowsItemStatus": ".post_v1ecommerce_orders_list_response_rows_item_status",
-    "PostV1EcommerceOrdersReserveResponse": ".post_v1ecommerce_orders_reserve_response",
-    "PostV1EcommerceOrdersReserveResponseLinesItem": ".post_v1ecommerce_orders_reserve_response_lines_item",
-    "PostV1EcommerceOrdersReserveResponseStatus": ".post_v1ecommerce_orders_reserve_response_status",
-    "PostV1EcommerceProductsListResponse": ".post_v1ecommerce_products_list_response",
-    "PostV1EcommerceProductsListResponseRowsItem": ".post_v1ecommerce_products_list_response_rows_item",
-    "PostV1EcommerceProductsListResponseRowsItemComponentsItem": ".post_v1ecommerce_products_list_response_rows_item_components_item",
-    "PostV1EcommerceProductsListResponseRowsItemTranslationsValue": ".post_v1ecommerce_products_list_response_rows_item_translations_value",
-    "PostV1EcommerceProductsListResponseRowsItemType": ".post_v1ecommerce_products_list_response_rows_item_type",
-    "PostV1EcommerceStockListResponse": ".post_v1ecommerce_stock_list_response",
-    "PostV1EcommerceStockListResponseRowsItem": ".post_v1ecommerce_stock_list_response_rows_item",
+    "OrdersCancelEcommerceResponse": ".orders_cancel_ecommerce_response",
+    "OrdersCancelEcommerceResponseLinesItem": ".orders_cancel_ecommerce_response_lines_item",
+    "OrdersCancelEcommerceResponseStatus": ".orders_cancel_ecommerce_response_status",
+    "OrdersCreateEcommerceRequestLinesItem": ".orders_create_ecommerce_request_lines_item",
+    "OrdersCreateEcommerceRequestPartner": ".orders_create_ecommerce_request_partner",
+    "OrdersCreateEcommerceResponse": ".orders_create_ecommerce_response",
+    "OrdersCreateEcommerceResponseLinesItem": ".orders_create_ecommerce_response_lines_item",
+    "OrdersCreateEcommerceResponseStatus": ".orders_create_ecommerce_response_status",
+    "OrdersFulfillEcommerceResponse": ".orders_fulfill_ecommerce_response",
+    "OrdersFulfillEcommerceResponseLinesItem": ".orders_fulfill_ecommerce_response_lines_item",
+    "OrdersFulfillEcommerceResponseStatus": ".orders_fulfill_ecommerce_response_status",
+    "OrdersGetEcommerceResponse": ".orders_get_ecommerce_response",
+    "OrdersGetEcommerceResponseLinesItem": ".orders_get_ecommerce_response_lines_item",
+    "OrdersGetEcommerceResponseStatus": ".orders_get_ecommerce_response_status",
+    "OrdersListEcommerceRequestFilterItem": ".orders_list_ecommerce_request_filter_item",
+    "OrdersListEcommerceRequestFilterItemOp": ".orders_list_ecommerce_request_filter_item_op",
+    "OrdersListEcommerceRequestFilterItemValue": ".orders_list_ecommerce_request_filter_item_value",
+    "OrdersListEcommerceRequestFilterItemValueThreeItem": ".orders_list_ecommerce_request_filter_item_value_three_item",
+    "OrdersListEcommerceRequestSortItem": ".orders_list_ecommerce_request_sort_item",
+    "OrdersListEcommerceRequestSortItemDir": ".orders_list_ecommerce_request_sort_item_dir",
+    "OrdersListEcommerceResponse": ".orders_list_ecommerce_response",
+    "OrdersListEcommerceResponseRowsItem": ".orders_list_ecommerce_response_rows_item",
+    "OrdersListEcommerceResponseRowsItemStatus": ".orders_list_ecommerce_response_rows_item_status",
+    "OrdersReserveEcommerceResponse": ".orders_reserve_ecommerce_response",
+    "OrdersReserveEcommerceResponseLinesItem": ".orders_reserve_ecommerce_response_lines_item",
+    "OrdersReserveEcommerceResponseStatus": ".orders_reserve_ecommerce_response_status",
+    "ProductsListEcommerceResponse": ".products_list_ecommerce_response",
+    "ProductsListEcommerceResponseRowsItem": ".products_list_ecommerce_response_rows_item",
+    "ProductsListEcommerceResponseRowsItemComponentsItem": ".products_list_ecommerce_response_rows_item_components_item",
+    "ProductsListEcommerceResponseRowsItemTranslationsValue": ".products_list_ecommerce_response_rows_item_translations_value",
+    "ProductsListEcommerceResponseRowsItemType": ".products_list_ecommerce_response_rows_item_type",
+    "StockListEcommerceResponse": ".stock_list_ecommerce_response",
+    "StockListEcommerceResponseRowsItem": ".stock_list_ecommerce_response_rows_item",
 }
 
 
@@ -104,37 +104,37 @@ def __dir__():
 
 
 __all__ = [
-    "PostV1EcommerceOrdersCancelResponse",
-    "PostV1EcommerceOrdersCancelResponseLinesItem",
-    "PostV1EcommerceOrdersCancelResponseStatus",
-    "PostV1EcommerceOrdersCreateRequestLinesItem",
-    "PostV1EcommerceOrdersCreateRequestPartner",
-    "PostV1EcommerceOrdersCreateResponse",
-    "PostV1EcommerceOrdersCreateResponseLinesItem",
-    "PostV1EcommerceOrdersCreateResponseStatus",
-    "PostV1EcommerceOrdersFulfillResponse",
-    "PostV1EcommerceOrdersFulfillResponseLinesItem",
-    "PostV1EcommerceOrdersFulfillResponseStatus",
-    "PostV1EcommerceOrdersGetResponse",
-    "PostV1EcommerceOrdersGetResponseLinesItem",
-    "PostV1EcommerceOrdersGetResponseStatus",
-    "PostV1EcommerceOrdersListRequestFilterItem",
-    "PostV1EcommerceOrdersListRequestFilterItemOp",
-    "PostV1EcommerceOrdersListRequestFilterItemValue",
-    "PostV1EcommerceOrdersListRequestFilterItemValueThreeItem",
-    "PostV1EcommerceOrdersListRequestSortItem",
-    "PostV1EcommerceOrdersListRequestSortItemDir",
-    "PostV1EcommerceOrdersListResponse",
-    "PostV1EcommerceOrdersListResponseRowsItem",
-    "PostV1EcommerceOrdersListResponseRowsItemStatus",
-    "PostV1EcommerceOrdersReserveResponse",
-    "PostV1EcommerceOrdersReserveResponseLinesItem",
-    "PostV1EcommerceOrdersReserveResponseStatus",
-    "PostV1EcommerceProductsListResponse",
-    "PostV1EcommerceProductsListResponseRowsItem",
-    "PostV1EcommerceProductsListResponseRowsItemComponentsItem",
-    "PostV1EcommerceProductsListResponseRowsItemTranslationsValue",
-    "PostV1EcommerceProductsListResponseRowsItemType",
-    "PostV1EcommerceStockListResponse",
-    "PostV1EcommerceStockListResponseRowsItem",
+    "OrdersCancelEcommerceResponse",
+    "OrdersCancelEcommerceResponseLinesItem",
+    "OrdersCancelEcommerceResponseStatus",
+    "OrdersCreateEcommerceRequestLinesItem",
+    "OrdersCreateEcommerceRequestPartner",
+    "OrdersCreateEcommerceResponse",
+    "OrdersCreateEcommerceResponseLinesItem",
+    "OrdersCreateEcommerceResponseStatus",
+    "OrdersFulfillEcommerceResponse",
+    "OrdersFulfillEcommerceResponseLinesItem",
+    "OrdersFulfillEcommerceResponseStatus",
+    "OrdersGetEcommerceResponse",
+    "OrdersGetEcommerceResponseLinesItem",
+    "OrdersGetEcommerceResponseStatus",
+    "OrdersListEcommerceRequestFilterItem",
+    "OrdersListEcommerceRequestFilterItemOp",
+    "OrdersListEcommerceRequestFilterItemValue",
+    "OrdersListEcommerceRequestFilterItemValueThreeItem",
+    "OrdersListEcommerceRequestSortItem",
+    "OrdersListEcommerceRequestSortItemDir",
+    "OrdersListEcommerceResponse",
+    "OrdersListEcommerceResponseRowsItem",
+    "OrdersListEcommerceResponseRowsItemStatus",
+    "OrdersReserveEcommerceResponse",
+    "OrdersReserveEcommerceResponseLinesItem",
+    "OrdersReserveEcommerceResponseStatus",
+    "ProductsListEcommerceResponse",
+    "ProductsListEcommerceResponseRowsItem",
+    "ProductsListEcommerceResponseRowsItemComponentsItem",
+    "ProductsListEcommerceResponseRowsItemTranslationsValue",
+    "ProductsListEcommerceResponseRowsItemType",
+    "StockListEcommerceResponse",
+    "StockListEcommerceResponseRowsItem",
 ]

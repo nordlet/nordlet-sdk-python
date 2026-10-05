@@ -5,9 +5,9 @@ import typing
 from ..core.client_wrapper import AsyncClientWrapper, SyncClientWrapper
 from ..core.request_options import RequestOptions
 from .raw_client import AsyncRawAuditClient, RawAuditClient
-from .types.post_v1audit_list_request_filter_item import PostV1AuditListRequestFilterItem
-from .types.post_v1audit_list_request_sort_item import PostV1AuditListRequestSortItem
-from .types.post_v1audit_list_response import PostV1AuditListResponse
+from .types.list_audit_request_filter_item import ListAuditRequestFilterItem
+from .types.list_audit_request_sort_item import ListAuditRequestSortItem
+from .types.list_audit_response import ListAuditResponse
 
 # this is used as the default value for optional parameters
 OMIT = typing.cast(typing.Any, ...)
@@ -28,16 +28,16 @@ class AuditClient:
         """
         return self._raw_client
 
-    def post_v1audit_list(
+    def list(
         self,
         *,
         page: typing.Optional[int] = OMIT,
         page_size: typing.Optional[int] = OMIT,
-        sort: typing.Optional[typing.Sequence[PostV1AuditListRequestSortItem]] = OMIT,
-        filter: typing.Optional[typing.Sequence[PostV1AuditListRequestFilterItem]] = OMIT,
+        sort: typing.Optional[typing.Sequence[ListAuditRequestSortItem]] = OMIT,
+        filter: typing.Optional[typing.Sequence[ListAuditRequestFilterItem]] = OMIT,
         totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> PostV1AuditListResponse:
+    ) -> ListAuditResponse:
         """
         Parameters
         ----------
@@ -45,9 +45,9 @@ class AuditClient:
 
         page_size : typing.Optional[int]
 
-        sort : typing.Optional[typing.Sequence[PostV1AuditListRequestSortItem]]
+        sort : typing.Optional[typing.Sequence[ListAuditRequestSortItem]]
 
-        filter : typing.Optional[typing.Sequence[PostV1AuditListRequestFilterItem]]
+        filter : typing.Optional[typing.Sequence[ListAuditRequestFilterItem]]
 
         totals : typing.Optional[typing.Sequence[str]]
             Numeric fields to sum over every row matching the filter (not only the current page)
@@ -57,7 +57,7 @@ class AuditClient:
 
         Returns
         -------
-        PostV1AuditListResponse
+        ListAuditResponse
             Default Response
 
         Examples
@@ -67,9 +67,9 @@ class AuditClient:
         client = Nordlet(
             token="YOUR_TOKEN",
         )
-        client.audit.post_v1audit_list()
+        client.audit.list()
         """
-        _response = self._raw_client.post_v1audit_list(
+        _response = self._raw_client.list(
             page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
@@ -90,16 +90,16 @@ class AsyncAuditClient:
         """
         return self._raw_client
 
-    async def post_v1audit_list(
+    async def list(
         self,
         *,
         page: typing.Optional[int] = OMIT,
         page_size: typing.Optional[int] = OMIT,
-        sort: typing.Optional[typing.Sequence[PostV1AuditListRequestSortItem]] = OMIT,
-        filter: typing.Optional[typing.Sequence[PostV1AuditListRequestFilterItem]] = OMIT,
+        sort: typing.Optional[typing.Sequence[ListAuditRequestSortItem]] = OMIT,
+        filter: typing.Optional[typing.Sequence[ListAuditRequestFilterItem]] = OMIT,
         totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> PostV1AuditListResponse:
+    ) -> ListAuditResponse:
         """
         Parameters
         ----------
@@ -107,9 +107,9 @@ class AsyncAuditClient:
 
         page_size : typing.Optional[int]
 
-        sort : typing.Optional[typing.Sequence[PostV1AuditListRequestSortItem]]
+        sort : typing.Optional[typing.Sequence[ListAuditRequestSortItem]]
 
-        filter : typing.Optional[typing.Sequence[PostV1AuditListRequestFilterItem]]
+        filter : typing.Optional[typing.Sequence[ListAuditRequestFilterItem]]
 
         totals : typing.Optional[typing.Sequence[str]]
             Numeric fields to sum over every row matching the filter (not only the current page)
@@ -119,7 +119,7 @@ class AsyncAuditClient:
 
         Returns
         -------
-        PostV1AuditListResponse
+        ListAuditResponse
             Default Response
 
         Examples
@@ -134,12 +134,12 @@ class AsyncAuditClient:
 
 
         async def main() -> None:
-            await client.audit.post_v1audit_list()
+            await client.audit.list()
 
 
         asyncio.run(main())
         """
-        _response = await self._raw_client.post_v1audit_list(
+        _response = await self._raw_client.list(
             page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data

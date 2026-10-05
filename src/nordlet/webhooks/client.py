@@ -5,18 +5,18 @@ import typing
 from ..core.client_wrapper import AsyncClientWrapper, SyncClientWrapper
 from ..core.request_options import RequestOptions
 from .raw_client import AsyncRawWebhooksClient, RawWebhooksClient
-from .types.post_v1webhooks_deliveries_list_request_filter_item import PostV1WebhooksDeliveriesListRequestFilterItem
-from .types.post_v1webhooks_deliveries_list_request_sort_item import PostV1WebhooksDeliveriesListRequestSortItem
-from .types.post_v1webhooks_deliveries_list_response import PostV1WebhooksDeliveriesListResponse
-from .types.post_v1webhooks_deliveries_redeliver_response import PostV1WebhooksDeliveriesRedeliverResponse
-from .types.post_v1webhooks_subscriptions_create_response import PostV1WebhooksSubscriptionsCreateResponse
-from .types.post_v1webhooks_subscriptions_delete_response import PostV1WebhooksSubscriptionsDeleteResponse
-from .types.post_v1webhooks_subscriptions_list_request_filter_item import (
-    PostV1WebhooksSubscriptionsListRequestFilterItem,
-)
-from .types.post_v1webhooks_subscriptions_list_request_sort_item import PostV1WebhooksSubscriptionsListRequestSortItem
-from .types.post_v1webhooks_subscriptions_list_response import PostV1WebhooksSubscriptionsListResponse
-from .types.post_v1webhooks_subscriptions_update_response import PostV1WebhooksSubscriptionsUpdateResponse
+from .types.deliveries_list_webhooks_request_filter_item import DeliveriesListWebhooksRequestFilterItem
+from .types.deliveries_list_webhooks_request_sort_item import DeliveriesListWebhooksRequestSortItem
+from .types.deliveries_list_webhooks_response import DeliveriesListWebhooksResponse
+from .types.deliveries_redeliver_webhooks_response import DeliveriesRedeliverWebhooksResponse
+from .types.subscriptions_create_webhooks_request_events_item import SubscriptionsCreateWebhooksRequestEventsItem
+from .types.subscriptions_create_webhooks_response import SubscriptionsCreateWebhooksResponse
+from .types.subscriptions_delete_webhooks_response import SubscriptionsDeleteWebhooksResponse
+from .types.subscriptions_list_webhooks_request_filter_item import SubscriptionsListWebhooksRequestFilterItem
+from .types.subscriptions_list_webhooks_request_sort_item import SubscriptionsListWebhooksRequestSortItem
+from .types.subscriptions_list_webhooks_response import SubscriptionsListWebhooksResponse
+from .types.subscriptions_update_webhooks_request_events_item import SubscriptionsUpdateWebhooksRequestEventsItem
+from .types.subscriptions_update_webhooks_response import SubscriptionsUpdateWebhooksResponse
 
 # this is used as the default value for optional parameters
 OMIT = typing.cast(typing.Any, ...)
@@ -37,20 +37,20 @@ class WebhooksClient:
         """
         return self._raw_client
 
-    def post_v1webhooks_subscriptions_create(
+    def subscriptions_create(
         self,
         *,
         url: str,
-        events: typing.Sequence[str],
+        events: typing.Sequence[SubscriptionsCreateWebhooksRequestEventsItem],
         secret: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> PostV1WebhooksSubscriptionsCreateResponse:
+    ) -> SubscriptionsCreateWebhooksResponse:
         """
         Parameters
         ----------
         url : str
 
-        events : typing.Sequence[str]
+        events : typing.Sequence[SubscriptionsCreateWebhooksRequestEventsItem]
 
         secret : typing.Optional[str]
 
@@ -59,7 +59,7 @@ class WebhooksClient:
 
         Returns
         -------
-        PostV1WebhooksSubscriptionsCreateResponse
+        SubscriptionsCreateWebhooksResponse
             Default Response
 
         Examples
@@ -69,26 +69,26 @@ class WebhooksClient:
         client = Nordlet(
             token="YOUR_TOKEN",
         )
-        client.webhooks.post_v1webhooks_subscriptions_create(
+        client.webhooks.subscriptions_create(
             url="url",
-            events=["events"],
+            events=["agreement.invoice_generated"],
         )
         """
-        _response = self._raw_client.post_v1webhooks_subscriptions_create(
+        _response = self._raw_client.subscriptions_create(
             url=url, events=events, secret=secret, request_options=request_options
         )
         return _response.data
 
-    def post_v1webhooks_subscriptions_list(
+    def subscriptions_list(
         self,
         *,
         page: typing.Optional[int] = OMIT,
         page_size: typing.Optional[int] = OMIT,
-        sort: typing.Optional[typing.Sequence[PostV1WebhooksSubscriptionsListRequestSortItem]] = OMIT,
-        filter: typing.Optional[typing.Sequence[PostV1WebhooksSubscriptionsListRequestFilterItem]] = OMIT,
+        sort: typing.Optional[typing.Sequence[SubscriptionsListWebhooksRequestSortItem]] = OMIT,
+        filter: typing.Optional[typing.Sequence[SubscriptionsListWebhooksRequestFilterItem]] = OMIT,
         totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> PostV1WebhooksSubscriptionsListResponse:
+    ) -> SubscriptionsListWebhooksResponse:
         """
         Parameters
         ----------
@@ -96,9 +96,9 @@ class WebhooksClient:
 
         page_size : typing.Optional[int]
 
-        sort : typing.Optional[typing.Sequence[PostV1WebhooksSubscriptionsListRequestSortItem]]
+        sort : typing.Optional[typing.Sequence[SubscriptionsListWebhooksRequestSortItem]]
 
-        filter : typing.Optional[typing.Sequence[PostV1WebhooksSubscriptionsListRequestFilterItem]]
+        filter : typing.Optional[typing.Sequence[SubscriptionsListWebhooksRequestFilterItem]]
 
         totals : typing.Optional[typing.Sequence[str]]
             Numeric fields to sum over every row matching the filter (not only the current page)
@@ -108,7 +108,7 @@ class WebhooksClient:
 
         Returns
         -------
-        PostV1WebhooksSubscriptionsListResponse
+        SubscriptionsListWebhooksResponse
             Default Response
 
         Examples
@@ -118,22 +118,22 @@ class WebhooksClient:
         client = Nordlet(
             token="YOUR_TOKEN",
         )
-        client.webhooks.post_v1webhooks_subscriptions_list()
+        client.webhooks.subscriptions_list()
         """
-        _response = self._raw_client.post_v1webhooks_subscriptions_list(
+        _response = self._raw_client.subscriptions_list(
             page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 
-    def post_v1webhooks_subscriptions_update(
+    def subscriptions_update(
         self,
         *,
         id: str,
         url: typing.Optional[str] = OMIT,
-        events: typing.Optional[typing.Sequence[str]] = OMIT,
+        events: typing.Optional[typing.Sequence[SubscriptionsUpdateWebhooksRequestEventsItem]] = OMIT,
         is_active: typing.Optional[bool] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> PostV1WebhooksSubscriptionsUpdateResponse:
+    ) -> SubscriptionsUpdateWebhooksResponse:
         """
         Parameters
         ----------
@@ -141,7 +141,7 @@ class WebhooksClient:
 
         url : typing.Optional[str]
 
-        events : typing.Optional[typing.Sequence[str]]
+        events : typing.Optional[typing.Sequence[SubscriptionsUpdateWebhooksRequestEventsItem]]
 
         is_active : typing.Optional[bool]
 
@@ -150,7 +150,7 @@ class WebhooksClient:
 
         Returns
         -------
-        PostV1WebhooksSubscriptionsUpdateResponse
+        SubscriptionsUpdateWebhooksResponse
             Default Response
 
         Examples
@@ -160,18 +160,18 @@ class WebhooksClient:
         client = Nordlet(
             token="YOUR_TOKEN",
         )
-        client.webhooks.post_v1webhooks_subscriptions_update(
+        client.webhooks.subscriptions_update(
             id="id",
         )
         """
-        _response = self._raw_client.post_v1webhooks_subscriptions_update(
+        _response = self._raw_client.subscriptions_update(
             id=id, url=url, events=events, is_active=is_active, request_options=request_options
         )
         return _response.data
 
-    def post_v1webhooks_subscriptions_delete(
+    def subscriptions_delete(
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
-    ) -> PostV1WebhooksSubscriptionsDeleteResponse:
+    ) -> SubscriptionsDeleteWebhooksResponse:
         """
         Parameters
         ----------
@@ -182,7 +182,7 @@ class WebhooksClient:
 
         Returns
         -------
-        PostV1WebhooksSubscriptionsDeleteResponse
+        SubscriptionsDeleteWebhooksResponse
             Default Response
 
         Examples
@@ -192,23 +192,23 @@ class WebhooksClient:
         client = Nordlet(
             token="YOUR_TOKEN",
         )
-        client.webhooks.post_v1webhooks_subscriptions_delete(
+        client.webhooks.subscriptions_delete(
             id="id",
         )
         """
-        _response = self._raw_client.post_v1webhooks_subscriptions_delete(id=id, request_options=request_options)
+        _response = self._raw_client.subscriptions_delete(id=id, request_options=request_options)
         return _response.data
 
-    def post_v1webhooks_deliveries_list(
+    def deliveries_list(
         self,
         *,
         page: typing.Optional[int] = OMIT,
         page_size: typing.Optional[int] = OMIT,
-        sort: typing.Optional[typing.Sequence[PostV1WebhooksDeliveriesListRequestSortItem]] = OMIT,
-        filter: typing.Optional[typing.Sequence[PostV1WebhooksDeliveriesListRequestFilterItem]] = OMIT,
+        sort: typing.Optional[typing.Sequence[DeliveriesListWebhooksRequestSortItem]] = OMIT,
+        filter: typing.Optional[typing.Sequence[DeliveriesListWebhooksRequestFilterItem]] = OMIT,
         totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> PostV1WebhooksDeliveriesListResponse:
+    ) -> DeliveriesListWebhooksResponse:
         """
         Parameters
         ----------
@@ -216,9 +216,9 @@ class WebhooksClient:
 
         page_size : typing.Optional[int]
 
-        sort : typing.Optional[typing.Sequence[PostV1WebhooksDeliveriesListRequestSortItem]]
+        sort : typing.Optional[typing.Sequence[DeliveriesListWebhooksRequestSortItem]]
 
-        filter : typing.Optional[typing.Sequence[PostV1WebhooksDeliveriesListRequestFilterItem]]
+        filter : typing.Optional[typing.Sequence[DeliveriesListWebhooksRequestFilterItem]]
 
         totals : typing.Optional[typing.Sequence[str]]
             Numeric fields to sum over every row matching the filter (not only the current page)
@@ -228,7 +228,7 @@ class WebhooksClient:
 
         Returns
         -------
-        PostV1WebhooksDeliveriesListResponse
+        DeliveriesListWebhooksResponse
             Default Response
 
         Examples
@@ -238,16 +238,16 @@ class WebhooksClient:
         client = Nordlet(
             token="YOUR_TOKEN",
         )
-        client.webhooks.post_v1webhooks_deliveries_list()
+        client.webhooks.deliveries_list()
         """
-        _response = self._raw_client.post_v1webhooks_deliveries_list(
+        _response = self._raw_client.deliveries_list(
             page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 
-    def post_v1webhooks_deliveries_redeliver(
+    def deliveries_redeliver(
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
-    ) -> PostV1WebhooksDeliveriesRedeliverResponse:
+    ) -> DeliveriesRedeliverWebhooksResponse:
         """
         Parameters
         ----------
@@ -258,7 +258,7 @@ class WebhooksClient:
 
         Returns
         -------
-        PostV1WebhooksDeliveriesRedeliverResponse
+        DeliveriesRedeliverWebhooksResponse
             Default Response
 
         Examples
@@ -268,11 +268,11 @@ class WebhooksClient:
         client = Nordlet(
             token="YOUR_TOKEN",
         )
-        client.webhooks.post_v1webhooks_deliveries_redeliver(
+        client.webhooks.deliveries_redeliver(
             id="id",
         )
         """
-        _response = self._raw_client.post_v1webhooks_deliveries_redeliver(id=id, request_options=request_options)
+        _response = self._raw_client.deliveries_redeliver(id=id, request_options=request_options)
         return _response.data
 
 
@@ -291,20 +291,20 @@ class AsyncWebhooksClient:
         """
         return self._raw_client
 
-    async def post_v1webhooks_subscriptions_create(
+    async def subscriptions_create(
         self,
         *,
         url: str,
-        events: typing.Sequence[str],
+        events: typing.Sequence[SubscriptionsCreateWebhooksRequestEventsItem],
         secret: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> PostV1WebhooksSubscriptionsCreateResponse:
+    ) -> SubscriptionsCreateWebhooksResponse:
         """
         Parameters
         ----------
         url : str
 
-        events : typing.Sequence[str]
+        events : typing.Sequence[SubscriptionsCreateWebhooksRequestEventsItem]
 
         secret : typing.Optional[str]
 
@@ -313,7 +313,7 @@ class AsyncWebhooksClient:
 
         Returns
         -------
-        PostV1WebhooksSubscriptionsCreateResponse
+        SubscriptionsCreateWebhooksResponse
             Default Response
 
         Examples
@@ -328,29 +328,29 @@ class AsyncWebhooksClient:
 
 
         async def main() -> None:
-            await client.webhooks.post_v1webhooks_subscriptions_create(
+            await client.webhooks.subscriptions_create(
                 url="url",
-                events=["events"],
+                events=["agreement.invoice_generated"],
             )
 
 
         asyncio.run(main())
         """
-        _response = await self._raw_client.post_v1webhooks_subscriptions_create(
+        _response = await self._raw_client.subscriptions_create(
             url=url, events=events, secret=secret, request_options=request_options
         )
         return _response.data
 
-    async def post_v1webhooks_subscriptions_list(
+    async def subscriptions_list(
         self,
         *,
         page: typing.Optional[int] = OMIT,
         page_size: typing.Optional[int] = OMIT,
-        sort: typing.Optional[typing.Sequence[PostV1WebhooksSubscriptionsListRequestSortItem]] = OMIT,
-        filter: typing.Optional[typing.Sequence[PostV1WebhooksSubscriptionsListRequestFilterItem]] = OMIT,
+        sort: typing.Optional[typing.Sequence[SubscriptionsListWebhooksRequestSortItem]] = OMIT,
+        filter: typing.Optional[typing.Sequence[SubscriptionsListWebhooksRequestFilterItem]] = OMIT,
         totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> PostV1WebhooksSubscriptionsListResponse:
+    ) -> SubscriptionsListWebhooksResponse:
         """
         Parameters
         ----------
@@ -358,9 +358,9 @@ class AsyncWebhooksClient:
 
         page_size : typing.Optional[int]
 
-        sort : typing.Optional[typing.Sequence[PostV1WebhooksSubscriptionsListRequestSortItem]]
+        sort : typing.Optional[typing.Sequence[SubscriptionsListWebhooksRequestSortItem]]
 
-        filter : typing.Optional[typing.Sequence[PostV1WebhooksSubscriptionsListRequestFilterItem]]
+        filter : typing.Optional[typing.Sequence[SubscriptionsListWebhooksRequestFilterItem]]
 
         totals : typing.Optional[typing.Sequence[str]]
             Numeric fields to sum over every row matching the filter (not only the current page)
@@ -370,7 +370,7 @@ class AsyncWebhooksClient:
 
         Returns
         -------
-        PostV1WebhooksSubscriptionsListResponse
+        SubscriptionsListWebhooksResponse
             Default Response
 
         Examples
@@ -385,25 +385,25 @@ class AsyncWebhooksClient:
 
 
         async def main() -> None:
-            await client.webhooks.post_v1webhooks_subscriptions_list()
+            await client.webhooks.subscriptions_list()
 
 
         asyncio.run(main())
         """
-        _response = await self._raw_client.post_v1webhooks_subscriptions_list(
+        _response = await self._raw_client.subscriptions_list(
             page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 
-    async def post_v1webhooks_subscriptions_update(
+    async def subscriptions_update(
         self,
         *,
         id: str,
         url: typing.Optional[str] = OMIT,
-        events: typing.Optional[typing.Sequence[str]] = OMIT,
+        events: typing.Optional[typing.Sequence[SubscriptionsUpdateWebhooksRequestEventsItem]] = OMIT,
         is_active: typing.Optional[bool] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> PostV1WebhooksSubscriptionsUpdateResponse:
+    ) -> SubscriptionsUpdateWebhooksResponse:
         """
         Parameters
         ----------
@@ -411,7 +411,7 @@ class AsyncWebhooksClient:
 
         url : typing.Optional[str]
 
-        events : typing.Optional[typing.Sequence[str]]
+        events : typing.Optional[typing.Sequence[SubscriptionsUpdateWebhooksRequestEventsItem]]
 
         is_active : typing.Optional[bool]
 
@@ -420,7 +420,7 @@ class AsyncWebhooksClient:
 
         Returns
         -------
-        PostV1WebhooksSubscriptionsUpdateResponse
+        SubscriptionsUpdateWebhooksResponse
             Default Response
 
         Examples
@@ -435,21 +435,21 @@ class AsyncWebhooksClient:
 
 
         async def main() -> None:
-            await client.webhooks.post_v1webhooks_subscriptions_update(
+            await client.webhooks.subscriptions_update(
                 id="id",
             )
 
 
         asyncio.run(main())
         """
-        _response = await self._raw_client.post_v1webhooks_subscriptions_update(
+        _response = await self._raw_client.subscriptions_update(
             id=id, url=url, events=events, is_active=is_active, request_options=request_options
         )
         return _response.data
 
-    async def post_v1webhooks_subscriptions_delete(
+    async def subscriptions_delete(
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
-    ) -> PostV1WebhooksSubscriptionsDeleteResponse:
+    ) -> SubscriptionsDeleteWebhooksResponse:
         """
         Parameters
         ----------
@@ -460,7 +460,7 @@ class AsyncWebhooksClient:
 
         Returns
         -------
-        PostV1WebhooksSubscriptionsDeleteResponse
+        SubscriptionsDeleteWebhooksResponse
             Default Response
 
         Examples
@@ -475,26 +475,26 @@ class AsyncWebhooksClient:
 
 
         async def main() -> None:
-            await client.webhooks.post_v1webhooks_subscriptions_delete(
+            await client.webhooks.subscriptions_delete(
                 id="id",
             )
 
 
         asyncio.run(main())
         """
-        _response = await self._raw_client.post_v1webhooks_subscriptions_delete(id=id, request_options=request_options)
+        _response = await self._raw_client.subscriptions_delete(id=id, request_options=request_options)
         return _response.data
 
-    async def post_v1webhooks_deliveries_list(
+    async def deliveries_list(
         self,
         *,
         page: typing.Optional[int] = OMIT,
         page_size: typing.Optional[int] = OMIT,
-        sort: typing.Optional[typing.Sequence[PostV1WebhooksDeliveriesListRequestSortItem]] = OMIT,
-        filter: typing.Optional[typing.Sequence[PostV1WebhooksDeliveriesListRequestFilterItem]] = OMIT,
+        sort: typing.Optional[typing.Sequence[DeliveriesListWebhooksRequestSortItem]] = OMIT,
+        filter: typing.Optional[typing.Sequence[DeliveriesListWebhooksRequestFilterItem]] = OMIT,
         totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> PostV1WebhooksDeliveriesListResponse:
+    ) -> DeliveriesListWebhooksResponse:
         """
         Parameters
         ----------
@@ -502,9 +502,9 @@ class AsyncWebhooksClient:
 
         page_size : typing.Optional[int]
 
-        sort : typing.Optional[typing.Sequence[PostV1WebhooksDeliveriesListRequestSortItem]]
+        sort : typing.Optional[typing.Sequence[DeliveriesListWebhooksRequestSortItem]]
 
-        filter : typing.Optional[typing.Sequence[PostV1WebhooksDeliveriesListRequestFilterItem]]
+        filter : typing.Optional[typing.Sequence[DeliveriesListWebhooksRequestFilterItem]]
 
         totals : typing.Optional[typing.Sequence[str]]
             Numeric fields to sum over every row matching the filter (not only the current page)
@@ -514,7 +514,7 @@ class AsyncWebhooksClient:
 
         Returns
         -------
-        PostV1WebhooksDeliveriesListResponse
+        DeliveriesListWebhooksResponse
             Default Response
 
         Examples
@@ -529,19 +529,19 @@ class AsyncWebhooksClient:
 
 
         async def main() -> None:
-            await client.webhooks.post_v1webhooks_deliveries_list()
+            await client.webhooks.deliveries_list()
 
 
         asyncio.run(main())
         """
-        _response = await self._raw_client.post_v1webhooks_deliveries_list(
+        _response = await self._raw_client.deliveries_list(
             page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 
-    async def post_v1webhooks_deliveries_redeliver(
+    async def deliveries_redeliver(
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
-    ) -> PostV1WebhooksDeliveriesRedeliverResponse:
+    ) -> DeliveriesRedeliverWebhooksResponse:
         """
         Parameters
         ----------
@@ -552,7 +552,7 @@ class AsyncWebhooksClient:
 
         Returns
         -------
-        PostV1WebhooksDeliveriesRedeliverResponse
+        DeliveriesRedeliverWebhooksResponse
             Default Response
 
         Examples
@@ -567,12 +567,12 @@ class AsyncWebhooksClient:
 
 
         async def main() -> None:
-            await client.webhooks.post_v1webhooks_deliveries_redeliver(
+            await client.webhooks.deliveries_redeliver(
                 id="id",
             )
 
 
         asyncio.run(main())
         """
-        _response = await self._raw_client.post_v1webhooks_deliveries_redeliver(id=id, request_options=request_options)
+        _response = await self._raw_client.deliveries_redeliver(id=id, request_options=request_options)
         return _response.data

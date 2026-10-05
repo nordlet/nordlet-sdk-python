@@ -6,79 +6,73 @@ import typing
 from importlib import import_module
 
 if typing.TYPE_CHECKING:
-    from .post_v1projects_create_response import PostV1ProjectsCreateResponse
-    from .post_v1projects_create_response_status import PostV1ProjectsCreateResponseStatus
-    from .post_v1projects_get_response import PostV1ProjectsGetResponse
-    from .post_v1projects_get_response_status import PostV1ProjectsGetResponseStatus
-    from .post_v1projects_list_request_filter_item import PostV1ProjectsListRequestFilterItem
-    from .post_v1projects_list_request_filter_item_op import PostV1ProjectsListRequestFilterItemOp
-    from .post_v1projects_list_request_filter_item_value import PostV1ProjectsListRequestFilterItemValue
-    from .post_v1projects_list_request_filter_item_value_three_item import (
-        PostV1ProjectsListRequestFilterItemValueThreeItem,
+    from .create_projects_response import CreateProjectsResponse
+    from .create_projects_response_status import CreateProjectsResponseStatus
+    from .get_projects_response import GetProjectsResponse
+    from .get_projects_response_status import GetProjectsResponseStatus
+    from .list_projects_request_filter_item import ListProjectsRequestFilterItem
+    from .list_projects_request_filter_item_op import ListProjectsRequestFilterItemOp
+    from .list_projects_request_filter_item_value import ListProjectsRequestFilterItemValue
+    from .list_projects_request_filter_item_value_three_item import ListProjectsRequestFilterItemValueThreeItem
+    from .list_projects_request_sort_item import ListProjectsRequestSortItem
+    from .list_projects_request_sort_item_dir import ListProjectsRequestSortItemDir
+    from .list_projects_response import ListProjectsResponse
+    from .list_projects_response_rows_item import ListProjectsResponseRowsItem
+    from .list_projects_response_rows_item_status import ListProjectsResponseRowsItemStatus
+    from .report_projects_response import ReportProjectsResponse
+    from .report_projects_response_rows_item import ReportProjectsResponseRowsItem
+    from .report_projects_response_rows_item_status import ReportProjectsResponseRowsItemStatus
+    from .time_entries_bill_projects_request_group_by import TimeEntriesBillProjectsRequestGroupBy
+    from .time_entries_bill_projects_response import TimeEntriesBillProjectsResponse
+    from .time_entries_create_projects_response import TimeEntriesCreateProjectsResponse
+    from .time_entries_delete_projects_response import TimeEntriesDeleteProjectsResponse
+    from .time_entries_list_projects_request_filter_item import TimeEntriesListProjectsRequestFilterItem
+    from .time_entries_list_projects_request_filter_item_op import TimeEntriesListProjectsRequestFilterItemOp
+    from .time_entries_list_projects_request_filter_item_value import TimeEntriesListProjectsRequestFilterItemValue
+    from .time_entries_list_projects_request_filter_item_value_three_item import (
+        TimeEntriesListProjectsRequestFilterItemValueThreeItem,
     )
-    from .post_v1projects_list_request_sort_item import PostV1ProjectsListRequestSortItem
-    from .post_v1projects_list_request_sort_item_dir import PostV1ProjectsListRequestSortItemDir
-    from .post_v1projects_list_response import PostV1ProjectsListResponse
-    from .post_v1projects_list_response_rows_item import PostV1ProjectsListResponseRowsItem
-    from .post_v1projects_list_response_rows_item_status import PostV1ProjectsListResponseRowsItemStatus
-    from .post_v1projects_report_response import PostV1ProjectsReportResponse
-    from .post_v1projects_report_response_rows_item import PostV1ProjectsReportResponseRowsItem
-    from .post_v1projects_report_response_rows_item_status import PostV1ProjectsReportResponseRowsItemStatus
-    from .post_v1projects_time_entries_bill_request_group_by import PostV1ProjectsTimeEntriesBillRequestGroupBy
-    from .post_v1projects_time_entries_bill_response import PostV1ProjectsTimeEntriesBillResponse
-    from .post_v1projects_time_entries_create_response import PostV1ProjectsTimeEntriesCreateResponse
-    from .post_v1projects_time_entries_delete_response import PostV1ProjectsTimeEntriesDeleteResponse
-    from .post_v1projects_time_entries_list_request_filter_item import PostV1ProjectsTimeEntriesListRequestFilterItem
-    from .post_v1projects_time_entries_list_request_filter_item_op import (
-        PostV1ProjectsTimeEntriesListRequestFilterItemOp,
-    )
-    from .post_v1projects_time_entries_list_request_filter_item_value import (
-        PostV1ProjectsTimeEntriesListRequestFilterItemValue,
-    )
-    from .post_v1projects_time_entries_list_request_filter_item_value_three_item import (
-        PostV1ProjectsTimeEntriesListRequestFilterItemValueThreeItem,
-    )
-    from .post_v1projects_time_entries_list_request_sort_item import PostV1ProjectsTimeEntriesListRequestSortItem
-    from .post_v1projects_time_entries_list_request_sort_item_dir import PostV1ProjectsTimeEntriesListRequestSortItemDir
-    from .post_v1projects_time_entries_list_response import PostV1ProjectsTimeEntriesListResponse
-    from .post_v1projects_time_entries_list_response_rows_item import PostV1ProjectsTimeEntriesListResponseRowsItem
-    from .post_v1projects_time_entries_update_response import PostV1ProjectsTimeEntriesUpdateResponse
-    from .post_v1projects_update_request_status import PostV1ProjectsUpdateRequestStatus
-    from .post_v1projects_update_response import PostV1ProjectsUpdateResponse
-    from .post_v1projects_update_response_status import PostV1ProjectsUpdateResponseStatus
+    from .time_entries_list_projects_request_sort_item import TimeEntriesListProjectsRequestSortItem
+    from .time_entries_list_projects_request_sort_item_dir import TimeEntriesListProjectsRequestSortItemDir
+    from .time_entries_list_projects_response import TimeEntriesListProjectsResponse
+    from .time_entries_list_projects_response_rows_item import TimeEntriesListProjectsResponseRowsItem
+    from .time_entries_update_projects_response import TimeEntriesUpdateProjectsResponse
+    from .update_projects_request_status import UpdateProjectsRequestStatus
+    from .update_projects_response import UpdateProjectsResponse
+    from .update_projects_response_status import UpdateProjectsResponseStatus
 _dynamic_imports: typing.Dict[str, str] = {
-    "PostV1ProjectsCreateResponse": ".post_v1projects_create_response",
-    "PostV1ProjectsCreateResponseStatus": ".post_v1projects_create_response_status",
-    "PostV1ProjectsGetResponse": ".post_v1projects_get_response",
-    "PostV1ProjectsGetResponseStatus": ".post_v1projects_get_response_status",
-    "PostV1ProjectsListRequestFilterItem": ".post_v1projects_list_request_filter_item",
-    "PostV1ProjectsListRequestFilterItemOp": ".post_v1projects_list_request_filter_item_op",
-    "PostV1ProjectsListRequestFilterItemValue": ".post_v1projects_list_request_filter_item_value",
-    "PostV1ProjectsListRequestFilterItemValueThreeItem": ".post_v1projects_list_request_filter_item_value_three_item",
-    "PostV1ProjectsListRequestSortItem": ".post_v1projects_list_request_sort_item",
-    "PostV1ProjectsListRequestSortItemDir": ".post_v1projects_list_request_sort_item_dir",
-    "PostV1ProjectsListResponse": ".post_v1projects_list_response",
-    "PostV1ProjectsListResponseRowsItem": ".post_v1projects_list_response_rows_item",
-    "PostV1ProjectsListResponseRowsItemStatus": ".post_v1projects_list_response_rows_item_status",
-    "PostV1ProjectsReportResponse": ".post_v1projects_report_response",
-    "PostV1ProjectsReportResponseRowsItem": ".post_v1projects_report_response_rows_item",
-    "PostV1ProjectsReportResponseRowsItemStatus": ".post_v1projects_report_response_rows_item_status",
-    "PostV1ProjectsTimeEntriesBillRequestGroupBy": ".post_v1projects_time_entries_bill_request_group_by",
-    "PostV1ProjectsTimeEntriesBillResponse": ".post_v1projects_time_entries_bill_response",
-    "PostV1ProjectsTimeEntriesCreateResponse": ".post_v1projects_time_entries_create_response",
-    "PostV1ProjectsTimeEntriesDeleteResponse": ".post_v1projects_time_entries_delete_response",
-    "PostV1ProjectsTimeEntriesListRequestFilterItem": ".post_v1projects_time_entries_list_request_filter_item",
-    "PostV1ProjectsTimeEntriesListRequestFilterItemOp": ".post_v1projects_time_entries_list_request_filter_item_op",
-    "PostV1ProjectsTimeEntriesListRequestFilterItemValue": ".post_v1projects_time_entries_list_request_filter_item_value",
-    "PostV1ProjectsTimeEntriesListRequestFilterItemValueThreeItem": ".post_v1projects_time_entries_list_request_filter_item_value_three_item",
-    "PostV1ProjectsTimeEntriesListRequestSortItem": ".post_v1projects_time_entries_list_request_sort_item",
-    "PostV1ProjectsTimeEntriesListRequestSortItemDir": ".post_v1projects_time_entries_list_request_sort_item_dir",
-    "PostV1ProjectsTimeEntriesListResponse": ".post_v1projects_time_entries_list_response",
-    "PostV1ProjectsTimeEntriesListResponseRowsItem": ".post_v1projects_time_entries_list_response_rows_item",
-    "PostV1ProjectsTimeEntriesUpdateResponse": ".post_v1projects_time_entries_update_response",
-    "PostV1ProjectsUpdateRequestStatus": ".post_v1projects_update_request_status",
-    "PostV1ProjectsUpdateResponse": ".post_v1projects_update_response",
-    "PostV1ProjectsUpdateResponseStatus": ".post_v1projects_update_response_status",
+    "CreateProjectsResponse": ".create_projects_response",
+    "CreateProjectsResponseStatus": ".create_projects_response_status",
+    "GetProjectsResponse": ".get_projects_response",
+    "GetProjectsResponseStatus": ".get_projects_response_status",
+    "ListProjectsRequestFilterItem": ".list_projects_request_filter_item",
+    "ListProjectsRequestFilterItemOp": ".list_projects_request_filter_item_op",
+    "ListProjectsRequestFilterItemValue": ".list_projects_request_filter_item_value",
+    "ListProjectsRequestFilterItemValueThreeItem": ".list_projects_request_filter_item_value_three_item",
+    "ListProjectsRequestSortItem": ".list_projects_request_sort_item",
+    "ListProjectsRequestSortItemDir": ".list_projects_request_sort_item_dir",
+    "ListProjectsResponse": ".list_projects_response",
+    "ListProjectsResponseRowsItem": ".list_projects_response_rows_item",
+    "ListProjectsResponseRowsItemStatus": ".list_projects_response_rows_item_status",
+    "ReportProjectsResponse": ".report_projects_response",
+    "ReportProjectsResponseRowsItem": ".report_projects_response_rows_item",
+    "ReportProjectsResponseRowsItemStatus": ".report_projects_response_rows_item_status",
+    "TimeEntriesBillProjectsRequestGroupBy": ".time_entries_bill_projects_request_group_by",
+    "TimeEntriesBillProjectsResponse": ".time_entries_bill_projects_response",
+    "TimeEntriesCreateProjectsResponse": ".time_entries_create_projects_response",
+    "TimeEntriesDeleteProjectsResponse": ".time_entries_delete_projects_response",
+    "TimeEntriesListProjectsRequestFilterItem": ".time_entries_list_projects_request_filter_item",
+    "TimeEntriesListProjectsRequestFilterItemOp": ".time_entries_list_projects_request_filter_item_op",
+    "TimeEntriesListProjectsRequestFilterItemValue": ".time_entries_list_projects_request_filter_item_value",
+    "TimeEntriesListProjectsRequestFilterItemValueThreeItem": ".time_entries_list_projects_request_filter_item_value_three_item",
+    "TimeEntriesListProjectsRequestSortItem": ".time_entries_list_projects_request_sort_item",
+    "TimeEntriesListProjectsRequestSortItemDir": ".time_entries_list_projects_request_sort_item_dir",
+    "TimeEntriesListProjectsResponse": ".time_entries_list_projects_response",
+    "TimeEntriesListProjectsResponseRowsItem": ".time_entries_list_projects_response_rows_item",
+    "TimeEntriesUpdateProjectsResponse": ".time_entries_update_projects_response",
+    "UpdateProjectsRequestStatus": ".update_projects_request_status",
+    "UpdateProjectsResponse": ".update_projects_response",
+    "UpdateProjectsResponseStatus": ".update_projects_response_status",
 }
 
 
@@ -104,36 +98,36 @@ def __dir__():
 
 
 __all__ = [
-    "PostV1ProjectsCreateResponse",
-    "PostV1ProjectsCreateResponseStatus",
-    "PostV1ProjectsGetResponse",
-    "PostV1ProjectsGetResponseStatus",
-    "PostV1ProjectsListRequestFilterItem",
-    "PostV1ProjectsListRequestFilterItemOp",
-    "PostV1ProjectsListRequestFilterItemValue",
-    "PostV1ProjectsListRequestFilterItemValueThreeItem",
-    "PostV1ProjectsListRequestSortItem",
-    "PostV1ProjectsListRequestSortItemDir",
-    "PostV1ProjectsListResponse",
-    "PostV1ProjectsListResponseRowsItem",
-    "PostV1ProjectsListResponseRowsItemStatus",
-    "PostV1ProjectsReportResponse",
-    "PostV1ProjectsReportResponseRowsItem",
-    "PostV1ProjectsReportResponseRowsItemStatus",
-    "PostV1ProjectsTimeEntriesBillRequestGroupBy",
-    "PostV1ProjectsTimeEntriesBillResponse",
-    "PostV1ProjectsTimeEntriesCreateResponse",
-    "PostV1ProjectsTimeEntriesDeleteResponse",
-    "PostV1ProjectsTimeEntriesListRequestFilterItem",
-    "PostV1ProjectsTimeEntriesListRequestFilterItemOp",
-    "PostV1ProjectsTimeEntriesListRequestFilterItemValue",
-    "PostV1ProjectsTimeEntriesListRequestFilterItemValueThreeItem",
-    "PostV1ProjectsTimeEntriesListRequestSortItem",
-    "PostV1ProjectsTimeEntriesListRequestSortItemDir",
-    "PostV1ProjectsTimeEntriesListResponse",
-    "PostV1ProjectsTimeEntriesListResponseRowsItem",
-    "PostV1ProjectsTimeEntriesUpdateResponse",
-    "PostV1ProjectsUpdateRequestStatus",
-    "PostV1ProjectsUpdateResponse",
-    "PostV1ProjectsUpdateResponseStatus",
+    "CreateProjectsResponse",
+    "CreateProjectsResponseStatus",
+    "GetProjectsResponse",
+    "GetProjectsResponseStatus",
+    "ListProjectsRequestFilterItem",
+    "ListProjectsRequestFilterItemOp",
+    "ListProjectsRequestFilterItemValue",
+    "ListProjectsRequestFilterItemValueThreeItem",
+    "ListProjectsRequestSortItem",
+    "ListProjectsRequestSortItemDir",
+    "ListProjectsResponse",
+    "ListProjectsResponseRowsItem",
+    "ListProjectsResponseRowsItemStatus",
+    "ReportProjectsResponse",
+    "ReportProjectsResponseRowsItem",
+    "ReportProjectsResponseRowsItemStatus",
+    "TimeEntriesBillProjectsRequestGroupBy",
+    "TimeEntriesBillProjectsResponse",
+    "TimeEntriesCreateProjectsResponse",
+    "TimeEntriesDeleteProjectsResponse",
+    "TimeEntriesListProjectsRequestFilterItem",
+    "TimeEntriesListProjectsRequestFilterItemOp",
+    "TimeEntriesListProjectsRequestFilterItemValue",
+    "TimeEntriesListProjectsRequestFilterItemValueThreeItem",
+    "TimeEntriesListProjectsRequestSortItem",
+    "TimeEntriesListProjectsRequestSortItemDir",
+    "TimeEntriesListProjectsResponse",
+    "TimeEntriesListProjectsResponseRowsItem",
+    "TimeEntriesUpdateProjectsResponse",
+    "UpdateProjectsRequestStatus",
+    "UpdateProjectsResponse",
+    "UpdateProjectsResponseStatus",
 ]

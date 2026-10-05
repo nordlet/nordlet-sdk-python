@@ -1,6 +1,6 @@
 # Reference
-## Reference
-<details><summary><code>client.reference.<a href="src/nordlet/reference/client.py">post_v1reference_exchange_rates_sync</a>(...) -> PostV1ReferenceExchangeRatesSyncResponse</code></summary>
+## reference
+<details><summary><code>client.reference.<a href="src/nordlet/reference/client.py">exchange_rates_sync</a>(...) -> ExchangeRatesSyncReferenceResponse</code></summary>
 <dl>
 <dd>
 
@@ -21,7 +21,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.reference.post_v1reference_exchange_rates_sync()
+client.reference.exchange_rates_sync()
 
 ```
 </dd>
@@ -37,7 +37,7 @@ client.reference.post_v1reference_exchange_rates_sync()
 <dl>
 <dd>
 
-**date:** `typing.Optional[str]` 
+**date:** `typing.Optional[datetime.date]` 
     
 </dd>
 </dl>
@@ -57,7 +57,7 @@ client.reference.post_v1reference_exchange_rates_sync()
 </dl>
 </details>
 
-<details><summary><code>client.reference.<a href="src/nordlet/reference/client.py">post_v1reference_exchange_rates_list</a>(...) -> PostV1ReferenceExchangeRatesListResponse</code></summary>
+<details><summary><code>client.reference.<a href="src/nordlet/reference/client.py">exchange_rates_list</a>(...) -> ExchangeRatesListReferenceResponse</code></summary>
 <dl>
 <dd>
 
@@ -78,7 +78,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.reference.post_v1reference_exchange_rates_list()
+client.reference.exchange_rates_list()
 
 ```
 </dd>
@@ -110,7 +110,7 @@ client.reference.post_v1reference_exchange_rates_list()
 <dl>
 <dd>
 
-**sort:** `typing.Optional[typing.List[PostV1ReferenceExchangeRatesListRequestSortItem]]` 
+**sort:** `typing.Optional[typing.List[ExchangeRatesListReferenceRequestSortItem]]` 
     
 </dd>
 </dl>
@@ -118,7 +118,7 @@ client.reference.post_v1reference_exchange_rates_list()
 <dl>
 <dd>
 
-**filter:** `typing.Optional[typing.List[PostV1ReferenceExchangeRatesListRequestFilterItem]]` 
+**filter:** `typing.Optional[typing.List[ExchangeRatesListReferenceRequestFilterItem]]` 
     
 </dd>
 </dl>
@@ -146,7 +146,7 @@ client.reference.post_v1reference_exchange_rates_list()
 </dl>
 </details>
 
-<details><summary><code>client.reference.<a href="src/nordlet/reference/client.py">post_v1reference_exchange_rates_set</a>(...) -> PostV1ReferenceExchangeRatesSetResponse</code></summary>
+<details><summary><code>client.reference.<a href="src/nordlet/reference/client.py">exchange_rates_set</a>(...) -> ExchangeRatesSetReferenceResponse</code></summary>
 <dl>
 <dd>
 
@@ -161,16 +161,17 @@ client.reference.post_v1reference_exchange_rates_list()
 ```python
 from nordlet import Nordlet
 from nordlet.environment import NordletEnvironment
+import datetime
 
 client = Nordlet(
     token="<token>",
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.reference.post_v1reference_exchange_rates_set(
+client.reference.exchange_rates_set(
     currency="currency",
-    date="date",
-    rate="rate",
+    date=datetime.date.fromisoformat("2026-07-01"),
+    rate="121.00000000",
 )
 
 ```
@@ -195,7 +196,7 @@ client.reference.post_v1reference_exchange_rates_set(
 <dl>
 <dd>
 
-**date:** `str` 
+**date:** `datetime.date` 
     
 </dd>
 </dl>
@@ -223,7 +224,7 @@ client.reference.post_v1reference_exchange_rates_set(
 </dl>
 </details>
 
-<details><summary><code>client.reference.<a href="src/nordlet/reference/client.py">post_v1reference_exchange_rates_overrides_list</a>(...) -> PostV1ReferenceExchangeRatesOverridesListResponse</code></summary>
+<details><summary><code>client.reference.<a href="src/nordlet/reference/client.py">exchange_rates_overrides_list</a>(...) -> ExchangeRatesOverridesListReferenceResponse</code></summary>
 <dl>
 <dd>
 
@@ -244,7 +245,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.reference.post_v1reference_exchange_rates_overrides_list()
+client.reference.exchange_rates_overrides_list()
 
 ```
 </dd>
@@ -276,7 +277,7 @@ client.reference.post_v1reference_exchange_rates_overrides_list()
 <dl>
 <dd>
 
-**sort:** `typing.Optional[typing.List[PostV1ReferenceExchangeRatesOverridesListRequestSortItem]]` 
+**sort:** `typing.Optional[typing.List[ExchangeRatesOverridesListReferenceRequestSortItem]]` 
     
 </dd>
 </dl>
@@ -284,7 +285,7 @@ client.reference.post_v1reference_exchange_rates_overrides_list()
 <dl>
 <dd>
 
-**filter:** `typing.Optional[typing.List[PostV1ReferenceExchangeRatesOverridesListRequestFilterItem]]` 
+**filter:** `typing.Optional[typing.List[ExchangeRatesOverridesListReferenceRequestFilterItem]]` 
     
 </dd>
 </dl>
@@ -312,7 +313,7 @@ client.reference.post_v1reference_exchange_rates_overrides_list()
 </dl>
 </details>
 
-<details><summary><code>client.reference.<a href="src/nordlet/reference/client.py">post_v1reference_exchange_rates_overrides_delete</a>(...) -> PostV1ReferenceExchangeRatesOverridesDeleteResponse</code></summary>
+<details><summary><code>client.reference.<a href="src/nordlet/reference/client.py">exchange_rates_overrides_delete</a>(...) -> ExchangeRatesOverridesDeleteReferenceResponse</code></summary>
 <dl>
 <dd>
 
@@ -327,15 +328,16 @@ client.reference.post_v1reference_exchange_rates_overrides_list()
 ```python
 from nordlet import Nordlet
 from nordlet.environment import NordletEnvironment
+import datetime
 
 client = Nordlet(
     token="<token>",
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.reference.post_v1reference_exchange_rates_overrides_delete(
+client.reference.exchange_rates_overrides_delete(
     currency="currency",
-    date="date",
+    date=datetime.date.fromisoformat("2026-07-01"),
 )
 
 ```
@@ -360,7 +362,7 @@ client.reference.post_v1reference_exchange_rates_overrides_delete(
 <dl>
 <dd>
 
-**date:** `str` 
+**date:** `datetime.date` 
     
 </dd>
 </dl>
@@ -380,7 +382,7 @@ client.reference.post_v1reference_exchange_rates_overrides_delete(
 </dl>
 </details>
 
-<details><summary><code>client.reference.<a href="src/nordlet/reference/client.py">post_v1reference_countries_list</a>() -> PostV1ReferenceCountriesListResponse</code></summary>
+<details><summary><code>client.reference.<a href="src/nordlet/reference/client.py">countries_list</a>() -> CountriesListReferenceResponse</code></summary>
 <dl>
 <dd>
 
@@ -401,7 +403,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.reference.post_v1reference_countries_list()
+client.reference.countries_list()
 
 ```
 </dd>
@@ -429,7 +431,7 @@ client.reference.post_v1reference_countries_list()
 </dl>
 </details>
 
-<details><summary><code>client.reference.<a href="src/nordlet/reference/client.py">post_v1reference_lt_counties_list</a>() -> PostV1ReferenceLtCountiesListResponse</code></summary>
+<details><summary><code>client.reference.<a href="src/nordlet/reference/client.py">lt_counties_list</a>() -> LtCountiesListReferenceResponse</code></summary>
 <dl>
 <dd>
 
@@ -450,7 +452,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.reference.post_v1reference_lt_counties_list()
+client.reference.lt_counties_list()
 
 ```
 </dd>
@@ -478,7 +480,7 @@ client.reference.post_v1reference_lt_counties_list()
 </dl>
 </details>
 
-<details><summary><code>client.reference.<a href="src/nordlet/reference/client.py">post_v1reference_lt_municipalities_list</a>(...) -> PostV1ReferenceLtMunicipalitiesListResponse</code></summary>
+<details><summary><code>client.reference.<a href="src/nordlet/reference/client.py">lt_municipalities_list</a>(...) -> LtMunicipalitiesListReferenceResponse</code></summary>
 <dl>
 <dd>
 
@@ -499,7 +501,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.reference.post_v1reference_lt_municipalities_list()
+client.reference.lt_municipalities_list()
 
 ```
 </dd>
@@ -535,7 +537,7 @@ client.reference.post_v1reference_lt_municipalities_list()
 </dl>
 </details>
 
-<details><summary><code>client.reference.<a href="src/nordlet/reference/client.py">post_v1reference_lt_cities_list</a>(...) -> PostV1ReferenceLtCitiesListResponse</code></summary>
+<details><summary><code>client.reference.<a href="src/nordlet/reference/client.py">lt_cities_list</a>(...) -> LtCitiesListReferenceResponse</code></summary>
 <dl>
 <dd>
 
@@ -556,7 +558,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.reference.post_v1reference_lt_cities_list()
+client.reference.lt_cities_list()
 
 ```
 </dd>
@@ -600,7 +602,7 @@ client.reference.post_v1reference_lt_cities_list()
 </dl>
 </details>
 
-<details><summary><code>client.reference.<a href="src/nordlet/reference/client.py">post_v1reference_banks_list</a>(...) -> PostV1ReferenceBanksListResponse</code></summary>
+<details><summary><code>client.reference.<a href="src/nordlet/reference/client.py">banks_list</a>(...) -> BanksListReferenceResponse</code></summary>
 <dl>
 <dd>
 
@@ -621,7 +623,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.reference.post_v1reference_banks_list()
+client.reference.banks_list()
 
 ```
 </dd>
@@ -653,7 +655,7 @@ client.reference.post_v1reference_banks_list()
 <dl>
 <dd>
 
-**sort:** `typing.Optional[typing.List[PostV1ReferenceBanksListRequestSortItem]]` 
+**sort:** `typing.Optional[typing.List[BanksListReferenceRequestSortItem]]` 
     
 </dd>
 </dl>
@@ -661,7 +663,7 @@ client.reference.post_v1reference_banks_list()
 <dl>
 <dd>
 
-**filter:** `typing.Optional[typing.List[PostV1ReferenceBanksListRequestFilterItem]]` 
+**filter:** `typing.Optional[typing.List[BanksListReferenceRequestFilterItem]]` 
     
 </dd>
 </dl>
@@ -689,7 +691,7 @@ client.reference.post_v1reference_banks_list()
 </dl>
 </details>
 
-<details><summary><code>client.reference.<a href="src/nordlet/reference/client.py">post_v1reference_banks_upsert</a>(...) -> PostV1ReferenceBanksUpsertResponse</code></summary>
+<details><summary><code>client.reference.<a href="src/nordlet/reference/client.py">banks_upsert</a>(...) -> BanksUpsertReferenceResponse</code></summary>
 <dl>
 <dd>
 
@@ -710,7 +712,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.reference.post_v1reference_banks_upsert(
+client.reference.banks_upsert(
     country_code="countryCode",
     name="name",
     bic="bic",
@@ -782,7 +784,7 @@ client.reference.post_v1reference_banks_upsert(
 </dl>
 </details>
 
-<details><summary><code>client.reference.<a href="src/nordlet/reference/client.py">post_v1reference_lt_regions_list</a>() -> PostV1ReferenceLtRegionsListResponse</code></summary>
+<details><summary><code>client.reference.<a href="src/nordlet/reference/client.py">lt_regions_list</a>() -> LtRegionsListReferenceResponse</code></summary>
 <dl>
 <dd>
 
@@ -803,7 +805,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.reference.post_v1reference_lt_regions_list()
+client.reference.lt_regions_list()
 
 ```
 </dd>
@@ -831,7 +833,7 @@ client.reference.post_v1reference_lt_regions_list()
 </dl>
 </details>
 
-<details><summary><code>client.reference.<a href="src/nordlet/reference/client.py">post_v1reference_currencies_list</a>(...) -> PostV1ReferenceCurrenciesListResponse</code></summary>
+<details><summary><code>client.reference.<a href="src/nordlet/reference/client.py">currencies_list</a>(...) -> CurrenciesListReferenceResponse</code></summary>
 <dl>
 <dd>
 
@@ -852,96 +854,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.reference.post_v1reference_currencies_list()
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**page:** `typing.Optional[int]` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**page_size:** `typing.Optional[int]` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**sort:** `typing.Optional[typing.List[PostV1ReferenceCurrenciesListRequestSortItem]]` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filter:** `typing.Optional[typing.List[PostV1ReferenceCurrenciesListRequestFilterItem]]` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**totals:** `typing.Optional[typing.List[str]]` — Numeric fields to sum over every row matching the filter (not only the current page)
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.reference.<a href="src/nordlet/reference/client.py">post_v1reference_vat_classifiers_list</a>(...) -> PostV1ReferenceVatClassifiersListResponse</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```python
-from nordlet import Nordlet
-from nordlet.environment import NordletEnvironment
-
-client = Nordlet(
-    token="<token>",
-    environment=NordletEnvironment.PRODUCTION,
-)
-
-client.reference.post_v1reference_vat_classifiers_list()
+client.reference.currencies_list()
 
 ```
 </dd>
@@ -973,7 +886,7 @@ client.reference.post_v1reference_vat_classifiers_list()
 <dl>
 <dd>
 
-**sort:** `typing.Optional[typing.List[PostV1ReferenceVatClassifiersListRequestSortItem]]` 
+**sort:** `typing.Optional[typing.List[CurrenciesListReferenceRequestSortItem]]` 
     
 </dd>
 </dl>
@@ -981,7 +894,7 @@ client.reference.post_v1reference_vat_classifiers_list()
 <dl>
 <dd>
 
-**filter:** `typing.Optional[typing.List[PostV1ReferenceVatClassifiersListRequestFilterItem]]` 
+**filter:** `typing.Optional[typing.List[CurrenciesListReferenceRequestFilterItem]]` 
     
 </dd>
 </dl>
@@ -1009,7 +922,7 @@ client.reference.post_v1reference_vat_classifiers_list()
 </dl>
 </details>
 
-<details><summary><code>client.reference.<a href="src/nordlet/reference/client.py">post_v1reference_vat_classifiers_upsert</a>(...) -> PostV1ReferenceVatClassifiersUpsertResponse</code></summary>
+<details><summary><code>client.reference.<a href="src/nordlet/reference/client.py">vat_classifiers_list</a>(...) -> VatClassifiersListReferenceResponse</code></summary>
 <dl>
 <dd>
 
@@ -1024,16 +937,105 @@ client.reference.post_v1reference_vat_classifiers_list()
 ```python
 from nordlet import Nordlet
 from nordlet.environment import NordletEnvironment
-from nordlet.reference import PostV1ReferenceVatClassifiersUpsertRequestRowsItem
 
 client = Nordlet(
     token="<token>",
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.reference.post_v1reference_vat_classifiers_upsert(
+client.reference.vat_classifiers_list()
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**page:** `typing.Optional[int]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**page_size:** `typing.Optional[int]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sort:** `typing.Optional[typing.List[VatClassifiersListReferenceRequestSortItem]]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filter:** `typing.Optional[typing.List[VatClassifiersListReferenceRequestFilterItem]]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**totals:** `typing.Optional[typing.List[str]]` — Numeric fields to sum over every row matching the filter (not only the current page)
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.reference.<a href="src/nordlet/reference/client.py">vat_classifiers_upsert</a>(...) -> VatClassifiersUpsertReferenceResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+from nordlet.reference import VatClassifiersUpsertReferenceRequestRowsItem
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.reference.vat_classifiers_upsert(
     rows=[
-        PostV1ReferenceVatClassifiersUpsertRequestRowsItem(
+        VatClassifiersUpsertReferenceRequestRowsItem(
             code="code",
             name="name",
         )
@@ -1054,7 +1056,7 @@ client.reference.post_v1reference_vat_classifiers_upsert(
 <dl>
 <dd>
 
-**rows:** `typing.List[PostV1ReferenceVatClassifiersUpsertRequestRowsItem]` 
+**rows:** `typing.List[VatClassifiersUpsertReferenceRequestRowsItem]` 
     
 </dd>
 </dl>
@@ -1074,7 +1076,7 @@ client.reference.post_v1reference_vat_classifiers_upsert(
 </dl>
 </details>
 
-<details><summary><code>client.reference.<a href="src/nordlet/reference/client.py">post_v1reference_eu_vat_rates_list</a>(...) -> PostV1ReferenceEuVatRatesListResponse</code></summary>
+<details><summary><code>client.reference.<a href="src/nordlet/reference/client.py">eu_vat_rates_list</a>(...) -> EuVatRatesListReferenceResponse</code></summary>
 <dl>
 <dd>
 
@@ -1109,7 +1111,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.reference.post_v1reference_eu_vat_rates_list()
+client.reference.eu_vat_rates_list()
 
 ```
 </dd>
@@ -1133,7 +1135,7 @@ client.reference.post_v1reference_eu_vat_rates_list()
 <dl>
 <dd>
 
-**date:** `typing.Optional[str]` 
+**date:** `typing.Optional[datetime.date]` 
     
 </dd>
 </dl>
@@ -1153,7 +1155,7 @@ client.reference.post_v1reference_eu_vat_rates_list()
 </dl>
 </details>
 
-<details><summary><code>client.reference.<a href="src/nordlet/reference/client.py">post_v1reference_eu_vat_rates_set_overrides</a>(...) -> PostV1ReferenceEuVatRatesSetOverridesResponse</code></summary>
+<details><summary><code>client.reference.<a href="src/nordlet/reference/client.py">eu_vat_rates_set_overrides</a>(...) -> EuVatRatesSetOverridesReferenceResponse</code></summary>
 <dl>
 <dd>
 
@@ -1182,19 +1184,19 @@ Replace the VAT rate mapping this company uses for one EU country. Pass an empty
 ```python
 from nordlet import Nordlet
 from nordlet.environment import NordletEnvironment
-from nordlet.reference import PostV1ReferenceEuVatRatesSetOverridesRequestRatesItem
+from nordlet.reference import EuVatRatesSetOverridesReferenceRequestRatesItem
 
 client = Nordlet(
     token="<token>",
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.reference.post_v1reference_eu_vat_rates_set_overrides(
+client.reference.eu_vat_rates_set_overrides(
     country_code="countryCode",
     rates=[
-        PostV1ReferenceEuVatRatesSetOverridesRequestRatesItem(
+        EuVatRatesSetOverridesReferenceRequestRatesItem(
             category="standard",
-            rate_percent="ratePercent",
+            rate_percent="121.00",
         )
     ],
 )
@@ -1221,7 +1223,7 @@ client.reference.post_v1reference_eu_vat_rates_set_overrides(
 <dl>
 <dd>
 
-**rates:** `typing.List[PostV1ReferenceEuVatRatesSetOverridesRequestRatesItem]` 
+**rates:** `typing.List[EuVatRatesSetOverridesReferenceRequestRatesItem]` 
     
 </dd>
 </dl>
@@ -1241,7 +1243,7 @@ client.reference.post_v1reference_eu_vat_rates_set_overrides(
 </dl>
 </details>
 
-<details><summary><code>client.reference.<a href="src/nordlet/reference/client.py">post_v1reference_vat_resolve</a>(...) -> PostV1ReferenceVatResolveResponse</code></summary>
+<details><summary><code>client.reference.<a href="src/nordlet/reference/client.py">vat_resolve</a>(...) -> VatResolveReferenceResponse</code></summary>
 <dl>
 <dd>
 
@@ -1262,7 +1264,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.reference.post_v1reference_vat_resolve()
+client.reference.vat_resolve()
 
 ```
 </dd>
@@ -1302,7 +1304,7 @@ client.reference.post_v1reference_vat_resolve()
 <dl>
 <dd>
 
-**supply_type:** `typing.Optional[PostV1ReferenceVatResolveRequestSupplyType]` 
+**supply_type:** `typing.Optional[VatResolveReferenceRequestSupplyType]` 
     
 </dd>
 </dl>
@@ -1310,7 +1312,7 @@ client.reference.post_v1reference_vat_resolve()
 <dl>
 <dd>
 
-**date:** `typing.Optional[str]` 
+**date:** `typing.Optional[datetime.date]` 
     
 </dd>
 </dl>
@@ -1370,7 +1372,7 @@ client.reference.post_v1reference_vat_resolve()
 </dl>
 </details>
 
-<details><summary><code>client.reference.<a href="src/nordlet/reference/client.py">post_v1reference_cn_codes_list</a>(...) -> PostV1ReferenceCnCodesListResponse</code></summary>
+<details><summary><code>client.reference.<a href="src/nordlet/reference/client.py">cn_codes_list</a>(...) -> CnCodesListReferenceResponse</code></summary>
 <dl>
 <dd>
 
@@ -1391,7 +1393,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.reference.post_v1reference_cn_codes_list()
+client.reference.cn_codes_list()
 
 ```
 </dd>
@@ -1423,7 +1425,7 @@ client.reference.post_v1reference_cn_codes_list()
 <dl>
 <dd>
 
-**sort:** `typing.Optional[typing.List[PostV1ReferenceCnCodesListRequestSortItem]]` 
+**sort:** `typing.Optional[typing.List[CnCodesListReferenceRequestSortItem]]` 
     
 </dd>
 </dl>
@@ -1431,7 +1433,7 @@ client.reference.post_v1reference_cn_codes_list()
 <dl>
 <dd>
 
-**filter:** `typing.Optional[typing.List[PostV1ReferenceCnCodesListRequestFilterItem]]` 
+**filter:** `typing.Optional[typing.List[CnCodesListReferenceRequestFilterItem]]` 
     
 </dd>
 </dl>
@@ -1459,7 +1461,7 @@ client.reference.post_v1reference_cn_codes_list()
 </dl>
 </details>
 
-<details><summary><code>client.reference.<a href="src/nordlet/reference/client.py">post_v1reference_cn_codes_upsert</a>(...) -> PostV1ReferenceCnCodesUpsertResponse</code></summary>
+<details><summary><code>client.reference.<a href="src/nordlet/reference/client.py">cn_codes_upsert</a>(...) -> CnCodesUpsertReferenceResponse</code></summary>
 <dl>
 <dd>
 
@@ -1474,16 +1476,16 @@ client.reference.post_v1reference_cn_codes_list()
 ```python
 from nordlet import Nordlet
 from nordlet.environment import NordletEnvironment
-from nordlet.reference import PostV1ReferenceCnCodesUpsertRequestRowsItem
+from nordlet.reference import CnCodesUpsertReferenceRequestRowsItem
 
 client = Nordlet(
     token="<token>",
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.reference.post_v1reference_cn_codes_upsert(
+client.reference.cn_codes_upsert(
     rows=[
-        PostV1ReferenceCnCodesUpsertRequestRowsItem(
+        CnCodesUpsertReferenceRequestRowsItem(
             code="code",
             name="name",
         )
@@ -1504,7 +1506,7 @@ client.reference.post_v1reference_cn_codes_upsert(
 <dl>
 <dd>
 
-**rows:** `typing.List[PostV1ReferenceCnCodesUpsertRequestRowsItem]` 
+**rows:** `typing.List[CnCodesUpsertReferenceRequestRowsItem]` 
     
 </dd>
 </dl>
@@ -1524,7 +1526,7 @@ client.reference.post_v1reference_cn_codes_upsert(
 </dl>
 </details>
 
-<details><summary><code>client.reference.<a href="src/nordlet/reference/client.py">post_v1reference_compliance_versions_list</a>(...) -> PostV1ReferenceComplianceVersionsListResponse</code></summary>
+<details><summary><code>client.reference.<a href="src/nordlet/reference/client.py">compliance_versions_list</a>(...) -> ComplianceVersionsListReferenceResponse</code></summary>
 <dl>
 <dd>
 
@@ -1545,7 +1547,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.reference.post_v1reference_compliance_versions_list()
+client.reference.compliance_versions_list()
 
 ```
 </dd>
@@ -1581,7 +1583,7 @@ client.reference.post_v1reference_compliance_versions_list()
 </dl>
 </details>
 
-<details><summary><code>client.reference.<a href="src/nordlet/reference/client.py">post_v1reference_intrastat_thresholds_list</a>() -> PostV1ReferenceIntrastatThresholdsListResponse</code></summary>
+<details><summary><code>client.reference.<a href="src/nordlet/reference/client.py">intrastat_thresholds_list</a>() -> IntrastatThresholdsListReferenceResponse</code></summary>
 <dl>
 <dd>
 
@@ -1602,7 +1604,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.reference.post_v1reference_intrastat_thresholds_list()
+client.reference.intrastat_thresholds_list()
 
 ```
 </dd>
@@ -1630,7 +1632,7 @@ client.reference.post_v1reference_intrastat_thresholds_list()
 </dl>
 </details>
 
-<details><summary><code>client.reference.<a href="src/nordlet/reference/client.py">post_v1reference_units_list</a>(...) -> PostV1ReferenceUnitsListResponse</code></summary>
+<details><summary><code>client.reference.<a href="src/nordlet/reference/client.py">units_list</a>(...) -> UnitsListReferenceResponse</code></summary>
 <dl>
 <dd>
 
@@ -1651,7 +1653,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.reference.post_v1reference_units_list()
+client.reference.units_list()
 
 ```
 </dd>
@@ -1683,7 +1685,7 @@ client.reference.post_v1reference_units_list()
 <dl>
 <dd>
 
-**sort:** `typing.Optional[typing.List[PostV1ReferenceUnitsListRequestSortItem]]` 
+**sort:** `typing.Optional[typing.List[UnitsListReferenceRequestSortItem]]` 
     
 </dd>
 </dl>
@@ -1691,7 +1693,7 @@ client.reference.post_v1reference_units_list()
 <dl>
 <dd>
 
-**filter:** `typing.Optional[typing.List[PostV1ReferenceUnitsListRequestFilterItem]]` 
+**filter:** `typing.Optional[typing.List[UnitsListReferenceRequestFilterItem]]` 
     
 </dd>
 </dl>
@@ -1719,7 +1721,7 @@ client.reference.post_v1reference_units_list()
 </dl>
 </details>
 
-<details><summary><code>client.reference.<a href="src/nordlet/reference/client.py">post_v1reference_series_create</a>(...) -> PostV1ReferenceSeriesCreateResponse</code></summary>
+<details><summary><code>client.reference.<a href="src/nordlet/reference/client.py">series_create</a>(...) -> SeriesCreateReferenceResponse</code></summary>
 <dl>
 <dd>
 
@@ -1740,7 +1742,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.reference.post_v1reference_series_create(
+client.reference.series_create(
     document_type="documentType",
     year=1000000,
 )
@@ -1803,7 +1805,7 @@ client.reference.post_v1reference_series_create(
 </dl>
 </details>
 
-<details><summary><code>client.reference.<a href="src/nordlet/reference/client.py">post_v1reference_series_list</a>(...) -> PostV1ReferenceSeriesListResponse</code></summary>
+<details><summary><code>client.reference.<a href="src/nordlet/reference/client.py">series_list</a>(...) -> SeriesListReferenceResponse</code></summary>
 <dl>
 <dd>
 
@@ -1824,7 +1826,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.reference.post_v1reference_series_list()
+client.reference.series_list()
 
 ```
 </dd>
@@ -1856,7 +1858,7 @@ client.reference.post_v1reference_series_list()
 <dl>
 <dd>
 
-**sort:** `typing.Optional[typing.List[PostV1ReferenceSeriesListRequestSortItem]]` 
+**sort:** `typing.Optional[typing.List[SeriesListReferenceRequestSortItem]]` 
     
 </dd>
 </dl>
@@ -1864,7 +1866,7 @@ client.reference.post_v1reference_series_list()
 <dl>
 <dd>
 
-**filter:** `typing.Optional[typing.List[PostV1ReferenceSeriesListRequestFilterItem]]` 
+**filter:** `typing.Optional[typing.List[SeriesListReferenceRequestFilterItem]]` 
     
 </dd>
 </dl>
@@ -1892,8 +1894,8 @@ client.reference.post_v1reference_series_list()
 </dl>
 </details>
 
-## Partners
-<details><summary><code>client.partners.<a href="src/nordlet/partners/client.py">post_v1partners_addresses_create</a>(...) -> PostV1PartnersAddressesCreateResponse</code></summary>
+## partners
+<details><summary><code>client.partners.<a href="src/nordlet/partners/client.py">addresses_create</a>(...) -> AddressesCreatePartnersResponse</code></summary>
 <dl>
 <dd>
 
@@ -1914,7 +1916,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.partners.post_v1partners_addresses_create(
+client.partners.addresses_create(
     partner_id="partnerId",
 )
 
@@ -1940,7 +1942,7 @@ client.partners.post_v1partners_addresses_create(
 <dl>
 <dd>
 
-**type:** `typing.Optional[PostV1PartnersAddressesCreateRequestType]` 
+**type:** `typing.Optional[AddressesCreatePartnersRequestType]` 
     
 </dd>
 </dl>
@@ -2000,7 +2002,7 @@ client.partners.post_v1partners_addresses_create(
 </dl>
 </details>
 
-<details><summary><code>client.partners.<a href="src/nordlet/partners/client.py">post_v1partners_addresses_update</a>(...) -> PostV1PartnersAddressesUpdateResponse</code></summary>
+<details><summary><code>client.partners.<a href="src/nordlet/partners/client.py">addresses_update</a>(...) -> AddressesUpdatePartnersResponse</code></summary>
 <dl>
 <dd>
 
@@ -2021,7 +2023,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.partners.post_v1partners_addresses_update(
+client.partners.addresses_update(
     id="id",
 )
 
@@ -2047,7 +2049,7 @@ client.partners.post_v1partners_addresses_update(
 <dl>
 <dd>
 
-**type:** `typing.Optional[PostV1PartnersAddressesUpdateRequestType]` 
+**type:** `typing.Optional[AddressesUpdatePartnersRequestType]` 
     
 </dd>
 </dl>
@@ -2107,7 +2109,7 @@ client.partners.post_v1partners_addresses_update(
 </dl>
 </details>
 
-<details><summary><code>client.partners.<a href="src/nordlet/partners/client.py">post_v1partners_addresses_delete</a>(...) -> PostV1PartnersAddressesDeleteResponse</code></summary>
+<details><summary><code>client.partners.<a href="src/nordlet/partners/client.py">addresses_delete</a>(...) -> AddressesDeletePartnersResponse</code></summary>
 <dl>
 <dd>
 
@@ -2128,7 +2130,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.partners.post_v1partners_addresses_delete(
+client.partners.addresses_delete(
     id="id",
 )
 
@@ -2166,7 +2168,7 @@ client.partners.post_v1partners_addresses_delete(
 </dl>
 </details>
 
-<details><summary><code>client.partners.<a href="src/nordlet/partners/client.py">post_v1partners_addresses_list</a>(...) -> PostV1PartnersAddressesListResponse</code></summary>
+<details><summary><code>client.partners.<a href="src/nordlet/partners/client.py">addresses_list</a>(...) -> AddressesListPartnersResponse</code></summary>
 <dl>
 <dd>
 
@@ -2187,7 +2189,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.partners.post_v1partners_addresses_list()
+client.partners.addresses_list()
 
 ```
 </dd>
@@ -2219,7 +2221,7 @@ client.partners.post_v1partners_addresses_list()
 <dl>
 <dd>
 
-**sort:** `typing.Optional[typing.List[PostV1PartnersAddressesListRequestSortItem]]` 
+**sort:** `typing.Optional[typing.List[AddressesListPartnersRequestSortItem]]` 
     
 </dd>
 </dl>
@@ -2227,7 +2229,7 @@ client.partners.post_v1partners_addresses_list()
 <dl>
 <dd>
 
-**filter:** `typing.Optional[typing.List[PostV1PartnersAddressesListRequestFilterItem]]` 
+**filter:** `typing.Optional[typing.List[AddressesListPartnersRequestFilterItem]]` 
     
 </dd>
 </dl>
@@ -2255,7 +2257,7 @@ client.partners.post_v1partners_addresses_list()
 </dl>
 </details>
 
-<details><summary><code>client.partners.<a href="src/nordlet/partners/client.py">post_v1partners_contacts_create</a>(...) -> PostV1PartnersContactsCreateResponse</code></summary>
+<details><summary><code>client.partners.<a href="src/nordlet/partners/client.py">contacts_create</a>(...) -> ContactsCreatePartnersResponse</code></summary>
 <dl>
 <dd>
 
@@ -2276,7 +2278,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.partners.post_v1partners_contacts_create(
+client.partners.contacts_create(
     name="name",
     partner_id="partnerId",
 )
@@ -2355,7 +2357,7 @@ client.partners.post_v1partners_contacts_create(
 </dl>
 </details>
 
-<details><summary><code>client.partners.<a href="src/nordlet/partners/client.py">post_v1partners_contacts_update</a>(...) -> PostV1PartnersContactsUpdateResponse</code></summary>
+<details><summary><code>client.partners.<a href="src/nordlet/partners/client.py">contacts_update</a>(...) -> ContactsUpdatePartnersResponse</code></summary>
 <dl>
 <dd>
 
@@ -2376,7 +2378,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.partners.post_v1partners_contacts_update(
+client.partners.contacts_update(
     id="id",
 )
 
@@ -2454,7 +2456,7 @@ client.partners.post_v1partners_contacts_update(
 </dl>
 </details>
 
-<details><summary><code>client.partners.<a href="src/nordlet/partners/client.py">post_v1partners_contacts_delete</a>(...) -> PostV1PartnersContactsDeleteResponse</code></summary>
+<details><summary><code>client.partners.<a href="src/nordlet/partners/client.py">contacts_delete</a>(...) -> ContactsDeletePartnersResponse</code></summary>
 <dl>
 <dd>
 
@@ -2475,7 +2477,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.partners.post_v1partners_contacts_delete(
+client.partners.contacts_delete(
     id="id",
 )
 
@@ -2513,7 +2515,7 @@ client.partners.post_v1partners_contacts_delete(
 </dl>
 </details>
 
-<details><summary><code>client.partners.<a href="src/nordlet/partners/client.py">post_v1partners_contacts_list</a>(...) -> PostV1PartnersContactsListResponse</code></summary>
+<details><summary><code>client.partners.<a href="src/nordlet/partners/client.py">contacts_list</a>(...) -> ContactsListPartnersResponse</code></summary>
 <dl>
 <dd>
 
@@ -2534,7 +2536,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.partners.post_v1partners_contacts_list()
+client.partners.contacts_list()
 
 ```
 </dd>
@@ -2566,7 +2568,7 @@ client.partners.post_v1partners_contacts_list()
 <dl>
 <dd>
 
-**sort:** `typing.Optional[typing.List[PostV1PartnersContactsListRequestSortItem]]` 
+**sort:** `typing.Optional[typing.List[ContactsListPartnersRequestSortItem]]` 
     
 </dd>
 </dl>
@@ -2574,7 +2576,7 @@ client.partners.post_v1partners_contacts_list()
 <dl>
 <dd>
 
-**filter:** `typing.Optional[typing.List[PostV1PartnersContactsListRequestFilterItem]]` 
+**filter:** `typing.Optional[typing.List[ContactsListPartnersRequestFilterItem]]` 
     
 </dd>
 </dl>
@@ -2602,7 +2604,7 @@ client.partners.post_v1partners_contacts_list()
 </dl>
 </details>
 
-<details><summary><code>client.partners.<a href="src/nordlet/partners/client.py">post_v1partners_bank_accounts_create</a>(...) -> PostV1PartnersBankAccountsCreateResponse</code></summary>
+<details><summary><code>client.partners.<a href="src/nordlet/partners/client.py">bank_accounts_create</a>(...) -> BankAccountsCreatePartnersResponse</code></summary>
 <dl>
 <dd>
 
@@ -2623,7 +2625,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.partners.post_v1partners_bank_accounts_create(
+client.partners.bank_accounts_create(
     iban="iban",
     partner_id="partnerId",
 )
@@ -2702,7 +2704,7 @@ client.partners.post_v1partners_bank_accounts_create(
 </dl>
 </details>
 
-<details><summary><code>client.partners.<a href="src/nordlet/partners/client.py">post_v1partners_bank_accounts_update</a>(...) -> PostV1PartnersBankAccountsUpdateResponse</code></summary>
+<details><summary><code>client.partners.<a href="src/nordlet/partners/client.py">bank_accounts_update</a>(...) -> BankAccountsUpdatePartnersResponse</code></summary>
 <dl>
 <dd>
 
@@ -2723,7 +2725,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.partners.post_v1partners_bank_accounts_update(
+client.partners.bank_accounts_update(
     id="id",
 )
 
@@ -2801,7 +2803,7 @@ client.partners.post_v1partners_bank_accounts_update(
 </dl>
 </details>
 
-<details><summary><code>client.partners.<a href="src/nordlet/partners/client.py">post_v1partners_bank_accounts_delete</a>(...) -> PostV1PartnersBankAccountsDeleteResponse</code></summary>
+<details><summary><code>client.partners.<a href="src/nordlet/partners/client.py">bank_accounts_delete</a>(...) -> BankAccountsDeletePartnersResponse</code></summary>
 <dl>
 <dd>
 
@@ -2822,7 +2824,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.partners.post_v1partners_bank_accounts_delete(
+client.partners.bank_accounts_delete(
     id="id",
 )
 
@@ -2860,7 +2862,7 @@ client.partners.post_v1partners_bank_accounts_delete(
 </dl>
 </details>
 
-<details><summary><code>client.partners.<a href="src/nordlet/partners/client.py">post_v1partners_bank_accounts_list</a>(...) -> PostV1PartnersBankAccountsListResponse</code></summary>
+<details><summary><code>client.partners.<a href="src/nordlet/partners/client.py">bank_accounts_list</a>(...) -> BankAccountsListPartnersResponse</code></summary>
 <dl>
 <dd>
 
@@ -2881,7 +2883,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.partners.post_v1partners_bank_accounts_list()
+client.partners.bank_accounts_list()
 
 ```
 </dd>
@@ -2913,7 +2915,7 @@ client.partners.post_v1partners_bank_accounts_list()
 <dl>
 <dd>
 
-**sort:** `typing.Optional[typing.List[PostV1PartnersBankAccountsListRequestSortItem]]` 
+**sort:** `typing.Optional[typing.List[BankAccountsListPartnersRequestSortItem]]` 
     
 </dd>
 </dl>
@@ -2921,7 +2923,7 @@ client.partners.post_v1partners_bank_accounts_list()
 <dl>
 <dd>
 
-**filter:** `typing.Optional[typing.List[PostV1PartnersBankAccountsListRequestFilterItem]]` 
+**filter:** `typing.Optional[typing.List[BankAccountsListPartnersRequestFilterItem]]` 
     
 </dd>
 </dl>
@@ -2949,7 +2951,7 @@ client.partners.post_v1partners_bank_accounts_list()
 </dl>
 </details>
 
-<details><summary><code>client.partners.<a href="src/nordlet/partners/client.py">post_v1partners_files_list</a>(...) -> PostV1PartnersFilesListResponse</code></summary>
+<details><summary><code>client.partners.<a href="src/nordlet/partners/client.py">files_list</a>(...) -> FilesListPartnersResponse</code></summary>
 <dl>
 <dd>
 
@@ -2970,7 +2972,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.partners.post_v1partners_files_list(
+client.partners.files_list(
     partner_id="partnerId",
 )
 
@@ -3008,7 +3010,7 @@ client.partners.post_v1partners_files_list(
 </dl>
 </details>
 
-<details><summary><code>client.partners.<a href="src/nordlet/partners/client.py">reminders_the_overnight_debt_reminder_job_would_send_today_for_this_company</a>() -> PostV1PartnersDebtRemindersPreviewResponse</code></summary>
+<details><summary><code>client.partners.<a href="src/nordlet/partners/client.py">debt_reminders_preview</a>() -> DebtRemindersPreviewPartnersResponse</code></summary>
 <dl>
 <dd>
 
@@ -3029,7 +3031,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.partners.reminders_the_overnight_debt_reminder_job_would_send_today_for_this_company()
+client.partners.debt_reminders_preview()
 
 ```
 </dd>
@@ -3057,7 +3059,7 @@ client.partners.reminders_the_overnight_debt_reminder_job_would_send_today_for_t
 </dl>
 </details>
 
-<details><summary><code>client.partners.<a href="src/nordlet/partners/client.py">post_v1partners_debt_reminders_list</a>(...) -> PostV1PartnersDebtRemindersListResponse</code></summary>
+<details><summary><code>client.partners.<a href="src/nordlet/partners/client.py">debt_reminders_list</a>(...) -> DebtRemindersListPartnersResponse</code></summary>
 <dl>
 <dd>
 
@@ -3078,7 +3080,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.partners.post_v1partners_debt_reminders_list()
+client.partners.debt_reminders_list()
 
 ```
 </dd>
@@ -3110,7 +3112,7 @@ client.partners.post_v1partners_debt_reminders_list()
 <dl>
 <dd>
 
-**sort:** `typing.Optional[typing.List[PostV1PartnersDebtRemindersListRequestSortItem]]` 
+**sort:** `typing.Optional[typing.List[DebtRemindersListPartnersRequestSortItem]]` 
     
 </dd>
 </dl>
@@ -3118,7 +3120,7 @@ client.partners.post_v1partners_debt_reminders_list()
 <dl>
 <dd>
 
-**filter:** `typing.Optional[typing.List[PostV1PartnersDebtRemindersListRequestFilterItem]]` 
+**filter:** `typing.Optional[typing.List[DebtRemindersListPartnersRequestFilterItem]]` 
     
 </dd>
 </dl>
@@ -3146,7 +3148,7 @@ client.partners.post_v1partners_debt_reminders_list()
 </dl>
 </details>
 
-<details><summary><code>client.partners.<a href="src/nordlet/partners/client.py">post_v1partners_validate_vat</a>(...) -> PostV1PartnersValidateVatResponse</code></summary>
+<details><summary><code>client.partners.<a href="src/nordlet/partners/client.py">validate_vat</a>(...) -> ValidateVatPartnersResponse</code></summary>
 <dl>
 <dd>
 
@@ -3167,7 +3169,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.partners.post_v1partners_validate_vat()
+client.partners.validate_vat()
 
 ```
 </dd>
@@ -3211,7 +3213,7 @@ client.partners.post_v1partners_validate_vat()
 </dl>
 </details>
 
-<details><summary><code>client.partners.<a href="src/nordlet/partners/client.py">post_v1partners_vat_reviews_list</a>(...) -> PostV1PartnersVatReviewsListResponse</code></summary>
+<details><summary><code>client.partners.<a href="src/nordlet/partners/client.py">vat_reviews_list</a>(...) -> VatReviewsListPartnersResponse</code></summary>
 <dl>
 <dd>
 
@@ -3232,7 +3234,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.partners.post_v1partners_vat_reviews_list()
+client.partners.vat_reviews_list()
 
 ```
 </dd>
@@ -3264,7 +3266,7 @@ client.partners.post_v1partners_vat_reviews_list()
 <dl>
 <dd>
 
-**sort:** `typing.Optional[typing.List[PostV1PartnersVatReviewsListRequestSortItem]]` 
+**sort:** `typing.Optional[typing.List[VatReviewsListPartnersRequestSortItem]]` 
     
 </dd>
 </dl>
@@ -3272,7 +3274,7 @@ client.partners.post_v1partners_vat_reviews_list()
 <dl>
 <dd>
 
-**filter:** `typing.Optional[typing.List[PostV1PartnersVatReviewsListRequestFilterItem]]` 
+**filter:** `typing.Optional[typing.List[VatReviewsListPartnersRequestFilterItem]]` 
     
 </dd>
 </dl>
@@ -3300,7 +3302,7 @@ client.partners.post_v1partners_vat_reviews_list()
 </dl>
 </details>
 
-<details><summary><code>client.partners.<a href="src/nordlet/partners/client.py">post_v1partners_vat_reviews_resolve</a>(...) -> PostV1PartnersVatReviewsResolveResponse</code></summary>
+<details><summary><code>client.partners.<a href="src/nordlet/partners/client.py">vat_reviews_resolve</a>(...) -> VatReviewsResolvePartnersResponse</code></summary>
 <dl>
 <dd>
 
@@ -3321,7 +3323,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.partners.post_v1partners_vat_reviews_resolve(
+client.partners.vat_reviews_resolve(
     id="id",
     resolution="confirmed_valid",
 )
@@ -3348,7 +3350,7 @@ client.partners.post_v1partners_vat_reviews_resolve(
 <dl>
 <dd>
 
-**resolution:** `PostV1PartnersVatReviewsResolveRequestResolution` 
+**resolution:** `VatReviewsResolvePartnersRequestResolution` 
     
 </dd>
 </dl>
@@ -3376,7 +3378,7 @@ client.partners.post_v1partners_vat_reviews_resolve(
 </dl>
 </details>
 
-<details><summary><code>client.partners.<a href="src/nordlet/partners/client.py">post_v1partners_create</a>(...) -> PostV1PartnersCreateResponse</code></summary>
+<details><summary><code>client.partners.<a href="src/nordlet/partners/client.py">create</a>(...) -> CreatePartnersResponse</code></summary>
 <dl>
 <dd>
 
@@ -3397,7 +3399,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.partners.post_v1partners_create(
+client.partners.create(
     name="name",
 )
 
@@ -3423,7 +3425,7 @@ client.partners.post_v1partners_create(
 <dl>
 <dd>
 
-**type:** `typing.Optional[PostV1PartnersCreateRequestType]` 
+**type:** `typing.Optional[CreatePartnersRequestType]` 
     
 </dd>
 </dl>
@@ -3479,7 +3481,7 @@ client.partners.post_v1partners_create(
 <dl>
 <dd>
 
-**birth_date:** `typing.Optional[str]` 
+**birth_date:** `typing.Optional[datetime.date]` 
     
 </dd>
 </dl>
@@ -3543,7 +3545,7 @@ client.partners.post_v1partners_create(
 <dl>
 <dd>
 
-**address:** `typing.Optional[PostV1PartnersCreateRequestAddress]` 
+**address:** `typing.Optional[CreatePartnersRequestAddress]` 
     
 </dd>
 </dl>
@@ -3551,7 +3553,7 @@ client.partners.post_v1partners_create(
 <dl>
 <dd>
 
-**correspondence_address:** `typing.Optional[PostV1PartnersCreateRequestCorrespondenceAddress]` 
+**correspondence_address:** `typing.Optional[CreatePartnersRequestCorrespondenceAddress]` 
     
 </dd>
 </dl>
@@ -3639,7 +3641,7 @@ client.partners.post_v1partners_create(
 <dl>
 <dd>
 
-**first_call_date:** `typing.Optional[str]` 
+**first_call_date:** `typing.Optional[datetime.date]` 
     
 </dd>
 </dl>
@@ -3647,7 +3649,7 @@ client.partners.post_v1partners_create(
 <dl>
 <dd>
 
-**last_call_date:** `typing.Optional[str]` 
+**last_call_date:** `typing.Optional[datetime.date]` 
     
 </dd>
 </dl>
@@ -3655,7 +3657,7 @@ client.partners.post_v1partners_create(
 <dl>
 <dd>
 
-**next_call_date:** `typing.Optional[str]` 
+**next_call_date:** `typing.Optional[datetime.date]` 
     
 </dd>
 </dl>
@@ -3695,7 +3697,7 @@ client.partners.post_v1partners_create(
 <dl>
 <dd>
 
-**legal_country_class:** `typing.Optional[PostV1PartnersCreateRequestLegalCountryClass]` 
+**legal_country_class:** `typing.Optional[CreatePartnersRequestLegalCountryClass]` 
     
 </dd>
 </dl>
@@ -3715,7 +3717,7 @@ client.partners.post_v1partners_create(
 </dl>
 </details>
 
-<details><summary><code>client.partners.<a href="src/nordlet/partners/client.py">post_v1partners_find_or_create</a>(...) -> PostV1PartnersFindOrCreateResponse</code></summary>
+<details><summary><code>client.partners.<a href="src/nordlet/partners/client.py">find_or_create</a>(...) -> FindOrCreatePartnersResponse</code></summary>
 <dl>
 <dd>
 
@@ -3736,7 +3738,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.partners.post_v1partners_find_or_create(
+client.partners.find_or_create(
     name="name",
 )
 
@@ -3762,7 +3764,7 @@ client.partners.post_v1partners_find_or_create(
 <dl>
 <dd>
 
-**type:** `typing.Optional[PostV1PartnersFindOrCreateRequestType]` 
+**type:** `typing.Optional[FindOrCreatePartnersRequestType]` 
     
 </dd>
 </dl>
@@ -3818,7 +3820,7 @@ client.partners.post_v1partners_find_or_create(
 <dl>
 <dd>
 
-**birth_date:** `typing.Optional[str]` 
+**birth_date:** `typing.Optional[datetime.date]` 
     
 </dd>
 </dl>
@@ -3882,7 +3884,7 @@ client.partners.post_v1partners_find_or_create(
 <dl>
 <dd>
 
-**address:** `typing.Optional[PostV1PartnersFindOrCreateRequestAddress]` 
+**address:** `typing.Optional[FindOrCreatePartnersRequestAddress]` 
     
 </dd>
 </dl>
@@ -3890,7 +3892,7 @@ client.partners.post_v1partners_find_or_create(
 <dl>
 <dd>
 
-**correspondence_address:** `typing.Optional[PostV1PartnersFindOrCreateRequestCorrespondenceAddress]` 
+**correspondence_address:** `typing.Optional[FindOrCreatePartnersRequestCorrespondenceAddress]` 
     
 </dd>
 </dl>
@@ -3978,7 +3980,7 @@ client.partners.post_v1partners_find_or_create(
 <dl>
 <dd>
 
-**first_call_date:** `typing.Optional[str]` 
+**first_call_date:** `typing.Optional[datetime.date]` 
     
 </dd>
 </dl>
@@ -3986,7 +3988,7 @@ client.partners.post_v1partners_find_or_create(
 <dl>
 <dd>
 
-**last_call_date:** `typing.Optional[str]` 
+**last_call_date:** `typing.Optional[datetime.date]` 
     
 </dd>
 </dl>
@@ -3994,7 +3996,7 @@ client.partners.post_v1partners_find_or_create(
 <dl>
 <dd>
 
-**next_call_date:** `typing.Optional[str]` 
+**next_call_date:** `typing.Optional[datetime.date]` 
     
 </dd>
 </dl>
@@ -4034,7 +4036,7 @@ client.partners.post_v1partners_find_or_create(
 <dl>
 <dd>
 
-**legal_country_class:** `typing.Optional[PostV1PartnersFindOrCreateRequestLegalCountryClass]` 
+**legal_country_class:** `typing.Optional[FindOrCreatePartnersRequestLegalCountryClass]` 
     
 </dd>
 </dl>
@@ -4054,7 +4056,7 @@ client.partners.post_v1partners_find_or_create(
 </dl>
 </details>
 
-<details><summary><code>client.partners.<a href="src/nordlet/partners/client.py">post_v1partners_get</a>(...) -> PostV1PartnersGetResponse</code></summary>
+<details><summary><code>client.partners.<a href="src/nordlet/partners/client.py">get</a>(...) -> GetPartnersResponse</code></summary>
 <dl>
 <dd>
 
@@ -4075,7 +4077,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.partners.post_v1partners_get(
+client.partners.get(
     id="id",
 )
 
@@ -4113,7 +4115,7 @@ client.partners.post_v1partners_get(
 </dl>
 </details>
 
-<details><summary><code>client.partners.<a href="src/nordlet/partners/client.py">post_v1partners_update</a>(...) -> PostV1PartnersUpdateResponse</code></summary>
+<details><summary><code>client.partners.<a href="src/nordlet/partners/client.py">update</a>(...) -> UpdatePartnersResponse</code></summary>
 <dl>
 <dd>
 
@@ -4134,7 +4136,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.partners.post_v1partners_update(
+client.partners.update(
     id="id",
 )
 
@@ -4160,7 +4162,7 @@ client.partners.post_v1partners_update(
 <dl>
 <dd>
 
-**type:** `typing.Optional[PostV1PartnersUpdateRequestType]` 
+**type:** `typing.Optional[UpdatePartnersRequestType]` 
     
 </dd>
 </dl>
@@ -4224,7 +4226,7 @@ client.partners.post_v1partners_update(
 <dl>
 <dd>
 
-**birth_date:** `typing.Optional[str]` 
+**birth_date:** `typing.Optional[datetime.date]` 
     
 </dd>
 </dl>
@@ -4288,7 +4290,7 @@ client.partners.post_v1partners_update(
 <dl>
 <dd>
 
-**address:** `typing.Optional[PostV1PartnersUpdateRequestAddress]` 
+**address:** `typing.Optional[UpdatePartnersRequestAddress]` 
     
 </dd>
 </dl>
@@ -4296,7 +4298,7 @@ client.partners.post_v1partners_update(
 <dl>
 <dd>
 
-**correspondence_address:** `typing.Optional[PostV1PartnersUpdateRequestCorrespondenceAddress]` 
+**correspondence_address:** `typing.Optional[UpdatePartnersRequestCorrespondenceAddress]` 
     
 </dd>
 </dl>
@@ -4384,7 +4386,7 @@ client.partners.post_v1partners_update(
 <dl>
 <dd>
 
-**first_call_date:** `typing.Optional[str]` 
+**first_call_date:** `typing.Optional[datetime.date]` 
     
 </dd>
 </dl>
@@ -4392,7 +4394,7 @@ client.partners.post_v1partners_update(
 <dl>
 <dd>
 
-**last_call_date:** `typing.Optional[str]` 
+**last_call_date:** `typing.Optional[datetime.date]` 
     
 </dd>
 </dl>
@@ -4400,7 +4402,7 @@ client.partners.post_v1partners_update(
 <dl>
 <dd>
 
-**next_call_date:** `typing.Optional[str]` 
+**next_call_date:** `typing.Optional[datetime.date]` 
     
 </dd>
 </dl>
@@ -4440,7 +4442,7 @@ client.partners.post_v1partners_update(
 <dl>
 <dd>
 
-**legal_country_class:** `typing.Optional[PostV1PartnersUpdateRequestLegalCountryClass]` 
+**legal_country_class:** `typing.Optional[UpdatePartnersRequestLegalCountryClass]` 
     
 </dd>
 </dl>
@@ -4460,7 +4462,7 @@ client.partners.post_v1partners_update(
 </dl>
 </details>
 
-<details><summary><code>client.partners.<a href="src/nordlet/partners/client.py">post_v1partners_delete</a>(...) -> PostV1PartnersDeleteResponse</code></summary>
+<details><summary><code>client.partners.<a href="src/nordlet/partners/client.py">delete</a>(...) -> DeletePartnersResponse</code></summary>
 <dl>
 <dd>
 
@@ -4481,7 +4483,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.partners.post_v1partners_delete(
+client.partners.delete(
     id="id",
 )
 
@@ -4519,7 +4521,7 @@ client.partners.post_v1partners_delete(
 </dl>
 </details>
 
-<details><summary><code>client.partners.<a href="src/nordlet/partners/client.py">blank_a_partners_personal_data_and_hide_the_record</a>(...) -> PostV1PartnersAnonymizeResponse</code></summary>
+<details><summary><code>client.partners.<a href="src/nordlet/partners/client.py">anonymize</a>(...) -> AnonymizePartnersResponse</code></summary>
 <dl>
 <dd>
 
@@ -4554,7 +4556,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.partners.blank_a_partners_personal_data_and_hide_the_record(
+client.partners.anonymize(
     id="id",
 )
 
@@ -4592,7 +4594,7 @@ client.partners.blank_a_partners_personal_data_and_hide_the_record(
 </dl>
 </details>
 
-<details><summary><code>client.partners.<a href="src/nordlet/partners/client.py">post_v1partners_list</a>(...) -> PostV1PartnersListResponse</code></summary>
+<details><summary><code>client.partners.<a href="src/nordlet/partners/client.py">list</a>(...) -> ListPartnersResponse</code></summary>
 <dl>
 <dd>
 
@@ -4613,7 +4615,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.partners.post_v1partners_list()
+client.partners.list()
 
 ```
 </dd>
@@ -4645,7 +4647,7 @@ client.partners.post_v1partners_list()
 <dl>
 <dd>
 
-**sort:** `typing.Optional[typing.List[PostV1PartnersListRequestSortItem]]` 
+**sort:** `typing.Optional[typing.List[ListPartnersRequestSortItem]]` 
     
 </dd>
 </dl>
@@ -4653,7 +4655,7 @@ client.partners.post_v1partners_list()
 <dl>
 <dd>
 
-**filter:** `typing.Optional[typing.List[PostV1PartnersListRequestFilterItem]]` 
+**filter:** `typing.Optional[typing.List[ListPartnersRequestFilterItem]]` 
     
 </dd>
 </dl>
@@ -4681,7 +4683,7 @@ client.partners.post_v1partners_list()
 </dl>
 </details>
 
-<details><summary><code>client.partners.<a href="src/nordlet/partners/client.py">post_v1partners_groups_create</a>(...) -> PostV1PartnersGroupsCreateResponse</code></summary>
+<details><summary><code>client.partners.<a href="src/nordlet/partners/client.py">groups_create</a>(...) -> GroupsCreatePartnersResponse</code></summary>
 <dl>
 <dd>
 
@@ -4702,7 +4704,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.partners.post_v1partners_groups_create(
+client.partners.groups_create(
     code="code",
     name="name",
 )
@@ -4749,7 +4751,7 @@ client.partners.post_v1partners_groups_create(
 </dl>
 </details>
 
-<details><summary><code>client.partners.<a href="src/nordlet/partners/client.py">post_v1partners_groups_update</a>(...) -> PostV1PartnersGroupsUpdateResponse</code></summary>
+<details><summary><code>client.partners.<a href="src/nordlet/partners/client.py">groups_update</a>(...) -> GroupsUpdatePartnersResponse</code></summary>
 <dl>
 <dd>
 
@@ -4770,7 +4772,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.partners.post_v1partners_groups_update(
+client.partners.groups_update(
     id="id",
 )
 
@@ -4824,7 +4826,7 @@ client.partners.post_v1partners_groups_update(
 </dl>
 </details>
 
-<details><summary><code>client.partners.<a href="src/nordlet/partners/client.py">post_v1partners_groups_delete</a>(...) -> PostV1PartnersGroupsDeleteResponse</code></summary>
+<details><summary><code>client.partners.<a href="src/nordlet/partners/client.py">groups_delete</a>(...) -> GroupsDeletePartnersResponse</code></summary>
 <dl>
 <dd>
 
@@ -4845,7 +4847,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.partners.post_v1partners_groups_delete(
+client.partners.groups_delete(
     id="id",
 )
 
@@ -4883,7 +4885,7 @@ client.partners.post_v1partners_groups_delete(
 </dl>
 </details>
 
-<details><summary><code>client.partners.<a href="src/nordlet/partners/client.py">post_v1partners_groups_list</a>() -> PostV1PartnersGroupsListResponse</code></summary>
+<details><summary><code>client.partners.<a href="src/nordlet/partners/client.py">groups_list</a>() -> GroupsListPartnersResponse</code></summary>
 <dl>
 <dd>
 
@@ -4904,7 +4906,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.partners.post_v1partners_groups_list()
+client.partners.groups_list()
 
 ```
 </dd>
@@ -4932,7 +4934,7 @@ client.partners.post_v1partners_groups_list()
 </dl>
 </details>
 
-<details><summary><code>client.partners.<a href="src/nordlet/partners/client.py">post_v1partners_statuses_create</a>(...) -> PostV1PartnersStatusesCreateResponse</code></summary>
+<details><summary><code>client.partners.<a href="src/nordlet/partners/client.py">statuses_create</a>(...) -> StatusesCreatePartnersResponse</code></summary>
 <dl>
 <dd>
 
@@ -4953,7 +4955,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.partners.post_v1partners_statuses_create(
+client.partners.statuses_create(
     code="code",
     name="name",
 )
@@ -5008,7 +5010,7 @@ client.partners.post_v1partners_statuses_create(
 </dl>
 </details>
 
-<details><summary><code>client.partners.<a href="src/nordlet/partners/client.py">post_v1partners_statuses_update</a>(...) -> PostV1PartnersStatusesUpdateResponse</code></summary>
+<details><summary><code>client.partners.<a href="src/nordlet/partners/client.py">statuses_update</a>(...) -> StatusesUpdatePartnersResponse</code></summary>
 <dl>
 <dd>
 
@@ -5029,7 +5031,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.partners.post_v1partners_statuses_update(
+client.partners.statuses_update(
     id="id",
 )
 
@@ -5091,7 +5093,7 @@ client.partners.post_v1partners_statuses_update(
 </dl>
 </details>
 
-<details><summary><code>client.partners.<a href="src/nordlet/partners/client.py">post_v1partners_statuses_delete</a>(...) -> PostV1PartnersStatusesDeleteResponse</code></summary>
+<details><summary><code>client.partners.<a href="src/nordlet/partners/client.py">statuses_delete</a>(...) -> StatusesDeletePartnersResponse</code></summary>
 <dl>
 <dd>
 
@@ -5112,7 +5114,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.partners.post_v1partners_statuses_delete(
+client.partners.statuses_delete(
     id="id",
 )
 
@@ -5150,7 +5152,7 @@ client.partners.post_v1partners_statuses_delete(
 </dl>
 </details>
 
-<details><summary><code>client.partners.<a href="src/nordlet/partners/client.py">post_v1partners_statuses_list</a>() -> PostV1PartnersStatusesListResponse</code></summary>
+<details><summary><code>client.partners.<a href="src/nordlet/partners/client.py">statuses_list</a>() -> StatusesListPartnersResponse</code></summary>
 <dl>
 <dd>
 
@@ -5171,7 +5173,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.partners.post_v1partners_statuses_list()
+client.partners.statuses_list()
 
 ```
 </dd>
@@ -5199,7 +5201,7 @@ client.partners.post_v1partners_statuses_list()
 </dl>
 </details>
 
-<details><summary><code>client.partners.<a href="src/nordlet/partners/client.py">post_v1partners_inquiries_create</a>(...) -> PostV1PartnersInquiriesCreateResponse</code></summary>
+<details><summary><code>client.partners.<a href="src/nordlet/partners/client.py">inquiries_create</a>(...) -> InquiriesCreatePartnersResponse</code></summary>
 <dl>
 <dd>
 
@@ -5220,7 +5222,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.partners.post_v1partners_inquiries_create(
+client.partners.inquiries_create(
     subject="subject",
 )
 
@@ -5322,7 +5324,7 @@ client.partners.post_v1partners_inquiries_create(
 </dl>
 </details>
 
-<details><summary><code>client.partners.<a href="src/nordlet/partners/client.py">post_v1partners_inquiries_update</a>(...) -> PostV1PartnersInquiriesUpdateResponse</code></summary>
+<details><summary><code>client.partners.<a href="src/nordlet/partners/client.py">inquiries_update</a>(...) -> InquiriesUpdatePartnersResponse</code></summary>
 <dl>
 <dd>
 
@@ -5343,7 +5345,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.partners.post_v1partners_inquiries_update(
+client.partners.inquiries_update(
     id="id",
 )
 
@@ -5401,7 +5403,7 @@ client.partners.post_v1partners_inquiries_update(
 <dl>
 <dd>
 
-**status:** `typing.Optional[PostV1PartnersInquiriesUpdateRequestStatus]` 
+**status:** `typing.Optional[InquiriesUpdatePartnersRequestStatus]` 
     
 </dd>
 </dl>
@@ -5437,7 +5439,7 @@ client.partners.post_v1partners_inquiries_update(
 </dl>
 </details>
 
-<details><summary><code>client.partners.<a href="src/nordlet/partners/client.py">post_v1partners_inquiries_get</a>(...) -> PostV1PartnersInquiriesGetResponse</code></summary>
+<details><summary><code>client.partners.<a href="src/nordlet/partners/client.py">inquiries_get</a>(...) -> InquiriesGetPartnersResponse</code></summary>
 <dl>
 <dd>
 
@@ -5458,7 +5460,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.partners.post_v1partners_inquiries_get(
+client.partners.inquiries_get(
     id="id",
 )
 
@@ -5496,7 +5498,7 @@ client.partners.post_v1partners_inquiries_get(
 </dl>
 </details>
 
-<details><summary><code>client.partners.<a href="src/nordlet/partners/client.py">post_v1partners_inquiries_list</a>(...) -> PostV1PartnersInquiriesListResponse</code></summary>
+<details><summary><code>client.partners.<a href="src/nordlet/partners/client.py">inquiries_list</a>(...) -> InquiriesListPartnersResponse</code></summary>
 <dl>
 <dd>
 
@@ -5517,7 +5519,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.partners.post_v1partners_inquiries_list()
+client.partners.inquiries_list()
 
 ```
 </dd>
@@ -5549,7 +5551,7 @@ client.partners.post_v1partners_inquiries_list()
 <dl>
 <dd>
 
-**sort:** `typing.Optional[typing.List[PostV1PartnersInquiriesListRequestSortItem]]` 
+**sort:** `typing.Optional[typing.List[InquiriesListPartnersRequestSortItem]]` 
     
 </dd>
 </dl>
@@ -5557,7 +5559,7 @@ client.partners.post_v1partners_inquiries_list()
 <dl>
 <dd>
 
-**filter:** `typing.Optional[typing.List[PostV1PartnersInquiriesListRequestFilterItem]]` 
+**filter:** `typing.Optional[typing.List[InquiriesListPartnersRequestFilterItem]]` 
     
 </dd>
 </dl>
@@ -5585,7 +5587,7 @@ client.partners.post_v1partners_inquiries_list()
 </dl>
 </details>
 
-<details><summary><code>client.partners.<a href="src/nordlet/partners/client.py">post_v1partners_credit_check</a>(...) -> PostV1PartnersCreditCheckResponse</code></summary>
+<details><summary><code>client.partners.<a href="src/nordlet/partners/client.py">credit_check</a>(...) -> CreditCheckPartnersResponse</code></summary>
 <dl>
 <dd>
 
@@ -5606,7 +5608,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.partners.post_v1partners_credit_check(
+client.partners.credit_check(
     partner_id="partnerId",
 )
 
@@ -5652,7 +5654,8 @@ client.partners.post_v1partners_credit_check(
 </dl>
 </details>
 
-<details><summary><code>client.partners.<a href="src/nordlet/partners/client.py">post_v1leads_create</a>(...) -> PostV1LeadsCreateResponse</code></summary>
+## Leads
+<details><summary><code>client.leads.<a href="src/nordlet/leads/client.py">create</a>(...) -> CreateLeadsResponse</code></summary>
 <dl>
 <dd>
 
@@ -5673,7 +5676,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.partners.post_v1leads_create(
+client.leads.create(
     name="name",
 )
 
@@ -5747,7 +5750,7 @@ client.partners.post_v1leads_create(
 <dl>
 <dd>
 
-**status:** `typing.Optional[PostV1LeadsCreateRequestStatus]` 
+**status:** `typing.Optional[CreateLeadsRequestStatus]` 
     
 </dd>
 </dl>
@@ -5787,7 +5790,7 @@ client.partners.post_v1leads_create(
 <dl>
 <dd>
 
-**documents:** `typing.Optional[typing.List[PostV1LeadsCreateRequestDocumentsItem]]` 
+**documents:** `typing.Optional[typing.List[CreateLeadsRequestDocumentsItem]]` 
     
 </dd>
 </dl>
@@ -5815,7 +5818,7 @@ client.partners.post_v1leads_create(
 </dl>
 </details>
 
-<details><summary><code>client.partners.<a href="src/nordlet/partners/client.py">post_v1leads_get</a>(...) -> PostV1LeadsGetResponse</code></summary>
+<details><summary><code>client.leads.<a href="src/nordlet/leads/client.py">get</a>(...) -> GetLeadsResponse</code></summary>
 <dl>
 <dd>
 
@@ -5836,7 +5839,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.partners.post_v1leads_get(
+client.leads.get(
     id="id",
 )
 
@@ -5874,7 +5877,7 @@ client.partners.post_v1leads_get(
 </dl>
 </details>
 
-<details><summary><code>client.partners.<a href="src/nordlet/partners/client.py">post_v1leads_update</a>(...) -> PostV1LeadsUpdateResponse</code></summary>
+<details><summary><code>client.leads.<a href="src/nordlet/leads/client.py">update</a>(...) -> UpdateLeadsResponse</code></summary>
 <dl>
 <dd>
 
@@ -5895,7 +5898,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.partners.post_v1leads_update(
+client.leads.update(
     id="id",
 )
 
@@ -5977,7 +5980,7 @@ client.partners.post_v1leads_update(
 <dl>
 <dd>
 
-**status:** `typing.Optional[PostV1LeadsUpdateRequestStatus]` 
+**status:** `typing.Optional[UpdateLeadsRequestStatus]` 
     
 </dd>
 </dl>
@@ -6017,7 +6020,7 @@ client.partners.post_v1leads_update(
 <dl>
 <dd>
 
-**documents:** `typing.Optional[typing.List[PostV1LeadsUpdateRequestDocumentsItem]]` 
+**documents:** `typing.Optional[typing.List[UpdateLeadsRequestDocumentsItem]]` 
     
 </dd>
 </dl>
@@ -6037,7 +6040,7 @@ client.partners.post_v1leads_update(
 </dl>
 </details>
 
-<details><summary><code>client.partners.<a href="src/nordlet/partners/client.py">post_v1leads_delete</a>(...) -> PostV1LeadsDeleteResponse</code></summary>
+<details><summary><code>client.leads.<a href="src/nordlet/leads/client.py">delete</a>(...) -> DeleteLeadsResponse</code></summary>
 <dl>
 <dd>
 
@@ -6058,7 +6061,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.partners.post_v1leads_delete(
+client.leads.delete(
     id="id",
 )
 
@@ -6096,7 +6099,7 @@ client.partners.post_v1leads_delete(
 </dl>
 </details>
 
-<details><summary><code>client.partners.<a href="src/nordlet/partners/client.py">post_v1leads_list</a>(...) -> PostV1LeadsListResponse</code></summary>
+<details><summary><code>client.leads.<a href="src/nordlet/leads/client.py">list</a>(...) -> ListLeadsResponse</code></summary>
 <dl>
 <dd>
 
@@ -6117,7 +6120,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.partners.post_v1leads_list()
+client.leads.list()
 
 ```
 </dd>
@@ -6149,7 +6152,7 @@ client.partners.post_v1leads_list()
 <dl>
 <dd>
 
-**sort:** `typing.Optional[typing.List[PostV1LeadsListRequestSortItem]]` 
+**sort:** `typing.Optional[typing.List[ListLeadsRequestSortItem]]` 
     
 </dd>
 </dl>
@@ -6157,7 +6160,7 @@ client.partners.post_v1leads_list()
 <dl>
 <dd>
 
-**filter:** `typing.Optional[typing.List[PostV1LeadsListRequestFilterItem]]` 
+**filter:** `typing.Optional[typing.List[ListLeadsRequestFilterItem]]` 
     
 </dd>
 </dl>
@@ -6185,7 +6188,7 @@ client.partners.post_v1leads_list()
 </dl>
 </details>
 
-<details><summary><code>client.partners.<a href="src/nordlet/partners/client.py">post_v1leads_notes_create</a>(...) -> PostV1LeadsNotesCreateResponse</code></summary>
+<details><summary><code>client.leads.<a href="src/nordlet/leads/client.py">notes_create</a>(...) -> NotesCreateLeadsResponse</code></summary>
 <dl>
 <dd>
 
@@ -6206,7 +6209,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.partners.post_v1leads_notes_create(
+client.leads.notes_create(
     lead_id="leadId",
     body="body",
 )
@@ -6253,7 +6256,7 @@ client.partners.post_v1leads_notes_create(
 </dl>
 </details>
 
-<details><summary><code>client.partners.<a href="src/nordlet/partners/client.py">post_v1leads_notes_delete</a>(...) -> PostV1LeadsNotesDeleteResponse</code></summary>
+<details><summary><code>client.leads.<a href="src/nordlet/leads/client.py">notes_delete</a>(...) -> NotesDeleteLeadsResponse</code></summary>
 <dl>
 <dd>
 
@@ -6274,7 +6277,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.partners.post_v1leads_notes_delete(
+client.leads.notes_delete(
     id="id",
 )
 
@@ -6312,7 +6315,7 @@ client.partners.post_v1leads_notes_delete(
 </dl>
 </details>
 
-<details><summary><code>client.partners.<a href="src/nordlet/partners/client.py">post_v1leads_notes_list</a>(...) -> PostV1LeadsNotesListResponse</code></summary>
+<details><summary><code>client.leads.<a href="src/nordlet/leads/client.py">notes_list</a>(...) -> NotesListLeadsResponse</code></summary>
 <dl>
 <dd>
 
@@ -6333,7 +6336,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.partners.post_v1leads_notes_list(
+client.leads.notes_list(
     lead_id="leadId",
 )
 
@@ -6371,7 +6374,7 @@ client.partners.post_v1leads_notes_list(
 </dl>
 </details>
 
-<details><summary><code>client.partners.<a href="src/nordlet/partners/client.py">post_v1leads_files_list</a>(...) -> PostV1LeadsFilesListResponse</code></summary>
+<details><summary><code>client.leads.<a href="src/nordlet/leads/client.py">files_list</a>(...) -> FilesListLeadsResponse</code></summary>
 <dl>
 <dd>
 
@@ -6392,7 +6395,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.partners.post_v1leads_files_list(
+client.leads.files_list(
     lead_id="leadId",
 )
 
@@ -6430,7 +6433,7 @@ client.partners.post_v1leads_files_list(
 </dl>
 </details>
 
-<details><summary><code>client.partners.<a href="src/nordlet/partners/client.py">post_v1leads_sources_create</a>(...) -> PostV1LeadsSourcesCreateResponse</code></summary>
+<details><summary><code>client.leads.<a href="src/nordlet/leads/client.py">sources_create</a>(...) -> SourcesCreateLeadsResponse</code></summary>
 <dl>
 <dd>
 
@@ -6451,7 +6454,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.partners.post_v1leads_sources_create(
+client.leads.sources_create(
     name="name",
 )
 
@@ -6497,7 +6500,7 @@ client.partners.post_v1leads_sources_create(
 </dl>
 </details>
 
-<details><summary><code>client.partners.<a href="src/nordlet/partners/client.py">post_v1leads_sources_update</a>(...) -> PostV1LeadsSourcesUpdateResponse</code></summary>
+<details><summary><code>client.leads.<a href="src/nordlet/leads/client.py">sources_update</a>(...) -> SourcesUpdateLeadsResponse</code></summary>
 <dl>
 <dd>
 
@@ -6518,7 +6521,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.partners.post_v1leads_sources_update(
+client.leads.sources_update(
     id="id",
 )
 
@@ -6572,7 +6575,7 @@ client.partners.post_v1leads_sources_update(
 </dl>
 </details>
 
-<details><summary><code>client.partners.<a href="src/nordlet/partners/client.py">post_v1leads_sources_delete</a>(...) -> PostV1LeadsSourcesDeleteResponse</code></summary>
+<details><summary><code>client.leads.<a href="src/nordlet/leads/client.py">sources_delete</a>(...) -> SourcesDeleteLeadsResponse</code></summary>
 <dl>
 <dd>
 
@@ -6593,7 +6596,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.partners.post_v1leads_sources_delete(
+client.leads.sources_delete(
     id="id",
 )
 
@@ -6631,7 +6634,7 @@ client.partners.post_v1leads_sources_delete(
 </dl>
 </details>
 
-<details><summary><code>client.partners.<a href="src/nordlet/partners/client.py">post_v1leads_sources_list</a>() -> PostV1LeadsSourcesListResponse</code></summary>
+<details><summary><code>client.leads.<a href="src/nordlet/leads/client.py">sources_list</a>() -> SourcesListLeadsResponse</code></summary>
 <dl>
 <dd>
 
@@ -6652,7 +6655,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.partners.post_v1leads_sources_list()
+client.leads.sources_list()
 
 ```
 </dd>
@@ -6680,7 +6683,7 @@ client.partners.post_v1leads_sources_list()
 </dl>
 </details>
 
-<details><summary><code>client.partners.<a href="src/nordlet/partners/client.py">post_v1leads_sources_options</a>() -> PostV1LeadsSourcesOptionsResponse</code></summary>
+<details><summary><code>client.leads.<a href="src/nordlet/leads/client.py">sources_options</a>() -> SourcesOptionsLeadsResponse</code></summary>
 <dl>
 <dd>
 
@@ -6701,7 +6704,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.partners.post_v1leads_sources_options()
+client.leads.sources_options()
 
 ```
 </dd>
@@ -6729,7 +6732,7 @@ client.partners.post_v1leads_sources_options()
 </dl>
 </details>
 
-<details><summary><code>client.partners.<a href="src/nordlet/partners/client.py">post_v1leads_convert</a>(...) -> PostV1LeadsConvertResponse</code></summary>
+<details><summary><code>client.leads.<a href="src/nordlet/leads/client.py">convert</a>(...) -> ConvertLeadsResponse</code></summary>
 <dl>
 <dd>
 
@@ -6764,7 +6767,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.partners.post_v1leads_convert(
+client.leads.convert(
     id="id",
 )
 
@@ -6790,7 +6793,7 @@ client.partners.post_v1leads_convert(
 <dl>
 <dd>
 
-**partner_type:** `typing.Optional[PostV1LeadsConvertRequestPartnerType]` 
+**partner_type:** `typing.Optional[ConvertLeadsRequestPartnerType]` 
     
 </dd>
 </dl>
@@ -6826,8 +6829,8 @@ client.partners.post_v1leads_convert(
 </dl>
 </details>
 
-## Catalog
-<details><summary><code>client.catalog.<a href="src/nordlet/catalog/client.py">post_v1catalog_items_create</a>(...) -> PostV1CatalogItemsCreateResponse</code></summary>
+## catalog
+<details><summary><code>client.catalog.<a href="src/nordlet/catalog/client.py">items_create</a>(...) -> ItemsCreateCatalogResponse</code></summary>
 <dl>
 <dd>
 
@@ -6848,7 +6851,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.catalog.post_v1catalog_items_create(
+client.catalog.items_create(
     name="name",
 )
 
@@ -6874,7 +6877,7 @@ client.catalog.post_v1catalog_items_create(
 <dl>
 <dd>
 
-**type:** `typing.Optional[PostV1CatalogItemsCreateRequestType]` 
+**type:** `typing.Optional[ItemsCreateCatalogRequestType]` 
     
 </dd>
 </dl>
@@ -6882,7 +6885,7 @@ client.catalog.post_v1catalog_items_create(
 <dl>
 <dd>
 
-**tracking:** `typing.Optional[PostV1CatalogItemsCreateRequestTracking]` 
+**tracking:** `typing.Optional[ItemsCreateCatalogRequestTracking]` 
     
 </dd>
 </dl>
@@ -7018,7 +7021,7 @@ client.catalog.post_v1catalog_items_create(
 <dl>
 <dd>
 
-**translations:** `typing.Optional[typing.Dict[str, PostV1CatalogItemsCreateRequestTranslationsValue]]` 
+**translations:** `typing.Optional[typing.Dict[str, ItemsCreateCatalogRequestTranslationsValue]]` 
     
 </dd>
 </dl>
@@ -7026,7 +7029,7 @@ client.catalog.post_v1catalog_items_create(
 <dl>
 <dd>
 
-**components:** `typing.Optional[typing.List[PostV1CatalogItemsCreateRequestComponentsItem]]` 
+**components:** `typing.Optional[typing.List[ItemsCreateCatalogRequestComponentsItem]]` 
     
 </dd>
 </dl>
@@ -7130,7 +7133,7 @@ client.catalog.post_v1catalog_items_create(
 <dl>
 <dd>
 
-**price_from:** `typing.Optional[str]` 
+**price_from:** `typing.Optional[datetime.date]` 
     
 </dd>
 </dl>
@@ -7138,7 +7141,7 @@ client.catalog.post_v1catalog_items_create(
 <dl>
 <dd>
 
-**price_to:** `typing.Optional[str]` 
+**price_to:** `typing.Optional[datetime.date]` 
     
 </dd>
 </dl>
@@ -7218,7 +7221,7 @@ client.catalog.post_v1catalog_items_create(
 <dl>
 <dd>
 
-**certificate_date:** `typing.Optional[str]` 
+**certificate_date:** `typing.Optional[datetime.date]` 
     
 </dd>
 </dl>
@@ -7226,7 +7229,7 @@ client.catalog.post_v1catalog_items_create(
 <dl>
 <dd>
 
-**valid_from:** `typing.Optional[str]` 
+**valid_from:** `typing.Optional[datetime.date]` 
     
 </dd>
 </dl>
@@ -7234,7 +7237,7 @@ client.catalog.post_v1catalog_items_create(
 <dl>
 <dd>
 
-**valid_to:** `typing.Optional[str]` 
+**valid_to:** `typing.Optional[datetime.date]` 
     
 </dd>
 </dl>
@@ -7262,7 +7265,7 @@ client.catalog.post_v1catalog_items_create(
 </dl>
 </details>
 
-<details><summary><code>client.catalog.<a href="src/nordlet/catalog/client.py">post_v1catalog_items_get</a>(...) -> PostV1CatalogItemsGetResponse</code></summary>
+<details><summary><code>client.catalog.<a href="src/nordlet/catalog/client.py">items_get</a>(...) -> ItemsGetCatalogResponse</code></summary>
 <dl>
 <dd>
 
@@ -7283,7 +7286,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.catalog.post_v1catalog_items_get(
+client.catalog.items_get(
     id="id",
 )
 
@@ -7321,7 +7324,7 @@ client.catalog.post_v1catalog_items_get(
 </dl>
 </details>
 
-<details><summary><code>client.catalog.<a href="src/nordlet/catalog/client.py">post_v1catalog_items_update</a>(...) -> PostV1CatalogItemsUpdateResponse</code></summary>
+<details><summary><code>client.catalog.<a href="src/nordlet/catalog/client.py">items_update</a>(...) -> ItemsUpdateCatalogResponse</code></summary>
 <dl>
 <dd>
 
@@ -7342,7 +7345,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.catalog.post_v1catalog_items_update(
+client.catalog.items_update(
     id="id",
 )
 
@@ -7368,7 +7371,7 @@ client.catalog.post_v1catalog_items_update(
 <dl>
 <dd>
 
-**type:** `typing.Optional[PostV1CatalogItemsUpdateRequestType]` 
+**type:** `typing.Optional[ItemsUpdateCatalogRequestType]` 
     
 </dd>
 </dl>
@@ -7376,7 +7379,7 @@ client.catalog.post_v1catalog_items_update(
 <dl>
 <dd>
 
-**tracking:** `typing.Optional[PostV1CatalogItemsUpdateRequestTracking]` 
+**tracking:** `typing.Optional[ItemsUpdateCatalogRequestTracking]` 
     
 </dd>
 </dl>
@@ -7520,7 +7523,7 @@ client.catalog.post_v1catalog_items_update(
 <dl>
 <dd>
 
-**translations:** `typing.Optional[typing.Dict[str, typing.Optional[PostV1CatalogItemsUpdateRequestTranslationsValue]]]` 
+**translations:** `typing.Optional[typing.Dict[str, typing.Optional[ItemsUpdateCatalogRequestTranslationsValue]]]` 
     
 </dd>
 </dl>
@@ -7528,7 +7531,7 @@ client.catalog.post_v1catalog_items_update(
 <dl>
 <dd>
 
-**components:** `typing.Optional[typing.List[PostV1CatalogItemsUpdateRequestComponentsItem]]` 
+**components:** `typing.Optional[typing.List[ItemsUpdateCatalogRequestComponentsItem]]` 
     
 </dd>
 </dl>
@@ -7632,7 +7635,7 @@ client.catalog.post_v1catalog_items_update(
 <dl>
 <dd>
 
-**price_from:** `typing.Optional[str]` 
+**price_from:** `typing.Optional[datetime.date]` 
     
 </dd>
 </dl>
@@ -7640,7 +7643,7 @@ client.catalog.post_v1catalog_items_update(
 <dl>
 <dd>
 
-**price_to:** `typing.Optional[str]` 
+**price_to:** `typing.Optional[datetime.date]` 
     
 </dd>
 </dl>
@@ -7720,7 +7723,7 @@ client.catalog.post_v1catalog_items_update(
 <dl>
 <dd>
 
-**certificate_date:** `typing.Optional[str]` 
+**certificate_date:** `typing.Optional[datetime.date]` 
     
 </dd>
 </dl>
@@ -7728,7 +7731,7 @@ client.catalog.post_v1catalog_items_update(
 <dl>
 <dd>
 
-**valid_from:** `typing.Optional[str]` 
+**valid_from:** `typing.Optional[datetime.date]` 
     
 </dd>
 </dl>
@@ -7736,7 +7739,7 @@ client.catalog.post_v1catalog_items_update(
 <dl>
 <dd>
 
-**valid_to:** `typing.Optional[str]` 
+**valid_to:** `typing.Optional[datetime.date]` 
     
 </dd>
 </dl>
@@ -7764,7 +7767,7 @@ client.catalog.post_v1catalog_items_update(
 </dl>
 </details>
 
-<details><summary><code>client.catalog.<a href="src/nordlet/catalog/client.py">post_v1catalog_items_delete</a>(...) -> PostV1CatalogItemsDeleteResponse</code></summary>
+<details><summary><code>client.catalog.<a href="src/nordlet/catalog/client.py">items_delete</a>(...) -> ItemsDeleteCatalogResponse</code></summary>
 <dl>
 <dd>
 
@@ -7785,7 +7788,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.catalog.post_v1catalog_items_delete(
+client.catalog.items_delete(
     id="id",
 )
 
@@ -7823,7 +7826,7 @@ client.catalog.post_v1catalog_items_delete(
 </dl>
 </details>
 
-<details><summary><code>client.catalog.<a href="src/nordlet/catalog/client.py">post_v1catalog_items_list</a>(...) -> PostV1CatalogItemsListResponse</code></summary>
+<details><summary><code>client.catalog.<a href="src/nordlet/catalog/client.py">items_list</a>(...) -> ItemsListCatalogResponse</code></summary>
 <dl>
 <dd>
 
@@ -7844,7 +7847,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.catalog.post_v1catalog_items_list()
+client.catalog.items_list()
 
 ```
 </dd>
@@ -7876,7 +7879,7 @@ client.catalog.post_v1catalog_items_list()
 <dl>
 <dd>
 
-**sort:** `typing.Optional[typing.List[PostV1CatalogItemsListRequestSortItem]]` 
+**sort:** `typing.Optional[typing.List[ItemsListCatalogRequestSortItem]]` 
     
 </dd>
 </dl>
@@ -7884,7 +7887,7 @@ client.catalog.post_v1catalog_items_list()
 <dl>
 <dd>
 
-**filter:** `typing.Optional[typing.List[PostV1CatalogItemsListRequestFilterItem]]` 
+**filter:** `typing.Optional[typing.List[ItemsListCatalogRequestFilterItem]]` 
     
 </dd>
 </dl>
@@ -7912,7 +7915,7 @@ client.catalog.post_v1catalog_items_list()
 </dl>
 </details>
 
-<details><summary><code>client.catalog.<a href="src/nordlet/catalog/client.py">post_v1catalog_items_files_list</a>(...) -> PostV1CatalogItemsFilesListResponse</code></summary>
+<details><summary><code>client.catalog.<a href="src/nordlet/catalog/client.py">items_files_list</a>(...) -> ItemsFilesListCatalogResponse</code></summary>
 <dl>
 <dd>
 
@@ -7933,7 +7936,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.catalog.post_v1catalog_items_files_list(
+client.catalog.items_files_list(
     item_id="itemId",
 )
 
@@ -7971,7 +7974,7 @@ client.catalog.post_v1catalog_items_files_list(
 </dl>
 </details>
 
-<details><summary><code>client.catalog.<a href="src/nordlet/catalog/client.py">post_v1catalog_items_kinds_create</a>(...) -> PostV1CatalogItemsKindsCreateResponse</code></summary>
+<details><summary><code>client.catalog.<a href="src/nordlet/catalog/client.py">items_kinds_create</a>(...) -> ItemsKindsCreateCatalogResponse</code></summary>
 <dl>
 <dd>
 
@@ -7992,7 +7995,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.catalog.post_v1catalog_items_kinds_create(
+client.catalog.items_kinds_create(
     code="code",
     name="name",
 )
@@ -8027,7 +8030,7 @@ client.catalog.post_v1catalog_items_kinds_create(
 <dl>
 <dd>
 
-**saft_type:** `typing.Optional[PostV1CatalogItemsKindsCreateRequestSaftType]` 
+**saft_type:** `typing.Optional[ItemsKindsCreateCatalogRequestSaftType]` 
     
 </dd>
 </dl>
@@ -8063,7 +8066,7 @@ client.catalog.post_v1catalog_items_kinds_create(
 </dl>
 </details>
 
-<details><summary><code>client.catalog.<a href="src/nordlet/catalog/client.py">post_v1catalog_items_kinds_update</a>(...) -> PostV1CatalogItemsKindsUpdateResponse</code></summary>
+<details><summary><code>client.catalog.<a href="src/nordlet/catalog/client.py">items_kinds_update</a>(...) -> ItemsKindsUpdateCatalogResponse</code></summary>
 <dl>
 <dd>
 
@@ -8084,7 +8087,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.catalog.post_v1catalog_items_kinds_update(
+client.catalog.items_kinds_update(
     id="id",
 )
 
@@ -8126,7 +8129,7 @@ client.catalog.post_v1catalog_items_kinds_update(
 <dl>
 <dd>
 
-**saft_type:** `typing.Optional[PostV1CatalogItemsKindsUpdateRequestSaftType]` 
+**saft_type:** `typing.Optional[ItemsKindsUpdateCatalogRequestSaftType]` 
     
 </dd>
 </dl>
@@ -8162,7 +8165,7 @@ client.catalog.post_v1catalog_items_kinds_update(
 </dl>
 </details>
 
-<details><summary><code>client.catalog.<a href="src/nordlet/catalog/client.py">post_v1catalog_items_kinds_delete</a>(...) -> PostV1CatalogItemsKindsDeleteResponse</code></summary>
+<details><summary><code>client.catalog.<a href="src/nordlet/catalog/client.py">items_kinds_delete</a>(...) -> ItemsKindsDeleteCatalogResponse</code></summary>
 <dl>
 <dd>
 
@@ -8183,7 +8186,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.catalog.post_v1catalog_items_kinds_delete(
+client.catalog.items_kinds_delete(
     id="id",
 )
 
@@ -8221,7 +8224,7 @@ client.catalog.post_v1catalog_items_kinds_delete(
 </dl>
 </details>
 
-<details><summary><code>client.catalog.<a href="src/nordlet/catalog/client.py">post_v1catalog_items_kinds_list</a>() -> PostV1CatalogItemsKindsListResponse</code></summary>
+<details><summary><code>client.catalog.<a href="src/nordlet/catalog/client.py">items_kinds_list</a>() -> ItemsKindsListCatalogResponse</code></summary>
 <dl>
 <dd>
 
@@ -8242,7 +8245,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.catalog.post_v1catalog_items_kinds_list()
+client.catalog.items_kinds_list()
 
 ```
 </dd>
@@ -8270,7 +8273,7 @@ client.catalog.post_v1catalog_items_kinds_list()
 </dl>
 </details>
 
-<details><summary><code>client.catalog.<a href="src/nordlet/catalog/client.py">post_v1catalog_units_create</a>(...) -> PostV1CatalogUnitsCreateResponse</code></summary>
+<details><summary><code>client.catalog.<a href="src/nordlet/catalog/client.py">units_create</a>(...) -> UnitsCreateCatalogResponse</code></summary>
 <dl>
 <dd>
 
@@ -8291,7 +8294,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.catalog.post_v1catalog_units_create(
+client.catalog.units_create(
     code="code",
     name="name",
 )
@@ -8346,7 +8349,7 @@ client.catalog.post_v1catalog_units_create(
 </dl>
 </details>
 
-<details><summary><code>client.catalog.<a href="src/nordlet/catalog/client.py">post_v1catalog_units_update</a>(...) -> PostV1CatalogUnitsUpdateResponse</code></summary>
+<details><summary><code>client.catalog.<a href="src/nordlet/catalog/client.py">units_update</a>(...) -> UnitsUpdateCatalogResponse</code></summary>
 <dl>
 <dd>
 
@@ -8367,7 +8370,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.catalog.post_v1catalog_units_update(
+client.catalog.units_update(
     id="id",
 )
 
@@ -8429,7 +8432,7 @@ client.catalog.post_v1catalog_units_update(
 </dl>
 </details>
 
-<details><summary><code>client.catalog.<a href="src/nordlet/catalog/client.py">post_v1catalog_units_delete</a>(...) -> PostV1CatalogUnitsDeleteResponse</code></summary>
+<details><summary><code>client.catalog.<a href="src/nordlet/catalog/client.py">units_delete</a>(...) -> UnitsDeleteCatalogResponse</code></summary>
 <dl>
 <dd>
 
@@ -8450,7 +8453,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.catalog.post_v1catalog_units_delete(
+client.catalog.units_delete(
     id="id",
 )
 
@@ -8488,7 +8491,7 @@ client.catalog.post_v1catalog_units_delete(
 </dl>
 </details>
 
-<details><summary><code>client.catalog.<a href="src/nordlet/catalog/client.py">post_v1catalog_units_list</a>() -> PostV1CatalogUnitsListResponse</code></summary>
+<details><summary><code>client.catalog.<a href="src/nordlet/catalog/client.py">units_list</a>() -> UnitsListCatalogResponse</code></summary>
 <dl>
 <dd>
 
@@ -8509,7 +8512,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.catalog.post_v1catalog_units_list()
+client.catalog.units_list()
 
 ```
 </dd>
@@ -8537,7 +8540,7 @@ client.catalog.post_v1catalog_units_list()
 </dl>
 </details>
 
-<details><summary><code>client.catalog.<a href="src/nordlet/catalog/client.py">post_v1catalog_units_options</a>(...) -> PostV1CatalogUnitsOptionsResponse</code></summary>
+<details><summary><code>client.catalog.<a href="src/nordlet/catalog/client.py">units_options</a>(...) -> UnitsOptionsCatalogResponse</code></summary>
 <dl>
 <dd>
 
@@ -8558,7 +8561,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.catalog.post_v1catalog_units_options()
+client.catalog.units_options()
 
 ```
 </dd>
@@ -8574,7 +8577,7 @@ client.catalog.post_v1catalog_units_options()
 <dl>
 <dd>
 
-**locale:** `typing.Optional[PostV1CatalogUnitsOptionsRequestLocale]` 
+**locale:** `typing.Optional[UnitsOptionsCatalogRequestLocale]` 
     
 </dd>
 </dl>
@@ -8594,7 +8597,7 @@ client.catalog.post_v1catalog_units_options()
 </dl>
 </details>
 
-<details><summary><code>client.catalog.<a href="src/nordlet/catalog/client.py">post_v1catalog_item_groups_create</a>(...) -> PostV1CatalogItemGroupsCreateResponse</code></summary>
+<details><summary><code>client.catalog.<a href="src/nordlet/catalog/client.py">item_groups_create</a>(...) -> ItemGroupsCreateCatalogResponse</code></summary>
 <dl>
 <dd>
 
@@ -8615,7 +8618,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.catalog.post_v1catalog_item_groups_create(
+client.catalog.item_groups_create(
     code="code",
     name="name",
 )
@@ -8670,7 +8673,7 @@ client.catalog.post_v1catalog_item_groups_create(
 </dl>
 </details>
 
-<details><summary><code>client.catalog.<a href="src/nordlet/catalog/client.py">post_v1catalog_item_groups_update</a>(...) -> PostV1CatalogItemGroupsUpdateResponse</code></summary>
+<details><summary><code>client.catalog.<a href="src/nordlet/catalog/client.py">item_groups_update</a>(...) -> ItemGroupsUpdateCatalogResponse</code></summary>
 <dl>
 <dd>
 
@@ -8691,7 +8694,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.catalog.post_v1catalog_item_groups_update(
+client.catalog.item_groups_update(
     id="id",
 )
 
@@ -8753,7 +8756,7 @@ client.catalog.post_v1catalog_item_groups_update(
 </dl>
 </details>
 
-<details><summary><code>client.catalog.<a href="src/nordlet/catalog/client.py">post_v1catalog_item_groups_delete</a>(...) -> PostV1CatalogItemGroupsDeleteResponse</code></summary>
+<details><summary><code>client.catalog.<a href="src/nordlet/catalog/client.py">item_groups_delete</a>(...) -> ItemGroupsDeleteCatalogResponse</code></summary>
 <dl>
 <dd>
 
@@ -8774,7 +8777,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.catalog.post_v1catalog_item_groups_delete(
+client.catalog.item_groups_delete(
     id="id",
 )
 
@@ -8812,7 +8815,7 @@ client.catalog.post_v1catalog_item_groups_delete(
 </dl>
 </details>
 
-<details><summary><code>client.catalog.<a href="src/nordlet/catalog/client.py">post_v1catalog_item_groups_list</a>() -> PostV1CatalogItemGroupsListResponse</code></summary>
+<details><summary><code>client.catalog.<a href="src/nordlet/catalog/client.py">item_groups_list</a>() -> ItemGroupsListCatalogResponse</code></summary>
 <dl>
 <dd>
 
@@ -8833,7 +8836,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.catalog.post_v1catalog_item_groups_list()
+client.catalog.item_groups_list()
 
 ```
 </dd>
@@ -8861,7 +8864,7 @@ client.catalog.post_v1catalog_item_groups_list()
 </dl>
 </details>
 
-<details><summary><code>client.catalog.<a href="src/nordlet/catalog/client.py">post_v1catalog_items_suppliers_upsert</a>(...) -> PostV1CatalogItemsSuppliersUpsertResponse</code></summary>
+<details><summary><code>client.catalog.<a href="src/nordlet/catalog/client.py">items_suppliers_upsert</a>(...) -> ItemsSuppliersUpsertCatalogResponse</code></summary>
 <dl>
 <dd>
 
@@ -8882,7 +8885,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.catalog.post_v1catalog_items_suppliers_upsert(
+client.catalog.items_suppliers_upsert(
     item_id="itemId",
     partner_id="partnerId",
 )
@@ -8961,7 +8964,7 @@ client.catalog.post_v1catalog_items_suppliers_upsert(
 </dl>
 </details>
 
-<details><summary><code>client.catalog.<a href="src/nordlet/catalog/client.py">post_v1catalog_items_suppliers_list</a>(...) -> PostV1CatalogItemsSuppliersListResponse</code></summary>
+<details><summary><code>client.catalog.<a href="src/nordlet/catalog/client.py">items_suppliers_list</a>(...) -> ItemsSuppliersListCatalogResponse</code></summary>
 <dl>
 <dd>
 
@@ -8982,7 +8985,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.catalog.post_v1catalog_items_suppliers_list()
+client.catalog.items_suppliers_list()
 
 ```
 </dd>
@@ -9026,7 +9029,7 @@ client.catalog.post_v1catalog_items_suppliers_list()
 </dl>
 </details>
 
-<details><summary><code>client.catalog.<a href="src/nordlet/catalog/client.py">post_v1catalog_items_suppliers_delete</a>(...) -> PostV1CatalogItemsSuppliersDeleteResponse</code></summary>
+<details><summary><code>client.catalog.<a href="src/nordlet/catalog/client.py">items_suppliers_delete</a>(...) -> ItemsSuppliersDeleteCatalogResponse</code></summary>
 <dl>
 <dd>
 
@@ -9047,7 +9050,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.catalog.post_v1catalog_items_suppliers_delete(
+client.catalog.items_suppliers_delete(
     id="id",
 )
 
@@ -9085,7 +9088,7 @@ client.catalog.post_v1catalog_items_suppliers_delete(
 </dl>
 </details>
 
-<details><summary><code>client.catalog.<a href="src/nordlet/catalog/client.py">post_v1catalog_price_lists_create</a>(...) -> PostV1CatalogPriceListsCreateResponse</code></summary>
+<details><summary><code>client.catalog.<a href="src/nordlet/catalog/client.py">price_lists_create</a>(...) -> PriceListsCreateCatalogResponse</code></summary>
 <dl>
 <dd>
 
@@ -9106,7 +9109,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.catalog.post_v1catalog_price_lists_create(
+client.catalog.price_lists_create(
     code="code",
     name="name",
 )
@@ -9169,7 +9172,7 @@ client.catalog.post_v1catalog_price_lists_create(
 </dl>
 </details>
 
-<details><summary><code>client.catalog.<a href="src/nordlet/catalog/client.py">post_v1catalog_price_lists_update</a>(...) -> PostV1CatalogPriceListsUpdateResponse</code></summary>
+<details><summary><code>client.catalog.<a href="src/nordlet/catalog/client.py">price_lists_update</a>(...) -> PriceListsUpdateCatalogResponse</code></summary>
 <dl>
 <dd>
 
@@ -9190,7 +9193,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.catalog.post_v1catalog_price_lists_update(
+client.catalog.price_lists_update(
     id="id",
 )
 
@@ -9260,7 +9263,7 @@ client.catalog.post_v1catalog_price_lists_update(
 </dl>
 </details>
 
-<details><summary><code>client.catalog.<a href="src/nordlet/catalog/client.py">post_v1catalog_price_lists_list</a>() -> PostV1CatalogPriceListsListResponse</code></summary>
+<details><summary><code>client.catalog.<a href="src/nordlet/catalog/client.py">price_lists_list</a>() -> PriceListsListCatalogResponse</code></summary>
 <dl>
 <dd>
 
@@ -9281,7 +9284,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.catalog.post_v1catalog_price_lists_list()
+client.catalog.price_lists_list()
 
 ```
 </dd>
@@ -9309,7 +9312,7 @@ client.catalog.post_v1catalog_price_lists_list()
 </dl>
 </details>
 
-<details><summary><code>client.catalog.<a href="src/nordlet/catalog/client.py">post_v1catalog_price_lists_items_set</a>(...) -> PostV1CatalogPriceListsItemsSetResponse</code></summary>
+<details><summary><code>client.catalog.<a href="src/nordlet/catalog/client.py">price_lists_items_set</a>(...) -> PriceListsItemsSetCatalogResponse</code></summary>
 <dl>
 <dd>
 
@@ -9324,19 +9327,19 @@ client.catalog.post_v1catalog_price_lists_list()
 ```python
 from nordlet import Nordlet
 from nordlet.environment import NordletEnvironment
-from nordlet.catalog import PostV1CatalogPriceListsItemsSetRequestItemsItem
+from nordlet.catalog import PriceListsItemsSetCatalogRequestItemsItem
 
 client = Nordlet(
     token="<token>",
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.catalog.post_v1catalog_price_lists_items_set(
+client.catalog.price_lists_items_set(
     price_list_id="priceListId",
     items=[
-        PostV1CatalogPriceListsItemsSetRequestItemsItem(
+        PriceListsItemsSetCatalogRequestItemsItem(
             item_id="itemId",
-            unit_price_excl_vat="unitPriceExclVat",
+            unit_price_excl_vat="121.0000",
         )
     ],
 )
@@ -9363,7 +9366,7 @@ client.catalog.post_v1catalog_price_lists_items_set(
 <dl>
 <dd>
 
-**items:** `typing.List[PostV1CatalogPriceListsItemsSetRequestItemsItem]` 
+**items:** `typing.List[PriceListsItemsSetCatalogRequestItemsItem]` 
     
 </dd>
 </dl>
@@ -9383,7 +9386,7 @@ client.catalog.post_v1catalog_price_lists_items_set(
 </dl>
 </details>
 
-<details><summary><code>client.catalog.<a href="src/nordlet/catalog/client.py">post_v1catalog_price_lists_items_list</a>(...) -> PostV1CatalogPriceListsItemsListResponse</code></summary>
+<details><summary><code>client.catalog.<a href="src/nordlet/catalog/client.py">price_lists_items_list</a>(...) -> PriceListsItemsListCatalogResponse</code></summary>
 <dl>
 <dd>
 
@@ -9404,7 +9407,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.catalog.post_v1catalog_price_lists_items_list(
+client.catalog.price_lists_items_list(
     price_list_id="priceListId",
 )
 
@@ -9442,7 +9445,7 @@ client.catalog.post_v1catalog_price_lists_items_list(
 </dl>
 </details>
 
-<details><summary><code>client.catalog.<a href="src/nordlet/catalog/client.py">post_v1catalog_price_lists_items_delete</a>(...) -> PostV1CatalogPriceListsItemsDeleteResponse</code></summary>
+<details><summary><code>client.catalog.<a href="src/nordlet/catalog/client.py">price_lists_items_delete</a>(...) -> PriceListsItemsDeleteCatalogResponse</code></summary>
 <dl>
 <dd>
 
@@ -9463,7 +9466,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.catalog.post_v1catalog_price_lists_items_delete(
+client.catalog.price_lists_items_delete(
     price_list_id="priceListId",
     item_id="itemId",
 )
@@ -9510,8 +9513,8 @@ client.catalog.post_v1catalog_price_lists_items_delete(
 </dl>
 </details>
 
-## Sales
-<details><summary><code>client.sales.<a href="src/nordlet/sales/client.py">post_v1sales_invoices_create</a>(...) -> PostV1SalesInvoicesCreateResponse</code></summary>
+## sales
+<details><summary><code>client.sales.<a href="src/nordlet/sales/client.py">invoices_create</a>(...) -> InvoicesCreateSalesResponse</code></summary>
 <dl>
 <dd>
 
@@ -9526,17 +9529,17 @@ client.catalog.post_v1catalog_price_lists_items_delete(
 ```python
 from nordlet import Nordlet
 from nordlet.environment import NordletEnvironment
-from nordlet.sales import PostV1SalesInvoicesCreateRequestLinesItem
+from nordlet.sales import InvoicesCreateSalesRequestLinesItem
 
 client = Nordlet(
     token="<token>",
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.sales.post_v1sales_invoices_create(
+client.sales.invoices_create(
     partner_id="partnerId",
     lines=[
-        PostV1SalesInvoicesCreateRequestLinesItem()
+        InvoicesCreateSalesRequestLinesItem()
     ],
 )
 
@@ -9562,7 +9565,7 @@ client.sales.post_v1sales_invoices_create(
 <dl>
 <dd>
 
-**lines:** `typing.List[PostV1SalesInvoicesCreateRequestLinesItem]` 
+**lines:** `typing.List[InvoicesCreateSalesRequestLinesItem]` 
     
 </dd>
 </dl>
@@ -9570,7 +9573,7 @@ client.sales.post_v1sales_invoices_create(
 <dl>
 <dd>
 
-**type:** `typing.Optional[PostV1SalesInvoicesCreateRequestType]` 
+**type:** `typing.Optional[InvoicesCreateSalesRequestType]` 
     
 </dd>
 </dl>
@@ -9586,7 +9589,7 @@ client.sales.post_v1sales_invoices_create(
 <dl>
 <dd>
 
-**issue_date:** `typing.Optional[str]` 
+**issue_date:** `typing.Optional[datetime.date]` 
     
 </dd>
 </dl>
@@ -9594,7 +9597,7 @@ client.sales.post_v1sales_invoices_create(
 <dl>
 <dd>
 
-**due_date:** `typing.Optional[str]` 
+**due_date:** `typing.Optional[datetime.date]` 
     
 </dd>
 </dl>
@@ -9610,6 +9613,22 @@ client.sales.post_v1sales_invoices_create(
 <dl>
 <dd>
 
+**credited_invoice_reference:** `typing.Optional[str]` — Number of an original invoice issued outside Nordlet; give it with creditedInvoiceDate
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**credited_invoice_date:** `typing.Optional[datetime.date]` — Issue date of the original invoice issued outside Nordlet
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **agreement_id:** `typing.Optional[str]` 
     
 </dd>
@@ -9618,7 +9637,7 @@ client.sales.post_v1sales_invoices_create(
 <dl>
 <dd>
 
-**vat_scheme:** `typing.Optional[PostV1SalesInvoicesCreateRequestVatScheme]` 
+**vat_scheme:** `typing.Optional[InvoicesCreateSalesRequestVatScheme]` 
     
 </dd>
 </dl>
@@ -9774,7 +9793,7 @@ client.sales.post_v1sales_invoices_create(
 </dl>
 </details>
 
-<details><summary><code>client.sales.<a href="src/nordlet/sales/client.py">post_v1sales_invoices_get</a>(...) -> PostV1SalesInvoicesGetResponse</code></summary>
+<details><summary><code>client.sales.<a href="src/nordlet/sales/client.py">invoices_get</a>(...) -> InvoicesGetSalesResponse</code></summary>
 <dl>
 <dd>
 
@@ -9795,7 +9814,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.sales.post_v1sales_invoices_get(
+client.sales.invoices_get(
     id="id",
 )
 
@@ -9833,7 +9852,7 @@ client.sales.post_v1sales_invoices_get(
 </dl>
 </details>
 
-<details><summary><code>client.sales.<a href="src/nordlet/sales/client.py">post_v1sales_invoices_pdf</a>(...) -> PostV1SalesInvoicesPdfResponse</code></summary>
+<details><summary><code>client.sales.<a href="src/nordlet/sales/client.py">invoices_pdf</a>(...) -> InvoicesPdfSalesResponse</code></summary>
 <dl>
 <dd>
 
@@ -9854,7 +9873,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.sales.post_v1sales_invoices_pdf(
+client.sales.invoices_pdf(
     id="id",
 )
 
@@ -9880,7 +9899,7 @@ client.sales.post_v1sales_invoices_pdf(
 <dl>
 <dd>
 
-**locale:** `typing.Optional[PostV1SalesInvoicesPdfRequestLocale]` 
+**locale:** `typing.Optional[InvoicesPdfSalesRequestLocale]` 
     
 </dd>
 </dl>
@@ -9900,7 +9919,7 @@ client.sales.post_v1sales_invoices_pdf(
 </dl>
 </details>
 
-<details><summary><code>client.sales.<a href="src/nordlet/sales/client.py">post_v1sales_invoices_send</a>(...) -> PostV1SalesInvoicesSendResponse</code></summary>
+<details><summary><code>client.sales.<a href="src/nordlet/sales/client.py">invoices_send</a>(...) -> InvoicesSendSalesResponse</code></summary>
 <dl>
 <dd>
 
@@ -9921,7 +9940,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.sales.post_v1sales_invoices_send(
+client.sales.invoices_send(
     id="id",
 )
 
@@ -9955,7 +9974,7 @@ client.sales.post_v1sales_invoices_send(
 <dl>
 <dd>
 
-**locale:** `typing.Optional[PostV1SalesInvoicesSendRequestLocale]` 
+**locale:** `typing.Optional[InvoicesSendSalesRequestLocale]` 
     
 </dd>
 </dl>
@@ -9975,7 +9994,7 @@ client.sales.post_v1sales_invoices_send(
 </dl>
 </details>
 
-<details><summary><code>client.sales.<a href="src/nordlet/sales/client.py">post_v1sales_invoices_peppol_xml</a>(...) -> PostV1SalesInvoicesPeppolXmlResponse</code></summary>
+<details><summary><code>client.sales.<a href="src/nordlet/sales/client.py">invoices_peppol_xml</a>(...) -> InvoicesPeppolXmlSalesResponse</code></summary>
 <dl>
 <dd>
 
@@ -9996,7 +10015,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.sales.post_v1sales_invoices_peppol_xml(
+client.sales.invoices_peppol_xml(
     id="id",
 )
 
@@ -10034,7 +10053,7 @@ client.sales.post_v1sales_invoices_peppol_xml(
 </dl>
 </details>
 
-<details><summary><code>client.sales.<a href="src/nordlet/sales/client.py">post_v1sales_invoices_peppol_send</a>(...) -> PostV1SalesInvoicesPeppolSendResponse</code></summary>
+<details><summary><code>client.sales.<a href="src/nordlet/sales/client.py">invoices_peppol_send</a>(...) -> InvoicesPeppolSendSalesResponse</code></summary>
 <dl>
 <dd>
 
@@ -10055,7 +10074,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.sales.post_v1sales_invoices_peppol_send(
+client.sales.invoices_peppol_send(
     id="id",
 )
 
@@ -10093,7 +10112,7 @@ client.sales.post_v1sales_invoices_peppol_send(
 </dl>
 </details>
 
-<details><summary><code>client.sales.<a href="src/nordlet/sales/client.py">post_v1sales_invoices_einvoice_xml</a>(...) -> PostV1SalesInvoicesEinvoiceXmlResponse</code></summary>
+<details><summary><code>client.sales.<a href="src/nordlet/sales/client.py">invoices_einvoice_xml</a>(...) -> InvoicesEinvoiceXmlSalesResponse</code></summary>
 <dl>
 <dd>
 
@@ -10128,7 +10147,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.sales.post_v1sales_invoices_einvoice_xml(
+client.sales.invoices_einvoice_xml(
     id="id",
 )
 
@@ -10166,7 +10185,7 @@ client.sales.post_v1sales_invoices_einvoice_xml(
 </dl>
 </details>
 
-<details><summary><code>client.sales.<a href="src/nordlet/sales/client.py">post_v1sales_invoices_einvoice_send</a>(...) -> PostV1SalesInvoicesEinvoiceSendResponse</code></summary>
+<details><summary><code>client.sales.<a href="src/nordlet/sales/client.py">invoices_einvoice_send</a>(...) -> InvoicesEinvoiceSendSalesResponse</code></summary>
 <dl>
 <dd>
 
@@ -10201,7 +10220,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.sales.post_v1sales_invoices_einvoice_send(
+client.sales.invoices_einvoice_send(
     id="id",
 )
 
@@ -10239,7 +10258,7 @@ client.sales.post_v1sales_invoices_einvoice_send(
 </dl>
 </details>
 
-<details><summary><code>client.sales.<a href="src/nordlet/sales/client.py">post_v1sales_invoices_einvoice_status</a>(...) -> PostV1SalesInvoicesEinvoiceStatusResponse</code></summary>
+<details><summary><code>client.sales.<a href="src/nordlet/sales/client.py">invoices_einvoice_status</a>(...) -> InvoicesEinvoiceStatusSalesResponse</code></summary>
 <dl>
 <dd>
 
@@ -10274,7 +10293,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.sales.post_v1sales_invoices_einvoice_status(
+client.sales.invoices_einvoice_status(
     id="id",
 )
 
@@ -10312,7 +10331,7 @@ client.sales.post_v1sales_invoices_einvoice_status(
 </dl>
 </details>
 
-<details><summary><code>client.sales.<a href="src/nordlet/sales/client.py">post_v1sales_invoices_update</a>(...) -> PostV1SalesInvoicesUpdateResponse</code></summary>
+<details><summary><code>client.sales.<a href="src/nordlet/sales/client.py">invoices_update</a>(...) -> InvoicesUpdateSalesResponse</code></summary>
 <dl>
 <dd>
 
@@ -10333,7 +10352,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.sales.post_v1sales_invoices_update(
+client.sales.invoices_update(
     id="id",
 )
 
@@ -10383,7 +10402,7 @@ client.sales.post_v1sales_invoices_update(
 <dl>
 <dd>
 
-**issue_date:** `typing.Optional[str]` 
+**issue_date:** `typing.Optional[datetime.date]` 
     
 </dd>
 </dl>
@@ -10391,7 +10410,7 @@ client.sales.post_v1sales_invoices_update(
 <dl>
 <dd>
 
-**due_date:** `typing.Optional[str]` 
+**due_date:** `typing.Optional[datetime.date]` 
     
 </dd>
 </dl>
@@ -10399,7 +10418,7 @@ client.sales.post_v1sales_invoices_update(
 <dl>
 <dd>
 
-**vat_scheme:** `typing.Optional[PostV1SalesInvoicesUpdateRequestVatScheme]` 
+**vat_scheme:** `typing.Optional[InvoicesUpdateSalesRequestVatScheme]` 
     
 </dd>
 </dl>
@@ -10535,7 +10554,7 @@ client.sales.post_v1sales_invoices_update(
 <dl>
 <dd>
 
-**lines:** `typing.Optional[typing.List[PostV1SalesInvoicesUpdateRequestLinesItem]]` 
+**lines:** `typing.Optional[typing.List[InvoicesUpdateSalesRequestLinesItem]]` 
     
 </dd>
 </dl>
@@ -10555,7 +10574,7 @@ client.sales.post_v1sales_invoices_update(
 </dl>
 </details>
 
-<details><summary><code>client.sales.<a href="src/nordlet/sales/client.py">post_v1sales_invoices_delete</a>(...) -> PostV1SalesInvoicesDeleteResponse</code></summary>
+<details><summary><code>client.sales.<a href="src/nordlet/sales/client.py">invoices_delete</a>(...) -> InvoicesDeleteSalesResponse</code></summary>
 <dl>
 <dd>
 
@@ -10576,7 +10595,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.sales.post_v1sales_invoices_delete(
+client.sales.invoices_delete(
     id="id",
 )
 
@@ -10614,7 +10633,7 @@ client.sales.post_v1sales_invoices_delete(
 </dl>
 </details>
 
-<details><summary><code>client.sales.<a href="src/nordlet/sales/client.py">post_v1sales_invoices_issue</a>(...) -> PostV1SalesInvoicesIssueResponse</code></summary>
+<details><summary><code>client.sales.<a href="src/nordlet/sales/client.py">invoices_issue</a>(...) -> InvoicesIssueSalesResponse</code></summary>
 <dl>
 <dd>
 
@@ -10635,7 +10654,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.sales.post_v1sales_invoices_issue(
+client.sales.invoices_issue(
     id="id",
 )
 
@@ -10669,7 +10688,7 @@ client.sales.post_v1sales_invoices_issue(
 <dl>
 <dd>
 
-**issue_date:** `typing.Optional[str]` 
+**issue_date:** `typing.Optional[datetime.date]` 
     
 </dd>
 </dl>
@@ -10697,7 +10716,7 @@ client.sales.post_v1sales_invoices_issue(
 </dl>
 </details>
 
-<details><summary><code>client.sales.<a href="src/nordlet/sales/client.py">post_v1sales_invoices_lock</a>(...) -> PostV1SalesInvoicesLockResponse</code></summary>
+<details><summary><code>client.sales.<a href="src/nordlet/sales/client.py">invoices_lock</a>(...) -> InvoicesLockSalesResponse</code></summary>
 <dl>
 <dd>
 
@@ -10718,7 +10737,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.sales.post_v1sales_invoices_lock(
+client.sales.invoices_lock(
     id="id",
 )
 
@@ -10756,7 +10775,7 @@ client.sales.post_v1sales_invoices_lock(
 </dl>
 </details>
 
-<details><summary><code>client.sales.<a href="src/nordlet/sales/client.py">post_v1sales_invoices_unlock</a>(...) -> PostV1SalesInvoicesUnlockResponse</code></summary>
+<details><summary><code>client.sales.<a href="src/nordlet/sales/client.py">invoices_unlock</a>(...) -> InvoicesUnlockSalesResponse</code></summary>
 <dl>
 <dd>
 
@@ -10777,7 +10796,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.sales.post_v1sales_invoices_unlock(
+client.sales.invoices_unlock(
     id="id",
 )
 
@@ -10815,7 +10834,7 @@ client.sales.post_v1sales_invoices_unlock(
 </dl>
 </details>
 
-<details><summary><code>client.sales.<a href="src/nordlet/sales/client.py">post_v1sales_invoices_payment_link</a>(...) -> PostV1SalesInvoicesPaymentLinkResponse</code></summary>
+<details><summary><code>client.sales.<a href="src/nordlet/sales/client.py">invoices_payment_link</a>(...) -> InvoicesPaymentLinkSalesResponse</code></summary>
 <dl>
 <dd>
 
@@ -10836,7 +10855,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.sales.post_v1sales_invoices_payment_link(
+client.sales.invoices_payment_link(
     id="id",
 )
 
@@ -10874,7 +10893,7 @@ client.sales.post_v1sales_invoices_payment_link(
 </dl>
 </details>
 
-<details><summary><code>client.sales.<a href="src/nordlet/sales/client.py">post_v1sales_invoices_payment_settings_get</a>() -> PostV1SalesInvoicesPaymentSettingsGetResponse</code></summary>
+<details><summary><code>client.sales.<a href="src/nordlet/sales/client.py">invoices_payment_settings_get</a>() -> InvoicesPaymentSettingsGetSalesResponse</code></summary>
 <dl>
 <dd>
 
@@ -10895,7 +10914,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.sales.post_v1sales_invoices_payment_settings_get()
+client.sales.invoices_payment_settings_get()
 
 ```
 </dd>
@@ -10923,7 +10942,7 @@ client.sales.post_v1sales_invoices_payment_settings_get()
 </dl>
 </details>
 
-<details><summary><code>client.sales.<a href="src/nordlet/sales/client.py">post_v1sales_invoices_payment_settings_update</a>(...) -> PostV1SalesInvoicesPaymentSettingsUpdateResponse</code></summary>
+<details><summary><code>client.sales.<a href="src/nordlet/sales/client.py">invoices_payment_settings_update</a>(...) -> InvoicesPaymentSettingsUpdateSalesResponse</code></summary>
 <dl>
 <dd>
 
@@ -10944,7 +10963,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.sales.post_v1sales_invoices_payment_settings_update()
+client.sales.invoices_payment_settings_update()
 
 ```
 </dd>
@@ -10980,7 +10999,7 @@ client.sales.post_v1sales_invoices_payment_settings_update()
 </dl>
 </details>
 
-<details><summary><code>client.sales.<a href="src/nordlet/sales/client.py">post_v1sales_recognition_schedules_list</a>(...) -> PostV1SalesRecognitionSchedulesListResponse</code></summary>
+<details><summary><code>client.sales.<a href="src/nordlet/sales/client.py">recognition_schedules_list</a>(...) -> RecognitionSchedulesListSalesResponse</code></summary>
 <dl>
 <dd>
 
@@ -11001,7 +11020,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.sales.post_v1sales_recognition_schedules_list()
+client.sales.recognition_schedules_list()
 
 ```
 </dd>
@@ -11033,7 +11052,7 @@ client.sales.post_v1sales_recognition_schedules_list()
 <dl>
 <dd>
 
-**sort:** `typing.Optional[typing.List[PostV1SalesRecognitionSchedulesListRequestSortItem]]` 
+**sort:** `typing.Optional[typing.List[RecognitionSchedulesListSalesRequestSortItem]]` 
     
 </dd>
 </dl>
@@ -11041,7 +11060,7 @@ client.sales.post_v1sales_recognition_schedules_list()
 <dl>
 <dd>
 
-**filter:** `typing.Optional[typing.List[PostV1SalesRecognitionSchedulesListRequestFilterItem]]` 
+**filter:** `typing.Optional[typing.List[RecognitionSchedulesListSalesRequestFilterItem]]` 
     
 </dd>
 </dl>
@@ -11069,7 +11088,7 @@ client.sales.post_v1sales_recognition_schedules_list()
 </dl>
 </details>
 
-<details><summary><code>client.sales.<a href="src/nordlet/sales/client.py">post_v1sales_invoices_apply_advance</a>(...) -> PostV1SalesInvoicesApplyAdvanceResponse</code></summary>
+<details><summary><code>client.sales.<a href="src/nordlet/sales/client.py">invoices_apply_advance</a>(...) -> InvoicesApplyAdvanceSalesResponse</code></summary>
 <dl>
 <dd>
 
@@ -11090,7 +11109,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.sales.post_v1sales_invoices_apply_advance(
+client.sales.invoices_apply_advance(
     advance_id="advanceId",
     invoice_id="invoiceId",
 )
@@ -11125,7 +11144,7 @@ client.sales.post_v1sales_invoices_apply_advance(
 <dl>
 <dd>
 
-**date:** `typing.Optional[str]` 
+**date:** `typing.Optional[datetime.date]` 
     
 </dd>
 </dl>
@@ -11145,7 +11164,7 @@ client.sales.post_v1sales_invoices_apply_advance(
 </dl>
 </details>
 
-<details><summary><code>client.sales.<a href="src/nordlet/sales/client.py">post_v1sales_invoices_list</a>(...) -> PostV1SalesInvoicesListResponse</code></summary>
+<details><summary><code>client.sales.<a href="src/nordlet/sales/client.py">invoices_list</a>(...) -> InvoicesListSalesResponse</code></summary>
 <dl>
 <dd>
 
@@ -11166,7 +11185,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.sales.post_v1sales_invoices_list()
+client.sales.invoices_list()
 
 ```
 </dd>
@@ -11198,7 +11217,7 @@ client.sales.post_v1sales_invoices_list()
 <dl>
 <dd>
 
-**sort:** `typing.Optional[typing.List[PostV1SalesInvoicesListRequestSortItem]]` 
+**sort:** `typing.Optional[typing.List[InvoicesListSalesRequestSortItem]]` 
     
 </dd>
 </dl>
@@ -11206,7 +11225,7 @@ client.sales.post_v1sales_invoices_list()
 <dl>
 <dd>
 
-**filter:** `typing.Optional[typing.List[PostV1SalesInvoicesListRequestFilterItem]]` 
+**filter:** `typing.Optional[typing.List[InvoicesListSalesRequestFilterItem]]` 
     
 </dd>
 </dl>
@@ -11234,7 +11253,7 @@ client.sales.post_v1sales_invoices_list()
 </dl>
 </details>
 
-<details><summary><code>client.sales.<a href="src/nordlet/sales/client.py">post_v1sales_acts_create</a>(...) -> PostV1SalesActsCreateResponse</code></summary>
+<details><summary><code>client.sales.<a href="src/nordlet/sales/client.py">acts_create</a>(...) -> ActsCreateSalesResponse</code></summary>
 <dl>
 <dd>
 
@@ -11255,7 +11274,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.sales.post_v1sales_acts_create(
+client.sales.acts_create(
     partner_id="partnerId",
 )
 
@@ -11281,7 +11300,7 @@ client.sales.post_v1sales_acts_create(
 <dl>
 <dd>
 
-**type:** `typing.Optional[PostV1SalesActsCreateRequestType]` 
+**type:** `typing.Optional[ActsCreateSalesRequestType]` 
     
 </dd>
 </dl>
@@ -11289,7 +11308,7 @@ client.sales.post_v1sales_acts_create(
 <dl>
 <dd>
 
-**document_date:** `typing.Optional[str]` 
+**document_date:** `typing.Optional[datetime.date]` 
     
 </dd>
 </dl>
@@ -11353,7 +11372,7 @@ client.sales.post_v1sales_acts_create(
 <dl>
 <dd>
 
-**lines:** `typing.Optional[typing.List[PostV1SalesActsCreateRequestLinesItem]]` 
+**lines:** `typing.Optional[typing.List[ActsCreateSalesRequestLinesItem]]` 
     
 </dd>
 </dl>
@@ -11373,7 +11392,7 @@ client.sales.post_v1sales_acts_create(
 </dl>
 </details>
 
-<details><summary><code>client.sales.<a href="src/nordlet/sales/client.py">post_v1sales_acts_update</a>(...) -> PostV1SalesActsUpdateResponse</code></summary>
+<details><summary><code>client.sales.<a href="src/nordlet/sales/client.py">acts_update</a>(...) -> ActsUpdateSalesResponse</code></summary>
 <dl>
 <dd>
 
@@ -11394,7 +11413,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.sales.post_v1sales_acts_update(
+client.sales.acts_update(
     id="id",
 )
 
@@ -11428,7 +11447,7 @@ client.sales.post_v1sales_acts_update(
 <dl>
 <dd>
 
-**type:** `typing.Optional[PostV1SalesActsUpdateRequestType]` 
+**type:** `typing.Optional[ActsUpdateSalesRequestType]` 
     
 </dd>
 </dl>
@@ -11436,7 +11455,7 @@ client.sales.post_v1sales_acts_update(
 <dl>
 <dd>
 
-**document_date:** `typing.Optional[str]` 
+**document_date:** `typing.Optional[datetime.date]` 
     
 </dd>
 </dl>
@@ -11500,7 +11519,7 @@ client.sales.post_v1sales_acts_update(
 <dl>
 <dd>
 
-**lines:** `typing.Optional[typing.List[PostV1SalesActsUpdateRequestLinesItem]]` 
+**lines:** `typing.Optional[typing.List[ActsUpdateSalesRequestLinesItem]]` 
     
 </dd>
 </dl>
@@ -11520,7 +11539,7 @@ client.sales.post_v1sales_acts_update(
 </dl>
 </details>
 
-<details><summary><code>client.sales.<a href="src/nordlet/sales/client.py">post_v1sales_acts_issue</a>(...) -> PostV1SalesActsIssueResponse</code></summary>
+<details><summary><code>client.sales.<a href="src/nordlet/sales/client.py">acts_issue</a>(...) -> ActsIssueSalesResponse</code></summary>
 <dl>
 <dd>
 
@@ -11541,7 +11560,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.sales.post_v1sales_acts_issue(
+client.sales.acts_issue(
     id="id",
 )
 
@@ -11579,7 +11598,7 @@ client.sales.post_v1sales_acts_issue(
 </dl>
 </details>
 
-<details><summary><code>client.sales.<a href="src/nordlet/sales/client.py">post_v1sales_acts_cancel</a>(...) -> PostV1SalesActsCancelResponse</code></summary>
+<details><summary><code>client.sales.<a href="src/nordlet/sales/client.py">acts_cancel</a>(...) -> ActsCancelSalesResponse</code></summary>
 <dl>
 <dd>
 
@@ -11600,7 +11619,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.sales.post_v1sales_acts_cancel(
+client.sales.acts_cancel(
     id="id",
 )
 
@@ -11638,7 +11657,7 @@ client.sales.post_v1sales_acts_cancel(
 </dl>
 </details>
 
-<details><summary><code>client.sales.<a href="src/nordlet/sales/client.py">post_v1sales_acts_get</a>(...) -> PostV1SalesActsGetResponse</code></summary>
+<details><summary><code>client.sales.<a href="src/nordlet/sales/client.py">acts_get</a>(...) -> ActsGetSalesResponse</code></summary>
 <dl>
 <dd>
 
@@ -11659,7 +11678,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.sales.post_v1sales_acts_get(
+client.sales.acts_get(
     id="id",
 )
 
@@ -11697,7 +11716,7 @@ client.sales.post_v1sales_acts_get(
 </dl>
 </details>
 
-<details><summary><code>client.sales.<a href="src/nordlet/sales/client.py">post_v1sales_acts_list</a>(...) -> PostV1SalesActsListResponse</code></summary>
+<details><summary><code>client.sales.<a href="src/nordlet/sales/client.py">acts_list</a>(...) -> ActsListSalesResponse</code></summary>
 <dl>
 <dd>
 
@@ -11718,7 +11737,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.sales.post_v1sales_acts_list()
+client.sales.acts_list()
 
 ```
 </dd>
@@ -11750,7 +11769,7 @@ client.sales.post_v1sales_acts_list()
 <dl>
 <dd>
 
-**sort:** `typing.Optional[typing.List[PostV1SalesActsListRequestSortItem]]` 
+**sort:** `typing.Optional[typing.List[ActsListSalesRequestSortItem]]` 
     
 </dd>
 </dl>
@@ -11758,7 +11777,7 @@ client.sales.post_v1sales_acts_list()
 <dl>
 <dd>
 
-**filter:** `typing.Optional[typing.List[PostV1SalesActsListRequestFilterItem]]` 
+**filter:** `typing.Optional[typing.List[ActsListSalesRequestFilterItem]]` 
     
 </dd>
 </dl>
@@ -11786,7 +11805,7 @@ client.sales.post_v1sales_acts_list()
 </dl>
 </details>
 
-<details><summary><code>client.sales.<a href="src/nordlet/sales/client.py">post_v1sales_acts_pdf</a>(...) -> PostV1SalesActsPdfResponse</code></summary>
+<details><summary><code>client.sales.<a href="src/nordlet/sales/client.py">acts_pdf</a>(...) -> ActsPdfSalesResponse</code></summary>
 <dl>
 <dd>
 
@@ -11807,7 +11826,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.sales.post_v1sales_acts_pdf(
+client.sales.acts_pdf(
     id="id",
 )
 
@@ -11833,7 +11852,7 @@ client.sales.post_v1sales_acts_pdf(
 <dl>
 <dd>
 
-**locale:** `typing.Optional[PostV1SalesActsPdfRequestLocale]` 
+**locale:** `typing.Optional[ActsPdfSalesRequestLocale]` 
     
 </dd>
 </dl>
@@ -11853,7 +11872,7 @@ client.sales.post_v1sales_acts_pdf(
 </dl>
 </details>
 
-<details><summary><code>client.sales.<a href="src/nordlet/sales/client.py">post_v1operation_types_create</a>(...) -> PostV1OperationTypesCreateResponse</code></summary>
+<details><summary><code>client.sales.<a href="src/nordlet/sales/client.py">recognition_compute</a>(...) -> RecognitionComputeSalesResponse</code></summary>
 <dl>
 <dd>
 
@@ -11874,7 +11893,631 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.sales.post_v1operation_types_create(
+client.sales.recognition_compute()
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**as_of_date:** `typing.Optional[datetime.date]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.sales.<a href="src/nordlet/sales/client.py">recognition_run</a>(...) -> RecognitionRunSalesResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.sales.recognition_run()
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**as_of_date:** `typing.Optional[datetime.date]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**posting_date:** `typing.Optional[datetime.date]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**schedule_ids:** `typing.Optional[typing.List[str]]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.sales.<a href="src/nordlet/sales/client.py">recognition_progress</a>(...) -> RecognitionProgressSalesResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.sales.recognition_progress(
+    invoice_line_id="invoiceLineId",
+    percent_complete="121.00",
+)
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**invoice_line_id:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**percent_complete:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**date:** `typing.Optional[datetime.date]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.sales.<a href="src/nordlet/sales/client.py">recognition_modify</a>(...) -> RecognitionModifySalesResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Apply an IFRS 15 contract modification to a deferred invoice line. Prospective: cancel the pending schedule and respread the unrecognized remainder over the new terms. Cumulative catch-up (ratable only): recompute revenue as if the new terms applied from the start and post the difference immediately.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.sales.recognition_modify(
+    invoice_line_id="invoiceLineId",
+    approach="prospective",
+)
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**invoice_line_id:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**approach:** `RecognitionModifySalesRequestApproach` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**date:** `typing.Optional[datetime.date]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**new_end_date:** `typing.Optional[datetime.date]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**new_milestones:** `typing.Optional[typing.List[RecognitionModifySalesRequestNewMilestonesItem]]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.sales.<a href="src/nordlet/sales/client.py">recognition_runs_list</a>(...) -> RecognitionRunsListSalesResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.sales.recognition_runs_list()
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**page:** `typing.Optional[int]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**page_size:** `typing.Optional[int]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sort:** `typing.Optional[typing.List[RecognitionRunsListSalesRequestSortItem]]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filter:** `typing.Optional[typing.List[RecognitionRunsListSalesRequestFilterItem]]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**totals:** `typing.Optional[typing.List[str]]` — Numeric fields to sum over every row matching the filter (not only the current page)
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.sales.<a href="src/nordlet/sales/client.py">recognition_summary</a>(...) -> RecognitionSummarySalesResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.sales.recognition_summary()
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**invoice_id:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.sales.<a href="src/nordlet/sales/client.py">refund_liability_list</a>(...) -> RefundLiabilityListSalesResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.sales.refund_liability_list()
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**page:** `typing.Optional[int]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**page_size:** `typing.Optional[int]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sort:** `typing.Optional[typing.List[RefundLiabilityListSalesRequestSortItem]]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filter:** `typing.Optional[typing.List[RefundLiabilityListSalesRequestFilterItem]]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**totals:** `typing.Optional[typing.List[str]]` — Numeric fields to sum over every row matching the filter (not only the current page)
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.sales.<a href="src/nordlet/sales/client.py">refund_liability_true_up</a>(...) -> RefundLiabilityTrueUpSalesResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.sales.refund_liability_true_up(
+    invoice_id="invoiceId",
+    estimated_total="121.0000",
+)
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**invoice_id:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**estimated_total:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**date:** `typing.Optional[datetime.date]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## OperationTypes
+<details><summary><code>client.operation_types.<a href="src/nordlet/operation_types/client.py">create</a>(...) -> CreateOperationTypesResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.operation_types.create(
     code="code",
     name="name",
 )
@@ -11909,7 +12552,7 @@ client.sales.post_v1operation_types_create(
 <dl>
 <dd>
 
-**invoice_type:** `typing.Optional[PostV1OperationTypesCreateRequestInvoiceType]` 
+**invoice_type:** `typing.Optional[CreateOperationTypesRequestInvoiceType]` 
     
 </dd>
 </dl>
@@ -12105,7 +12748,7 @@ client.sales.post_v1operation_types_create(
 </dl>
 </details>
 
-<details><summary><code>client.sales.<a href="src/nordlet/sales/client.py">post_v1operation_types_update</a>(...) -> PostV1OperationTypesUpdateResponse</code></summary>
+<details><summary><code>client.operation_types.<a href="src/nordlet/operation_types/client.py">update</a>(...) -> UpdateOperationTypesResponse</code></summary>
 <dl>
 <dd>
 
@@ -12126,7 +12769,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.sales.post_v1operation_types_update(
+client.operation_types.update(
     id="id",
 )
 
@@ -12168,7 +12811,7 @@ client.sales.post_v1operation_types_update(
 <dl>
 <dd>
 
-**invoice_type:** `typing.Optional[PostV1OperationTypesUpdateRequestInvoiceType]` 
+**invoice_type:** `typing.Optional[UpdateOperationTypesRequestInvoiceType]` 
     
 </dd>
 </dl>
@@ -12364,7 +13007,7 @@ client.sales.post_v1operation_types_update(
 </dl>
 </details>
 
-<details><summary><code>client.sales.<a href="src/nordlet/sales/client.py">post_v1operation_types_get</a>(...) -> PostV1OperationTypesGetResponse</code></summary>
+<details><summary><code>client.operation_types.<a href="src/nordlet/operation_types/client.py">get</a>(...) -> GetOperationTypesResponse</code></summary>
 <dl>
 <dd>
 
@@ -12385,7 +13028,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.sales.post_v1operation_types_get(
+client.operation_types.get(
     id="id",
 )
 
@@ -12423,7 +13066,7 @@ client.sales.post_v1operation_types_get(
 </dl>
 </details>
 
-<details><summary><code>client.sales.<a href="src/nordlet/sales/client.py">post_v1operation_types_delete</a>(...) -> PostV1OperationTypesDeleteResponse</code></summary>
+<details><summary><code>client.operation_types.<a href="src/nordlet/operation_types/client.py">delete</a>(...) -> DeleteOperationTypesResponse</code></summary>
 <dl>
 <dd>
 
@@ -12444,7 +13087,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.sales.post_v1operation_types_delete(
+client.operation_types.delete(
     id="id",
 )
 
@@ -12482,7 +13125,7 @@ client.sales.post_v1operation_types_delete(
 </dl>
 </details>
 
-<details><summary><code>client.sales.<a href="src/nordlet/sales/client.py">post_v1operation_types_list</a>(...) -> PostV1OperationTypesListResponse</code></summary>
+<details><summary><code>client.operation_types.<a href="src/nordlet/operation_types/client.py">list</a>(...) -> ListOperationTypesResponse</code></summary>
 <dl>
 <dd>
 
@@ -12503,7 +13146,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.sales.post_v1operation_types_list()
+client.operation_types.list()
 
 ```
 </dd>
@@ -12535,7 +13178,7 @@ client.sales.post_v1operation_types_list()
 <dl>
 <dd>
 
-**sort:** `typing.Optional[typing.List[PostV1OperationTypesListRequestSortItem]]` 
+**sort:** `typing.Optional[typing.List[ListOperationTypesRequestSortItem]]` 
     
 </dd>
 </dl>
@@ -12543,7 +13186,7 @@ client.sales.post_v1operation_types_list()
 <dl>
 <dd>
 
-**filter:** `typing.Optional[typing.List[PostV1OperationTypesListRequestFilterItem]]` 
+**filter:** `typing.Optional[typing.List[ListOperationTypesRequestFilterItem]]` 
     
 </dd>
 </dl>
@@ -12571,7 +13214,8 @@ client.sales.post_v1operation_types_list()
 </dl>
 </details>
 
-<details><summary><code>client.sales.<a href="src/nordlet/sales/client.py">post_v1document_series_create</a>(...) -> PostV1DocumentSeriesCreateResponse</code></summary>
+## DocumentSeries
+<details><summary><code>client.document_series.<a href="src/nordlet/document_series/client.py">create</a>(...) -> CreateDocumentSeriesResponse</code></summary>
 <dl>
 <dd>
 
@@ -12592,7 +13236,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.sales.post_v1document_series_create(
+client.document_series.create(
     prefix="prefix",
 )
 
@@ -12618,7 +13262,7 @@ client.sales.post_v1document_series_create(
 <dl>
 <dd>
 
-**document_type:** `typing.Optional[PostV1DocumentSeriesCreateRequestDocumentType]` 
+**document_type:** `typing.Optional[CreateDocumentSeriesRequestDocumentType]` 
     
 </dd>
 </dl>
@@ -12726,7 +13370,7 @@ client.sales.post_v1document_series_create(
 </dl>
 </details>
 
-<details><summary><code>client.sales.<a href="src/nordlet/sales/client.py">post_v1document_series_update</a>(...) -> PostV1DocumentSeriesUpdateResponse</code></summary>
+<details><summary><code>client.document_series.<a href="src/nordlet/document_series/client.py">update</a>(...) -> UpdateDocumentSeriesResponse</code></summary>
 <dl>
 <dd>
 
@@ -12747,7 +13391,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.sales.post_v1document_series_update(
+client.document_series.update(
     id="id",
 )
 
@@ -12773,7 +13417,7 @@ client.sales.post_v1document_series_update(
 <dl>
 <dd>
 
-**document_type:** `typing.Optional[PostV1DocumentSeriesUpdateRequestDocumentType]` 
+**document_type:** `typing.Optional[UpdateDocumentSeriesRequestDocumentType]` 
     
 </dd>
 </dl>
@@ -12889,7 +13533,7 @@ client.sales.post_v1document_series_update(
 </dl>
 </details>
 
-<details><summary><code>client.sales.<a href="src/nordlet/sales/client.py">post_v1document_series_get</a>(...) -> PostV1DocumentSeriesGetResponse</code></summary>
+<details><summary><code>client.document_series.<a href="src/nordlet/document_series/client.py">get</a>(...) -> GetDocumentSeriesResponse</code></summary>
 <dl>
 <dd>
 
@@ -12910,7 +13554,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.sales.post_v1document_series_get(
+client.document_series.get(
     id="id",
 )
 
@@ -12948,7 +13592,7 @@ client.sales.post_v1document_series_get(
 </dl>
 </details>
 
-<details><summary><code>client.sales.<a href="src/nordlet/sales/client.py">post_v1document_series_delete</a>(...) -> PostV1DocumentSeriesDeleteResponse</code></summary>
+<details><summary><code>client.document_series.<a href="src/nordlet/document_series/client.py">delete</a>(...) -> DeleteDocumentSeriesResponse</code></summary>
 <dl>
 <dd>
 
@@ -12969,7 +13613,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.sales.post_v1document_series_delete(
+client.document_series.delete(
     id="id",
 )
 
@@ -13007,7 +13651,7 @@ client.sales.post_v1document_series_delete(
 </dl>
 </details>
 
-<details><summary><code>client.sales.<a href="src/nordlet/sales/client.py">post_v1document_series_list</a>(...) -> PostV1DocumentSeriesListResponse</code></summary>
+<details><summary><code>client.document_series.<a href="src/nordlet/document_series/client.py">list</a>(...) -> ListDocumentSeriesResponse</code></summary>
 <dl>
 <dd>
 
@@ -13028,7 +13672,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.sales.post_v1document_series_list()
+client.document_series.list()
 
 ```
 </dd>
@@ -13060,7 +13704,7 @@ client.sales.post_v1document_series_list()
 <dl>
 <dd>
 
-**sort:** `typing.Optional[typing.List[PostV1DocumentSeriesListRequestSortItem]]` 
+**sort:** `typing.Optional[typing.List[ListDocumentSeriesRequestSortItem]]` 
     
 </dd>
 </dl>
@@ -13068,408 +13712,7 @@ client.sales.post_v1document_series_list()
 <dl>
 <dd>
 
-**filter:** `typing.Optional[typing.List[PostV1DocumentSeriesListRequestFilterItem]]` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**totals:** `typing.Optional[typing.List[str]]` — Numeric fields to sum over every row matching the filter (not only the current page)
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.sales.<a href="src/nordlet/sales/client.py">post_v1sales_recognition_compute</a>(...) -> PostV1SalesRecognitionComputeResponse</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```python
-from nordlet import Nordlet
-from nordlet.environment import NordletEnvironment
-
-client = Nordlet(
-    token="<token>",
-    environment=NordletEnvironment.PRODUCTION,
-)
-
-client.sales.post_v1sales_recognition_compute()
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**as_of_date:** `typing.Optional[str]` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.sales.<a href="src/nordlet/sales/client.py">post_v1sales_recognition_run</a>(...) -> PostV1SalesRecognitionRunResponse</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```python
-from nordlet import Nordlet
-from nordlet.environment import NordletEnvironment
-
-client = Nordlet(
-    token="<token>",
-    environment=NordletEnvironment.PRODUCTION,
-)
-
-client.sales.post_v1sales_recognition_run()
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**as_of_date:** `typing.Optional[str]` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**posting_date:** `typing.Optional[str]` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**schedule_ids:** `typing.Optional[typing.List[str]]` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.sales.<a href="src/nordlet/sales/client.py">post_v1sales_recognition_progress</a>(...) -> PostV1SalesRecognitionProgressResponse</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```python
-from nordlet import Nordlet
-from nordlet.environment import NordletEnvironment
-
-client = Nordlet(
-    token="<token>",
-    environment=NordletEnvironment.PRODUCTION,
-)
-
-client.sales.post_v1sales_recognition_progress(
-    invoice_line_id="invoiceLineId",
-    percent_complete="percentComplete",
-)
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**invoice_line_id:** `str` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**percent_complete:** `str` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**date:** `typing.Optional[str]` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.sales.<a href="src/nordlet/sales/client.py">post_v1sales_recognition_modify</a>(...) -> PostV1SalesRecognitionModifyResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Apply an IFRS 15 contract modification to a deferred invoice line. Prospective: cancel the pending schedule and respread the unrecognized remainder over the new terms. Cumulative catch-up (ratable only): recompute revenue as if the new terms applied from the start and post the difference immediately.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```python
-from nordlet import Nordlet
-from nordlet.environment import NordletEnvironment
-
-client = Nordlet(
-    token="<token>",
-    environment=NordletEnvironment.PRODUCTION,
-)
-
-client.sales.post_v1sales_recognition_modify(
-    invoice_line_id="invoiceLineId",
-    approach="prospective",
-)
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**invoice_line_id:** `str` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**approach:** `PostV1SalesRecognitionModifyRequestApproach` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**date:** `typing.Optional[str]` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**new_end_date:** `typing.Optional[str]` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**new_milestones:** `typing.Optional[typing.List[PostV1SalesRecognitionModifyRequestNewMilestonesItem]]` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.sales.<a href="src/nordlet/sales/client.py">post_v1sales_recognition_runs_list</a>(...) -> PostV1SalesRecognitionRunsListResponse</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```python
-from nordlet import Nordlet
-from nordlet.environment import NordletEnvironment
-
-client = Nordlet(
-    token="<token>",
-    environment=NordletEnvironment.PRODUCTION,
-)
-
-client.sales.post_v1sales_recognition_runs_list()
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**page:** `typing.Optional[int]` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**page_size:** `typing.Optional[int]` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**sort:** `typing.Optional[typing.List[PostV1SalesRecognitionRunsListRequestSortItem]]` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filter:** `typing.Optional[typing.List[PostV1SalesRecognitionRunsListRequestFilterItem]]` 
+**filter:** `typing.Optional[typing.List[ListDocumentSeriesRequestFilterItem]]` 
     
 </dd>
 </dl>
@@ -13497,7 +13740,8 @@ client.sales.post_v1sales_recognition_runs_list()
 </dl>
 </details>
 
-<details><summary><code>client.sales.<a href="src/nordlet/sales/client.py">post_v1sales_recognition_summary</a>(...) -> PostV1SalesRecognitionSummaryResponse</code></summary>
+## purchases
+<details><summary><code>client.purchases.<a href="src/nordlet/purchases/client.py">invoices_create</a>(...) -> InvoicesCreatePurchasesResponse</code></summary>
 <dl>
 <dd>
 
@@ -13512,242 +13756,20 @@ client.sales.post_v1sales_recognition_runs_list()
 ```python
 from nordlet import Nordlet
 from nordlet.environment import NordletEnvironment
+import datetime
+from nordlet.purchases import InvoicesCreatePurchasesRequestLinesItem
 
 client = Nordlet(
     token="<token>",
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.sales.post_v1sales_recognition_summary()
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**invoice_id:** `typing.Optional[str]` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.sales.<a href="src/nordlet/sales/client.py">post_v1sales_refund_liability_list</a>(...) -> PostV1SalesRefundLiabilityListResponse</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```python
-from nordlet import Nordlet
-from nordlet.environment import NordletEnvironment
-
-client = Nordlet(
-    token="<token>",
-    environment=NordletEnvironment.PRODUCTION,
-)
-
-client.sales.post_v1sales_refund_liability_list()
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**page:** `typing.Optional[int]` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**page_size:** `typing.Optional[int]` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**sort:** `typing.Optional[typing.List[PostV1SalesRefundLiabilityListRequestSortItem]]` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filter:** `typing.Optional[typing.List[PostV1SalesRefundLiabilityListRequestFilterItem]]` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**totals:** `typing.Optional[typing.List[str]]` — Numeric fields to sum over every row matching the filter (not only the current page)
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.sales.<a href="src/nordlet/sales/client.py">post_v1sales_refund_liability_true_up</a>(...) -> PostV1SalesRefundLiabilityTrueUpResponse</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```python
-from nordlet import Nordlet
-from nordlet.environment import NordletEnvironment
-
-client = Nordlet(
-    token="<token>",
-    environment=NordletEnvironment.PRODUCTION,
-)
-
-client.sales.post_v1sales_refund_liability_true_up(
-    invoice_id="invoiceId",
-    estimated_total="estimatedTotal",
-)
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**invoice_id:** `str` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**estimated_total:** `str` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**date:** `typing.Optional[str]` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Purchases
-<details><summary><code>client.purchases.<a href="src/nordlet/purchases/client.py">post_v1purchases_invoices_create</a>(...) -> PostV1PurchasesInvoicesCreateResponse</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```python
-from nordlet import Nordlet
-from nordlet.environment import NordletEnvironment
-from nordlet.purchases import PostV1PurchasesInvoicesCreateRequestLinesItem
-
-client = Nordlet(
-    token="<token>",
-    environment=NordletEnvironment.PRODUCTION,
-)
-
-client.purchases.post_v1purchases_invoices_create(
+client.purchases.invoices_create(
     partner_id="partnerId",
     document_number="documentNumber",
-    document_date="documentDate",
+    document_date=datetime.date.fromisoformat("2026-07-01"),
     lines=[
-        PostV1PurchasesInvoicesCreateRequestLinesItem()
+        InvoicesCreatePurchasesRequestLinesItem()
     ],
 )
 
@@ -13781,7 +13803,7 @@ client.purchases.post_v1purchases_invoices_create(
 <dl>
 <dd>
 
-**document_date:** `str` 
+**document_date:** `datetime.date` 
     
 </dd>
 </dl>
@@ -13789,7 +13811,7 @@ client.purchases.post_v1purchases_invoices_create(
 <dl>
 <dd>
 
-**lines:** `typing.List[PostV1PurchasesInvoicesCreateRequestLinesItem]` 
+**lines:** `typing.List[InvoicesCreatePurchasesRequestLinesItem]` 
     
 </dd>
 </dl>
@@ -13797,7 +13819,7 @@ client.purchases.post_v1purchases_invoices_create(
 <dl>
 <dd>
 
-**type:** `typing.Optional[PostV1PurchasesInvoicesCreateRequestType]` 
+**type:** `typing.Optional[InvoicesCreatePurchasesRequestType]` 
     
 </dd>
 </dl>
@@ -13805,7 +13827,7 @@ client.purchases.post_v1purchases_invoices_create(
 <dl>
 <dd>
 
-**due_date:** `typing.Optional[str]` 
+**due_date:** `typing.Optional[datetime.date]` 
     
 </dd>
 </dl>
@@ -13913,7 +13935,7 @@ client.purchases.post_v1purchases_invoices_create(
 </dl>
 </details>
 
-<details><summary><code>client.purchases.<a href="src/nordlet/purchases/client.py">post_v1purchases_invoices_get</a>(...) -> PostV1PurchasesInvoicesGetResponse</code></summary>
+<details><summary><code>client.purchases.<a href="src/nordlet/purchases/client.py">invoices_get</a>(...) -> InvoicesGetPurchasesResponse</code></summary>
 <dl>
 <dd>
 
@@ -13934,7 +13956,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.purchases.post_v1purchases_invoices_get(
+client.purchases.invoices_get(
     id="id",
 )
 
@@ -13972,7 +13994,7 @@ client.purchases.post_v1purchases_invoices_get(
 </dl>
 </details>
 
-<details><summary><code>client.purchases.<a href="src/nordlet/purchases/client.py">post_v1purchases_invoices_update</a>(...) -> PostV1PurchasesInvoicesUpdateResponse</code></summary>
+<details><summary><code>client.purchases.<a href="src/nordlet/purchases/client.py">invoices_update</a>(...) -> InvoicesUpdatePurchasesResponse</code></summary>
 <dl>
 <dd>
 
@@ -13993,7 +14015,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.purchases.post_v1purchases_invoices_update(
+client.purchases.invoices_update(
     id="id",
 )
 
@@ -14035,7 +14057,7 @@ client.purchases.post_v1purchases_invoices_update(
 <dl>
 <dd>
 
-**document_date:** `typing.Optional[str]` 
+**document_date:** `typing.Optional[datetime.date]` 
     
 </dd>
 </dl>
@@ -14043,7 +14065,7 @@ client.purchases.post_v1purchases_invoices_update(
 <dl>
 <dd>
 
-**due_date:** `typing.Optional[str]` 
+**due_date:** `typing.Optional[datetime.date]` 
     
 </dd>
 </dl>
@@ -14123,7 +14145,7 @@ client.purchases.post_v1purchases_invoices_update(
 <dl>
 <dd>
 
-**lines:** `typing.Optional[typing.List[PostV1PurchasesInvoicesUpdateRequestLinesItem]]` 
+**lines:** `typing.Optional[typing.List[InvoicesUpdatePurchasesRequestLinesItem]]` 
     
 </dd>
 </dl>
@@ -14143,7 +14165,7 @@ client.purchases.post_v1purchases_invoices_update(
 </dl>
 </details>
 
-<details><summary><code>client.purchases.<a href="src/nordlet/purchases/client.py">post_v1purchases_invoices_delete</a>(...) -> PostV1PurchasesInvoicesDeleteResponse</code></summary>
+<details><summary><code>client.purchases.<a href="src/nordlet/purchases/client.py">invoices_delete</a>(...) -> InvoicesDeletePurchasesResponse</code></summary>
 <dl>
 <dd>
 
@@ -14164,7 +14186,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.purchases.post_v1purchases_invoices_delete(
+client.purchases.invoices_delete(
     id="id",
 )
 
@@ -14202,7 +14224,7 @@ client.purchases.post_v1purchases_invoices_delete(
 </dl>
 </details>
 
-<details><summary><code>client.purchases.<a href="src/nordlet/purchases/client.py">post_v1purchases_invoices_register</a>(...) -> PostV1PurchasesInvoicesRegisterResponse</code></summary>
+<details><summary><code>client.purchases.<a href="src/nordlet/purchases/client.py">invoices_register</a>(...) -> InvoicesRegisterPurchasesResponse</code></summary>
 <dl>
 <dd>
 
@@ -14223,7 +14245,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.purchases.post_v1purchases_invoices_register(
+client.purchases.invoices_register(
     id="id",
 )
 
@@ -14249,7 +14271,7 @@ client.purchases.post_v1purchases_invoices_register(
 <dl>
 <dd>
 
-**registration_date:** `typing.Optional[str]` 
+**registration_date:** `typing.Optional[datetime.date]` 
     
 </dd>
 </dl>
@@ -14277,7 +14299,7 @@ client.purchases.post_v1purchases_invoices_register(
 </dl>
 </details>
 
-<details><summary><code>client.purchases.<a href="src/nordlet/purchases/client.py">post_v1purchases_invoices_list</a>(...) -> PostV1PurchasesInvoicesListResponse</code></summary>
+<details><summary><code>client.purchases.<a href="src/nordlet/purchases/client.py">invoices_list</a>(...) -> InvoicesListPurchasesResponse</code></summary>
 <dl>
 <dd>
 
@@ -14298,7 +14320,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.purchases.post_v1purchases_invoices_list()
+client.purchases.invoices_list()
 
 ```
 </dd>
@@ -14330,7 +14352,7 @@ client.purchases.post_v1purchases_invoices_list()
 <dl>
 <dd>
 
-**sort:** `typing.Optional[typing.List[PostV1PurchasesInvoicesListRequestSortItem]]` 
+**sort:** `typing.Optional[typing.List[InvoicesListPurchasesRequestSortItem]]` 
     
 </dd>
 </dl>
@@ -14338,7 +14360,7 @@ client.purchases.post_v1purchases_invoices_list()
 <dl>
 <dd>
 
-**filter:** `typing.Optional[typing.List[PostV1PurchasesInvoicesListRequestFilterItem]]` 
+**filter:** `typing.Optional[typing.List[InvoicesListPurchasesRequestFilterItem]]` 
     
 </dd>
 </dl>
@@ -14366,7 +14388,7 @@ client.purchases.post_v1purchases_invoices_list()
 </dl>
 </details>
 
-<details><summary><code>client.purchases.<a href="src/nordlet/purchases/client.py">post_v1purchases_orders_create</a>(...) -> PostV1PurchasesOrdersCreateResponse</code></summary>
+<details><summary><code>client.purchases.<a href="src/nordlet/purchases/client.py">orders_create</a>(...) -> OrdersCreatePurchasesResponse</code></summary>
 <dl>
 <dd>
 
@@ -14381,18 +14403,19 @@ client.purchases.post_v1purchases_invoices_list()
 ```python
 from nordlet import Nordlet
 from nordlet.environment import NordletEnvironment
-from nordlet.purchases import PostV1PurchasesOrdersCreateRequestLinesItem
+import datetime
+from nordlet.purchases import OrdersCreatePurchasesRequestLinesItem
 
 client = Nordlet(
     token="<token>",
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.purchases.post_v1purchases_orders_create(
+client.purchases.orders_create(
     partner_id="partnerId",
-    order_date="orderDate",
+    order_date=datetime.date.fromisoformat("2026-07-01"),
     lines=[
-        PostV1PurchasesOrdersCreateRequestLinesItem()
+        OrdersCreatePurchasesRequestLinesItem()
     ],
 )
 
@@ -14418,7 +14441,7 @@ client.purchases.post_v1purchases_orders_create(
 <dl>
 <dd>
 
-**order_date:** `str` 
+**order_date:** `datetime.date` 
     
 </dd>
 </dl>
@@ -14426,7 +14449,7 @@ client.purchases.post_v1purchases_orders_create(
 <dl>
 <dd>
 
-**lines:** `typing.List[PostV1PurchasesOrdersCreateRequestLinesItem]` 
+**lines:** `typing.List[OrdersCreatePurchasesRequestLinesItem]` 
     
 </dd>
 </dl>
@@ -14442,7 +14465,7 @@ client.purchases.post_v1purchases_orders_create(
 <dl>
 <dd>
 
-**expected_date:** `typing.Optional[str]` 
+**expected_date:** `typing.Optional[datetime.date]` 
     
 </dd>
 </dl>
@@ -14494,7 +14517,7 @@ client.purchases.post_v1purchases_orders_create(
 </dl>
 </details>
 
-<details><summary><code>client.purchases.<a href="src/nordlet/purchases/client.py">post_v1purchases_orders_update</a>(...) -> PostV1PurchasesOrdersUpdateResponse</code></summary>
+<details><summary><code>client.purchases.<a href="src/nordlet/purchases/client.py">orders_update</a>(...) -> OrdersUpdatePurchasesResponse</code></summary>
 <dl>
 <dd>
 
@@ -14515,7 +14538,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.purchases.post_v1purchases_orders_update(
+client.purchases.orders_update(
     id="id",
 )
 
@@ -14549,7 +14572,7 @@ client.purchases.post_v1purchases_orders_update(
 <dl>
 <dd>
 
-**order_date:** `typing.Optional[str]` 
+**order_date:** `typing.Optional[datetime.date]` 
     
 </dd>
 </dl>
@@ -14557,7 +14580,7 @@ client.purchases.post_v1purchases_orders_update(
 <dl>
 <dd>
 
-**expected_date:** `typing.Optional[str]` 
+**expected_date:** `typing.Optional[datetime.date]` 
     
 </dd>
 </dl>
@@ -14589,7 +14612,7 @@ client.purchases.post_v1purchases_orders_update(
 <dl>
 <dd>
 
-**lines:** `typing.Optional[typing.List[PostV1PurchasesOrdersUpdateRequestLinesItem]]` 
+**lines:** `typing.Optional[typing.List[OrdersUpdatePurchasesRequestLinesItem]]` 
     
 </dd>
 </dl>
@@ -14609,7 +14632,7 @@ client.purchases.post_v1purchases_orders_update(
 </dl>
 </details>
 
-<details><summary><code>client.purchases.<a href="src/nordlet/purchases/client.py">post_v1purchases_orders_get</a>(...) -> PostV1PurchasesOrdersGetResponse</code></summary>
+<details><summary><code>client.purchases.<a href="src/nordlet/purchases/client.py">orders_get</a>(...) -> OrdersGetPurchasesResponse</code></summary>
 <dl>
 <dd>
 
@@ -14630,7 +14653,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.purchases.post_v1purchases_orders_get(
+client.purchases.orders_get(
     id="id",
 )
 
@@ -14668,7 +14691,7 @@ client.purchases.post_v1purchases_orders_get(
 </dl>
 </details>
 
-<details><summary><code>client.purchases.<a href="src/nordlet/purchases/client.py">post_v1purchases_orders_list</a>(...) -> PostV1PurchasesOrdersListResponse</code></summary>
+<details><summary><code>client.purchases.<a href="src/nordlet/purchases/client.py">orders_list</a>(...) -> OrdersListPurchasesResponse</code></summary>
 <dl>
 <dd>
 
@@ -14689,7 +14712,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.purchases.post_v1purchases_orders_list()
+client.purchases.orders_list()
 
 ```
 </dd>
@@ -14721,7 +14744,7 @@ client.purchases.post_v1purchases_orders_list()
 <dl>
 <dd>
 
-**sort:** `typing.Optional[typing.List[PostV1PurchasesOrdersListRequestSortItem]]` 
+**sort:** `typing.Optional[typing.List[OrdersListPurchasesRequestSortItem]]` 
     
 </dd>
 </dl>
@@ -14729,7 +14752,7 @@ client.purchases.post_v1purchases_orders_list()
 <dl>
 <dd>
 
-**filter:** `typing.Optional[typing.List[PostV1PurchasesOrdersListRequestFilterItem]]` 
+**filter:** `typing.Optional[typing.List[OrdersListPurchasesRequestFilterItem]]` 
     
 </dd>
 </dl>
@@ -14757,7 +14780,7 @@ client.purchases.post_v1purchases_orders_list()
 </dl>
 </details>
 
-<details><summary><code>client.purchases.<a href="src/nordlet/purchases/client.py">post_v1purchases_orders_submit</a>(...) -> PostV1PurchasesOrdersSubmitResponse</code></summary>
+<details><summary><code>client.purchases.<a href="src/nordlet/purchases/client.py">orders_submit</a>(...) -> OrdersSubmitPurchasesResponse</code></summary>
 <dl>
 <dd>
 
@@ -14778,7 +14801,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.purchases.post_v1purchases_orders_submit(
+client.purchases.orders_submit(
     id="id",
 )
 
@@ -14824,7 +14847,7 @@ client.purchases.post_v1purchases_orders_submit(
 </dl>
 </details>
 
-<details><summary><code>client.purchases.<a href="src/nordlet/purchases/client.py">post_v1purchases_orders_approve</a>(...) -> PostV1PurchasesOrdersApproveResponse</code></summary>
+<details><summary><code>client.purchases.<a href="src/nordlet/purchases/client.py">orders_approve</a>(...) -> OrdersApprovePurchasesResponse</code></summary>
 <dl>
 <dd>
 
@@ -14845,7 +14868,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.purchases.post_v1purchases_orders_approve(
+client.purchases.orders_approve(
     id="id",
 )
 
@@ -14891,7 +14914,7 @@ client.purchases.post_v1purchases_orders_approve(
 </dl>
 </details>
 
-<details><summary><code>client.purchases.<a href="src/nordlet/purchases/client.py">post_v1purchases_orders_reject</a>(...) -> PostV1PurchasesOrdersRejectResponse</code></summary>
+<details><summary><code>client.purchases.<a href="src/nordlet/purchases/client.py">orders_reject</a>(...) -> OrdersRejectPurchasesResponse</code></summary>
 <dl>
 <dd>
 
@@ -14912,7 +14935,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.purchases.post_v1purchases_orders_reject(
+client.purchases.orders_reject(
     id="id",
 )
 
@@ -14958,7 +14981,7 @@ client.purchases.post_v1purchases_orders_reject(
 </dl>
 </details>
 
-<details><summary><code>client.purchases.<a href="src/nordlet/purchases/client.py">post_v1purchases_orders_cancel</a>(...) -> PostV1PurchasesOrdersCancelResponse</code></summary>
+<details><summary><code>client.purchases.<a href="src/nordlet/purchases/client.py">orders_cancel</a>(...) -> OrdersCancelPurchasesResponse</code></summary>
 <dl>
 <dd>
 
@@ -14979,7 +15002,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.purchases.post_v1purchases_orders_cancel(
+client.purchases.orders_cancel(
     id="id",
 )
 
@@ -15025,7 +15048,7 @@ client.purchases.post_v1purchases_orders_cancel(
 </dl>
 </details>
 
-<details><summary><code>client.purchases.<a href="src/nordlet/purchases/client.py">post_v1purchases_orders_close</a>(...) -> PostV1PurchasesOrdersCloseResponse</code></summary>
+<details><summary><code>client.purchases.<a href="src/nordlet/purchases/client.py">orders_close</a>(...) -> OrdersClosePurchasesResponse</code></summary>
 <dl>
 <dd>
 
@@ -15046,7 +15069,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.purchases.post_v1purchases_orders_close(
+client.purchases.orders_close(
     id="id",
 )
 
@@ -15092,7 +15115,7 @@ client.purchases.post_v1purchases_orders_close(
 </dl>
 </details>
 
-<details><summary><code>client.purchases.<a href="src/nordlet/purchases/client.py">post_v1purchases_orders_delete</a>(...) -> PostV1PurchasesOrdersDeleteResponse</code></summary>
+<details><summary><code>client.purchases.<a href="src/nordlet/purchases/client.py">orders_delete</a>(...) -> OrdersDeletePurchasesResponse</code></summary>
 <dl>
 <dd>
 
@@ -15113,7 +15136,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.purchases.post_v1purchases_orders_delete(
+client.purchases.orders_delete(
     id="id",
 )
 
@@ -15151,7 +15174,7 @@ client.purchases.post_v1purchases_orders_delete(
 </dl>
 </details>
 
-<details><summary><code>client.purchases.<a href="src/nordlet/purchases/client.py">post_v1purchases_receipts_create</a>(...) -> PostV1PurchasesReceiptsCreateResponse</code></summary>
+<details><summary><code>client.purchases.<a href="src/nordlet/purchases/client.py">receipts_create</a>(...) -> ReceiptsCreatePurchasesResponse</code></summary>
 <dl>
 <dd>
 
@@ -15166,20 +15189,21 @@ client.purchases.post_v1purchases_orders_delete(
 ```python
 from nordlet import Nordlet
 from nordlet.environment import NordletEnvironment
-from nordlet.purchases import PostV1PurchasesReceiptsCreateRequestLinesItem
+import datetime
+from nordlet.purchases import ReceiptsCreatePurchasesRequestLinesItem
 
 client = Nordlet(
     token="<token>",
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.purchases.post_v1purchases_receipts_create(
+client.purchases.receipts_create(
     order_id="orderId",
-    receipt_date="receiptDate",
+    receipt_date=datetime.date.fromisoformat("2026-07-01"),
     lines=[
-        PostV1PurchasesReceiptsCreateRequestLinesItem(
+        ReceiptsCreatePurchasesRequestLinesItem(
             order_line_id="orderLineId",
-            quantity="quantity",
+            quantity="121.0000",
         )
     ],
 )
@@ -15206,7 +15230,7 @@ client.purchases.post_v1purchases_receipts_create(
 <dl>
 <dd>
 
-**receipt_date:** `str` 
+**receipt_date:** `datetime.date` 
     
 </dd>
 </dl>
@@ -15214,7 +15238,7 @@ client.purchases.post_v1purchases_receipts_create(
 <dl>
 <dd>
 
-**lines:** `typing.List[PostV1PurchasesReceiptsCreateRequestLinesItem]` 
+**lines:** `typing.List[ReceiptsCreatePurchasesRequestLinesItem]` 
     
 </dd>
 </dl>
@@ -15250,7 +15274,7 @@ client.purchases.post_v1purchases_receipts_create(
 </dl>
 </details>
 
-<details><summary><code>client.purchases.<a href="src/nordlet/purchases/client.py">post_v1purchases_receipts_get</a>(...) -> PostV1PurchasesReceiptsGetResponse</code></summary>
+<details><summary><code>client.purchases.<a href="src/nordlet/purchases/client.py">receipts_get</a>(...) -> ReceiptsGetPurchasesResponse</code></summary>
 <dl>
 <dd>
 
@@ -15271,7 +15295,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.purchases.post_v1purchases_receipts_get(
+client.purchases.receipts_get(
     id="id",
 )
 
@@ -15309,7 +15333,7 @@ client.purchases.post_v1purchases_receipts_get(
 </dl>
 </details>
 
-<details><summary><code>client.purchases.<a href="src/nordlet/purchases/client.py">post_v1purchases_receipts_list</a>(...) -> PostV1PurchasesReceiptsListResponse</code></summary>
+<details><summary><code>client.purchases.<a href="src/nordlet/purchases/client.py">receipts_list</a>(...) -> ReceiptsListPurchasesResponse</code></summary>
 <dl>
 <dd>
 
@@ -15330,7 +15354,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.purchases.post_v1purchases_receipts_list()
+client.purchases.receipts_list()
 
 ```
 </dd>
@@ -15362,7 +15386,7 @@ client.purchases.post_v1purchases_receipts_list()
 <dl>
 <dd>
 
-**sort:** `typing.Optional[typing.List[PostV1PurchasesReceiptsListRequestSortItem]]` 
+**sort:** `typing.Optional[typing.List[ReceiptsListPurchasesRequestSortItem]]` 
     
 </dd>
 </dl>
@@ -15370,7 +15394,7 @@ client.purchases.post_v1purchases_receipts_list()
 <dl>
 <dd>
 
-**filter:** `typing.Optional[typing.List[PostV1PurchasesReceiptsListRequestFilterItem]]` 
+**filter:** `typing.Optional[typing.List[ReceiptsListPurchasesRequestFilterItem]]` 
     
 </dd>
 </dl>
@@ -15398,7 +15422,7 @@ client.purchases.post_v1purchases_receipts_list()
 </dl>
 </details>
 
-<details><summary><code>client.purchases.<a href="src/nordlet/purchases/client.py">post_v1purchases_invoices_match</a>(...) -> PostV1PurchasesInvoicesMatchResponse</code></summary>
+<details><summary><code>client.purchases.<a href="src/nordlet/purchases/client.py">invoices_match</a>(...) -> InvoicesMatchPurchasesResponse</code></summary>
 <dl>
 <dd>
 
@@ -15419,7 +15443,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.purchases.post_v1purchases_invoices_match(
+client.purchases.invoices_match(
     invoice_id="invoiceId",
 )
 
@@ -15465,8 +15489,8 @@ client.purchases.post_v1purchases_invoices_match(
 </dl>
 </details>
 
-## Capture
-<details><summary><code>client.capture.<a href="src/nordlet/capture/client.py">post_v1capture_settings_get</a>() -> PostV1CaptureSettingsGetResponse</code></summary>
+## capture
+<details><summary><code>client.capture.<a href="src/nordlet/capture/client.py">settings_get</a>() -> SettingsGetCaptureResponse</code></summary>
 <dl>
 <dd>
 
@@ -15487,7 +15511,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.capture.post_v1capture_settings_get()
+client.capture.settings_get()
 
 ```
 </dd>
@@ -15515,7 +15539,7 @@ client.capture.post_v1capture_settings_get()
 </dl>
 </details>
 
-<details><summary><code>client.capture.<a href="src/nordlet/capture/client.py">post_v1capture_settings_update</a>(...) -> PostV1CaptureSettingsUpdateResponse</code></summary>
+<details><summary><code>client.capture.<a href="src/nordlet/capture/client.py">settings_update</a>(...) -> SettingsUpdateCaptureResponse</code></summary>
 <dl>
 <dd>
 
@@ -15536,7 +15560,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.capture.post_v1capture_settings_update()
+client.capture.settings_update()
 
 ```
 </dd>
@@ -15580,7 +15604,7 @@ client.capture.post_v1capture_settings_update()
 </dl>
 </details>
 
-<details><summary><code>client.capture.<a href="src/nordlet/capture/client.py">post_v1capture_settings_regenerate_intake</a>() -> PostV1CaptureSettingsRegenerateIntakeResponse</code></summary>
+<details><summary><code>client.capture.<a href="src/nordlet/capture/client.py">settings_regenerate_intake</a>() -> SettingsRegenerateIntakeCaptureResponse</code></summary>
 <dl>
 <dd>
 
@@ -15601,7 +15625,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.capture.post_v1capture_settings_regenerate_intake()
+client.capture.settings_regenerate_intake()
 
 ```
 </dd>
@@ -15629,7 +15653,7 @@ client.capture.post_v1capture_settings_regenerate_intake()
 </dl>
 </details>
 
-<details><summary><code>client.capture.<a href="src/nordlet/capture/client.py">receive_an_inbound_email_with_supplier_documents_attached_postmark_style_or_generic_json</a>(...) -> PostV1CaptureInboundEmailResponse</code></summary>
+<details><summary><code>client.capture.<a href="src/nordlet/capture/client.py">inbound_email</a>(...) -> InboundEmailCaptureResponse</code></summary>
 <dl>
 <dd>
 
@@ -15650,7 +15674,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.capture.receive_an_inbound_email_with_supplier_documents_attached_postmark_style_or_generic_json()
+client.capture.inbound_email()
 
 ```
 </dd>
@@ -15674,7 +15698,7 @@ client.capture.receive_an_inbound_email_with_supplier_documents_attached_postmar
 <dl>
 <dd>
 
-**to_full:** `typing.Optional[typing.List[PostV1CaptureInboundEmailRequestToFullItem]]` 
+**to_full:** `typing.Optional[typing.List[InboundEmailCaptureRequestToFullItem]]` 
     
 </dd>
 </dl>
@@ -15698,7 +15722,7 @@ client.capture.receive_an_inbound_email_with_supplier_documents_attached_postmar
 <dl>
 <dd>
 
-**postmark_attachments:** `typing.Optional[typing.List[PostV1CaptureInboundEmailRequestAttachmentsItem]]` 
+**postmark_attachments:** `typing.Optional[typing.List[InboundEmailCaptureRequestAttachmentsItem]]` 
     
 </dd>
 </dl>
@@ -15706,7 +15730,7 @@ client.capture.receive_an_inbound_email_with_supplier_documents_attached_postmar
 <dl>
 <dd>
 
-**to:** `typing.Optional[PostV1CaptureInboundEmailRequestTo]` 
+**to:** `typing.Optional[InboundEmailCaptureRequestTo]` 
     
 </dd>
 </dl>
@@ -15730,7 +15754,7 @@ client.capture.receive_an_inbound_email_with_supplier_documents_attached_postmar
 <dl>
 <dd>
 
-**attachments:** `typing.Optional[typing.List[PostV1CaptureInboundEmailRequestAttachmentsItem]]` 
+**attachments:** `typing.Optional[typing.List[InboundEmailCaptureRequestAttachmentsItem]]` 
     
 </dd>
 </dl>
@@ -15750,7 +15774,7 @@ client.capture.receive_an_inbound_email_with_supplier_documents_attached_postmar
 </dl>
 </details>
 
-<details><summary><code>client.capture.<a href="src/nordlet/capture/client.py">read_a_vendor_bill_or_receipt_and_return_an_editable_purchase_invoice_draft</a>(...) -> PostV1CaptureDocumentsUploadResponse</code></summary>
+<details><summary><code>client.capture.<a href="src/nordlet/capture/client.py">documents_upload</a>(...) -> DocumentsUploadCaptureResponse</code></summary>
 <dl>
 <dd>
 
@@ -15771,7 +15795,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.capture.read_a_vendor_bill_or_receipt_and_return_an_editable_purchase_invoice_draft(
+client.capture.documents_upload(
     file_name="fileName",
     mime_type="mimeType",
     content="content",
@@ -15827,7 +15851,7 @@ client.capture.read_a_vendor_bill_or_receipt_and_return_an_editable_purchase_inv
 </dl>
 </details>
 
-<details><summary><code>client.capture.<a href="src/nordlet/capture/client.py">re_read_a_stored_capture_replacing_the_previous_draft</a>(...) -> PostV1CaptureDocumentsExtractResponse</code></summary>
+<details><summary><code>client.capture.<a href="src/nordlet/capture/client.py">documents_extract</a>(...) -> DocumentsExtractCaptureResponse</code></summary>
 <dl>
 <dd>
 
@@ -15848,7 +15872,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.capture.re_read_a_stored_capture_replacing_the_previous_draft(
+client.capture.documents_extract(
     id="id",
 )
 
@@ -15886,7 +15910,7 @@ client.capture.re_read_a_stored_capture_replacing_the_previous_draft(
 </dl>
 </details>
 
-<details><summary><code>client.capture.<a href="src/nordlet/capture/client.py">post_v1capture_documents_get</a>(...) -> PostV1CaptureDocumentsGetResponse</code></summary>
+<details><summary><code>client.capture.<a href="src/nordlet/capture/client.py">documents_get</a>(...) -> DocumentsGetCaptureResponse</code></summary>
 <dl>
 <dd>
 
@@ -15907,7 +15931,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.capture.post_v1capture_documents_get(
+client.capture.documents_get(
     id="id",
 )
 
@@ -15945,7 +15969,7 @@ client.capture.post_v1capture_documents_get(
 </dl>
 </details>
 
-<details><summary><code>client.capture.<a href="src/nordlet/capture/client.py">post_v1capture_documents_list</a>(...) -> PostV1CaptureDocumentsListResponse</code></summary>
+<details><summary><code>client.capture.<a href="src/nordlet/capture/client.py">documents_list</a>(...) -> DocumentsListCaptureResponse</code></summary>
 <dl>
 <dd>
 
@@ -15966,7 +15990,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.capture.post_v1capture_documents_list()
+client.capture.documents_list()
 
 ```
 </dd>
@@ -15998,7 +16022,7 @@ client.capture.post_v1capture_documents_list()
 <dl>
 <dd>
 
-**sort:** `typing.Optional[typing.List[PostV1CaptureDocumentsListRequestSortItem]]` 
+**sort:** `typing.Optional[typing.List[DocumentsListCaptureRequestSortItem]]` 
     
 </dd>
 </dl>
@@ -16006,7 +16030,7 @@ client.capture.post_v1capture_documents_list()
 <dl>
 <dd>
 
-**filter:** `typing.Optional[typing.List[PostV1CaptureDocumentsListRequestFilterItem]]` 
+**filter:** `typing.Optional[typing.List[DocumentsListCaptureRequestFilterItem]]` 
     
 </dd>
 </dl>
@@ -16034,7 +16058,7 @@ client.capture.post_v1capture_documents_list()
 </dl>
 </details>
 
-<details><summary><code>client.capture.<a href="src/nordlet/capture/client.py">post_v1capture_documents_delete</a>(...) -> PostV1CaptureDocumentsDeleteResponse</code></summary>
+<details><summary><code>client.capture.<a href="src/nordlet/capture/client.py">documents_delete</a>(...) -> DocumentsDeleteCaptureResponse</code></summary>
 <dl>
 <dd>
 
@@ -16055,7 +16079,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.capture.post_v1capture_documents_delete(
+client.capture.documents_delete(
     id="id",
 )
 
@@ -16093,7 +16117,7 @@ client.capture.post_v1capture_documents_delete(
 </dl>
 </details>
 
-<details><summary><code>client.capture.<a href="src/nordlet/capture/client.py">save_the_reviewed_draft_as_a_purchase_invoice_and_attach_the_original_document</a>(...) -> PostV1CaptureDocumentsConfirmResponse</code></summary>
+<details><summary><code>client.capture.<a href="src/nordlet/capture/client.py">documents_confirm</a>(...) -> DocumentsConfirmCaptureResponse</code></summary>
 <dl>
 <dd>
 
@@ -16108,19 +16132,20 @@ client.capture.post_v1capture_documents_delete(
 ```python
 from nordlet import Nordlet
 from nordlet.environment import NordletEnvironment
-from nordlet.capture import PostV1CaptureDocumentsConfirmRequestLinesItem
+import datetime
+from nordlet.capture import DocumentsConfirmCaptureRequestLinesItem
 
 client = Nordlet(
     token="<token>",
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.capture.save_the_reviewed_draft_as_a_purchase_invoice_and_attach_the_original_document(
+client.capture.documents_confirm(
     id="id",
     document_number="documentNumber",
-    document_date="documentDate",
+    document_date=datetime.date.fromisoformat("2026-07-01"),
     lines=[
-        PostV1CaptureDocumentsConfirmRequestLinesItem()
+        DocumentsConfirmCaptureRequestLinesItem()
     ],
 )
 
@@ -16154,7 +16179,7 @@ client.capture.save_the_reviewed_draft_as_a_purchase_invoice_and_attach_the_orig
 <dl>
 <dd>
 
-**document_date:** `str` 
+**document_date:** `datetime.date` 
     
 </dd>
 </dl>
@@ -16162,7 +16187,7 @@ client.capture.save_the_reviewed_draft_as_a_purchase_invoice_and_attach_the_orig
 <dl>
 <dd>
 
-**lines:** `typing.List[PostV1CaptureDocumentsConfirmRequestLinesItem]` 
+**lines:** `typing.List[DocumentsConfirmCaptureRequestLinesItem]` 
     
 </dd>
 </dl>
@@ -16178,7 +16203,7 @@ client.capture.save_the_reviewed_draft_as_a_purchase_invoice_and_attach_the_orig
 <dl>
 <dd>
 
-**new_supplier:** `typing.Optional[PostV1CaptureDocumentsConfirmRequestNewSupplier]` 
+**new_supplier:** `typing.Optional[DocumentsConfirmCaptureRequestNewSupplier]` 
     
 </dd>
 </dl>
@@ -16186,7 +16211,7 @@ client.capture.save_the_reviewed_draft_as_a_purchase_invoice_and_attach_the_orig
 <dl>
 <dd>
 
-**due_date:** `typing.Optional[str]` 
+**due_date:** `typing.Optional[datetime.date]` 
     
 </dd>
 </dl>
@@ -16222,8 +16247,8 @@ client.capture.save_the_reviewed_draft_as_a_purchase_invoice_and_attach_the_orig
 </dl>
 </details>
 
-## Declarations
-<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">post_v1declarations_lt_intrastat_compute</a>(...) -> PostV1DeclarationsLtIntrastatComputeResponse</code></summary>
+## declarations
+<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">lt_intrastat_compute</a>(...) -> LtIntrastatComputeDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -16244,7 +16269,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.declarations.post_v1declarations_lt_intrastat_compute(
+client.declarations.lt_intrastat_compute(
     year=1000000,
     month=1000000,
     flow="arrivals",
@@ -16280,7 +16305,7 @@ client.declarations.post_v1declarations_lt_intrastat_compute(
 <dl>
 <dd>
 
-**flow:** `PostV1DeclarationsLtIntrastatComputeRequestFlow` 
+**flow:** `LtIntrastatComputeDeclarationsRequestFlow` 
     
 </dd>
 </dl>
@@ -16304,7 +16329,7 @@ client.declarations.post_v1declarations_lt_intrastat_compute(
 <dl>
 <dd>
 
-**transport_mode:** `typing.Optional[PostV1DeclarationsLtIntrastatComputeRequestTransportMode]` 
+**transport_mode:** `typing.Optional[LtIntrastatComputeDeclarationsRequestTransportMode]` 
     
 </dd>
 </dl>
@@ -16364,7 +16389,7 @@ client.declarations.post_v1declarations_lt_intrastat_compute(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">post_v1declarations_lt_ivaz_generate</a>(...) -> PostV1DeclarationsLtIvazGenerateResponse</code></summary>
+<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">lt_ivaz_generate</a>(...) -> LtIvazGenerateDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -16385,7 +16410,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.declarations.post_v1declarations_lt_ivaz_generate(
+client.declarations.lt_ivaz_generate(
     waybill_ids=[
         "waybillIds"
     ],
@@ -16433,7 +16458,7 @@ client.declarations.post_v1declarations_lt_ivaz_generate(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">post_v1declarations_lt_intrastat_obligation</a>(...) -> PostV1DeclarationsLtIntrastatObligationResponse</code></summary>
+<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">lt_intrastat_obligation</a>(...) -> LtIntrastatObligationDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -16454,7 +16479,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.declarations.post_v1declarations_lt_intrastat_obligation(
+client.declarations.lt_intrastat_obligation(
     year=1000000,
 )
 
@@ -16492,7 +16517,7 @@ client.declarations.post_v1declarations_lt_intrastat_obligation(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">post_v1declarations_lt_isaf_generate</a>(...) -> PostV1DeclarationsLtIsafGenerateResponse</code></summary>
+<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">lt_isaf_generate</a>(...) -> LtIsafGenerateDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -16513,7 +16538,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.declarations.post_v1declarations_lt_isaf_generate(
+client.declarations.lt_isaf_generate(
     year=1000000,
     month=1000000,
 )
@@ -16548,7 +16573,7 @@ client.declarations.post_v1declarations_lt_isaf_generate(
 <dl>
 <dd>
 
-**data_type:** `typing.Optional[PostV1DeclarationsLtIsafGenerateRequestDataType]` 
+**data_type:** `typing.Optional[LtIsafGenerateDeclarationsRequestDataType]` 
     
 </dd>
 </dl>
@@ -16568,7 +16593,7 @@ client.declarations.post_v1declarations_lt_isaf_generate(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">post_v1declarations_lt_fr0600compute</a>(...) -> PostV1DeclarationsLtFr0600ComputeResponse</code></summary>
+<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">lt_fr0600compute</a>(...) -> LtFr0600ComputeDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -16589,7 +16614,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.declarations.post_v1declarations_lt_fr0600compute(
+client.declarations.lt_fr0600compute(
     year=1000000,
     month=1000000,
 )
@@ -16652,7 +16677,7 @@ client.declarations.post_v1declarations_lt_fr0600compute(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">post_v1declarations_lt_gpm313compute</a>(...) -> PostV1DeclarationsLtGpm313ComputeResponse</code></summary>
+<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">lt_gpm313compute</a>(...) -> LtGpm313ComputeDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -16673,7 +16698,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.declarations.post_v1declarations_lt_gpm313compute(
+client.declarations.lt_gpm313compute(
     year=1000000,
     month=1000000,
 )
@@ -16708,7 +16733,7 @@ client.declarations.post_v1declarations_lt_gpm313compute(
 <dl>
 <dd>
 
-**payout_timing:** `typing.Optional[PostV1DeclarationsLtGpm313ComputeRequestPayoutTiming]` 
+**payout_timing:** `typing.Optional[LtGpm313ComputeDeclarationsRequestPayoutTiming]` 
     
 </dd>
 </dl>
@@ -16736,7 +16761,7 @@ client.declarations.post_v1declarations_lt_gpm313compute(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">post_v1declarations_lt_sam_compute</a>(...) -> PostV1DeclarationsLtSamComputeResponse</code></summary>
+<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">lt_sam_compute</a>(...) -> LtSamComputeDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -16757,7 +16782,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.declarations.post_v1declarations_lt_sam_compute(
+client.declarations.lt_sam_compute(
     year=1000000,
     month=1000000,
 )
@@ -16804,7 +16829,7 @@ client.declarations.post_v1declarations_lt_sam_compute(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">post_v1declarations_lt_sd_generate</a>(...) -> PostV1DeclarationsLtSdGenerateResponse</code></summary>
+<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">lt_sd_generate</a>(...) -> LtSdGenerateDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -16819,16 +16844,17 @@ client.declarations.post_v1declarations_lt_sam_compute(
 ```python
 from nordlet import Nordlet
 from nordlet.environment import NordletEnvironment
+import datetime
 
 client = Nordlet(
     token="<token>",
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.declarations.post_v1declarations_lt_sd_generate(
+client.declarations.lt_sd_generate(
     type="1-SD",
-    from_date="fromDate",
-    to_date="toDate",
+    from_date=datetime.date.fromisoformat("2026-07-01"),
+    to_date=datetime.date.fromisoformat("2026-07-01"),
 )
 
 ```
@@ -16845,7 +16871,7 @@ client.declarations.post_v1declarations_lt_sd_generate(
 <dl>
 <dd>
 
-**type:** `PostV1DeclarationsLtSdGenerateRequestType` 
+**type:** `LtSdGenerateDeclarationsRequestType` 
     
 </dd>
 </dl>
@@ -16853,7 +16879,7 @@ client.declarations.post_v1declarations_lt_sd_generate(
 <dl>
 <dd>
 
-**from_date:** `str` 
+**from_date:** `datetime.date` 
     
 </dd>
 </dl>
@@ -16861,7 +16887,7 @@ client.declarations.post_v1declarations_lt_sd_generate(
 <dl>
 <dd>
 
-**to_date:** `str` 
+**to_date:** `datetime.date` 
     
 </dd>
 </dl>
@@ -16881,7 +16907,7 @@ client.declarations.post_v1declarations_lt_sd_generate(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">post_v1declarations_lt_saft_generate</a>(...) -> PostV1DeclarationsLtSaftGenerateResponse</code></summary>
+<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">lt_saft_generate</a>(...) -> LtSaftGenerateDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -16896,15 +16922,16 @@ client.declarations.post_v1declarations_lt_sd_generate(
 ```python
 from nordlet import Nordlet
 from nordlet.environment import NordletEnvironment
+import datetime
 
 client = Nordlet(
     token="<token>",
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.declarations.post_v1declarations_lt_saft_generate(
-    from_date="fromDate",
-    to_date="toDate",
+client.declarations.lt_saft_generate(
+    from_date=datetime.date.fromisoformat("2026-07-01"),
+    to_date=datetime.date.fromisoformat("2026-07-01"),
 )
 
 ```
@@ -16921,7 +16948,7 @@ client.declarations.post_v1declarations_lt_saft_generate(
 <dl>
 <dd>
 
-**from_date:** `str` 
+**from_date:** `datetime.date` 
     
 </dd>
 </dl>
@@ -16929,7 +16956,7 @@ client.declarations.post_v1declarations_lt_saft_generate(
 <dl>
 <dd>
 
-**to_date:** `str` 
+**to_date:** `datetime.date` 
     
 </dd>
 </dl>
@@ -16937,7 +16964,7 @@ client.declarations.post_v1declarations_lt_saft_generate(
 <dl>
 <dd>
 
-**data_type:** `typing.Optional[PostV1DeclarationsLtSaftGenerateRequestDataType]` 
+**data_type:** `typing.Optional[LtSaftGenerateDeclarationsRequestDataType]` 
     
 </dd>
 </dl>
@@ -16965,7 +16992,7 @@ client.declarations.post_v1declarations_lt_saft_generate(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">post_v1declarations_lt_ivaz_amend</a>(...) -> PostV1DeclarationsLtIvazAmendResponse</code></summary>
+<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">lt_ivaz_amend</a>(...) -> LtIvazAmendDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -16986,7 +17013,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.declarations.post_v1declarations_lt_ivaz_amend(
+client.declarations.lt_ivaz_amend(
     waybill_ids=[
         "waybillIds"
     ],
@@ -17034,7 +17061,7 @@ client.declarations.post_v1declarations_lt_ivaz_amend(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">post_v1declarations_lt_ivaz_cancel</a>(...) -> PostV1DeclarationsLtIvazCancelResponse</code></summary>
+<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">lt_ivaz_cancel</a>(...) -> LtIvazCancelDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -17049,16 +17076,16 @@ client.declarations.post_v1declarations_lt_ivaz_amend(
 ```python
 from nordlet import Nordlet
 from nordlet.environment import NordletEnvironment
-from nordlet.declarations import PostV1DeclarationsLtIvazCancelRequestEntriesItem
+from nordlet.declarations import LtIvazCancelDeclarationsRequestEntriesItem
 
 client = Nordlet(
     token="<token>",
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.declarations.post_v1declarations_lt_ivaz_cancel(
+client.declarations.lt_ivaz_cancel(
     entries=[
-        PostV1DeclarationsLtIvazCancelRequestEntriesItem(
+        LtIvazCancelDeclarationsRequestEntriesItem(
             waybill_id="waybillId",
             reason="1",
         )
@@ -17079,7 +17106,7 @@ client.declarations.post_v1declarations_lt_ivaz_cancel(
 <dl>
 <dd>
 
-**entries:** `typing.List[PostV1DeclarationsLtIvazCancelRequestEntriesItem]` 
+**entries:** `typing.List[LtIvazCancelDeclarationsRequestEntriesItem]` 
     
 </dd>
 </dl>
@@ -17107,7 +17134,7 @@ client.declarations.post_v1declarations_lt_ivaz_cancel(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">post_v1declarations_lt_fr0564compute</a>(...) -> PostV1DeclarationsLtFr0564ComputeResponse</code></summary>
+<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">lt_fr0564compute</a>(...) -> LtFr0564ComputeDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -17128,7 +17155,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.declarations.post_v1declarations_lt_fr0564compute(
+client.declarations.lt_fr0564compute(
     year=1000000,
     month=1000000,
 )
@@ -17175,7 +17202,7 @@ client.declarations.post_v1declarations_lt_fr0564compute(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">post_v1declarations_lt_gpm312compute</a>(...) -> PostV1DeclarationsLtGpm312ComputeResponse</code></summary>
+<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">lt_gpm312compute</a>(...) -> LtGpm312ComputeDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -17196,7 +17223,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.declarations.post_v1declarations_lt_gpm312compute(
+client.declarations.lt_gpm312compute(
     year=1000000,
 )
 
@@ -17222,7 +17249,7 @@ client.declarations.post_v1declarations_lt_gpm312compute(
 <dl>
 <dd>
 
-**payout_timing:** `typing.Optional[PostV1DeclarationsLtGpm312ComputeRequestPayoutTiming]` 
+**payout_timing:** `typing.Optional[LtGpm312ComputeDeclarationsRequestPayoutTiming]` 
     
 </dd>
 </dl>
@@ -17242,7 +17269,7 @@ client.declarations.post_v1declarations_lt_gpm312compute(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">post_v1declarations_lt_pln204compute</a>(...) -> PostV1DeclarationsLtPln204ComputeResponse</code></summary>
+<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">lt_pln204compute</a>(...) -> LtPln204ComputeDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -17263,7 +17290,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.declarations.post_v1declarations_lt_pln204compute(
+client.declarations.lt_pln204compute(
     year=1000000,
 )
 
@@ -17301,7 +17328,7 @@ client.declarations.post_v1declarations_lt_pln204compute(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">post_v1declarations_eu_oss_compute</a>(...) -> PostV1DeclarationsEuOssComputeResponse</code></summary>
+<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">eu_oss_compute</a>(...) -> EuOssComputeDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -17322,7 +17349,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.declarations.post_v1declarations_eu_oss_compute(
+client.declarations.eu_oss_compute(
     year=1000000,
     quarter=1000000,
 )
@@ -17369,7 +17396,7 @@ client.declarations.post_v1declarations_eu_oss_compute(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">post_v1declarations_eu_ioss_compute</a>(...) -> PostV1DeclarationsEuIossComputeResponse</code></summary>
+<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">eu_ioss_compute</a>(...) -> EuIossComputeDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -17390,7 +17417,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.declarations.post_v1declarations_eu_ioss_compute(
+client.declarations.eu_ioss_compute(
     year=1000000,
     month=1000000,
 )
@@ -17437,7 +17464,7 @@ client.declarations.post_v1declarations_eu_ioss_compute(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">post_v1declarations_eu_distance_sales_threshold_get</a>(...) -> PostV1DeclarationsEuDistanceSalesThresholdGetResponse</code></summary>
+<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">eu_distance_sales_threshold_get</a>(...) -> EuDistanceSalesThresholdGetDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -17458,7 +17485,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.declarations.post_v1declarations_eu_distance_sales_threshold_get()
+client.declarations.eu_distance_sales_threshold_get()
 
 ```
 </dd>
@@ -17474,7 +17501,7 @@ client.declarations.post_v1declarations_eu_distance_sales_threshold_get()
 <dl>
 <dd>
 
-**date:** `typing.Optional[str]` 
+**date:** `typing.Optional[datetime.date]` 
     
 </dd>
 </dl>
@@ -17494,7 +17521,7 @@ client.declarations.post_v1declarations_eu_distance_sales_threshold_get()
 </dl>
 </details>
 
-<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">post_v1declarations_eu_union_turnover_get</a>(...) -> PostV1DeclarationsEuUnionTurnoverGetResponse</code></summary>
+<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">eu_union_turnover_get</a>(...) -> EuUnionTurnoverGetDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -17515,7 +17542,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.declarations.post_v1declarations_eu_union_turnover_get()
+client.declarations.eu_union_turnover_get()
 
 ```
 </dd>
@@ -17531,7 +17558,7 @@ client.declarations.post_v1declarations_eu_union_turnover_get()
 <dl>
 <dd>
 
-**date:** `typing.Optional[str]` 
+**date:** `typing.Optional[datetime.date]` 
     
 </dd>
 </dl>
@@ -17551,7 +17578,7 @@ client.declarations.post_v1declarations_eu_union_turnover_get()
 </dl>
 </details>
 
-<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">post_v1declarations_eu_sme_cross_border_report_compute</a>(...) -> PostV1DeclarationsEuSmeCrossBorderReportComputeResponse</code></summary>
+<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">eu_sme_cross_border_report_compute</a>(...) -> EuSmeCrossBorderReportComputeDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -17572,7 +17599,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.declarations.post_v1declarations_eu_sme_cross_border_report_compute(
+client.declarations.eu_sme_cross_border_report_compute(
     year=1000000,
     quarter=1000000,
 )
@@ -17619,7 +17646,7 @@ client.declarations.post_v1declarations_eu_sme_cross_border_report_compute(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">post_v1declarations_eu_sme_thresholds_list</a>() -> PostV1DeclarationsEuSmeThresholdsListResponse</code></summary>
+<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">eu_sme_thresholds_list</a>() -> EuSmeThresholdsListDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -17640,7 +17667,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.declarations.post_v1declarations_eu_sme_thresholds_list()
+client.declarations.eu_sme_thresholds_list()
 
 ```
 </dd>
@@ -17668,7 +17695,7 @@ client.declarations.post_v1declarations_eu_sme_thresholds_list()
 </dl>
 </details>
 
-<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">post_v1declarations_eu_sme_threshold_get</a>(...) -> PostV1DeclarationsEuSmeThresholdGetResponse</code></summary>
+<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">eu_sme_threshold_get</a>(...) -> EuSmeThresholdGetDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -17689,7 +17716,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.declarations.post_v1declarations_eu_sme_threshold_get()
+client.declarations.eu_sme_threshold_get()
 
 ```
 </dd>
@@ -17705,7 +17732,7 @@ client.declarations.post_v1declarations_eu_sme_threshold_get()
 <dl>
 <dd>
 
-**date:** `typing.Optional[str]` 
+**date:** `typing.Optional[datetime.date]` 
     
 </dd>
 </dl>
@@ -17725,7 +17752,7 @@ client.declarations.post_v1declarations_eu_sme_threshold_get()
 </dl>
 </details>
 
-<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">post_v1declarations_eu_vat_return_packs_list</a>() -> PostV1DeclarationsEuVatReturnPacksListResponse</code></summary>
+<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">eu_vat_return_packs_list</a>() -> EuVatReturnPacksListDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -17746,7 +17773,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.declarations.post_v1declarations_eu_vat_return_packs_list()
+client.declarations.eu_vat_return_packs_list()
 
 ```
 </dd>
@@ -17774,7 +17801,7 @@ client.declarations.post_v1declarations_eu_vat_return_packs_list()
 </dl>
 </details>
 
-<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">post_v1declarations_eu_vat_return_compute</a>(...) -> PostV1DeclarationsEuVatReturnComputeResponse</code></summary>
+<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">eu_vat_return_compute</a>(...) -> EuVatReturnComputeDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -17795,7 +17822,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.declarations.post_v1declarations_eu_vat_return_compute(
+client.declarations.eu_vat_return_compute(
     country_code="countryCode",
     year=1000000,
     month=1000000,
@@ -17859,7 +17886,7 @@ client.declarations.post_v1declarations_eu_vat_return_compute(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">post_v1declarations_pl_jpk_v7m_generate</a>(...) -> PostV1DeclarationsPlJpkV7MGenerateResponse</code></summary>
+<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">pl_jpk_v7m_generate</a>(...) -> PlJpkV7MGenerateDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -17894,7 +17921,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.declarations.post_v1declarations_pl_jpk_v7m_generate(
+client.declarations.pl_jpk_v7m_generate(
     year=1000000,
     month=1000000,
     kod_urzedu="kodUrzedu",
@@ -17967,7 +17994,7 @@ client.declarations.post_v1declarations_pl_jpk_v7m_generate(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">post_v1declarations_pl_vat_ue_generate</a>(...) -> PostV1DeclarationsPlVatUeGenerateResponse</code></summary>
+<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">pl_vat_ue_generate</a>(...) -> PlVatUeGenerateDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -18002,7 +18029,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.declarations.post_v1declarations_pl_vat_ue_generate(
+client.declarations.pl_vat_ue_generate(
     year=1000000,
     month=1000000,
 )
@@ -18049,7 +18076,7 @@ client.declarations.post_v1declarations_pl_vat_ue_generate(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">post_v1declarations_pl_intrastat_generate</a>(...) -> PostV1DeclarationsPlIntrastatGenerateResponse</code></summary>
+<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">pl_intrastat_generate</a>(...) -> PlIntrastatGenerateDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -18084,7 +18111,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.declarations.post_v1declarations_pl_intrastat_generate(
+client.declarations.pl_intrastat_generate(
     year=1000000,
     month=1000000,
     flow="arrivals",
@@ -18120,7 +18147,7 @@ client.declarations.post_v1declarations_pl_intrastat_generate(
 <dl>
 <dd>
 
-**flow:** `PostV1DeclarationsPlIntrastatGenerateRequestFlow` 
+**flow:** `PlIntrastatGenerateDeclarationsRequestFlow` 
     
 </dd>
 </dl>
@@ -18148,7 +18175,7 @@ client.declarations.post_v1declarations_pl_intrastat_generate(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">post_v1declarations_pl_ksef_received_list</a>(...) -> PostV1DeclarationsPlKsefReceivedListResponse</code></summary>
+<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">pl_ksef_received_list</a>(...) -> PlKsefReceivedListDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -18184,7 +18211,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.declarations.post_v1declarations_pl_ksef_received_list(
+client.declarations.pl_ksef_received_list(
     from_=datetime.datetime.fromisoformat("2024-01-15T09:30:00+00:00"),
     to=datetime.datetime.fromisoformat("2024-01-15T09:30:00+00:00"),
 )
@@ -18247,7 +18274,7 @@ client.declarations.post_v1declarations_pl_ksef_received_list(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">post_v1declarations_pl_ksef_received_fetch</a>(...) -> PostV1DeclarationsPlKsefReceivedFetchResponse</code></summary>
+<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">pl_ksef_received_fetch</a>(...) -> PlKsefReceivedFetchDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -18282,7 +18309,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.declarations.post_v1declarations_pl_ksef_received_fetch(
+client.declarations.pl_ksef_received_fetch(
     ksef_number="ksefNumber",
 )
 
@@ -18328,7 +18355,7 @@ client.declarations.post_v1declarations_pl_ksef_received_fetch(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">post_v1declarations_pl_ksef_receipt</a>(...) -> PostV1DeclarationsPlKsefReceiptResponse</code></summary>
+<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">pl_ksef_receipt</a>(...) -> PlKsefReceiptDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -18363,7 +18390,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.declarations.post_v1declarations_pl_ksef_receipt()
+client.declarations.pl_ksef_receipt()
 
 ```
 </dd>
@@ -18399,7 +18426,7 @@ client.declarations.post_v1declarations_pl_ksef_receipt()
 </dl>
 </details>
 
-<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">tax_adjustments_recorded_for_a_tax_year</a>(...) -> PostV1DeclarationsTaxAdjustmentsListResponse</code></summary>
+<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">tax_adjustments_list</a>(...) -> TaxAdjustmentsListDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -18434,7 +18461,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.declarations.tax_adjustments_recorded_for_a_tax_year(
+client.declarations.tax_adjustments_list(
     year=1000000,
 )
 
@@ -18472,7 +18499,7 @@ client.declarations.tax_adjustments_recorded_for_a_tax_year(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">record_a_tax_adjustment_for_a_tax_year</a>(...) -> PostV1DeclarationsTaxAdjustmentsCreateResponse</code></summary>
+<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">tax_adjustments_create</a>(...) -> TaxAdjustmentsCreateDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -18493,10 +18520,10 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.declarations.record_a_tax_adjustment_for_a_tax_year(
+client.declarations.tax_adjustments_create(
     year=1000000,
     kind="non_deductible",
-    amount="amount",
+    amount="121.00",
     description="description",
 )
 
@@ -18522,7 +18549,7 @@ client.declarations.record_a_tax_adjustment_for_a_tax_year(
 <dl>
 <dd>
 
-**kind:** `PostV1DeclarationsTaxAdjustmentsCreateRequestKind` 
+**kind:** `TaxAdjustmentsCreateDeclarationsRequestKind` 
     
 </dd>
 </dl>
@@ -18566,7 +18593,7 @@ client.declarations.record_a_tax_adjustment_for_a_tax_year(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">change_a_recorded_tax_adjustment</a>(...) -> PostV1DeclarationsTaxAdjustmentsUpdateResponse</code></summary>
+<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">tax_adjustments_update</a>(...) -> TaxAdjustmentsUpdateDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -18587,7 +18614,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.declarations.change_a_recorded_tax_adjustment(
+client.declarations.tax_adjustments_update(
     id="id",
 )
 
@@ -18613,7 +18640,7 @@ client.declarations.change_a_recorded_tax_adjustment(
 <dl>
 <dd>
 
-**kind:** `typing.Optional[PostV1DeclarationsTaxAdjustmentsUpdateRequestKind]` 
+**kind:** `typing.Optional[TaxAdjustmentsUpdateDeclarationsRequestKind]` 
     
 </dd>
 </dl>
@@ -18657,7 +18684,7 @@ client.declarations.change_a_recorded_tax_adjustment(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">remove_a_recorded_tax_adjustment</a>(...) -> PostV1DeclarationsTaxAdjustmentsDeleteResponse</code></summary>
+<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">tax_adjustments_delete</a>(...) -> TaxAdjustmentsDeleteDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -18678,7 +18705,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.declarations.remove_a_recorded_tax_adjustment(
+client.declarations.tax_adjustments_delete(
     id="id",
 )
 
@@ -18716,7 +18743,7 @@ client.declarations.remove_a_recorded_tax_adjustment(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">payments_already_made_towards_a_tax_of_a_year</a>(...) -> PostV1DeclarationsTaxPaymentsListResponse</code></summary>
+<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">tax_payments_list</a>(...) -> TaxPaymentsListDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -18751,7 +18778,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.declarations.payments_already_made_towards_a_tax_of_a_year(
+client.declarations.tax_payments_list(
     tax="corporate_income_tax",
     year=1000000,
 )
@@ -18770,7 +18797,7 @@ client.declarations.payments_already_made_towards_a_tax_of_a_year(
 <dl>
 <dd>
 
-**tax:** `PostV1DeclarationsTaxPaymentsListRequestTax` 
+**tax:** `TaxPaymentsListDeclarationsRequestTax` 
     
 </dd>
 </dl>
@@ -18806,7 +18833,7 @@ client.declarations.payments_already_made_towards_a_tax_of_a_year(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">record_a_payment_made_towards_a_tax</a>(...) -> PostV1DeclarationsTaxPaymentsCreateResponse</code></summary>
+<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">tax_payments_create</a>(...) -> TaxPaymentsCreateDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -18821,18 +18848,19 @@ client.declarations.payments_already_made_towards_a_tax_of_a_year(
 ```python
 from nordlet import Nordlet
 from nordlet.environment import NordletEnvironment
+import datetime
 
 client = Nordlet(
     token="<token>",
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.declarations.record_a_payment_made_towards_a_tax(
+client.declarations.tax_payments_create(
     tax="corporate_income_tax",
     year=1000000,
     kind="advance",
-    amount="amount",
-    paid_on="paidOn",
+    amount="121.00",
+    paid_on=datetime.date.fromisoformat("2026-07-01"),
     description="description",
 )
 
@@ -18850,7 +18878,7 @@ client.declarations.record_a_payment_made_towards_a_tax(
 <dl>
 <dd>
 
-**tax:** `PostV1DeclarationsTaxPaymentsCreateRequestTax` 
+**tax:** `TaxPaymentsCreateDeclarationsRequestTax` 
     
 </dd>
 </dl>
@@ -18866,7 +18894,7 @@ client.declarations.record_a_payment_made_towards_a_tax(
 <dl>
 <dd>
 
-**kind:** `PostV1DeclarationsTaxPaymentsCreateRequestKind` 
+**kind:** `TaxPaymentsCreateDeclarationsRequestKind` 
     
 </dd>
 </dl>
@@ -18882,7 +18910,7 @@ client.declarations.record_a_payment_made_towards_a_tax(
 <dl>
 <dd>
 
-**paid_on:** `str` 
+**paid_on:** `datetime.date` 
     
 </dd>
 </dl>
@@ -18926,7 +18954,7 @@ client.declarations.record_a_payment_made_towards_a_tax(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">change_a_recorded_tax_payment</a>(...) -> PostV1DeclarationsTaxPaymentsUpdateResponse</code></summary>
+<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">tax_payments_update</a>(...) -> TaxPaymentsUpdateDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -18947,7 +18975,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.declarations.change_a_recorded_tax_payment(
+client.declarations.tax_payments_update(
     id="id",
 )
 
@@ -18973,7 +19001,7 @@ client.declarations.change_a_recorded_tax_payment(
 <dl>
 <dd>
 
-**kind:** `typing.Optional[PostV1DeclarationsTaxPaymentsUpdateRequestKind]` 
+**kind:** `typing.Optional[TaxPaymentsUpdateDeclarationsRequestKind]` 
     
 </dd>
 </dl>
@@ -18989,7 +19017,7 @@ client.declarations.change_a_recorded_tax_payment(
 <dl>
 <dd>
 
-**paid_on:** `typing.Optional[str]` 
+**paid_on:** `typing.Optional[datetime.date]` 
     
 </dd>
 </dl>
@@ -19025,7 +19053,7 @@ client.declarations.change_a_recorded_tax_payment(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">remove_a_recorded_tax_payment</a>(...) -> PostV1DeclarationsTaxPaymentsDeleteResponse</code></summary>
+<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">tax_payments_delete</a>(...) -> TaxPaymentsDeleteDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -19046,7 +19074,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.declarations.remove_a_recorded_tax_payment(
+client.declarations.tax_payments_delete(
     id="id",
 )
 
@@ -19084,7 +19112,7 @@ client.declarations.remove_a_recorded_tax_payment(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">adoption_and_signing_facts_of_the_annual_accounts_of_a_year</a>(...) -> PostV1DeclarationsAnnualAccountsGetResponse</code></summary>
+<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">annual_accounts_get</a>(...) -> AnnualAccountsGetDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -19119,7 +19147,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.declarations.adoption_and_signing_facts_of_the_annual_accounts_of_a_year(
+client.declarations.annual_accounts_get(
     year=1000000,
 )
 
@@ -19157,7 +19185,7 @@ client.declarations.adoption_and_signing_facts_of_the_annual_accounts_of_a_year(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">record_the_adoption_and_preparation_of_the_annual_accounts_of_a_year</a>(...) -> PostV1DeclarationsAnnualAccountsSetResponse</code></summary>
+<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">annual_accounts_set</a>(...) -> AnnualAccountsSetDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -19172,16 +19200,17 @@ client.declarations.adoption_and_signing_facts_of_the_annual_accounts_of_a_year(
 ```python
 from nordlet import Nordlet
 from nordlet.environment import NordletEnvironment
+import datetime
 
 client = Nordlet(
     token="<token>",
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.declarations.record_the_adoption_and_preparation_of_the_annual_accounts_of_a_year(
+client.declarations.annual_accounts_set(
     year=1000000,
     adopted=True,
-    date_of_preparation="dateOfPreparation",
+    date_of_preparation=datetime.date.fromisoformat("2026-07-01"),
 )
 
 ```
@@ -19214,7 +19243,7 @@ client.declarations.record_the_adoption_and_preparation_of_the_annual_accounts_o
 <dl>
 <dd>
 
-**date_of_preparation:** `str` 
+**date_of_preparation:** `datetime.date` 
     
 </dd>
 </dl>
@@ -19222,7 +19251,7 @@ client.declarations.record_the_adoption_and_preparation_of_the_annual_accounts_o
 <dl>
 <dd>
 
-**adoption_date:** `typing.Optional[str]` 
+**adoption_date:** `typing.Optional[datetime.date]` 
     
 </dd>
 </dl>
@@ -19278,7 +19307,7 @@ client.declarations.record_the_adoption_and_preparation_of_the_annual_accounts_o
 <dl>
 <dd>
 
-**auditor_report_date:** `typing.Optional[str]` 
+**auditor_report_date:** `typing.Optional[datetime.date]` 
     
 </dd>
 </dl>
@@ -19322,7 +19351,7 @@ client.declarations.record_the_adoption_and_preparation_of_the_annual_accounts_o
 </dl>
 </details>
 
-<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">record_whether_a_director_signed_the_annual_accounts_of_a_year</a>(...) -> PostV1DeclarationsAnnualAccountsSignaturesCreateResponse</code></summary>
+<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">annual_accounts_signatures_create</a>(...) -> AnnualAccountsSignaturesCreateDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -19343,7 +19372,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.declarations.record_whether_a_director_signed_the_annual_accounts_of_a_year(
+client.declarations.annual_accounts_signatures_create(
     year=1000000,
     director_name="directorName",
     director_type="managing_current",
@@ -19380,7 +19409,7 @@ client.declarations.record_whether_a_director_signed_the_annual_accounts_of_a_ye
 <dl>
 <dd>
 
-**director_type:** `PostV1DeclarationsAnnualAccountsSignaturesCreateRequestDirectorType` 
+**director_type:** `AnnualAccountsSignaturesCreateDeclarationsRequestDirectorType` 
     
 </dd>
 </dl>
@@ -19396,7 +19425,7 @@ client.declarations.record_whether_a_director_signed_the_annual_accounts_of_a_ye
 <dl>
 <dd>
 
-**signed_on:** `typing.Optional[str]` 
+**signed_on:** `typing.Optional[datetime.date]` 
     
 </dd>
 </dl>
@@ -19404,7 +19433,7 @@ client.declarations.record_whether_a_director_signed_the_annual_accounts_of_a_ye
 <dl>
 <dd>
 
-**signed_at:** `typing.Optional[str]` 
+**signed_at:** `typing.Optional[datetime.datetime]` 
     
 </dd>
 </dl>
@@ -19432,7 +19461,7 @@ client.declarations.record_whether_a_director_signed_the_annual_accounts_of_a_ye
 </dl>
 </details>
 
-<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">change_a_recorded_director_signature</a>(...) -> PostV1DeclarationsAnnualAccountsSignaturesUpdateResponse</code></summary>
+<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">annual_accounts_signatures_update</a>(...) -> AnnualAccountsSignaturesUpdateDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -19453,7 +19482,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.declarations.change_a_recorded_director_signature(
+client.declarations.annual_accounts_signatures_update(
     id="id",
     director_name="directorName",
     director_type="managing_current",
@@ -19490,7 +19519,7 @@ client.declarations.change_a_recorded_director_signature(
 <dl>
 <dd>
 
-**director_type:** `PostV1DeclarationsAnnualAccountsSignaturesUpdateRequestDirectorType` 
+**director_type:** `AnnualAccountsSignaturesUpdateDeclarationsRequestDirectorType` 
     
 </dd>
 </dl>
@@ -19506,7 +19535,7 @@ client.declarations.change_a_recorded_director_signature(
 <dl>
 <dd>
 
-**signed_on:** `typing.Optional[str]` 
+**signed_on:** `typing.Optional[datetime.date]` 
     
 </dd>
 </dl>
@@ -19514,7 +19543,7 @@ client.declarations.change_a_recorded_director_signature(
 <dl>
 <dd>
 
-**signed_at:** `typing.Optional[str]` 
+**signed_at:** `typing.Optional[datetime.datetime]` 
     
 </dd>
 </dl>
@@ -19542,7 +19571,7 @@ client.declarations.change_a_recorded_director_signature(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">remove_a_recorded_director_signature</a>(...) -> PostV1DeclarationsAnnualAccountsSignaturesDeleteResponse</code></summary>
+<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">annual_accounts_signatures_delete</a>(...) -> AnnualAccountsSignaturesDeleteDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -19563,7 +19592,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.declarations.remove_a_recorded_director_signature(
+client.declarations.annual_accounts_signatures_delete(
     id="id",
 )
 
@@ -19601,7 +19630,7 @@ client.declarations.remove_a_recorded_director_signature(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">record_a_decision_to_distribute_profit_a_dividend_an_interim_dividend_or_a_payment_treated_as_one</a>(...) -> PostV1DeclarationsAnnualAccountsDistributionsCreateResponse</code></summary>
+<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">annual_accounts_distributions_create</a>(...) -> AnnualAccountsDistributionsCreateDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -19616,17 +19645,18 @@ client.declarations.remove_a_recorded_director_signature(
 ```python
 from nordlet import Nordlet
 from nordlet.environment import NordletEnvironment
+import datetime
 
 client = Nordlet(
     token="<token>",
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.declarations.record_a_decision_to_distribute_profit_a_dividend_an_interim_dividend_or_a_payment_treated_as_one(
+client.declarations.annual_accounts_distributions_create(
     year=1000000,
-    decided_on="decidedOn",
+    decided_on=datetime.date.fromisoformat("2026-07-01"),
     kind="dividend",
-    amount="amount",
+    amount="121.00",
 )
 
 ```
@@ -19651,7 +19681,7 @@ client.declarations.record_a_decision_to_distribute_profit_a_dividend_an_interim
 <dl>
 <dd>
 
-**decided_on:** `str` 
+**decided_on:** `datetime.date` 
     
 </dd>
 </dl>
@@ -19659,7 +19689,7 @@ client.declarations.record_a_decision_to_distribute_profit_a_dividend_an_interim
 <dl>
 <dd>
 
-**kind:** `PostV1DeclarationsAnnualAccountsDistributionsCreateRequestKind` 
+**kind:** `AnnualAccountsDistributionsCreateDeclarationsRequestKind` 
     
 </dd>
 </dl>
@@ -19695,7 +19725,7 @@ client.declarations.record_a_decision_to_distribute_profit_a_dividend_an_interim
 </dl>
 </details>
 
-<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">change_a_recorded_profit_distribution</a>(...) -> PostV1DeclarationsAnnualAccountsDistributionsUpdateResponse</code></summary>
+<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">annual_accounts_distributions_update</a>(...) -> AnnualAccountsDistributionsUpdateDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -19710,17 +19740,18 @@ client.declarations.record_a_decision_to_distribute_profit_a_dividend_an_interim
 ```python
 from nordlet import Nordlet
 from nordlet.environment import NordletEnvironment
+import datetime
 
 client = Nordlet(
     token="<token>",
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.declarations.change_a_recorded_profit_distribution(
+client.declarations.annual_accounts_distributions_update(
     id="id",
-    decided_on="decidedOn",
+    decided_on=datetime.date.fromisoformat("2026-07-01"),
     kind="dividend",
-    amount="amount",
+    amount="121.00",
 )
 
 ```
@@ -19745,7 +19776,7 @@ client.declarations.change_a_recorded_profit_distribution(
 <dl>
 <dd>
 
-**decided_on:** `str` 
+**decided_on:** `datetime.date` 
     
 </dd>
 </dl>
@@ -19753,7 +19784,7 @@ client.declarations.change_a_recorded_profit_distribution(
 <dl>
 <dd>
 
-**kind:** `PostV1DeclarationsAnnualAccountsDistributionsUpdateRequestKind` 
+**kind:** `AnnualAccountsDistributionsUpdateDeclarationsRequestKind` 
     
 </dd>
 </dl>
@@ -19789,7 +19820,7 @@ client.declarations.change_a_recorded_profit_distribution(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">remove_a_recorded_profit_distribution</a>(...) -> PostV1DeclarationsAnnualAccountsDistributionsDeleteResponse</code></summary>
+<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">annual_accounts_distributions_delete</a>(...) -> AnnualAccountsDistributionsDeleteDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -19810,7 +19841,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.declarations.remove_a_recorded_profit_distribution(
+client.declarations.annual_accounts_distributions_delete(
     id="id",
 )
 
@@ -19848,7 +19879,7 @@ client.declarations.remove_a_recorded_profit_distribution(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">attach_an_uploaded_document_to_the_annual_accounts_of_a_year</a>(...) -> PostV1DeclarationsAnnualAccountsAttachmentsAddResponse</code></summary>
+<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">annual_accounts_attachments_add</a>(...) -> AnnualAccountsAttachmentsAddDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -19883,7 +19914,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.declarations.attach_an_uploaded_document_to_the_annual_accounts_of_a_year(
+client.declarations.annual_accounts_attachments_add(
     year=1000000,
     kind="full_report",
     ref="ref",
@@ -19911,7 +19942,7 @@ client.declarations.attach_an_uploaded_document_to_the_annual_accounts_of_a_year
 <dl>
 <dd>
 
-**kind:** `PostV1DeclarationsAnnualAccountsAttachmentsAddRequestKind` 
+**kind:** `AnnualAccountsAttachmentsAddDeclarationsRequestKind` 
     
 </dd>
 </dl>
@@ -19947,7 +19978,7 @@ client.declarations.attach_an_uploaded_document_to_the_annual_accounts_of_a_year
 </dl>
 </details>
 
-<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">remove_a_document_attached_to_the_annual_accounts_and_delete_its_file</a>(...) -> PostV1DeclarationsAnnualAccountsAttachmentsDeleteResponse</code></summary>
+<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">annual_accounts_attachments_delete</a>(...) -> AnnualAccountsAttachmentsDeleteDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -19968,7 +19999,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.declarations.remove_a_document_attached_to_the_annual_accounts_and_delete_its_file(
+client.declarations.annual_accounts_attachments_delete(
     id="id",
 )
 
@@ -20006,7 +20037,7 @@ client.declarations.remove_a_document_attached_to_the_annual_accounts_and_delete
 </dl>
 </details>
 
-<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">post_v1declarations_cy_td4generate</a>(...) -> PostV1DeclarationsCyTd4GenerateResponse</code></summary>
+<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">cy_td4generate</a>(...) -> CyTd4GenerateDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -20041,7 +20072,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.declarations.post_v1declarations_cy_td4generate(
+client.declarations.cy_td4generate(
     year=1000000,
 )
 
@@ -20079,7 +20110,7 @@ client.declarations.post_v1declarations_cy_td4generate(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">post_v1declarations_cy_he32generate</a>(...) -> PostV1DeclarationsCyHe32GenerateResponse</code></summary>
+<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">cy_he32generate</a>(...) -> CyHe32GenerateDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -20114,7 +20145,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.declarations.post_v1declarations_cy_he32generate(
+client.declarations.cy_he32generate(
     year=1000000,
 )
 
@@ -20152,7 +20183,7 @@ client.declarations.post_v1declarations_cy_he32generate(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">post_v1declarations_de_returns_generate</a>(...) -> PostV1DeclarationsDeReturnsGenerateResponse</code></summary>
+<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">de_returns_generate</a>(...) -> DeReturnsGenerateDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -20187,7 +20218,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.declarations.post_v1declarations_de_returns_generate(
+client.declarations.de_returns_generate(
     rule_key="de-e-bilanz",
     period="period",
 )
@@ -20206,7 +20237,7 @@ client.declarations.post_v1declarations_de_returns_generate(
 <dl>
 <dd>
 
-**rule_key:** `PostV1DeclarationsDeReturnsGenerateRequestRuleKey` 
+**rule_key:** `DeReturnsGenerateDeclarationsRequestRuleKey` 
     
 </dd>
 </dl>
@@ -20234,7 +20265,7 @@ client.declarations.post_v1declarations_de_returns_generate(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">post_v1declarations_de_return_facts_get</a>(...) -> PostV1DeclarationsDeReturnFactsGetResponse</code></summary>
+<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">de_return_facts_get</a>(...) -> DeReturnFactsGetDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -20269,7 +20300,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.declarations.post_v1declarations_de_return_facts_get(
+client.declarations.de_return_facts_get(
     year=1000000,
 )
 
@@ -20307,7 +20338,7 @@ client.declarations.post_v1declarations_de_return_facts_get(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">post_v1declarations_de_return_facts_set</a>(...) -> PostV1DeclarationsDeReturnFactsSetResponse</code></summary>
+<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">de_return_facts_set</a>(...) -> DeReturnFactsSetDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -20336,16 +20367,16 @@ Replace the facts of one year for the German annual returns. The returns built a
 ```python
 from nordlet import Nordlet
 from nordlet.environment import NordletEnvironment
-from nordlet.declarations import PostV1DeclarationsDeReturnFactsSetRequestFacts
+from nordlet.declarations import DeReturnFactsSetDeclarationsRequestFacts
 
 client = Nordlet(
     token="<token>",
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.declarations.post_v1declarations_de_return_facts_set(
+client.declarations.de_return_facts_set(
     year=1000000,
-    facts=PostV1DeclarationsDeReturnFactsSetRequestFacts(),
+    facts=DeReturnFactsSetDeclarationsRequestFacts(),
 )
 
 ```
@@ -20370,7 +20401,7 @@ client.declarations.post_v1declarations_de_return_facts_set(
 <dl>
 <dd>
 
-**facts:** `PostV1DeclarationsDeReturnFactsSetRequestFacts` 
+**facts:** `DeReturnFactsSetDeclarationsRequestFacts` 
     
 </dd>
 </dl>
@@ -20390,7 +20421,7 @@ client.declarations.post_v1declarations_de_return_facts_set(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">post_v1declarations_de_deuev_generate</a>(...) -> PostV1DeclarationsDeDeuevGenerateResponse</code></summary>
+<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">de_deuev_generate</a>(...) -> DeDeuevGenerateDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -20425,7 +20456,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.declarations.post_v1declarations_de_deuev_generate(
+client.declarations.de_deuev_generate(
     year=1000000,
     month=1000000,
 )
@@ -20472,7 +20503,7 @@ client.declarations.post_v1declarations_de_deuev_generate(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">post_v1declarations_de_beitragsnachweis_generate</a>(...) -> PostV1DeclarationsDeBeitragsnachweisGenerateResponse</code></summary>
+<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">de_beitragsnachweis_generate</a>(...) -> DeBeitragsnachweisGenerateDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -20507,7 +20538,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.declarations.post_v1declarations_de_beitragsnachweis_generate(
+client.declarations.de_beitragsnachweis_generate(
     year=1000000,
     month=1000000,
 )
@@ -20554,7 +20585,7 @@ client.declarations.post_v1declarations_de_beitragsnachweis_generate(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">post_v1declarations_dk_selskabsskat_generate</a>(...) -> PostV1DeclarationsDkSelskabsskatGenerateResponse</code></summary>
+<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">dk_selskabsskat_generate</a>(...) -> DkSelskabsskatGenerateDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -20589,7 +20620,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.declarations.post_v1declarations_dk_selskabsskat_generate(
+client.declarations.dk_selskabsskat_generate(
     year=1000000,
 )
 
@@ -20627,7 +20658,7 @@ client.declarations.post_v1declarations_dk_selskabsskat_generate(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">post_v1declarations_ee_employment_register_send</a>(...) -> PostV1DeclarationsEeEmploymentRegisterSendResponse</code></summary>
+<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">ee_employment_register_send</a>(...) -> EeEmploymentRegisterSendDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -20662,7 +20693,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.declarations.post_v1declarations_ee_employment_register_send(
+client.declarations.ee_employment_register_send(
     contract_id="contractId",
     event="start",
 )
@@ -20689,7 +20720,7 @@ client.declarations.post_v1declarations_ee_employment_register_send(
 <dl>
 <dd>
 
-**event:** `PostV1DeclarationsEeEmploymentRegisterSendRequestEvent` 
+**event:** `EeEmploymentRegisterSendDeclarationsRequestEvent` 
     
 </dd>
 </dl>
@@ -20709,7 +20740,7 @@ client.declarations.post_v1declarations_ee_employment_register_send(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">post_v1declarations_es_verifactu_declaracion_responsable</a>() -> PostV1DeclarationsEsVerifactuDeclaracionResponsableResponse</code></summary>
+<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">es_verifactu_declaracion_responsable</a>() -> EsVerifactuDeclaracionResponsableDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -20744,7 +20775,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.declarations.post_v1declarations_es_verifactu_declaracion_responsable()
+client.declarations.es_verifactu_declaracion_responsable()
 
 ```
 </dd>
@@ -20772,7 +20803,7 @@ client.declarations.post_v1declarations_es_verifactu_declaracion_responsable()
 </dl>
 </details>
 
-<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">post_v1declarations_ie_ct1generate</a>(...) -> PostV1DeclarationsIeCt1GenerateResponse</code></summary>
+<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">ie_ct1generate</a>(...) -> IeCt1GenerateDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -20807,7 +20838,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.declarations.post_v1declarations_ie_ct1generate(
+client.declarations.ie_ct1generate(
     year=1000000,
 )
 
@@ -20845,7 +20876,7 @@ client.declarations.post_v1declarations_ie_ct1generate(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">post_v1declarations_ie_b1generate</a>(...) -> PostV1DeclarationsIeB1GenerateResponse</code></summary>
+<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">ie_b1generate</a>(...) -> IeB1GenerateDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -20880,7 +20911,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.declarations.post_v1declarations_ie_b1generate(
+client.declarations.ie_b1generate(
     year=1000000,
 )
 
@@ -20918,7 +20949,7 @@ client.declarations.post_v1declarations_ie_b1generate(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">post_v1declarations_it_sdi_purchase_send</a>(...) -> PostV1DeclarationsItSdiPurchaseSendResponse</code></summary>
+<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">it_sdi_purchase_send</a>(...) -> ItSdiPurchaseSendDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -20953,7 +20984,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.declarations.post_v1declarations_it_sdi_purchase_send(
+client.declarations.it_sdi_purchase_send(
     purchase_invoice_id="purchaseInvoiceId",
 )
 
@@ -20987,7 +21018,7 @@ client.declarations.post_v1declarations_it_sdi_purchase_send(
 <dl>
 <dd>
 
-**tipo_documento:** `typing.Optional[PostV1DeclarationsItSdiPurchaseSendRequestTipoDocumento]` 
+**tipo_documento:** `typing.Optional[ItSdiPurchaseSendDeclarationsRequestTipoDocumento]` 
     
 </dd>
 </dl>
@@ -21007,7 +21038,7 @@ client.declarations.post_v1declarations_it_sdi_purchase_send(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">post_v1declarations_it_sdi_purchase_preview</a>(...) -> PostV1DeclarationsItSdiPurchasePreviewResponse</code></summary>
+<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">it_sdi_purchase_preview</a>(...) -> ItSdiPurchasePreviewDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -21042,7 +21073,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.declarations.post_v1declarations_it_sdi_purchase_preview(
+client.declarations.it_sdi_purchase_preview(
     purchase_invoice_id="purchaseInvoiceId",
 )
 
@@ -21076,7 +21107,7 @@ client.declarations.post_v1declarations_it_sdi_purchase_preview(
 <dl>
 <dd>
 
-**tipo_documento:** `typing.Optional[PostV1DeclarationsItSdiPurchasePreviewRequestTipoDocumento]` 
+**tipo_documento:** `typing.Optional[ItSdiPurchasePreviewDeclarationsRequestTipoDocumento]` 
     
 </dd>
 </dl>
@@ -21096,7 +21127,7 @@ client.declarations.post_v1declarations_it_sdi_purchase_preview(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">post_v1declarations_lt_saft_send</a>(...) -> PostV1DeclarationsLtSaftSendResponse</code></summary>
+<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">lt_saft_send</a>(...) -> LtSaftSendDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -21108,7 +21139,7 @@ client.declarations.post_v1declarations_it_sdi_purchase_preview(
 <dl>
 <dd>
 
-Upload the SAF-T file to i.SAF-T over the iSAFTUploaderService web service and start its processing. The submission itself is confirmed separately, because after confirmation the file can no longer be corrected.
+Upload the SAF-T file to i.SAF-T over the iSAFTUploaderService web service and start its processing. The file, the case reference and the status are kept as a declaration submission (submissionId), whose outcome Nordlet then checks with i.SAF-T. The submission itself is confirmed separately, because after confirmation the file can no longer be corrected. A range and data type already sent is sent again only with amend: true.
 </dd>
 </dl>
 </dd>
@@ -21125,15 +21156,16 @@ Upload the SAF-T file to i.SAF-T over the iSAFTUploaderService web service and s
 ```python
 from nordlet import Nordlet
 from nordlet.environment import NordletEnvironment
+import datetime
 
 client = Nordlet(
     token="<token>",
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.declarations.post_v1declarations_lt_saft_send(
-    from_date="fromDate",
-    to_date="toDate",
+client.declarations.lt_saft_send(
+    from_date=datetime.date.fromisoformat("2026-07-01"),
+    to_date=datetime.date.fromisoformat("2026-07-01"),
 )
 
 ```
@@ -21150,7 +21182,7 @@ client.declarations.post_v1declarations_lt_saft_send(
 <dl>
 <dd>
 
-**from_date:** `str` 
+**from_date:** `datetime.date` 
     
 </dd>
 </dl>
@@ -21158,7 +21190,7 @@ client.declarations.post_v1declarations_lt_saft_send(
 <dl>
 <dd>
 
-**to_date:** `str` 
+**to_date:** `datetime.date` 
     
 </dd>
 </dl>
@@ -21166,7 +21198,7 @@ client.declarations.post_v1declarations_lt_saft_send(
 <dl>
 <dd>
 
-**data_type:** `typing.Optional[PostV1DeclarationsLtSaftSendRequestDataType]` 
+**data_type:** `typing.Optional[LtSaftSendDeclarationsRequestDataType]` 
     
 </dd>
 </dl>
@@ -21175,6 +21207,14 @@ client.declarations.post_v1declarations_lt_saft_send(
 <dd>
 
 **confirm:** `typing.Optional[bool]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**amend:** `typing.Optional[bool]` 
     
 </dd>
 </dl>
@@ -21194,7 +21234,7 @@ client.declarations.post_v1declarations_lt_saft_send(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">post_v1declarations_lt_sd_ffdata</a>(...) -> PostV1DeclarationsLtSdFfdataResponse</code></summary>
+<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">lt_sd_ffdata</a>(...) -> LtSdFfdataDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -21223,16 +21263,17 @@ Render the Sodra 1-SD or 2-SD notice for the contracts starting or ending in the
 ```python
 from nordlet import Nordlet
 from nordlet.environment import NordletEnvironment
+import datetime
 
 client = Nordlet(
     token="<token>",
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.declarations.post_v1declarations_lt_sd_ffdata(
+client.declarations.lt_sd_ffdata(
     type="1-SD",
-    from_date="fromDate",
-    to_date="toDate",
+    from_date=datetime.date.fromisoformat("2026-07-01"),
+    to_date=datetime.date.fromisoformat("2026-07-01"),
 )
 
 ```
@@ -21249,7 +21290,7 @@ client.declarations.post_v1declarations_lt_sd_ffdata(
 <dl>
 <dd>
 
-**type:** `PostV1DeclarationsLtSdFfdataRequestType` 
+**type:** `LtSdFfdataDeclarationsRequestType` 
     
 </dd>
 </dl>
@@ -21257,7 +21298,7 @@ client.declarations.post_v1declarations_lt_sd_ffdata(
 <dl>
 <dd>
 
-**from_date:** `str` 
+**from_date:** `datetime.date` 
     
 </dd>
 </dl>
@@ -21265,7 +21306,7 @@ client.declarations.post_v1declarations_lt_sd_ffdata(
 <dl>
 <dd>
 
-**to_date:** `str` 
+**to_date:** `datetime.date` 
     
 </dd>
 </dl>
@@ -21301,7 +21342,7 @@ client.declarations.post_v1declarations_lt_sd_ffdata(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">post_v1declarations_lt_pln204ffdata</a>(...) -> PostV1DeclarationsLtPln204FfdataResponse</code></summary>
+<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">lt_pln204ffdata</a>(...) -> LtPln204FfdataDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -21336,7 +21377,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.declarations.post_v1declarations_lt_pln204ffdata(
+client.declarations.lt_pln204ffdata(
     year=1000000,
 )
 
@@ -21374,7 +21415,7 @@ client.declarations.post_v1declarations_lt_pln204ffdata(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">post_v1declarations_mt_company_tax_generate</a>(...) -> PostV1DeclarationsMtCompanyTaxGenerateResponse</code></summary>
+<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">mt_company_tax_generate</a>(...) -> MtCompanyTaxGenerateDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -21409,7 +21450,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.declarations.post_v1declarations_mt_company_tax_generate(
+client.declarations.mt_company_tax_generate(
     year=1000000,
 )
 
@@ -21447,7 +21488,7 @@ client.declarations.post_v1declarations_mt_company_tax_generate(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">post_v1declarations_mt_annual_return_generate</a>(...) -> PostV1DeclarationsMtAnnualReturnGenerateResponse</code></summary>
+<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">mt_annual_return_generate</a>(...) -> MtAnnualReturnGenerateDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -21482,7 +21523,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.declarations.post_v1declarations_mt_annual_return_generate(
+client.declarations.mt_annual_return_generate(
     year=1000000,
 )
 
@@ -21520,7 +21561,7 @@ client.declarations.post_v1declarations_mt_annual_return_generate(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">post_v1declarations_pl_jpk_fa_generate</a>(...) -> PostV1DeclarationsPlJpkFaGenerateResponse</code></summary>
+<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">pl_jpk_fa_generate</a>(...) -> PlJpkFaGenerateDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -21549,15 +21590,16 @@ Generate JPK_FA(4), the on-demand structure with every sales invoice issued in a
 ```python
 from nordlet import Nordlet
 from nordlet.environment import NordletEnvironment
+import datetime
 
 client = Nordlet(
     token="<token>",
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.declarations.post_v1declarations_pl_jpk_fa_generate(
-    date_from="dateFrom",
-    date_to="dateTo",
+client.declarations.pl_jpk_fa_generate(
+    date_from=datetime.date.fromisoformat("2026-07-01"),
+    date_to=datetime.date.fromisoformat("2026-07-01"),
 )
 
 ```
@@ -21574,7 +21616,7 @@ client.declarations.post_v1declarations_pl_jpk_fa_generate(
 <dl>
 <dd>
 
-**date_from:** `str` 
+**date_from:** `datetime.date` 
     
 </dd>
 </dl>
@@ -21582,7 +21624,7 @@ client.declarations.post_v1declarations_pl_jpk_fa_generate(
 <dl>
 <dd>
 
-**date_to:** `str` 
+**date_to:** `datetime.date` 
     
 </dd>
 </dl>
@@ -21602,7 +21644,7 @@ client.declarations.post_v1declarations_pl_jpk_fa_generate(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">post_v1declarations_pl_jpk_kr_generate</a>(...) -> PostV1DeclarationsPlJpkKrGenerateResponse</code></summary>
+<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">pl_jpk_kr_generate</a>(...) -> PlJpkKrGenerateDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -21631,15 +21673,16 @@ Generate JPK_KR(1), the on-demand structure with the chart of accounts and its o
 ```python
 from nordlet import Nordlet
 from nordlet.environment import NordletEnvironment
+import datetime
 
 client = Nordlet(
     token="<token>",
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.declarations.post_v1declarations_pl_jpk_kr_generate(
-    date_from="dateFrom",
-    date_to="dateTo",
+client.declarations.pl_jpk_kr_generate(
+    date_from=datetime.date.fromisoformat("2026-07-01"),
+    date_to=datetime.date.fromisoformat("2026-07-01"),
 )
 
 ```
@@ -21656,7 +21699,7 @@ client.declarations.post_v1declarations_pl_jpk_kr_generate(
 <dl>
 <dd>
 
-**date_from:** `str` 
+**date_from:** `datetime.date` 
     
 </dd>
 </dl>
@@ -21664,7 +21707,7 @@ client.declarations.post_v1declarations_pl_jpk_kr_generate(
 <dl>
 <dd>
 
-**date_to:** `str` 
+**date_to:** `datetime.date` 
     
 </dd>
 </dl>
@@ -21684,7 +21727,7 @@ client.declarations.post_v1declarations_pl_jpk_kr_generate(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">post_v1declarations_pl_jpk_mag_generate</a>(...) -> PostV1DeclarationsPlJpkMagGenerateResponse</code></summary>
+<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">pl_jpk_mag_generate</a>(...) -> PlJpkMagGenerateDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -21713,15 +21756,16 @@ Generate JPK_MAG(2), the on-demand structure with the warehouse documents of one
 ```python
 from nordlet import Nordlet
 from nordlet.environment import NordletEnvironment
+import datetime
 
 client = Nordlet(
     token="<token>",
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.declarations.post_v1declarations_pl_jpk_mag_generate(
-    date_from="dateFrom",
-    date_to="dateTo",
+client.declarations.pl_jpk_mag_generate(
+    date_from=datetime.date.fromisoformat("2026-07-01"),
+    date_to=datetime.date.fromisoformat("2026-07-01"),
 )
 
 ```
@@ -21738,7 +21782,7 @@ client.declarations.post_v1declarations_pl_jpk_mag_generate(
 <dl>
 <dd>
 
-**date_from:** `str` 
+**date_from:** `datetime.date` 
     
 </dd>
 </dl>
@@ -21746,7 +21790,7 @@ client.declarations.post_v1declarations_pl_jpk_mag_generate(
 <dl>
 <dd>
 
-**date_to:** `str` 
+**date_to:** `datetime.date` 
     
 </dd>
 </dl>
@@ -21774,7 +21818,7 @@ client.declarations.post_v1declarations_pl_jpk_mag_generate(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">post_v1declarations_pl_pit11generate</a>(...) -> PostV1DeclarationsPlPit11GenerateResponse</code></summary>
+<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">pl_pit11generate</a>(...) -> PlPit11GenerateDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -21809,7 +21853,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.declarations.post_v1declarations_pl_pit11generate(
+client.declarations.pl_pit11generate(
     year=1000000,
 )
 
@@ -21847,7 +21891,7 @@ client.declarations.post_v1declarations_pl_pit11generate(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">post_v1declarations_pl_cit8generate</a>(...) -> PostV1DeclarationsPlCit8GenerateResponse</code></summary>
+<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">pl_cit8generate</a>(...) -> PlCit8GenerateDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -21882,7 +21926,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.declarations.post_v1declarations_pl_cit8generate(
+client.declarations.pl_cit8generate(
     year=1000000,
 )
 
@@ -21920,7 +21964,7 @@ client.declarations.post_v1declarations_pl_cit8generate(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">post_v1declarations_pl_zus_dra_compute</a>(...) -> PostV1DeclarationsPlZusDraComputeResponse</code></summary>
+<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">pl_zus_dra_compute</a>(...) -> PlZusDraComputeDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -21955,7 +21999,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.declarations.post_v1declarations_pl_zus_dra_compute(
+client.declarations.pl_zus_dra_compute(
     year=1000000,
     month=1000000,
 )
@@ -22002,7 +22046,7 @@ client.declarations.post_v1declarations_pl_zus_dra_compute(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">post_v1declarations_pl_zus_dra_kedu</a>(...) -> PostV1DeclarationsPlZusDraKeduResponse</code></summary>
+<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">pl_zus_dra_kedu</a>(...) -> PlZusDraKeduDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -22037,7 +22081,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.declarations.post_v1declarations_pl_zus_dra_kedu(
+client.declarations.pl_zus_dra_kedu(
     year=1000000,
     month=1000000,
 )
@@ -22084,7 +22128,7 @@ client.declarations.post_v1declarations_pl_zus_dra_kedu(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">post_v1declarations_pl_zus_dra_pdf</a>(...) -> PostV1DeclarationsPlZusDraPdfResponse</code></summary>
+<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">pl_zus_dra_pdf</a>(...) -> PlZusDraPdfDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -22119,7 +22163,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.declarations.post_v1declarations_pl_zus_dra_pdf(
+client.declarations.pl_zus_dra_pdf(
     year=1000000,
     month=1000000,
 )
@@ -22166,7 +22210,7 @@ client.declarations.post_v1declarations_pl_zus_dra_pdf(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">post_v1declarations_ro_etransport_build</a>(...) -> PostV1DeclarationsRoEtransportBuildResponse</code></summary>
+<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">ro_etransport_build</a>(...) -> RoEtransportBuildDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -22201,7 +22245,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.declarations.post_v1declarations_ro_etransport_build(
+client.declarations.ro_etransport_build(
     waybill_id="waybillId",
 )
 
@@ -22239,7 +22283,7 @@ client.declarations.post_v1declarations_ro_etransport_build(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">post_v1declarations_ro_etransport_submit</a>(...) -> PostV1DeclarationsRoEtransportSubmitResponse</code></summary>
+<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">ro_etransport_submit</a>(...) -> RoEtransportSubmitDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -22274,7 +22318,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.declarations.post_v1declarations_ro_etransport_submit(
+client.declarations.ro_etransport_submit(
     waybill_id="waybillId",
 )
 
@@ -22312,7 +22356,7 @@ client.declarations.post_v1declarations_ro_etransport_submit(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">post_v1declarations_ro_etransport_status</a>(...) -> PostV1DeclarationsRoEtransportStatusResponse</code></summary>
+<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">ro_etransport_status</a>(...) -> RoEtransportStatusDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -22347,7 +22391,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.declarations.post_v1declarations_ro_etransport_status(
+client.declarations.ro_etransport_status(
     reference="reference",
 )
 
@@ -22385,7 +22429,7 @@ client.declarations.post_v1declarations_ro_etransport_status(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">post_v1declarations_li_lohndeklaration_generate</a>(...) -> PostV1DeclarationsLiLohndeklarationGenerateResponse</code></summary>
+<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">li_lohndeklaration_generate</a>(...) -> LiLohndeklarationGenerateDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -22420,7 +22464,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.declarations.post_v1declarations_li_lohndeklaration_generate(
+client.declarations.li_lohndeklaration_generate(
     year=1000000,
 )
 
@@ -22458,7 +22502,7 @@ client.declarations.post_v1declarations_li_lohndeklaration_generate(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">post_v1declarations_li_lohnlisten_generate</a>(...) -> PostV1DeclarationsLiLohnlistenGenerateResponse</code></summary>
+<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">li_lohnlisten_generate</a>(...) -> LiLohnlistenGenerateDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -22493,7 +22537,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.declarations.post_v1declarations_li_lohnlisten_generate(
+client.declarations.li_lohnlisten_generate(
     year=1000000,
 )
 
@@ -22531,7 +22575,7 @@ client.declarations.post_v1declarations_li_lohnlisten_generate(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">post_v1declarations_configs_list</a>() -> PostV1DeclarationsConfigsListResponse</code></summary>
+<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">configs_list</a>() -> ConfigsListDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -22552,7 +22596,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.declarations.post_v1declarations_configs_list()
+client.declarations.configs_list()
 
 ```
 </dd>
@@ -22580,7 +22624,7 @@ client.declarations.post_v1declarations_configs_list()
 </dl>
 </details>
 
-<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">post_v1declarations_configs_update</a>(...) -> PostV1DeclarationsConfigsUpdateResponse</code></summary>
+<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">configs_update</a>(...) -> ConfigsUpdateDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -22601,7 +22645,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.declarations.post_v1declarations_configs_update(
+client.declarations.configs_update(
     system="system",
     config={
         "key": "value"
@@ -22650,7 +22694,7 @@ client.declarations.post_v1declarations_configs_update(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">store_the_certificate_or_private_key_a_filing_system_authenticates_with</a>(...) -> PostV1DeclarationsCertificatesUploadResponse</code></summary>
+<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">certificates_upload</a>(...) -> CertificatesUploadDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -22671,7 +22715,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.declarations.store_the_certificate_or_private_key_a_filing_system_authenticates_with(
+client.declarations.certificates_upload(
     system="system",
     file_name="fileName",
     content="content",
@@ -22735,7 +22779,7 @@ client.declarations.store_the_certificate_or_private_key_a_filing_system_authent
 </dl>
 </details>
 
-<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">post_v1declarations_certificates_list</a>() -> PostV1DeclarationsCertificatesListResponse</code></summary>
+<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">certificates_list</a>() -> CertificatesListDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -22756,7 +22800,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.declarations.post_v1declarations_certificates_list()
+client.declarations.certificates_list()
 
 ```
 </dd>
@@ -22784,7 +22828,7 @@ client.declarations.post_v1declarations_certificates_list()
 </dl>
 </details>
 
-<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">post_v1declarations_certificates_delete</a>(...) -> PostV1DeclarationsCertificatesDeleteResponse</code></summary>
+<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">certificates_delete</a>(...) -> CertificatesDeleteDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -22805,7 +22849,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.declarations.post_v1declarations_certificates_delete(
+client.declarations.certificates_delete(
     system="system",
     field_key="certificate",
 )
@@ -22832,7 +22876,7 @@ client.declarations.post_v1declarations_certificates_delete(
 <dl>
 <dd>
 
-**field_key:** `PostV1DeclarationsCertificatesDeleteRequestFieldKey` 
+**field_key:** `CertificatesDeleteDeclarationsRequestFieldKey` 
     
 </dd>
 </dl>
@@ -22852,7 +22896,7 @@ client.declarations.post_v1declarations_certificates_delete(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">which_deadlines_nordlet_can_file_by_itself_for_this_company_and_which_are_switched_on</a>() -> PostV1DeclarationsAutomationListResponse</code></summary>
+<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">automation_list</a>() -> AutomationListDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -22873,7 +22917,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.declarations.which_deadlines_nordlet_can_file_by_itself_for_this_company_and_which_are_switched_on()
+client.declarations.automation_list()
 
 ```
 </dd>
@@ -22901,7 +22945,7 @@ client.declarations.which_deadlines_nordlet_can_file_by_itself_for_this_company_
 </dl>
 </details>
 
-<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">post_v1declarations_automation_update</a>(...) -> PostV1DeclarationsAutomationUpdateResponse</code></summary>
+<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">automation_update</a>(...) -> AutomationUpdateDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -22922,7 +22966,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.declarations.post_v1declarations_automation_update(
+client.declarations.automation_update(
     rule_key="ruleKey",
     enabled=True,
 )
@@ -22969,7 +23013,7 @@ client.declarations.post_v1declarations_automation_update(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">send_a_filing_whose_delivery_failed_once_more_with_the_bytes_that_were_generated</a>(...) -> PostV1DeclarationsSubmissionsRetryResponse</code></summary>
+<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">submissions_retry</a>(...) -> SubmissionsRetryDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -22990,7 +23034,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.declarations.send_a_filing_whose_delivery_failed_once_more_with_the_bytes_that_were_generated(
+client.declarations.submissions_retry(
     id="id",
 )
 
@@ -23028,7 +23072,7 @@ client.declarations.send_a_filing_whose_delivery_failed_once_more_with_the_bytes
 </dl>
 </details>
 
-<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">post_v1declarations_submissions_create</a>(...) -> PostV1DeclarationsSubmissionsCreateResponse</code></summary>
+<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">submissions_create</a>(...) -> SubmissionsCreateDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -23049,7 +23093,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.declarations.post_v1declarations_submissions_create(
+client.declarations.submissions_create(
     obligation="lt-isaf",
     year=1000000,
     month=1000000,
@@ -23069,7 +23113,7 @@ client.declarations.post_v1declarations_submissions_create(
 <dl>
 <dd>
 
-**obligation:** `PostV1DeclarationsSubmissionsCreateRequestObligation` 
+**obligation:** `SubmissionsCreateDeclarationsRequestObligation` 
     
 </dd>
 </dl>
@@ -23093,7 +23137,7 @@ client.declarations.post_v1declarations_submissions_create(
 <dl>
 <dd>
 
-**data_type:** `typing.Optional[PostV1DeclarationsSubmissionsCreateRequestDataType]` 
+**data_type:** `typing.Optional[SubmissionsCreateDeclarationsRequestDataType]` 
     
 </dd>
 </dl>
@@ -23113,7 +23157,7 @@ client.declarations.post_v1declarations_submissions_create(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">post_v1declarations_submissions_mark</a>(...) -> PostV1DeclarationsSubmissionsMarkResponse</code></summary>
+<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">submissions_mark</a>(...) -> SubmissionsMarkDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -23134,7 +23178,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.declarations.post_v1declarations_submissions_mark(
+client.declarations.submissions_mark(
     id="id",
     status="submitted",
 )
@@ -23161,7 +23205,7 @@ client.declarations.post_v1declarations_submissions_mark(
 <dl>
 <dd>
 
-**status:** `PostV1DeclarationsSubmissionsMarkRequestStatus` 
+**status:** `SubmissionsMarkDeclarationsRequestStatus` 
     
 </dd>
 </dl>
@@ -23197,7 +23241,7 @@ client.declarations.post_v1declarations_submissions_mark(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">post_v1declarations_submissions_list</a>(...) -> PostV1DeclarationsSubmissionsListResponse</code></summary>
+<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">submissions_list</a>(...) -> SubmissionsListDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -23218,7 +23262,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.declarations.post_v1declarations_submissions_list()
+client.declarations.submissions_list()
 
 ```
 </dd>
@@ -23250,7 +23294,7 @@ client.declarations.post_v1declarations_submissions_list()
 <dl>
 <dd>
 
-**sort:** `typing.Optional[typing.List[PostV1DeclarationsSubmissionsListRequestSortItem]]` 
+**sort:** `typing.Optional[typing.List[SubmissionsListDeclarationsRequestSortItem]]` 
     
 </dd>
 </dl>
@@ -23258,7 +23302,7 @@ client.declarations.post_v1declarations_submissions_list()
 <dl>
 <dd>
 
-**filter:** `typing.Optional[typing.List[PostV1DeclarationsSubmissionsListRequestFilterItem]]` 
+**filter:** `typing.Optional[typing.List[SubmissionsListDeclarationsRequestFilterItem]]` 
     
 </dd>
 </dl>
@@ -23286,8 +23330,8 @@ client.declarations.post_v1declarations_submissions_list()
 </dl>
 </details>
 
-## Ledger
-<details><summary><code>client.ledger.<a href="src/nordlet/ledger/client.py">post_v1ledger_accounts_list</a>(...) -> PostV1LedgerAccountsListResponse</code></summary>
+## ledger
+<details><summary><code>client.ledger.<a href="src/nordlet/ledger/client.py">accounts_list</a>(...) -> AccountsListLedgerResponse</code></summary>
 <dl>
 <dd>
 
@@ -23308,7 +23352,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.ledger.post_v1ledger_accounts_list()
+client.ledger.accounts_list()
 
 ```
 </dd>
@@ -23340,7 +23384,7 @@ client.ledger.post_v1ledger_accounts_list()
 <dl>
 <dd>
 
-**sort:** `typing.Optional[typing.List[PostV1LedgerAccountsListRequestSortItem]]` 
+**sort:** `typing.Optional[typing.List[AccountsListLedgerRequestSortItem]]` 
     
 </dd>
 </dl>
@@ -23348,7 +23392,7 @@ client.ledger.post_v1ledger_accounts_list()
 <dl>
 <dd>
 
-**filter:** `typing.Optional[typing.List[PostV1LedgerAccountsListRequestFilterItem]]` 
+**filter:** `typing.Optional[typing.List[AccountsListLedgerRequestFilterItem]]` 
     
 </dd>
 </dl>
@@ -23376,7 +23420,7 @@ client.ledger.post_v1ledger_accounts_list()
 </dl>
 </details>
 
-<details><summary><code>client.ledger.<a href="src/nordlet/ledger/client.py">post_v1ledger_accounts_create</a>(...) -> PostV1LedgerAccountsCreateResponse</code></summary>
+<details><summary><code>client.ledger.<a href="src/nordlet/ledger/client.py">accounts_create</a>(...) -> AccountsCreateLedgerResponse</code></summary>
 <dl>
 <dd>
 
@@ -23397,7 +23441,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.ledger.post_v1ledger_accounts_create(
+client.ledger.accounts_create(
     code="code",
     name="name",
     type="asset",
@@ -23433,7 +23477,7 @@ client.ledger.post_v1ledger_accounts_create(
 <dl>
 <dd>
 
-**type:** `PostV1LedgerAccountsCreateRequestType` 
+**type:** `AccountsCreateLedgerRequestType` 
     
 </dd>
 </dl>
@@ -23441,7 +23485,7 @@ client.ledger.post_v1ledger_accounts_create(
 <dl>
 <dd>
 
-**translations:** `typing.Optional[typing.Dict[str, PostV1LedgerAccountsCreateRequestTranslationsValue]]` 
+**translations:** `typing.Optional[typing.Dict[str, AccountsCreateLedgerRequestTranslationsValue]]` 
     
 </dd>
 </dl>
@@ -23477,7 +23521,7 @@ client.ledger.post_v1ledger_accounts_create(
 </dl>
 </details>
 
-<details><summary><code>client.ledger.<a href="src/nordlet/ledger/client.py">post_v1ledger_accounts_update</a>(...) -> PostV1LedgerAccountsUpdateResponse</code></summary>
+<details><summary><code>client.ledger.<a href="src/nordlet/ledger/client.py">accounts_update</a>(...) -> AccountsUpdateLedgerResponse</code></summary>
 <dl>
 <dd>
 
@@ -23498,7 +23542,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.ledger.post_v1ledger_accounts_update(
+client.ledger.accounts_update(
     id="id",
 )
 
@@ -23532,7 +23576,7 @@ client.ledger.post_v1ledger_accounts_update(
 <dl>
 <dd>
 
-**translations:** `typing.Optional[typing.Dict[str, typing.Optional[PostV1LedgerAccountsUpdateRequestTranslationsValue]]]` 
+**translations:** `typing.Optional[typing.Dict[str, typing.Optional[AccountsUpdateLedgerRequestTranslationsValue]]]` 
     
 </dd>
 </dl>
@@ -23568,7 +23612,7 @@ client.ledger.post_v1ledger_accounts_update(
 </dl>
 </details>
 
-<details><summary><code>client.ledger.<a href="src/nordlet/ledger/client.py">post_v1ledger_accounts_apply_template</a>() -> PostV1LedgerAccountsApplyTemplateResponse</code></summary>
+<details><summary><code>client.ledger.<a href="src/nordlet/ledger/client.py">accounts_apply_template</a>() -> AccountsApplyTemplateLedgerResponse</code></summary>
 <dl>
 <dd>
 
@@ -23589,7 +23633,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.ledger.post_v1ledger_accounts_apply_template()
+client.ledger.accounts_apply_template()
 
 ```
 </dd>
@@ -23617,7 +23661,7 @@ client.ledger.post_v1ledger_accounts_apply_template()
 </dl>
 </details>
 
-<details><summary><code>client.ledger.<a href="src/nordlet/ledger/client.py">move_a_company_that_has_posted_nothing_yet_to_the_chart_of_accounts_of_its_country</a>() -> PostV1LedgerAccountsSwitchChartResponse</code></summary>
+<details><summary><code>client.ledger.<a href="src/nordlet/ledger/client.py">accounts_switch_chart</a>() -> AccountsSwitchChartLedgerResponse</code></summary>
 <dl>
 <dd>
 
@@ -23652,7 +23696,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.ledger.move_a_company_that_has_posted_nothing_yet_to_the_chart_of_accounts_of_its_country()
+client.ledger.accounts_switch_chart()
 
 ```
 </dd>
@@ -23680,7 +23724,7 @@ client.ledger.move_a_company_that_has_posted_nothing_yet_to_the_chart_of_account
 </dl>
 </details>
 
-<details><summary><code>client.ledger.<a href="src/nordlet/ledger/client.py">post_v1ledger_periods_list</a>(...) -> PostV1LedgerPeriodsListResponse</code></summary>
+<details><summary><code>client.ledger.<a href="src/nordlet/ledger/client.py">periods_list</a>(...) -> PeriodsListLedgerResponse</code></summary>
 <dl>
 <dd>
 
@@ -23701,7 +23745,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.ledger.post_v1ledger_periods_list()
+client.ledger.periods_list()
 
 ```
 </dd>
@@ -23733,7 +23777,7 @@ client.ledger.post_v1ledger_periods_list()
 <dl>
 <dd>
 
-**sort:** `typing.Optional[typing.List[PostV1LedgerPeriodsListRequestSortItem]]` 
+**sort:** `typing.Optional[typing.List[PeriodsListLedgerRequestSortItem]]` 
     
 </dd>
 </dl>
@@ -23741,7 +23785,7 @@ client.ledger.post_v1ledger_periods_list()
 <dl>
 <dd>
 
-**filter:** `typing.Optional[typing.List[PostV1LedgerPeriodsListRequestFilterItem]]` 
+**filter:** `typing.Optional[typing.List[PeriodsListLedgerRequestFilterItem]]` 
     
 </dd>
 </dl>
@@ -23769,7 +23813,7 @@ client.ledger.post_v1ledger_periods_list()
 </dl>
 </details>
 
-<details><summary><code>client.ledger.<a href="src/nordlet/ledger/client.py">post_v1ledger_periods_lock</a>(...) -> PostV1LedgerPeriodsLockResponse</code></summary>
+<details><summary><code>client.ledger.<a href="src/nordlet/ledger/client.py">periods_lock</a>(...) -> PeriodsLockLedgerResponse</code></summary>
 <dl>
 <dd>
 
@@ -23790,7 +23834,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.ledger.post_v1ledger_periods_lock(
+client.ledger.periods_lock(
     year=1000000,
     month=1000000,
 )
@@ -23837,7 +23881,7 @@ client.ledger.post_v1ledger_periods_lock(
 </dl>
 </details>
 
-<details><summary><code>client.ledger.<a href="src/nordlet/ledger/client.py">post_v1ledger_periods_unlock</a>(...) -> PostV1LedgerPeriodsUnlockResponse</code></summary>
+<details><summary><code>client.ledger.<a href="src/nordlet/ledger/client.py">periods_unlock</a>(...) -> PeriodsUnlockLedgerResponse</code></summary>
 <dl>
 <dd>
 
@@ -23858,7 +23902,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.ledger.post_v1ledger_periods_unlock(
+client.ledger.periods_unlock(
     year=1000000,
     month=1000000,
 )
@@ -23905,7 +23949,7 @@ client.ledger.post_v1ledger_periods_unlock(
 </dl>
 </details>
 
-<details><summary><code>client.ledger.<a href="src/nordlet/ledger/client.py">post_v1ledger_journal_transactions_list</a>(...) -> PostV1LedgerJournalTransactionsListResponse</code></summary>
+<details><summary><code>client.ledger.<a href="src/nordlet/ledger/client.py">journal_transactions_list</a>(...) -> JournalTransactionsListLedgerResponse</code></summary>
 <dl>
 <dd>
 
@@ -23926,7 +23970,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.ledger.post_v1ledger_journal_transactions_list()
+client.ledger.journal_transactions_list()
 
 ```
 </dd>
@@ -23958,7 +24002,7 @@ client.ledger.post_v1ledger_journal_transactions_list()
 <dl>
 <dd>
 
-**sort:** `typing.Optional[typing.List[PostV1LedgerJournalTransactionsListRequestSortItem]]` 
+**sort:** `typing.Optional[typing.List[JournalTransactionsListLedgerRequestSortItem]]` 
     
 </dd>
 </dl>
@@ -23966,7 +24010,7 @@ client.ledger.post_v1ledger_journal_transactions_list()
 <dl>
 <dd>
 
-**filter:** `typing.Optional[typing.List[PostV1LedgerJournalTransactionsListRequestFilterItem]]` 
+**filter:** `typing.Optional[typing.List[JournalTransactionsListLedgerRequestFilterItem]]` 
     
 </dd>
 </dl>
@@ -23994,7 +24038,7 @@ client.ledger.post_v1ledger_journal_transactions_list()
 </dl>
 </details>
 
-<details><summary><code>client.ledger.<a href="src/nordlet/ledger/client.py">post_v1ledger_cost_centers_create</a>(...) -> PostV1LedgerCostCentersCreateResponse</code></summary>
+<details><summary><code>client.ledger.<a href="src/nordlet/ledger/client.py">cost_centers_create</a>(...) -> CostCentersCreateLedgerResponse</code></summary>
 <dl>
 <dd>
 
@@ -24015,7 +24059,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.ledger.post_v1ledger_cost_centers_create(
+client.ledger.cost_centers_create(
     code="code",
     name="name",
 )
@@ -24070,7 +24114,7 @@ client.ledger.post_v1ledger_cost_centers_create(
 </dl>
 </details>
 
-<details><summary><code>client.ledger.<a href="src/nordlet/ledger/client.py">post_v1ledger_cost_centers_update</a>(...) -> PostV1LedgerCostCentersUpdateResponse</code></summary>
+<details><summary><code>client.ledger.<a href="src/nordlet/ledger/client.py">cost_centers_update</a>(...) -> CostCentersUpdateLedgerResponse</code></summary>
 <dl>
 <dd>
 
@@ -24091,7 +24135,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.ledger.post_v1ledger_cost_centers_update(
+client.ledger.cost_centers_update(
     id="id",
 )
 
@@ -24153,7 +24197,7 @@ client.ledger.post_v1ledger_cost_centers_update(
 </dl>
 </details>
 
-<details><summary><code>client.ledger.<a href="src/nordlet/ledger/client.py">post_v1ledger_cost_centers_list</a>(...) -> PostV1LedgerCostCentersListResponse</code></summary>
+<details><summary><code>client.ledger.<a href="src/nordlet/ledger/client.py">cost_centers_list</a>(...) -> CostCentersListLedgerResponse</code></summary>
 <dl>
 <dd>
 
@@ -24174,7 +24218,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.ledger.post_v1ledger_cost_centers_list()
+client.ledger.cost_centers_list()
 
 ```
 </dd>
@@ -24206,7 +24250,7 @@ client.ledger.post_v1ledger_cost_centers_list()
 <dl>
 <dd>
 
-**sort:** `typing.Optional[typing.List[PostV1LedgerCostCentersListRequestSortItem]]` 
+**sort:** `typing.Optional[typing.List[CostCentersListLedgerRequestSortItem]]` 
     
 </dd>
 </dl>
@@ -24214,7 +24258,7 @@ client.ledger.post_v1ledger_cost_centers_list()
 <dl>
 <dd>
 
-**filter:** `typing.Optional[typing.List[PostV1LedgerCostCentersListRequestFilterItem]]` 
+**filter:** `typing.Optional[typing.List[CostCentersListLedgerRequestFilterItem]]` 
     
 </dd>
 </dl>
@@ -24242,7 +24286,7 @@ client.ledger.post_v1ledger_cost_centers_list()
 </dl>
 </details>
 
-<details><summary><code>client.ledger.<a href="src/nordlet/ledger/client.py">post_v1ledger_cost_center_groups_create</a>(...) -> PostV1LedgerCostCenterGroupsCreateResponse</code></summary>
+<details><summary><code>client.ledger.<a href="src/nordlet/ledger/client.py">cost_center_groups_create</a>(...) -> CostCenterGroupsCreateLedgerResponse</code></summary>
 <dl>
 <dd>
 
@@ -24263,7 +24307,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.ledger.post_v1ledger_cost_center_groups_create(
+client.ledger.cost_center_groups_create(
     code="code",
     name="name",
 )
@@ -24310,7 +24354,7 @@ client.ledger.post_v1ledger_cost_center_groups_create(
 </dl>
 </details>
 
-<details><summary><code>client.ledger.<a href="src/nordlet/ledger/client.py">post_v1ledger_cost_center_groups_update</a>(...) -> PostV1LedgerCostCenterGroupsUpdateResponse</code></summary>
+<details><summary><code>client.ledger.<a href="src/nordlet/ledger/client.py">cost_center_groups_update</a>(...) -> CostCenterGroupsUpdateLedgerResponse</code></summary>
 <dl>
 <dd>
 
@@ -24331,7 +24375,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.ledger.post_v1ledger_cost_center_groups_update(
+client.ledger.cost_center_groups_update(
     id="id",
 )
 
@@ -24385,7 +24429,7 @@ client.ledger.post_v1ledger_cost_center_groups_update(
 </dl>
 </details>
 
-<details><summary><code>client.ledger.<a href="src/nordlet/ledger/client.py">post_v1ledger_cost_center_groups_delete</a>(...) -> PostV1LedgerCostCenterGroupsDeleteResponse</code></summary>
+<details><summary><code>client.ledger.<a href="src/nordlet/ledger/client.py">cost_center_groups_delete</a>(...) -> CostCenterGroupsDeleteLedgerResponse</code></summary>
 <dl>
 <dd>
 
@@ -24406,7 +24450,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.ledger.post_v1ledger_cost_center_groups_delete(
+client.ledger.cost_center_groups_delete(
     id="id",
 )
 
@@ -24444,7 +24488,7 @@ client.ledger.post_v1ledger_cost_center_groups_delete(
 </dl>
 </details>
 
-<details><summary><code>client.ledger.<a href="src/nordlet/ledger/client.py">post_v1ledger_cost_center_groups_list</a>(...) -> PostV1LedgerCostCenterGroupsListResponse</code></summary>
+<details><summary><code>client.ledger.<a href="src/nordlet/ledger/client.py">cost_center_groups_list</a>(...) -> CostCenterGroupsListLedgerResponse</code></summary>
 <dl>
 <dd>
 
@@ -24465,7 +24509,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.ledger.post_v1ledger_cost_center_groups_list()
+client.ledger.cost_center_groups_list()
 
 ```
 </dd>
@@ -24497,7 +24541,7 @@ client.ledger.post_v1ledger_cost_center_groups_list()
 <dl>
 <dd>
 
-**sort:** `typing.Optional[typing.List[PostV1LedgerCostCenterGroupsListRequestSortItem]]` 
+**sort:** `typing.Optional[typing.List[CostCenterGroupsListLedgerRequestSortItem]]` 
     
 </dd>
 </dl>
@@ -24505,7 +24549,7 @@ client.ledger.post_v1ledger_cost_center_groups_list()
 <dl>
 <dd>
 
-**filter:** `typing.Optional[typing.List[PostV1LedgerCostCenterGroupsListRequestFilterItem]]` 
+**filter:** `typing.Optional[typing.List[CostCenterGroupsListLedgerRequestFilterItem]]` 
     
 </dd>
 </dl>
@@ -24533,7 +24577,7 @@ client.ledger.post_v1ledger_cost_center_groups_list()
 </dl>
 </details>
 
-<details><summary><code>client.ledger.<a href="src/nordlet/ledger/client.py">post_v1ledger_posting_rules_list</a>() -> PostV1LedgerPostingRulesListResponse</code></summary>
+<details><summary><code>client.ledger.<a href="src/nordlet/ledger/client.py">posting_rules_list</a>() -> PostingRulesListLedgerResponse</code></summary>
 <dl>
 <dd>
 
@@ -24554,7 +24598,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.ledger.post_v1ledger_posting_rules_list()
+client.ledger.posting_rules_list()
 
 ```
 </dd>
@@ -24582,7 +24626,7 @@ client.ledger.post_v1ledger_posting_rules_list()
 </dl>
 </details>
 
-<details><summary><code>client.ledger.<a href="src/nordlet/ledger/client.py">post_v1ledger_posting_rules_update</a>(...) -> PostV1LedgerPostingRulesUpdateResponse</code></summary>
+<details><summary><code>client.ledger.<a href="src/nordlet/ledger/client.py">posting_rules_update</a>(...) -> PostingRulesUpdateLedgerResponse</code></summary>
 <dl>
 <dd>
 
@@ -24597,16 +24641,16 @@ client.ledger.post_v1ledger_posting_rules_list()
 ```python
 from nordlet import Nordlet
 from nordlet.environment import NordletEnvironment
-from nordlet.ledger import PostV1LedgerPostingRulesUpdateRequestRulesItem
+from nordlet.ledger import PostingRulesUpdateLedgerRequestRulesItem
 
 client = Nordlet(
     token="<token>",
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.ledger.post_v1ledger_posting_rules_update(
+client.ledger.posting_rules_update(
     rules=[
-        PostV1LedgerPostingRulesUpdateRequestRulesItem(
+        PostingRulesUpdateLedgerRequestRulesItem(
             key="sales.receivable",
         )
     ],
@@ -24626,7 +24670,7 @@ client.ledger.post_v1ledger_posting_rules_update(
 <dl>
 <dd>
 
-**rules:** `typing.List[PostV1LedgerPostingRulesUpdateRequestRulesItem]` 
+**rules:** `typing.List[PostingRulesUpdateLedgerRequestRulesItem]` 
     
 </dd>
 </dl>
@@ -24646,7 +24690,7 @@ client.ledger.post_v1ledger_posting_rules_update(
 </dl>
 </details>
 
-<details><summary><code>client.ledger.<a href="src/nordlet/ledger/client.py">post_v1ledger_owners_create</a>(...) -> PostV1LedgerOwnersCreateResponse</code></summary>
+<details><summary><code>client.ledger.<a href="src/nordlet/ledger/client.py">owners_create</a>(...) -> OwnersCreateLedgerResponse</code></summary>
 <dl>
 <dd>
 
@@ -24667,7 +24711,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.ledger.post_v1ledger_owners_create(
+client.ledger.owners_create(
     name="name",
 )
 
@@ -24725,7 +24769,7 @@ client.ledger.post_v1ledger_owners_create(
 <dl>
 <dd>
 
-**shares_type:** `typing.Optional[PostV1LedgerOwnersCreateRequestSharesType]` 
+**shares_type:** `typing.Optional[OwnersCreateLedgerRequestSharesType]` 
     
 </dd>
 </dl>
@@ -24733,7 +24777,7 @@ client.ledger.post_v1ledger_owners_create(
 <dl>
 <dd>
 
-**shares_acquisition_date:** `typing.Optional[str]` 
+**shares_acquisition_date:** `typing.Optional[datetime.date]` 
     
 </dd>
 </dl>
@@ -24749,7 +24793,7 @@ client.ledger.post_v1ledger_owners_create(
 <dl>
 <dd>
 
-**partner_liability:** `typing.Optional[PostV1LedgerOwnersCreateRequestPartnerLiability]` 
+**partner_liability:** `typing.Optional[OwnersCreateLedgerRequestPartnerLiability]` 
     
 </dd>
 </dl>
@@ -24773,7 +24817,7 @@ client.ledger.post_v1ledger_owners_create(
 <dl>
 <dd>
 
-**address:** `typing.Optional[PostV1LedgerOwnersCreateRequestAddress]` 
+**address:** `typing.Optional[OwnersCreateLedgerRequestAddress]` 
     
 </dd>
 </dl>
@@ -24793,7 +24837,7 @@ client.ledger.post_v1ledger_owners_create(
 </dl>
 </details>
 
-<details><summary><code>client.ledger.<a href="src/nordlet/ledger/client.py">post_v1ledger_owners_update</a>(...) -> PostV1LedgerOwnersUpdateResponse</code></summary>
+<details><summary><code>client.ledger.<a href="src/nordlet/ledger/client.py">owners_update</a>(...) -> OwnersUpdateLedgerResponse</code></summary>
 <dl>
 <dd>
 
@@ -24814,7 +24858,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.ledger.post_v1ledger_owners_update(
+client.ledger.owners_update(
     id="id",
 )
 
@@ -24880,7 +24924,7 @@ client.ledger.post_v1ledger_owners_update(
 <dl>
 <dd>
 
-**shares_type:** `typing.Optional[PostV1LedgerOwnersUpdateRequestSharesType]` 
+**shares_type:** `typing.Optional[OwnersUpdateLedgerRequestSharesType]` 
     
 </dd>
 </dl>
@@ -24888,7 +24932,7 @@ client.ledger.post_v1ledger_owners_update(
 <dl>
 <dd>
 
-**shares_acquisition_date:** `typing.Optional[str]` 
+**shares_acquisition_date:** `typing.Optional[datetime.date]` 
     
 </dd>
 </dl>
@@ -24904,7 +24948,7 @@ client.ledger.post_v1ledger_owners_update(
 <dl>
 <dd>
 
-**partner_liability:** `typing.Optional[PostV1LedgerOwnersUpdateRequestPartnerLiability]` 
+**partner_liability:** `typing.Optional[OwnersUpdateLedgerRequestPartnerLiability]` 
     
 </dd>
 </dl>
@@ -24928,7 +24972,7 @@ client.ledger.post_v1ledger_owners_update(
 <dl>
 <dd>
 
-**address:** `typing.Optional[PostV1LedgerOwnersUpdateRequestAddress]` 
+**address:** `typing.Optional[OwnersUpdateLedgerRequestAddress]` 
     
 </dd>
 </dl>
@@ -24948,7 +24992,7 @@ client.ledger.post_v1ledger_owners_update(
 </dl>
 </details>
 
-<details><summary><code>client.ledger.<a href="src/nordlet/ledger/client.py">post_v1ledger_owners_delete</a>(...) -> PostV1LedgerOwnersDeleteResponse</code></summary>
+<details><summary><code>client.ledger.<a href="src/nordlet/ledger/client.py">owners_delete</a>(...) -> OwnersDeleteLedgerResponse</code></summary>
 <dl>
 <dd>
 
@@ -24969,7 +25013,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.ledger.post_v1ledger_owners_delete(
+client.ledger.owners_delete(
     id="id",
 )
 
@@ -25007,7 +25051,7 @@ client.ledger.post_v1ledger_owners_delete(
 </dl>
 </details>
 
-<details><summary><code>client.ledger.<a href="src/nordlet/ledger/client.py">post_v1ledger_owners_list</a>(...) -> PostV1LedgerOwnersListResponse</code></summary>
+<details><summary><code>client.ledger.<a href="src/nordlet/ledger/client.py">owners_list</a>(...) -> OwnersListLedgerResponse</code></summary>
 <dl>
 <dd>
 
@@ -25028,7 +25072,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.ledger.post_v1ledger_owners_list()
+client.ledger.owners_list()
 
 ```
 </dd>
@@ -25060,7 +25104,7 @@ client.ledger.post_v1ledger_owners_list()
 <dl>
 <dd>
 
-**sort:** `typing.Optional[typing.List[PostV1LedgerOwnersListRequestSortItem]]` 
+**sort:** `typing.Optional[typing.List[OwnersListLedgerRequestSortItem]]` 
     
 </dd>
 </dl>
@@ -25068,7 +25112,7 @@ client.ledger.post_v1ledger_owners_list()
 <dl>
 <dd>
 
-**filter:** `typing.Optional[typing.List[PostV1LedgerOwnersListRequestFilterItem]]` 
+**filter:** `typing.Optional[typing.List[OwnersListLedgerRequestFilterItem]]` 
     
 </dd>
 </dl>
@@ -25096,7 +25140,7 @@ client.ledger.post_v1ledger_owners_list()
 </dl>
 </details>
 
-<details><summary><code>client.ledger.<a href="src/nordlet/ledger/client.py">post_v1ledger_journal_transactions_get</a>(...) -> PostV1LedgerJournalTransactionsGetResponse</code></summary>
+<details><summary><code>client.ledger.<a href="src/nordlet/ledger/client.py">journal_transactions_get</a>(...) -> JournalTransactionsGetLedgerResponse</code></summary>
 <dl>
 <dd>
 
@@ -25117,7 +25161,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.ledger.post_v1ledger_journal_transactions_get(
+client.ledger.journal_transactions_get(
     id="id",
 )
 
@@ -25155,7 +25199,7 @@ client.ledger.post_v1ledger_journal_transactions_get(
 </dl>
 </details>
 
-<details><summary><code>client.ledger.<a href="src/nordlet/ledger/client.py">post_v1ledger_journal_transactions_create</a>(...) -> PostV1LedgerJournalTransactionsCreateResponse</code></summary>
+<details><summary><code>client.ledger.<a href="src/nordlet/ledger/client.py">journal_transactions_create</a>(...) -> JournalTransactionsCreateLedgerResponse</code></summary>
 <dl>
 <dd>
 
@@ -25170,17 +25214,18 @@ client.ledger.post_v1ledger_journal_transactions_get(
 ```python
 from nordlet import Nordlet
 from nordlet.environment import NordletEnvironment
-from nordlet.ledger import PostV1LedgerJournalTransactionsCreateRequestEntriesItem
+import datetime
+from nordlet.ledger import JournalTransactionsCreateLedgerRequestEntriesItem
 
 client = Nordlet(
     token="<token>",
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.ledger.post_v1ledger_journal_transactions_create(
-    date="date",
+client.ledger.journal_transactions_create(
+    date=datetime.date.fromisoformat("2026-07-01"),
     entries=[
-        PostV1LedgerJournalTransactionsCreateRequestEntriesItem(
+        JournalTransactionsCreateLedgerRequestEntriesItem(
             account_code="accountCode",
         )
     ],
@@ -25200,7 +25245,7 @@ client.ledger.post_v1ledger_journal_transactions_create(
 <dl>
 <dd>
 
-**date:** `str` 
+**date:** `datetime.date` 
     
 </dd>
 </dl>
@@ -25208,7 +25253,7 @@ client.ledger.post_v1ledger_journal_transactions_create(
 <dl>
 <dd>
 
-**entries:** `typing.List[PostV1LedgerJournalTransactionsCreateRequestEntriesItem]` 
+**entries:** `typing.List[JournalTransactionsCreateLedgerRequestEntriesItem]` 
     
 </dd>
 </dl>
@@ -25236,7 +25281,7 @@ client.ledger.post_v1ledger_journal_transactions_create(
 </dl>
 </details>
 
-<details><summary><code>client.ledger.<a href="src/nordlet/ledger/client.py">national_statement_layouts_available_to_the_company</a>() -> PostV1LedgerStatementRowsSchemesResponse</code></summary>
+<details><summary><code>client.ledger.<a href="src/nordlet/ledger/client.py">statement_rows_schemes</a>() -> StatementRowsSchemesLedgerResponse</code></summary>
 <dl>
 <dd>
 
@@ -25271,7 +25316,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.ledger.national_statement_layouts_available_to_the_company()
+client.ledger.statement_rows_schemes()
 
 ```
 </dd>
@@ -25299,7 +25344,7 @@ client.ledger.national_statement_layouts_available_to_the_company()
 </dl>
 </details>
 
-<details><summary><code>client.ledger.<a href="src/nordlet/ledger/client.py">accounts_placed_on_the_rows_of_a_statement_layout_with_the_row_totals_of_a_period</a>(...) -> PostV1LedgerStatementRowsListResponse</code></summary>
+<details><summary><code>client.ledger.<a href="src/nordlet/ledger/client.py">statement_rows_list</a>(...) -> StatementRowsListLedgerResponse</code></summary>
 <dl>
 <dd>
 
@@ -25320,7 +25365,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.ledger.accounts_placed_on_the_rows_of_a_statement_layout_with_the_row_totals_of_a_period(
+client.ledger.statement_rows_list(
     scheme="scheme",
 )
 
@@ -25346,7 +25391,7 @@ client.ledger.accounts_placed_on_the_rows_of_a_statement_layout_with_the_row_tot
 <dl>
 <dd>
 
-**from_date:** `typing.Optional[str]` 
+**from_date:** `typing.Optional[datetime.date]` 
     
 </dd>
 </dl>
@@ -25354,7 +25399,7 @@ client.ledger.accounts_placed_on_the_rows_of_a_statement_layout_with_the_row_tot
 <dl>
 <dd>
 
-**to_date:** `typing.Optional[str]` 
+**to_date:** `typing.Optional[datetime.date]` 
     
 </dd>
 </dl>
@@ -25374,7 +25419,7 @@ client.ledger.accounts_placed_on_the_rows_of_a_statement_layout_with_the_row_tot
 </dl>
 </details>
 
-<details><summary><code>client.ledger.<a href="src/nordlet/ledger/client.py">map_an_account_or_an_account_code_prefix_to_a_row_of_a_statement_layout</a>(...) -> PostV1LedgerStatementRowsSetResponse</code></summary>
+<details><summary><code>client.ledger.<a href="src/nordlet/ledger/client.py">statement_rows_set</a>(...) -> StatementRowsSetLedgerResponse</code></summary>
 <dl>
 <dd>
 
@@ -25409,7 +25454,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.ledger.map_an_account_or_an_account_code_prefix_to_a_row_of_a_statement_layout(
+client.ledger.statement_rows_set(
     scheme="scheme",
     account_code="accountCode",
 )
@@ -25464,7 +25509,8 @@ client.ledger.map_an_account_or_an_account_code_prefix_to_a_row_of_a_statement_l
 </dl>
 </details>
 
-<details><summary><code>client.ledger.<a href="src/nordlet/ledger/client.py">officers_of_the_company</a>() -> PostV1OfficersListResponse</code></summary>
+## Officers
+<details><summary><code>client.officers.<a href="src/nordlet/officers/client.py">list</a>() -> ListOfficersResponse</code></summary>
 <dl>
 <dd>
 
@@ -25499,7 +25545,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.ledger.officers_of_the_company()
+client.officers.list()
 
 ```
 </dd>
@@ -25527,7 +25573,7 @@ client.ledger.officers_of_the_company()
 </dl>
 </details>
 
-<details><summary><code>client.ledger.<a href="src/nordlet/ledger/client.py">record_an_officer_of_the_company</a>(...) -> PostV1OfficersCreateResponse</code></summary>
+<details><summary><code>client.officers.<a href="src/nordlet/officers/client.py">create</a>(...) -> CreateOfficersResponse</code></summary>
 <dl>
 <dd>
 
@@ -25548,7 +25594,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.ledger.record_an_officer_of_the_company(
+client.officers.create(
     name="name",
     role="director",
 )
@@ -25575,7 +25621,7 @@ client.ledger.record_an_officer_of_the_company(
 <dl>
 <dd>
 
-**role:** `PostV1OfficersCreateRequestRole` 
+**role:** `CreateOfficersRequestRole` 
     
 </dd>
 </dl>
@@ -25591,7 +25637,7 @@ client.ledger.record_an_officer_of_the_company(
 <dl>
 <dd>
 
-**birth_date:** `typing.Optional[str]` 
+**birth_date:** `typing.Optional[datetime.date]` 
     
 </dd>
 </dl>
@@ -25599,7 +25645,7 @@ client.ledger.record_an_officer_of_the_company(
 <dl>
 <dd>
 
-**appointed_on:** `typing.Optional[str]` 
+**appointed_on:** `typing.Optional[datetime.date]` 
     
 </dd>
 </dl>
@@ -25615,7 +25661,7 @@ client.ledger.record_an_officer_of_the_company(
 <dl>
 <dd>
 
-**resigned_on:** `typing.Optional[str]` 
+**resigned_on:** `typing.Optional[datetime.date]` 
     
 </dd>
 </dl>
@@ -25643,7 +25689,7 @@ client.ledger.record_an_officer_of_the_company(
 </dl>
 </details>
 
-<details><summary><code>client.ledger.<a href="src/nordlet/ledger/client.py">change_a_recorded_officer</a>(...) -> PostV1OfficersUpdateResponse</code></summary>
+<details><summary><code>client.officers.<a href="src/nordlet/officers/client.py">update</a>(...) -> UpdateOfficersResponse</code></summary>
 <dl>
 <dd>
 
@@ -25664,7 +25710,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.ledger.change_a_recorded_officer(
+client.officers.update(
     id="id",
     name="name",
     role="director",
@@ -25700,7 +25746,7 @@ client.ledger.change_a_recorded_officer(
 <dl>
 <dd>
 
-**role:** `PostV1OfficersUpdateRequestRole` 
+**role:** `UpdateOfficersRequestRole` 
     
 </dd>
 </dl>
@@ -25716,7 +25762,7 @@ client.ledger.change_a_recorded_officer(
 <dl>
 <dd>
 
-**birth_date:** `typing.Optional[str]` 
+**birth_date:** `typing.Optional[datetime.date]` 
     
 </dd>
 </dl>
@@ -25724,7 +25770,7 @@ client.ledger.change_a_recorded_officer(
 <dl>
 <dd>
 
-**appointed_on:** `typing.Optional[str]` 
+**appointed_on:** `typing.Optional[datetime.date]` 
     
 </dd>
 </dl>
@@ -25740,7 +25786,7 @@ client.ledger.change_a_recorded_officer(
 <dl>
 <dd>
 
-**resigned_on:** `typing.Optional[str]` 
+**resigned_on:** `typing.Optional[datetime.date]` 
     
 </dd>
 </dl>
@@ -25768,7 +25814,7 @@ client.ledger.change_a_recorded_officer(
 </dl>
 </details>
 
-<details><summary><code>client.ledger.<a href="src/nordlet/ledger/client.py">remove_a_recorded_officer</a>(...) -> PostV1OfficersDeleteResponse</code></summary>
+<details><summary><code>client.officers.<a href="src/nordlet/officers/client.py">delete</a>(...) -> DeleteOfficersResponse</code></summary>
 <dl>
 <dd>
 
@@ -25789,7 +25835,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.ledger.remove_a_recorded_officer(
+client.officers.delete(
     id="id",
 )
 
@@ -25827,8 +25873,8 @@ client.ledger.remove_a_recorded_officer(
 </dl>
 </details>
 
-## Migration
-<details><summary><code>client.migration.<a href="src/nordlet/migration/client.py">check_a_historical_books_package_without_writing_anything</a>(...) -> PostV1MigrationBooksValidateResponse</code></summary>
+## migration
+<details><summary><code>client.migration.<a href="src/nordlet/migration/client.py">books_validate</a>(...) -> BooksValidateMigrationResponse</code></summary>
 <dl>
 <dd>
 
@@ -25857,14 +25903,15 @@ Runs every check the import runs (accounts, partners, balances, open invoices, a
 ```python
 from nordlet import Nordlet
 from nordlet.environment import NordletEnvironment
+import datetime
 
 client = Nordlet(
     token="<token>",
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.migration.check_a_historical_books_package_without_writing_anything(
-    cutover_date="cutoverDate",
+client.migration.books_validate(
+    cutover_date=datetime.date.fromisoformat("2026-07-01"),
 )
 
 ```
@@ -25881,7 +25928,7 @@ client.migration.check_a_historical_books_package_without_writing_anything(
 <dl>
 <dd>
 
-**cutover_date:** `str` 
+**cutover_date:** `datetime.date` 
     
 </dd>
 </dl>
@@ -25897,7 +25944,7 @@ client.migration.check_a_historical_books_package_without_writing_anything(
 <dl>
 <dd>
 
-**accounts:** `typing.Optional[typing.List[PostV1MigrationBooksValidateRequestAccountsItem]]` 
+**accounts:** `typing.Optional[typing.List[BooksValidateMigrationRequestAccountsItem]]` 
     
 </dd>
 </dl>
@@ -25905,7 +25952,7 @@ client.migration.check_a_historical_books_package_without_writing_anything(
 <dl>
 <dd>
 
-**partners:** `typing.Optional[typing.List[PostV1MigrationBooksValidateRequestPartnersItem]]` 
+**partners:** `typing.Optional[typing.List[BooksValidateMigrationRequestPartnersItem]]` 
     
 </dd>
 </dl>
@@ -25913,7 +25960,7 @@ client.migration.check_a_historical_books_package_without_writing_anything(
 <dl>
 <dd>
 
-**items:** `typing.Optional[typing.List[PostV1MigrationBooksValidateRequestItemsItem]]` 
+**items:** `typing.Optional[typing.List[BooksValidateMigrationRequestItemsItem]]` 
     
 </dd>
 </dl>
@@ -25921,7 +25968,7 @@ client.migration.check_a_historical_books_package_without_writing_anything(
 <dl>
 <dd>
 
-**opening_balances:** `typing.Optional[PostV1MigrationBooksValidateRequestOpeningBalances]` 
+**opening_balances:** `typing.Optional[BooksValidateMigrationRequestOpeningBalances]` 
     
 </dd>
 </dl>
@@ -25929,7 +25976,7 @@ client.migration.check_a_historical_books_package_without_writing_anything(
 <dl>
 <dd>
 
-**journal:** `typing.Optional[typing.List[PostV1MigrationBooksValidateRequestJournalItem]]` 
+**journal:** `typing.Optional[typing.List[BooksValidateMigrationRequestJournalItem]]` 
     
 </dd>
 </dl>
@@ -25937,7 +25984,7 @@ client.migration.check_a_historical_books_package_without_writing_anything(
 <dl>
 <dd>
 
-**open_receivables:** `typing.Optional[typing.List[PostV1MigrationBooksValidateRequestOpenReceivablesItem]]` 
+**open_receivables:** `typing.Optional[typing.List[BooksValidateMigrationRequestOpenReceivablesItem]]` 
     
 </dd>
 </dl>
@@ -25945,7 +25992,7 @@ client.migration.check_a_historical_books_package_without_writing_anything(
 <dl>
 <dd>
 
-**open_payables:** `typing.Optional[typing.List[PostV1MigrationBooksValidateRequestOpenPayablesItem]]` 
+**open_payables:** `typing.Optional[typing.List[BooksValidateMigrationRequestOpenPayablesItem]]` 
     
 </dd>
 </dl>
@@ -25953,7 +26000,7 @@ client.migration.check_a_historical_books_package_without_writing_anything(
 <dl>
 <dd>
 
-**asset_groups:** `typing.Optional[typing.List[PostV1MigrationBooksValidateRequestAssetGroupsItem]]` 
+**asset_groups:** `typing.Optional[typing.List[BooksValidateMigrationRequestAssetGroupsItem]]` 
     
 </dd>
 </dl>
@@ -25961,7 +26008,7 @@ client.migration.check_a_historical_books_package_without_writing_anything(
 <dl>
 <dd>
 
-**fixed_assets:** `typing.Optional[typing.List[PostV1MigrationBooksValidateRequestFixedAssetsItem]]` 
+**fixed_assets:** `typing.Optional[typing.List[BooksValidateMigrationRequestFixedAssetsItem]]` 
     
 </dd>
 </dl>
@@ -25969,7 +26016,7 @@ client.migration.check_a_historical_books_package_without_writing_anything(
 <dl>
 <dd>
 
-**stock:** `typing.Optional[typing.List[PostV1MigrationBooksValidateRequestStockItem]]` 
+**stock:** `typing.Optional[typing.List[BooksValidateMigrationRequestStockItem]]` 
     
 </dd>
 </dl>
@@ -25989,7 +26036,7 @@ client.migration.check_a_historical_books_package_without_writing_anything(
 </dl>
 </details>
 
-<details><summary><code>client.migration.<a href="src/nordlet/migration/client.py">import_historical_books_from_a_previous_accounting_system</a>(...) -> PostV1MigrationBooksImportResponse</code></summary>
+<details><summary><code>client.migration.<a href="src/nordlet/migration/client.py">books_import</a>(...) -> BooksImportMigrationResponse</code></summary>
 <dl>
 <dd>
 
@@ -26018,14 +26065,15 @@ Brings a company over from another system in one call: chart of accounts, partne
 ```python
 from nordlet import Nordlet
 from nordlet.environment import NordletEnvironment
+import datetime
 
 client = Nordlet(
     token="<token>",
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.migration.import_historical_books_from_a_previous_accounting_system(
-    cutover_date="cutoverDate",
+client.migration.books_import(
+    cutover_date=datetime.date.fromisoformat("2026-07-01"),
 )
 
 ```
@@ -26042,7 +26090,7 @@ client.migration.import_historical_books_from_a_previous_accounting_system(
 <dl>
 <dd>
 
-**cutover_date:** `str` 
+**cutover_date:** `datetime.date` 
     
 </dd>
 </dl>
@@ -26058,7 +26106,7 @@ client.migration.import_historical_books_from_a_previous_accounting_system(
 <dl>
 <dd>
 
-**accounts:** `typing.Optional[typing.List[PostV1MigrationBooksImportRequestAccountsItem]]` 
+**accounts:** `typing.Optional[typing.List[BooksImportMigrationRequestAccountsItem]]` 
     
 </dd>
 </dl>
@@ -26066,7 +26114,7 @@ client.migration.import_historical_books_from_a_previous_accounting_system(
 <dl>
 <dd>
 
-**partners:** `typing.Optional[typing.List[PostV1MigrationBooksImportRequestPartnersItem]]` 
+**partners:** `typing.Optional[typing.List[BooksImportMigrationRequestPartnersItem]]` 
     
 </dd>
 </dl>
@@ -26074,7 +26122,7 @@ client.migration.import_historical_books_from_a_previous_accounting_system(
 <dl>
 <dd>
 
-**items:** `typing.Optional[typing.List[PostV1MigrationBooksImportRequestItemsItem]]` 
+**items:** `typing.Optional[typing.List[BooksImportMigrationRequestItemsItem]]` 
     
 </dd>
 </dl>
@@ -26082,7 +26130,7 @@ client.migration.import_historical_books_from_a_previous_accounting_system(
 <dl>
 <dd>
 
-**opening_balances:** `typing.Optional[PostV1MigrationBooksImportRequestOpeningBalances]` 
+**opening_balances:** `typing.Optional[BooksImportMigrationRequestOpeningBalances]` 
     
 </dd>
 </dl>
@@ -26090,7 +26138,7 @@ client.migration.import_historical_books_from_a_previous_accounting_system(
 <dl>
 <dd>
 
-**journal:** `typing.Optional[typing.List[PostV1MigrationBooksImportRequestJournalItem]]` 
+**journal:** `typing.Optional[typing.List[BooksImportMigrationRequestJournalItem]]` 
     
 </dd>
 </dl>
@@ -26098,7 +26146,7 @@ client.migration.import_historical_books_from_a_previous_accounting_system(
 <dl>
 <dd>
 
-**open_receivables:** `typing.Optional[typing.List[PostV1MigrationBooksImportRequestOpenReceivablesItem]]` 
+**open_receivables:** `typing.Optional[typing.List[BooksImportMigrationRequestOpenReceivablesItem]]` 
     
 </dd>
 </dl>
@@ -26106,7 +26154,7 @@ client.migration.import_historical_books_from_a_previous_accounting_system(
 <dl>
 <dd>
 
-**open_payables:** `typing.Optional[typing.List[PostV1MigrationBooksImportRequestOpenPayablesItem]]` 
+**open_payables:** `typing.Optional[typing.List[BooksImportMigrationRequestOpenPayablesItem]]` 
     
 </dd>
 </dl>
@@ -26114,7 +26162,7 @@ client.migration.import_historical_books_from_a_previous_accounting_system(
 <dl>
 <dd>
 
-**asset_groups:** `typing.Optional[typing.List[PostV1MigrationBooksImportRequestAssetGroupsItem]]` 
+**asset_groups:** `typing.Optional[typing.List[BooksImportMigrationRequestAssetGroupsItem]]` 
     
 </dd>
 </dl>
@@ -26122,7 +26170,7 @@ client.migration.import_historical_books_from_a_previous_accounting_system(
 <dl>
 <dd>
 
-**fixed_assets:** `typing.Optional[typing.List[PostV1MigrationBooksImportRequestFixedAssetsItem]]` 
+**fixed_assets:** `typing.Optional[typing.List[BooksImportMigrationRequestFixedAssetsItem]]` 
     
 </dd>
 </dl>
@@ -26130,7 +26178,7 @@ client.migration.import_historical_books_from_a_previous_accounting_system(
 <dl>
 <dd>
 
-**stock:** `typing.Optional[typing.List[PostV1MigrationBooksImportRequestStockItem]]` 
+**stock:** `typing.Optional[typing.List[BooksImportMigrationRequestStockItem]]` 
     
 </dd>
 </dl>
@@ -26150,8 +26198,8 @@ client.migration.import_historical_books_from_a_previous_accounting_system(
 </dl>
 </details>
 
-## Assets
-<details><summary><code>client.assets.<a href="src/nordlet/assets/client.py">post_v1assets_groups_create</a>(...) -> PostV1AssetsGroupsCreateResponse</code></summary>
+## assets
+<details><summary><code>client.assets.<a href="src/nordlet/assets/client.py">groups_create</a>(...) -> GroupsCreateAssetsResponse</code></summary>
 <dl>
 <dd>
 
@@ -26172,7 +26220,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.assets.post_v1assets_groups_create(
+client.assets.groups_create(
     code="code",
     name="name",
     asset_account_code="assetAccountCode",
@@ -26253,7 +26301,7 @@ client.assets.post_v1assets_groups_create(
 </dl>
 </details>
 
-<details><summary><code>client.assets.<a href="src/nordlet/assets/client.py">post_v1assets_groups_list</a>(...) -> PostV1AssetsGroupsListResponse</code></summary>
+<details><summary><code>client.assets.<a href="src/nordlet/assets/client.py">groups_list</a>(...) -> GroupsListAssetsResponse</code></summary>
 <dl>
 <dd>
 
@@ -26274,7 +26322,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.assets.post_v1assets_groups_list()
+client.assets.groups_list()
 
 ```
 </dd>
@@ -26306,7 +26354,7 @@ client.assets.post_v1assets_groups_list()
 <dl>
 <dd>
 
-**sort:** `typing.Optional[typing.List[PostV1AssetsGroupsListRequestSortItem]]` 
+**sort:** `typing.Optional[typing.List[GroupsListAssetsRequestSortItem]]` 
     
 </dd>
 </dl>
@@ -26314,7 +26362,7 @@ client.assets.post_v1assets_groups_list()
 <dl>
 <dd>
 
-**filter:** `typing.Optional[typing.List[PostV1AssetsGroupsListRequestFilterItem]]` 
+**filter:** `typing.Optional[typing.List[GroupsListAssetsRequestFilterItem]]` 
     
 </dd>
 </dl>
@@ -26342,7 +26390,7 @@ client.assets.post_v1assets_groups_list()
 </dl>
 </details>
 
-<details><summary><code>client.assets.<a href="src/nordlet/assets/client.py">post_v1assets_assets_create</a>(...) -> PostV1AssetsAssetsCreateResponse</code></summary>
+<details><summary><code>client.assets.<a href="src/nordlet/assets/client.py">assets_create</a>(...) -> AssetsCreateAssetsResponse</code></summary>
 <dl>
 <dd>
 
@@ -26357,18 +26405,19 @@ client.assets.post_v1assets_groups_list()
 ```python
 from nordlet import Nordlet
 from nordlet.environment import NordletEnvironment
+import datetime
 
 client = Nordlet(
     token="<token>",
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.assets.post_v1assets_assets_create(
+client.assets.assets_create(
     group_id="groupId",
     code="code",
     name="name",
-    acquisition_date="acquisitionDate",
-    acquisition_cost="acquisitionCost",
+    acquisition_date=datetime.date.fromisoformat("2026-07-01"),
+    acquisition_cost="121.0000",
 )
 
 ```
@@ -26409,7 +26458,7 @@ client.assets.post_v1assets_assets_create(
 <dl>
 <dd>
 
-**acquisition_date:** `str` 
+**acquisition_date:** `datetime.date` 
     
 </dd>
 </dl>
@@ -26425,7 +26474,7 @@ client.assets.post_v1assets_assets_create(
 <dl>
 <dd>
 
-**depreciation_start_date:** `typing.Optional[str]` 
+**depreciation_start_date:** `typing.Optional[datetime.date]` 
     
 </dd>
 </dl>
@@ -26457,7 +26506,7 @@ client.assets.post_v1assets_assets_create(
 <dl>
 <dd>
 
-**documents:** `typing.Optional[typing.List[PostV1AssetsAssetsCreateRequestDocumentsItem]]` 
+**documents:** `typing.Optional[typing.List[AssetsCreateAssetsRequestDocumentsItem]]` 
     
 </dd>
 </dl>
@@ -26477,7 +26526,7 @@ client.assets.post_v1assets_assets_create(
 </dl>
 </details>
 
-<details><summary><code>client.assets.<a href="src/nordlet/assets/client.py">post_v1assets_assets_update</a>(...) -> PostV1AssetsAssetsUpdateResponse</code></summary>
+<details><summary><code>client.assets.<a href="src/nordlet/assets/client.py">assets_update</a>(...) -> AssetsUpdateAssetsResponse</code></summary>
 <dl>
 <dd>
 
@@ -26498,7 +26547,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.assets.post_v1assets_assets_update(
+client.assets.assets_update(
     id="id",
 )
 
@@ -26548,7 +26597,7 @@ client.assets.post_v1assets_assets_update(
 <dl>
 <dd>
 
-**acquisition_date:** `typing.Optional[str]` 
+**acquisition_date:** `typing.Optional[datetime.date]` 
     
 </dd>
 </dl>
@@ -26556,7 +26605,7 @@ client.assets.post_v1assets_assets_update(
 <dl>
 <dd>
 
-**depreciation_start_date:** `typing.Optional[str]` 
+**depreciation_start_date:** `typing.Optional[datetime.date]` 
     
 </dd>
 </dl>
@@ -26596,7 +26645,7 @@ client.assets.post_v1assets_assets_update(
 <dl>
 <dd>
 
-**documents:** `typing.Optional[typing.List[PostV1AssetsAssetsUpdateRequestDocumentsItem]]` 
+**documents:** `typing.Optional[typing.List[AssetsUpdateAssetsRequestDocumentsItem]]` 
     
 </dd>
 </dl>
@@ -26616,7 +26665,7 @@ client.assets.post_v1assets_assets_update(
 </dl>
 </details>
 
-<details><summary><code>client.assets.<a href="src/nordlet/assets/client.py">post_v1assets_assets_input_vat</a>(...) -> PostV1AssetsAssetsInputVatResponse</code></summary>
+<details><summary><code>client.assets.<a href="src/nordlet/assets/client.py">assets_input_vat</a>(...) -> AssetsInputVatAssetsResponse</code></summary>
 <dl>
 <dd>
 
@@ -26645,20 +26694,20 @@ Record the input VAT facts of a capital good that the annual VAT return needs fo
 ```python
 from nordlet import Nordlet
 from nordlet.environment import NordletEnvironment
-from nordlet.assets import PostV1AssetsAssetsInputVatRequestInputVatUseChangesItem
+from nordlet.assets import AssetsInputVatAssetsRequestInputVatUseChangesItem
 
 client = Nordlet(
     token="<token>",
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.assets.post_v1assets_assets_input_vat(
+client.assets.assets_input_vat(
     id="id",
     input_vat_real_estate=True,
     input_vat_use_changes=[
-        PostV1AssetsAssetsInputVatRequestInputVatUseChangesItem(
+        AssetsInputVatAssetsRequestInputVatUseChangesItem(
             year=1000000,
-            percent="percent",
+            percent="121.00",
             reason="use_change",
         )
     ],
@@ -26694,7 +26743,7 @@ client.assets.post_v1assets_assets_input_vat(
 <dl>
 <dd>
 
-**input_vat_use_changes:** `typing.List[PostV1AssetsAssetsInputVatRequestInputVatUseChangesItem]` 
+**input_vat_use_changes:** `typing.List[AssetsInputVatAssetsRequestInputVatUseChangesItem]` 
     
 </dd>
 </dl>
@@ -26710,7 +26759,7 @@ client.assets.post_v1assets_assets_input_vat(
 <dl>
 <dd>
 
-**input_vat_first_use_date:** `typing.Optional[str]` 
+**input_vat_first_use_date:** `typing.Optional[datetime.date]` 
     
 </dd>
 </dl>
@@ -26738,7 +26787,7 @@ client.assets.post_v1assets_assets_input_vat(
 </dl>
 </details>
 
-<details><summary><code>client.assets.<a href="src/nordlet/assets/client.py">post_v1assets_assets_get</a>(...) -> PostV1AssetsAssetsGetResponse</code></summary>
+<details><summary><code>client.assets.<a href="src/nordlet/assets/client.py">assets_get</a>(...) -> AssetsGetAssetsResponse</code></summary>
 <dl>
 <dd>
 
@@ -26759,7 +26808,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.assets.post_v1assets_assets_get(
+client.assets.assets_get(
     id="id",
 )
 
@@ -26797,7 +26846,7 @@ client.assets.post_v1assets_assets_get(
 </dl>
 </details>
 
-<details><summary><code>client.assets.<a href="src/nordlet/assets/client.py">post_v1assets_assets_list</a>(...) -> PostV1AssetsAssetsListResponse</code></summary>
+<details><summary><code>client.assets.<a href="src/nordlet/assets/client.py">assets_list</a>(...) -> AssetsListAssetsResponse</code></summary>
 <dl>
 <dd>
 
@@ -26818,7 +26867,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.assets.post_v1assets_assets_list()
+client.assets.assets_list()
 
 ```
 </dd>
@@ -26850,7 +26899,7 @@ client.assets.post_v1assets_assets_list()
 <dl>
 <dd>
 
-**sort:** `typing.Optional[typing.List[PostV1AssetsAssetsListRequestSortItem]]` 
+**sort:** `typing.Optional[typing.List[AssetsListAssetsRequestSortItem]]` 
     
 </dd>
 </dl>
@@ -26858,7 +26907,7 @@ client.assets.post_v1assets_assets_list()
 <dl>
 <dd>
 
-**filter:** `typing.Optional[typing.List[PostV1AssetsAssetsListRequestFilterItem]]` 
+**filter:** `typing.Optional[typing.List[AssetsListAssetsRequestFilterItem]]` 
     
 </dd>
 </dl>
@@ -26886,7 +26935,7 @@ client.assets.post_v1assets_assets_list()
 </dl>
 </details>
 
-<details><summary><code>client.assets.<a href="src/nordlet/assets/client.py">post_v1assets_assets_modernize</a>(...) -> PostV1AssetsAssetsModernizeResponse</code></summary>
+<details><summary><code>client.assets.<a href="src/nordlet/assets/client.py">assets_modernize</a>(...) -> AssetsModernizeAssetsResponse</code></summary>
 <dl>
 <dd>
 
@@ -26901,16 +26950,17 @@ client.assets.post_v1assets_assets_list()
 ```python
 from nordlet import Nordlet
 from nordlet.environment import NordletEnvironment
+import datetime
 
 client = Nordlet(
     token="<token>",
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.assets.post_v1assets_assets_modernize(
+client.assets.assets_modernize(
     id="id",
-    date="date",
-    amount="amount",
+    date=datetime.date.fromisoformat("2026-07-01"),
+    amount="121.0000",
 )
 
 ```
@@ -26935,7 +26985,7 @@ client.assets.post_v1assets_assets_modernize(
 <dl>
 <dd>
 
-**date:** `str` 
+**date:** `datetime.date` 
     
 </dd>
 </dl>
@@ -26979,7 +27029,115 @@ client.assets.post_v1assets_assets_modernize(
 </dl>
 </details>
 
-<details><summary><code>client.assets.<a href="src/nordlet/assets/client.py">post_v1assets_depreciation_preview</a>(...) -> PostV1AssetsDepreciationPreviewResponse</code></summary>
+<details><summary><code>client.assets.<a href="src/nordlet/assets/client.py">assets_dispose</a>(...) -> AssetsDisposeAssetsResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Dispose of a fixed asset (sold, scrapped or written off). Removes its cost and accumulated depreciation, books the net book value as a disposal loss and the proceeds as a disposal gain (posting rules assets.disposalLoss, assets.disposalGain, assets.disposalProceeds), and stops its depreciation. Depreciation must be posted for every month before the disposal month.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+import datetime
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.assets.assets_dispose(
+    id="id",
+    date=datetime.date.fromisoformat("2026-07-01"),
+    reason="sold",
+)
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**date:** `datetime.date` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**reason:** `AssetsDisposeAssetsRequestReason` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**proceeds:** `typing.Optional[str]` — Sale price excluding VAT; 0 when scrapped or written off
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**notes:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.assets.<a href="src/nordlet/assets/client.py">depreciation_preview</a>(...) -> DepreciationPreviewAssetsResponse</code></summary>
 <dl>
 <dd>
 
@@ -27000,7 +27158,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.assets.post_v1assets_depreciation_preview(
+client.assets.depreciation_preview(
     year=1000000,
     month=1000000,
 )
@@ -27047,7 +27205,7 @@ client.assets.post_v1assets_depreciation_preview(
 </dl>
 </details>
 
-<details><summary><code>client.assets.<a href="src/nordlet/assets/client.py">post_v1assets_depreciation_post</a>(...) -> PostV1AssetsDepreciationPostResponse</code></summary>
+<details><summary><code>client.assets.<a href="src/nordlet/assets/client.py">depreciation_post</a>(...) -> DepreciationPostAssetsResponse</code></summary>
 <dl>
 <dd>
 
@@ -27068,7 +27226,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.assets.post_v1assets_depreciation_post(
+client.assets.depreciation_post(
     year=1000000,
     month=1000000,
 )
@@ -27115,8 +27273,8 @@ client.assets.post_v1assets_depreciation_post(
 </dl>
 </details>
 
-## Hr
-<details><summary><code>client.hr.<a href="src/nordlet/hr/client.py">post_v1hr_positions_create</a>(...) -> PostV1HrPositionsCreateResponse</code></summary>
+## hr
+<details><summary><code>client.hr.<a href="src/nordlet/hr/client.py">positions_create</a>(...) -> PositionsCreateHrResponse</code></summary>
 <dl>
 <dd>
 
@@ -27137,7 +27295,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.hr.post_v1hr_positions_create(
+client.hr.positions_create(
     name="name",
 )
 
@@ -27171,7 +27329,7 @@ client.hr.post_v1hr_positions_create(
 <dl>
 <dd>
 
-**translations:** `typing.Optional[typing.Dict[str, PostV1HrPositionsCreateRequestTranslationsValue]]` 
+**translations:** `typing.Optional[typing.Dict[str, PositionsCreateHrRequestTranslationsValue]]` 
     
 </dd>
 </dl>
@@ -27191,7 +27349,7 @@ client.hr.post_v1hr_positions_create(
 </dl>
 </details>
 
-<details><summary><code>client.hr.<a href="src/nordlet/hr/client.py">post_v1hr_positions_update</a>(...) -> PostV1HrPositionsUpdateResponse</code></summary>
+<details><summary><code>client.hr.<a href="src/nordlet/hr/client.py">positions_update</a>(...) -> PositionsUpdateHrResponse</code></summary>
 <dl>
 <dd>
 
@@ -27212,7 +27370,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.hr.post_v1hr_positions_update(
+client.hr.positions_update(
     id="id",
 )
 
@@ -27254,7 +27412,7 @@ client.hr.post_v1hr_positions_update(
 <dl>
 <dd>
 
-**translations:** `typing.Optional[typing.Dict[str, typing.Optional[PostV1HrPositionsUpdateRequestTranslationsValue]]]` 
+**translations:** `typing.Optional[typing.Dict[str, typing.Optional[PositionsUpdateHrRequestTranslationsValue]]]` 
     
 </dd>
 </dl>
@@ -27274,7 +27432,7 @@ client.hr.post_v1hr_positions_update(
 </dl>
 </details>
 
-<details><summary><code>client.hr.<a href="src/nordlet/hr/client.py">post_v1hr_positions_list</a>(...) -> PostV1HrPositionsListResponse</code></summary>
+<details><summary><code>client.hr.<a href="src/nordlet/hr/client.py">positions_list</a>(...) -> PositionsListHrResponse</code></summary>
 <dl>
 <dd>
 
@@ -27295,7 +27453,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.hr.post_v1hr_positions_list()
+client.hr.positions_list()
 
 ```
 </dd>
@@ -27327,7 +27485,7 @@ client.hr.post_v1hr_positions_list()
 <dl>
 <dd>
 
-**sort:** `typing.Optional[typing.List[PostV1HrPositionsListRequestSortItem]]` 
+**sort:** `typing.Optional[typing.List[PositionsListHrRequestSortItem]]` 
     
 </dd>
 </dl>
@@ -27335,7 +27493,7 @@ client.hr.post_v1hr_positions_list()
 <dl>
 <dd>
 
-**filter:** `typing.Optional[typing.List[PostV1HrPositionsListRequestFilterItem]]` 
+**filter:** `typing.Optional[typing.List[PositionsListHrRequestFilterItem]]` 
     
 </dd>
 </dl>
@@ -27363,7 +27521,7 @@ client.hr.post_v1hr_positions_list()
 </dl>
 </details>
 
-<details><summary><code>client.hr.<a href="src/nordlet/hr/client.py">post_v1hr_employees_create</a>(...) -> PostV1HrEmployeesCreateResponse</code></summary>
+<details><summary><code>client.hr.<a href="src/nordlet/hr/client.py">employees_create</a>(...) -> EmployeesCreateHrResponse</code></summary>
 <dl>
 <dd>
 
@@ -27384,7 +27542,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.hr.post_v1hr_employees_create(
+client.hr.employees_create(
     first_name="firstName",
     last_name="lastName",
 )
@@ -27435,7 +27593,7 @@ client.hr.post_v1hr_employees_create(
 <dl>
 <dd>
 
-**birth_date:** `typing.Optional[str]` 
+**birth_date:** `typing.Optional[datetime.date]` 
     
 </dd>
 </dl>
@@ -27459,7 +27617,7 @@ client.hr.post_v1hr_employees_create(
 <dl>
 <dd>
 
-**address:** `typing.Optional[PostV1HrEmployeesCreateRequestAddress]` 
+**address:** `typing.Optional[EmployeesCreateHrRequestAddress]` 
     
 </dd>
 </dl>
@@ -27483,7 +27641,7 @@ client.hr.post_v1hr_employees_create(
 <dl>
 <dd>
 
-**social_insurance_start:** `typing.Optional[str]` 
+**social_insurance_start:** `typing.Optional[datetime.date]` 
     
 </dd>
 </dl>
@@ -27491,7 +27649,7 @@ client.hr.post_v1hr_employees_create(
 <dl>
 <dd>
 
-**hire_date:** `typing.Optional[str]` 
+**hire_date:** `typing.Optional[datetime.date]` 
     
 </dd>
 </dl>
@@ -27539,7 +27697,7 @@ client.hr.post_v1hr_employees_create(
 <dl>
 <dd>
 
-**attributes:** `typing.Optional[typing.List[PostV1HrEmployeesCreateRequestAttributesItem]]` 
+**attributes:** `typing.Optional[typing.List[EmployeesCreateHrRequestAttributesItem]]` 
     
 </dd>
 </dl>
@@ -27559,7 +27717,7 @@ client.hr.post_v1hr_employees_create(
 </dl>
 </details>
 
-<details><summary><code>client.hr.<a href="src/nordlet/hr/client.py">post_v1hr_employees_update</a>(...) -> PostV1HrEmployeesUpdateResponse</code></summary>
+<details><summary><code>client.hr.<a href="src/nordlet/hr/client.py">employees_update</a>(...) -> EmployeesUpdateHrResponse</code></summary>
 <dl>
 <dd>
 
@@ -27580,7 +27738,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.hr.post_v1hr_employees_update(
+client.hr.employees_update(
     id="id",
 )
 
@@ -27638,7 +27796,7 @@ client.hr.post_v1hr_employees_update(
 <dl>
 <dd>
 
-**birth_date:** `typing.Optional[str]` 
+**birth_date:** `typing.Optional[datetime.date]` 
     
 </dd>
 </dl>
@@ -27662,7 +27820,7 @@ client.hr.post_v1hr_employees_update(
 <dl>
 <dd>
 
-**address:** `typing.Optional[PostV1HrEmployeesUpdateRequestAddress]` 
+**address:** `typing.Optional[EmployeesUpdateHrRequestAddress]` 
     
 </dd>
 </dl>
@@ -27686,7 +27844,7 @@ client.hr.post_v1hr_employees_update(
 <dl>
 <dd>
 
-**social_insurance_start:** `typing.Optional[str]` 
+**social_insurance_start:** `typing.Optional[datetime.date]` 
     
 </dd>
 </dl>
@@ -27694,7 +27852,7 @@ client.hr.post_v1hr_employees_update(
 <dl>
 <dd>
 
-**hire_date:** `typing.Optional[str]` 
+**hire_date:** `typing.Optional[datetime.date]` 
     
 </dd>
 </dl>
@@ -27742,7 +27900,7 @@ client.hr.post_v1hr_employees_update(
 <dl>
 <dd>
 
-**attributes:** `typing.Optional[typing.List[PostV1HrEmployeesUpdateRequestAttributesItem]]` 
+**attributes:** `typing.Optional[typing.List[EmployeesUpdateHrRequestAttributesItem]]` 
     
 </dd>
 </dl>
@@ -27750,7 +27908,7 @@ client.hr.post_v1hr_employees_update(
 <dl>
 <dd>
 
-**termination_date:** `typing.Optional[str]` 
+**termination_date:** `typing.Optional[datetime.date]` 
     
 </dd>
 </dl>
@@ -27758,7 +27916,7 @@ client.hr.post_v1hr_employees_update(
 <dl>
 <dd>
 
-**status:** `typing.Optional[PostV1HrEmployeesUpdateRequestStatus]` 
+**status:** `typing.Optional[EmployeesUpdateHrRequestStatus]` 
     
 </dd>
 </dl>
@@ -27778,7 +27936,7 @@ client.hr.post_v1hr_employees_update(
 </dl>
 </details>
 
-<details><summary><code>client.hr.<a href="src/nordlet/hr/client.py">post_v1hr_employees_get</a>(...) -> PostV1HrEmployeesGetResponse</code></summary>
+<details><summary><code>client.hr.<a href="src/nordlet/hr/client.py">employees_get</a>(...) -> EmployeesGetHrResponse</code></summary>
 <dl>
 <dd>
 
@@ -27799,7 +27957,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.hr.post_v1hr_employees_get(
+client.hr.employees_get(
     id="id",
 )
 
@@ -27837,7 +27995,7 @@ client.hr.post_v1hr_employees_get(
 </dl>
 </details>
 
-<details><summary><code>client.hr.<a href="src/nordlet/hr/client.py">extra_employee_details_the_country_of_the_company_asks_for</a>() -> PostV1HrEmployeesFieldsResponse</code></summary>
+<details><summary><code>client.hr.<a href="src/nordlet/hr/client.py">employees_fields</a>() -> EmployeesFieldsHrResponse</code></summary>
 <dl>
 <dd>
 
@@ -27872,7 +28030,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.hr.extra_employee_details_the_country_of_the_company_asks_for()
+client.hr.employees_fields()
 
 ```
 </dd>
@@ -27900,7 +28058,7 @@ client.hr.extra_employee_details_the_country_of_the_company_asks_for()
 </dl>
 </details>
 
-<details><summary><code>client.hr.<a href="src/nordlet/hr/client.py">post_v1hr_employees_list</a>(...) -> PostV1HrEmployeesListResponse</code></summary>
+<details><summary><code>client.hr.<a href="src/nordlet/hr/client.py">employees_list</a>(...) -> EmployeesListHrResponse</code></summary>
 <dl>
 <dd>
 
@@ -27921,7 +28079,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.hr.post_v1hr_employees_list()
+client.hr.employees_list()
 
 ```
 </dd>
@@ -27953,7 +28111,7 @@ client.hr.post_v1hr_employees_list()
 <dl>
 <dd>
 
-**sort:** `typing.Optional[typing.List[PostV1HrEmployeesListRequestSortItem]]` 
+**sort:** `typing.Optional[typing.List[EmployeesListHrRequestSortItem]]` 
     
 </dd>
 </dl>
@@ -27961,7 +28119,7 @@ client.hr.post_v1hr_employees_list()
 <dl>
 <dd>
 
-**filter:** `typing.Optional[typing.List[PostV1HrEmployeesListRequestFilterItem]]` 
+**filter:** `typing.Optional[typing.List[EmployeesListHrRequestFilterItem]]` 
     
 </dd>
 </dl>
@@ -27989,7 +28147,7 @@ client.hr.post_v1hr_employees_list()
 </dl>
 </details>
 
-<details><summary><code>client.hr.<a href="src/nordlet/hr/client.py">post_v1hr_employees_delete</a>(...) -> PostV1HrEmployeesDeleteResponse</code></summary>
+<details><summary><code>client.hr.<a href="src/nordlet/hr/client.py">employees_delete</a>(...) -> EmployeesDeleteHrResponse</code></summary>
 <dl>
 <dd>
 
@@ -28010,7 +28168,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.hr.post_v1hr_employees_delete(
+client.hr.employees_delete(
     id="id",
 )
 
@@ -28048,7 +28206,7 @@ client.hr.post_v1hr_employees_delete(
 </dl>
 </details>
 
-<details><summary><code>client.hr.<a href="src/nordlet/hr/client.py">blank_an_employees_personal_data_and_hide_the_record</a>(...) -> PostV1HrEmployeesAnonymizeResponse</code></summary>
+<details><summary><code>client.hr.<a href="src/nordlet/hr/client.py">employees_anonymize</a>(...) -> EmployeesAnonymizeHrResponse</code></summary>
 <dl>
 <dd>
 
@@ -28083,7 +28241,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.hr.blank_an_employees_personal_data_and_hide_the_record(
+client.hr.employees_anonymize(
     id="id",
 )
 
@@ -28121,7 +28279,7 @@ client.hr.blank_an_employees_personal_data_and_hide_the_record(
 </dl>
 </details>
 
-<details><summary><code>client.hr.<a href="src/nordlet/hr/client.py">post_v1hr_contracts_create</a>(...) -> PostV1HrContractsCreateResponse</code></summary>
+<details><summary><code>client.hr.<a href="src/nordlet/hr/client.py">contracts_create</a>(...) -> ContractsCreateHrResponse</code></summary>
 <dl>
 <dd>
 
@@ -28136,16 +28294,17 @@ client.hr.blank_an_employees_personal_data_and_hide_the_record(
 ```python
 from nordlet import Nordlet
 from nordlet.environment import NordletEnvironment
+import datetime
 
 client = Nordlet(
     token="<token>",
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.hr.post_v1hr_contracts_create(
+client.hr.contracts_create(
     employee_id="employeeId",
-    start_date="startDate",
-    base_salary="baseSalary",
+    start_date=datetime.date.fromisoformat("2026-07-01"),
+    base_salary="121.0000",
 )
 
 ```
@@ -28170,7 +28329,7 @@ client.hr.post_v1hr_contracts_create(
 <dl>
 <dd>
 
-**start_date:** `str` 
+**start_date:** `datetime.date` 
     
 </dd>
 </dl>
@@ -28226,7 +28385,7 @@ client.hr.post_v1hr_contracts_create(
 <dl>
 <dd>
 
-**type:** `typing.Optional[PostV1HrContractsCreateRequestType]` 
+**type:** `typing.Optional[ContractsCreateHrRequestType]` 
     
 </dd>
 </dl>
@@ -28234,7 +28393,7 @@ client.hr.post_v1hr_contracts_create(
 <dl>
 <dd>
 
-**end_date:** `typing.Optional[str]` 
+**end_date:** `typing.Optional[datetime.date]` 
     
 </dd>
 </dl>
@@ -28242,7 +28401,7 @@ client.hr.post_v1hr_contracts_create(
 <dl>
 <dd>
 
-**salary_type:** `typing.Optional[PostV1HrContractsCreateRequestSalaryType]` 
+**salary_type:** `typing.Optional[ContractsCreateHrRequestSalaryType]` 
     
 </dd>
 </dl>
@@ -28278,7 +28437,7 @@ client.hr.post_v1hr_contracts_create(
 </dl>
 </details>
 
-<details><summary><code>client.hr.<a href="src/nordlet/hr/client.py">post_v1hr_contracts_end</a>(...) -> PostV1HrContractsEndResponse</code></summary>
+<details><summary><code>client.hr.<a href="src/nordlet/hr/client.py">contracts_end</a>(...) -> ContractsEndHrResponse</code></summary>
 <dl>
 <dd>
 
@@ -28293,15 +28452,16 @@ client.hr.post_v1hr_contracts_create(
 ```python
 from nordlet import Nordlet
 from nordlet.environment import NordletEnvironment
+import datetime
 
 client = Nordlet(
     token="<token>",
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.hr.post_v1hr_contracts_end(
+client.hr.contracts_end(
     id="id",
-    end_date="endDate",
+    end_date=datetime.date.fromisoformat("2026-07-01"),
 )
 
 ```
@@ -28326,7 +28486,7 @@ client.hr.post_v1hr_contracts_end(
 <dl>
 <dd>
 
-**end_date:** `str` 
+**end_date:** `datetime.date` 
     
 </dd>
 </dl>
@@ -28354,7 +28514,7 @@ client.hr.post_v1hr_contracts_end(
 </dl>
 </details>
 
-<details><summary><code>client.hr.<a href="src/nordlet/hr/client.py">post_v1hr_contracts_list</a>(...) -> PostV1HrContractsListResponse</code></summary>
+<details><summary><code>client.hr.<a href="src/nordlet/hr/client.py">contracts_list</a>(...) -> ContractsListHrResponse</code></summary>
 <dl>
 <dd>
 
@@ -28375,7 +28535,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.hr.post_v1hr_contracts_list()
+client.hr.contracts_list()
 
 ```
 </dd>
@@ -28407,7 +28567,7 @@ client.hr.post_v1hr_contracts_list()
 <dl>
 <dd>
 
-**sort:** `typing.Optional[typing.List[PostV1HrContractsListRequestSortItem]]` 
+**sort:** `typing.Optional[typing.List[ContractsListHrRequestSortItem]]` 
     
 </dd>
 </dl>
@@ -28415,7 +28575,7 @@ client.hr.post_v1hr_contracts_list()
 <dl>
 <dd>
 
-**filter:** `typing.Optional[typing.List[PostV1HrContractsListRequestFilterItem]]` 
+**filter:** `typing.Optional[typing.List[ContractsListHrRequestFilterItem]]` 
     
 </dd>
 </dl>
@@ -28443,7 +28603,7 @@ client.hr.post_v1hr_contracts_list()
 </dl>
 </details>
 
-<details><summary><code>client.hr.<a href="src/nordlet/hr/client.py">post_v1hr_leave_balances_set</a>(...) -> PostV1HrLeaveBalancesSetResponse</code></summary>
+<details><summary><code>client.hr.<a href="src/nordlet/hr/client.py">leave_balances_set</a>(...) -> LeaveBalancesSetHrResponse</code></summary>
 <dl>
 <dd>
 
@@ -28464,10 +28624,10 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.hr.post_v1hr_leave_balances_set(
+client.hr.leave_balances_set(
     employee_id="employeeId",
     year=1000000,
-    entitled_days="entitledDays",
+    entitled_days="121.00",
 )
 
 ```
@@ -28528,7 +28688,7 @@ client.hr.post_v1hr_leave_balances_set(
 </dl>
 </details>
 
-<details><summary><code>client.hr.<a href="src/nordlet/hr/client.py">post_v1hr_leave_balances_list</a>(...) -> PostV1HrLeaveBalancesListResponse</code></summary>
+<details><summary><code>client.hr.<a href="src/nordlet/hr/client.py">leave_balances_list</a>(...) -> LeaveBalancesListHrResponse</code></summary>
 <dl>
 <dd>
 
@@ -28549,7 +28709,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.hr.post_v1hr_leave_balances_list()
+client.hr.leave_balances_list()
 
 ```
 </dd>
@@ -28593,7 +28753,7 @@ client.hr.post_v1hr_leave_balances_list()
 </dl>
 </details>
 
-<details><summary><code>client.hr.<a href="src/nordlet/hr/client.py">post_v1hr_incapacity_certificates_create</a>(...) -> PostV1HrIncapacityCertificatesCreateResponse</code></summary>
+<details><summary><code>client.hr.<a href="src/nordlet/hr/client.py">incapacity_certificates_create</a>(...) -> IncapacityCertificatesCreateHrResponse</code></summary>
 <dl>
 <dd>
 
@@ -28608,17 +28768,18 @@ client.hr.post_v1hr_leave_balances_list()
 ```python
 from nordlet import Nordlet
 from nordlet.environment import NordletEnvironment
+import datetime
 
 client = Nordlet(
     token="<token>",
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.hr.post_v1hr_incapacity_certificates_create(
+client.hr.incapacity_certificates_create(
     employee_id="employeeId",
     number="number",
-    from_date="fromDate",
-    to_date="toDate",
+    from_date=datetime.date.fromisoformat("2026-07-01"),
+    to_date=datetime.date.fromisoformat("2026-07-01"),
 )
 
 ```
@@ -28651,7 +28812,7 @@ client.hr.post_v1hr_incapacity_certificates_create(
 <dl>
 <dd>
 
-**from_date:** `str` 
+**from_date:** `datetime.date` 
     
 </dd>
 </dl>
@@ -28659,7 +28820,7 @@ client.hr.post_v1hr_incapacity_certificates_create(
 <dl>
 <dd>
 
-**to_date:** `str` 
+**to_date:** `datetime.date` 
     
 </dd>
 </dl>
@@ -28703,7 +28864,7 @@ client.hr.post_v1hr_incapacity_certificates_create(
 </dl>
 </details>
 
-<details><summary><code>client.hr.<a href="src/nordlet/hr/client.py">post_v1hr_incapacity_certificates_list</a>(...) -> PostV1HrIncapacityCertificatesListResponse</code></summary>
+<details><summary><code>client.hr.<a href="src/nordlet/hr/client.py">incapacity_certificates_list</a>(...) -> IncapacityCertificatesListHrResponse</code></summary>
 <dl>
 <dd>
 
@@ -28724,7 +28885,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.hr.post_v1hr_incapacity_certificates_list()
+client.hr.incapacity_certificates_list()
 
 ```
 </dd>
@@ -28756,7 +28917,7 @@ client.hr.post_v1hr_incapacity_certificates_list()
 <dl>
 <dd>
 
-**sort:** `typing.Optional[typing.List[PostV1HrIncapacityCertificatesListRequestSortItem]]` 
+**sort:** `typing.Optional[typing.List[IncapacityCertificatesListHrRequestSortItem]]` 
     
 </dd>
 </dl>
@@ -28764,7 +28925,7 @@ client.hr.post_v1hr_incapacity_certificates_list()
 <dl>
 <dd>
 
-**filter:** `typing.Optional[typing.List[PostV1HrIncapacityCertificatesListRequestFilterItem]]` 
+**filter:** `typing.Optional[typing.List[IncapacityCertificatesListHrRequestFilterItem]]` 
     
 </dd>
 </dl>
@@ -28792,7 +28953,7 @@ client.hr.post_v1hr_incapacity_certificates_list()
 </dl>
 </details>
 
-<details><summary><code>client.hr.<a href="src/nordlet/hr/client.py">post_v1hr_employees_records_create</a>(...) -> PostV1HrEmployeesRecordsCreateResponse</code></summary>
+<details><summary><code>client.hr.<a href="src/nordlet/hr/client.py">employees_records_create</a>(...) -> EmployeesRecordsCreateHrResponse</code></summary>
 <dl>
 <dd>
 
@@ -28813,7 +28974,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.hr.post_v1hr_employees_records_create(
+client.hr.employees_records_create(
     employee_id="employeeId",
     type="education",
     title="title",
@@ -28841,7 +29002,7 @@ client.hr.post_v1hr_employees_records_create(
 <dl>
 <dd>
 
-**type:** `PostV1HrEmployeesRecordsCreateRequestType` 
+**type:** `EmployeesRecordsCreateHrRequestType` 
     
 </dd>
 </dl>
@@ -28865,7 +29026,7 @@ client.hr.post_v1hr_employees_records_create(
 <dl>
 <dd>
 
-**issued_at:** `typing.Optional[str]` 
+**issued_at:** `typing.Optional[datetime.date]` 
     
 </dd>
 </dl>
@@ -28873,7 +29034,7 @@ client.hr.post_v1hr_employees_records_create(
 <dl>
 <dd>
 
-**valid_until:** `typing.Optional[str]` 
+**valid_until:** `typing.Optional[datetime.date]` 
     
 </dd>
 </dl>
@@ -28909,7 +29070,7 @@ client.hr.post_v1hr_employees_records_create(
 </dl>
 </details>
 
-<details><summary><code>client.hr.<a href="src/nordlet/hr/client.py">post_v1hr_employees_records_update</a>(...) -> PostV1HrEmployeesRecordsUpdateResponse</code></summary>
+<details><summary><code>client.hr.<a href="src/nordlet/hr/client.py">employees_records_update</a>(...) -> EmployeesRecordsUpdateHrResponse</code></summary>
 <dl>
 <dd>
 
@@ -28930,7 +29091,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.hr.post_v1hr_employees_records_update(
+client.hr.employees_records_update(
     id="id",
 )
 
@@ -28956,7 +29117,7 @@ client.hr.post_v1hr_employees_records_update(
 <dl>
 <dd>
 
-**type:** `typing.Optional[PostV1HrEmployeesRecordsUpdateRequestType]` 
+**type:** `typing.Optional[EmployeesRecordsUpdateHrRequestType]` 
     
 </dd>
 </dl>
@@ -28980,7 +29141,7 @@ client.hr.post_v1hr_employees_records_update(
 <dl>
 <dd>
 
-**issued_at:** `typing.Optional[str]` 
+**issued_at:** `typing.Optional[datetime.date]` 
     
 </dd>
 </dl>
@@ -28988,7 +29149,7 @@ client.hr.post_v1hr_employees_records_update(
 <dl>
 <dd>
 
-**valid_until:** `typing.Optional[str]` 
+**valid_until:** `typing.Optional[datetime.date]` 
     
 </dd>
 </dl>
@@ -29024,7 +29185,7 @@ client.hr.post_v1hr_employees_records_update(
 </dl>
 </details>
 
-<details><summary><code>client.hr.<a href="src/nordlet/hr/client.py">post_v1hr_employees_records_delete</a>(...) -> PostV1HrEmployeesRecordsDeleteResponse</code></summary>
+<details><summary><code>client.hr.<a href="src/nordlet/hr/client.py">employees_records_delete</a>(...) -> EmployeesRecordsDeleteHrResponse</code></summary>
 <dl>
 <dd>
 
@@ -29045,7 +29206,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.hr.post_v1hr_employees_records_delete(
+client.hr.employees_records_delete(
     id="id",
 )
 
@@ -29083,7 +29244,7 @@ client.hr.post_v1hr_employees_records_delete(
 </dl>
 </details>
 
-<details><summary><code>client.hr.<a href="src/nordlet/hr/client.py">post_v1hr_employees_records_list</a>(...) -> PostV1HrEmployeesRecordsListResponse</code></summary>
+<details><summary><code>client.hr.<a href="src/nordlet/hr/client.py">employees_records_list</a>(...) -> EmployeesRecordsListHrResponse</code></summary>
 <dl>
 <dd>
 
@@ -29104,7 +29265,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.hr.post_v1hr_employees_records_list()
+client.hr.employees_records_list()
 
 ```
 </dd>
@@ -29136,7 +29297,7 @@ client.hr.post_v1hr_employees_records_list()
 <dl>
 <dd>
 
-**sort:** `typing.Optional[typing.List[PostV1HrEmployeesRecordsListRequestSortItem]]` 
+**sort:** `typing.Optional[typing.List[EmployeesRecordsListHrRequestSortItem]]` 
     
 </dd>
 </dl>
@@ -29144,7 +29305,7 @@ client.hr.post_v1hr_employees_records_list()
 <dl>
 <dd>
 
-**filter:** `typing.Optional[typing.List[PostV1HrEmployeesRecordsListRequestFilterItem]]` 
+**filter:** `typing.Optional[typing.List[EmployeesRecordsListHrRequestFilterItem]]` 
     
 </dd>
 </dl>
@@ -29172,7 +29333,7 @@ client.hr.post_v1hr_employees_records_list()
 </dl>
 </details>
 
-<details><summary><code>client.hr.<a href="src/nordlet/hr/client.py">post_v1hr_employees_attachments_list</a>(...) -> PostV1HrEmployeesAttachmentsListResponse</code></summary>
+<details><summary><code>client.hr.<a href="src/nordlet/hr/client.py">employees_attachments_list</a>(...) -> EmployeesAttachmentsListHrResponse</code></summary>
 <dl>
 <dd>
 
@@ -29193,7 +29354,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.hr.post_v1hr_employees_attachments_list(
+client.hr.employees_attachments_list(
     employee_id="employeeId",
 )
 
@@ -29231,7 +29392,7 @@ client.hr.post_v1hr_employees_attachments_list(
 </dl>
 </details>
 
-<details><summary><code>client.hr.<a href="src/nordlet/hr/client.py">post_v1hr_timesheets_generate</a>(...) -> PostV1HrTimesheetsGenerateResponse</code></summary>
+<details><summary><code>client.hr.<a href="src/nordlet/hr/client.py">timesheets_generate</a>(...) -> TimesheetsGenerateHrResponse</code></summary>
 <dl>
 <dd>
 
@@ -29252,7 +29413,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.hr.post_v1hr_timesheets_generate(
+client.hr.timesheets_generate(
     year=1000000,
     month=1000000,
 )
@@ -29307,7 +29468,7 @@ client.hr.post_v1hr_timesheets_generate(
 </dl>
 </details>
 
-<details><summary><code>client.hr.<a href="src/nordlet/hr/client.py">post_v1hr_timesheets_upsert</a>(...) -> PostV1HrTimesheetsUpsertResponse</code></summary>
+<details><summary><code>client.hr.<a href="src/nordlet/hr/client.py">timesheets_upsert</a>(...) -> TimesheetsUpsertHrResponse</code></summary>
 <dl>
 <dd>
 
@@ -29322,21 +29483,21 @@ client.hr.post_v1hr_timesheets_generate(
 ```python
 from nordlet import Nordlet
 from nordlet.environment import NordletEnvironment
-from nordlet.hr import PostV1HrTimesheetsUpsertRequestDaysItem
+from nordlet.hr import TimesheetsUpsertHrRequestDaysItem
 
 client = Nordlet(
     token="<token>",
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.hr.post_v1hr_timesheets_upsert(
+client.hr.timesheets_upsert(
     employee_id="employeeId",
     year=1000000,
     month=1000000,
     days=[
-        PostV1HrTimesheetsUpsertRequestDaysItem(
+        TimesheetsUpsertHrRequestDaysItem(
             day=1000000,
-            hours="hours",
+            hours="121.00",
             type="work",
         )
     ],
@@ -29380,7 +29541,7 @@ client.hr.post_v1hr_timesheets_upsert(
 <dl>
 <dd>
 
-**days:** `typing.List[PostV1HrTimesheetsUpsertRequestDaysItem]` 
+**days:** `typing.List[TimesheetsUpsertHrRequestDaysItem]` 
     
 </dd>
 </dl>
@@ -29400,7 +29561,7 @@ client.hr.post_v1hr_timesheets_upsert(
 </dl>
 </details>
 
-<details><summary><code>client.hr.<a href="src/nordlet/hr/client.py">post_v1hr_timesheets_get</a>(...) -> PostV1HrTimesheetsGetResponse</code></summary>
+<details><summary><code>client.hr.<a href="src/nordlet/hr/client.py">timesheets_get</a>(...) -> TimesheetsGetHrResponse</code></summary>
 <dl>
 <dd>
 
@@ -29421,7 +29582,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.hr.post_v1hr_timesheets_get(
+client.hr.timesheets_get(
     employee_id="employeeId",
     year=1000000,
     month=1000000,
@@ -29477,7 +29638,7 @@ client.hr.post_v1hr_timesheets_get(
 </dl>
 </details>
 
-<details><summary><code>client.hr.<a href="src/nordlet/hr/client.py">post_v1hr_timesheets_list</a>(...) -> PostV1HrTimesheetsListResponse</code></summary>
+<details><summary><code>client.hr.<a href="src/nordlet/hr/client.py">timesheets_list</a>(...) -> TimesheetsListHrResponse</code></summary>
 <dl>
 <dd>
 
@@ -29498,7 +29659,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.hr.post_v1hr_timesheets_list(
+client.hr.timesheets_list(
     year=1000000,
     month=1000000,
 )
@@ -29545,7 +29706,7 @@ client.hr.post_v1hr_timesheets_list(
 </dl>
 </details>
 
-<details><summary><code>client.hr.<a href="src/nordlet/hr/client.py">post_v1hr_timesheets_delete</a>(...) -> PostV1HrTimesheetsDeleteResponse</code></summary>
+<details><summary><code>client.hr.<a href="src/nordlet/hr/client.py">timesheets_delete</a>(...) -> TimesheetsDeleteHrResponse</code></summary>
 <dl>
 <dd>
 
@@ -29566,7 +29727,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.hr.post_v1hr_timesheets_delete(
+client.hr.timesheets_delete(
     id="id",
 )
 
@@ -29604,8 +29765,8 @@ client.hr.post_v1hr_timesheets_delete(
 </dl>
 </details>
 
-## Fleet
-<details><summary><code>client.fleet.<a href="src/nordlet/fleet/client.py">post_v1fleet_vehicles_create</a>(...) -> PostV1FleetVehiclesCreateResponse</code></summary>
+## fleet
+<details><summary><code>client.fleet.<a href="src/nordlet/fleet/client.py">vehicles_create</a>(...) -> VehiclesCreateFleetResponse</code></summary>
 <dl>
 <dd>
 
@@ -29626,7 +29787,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.fleet.post_v1fleet_vehicles_create(
+client.fleet.vehicles_create(
     plate_number="plateNumber",
     make="make",
     model="model",
@@ -29686,7 +29847,7 @@ client.fleet.post_v1fleet_vehicles_create(
 <dl>
 <dd>
 
-**fuel_type:** `typing.Optional[PostV1FleetVehiclesCreateRequestFuelType]` 
+**fuel_type:** `typing.Optional[VehiclesCreateFleetRequestFuelType]` 
     
 </dd>
 </dl>
@@ -29694,7 +29855,7 @@ client.fleet.post_v1fleet_vehicles_create(
 <dl>
 <dd>
 
-**acquisition_date:** `typing.Optional[str]` 
+**acquisition_date:** `typing.Optional[datetime.date]` 
     
 </dd>
 </dl>
@@ -29718,7 +29879,7 @@ client.fleet.post_v1fleet_vehicles_create(
 <dl>
 <dd>
 
-**technical_inspection_due:** `typing.Optional[str]` 
+**technical_inspection_due:** `typing.Optional[datetime.date]` 
     
 </dd>
 </dl>
@@ -29726,7 +29887,7 @@ client.fleet.post_v1fleet_vehicles_create(
 <dl>
 <dd>
 
-**insurance_due:** `typing.Optional[str]` 
+**insurance_due:** `typing.Optional[datetime.date]` 
     
 </dd>
 </dl>
@@ -29742,7 +29903,7 @@ client.fleet.post_v1fleet_vehicles_create(
 <dl>
 <dd>
 
-**documents:** `typing.Optional[typing.List[PostV1FleetVehiclesCreateRequestDocumentsItem]]` 
+**documents:** `typing.Optional[typing.List[VehiclesCreateFleetRequestDocumentsItem]]` 
     
 </dd>
 </dl>
@@ -29762,7 +29923,7 @@ client.fleet.post_v1fleet_vehicles_create(
 </dl>
 </details>
 
-<details><summary><code>client.fleet.<a href="src/nordlet/fleet/client.py">post_v1fleet_vehicles_update</a>(...) -> PostV1FleetVehiclesUpdateResponse</code></summary>
+<details><summary><code>client.fleet.<a href="src/nordlet/fleet/client.py">vehicles_update</a>(...) -> VehiclesUpdateFleetResponse</code></summary>
 <dl>
 <dd>
 
@@ -29783,7 +29944,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.fleet.post_v1fleet_vehicles_update(
+client.fleet.vehicles_update(
     id="id",
 )
 
@@ -29849,7 +30010,7 @@ client.fleet.post_v1fleet_vehicles_update(
 <dl>
 <dd>
 
-**fuel_type:** `typing.Optional[PostV1FleetVehiclesUpdateRequestFuelType]` 
+**fuel_type:** `typing.Optional[VehiclesUpdateFleetRequestFuelType]` 
     
 </dd>
 </dl>
@@ -29857,7 +30018,7 @@ client.fleet.post_v1fleet_vehicles_update(
 <dl>
 <dd>
 
-**acquisition_date:** `typing.Optional[str]` 
+**acquisition_date:** `typing.Optional[datetime.date]` 
     
 </dd>
 </dl>
@@ -29881,7 +30042,7 @@ client.fleet.post_v1fleet_vehicles_update(
 <dl>
 <dd>
 
-**technical_inspection_due:** `typing.Optional[str]` 
+**technical_inspection_due:** `typing.Optional[datetime.date]` 
     
 </dd>
 </dl>
@@ -29889,7 +30050,7 @@ client.fleet.post_v1fleet_vehicles_update(
 <dl>
 <dd>
 
-**insurance_due:** `typing.Optional[str]` 
+**insurance_due:** `typing.Optional[datetime.date]` 
     
 </dd>
 </dl>
@@ -29897,7 +30058,7 @@ client.fleet.post_v1fleet_vehicles_update(
 <dl>
 <dd>
 
-**status:** `typing.Optional[PostV1FleetVehiclesUpdateRequestStatus]` 
+**status:** `typing.Optional[VehiclesUpdateFleetRequestStatus]` 
     
 </dd>
 </dl>
@@ -29925,7 +30086,7 @@ client.fleet.post_v1fleet_vehicles_update(
 </dl>
 </details>
 
-<details><summary><code>client.fleet.<a href="src/nordlet/fleet/client.py">post_v1fleet_vehicles_get</a>(...) -> PostV1FleetVehiclesGetResponse</code></summary>
+<details><summary><code>client.fleet.<a href="src/nordlet/fleet/client.py">vehicles_get</a>(...) -> VehiclesGetFleetResponse</code></summary>
 <dl>
 <dd>
 
@@ -29946,7 +30107,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.fleet.post_v1fleet_vehicles_get(
+client.fleet.vehicles_get(
     id="id",
 )
 
@@ -29984,7 +30145,7 @@ client.fleet.post_v1fleet_vehicles_get(
 </dl>
 </details>
 
-<details><summary><code>client.fleet.<a href="src/nordlet/fleet/client.py">post_v1fleet_vehicles_list</a>(...) -> PostV1FleetVehiclesListResponse</code></summary>
+<details><summary><code>client.fleet.<a href="src/nordlet/fleet/client.py">vehicles_list</a>(...) -> VehiclesListFleetResponse</code></summary>
 <dl>
 <dd>
 
@@ -30005,7 +30166,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.fleet.post_v1fleet_vehicles_list()
+client.fleet.vehicles_list()
 
 ```
 </dd>
@@ -30037,7 +30198,7 @@ client.fleet.post_v1fleet_vehicles_list()
 <dl>
 <dd>
 
-**sort:** `typing.Optional[typing.List[PostV1FleetVehiclesListRequestSortItem]]` 
+**sort:** `typing.Optional[typing.List[VehiclesListFleetRequestSortItem]]` 
     
 </dd>
 </dl>
@@ -30045,7 +30206,7 @@ client.fleet.post_v1fleet_vehicles_list()
 <dl>
 <dd>
 
-**filter:** `typing.Optional[typing.List[PostV1FleetVehiclesListRequestFilterItem]]` 
+**filter:** `typing.Optional[typing.List[VehiclesListFleetRequestFilterItem]]` 
     
 </dd>
 </dl>
@@ -30073,7 +30234,7 @@ client.fleet.post_v1fleet_vehicles_list()
 </dl>
 </details>
 
-<details><summary><code>client.fleet.<a href="src/nordlet/fleet/client.py">post_v1fleet_assignments_create</a>(...) -> PostV1FleetAssignmentsCreateResponse</code></summary>
+<details><summary><code>client.fleet.<a href="src/nordlet/fleet/client.py">assignments_create</a>(...) -> AssignmentsCreateFleetResponse</code></summary>
 <dl>
 <dd>
 
@@ -30088,16 +30249,17 @@ client.fleet.post_v1fleet_vehicles_list()
 ```python
 from nordlet import Nordlet
 from nordlet.environment import NordletEnvironment
+import datetime
 
 client = Nordlet(
     token="<token>",
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.fleet.post_v1fleet_assignments_create(
+client.fleet.assignments_create(
     vehicle_id="vehicleId",
     employee_id="employeeId",
-    from_date="fromDate",
+    from_date=datetime.date.fromisoformat("2026-07-01"),
 )
 
 ```
@@ -30130,7 +30292,7 @@ client.fleet.post_v1fleet_assignments_create(
 <dl>
 <dd>
 
-**from_date:** `str` 
+**from_date:** `datetime.date` 
     
 </dd>
 </dl>
@@ -30138,7 +30300,7 @@ client.fleet.post_v1fleet_assignments_create(
 <dl>
 <dd>
 
-**to_date:** `typing.Optional[str]` 
+**to_date:** `typing.Optional[datetime.date]` 
     
 </dd>
 </dl>
@@ -30182,7 +30344,7 @@ client.fleet.post_v1fleet_assignments_create(
 </dl>
 </details>
 
-<details><summary><code>client.fleet.<a href="src/nordlet/fleet/client.py">post_v1fleet_assignments_end</a>(...) -> PostV1FleetAssignmentsEndResponse</code></summary>
+<details><summary><code>client.fleet.<a href="src/nordlet/fleet/client.py">assignments_end</a>(...) -> AssignmentsEndFleetResponse</code></summary>
 <dl>
 <dd>
 
@@ -30197,15 +30359,16 @@ client.fleet.post_v1fleet_assignments_create(
 ```python
 from nordlet import Nordlet
 from nordlet.environment import NordletEnvironment
+import datetime
 
 client = Nordlet(
     token="<token>",
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.fleet.post_v1fleet_assignments_end(
+client.fleet.assignments_end(
     id="id",
-    to_date="toDate",
+    to_date=datetime.date.fromisoformat("2026-07-01"),
 )
 
 ```
@@ -30230,7 +30393,7 @@ client.fleet.post_v1fleet_assignments_end(
 <dl>
 <dd>
 
-**to_date:** `str` 
+**to_date:** `datetime.date` 
     
 </dd>
 </dl>
@@ -30250,7 +30413,7 @@ client.fleet.post_v1fleet_assignments_end(
 </dl>
 </details>
 
-<details><summary><code>client.fleet.<a href="src/nordlet/fleet/client.py">post_v1fleet_assignments_list</a>(...) -> PostV1FleetAssignmentsListResponse</code></summary>
+<details><summary><code>client.fleet.<a href="src/nordlet/fleet/client.py">assignments_list</a>(...) -> AssignmentsListFleetResponse</code></summary>
 <dl>
 <dd>
 
@@ -30271,7 +30434,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.fleet.post_v1fleet_assignments_list()
+client.fleet.assignments_list()
 
 ```
 </dd>
@@ -30303,7 +30466,7 @@ client.fleet.post_v1fleet_assignments_list()
 <dl>
 <dd>
 
-**sort:** `typing.Optional[typing.List[PostV1FleetAssignmentsListRequestSortItem]]` 
+**sort:** `typing.Optional[typing.List[AssignmentsListFleetRequestSortItem]]` 
     
 </dd>
 </dl>
@@ -30311,7 +30474,7 @@ client.fleet.post_v1fleet_assignments_list()
 <dl>
 <dd>
 
-**filter:** `typing.Optional[typing.List[PostV1FleetAssignmentsListRequestFilterItem]]` 
+**filter:** `typing.Optional[typing.List[AssignmentsListFleetRequestFilterItem]]` 
     
 </dd>
 </dl>
@@ -30339,7 +30502,7 @@ client.fleet.post_v1fleet_assignments_list()
 </dl>
 </details>
 
-<details><summary><code>client.fleet.<a href="src/nordlet/fleet/client.py">post_v1fleet_natura_preview</a>(...) -> PostV1FleetNaturaPreviewResponse</code></summary>
+<details><summary><code>client.fleet.<a href="src/nordlet/fleet/client.py">natura_preview</a>(...) -> NaturaPreviewFleetResponse</code></summary>
 <dl>
 <dd>
 
@@ -30360,7 +30523,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.fleet.post_v1fleet_natura_preview(
+client.fleet.natura_preview(
     year=1000000,
     month=1000000,
 )
@@ -30407,8 +30570,8 @@ client.fleet.post_v1fleet_natura_preview(
 </dl>
 </details>
 
-## Payroll
-<details><summary><code>client.payroll.<a href="src/nordlet/payroll/client.py">post_v1payroll_departments_create</a>(...) -> PostV1PayrollDepartmentsCreateResponse</code></summary>
+## payroll
+<details><summary><code>client.payroll.<a href="src/nordlet/payroll/client.py">departments_create</a>(...) -> DepartmentsCreatePayrollResponse</code></summary>
 <dl>
 <dd>
 
@@ -30429,7 +30592,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.payroll.post_v1payroll_departments_create(
+client.payroll.departments_create(
     code="code",
     name="name",
 )
@@ -30476,7 +30639,7 @@ client.payroll.post_v1payroll_departments_create(
 </dl>
 </details>
 
-<details><summary><code>client.payroll.<a href="src/nordlet/payroll/client.py">post_v1payroll_departments_list</a>() -> PostV1PayrollDepartmentsListResponse</code></summary>
+<details><summary><code>client.payroll.<a href="src/nordlet/payroll/client.py">departments_list</a>() -> DepartmentsListPayrollResponse</code></summary>
 <dl>
 <dd>
 
@@ -30497,7 +30660,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.payroll.post_v1payroll_departments_list()
+client.payroll.departments_list()
 
 ```
 </dd>
@@ -30525,7 +30688,7 @@ client.payroll.post_v1payroll_departments_list()
 </dl>
 </details>
 
-<details><summary><code>client.payroll.<a href="src/nordlet/payroll/client.py">post_v1payroll_schedules_create</a>(...) -> PostV1PayrollSchedulesCreateResponse</code></summary>
+<details><summary><code>client.payroll.<a href="src/nordlet/payroll/client.py">schedules_create</a>(...) -> SchedulesCreatePayrollResponse</code></summary>
 <dl>
 <dd>
 
@@ -30546,7 +30709,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.payroll.post_v1payroll_schedules_create(
+client.payroll.schedules_create(
     code="code",
     name="name",
 )
@@ -30601,7 +30764,7 @@ client.payroll.post_v1payroll_schedules_create(
 </dl>
 </details>
 
-<details><summary><code>client.payroll.<a href="src/nordlet/payroll/client.py">post_v1payroll_schedules_list</a>() -> PostV1PayrollSchedulesListResponse</code></summary>
+<details><summary><code>client.payroll.<a href="src/nordlet/payroll/client.py">schedules_list</a>() -> SchedulesListPayrollResponse</code></summary>
 <dl>
 <dd>
 
@@ -30622,7 +30785,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.payroll.post_v1payroll_schedules_list()
+client.payroll.schedules_list()
 
 ```
 </dd>
@@ -30650,7 +30813,7 @@ client.payroll.post_v1payroll_schedules_list()
 </dl>
 </details>
 
-<details><summary><code>client.payroll.<a href="src/nordlet/payroll/client.py">calculate_one_employee_payment_under_the_rules_of_the_company_country</a>(...) -> PostV1PayrollCalcResponse</code></summary>
+<details><summary><code>client.payroll.<a href="src/nordlet/payroll/client.py">calc</a>(...) -> CalcPayrollResponse</code></summary>
 <dl>
 <dd>
 
@@ -30665,15 +30828,16 @@ client.payroll.post_v1payroll_schedules_list()
 ```python
 from nordlet import Nordlet
 from nordlet.environment import NordletEnvironment
+import datetime
 
 client = Nordlet(
     token="<token>",
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.payroll.calculate_one_employee_payment_under_the_rules_of_the_company_country(
-    taxable_base="taxableBase",
-    date="date",
+client.payroll.calc(
+    taxable_base="121.00",
+    date=datetime.date.fromisoformat("2026-07-01"),
 )
 
 ```
@@ -30698,7 +30862,7 @@ client.payroll.calculate_one_employee_payment_under_the_rules_of_the_company_cou
 <dl>
 <dd>
 
-**date:** `str` 
+**date:** `datetime.date` 
     
 </dd>
 </dl>
@@ -30766,7 +30930,7 @@ client.payroll.calculate_one_employee_payment_under_the_rules_of_the_company_cou
 </dl>
 </details>
 
-<details><summary><code>client.payroll.<a href="src/nordlet/payroll/client.py">post_v1payroll_runs_create</a>(...) -> PostV1PayrollRunsCreateResponse</code></summary>
+<details><summary><code>client.payroll.<a href="src/nordlet/payroll/client.py">runs_create</a>(...) -> RunsCreatePayrollResponse</code></summary>
 <dl>
 <dd>
 
@@ -30787,7 +30951,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.payroll.post_v1payroll_runs_create(
+client.payroll.runs_create(
     year=1000000,
     month=1000000,
 )
@@ -30830,7 +30994,7 @@ client.payroll.post_v1payroll_runs_create(
 <dl>
 <dd>
 
-**gross_overrides:** `typing.Optional[typing.List[PostV1PayrollRunsCreateRequestGrossOverridesItem]]` 
+**gross_overrides:** `typing.Optional[typing.List[RunsCreatePayrollRequestGrossOverridesItem]]` 
     
 </dd>
 </dl>
@@ -30838,7 +31002,7 @@ client.payroll.post_v1payroll_runs_create(
 <dl>
 <dd>
 
-**lines:** `typing.Optional[typing.List[PostV1PayrollRunsCreateRequestLinesItem]]` 
+**lines:** `typing.Optional[typing.List[RunsCreatePayrollRequestLinesItem]]` 
     
 </dd>
 </dl>
@@ -30866,7 +31030,7 @@ client.payroll.post_v1payroll_runs_create(
 </dl>
 </details>
 
-<details><summary><code>client.payroll.<a href="src/nordlet/payroll/client.py">post_v1payroll_runs_get</a>(...) -> PostV1PayrollRunsGetResponse</code></summary>
+<details><summary><code>client.payroll.<a href="src/nordlet/payroll/client.py">runs_get</a>(...) -> RunsGetPayrollResponse</code></summary>
 <dl>
 <dd>
 
@@ -30887,7 +31051,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.payroll.post_v1payroll_runs_get(
+client.payroll.runs_get(
     id="id",
 )
 
@@ -30925,7 +31089,7 @@ client.payroll.post_v1payroll_runs_get(
 </dl>
 </details>
 
-<details><summary><code>client.payroll.<a href="src/nordlet/payroll/client.py">post_v1payroll_runs_list</a>(...) -> PostV1PayrollRunsListResponse</code></summary>
+<details><summary><code>client.payroll.<a href="src/nordlet/payroll/client.py">runs_list</a>(...) -> RunsListPayrollResponse</code></summary>
 <dl>
 <dd>
 
@@ -30946,7 +31110,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.payroll.post_v1payroll_runs_list()
+client.payroll.runs_list()
 
 ```
 </dd>
@@ -30978,7 +31142,7 @@ client.payroll.post_v1payroll_runs_list()
 <dl>
 <dd>
 
-**sort:** `typing.Optional[typing.List[PostV1PayrollRunsListRequestSortItem]]` 
+**sort:** `typing.Optional[typing.List[RunsListPayrollRequestSortItem]]` 
     
 </dd>
 </dl>
@@ -30986,7 +31150,7 @@ client.payroll.post_v1payroll_runs_list()
 <dl>
 <dd>
 
-**filter:** `typing.Optional[typing.List[PostV1PayrollRunsListRequestFilterItem]]` 
+**filter:** `typing.Optional[typing.List[RunsListPayrollRequestFilterItem]]` 
     
 </dd>
 </dl>
@@ -31014,7 +31178,7 @@ client.payroll.post_v1payroll_runs_list()
 </dl>
 </details>
 
-<details><summary><code>client.payroll.<a href="src/nordlet/payroll/client.py">record_the_time_a_person_worked_in_a_payroll_line</a>(...) -> PostV1PayrollLinesAttendanceResponse</code></summary>
+<details><summary><code>client.payroll.<a href="src/nordlet/payroll/client.py">lines_attendance</a>(...) -> LinesAttendancePayrollResponse</code></summary>
 <dl>
 <dd>
 
@@ -31049,7 +31213,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.payroll.record_the_time_a_person_worked_in_a_payroll_line(
+client.payroll.lines_attendance(
     id="id",
 )
 
@@ -31119,7 +31283,7 @@ client.payroll.record_the_time_a_person_worked_in_a_payroll_line(
 </dl>
 </details>
 
-<details><summary><code>client.payroll.<a href="src/nordlet/payroll/client.py">post_v1payroll_runs_approve</a>(...) -> PostV1PayrollRunsApproveResponse</code></summary>
+<details><summary><code>client.payroll.<a href="src/nordlet/payroll/client.py">runs_approve</a>(...) -> RunsApprovePayrollResponse</code></summary>
 <dl>
 <dd>
 
@@ -31140,7 +31304,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.payroll.post_v1payroll_runs_approve(
+client.payroll.runs_approve(
     id="id",
 )
 
@@ -31234,7 +31398,7 @@ client.payroll.post_v1payroll_runs_approve(
 </dl>
 </details>
 
-<details><summary><code>client.payroll.<a href="src/nordlet/payroll/client.py">post_v1payroll_runs_cancel</a>(...) -> PostV1PayrollRunsCancelResponse</code></summary>
+<details><summary><code>client.payroll.<a href="src/nordlet/payroll/client.py">runs_cancel</a>(...) -> RunsCancelPayrollResponse</code></summary>
 <dl>
 <dd>
 
@@ -31255,7 +31419,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.payroll.post_v1payroll_runs_cancel(
+client.payroll.runs_cancel(
     id="id",
 )
 
@@ -31293,7 +31457,7 @@ client.payroll.post_v1payroll_runs_cancel(
 </dl>
 </details>
 
-<details><summary><code>client.payroll.<a href="src/nordlet/payroll/client.py">post_v1payroll_payments_export</a>(...) -> PostV1PayrollPaymentsExportResponse</code></summary>
+<details><summary><code>client.payroll.<a href="src/nordlet/payroll/client.py">payments_export</a>(...) -> PaymentsExportPayrollResponse</code></summary>
 <dl>
 <dd>
 
@@ -31314,7 +31478,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.payroll.post_v1payroll_payments_export(
+client.payroll.payments_export(
     run_id="runId",
     bank_account_id="bankAccountId",
 )
@@ -31349,7 +31513,15 @@ client.payroll.post_v1payroll_payments_export(
 <dl>
 <dd>
 
-**execution_date:** `typing.Optional[str]` 
+**execution_date:** `typing.Optional[datetime.date]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**locale:** `typing.Optional[PaymentsExportPayrollRequestLocale]` 
     
 </dd>
 </dl>
@@ -31369,8 +31541,8 @@ client.payroll.post_v1payroll_payments_export(
 </dl>
 </details>
 
-## Agreements
-<details><summary><code>client.agreements.<a href="src/nordlet/agreements/client.py">post_v1agreements_types_create</a>(...) -> PostV1AgreementsTypesCreateResponse</code></summary>
+## agreements
+<details><summary><code>client.agreements.<a href="src/nordlet/agreements/client.py">types_create</a>(...) -> TypesCreateAgreementsResponse</code></summary>
 <dl>
 <dd>
 
@@ -31391,7 +31563,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.agreements.post_v1agreements_types_create(
+client.agreements.types_create(
     code="code",
     name="name",
 )
@@ -31438,7 +31610,7 @@ client.agreements.post_v1agreements_types_create(
 </dl>
 </details>
 
-<details><summary><code>client.agreements.<a href="src/nordlet/agreements/client.py">post_v1agreements_types_list</a>(...) -> PostV1AgreementsTypesListResponse</code></summary>
+<details><summary><code>client.agreements.<a href="src/nordlet/agreements/client.py">types_list</a>(...) -> TypesListAgreementsResponse</code></summary>
 <dl>
 <dd>
 
@@ -31459,7 +31631,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.agreements.post_v1agreements_types_list()
+client.agreements.types_list()
 
 ```
 </dd>
@@ -31491,7 +31663,7 @@ client.agreements.post_v1agreements_types_list()
 <dl>
 <dd>
 
-**sort:** `typing.Optional[typing.List[PostV1AgreementsTypesListRequestSortItem]]` 
+**sort:** `typing.Optional[typing.List[TypesListAgreementsRequestSortItem]]` 
     
 </dd>
 </dl>
@@ -31499,7 +31671,7 @@ client.agreements.post_v1agreements_types_list()
 <dl>
 <dd>
 
-**filter:** `typing.Optional[typing.List[PostV1AgreementsTypesListRequestFilterItem]]` 
+**filter:** `typing.Optional[typing.List[TypesListAgreementsRequestFilterItem]]` 
     
 </dd>
 </dl>
@@ -31527,7 +31699,7 @@ client.agreements.post_v1agreements_types_list()
 </dl>
 </details>
 
-<details><summary><code>client.agreements.<a href="src/nordlet/agreements/client.py">post_v1agreements_agreements_create</a>(...) -> PostV1AgreementsAgreementsCreateResponse</code></summary>
+<details><summary><code>client.agreements.<a href="src/nordlet/agreements/client.py">agreements_create</a>(...) -> AgreementsCreateAgreementsResponse</code></summary>
 <dl>
 <dd>
 
@@ -31542,15 +31714,16 @@ client.agreements.post_v1agreements_types_list()
 ```python
 from nordlet import Nordlet
 from nordlet.environment import NordletEnvironment
+import datetime
 
 client = Nordlet(
     token="<token>",
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.agreements.post_v1agreements_agreements_create(
+client.agreements.agreements_create(
     number="number",
-    start_date="startDate",
+    start_date=datetime.date.fromisoformat("2026-07-01"),
 )
 
 ```
@@ -31575,7 +31748,7 @@ client.agreements.post_v1agreements_agreements_create(
 <dl>
 <dd>
 
-**start_date:** `str` 
+**start_date:** `datetime.date` 
     
 </dd>
 </dl>
@@ -31591,7 +31764,7 @@ client.agreements.post_v1agreements_agreements_create(
 <dl>
 <dd>
 
-**kind:** `typing.Optional[PostV1AgreementsAgreementsCreateRequestKind]` 
+**kind:** `typing.Optional[AgreementsCreateAgreementsRequestKind]` 
     
 </dd>
 </dl>
@@ -31631,7 +31804,7 @@ client.agreements.post_v1agreements_agreements_create(
 <dl>
 <dd>
 
-**end_date:** `typing.Optional[str]` 
+**end_date:** `typing.Optional[datetime.date]` 
     
 </dd>
 </dl>
@@ -31655,7 +31828,7 @@ client.agreements.post_v1agreements_agreements_create(
 <dl>
 <dd>
 
-**billing_period:** `typing.Optional[PostV1AgreementsAgreementsCreateRequestBillingPeriod]` 
+**billing_period:** `typing.Optional[AgreementsCreateAgreementsRequestBillingPeriod]` 
     
 </dd>
 </dl>
@@ -31671,7 +31844,7 @@ client.agreements.post_v1agreements_agreements_create(
 <dl>
 <dd>
 
-**status:** `typing.Optional[PostV1AgreementsAgreementsCreateRequestStatus]` 
+**status:** `typing.Optional[AgreementsCreateAgreementsRequestStatus]` 
     
 </dd>
 </dl>
@@ -31695,7 +31868,7 @@ client.agreements.post_v1agreements_agreements_create(
 <dl>
 <dd>
 
-**items:** `typing.Optional[typing.List[PostV1AgreementsAgreementsCreateRequestItemsItem]]` 
+**items:** `typing.Optional[typing.List[AgreementsCreateAgreementsRequestItemsItem]]` 
     
 </dd>
 </dl>
@@ -31715,7 +31888,7 @@ client.agreements.post_v1agreements_agreements_create(
 </dl>
 </details>
 
-<details><summary><code>client.agreements.<a href="src/nordlet/agreements/client.py">post_v1agreements_agreements_get</a>(...) -> PostV1AgreementsAgreementsGetResponse</code></summary>
+<details><summary><code>client.agreements.<a href="src/nordlet/agreements/client.py">agreements_get</a>(...) -> AgreementsGetAgreementsResponse</code></summary>
 <dl>
 <dd>
 
@@ -31736,7 +31909,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.agreements.post_v1agreements_agreements_get(
+client.agreements.agreements_get(
     id="id",
 )
 
@@ -31774,7 +31947,7 @@ client.agreements.post_v1agreements_agreements_get(
 </dl>
 </details>
 
-<details><summary><code>client.agreements.<a href="src/nordlet/agreements/client.py">post_v1agreements_agreements_update</a>(...) -> PostV1AgreementsAgreementsUpdateResponse</code></summary>
+<details><summary><code>client.agreements.<a href="src/nordlet/agreements/client.py">agreements_update</a>(...) -> AgreementsUpdateAgreementsResponse</code></summary>
 <dl>
 <dd>
 
@@ -31795,7 +31968,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.agreements.post_v1agreements_agreements_update(
+client.agreements.agreements_update(
     id="id",
 )
 
@@ -31829,7 +32002,7 @@ client.agreements.post_v1agreements_agreements_update(
 <dl>
 <dd>
 
-**kind:** `typing.Optional[PostV1AgreementsAgreementsUpdateRequestKind]` 
+**kind:** `typing.Optional[AgreementsUpdateAgreementsRequestKind]` 
     
 </dd>
 </dl>
@@ -31845,7 +32018,7 @@ client.agreements.post_v1agreements_agreements_update(
 <dl>
 <dd>
 
-**end_date:** `typing.Optional[str]` 
+**end_date:** `typing.Optional[datetime.date]` 
     
 </dd>
 </dl>
@@ -31869,7 +32042,7 @@ client.agreements.post_v1agreements_agreements_update(
 <dl>
 <dd>
 
-**billing_period:** `typing.Optional[PostV1AgreementsAgreementsUpdateRequestBillingPeriod]` 
+**billing_period:** `typing.Optional[AgreementsUpdateAgreementsRequestBillingPeriod]` 
     
 </dd>
 </dl>
@@ -31877,7 +32050,7 @@ client.agreements.post_v1agreements_agreements_update(
 <dl>
 <dd>
 
-**status:** `typing.Optional[PostV1AgreementsAgreementsUpdateRequestStatus]` 
+**status:** `typing.Optional[AgreementsUpdateAgreementsRequestStatus]` 
     
 </dd>
 </dl>
@@ -31913,7 +32086,7 @@ client.agreements.post_v1agreements_agreements_update(
 </dl>
 </details>
 
-<details><summary><code>client.agreements.<a href="src/nordlet/agreements/client.py">post_v1agreements_agreements_delete</a>(...) -> PostV1AgreementsAgreementsDeleteResponse</code></summary>
+<details><summary><code>client.agreements.<a href="src/nordlet/agreements/client.py">agreements_delete</a>(...) -> AgreementsDeleteAgreementsResponse</code></summary>
 <dl>
 <dd>
 
@@ -31934,7 +32107,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.agreements.post_v1agreements_agreements_delete(
+client.agreements.agreements_delete(
     id="id",
 )
 
@@ -31972,7 +32145,7 @@ client.agreements.post_v1agreements_agreements_delete(
 </dl>
 </details>
 
-<details><summary><code>client.agreements.<a href="src/nordlet/agreements/client.py">post_v1agreements_agreements_list</a>(...) -> PostV1AgreementsAgreementsListResponse</code></summary>
+<details><summary><code>client.agreements.<a href="src/nordlet/agreements/client.py">agreements_list</a>(...) -> AgreementsListAgreementsResponse</code></summary>
 <dl>
 <dd>
 
@@ -31993,7 +32166,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.agreements.post_v1agreements_agreements_list()
+client.agreements.agreements_list()
 
 ```
 </dd>
@@ -32025,7 +32198,7 @@ client.agreements.post_v1agreements_agreements_list()
 <dl>
 <dd>
 
-**sort:** `typing.Optional[typing.List[PostV1AgreementsAgreementsListRequestSortItem]]` 
+**sort:** `typing.Optional[typing.List[AgreementsListAgreementsRequestSortItem]]` 
     
 </dd>
 </dl>
@@ -32033,7 +32206,7 @@ client.agreements.post_v1agreements_agreements_list()
 <dl>
 <dd>
 
-**filter:** `typing.Optional[typing.List[PostV1AgreementsAgreementsListRequestFilterItem]]` 
+**filter:** `typing.Optional[typing.List[AgreementsListAgreementsRequestFilterItem]]` 
     
 </dd>
 </dl>
@@ -32061,7 +32234,7 @@ client.agreements.post_v1agreements_agreements_list()
 </dl>
 </details>
 
-<details><summary><code>client.agreements.<a href="src/nordlet/agreements/client.py">post_v1agreements_agreements_generate_invoice</a>(...) -> PostV1AgreementsAgreementsGenerateInvoiceResponse</code></summary>
+<details><summary><code>client.agreements.<a href="src/nordlet/agreements/client.py">agreements_generate_invoice</a>(...) -> AgreementsGenerateInvoiceAgreementsResponse</code></summary>
 <dl>
 <dd>
 
@@ -32082,7 +32255,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.agreements.post_v1agreements_agreements_generate_invoice(
+client.agreements.agreements_generate_invoice(
     id="id",
 )
 
@@ -32108,7 +32281,7 @@ client.agreements.post_v1agreements_agreements_generate_invoice(
 <dl>
 <dd>
 
-**as_of_date:** `typing.Optional[str]` 
+**as_of_date:** `typing.Optional[datetime.date]` 
     
 </dd>
 </dl>
@@ -32128,7 +32301,7 @@ client.agreements.post_v1agreements_agreements_generate_invoice(
 </dl>
 </details>
 
-<details><summary><code>client.agreements.<a href="src/nordlet/agreements/client.py">post_v1agreements_agreements_billing_run</a>(...) -> PostV1AgreementsAgreementsBillingRunResponse</code></summary>
+<details><summary><code>client.agreements.<a href="src/nordlet/agreements/client.py">agreements_billing_run</a>(...) -> AgreementsBillingRunAgreementsResponse</code></summary>
 <dl>
 <dd>
 
@@ -32149,7 +32322,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.agreements.post_v1agreements_agreements_billing_run()
+client.agreements.agreements_billing_run()
 
 ```
 </dd>
@@ -32165,7 +32338,7 @@ client.agreements.post_v1agreements_agreements_billing_run()
 <dl>
 <dd>
 
-**as_of_date:** `typing.Optional[str]` 
+**as_of_date:** `typing.Optional[datetime.date]` 
     
 </dd>
 </dl>
@@ -32185,7 +32358,7 @@ client.agreements.post_v1agreements_agreements_billing_run()
 </dl>
 </details>
 
-<details><summary><code>client.agreements.<a href="src/nordlet/agreements/client.py">post_v1agreements_insurance_policies_create</a>(...) -> PostV1AgreementsInsurancePoliciesCreateResponse</code></summary>
+<details><summary><code>client.agreements.<a href="src/nordlet/agreements/client.py">insurance_policies_create</a>(...) -> InsurancePoliciesCreateAgreementsResponse</code></summary>
 <dl>
 <dd>
 
@@ -32200,17 +32373,18 @@ client.agreements.post_v1agreements_agreements_billing_run()
 ```python
 from nordlet import Nordlet
 from nordlet.environment import NordletEnvironment
+import datetime
 
 client = Nordlet(
     token="<token>",
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.agreements.post_v1agreements_insurance_policies_create(
+client.agreements.insurance_policies_create(
     policy_number="policyNumber",
     insured_object="insuredObject",
-    from_date="fromDate",
-    to_date="toDate",
+    from_date=datetime.date.fromisoformat("2026-07-01"),
+    to_date=datetime.date.fromisoformat("2026-07-01"),
 )
 
 ```
@@ -32243,7 +32417,7 @@ client.agreements.post_v1agreements_insurance_policies_create(
 <dl>
 <dd>
 
-**from_date:** `str` 
+**from_date:** `datetime.date` 
     
 </dd>
 </dl>
@@ -32251,7 +32425,7 @@ client.agreements.post_v1agreements_insurance_policies_create(
 <dl>
 <dd>
 
-**to_date:** `str` 
+**to_date:** `datetime.date` 
     
 </dd>
 </dl>
@@ -32303,7 +32477,7 @@ client.agreements.post_v1agreements_insurance_policies_create(
 </dl>
 </details>
 
-<details><summary><code>client.agreements.<a href="src/nordlet/agreements/client.py">post_v1agreements_insurance_policies_list</a>(...) -> PostV1AgreementsInsurancePoliciesListResponse</code></summary>
+<details><summary><code>client.agreements.<a href="src/nordlet/agreements/client.py">insurance_policies_list</a>(...) -> InsurancePoliciesListAgreementsResponse</code></summary>
 <dl>
 <dd>
 
@@ -32324,7 +32498,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.agreements.post_v1agreements_insurance_policies_list()
+client.agreements.insurance_policies_list()
 
 ```
 </dd>
@@ -32356,7 +32530,7 @@ client.agreements.post_v1agreements_insurance_policies_list()
 <dl>
 <dd>
 
-**sort:** `typing.Optional[typing.List[PostV1AgreementsInsurancePoliciesListRequestSortItem]]` 
+**sort:** `typing.Optional[typing.List[InsurancePoliciesListAgreementsRequestSortItem]]` 
     
 </dd>
 </dl>
@@ -32364,7 +32538,7 @@ client.agreements.post_v1agreements_insurance_policies_list()
 <dl>
 <dd>
 
-**filter:** `typing.Optional[typing.List[PostV1AgreementsInsurancePoliciesListRequestFilterItem]]` 
+**filter:** `typing.Optional[typing.List[InsurancePoliciesListAgreementsRequestFilterItem]]` 
     
 </dd>
 </dl>
@@ -32392,7 +32566,7 @@ client.agreements.post_v1agreements_insurance_policies_list()
 </dl>
 </details>
 
-<details><summary><code>client.agreements.<a href="src/nordlet/agreements/client.py">post_v1agreements_insurance_policies_delete</a>(...) -> PostV1AgreementsInsurancePoliciesDeleteResponse</code></summary>
+<details><summary><code>client.agreements.<a href="src/nordlet/agreements/client.py">insurance_policies_delete</a>(...) -> InsurancePoliciesDeleteAgreementsResponse</code></summary>
 <dl>
 <dd>
 
@@ -32413,7 +32587,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.agreements.post_v1agreements_insurance_policies_delete(
+client.agreements.insurance_policies_delete(
     id="id",
 )
 
@@ -32451,8 +32625,8 @@ client.agreements.post_v1agreements_insurance_policies_delete(
 </dl>
 </details>
 
-## Inventory
-<details><summary><code>client.inventory.<a href="src/nordlet/inventory/client.py">post_v1inventory_settings_get</a>() -> PostV1InventorySettingsGetResponse</code></summary>
+## inventory
+<details><summary><code>client.inventory.<a href="src/nordlet/inventory/client.py">settings_get</a>() -> SettingsGetInventoryResponse</code></summary>
 <dl>
 <dd>
 
@@ -32473,7 +32647,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.inventory.post_v1inventory_settings_get()
+client.inventory.settings_get()
 
 ```
 </dd>
@@ -32501,7 +32675,7 @@ client.inventory.post_v1inventory_settings_get()
 </dl>
 </details>
 
-<details><summary><code>client.inventory.<a href="src/nordlet/inventory/client.py">post_v1inventory_settings_update</a>(...) -> PostV1InventorySettingsUpdateResponse</code></summary>
+<details><summary><code>client.inventory.<a href="src/nordlet/inventory/client.py">settings_update</a>(...) -> SettingsUpdateInventoryResponse</code></summary>
 <dl>
 <dd>
 
@@ -32522,7 +32696,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.inventory.post_v1inventory_settings_update(
+client.inventory.settings_update(
     negative_stock_policy="reject",
 )
 
@@ -32540,7 +32714,7 @@ client.inventory.post_v1inventory_settings_update(
 <dl>
 <dd>
 
-**negative_stock_policy:** `PostV1InventorySettingsUpdateRequestNegativeStockPolicy` 
+**negative_stock_policy:** `SettingsUpdateInventoryRequestNegativeStockPolicy` 
     
 </dd>
 </dl>
@@ -32560,7 +32734,7 @@ client.inventory.post_v1inventory_settings_update(
 </dl>
 </details>
 
-<details><summary><code>client.inventory.<a href="src/nordlet/inventory/client.py">post_v1inventory_warehouses_create</a>(...) -> PostV1InventoryWarehousesCreateResponse</code></summary>
+<details><summary><code>client.inventory.<a href="src/nordlet/inventory/client.py">warehouses_create</a>(...) -> WarehousesCreateInventoryResponse</code></summary>
 <dl>
 <dd>
 
@@ -32581,7 +32755,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.inventory.post_v1inventory_warehouses_create(
+client.inventory.warehouses_create(
     code="code",
     name="name",
 )
@@ -32636,7 +32810,7 @@ client.inventory.post_v1inventory_warehouses_create(
 </dl>
 </details>
 
-<details><summary><code>client.inventory.<a href="src/nordlet/inventory/client.py">post_v1inventory_warehouses_list</a>(...) -> PostV1InventoryWarehousesListResponse</code></summary>
+<details><summary><code>client.inventory.<a href="src/nordlet/inventory/client.py">warehouses_list</a>(...) -> WarehousesListInventoryResponse</code></summary>
 <dl>
 <dd>
 
@@ -32657,7 +32831,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.inventory.post_v1inventory_warehouses_list()
+client.inventory.warehouses_list()
 
 ```
 </dd>
@@ -32689,7 +32863,7 @@ client.inventory.post_v1inventory_warehouses_list()
 <dl>
 <dd>
 
-**sort:** `typing.Optional[typing.List[PostV1InventoryWarehousesListRequestSortItem]]` 
+**sort:** `typing.Optional[typing.List[WarehousesListInventoryRequestSortItem]]` 
     
 </dd>
 </dl>
@@ -32697,7 +32871,7 @@ client.inventory.post_v1inventory_warehouses_list()
 <dl>
 <dd>
 
-**filter:** `typing.Optional[typing.List[PostV1InventoryWarehousesListRequestFilterItem]]` 
+**filter:** `typing.Optional[typing.List[WarehousesListInventoryRequestFilterItem]]` 
     
 </dd>
 </dl>
@@ -32725,7 +32899,7 @@ client.inventory.post_v1inventory_warehouses_list()
 </dl>
 </details>
 
-<details><summary><code>client.inventory.<a href="src/nordlet/inventory/client.py">post_v1inventory_stock_receive</a>(...) -> PostV1InventoryStockReceiveResponse</code></summary>
+<details><summary><code>client.inventory.<a href="src/nordlet/inventory/client.py">stock_receive</a>(...) -> StockReceiveInventoryResponse</code></summary>
 <dl>
 <dd>
 
@@ -32740,18 +32914,19 @@ client.inventory.post_v1inventory_warehouses_list()
 ```python
 from nordlet import Nordlet
 from nordlet.environment import NordletEnvironment
+import datetime
 
 client = Nordlet(
     token="<token>",
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.inventory.post_v1inventory_stock_receive(
+client.inventory.stock_receive(
     warehouse_id="warehouseId",
     item_id="itemId",
-    date="date",
-    quantity="quantity",
-    unit_cost="unitCost",
+    date=datetime.date.fromisoformat("2026-07-01"),
+    quantity="121.0000",
+    unit_cost="121.000000",
 )
 
 ```
@@ -32784,7 +32959,7 @@ client.inventory.post_v1inventory_stock_receive(
 <dl>
 <dd>
 
-**date:** `str` 
+**date:** `datetime.date` 
     
 </dd>
 </dl>
@@ -32816,7 +32991,7 @@ client.inventory.post_v1inventory_stock_receive(
 <dl>
 <dd>
 
-**expiry_date:** `typing.Optional[str]` 
+**expiry_date:** `typing.Optional[datetime.date]` 
     
 </dd>
 </dl>
@@ -32844,7 +33019,7 @@ client.inventory.post_v1inventory_stock_receive(
 </dl>
 </details>
 
-<details><summary><code>client.inventory.<a href="src/nordlet/inventory/client.py">post_v1inventory_stock_write_off</a>(...) -> PostV1InventoryStockWriteOffResponse</code></summary>
+<details><summary><code>client.inventory.<a href="src/nordlet/inventory/client.py">stock_write_off</a>(...) -> StockWriteOffInventoryResponse</code></summary>
 <dl>
 <dd>
 
@@ -32859,17 +33034,18 @@ client.inventory.post_v1inventory_stock_receive(
 ```python
 from nordlet import Nordlet
 from nordlet.environment import NordletEnvironment
+import datetime
 
 client = Nordlet(
     token="<token>",
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.inventory.post_v1inventory_stock_write_off(
+client.inventory.stock_write_off(
     warehouse_id="warehouseId",
     item_id="itemId",
-    date="date",
-    quantity="quantity",
+    date=datetime.date.fromisoformat("2026-07-01"),
+    quantity="121.0000",
 )
 
 ```
@@ -32902,7 +33078,7 @@ client.inventory.post_v1inventory_stock_write_off(
 <dl>
 <dd>
 
-**date:** `str` 
+**date:** `datetime.date` 
     
 </dd>
 </dl>
@@ -32962,7 +33138,7 @@ client.inventory.post_v1inventory_stock_write_off(
 </dl>
 </details>
 
-<details><summary><code>client.inventory.<a href="src/nordlet/inventory/client.py">post_v1inventory_stock_transfer</a>(...) -> PostV1InventoryStockTransferResponse</code></summary>
+<details><summary><code>client.inventory.<a href="src/nordlet/inventory/client.py">stock_transfer</a>(...) -> StockTransferInventoryResponse</code></summary>
 <dl>
 <dd>
 
@@ -32977,18 +33153,19 @@ client.inventory.post_v1inventory_stock_write_off(
 ```python
 from nordlet import Nordlet
 from nordlet.environment import NordletEnvironment
+import datetime
 
 client = Nordlet(
     token="<token>",
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.inventory.post_v1inventory_stock_transfer(
+client.inventory.stock_transfer(
     from_warehouse_id="fromWarehouseId",
     to_warehouse_id="toWarehouseId",
     item_id="itemId",
-    date="date",
-    quantity="quantity",
+    date=datetime.date.fromisoformat("2026-07-01"),
+    quantity="121.0000",
 )
 
 ```
@@ -33029,7 +33206,7 @@ client.inventory.post_v1inventory_stock_transfer(
 <dl>
 <dd>
 
-**date:** `str` 
+**date:** `datetime.date` 
     
 </dd>
 </dl>
@@ -33073,7 +33250,7 @@ client.inventory.post_v1inventory_stock_transfer(
 </dl>
 </details>
 
-<details><summary><code>client.inventory.<a href="src/nordlet/inventory/client.py">post_v1inventory_stock_take</a>(...) -> PostV1InventoryStockTakeResponse</code></summary>
+<details><summary><code>client.inventory.<a href="src/nordlet/inventory/client.py">stock_take</a>(...) -> StockTakeInventoryResponse</code></summary>
 <dl>
 <dd>
 
@@ -33088,19 +33265,20 @@ client.inventory.post_v1inventory_stock_transfer(
 ```python
 from nordlet import Nordlet
 from nordlet.environment import NordletEnvironment
-from nordlet.inventory import PostV1InventoryStockTakeRequestLinesItem
+import datetime
+from nordlet.inventory import StockTakeInventoryRequestLinesItem
 
 client = Nordlet(
     token="<token>",
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.inventory.post_v1inventory_stock_take(
+client.inventory.stock_take(
     warehouse_id="warehouseId",
-    date="date",
+    date=datetime.date.fromisoformat("2026-07-01"),
     lines=[
-        PostV1InventoryStockTakeRequestLinesItem(
-            counted_qty="countedQty",
+        StockTakeInventoryRequestLinesItem(
+            counted_qty="121.0000",
         )
     ],
 )
@@ -33127,7 +33305,7 @@ client.inventory.post_v1inventory_stock_take(
 <dl>
 <dd>
 
-**date:** `str` 
+**date:** `datetime.date` 
     
 </dd>
 </dl>
@@ -33135,7 +33313,7 @@ client.inventory.post_v1inventory_stock_take(
 <dl>
 <dd>
 
-**lines:** `typing.List[PostV1InventoryStockTakeRequestLinesItem]` 
+**lines:** `typing.List[StockTakeInventoryRequestLinesItem]` 
     
 </dd>
 </dl>
@@ -33171,7 +33349,7 @@ client.inventory.post_v1inventory_stock_take(
 </dl>
 </details>
 
-<details><summary><code>client.inventory.<a href="src/nordlet/inventory/client.py">post_v1inventory_stock_levels</a>(...) -> PostV1InventoryStockLevelsResponse</code></summary>
+<details><summary><code>client.inventory.<a href="src/nordlet/inventory/client.py">stock_levels</a>(...) -> StockLevelsInventoryResponse</code></summary>
 <dl>
 <dd>
 
@@ -33192,7 +33370,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.inventory.post_v1inventory_stock_levels()
+client.inventory.stock_levels()
 
 ```
 </dd>
@@ -33236,7 +33414,7 @@ client.inventory.post_v1inventory_stock_levels()
 </dl>
 </details>
 
-<details><summary><code>client.inventory.<a href="src/nordlet/inventory/client.py">post_v1inventory_stock_movements_list</a>(...) -> PostV1InventoryStockMovementsListResponse</code></summary>
+<details><summary><code>client.inventory.<a href="src/nordlet/inventory/client.py">stock_movements_list</a>(...) -> StockMovementsListInventoryResponse</code></summary>
 <dl>
 <dd>
 
@@ -33257,7 +33435,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.inventory.post_v1inventory_stock_movements_list()
+client.inventory.stock_movements_list()
 
 ```
 </dd>
@@ -33289,7 +33467,7 @@ client.inventory.post_v1inventory_stock_movements_list()
 <dl>
 <dd>
 
-**sort:** `typing.Optional[typing.List[PostV1InventoryStockMovementsListRequestSortItem]]` 
+**sort:** `typing.Optional[typing.List[StockMovementsListInventoryRequestSortItem]]` 
     
 </dd>
 </dl>
@@ -33297,7 +33475,7 @@ client.inventory.post_v1inventory_stock_movements_list()
 <dl>
 <dd>
 
-**filter:** `typing.Optional[typing.List[PostV1InventoryStockMovementsListRequestFilterItem]]` 
+**filter:** `typing.Optional[typing.List[StockMovementsListInventoryRequestFilterItem]]` 
     
 </dd>
 </dl>
@@ -33325,7 +33503,7 @@ client.inventory.post_v1inventory_stock_movements_list()
 </dl>
 </details>
 
-<details><summary><code>client.inventory.<a href="src/nordlet/inventory/client.py">post_v1inventory_lots_list</a>(...) -> PostV1InventoryLotsListResponse</code></summary>
+<details><summary><code>client.inventory.<a href="src/nordlet/inventory/client.py">lots_list</a>(...) -> LotsListInventoryResponse</code></summary>
 <dl>
 <dd>
 
@@ -33346,7 +33524,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.inventory.post_v1inventory_lots_list()
+client.inventory.lots_list()
 
 ```
 </dd>
@@ -33378,7 +33556,7 @@ client.inventory.post_v1inventory_lots_list()
 <dl>
 <dd>
 
-**sort:** `typing.Optional[typing.List[PostV1InventoryLotsListRequestSortItem]]` 
+**sort:** `typing.Optional[typing.List[LotsListInventoryRequestSortItem]]` 
     
 </dd>
 </dl>
@@ -33386,7 +33564,7 @@ client.inventory.post_v1inventory_lots_list()
 <dl>
 <dd>
 
-**filter:** `typing.Optional[typing.List[PostV1InventoryLotsListRequestFilterItem]]` 
+**filter:** `typing.Optional[typing.List[LotsListInventoryRequestFilterItem]]` 
     
 </dd>
 </dl>
@@ -33414,7 +33592,7 @@ client.inventory.post_v1inventory_lots_list()
 </dl>
 </details>
 
-<details><summary><code>client.inventory.<a href="src/nordlet/inventory/client.py">post_v1inventory_lots_get</a>(...) -> PostV1InventoryLotsGetResponse</code></summary>
+<details><summary><code>client.inventory.<a href="src/nordlet/inventory/client.py">lots_get</a>(...) -> LotsGetInventoryResponse</code></summary>
 <dl>
 <dd>
 
@@ -33435,7 +33613,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.inventory.post_v1inventory_lots_get(
+client.inventory.lots_get(
     id="id",
 )
 
@@ -33473,7 +33651,7 @@ client.inventory.post_v1inventory_lots_get(
 </dl>
 </details>
 
-<details><summary><code>client.inventory.<a href="src/nordlet/inventory/client.py">post_v1inventory_lots_update</a>(...) -> PostV1InventoryLotsUpdateResponse</code></summary>
+<details><summary><code>client.inventory.<a href="src/nordlet/inventory/client.py">lots_update</a>(...) -> LotsUpdateInventoryResponse</code></summary>
 <dl>
 <dd>
 
@@ -33494,7 +33672,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.inventory.post_v1inventory_lots_update(
+client.inventory.lots_update(
     id="id",
 )
 
@@ -33520,7 +33698,7 @@ client.inventory.post_v1inventory_lots_update(
 <dl>
 <dd>
 
-**expiry_date:** `typing.Optional[str]` 
+**expiry_date:** `typing.Optional[datetime.date]` 
     
 </dd>
 </dl>
@@ -33548,7 +33726,7 @@ client.inventory.post_v1inventory_lots_update(
 </dl>
 </details>
 
-<details><summary><code>client.inventory.<a href="src/nordlet/inventory/client.py">post_v1inventory_landed_costs_create</a>(...) -> PostV1InventoryLandedCostsCreateResponse</code></summary>
+<details><summary><code>client.inventory.<a href="src/nordlet/inventory/client.py">landed_costs_create</a>(...) -> LandedCostsCreateInventoryResponse</code></summary>
 <dl>
 <dd>
 
@@ -33563,15 +33741,16 @@ client.inventory.post_v1inventory_lots_update(
 ```python
 from nordlet import Nordlet
 from nordlet.environment import NordletEnvironment
+import datetime
 
 client = Nordlet(
     token="<token>",
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.inventory.post_v1inventory_landed_costs_create(
-    date="date",
-    amount="amount",
+client.inventory.landed_costs_create(
+    date=datetime.date.fromisoformat("2026-07-01"),
+    amount="121.000000",
 )
 
 ```
@@ -33588,7 +33767,7 @@ client.inventory.post_v1inventory_landed_costs_create(
 <dl>
 <dd>
 
-**date:** `str` 
+**date:** `datetime.date` 
     
 </dd>
 </dl>
@@ -33604,7 +33783,7 @@ client.inventory.post_v1inventory_landed_costs_create(
 <dl>
 <dd>
 
-**method:** `typing.Optional[PostV1InventoryLandedCostsCreateRequestMethod]` 
+**method:** `typing.Optional[LandedCostsCreateInventoryRequestMethod]` 
     
 </dd>
 </dl>
@@ -33656,7 +33835,7 @@ client.inventory.post_v1inventory_landed_costs_create(
 </dl>
 </details>
 
-<details><summary><code>client.inventory.<a href="src/nordlet/inventory/client.py">post_v1inventory_landed_costs_get</a>(...) -> PostV1InventoryLandedCostsGetResponse</code></summary>
+<details><summary><code>client.inventory.<a href="src/nordlet/inventory/client.py">landed_costs_get</a>(...) -> LandedCostsGetInventoryResponse</code></summary>
 <dl>
 <dd>
 
@@ -33677,7 +33856,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.inventory.post_v1inventory_landed_costs_get(
+client.inventory.landed_costs_get(
     id="id",
 )
 
@@ -33715,7 +33894,7 @@ client.inventory.post_v1inventory_landed_costs_get(
 </dl>
 </details>
 
-<details><summary><code>client.inventory.<a href="src/nordlet/inventory/client.py">post_v1inventory_landed_costs_list</a>(...) -> PostV1InventoryLandedCostsListResponse</code></summary>
+<details><summary><code>client.inventory.<a href="src/nordlet/inventory/client.py">landed_costs_list</a>(...) -> LandedCostsListInventoryResponse</code></summary>
 <dl>
 <dd>
 
@@ -33736,7 +33915,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.inventory.post_v1inventory_landed_costs_list()
+client.inventory.landed_costs_list()
 
 ```
 </dd>
@@ -33768,7 +33947,7 @@ client.inventory.post_v1inventory_landed_costs_list()
 <dl>
 <dd>
 
-**sort:** `typing.Optional[typing.List[PostV1InventoryLandedCostsListRequestSortItem]]` 
+**sort:** `typing.Optional[typing.List[LandedCostsListInventoryRequestSortItem]]` 
     
 </dd>
 </dl>
@@ -33776,7 +33955,7 @@ client.inventory.post_v1inventory_landed_costs_list()
 <dl>
 <dd>
 
-**filter:** `typing.Optional[typing.List[PostV1InventoryLandedCostsListRequestFilterItem]]` 
+**filter:** `typing.Optional[typing.List[LandedCostsListInventoryRequestFilterItem]]` 
     
 </dd>
 </dl>
@@ -33804,7 +33983,7 @@ client.inventory.post_v1inventory_landed_costs_list()
 </dl>
 </details>
 
-<details><summary><code>client.inventory.<a href="src/nordlet/inventory/client.py">post_v1inventory_reorder_rules_create</a>(...) -> PostV1InventoryReorderRulesCreateResponse</code></summary>
+<details><summary><code>client.inventory.<a href="src/nordlet/inventory/client.py">reorder_rules_create</a>(...) -> ReorderRulesCreateInventoryResponse</code></summary>
 <dl>
 <dd>
 
@@ -33825,9 +34004,9 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.inventory.post_v1inventory_reorder_rules_create(
+client.inventory.reorder_rules_create(
     item_id="itemId",
-    min_qty="minQty",
+    min_qty="121.0000",
 )
 
 ```
@@ -33904,7 +34083,7 @@ client.inventory.post_v1inventory_reorder_rules_create(
 </dl>
 </details>
 
-<details><summary><code>client.inventory.<a href="src/nordlet/inventory/client.py">post_v1inventory_reorder_rules_update</a>(...) -> PostV1InventoryReorderRulesUpdateResponse</code></summary>
+<details><summary><code>client.inventory.<a href="src/nordlet/inventory/client.py">reorder_rules_update</a>(...) -> ReorderRulesUpdateInventoryResponse</code></summary>
 <dl>
 <dd>
 
@@ -33925,7 +34104,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.inventory.post_v1inventory_reorder_rules_update(
+client.inventory.reorder_rules_update(
     id="id",
 )
 
@@ -33995,7 +34174,7 @@ client.inventory.post_v1inventory_reorder_rules_update(
 </dl>
 </details>
 
-<details><summary><code>client.inventory.<a href="src/nordlet/inventory/client.py">post_v1inventory_reorder_rules_delete</a>(...) -> PostV1InventoryReorderRulesDeleteResponse</code></summary>
+<details><summary><code>client.inventory.<a href="src/nordlet/inventory/client.py">reorder_rules_delete</a>(...) -> ReorderRulesDeleteInventoryResponse</code></summary>
 <dl>
 <dd>
 
@@ -34016,7 +34195,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.inventory.post_v1inventory_reorder_rules_delete(
+client.inventory.reorder_rules_delete(
     id="id",
 )
 
@@ -34054,7 +34233,7 @@ client.inventory.post_v1inventory_reorder_rules_delete(
 </dl>
 </details>
 
-<details><summary><code>client.inventory.<a href="src/nordlet/inventory/client.py">post_v1inventory_reorder_rules_list</a>(...) -> PostV1InventoryReorderRulesListResponse</code></summary>
+<details><summary><code>client.inventory.<a href="src/nordlet/inventory/client.py">reorder_rules_list</a>(...) -> ReorderRulesListInventoryResponse</code></summary>
 <dl>
 <dd>
 
@@ -34075,7 +34254,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.inventory.post_v1inventory_reorder_rules_list()
+client.inventory.reorder_rules_list()
 
 ```
 </dd>
@@ -34107,7 +34286,7 @@ client.inventory.post_v1inventory_reorder_rules_list()
 <dl>
 <dd>
 
-**sort:** `typing.Optional[typing.List[PostV1InventoryReorderRulesListRequestSortItem]]` 
+**sort:** `typing.Optional[typing.List[ReorderRulesListInventoryRequestSortItem]]` 
     
 </dd>
 </dl>
@@ -34115,7 +34294,7 @@ client.inventory.post_v1inventory_reorder_rules_list()
 <dl>
 <dd>
 
-**filter:** `typing.Optional[typing.List[PostV1InventoryReorderRulesListRequestFilterItem]]` 
+**filter:** `typing.Optional[typing.List[ReorderRulesListInventoryRequestFilterItem]]` 
     
 </dd>
 </dl>
@@ -34143,7 +34322,7 @@ client.inventory.post_v1inventory_reorder_rules_list()
 </dl>
 </details>
 
-<details><summary><code>client.inventory.<a href="src/nordlet/inventory/client.py">post_v1inventory_reorder_rules_check</a>() -> PostV1InventoryReorderRulesCheckResponse</code></summary>
+<details><summary><code>client.inventory.<a href="src/nordlet/inventory/client.py">reorder_rules_check</a>() -> ReorderRulesCheckInventoryResponse</code></summary>
 <dl>
 <dd>
 
@@ -34164,7 +34343,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.inventory.post_v1inventory_reorder_rules_check()
+client.inventory.reorder_rules_check()
 
 ```
 </dd>
@@ -34192,8 +34371,8 @@ client.inventory.post_v1inventory_reorder_rules_check()
 </dl>
 </details>
 
-## Production
-<details><summary><code>client.production.<a href="src/nordlet/production/client.py">post_v1production_work_centers_create</a>(...) -> PostV1ProductionWorkCentersCreateResponse</code></summary>
+## production
+<details><summary><code>client.production.<a href="src/nordlet/production/client.py">work_centers_create</a>(...) -> WorkCentersCreateProductionResponse</code></summary>
 <dl>
 <dd>
 
@@ -34214,7 +34393,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.production.post_v1production_work_centers_create(
+client.production.work_centers_create(
     code="code",
     name="name",
 )
@@ -34293,7 +34472,7 @@ client.production.post_v1production_work_centers_create(
 </dl>
 </details>
 
-<details><summary><code>client.production.<a href="src/nordlet/production/client.py">post_v1production_work_centers_update</a>(...) -> PostV1ProductionWorkCentersUpdateResponse</code></summary>
+<details><summary><code>client.production.<a href="src/nordlet/production/client.py">work_centers_update</a>(...) -> WorkCentersUpdateProductionResponse</code></summary>
 <dl>
 <dd>
 
@@ -34314,7 +34493,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.production.post_v1production_work_centers_update(
+client.production.work_centers_update(
     id="id",
 )
 
@@ -34408,7 +34587,7 @@ client.production.post_v1production_work_centers_update(
 </dl>
 </details>
 
-<details><summary><code>client.production.<a href="src/nordlet/production/client.py">post_v1production_work_centers_list</a>(...) -> PostV1ProductionWorkCentersListResponse</code></summary>
+<details><summary><code>client.production.<a href="src/nordlet/production/client.py">work_centers_list</a>(...) -> WorkCentersListProductionResponse</code></summary>
 <dl>
 <dd>
 
@@ -34429,7 +34608,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.production.post_v1production_work_centers_list()
+client.production.work_centers_list()
 
 ```
 </dd>
@@ -34461,7 +34640,7 @@ client.production.post_v1production_work_centers_list()
 <dl>
 <dd>
 
-**sort:** `typing.Optional[typing.List[PostV1ProductionWorkCentersListRequestSortItem]]` 
+**sort:** `typing.Optional[typing.List[WorkCentersListProductionRequestSortItem]]` 
     
 </dd>
 </dl>
@@ -34469,7 +34648,7 @@ client.production.post_v1production_work_centers_list()
 <dl>
 <dd>
 
-**filter:** `typing.Optional[typing.List[PostV1ProductionWorkCentersListRequestFilterItem]]` 
+**filter:** `typing.Optional[typing.List[WorkCentersListProductionRequestFilterItem]]` 
     
 </dd>
 </dl>
@@ -34497,7 +34676,7 @@ client.production.post_v1production_work_centers_list()
 </dl>
 </details>
 
-<details><summary><code>client.production.<a href="src/nordlet/production/client.py">post_v1production_routings_create</a>(...) -> PostV1ProductionRoutingsCreateResponse</code></summary>
+<details><summary><code>client.production.<a href="src/nordlet/production/client.py">routings_create</a>(...) -> RoutingsCreateProductionResponse</code></summary>
 <dl>
 <dd>
 
@@ -34512,18 +34691,18 @@ client.production.post_v1production_work_centers_list()
 ```python
 from nordlet import Nordlet
 from nordlet.environment import NordletEnvironment
-from nordlet.production import PostV1ProductionRoutingsCreateRequestOperationsItem
+from nordlet.production import RoutingsCreateProductionRequestOperationsItem
 
 client = Nordlet(
     token="<token>",
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.production.post_v1production_routings_create(
+client.production.routings_create(
     code="code",
     name="name",
     operations=[
-        PostV1ProductionRoutingsCreateRequestOperationsItem(
+        RoutingsCreateProductionRequestOperationsItem(
             sequence=1000000,
             name="name",
             work_center_id="workCenterId",
@@ -34561,7 +34740,7 @@ client.production.post_v1production_routings_create(
 <dl>
 <dd>
 
-**operations:** `typing.List[PostV1ProductionRoutingsCreateRequestOperationsItem]` 
+**operations:** `typing.List[RoutingsCreateProductionRequestOperationsItem]` 
     
 </dd>
 </dl>
@@ -34589,7 +34768,7 @@ client.production.post_v1production_routings_create(
 </dl>
 </details>
 
-<details><summary><code>client.production.<a href="src/nordlet/production/client.py">post_v1production_routings_get</a>(...) -> PostV1ProductionRoutingsGetResponse</code></summary>
+<details><summary><code>client.production.<a href="src/nordlet/production/client.py">routings_get</a>(...) -> RoutingsGetProductionResponse</code></summary>
 <dl>
 <dd>
 
@@ -34610,7 +34789,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.production.post_v1production_routings_get(
+client.production.routings_get(
     id="id",
 )
 
@@ -34648,7 +34827,7 @@ client.production.post_v1production_routings_get(
 </dl>
 </details>
 
-<details><summary><code>client.production.<a href="src/nordlet/production/client.py">post_v1production_routings_list</a>(...) -> PostV1ProductionRoutingsListResponse</code></summary>
+<details><summary><code>client.production.<a href="src/nordlet/production/client.py">routings_list</a>(...) -> RoutingsListProductionResponse</code></summary>
 <dl>
 <dd>
 
@@ -34669,7 +34848,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.production.post_v1production_routings_list()
+client.production.routings_list()
 
 ```
 </dd>
@@ -34701,7 +34880,7 @@ client.production.post_v1production_routings_list()
 <dl>
 <dd>
 
-**sort:** `typing.Optional[typing.List[PostV1ProductionRoutingsListRequestSortItem]]` 
+**sort:** `typing.Optional[typing.List[RoutingsListProductionRequestSortItem]]` 
     
 </dd>
 </dl>
@@ -34709,7 +34888,7 @@ client.production.post_v1production_routings_list()
 <dl>
 <dd>
 
-**filter:** `typing.Optional[typing.List[PostV1ProductionRoutingsListRequestFilterItem]]` 
+**filter:** `typing.Optional[typing.List[RoutingsListProductionRequestFilterItem]]` 
     
 </dd>
 </dl>
@@ -34737,7 +34916,7 @@ client.production.post_v1production_routings_list()
 </dl>
 </details>
 
-<details><summary><code>client.production.<a href="src/nordlet/production/client.py">post_v1production_maintenance_create</a>(...) -> PostV1ProductionMaintenanceCreateResponse</code></summary>
+<details><summary><code>client.production.<a href="src/nordlet/production/client.py">maintenance_create</a>(...) -> MaintenanceCreateProductionResponse</code></summary>
 <dl>
 <dd>
 
@@ -34752,16 +34931,17 @@ client.production.post_v1production_routings_list()
 ```python
 from nordlet import Nordlet
 from nordlet.environment import NordletEnvironment
+import datetime
 
 client = Nordlet(
     token="<token>",
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.production.post_v1production_maintenance_create(
+client.production.maintenance_create(
     work_center_id="workCenterId",
     type="preventive",
-    planned_date="plannedDate",
+    planned_date=datetime.date.fromisoformat("2026-07-01"),
 )
 
 ```
@@ -34786,7 +34966,7 @@ client.production.post_v1production_maintenance_create(
 <dl>
 <dd>
 
-**type:** `PostV1ProductionMaintenanceCreateRequestType` 
+**type:** `MaintenanceCreateProductionRequestType` 
     
 </dd>
 </dl>
@@ -34794,7 +34974,7 @@ client.production.post_v1production_maintenance_create(
 <dl>
 <dd>
 
-**planned_date:** `str` 
+**planned_date:** `datetime.date` 
     
 </dd>
 </dl>
@@ -34830,7 +35010,7 @@ client.production.post_v1production_maintenance_create(
 </dl>
 </details>
 
-<details><summary><code>client.production.<a href="src/nordlet/production/client.py">post_v1production_maintenance_complete</a>(...) -> PostV1ProductionMaintenanceCompleteResponse</code></summary>
+<details><summary><code>client.production.<a href="src/nordlet/production/client.py">maintenance_complete</a>(...) -> MaintenanceCompleteProductionResponse</code></summary>
 <dl>
 <dd>
 
@@ -34845,15 +35025,16 @@ client.production.post_v1production_maintenance_create(
 ```python
 from nordlet import Nordlet
 from nordlet.environment import NordletEnvironment
+import datetime
 
 client = Nordlet(
     token="<token>",
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.production.post_v1production_maintenance_complete(
+client.production.maintenance_complete(
     id="id",
-    completed_date="completedDate",
+    completed_date=datetime.date.fromisoformat("2026-07-01"),
 )
 
 ```
@@ -34878,7 +35059,7 @@ client.production.post_v1production_maintenance_complete(
 <dl>
 <dd>
 
-**completed_date:** `str` 
+**completed_date:** `datetime.date` 
     
 </dd>
 </dl>
@@ -34922,7 +35103,7 @@ client.production.post_v1production_maintenance_complete(
 </dl>
 </details>
 
-<details><summary><code>client.production.<a href="src/nordlet/production/client.py">post_v1production_maintenance_cancel</a>(...) -> PostV1ProductionMaintenanceCancelResponse</code></summary>
+<details><summary><code>client.production.<a href="src/nordlet/production/client.py">maintenance_cancel</a>(...) -> MaintenanceCancelProductionResponse</code></summary>
 <dl>
 <dd>
 
@@ -34943,7 +35124,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.production.post_v1production_maintenance_cancel(
+client.production.maintenance_cancel(
     id="id",
 )
 
@@ -34981,7 +35162,7 @@ client.production.post_v1production_maintenance_cancel(
 </dl>
 </details>
 
-<details><summary><code>client.production.<a href="src/nordlet/production/client.py">post_v1production_maintenance_list</a>(...) -> PostV1ProductionMaintenanceListResponse</code></summary>
+<details><summary><code>client.production.<a href="src/nordlet/production/client.py">maintenance_list</a>(...) -> MaintenanceListProductionResponse</code></summary>
 <dl>
 <dd>
 
@@ -35002,7 +35183,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.production.post_v1production_maintenance_list()
+client.production.maintenance_list()
 
 ```
 </dd>
@@ -35034,7 +35215,7 @@ client.production.post_v1production_maintenance_list()
 <dl>
 <dd>
 
-**sort:** `typing.Optional[typing.List[PostV1ProductionMaintenanceListRequestSortItem]]` 
+**sort:** `typing.Optional[typing.List[MaintenanceListProductionRequestSortItem]]` 
     
 </dd>
 </dl>
@@ -35042,7 +35223,7 @@ client.production.post_v1production_maintenance_list()
 <dl>
 <dd>
 
-**filter:** `typing.Optional[typing.List[PostV1ProductionMaintenanceListRequestFilterItem]]` 
+**filter:** `typing.Optional[typing.List[MaintenanceListProductionRequestFilterItem]]` 
     
 </dd>
 </dl>
@@ -35070,7 +35251,7 @@ client.production.post_v1production_maintenance_list()
 </dl>
 </details>
 
-<details><summary><code>client.production.<a href="src/nordlet/production/client.py">post_v1production_boms_create</a>(...) -> PostV1ProductionBomsCreateResponse</code></summary>
+<details><summary><code>client.production.<a href="src/nordlet/production/client.py">boms_create</a>(...) -> BomsCreateProductionResponse</code></summary>
 <dl>
 <dd>
 
@@ -35085,21 +35266,21 @@ client.production.post_v1production_maintenance_list()
 ```python
 from nordlet import Nordlet
 from nordlet.environment import NordletEnvironment
-from nordlet.production import PostV1ProductionBomsCreateRequestLinesItem
+from nordlet.production import BomsCreateProductionRequestLinesItem
 
 client = Nordlet(
     token="<token>",
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.production.post_v1production_boms_create(
+client.production.boms_create(
     code="code",
     name="name",
     finished_item_id="finishedItemId",
     lines=[
-        PostV1ProductionBomsCreateRequestLinesItem(
+        BomsCreateProductionRequestLinesItem(
             component_item_id="componentItemId",
-            quantity="quantity",
+            quantity="121.0000",
         )
     ],
 )
@@ -35142,7 +35323,7 @@ client.production.post_v1production_boms_create(
 <dl>
 <dd>
 
-**lines:** `typing.List[PostV1ProductionBomsCreateRequestLinesItem]` 
+**lines:** `typing.List[BomsCreateProductionRequestLinesItem]` 
     
 </dd>
 </dl>
@@ -35178,7 +35359,7 @@ client.production.post_v1production_boms_create(
 </dl>
 </details>
 
-<details><summary><code>client.production.<a href="src/nordlet/production/client.py">post_v1production_boms_get</a>(...) -> PostV1ProductionBomsGetResponse</code></summary>
+<details><summary><code>client.production.<a href="src/nordlet/production/client.py">boms_get</a>(...) -> BomsGetProductionResponse</code></summary>
 <dl>
 <dd>
 
@@ -35199,7 +35380,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.production.post_v1production_boms_get(
+client.production.boms_get(
     id="id",
 )
 
@@ -35237,7 +35418,7 @@ client.production.post_v1production_boms_get(
 </dl>
 </details>
 
-<details><summary><code>client.production.<a href="src/nordlet/production/client.py">post_v1production_boms_list</a>(...) -> PostV1ProductionBomsListResponse</code></summary>
+<details><summary><code>client.production.<a href="src/nordlet/production/client.py">boms_list</a>(...) -> BomsListProductionResponse</code></summary>
 <dl>
 <dd>
 
@@ -35258,7 +35439,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.production.post_v1production_boms_list()
+client.production.boms_list()
 
 ```
 </dd>
@@ -35290,7 +35471,7 @@ client.production.post_v1production_boms_list()
 <dl>
 <dd>
 
-**sort:** `typing.Optional[typing.List[PostV1ProductionBomsListRequestSortItem]]` 
+**sort:** `typing.Optional[typing.List[BomsListProductionRequestSortItem]]` 
     
 </dd>
 </dl>
@@ -35298,7 +35479,7 @@ client.production.post_v1production_boms_list()
 <dl>
 <dd>
 
-**filter:** `typing.Optional[typing.List[PostV1ProductionBomsListRequestFilterItem]]` 
+**filter:** `typing.Optional[typing.List[BomsListProductionRequestFilterItem]]` 
     
 </dd>
 </dl>
@@ -35326,7 +35507,7 @@ client.production.post_v1production_boms_list()
 </dl>
 </details>
 
-<details><summary><code>client.production.<a href="src/nordlet/production/client.py">post_v1production_orders_create</a>(...) -> PostV1ProductionOrdersCreateResponse</code></summary>
+<details><summary><code>client.production.<a href="src/nordlet/production/client.py">orders_create</a>(...) -> OrdersCreateProductionResponse</code></summary>
 <dl>
 <dd>
 
@@ -35341,17 +35522,18 @@ client.production.post_v1production_boms_list()
 ```python
 from nordlet import Nordlet
 from nordlet.environment import NordletEnvironment
+import datetime
 
 client = Nordlet(
     token="<token>",
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.production.post_v1production_orders_create(
+client.production.orders_create(
     bom_id="bomId",
     warehouse_id="warehouseId",
-    quantity="quantity",
-    date="date",
+    quantity="121.0000",
+    date=datetime.date.fromisoformat("2026-07-01"),
 )
 
 ```
@@ -35392,7 +35574,7 @@ client.production.post_v1production_orders_create(
 <dl>
 <dd>
 
-**date:** `str` 
+**date:** `datetime.date` 
     
 </dd>
 </dl>
@@ -35400,7 +35582,7 @@ client.production.post_v1production_orders_create(
 <dl>
 <dd>
 
-**type:** `typing.Optional[PostV1ProductionOrdersCreateRequestType]` 
+**type:** `typing.Optional[OrdersCreateProductionRequestType]` 
     
 </dd>
 </dl>
@@ -35436,7 +35618,7 @@ client.production.post_v1production_orders_create(
 </dl>
 </details>
 
-<details><summary><code>client.production.<a href="src/nordlet/production/client.py">post_v1production_orders_record_operation</a>(...) -> PostV1ProductionOrdersRecordOperationResponse</code></summary>
+<details><summary><code>client.production.<a href="src/nordlet/production/client.py">orders_record_operation</a>(...) -> OrdersRecordOperationProductionResponse</code></summary>
 <dl>
 <dd>
 
@@ -35457,9 +35639,9 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.production.post_v1production_orders_record_operation(
+client.production.orders_record_operation(
     id="id",
-    actual_minutes="actualMinutes",
+    actual_minutes="121.00",
 )
 
 ```
@@ -35504,7 +35686,7 @@ client.production.post_v1production_orders_record_operation(
 </dl>
 </details>
 
-<details><summary><code>client.production.<a href="src/nordlet/production/client.py">post_v1production_quality_checks_add</a>(...) -> PostV1ProductionQualityChecksAddResponse</code></summary>
+<details><summary><code>client.production.<a href="src/nordlet/production/client.py">quality_checks_add</a>(...) -> QualityChecksAddProductionResponse</code></summary>
 <dl>
 <dd>
 
@@ -35525,7 +35707,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.production.post_v1production_quality_checks_add(
+client.production.quality_checks_add(
     order_id="orderId",
     name="name",
 )
@@ -35580,7 +35762,7 @@ client.production.post_v1production_quality_checks_add(
 </dl>
 </details>
 
-<details><summary><code>client.production.<a href="src/nordlet/production/client.py">post_v1production_quality_checks_record</a>(...) -> PostV1ProductionQualityChecksRecordResponse</code></summary>
+<details><summary><code>client.production.<a href="src/nordlet/production/client.py">quality_checks_record</a>(...) -> QualityChecksRecordProductionResponse</code></summary>
 <dl>
 <dd>
 
@@ -35601,7 +35783,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.production.post_v1production_quality_checks_record(
+client.production.quality_checks_record(
     id="id",
     result="passed",
 )
@@ -35628,7 +35810,7 @@ client.production.post_v1production_quality_checks_record(
 <dl>
 <dd>
 
-**result:** `PostV1ProductionQualityChecksRecordRequestResult` 
+**result:** `QualityChecksRecordProductionRequestResult` 
     
 </dd>
 </dl>
@@ -35656,7 +35838,7 @@ client.production.post_v1production_quality_checks_record(
 </dl>
 </details>
 
-<details><summary><code>client.production.<a href="src/nordlet/production/client.py">post_v1production_quality_checks_list</a>(...) -> PostV1ProductionQualityChecksListResponse</code></summary>
+<details><summary><code>client.production.<a href="src/nordlet/production/client.py">quality_checks_list</a>(...) -> QualityChecksListProductionResponse</code></summary>
 <dl>
 <dd>
 
@@ -35677,7 +35859,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.production.post_v1production_quality_checks_list()
+client.production.quality_checks_list()
 
 ```
 </dd>
@@ -35709,7 +35891,7 @@ client.production.post_v1production_quality_checks_list()
 <dl>
 <dd>
 
-**sort:** `typing.Optional[typing.List[PostV1ProductionQualityChecksListRequestSortItem]]` 
+**sort:** `typing.Optional[typing.List[QualityChecksListProductionRequestSortItem]]` 
     
 </dd>
 </dl>
@@ -35717,7 +35899,7 @@ client.production.post_v1production_quality_checks_list()
 <dl>
 <dd>
 
-**filter:** `typing.Optional[typing.List[PostV1ProductionQualityChecksListRequestFilterItem]]` 
+**filter:** `typing.Optional[typing.List[QualityChecksListProductionRequestFilterItem]]` 
     
 </dd>
 </dl>
@@ -35745,7 +35927,7 @@ client.production.post_v1production_quality_checks_list()
 </dl>
 </details>
 
-<details><summary><code>client.production.<a href="src/nordlet/production/client.py">post_v1production_orders_complete</a>(...) -> PostV1ProductionOrdersCompleteResponse</code></summary>
+<details><summary><code>client.production.<a href="src/nordlet/production/client.py">orders_complete</a>(...) -> OrdersCompleteProductionResponse</code></summary>
 <dl>
 <dd>
 
@@ -35766,7 +35948,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.production.post_v1production_orders_complete(
+client.production.orders_complete(
     id="id",
 )
 
@@ -35828,7 +36010,7 @@ client.production.post_v1production_orders_complete(
 </dl>
 </details>
 
-<details><summary><code>client.production.<a href="src/nordlet/production/client.py">post_v1production_orders_get</a>(...) -> PostV1ProductionOrdersGetResponse</code></summary>
+<details><summary><code>client.production.<a href="src/nordlet/production/client.py">orders_get</a>(...) -> OrdersGetProductionResponse</code></summary>
 <dl>
 <dd>
 
@@ -35849,7 +36031,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.production.post_v1production_orders_get(
+client.production.orders_get(
     id="id",
 )
 
@@ -35887,7 +36069,7 @@ client.production.post_v1production_orders_get(
 </dl>
 </details>
 
-<details><summary><code>client.production.<a href="src/nordlet/production/client.py">post_v1production_orders_list</a>(...) -> PostV1ProductionOrdersListResponse</code></summary>
+<details><summary><code>client.production.<a href="src/nordlet/production/client.py">orders_list</a>(...) -> OrdersListProductionResponse</code></summary>
 <dl>
 <dd>
 
@@ -35908,7 +36090,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.production.post_v1production_orders_list()
+client.production.orders_list()
 
 ```
 </dd>
@@ -35940,7 +36122,7 @@ client.production.post_v1production_orders_list()
 <dl>
 <dd>
 
-**sort:** `typing.Optional[typing.List[PostV1ProductionOrdersListRequestSortItem]]` 
+**sort:** `typing.Optional[typing.List[OrdersListProductionRequestSortItem]]` 
     
 </dd>
 </dl>
@@ -35948,7 +36130,7 @@ client.production.post_v1production_orders_list()
 <dl>
 <dd>
 
-**filter:** `typing.Optional[typing.List[PostV1ProductionOrdersListRequestFilterItem]]` 
+**filter:** `typing.Optional[typing.List[OrdersListProductionRequestFilterItem]]` 
     
 </dd>
 </dl>
@@ -35976,8 +36158,8 @@ client.production.post_v1production_orders_list()
 </dl>
 </details>
 
-## Ecommerce
-<details><summary><code>client.ecommerce.<a href="src/nordlet/ecommerce/client.py">post_v1ecommerce_orders_create</a>(...) -> PostV1EcommerceOrdersCreateResponse</code></summary>
+## ecommerce
+<details><summary><code>client.ecommerce.<a href="src/nordlet/ecommerce/client.py">orders_create</a>(...) -> OrdersCreateEcommerceResponse</code></summary>
 <dl>
 <dd>
 
@@ -35992,19 +36174,19 @@ client.production.post_v1production_orders_list()
 ```python
 from nordlet import Nordlet
 from nordlet.environment import NordletEnvironment
-from nordlet.ecommerce import PostV1EcommerceOrdersCreateRequestLinesItem
+from nordlet.ecommerce import OrdersCreateEcommerceRequestLinesItem
 
 client = Nordlet(
     token="<token>",
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.ecommerce.post_v1ecommerce_orders_create(
+client.ecommerce.orders_create(
     lines=[
-        PostV1EcommerceOrdersCreateRequestLinesItem(
+        OrdersCreateEcommerceRequestLinesItem(
             description="description",
-            quantity="quantity",
-            unit_price_excl_vat="unitPriceExclVat",
+            quantity="121.0000",
+            unit_price_excl_vat="121.0000",
         )
     ],
 )
@@ -36023,7 +36205,7 @@ client.ecommerce.post_v1ecommerce_orders_create(
 <dl>
 <dd>
 
-**lines:** `typing.List[PostV1EcommerceOrdersCreateRequestLinesItem]` 
+**lines:** `typing.List[OrdersCreateEcommerceRequestLinesItem]` 
     
 </dd>
 </dl>
@@ -36055,7 +36237,7 @@ client.ecommerce.post_v1ecommerce_orders_create(
 <dl>
 <dd>
 
-**partner:** `typing.Optional[PostV1EcommerceOrdersCreateRequestPartner]` 
+**partner:** `typing.Optional[OrdersCreateEcommerceRequestPartner]` 
     
 </dd>
 </dl>
@@ -36115,7 +36297,7 @@ client.ecommerce.post_v1ecommerce_orders_create(
 </dl>
 </details>
 
-<details><summary><code>client.ecommerce.<a href="src/nordlet/ecommerce/client.py">post_v1ecommerce_orders_get</a>(...) -> PostV1EcommerceOrdersGetResponse</code></summary>
+<details><summary><code>client.ecommerce.<a href="src/nordlet/ecommerce/client.py">orders_get</a>(...) -> OrdersGetEcommerceResponse</code></summary>
 <dl>
 <dd>
 
@@ -36136,7 +36318,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.ecommerce.post_v1ecommerce_orders_get(
+client.ecommerce.orders_get(
     id="id",
 )
 
@@ -36174,7 +36356,7 @@ client.ecommerce.post_v1ecommerce_orders_get(
 </dl>
 </details>
 
-<details><summary><code>client.ecommerce.<a href="src/nordlet/ecommerce/client.py">post_v1ecommerce_orders_list</a>(...) -> PostV1EcommerceOrdersListResponse</code></summary>
+<details><summary><code>client.ecommerce.<a href="src/nordlet/ecommerce/client.py">orders_list</a>(...) -> OrdersListEcommerceResponse</code></summary>
 <dl>
 <dd>
 
@@ -36195,7 +36377,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.ecommerce.post_v1ecommerce_orders_list()
+client.ecommerce.orders_list()
 
 ```
 </dd>
@@ -36227,7 +36409,7 @@ client.ecommerce.post_v1ecommerce_orders_list()
 <dl>
 <dd>
 
-**sort:** `typing.Optional[typing.List[PostV1EcommerceOrdersListRequestSortItem]]` 
+**sort:** `typing.Optional[typing.List[OrdersListEcommerceRequestSortItem]]` 
     
 </dd>
 </dl>
@@ -36235,7 +36417,7 @@ client.ecommerce.post_v1ecommerce_orders_list()
 <dl>
 <dd>
 
-**filter:** `typing.Optional[typing.List[PostV1EcommerceOrdersListRequestFilterItem]]` 
+**filter:** `typing.Optional[typing.List[OrdersListEcommerceRequestFilterItem]]` 
     
 </dd>
 </dl>
@@ -36263,7 +36445,7 @@ client.ecommerce.post_v1ecommerce_orders_list()
 </dl>
 </details>
 
-<details><summary><code>client.ecommerce.<a href="src/nordlet/ecommerce/client.py">post_v1ecommerce_orders_reserve</a>(...) -> PostV1EcommerceOrdersReserveResponse</code></summary>
+<details><summary><code>client.ecommerce.<a href="src/nordlet/ecommerce/client.py">orders_reserve</a>(...) -> OrdersReserveEcommerceResponse</code></summary>
 <dl>
 <dd>
 
@@ -36284,7 +36466,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.ecommerce.post_v1ecommerce_orders_reserve(
+client.ecommerce.orders_reserve(
     id="id",
 )
 
@@ -36330,7 +36512,7 @@ client.ecommerce.post_v1ecommerce_orders_reserve(
 </dl>
 </details>
 
-<details><summary><code>client.ecommerce.<a href="src/nordlet/ecommerce/client.py">post_v1ecommerce_orders_fulfill</a>(...) -> PostV1EcommerceOrdersFulfillResponse</code></summary>
+<details><summary><code>client.ecommerce.<a href="src/nordlet/ecommerce/client.py">orders_fulfill</a>(...) -> OrdersFulfillEcommerceResponse</code></summary>
 <dl>
 <dd>
 
@@ -36351,7 +36533,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.ecommerce.post_v1ecommerce_orders_fulfill(
+client.ecommerce.orders_fulfill(
     id="id",
 )
 
@@ -36377,7 +36559,7 @@ client.ecommerce.post_v1ecommerce_orders_fulfill(
 <dl>
 <dd>
 
-**date:** `typing.Optional[str]` 
+**date:** `typing.Optional[datetime.date]` 
     
 </dd>
 </dl>
@@ -36413,7 +36595,7 @@ client.ecommerce.post_v1ecommerce_orders_fulfill(
 </dl>
 </details>
 
-<details><summary><code>client.ecommerce.<a href="src/nordlet/ecommerce/client.py">post_v1ecommerce_orders_cancel</a>(...) -> PostV1EcommerceOrdersCancelResponse</code></summary>
+<details><summary><code>client.ecommerce.<a href="src/nordlet/ecommerce/client.py">orders_cancel</a>(...) -> OrdersCancelEcommerceResponse</code></summary>
 <dl>
 <dd>
 
@@ -36434,7 +36616,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.ecommerce.post_v1ecommerce_orders_cancel(
+client.ecommerce.orders_cancel(
     id="id",
 )
 
@@ -36472,7 +36654,7 @@ client.ecommerce.post_v1ecommerce_orders_cancel(
 </dl>
 </details>
 
-<details><summary><code>client.ecommerce.<a href="src/nordlet/ecommerce/client.py">post_v1ecommerce_products_list</a>(...) -> PostV1EcommerceProductsListResponse</code></summary>
+<details><summary><code>client.ecommerce.<a href="src/nordlet/ecommerce/client.py">products_list</a>(...) -> ProductsListEcommerceResponse</code></summary>
 <dl>
 <dd>
 
@@ -36493,7 +36675,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.ecommerce.post_v1ecommerce_products_list()
+client.ecommerce.products_list()
 
 ```
 </dd>
@@ -36561,7 +36743,7 @@ client.ecommerce.post_v1ecommerce_products_list()
 </dl>
 </details>
 
-<details><summary><code>client.ecommerce.<a href="src/nordlet/ecommerce/client.py">post_v1ecommerce_stock_list</a>(...) -> PostV1EcommerceStockListResponse</code></summary>
+<details><summary><code>client.ecommerce.<a href="src/nordlet/ecommerce/client.py">stock_list</a>(...) -> StockListEcommerceResponse</code></summary>
 <dl>
 <dd>
 
@@ -36582,7 +36764,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.ecommerce.post_v1ecommerce_stock_list()
+client.ecommerce.stock_list()
 
 ```
 </dd>
@@ -36618,8 +36800,8 @@ client.ecommerce.post_v1ecommerce_stock_list()
 </dl>
 </details>
 
-## Cash
-<details><summary><code>client.cash.<a href="src/nordlet/cash/client.py">post_v1cash_orders_create</a>(...) -> PostV1CashOrdersCreateResponse</code></summary>
+## cash
+<details><summary><code>client.cash.<a href="src/nordlet/cash/client.py">orders_create</a>(...) -> OrdersCreateCashResponse</code></summary>
 <dl>
 <dd>
 
@@ -36634,16 +36816,17 @@ client.ecommerce.post_v1ecommerce_stock_list()
 ```python
 from nordlet import Nordlet
 from nordlet.environment import NordletEnvironment
+import datetime
 
 client = Nordlet(
     token="<token>",
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.cash.post_v1cash_orders_create(
+client.cash.orders_create(
     type="receipt",
-    date="date",
-    amount="amount",
+    date=datetime.date.fromisoformat("2026-07-01"),
+    amount="121.0000",
     purpose="purpose",
     counter_account_code="counterAccountCode",
 )
@@ -36662,7 +36845,7 @@ client.cash.post_v1cash_orders_create(
 <dl>
 <dd>
 
-**type:** `PostV1CashOrdersCreateRequestType` 
+**type:** `OrdersCreateCashRequestType` 
     
 </dd>
 </dl>
@@ -36670,7 +36853,7 @@ client.cash.post_v1cash_orders_create(
 <dl>
 <dd>
 
-**date:** `str` 
+**date:** `datetime.date` 
     
 </dd>
 </dl>
@@ -36754,7 +36937,7 @@ client.cash.post_v1cash_orders_create(
 </dl>
 </details>
 
-<details><summary><code>client.cash.<a href="src/nordlet/cash/client.py">post_v1cash_orders_get</a>(...) -> PostV1CashOrdersGetResponse</code></summary>
+<details><summary><code>client.cash.<a href="src/nordlet/cash/client.py">orders_get</a>(...) -> OrdersGetCashResponse</code></summary>
 <dl>
 <dd>
 
@@ -36775,7 +36958,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.cash.post_v1cash_orders_get(
+client.cash.orders_get(
     id="id",
 )
 
@@ -36813,7 +36996,7 @@ client.cash.post_v1cash_orders_get(
 </dl>
 </details>
 
-<details><summary><code>client.cash.<a href="src/nordlet/cash/client.py">post_v1cash_orders_list</a>(...) -> PostV1CashOrdersListResponse</code></summary>
+<details><summary><code>client.cash.<a href="src/nordlet/cash/client.py">orders_list</a>(...) -> OrdersListCashResponse</code></summary>
 <dl>
 <dd>
 
@@ -36834,7 +37017,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.cash.post_v1cash_orders_list()
+client.cash.orders_list()
 
 ```
 </dd>
@@ -36866,7 +37049,7 @@ client.cash.post_v1cash_orders_list()
 <dl>
 <dd>
 
-**sort:** `typing.Optional[typing.List[PostV1CashOrdersListRequestSortItem]]` 
+**sort:** `typing.Optional[typing.List[OrdersListCashRequestSortItem]]` 
     
 </dd>
 </dl>
@@ -36874,7 +37057,7 @@ client.cash.post_v1cash_orders_list()
 <dl>
 <dd>
 
-**filter:** `typing.Optional[typing.List[PostV1CashOrdersListRequestFilterItem]]` 
+**filter:** `typing.Optional[typing.List[OrdersListCashRequestFilterItem]]` 
     
 </dd>
 </dl>
@@ -36902,7 +37085,7 @@ client.cash.post_v1cash_orders_list()
 </dl>
 </details>
 
-<details><summary><code>client.cash.<a href="src/nordlet/cash/client.py">post_v1cash_balance</a>(...) -> PostV1CashBalanceResponse</code></summary>
+<details><summary><code>client.cash.<a href="src/nordlet/cash/client.py">balance</a>(...) -> BalanceCashResponse</code></summary>
 <dl>
 <dd>
 
@@ -36923,7 +37106,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.cash.post_v1cash_balance()
+client.cash.balance()
 
 ```
 </dd>
@@ -36947,7 +37130,7 @@ client.cash.post_v1cash_balance()
 <dl>
 <dd>
 
-**as_of:** `typing.Optional[str]` 
+**as_of:** `typing.Optional[datetime.date]` 
     
 </dd>
 </dl>
@@ -36967,7 +37150,7 @@ client.cash.post_v1cash_balance()
 </dl>
 </details>
 
-<details><summary><code>client.cash.<a href="src/nordlet/cash/client.py">post_v1cash_advance_holders_balances</a>() -> PostV1CashAdvanceHoldersBalancesResponse</code></summary>
+<details><summary><code>client.cash.<a href="src/nordlet/cash/client.py">advance_holders_balances</a>() -> AdvanceHoldersBalancesCashResponse</code></summary>
 <dl>
 <dd>
 
@@ -36988,7 +37171,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.cash.post_v1cash_advance_holders_balances()
+client.cash.advance_holders_balances()
 
 ```
 </dd>
@@ -37016,8 +37199,8 @@ client.cash.post_v1cash_advance_holders_balances()
 </dl>
 </details>
 
-## Projects
-<details><summary><code>client.projects.<a href="src/nordlet/projects/client.py">post_v1projects_create</a>(...) -> PostV1ProjectsCreateResponse</code></summary>
+## projects
+<details><summary><code>client.projects.<a href="src/nordlet/projects/client.py">create</a>(...) -> CreateProjectsResponse</code></summary>
 <dl>
 <dd>
 
@@ -37038,7 +37221,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.projects.post_v1projects_create(
+client.projects.create(
     code="code",
     name="name",
 )
@@ -37101,7 +37284,7 @@ client.projects.post_v1projects_create(
 </dl>
 </details>
 
-<details><summary><code>client.projects.<a href="src/nordlet/projects/client.py">post_v1projects_update</a>(...) -> PostV1ProjectsUpdateResponse</code></summary>
+<details><summary><code>client.projects.<a href="src/nordlet/projects/client.py">update</a>(...) -> UpdateProjectsResponse</code></summary>
 <dl>
 <dd>
 
@@ -37122,7 +37305,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.projects.post_v1projects_update(
+client.projects.update(
     id="id",
 )
 
@@ -37164,7 +37347,7 @@ client.projects.post_v1projects_update(
 <dl>
 <dd>
 
-**status:** `typing.Optional[PostV1ProjectsUpdateRequestStatus]` 
+**status:** `typing.Optional[UpdateProjectsRequestStatus]` 
     
 </dd>
 </dl>
@@ -37192,7 +37375,7 @@ client.projects.post_v1projects_update(
 </dl>
 </details>
 
-<details><summary><code>client.projects.<a href="src/nordlet/projects/client.py">post_v1projects_get</a>(...) -> PostV1ProjectsGetResponse</code></summary>
+<details><summary><code>client.projects.<a href="src/nordlet/projects/client.py">get</a>(...) -> GetProjectsResponse</code></summary>
 <dl>
 <dd>
 
@@ -37213,7 +37396,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.projects.post_v1projects_get(
+client.projects.get(
     id="id",
 )
 
@@ -37251,7 +37434,7 @@ client.projects.post_v1projects_get(
 </dl>
 </details>
 
-<details><summary><code>client.projects.<a href="src/nordlet/projects/client.py">post_v1projects_list</a>(...) -> PostV1ProjectsListResponse</code></summary>
+<details><summary><code>client.projects.<a href="src/nordlet/projects/client.py">list</a>(...) -> ListProjectsResponse</code></summary>
 <dl>
 <dd>
 
@@ -37272,7 +37455,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.projects.post_v1projects_list()
+client.projects.list()
 
 ```
 </dd>
@@ -37304,7 +37487,7 @@ client.projects.post_v1projects_list()
 <dl>
 <dd>
 
-**sort:** `typing.Optional[typing.List[PostV1ProjectsListRequestSortItem]]` 
+**sort:** `typing.Optional[typing.List[ListProjectsRequestSortItem]]` 
     
 </dd>
 </dl>
@@ -37312,7 +37495,7 @@ client.projects.post_v1projects_list()
 <dl>
 <dd>
 
-**filter:** `typing.Optional[typing.List[PostV1ProjectsListRequestFilterItem]]` 
+**filter:** `typing.Optional[typing.List[ListProjectsRequestFilterItem]]` 
     
 </dd>
 </dl>
@@ -37340,7 +37523,7 @@ client.projects.post_v1projects_list()
 </dl>
 </details>
 
-<details><summary><code>client.projects.<a href="src/nordlet/projects/client.py">post_v1projects_time_entries_create</a>(...) -> PostV1ProjectsTimeEntriesCreateResponse</code></summary>
+<details><summary><code>client.projects.<a href="src/nordlet/projects/client.py">time_entries_create</a>(...) -> TimeEntriesCreateProjectsResponse</code></summary>
 <dl>
 <dd>
 
@@ -37355,16 +37538,17 @@ client.projects.post_v1projects_list()
 ```python
 from nordlet import Nordlet
 from nordlet.environment import NordletEnvironment
+import datetime
 
 client = Nordlet(
     token="<token>",
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.projects.post_v1projects_time_entries_create(
+client.projects.time_entries_create(
     project_id="projectId",
-    date="date",
-    hours="hours",
+    date=datetime.date.fromisoformat("2026-07-01"),
+    hours="121.00",
 )
 
 ```
@@ -37389,7 +37573,7 @@ client.projects.post_v1projects_time_entries_create(
 <dl>
 <dd>
 
-**date:** `str` 
+**date:** `datetime.date` 
     
 </dd>
 </dl>
@@ -37449,7 +37633,7 @@ client.projects.post_v1projects_time_entries_create(
 </dl>
 </details>
 
-<details><summary><code>client.projects.<a href="src/nordlet/projects/client.py">post_v1projects_time_entries_update</a>(...) -> PostV1ProjectsTimeEntriesUpdateResponse</code></summary>
+<details><summary><code>client.projects.<a href="src/nordlet/projects/client.py">time_entries_update</a>(...) -> TimeEntriesUpdateProjectsResponse</code></summary>
 <dl>
 <dd>
 
@@ -37470,7 +37654,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.projects.post_v1projects_time_entries_update(
+client.projects.time_entries_update(
     id="id",
 )
 
@@ -37496,7 +37680,7 @@ client.projects.post_v1projects_time_entries_update(
 <dl>
 <dd>
 
-**date:** `typing.Optional[str]` 
+**date:** `typing.Optional[datetime.date]` 
     
 </dd>
 </dl>
@@ -37548,7 +37732,7 @@ client.projects.post_v1projects_time_entries_update(
 </dl>
 </details>
 
-<details><summary><code>client.projects.<a href="src/nordlet/projects/client.py">post_v1projects_time_entries_delete</a>(...) -> PostV1ProjectsTimeEntriesDeleteResponse</code></summary>
+<details><summary><code>client.projects.<a href="src/nordlet/projects/client.py">time_entries_delete</a>(...) -> TimeEntriesDeleteProjectsResponse</code></summary>
 <dl>
 <dd>
 
@@ -37569,7 +37753,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.projects.post_v1projects_time_entries_delete(
+client.projects.time_entries_delete(
     id="id",
 )
 
@@ -37607,7 +37791,7 @@ client.projects.post_v1projects_time_entries_delete(
 </dl>
 </details>
 
-<details><summary><code>client.projects.<a href="src/nordlet/projects/client.py">post_v1projects_time_entries_list</a>(...) -> PostV1ProjectsTimeEntriesListResponse</code></summary>
+<details><summary><code>client.projects.<a href="src/nordlet/projects/client.py">time_entries_list</a>(...) -> TimeEntriesListProjectsResponse</code></summary>
 <dl>
 <dd>
 
@@ -37628,7 +37812,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.projects.post_v1projects_time_entries_list()
+client.projects.time_entries_list()
 
 ```
 </dd>
@@ -37660,7 +37844,7 @@ client.projects.post_v1projects_time_entries_list()
 <dl>
 <dd>
 
-**sort:** `typing.Optional[typing.List[PostV1ProjectsTimeEntriesListRequestSortItem]]` 
+**sort:** `typing.Optional[typing.List[TimeEntriesListProjectsRequestSortItem]]` 
     
 </dd>
 </dl>
@@ -37668,7 +37852,7 @@ client.projects.post_v1projects_time_entries_list()
 <dl>
 <dd>
 
-**filter:** `typing.Optional[typing.List[PostV1ProjectsTimeEntriesListRequestFilterItem]]` 
+**filter:** `typing.Optional[typing.List[TimeEntriesListProjectsRequestFilterItem]]` 
     
 </dd>
 </dl>
@@ -37696,7 +37880,7 @@ client.projects.post_v1projects_time_entries_list()
 </dl>
 </details>
 
-<details><summary><code>client.projects.<a href="src/nordlet/projects/client.py">post_v1projects_time_entries_bill</a>(...) -> PostV1ProjectsTimeEntriesBillResponse</code></summary>
+<details><summary><code>client.projects.<a href="src/nordlet/projects/client.py">time_entries_bill</a>(...) -> TimeEntriesBillProjectsResponse</code></summary>
 <dl>
 <dd>
 
@@ -37717,7 +37901,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.projects.post_v1projects_time_entries_bill(
+client.projects.time_entries_bill(
     project_id="projectId",
 )
 
@@ -37751,7 +37935,7 @@ client.projects.post_v1projects_time_entries_bill(
 <dl>
 <dd>
 
-**date_from:** `typing.Optional[str]` 
+**date_from:** `typing.Optional[datetime.date]` 
     
 </dd>
 </dl>
@@ -37759,7 +37943,7 @@ client.projects.post_v1projects_time_entries_bill(
 <dl>
 <dd>
 
-**date_to:** `typing.Optional[str]` 
+**date_to:** `typing.Optional[datetime.date]` 
     
 </dd>
 </dl>
@@ -37799,7 +37983,7 @@ client.projects.post_v1projects_time_entries_bill(
 <dl>
 <dd>
 
-**issue_date:** `typing.Optional[str]` 
+**issue_date:** `typing.Optional[datetime.date]` 
     
 </dd>
 </dl>
@@ -37807,7 +37991,7 @@ client.projects.post_v1projects_time_entries_bill(
 <dl>
 <dd>
 
-**due_date:** `typing.Optional[str]` 
+**due_date:** `typing.Optional[datetime.date]` 
     
 </dd>
 </dl>
@@ -37815,7 +37999,7 @@ client.projects.post_v1projects_time_entries_bill(
 <dl>
 <dd>
 
-**group_by:** `typing.Optional[PostV1ProjectsTimeEntriesBillRequestGroupBy]` 
+**group_by:** `typing.Optional[TimeEntriesBillProjectsRequestGroupBy]` 
     
 </dd>
 </dl>
@@ -37843,7 +38027,7 @@ client.projects.post_v1projects_time_entries_bill(
 </dl>
 </details>
 
-<details><summary><code>client.projects.<a href="src/nordlet/projects/client.py">post_v1projects_report</a>(...) -> PostV1ProjectsReportResponse</code></summary>
+<details><summary><code>client.projects.<a href="src/nordlet/projects/client.py">report</a>(...) -> ReportProjectsResponse</code></summary>
 <dl>
 <dd>
 
@@ -37864,7 +38048,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.projects.post_v1projects_report()
+client.projects.report()
 
 ```
 </dd>
@@ -37888,7 +38072,7 @@ client.projects.post_v1projects_report()
 <dl>
 <dd>
 
-**date_from:** `typing.Optional[str]` 
+**date_from:** `typing.Optional[datetime.date]` 
     
 </dd>
 </dl>
@@ -37896,7 +38080,7 @@ client.projects.post_v1projects_report()
 <dl>
 <dd>
 
-**date_to:** `typing.Optional[str]` 
+**date_to:** `typing.Optional[datetime.date]` 
     
 </dd>
 </dl>
@@ -37916,8 +38100,8 @@ client.projects.post_v1projects_report()
 </dl>
 </details>
 
-## Transport
-<details><summary><code>client.transport.<a href="src/nordlet/transport/client.py">post_v1transport_waybills_create</a>(...) -> PostV1TransportWaybillsCreateResponse</code></summary>
+## transport
+<details><summary><code>client.transport.<a href="src/nordlet/transport/client.py">waybills_create</a>(...) -> WaybillsCreateTransportResponse</code></summary>
 <dl>
 <dd>
 
@@ -37939,7 +38123,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.transport.post_v1transport_waybills_create(
+client.transport.waybills_create(
     consignee_partner_id="consigneePartnerId",
     dispatch_at=datetime.datetime.fromisoformat("2024-01-15T09:30:00+00:00"),
     load_address="loadAddress",
@@ -38000,7 +38184,7 @@ client.transport.post_v1transport_waybills_create(
 <dl>
 <dd>
 
-**document_date:** `typing.Optional[str]` 
+**document_date:** `typing.Optional[datetime.date]` 
     
 </dd>
 </dl>
@@ -38088,7 +38272,7 @@ client.transport.post_v1transport_waybills_create(
 <dl>
 <dd>
 
-**lines:** `typing.Optional[typing.List[PostV1TransportWaybillsCreateRequestLinesItem]]` 
+**lines:** `typing.Optional[typing.List[WaybillsCreateTransportRequestLinesItem]]` 
     
 </dd>
 </dl>
@@ -38108,7 +38292,7 @@ client.transport.post_v1transport_waybills_create(
 </dl>
 </details>
 
-<details><summary><code>client.transport.<a href="src/nordlet/transport/client.py">post_v1transport_waybills_update</a>(...) -> PostV1TransportWaybillsUpdateResponse</code></summary>
+<details><summary><code>client.transport.<a href="src/nordlet/transport/client.py">waybills_update</a>(...) -> WaybillsUpdateTransportResponse</code></summary>
 <dl>
 <dd>
 
@@ -38129,7 +38313,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.transport.post_v1transport_waybills_update(
+client.transport.waybills_update(
     id="id",
 )
 
@@ -38171,7 +38355,7 @@ client.transport.post_v1transport_waybills_update(
 <dl>
 <dd>
 
-**document_date:** `typing.Optional[str]` 
+**document_date:** `typing.Optional[datetime.date]` 
     
 </dd>
 </dl>
@@ -38283,7 +38467,7 @@ client.transport.post_v1transport_waybills_update(
 <dl>
 <dd>
 
-**lines:** `typing.Optional[typing.List[PostV1TransportWaybillsUpdateRequestLinesItem]]` 
+**lines:** `typing.Optional[typing.List[WaybillsUpdateTransportRequestLinesItem]]` 
     
 </dd>
 </dl>
@@ -38303,7 +38487,7 @@ client.transport.post_v1transport_waybills_update(
 </dl>
 </details>
 
-<details><summary><code>client.transport.<a href="src/nordlet/transport/client.py">post_v1transport_waybills_issue</a>(...) -> PostV1TransportWaybillsIssueResponse</code></summary>
+<details><summary><code>client.transport.<a href="src/nordlet/transport/client.py">waybills_issue</a>(...) -> WaybillsIssueTransportResponse</code></summary>
 <dl>
 <dd>
 
@@ -38324,7 +38508,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.transport.post_v1transport_waybills_issue(
+client.transport.waybills_issue(
     id="id",
 )
 
@@ -38362,7 +38546,7 @@ client.transport.post_v1transport_waybills_issue(
 </dl>
 </details>
 
-<details><summary><code>client.transport.<a href="src/nordlet/transport/client.py">post_v1transport_waybills_cancel</a>(...) -> PostV1TransportWaybillsCancelResponse</code></summary>
+<details><summary><code>client.transport.<a href="src/nordlet/transport/client.py">waybills_cancel</a>(...) -> WaybillsCancelTransportResponse</code></summary>
 <dl>
 <dd>
 
@@ -38383,7 +38567,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.transport.post_v1transport_waybills_cancel(
+client.transport.waybills_cancel(
     id="id",
 )
 
@@ -38421,7 +38605,7 @@ client.transport.post_v1transport_waybills_cancel(
 </dl>
 </details>
 
-<details><summary><code>client.transport.<a href="src/nordlet/transport/client.py">post_v1transport_waybills_get</a>(...) -> PostV1TransportWaybillsGetResponse</code></summary>
+<details><summary><code>client.transport.<a href="src/nordlet/transport/client.py">waybills_get</a>(...) -> WaybillsGetTransportResponse</code></summary>
 <dl>
 <dd>
 
@@ -38442,7 +38626,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.transport.post_v1transport_waybills_get(
+client.transport.waybills_get(
     id="id",
 )
 
@@ -38480,7 +38664,7 @@ client.transport.post_v1transport_waybills_get(
 </dl>
 </details>
 
-<details><summary><code>client.transport.<a href="src/nordlet/transport/client.py">post_v1transport_waybills_list</a>(...) -> PostV1TransportWaybillsListResponse</code></summary>
+<details><summary><code>client.transport.<a href="src/nordlet/transport/client.py">waybills_list</a>(...) -> WaybillsListTransportResponse</code></summary>
 <dl>
 <dd>
 
@@ -38501,7 +38685,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.transport.post_v1transport_waybills_list()
+client.transport.waybills_list()
 
 ```
 </dd>
@@ -38533,7 +38717,7 @@ client.transport.post_v1transport_waybills_list()
 <dl>
 <dd>
 
-**sort:** `typing.Optional[typing.List[PostV1TransportWaybillsListRequestSortItem]]` 
+**sort:** `typing.Optional[typing.List[WaybillsListTransportRequestSortItem]]` 
     
 </dd>
 </dl>
@@ -38541,7 +38725,7 @@ client.transport.post_v1transport_waybills_list()
 <dl>
 <dd>
 
-**filter:** `typing.Optional[typing.List[PostV1TransportWaybillsListRequestFilterItem]]` 
+**filter:** `typing.Optional[typing.List[WaybillsListTransportRequestFilterItem]]` 
     
 </dd>
 </dl>
@@ -38569,8 +38753,8 @@ client.transport.post_v1transport_waybills_list()
 </dl>
 </details>
 
-## Pos
-<details><summary><code>client.pos.<a href="src/nordlet/pos/client.py">post_v1pos_devices_create</a>(...) -> PostV1PosDevicesCreateResponse</code></summary>
+## pos
+<details><summary><code>client.pos.<a href="src/nordlet/pos/client.py">devices_create</a>(...) -> DevicesCreatePosResponse</code></summary>
 <dl>
 <dd>
 
@@ -38591,7 +38775,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.pos.post_v1pos_devices_create(
+client.pos.devices_create(
     name="name",
     serial_number="serialNumber",
 )
@@ -38662,7 +38846,7 @@ client.pos.post_v1pos_devices_create(
 </dl>
 </details>
 
-<details><summary><code>client.pos.<a href="src/nordlet/pos/client.py">post_v1pos_devices_update</a>(...) -> PostV1PosDevicesUpdateResponse</code></summary>
+<details><summary><code>client.pos.<a href="src/nordlet/pos/client.py">devices_update</a>(...) -> DevicesUpdatePosResponse</code></summary>
 <dl>
 <dd>
 
@@ -38683,7 +38867,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.pos.post_v1pos_devices_update(
+client.pos.devices_update(
     id="id",
 )
 
@@ -38769,7 +38953,7 @@ client.pos.post_v1pos_devices_update(
 </dl>
 </details>
 
-<details><summary><code>client.pos.<a href="src/nordlet/pos/client.py">post_v1pos_devices_list</a>(...) -> PostV1PosDevicesListResponse</code></summary>
+<details><summary><code>client.pos.<a href="src/nordlet/pos/client.py">devices_list</a>(...) -> DevicesListPosResponse</code></summary>
 <dl>
 <dd>
 
@@ -38790,7 +38974,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.pos.post_v1pos_devices_list()
+client.pos.devices_list()
 
 ```
 </dd>
@@ -38822,7 +39006,7 @@ client.pos.post_v1pos_devices_list()
 <dl>
 <dd>
 
-**sort:** `typing.Optional[typing.List[PostV1PosDevicesListRequestSortItem]]` 
+**sort:** `typing.Optional[typing.List[DevicesListPosRequestSortItem]]` 
     
 </dd>
 </dl>
@@ -38830,7 +39014,7 @@ client.pos.post_v1pos_devices_list()
 <dl>
 <dd>
 
-**filter:** `typing.Optional[typing.List[PostV1PosDevicesListRequestFilterItem]]` 
+**filter:** `typing.Optional[typing.List[DevicesListPosRequestFilterItem]]` 
     
 </dd>
 </dl>
@@ -38858,7 +39042,7 @@ client.pos.post_v1pos_devices_list()
 </dl>
 </details>
 
-<details><summary><code>client.pos.<a href="src/nordlet/pos/client.py">post_v1pos_reports_create</a>(...) -> PostV1PosReportsCreateResponse</code></summary>
+<details><summary><code>client.pos.<a href="src/nordlet/pos/client.py">reports_create</a>(...) -> ReportsCreatePosResponse</code></summary>
 <dl>
 <dd>
 
@@ -38873,21 +39057,22 @@ client.pos.post_v1pos_devices_list()
 ```python
 from nordlet import Nordlet
 from nordlet.environment import NordletEnvironment
-from nordlet.pos import PostV1PosReportsCreateRequestVatLinesItem
+import datetime
+from nordlet.pos import ReportsCreatePosRequestVatLinesItem
 
 client = Nordlet(
     token="<token>",
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.pos.post_v1pos_reports_create(
+client.pos.reports_create(
     report_number="reportNumber",
-    date="date",
+    date=datetime.date.fromisoformat("2026-07-01"),
     vat_lines=[
-        PostV1PosReportsCreateRequestVatLinesItem(
-            vat_rate_percent="vatRatePercent",
-            net_amount="netAmount",
-            vat_amount="vatAmount",
+        ReportsCreatePosRequestVatLinesItem(
+            vat_rate_percent="121.00",
+            net_amount="121.0000",
+            vat_amount="121.0000",
         )
     ],
 )
@@ -38914,7 +39099,7 @@ client.pos.post_v1pos_reports_create(
 <dl>
 <dd>
 
-**date:** `str` 
+**date:** `datetime.date` 
     
 </dd>
 </dl>
@@ -38922,7 +39107,7 @@ client.pos.post_v1pos_reports_create(
 <dl>
 <dd>
 
-**vat_lines:** `typing.List[PostV1PosReportsCreateRequestVatLinesItem]` 
+**vat_lines:** `typing.List[ReportsCreatePosRequestVatLinesItem]` 
     
 </dd>
 </dl>
@@ -38962,7 +39147,7 @@ client.pos.post_v1pos_reports_create(
 <dl>
 <dd>
 
-**item_lines:** `typing.Optional[typing.List[PostV1PosReportsCreateRequestItemLinesItem]]` 
+**item_lines:** `typing.Optional[typing.List[ReportsCreatePosRequestItemLinesItem]]` 
     
 </dd>
 </dl>
@@ -39038,7 +39223,7 @@ client.pos.post_v1pos_reports_create(
 </dl>
 </details>
 
-<details><summary><code>client.pos.<a href="src/nordlet/pos/client.py">post_v1pos_reports_get</a>(...) -> PostV1PosReportsGetResponse</code></summary>
+<details><summary><code>client.pos.<a href="src/nordlet/pos/client.py">reports_get</a>(...) -> ReportsGetPosResponse</code></summary>
 <dl>
 <dd>
 
@@ -39059,7 +39244,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.pos.post_v1pos_reports_get(
+client.pos.reports_get(
     id="id",
 )
 
@@ -39097,7 +39282,7 @@ client.pos.post_v1pos_reports_get(
 </dl>
 </details>
 
-<details><summary><code>client.pos.<a href="src/nordlet/pos/client.py">post_v1pos_reports_list</a>(...) -> PostV1PosReportsListResponse</code></summary>
+<details><summary><code>client.pos.<a href="src/nordlet/pos/client.py">reports_list</a>(...) -> ReportsListPosResponse</code></summary>
 <dl>
 <dd>
 
@@ -39118,7 +39303,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.pos.post_v1pos_reports_list()
+client.pos.reports_list()
 
 ```
 </dd>
@@ -39150,7 +39335,7 @@ client.pos.post_v1pos_reports_list()
 <dl>
 <dd>
 
-**sort:** `typing.Optional[typing.List[PostV1PosReportsListRequestSortItem]]` 
+**sort:** `typing.Optional[typing.List[ReportsListPosRequestSortItem]]` 
     
 </dd>
 </dl>
@@ -39158,7 +39343,7 @@ client.pos.post_v1pos_reports_list()
 <dl>
 <dd>
 
-**filter:** `typing.Optional[typing.List[PostV1PosReportsListRequestFilterItem]]` 
+**filter:** `typing.Optional[typing.List[ReportsListPosRequestFilterItem]]` 
     
 </dd>
 </dl>
@@ -39186,8 +39371,8 @@ client.pos.post_v1pos_reports_list()
 </dl>
 </details>
 
-## Calendar
-<details><summary><code>client.calendar.<a href="src/nordlet/calendar/client.py">post_v1calendar_list</a>(...) -> PostV1CalendarListResponse</code></summary>
+## calendar
+<details><summary><code>client.calendar.<a href="src/nordlet/calendar/client.py">list</a>(...) -> ListCalendarResponse</code></summary>
 <dl>
 <dd>
 
@@ -39208,7 +39393,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.calendar.post_v1calendar_list()
+client.calendar.list()
 
 ```
 </dd>
@@ -39224,7 +39409,7 @@ client.calendar.post_v1calendar_list()
 <dl>
 <dd>
 
-**from:** `typing.Optional[str]` 
+**from:** `typing.Optional[datetime.date]` 
     
 </dd>
 </dl>
@@ -39232,7 +39417,7 @@ client.calendar.post_v1calendar_list()
 <dl>
 <dd>
 
-**to:** `typing.Optional[str]` 
+**to:** `typing.Optional[datetime.date]` 
     
 </dd>
 </dl>
@@ -39260,7 +39445,7 @@ client.calendar.post_v1calendar_list()
 </dl>
 </details>
 
-<details><summary><code>client.calendar.<a href="src/nordlet/calendar/client.py">post_v1calendar_get</a>(...) -> PostV1CalendarGetResponse</code></summary>
+<details><summary><code>client.calendar.<a href="src/nordlet/calendar/client.py">get</a>(...) -> GetCalendarResponse</code></summary>
 <dl>
 <dd>
 
@@ -39281,7 +39466,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.calendar.post_v1calendar_get(
+client.calendar.get(
     key="key",
 )
 
@@ -39319,9 +39504,23 @@ client.calendar.post_v1calendar_get(
 </dl>
 </details>
 
-<details><summary><code>client.calendar.<a href="src/nordlet/calendar/client.py">generate_the_filing_for_a_deadline_and_send_it_to_the_administration</a>(...) -> PostV1CalendarSubmitResponse</code></summary>
+<details><summary><code>client.calendar.<a href="src/nordlet/calendar/client.py">submit</a>(...) -> SubmitCalendarResponse</code></summary>
 <dl>
 <dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+With amend: true the return is filed again as a correction of the one already submitted or accepted for the period; only returns whose format has a correction mark accept it.
+</dd>
+</dl>
+</dd>
+</dl>
 
 #### 🔌 Usage
 
@@ -39340,7 +39539,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.calendar.generate_the_filing_for_a_deadline_and_send_it_to_the_administration(
+client.calendar.submit(
     key="key",
 )
 
@@ -39366,6 +39565,14 @@ client.calendar.generate_the_filing_for_a_deadline_and_send_it_to_the_administra
 <dl>
 <dd>
 
+**amend:** `typing.Optional[bool]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
     
 </dd>
@@ -39378,7 +39585,7 @@ client.calendar.generate_the_filing_for_a_deadline_and_send_it_to_the_administra
 </dl>
 </details>
 
-<details><summary><code>client.calendar.<a href="src/nordlet/calendar/client.py">generate_the_file_of_a_deadline_for_the_company_to_send_itself</a>(...) -> PostV1CalendarDownloadResponse</code></summary>
+<details><summary><code>client.calendar.<a href="src/nordlet/calendar/client.py">download</a>(...) -> DownloadCalendarResponse</code></summary>
 <dl>
 <dd>
 
@@ -39413,7 +39620,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.calendar.generate_the_file_of_a_deadline_for_the_company_to_send_itself(
+client.calendar.download(
     key="key",
 )
 
@@ -39451,7 +39658,7 @@ client.calendar.generate_the_file_of_a_deadline_for_the_company_to_send_itself(
 </dl>
 </details>
 
-<details><summary><code>client.calendar.<a href="src/nordlet/calendar/client.py">post_v1calendar_create</a>(...) -> PostV1CalendarCreateResponse</code></summary>
+<details><summary><code>client.calendar.<a href="src/nordlet/calendar/client.py">create</a>(...) -> CreateCalendarResponse</code></summary>
 <dl>
 <dd>
 
@@ -39466,15 +39673,16 @@ client.calendar.generate_the_file_of_a_deadline_for_the_company_to_send_itself(
 ```python
 from nordlet import Nordlet
 from nordlet.environment import NordletEnvironment
+import datetime
 
 client = Nordlet(
     token="<token>",
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.calendar.post_v1calendar_create(
+client.calendar.create(
     title="title",
-    due_date="dueDate",
+    due_date=datetime.date.fromisoformat("2026-07-01"),
 )
 
 ```
@@ -39499,7 +39707,7 @@ client.calendar.post_v1calendar_create(
 <dl>
 <dd>
 
-**due_date:** `str` 
+**due_date:** `datetime.date` 
     
 </dd>
 </dl>
@@ -39535,7 +39743,7 @@ client.calendar.post_v1calendar_create(
 </dl>
 </details>
 
-<details><summary><code>client.calendar.<a href="src/nordlet/calendar/client.py">post_v1calendar_update</a>(...) -> PostV1CalendarUpdateResponse</code></summary>
+<details><summary><code>client.calendar.<a href="src/nordlet/calendar/client.py">update</a>(...) -> UpdateCalendarResponse</code></summary>
 <dl>
 <dd>
 
@@ -39556,7 +39764,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.calendar.post_v1calendar_update(
+client.calendar.update(
     key="key",
 )
 
@@ -39590,7 +39798,7 @@ client.calendar.post_v1calendar_update(
 <dl>
 <dd>
 
-**due_date:** `typing.Optional[str]` 
+**due_date:** `typing.Optional[datetime.date]` 
     
 </dd>
 </dl>
@@ -39626,7 +39834,7 @@ client.calendar.post_v1calendar_update(
 </dl>
 </details>
 
-<details><summary><code>client.calendar.<a href="src/nordlet/calendar/client.py">post_v1calendar_delete</a>(...) -> PostV1CalendarDeleteResponse</code></summary>
+<details><summary><code>client.calendar.<a href="src/nordlet/calendar/client.py">delete</a>(...) -> DeleteCalendarResponse</code></summary>
 <dl>
 <dd>
 
@@ -39647,7 +39855,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.calendar.post_v1calendar_delete(
+client.calendar.delete(
     key="key",
 )
 
@@ -39685,8 +39893,8 @@ client.calendar.post_v1calendar_delete(
 </dl>
 </details>
 
-## Audit
-<details><summary><code>client.audit.<a href="src/nordlet/audit/client.py">post_v1audit_list</a>(...) -> PostV1AuditListResponse</code></summary>
+## audit
+<details><summary><code>client.audit.<a href="src/nordlet/audit/client.py">list</a>(...) -> ListAuditResponse</code></summary>
 <dl>
 <dd>
 
@@ -39707,7 +39915,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.audit.post_v1audit_list()
+client.audit.list()
 
 ```
 </dd>
@@ -39739,7 +39947,7 @@ client.audit.post_v1audit_list()
 <dl>
 <dd>
 
-**sort:** `typing.Optional[typing.List[PostV1AuditListRequestSortItem]]` 
+**sort:** `typing.Optional[typing.List[ListAuditRequestSortItem]]` 
     
 </dd>
 </dl>
@@ -39747,7 +39955,7 @@ client.audit.post_v1audit_list()
 <dl>
 <dd>
 
-**filter:** `typing.Optional[typing.List[PostV1AuditListRequestFilterItem]]` 
+**filter:** `typing.Optional[typing.List[ListAuditRequestFilterItem]]` 
     
 </dd>
 </dl>
@@ -39775,8 +39983,8 @@ client.audit.post_v1audit_list()
 </dl>
 </details>
 
-## Webhooks
-<details><summary><code>client.webhooks.<a href="src/nordlet/webhooks/client.py">post_v1webhooks_subscriptions_create</a>(...) -> PostV1WebhooksSubscriptionsCreateResponse</code></summary>
+## webhooks
+<details><summary><code>client.webhooks.<a href="src/nordlet/webhooks/client.py">subscriptions_create</a>(...) -> SubscriptionsCreateWebhooksResponse</code></summary>
 <dl>
 <dd>
 
@@ -39797,10 +40005,10 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.webhooks.post_v1webhooks_subscriptions_create(
+client.webhooks.subscriptions_create(
     url="url",
     events=[
-        "events"
+        "agreement.invoice_generated"
     ],
 )
 
@@ -39826,7 +40034,7 @@ client.webhooks.post_v1webhooks_subscriptions_create(
 <dl>
 <dd>
 
-**events:** `typing.List[str]` 
+**events:** `typing.List[SubscriptionsCreateWebhooksRequestEventsItem]` 
     
 </dd>
 </dl>
@@ -39854,7 +40062,7 @@ client.webhooks.post_v1webhooks_subscriptions_create(
 </dl>
 </details>
 
-<details><summary><code>client.webhooks.<a href="src/nordlet/webhooks/client.py">post_v1webhooks_subscriptions_list</a>(...) -> PostV1WebhooksSubscriptionsListResponse</code></summary>
+<details><summary><code>client.webhooks.<a href="src/nordlet/webhooks/client.py">subscriptions_list</a>(...) -> SubscriptionsListWebhooksResponse</code></summary>
 <dl>
 <dd>
 
@@ -39875,7 +40083,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.webhooks.post_v1webhooks_subscriptions_list()
+client.webhooks.subscriptions_list()
 
 ```
 </dd>
@@ -39907,7 +40115,7 @@ client.webhooks.post_v1webhooks_subscriptions_list()
 <dl>
 <dd>
 
-**sort:** `typing.Optional[typing.List[PostV1WebhooksSubscriptionsListRequestSortItem]]` 
+**sort:** `typing.Optional[typing.List[SubscriptionsListWebhooksRequestSortItem]]` 
     
 </dd>
 </dl>
@@ -39915,7 +40123,7 @@ client.webhooks.post_v1webhooks_subscriptions_list()
 <dl>
 <dd>
 
-**filter:** `typing.Optional[typing.List[PostV1WebhooksSubscriptionsListRequestFilterItem]]` 
+**filter:** `typing.Optional[typing.List[SubscriptionsListWebhooksRequestFilterItem]]` 
     
 </dd>
 </dl>
@@ -39943,7 +40151,7 @@ client.webhooks.post_v1webhooks_subscriptions_list()
 </dl>
 </details>
 
-<details><summary><code>client.webhooks.<a href="src/nordlet/webhooks/client.py">post_v1webhooks_subscriptions_update</a>(...) -> PostV1WebhooksSubscriptionsUpdateResponse</code></summary>
+<details><summary><code>client.webhooks.<a href="src/nordlet/webhooks/client.py">subscriptions_update</a>(...) -> SubscriptionsUpdateWebhooksResponse</code></summary>
 <dl>
 <dd>
 
@@ -39964,7 +40172,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.webhooks.post_v1webhooks_subscriptions_update(
+client.webhooks.subscriptions_update(
     id="id",
 )
 
@@ -39998,7 +40206,7 @@ client.webhooks.post_v1webhooks_subscriptions_update(
 <dl>
 <dd>
 
-**events:** `typing.Optional[typing.List[str]]` 
+**events:** `typing.Optional[typing.List[SubscriptionsUpdateWebhooksRequestEventsItem]]` 
     
 </dd>
 </dl>
@@ -40026,7 +40234,7 @@ client.webhooks.post_v1webhooks_subscriptions_update(
 </dl>
 </details>
 
-<details><summary><code>client.webhooks.<a href="src/nordlet/webhooks/client.py">post_v1webhooks_subscriptions_delete</a>(...) -> PostV1WebhooksSubscriptionsDeleteResponse</code></summary>
+<details><summary><code>client.webhooks.<a href="src/nordlet/webhooks/client.py">subscriptions_delete</a>(...) -> SubscriptionsDeleteWebhooksResponse</code></summary>
 <dl>
 <dd>
 
@@ -40047,7 +40255,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.webhooks.post_v1webhooks_subscriptions_delete(
+client.webhooks.subscriptions_delete(
     id="id",
 )
 
@@ -40085,7 +40293,7 @@ client.webhooks.post_v1webhooks_subscriptions_delete(
 </dl>
 </details>
 
-<details><summary><code>client.webhooks.<a href="src/nordlet/webhooks/client.py">post_v1webhooks_deliveries_list</a>(...) -> PostV1WebhooksDeliveriesListResponse</code></summary>
+<details><summary><code>client.webhooks.<a href="src/nordlet/webhooks/client.py">deliveries_list</a>(...) -> DeliveriesListWebhooksResponse</code></summary>
 <dl>
 <dd>
 
@@ -40106,7 +40314,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.webhooks.post_v1webhooks_deliveries_list()
+client.webhooks.deliveries_list()
 
 ```
 </dd>
@@ -40138,7 +40346,7 @@ client.webhooks.post_v1webhooks_deliveries_list()
 <dl>
 <dd>
 
-**sort:** `typing.Optional[typing.List[PostV1WebhooksDeliveriesListRequestSortItem]]` 
+**sort:** `typing.Optional[typing.List[DeliveriesListWebhooksRequestSortItem]]` 
     
 </dd>
 </dl>
@@ -40146,7 +40354,7 @@ client.webhooks.post_v1webhooks_deliveries_list()
 <dl>
 <dd>
 
-**filter:** `typing.Optional[typing.List[PostV1WebhooksDeliveriesListRequestFilterItem]]` 
+**filter:** `typing.Optional[typing.List[DeliveriesListWebhooksRequestFilterItem]]` 
     
 </dd>
 </dl>
@@ -40174,7 +40382,7 @@ client.webhooks.post_v1webhooks_deliveries_list()
 </dl>
 </details>
 
-<details><summary><code>client.webhooks.<a href="src/nordlet/webhooks/client.py">post_v1webhooks_deliveries_redeliver</a>(...) -> PostV1WebhooksDeliveriesRedeliverResponse</code></summary>
+<details><summary><code>client.webhooks.<a href="src/nordlet/webhooks/client.py">deliveries_redeliver</a>(...) -> DeliveriesRedeliverWebhooksResponse</code></summary>
 <dl>
 <dd>
 
@@ -40195,7 +40403,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.webhooks.post_v1webhooks_deliveries_redeliver(
+client.webhooks.deliveries_redeliver(
     id="id",
 )
 
@@ -40233,8 +40441,8 @@ client.webhooks.post_v1webhooks_deliveries_redeliver(
 </dl>
 </details>
 
-## Bank
-<details><summary><code>client.bank.<a href="src/nordlet/bank/client.py">post_v1bank_accounts_create</a>(...) -> PostV1BankAccountsCreateResponse</code></summary>
+## bank
+<details><summary><code>client.bank.<a href="src/nordlet/bank/client.py">accounts_create</a>(...) -> AccountsCreateBankResponse</code></summary>
 <dl>
 <dd>
 
@@ -40255,7 +40463,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.bank.post_v1bank_accounts_create(
+client.bank.accounts_create(
     name="name",
 )
 
@@ -40325,7 +40533,7 @@ client.bank.post_v1bank_accounts_create(
 </dl>
 </details>
 
-<details><summary><code>client.bank.<a href="src/nordlet/bank/client.py">post_v1bank_accounts_list</a>(...) -> PostV1BankAccountsListResponse</code></summary>
+<details><summary><code>client.bank.<a href="src/nordlet/bank/client.py">accounts_list</a>(...) -> AccountsListBankResponse</code></summary>
 <dl>
 <dd>
 
@@ -40346,7 +40554,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.bank.post_v1bank_accounts_list()
+client.bank.accounts_list()
 
 ```
 </dd>
@@ -40378,7 +40586,7 @@ client.bank.post_v1bank_accounts_list()
 <dl>
 <dd>
 
-**sort:** `typing.Optional[typing.List[PostV1BankAccountsListRequestSortItem]]` 
+**sort:** `typing.Optional[typing.List[AccountsListBankRequestSortItem]]` 
     
 </dd>
 </dl>
@@ -40386,7 +40594,7 @@ client.bank.post_v1bank_accounts_list()
 <dl>
 <dd>
 
-**filter:** `typing.Optional[typing.List[PostV1BankAccountsListRequestFilterItem]]` 
+**filter:** `typing.Optional[typing.List[AccountsListBankRequestFilterItem]]` 
     
 </dd>
 </dl>
@@ -40414,7 +40622,7 @@ client.bank.post_v1bank_accounts_list()
 </dl>
 </details>
 
-<details><summary><code>client.bank.<a href="src/nordlet/bank/client.py">post_v1bank_accounts_update</a>(...) -> PostV1BankAccountsUpdateResponse</code></summary>
+<details><summary><code>client.bank.<a href="src/nordlet/bank/client.py">accounts_update</a>(...) -> AccountsUpdateBankResponse</code></summary>
 <dl>
 <dd>
 
@@ -40435,7 +40643,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.bank.post_v1bank_accounts_update(
+client.bank.accounts_update(
     id="id",
 )
 
@@ -40505,7 +40713,7 @@ client.bank.post_v1bank_accounts_update(
 </dl>
 </details>
 
-<details><summary><code>client.bank.<a href="src/nordlet/bank/client.py">post_v1bank_transactions_import</a>(...) -> PostV1BankTransactionsImportResponse</code></summary>
+<details><summary><code>client.bank.<a href="src/nordlet/bank/client.py">transactions_import</a>(...) -> TransactionsImportBankResponse</code></summary>
 <dl>
 <dd>
 
@@ -40520,19 +40728,20 @@ client.bank.post_v1bank_accounts_update(
 ```python
 from nordlet import Nordlet
 from nordlet.environment import NordletEnvironment
-from nordlet.bank import PostV1BankTransactionsImportRequestTransactionsItem
+from nordlet.bank import TransactionsImportBankRequestTransactionsItem
+import datetime
 
 client = Nordlet(
     token="<token>",
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.bank.post_v1bank_transactions_import(
+client.bank.transactions_import(
     bank_account_id="bankAccountId",
     transactions=[
-        PostV1BankTransactionsImportRequestTransactionsItem(
-            date="date",
-            amount="amount",
+        TransactionsImportBankRequestTransactionsItem(
+            date=datetime.date.fromisoformat("2026-07-01"),
+            amount="-121.0000",
         )
     ],
 )
@@ -40559,7 +40768,7 @@ client.bank.post_v1bank_transactions_import(
 <dl>
 <dd>
 
-**transactions:** `typing.List[PostV1BankTransactionsImportRequestTransactionsItem]` 
+**transactions:** `typing.List[TransactionsImportBankRequestTransactionsItem]` 
     
 </dd>
 </dl>
@@ -40579,7 +40788,7 @@ client.bank.post_v1bank_transactions_import(
 </dl>
 </details>
 
-<details><summary><code>client.bank.<a href="src/nordlet/bank/client.py">post_v1bank_statements_import</a>(...) -> PostV1BankStatementsImportResponse</code></summary>
+<details><summary><code>client.bank.<a href="src/nordlet/bank/client.py">statements_import</a>(...) -> StatementsImportBankResponse</code></summary>
 <dl>
 <dd>
 
@@ -40600,7 +40809,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.bank.post_v1bank_statements_import(
+client.bank.statements_import(
     bank_account_id="bankAccountId",
     content="content",
 )
@@ -40643,7 +40852,7 @@ client.bank.post_v1bank_statements_import(
 <dl>
 <dd>
 
-**format:** `typing.Optional[PostV1BankStatementsImportRequestFormat]` 
+**format:** `typing.Optional[StatementsImportBankRequestFormat]` 
     
 </dd>
 </dl>
@@ -40671,7 +40880,7 @@ client.bank.post_v1bank_statements_import(
 </dl>
 </details>
 
-<details><summary><code>client.bank.<a href="src/nordlet/bank/client.py">post_v1bank_transactions_list</a>(...) -> PostV1BankTransactionsListResponse</code></summary>
+<details><summary><code>client.bank.<a href="src/nordlet/bank/client.py">transactions_list</a>(...) -> TransactionsListBankResponse</code></summary>
 <dl>
 <dd>
 
@@ -40692,7 +40901,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.bank.post_v1bank_transactions_list()
+client.bank.transactions_list()
 
 ```
 </dd>
@@ -40724,7 +40933,7 @@ client.bank.post_v1bank_transactions_list()
 <dl>
 <dd>
 
-**sort:** `typing.Optional[typing.List[PostV1BankTransactionsListRequestSortItem]]` 
+**sort:** `typing.Optional[typing.List[TransactionsListBankRequestSortItem]]` 
     
 </dd>
 </dl>
@@ -40732,7 +40941,7 @@ client.bank.post_v1bank_transactions_list()
 <dl>
 <dd>
 
-**filter:** `typing.Optional[typing.List[PostV1BankTransactionsListRequestFilterItem]]` 
+**filter:** `typing.Optional[typing.List[TransactionsListBankRequestFilterItem]]` 
     
 </dd>
 </dl>
@@ -40760,7 +40969,7 @@ client.bank.post_v1bank_transactions_list()
 </dl>
 </details>
 
-<details><summary><code>client.bank.<a href="src/nordlet/bank/client.py">post_v1bank_transactions_match</a>(...) -> PostV1BankTransactionsMatchResponse</code></summary>
+<details><summary><code>client.bank.<a href="src/nordlet/bank/client.py">transactions_match</a>(...) -> TransactionsMatchBankResponse</code></summary>
 <dl>
 <dd>
 
@@ -40781,7 +40990,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.bank.post_v1bank_transactions_match(
+client.bank.transactions_match(
     transaction_id="transactionId",
     document_type="sale_invoice",
     document_id="documentId",
@@ -40809,7 +41018,7 @@ client.bank.post_v1bank_transactions_match(
 <dl>
 <dd>
 
-**document_type:** `PostV1BankTransactionsMatchRequestDocumentType` 
+**document_type:** `TransactionsMatchBankRequestDocumentType` 
     
 </dd>
 </dl>
@@ -40818,6 +41027,14 @@ client.bank.post_v1bank_transactions_match(
 <dd>
 
 **document_id:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**invoice_amount:** `typing.Optional[str]` 
     
 </dd>
 </dl>
@@ -40837,9 +41054,23 @@ client.bank.post_v1bank_transactions_match(
 </dl>
 </details>
 
-<details><summary><code>client.bank.<a href="src/nordlet/bank/client.py">post_v1bank_transactions_record</a>(...) -> PostV1BankTransactionsRecordResponse</code></summary>
+<details><summary><code>client.bank.<a href="src/nordlet/bank/client.py">transactions_unmatch</a>(...) -> TransactionsUnmatchBankResponse</code></summary>
 <dl>
 <dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Undo a match. A payment matched to an invoice, or a line posted by an import template, gets a reversing journal transaction dated date (default: today) and the invoice paid amount and payment status are restored; a line linked to a payment-provider settlement is only unlinked. The line returns to status new.
+</dd>
+</dl>
+</dd>
+</dl>
 
 #### 🔌 Usage
 
@@ -40858,10 +41089,78 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.bank.post_v1bank_transactions_record(
+client.bank.transactions_unmatch(
+    transaction_id="transactionId",
+)
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**transaction_id:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**date:** `typing.Optional[datetime.date]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.bank.<a href="src/nordlet/bank/client.py">transactions_record</a>(...) -> TransactionsRecordBankResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+import datetime
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.bank.transactions_record(
     bank_account_id="bankAccountId",
-    date="date",
-    amount="amount",
+    date=datetime.date.fromisoformat("2026-07-01"),
+    amount="121.0000",
     document_type="sale_invoice",
     document_id="documentId",
 )
@@ -40888,7 +41187,7 @@ client.bank.post_v1bank_transactions_record(
 <dl>
 <dd>
 
-**date:** `str` 
+**date:** `datetime.date` 
     
 </dd>
 </dl>
@@ -40904,7 +41203,7 @@ client.bank.post_v1bank_transactions_record(
 <dl>
 <dd>
 
-**document_type:** `PostV1BankTransactionsRecordRequestDocumentType` 
+**document_type:** `TransactionsRecordBankRequestDocumentType` 
     
 </dd>
 </dl>
@@ -40940,7 +41239,7 @@ client.bank.post_v1bank_transactions_record(
 </dl>
 </details>
 
-<details><summary><code>client.bank.<a href="src/nordlet/bank/client.py">post_v1bank_payments_export</a>(...) -> PostV1BankPaymentsExportResponse</code></summary>
+<details><summary><code>client.bank.<a href="src/nordlet/bank/client.py">payments_export</a>(...) -> PaymentsExportBankResponse</code></summary>
 <dl>
 <dd>
 
@@ -40961,7 +41260,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.bank.post_v1bank_payments_export(
+client.bank.payments_export(
     bank_account_id="bankAccountId",
     purchase_invoice_ids=[
         "purchaseInvoiceIds"
@@ -40998,7 +41297,7 @@ client.bank.post_v1bank_payments_export(
 <dl>
 <dd>
 
-**execution_date:** `typing.Optional[str]` 
+**execution_date:** `typing.Optional[datetime.date]` 
     
 </dd>
 </dl>
@@ -41018,7 +41317,7 @@ client.bank.post_v1bank_payments_export(
 </dl>
 </details>
 
-<details><summary><code>client.bank.<a href="src/nordlet/bank/client.py">create_a_bank_import_template_fields_default_to_the_types_standard_field_list</a>(...) -> PostV1BankImportTemplatesCreateResponse</code></summary>
+<details><summary><code>client.bank.<a href="src/nordlet/bank/client.py">import_templates_create</a>(...) -> ImportTemplatesCreateBankResponse</code></summary>
 <dl>
 <dd>
 
@@ -41039,7 +41338,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.bank.create_a_bank_import_template_fields_default_to_the_types_standard_field_list(
+client.bank.import_templates_create(
     name="name",
     type="stripe",
 )
@@ -41066,7 +41365,7 @@ client.bank.create_a_bank_import_template_fields_default_to_the_types_standard_f
 <dl>
 <dd>
 
-**type:** `PostV1BankImportTemplatesCreateRequestType` 
+**type:** `ImportTemplatesCreateBankRequestType` 
     
 </dd>
 </dl>
@@ -41074,7 +41373,7 @@ client.bank.create_a_bank_import_template_fields_default_to_the_types_standard_f
 <dl>
 <dd>
 
-**fields:** `typing.Optional[typing.List[PostV1BankImportTemplatesCreateRequestFieldsItem]]` 
+**fields:** `typing.Optional[typing.List[ImportTemplatesCreateBankRequestFieldsItem]]` 
     
 </dd>
 </dl>
@@ -41190,7 +41489,7 @@ client.bank.create_a_bank_import_template_fields_default_to_the_types_standard_f
 </dl>
 </details>
 
-<details><summary><code>client.bank.<a href="src/nordlet/bank/client.py">post_v1bank_import_templates_update</a>(...) -> PostV1BankImportTemplatesUpdateResponse</code></summary>
+<details><summary><code>client.bank.<a href="src/nordlet/bank/client.py">import_templates_update</a>(...) -> ImportTemplatesUpdateBankResponse</code></summary>
 <dl>
 <dd>
 
@@ -41211,7 +41510,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.bank.post_v1bank_import_templates_update(
+client.bank.import_templates_update(
     id="id",
 )
 
@@ -41245,7 +41544,7 @@ client.bank.post_v1bank_import_templates_update(
 <dl>
 <dd>
 
-**type:** `typing.Optional[PostV1BankImportTemplatesUpdateRequestType]` 
+**type:** `typing.Optional[ImportTemplatesUpdateBankRequestType]` 
     
 </dd>
 </dl>
@@ -41253,7 +41552,7 @@ client.bank.post_v1bank_import_templates_update(
 <dl>
 <dd>
 
-**fields:** `typing.Optional[typing.List[PostV1BankImportTemplatesUpdateRequestFieldsItem]]` 
+**fields:** `typing.Optional[typing.List[ImportTemplatesUpdateBankRequestFieldsItem]]` 
     
 </dd>
 </dl>
@@ -41369,7 +41668,7 @@ client.bank.post_v1bank_import_templates_update(
 </dl>
 </details>
 
-<details><summary><code>client.bank.<a href="src/nordlet/bank/client.py">post_v1bank_import_templates_delete</a>(...) -> PostV1BankImportTemplatesDeleteResponse</code></summary>
+<details><summary><code>client.bank.<a href="src/nordlet/bank/client.py">import_templates_delete</a>(...) -> ImportTemplatesDeleteBankResponse</code></summary>
 <dl>
 <dd>
 
@@ -41390,7 +41689,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.bank.post_v1bank_import_templates_delete(
+client.bank.import_templates_delete(
     id="id",
 )
 
@@ -41428,7 +41727,7 @@ client.bank.post_v1bank_import_templates_delete(
 </dl>
 </details>
 
-<details><summary><code>client.bank.<a href="src/nordlet/bank/client.py">post_v1bank_import_templates_get</a>(...) -> PostV1BankImportTemplatesGetResponse</code></summary>
+<details><summary><code>client.bank.<a href="src/nordlet/bank/client.py">import_templates_get</a>(...) -> ImportTemplatesGetBankResponse</code></summary>
 <dl>
 <dd>
 
@@ -41449,7 +41748,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.bank.post_v1bank_import_templates_get(
+client.bank.import_templates_get(
     id="id",
 )
 
@@ -41487,7 +41786,7 @@ client.bank.post_v1bank_import_templates_get(
 </dl>
 </details>
 
-<details><summary><code>client.bank.<a href="src/nordlet/bank/client.py">post_v1bank_import_templates_list</a>(...) -> PostV1BankImportTemplatesListResponse</code></summary>
+<details><summary><code>client.bank.<a href="src/nordlet/bank/client.py">import_templates_list</a>(...) -> ImportTemplatesListBankResponse</code></summary>
 <dl>
 <dd>
 
@@ -41508,7 +41807,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.bank.post_v1bank_import_templates_list()
+client.bank.import_templates_list()
 
 ```
 </dd>
@@ -41540,7 +41839,7 @@ client.bank.post_v1bank_import_templates_list()
 <dl>
 <dd>
 
-**sort:** `typing.Optional[typing.List[PostV1BankImportTemplatesListRequestSortItem]]` 
+**sort:** `typing.Optional[typing.List[ImportTemplatesListBankRequestSortItem]]` 
     
 </dd>
 </dl>
@@ -41548,7 +41847,7 @@ client.bank.post_v1bank_import_templates_list()
 <dl>
 <dd>
 
-**filter:** `typing.Optional[typing.List[PostV1BankImportTemplatesListRequestFilterItem]]` 
+**filter:** `typing.Optional[typing.List[ImportTemplatesListBankRequestFilterItem]]` 
     
 </dd>
 </dl>
@@ -41576,7 +41875,7 @@ client.bank.post_v1bank_import_templates_list()
 </dl>
 </details>
 
-<details><summary><code>client.bank.<a href="src/nordlet/bank/client.py">post_v1bank_match_rules_create</a>(...) -> PostV1BankMatchRulesCreateResponse</code></summary>
+<details><summary><code>client.bank.<a href="src/nordlet/bank/client.py">match_rules_create</a>(...) -> MatchRulesCreateBankResponse</code></summary>
 <dl>
 <dd>
 
@@ -41597,7 +41896,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.bank.post_v1bank_match_rules_create(
+client.bank.match_rules_create(
     name="name",
     pattern="pattern",
 )
@@ -41684,7 +41983,7 @@ client.bank.post_v1bank_match_rules_create(
 </dl>
 </details>
 
-<details><summary><code>client.bank.<a href="src/nordlet/bank/client.py">post_v1bank_match_rules_update</a>(...) -> PostV1BankMatchRulesUpdateResponse</code></summary>
+<details><summary><code>client.bank.<a href="src/nordlet/bank/client.py">match_rules_update</a>(...) -> MatchRulesUpdateBankResponse</code></summary>
 <dl>
 <dd>
 
@@ -41705,7 +42004,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.bank.post_v1bank_match_rules_update(
+client.bank.match_rules_update(
     id="id",
 )
 
@@ -41799,7 +42098,7 @@ client.bank.post_v1bank_match_rules_update(
 </dl>
 </details>
 
-<details><summary><code>client.bank.<a href="src/nordlet/bank/client.py">post_v1bank_match_rules_delete</a>(...) -> PostV1BankMatchRulesDeleteResponse</code></summary>
+<details><summary><code>client.bank.<a href="src/nordlet/bank/client.py">match_rules_delete</a>(...) -> MatchRulesDeleteBankResponse</code></summary>
 <dl>
 <dd>
 
@@ -41820,7 +42119,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.bank.post_v1bank_match_rules_delete(
+client.bank.match_rules_delete(
     id="id",
 )
 
@@ -41858,7 +42157,7 @@ client.bank.post_v1bank_match_rules_delete(
 </dl>
 </details>
 
-<details><summary><code>client.bank.<a href="src/nordlet/bank/client.py">post_v1bank_match_rules_list</a>() -> PostV1BankMatchRulesListResponse</code></summary>
+<details><summary><code>client.bank.<a href="src/nordlet/bank/client.py">match_rules_list</a>() -> MatchRulesListBankResponse</code></summary>
 <dl>
 <dd>
 
@@ -41879,7 +42178,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.bank.post_v1bank_match_rules_list()
+client.bank.match_rules_list()
 
 ```
 </dd>
@@ -41907,7 +42206,7 @@ client.bank.post_v1bank_match_rules_list()
 </dl>
 </details>
 
-<details><summary><code>client.bank.<a href="src/nordlet/bank/client.py">post_v1bank_mandates_create</a>(...) -> PostV1BankMandatesCreateResponse</code></summary>
+<details><summary><code>client.bank.<a href="src/nordlet/bank/client.py">mandates_create</a>(...) -> MandatesCreateBankResponse</code></summary>
 <dl>
 <dd>
 
@@ -41922,16 +42221,17 @@ client.bank.post_v1bank_match_rules_list()
 ```python
 from nordlet import Nordlet
 from nordlet.environment import NordletEnvironment
+import datetime
 
 client = Nordlet(
     token="<token>",
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.bank.post_v1bank_mandates_create(
+client.bank.mandates_create(
     partner_id="partnerId",
     iban="iban",
-    signature_date="signatureDate",
+    signature_date=datetime.date.fromisoformat("2026-07-01"),
 )
 
 ```
@@ -41964,7 +42264,7 @@ client.bank.post_v1bank_mandates_create(
 <dl>
 <dd>
 
-**signature_date:** `str` 
+**signature_date:** `datetime.date` 
     
 </dd>
 </dl>
@@ -41980,7 +42280,7 @@ client.bank.post_v1bank_mandates_create(
 <dl>
 <dd>
 
-**scheme:** `typing.Optional[PostV1BankMandatesCreateRequestScheme]` 
+**scheme:** `typing.Optional[MandatesCreateBankRequestScheme]` 
     
 </dd>
 </dl>
@@ -41988,7 +42288,7 @@ client.bank.post_v1bank_mandates_create(
 <dl>
 <dd>
 
-**sequence_type:** `typing.Optional[PostV1BankMandatesCreateRequestSequenceType]` 
+**sequence_type:** `typing.Optional[MandatesCreateBankRequestSequenceType]` 
     
 </dd>
 </dl>
@@ -42032,7 +42332,7 @@ client.bank.post_v1bank_mandates_create(
 </dl>
 </details>
 
-<details><summary><code>client.bank.<a href="src/nordlet/bank/client.py">post_v1bank_mandates_update</a>(...) -> PostV1BankMandatesUpdateResponse</code></summary>
+<details><summary><code>client.bank.<a href="src/nordlet/bank/client.py">mandates_update</a>(...) -> MandatesUpdateBankResponse</code></summary>
 <dl>
 <dd>
 
@@ -42053,7 +42353,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.bank.post_v1bank_mandates_update(
+client.bank.mandates_update(
     id="id",
 )
 
@@ -42115,7 +42415,7 @@ client.bank.post_v1bank_mandates_update(
 </dl>
 </details>
 
-<details><summary><code>client.bank.<a href="src/nordlet/bank/client.py">post_v1bank_mandates_cancel</a>(...) -> PostV1BankMandatesCancelResponse</code></summary>
+<details><summary><code>client.bank.<a href="src/nordlet/bank/client.py">mandates_cancel</a>(...) -> MandatesCancelBankResponse</code></summary>
 <dl>
 <dd>
 
@@ -42136,7 +42436,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.bank.post_v1bank_mandates_cancel(
+client.bank.mandates_cancel(
     id="id",
 )
 
@@ -42174,7 +42474,7 @@ client.bank.post_v1bank_mandates_cancel(
 </dl>
 </details>
 
-<details><summary><code>client.bank.<a href="src/nordlet/bank/client.py">post_v1bank_mandates_get</a>(...) -> PostV1BankMandatesGetResponse</code></summary>
+<details><summary><code>client.bank.<a href="src/nordlet/bank/client.py">mandates_get</a>(...) -> MandatesGetBankResponse</code></summary>
 <dl>
 <dd>
 
@@ -42195,7 +42495,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.bank.post_v1bank_mandates_get(
+client.bank.mandates_get(
     id="id",
 )
 
@@ -42233,7 +42533,7 @@ client.bank.post_v1bank_mandates_get(
 </dl>
 </details>
 
-<details><summary><code>client.bank.<a href="src/nordlet/bank/client.py">post_v1bank_mandates_list</a>(...) -> PostV1BankMandatesListResponse</code></summary>
+<details><summary><code>client.bank.<a href="src/nordlet/bank/client.py">mandates_list</a>(...) -> MandatesListBankResponse</code></summary>
 <dl>
 <dd>
 
@@ -42254,7 +42554,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.bank.post_v1bank_mandates_list()
+client.bank.mandates_list()
 
 ```
 </dd>
@@ -42286,7 +42586,7 @@ client.bank.post_v1bank_mandates_list()
 <dl>
 <dd>
 
-**sort:** `typing.Optional[typing.List[PostV1BankMandatesListRequestSortItem]]` 
+**sort:** `typing.Optional[typing.List[MandatesListBankRequestSortItem]]` 
     
 </dd>
 </dl>
@@ -42294,7 +42594,7 @@ client.bank.post_v1bank_mandates_list()
 <dl>
 <dd>
 
-**filter:** `typing.Optional[typing.List[PostV1BankMandatesListRequestFilterItem]]` 
+**filter:** `typing.Optional[typing.List[MandatesListBankRequestFilterItem]]` 
     
 </dd>
 </dl>
@@ -42322,7 +42622,7 @@ client.bank.post_v1bank_mandates_list()
 </dl>
 </details>
 
-<details><summary><code>client.bank.<a href="src/nordlet/bank/client.py">post_v1bank_direct_debits_export</a>(...) -> PostV1BankDirectDebitsExportResponse</code></summary>
+<details><summary><code>client.bank.<a href="src/nordlet/bank/client.py">direct_debits_export</a>(...) -> DirectDebitsExportBankResponse</code></summary>
 <dl>
 <dd>
 
@@ -42343,7 +42643,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.bank.post_v1bank_direct_debits_export(
+client.bank.direct_debits_export(
     bank_account_id="bankAccountId",
     sale_invoice_ids=[
         "saleInvoiceIds"
@@ -42380,7 +42680,7 @@ client.bank.post_v1bank_direct_debits_export(
 <dl>
 <dd>
 
-**collection_date:** `typing.Optional[str]` 
+**collection_date:** `typing.Optional[datetime.date]` 
     
 </dd>
 </dl>
@@ -42400,7 +42700,7 @@ client.bank.post_v1bank_direct_debits_export(
 </dl>
 </details>
 
-<details><summary><code>client.bank.<a href="src/nordlet/bank/client.py">post_v1bank_transactions_suggest_matches</a>(...) -> PostV1BankTransactionsSuggestMatchesResponse</code></summary>
+<details><summary><code>client.bank.<a href="src/nordlet/bank/client.py">transactions_suggest_matches</a>(...) -> TransactionsSuggestMatchesBankResponse</code></summary>
 <dl>
 <dd>
 
@@ -42421,7 +42721,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.bank.post_v1bank_transactions_suggest_matches(
+client.bank.transactions_suggest_matches(
     transaction_id="transactionId",
 )
 
@@ -42467,7 +42767,7 @@ client.bank.post_v1bank_transactions_suggest_matches(
 </dl>
 </details>
 
-<details><summary><code>client.bank.<a href="src/nordlet/bank/client.py">post_v1bank_settlements_import</a>(...) -> PostV1BankSettlementsImportResponse</code></summary>
+<details><summary><code>client.bank.<a href="src/nordlet/bank/client.py">settlements_import</a>(...) -> SettlementsImportBankResponse</code></summary>
 <dl>
 <dd>
 
@@ -42488,7 +42788,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.bank.post_v1bank_settlements_import(
+client.bank.settlements_import(
     bank_account_id="bankAccountId",
     content="content",
 )
@@ -42523,7 +42823,7 @@ client.bank.post_v1bank_settlements_import(
 <dl>
 <dd>
 
-**provider:** `typing.Optional[PostV1BankSettlementsImportRequestProvider]` 
+**provider:** `typing.Optional[SettlementsImportBankRequestProvider]` 
     
 </dd>
 </dl>
@@ -42543,7 +42843,7 @@ client.bank.post_v1bank_settlements_import(
 </dl>
 </details>
 
-<details><summary><code>client.bank.<a href="src/nordlet/bank/client.py">post_v1bank_settlements_list</a>(...) -> PostV1BankSettlementsListResponse</code></summary>
+<details><summary><code>client.bank.<a href="src/nordlet/bank/client.py">settlements_list</a>(...) -> SettlementsListBankResponse</code></summary>
 <dl>
 <dd>
 
@@ -42564,7 +42864,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.bank.post_v1bank_settlements_list()
+client.bank.settlements_list()
 
 ```
 </dd>
@@ -42596,7 +42896,7 @@ client.bank.post_v1bank_settlements_list()
 <dl>
 <dd>
 
-**sort:** `typing.Optional[typing.List[PostV1BankSettlementsListRequestSortItem]]` 
+**sort:** `typing.Optional[typing.List[SettlementsListBankRequestSortItem]]` 
     
 </dd>
 </dl>
@@ -42604,7 +42904,7 @@ client.bank.post_v1bank_settlements_list()
 <dl>
 <dd>
 
-**filter:** `typing.Optional[typing.List[PostV1BankSettlementsListRequestFilterItem]]` 
+**filter:** `typing.Optional[typing.List[SettlementsListBankRequestFilterItem]]` 
     
 </dd>
 </dl>
@@ -42632,7 +42932,7 @@ client.bank.post_v1bank_settlements_list()
 </dl>
 </details>
 
-<details><summary><code>client.bank.<a href="src/nordlet/bank/client.py">post_v1bank_settlements_get</a>(...) -> PostV1BankSettlementsGetResponse</code></summary>
+<details><summary><code>client.bank.<a href="src/nordlet/bank/client.py">settlements_get</a>(...) -> SettlementsGetBankResponse</code></summary>
 <dl>
 <dd>
 
@@ -42653,7 +42953,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.bank.post_v1bank_settlements_get(
+client.bank.settlements_get(
     id="id",
 )
 
@@ -42691,7 +42991,7 @@ client.bank.post_v1bank_settlements_get(
 </dl>
 </details>
 
-<details><summary><code>client.bank.<a href="src/nordlet/bank/client.py">post_v1bank_settlements_match</a>(...) -> PostV1BankSettlementsMatchResponse</code></summary>
+<details><summary><code>client.bank.<a href="src/nordlet/bank/client.py">settlements_match</a>(...) -> SettlementsMatchBankResponse</code></summary>
 <dl>
 <dd>
 
@@ -42712,7 +43012,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.bank.post_v1bank_settlements_match(
+client.bank.settlements_match(
     line_id="lineId",
 )
 
@@ -42758,7 +43058,7 @@ client.bank.post_v1bank_settlements_match(
 </dl>
 </details>
 
-<details><summary><code>client.bank.<a href="src/nordlet/bank/client.py">set_what_the_marketplace_keeps_from_one_settlement_line_as_a_rate_or_as_an_amount</a>(...) -> PostV1BankSettlementsCommissionResponse</code></summary>
+<details><summary><code>client.bank.<a href="src/nordlet/bank/client.py">settlements_commission</a>(...) -> SettlementsCommissionBankResponse</code></summary>
 <dl>
 <dd>
 
@@ -42793,7 +43093,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.bank.set_what_the_marketplace_keeps_from_one_settlement_line_as_a_rate_or_as_an_amount(
+client.bank.settlements_commission(
     line_id="lineId",
 )
 
@@ -42847,7 +43147,7 @@ client.bank.set_what_the_marketplace_keeps_from_one_settlement_line_as_a_rate_or
 </dl>
 </details>
 
-<details><summary><code>client.bank.<a href="src/nordlet/bank/client.py">post_v1bank_settlements_link</a>(...) -> PostV1BankSettlementsLinkResponse</code></summary>
+<details><summary><code>client.bank.<a href="src/nordlet/bank/client.py">settlements_link</a>(...) -> SettlementsLinkBankResponse</code></summary>
 <dl>
 <dd>
 
@@ -42882,7 +43182,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.bank.post_v1bank_settlements_link(
+client.bank.settlements_link(
     id="id",
     bank_transaction_id="bankTransactionId",
 )
@@ -42929,7 +43229,7 @@ client.bank.post_v1bank_settlements_link(
 </dl>
 </details>
 
-<details><summary><code>client.bank.<a href="src/nordlet/bank/client.py">post_v1bank_settlements_unlink</a>(...) -> PostV1BankSettlementsUnlinkResponse</code></summary>
+<details><summary><code>client.bank.<a href="src/nordlet/bank/client.py">settlements_unlink</a>(...) -> SettlementsUnlinkBankResponse</code></summary>
 <dl>
 <dd>
 
@@ -42964,7 +43264,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.bank.post_v1bank_settlements_unlink(
+client.bank.settlements_unlink(
     id="id",
 )
 
@@ -43002,7 +43302,7 @@ client.bank.post_v1bank_settlements_unlink(
 </dl>
 </details>
 
-<details><summary><code>client.bank.<a href="src/nordlet/bank/client.py">post_v1bank_settlements_post</a>(...) -> PostV1BankSettlementsPostResponse</code></summary>
+<details><summary><code>client.bank.<a href="src/nordlet/bank/client.py">settlements_post</a>(...) -> SettlementsPostBankResponse</code></summary>
 <dl>
 <dd>
 
@@ -43023,7 +43323,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.bank.post_v1bank_settlements_post(
+client.bank.settlements_post(
     id="id",
 )
 
@@ -43049,7 +43349,7 @@ client.bank.post_v1bank_settlements_post(
 <dl>
 <dd>
 
-**date:** `typing.Optional[str]` 
+**date:** `typing.Optional[datetime.date]` 
     
 </dd>
 </dl>
@@ -43077,7 +43377,7 @@ client.bank.post_v1bank_settlements_post(
 </dl>
 </details>
 
-<details><summary><code>client.bank.<a href="src/nordlet/bank/client.py">list_the_psd2banks_asps_ps_available_to_connect</a>(...) -> PostV1BankFeedsBanksListResponse</code></summary>
+<details><summary><code>client.bank.<a href="src/nordlet/bank/client.py">feeds_banks_list</a>(...) -> FeedsBanksListBankResponse</code></summary>
 <dl>
 <dd>
 
@@ -43098,7 +43398,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.bank.list_the_psd2banks_asps_ps_available_to_connect()
+client.bank.feeds_banks_list()
 
 ```
 </dd>
@@ -43134,7 +43434,7 @@ client.bank.list_the_psd2banks_asps_ps_available_to_connect()
 </dl>
 </details>
 
-<details><summary><code>client.bank.<a href="src/nordlet/bank/client.py">begin_bank_authorization_redirect_the_user_to_the_returned_url</a>(...) -> PostV1BankFeedsConnectionsStartResponse</code></summary>
+<details><summary><code>client.bank.<a href="src/nordlet/bank/client.py">feeds_connections_start</a>(...) -> FeedsConnectionsStartBankResponse</code></summary>
 <dl>
 <dd>
 
@@ -43155,7 +43455,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.bank.begin_bank_authorization_redirect_the_user_to_the_returned_url(
+client.bank.feeds_connections_start(
     aspsp_name="aspspName",
     aspsp_country="aspspCountry",
 )
@@ -43190,7 +43490,7 @@ client.bank.begin_bank_authorization_redirect_the_user_to_the_returned_url(
 <dl>
 <dd>
 
-**psu_type:** `typing.Optional[PostV1BankFeedsConnectionsStartRequestPsuType]` 
+**psu_type:** `typing.Optional[FeedsConnectionsStartBankRequestPsuType]` 
     
 </dd>
 </dl>
@@ -43234,7 +43534,7 @@ client.bank.begin_bank_authorization_redirect_the_user_to_the_returned_url(
 </dl>
 </details>
 
-<details><summary><code>client.bank.<a href="src/nordlet/bank/client.py">exchange_the_redirect_code_for_a_session_and_store_the_bank_accounts_it_exposes</a>(...) -> PostV1BankFeedsConnectionsCompleteResponse</code></summary>
+<details><summary><code>client.bank.<a href="src/nordlet/bank/client.py">feeds_connections_complete</a>(...) -> FeedsConnectionsCompleteBankResponse</code></summary>
 <dl>
 <dd>
 
@@ -43255,7 +43555,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.bank.exchange_the_redirect_code_for_a_session_and_store_the_bank_accounts_it_exposes(
+client.bank.feeds_connections_complete(
     reference="reference",
     code="code",
 )
@@ -43302,7 +43602,7 @@ client.bank.exchange_the_redirect_code_for_a_session_and_store_the_bank_accounts
 </dl>
 </details>
 
-<details><summary><code>client.bank.<a href="src/nordlet/bank/client.py">post_v1bank_feeds_connections_get</a>(...) -> PostV1BankFeedsConnectionsGetResponse</code></summary>
+<details><summary><code>client.bank.<a href="src/nordlet/bank/client.py">feeds_connections_get</a>(...) -> FeedsConnectionsGetBankResponse</code></summary>
 <dl>
 <dd>
 
@@ -43323,7 +43623,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.bank.post_v1bank_feeds_connections_get(
+client.bank.feeds_connections_get(
     id="id",
 )
 
@@ -43361,7 +43661,7 @@ client.bank.post_v1bank_feeds_connections_get(
 </dl>
 </details>
 
-<details><summary><code>client.bank.<a href="src/nordlet/bank/client.py">post_v1bank_feeds_connections_list</a>(...) -> PostV1BankFeedsConnectionsListResponse</code></summary>
+<details><summary><code>client.bank.<a href="src/nordlet/bank/client.py">feeds_connections_list</a>(...) -> FeedsConnectionsListBankResponse</code></summary>
 <dl>
 <dd>
 
@@ -43382,7 +43682,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.bank.post_v1bank_feeds_connections_list()
+client.bank.feeds_connections_list()
 
 ```
 </dd>
@@ -43414,7 +43714,7 @@ client.bank.post_v1bank_feeds_connections_list()
 <dl>
 <dd>
 
-**sort:** `typing.Optional[typing.List[PostV1BankFeedsConnectionsListRequestSortItem]]` 
+**sort:** `typing.Optional[typing.List[FeedsConnectionsListBankRequestSortItem]]` 
     
 </dd>
 </dl>
@@ -43422,7 +43722,7 @@ client.bank.post_v1bank_feeds_connections_list()
 <dl>
 <dd>
 
-**filter:** `typing.Optional[typing.List[PostV1BankFeedsConnectionsListRequestFilterItem]]` 
+**filter:** `typing.Optional[typing.List[FeedsConnectionsListBankRequestFilterItem]]` 
     
 </dd>
 </dl>
@@ -43450,7 +43750,7 @@ client.bank.post_v1bank_feeds_connections_list()
 </dl>
 </details>
 
-<details><summary><code>client.bank.<a href="src/nordlet/bank/client.py">revoke_the_consent_at_the_bank_and_drop_the_stored_connection</a>(...) -> PostV1BankFeedsConnectionsDeleteResponse</code></summary>
+<details><summary><code>client.bank.<a href="src/nordlet/bank/client.py">feeds_connections_delete</a>(...) -> FeedsConnectionsDeleteBankResponse</code></summary>
 <dl>
 <dd>
 
@@ -43471,7 +43771,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.bank.revoke_the_consent_at_the_bank_and_drop_the_stored_connection(
+client.bank.feeds_connections_delete(
     id="id",
 )
 
@@ -43509,7 +43809,7 @@ client.bank.revoke_the_consent_at_the_bank_and_drop_the_stored_connection(
 </dl>
 </details>
 
-<details><summary><code>client.bank.<a href="src/nordlet/bank/client.py">point_a_bank_feed_account_at_a_ledger_bank_account_so_its_transactions_can_be_synced</a>(...) -> PostV1BankFeedsAccountsLinkResponse</code></summary>
+<details><summary><code>client.bank.<a href="src/nordlet/bank/client.py">feeds_accounts_link</a>(...) -> FeedsAccountsLinkBankResponse</code></summary>
 <dl>
 <dd>
 
@@ -43530,7 +43830,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.bank.point_a_bank_feed_account_at_a_ledger_bank_account_so_its_transactions_can_be_synced(
+client.bank.feeds_accounts_link(
     id="id",
 )
 
@@ -43564,7 +43864,7 @@ client.bank.point_a_bank_feed_account_at_a_ledger_bank_account_so_its_transactio
 <dl>
 <dd>
 
-**create_bank_account:** `typing.Optional[PostV1BankFeedsAccountsLinkRequestCreateBankAccount]` 
+**create_bank_account:** `typing.Optional[FeedsAccountsLinkBankRequestCreateBankAccount]` 
     
 </dd>
 </dl>
@@ -43572,7 +43872,7 @@ client.bank.point_a_bank_feed_account_at_a_ledger_bank_account_so_its_transactio
 <dl>
 <dd>
 
-**sync_from:** `typing.Optional[str]` 
+**sync_from:** `typing.Optional[datetime.date]` 
     
 </dd>
 </dl>
@@ -43592,7 +43892,7 @@ client.bank.point_a_bank_feed_account_at_a_ledger_bank_account_so_its_transactio
 </dl>
 </details>
 
-<details><summary><code>client.bank.<a href="src/nordlet/bank/client.py">choose_the_import_template_applied_on_sync_and_how_often_the_account_is_synced_automatically</a>(...) -> PostV1BankFeedsAccountsConfigureResponse</code></summary>
+<details><summary><code>client.bank.<a href="src/nordlet/bank/client.py">feeds_accounts_configure</a>(...) -> FeedsAccountsConfigureBankResponse</code></summary>
 <dl>
 <dd>
 
@@ -43613,7 +43913,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.bank.choose_the_import_template_applied_on_sync_and_how_often_the_account_is_synced_automatically(
+client.bank.feeds_accounts_configure(
     id="id",
 )
 
@@ -43647,7 +43947,7 @@ client.bank.choose_the_import_template_applied_on_sync_and_how_often_the_account
 <dl>
 <dd>
 
-**sync_schedule:** `typing.Optional[PostV1BankFeedsAccountsConfigureRequestSyncSchedule]` 
+**sync_schedule:** `typing.Optional[FeedsAccountsConfigureBankRequestSyncSchedule]` 
     
 </dd>
 </dl>
@@ -43667,7 +43967,7 @@ client.bank.choose_the_import_template_applied_on_sync_and_how_often_the_account
 </dl>
 </details>
 
-<details><summary><code>client.bank.<a href="src/nordlet/bank/client.py">pull_new_transactions_from_the_bank_into_the_ledger_emits_bank_feed_synced</a>(...) -> PostV1BankFeedsSyncResponse</code></summary>
+<details><summary><code>client.bank.<a href="src/nordlet/bank/client.py">feeds_sync</a>(...) -> FeedsSyncBankResponse</code></summary>
 <dl>
 <dd>
 
@@ -43688,7 +43988,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.bank.pull_new_transactions_from_the_bank_into_the_ledger_emits_bank_feed_synced(
+client.bank.feeds_sync(
     connection_id="connectionId",
 )
 
@@ -43722,7 +44022,7 @@ client.bank.pull_new_transactions_from_the_bank_into_the_ledger_emits_bank_feed_
 <dl>
 <dd>
 
-**date_from:** `typing.Optional[str]` 
+**date_from:** `typing.Optional[datetime.date]` 
     
 </dd>
 </dl>
@@ -43730,7 +44030,7 @@ client.bank.pull_new_transactions_from_the_bank_into_the_ledger_emits_bank_feed_
 <dl>
 <dd>
 
-**date_to:** `typing.Optional[str]` 
+**date_to:** `typing.Optional[datetime.date]` 
     
 </dd>
 </dl>
@@ -43750,8 +44050,8 @@ client.bank.pull_new_transactions_from_the_bank_into_the_ledger_emits_bank_feed_
 </dl>
 </details>
 
-## Files
-<details><summary><code>client.files.<a href="src/nordlet/files/client.py">post_v1files_upload</a>(...) -> PostV1FilesUploadResponse</code></summary>
+## files
+<details><summary><code>client.files.<a href="src/nordlet/files/client.py">upload</a>(...) -> UploadFilesResponse</code></summary>
 <dl>
 <dd>
 
@@ -43772,7 +44072,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.files.post_v1files_upload(
+client.files.upload(
     entity="entity",
     file_name="fileName",
     mime_type="mimeType",
@@ -43809,7 +44109,7 @@ client.files.post_v1files_upload(
 <dl>
 <dd>
 
-**mime_type:** `str` 
+**mime_type:** `str` — Stored as the bare media type; only PNG, JPEG, GIF, WebP and PDF files are shown in the browser, every other type is downloaded
     
 </dd>
 </dl>
@@ -43845,7 +44145,7 @@ client.files.post_v1files_upload(
 </dl>
 </details>
 
-<details><summary><code>client.files.<a href="src/nordlet/files/client.py">post_v1files_get</a>(...) -> PostV1FilesGetResponse</code></summary>
+<details><summary><code>client.files.<a href="src/nordlet/files/client.py">get</a>(...) -> GetFilesResponse</code></summary>
 <dl>
 <dd>
 
@@ -43866,7 +44166,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.files.post_v1files_get(
+client.files.get(
     id="id",
 )
 
@@ -43904,7 +44204,7 @@ client.files.post_v1files_get(
 </dl>
 </details>
 
-<details><summary><code>client.files.<a href="src/nordlet/files/client.py">post_v1files_list</a>(...) -> PostV1FilesListResponse</code></summary>
+<details><summary><code>client.files.<a href="src/nordlet/files/client.py">list</a>(...) -> ListFilesResponse</code></summary>
 <dl>
 <dd>
 
@@ -43925,7 +44225,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.files.post_v1files_list()
+client.files.list()
 
 ```
 </dd>
@@ -43957,7 +44257,7 @@ client.files.post_v1files_list()
 <dl>
 <dd>
 
-**sort:** `typing.Optional[typing.List[PostV1FilesListRequestSortItem]]` 
+**sort:** `typing.Optional[typing.List[ListFilesRequestSortItem]]` 
     
 </dd>
 </dl>
@@ -43965,7 +44265,7 @@ client.files.post_v1files_list()
 <dl>
 <dd>
 
-**filter:** `typing.Optional[typing.List[PostV1FilesListRequestFilterItem]]` 
+**filter:** `typing.Optional[typing.List[ListFilesRequestFilterItem]]` 
     
 </dd>
 </dl>
@@ -43993,7 +44293,7 @@ client.files.post_v1files_list()
 </dl>
 </details>
 
-<details><summary><code>client.files.<a href="src/nordlet/files/client.py">post_v1files_delete</a>(...) -> PostV1FilesDeleteResponse</code></summary>
+<details><summary><code>client.files.<a href="src/nordlet/files/client.py">delete</a>(...) -> DeleteFilesResponse</code></summary>
 <dl>
 <dd>
 
@@ -44014,7 +44314,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.files.post_v1files_delete(
+client.files.delete(
     id="id",
 )
 
@@ -44052,8 +44352,8 @@ client.files.post_v1files_delete(
 </dl>
 </details>
 
-## Reports
-<details><summary><code>client.reports.<a href="src/nordlet/reports/client.py">post_v1reports_trial_balance</a>(...) -> PostV1ReportsTrialBalanceResponse</code></summary>
+## reports
+<details><summary><code>client.reports.<a href="src/nordlet/reports/client.py">trial_balance</a>(...) -> TrialBalanceReportsResponse</code></summary>
 <dl>
 <dd>
 
@@ -44068,15 +44368,16 @@ client.files.post_v1files_delete(
 ```python
 from nordlet import Nordlet
 from nordlet.environment import NordletEnvironment
+import datetime
 
 client = Nordlet(
     token="<token>",
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.reports.post_v1reports_trial_balance(
-    from_date="fromDate",
-    to_date="toDate",
+client.reports.trial_balance(
+    from_date=datetime.date.fromisoformat("2026-07-01"),
+    to_date=datetime.date.fromisoformat("2026-07-01"),
 )
 
 ```
@@ -44093,7 +44394,7 @@ client.reports.post_v1reports_trial_balance(
 <dl>
 <dd>
 
-**from_date:** `str` 
+**from_date:** `datetime.date` 
     
 </dd>
 </dl>
@@ -44101,7 +44402,7 @@ client.reports.post_v1reports_trial_balance(
 <dl>
 <dd>
 
-**to_date:** `str` 
+**to_date:** `datetime.date` 
     
 </dd>
 </dl>
@@ -44121,7 +44422,7 @@ client.reports.post_v1reports_trial_balance(
 </dl>
 </details>
 
-<details><summary><code>client.reports.<a href="src/nordlet/reports/client.py">post_v1reports_size_category</a>(...) -> PostV1ReportsSizeCategoryResponse</code></summary>
+<details><summary><code>client.reports.<a href="src/nordlet/reports/client.py">size_category</a>(...) -> SizeCategoryReportsResponse</code></summary>
 <dl>
 <dd>
 
@@ -44142,7 +44443,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.reports.post_v1reports_size_category(
+client.reports.size_category(
     year=1000000,
 )
 
@@ -44180,7 +44481,7 @@ client.reports.post_v1reports_size_category(
 </dl>
 </details>
 
-<details><summary><code>client.reports.<a href="src/nordlet/reports/client.py">post_v1reports_financial_statements</a>(...) -> PostV1ReportsFinancialStatementsResponse</code></summary>
+<details><summary><code>client.reports.<a href="src/nordlet/reports/client.py">financial_statements</a>(...) -> FinancialStatementsReportsResponse</code></summary>
 <dl>
 <dd>
 
@@ -44195,15 +44496,16 @@ client.reports.post_v1reports_size_category(
 ```python
 from nordlet import Nordlet
 from nordlet.environment import NordletEnvironment
+import datetime
 
 client = Nordlet(
     token="<token>",
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.reports.post_v1reports_financial_statements(
-    from_date="fromDate",
-    to_date="toDate",
+client.reports.financial_statements(
+    from_date=datetime.date.fromisoformat("2026-07-01"),
+    to_date=datetime.date.fromisoformat("2026-07-01"),
 )
 
 ```
@@ -44220,7 +44522,7 @@ client.reports.post_v1reports_financial_statements(
 <dl>
 <dd>
 
-**from_date:** `str` 
+**from_date:** `datetime.date` 
     
 </dd>
 </dl>
@@ -44228,7 +44530,7 @@ client.reports.post_v1reports_financial_statements(
 <dl>
 <dd>
 
-**to_date:** `str` 
+**to_date:** `datetime.date` 
     
 </dd>
 </dl>
@@ -44236,7 +44538,7 @@ client.reports.post_v1reports_financial_statements(
 <dl>
 <dd>
 
-**category:** `typing.Optional[PostV1ReportsFinancialStatementsRequestCategory]` 
+**category:** `typing.Optional[FinancialStatementsReportsRequestCategory]` 
     
 </dd>
 </dl>
@@ -44256,7 +44558,7 @@ client.reports.post_v1reports_financial_statements(
 </dl>
 </details>
 
-<details><summary><code>client.reports.<a href="src/nordlet/reports/client.py">post_v1reports_general_journal</a>(...) -> PostV1ReportsGeneralJournalResponse</code></summary>
+<details><summary><code>client.reports.<a href="src/nordlet/reports/client.py">general_journal</a>(...) -> GeneralJournalReportsResponse</code></summary>
 <dl>
 <dd>
 
@@ -44271,15 +44573,16 @@ client.reports.post_v1reports_financial_statements(
 ```python
 from nordlet import Nordlet
 from nordlet.environment import NordletEnvironment
+import datetime
 
 client = Nordlet(
     token="<token>",
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.reports.post_v1reports_general_journal(
-    from_date="fromDate",
-    to_date="toDate",
+client.reports.general_journal(
+    from_date=datetime.date.fromisoformat("2026-07-01"),
+    to_date=datetime.date.fromisoformat("2026-07-01"),
 )
 
 ```
@@ -44296,7 +44599,7 @@ client.reports.post_v1reports_general_journal(
 <dl>
 <dd>
 
-**from_date:** `str` 
+**from_date:** `datetime.date` 
     
 </dd>
 </dl>
@@ -44304,7 +44607,7 @@ client.reports.post_v1reports_general_journal(
 <dl>
 <dd>
 
-**to_date:** `str` 
+**to_date:** `datetime.date` 
     
 </dd>
 </dl>
@@ -44340,7 +44643,7 @@ client.reports.post_v1reports_general_journal(
 </dl>
 </details>
 
-<details><summary><code>client.reports.<a href="src/nordlet/reports/client.py">post_v1reports_gl_detail</a>(...) -> PostV1ReportsGlDetailResponse</code></summary>
+<details><summary><code>client.reports.<a href="src/nordlet/reports/client.py">gl_detail</a>(...) -> GlDetailReportsResponse</code></summary>
 <dl>
 <dd>
 
@@ -44355,16 +44658,17 @@ client.reports.post_v1reports_general_journal(
 ```python
 from nordlet import Nordlet
 from nordlet.environment import NordletEnvironment
+import datetime
 
 client = Nordlet(
     token="<token>",
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.reports.post_v1reports_gl_detail(
+client.reports.gl_detail(
     account_code="accountCode",
-    from_date="fromDate",
-    to_date="toDate",
+    from_date=datetime.date.fromisoformat("2026-07-01"),
+    to_date=datetime.date.fromisoformat("2026-07-01"),
 )
 
 ```
@@ -44389,7 +44693,7 @@ client.reports.post_v1reports_gl_detail(
 <dl>
 <dd>
 
-**from_date:** `str` 
+**from_date:** `datetime.date` 
     
 </dd>
 </dl>
@@ -44397,7 +44701,7 @@ client.reports.post_v1reports_gl_detail(
 <dl>
 <dd>
 
-**to_date:** `str` 
+**to_date:** `datetime.date` 
     
 </dd>
 </dl>
@@ -44417,7 +44721,7 @@ client.reports.post_v1reports_gl_detail(
 </dl>
 </details>
 
-<details><summary><code>client.reports.<a href="src/nordlet/reports/client.py">post_v1reports_partner_balances</a>() -> PostV1ReportsPartnerBalancesResponse</code></summary>
+<details><summary><code>client.reports.<a href="src/nordlet/reports/client.py">partner_balances</a>() -> PartnerBalancesReportsResponse</code></summary>
 <dl>
 <dd>
 
@@ -44438,7 +44742,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.reports.post_v1reports_partner_balances()
+client.reports.partner_balances()
 
 ```
 </dd>
@@ -44466,7 +44770,7 @@ client.reports.post_v1reports_partner_balances()
 </dl>
 </details>
 
-<details><summary><code>client.reports.<a href="src/nordlet/reports/client.py">post_v1reports_debt_aging</a>(...) -> PostV1ReportsDebtAgingResponse</code></summary>
+<details><summary><code>client.reports.<a href="src/nordlet/reports/client.py">debt_aging</a>(...) -> DebtAgingReportsResponse</code></summary>
 <dl>
 <dd>
 
@@ -44487,7 +44791,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.reports.post_v1reports_debt_aging()
+client.reports.debt_aging()
 
 ```
 </dd>
@@ -44503,7 +44807,7 @@ client.reports.post_v1reports_debt_aging()
 <dl>
 <dd>
 
-**side:** `typing.Optional[PostV1ReportsDebtAgingRequestSide]` 
+**side:** `typing.Optional[DebtAgingReportsRequestSide]` 
     
 </dd>
 </dl>
@@ -44511,7 +44815,7 @@ client.reports.post_v1reports_debt_aging()
 <dl>
 <dd>
 
-**as_of:** `typing.Optional[str]` 
+**as_of:** `typing.Optional[datetime.date]` 
     
 </dd>
 </dl>
@@ -44531,7 +44835,7 @@ client.reports.post_v1reports_debt_aging()
 </dl>
 </details>
 
-<details><summary><code>client.reports.<a href="src/nordlet/reports/client.py">post_v1reports_monthly_summary</a>(...) -> PostV1ReportsMonthlySummaryResponse</code></summary>
+<details><summary><code>client.reports.<a href="src/nordlet/reports/client.py">monthly_summary</a>(...) -> MonthlySummaryReportsResponse</code></summary>
 <dl>
 <dd>
 
@@ -44552,7 +44856,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.reports.post_v1reports_monthly_summary()
+client.reports.monthly_summary()
 
 ```
 </dd>
@@ -44588,7 +44892,7 @@ client.reports.post_v1reports_monthly_summary()
 </dl>
 </details>
 
-<details><summary><code>client.reports.<a href="src/nordlet/reports/client.py">post_v1reports_stock_balance</a>(...) -> PostV1ReportsStockBalanceResponse</code></summary>
+<details><summary><code>client.reports.<a href="src/nordlet/reports/client.py">stock_balance</a>(...) -> StockBalanceReportsResponse</code></summary>
 <dl>
 <dd>
 
@@ -44603,14 +44907,15 @@ client.reports.post_v1reports_monthly_summary()
 ```python
 from nordlet import Nordlet
 from nordlet.environment import NordletEnvironment
+import datetime
 
 client = Nordlet(
     token="<token>",
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.reports.post_v1reports_stock_balance(
-    as_of="asOf",
+client.reports.stock_balance(
+    as_of=datetime.date.fromisoformat("2026-07-01"),
 )
 
 ```
@@ -44627,7 +44932,7 @@ client.reports.post_v1reports_stock_balance(
 <dl>
 <dd>
 
-**as_of:** `str` 
+**as_of:** `datetime.date` 
     
 </dd>
 </dl>
@@ -44655,7 +44960,7 @@ client.reports.post_v1reports_stock_balance(
 </dl>
 </details>
 
-<details><summary><code>client.reports.<a href="src/nordlet/reports/client.py">post_v1reports_stock_movement</a>(...) -> PostV1ReportsStockMovementResponse</code></summary>
+<details><summary><code>client.reports.<a href="src/nordlet/reports/client.py">stock_movement</a>(...) -> StockMovementReportsResponse</code></summary>
 <dl>
 <dd>
 
@@ -44670,15 +44975,16 @@ client.reports.post_v1reports_stock_balance(
 ```python
 from nordlet import Nordlet
 from nordlet.environment import NordletEnvironment
+import datetime
 
 client = Nordlet(
     token="<token>",
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.reports.post_v1reports_stock_movement(
-    from_date="fromDate",
-    to_date="toDate",
+client.reports.stock_movement(
+    from_date=datetime.date.fromisoformat("2026-07-01"),
+    to_date=datetime.date.fromisoformat("2026-07-01"),
 )
 
 ```
@@ -44695,7 +45001,7 @@ client.reports.post_v1reports_stock_movement(
 <dl>
 <dd>
 
-**from_date:** `str` 
+**from_date:** `datetime.date` 
     
 </dd>
 </dl>
@@ -44703,7 +45009,7 @@ client.reports.post_v1reports_stock_movement(
 <dl>
 <dd>
 
-**to_date:** `str` 
+**to_date:** `datetime.date` 
     
 </dd>
 </dl>
@@ -44739,7 +45045,7 @@ client.reports.post_v1reports_stock_movement(
 </dl>
 </details>
 
-<details><summary><code>client.reports.<a href="src/nordlet/reports/client.py">post_v1reports_vat_summary</a>(...) -> PostV1ReportsVatSummaryResponse</code></summary>
+<details><summary><code>client.reports.<a href="src/nordlet/reports/client.py">vat_summary</a>(...) -> VatSummaryReportsResponse</code></summary>
 <dl>
 <dd>
 
@@ -44754,15 +45060,16 @@ client.reports.post_v1reports_stock_movement(
 ```python
 from nordlet import Nordlet
 from nordlet.environment import NordletEnvironment
+import datetime
 
 client = Nordlet(
     token="<token>",
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.reports.post_v1reports_vat_summary(
-    from_date="fromDate",
-    to_date="toDate",
+client.reports.vat_summary(
+    from_date=datetime.date.fromisoformat("2026-07-01"),
+    to_date=datetime.date.fromisoformat("2026-07-01"),
 )
 
 ```
@@ -44779,7 +45086,7 @@ client.reports.post_v1reports_vat_summary(
 <dl>
 <dd>
 
-**from_date:** `str` 
+**from_date:** `datetime.date` 
     
 </dd>
 </dl>
@@ -44787,7 +45094,7 @@ client.reports.post_v1reports_vat_summary(
 <dl>
 <dd>
 
-**to_date:** `str` 
+**to_date:** `datetime.date` 
     
 </dd>
 </dl>
@@ -44795,7 +45102,7 @@ client.reports.post_v1reports_vat_summary(
 <dl>
 <dd>
 
-**side:** `typing.Optional[PostV1ReportsVatSummaryRequestSide]` 
+**side:** `typing.Optional[VatSummaryReportsRequestSide]` 
     
 </dd>
 </dl>
@@ -44815,7 +45122,7 @@ client.reports.post_v1reports_vat_summary(
 </dl>
 </details>
 
-<details><summary><code>client.reports.<a href="src/nordlet/reports/client.py">post_v1reports_cash_flow</a>(...) -> PostV1ReportsCashFlowResponse</code></summary>
+<details><summary><code>client.reports.<a href="src/nordlet/reports/client.py">cash_flow</a>(...) -> CashFlowReportsResponse</code></summary>
 <dl>
 <dd>
 
@@ -44830,15 +45137,16 @@ client.reports.post_v1reports_vat_summary(
 ```python
 from nordlet import Nordlet
 from nordlet.environment import NordletEnvironment
+import datetime
 
 client = Nordlet(
     token="<token>",
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.reports.post_v1reports_cash_flow(
-    from_date="fromDate",
-    to_date="toDate",
+client.reports.cash_flow(
+    from_date=datetime.date.fromisoformat("2026-07-01"),
+    to_date=datetime.date.fromisoformat("2026-07-01"),
 )
 
 ```
@@ -44855,7 +45163,7 @@ client.reports.post_v1reports_cash_flow(
 <dl>
 <dd>
 
-**from_date:** `str` 
+**from_date:** `datetime.date` 
     
 </dd>
 </dl>
@@ -44863,7 +45171,7 @@ client.reports.post_v1reports_cash_flow(
 <dl>
 <dd>
 
-**to_date:** `str` 
+**to_date:** `datetime.date` 
     
 </dd>
 </dl>
@@ -44883,7 +45191,7 @@ client.reports.post_v1reports_cash_flow(
 </dl>
 </details>
 
-<details><summary><code>client.reports.<a href="src/nordlet/reports/client.py">post_v1reports_stock_aging</a>(...) -> PostV1ReportsStockAgingResponse</code></summary>
+<details><summary><code>client.reports.<a href="src/nordlet/reports/client.py">stock_aging</a>(...) -> StockAgingReportsResponse</code></summary>
 <dl>
 <dd>
 
@@ -44898,14 +45206,15 @@ client.reports.post_v1reports_cash_flow(
 ```python
 from nordlet import Nordlet
 from nordlet.environment import NordletEnvironment
+import datetime
 
 client = Nordlet(
     token="<token>",
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.reports.post_v1reports_stock_aging(
-    as_of="asOf",
+client.reports.stock_aging(
+    as_of=datetime.date.fromisoformat("2026-07-01"),
 )
 
 ```
@@ -44922,7 +45231,7 @@ client.reports.post_v1reports_stock_aging(
 <dl>
 <dd>
 
-**as_of:** `str` 
+**as_of:** `datetime.date` 
     
 </dd>
 </dl>
@@ -44950,7 +45259,7 @@ client.reports.post_v1reports_stock_aging(
 </dl>
 </details>
 
-<details><summary><code>client.reports.<a href="src/nordlet/reports/client.py">post_v1reports_stock_shortage</a>(...) -> PostV1ReportsStockShortageResponse</code></summary>
+<details><summary><code>client.reports.<a href="src/nordlet/reports/client.py">stock_shortage</a>(...) -> StockShortageReportsResponse</code></summary>
 <dl>
 <dd>
 
@@ -44971,7 +45280,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.reports.post_v1reports_stock_shortage()
+client.reports.stock_shortage()
 
 ```
 </dd>
@@ -45007,7 +45316,7 @@ client.reports.post_v1reports_stock_shortage()
 </dl>
 </details>
 
-<details><summary><code>client.reports.<a href="src/nordlet/reports/client.py">post_v1reports_sie</a>(...) -> PostV1ReportsSieResponse</code></summary>
+<details><summary><code>client.reports.<a href="src/nordlet/reports/client.py">sie</a>(...) -> SieReportsResponse</code></summary>
 <dl>
 <dd>
 
@@ -45036,15 +45345,16 @@ Export the ledger of one financial year as an SIE file (the Swedish standard acc
 ```python
 from nordlet import Nordlet
 from nordlet.environment import NordletEnvironment
+import datetime
 
 client = Nordlet(
     token="<token>",
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.reports.post_v1reports_sie(
-    from_date="fromDate",
-    to_date="toDate",
+client.reports.sie(
+    from_date=datetime.date.fromisoformat("2026-07-01"),
+    to_date=datetime.date.fromisoformat("2026-07-01"),
 )
 
 ```
@@ -45061,7 +45371,7 @@ client.reports.post_v1reports_sie(
 <dl>
 <dd>
 
-**from_date:** `str` 
+**from_date:** `datetime.date` 
     
 </dd>
 </dl>
@@ -45069,7 +45379,7 @@ client.reports.post_v1reports_sie(
 <dl>
 <dd>
 
-**to_date:** `str` 
+**to_date:** `datetime.date` 
     
 </dd>
 </dl>
@@ -45097,7 +45407,7 @@ client.reports.post_v1reports_sie(
 </dl>
 </details>
 
-<details><summary><code>client.reports.<a href="src/nordlet/reports/client.py">post_v1reports_datev</a>(...) -> PostV1ReportsDatevResponse</code></summary>
+<details><summary><code>client.reports.<a href="src/nordlet/reports/client.py">datev</a>(...) -> DatevReportsResponse</code></summary>
 <dl>
 <dd>
 
@@ -45126,15 +45436,16 @@ Export the posted ledger of a period as a DATEV Buchungsstapel file (DATEV forma
 ```python
 from nordlet import Nordlet
 from nordlet.environment import NordletEnvironment
+import datetime
 
 client = Nordlet(
     token="<token>",
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.reports.post_v1reports_datev(
-    from_date="fromDate",
-    to_date="toDate",
+client.reports.datev(
+    from_date=datetime.date.fromisoformat("2026-07-01"),
+    to_date=datetime.date.fromisoformat("2026-07-01"),
 )
 
 ```
@@ -45151,7 +45462,7 @@ client.reports.post_v1reports_datev(
 <dl>
 <dd>
 
-**from_date:** `str` 
+**from_date:** `datetime.date` 
     
 </dd>
 </dl>
@@ -45159,7 +45470,7 @@ client.reports.post_v1reports_datev(
 <dl>
 <dd>
 
-**to_date:** `str` 
+**to_date:** `datetime.date` 
     
 </dd>
 </dl>
@@ -45195,7 +45506,7 @@ client.reports.post_v1reports_datev(
 </dl>
 </details>
 
-<details><summary><code>client.reports.<a href="src/nordlet/reports/client.py">post_v1reports_fec</a>(...) -> PostV1ReportsFecResponse</code></summary>
+<details><summary><code>client.reports.<a href="src/nordlet/reports/client.py">fec</a>(...) -> FecReportsResponse</code></summary>
 <dl>
 <dd>
 
@@ -45224,15 +45535,16 @@ Export the posted ledger of a period as a French FEC file (fichier des écriture
 ```python
 from nordlet import Nordlet
 from nordlet.environment import NordletEnvironment
+import datetime
 
 client = Nordlet(
     token="<token>",
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.reports.post_v1reports_fec(
-    from_date="fromDate",
-    to_date="toDate",
+client.reports.fec(
+    from_date=datetime.date.fromisoformat("2026-07-01"),
+    to_date=datetime.date.fromisoformat("2026-07-01"),
 )
 
 ```
@@ -45249,7 +45561,7 @@ client.reports.post_v1reports_fec(
 <dl>
 <dd>
 
-**from_date:** `str` 
+**from_date:** `datetime.date` 
     
 </dd>
 </dl>
@@ -45257,7 +45569,7 @@ client.reports.post_v1reports_fec(
 <dl>
 <dd>
 
-**to_date:** `str` 
+**to_date:** `datetime.date` 
     
 </dd>
 </dl>
@@ -45277,7 +45589,7 @@ client.reports.post_v1reports_fec(
 </dl>
 </details>
 
-<details><summary><code>client.reports.<a href="src/nordlet/reports/client.py">post_v1reports_eu_purchases</a>(...) -> PostV1ReportsEuPurchasesResponse</code></summary>
+<details><summary><code>client.reports.<a href="src/nordlet/reports/client.py">eu_purchases</a>(...) -> EuPurchasesReportsResponse</code></summary>
 <dl>
 <dd>
 
@@ -45292,15 +45604,16 @@ client.reports.post_v1reports_fec(
 ```python
 from nordlet import Nordlet
 from nordlet.environment import NordletEnvironment
+import datetime
 
 client = Nordlet(
     token="<token>",
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.reports.post_v1reports_eu_purchases(
-    from_date="fromDate",
-    to_date="toDate",
+client.reports.eu_purchases(
+    from_date=datetime.date.fromisoformat("2026-07-01"),
+    to_date=datetime.date.fromisoformat("2026-07-01"),
 )
 
 ```
@@ -45317,7 +45630,7 @@ client.reports.post_v1reports_eu_purchases(
 <dl>
 <dd>
 
-**from_date:** `str` 
+**from_date:** `datetime.date` 
     
 </dd>
 </dl>
@@ -45325,7 +45638,7 @@ client.reports.post_v1reports_eu_purchases(
 <dl>
 <dd>
 
-**to_date:** `str` 
+**to_date:** `datetime.date` 
     
 </dd>
 </dl>
@@ -45345,7 +45658,7 @@ client.reports.post_v1reports_eu_purchases(
 </dl>
 </details>
 
-<details><summary><code>client.reports.<a href="src/nordlet/reports/client.py">post_v1reports_vat_detail</a>(...) -> PostV1ReportsVatDetailResponse</code></summary>
+<details><summary><code>client.reports.<a href="src/nordlet/reports/client.py">vat_detail</a>(...) -> VatDetailReportsResponse</code></summary>
 <dl>
 <dd>
 
@@ -45360,15 +45673,16 @@ client.reports.post_v1reports_eu_purchases(
 ```python
 from nordlet import Nordlet
 from nordlet.environment import NordletEnvironment
+import datetime
 
 client = Nordlet(
     token="<token>",
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.reports.post_v1reports_vat_detail(
-    from_date="fromDate",
-    to_date="toDate",
+client.reports.vat_detail(
+    from_date=datetime.date.fromisoformat("2026-07-01"),
+    to_date=datetime.date.fromisoformat("2026-07-01"),
 )
 
 ```
@@ -45385,7 +45699,7 @@ client.reports.post_v1reports_vat_detail(
 <dl>
 <dd>
 
-**from_date:** `str` 
+**from_date:** `datetime.date` 
     
 </dd>
 </dl>
@@ -45393,7 +45707,7 @@ client.reports.post_v1reports_vat_detail(
 <dl>
 <dd>
 
-**to_date:** `str` 
+**to_date:** `datetime.date` 
     
 </dd>
 </dl>
@@ -45401,7 +45715,7 @@ client.reports.post_v1reports_vat_detail(
 <dl>
 <dd>
 
-**side:** `typing.Optional[PostV1ReportsVatDetailRequestSide]` 
+**side:** `typing.Optional[VatDetailReportsRequestSide]` 
     
 </dd>
 </dl>
@@ -45421,7 +45735,7 @@ client.reports.post_v1reports_vat_detail(
 </dl>
 </details>
 
-<details><summary><code>client.reports.<a href="src/nordlet/reports/client.py">post_v1reports_pos_sales</a>(...) -> PostV1ReportsPosSalesResponse</code></summary>
+<details><summary><code>client.reports.<a href="src/nordlet/reports/client.py">pos_sales</a>(...) -> PosSalesReportsResponse</code></summary>
 <dl>
 <dd>
 
@@ -45436,15 +45750,16 @@ client.reports.post_v1reports_vat_detail(
 ```python
 from nordlet import Nordlet
 from nordlet.environment import NordletEnvironment
+import datetime
 
 client = Nordlet(
     token="<token>",
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.reports.post_v1reports_pos_sales(
-    from_date="fromDate",
-    to_date="toDate",
+client.reports.pos_sales(
+    from_date=datetime.date.fromisoformat("2026-07-01"),
+    to_date=datetime.date.fromisoformat("2026-07-01"),
 )
 
 ```
@@ -45461,7 +45776,7 @@ client.reports.post_v1reports_pos_sales(
 <dl>
 <dd>
 
-**from_date:** `str` 
+**from_date:** `datetime.date` 
     
 </dd>
 </dl>
@@ -45469,7 +45784,7 @@ client.reports.post_v1reports_pos_sales(
 <dl>
 <dd>
 
-**to_date:** `str` 
+**to_date:** `datetime.date` 
     
 </dd>
 </dl>
@@ -45489,7 +45804,7 @@ client.reports.post_v1reports_pos_sales(
 </dl>
 </details>
 
-<details><summary><code>client.reports.<a href="src/nordlet/reports/client.py">post_v1reports_online_sales</a>(...) -> PostV1ReportsOnlineSalesResponse</code></summary>
+<details><summary><code>client.reports.<a href="src/nordlet/reports/client.py">online_sales</a>(...) -> OnlineSalesReportsResponse</code></summary>
 <dl>
 <dd>
 
@@ -45504,15 +45819,16 @@ client.reports.post_v1reports_pos_sales(
 ```python
 from nordlet import Nordlet
 from nordlet.environment import NordletEnvironment
+import datetime
 
 client = Nordlet(
     token="<token>",
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.reports.post_v1reports_online_sales(
-    from_date="fromDate",
-    to_date="toDate",
+client.reports.online_sales(
+    from_date=datetime.date.fromisoformat("2026-07-01"),
+    to_date=datetime.date.fromisoformat("2026-07-01"),
 )
 
 ```
@@ -45529,7 +45845,7 @@ client.reports.post_v1reports_online_sales(
 <dl>
 <dd>
 
-**from_date:** `str` 
+**from_date:** `datetime.date` 
     
 </dd>
 </dl>
@@ -45537,7 +45853,7 @@ client.reports.post_v1reports_online_sales(
 <dl>
 <dd>
 
-**to_date:** `str` 
+**to_date:** `datetime.date` 
     
 </dd>
 </dl>
@@ -45557,7 +45873,7 @@ client.reports.post_v1reports_online_sales(
 </dl>
 </details>
 
-<details><summary><code>client.reports.<a href="src/nordlet/reports/client.py">post_v1reports_oss</a>(...) -> PostV1ReportsOssResponse</code></summary>
+<details><summary><code>client.reports.<a href="src/nordlet/reports/client.py">oss</a>(...) -> OssReportsResponse</code></summary>
 <dl>
 <dd>
 
@@ -45572,15 +45888,16 @@ client.reports.post_v1reports_online_sales(
 ```python
 from nordlet import Nordlet
 from nordlet.environment import NordletEnvironment
+import datetime
 
 client = Nordlet(
     token="<token>",
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.reports.post_v1reports_oss(
-    from_date="fromDate",
-    to_date="toDate",
+client.reports.oss(
+    from_date=datetime.date.fromisoformat("2026-07-01"),
+    to_date=datetime.date.fromisoformat("2026-07-01"),
 )
 
 ```
@@ -45597,7 +45914,7 @@ client.reports.post_v1reports_oss(
 <dl>
 <dd>
 
-**from_date:** `str` 
+**from_date:** `datetime.date` 
     
 </dd>
 </dl>
@@ -45605,7 +45922,7 @@ client.reports.post_v1reports_oss(
 <dl>
 <dd>
 
-**to_date:** `str` 
+**to_date:** `datetime.date` 
     
 </dd>
 </dl>
@@ -45625,7 +45942,7 @@ client.reports.post_v1reports_oss(
 </dl>
 </details>
 
-<details><summary><code>client.reports.<a href="src/nordlet/reports/client.py">post_v1reports_advance_reconciliation</a>(...) -> PostV1ReportsAdvanceReconciliationResponse</code></summary>
+<details><summary><code>client.reports.<a href="src/nordlet/reports/client.py">advance_reconciliation</a>(...) -> AdvanceReconciliationReportsResponse</code></summary>
 <dl>
 <dd>
 
@@ -45640,15 +45957,16 @@ client.reports.post_v1reports_oss(
 ```python
 from nordlet import Nordlet
 from nordlet.environment import NordletEnvironment
+import datetime
 
 client = Nordlet(
     token="<token>",
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.reports.post_v1reports_advance_reconciliation(
-    from_date="fromDate",
-    to_date="toDate",
+client.reports.advance_reconciliation(
+    from_date=datetime.date.fromisoformat("2026-07-01"),
+    to_date=datetime.date.fromisoformat("2026-07-01"),
 )
 
 ```
@@ -45665,7 +45983,7 @@ client.reports.post_v1reports_advance_reconciliation(
 <dl>
 <dd>
 
-**from_date:** `str` 
+**from_date:** `datetime.date` 
     
 </dd>
 </dl>
@@ -45673,7 +45991,7 @@ client.reports.post_v1reports_advance_reconciliation(
 <dl>
 <dd>
 
-**to_date:** `str` 
+**to_date:** `datetime.date` 
     
 </dd>
 </dl>
@@ -45693,7 +46011,7 @@ client.reports.post_v1reports_advance_reconciliation(
 </dl>
 </details>
 
-<details><summary><code>client.reports.<a href="src/nordlet/reports/client.py">post_v1reports_write_off_acts</a>(...) -> PostV1ReportsWriteOffActsResponse</code></summary>
+<details><summary><code>client.reports.<a href="src/nordlet/reports/client.py">write_off_acts</a>(...) -> WriteOffActsReportsResponse</code></summary>
 <dl>
 <dd>
 
@@ -45708,15 +46026,16 @@ client.reports.post_v1reports_advance_reconciliation(
 ```python
 from nordlet import Nordlet
 from nordlet.environment import NordletEnvironment
+import datetime
 
 client = Nordlet(
     token="<token>",
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.reports.post_v1reports_write_off_acts(
-    from_date="fromDate",
-    to_date="toDate",
+client.reports.write_off_acts(
+    from_date=datetime.date.fromisoformat("2026-07-01"),
+    to_date=datetime.date.fromisoformat("2026-07-01"),
 )
 
 ```
@@ -45733,7 +46052,7 @@ client.reports.post_v1reports_write_off_acts(
 <dl>
 <dd>
 
-**from_date:** `str` 
+**from_date:** `datetime.date` 
     
 </dd>
 </dl>
@@ -45741,7 +46060,7 @@ client.reports.post_v1reports_write_off_acts(
 <dl>
 <dd>
 
-**to_date:** `str` 
+**to_date:** `datetime.date` 
     
 </dd>
 </dl>
@@ -45769,7 +46088,7 @@ client.reports.post_v1reports_write_off_acts(
 </dl>
 </details>
 
-<details><summary><code>client.reports.<a href="src/nordlet/reports/client.py">post_v1reports_cost_centers</a>(...) -> PostV1ReportsCostCentersResponse</code></summary>
+<details><summary><code>client.reports.<a href="src/nordlet/reports/client.py">cost_centers</a>(...) -> CostCentersReportsResponse</code></summary>
 <dl>
 <dd>
 
@@ -45784,15 +46103,16 @@ client.reports.post_v1reports_write_off_acts(
 ```python
 from nordlet import Nordlet
 from nordlet.environment import NordletEnvironment
+import datetime
 
 client = Nordlet(
     token="<token>",
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.reports.post_v1reports_cost_centers(
-    from_date="fromDate",
-    to_date="toDate",
+client.reports.cost_centers(
+    from_date=datetime.date.fromisoformat("2026-07-01"),
+    to_date=datetime.date.fromisoformat("2026-07-01"),
 )
 
 ```
@@ -45809,7 +46129,7 @@ client.reports.post_v1reports_cost_centers(
 <dl>
 <dd>
 
-**from_date:** `str` 
+**from_date:** `datetime.date` 
     
 </dd>
 </dl>
@@ -45817,7 +46137,7 @@ client.reports.post_v1reports_cost_centers(
 <dl>
 <dd>
 
-**to_date:** `str` 
+**to_date:** `datetime.date` 
     
 </dd>
 </dl>
@@ -45837,7 +46157,7 @@ client.reports.post_v1reports_cost_centers(
 </dl>
 </details>
 
-<details><summary><code>client.reports.<a href="src/nordlet/reports/client.py">post_v1reports_cost_center_activity</a>(...) -> PostV1ReportsCostCenterActivityResponse</code></summary>
+<details><summary><code>client.reports.<a href="src/nordlet/reports/client.py">cost_center_activity</a>(...) -> CostCenterActivityReportsResponse</code></summary>
 <dl>
 <dd>
 
@@ -45852,15 +46172,16 @@ client.reports.post_v1reports_cost_centers(
 ```python
 from nordlet import Nordlet
 from nordlet.environment import NordletEnvironment
+import datetime
 
 client = Nordlet(
     token="<token>",
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.reports.post_v1reports_cost_center_activity(
-    from_date="fromDate",
-    to_date="toDate",
+client.reports.cost_center_activity(
+    from_date=datetime.date.fromisoformat("2026-07-01"),
+    to_date=datetime.date.fromisoformat("2026-07-01"),
     cost_center_id="costCenterId",
 )
 
@@ -45878,7 +46199,7 @@ client.reports.post_v1reports_cost_center_activity(
 <dl>
 <dd>
 
-**from_date:** `str` 
+**from_date:** `datetime.date` 
     
 </dd>
 </dl>
@@ -45886,7 +46207,7 @@ client.reports.post_v1reports_cost_center_activity(
 <dl>
 <dd>
 
-**to_date:** `str` 
+**to_date:** `datetime.date` 
     
 </dd>
 </dl>
@@ -45914,7 +46235,7 @@ client.reports.post_v1reports_cost_center_activity(
 </dl>
 </details>
 
-<details><summary><code>client.reports.<a href="src/nordlet/reports/client.py">post_v1reports_cost_center_items</a>(...) -> PostV1ReportsCostCenterItemsResponse</code></summary>
+<details><summary><code>client.reports.<a href="src/nordlet/reports/client.py">cost_center_items</a>(...) -> CostCenterItemsReportsResponse</code></summary>
 <dl>
 <dd>
 
@@ -45929,15 +46250,16 @@ client.reports.post_v1reports_cost_center_activity(
 ```python
 from nordlet import Nordlet
 from nordlet.environment import NordletEnvironment
+import datetime
 
 client = Nordlet(
     token="<token>",
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.reports.post_v1reports_cost_center_items(
-    from_date="fromDate",
-    to_date="toDate",
+client.reports.cost_center_items(
+    from_date=datetime.date.fromisoformat("2026-07-01"),
+    to_date=datetime.date.fromisoformat("2026-07-01"),
 )
 
 ```
@@ -45954,7 +46276,7 @@ client.reports.post_v1reports_cost_center_items(
 <dl>
 <dd>
 
-**from_date:** `str` 
+**from_date:** `datetime.date` 
     
 </dd>
 </dl>
@@ -45962,7 +46284,7 @@ client.reports.post_v1reports_cost_center_items(
 <dl>
 <dd>
 
-**to_date:** `str` 
+**to_date:** `datetime.date` 
     
 </dd>
 </dl>
@@ -45990,7 +46312,7 @@ client.reports.post_v1reports_cost_center_items(
 </dl>
 </details>
 
-<details><summary><code>client.reports.<a href="src/nordlet/reports/client.py">post_v1reports_jobs_create</a>(...) -> PostV1ReportsJobsCreateResponse</code></summary>
+<details><summary><code>client.reports.<a href="src/nordlet/reports/client.py">jobs_create</a>(...) -> JobsCreateReportsResponse</code></summary>
 <dl>
 <dd>
 
@@ -46011,7 +46333,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.reports.post_v1reports_jobs_create(
+client.reports.jobs_create(
     report_type="reportType",
 )
 
@@ -46045,7 +46367,7 @@ client.reports.post_v1reports_jobs_create(
 <dl>
 <dd>
 
-**formats:** `typing.Optional[typing.List[PostV1ReportsJobsCreateRequestFormatsItem]]` 
+**formats:** `typing.Optional[typing.List[JobsCreateReportsRequestFormatsItem]]` 
     
 </dd>
 </dl>
@@ -46065,7 +46387,7 @@ client.reports.post_v1reports_jobs_create(
 </dl>
 </details>
 
-<details><summary><code>client.reports.<a href="src/nordlet/reports/client.py">post_v1reports_jobs_get</a>(...) -> PostV1ReportsJobsGetResponse</code></summary>
+<details><summary><code>client.reports.<a href="src/nordlet/reports/client.py">jobs_get</a>(...) -> JobsGetReportsResponse</code></summary>
 <dl>
 <dd>
 
@@ -46086,7 +46408,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.reports.post_v1reports_jobs_get(
+client.reports.jobs_get(
     id="id",
 )
 
@@ -46124,7 +46446,7 @@ client.reports.post_v1reports_jobs_get(
 </dl>
 </details>
 
-<details><summary><code>client.reports.<a href="src/nordlet/reports/client.py">post_v1reports_jobs_list</a>(...) -> PostV1ReportsJobsListResponse</code></summary>
+<details><summary><code>client.reports.<a href="src/nordlet/reports/client.py">jobs_list</a>(...) -> JobsListReportsResponse</code></summary>
 <dl>
 <dd>
 
@@ -46145,7 +46467,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.reports.post_v1reports_jobs_list()
+client.reports.jobs_list()
 
 ```
 </dd>
@@ -46177,7 +46499,7 @@ client.reports.post_v1reports_jobs_list()
 <dl>
 <dd>
 
-**sort:** `typing.Optional[typing.List[PostV1ReportsJobsListRequestSortItem]]` 
+**sort:** `typing.Optional[typing.List[JobsListReportsRequestSortItem]]` 
     
 </dd>
 </dl>
@@ -46185,7 +46507,7 @@ client.reports.post_v1reports_jobs_list()
 <dl>
 <dd>
 
-**filter:** `typing.Optional[typing.List[PostV1ReportsJobsListRequestFilterItem]]` 
+**filter:** `typing.Optional[typing.List[JobsListReportsRequestFilterItem]]` 
     
 </dd>
 </dl>
@@ -46213,8 +46535,8 @@ client.reports.post_v1reports_jobs_list()
 </dl>
 </details>
 
-## Consolidation
-<details><summary><code>client.consolidation.<a href="src/nordlet/consolidation/client.py">post_v1consolidation_groups_create</a>(...) -> PostV1ConsolidationGroupsCreateResponse</code></summary>
+## consolidation
+<details><summary><code>client.consolidation.<a href="src/nordlet/consolidation/client.py">groups_create</a>(...) -> GroupsCreateConsolidationResponse</code></summary>
 <dl>
 <dd>
 
@@ -46235,7 +46557,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.consolidation.post_v1consolidation_groups_create(
+client.consolidation.groups_create(
     name="name",
 )
 
@@ -46281,7 +46603,7 @@ client.consolidation.post_v1consolidation_groups_create(
 </dl>
 </details>
 
-<details><summary><code>client.consolidation.<a href="src/nordlet/consolidation/client.py">post_v1consolidation_groups_list</a>() -> PostV1ConsolidationGroupsListResponse</code></summary>
+<details><summary><code>client.consolidation.<a href="src/nordlet/consolidation/client.py">groups_list</a>() -> GroupsListConsolidationResponse</code></summary>
 <dl>
 <dd>
 
@@ -46302,7 +46624,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.consolidation.post_v1consolidation_groups_list()
+client.consolidation.groups_list()
 
 ```
 </dd>
@@ -46330,7 +46652,7 @@ client.consolidation.post_v1consolidation_groups_list()
 </dl>
 </details>
 
-<details><summary><code>client.consolidation.<a href="src/nordlet/consolidation/client.py">post_v1consolidation_groups_get</a>(...) -> PostV1ConsolidationGroupsGetResponse</code></summary>
+<details><summary><code>client.consolidation.<a href="src/nordlet/consolidation/client.py">groups_get</a>(...) -> GroupsGetConsolidationResponse</code></summary>
 <dl>
 <dd>
 
@@ -46351,7 +46673,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.consolidation.post_v1consolidation_groups_get(
+client.consolidation.groups_get(
     group_id="groupId",
 )
 
@@ -46389,7 +46711,7 @@ client.consolidation.post_v1consolidation_groups_get(
 </dl>
 </details>
 
-<details><summary><code>client.consolidation.<a href="src/nordlet/consolidation/client.py">post_v1consolidation_groups_update</a>(...) -> PostV1ConsolidationGroupsUpdateResponse</code></summary>
+<details><summary><code>client.consolidation.<a href="src/nordlet/consolidation/client.py">groups_update</a>(...) -> GroupsUpdateConsolidationResponse</code></summary>
 <dl>
 <dd>
 
@@ -46410,7 +46732,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.consolidation.post_v1consolidation_groups_update(
+client.consolidation.groups_update(
     group_id="groupId",
 )
 
@@ -46464,7 +46786,7 @@ client.consolidation.post_v1consolidation_groups_update(
 </dl>
 </details>
 
-<details><summary><code>client.consolidation.<a href="src/nordlet/consolidation/client.py">post_v1consolidation_groups_delete</a>(...) -> PostV1ConsolidationGroupsDeleteResponse</code></summary>
+<details><summary><code>client.consolidation.<a href="src/nordlet/consolidation/client.py">groups_delete</a>(...) -> GroupsDeleteConsolidationResponse</code></summary>
 <dl>
 <dd>
 
@@ -46485,7 +46807,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.consolidation.post_v1consolidation_groups_delete(
+client.consolidation.groups_delete(
     group_id="groupId",
 )
 
@@ -46523,7 +46845,7 @@ client.consolidation.post_v1consolidation_groups_delete(
 </dl>
 </details>
 
-<details><summary><code>client.consolidation.<a href="src/nordlet/consolidation/client.py">post_v1consolidation_members_add</a>(...) -> PostV1ConsolidationMembersAddResponse</code></summary>
+<details><summary><code>client.consolidation.<a href="src/nordlet/consolidation/client.py">members_add</a>(...) -> MembersAddConsolidationResponse</code></summary>
 <dl>
 <dd>
 
@@ -46544,7 +46866,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.consolidation.post_v1consolidation_members_add(
+client.consolidation.members_add(
     group_id="groupId",
     member_company_id="memberCompanyId",
 )
@@ -46587,7 +46909,7 @@ client.consolidation.post_v1consolidation_members_add(
 <dl>
 <dd>
 
-**method:** `typing.Optional[PostV1ConsolidationMembersAddRequestMethod]` 
+**method:** `typing.Optional[MembersAddConsolidationRequestMethod]` 
     
 </dd>
 </dl>
@@ -46607,7 +46929,7 @@ client.consolidation.post_v1consolidation_members_add(
 </dl>
 </details>
 
-<details><summary><code>client.consolidation.<a href="src/nordlet/consolidation/client.py">post_v1consolidation_members_remove</a>(...) -> PostV1ConsolidationMembersRemoveResponse</code></summary>
+<details><summary><code>client.consolidation.<a href="src/nordlet/consolidation/client.py">members_remove</a>(...) -> MembersRemoveConsolidationResponse</code></summary>
 <dl>
 <dd>
 
@@ -46628,7 +46950,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.consolidation.post_v1consolidation_members_remove(
+client.consolidation.members_remove(
     group_id="groupId",
     member_company_id="memberCompanyId",
 )
@@ -46675,7 +46997,7 @@ client.consolidation.post_v1consolidation_members_remove(
 </dl>
 </details>
 
-<details><summary><code>client.consolidation.<a href="src/nordlet/consolidation/client.py">post_v1consolidation_intercompany_candidates</a>(...) -> PostV1ConsolidationIntercompanyCandidatesResponse</code></summary>
+<details><summary><code>client.consolidation.<a href="src/nordlet/consolidation/client.py">intercompany_candidates</a>(...) -> IntercompanyCandidatesConsolidationResponse</code></summary>
 <dl>
 <dd>
 
@@ -46710,7 +47032,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.consolidation.post_v1consolidation_intercompany_candidates(
+client.consolidation.intercompany_candidates(
     group_id="groupId",
 )
 
@@ -46748,7 +47070,7 @@ client.consolidation.post_v1consolidation_intercompany_candidates(
 </dl>
 </details>
 
-<details><summary><code>client.consolidation.<a href="src/nordlet/consolidation/client.py">post_v1consolidation_intercompany_links_set</a>(...) -> PostV1ConsolidationIntercompanyLinksSetResponse</code></summary>
+<details><summary><code>client.consolidation.<a href="src/nordlet/consolidation/client.py">intercompany_links_set</a>(...) -> IntercompanyLinksSetConsolidationResponse</code></summary>
 <dl>
 <dd>
 
@@ -46783,7 +47105,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.consolidation.post_v1consolidation_intercompany_links_set(
+client.consolidation.intercompany_links_set(
     group_id="groupId",
     partner_id="partnerId",
     counterparty_company_id="counterpartyCompanyId",
@@ -46839,7 +47161,7 @@ client.consolidation.post_v1consolidation_intercompany_links_set(
 </dl>
 </details>
 
-<details><summary><code>client.consolidation.<a href="src/nordlet/consolidation/client.py">post_v1consolidation_intercompany_links_list</a>(...) -> PostV1ConsolidationIntercompanyLinksListResponse</code></summary>
+<details><summary><code>client.consolidation.<a href="src/nordlet/consolidation/client.py">intercompany_links_list</a>(...) -> IntercompanyLinksListConsolidationResponse</code></summary>
 <dl>
 <dd>
 
@@ -46860,7 +47182,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.consolidation.post_v1consolidation_intercompany_links_list(
+client.consolidation.intercompany_links_list(
     group_id="groupId",
 )
 
@@ -46898,7 +47220,7 @@ client.consolidation.post_v1consolidation_intercompany_links_list(
 </dl>
 </details>
 
-<details><summary><code>client.consolidation.<a href="src/nordlet/consolidation/client.py">post_v1consolidation_intercompany_links_remove</a>(...) -> PostV1ConsolidationIntercompanyLinksRemoveResponse</code></summary>
+<details><summary><code>client.consolidation.<a href="src/nordlet/consolidation/client.py">intercompany_links_remove</a>(...) -> IntercompanyLinksRemoveConsolidationResponse</code></summary>
 <dl>
 <dd>
 
@@ -46919,7 +47241,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.consolidation.post_v1consolidation_intercompany_links_remove(
+client.consolidation.intercompany_links_remove(
     group_id="groupId",
     id="id",
 )
@@ -46966,7 +47288,7 @@ client.consolidation.post_v1consolidation_intercompany_links_remove(
 </dl>
 </details>
 
-<details><summary><code>client.consolidation.<a href="src/nordlet/consolidation/client.py">post_v1consolidation_intercompany_report</a>(...) -> PostV1ConsolidationIntercompanyReportResponse</code></summary>
+<details><summary><code>client.consolidation.<a href="src/nordlet/consolidation/client.py">intercompany_report</a>(...) -> IntercompanyReportConsolidationResponse</code></summary>
 <dl>
 <dd>
 
@@ -46995,16 +47317,17 @@ Intercompany reconciliation for a period: every issued intercompany sale invoice
 ```python
 from nordlet import Nordlet
 from nordlet.environment import NordletEnvironment
+import datetime
 
 client = Nordlet(
     token="<token>",
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.consolidation.post_v1consolidation_intercompany_report(
+client.consolidation.intercompany_report(
     group_id="groupId",
-    from_date="fromDate",
-    to_date="toDate",
+    from_date=datetime.date.fromisoformat("2026-07-01"),
+    to_date=datetime.date.fromisoformat("2026-07-01"),
 )
 
 ```
@@ -47029,7 +47352,7 @@ client.consolidation.post_v1consolidation_intercompany_report(
 <dl>
 <dd>
 
-**from_date:** `str` 
+**from_date:** `datetime.date` 
     
 </dd>
 </dl>
@@ -47037,7 +47360,7 @@ client.consolidation.post_v1consolidation_intercompany_report(
 <dl>
 <dd>
 
-**to_date:** `str` 
+**to_date:** `datetime.date` 
     
 </dd>
 </dl>
@@ -47057,7 +47380,7 @@ client.consolidation.post_v1consolidation_intercompany_report(
 </dl>
 </details>
 
-<details><summary><code>client.consolidation.<a href="src/nordlet/consolidation/client.py">post_v1consolidation_report</a>(...) -> PostV1ConsolidationReportResponse</code></summary>
+<details><summary><code>client.consolidation.<a href="src/nordlet/consolidation/client.py">report</a>(...) -> ReportConsolidationResponse</code></summary>
 <dl>
 <dd>
 
@@ -47072,16 +47395,17 @@ client.consolidation.post_v1consolidation_intercompany_report(
 ```python
 from nordlet import Nordlet
 from nordlet.environment import NordletEnvironment
+import datetime
 
 client = Nordlet(
     token="<token>",
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.consolidation.post_v1consolidation_report(
+client.consolidation.report(
     group_id="groupId",
-    from_date="fromDate",
-    to_date="toDate",
+    from_date=datetime.date.fromisoformat("2026-07-01"),
+    to_date=datetime.date.fromisoformat("2026-07-01"),
 )
 
 ```
@@ -47106,7 +47430,7 @@ client.consolidation.post_v1consolidation_report(
 <dl>
 <dd>
 
-**from_date:** `str` 
+**from_date:** `datetime.date` 
     
 </dd>
 </dl>
@@ -47114,7 +47438,7 @@ client.consolidation.post_v1consolidation_report(
 <dl>
 <dd>
 
-**to_date:** `str` 
+**to_date:** `datetime.date` 
     
 </dd>
 </dl>
@@ -47122,7 +47446,7 @@ client.consolidation.post_v1consolidation_report(
 <dl>
 <dd>
 
-**category:** `typing.Optional[PostV1ConsolidationReportRequestCategory]` 
+**category:** `typing.Optional[ReportConsolidationRequestCategory]` 
     
 </dd>
 </dl>
@@ -47130,7 +47454,7 @@ client.consolidation.post_v1consolidation_report(
 <dl>
 <dd>
 
-**eliminations:** `typing.Optional[typing.List[PostV1ConsolidationReportRequestEliminationsItem]]` 
+**eliminations:** `typing.Optional[typing.List[ReportConsolidationRequestEliminationsItem]]` 
     
 </dd>
 </dl>
@@ -47150,8 +47474,8 @@ client.consolidation.post_v1consolidation_report(
 </dl>
 </details>
 
-## Public
-<details><summary><code>client.public.<a href="src/nordlet/public/client.py">post_v1public_integration_requests</a>(...) -> PostV1PublicIntegrationRequestsResponse</code></summary>
+## public
+<details><summary><code>client.public.<a href="src/nordlet/public/client.py">integration_requests</a>(...) -> IntegrationRequestsPublicResponse</code></summary>
 <dl>
 <dd>
 
@@ -47172,7 +47496,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.public.post_v1public_integration_requests(
+client.public.integration_requests(
     integration="integration",
     name="name",
     email="email",
@@ -47252,7 +47576,7 @@ client.public.post_v1public_integration_requests(
 </dl>
 </details>
 
-<details><summary><code>client.public.<a href="src/nordlet/public/client.py">get_v1public_pay_token</a>(...)</code></summary>
+<details><summary><code>client.public.<a href="src/nordlet/public/client.py">pay</a>(...)</code></summary>
 <dl>
 <dd>
 
@@ -47273,7 +47597,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.public.get_v1public_pay_token(
+client.public.pay(
     token="token",
 )
 
@@ -47311,8 +47635,8 @@ client.public.get_v1public_pay_token(
 </dl>
 </details>
 
-## Billing
-<details><summary><code>client.billing.<a href="src/nordlet/billing/client.py">post_v1billing_account_get</a>() -> PostV1BillingAccountGetResponse</code></summary>
+## billing
+<details><summary><code>client.billing.<a href="src/nordlet/billing/client.py">account_get</a>() -> AccountGetBillingResponse</code></summary>
 <dl>
 <dd>
 
@@ -47333,7 +47657,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.billing.post_v1billing_account_get()
+client.billing.account_get()
 
 ```
 </dd>
@@ -47361,7 +47685,7 @@ client.billing.post_v1billing_account_get()
 </dl>
 </details>
 
-<details><summary><code>client.billing.<a href="src/nordlet/billing/client.py">post_v1billing_account_set_plan</a>(...) -> PostV1BillingAccountSetPlanResponse</code></summary>
+<details><summary><code>client.billing.<a href="src/nordlet/billing/client.py">account_set_plan</a>(...) -> AccountSetPlanBillingResponse</code></summary>
 <dl>
 <dd>
 
@@ -47382,7 +47706,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.billing.post_v1billing_account_set_plan(
+client.billing.account_set_plan(
     plan="starter",
 )
 
@@ -47400,7 +47724,7 @@ client.billing.post_v1billing_account_set_plan(
 <dl>
 <dd>
 
-**plan:** `PostV1BillingAccountSetPlanRequestPlan` 
+**plan:** `AccountSetPlanBillingRequestPlan` 
     
 </dd>
 </dl>
@@ -47420,7 +47744,7 @@ client.billing.post_v1billing_account_set_plan(
 </dl>
 </details>
 
-<details><summary><code>client.billing.<a href="src/nordlet/billing/client.py">post_v1billing_topup_create</a>(...) -> PostV1BillingTopupCreateResponse</code></summary>
+<details><summary><code>client.billing.<a href="src/nordlet/billing/client.py">topup_create</a>(...) -> TopupCreateBillingResponse</code></summary>
 <dl>
 <dd>
 
@@ -47441,7 +47765,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.billing.post_v1billing_topup_create(
+client.billing.topup_create(
     amount_cents=1000000,
 )
 
@@ -47467,7 +47791,7 @@ client.billing.post_v1billing_topup_create(
 <dl>
 <dd>
 
-**locale:** `typing.Optional[PostV1BillingTopupCreateRequestLocale]` 
+**locale:** `typing.Optional[TopupCreateBillingRequestLocale]` 
     
 </dd>
 </dl>
@@ -47487,7 +47811,7 @@ client.billing.post_v1billing_topup_create(
 </dl>
 </details>
 
-<details><summary><code>client.billing.<a href="src/nordlet/billing/client.py">post_v1billing_portal_create</a>(...) -> PostV1BillingPortalCreateResponse</code></summary>
+<details><summary><code>client.billing.<a href="src/nordlet/billing/client.py">portal_create</a>(...) -> PortalCreateBillingResponse</code></summary>
 <dl>
 <dd>
 
@@ -47508,7 +47832,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.billing.post_v1billing_portal_create()
+client.billing.portal_create()
 
 ```
 </dd>
@@ -47524,7 +47848,7 @@ client.billing.post_v1billing_portal_create()
 <dl>
 <dd>
 
-**locale:** `typing.Optional[PostV1BillingPortalCreateRequestLocale]` 
+**locale:** `typing.Optional[PortalCreateBillingRequestLocale]` 
     
 </dd>
 </dl>
@@ -47544,7 +47868,7 @@ client.billing.post_v1billing_portal_create()
 </dl>
 </details>
 
-<details><summary><code>client.billing.<a href="src/nordlet/billing/client.py">post_v1billing_transactions_list</a>(...) -> PostV1BillingTransactionsListResponse</code></summary>
+<details><summary><code>client.billing.<a href="src/nordlet/billing/client.py">transactions_list</a>(...) -> TransactionsListBillingResponse</code></summary>
 <dl>
 <dd>
 
@@ -47565,7 +47889,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.billing.post_v1billing_transactions_list()
+client.billing.transactions_list()
 
 ```
 </dd>
@@ -47601,7 +47925,7 @@ client.billing.post_v1billing_transactions_list()
 </dl>
 </details>
 
-<details><summary><code>client.billing.<a href="src/nordlet/billing/client.py">post_v1billing_usage_list</a>(...) -> PostV1BillingUsageListResponse</code></summary>
+<details><summary><code>client.billing.<a href="src/nordlet/billing/client.py">usage_list</a>(...) -> UsageListBillingResponse</code></summary>
 <dl>
 <dd>
 
@@ -47616,15 +47940,16 @@ client.billing.post_v1billing_transactions_list()
 ```python
 from nordlet import Nordlet
 from nordlet.environment import NordletEnvironment
+import datetime
 
 client = Nordlet(
     token="<token>",
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.billing.post_v1billing_usage_list(
-    from_="from",
-    to="to",
+client.billing.usage_list(
+    from_=datetime.date.fromisoformat("2026-07-01"),
+    to=datetime.date.fromisoformat("2026-07-01"),
 )
 
 ```
@@ -47641,7 +47966,7 @@ client.billing.post_v1billing_usage_list(
 <dl>
 <dd>
 
-**from:** `str` 
+**from:** `datetime.date` 
     
 </dd>
 </dl>
@@ -47649,7 +47974,7 @@ client.billing.post_v1billing_usage_list(
 <dl>
 <dd>
 
-**to:** `str` 
+**to:** `datetime.date` 
     
 </dd>
 </dl>
@@ -47669,8 +47994,8 @@ client.billing.post_v1billing_usage_list(
 </dl>
 </details>
 
-## Account
-<details><summary><code>client.account.<a href="src/nordlet/account/client.py">post_v1account_login_link_request</a>(...) -> PostV1AccountLoginLinkRequestResponse</code></summary>
+## account
+<details><summary><code>client.account.<a href="src/nordlet/account/client.py">login_link_request</a>(...) -> LoginLinkRequestAccountResponse</code></summary>
 <dl>
 <dd>
 
@@ -47691,7 +48016,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.account.post_v1account_login_link_request(
+client.account.login_link_request(
     email="email",
 )
 
@@ -47717,7 +48042,7 @@ client.account.post_v1account_login_link_request(
 <dl>
 <dd>
 
-**locale:** `typing.Optional[PostV1AccountLoginLinkRequestRequestLocale]` 
+**locale:** `typing.Optional[LoginLinkRequestAccountRequestLocale]` 
     
 </dd>
 </dl>
@@ -47761,7 +48086,7 @@ client.account.post_v1account_login_link_request(
 </dl>
 </details>
 
-<details><summary><code>client.account.<a href="src/nordlet/account/client.py">post_v1account_login_link_consume</a>(...) -> PostV1AccountLoginLinkConsumeResponse</code></summary>
+<details><summary><code>client.account.<a href="src/nordlet/account/client.py">login_link_consume</a>(...) -> LoginLinkConsumeAccountResponse</code></summary>
 <dl>
 <dd>
 
@@ -47782,7 +48107,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.account.post_v1account_login_link_consume(
+client.account.login_link_consume(
     token="token",
 )
 
@@ -47820,7 +48145,7 @@ client.account.post_v1account_login_link_consume(
 </dl>
 </details>
 
-<details><summary><code>client.account.<a href="src/nordlet/account/client.py">post_v1account_logout</a>() -> PostV1AccountLogoutResponse</code></summary>
+<details><summary><code>client.account.<a href="src/nordlet/account/client.py">logout</a>() -> LogoutAccountResponse</code></summary>
 <dl>
 <dd>
 
@@ -47841,7 +48166,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.account.post_v1account_logout()
+client.account.logout()
 
 ```
 </dd>
@@ -47869,7 +48194,7 @@ client.account.post_v1account_logout()
 </dl>
 </details>
 
-<details><summary><code>client.account.<a href="src/nordlet/account/client.py">post_v1account_me</a>() -> PostV1AccountMeResponse</code></summary>
+<details><summary><code>client.account.<a href="src/nordlet/account/client.py">me</a>() -> MeAccountResponse</code></summary>
 <dl>
 <dd>
 
@@ -47890,7 +48215,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.account.post_v1account_me()
+client.account.me()
 
 ```
 </dd>
@@ -47918,7 +48243,7 @@ client.account.post_v1account_me()
 </dl>
 </details>
 
-<details><summary><code>client.account.<a href="src/nordlet/account/client.py">post_v1account_members_list</a>() -> PostV1AccountMembersListResponse</code></summary>
+<details><summary><code>client.account.<a href="src/nordlet/account/client.py">members_list</a>() -> MembersListAccountResponse</code></summary>
 <dl>
 <dd>
 
@@ -47939,7 +48264,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.account.post_v1account_members_list()
+client.account.members_list()
 
 ```
 </dd>
@@ -47967,7 +48292,7 @@ client.account.post_v1account_members_list()
 </dl>
 </details>
 
-<details><summary><code>client.account.<a href="src/nordlet/account/client.py">post_v1account_members_set_role</a>(...) -> PostV1AccountMembersSetRoleResponse</code></summary>
+<details><summary><code>client.account.<a href="src/nordlet/account/client.py">members_set_role</a>(...) -> MembersSetRoleAccountResponse</code></summary>
 <dl>
 <dd>
 
@@ -47988,7 +48313,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.account.post_v1account_members_set_role(
+client.account.members_set_role(
     user_id="userId",
     role="admin",
 )
@@ -48015,7 +48340,7 @@ client.account.post_v1account_members_set_role(
 <dl>
 <dd>
 
-**role:** `PostV1AccountMembersSetRoleRequestRole` 
+**role:** `MembersSetRoleAccountRequestRole` 
     
 </dd>
 </dl>
@@ -48035,7 +48360,7 @@ client.account.post_v1account_members_set_role(
 </dl>
 </details>
 
-<details><summary><code>client.account.<a href="src/nordlet/account/client.py">post_v1account_members_transfer_ownership</a>(...) -> PostV1AccountMembersTransferOwnershipResponse</code></summary>
+<details><summary><code>client.account.<a href="src/nordlet/account/client.py">members_transfer_ownership</a>(...) -> MembersTransferOwnershipAccountResponse</code></summary>
 <dl>
 <dd>
 
@@ -48056,7 +48381,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.account.post_v1account_members_transfer_ownership(
+client.account.members_transfer_ownership(
     user_id="userId",
 )
 
@@ -48102,7 +48427,7 @@ client.account.post_v1account_members_transfer_ownership(
 </dl>
 </details>
 
-<details><summary><code>client.account.<a href="src/nordlet/account/client.py">post_v1account_members_remove</a>(...) -> PostV1AccountMembersRemoveResponse</code></summary>
+<details><summary><code>client.account.<a href="src/nordlet/account/client.py">members_remove</a>(...) -> MembersRemoveAccountResponse</code></summary>
 <dl>
 <dd>
 
@@ -48123,7 +48448,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.account.post_v1account_members_remove(
+client.account.members_remove(
     user_id="userId",
 )
 
@@ -48161,7 +48486,7 @@ client.account.post_v1account_members_remove(
 </dl>
 </details>
 
-<details><summary><code>client.account.<a href="src/nordlet/account/client.py">post_v1account_invites_create</a>(...) -> PostV1AccountInvitesCreateResponse</code></summary>
+<details><summary><code>client.account.<a href="src/nordlet/account/client.py">invites_create</a>(...) -> InvitesCreateAccountResponse</code></summary>
 <dl>
 <dd>
 
@@ -48182,7 +48507,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.account.post_v1account_invites_create(
+client.account.invites_create(
     email="email",
     role="admin",
 )
@@ -48209,7 +48534,7 @@ client.account.post_v1account_invites_create(
 <dl>
 <dd>
 
-**role:** `PostV1AccountInvitesCreateRequestRole` 
+**role:** `InvitesCreateAccountRequestRole` 
     
 </dd>
 </dl>
@@ -48217,7 +48542,7 @@ client.account.post_v1account_invites_create(
 <dl>
 <dd>
 
-**locale:** `typing.Optional[PostV1AccountInvitesCreateRequestLocale]` 
+**locale:** `typing.Optional[InvitesCreateAccountRequestLocale]` 
     
 </dd>
 </dl>
@@ -48237,7 +48562,7 @@ client.account.post_v1account_invites_create(
 </dl>
 </details>
 
-<details><summary><code>client.account.<a href="src/nordlet/account/client.py">post_v1account_invites_list</a>() -> PostV1AccountInvitesListResponse</code></summary>
+<details><summary><code>client.account.<a href="src/nordlet/account/client.py">invites_list</a>() -> InvitesListAccountResponse</code></summary>
 <dl>
 <dd>
 
@@ -48258,7 +48583,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.account.post_v1account_invites_list()
+client.account.invites_list()
 
 ```
 </dd>
@@ -48286,7 +48611,7 @@ client.account.post_v1account_invites_list()
 </dl>
 </details>
 
-<details><summary><code>client.account.<a href="src/nordlet/account/client.py">post_v1account_invites_revoke</a>(...) -> PostV1AccountInvitesRevokeResponse</code></summary>
+<details><summary><code>client.account.<a href="src/nordlet/account/client.py">invites_revoke</a>(...) -> InvitesRevokeAccountResponse</code></summary>
 <dl>
 <dd>
 
@@ -48307,7 +48632,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.account.post_v1account_invites_revoke(
+client.account.invites_revoke(
     id="id",
 )
 
@@ -48345,7 +48670,7 @@ client.account.post_v1account_invites_revoke(
 </dl>
 </details>
 
-<details><summary><code>client.account.<a href="src/nordlet/account/client.py">post_v1account_invites_get</a>(...) -> PostV1AccountInvitesGetResponse</code></summary>
+<details><summary><code>client.account.<a href="src/nordlet/account/client.py">invites_get</a>(...) -> InvitesGetAccountResponse</code></summary>
 <dl>
 <dd>
 
@@ -48366,7 +48691,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.account.post_v1account_invites_get(
+client.account.invites_get(
     token="token",
 )
 
@@ -48404,7 +48729,7 @@ client.account.post_v1account_invites_get(
 </dl>
 </details>
 
-<details><summary><code>client.account.<a href="src/nordlet/account/client.py">post_v1account_invites_accept</a>(...) -> PostV1AccountInvitesAcceptResponse</code></summary>
+<details><summary><code>client.account.<a href="src/nordlet/account/client.py">invites_accept</a>(...) -> InvitesAcceptAccountResponse</code></summary>
 <dl>
 <dd>
 
@@ -48425,7 +48750,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.account.post_v1account_invites_accept(
+client.account.invites_accept(
     token="token",
 )
 
@@ -48459,7 +48784,7 @@ client.account.post_v1account_invites_accept(
 <dl>
 <dd>
 
-**locale:** `typing.Optional[PostV1AccountInvitesAcceptRequestLocale]` 
+**locale:** `typing.Optional[InvitesAcceptAccountRequestLocale]` 
     
 </dd>
 </dl>
@@ -48495,7 +48820,7 @@ client.account.post_v1account_invites_accept(
 </dl>
 </details>
 
-<details><summary><code>client.account.<a href="src/nordlet/account/client.py">post_v1account_locale_set</a>(...) -> PostV1AccountLocaleSetResponse</code></summary>
+<details><summary><code>client.account.<a href="src/nordlet/account/client.py">locale_set</a>(...) -> LocaleSetAccountResponse</code></summary>
 <dl>
 <dd>
 
@@ -48516,7 +48841,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.account.post_v1account_locale_set(
+client.account.locale_set(
     locale="en",
 )
 
@@ -48534,7 +48859,7 @@ client.account.post_v1account_locale_set(
 <dl>
 <dd>
 
-**locale:** `PostV1AccountLocaleSetRequestLocale` 
+**locale:** `LocaleSetAccountRequestLocale` 
     
 </dd>
 </dl>
@@ -48554,7 +48879,7 @@ client.account.post_v1account_locale_set(
 </dl>
 </details>
 
-<details><summary><code>client.account.<a href="src/nordlet/account/client.py">post_v1account_companies_create</a>(...) -> PostV1AccountCompaniesCreateResponse</code></summary>
+<details><summary><code>client.account.<a href="src/nordlet/account/client.py">companies_create</a>(...) -> CompaniesCreateAccountResponse</code></summary>
 <dl>
 <dd>
 
@@ -48575,7 +48900,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.account.post_v1account_companies_create(
+client.account.companies_create(
     name="name",
 )
 
@@ -48633,7 +48958,7 @@ client.account.post_v1account_companies_create(
 <dl>
 <dd>
 
-**vat_period:** `typing.Optional[PostV1AccountCompaniesCreateRequestVatPeriod]` 
+**vat_period:** `typing.Optional[CompaniesCreateAccountRequestVatPeriod]` 
     
 </dd>
 </dl>
@@ -48665,7 +48990,7 @@ client.account.post_v1account_companies_create(
 <dl>
 <dd>
 
-**address:** `typing.Optional[PostV1AccountCompaniesCreateRequestAddress]` 
+**address:** `typing.Optional[CompaniesCreateAccountRequestAddress]` 
     
 </dd>
 </dl>
@@ -48745,7 +49070,7 @@ client.account.post_v1account_companies_create(
 <dl>
 <dd>
 
-**incorporated_on:** `typing.Optional[str]` 
+**incorporated_on:** `typing.Optional[datetime.date]` 
     
 </dd>
 </dl>
@@ -48761,7 +49086,7 @@ client.account.post_v1account_companies_create(
 <dl>
 <dd>
 
-**accounts_kept_by:** `typing.Optional[PostV1AccountCompaniesCreateRequestAccountsKeptBy]` 
+**accounts_kept_by:** `typing.Optional[CompaniesCreateAccountRequestAccountsKeptBy]` 
     
 </dd>
 </dl>
@@ -48801,7 +49126,15 @@ client.account.post_v1account_companies_create(
 <dl>
 <dd>
 
-**country_code:** `typing.Optional[PostV1AccountCompaniesCreateRequestCountryCode]` — Jurisdiction the company is registered in (immutable after creation)
+**country_code:** `typing.Optional[CompaniesCreateAccountRequestCountryCode]` — Jurisdiction the company is registered in (immutable after creation)
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**base_currency:** `typing.Optional[str]` — Currency the ledger is kept in; defaults to the national currency of countryCode (immutable after creation)
     
 </dd>
 </dl>
@@ -48829,7 +49162,7 @@ client.account.post_v1account_companies_create(
 </dl>
 </details>
 
-<details><summary><code>client.account.<a href="src/nordlet/account/client.py">post_v1account_companies_select</a>(...) -> PostV1AccountCompaniesSelectResponse</code></summary>
+<details><summary><code>client.account.<a href="src/nordlet/account/client.py">companies_select</a>(...) -> CompaniesSelectAccountResponse</code></summary>
 <dl>
 <dd>
 
@@ -48850,7 +49183,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.account.post_v1account_companies_select(
+client.account.companies_select(
     company_id="companyId",
 )
 
@@ -48888,7 +49221,7 @@ client.account.post_v1account_companies_select(
 </dl>
 </details>
 
-<details><summary><code>client.account.<a href="src/nordlet/account/client.py">post_v1account_companies_profile</a>() -> PostV1AccountCompaniesProfileResponse</code></summary>
+<details><summary><code>client.account.<a href="src/nordlet/account/client.py">companies_profile</a>() -> CompaniesProfileAccountResponse</code></summary>
 <dl>
 <dd>
 
@@ -48909,7 +49242,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.account.post_v1account_companies_profile()
+client.account.companies_profile()
 
 ```
 </dd>
@@ -48937,7 +49270,7 @@ client.account.post_v1account_companies_profile()
 </dl>
 </details>
 
-<details><summary><code>client.account.<a href="src/nordlet/account/client.py">post_v1account_companies_update</a>(...) -> PostV1AccountCompaniesUpdateResponse</code></summary>
+<details><summary><code>client.account.<a href="src/nordlet/account/client.py">companies_update</a>(...) -> CompaniesUpdateAccountResponse</code></summary>
 <dl>
 <dd>
 
@@ -48958,7 +49291,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.account.post_v1account_companies_update()
+client.account.companies_update()
 
 ```
 </dd>
@@ -49014,7 +49347,7 @@ client.account.post_v1account_companies_update()
 <dl>
 <dd>
 
-**vat_period:** `typing.Optional[PostV1AccountCompaniesUpdateRequestVatPeriod]` 
+**vat_period:** `typing.Optional[CompaniesUpdateAccountRequestVatPeriod]` 
     
 </dd>
 </dl>
@@ -49046,7 +49379,7 @@ client.account.post_v1account_companies_update()
 <dl>
 <dd>
 
-**address:** `typing.Optional[PostV1AccountCompaniesUpdateRequestAddress]` 
+**address:** `typing.Optional[CompaniesUpdateAccountRequestAddress]` 
     
 </dd>
 </dl>
@@ -49126,7 +49459,7 @@ client.account.post_v1account_companies_update()
 <dl>
 <dd>
 
-**incorporated_on:** `typing.Optional[str]` 
+**incorporated_on:** `typing.Optional[datetime.date]` 
     
 </dd>
 </dl>
@@ -49142,7 +49475,7 @@ client.account.post_v1account_companies_update()
 <dl>
 <dd>
 
-**accounts_kept_by:** `typing.Optional[PostV1AccountCompaniesUpdateRequestAccountsKeptBy]` 
+**accounts_kept_by:** `typing.Optional[CompaniesUpdateAccountRequestAccountsKeptBy]` 
     
 </dd>
 </dl>
@@ -49182,7 +49515,7 @@ client.account.post_v1account_companies_update()
 <dl>
 <dd>
 
-**logo:** `typing.Optional[PostV1AccountCompaniesUpdateRequestLogo]` 
+**logo:** `typing.Optional[CompaniesUpdateAccountRequestLogo]` 
     
 </dd>
 </dl>
@@ -49202,7 +49535,7 @@ client.account.post_v1account_companies_update()
 </dl>
 </details>
 
-<details><summary><code>client.account.<a href="src/nordlet/account/client.py">post_v1account_companies_archive</a>(...) -> PostV1AccountCompaniesArchiveResponse</code></summary>
+<details><summary><code>client.account.<a href="src/nordlet/account/client.py">companies_archive</a>(...) -> CompaniesArchiveAccountResponse</code></summary>
 <dl>
 <dd>
 
@@ -49223,7 +49556,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.account.post_v1account_companies_archive(
+client.account.companies_archive(
     company_id="companyId",
 )
 
@@ -49261,7 +49594,7 @@ client.account.post_v1account_companies_archive(
 </dl>
 </details>
 
-<details><summary><code>client.account.<a href="src/nordlet/account/client.py">post_v1account_companies_delete</a>(...) -> PostV1AccountCompaniesDeleteResponse</code></summary>
+<details><summary><code>client.account.<a href="src/nordlet/account/client.py">companies_delete</a>(...) -> CompaniesDeleteAccountResponse</code></summary>
 <dl>
 <dd>
 
@@ -49282,7 +49615,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.account.post_v1account_companies_delete(
+client.account.companies_delete(
     company_id="companyId",
 )
 
@@ -49320,7 +49653,7 @@ client.account.post_v1account_companies_delete(
 </dl>
 </details>
 
-<details><summary><code>client.account.<a href="src/nordlet/account/client.py">post_v1account_companies_activate</a>(...) -> PostV1AccountCompaniesActivateResponse</code></summary>
+<details><summary><code>client.account.<a href="src/nordlet/account/client.py">companies_activate</a>(...) -> CompaniesActivateAccountResponse</code></summary>
 <dl>
 <dd>
 
@@ -49341,7 +49674,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.account.post_v1account_companies_activate(
+client.account.companies_activate(
     company_id="companyId",
 )
 
@@ -49379,7 +49712,7 @@ client.account.post_v1account_companies_activate(
 </dl>
 </details>
 
-<details><summary><code>client.account.<a href="src/nordlet/account/client.py">post_v1account_api_keys_create</a>(...) -> PostV1AccountApiKeysCreateResponse</code></summary>
+<details><summary><code>client.account.<a href="src/nordlet/account/client.py">api_keys_create</a>(...) -> ApiKeysCreateAccountResponse</code></summary>
 <dl>
 <dd>
 
@@ -49400,7 +49733,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.account.post_v1account_api_keys_create(
+client.account.api_keys_create(
     name="name",
 )
 
@@ -49454,7 +49787,7 @@ client.account.post_v1account_api_keys_create(
 </dl>
 </details>
 
-<details><summary><code>client.account.<a href="src/nordlet/account/client.py">post_v1account_api_keys_list</a>() -> PostV1AccountApiKeysListResponse</code></summary>
+<details><summary><code>client.account.<a href="src/nordlet/account/client.py">api_keys_list</a>() -> ApiKeysListAccountResponse</code></summary>
 <dl>
 <dd>
 
@@ -49475,7 +49808,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.account.post_v1account_api_keys_list()
+client.account.api_keys_list()
 
 ```
 </dd>
@@ -49503,7 +49836,7 @@ client.account.post_v1account_api_keys_list()
 </dl>
 </details>
 
-<details><summary><code>client.account.<a href="src/nordlet/account/client.py">issue_a_replacement_for_an_api_key_and_set_the_old_one_to_stop_working_after_a_short_overlap</a>(...) -> PostV1AccountApiKeysRotateResponse</code></summary>
+<details><summary><code>client.account.<a href="src/nordlet/account/client.py">api_keys_rotate</a>(...) -> ApiKeysRotateAccountResponse</code></summary>
 <dl>
 <dd>
 
@@ -49524,7 +49857,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.account.issue_a_replacement_for_an_api_key_and_set_the_old_one_to_stop_working_after_a_short_overlap(
+client.account.api_keys_rotate(
     id="id",
 )
 
@@ -49578,7 +49911,7 @@ client.account.issue_a_replacement_for_an_api_key_and_set_the_old_one_to_stop_wo
 </dl>
 </details>
 
-<details><summary><code>client.account.<a href="src/nordlet/account/client.py">post_v1account_api_keys_revoke</a>(...) -> PostV1AccountApiKeysRevokeResponse</code></summary>
+<details><summary><code>client.account.<a href="src/nordlet/account/client.py">api_keys_revoke</a>(...) -> ApiKeysRevokeAccountResponse</code></summary>
 <dl>
 <dd>
 
@@ -49599,7 +49932,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.account.post_v1account_api_keys_revoke(
+client.account.api_keys_revoke(
     id="id",
 )
 
@@ -49637,7 +49970,7 @@ client.account.post_v1account_api_keys_revoke(
 </dl>
 </details>
 
-<details><summary><code>client.account.<a href="src/nordlet/account/client.py">post_v1account_consent_accept</a>(...) -> PostV1AccountConsentAcceptResponse</code></summary>
+<details><summary><code>client.account.<a href="src/nordlet/account/client.py">consent_accept</a>(...) -> ConsentAcceptAccountResponse</code></summary>
 <dl>
 <dd>
 
@@ -49658,7 +49991,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.account.post_v1account_consent_accept(
+client.account.consent_accept(
     accept_terms=True,
     accept_dpa=True,
 )
@@ -49705,7 +50038,7 @@ client.account.post_v1account_consent_accept(
 </dl>
 </details>
 
-<details><summary><code>client.account.<a href="src/nordlet/account/client.py">post_v1account_profile_update</a>(...) -> PostV1AccountProfileUpdateResponse</code></summary>
+<details><summary><code>client.account.<a href="src/nordlet/account/client.py">profile_update</a>(...) -> ProfileUpdateAccountResponse</code></summary>
 <dl>
 <dd>
 
@@ -49726,7 +50059,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.account.post_v1account_profile_update()
+client.account.profile_update()
 
 ```
 </dd>
@@ -49762,7 +50095,7 @@ client.account.post_v1account_profile_update()
 </dl>
 </details>
 
-<details><summary><code>client.account.<a href="src/nordlet/account/client.py">post_v1account_email_change_request</a>(...) -> PostV1AccountEmailChangeRequestResponse</code></summary>
+<details><summary><code>client.account.<a href="src/nordlet/account/client.py">email_change_request</a>(...) -> EmailChangeRequestAccountResponse</code></summary>
 <dl>
 <dd>
 
@@ -49783,7 +50116,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.account.post_v1account_email_change_request(
+client.account.email_change_request(
     new_email="newEmail",
 )
 
@@ -49809,7 +50142,7 @@ client.account.post_v1account_email_change_request(
 <dl>
 <dd>
 
-**locale:** `typing.Optional[PostV1AccountEmailChangeRequestRequestLocale]` 
+**locale:** `typing.Optional[EmailChangeRequestAccountRequestLocale]` 
     
 </dd>
 </dl>
@@ -49829,7 +50162,7 @@ client.account.post_v1account_email_change_request(
 </dl>
 </details>
 
-<details><summary><code>client.account.<a href="src/nordlet/account/client.py">post_v1account_sessions_list</a>() -> PostV1AccountSessionsListResponse</code></summary>
+<details><summary><code>client.account.<a href="src/nordlet/account/client.py">sessions_list</a>() -> SessionsListAccountResponse</code></summary>
 <dl>
 <dd>
 
@@ -49850,7 +50183,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.account.post_v1account_sessions_list()
+client.account.sessions_list()
 
 ```
 </dd>
@@ -49878,7 +50211,7 @@ client.account.post_v1account_sessions_list()
 </dl>
 </details>
 
-<details><summary><code>client.account.<a href="src/nordlet/account/client.py">post_v1account_sessions_revoke</a>(...) -> PostV1AccountSessionsRevokeResponse</code></summary>
+<details><summary><code>client.account.<a href="src/nordlet/account/client.py">sessions_revoke</a>(...) -> SessionsRevokeAccountResponse</code></summary>
 <dl>
 <dd>
 
@@ -49899,7 +50232,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.account.post_v1account_sessions_revoke(
+client.account.sessions_revoke(
     id="id",
 )
 
@@ -49937,7 +50270,7 @@ client.account.post_v1account_sessions_revoke(
 </dl>
 </details>
 
-<details><summary><code>client.account.<a href="src/nordlet/account/client.py">post_v1account_sessions_revoke_others</a>() -> PostV1AccountSessionsRevokeOthersResponse</code></summary>
+<details><summary><code>client.account.<a href="src/nordlet/account/client.py">sessions_revoke_others</a>() -> SessionsRevokeOthersAccountResponse</code></summary>
 <dl>
 <dd>
 
@@ -49958,7 +50291,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.account.post_v1account_sessions_revoke_others()
+client.account.sessions_revoke_others()
 
 ```
 </dd>
@@ -49986,7 +50319,7 @@ client.account.post_v1account_sessions_revoke_others()
 </dl>
 </details>
 
-<details><summary><code>client.account.<a href="src/nordlet/account/client.py">download_everything_nordlet_stores_about_the_signed_in_user</a>() -> PostV1AccountExportResponse</code></summary>
+<details><summary><code>client.account.<a href="src/nordlet/account/client.py">export</a>() -> ExportAccountResponse</code></summary>
 <dl>
 <dd>
 
@@ -50007,7 +50340,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.account.download_everything_nordlet_stores_about_the_signed_in_user()
+client.account.export()
 
 ```
 </dd>
@@ -50035,7 +50368,7 @@ client.account.download_everything_nordlet_stores_about_the_signed_in_user()
 </dl>
 </details>
 
-<details><summary><code>client.account.<a href="src/nordlet/account/client.py">delete_the_signed_in_user_account</a>(...) -> PostV1AccountDeleteResponse</code></summary>
+<details><summary><code>client.account.<a href="src/nordlet/account/client.py">delete</a>(...) -> DeleteAccountResponse</code></summary>
 <dl>
 <dd>
 
@@ -50070,7 +50403,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.account.delete_the_signed_in_user_account(
+client.account.delete(
     confirm_email="confirmEmail",
 )
 
@@ -50108,7 +50441,7 @@ client.account.delete_the_signed_in_user_account(
 </dl>
 </details>
 
-<details><summary><code>client.account.<a href="src/nordlet/account/client.py">post_v1account_referral_get</a>() -> PostV1AccountReferralGetResponse</code></summary>
+<details><summary><code>client.account.<a href="src/nordlet/account/client.py">referral_get</a>() -> ReferralGetAccountResponse</code></summary>
 <dl>
 <dd>
 
@@ -50129,7 +50462,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.account.post_v1account_referral_get()
+client.account.referral_get()
 
 ```
 </dd>
@@ -50157,7 +50490,7 @@ client.account.post_v1account_referral_get()
 </dl>
 </details>
 
-<details><summary><code>client.account.<a href="src/nordlet/account/client.py">post_v1account_referral_convert</a>(...) -> PostV1AccountReferralConvertResponse</code></summary>
+<details><summary><code>client.account.<a href="src/nordlet/account/client.py">referral_convert</a>(...) -> ReferralConvertAccountResponse</code></summary>
 <dl>
 <dd>
 
@@ -50178,7 +50511,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.account.post_v1account_referral_convert(
+client.account.referral_convert(
     points=1000000,
 )
 
@@ -50216,7 +50549,7 @@ client.account.post_v1account_referral_convert(
 </dl>
 </details>
 
-<details><summary><code>client.account.<a href="src/nordlet/account/client.py">post_v1account_table_settings_get</a>(...) -> PostV1AccountTableSettingsGetResponse</code></summary>
+<details><summary><code>client.account.<a href="src/nordlet/account/client.py">table_settings_get</a>(...) -> TableSettingsGetAccountResponse</code></summary>
 <dl>
 <dd>
 
@@ -50237,7 +50570,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.account.post_v1account_table_settings_get(
+client.account.table_settings_get(
     table_key="tableKey",
 )
 
@@ -50275,7 +50608,7 @@ client.account.post_v1account_table_settings_get(
 </dl>
 </details>
 
-<details><summary><code>client.account.<a href="src/nordlet/account/client.py">post_v1account_table_settings_set</a>(...) -> PostV1AccountTableSettingsSetResponse</code></summary>
+<details><summary><code>client.account.<a href="src/nordlet/account/client.py">table_settings_set</a>(...) -> TableSettingsSetAccountResponse</code></summary>
 <dl>
 <dd>
 
@@ -50296,7 +50629,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.account.post_v1account_table_settings_set(
+client.account.table_settings_set(
     table_key="tableKey",
 )
 
@@ -50350,7 +50683,7 @@ client.account.post_v1account_table_settings_set(
 </dl>
 </details>
 
-<details><summary><code>client.account.<a href="src/nordlet/account/client.py">post_v1account_table_settings_list</a>() -> PostV1AccountTableSettingsListResponse</code></summary>
+<details><summary><code>client.account.<a href="src/nordlet/account/client.py">table_settings_list</a>() -> TableSettingsListAccountResponse</code></summary>
 <dl>
 <dd>
 
@@ -50371,7 +50704,7 @@ client = Nordlet(
     environment=NordletEnvironment.PRODUCTION,
 )
 
-client.account.post_v1account_table_settings_list()
+client.account.table_settings_list()
 
 ```
 </dd>

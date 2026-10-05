@@ -12,6 +12,7 @@ ErrorResponseErrorCode = typing.Union[
         "idempotency_key_reuse",
         "idempotency_in_progress",
         "rate_limited",
+        "payment_required",
         "internal",
     ],
     typing.Any,

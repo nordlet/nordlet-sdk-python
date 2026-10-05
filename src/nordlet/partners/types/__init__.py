@@ -6,437 +6,315 @@ import typing
 from importlib import import_module
 
 if typing.TYPE_CHECKING:
-    from .post_v1leads_convert_request_partner_type import PostV1LeadsConvertRequestPartnerType
-    from .post_v1leads_convert_response import PostV1LeadsConvertResponse
-    from .post_v1leads_convert_response_lead import PostV1LeadsConvertResponseLead
-    from .post_v1leads_convert_response_lead_status import PostV1LeadsConvertResponseLeadStatus
-    from .post_v1leads_create_request_documents_item import PostV1LeadsCreateRequestDocumentsItem
-    from .post_v1leads_create_request_status import PostV1LeadsCreateRequestStatus
-    from .post_v1leads_create_response import PostV1LeadsCreateResponse
-    from .post_v1leads_create_response_status import PostV1LeadsCreateResponseStatus
-    from .post_v1leads_delete_response import PostV1LeadsDeleteResponse
-    from .post_v1leads_files_list_response import PostV1LeadsFilesListResponse
-    from .post_v1leads_files_list_response_rows_item import PostV1LeadsFilesListResponseRowsItem
-    from .post_v1leads_get_response import PostV1LeadsGetResponse
-    from .post_v1leads_get_response_status import PostV1LeadsGetResponseStatus
-    from .post_v1leads_list_request_filter_item import PostV1LeadsListRequestFilterItem
-    from .post_v1leads_list_request_filter_item_op import PostV1LeadsListRequestFilterItemOp
-    from .post_v1leads_list_request_filter_item_value import PostV1LeadsListRequestFilterItemValue
-    from .post_v1leads_list_request_filter_item_value_three_item import PostV1LeadsListRequestFilterItemValueThreeItem
-    from .post_v1leads_list_request_sort_item import PostV1LeadsListRequestSortItem
-    from .post_v1leads_list_request_sort_item_dir import PostV1LeadsListRequestSortItemDir
-    from .post_v1leads_list_response import PostV1LeadsListResponse
-    from .post_v1leads_list_response_rows_item import PostV1LeadsListResponseRowsItem
-    from .post_v1leads_list_response_rows_item_status import PostV1LeadsListResponseRowsItemStatus
-    from .post_v1leads_notes_create_response import PostV1LeadsNotesCreateResponse
-    from .post_v1leads_notes_delete_response import PostV1LeadsNotesDeleteResponse
-    from .post_v1leads_notes_list_response import PostV1LeadsNotesListResponse
-    from .post_v1leads_notes_list_response_rows_item import PostV1LeadsNotesListResponseRowsItem
-    from .post_v1leads_sources_create_response import PostV1LeadsSourcesCreateResponse
-    from .post_v1leads_sources_delete_response import PostV1LeadsSourcesDeleteResponse
-    from .post_v1leads_sources_list_response import PostV1LeadsSourcesListResponse
-    from .post_v1leads_sources_list_response_rows_item import PostV1LeadsSourcesListResponseRowsItem
-    from .post_v1leads_sources_options_response import PostV1LeadsSourcesOptionsResponse
-    from .post_v1leads_sources_options_response_rows_item import PostV1LeadsSourcesOptionsResponseRowsItem
-    from .post_v1leads_sources_update_response import PostV1LeadsSourcesUpdateResponse
-    from .post_v1leads_update_request_documents_item import PostV1LeadsUpdateRequestDocumentsItem
-    from .post_v1leads_update_request_status import PostV1LeadsUpdateRequestStatus
-    from .post_v1leads_update_response import PostV1LeadsUpdateResponse
-    from .post_v1leads_update_response_status import PostV1LeadsUpdateResponseStatus
-    from .post_v1partners_addresses_create_request_type import PostV1PartnersAddressesCreateRequestType
-    from .post_v1partners_addresses_create_response import PostV1PartnersAddressesCreateResponse
-    from .post_v1partners_addresses_delete_response import PostV1PartnersAddressesDeleteResponse
-    from .post_v1partners_addresses_list_request_filter_item import PostV1PartnersAddressesListRequestFilterItem
-    from .post_v1partners_addresses_list_request_filter_item_op import PostV1PartnersAddressesListRequestFilterItemOp
-    from .post_v1partners_addresses_list_request_filter_item_value import (
-        PostV1PartnersAddressesListRequestFilterItemValue,
+    from .addresses_create_partners_request_type import AddressesCreatePartnersRequestType
+    from .addresses_create_partners_response import AddressesCreatePartnersResponse
+    from .addresses_delete_partners_response import AddressesDeletePartnersResponse
+    from .addresses_list_partners_request_filter_item import AddressesListPartnersRequestFilterItem
+    from .addresses_list_partners_request_filter_item_op import AddressesListPartnersRequestFilterItemOp
+    from .addresses_list_partners_request_filter_item_value import AddressesListPartnersRequestFilterItemValue
+    from .addresses_list_partners_request_filter_item_value_three_item import (
+        AddressesListPartnersRequestFilterItemValueThreeItem,
     )
-    from .post_v1partners_addresses_list_request_filter_item_value_three_item import (
-        PostV1PartnersAddressesListRequestFilterItemValueThreeItem,
+    from .addresses_list_partners_request_sort_item import AddressesListPartnersRequestSortItem
+    from .addresses_list_partners_request_sort_item_dir import AddressesListPartnersRequestSortItemDir
+    from .addresses_list_partners_response import AddressesListPartnersResponse
+    from .addresses_list_partners_response_rows_item import AddressesListPartnersResponseRowsItem
+    from .addresses_update_partners_request_type import AddressesUpdatePartnersRequestType
+    from .addresses_update_partners_response import AddressesUpdatePartnersResponse
+    from .anonymize_partners_response import AnonymizePartnersResponse
+    from .bank_accounts_create_partners_response import BankAccountsCreatePartnersResponse
+    from .bank_accounts_delete_partners_response import BankAccountsDeletePartnersResponse
+    from .bank_accounts_list_partners_request_filter_item import BankAccountsListPartnersRequestFilterItem
+    from .bank_accounts_list_partners_request_filter_item_op import BankAccountsListPartnersRequestFilterItemOp
+    from .bank_accounts_list_partners_request_filter_item_value import BankAccountsListPartnersRequestFilterItemValue
+    from .bank_accounts_list_partners_request_filter_item_value_three_item import (
+        BankAccountsListPartnersRequestFilterItemValueThreeItem,
     )
-    from .post_v1partners_addresses_list_request_sort_item import PostV1PartnersAddressesListRequestSortItem
-    from .post_v1partners_addresses_list_request_sort_item_dir import PostV1PartnersAddressesListRequestSortItemDir
-    from .post_v1partners_addresses_list_response import PostV1PartnersAddressesListResponse
-    from .post_v1partners_addresses_list_response_rows_item import PostV1PartnersAddressesListResponseRowsItem
-    from .post_v1partners_addresses_update_request_type import PostV1PartnersAddressesUpdateRequestType
-    from .post_v1partners_addresses_update_response import PostV1PartnersAddressesUpdateResponse
-    from .post_v1partners_anonymize_response import PostV1PartnersAnonymizeResponse
-    from .post_v1partners_bank_accounts_create_response import PostV1PartnersBankAccountsCreateResponse
-    from .post_v1partners_bank_accounts_delete_response import PostV1PartnersBankAccountsDeleteResponse
-    from .post_v1partners_bank_accounts_list_request_filter_item import PostV1PartnersBankAccountsListRequestFilterItem
-    from .post_v1partners_bank_accounts_list_request_filter_item_op import (
-        PostV1PartnersBankAccountsListRequestFilterItemOp,
+    from .bank_accounts_list_partners_request_sort_item import BankAccountsListPartnersRequestSortItem
+    from .bank_accounts_list_partners_request_sort_item_dir import BankAccountsListPartnersRequestSortItemDir
+    from .bank_accounts_list_partners_response import BankAccountsListPartnersResponse
+    from .bank_accounts_list_partners_response_rows_item import BankAccountsListPartnersResponseRowsItem
+    from .bank_accounts_update_partners_response import BankAccountsUpdatePartnersResponse
+    from .contacts_create_partners_response import ContactsCreatePartnersResponse
+    from .contacts_delete_partners_response import ContactsDeletePartnersResponse
+    from .contacts_list_partners_request_filter_item import ContactsListPartnersRequestFilterItem
+    from .contacts_list_partners_request_filter_item_op import ContactsListPartnersRequestFilterItemOp
+    from .contacts_list_partners_request_filter_item_value import ContactsListPartnersRequestFilterItemValue
+    from .contacts_list_partners_request_filter_item_value_three_item import (
+        ContactsListPartnersRequestFilterItemValueThreeItem,
     )
-    from .post_v1partners_bank_accounts_list_request_filter_item_value import (
-        PostV1PartnersBankAccountsListRequestFilterItemValue,
+    from .contacts_list_partners_request_sort_item import ContactsListPartnersRequestSortItem
+    from .contacts_list_partners_request_sort_item_dir import ContactsListPartnersRequestSortItemDir
+    from .contacts_list_partners_response import ContactsListPartnersResponse
+    from .contacts_list_partners_response_rows_item import ContactsListPartnersResponseRowsItem
+    from .contacts_update_partners_response import ContactsUpdatePartnersResponse
+    from .create_partners_request_address import CreatePartnersRequestAddress
+    from .create_partners_request_correspondence_address import CreatePartnersRequestCorrespondenceAddress
+    from .create_partners_request_legal_country_class import CreatePartnersRequestLegalCountryClass
+    from .create_partners_request_type import CreatePartnersRequestType
+    from .create_partners_response import CreatePartnersResponse
+    from .create_partners_response_address import CreatePartnersResponseAddress
+    from .create_partners_response_correspondence_address import CreatePartnersResponseCorrespondenceAddress
+    from .create_partners_response_legal_country_class import CreatePartnersResponseLegalCountryClass
+    from .create_partners_response_type import CreatePartnersResponseType
+    from .credit_check_partners_response import CreditCheckPartnersResponse
+    from .debt_reminders_list_partners_request_filter_item import DebtRemindersListPartnersRequestFilterItem
+    from .debt_reminders_list_partners_request_filter_item_op import DebtRemindersListPartnersRequestFilterItemOp
+    from .debt_reminders_list_partners_request_filter_item_value import DebtRemindersListPartnersRequestFilterItemValue
+    from .debt_reminders_list_partners_request_filter_item_value_three_item import (
+        DebtRemindersListPartnersRequestFilterItemValueThreeItem,
     )
-    from .post_v1partners_bank_accounts_list_request_filter_item_value_three_item import (
-        PostV1PartnersBankAccountsListRequestFilterItemValueThreeItem,
+    from .debt_reminders_list_partners_request_sort_item import DebtRemindersListPartnersRequestSortItem
+    from .debt_reminders_list_partners_request_sort_item_dir import DebtRemindersListPartnersRequestSortItemDir
+    from .debt_reminders_list_partners_response import DebtRemindersListPartnersResponse
+    from .debt_reminders_list_partners_response_rows_item import DebtRemindersListPartnersResponseRowsItem
+    from .debt_reminders_preview_partners_response import DebtRemindersPreviewPartnersResponse
+    from .debt_reminders_preview_partners_response_rows_item import DebtRemindersPreviewPartnersResponseRowsItem
+    from .debt_reminders_preview_partners_response_rows_item_invoices_item import (
+        DebtRemindersPreviewPartnersResponseRowsItemInvoicesItem,
     )
-    from .post_v1partners_bank_accounts_list_request_sort_item import PostV1PartnersBankAccountsListRequestSortItem
-    from .post_v1partners_bank_accounts_list_request_sort_item_dir import (
-        PostV1PartnersBankAccountsListRequestSortItemDir,
+    from .debt_reminders_preview_partners_response_rows_item_locale import (
+        DebtRemindersPreviewPartnersResponseRowsItemLocale,
     )
-    from .post_v1partners_bank_accounts_list_response import PostV1PartnersBankAccountsListResponse
-    from .post_v1partners_bank_accounts_list_response_rows_item import PostV1PartnersBankAccountsListResponseRowsItem
-    from .post_v1partners_bank_accounts_update_response import PostV1PartnersBankAccountsUpdateResponse
-    from .post_v1partners_contacts_create_response import PostV1PartnersContactsCreateResponse
-    from .post_v1partners_contacts_delete_response import PostV1PartnersContactsDeleteResponse
-    from .post_v1partners_contacts_list_request_filter_item import PostV1PartnersContactsListRequestFilterItem
-    from .post_v1partners_contacts_list_request_filter_item_op import PostV1PartnersContactsListRequestFilterItemOp
-    from .post_v1partners_contacts_list_request_filter_item_value import (
-        PostV1PartnersContactsListRequestFilterItemValue,
+    from .delete_partners_response import DeletePartnersResponse
+    from .files_list_partners_response import FilesListPartnersResponse
+    from .files_list_partners_response_rows_item import FilesListPartnersResponseRowsItem
+    from .find_or_create_partners_request_address import FindOrCreatePartnersRequestAddress
+    from .find_or_create_partners_request_correspondence_address import FindOrCreatePartnersRequestCorrespondenceAddress
+    from .find_or_create_partners_request_legal_country_class import FindOrCreatePartnersRequestLegalCountryClass
+    from .find_or_create_partners_request_type import FindOrCreatePartnersRequestType
+    from .find_or_create_partners_response import FindOrCreatePartnersResponse
+    from .find_or_create_partners_response_partner import FindOrCreatePartnersResponsePartner
+    from .find_or_create_partners_response_partner_address import FindOrCreatePartnersResponsePartnerAddress
+    from .find_or_create_partners_response_partner_correspondence_address import (
+        FindOrCreatePartnersResponsePartnerCorrespondenceAddress,
     )
-    from .post_v1partners_contacts_list_request_filter_item_value_three_item import (
-        PostV1PartnersContactsListRequestFilterItemValueThreeItem,
+    from .find_or_create_partners_response_partner_legal_country_class import (
+        FindOrCreatePartnersResponsePartnerLegalCountryClass,
     )
-    from .post_v1partners_contacts_list_request_sort_item import PostV1PartnersContactsListRequestSortItem
-    from .post_v1partners_contacts_list_request_sort_item_dir import PostV1PartnersContactsListRequestSortItemDir
-    from .post_v1partners_contacts_list_response import PostV1PartnersContactsListResponse
-    from .post_v1partners_contacts_list_response_rows_item import PostV1PartnersContactsListResponseRowsItem
-    from .post_v1partners_contacts_update_response import PostV1PartnersContactsUpdateResponse
-    from .post_v1partners_create_request_address import PostV1PartnersCreateRequestAddress
-    from .post_v1partners_create_request_correspondence_address import PostV1PartnersCreateRequestCorrespondenceAddress
-    from .post_v1partners_create_request_legal_country_class import PostV1PartnersCreateRequestLegalCountryClass
-    from .post_v1partners_create_request_type import PostV1PartnersCreateRequestType
-    from .post_v1partners_create_response import PostV1PartnersCreateResponse
-    from .post_v1partners_create_response_address import PostV1PartnersCreateResponseAddress
-    from .post_v1partners_create_response_correspondence_address import (
-        PostV1PartnersCreateResponseCorrespondenceAddress,
+    from .find_or_create_partners_response_partner_type import FindOrCreatePartnersResponsePartnerType
+    from .get_partners_response import GetPartnersResponse
+    from .get_partners_response_address import GetPartnersResponseAddress
+    from .get_partners_response_correspondence_address import GetPartnersResponseCorrespondenceAddress
+    from .get_partners_response_legal_country_class import GetPartnersResponseLegalCountryClass
+    from .get_partners_response_type import GetPartnersResponseType
+    from .groups_create_partners_response import GroupsCreatePartnersResponse
+    from .groups_delete_partners_response import GroupsDeletePartnersResponse
+    from .groups_list_partners_response import GroupsListPartnersResponse
+    from .groups_list_partners_response_rows_item import GroupsListPartnersResponseRowsItem
+    from .groups_update_partners_response import GroupsUpdatePartnersResponse
+    from .inquiries_create_partners_response import InquiriesCreatePartnersResponse
+    from .inquiries_create_partners_response_status import InquiriesCreatePartnersResponseStatus
+    from .inquiries_get_partners_response import InquiriesGetPartnersResponse
+    from .inquiries_get_partners_response_status import InquiriesGetPartnersResponseStatus
+    from .inquiries_list_partners_request_filter_item import InquiriesListPartnersRequestFilterItem
+    from .inquiries_list_partners_request_filter_item_op import InquiriesListPartnersRequestFilterItemOp
+    from .inquiries_list_partners_request_filter_item_value import InquiriesListPartnersRequestFilterItemValue
+    from .inquiries_list_partners_request_filter_item_value_three_item import (
+        InquiriesListPartnersRequestFilterItemValueThreeItem,
     )
-    from .post_v1partners_create_response_legal_country_class import PostV1PartnersCreateResponseLegalCountryClass
-    from .post_v1partners_create_response_type import PostV1PartnersCreateResponseType
-    from .post_v1partners_credit_check_response import PostV1PartnersCreditCheckResponse
-    from .post_v1partners_debt_reminders_list_request_filter_item import (
-        PostV1PartnersDebtRemindersListRequestFilterItem,
+    from .inquiries_list_partners_request_sort_item import InquiriesListPartnersRequestSortItem
+    from .inquiries_list_partners_request_sort_item_dir import InquiriesListPartnersRequestSortItemDir
+    from .inquiries_list_partners_response import InquiriesListPartnersResponse
+    from .inquiries_list_partners_response_rows_item import InquiriesListPartnersResponseRowsItem
+    from .inquiries_list_partners_response_rows_item_status import InquiriesListPartnersResponseRowsItemStatus
+    from .inquiries_update_partners_request_status import InquiriesUpdatePartnersRequestStatus
+    from .inquiries_update_partners_response import InquiriesUpdatePartnersResponse
+    from .inquiries_update_partners_response_status import InquiriesUpdatePartnersResponseStatus
+    from .list_partners_request_filter_item import ListPartnersRequestFilterItem
+    from .list_partners_request_filter_item_op import ListPartnersRequestFilterItemOp
+    from .list_partners_request_filter_item_value import ListPartnersRequestFilterItemValue
+    from .list_partners_request_filter_item_value_three_item import ListPartnersRequestFilterItemValueThreeItem
+    from .list_partners_request_sort_item import ListPartnersRequestSortItem
+    from .list_partners_request_sort_item_dir import ListPartnersRequestSortItemDir
+    from .list_partners_response import ListPartnersResponse
+    from .list_partners_response_rows_item import ListPartnersResponseRowsItem
+    from .list_partners_response_rows_item_address import ListPartnersResponseRowsItemAddress
+    from .list_partners_response_rows_item_correspondence_address import (
+        ListPartnersResponseRowsItemCorrespondenceAddress,
     )
-    from .post_v1partners_debt_reminders_list_request_filter_item_op import (
-        PostV1PartnersDebtRemindersListRequestFilterItemOp,
+    from .list_partners_response_rows_item_legal_country_class import ListPartnersResponseRowsItemLegalCountryClass
+    from .list_partners_response_rows_item_type import ListPartnersResponseRowsItemType
+    from .statuses_create_partners_response import StatusesCreatePartnersResponse
+    from .statuses_delete_partners_response import StatusesDeletePartnersResponse
+    from .statuses_list_partners_response import StatusesListPartnersResponse
+    from .statuses_list_partners_response_rows_item import StatusesListPartnersResponseRowsItem
+    from .statuses_update_partners_response import StatusesUpdatePartnersResponse
+    from .update_partners_request_address import UpdatePartnersRequestAddress
+    from .update_partners_request_correspondence_address import UpdatePartnersRequestCorrespondenceAddress
+    from .update_partners_request_legal_country_class import UpdatePartnersRequestLegalCountryClass
+    from .update_partners_request_type import UpdatePartnersRequestType
+    from .update_partners_response import UpdatePartnersResponse
+    from .update_partners_response_address import UpdatePartnersResponseAddress
+    from .update_partners_response_correspondence_address import UpdatePartnersResponseCorrespondenceAddress
+    from .update_partners_response_legal_country_class import UpdatePartnersResponseLegalCountryClass
+    from .update_partners_response_type import UpdatePartnersResponseType
+    from .validate_vat_partners_response import ValidateVatPartnersResponse
+    from .vat_reviews_list_partners_request_filter_item import VatReviewsListPartnersRequestFilterItem
+    from .vat_reviews_list_partners_request_filter_item_op import VatReviewsListPartnersRequestFilterItemOp
+    from .vat_reviews_list_partners_request_filter_item_value import VatReviewsListPartnersRequestFilterItemValue
+    from .vat_reviews_list_partners_request_filter_item_value_three_item import (
+        VatReviewsListPartnersRequestFilterItemValueThreeItem,
     )
-    from .post_v1partners_debt_reminders_list_request_filter_item_value import (
-        PostV1PartnersDebtRemindersListRequestFilterItemValue,
+    from .vat_reviews_list_partners_request_sort_item import VatReviewsListPartnersRequestSortItem
+    from .vat_reviews_list_partners_request_sort_item_dir import VatReviewsListPartnersRequestSortItemDir
+    from .vat_reviews_list_partners_response import VatReviewsListPartnersResponse
+    from .vat_reviews_list_partners_response_rows_item import VatReviewsListPartnersResponseRowsItem
+    from .vat_reviews_list_partners_response_rows_item_details import VatReviewsListPartnersResponseRowsItemDetails
+    from .vat_reviews_list_partners_response_rows_item_reason import VatReviewsListPartnersResponseRowsItemReason
+    from .vat_reviews_list_partners_response_rows_item_resolution import (
+        VatReviewsListPartnersResponseRowsItemResolution,
     )
-    from .post_v1partners_debt_reminders_list_request_filter_item_value_three_item import (
-        PostV1PartnersDebtRemindersListRequestFilterItemValueThreeItem,
-    )
-    from .post_v1partners_debt_reminders_list_request_sort_item import PostV1PartnersDebtRemindersListRequestSortItem
-    from .post_v1partners_debt_reminders_list_request_sort_item_dir import (
-        PostV1PartnersDebtRemindersListRequestSortItemDir,
-    )
-    from .post_v1partners_debt_reminders_list_response import PostV1PartnersDebtRemindersListResponse
-    from .post_v1partners_debt_reminders_list_response_rows_item import PostV1PartnersDebtRemindersListResponseRowsItem
-    from .post_v1partners_debt_reminders_preview_response import PostV1PartnersDebtRemindersPreviewResponse
-    from .post_v1partners_debt_reminders_preview_response_rows_item import (
-        PostV1PartnersDebtRemindersPreviewResponseRowsItem,
-    )
-    from .post_v1partners_debt_reminders_preview_response_rows_item_invoices_item import (
-        PostV1PartnersDebtRemindersPreviewResponseRowsItemInvoicesItem,
-    )
-    from .post_v1partners_debt_reminders_preview_response_rows_item_locale import (
-        PostV1PartnersDebtRemindersPreviewResponseRowsItemLocale,
-    )
-    from .post_v1partners_delete_response import PostV1PartnersDeleteResponse
-    from .post_v1partners_files_list_response import PostV1PartnersFilesListResponse
-    from .post_v1partners_files_list_response_rows_item import PostV1PartnersFilesListResponseRowsItem
-    from .post_v1partners_find_or_create_request_address import PostV1PartnersFindOrCreateRequestAddress
-    from .post_v1partners_find_or_create_request_correspondence_address import (
-        PostV1PartnersFindOrCreateRequestCorrespondenceAddress,
-    )
-    from .post_v1partners_find_or_create_request_legal_country_class import (
-        PostV1PartnersFindOrCreateRequestLegalCountryClass,
-    )
-    from .post_v1partners_find_or_create_request_type import PostV1PartnersFindOrCreateRequestType
-    from .post_v1partners_find_or_create_response import PostV1PartnersFindOrCreateResponse
-    from .post_v1partners_find_or_create_response_partner import PostV1PartnersFindOrCreateResponsePartner
-    from .post_v1partners_find_or_create_response_partner_address import (
-        PostV1PartnersFindOrCreateResponsePartnerAddress,
-    )
-    from .post_v1partners_find_or_create_response_partner_correspondence_address import (
-        PostV1PartnersFindOrCreateResponsePartnerCorrespondenceAddress,
-    )
-    from .post_v1partners_find_or_create_response_partner_legal_country_class import (
-        PostV1PartnersFindOrCreateResponsePartnerLegalCountryClass,
-    )
-    from .post_v1partners_find_or_create_response_partner_type import PostV1PartnersFindOrCreateResponsePartnerType
-    from .post_v1partners_get_response import PostV1PartnersGetResponse
-    from .post_v1partners_get_response_address import PostV1PartnersGetResponseAddress
-    from .post_v1partners_get_response_correspondence_address import PostV1PartnersGetResponseCorrespondenceAddress
-    from .post_v1partners_get_response_legal_country_class import PostV1PartnersGetResponseLegalCountryClass
-    from .post_v1partners_get_response_type import PostV1PartnersGetResponseType
-    from .post_v1partners_groups_create_response import PostV1PartnersGroupsCreateResponse
-    from .post_v1partners_groups_delete_response import PostV1PartnersGroupsDeleteResponse
-    from .post_v1partners_groups_list_response import PostV1PartnersGroupsListResponse
-    from .post_v1partners_groups_list_response_rows_item import PostV1PartnersGroupsListResponseRowsItem
-    from .post_v1partners_groups_update_response import PostV1PartnersGroupsUpdateResponse
-    from .post_v1partners_inquiries_create_response import PostV1PartnersInquiriesCreateResponse
-    from .post_v1partners_inquiries_create_response_status import PostV1PartnersInquiriesCreateResponseStatus
-    from .post_v1partners_inquiries_get_response import PostV1PartnersInquiriesGetResponse
-    from .post_v1partners_inquiries_get_response_status import PostV1PartnersInquiriesGetResponseStatus
-    from .post_v1partners_inquiries_list_request_filter_item import PostV1PartnersInquiriesListRequestFilterItem
-    from .post_v1partners_inquiries_list_request_filter_item_op import PostV1PartnersInquiriesListRequestFilterItemOp
-    from .post_v1partners_inquiries_list_request_filter_item_value import (
-        PostV1PartnersInquiriesListRequestFilterItemValue,
-    )
-    from .post_v1partners_inquiries_list_request_filter_item_value_three_item import (
-        PostV1PartnersInquiriesListRequestFilterItemValueThreeItem,
-    )
-    from .post_v1partners_inquiries_list_request_sort_item import PostV1PartnersInquiriesListRequestSortItem
-    from .post_v1partners_inquiries_list_request_sort_item_dir import PostV1PartnersInquiriesListRequestSortItemDir
-    from .post_v1partners_inquiries_list_response import PostV1PartnersInquiriesListResponse
-    from .post_v1partners_inquiries_list_response_rows_item import PostV1PartnersInquiriesListResponseRowsItem
-    from .post_v1partners_inquiries_list_response_rows_item_status import (
-        PostV1PartnersInquiriesListResponseRowsItemStatus,
-    )
-    from .post_v1partners_inquiries_update_request_status import PostV1PartnersInquiriesUpdateRequestStatus
-    from .post_v1partners_inquiries_update_response import PostV1PartnersInquiriesUpdateResponse
-    from .post_v1partners_inquiries_update_response_status import PostV1PartnersInquiriesUpdateResponseStatus
-    from .post_v1partners_list_request_filter_item import PostV1PartnersListRequestFilterItem
-    from .post_v1partners_list_request_filter_item_op import PostV1PartnersListRequestFilterItemOp
-    from .post_v1partners_list_request_filter_item_value import PostV1PartnersListRequestFilterItemValue
-    from .post_v1partners_list_request_filter_item_value_three_item import (
-        PostV1PartnersListRequestFilterItemValueThreeItem,
-    )
-    from .post_v1partners_list_request_sort_item import PostV1PartnersListRequestSortItem
-    from .post_v1partners_list_request_sort_item_dir import PostV1PartnersListRequestSortItemDir
-    from .post_v1partners_list_response import PostV1PartnersListResponse
-    from .post_v1partners_list_response_rows_item import PostV1PartnersListResponseRowsItem
-    from .post_v1partners_list_response_rows_item_address import PostV1PartnersListResponseRowsItemAddress
-    from .post_v1partners_list_response_rows_item_correspondence_address import (
-        PostV1PartnersListResponseRowsItemCorrespondenceAddress,
-    )
-    from .post_v1partners_list_response_rows_item_legal_country_class import (
-        PostV1PartnersListResponseRowsItemLegalCountryClass,
-    )
-    from .post_v1partners_list_response_rows_item_type import PostV1PartnersListResponseRowsItemType
-    from .post_v1partners_statuses_create_response import PostV1PartnersStatusesCreateResponse
-    from .post_v1partners_statuses_delete_response import PostV1PartnersStatusesDeleteResponse
-    from .post_v1partners_statuses_list_response import PostV1PartnersStatusesListResponse
-    from .post_v1partners_statuses_list_response_rows_item import PostV1PartnersStatusesListResponseRowsItem
-    from .post_v1partners_statuses_update_response import PostV1PartnersStatusesUpdateResponse
-    from .post_v1partners_update_request_address import PostV1PartnersUpdateRequestAddress
-    from .post_v1partners_update_request_correspondence_address import PostV1PartnersUpdateRequestCorrespondenceAddress
-    from .post_v1partners_update_request_legal_country_class import PostV1PartnersUpdateRequestLegalCountryClass
-    from .post_v1partners_update_request_type import PostV1PartnersUpdateRequestType
-    from .post_v1partners_update_response import PostV1PartnersUpdateResponse
-    from .post_v1partners_update_response_address import PostV1PartnersUpdateResponseAddress
-    from .post_v1partners_update_response_correspondence_address import (
-        PostV1PartnersUpdateResponseCorrespondenceAddress,
-    )
-    from .post_v1partners_update_response_legal_country_class import PostV1PartnersUpdateResponseLegalCountryClass
-    from .post_v1partners_update_response_type import PostV1PartnersUpdateResponseType
-    from .post_v1partners_validate_vat_response import PostV1PartnersValidateVatResponse
-    from .post_v1partners_vat_reviews_list_request_filter_item import PostV1PartnersVatReviewsListRequestFilterItem
-    from .post_v1partners_vat_reviews_list_request_filter_item_op import PostV1PartnersVatReviewsListRequestFilterItemOp
-    from .post_v1partners_vat_reviews_list_request_filter_item_value import (
-        PostV1PartnersVatReviewsListRequestFilterItemValue,
-    )
-    from .post_v1partners_vat_reviews_list_request_filter_item_value_three_item import (
-        PostV1PartnersVatReviewsListRequestFilterItemValueThreeItem,
-    )
-    from .post_v1partners_vat_reviews_list_request_sort_item import PostV1PartnersVatReviewsListRequestSortItem
-    from .post_v1partners_vat_reviews_list_request_sort_item_dir import PostV1PartnersVatReviewsListRequestSortItemDir
-    from .post_v1partners_vat_reviews_list_response import PostV1PartnersVatReviewsListResponse
-    from .post_v1partners_vat_reviews_list_response_rows_item import PostV1PartnersVatReviewsListResponseRowsItem
-    from .post_v1partners_vat_reviews_list_response_rows_item_details import (
-        PostV1PartnersVatReviewsListResponseRowsItemDetails,
-    )
-    from .post_v1partners_vat_reviews_list_response_rows_item_reason import (
-        PostV1PartnersVatReviewsListResponseRowsItemReason,
-    )
-    from .post_v1partners_vat_reviews_list_response_rows_item_resolution import (
-        PostV1PartnersVatReviewsListResponseRowsItemResolution,
-    )
-    from .post_v1partners_vat_reviews_list_response_rows_item_status import (
-        PostV1PartnersVatReviewsListResponseRowsItemStatus,
-    )
-    from .post_v1partners_vat_reviews_resolve_request_resolution import PostV1PartnersVatReviewsResolveRequestResolution
-    from .post_v1partners_vat_reviews_resolve_response import PostV1PartnersVatReviewsResolveResponse
-    from .post_v1partners_vat_reviews_resolve_response_details import PostV1PartnersVatReviewsResolveResponseDetails
-    from .post_v1partners_vat_reviews_resolve_response_reason import PostV1PartnersVatReviewsResolveResponseReason
-    from .post_v1partners_vat_reviews_resolve_response_resolution import (
-        PostV1PartnersVatReviewsResolveResponseResolution,
-    )
-    from .post_v1partners_vat_reviews_resolve_response_status import PostV1PartnersVatReviewsResolveResponseStatus
+    from .vat_reviews_list_partners_response_rows_item_status import VatReviewsListPartnersResponseRowsItemStatus
+    from .vat_reviews_resolve_partners_request_resolution import VatReviewsResolvePartnersRequestResolution
+    from .vat_reviews_resolve_partners_response import VatReviewsResolvePartnersResponse
+    from .vat_reviews_resolve_partners_response_details import VatReviewsResolvePartnersResponseDetails
+    from .vat_reviews_resolve_partners_response_reason import VatReviewsResolvePartnersResponseReason
+    from .vat_reviews_resolve_partners_response_resolution import VatReviewsResolvePartnersResponseResolution
+    from .vat_reviews_resolve_partners_response_status import VatReviewsResolvePartnersResponseStatus
 _dynamic_imports: typing.Dict[str, str] = {
-    "PostV1LeadsConvertRequestPartnerType": ".post_v1leads_convert_request_partner_type",
-    "PostV1LeadsConvertResponse": ".post_v1leads_convert_response",
-    "PostV1LeadsConvertResponseLead": ".post_v1leads_convert_response_lead",
-    "PostV1LeadsConvertResponseLeadStatus": ".post_v1leads_convert_response_lead_status",
-    "PostV1LeadsCreateRequestDocumentsItem": ".post_v1leads_create_request_documents_item",
-    "PostV1LeadsCreateRequestStatus": ".post_v1leads_create_request_status",
-    "PostV1LeadsCreateResponse": ".post_v1leads_create_response",
-    "PostV1LeadsCreateResponseStatus": ".post_v1leads_create_response_status",
-    "PostV1LeadsDeleteResponse": ".post_v1leads_delete_response",
-    "PostV1LeadsFilesListResponse": ".post_v1leads_files_list_response",
-    "PostV1LeadsFilesListResponseRowsItem": ".post_v1leads_files_list_response_rows_item",
-    "PostV1LeadsGetResponse": ".post_v1leads_get_response",
-    "PostV1LeadsGetResponseStatus": ".post_v1leads_get_response_status",
-    "PostV1LeadsListRequestFilterItem": ".post_v1leads_list_request_filter_item",
-    "PostV1LeadsListRequestFilterItemOp": ".post_v1leads_list_request_filter_item_op",
-    "PostV1LeadsListRequestFilterItemValue": ".post_v1leads_list_request_filter_item_value",
-    "PostV1LeadsListRequestFilterItemValueThreeItem": ".post_v1leads_list_request_filter_item_value_three_item",
-    "PostV1LeadsListRequestSortItem": ".post_v1leads_list_request_sort_item",
-    "PostV1LeadsListRequestSortItemDir": ".post_v1leads_list_request_sort_item_dir",
-    "PostV1LeadsListResponse": ".post_v1leads_list_response",
-    "PostV1LeadsListResponseRowsItem": ".post_v1leads_list_response_rows_item",
-    "PostV1LeadsListResponseRowsItemStatus": ".post_v1leads_list_response_rows_item_status",
-    "PostV1LeadsNotesCreateResponse": ".post_v1leads_notes_create_response",
-    "PostV1LeadsNotesDeleteResponse": ".post_v1leads_notes_delete_response",
-    "PostV1LeadsNotesListResponse": ".post_v1leads_notes_list_response",
-    "PostV1LeadsNotesListResponseRowsItem": ".post_v1leads_notes_list_response_rows_item",
-    "PostV1LeadsSourcesCreateResponse": ".post_v1leads_sources_create_response",
-    "PostV1LeadsSourcesDeleteResponse": ".post_v1leads_sources_delete_response",
-    "PostV1LeadsSourcesListResponse": ".post_v1leads_sources_list_response",
-    "PostV1LeadsSourcesListResponseRowsItem": ".post_v1leads_sources_list_response_rows_item",
-    "PostV1LeadsSourcesOptionsResponse": ".post_v1leads_sources_options_response",
-    "PostV1LeadsSourcesOptionsResponseRowsItem": ".post_v1leads_sources_options_response_rows_item",
-    "PostV1LeadsSourcesUpdateResponse": ".post_v1leads_sources_update_response",
-    "PostV1LeadsUpdateRequestDocumentsItem": ".post_v1leads_update_request_documents_item",
-    "PostV1LeadsUpdateRequestStatus": ".post_v1leads_update_request_status",
-    "PostV1LeadsUpdateResponse": ".post_v1leads_update_response",
-    "PostV1LeadsUpdateResponseStatus": ".post_v1leads_update_response_status",
-    "PostV1PartnersAddressesCreateRequestType": ".post_v1partners_addresses_create_request_type",
-    "PostV1PartnersAddressesCreateResponse": ".post_v1partners_addresses_create_response",
-    "PostV1PartnersAddressesDeleteResponse": ".post_v1partners_addresses_delete_response",
-    "PostV1PartnersAddressesListRequestFilterItem": ".post_v1partners_addresses_list_request_filter_item",
-    "PostV1PartnersAddressesListRequestFilterItemOp": ".post_v1partners_addresses_list_request_filter_item_op",
-    "PostV1PartnersAddressesListRequestFilterItemValue": ".post_v1partners_addresses_list_request_filter_item_value",
-    "PostV1PartnersAddressesListRequestFilterItemValueThreeItem": ".post_v1partners_addresses_list_request_filter_item_value_three_item",
-    "PostV1PartnersAddressesListRequestSortItem": ".post_v1partners_addresses_list_request_sort_item",
-    "PostV1PartnersAddressesListRequestSortItemDir": ".post_v1partners_addresses_list_request_sort_item_dir",
-    "PostV1PartnersAddressesListResponse": ".post_v1partners_addresses_list_response",
-    "PostV1PartnersAddressesListResponseRowsItem": ".post_v1partners_addresses_list_response_rows_item",
-    "PostV1PartnersAddressesUpdateRequestType": ".post_v1partners_addresses_update_request_type",
-    "PostV1PartnersAddressesUpdateResponse": ".post_v1partners_addresses_update_response",
-    "PostV1PartnersAnonymizeResponse": ".post_v1partners_anonymize_response",
-    "PostV1PartnersBankAccountsCreateResponse": ".post_v1partners_bank_accounts_create_response",
-    "PostV1PartnersBankAccountsDeleteResponse": ".post_v1partners_bank_accounts_delete_response",
-    "PostV1PartnersBankAccountsListRequestFilterItem": ".post_v1partners_bank_accounts_list_request_filter_item",
-    "PostV1PartnersBankAccountsListRequestFilterItemOp": ".post_v1partners_bank_accounts_list_request_filter_item_op",
-    "PostV1PartnersBankAccountsListRequestFilterItemValue": ".post_v1partners_bank_accounts_list_request_filter_item_value",
-    "PostV1PartnersBankAccountsListRequestFilterItemValueThreeItem": ".post_v1partners_bank_accounts_list_request_filter_item_value_three_item",
-    "PostV1PartnersBankAccountsListRequestSortItem": ".post_v1partners_bank_accounts_list_request_sort_item",
-    "PostV1PartnersBankAccountsListRequestSortItemDir": ".post_v1partners_bank_accounts_list_request_sort_item_dir",
-    "PostV1PartnersBankAccountsListResponse": ".post_v1partners_bank_accounts_list_response",
-    "PostV1PartnersBankAccountsListResponseRowsItem": ".post_v1partners_bank_accounts_list_response_rows_item",
-    "PostV1PartnersBankAccountsUpdateResponse": ".post_v1partners_bank_accounts_update_response",
-    "PostV1PartnersContactsCreateResponse": ".post_v1partners_contacts_create_response",
-    "PostV1PartnersContactsDeleteResponse": ".post_v1partners_contacts_delete_response",
-    "PostV1PartnersContactsListRequestFilterItem": ".post_v1partners_contacts_list_request_filter_item",
-    "PostV1PartnersContactsListRequestFilterItemOp": ".post_v1partners_contacts_list_request_filter_item_op",
-    "PostV1PartnersContactsListRequestFilterItemValue": ".post_v1partners_contacts_list_request_filter_item_value",
-    "PostV1PartnersContactsListRequestFilterItemValueThreeItem": ".post_v1partners_contacts_list_request_filter_item_value_three_item",
-    "PostV1PartnersContactsListRequestSortItem": ".post_v1partners_contacts_list_request_sort_item",
-    "PostV1PartnersContactsListRequestSortItemDir": ".post_v1partners_contacts_list_request_sort_item_dir",
-    "PostV1PartnersContactsListResponse": ".post_v1partners_contacts_list_response",
-    "PostV1PartnersContactsListResponseRowsItem": ".post_v1partners_contacts_list_response_rows_item",
-    "PostV1PartnersContactsUpdateResponse": ".post_v1partners_contacts_update_response",
-    "PostV1PartnersCreateRequestAddress": ".post_v1partners_create_request_address",
-    "PostV1PartnersCreateRequestCorrespondenceAddress": ".post_v1partners_create_request_correspondence_address",
-    "PostV1PartnersCreateRequestLegalCountryClass": ".post_v1partners_create_request_legal_country_class",
-    "PostV1PartnersCreateRequestType": ".post_v1partners_create_request_type",
-    "PostV1PartnersCreateResponse": ".post_v1partners_create_response",
-    "PostV1PartnersCreateResponseAddress": ".post_v1partners_create_response_address",
-    "PostV1PartnersCreateResponseCorrespondenceAddress": ".post_v1partners_create_response_correspondence_address",
-    "PostV1PartnersCreateResponseLegalCountryClass": ".post_v1partners_create_response_legal_country_class",
-    "PostV1PartnersCreateResponseType": ".post_v1partners_create_response_type",
-    "PostV1PartnersCreditCheckResponse": ".post_v1partners_credit_check_response",
-    "PostV1PartnersDebtRemindersListRequestFilterItem": ".post_v1partners_debt_reminders_list_request_filter_item",
-    "PostV1PartnersDebtRemindersListRequestFilterItemOp": ".post_v1partners_debt_reminders_list_request_filter_item_op",
-    "PostV1PartnersDebtRemindersListRequestFilterItemValue": ".post_v1partners_debt_reminders_list_request_filter_item_value",
-    "PostV1PartnersDebtRemindersListRequestFilterItemValueThreeItem": ".post_v1partners_debt_reminders_list_request_filter_item_value_three_item",
-    "PostV1PartnersDebtRemindersListRequestSortItem": ".post_v1partners_debt_reminders_list_request_sort_item",
-    "PostV1PartnersDebtRemindersListRequestSortItemDir": ".post_v1partners_debt_reminders_list_request_sort_item_dir",
-    "PostV1PartnersDebtRemindersListResponse": ".post_v1partners_debt_reminders_list_response",
-    "PostV1PartnersDebtRemindersListResponseRowsItem": ".post_v1partners_debt_reminders_list_response_rows_item",
-    "PostV1PartnersDebtRemindersPreviewResponse": ".post_v1partners_debt_reminders_preview_response",
-    "PostV1PartnersDebtRemindersPreviewResponseRowsItem": ".post_v1partners_debt_reminders_preview_response_rows_item",
-    "PostV1PartnersDebtRemindersPreviewResponseRowsItemInvoicesItem": ".post_v1partners_debt_reminders_preview_response_rows_item_invoices_item",
-    "PostV1PartnersDebtRemindersPreviewResponseRowsItemLocale": ".post_v1partners_debt_reminders_preview_response_rows_item_locale",
-    "PostV1PartnersDeleteResponse": ".post_v1partners_delete_response",
-    "PostV1PartnersFilesListResponse": ".post_v1partners_files_list_response",
-    "PostV1PartnersFilesListResponseRowsItem": ".post_v1partners_files_list_response_rows_item",
-    "PostV1PartnersFindOrCreateRequestAddress": ".post_v1partners_find_or_create_request_address",
-    "PostV1PartnersFindOrCreateRequestCorrespondenceAddress": ".post_v1partners_find_or_create_request_correspondence_address",
-    "PostV1PartnersFindOrCreateRequestLegalCountryClass": ".post_v1partners_find_or_create_request_legal_country_class",
-    "PostV1PartnersFindOrCreateRequestType": ".post_v1partners_find_or_create_request_type",
-    "PostV1PartnersFindOrCreateResponse": ".post_v1partners_find_or_create_response",
-    "PostV1PartnersFindOrCreateResponsePartner": ".post_v1partners_find_or_create_response_partner",
-    "PostV1PartnersFindOrCreateResponsePartnerAddress": ".post_v1partners_find_or_create_response_partner_address",
-    "PostV1PartnersFindOrCreateResponsePartnerCorrespondenceAddress": ".post_v1partners_find_or_create_response_partner_correspondence_address",
-    "PostV1PartnersFindOrCreateResponsePartnerLegalCountryClass": ".post_v1partners_find_or_create_response_partner_legal_country_class",
-    "PostV1PartnersFindOrCreateResponsePartnerType": ".post_v1partners_find_or_create_response_partner_type",
-    "PostV1PartnersGetResponse": ".post_v1partners_get_response",
-    "PostV1PartnersGetResponseAddress": ".post_v1partners_get_response_address",
-    "PostV1PartnersGetResponseCorrespondenceAddress": ".post_v1partners_get_response_correspondence_address",
-    "PostV1PartnersGetResponseLegalCountryClass": ".post_v1partners_get_response_legal_country_class",
-    "PostV1PartnersGetResponseType": ".post_v1partners_get_response_type",
-    "PostV1PartnersGroupsCreateResponse": ".post_v1partners_groups_create_response",
-    "PostV1PartnersGroupsDeleteResponse": ".post_v1partners_groups_delete_response",
-    "PostV1PartnersGroupsListResponse": ".post_v1partners_groups_list_response",
-    "PostV1PartnersGroupsListResponseRowsItem": ".post_v1partners_groups_list_response_rows_item",
-    "PostV1PartnersGroupsUpdateResponse": ".post_v1partners_groups_update_response",
-    "PostV1PartnersInquiriesCreateResponse": ".post_v1partners_inquiries_create_response",
-    "PostV1PartnersInquiriesCreateResponseStatus": ".post_v1partners_inquiries_create_response_status",
-    "PostV1PartnersInquiriesGetResponse": ".post_v1partners_inquiries_get_response",
-    "PostV1PartnersInquiriesGetResponseStatus": ".post_v1partners_inquiries_get_response_status",
-    "PostV1PartnersInquiriesListRequestFilterItem": ".post_v1partners_inquiries_list_request_filter_item",
-    "PostV1PartnersInquiriesListRequestFilterItemOp": ".post_v1partners_inquiries_list_request_filter_item_op",
-    "PostV1PartnersInquiriesListRequestFilterItemValue": ".post_v1partners_inquiries_list_request_filter_item_value",
-    "PostV1PartnersInquiriesListRequestFilterItemValueThreeItem": ".post_v1partners_inquiries_list_request_filter_item_value_three_item",
-    "PostV1PartnersInquiriesListRequestSortItem": ".post_v1partners_inquiries_list_request_sort_item",
-    "PostV1PartnersInquiriesListRequestSortItemDir": ".post_v1partners_inquiries_list_request_sort_item_dir",
-    "PostV1PartnersInquiriesListResponse": ".post_v1partners_inquiries_list_response",
-    "PostV1PartnersInquiriesListResponseRowsItem": ".post_v1partners_inquiries_list_response_rows_item",
-    "PostV1PartnersInquiriesListResponseRowsItemStatus": ".post_v1partners_inquiries_list_response_rows_item_status",
-    "PostV1PartnersInquiriesUpdateRequestStatus": ".post_v1partners_inquiries_update_request_status",
-    "PostV1PartnersInquiriesUpdateResponse": ".post_v1partners_inquiries_update_response",
-    "PostV1PartnersInquiriesUpdateResponseStatus": ".post_v1partners_inquiries_update_response_status",
-    "PostV1PartnersListRequestFilterItem": ".post_v1partners_list_request_filter_item",
-    "PostV1PartnersListRequestFilterItemOp": ".post_v1partners_list_request_filter_item_op",
-    "PostV1PartnersListRequestFilterItemValue": ".post_v1partners_list_request_filter_item_value",
-    "PostV1PartnersListRequestFilterItemValueThreeItem": ".post_v1partners_list_request_filter_item_value_three_item",
-    "PostV1PartnersListRequestSortItem": ".post_v1partners_list_request_sort_item",
-    "PostV1PartnersListRequestSortItemDir": ".post_v1partners_list_request_sort_item_dir",
-    "PostV1PartnersListResponse": ".post_v1partners_list_response",
-    "PostV1PartnersListResponseRowsItem": ".post_v1partners_list_response_rows_item",
-    "PostV1PartnersListResponseRowsItemAddress": ".post_v1partners_list_response_rows_item_address",
-    "PostV1PartnersListResponseRowsItemCorrespondenceAddress": ".post_v1partners_list_response_rows_item_correspondence_address",
-    "PostV1PartnersListResponseRowsItemLegalCountryClass": ".post_v1partners_list_response_rows_item_legal_country_class",
-    "PostV1PartnersListResponseRowsItemType": ".post_v1partners_list_response_rows_item_type",
-    "PostV1PartnersStatusesCreateResponse": ".post_v1partners_statuses_create_response",
-    "PostV1PartnersStatusesDeleteResponse": ".post_v1partners_statuses_delete_response",
-    "PostV1PartnersStatusesListResponse": ".post_v1partners_statuses_list_response",
-    "PostV1PartnersStatusesListResponseRowsItem": ".post_v1partners_statuses_list_response_rows_item",
-    "PostV1PartnersStatusesUpdateResponse": ".post_v1partners_statuses_update_response",
-    "PostV1PartnersUpdateRequestAddress": ".post_v1partners_update_request_address",
-    "PostV1PartnersUpdateRequestCorrespondenceAddress": ".post_v1partners_update_request_correspondence_address",
-    "PostV1PartnersUpdateRequestLegalCountryClass": ".post_v1partners_update_request_legal_country_class",
-    "PostV1PartnersUpdateRequestType": ".post_v1partners_update_request_type",
-    "PostV1PartnersUpdateResponse": ".post_v1partners_update_response",
-    "PostV1PartnersUpdateResponseAddress": ".post_v1partners_update_response_address",
-    "PostV1PartnersUpdateResponseCorrespondenceAddress": ".post_v1partners_update_response_correspondence_address",
-    "PostV1PartnersUpdateResponseLegalCountryClass": ".post_v1partners_update_response_legal_country_class",
-    "PostV1PartnersUpdateResponseType": ".post_v1partners_update_response_type",
-    "PostV1PartnersValidateVatResponse": ".post_v1partners_validate_vat_response",
-    "PostV1PartnersVatReviewsListRequestFilterItem": ".post_v1partners_vat_reviews_list_request_filter_item",
-    "PostV1PartnersVatReviewsListRequestFilterItemOp": ".post_v1partners_vat_reviews_list_request_filter_item_op",
-    "PostV1PartnersVatReviewsListRequestFilterItemValue": ".post_v1partners_vat_reviews_list_request_filter_item_value",
-    "PostV1PartnersVatReviewsListRequestFilterItemValueThreeItem": ".post_v1partners_vat_reviews_list_request_filter_item_value_three_item",
-    "PostV1PartnersVatReviewsListRequestSortItem": ".post_v1partners_vat_reviews_list_request_sort_item",
-    "PostV1PartnersVatReviewsListRequestSortItemDir": ".post_v1partners_vat_reviews_list_request_sort_item_dir",
-    "PostV1PartnersVatReviewsListResponse": ".post_v1partners_vat_reviews_list_response",
-    "PostV1PartnersVatReviewsListResponseRowsItem": ".post_v1partners_vat_reviews_list_response_rows_item",
-    "PostV1PartnersVatReviewsListResponseRowsItemDetails": ".post_v1partners_vat_reviews_list_response_rows_item_details",
-    "PostV1PartnersVatReviewsListResponseRowsItemReason": ".post_v1partners_vat_reviews_list_response_rows_item_reason",
-    "PostV1PartnersVatReviewsListResponseRowsItemResolution": ".post_v1partners_vat_reviews_list_response_rows_item_resolution",
-    "PostV1PartnersVatReviewsListResponseRowsItemStatus": ".post_v1partners_vat_reviews_list_response_rows_item_status",
-    "PostV1PartnersVatReviewsResolveRequestResolution": ".post_v1partners_vat_reviews_resolve_request_resolution",
-    "PostV1PartnersVatReviewsResolveResponse": ".post_v1partners_vat_reviews_resolve_response",
-    "PostV1PartnersVatReviewsResolveResponseDetails": ".post_v1partners_vat_reviews_resolve_response_details",
-    "PostV1PartnersVatReviewsResolveResponseReason": ".post_v1partners_vat_reviews_resolve_response_reason",
-    "PostV1PartnersVatReviewsResolveResponseResolution": ".post_v1partners_vat_reviews_resolve_response_resolution",
-    "PostV1PartnersVatReviewsResolveResponseStatus": ".post_v1partners_vat_reviews_resolve_response_status",
+    "AddressesCreatePartnersRequestType": ".addresses_create_partners_request_type",
+    "AddressesCreatePartnersResponse": ".addresses_create_partners_response",
+    "AddressesDeletePartnersResponse": ".addresses_delete_partners_response",
+    "AddressesListPartnersRequestFilterItem": ".addresses_list_partners_request_filter_item",
+    "AddressesListPartnersRequestFilterItemOp": ".addresses_list_partners_request_filter_item_op",
+    "AddressesListPartnersRequestFilterItemValue": ".addresses_list_partners_request_filter_item_value",
+    "AddressesListPartnersRequestFilterItemValueThreeItem": ".addresses_list_partners_request_filter_item_value_three_item",
+    "AddressesListPartnersRequestSortItem": ".addresses_list_partners_request_sort_item",
+    "AddressesListPartnersRequestSortItemDir": ".addresses_list_partners_request_sort_item_dir",
+    "AddressesListPartnersResponse": ".addresses_list_partners_response",
+    "AddressesListPartnersResponseRowsItem": ".addresses_list_partners_response_rows_item",
+    "AddressesUpdatePartnersRequestType": ".addresses_update_partners_request_type",
+    "AddressesUpdatePartnersResponse": ".addresses_update_partners_response",
+    "AnonymizePartnersResponse": ".anonymize_partners_response",
+    "BankAccountsCreatePartnersResponse": ".bank_accounts_create_partners_response",
+    "BankAccountsDeletePartnersResponse": ".bank_accounts_delete_partners_response",
+    "BankAccountsListPartnersRequestFilterItem": ".bank_accounts_list_partners_request_filter_item",
+    "BankAccountsListPartnersRequestFilterItemOp": ".bank_accounts_list_partners_request_filter_item_op",
+    "BankAccountsListPartnersRequestFilterItemValue": ".bank_accounts_list_partners_request_filter_item_value",
+    "BankAccountsListPartnersRequestFilterItemValueThreeItem": ".bank_accounts_list_partners_request_filter_item_value_three_item",
+    "BankAccountsListPartnersRequestSortItem": ".bank_accounts_list_partners_request_sort_item",
+    "BankAccountsListPartnersRequestSortItemDir": ".bank_accounts_list_partners_request_sort_item_dir",
+    "BankAccountsListPartnersResponse": ".bank_accounts_list_partners_response",
+    "BankAccountsListPartnersResponseRowsItem": ".bank_accounts_list_partners_response_rows_item",
+    "BankAccountsUpdatePartnersResponse": ".bank_accounts_update_partners_response",
+    "ContactsCreatePartnersResponse": ".contacts_create_partners_response",
+    "ContactsDeletePartnersResponse": ".contacts_delete_partners_response",
+    "ContactsListPartnersRequestFilterItem": ".contacts_list_partners_request_filter_item",
+    "ContactsListPartnersRequestFilterItemOp": ".contacts_list_partners_request_filter_item_op",
+    "ContactsListPartnersRequestFilterItemValue": ".contacts_list_partners_request_filter_item_value",
+    "ContactsListPartnersRequestFilterItemValueThreeItem": ".contacts_list_partners_request_filter_item_value_three_item",
+    "ContactsListPartnersRequestSortItem": ".contacts_list_partners_request_sort_item",
+    "ContactsListPartnersRequestSortItemDir": ".contacts_list_partners_request_sort_item_dir",
+    "ContactsListPartnersResponse": ".contacts_list_partners_response",
+    "ContactsListPartnersResponseRowsItem": ".contacts_list_partners_response_rows_item",
+    "ContactsUpdatePartnersResponse": ".contacts_update_partners_response",
+    "CreatePartnersRequestAddress": ".create_partners_request_address",
+    "CreatePartnersRequestCorrespondenceAddress": ".create_partners_request_correspondence_address",
+    "CreatePartnersRequestLegalCountryClass": ".create_partners_request_legal_country_class",
+    "CreatePartnersRequestType": ".create_partners_request_type",
+    "CreatePartnersResponse": ".create_partners_response",
+    "CreatePartnersResponseAddress": ".create_partners_response_address",
+    "CreatePartnersResponseCorrespondenceAddress": ".create_partners_response_correspondence_address",
+    "CreatePartnersResponseLegalCountryClass": ".create_partners_response_legal_country_class",
+    "CreatePartnersResponseType": ".create_partners_response_type",
+    "CreditCheckPartnersResponse": ".credit_check_partners_response",
+    "DebtRemindersListPartnersRequestFilterItem": ".debt_reminders_list_partners_request_filter_item",
+    "DebtRemindersListPartnersRequestFilterItemOp": ".debt_reminders_list_partners_request_filter_item_op",
+    "DebtRemindersListPartnersRequestFilterItemValue": ".debt_reminders_list_partners_request_filter_item_value",
+    "DebtRemindersListPartnersRequestFilterItemValueThreeItem": ".debt_reminders_list_partners_request_filter_item_value_three_item",
+    "DebtRemindersListPartnersRequestSortItem": ".debt_reminders_list_partners_request_sort_item",
+    "DebtRemindersListPartnersRequestSortItemDir": ".debt_reminders_list_partners_request_sort_item_dir",
+    "DebtRemindersListPartnersResponse": ".debt_reminders_list_partners_response",
+    "DebtRemindersListPartnersResponseRowsItem": ".debt_reminders_list_partners_response_rows_item",
+    "DebtRemindersPreviewPartnersResponse": ".debt_reminders_preview_partners_response",
+    "DebtRemindersPreviewPartnersResponseRowsItem": ".debt_reminders_preview_partners_response_rows_item",
+    "DebtRemindersPreviewPartnersResponseRowsItemInvoicesItem": ".debt_reminders_preview_partners_response_rows_item_invoices_item",
+    "DebtRemindersPreviewPartnersResponseRowsItemLocale": ".debt_reminders_preview_partners_response_rows_item_locale",
+    "DeletePartnersResponse": ".delete_partners_response",
+    "FilesListPartnersResponse": ".files_list_partners_response",
+    "FilesListPartnersResponseRowsItem": ".files_list_partners_response_rows_item",
+    "FindOrCreatePartnersRequestAddress": ".find_or_create_partners_request_address",
+    "FindOrCreatePartnersRequestCorrespondenceAddress": ".find_or_create_partners_request_correspondence_address",
+    "FindOrCreatePartnersRequestLegalCountryClass": ".find_or_create_partners_request_legal_country_class",
+    "FindOrCreatePartnersRequestType": ".find_or_create_partners_request_type",
+    "FindOrCreatePartnersResponse": ".find_or_create_partners_response",
+    "FindOrCreatePartnersResponsePartner": ".find_or_create_partners_response_partner",
+    "FindOrCreatePartnersResponsePartnerAddress": ".find_or_create_partners_response_partner_address",
+    "FindOrCreatePartnersResponsePartnerCorrespondenceAddress": ".find_or_create_partners_response_partner_correspondence_address",
+    "FindOrCreatePartnersResponsePartnerLegalCountryClass": ".find_or_create_partners_response_partner_legal_country_class",
+    "FindOrCreatePartnersResponsePartnerType": ".find_or_create_partners_response_partner_type",
+    "GetPartnersResponse": ".get_partners_response",
+    "GetPartnersResponseAddress": ".get_partners_response_address",
+    "GetPartnersResponseCorrespondenceAddress": ".get_partners_response_correspondence_address",
+    "GetPartnersResponseLegalCountryClass": ".get_partners_response_legal_country_class",
+    "GetPartnersResponseType": ".get_partners_response_type",
+    "GroupsCreatePartnersResponse": ".groups_create_partners_response",
+    "GroupsDeletePartnersResponse": ".groups_delete_partners_response",
+    "GroupsListPartnersResponse": ".groups_list_partners_response",
+    "GroupsListPartnersResponseRowsItem": ".groups_list_partners_response_rows_item",
+    "GroupsUpdatePartnersResponse": ".groups_update_partners_response",
+    "InquiriesCreatePartnersResponse": ".inquiries_create_partners_response",
+    "InquiriesCreatePartnersResponseStatus": ".inquiries_create_partners_response_status",
+    "InquiriesGetPartnersResponse": ".inquiries_get_partners_response",
+    "InquiriesGetPartnersResponseStatus": ".inquiries_get_partners_response_status",
+    "InquiriesListPartnersRequestFilterItem": ".inquiries_list_partners_request_filter_item",
+    "InquiriesListPartnersRequestFilterItemOp": ".inquiries_list_partners_request_filter_item_op",
+    "InquiriesListPartnersRequestFilterItemValue": ".inquiries_list_partners_request_filter_item_value",
+    "InquiriesListPartnersRequestFilterItemValueThreeItem": ".inquiries_list_partners_request_filter_item_value_three_item",
+    "InquiriesListPartnersRequestSortItem": ".inquiries_list_partners_request_sort_item",
+    "InquiriesListPartnersRequestSortItemDir": ".inquiries_list_partners_request_sort_item_dir",
+    "InquiriesListPartnersResponse": ".inquiries_list_partners_response",
+    "InquiriesListPartnersResponseRowsItem": ".inquiries_list_partners_response_rows_item",
+    "InquiriesListPartnersResponseRowsItemStatus": ".inquiries_list_partners_response_rows_item_status",
+    "InquiriesUpdatePartnersRequestStatus": ".inquiries_update_partners_request_status",
+    "InquiriesUpdatePartnersResponse": ".inquiries_update_partners_response",
+    "InquiriesUpdatePartnersResponseStatus": ".inquiries_update_partners_response_status",
+    "ListPartnersRequestFilterItem": ".list_partners_request_filter_item",
+    "ListPartnersRequestFilterItemOp": ".list_partners_request_filter_item_op",
+    "ListPartnersRequestFilterItemValue": ".list_partners_request_filter_item_value",
+    "ListPartnersRequestFilterItemValueThreeItem": ".list_partners_request_filter_item_value_three_item",
+    "ListPartnersRequestSortItem": ".list_partners_request_sort_item",
+    "ListPartnersRequestSortItemDir": ".list_partners_request_sort_item_dir",
+    "ListPartnersResponse": ".list_partners_response",
+    "ListPartnersResponseRowsItem": ".list_partners_response_rows_item",
+    "ListPartnersResponseRowsItemAddress": ".list_partners_response_rows_item_address",
+    "ListPartnersResponseRowsItemCorrespondenceAddress": ".list_partners_response_rows_item_correspondence_address",
+    "ListPartnersResponseRowsItemLegalCountryClass": ".list_partners_response_rows_item_legal_country_class",
+    "ListPartnersResponseRowsItemType": ".list_partners_response_rows_item_type",
+    "StatusesCreatePartnersResponse": ".statuses_create_partners_response",
+    "StatusesDeletePartnersResponse": ".statuses_delete_partners_response",
+    "StatusesListPartnersResponse": ".statuses_list_partners_response",
+    "StatusesListPartnersResponseRowsItem": ".statuses_list_partners_response_rows_item",
+    "StatusesUpdatePartnersResponse": ".statuses_update_partners_response",
+    "UpdatePartnersRequestAddress": ".update_partners_request_address",
+    "UpdatePartnersRequestCorrespondenceAddress": ".update_partners_request_correspondence_address",
+    "UpdatePartnersRequestLegalCountryClass": ".update_partners_request_legal_country_class",
+    "UpdatePartnersRequestType": ".update_partners_request_type",
+    "UpdatePartnersResponse": ".update_partners_response",
+    "UpdatePartnersResponseAddress": ".update_partners_response_address",
+    "UpdatePartnersResponseCorrespondenceAddress": ".update_partners_response_correspondence_address",
+    "UpdatePartnersResponseLegalCountryClass": ".update_partners_response_legal_country_class",
+    "UpdatePartnersResponseType": ".update_partners_response_type",
+    "ValidateVatPartnersResponse": ".validate_vat_partners_response",
+    "VatReviewsListPartnersRequestFilterItem": ".vat_reviews_list_partners_request_filter_item",
+    "VatReviewsListPartnersRequestFilterItemOp": ".vat_reviews_list_partners_request_filter_item_op",
+    "VatReviewsListPartnersRequestFilterItemValue": ".vat_reviews_list_partners_request_filter_item_value",
+    "VatReviewsListPartnersRequestFilterItemValueThreeItem": ".vat_reviews_list_partners_request_filter_item_value_three_item",
+    "VatReviewsListPartnersRequestSortItem": ".vat_reviews_list_partners_request_sort_item",
+    "VatReviewsListPartnersRequestSortItemDir": ".vat_reviews_list_partners_request_sort_item_dir",
+    "VatReviewsListPartnersResponse": ".vat_reviews_list_partners_response",
+    "VatReviewsListPartnersResponseRowsItem": ".vat_reviews_list_partners_response_rows_item",
+    "VatReviewsListPartnersResponseRowsItemDetails": ".vat_reviews_list_partners_response_rows_item_details",
+    "VatReviewsListPartnersResponseRowsItemReason": ".vat_reviews_list_partners_response_rows_item_reason",
+    "VatReviewsListPartnersResponseRowsItemResolution": ".vat_reviews_list_partners_response_rows_item_resolution",
+    "VatReviewsListPartnersResponseRowsItemStatus": ".vat_reviews_list_partners_response_rows_item_status",
+    "VatReviewsResolvePartnersRequestResolution": ".vat_reviews_resolve_partners_request_resolution",
+    "VatReviewsResolvePartnersResponse": ".vat_reviews_resolve_partners_response",
+    "VatReviewsResolvePartnersResponseDetails": ".vat_reviews_resolve_partners_response_details",
+    "VatReviewsResolvePartnersResponseReason": ".vat_reviews_resolve_partners_response_reason",
+    "VatReviewsResolvePartnersResponseResolution": ".vat_reviews_resolve_partners_response_resolution",
+    "VatReviewsResolvePartnersResponseStatus": ".vat_reviews_resolve_partners_response_status",
 }
 
 
@@ -462,183 +340,146 @@ def __dir__():
 
 
 __all__ = [
-    "PostV1LeadsConvertRequestPartnerType",
-    "PostV1LeadsConvertResponse",
-    "PostV1LeadsConvertResponseLead",
-    "PostV1LeadsConvertResponseLeadStatus",
-    "PostV1LeadsCreateRequestDocumentsItem",
-    "PostV1LeadsCreateRequestStatus",
-    "PostV1LeadsCreateResponse",
-    "PostV1LeadsCreateResponseStatus",
-    "PostV1LeadsDeleteResponse",
-    "PostV1LeadsFilesListResponse",
-    "PostV1LeadsFilesListResponseRowsItem",
-    "PostV1LeadsGetResponse",
-    "PostV1LeadsGetResponseStatus",
-    "PostV1LeadsListRequestFilterItem",
-    "PostV1LeadsListRequestFilterItemOp",
-    "PostV1LeadsListRequestFilterItemValue",
-    "PostV1LeadsListRequestFilterItemValueThreeItem",
-    "PostV1LeadsListRequestSortItem",
-    "PostV1LeadsListRequestSortItemDir",
-    "PostV1LeadsListResponse",
-    "PostV1LeadsListResponseRowsItem",
-    "PostV1LeadsListResponseRowsItemStatus",
-    "PostV1LeadsNotesCreateResponse",
-    "PostV1LeadsNotesDeleteResponse",
-    "PostV1LeadsNotesListResponse",
-    "PostV1LeadsNotesListResponseRowsItem",
-    "PostV1LeadsSourcesCreateResponse",
-    "PostV1LeadsSourcesDeleteResponse",
-    "PostV1LeadsSourcesListResponse",
-    "PostV1LeadsSourcesListResponseRowsItem",
-    "PostV1LeadsSourcesOptionsResponse",
-    "PostV1LeadsSourcesOptionsResponseRowsItem",
-    "PostV1LeadsSourcesUpdateResponse",
-    "PostV1LeadsUpdateRequestDocumentsItem",
-    "PostV1LeadsUpdateRequestStatus",
-    "PostV1LeadsUpdateResponse",
-    "PostV1LeadsUpdateResponseStatus",
-    "PostV1PartnersAddressesCreateRequestType",
-    "PostV1PartnersAddressesCreateResponse",
-    "PostV1PartnersAddressesDeleteResponse",
-    "PostV1PartnersAddressesListRequestFilterItem",
-    "PostV1PartnersAddressesListRequestFilterItemOp",
-    "PostV1PartnersAddressesListRequestFilterItemValue",
-    "PostV1PartnersAddressesListRequestFilterItemValueThreeItem",
-    "PostV1PartnersAddressesListRequestSortItem",
-    "PostV1PartnersAddressesListRequestSortItemDir",
-    "PostV1PartnersAddressesListResponse",
-    "PostV1PartnersAddressesListResponseRowsItem",
-    "PostV1PartnersAddressesUpdateRequestType",
-    "PostV1PartnersAddressesUpdateResponse",
-    "PostV1PartnersAnonymizeResponse",
-    "PostV1PartnersBankAccountsCreateResponse",
-    "PostV1PartnersBankAccountsDeleteResponse",
-    "PostV1PartnersBankAccountsListRequestFilterItem",
-    "PostV1PartnersBankAccountsListRequestFilterItemOp",
-    "PostV1PartnersBankAccountsListRequestFilterItemValue",
-    "PostV1PartnersBankAccountsListRequestFilterItemValueThreeItem",
-    "PostV1PartnersBankAccountsListRequestSortItem",
-    "PostV1PartnersBankAccountsListRequestSortItemDir",
-    "PostV1PartnersBankAccountsListResponse",
-    "PostV1PartnersBankAccountsListResponseRowsItem",
-    "PostV1PartnersBankAccountsUpdateResponse",
-    "PostV1PartnersContactsCreateResponse",
-    "PostV1PartnersContactsDeleteResponse",
-    "PostV1PartnersContactsListRequestFilterItem",
-    "PostV1PartnersContactsListRequestFilterItemOp",
-    "PostV1PartnersContactsListRequestFilterItemValue",
-    "PostV1PartnersContactsListRequestFilterItemValueThreeItem",
-    "PostV1PartnersContactsListRequestSortItem",
-    "PostV1PartnersContactsListRequestSortItemDir",
-    "PostV1PartnersContactsListResponse",
-    "PostV1PartnersContactsListResponseRowsItem",
-    "PostV1PartnersContactsUpdateResponse",
-    "PostV1PartnersCreateRequestAddress",
-    "PostV1PartnersCreateRequestCorrespondenceAddress",
-    "PostV1PartnersCreateRequestLegalCountryClass",
-    "PostV1PartnersCreateRequestType",
-    "PostV1PartnersCreateResponse",
-    "PostV1PartnersCreateResponseAddress",
-    "PostV1PartnersCreateResponseCorrespondenceAddress",
-    "PostV1PartnersCreateResponseLegalCountryClass",
-    "PostV1PartnersCreateResponseType",
-    "PostV1PartnersCreditCheckResponse",
-    "PostV1PartnersDebtRemindersListRequestFilterItem",
-    "PostV1PartnersDebtRemindersListRequestFilterItemOp",
-    "PostV1PartnersDebtRemindersListRequestFilterItemValue",
-    "PostV1PartnersDebtRemindersListRequestFilterItemValueThreeItem",
-    "PostV1PartnersDebtRemindersListRequestSortItem",
-    "PostV1PartnersDebtRemindersListRequestSortItemDir",
-    "PostV1PartnersDebtRemindersListResponse",
-    "PostV1PartnersDebtRemindersListResponseRowsItem",
-    "PostV1PartnersDebtRemindersPreviewResponse",
-    "PostV1PartnersDebtRemindersPreviewResponseRowsItem",
-    "PostV1PartnersDebtRemindersPreviewResponseRowsItemInvoicesItem",
-    "PostV1PartnersDebtRemindersPreviewResponseRowsItemLocale",
-    "PostV1PartnersDeleteResponse",
-    "PostV1PartnersFilesListResponse",
-    "PostV1PartnersFilesListResponseRowsItem",
-    "PostV1PartnersFindOrCreateRequestAddress",
-    "PostV1PartnersFindOrCreateRequestCorrespondenceAddress",
-    "PostV1PartnersFindOrCreateRequestLegalCountryClass",
-    "PostV1PartnersFindOrCreateRequestType",
-    "PostV1PartnersFindOrCreateResponse",
-    "PostV1PartnersFindOrCreateResponsePartner",
-    "PostV1PartnersFindOrCreateResponsePartnerAddress",
-    "PostV1PartnersFindOrCreateResponsePartnerCorrespondenceAddress",
-    "PostV1PartnersFindOrCreateResponsePartnerLegalCountryClass",
-    "PostV1PartnersFindOrCreateResponsePartnerType",
-    "PostV1PartnersGetResponse",
-    "PostV1PartnersGetResponseAddress",
-    "PostV1PartnersGetResponseCorrespondenceAddress",
-    "PostV1PartnersGetResponseLegalCountryClass",
-    "PostV1PartnersGetResponseType",
-    "PostV1PartnersGroupsCreateResponse",
-    "PostV1PartnersGroupsDeleteResponse",
-    "PostV1PartnersGroupsListResponse",
-    "PostV1PartnersGroupsListResponseRowsItem",
-    "PostV1PartnersGroupsUpdateResponse",
-    "PostV1PartnersInquiriesCreateResponse",
-    "PostV1PartnersInquiriesCreateResponseStatus",
-    "PostV1PartnersInquiriesGetResponse",
-    "PostV1PartnersInquiriesGetResponseStatus",
-    "PostV1PartnersInquiriesListRequestFilterItem",
-    "PostV1PartnersInquiriesListRequestFilterItemOp",
-    "PostV1PartnersInquiriesListRequestFilterItemValue",
-    "PostV1PartnersInquiriesListRequestFilterItemValueThreeItem",
-    "PostV1PartnersInquiriesListRequestSortItem",
-    "PostV1PartnersInquiriesListRequestSortItemDir",
-    "PostV1PartnersInquiriesListResponse",
-    "PostV1PartnersInquiriesListResponseRowsItem",
-    "PostV1PartnersInquiriesListResponseRowsItemStatus",
-    "PostV1PartnersInquiriesUpdateRequestStatus",
-    "PostV1PartnersInquiriesUpdateResponse",
-    "PostV1PartnersInquiriesUpdateResponseStatus",
-    "PostV1PartnersListRequestFilterItem",
-    "PostV1PartnersListRequestFilterItemOp",
-    "PostV1PartnersListRequestFilterItemValue",
-    "PostV1PartnersListRequestFilterItemValueThreeItem",
-    "PostV1PartnersListRequestSortItem",
-    "PostV1PartnersListRequestSortItemDir",
-    "PostV1PartnersListResponse",
-    "PostV1PartnersListResponseRowsItem",
-    "PostV1PartnersListResponseRowsItemAddress",
-    "PostV1PartnersListResponseRowsItemCorrespondenceAddress",
-    "PostV1PartnersListResponseRowsItemLegalCountryClass",
-    "PostV1PartnersListResponseRowsItemType",
-    "PostV1PartnersStatusesCreateResponse",
-    "PostV1PartnersStatusesDeleteResponse",
-    "PostV1PartnersStatusesListResponse",
-    "PostV1PartnersStatusesListResponseRowsItem",
-    "PostV1PartnersStatusesUpdateResponse",
-    "PostV1PartnersUpdateRequestAddress",
-    "PostV1PartnersUpdateRequestCorrespondenceAddress",
-    "PostV1PartnersUpdateRequestLegalCountryClass",
-    "PostV1PartnersUpdateRequestType",
-    "PostV1PartnersUpdateResponse",
-    "PostV1PartnersUpdateResponseAddress",
-    "PostV1PartnersUpdateResponseCorrespondenceAddress",
-    "PostV1PartnersUpdateResponseLegalCountryClass",
-    "PostV1PartnersUpdateResponseType",
-    "PostV1PartnersValidateVatResponse",
-    "PostV1PartnersVatReviewsListRequestFilterItem",
-    "PostV1PartnersVatReviewsListRequestFilterItemOp",
-    "PostV1PartnersVatReviewsListRequestFilterItemValue",
-    "PostV1PartnersVatReviewsListRequestFilterItemValueThreeItem",
-    "PostV1PartnersVatReviewsListRequestSortItem",
-    "PostV1PartnersVatReviewsListRequestSortItemDir",
-    "PostV1PartnersVatReviewsListResponse",
-    "PostV1PartnersVatReviewsListResponseRowsItem",
-    "PostV1PartnersVatReviewsListResponseRowsItemDetails",
-    "PostV1PartnersVatReviewsListResponseRowsItemReason",
-    "PostV1PartnersVatReviewsListResponseRowsItemResolution",
-    "PostV1PartnersVatReviewsListResponseRowsItemStatus",
-    "PostV1PartnersVatReviewsResolveRequestResolution",
-    "PostV1PartnersVatReviewsResolveResponse",
-    "PostV1PartnersVatReviewsResolveResponseDetails",
-    "PostV1PartnersVatReviewsResolveResponseReason",
-    "PostV1PartnersVatReviewsResolveResponseResolution",
-    "PostV1PartnersVatReviewsResolveResponseStatus",
+    "AddressesCreatePartnersRequestType",
+    "AddressesCreatePartnersResponse",
+    "AddressesDeletePartnersResponse",
+    "AddressesListPartnersRequestFilterItem",
+    "AddressesListPartnersRequestFilterItemOp",
+    "AddressesListPartnersRequestFilterItemValue",
+    "AddressesListPartnersRequestFilterItemValueThreeItem",
+    "AddressesListPartnersRequestSortItem",
+    "AddressesListPartnersRequestSortItemDir",
+    "AddressesListPartnersResponse",
+    "AddressesListPartnersResponseRowsItem",
+    "AddressesUpdatePartnersRequestType",
+    "AddressesUpdatePartnersResponse",
+    "AnonymizePartnersResponse",
+    "BankAccountsCreatePartnersResponse",
+    "BankAccountsDeletePartnersResponse",
+    "BankAccountsListPartnersRequestFilterItem",
+    "BankAccountsListPartnersRequestFilterItemOp",
+    "BankAccountsListPartnersRequestFilterItemValue",
+    "BankAccountsListPartnersRequestFilterItemValueThreeItem",
+    "BankAccountsListPartnersRequestSortItem",
+    "BankAccountsListPartnersRequestSortItemDir",
+    "BankAccountsListPartnersResponse",
+    "BankAccountsListPartnersResponseRowsItem",
+    "BankAccountsUpdatePartnersResponse",
+    "ContactsCreatePartnersResponse",
+    "ContactsDeletePartnersResponse",
+    "ContactsListPartnersRequestFilterItem",
+    "ContactsListPartnersRequestFilterItemOp",
+    "ContactsListPartnersRequestFilterItemValue",
+    "ContactsListPartnersRequestFilterItemValueThreeItem",
+    "ContactsListPartnersRequestSortItem",
+    "ContactsListPartnersRequestSortItemDir",
+    "ContactsListPartnersResponse",
+    "ContactsListPartnersResponseRowsItem",
+    "ContactsUpdatePartnersResponse",
+    "CreatePartnersRequestAddress",
+    "CreatePartnersRequestCorrespondenceAddress",
+    "CreatePartnersRequestLegalCountryClass",
+    "CreatePartnersRequestType",
+    "CreatePartnersResponse",
+    "CreatePartnersResponseAddress",
+    "CreatePartnersResponseCorrespondenceAddress",
+    "CreatePartnersResponseLegalCountryClass",
+    "CreatePartnersResponseType",
+    "CreditCheckPartnersResponse",
+    "DebtRemindersListPartnersRequestFilterItem",
+    "DebtRemindersListPartnersRequestFilterItemOp",
+    "DebtRemindersListPartnersRequestFilterItemValue",
+    "DebtRemindersListPartnersRequestFilterItemValueThreeItem",
+    "DebtRemindersListPartnersRequestSortItem",
+    "DebtRemindersListPartnersRequestSortItemDir",
+    "DebtRemindersListPartnersResponse",
+    "DebtRemindersListPartnersResponseRowsItem",
+    "DebtRemindersPreviewPartnersResponse",
+    "DebtRemindersPreviewPartnersResponseRowsItem",
+    "DebtRemindersPreviewPartnersResponseRowsItemInvoicesItem",
+    "DebtRemindersPreviewPartnersResponseRowsItemLocale",
+    "DeletePartnersResponse",
+    "FilesListPartnersResponse",
+    "FilesListPartnersResponseRowsItem",
+    "FindOrCreatePartnersRequestAddress",
+    "FindOrCreatePartnersRequestCorrespondenceAddress",
+    "FindOrCreatePartnersRequestLegalCountryClass",
+    "FindOrCreatePartnersRequestType",
+    "FindOrCreatePartnersResponse",
+    "FindOrCreatePartnersResponsePartner",
+    "FindOrCreatePartnersResponsePartnerAddress",
+    "FindOrCreatePartnersResponsePartnerCorrespondenceAddress",
+    "FindOrCreatePartnersResponsePartnerLegalCountryClass",
+    "FindOrCreatePartnersResponsePartnerType",
+    "GetPartnersResponse",
+    "GetPartnersResponseAddress",
+    "GetPartnersResponseCorrespondenceAddress",
+    "GetPartnersResponseLegalCountryClass",
+    "GetPartnersResponseType",
+    "GroupsCreatePartnersResponse",
+    "GroupsDeletePartnersResponse",
+    "GroupsListPartnersResponse",
+    "GroupsListPartnersResponseRowsItem",
+    "GroupsUpdatePartnersResponse",
+    "InquiriesCreatePartnersResponse",
+    "InquiriesCreatePartnersResponseStatus",
+    "InquiriesGetPartnersResponse",
+    "InquiriesGetPartnersResponseStatus",
+    "InquiriesListPartnersRequestFilterItem",
+    "InquiriesListPartnersRequestFilterItemOp",
+    "InquiriesListPartnersRequestFilterItemValue",
+    "InquiriesListPartnersRequestFilterItemValueThreeItem",
+    "InquiriesListPartnersRequestSortItem",
+    "InquiriesListPartnersRequestSortItemDir",
+    "InquiriesListPartnersResponse",
+    "InquiriesListPartnersResponseRowsItem",
+    "InquiriesListPartnersResponseRowsItemStatus",
+    "InquiriesUpdatePartnersRequestStatus",
+    "InquiriesUpdatePartnersResponse",
+    "InquiriesUpdatePartnersResponseStatus",
+    "ListPartnersRequestFilterItem",
+    "ListPartnersRequestFilterItemOp",
+    "ListPartnersRequestFilterItemValue",
+    "ListPartnersRequestFilterItemValueThreeItem",
+    "ListPartnersRequestSortItem",
+    "ListPartnersRequestSortItemDir",
+    "ListPartnersResponse",
+    "ListPartnersResponseRowsItem",
+    "ListPartnersResponseRowsItemAddress",
+    "ListPartnersResponseRowsItemCorrespondenceAddress",
+    "ListPartnersResponseRowsItemLegalCountryClass",
+    "ListPartnersResponseRowsItemType",
+    "StatusesCreatePartnersResponse",
+    "StatusesDeletePartnersResponse",
+    "StatusesListPartnersResponse",
+    "StatusesListPartnersResponseRowsItem",
+    "StatusesUpdatePartnersResponse",
+    "UpdatePartnersRequestAddress",
+    "UpdatePartnersRequestCorrespondenceAddress",
+    "UpdatePartnersRequestLegalCountryClass",
+    "UpdatePartnersRequestType",
+    "UpdatePartnersResponse",
+    "UpdatePartnersResponseAddress",
+    "UpdatePartnersResponseCorrespondenceAddress",
+    "UpdatePartnersResponseLegalCountryClass",
+    "UpdatePartnersResponseType",
+    "ValidateVatPartnersResponse",
+    "VatReviewsListPartnersRequestFilterItem",
+    "VatReviewsListPartnersRequestFilterItemOp",
+    "VatReviewsListPartnersRequestFilterItemValue",
+    "VatReviewsListPartnersRequestFilterItemValueThreeItem",
+    "VatReviewsListPartnersRequestSortItem",
+    "VatReviewsListPartnersRequestSortItemDir",
+    "VatReviewsListPartnersResponse",
+    "VatReviewsListPartnersResponseRowsItem",
+    "VatReviewsListPartnersResponseRowsItemDetails",
+    "VatReviewsListPartnersResponseRowsItemReason",
+    "VatReviewsListPartnersResponseRowsItemResolution",
+    "VatReviewsListPartnersResponseRowsItemStatus",
+    "VatReviewsResolvePartnersRequestResolution",
+    "VatReviewsResolvePartnersResponse",
+    "VatReviewsResolvePartnersResponseDetails",
+    "VatReviewsResolvePartnersResponseReason",
+    "VatReviewsResolvePartnersResponseResolution",
+    "VatReviewsResolvePartnersResponseStatus",
 ]

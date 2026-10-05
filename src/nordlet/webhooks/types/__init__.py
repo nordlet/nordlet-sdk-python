@@ -6,63 +6,69 @@ import typing
 from importlib import import_module
 
 if typing.TYPE_CHECKING:
-    from .post_v1webhooks_deliveries_list_request_filter_item import PostV1WebhooksDeliveriesListRequestFilterItem
-    from .post_v1webhooks_deliveries_list_request_filter_item_op import PostV1WebhooksDeliveriesListRequestFilterItemOp
-    from .post_v1webhooks_deliveries_list_request_filter_item_value import (
-        PostV1WebhooksDeliveriesListRequestFilterItemValue,
+    from .deliveries_list_webhooks_request_filter_item import DeliveriesListWebhooksRequestFilterItem
+    from .deliveries_list_webhooks_request_filter_item_op import DeliveriesListWebhooksRequestFilterItemOp
+    from .deliveries_list_webhooks_request_filter_item_value import DeliveriesListWebhooksRequestFilterItemValue
+    from .deliveries_list_webhooks_request_filter_item_value_three_item import (
+        DeliveriesListWebhooksRequestFilterItemValueThreeItem,
     )
-    from .post_v1webhooks_deliveries_list_request_filter_item_value_three_item import (
-        PostV1WebhooksDeliveriesListRequestFilterItemValueThreeItem,
+    from .deliveries_list_webhooks_request_sort_item import DeliveriesListWebhooksRequestSortItem
+    from .deliveries_list_webhooks_request_sort_item_dir import DeliveriesListWebhooksRequestSortItemDir
+    from .deliveries_list_webhooks_response import DeliveriesListWebhooksResponse
+    from .deliveries_list_webhooks_response_rows_item import DeliveriesListWebhooksResponseRowsItem
+    from .deliveries_list_webhooks_response_rows_item_status import DeliveriesListWebhooksResponseRowsItemStatus
+    from .deliveries_redeliver_webhooks_response import DeliveriesRedeliverWebhooksResponse
+    from .subscriptions_create_webhooks_request_events_item import SubscriptionsCreateWebhooksRequestEventsItem
+    from .subscriptions_create_webhooks_response import SubscriptionsCreateWebhooksResponse
+    from .subscriptions_create_webhooks_response_last_delivery_status import (
+        SubscriptionsCreateWebhooksResponseLastDeliveryStatus,
     )
-    from .post_v1webhooks_deliveries_list_request_sort_item import PostV1WebhooksDeliveriesListRequestSortItem
-    from .post_v1webhooks_deliveries_list_request_sort_item_dir import PostV1WebhooksDeliveriesListRequestSortItemDir
-    from .post_v1webhooks_deliveries_list_response import PostV1WebhooksDeliveriesListResponse
-    from .post_v1webhooks_deliveries_list_response_rows_item import PostV1WebhooksDeliveriesListResponseRowsItem
-    from .post_v1webhooks_deliveries_list_response_rows_item_status import (
-        PostV1WebhooksDeliveriesListResponseRowsItemStatus,
+    from .subscriptions_delete_webhooks_response import SubscriptionsDeleteWebhooksResponse
+    from .subscriptions_list_webhooks_request_filter_item import SubscriptionsListWebhooksRequestFilterItem
+    from .subscriptions_list_webhooks_request_filter_item_op import SubscriptionsListWebhooksRequestFilterItemOp
+    from .subscriptions_list_webhooks_request_filter_item_value import SubscriptionsListWebhooksRequestFilterItemValue
+    from .subscriptions_list_webhooks_request_filter_item_value_three_item import (
+        SubscriptionsListWebhooksRequestFilterItemValueThreeItem,
     )
-    from .post_v1webhooks_deliveries_redeliver_response import PostV1WebhooksDeliveriesRedeliverResponse
-    from .post_v1webhooks_subscriptions_create_response import PostV1WebhooksSubscriptionsCreateResponse
-    from .post_v1webhooks_subscriptions_delete_response import PostV1WebhooksSubscriptionsDeleteResponse
-    from .post_v1webhooks_subscriptions_list_request_filter_item import PostV1WebhooksSubscriptionsListRequestFilterItem
-    from .post_v1webhooks_subscriptions_list_request_filter_item_op import (
-        PostV1WebhooksSubscriptionsListRequestFilterItemOp,
+    from .subscriptions_list_webhooks_request_sort_item import SubscriptionsListWebhooksRequestSortItem
+    from .subscriptions_list_webhooks_request_sort_item_dir import SubscriptionsListWebhooksRequestSortItemDir
+    from .subscriptions_list_webhooks_response import SubscriptionsListWebhooksResponse
+    from .subscriptions_list_webhooks_response_rows_item import SubscriptionsListWebhooksResponseRowsItem
+    from .subscriptions_list_webhooks_response_rows_item_last_delivery_status import (
+        SubscriptionsListWebhooksResponseRowsItemLastDeliveryStatus,
     )
-    from .post_v1webhooks_subscriptions_list_request_filter_item_value import (
-        PostV1WebhooksSubscriptionsListRequestFilterItemValue,
+    from .subscriptions_update_webhooks_request_events_item import SubscriptionsUpdateWebhooksRequestEventsItem
+    from .subscriptions_update_webhooks_response import SubscriptionsUpdateWebhooksResponse
+    from .subscriptions_update_webhooks_response_last_delivery_status import (
+        SubscriptionsUpdateWebhooksResponseLastDeliveryStatus,
     )
-    from .post_v1webhooks_subscriptions_list_request_filter_item_value_three_item import (
-        PostV1WebhooksSubscriptionsListRequestFilterItemValueThreeItem,
-    )
-    from .post_v1webhooks_subscriptions_list_request_sort_item import PostV1WebhooksSubscriptionsListRequestSortItem
-    from .post_v1webhooks_subscriptions_list_request_sort_item_dir import (
-        PostV1WebhooksSubscriptionsListRequestSortItemDir,
-    )
-    from .post_v1webhooks_subscriptions_list_response import PostV1WebhooksSubscriptionsListResponse
-    from .post_v1webhooks_subscriptions_list_response_rows_item import PostV1WebhooksSubscriptionsListResponseRowsItem
-    from .post_v1webhooks_subscriptions_update_response import PostV1WebhooksSubscriptionsUpdateResponse
 _dynamic_imports: typing.Dict[str, str] = {
-    "PostV1WebhooksDeliveriesListRequestFilterItem": ".post_v1webhooks_deliveries_list_request_filter_item",
-    "PostV1WebhooksDeliveriesListRequestFilterItemOp": ".post_v1webhooks_deliveries_list_request_filter_item_op",
-    "PostV1WebhooksDeliveriesListRequestFilterItemValue": ".post_v1webhooks_deliveries_list_request_filter_item_value",
-    "PostV1WebhooksDeliveriesListRequestFilterItemValueThreeItem": ".post_v1webhooks_deliveries_list_request_filter_item_value_three_item",
-    "PostV1WebhooksDeliveriesListRequestSortItem": ".post_v1webhooks_deliveries_list_request_sort_item",
-    "PostV1WebhooksDeliveriesListRequestSortItemDir": ".post_v1webhooks_deliveries_list_request_sort_item_dir",
-    "PostV1WebhooksDeliveriesListResponse": ".post_v1webhooks_deliveries_list_response",
-    "PostV1WebhooksDeliveriesListResponseRowsItem": ".post_v1webhooks_deliveries_list_response_rows_item",
-    "PostV1WebhooksDeliveriesListResponseRowsItemStatus": ".post_v1webhooks_deliveries_list_response_rows_item_status",
-    "PostV1WebhooksDeliveriesRedeliverResponse": ".post_v1webhooks_deliveries_redeliver_response",
-    "PostV1WebhooksSubscriptionsCreateResponse": ".post_v1webhooks_subscriptions_create_response",
-    "PostV1WebhooksSubscriptionsDeleteResponse": ".post_v1webhooks_subscriptions_delete_response",
-    "PostV1WebhooksSubscriptionsListRequestFilterItem": ".post_v1webhooks_subscriptions_list_request_filter_item",
-    "PostV1WebhooksSubscriptionsListRequestFilterItemOp": ".post_v1webhooks_subscriptions_list_request_filter_item_op",
-    "PostV1WebhooksSubscriptionsListRequestFilterItemValue": ".post_v1webhooks_subscriptions_list_request_filter_item_value",
-    "PostV1WebhooksSubscriptionsListRequestFilterItemValueThreeItem": ".post_v1webhooks_subscriptions_list_request_filter_item_value_three_item",
-    "PostV1WebhooksSubscriptionsListRequestSortItem": ".post_v1webhooks_subscriptions_list_request_sort_item",
-    "PostV1WebhooksSubscriptionsListRequestSortItemDir": ".post_v1webhooks_subscriptions_list_request_sort_item_dir",
-    "PostV1WebhooksSubscriptionsListResponse": ".post_v1webhooks_subscriptions_list_response",
-    "PostV1WebhooksSubscriptionsListResponseRowsItem": ".post_v1webhooks_subscriptions_list_response_rows_item",
-    "PostV1WebhooksSubscriptionsUpdateResponse": ".post_v1webhooks_subscriptions_update_response",
+    "DeliveriesListWebhooksRequestFilterItem": ".deliveries_list_webhooks_request_filter_item",
+    "DeliveriesListWebhooksRequestFilterItemOp": ".deliveries_list_webhooks_request_filter_item_op",
+    "DeliveriesListWebhooksRequestFilterItemValue": ".deliveries_list_webhooks_request_filter_item_value",
+    "DeliveriesListWebhooksRequestFilterItemValueThreeItem": ".deliveries_list_webhooks_request_filter_item_value_three_item",
+    "DeliveriesListWebhooksRequestSortItem": ".deliveries_list_webhooks_request_sort_item",
+    "DeliveriesListWebhooksRequestSortItemDir": ".deliveries_list_webhooks_request_sort_item_dir",
+    "DeliveriesListWebhooksResponse": ".deliveries_list_webhooks_response",
+    "DeliveriesListWebhooksResponseRowsItem": ".deliveries_list_webhooks_response_rows_item",
+    "DeliveriesListWebhooksResponseRowsItemStatus": ".deliveries_list_webhooks_response_rows_item_status",
+    "DeliveriesRedeliverWebhooksResponse": ".deliveries_redeliver_webhooks_response",
+    "SubscriptionsCreateWebhooksRequestEventsItem": ".subscriptions_create_webhooks_request_events_item",
+    "SubscriptionsCreateWebhooksResponse": ".subscriptions_create_webhooks_response",
+    "SubscriptionsCreateWebhooksResponseLastDeliveryStatus": ".subscriptions_create_webhooks_response_last_delivery_status",
+    "SubscriptionsDeleteWebhooksResponse": ".subscriptions_delete_webhooks_response",
+    "SubscriptionsListWebhooksRequestFilterItem": ".subscriptions_list_webhooks_request_filter_item",
+    "SubscriptionsListWebhooksRequestFilterItemOp": ".subscriptions_list_webhooks_request_filter_item_op",
+    "SubscriptionsListWebhooksRequestFilterItemValue": ".subscriptions_list_webhooks_request_filter_item_value",
+    "SubscriptionsListWebhooksRequestFilterItemValueThreeItem": ".subscriptions_list_webhooks_request_filter_item_value_three_item",
+    "SubscriptionsListWebhooksRequestSortItem": ".subscriptions_list_webhooks_request_sort_item",
+    "SubscriptionsListWebhooksRequestSortItemDir": ".subscriptions_list_webhooks_request_sort_item_dir",
+    "SubscriptionsListWebhooksResponse": ".subscriptions_list_webhooks_response",
+    "SubscriptionsListWebhooksResponseRowsItem": ".subscriptions_list_webhooks_response_rows_item",
+    "SubscriptionsListWebhooksResponseRowsItemLastDeliveryStatus": ".subscriptions_list_webhooks_response_rows_item_last_delivery_status",
+    "SubscriptionsUpdateWebhooksRequestEventsItem": ".subscriptions_update_webhooks_request_events_item",
+    "SubscriptionsUpdateWebhooksResponse": ".subscriptions_update_webhooks_response",
+    "SubscriptionsUpdateWebhooksResponseLastDeliveryStatus": ".subscriptions_update_webhooks_response_last_delivery_status",
 }
 
 
@@ -88,25 +94,30 @@ def __dir__():
 
 
 __all__ = [
-    "PostV1WebhooksDeliveriesListRequestFilterItem",
-    "PostV1WebhooksDeliveriesListRequestFilterItemOp",
-    "PostV1WebhooksDeliveriesListRequestFilterItemValue",
-    "PostV1WebhooksDeliveriesListRequestFilterItemValueThreeItem",
-    "PostV1WebhooksDeliveriesListRequestSortItem",
-    "PostV1WebhooksDeliveriesListRequestSortItemDir",
-    "PostV1WebhooksDeliveriesListResponse",
-    "PostV1WebhooksDeliveriesListResponseRowsItem",
-    "PostV1WebhooksDeliveriesListResponseRowsItemStatus",
-    "PostV1WebhooksDeliveriesRedeliverResponse",
-    "PostV1WebhooksSubscriptionsCreateResponse",
-    "PostV1WebhooksSubscriptionsDeleteResponse",
-    "PostV1WebhooksSubscriptionsListRequestFilterItem",
-    "PostV1WebhooksSubscriptionsListRequestFilterItemOp",
-    "PostV1WebhooksSubscriptionsListRequestFilterItemValue",
-    "PostV1WebhooksSubscriptionsListRequestFilterItemValueThreeItem",
-    "PostV1WebhooksSubscriptionsListRequestSortItem",
-    "PostV1WebhooksSubscriptionsListRequestSortItemDir",
-    "PostV1WebhooksSubscriptionsListResponse",
-    "PostV1WebhooksSubscriptionsListResponseRowsItem",
-    "PostV1WebhooksSubscriptionsUpdateResponse",
+    "DeliveriesListWebhooksRequestFilterItem",
+    "DeliveriesListWebhooksRequestFilterItemOp",
+    "DeliveriesListWebhooksRequestFilterItemValue",
+    "DeliveriesListWebhooksRequestFilterItemValueThreeItem",
+    "DeliveriesListWebhooksRequestSortItem",
+    "DeliveriesListWebhooksRequestSortItemDir",
+    "DeliveriesListWebhooksResponse",
+    "DeliveriesListWebhooksResponseRowsItem",
+    "DeliveriesListWebhooksResponseRowsItemStatus",
+    "DeliveriesRedeliverWebhooksResponse",
+    "SubscriptionsCreateWebhooksRequestEventsItem",
+    "SubscriptionsCreateWebhooksResponse",
+    "SubscriptionsCreateWebhooksResponseLastDeliveryStatus",
+    "SubscriptionsDeleteWebhooksResponse",
+    "SubscriptionsListWebhooksRequestFilterItem",
+    "SubscriptionsListWebhooksRequestFilterItemOp",
+    "SubscriptionsListWebhooksRequestFilterItemValue",
+    "SubscriptionsListWebhooksRequestFilterItemValueThreeItem",
+    "SubscriptionsListWebhooksRequestSortItem",
+    "SubscriptionsListWebhooksRequestSortItemDir",
+    "SubscriptionsListWebhooksResponse",
+    "SubscriptionsListWebhooksResponseRowsItem",
+    "SubscriptionsListWebhooksResponseRowsItemLastDeliveryStatus",
+    "SubscriptionsUpdateWebhooksRequestEventsItem",
+    "SubscriptionsUpdateWebhooksResponse",
+    "SubscriptionsUpdateWebhooksResponseLastDeliveryStatus",
 ]

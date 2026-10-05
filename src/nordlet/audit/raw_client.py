@@ -12,16 +12,18 @@ from ..core.request_options import RequestOptions
 from ..core.serialization import convert_and_respect_annotation_metadata
 from ..errors.bad_request_error import BadRequestError
 from ..errors.conflict_error import ConflictError
+from ..errors.content_too_large_error import ContentTooLargeError
 from ..errors.forbidden_error import ForbiddenError
 from ..errors.internal_server_error import InternalServerError
 from ..errors.not_found_error import NotFoundError
+from ..errors.payment_required_error import PaymentRequiredError
 from ..errors.too_many_requests_error import TooManyRequestsError
 from ..errors.unauthorized_error import UnauthorizedError
 from ..errors.unprocessable_entity_error import UnprocessableEntityError
 from ..types.error_response import ErrorResponse
-from .types.post_v1audit_list_request_filter_item import PostV1AuditListRequestFilterItem
-from .types.post_v1audit_list_request_sort_item import PostV1AuditListRequestSortItem
-from .types.post_v1audit_list_response import PostV1AuditListResponse
+from .types.list_audit_request_filter_item import ListAuditRequestFilterItem
+from .types.list_audit_request_sort_item import ListAuditRequestSortItem
+from .types.list_audit_response import ListAuditResponse
 from pydantic import ValidationError
 
 # this is used as the default value for optional parameters
@@ -32,16 +34,16 @@ class RawAuditClient:
     def __init__(self, *, client_wrapper: SyncClientWrapper):
         self._client_wrapper = client_wrapper
 
-    def post_v1audit_list(
+    def list(
         self,
         *,
         page: typing.Optional[int] = OMIT,
         page_size: typing.Optional[int] = OMIT,
-        sort: typing.Optional[typing.Sequence[PostV1AuditListRequestSortItem]] = OMIT,
-        filter: typing.Optional[typing.Sequence[PostV1AuditListRequestFilterItem]] = OMIT,
+        sort: typing.Optional[typing.Sequence[ListAuditRequestSortItem]] = OMIT,
+        filter: typing.Optional[typing.Sequence[ListAuditRequestFilterItem]] = OMIT,
         totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> HttpResponse[PostV1AuditListResponse]:
+    ) -> HttpResponse[ListAuditResponse]:
         """
         Parameters
         ----------
@@ -49,9 +51,9 @@ class RawAuditClient:
 
         page_size : typing.Optional[int]
 
-        sort : typing.Optional[typing.Sequence[PostV1AuditListRequestSortItem]]
+        sort : typing.Optional[typing.Sequence[ListAuditRequestSortItem]]
 
-        filter : typing.Optional[typing.Sequence[PostV1AuditListRequestFilterItem]]
+        filter : typing.Optional[typing.Sequence[ListAuditRequestFilterItem]]
 
         totals : typing.Optional[typing.Sequence[str]]
             Numeric fields to sum over every row matching the filter (not only the current page)
@@ -61,7 +63,7 @@ class RawAuditClient:
 
         Returns
         -------
-        HttpResponse[PostV1AuditListResponse]
+        HttpResponse[ListAuditResponse]
             Default Response
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -71,10 +73,10 @@ class RawAuditClient:
                 "page": page,
                 "pageSize": page_size,
                 "sort": convert_and_respect_annotation_metadata(
-                    object_=sort, annotation=typing.Sequence[PostV1AuditListRequestSortItem], direction="write"
+                    object_=sort, annotation=typing.Sequence[ListAuditRequestSortItem], direction="write"
                 ),
                 "filter": convert_and_respect_annotation_metadata(
-                    object_=filter, annotation=typing.Sequence[PostV1AuditListRequestFilterItem], direction="write"
+                    object_=filter, annotation=typing.Sequence[ListAuditRequestFilterItem], direction="write"
                 ),
                 "totals": totals,
             },
@@ -87,9 +89,9 @@ class RawAuditClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1AuditListResponse,
+                    ListAuditResponse,
                     parse_obj_as(
-                        type_=PostV1AuditListResponse,  # type: ignore
+                        type_=ListAuditResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -107,6 +109,17 @@ class RawAuditClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -140,6 +153,17 @@ class RawAuditClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -196,16 +220,16 @@ class AsyncRawAuditClient:
     def __init__(self, *, client_wrapper: AsyncClientWrapper):
         self._client_wrapper = client_wrapper
 
-    async def post_v1audit_list(
+    async def list(
         self,
         *,
         page: typing.Optional[int] = OMIT,
         page_size: typing.Optional[int] = OMIT,
-        sort: typing.Optional[typing.Sequence[PostV1AuditListRequestSortItem]] = OMIT,
-        filter: typing.Optional[typing.Sequence[PostV1AuditListRequestFilterItem]] = OMIT,
+        sort: typing.Optional[typing.Sequence[ListAuditRequestSortItem]] = OMIT,
+        filter: typing.Optional[typing.Sequence[ListAuditRequestFilterItem]] = OMIT,
         totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> AsyncHttpResponse[PostV1AuditListResponse]:
+    ) -> AsyncHttpResponse[ListAuditResponse]:
         """
         Parameters
         ----------
@@ -213,9 +237,9 @@ class AsyncRawAuditClient:
 
         page_size : typing.Optional[int]
 
-        sort : typing.Optional[typing.Sequence[PostV1AuditListRequestSortItem]]
+        sort : typing.Optional[typing.Sequence[ListAuditRequestSortItem]]
 
-        filter : typing.Optional[typing.Sequence[PostV1AuditListRequestFilterItem]]
+        filter : typing.Optional[typing.Sequence[ListAuditRequestFilterItem]]
 
         totals : typing.Optional[typing.Sequence[str]]
             Numeric fields to sum over every row matching the filter (not only the current page)
@@ -225,7 +249,7 @@ class AsyncRawAuditClient:
 
         Returns
         -------
-        AsyncHttpResponse[PostV1AuditListResponse]
+        AsyncHttpResponse[ListAuditResponse]
             Default Response
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -235,10 +259,10 @@ class AsyncRawAuditClient:
                 "page": page,
                 "pageSize": page_size,
                 "sort": convert_and_respect_annotation_metadata(
-                    object_=sort, annotation=typing.Sequence[PostV1AuditListRequestSortItem], direction="write"
+                    object_=sort, annotation=typing.Sequence[ListAuditRequestSortItem], direction="write"
                 ),
                 "filter": convert_and_respect_annotation_metadata(
-                    object_=filter, annotation=typing.Sequence[PostV1AuditListRequestFilterItem], direction="write"
+                    object_=filter, annotation=typing.Sequence[ListAuditRequestFilterItem], direction="write"
                 ),
                 "totals": totals,
             },
@@ -251,9 +275,9 @@ class AsyncRawAuditClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1AuditListResponse,
+                    ListAuditResponse,
                     parse_obj_as(
-                        type_=PostV1AuditListResponse,  # type: ignore
+                        type_=ListAuditResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -271,6 +295,17 @@ class AsyncRawAuditClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -304,6 +339,17 @@ class AsyncRawAuditClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,

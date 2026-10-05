@@ -13,25 +13,27 @@ from ..core.request_options import RequestOptions
 from ..core.serialization import convert_and_respect_annotation_metadata
 from ..errors.bad_request_error import BadRequestError
 from ..errors.conflict_error import ConflictError
+from ..errors.content_too_large_error import ContentTooLargeError
 from ..errors.forbidden_error import ForbiddenError
 from ..errors.internal_server_error import InternalServerError
 from ..errors.not_found_error import NotFoundError
+from ..errors.payment_required_error import PaymentRequiredError
 from ..errors.too_many_requests_error import TooManyRequestsError
 from ..errors.unauthorized_error import UnauthorizedError
 from ..errors.unprocessable_entity_error import UnprocessableEntityError
 from ..types.error_response import ErrorResponse
-from .types.post_v1ecommerce_orders_cancel_response import PostV1EcommerceOrdersCancelResponse
-from .types.post_v1ecommerce_orders_create_request_lines_item import PostV1EcommerceOrdersCreateRequestLinesItem
-from .types.post_v1ecommerce_orders_create_request_partner import PostV1EcommerceOrdersCreateRequestPartner
-from .types.post_v1ecommerce_orders_create_response import PostV1EcommerceOrdersCreateResponse
-from .types.post_v1ecommerce_orders_fulfill_response import PostV1EcommerceOrdersFulfillResponse
-from .types.post_v1ecommerce_orders_get_response import PostV1EcommerceOrdersGetResponse
-from .types.post_v1ecommerce_orders_list_request_filter_item import PostV1EcommerceOrdersListRequestFilterItem
-from .types.post_v1ecommerce_orders_list_request_sort_item import PostV1EcommerceOrdersListRequestSortItem
-from .types.post_v1ecommerce_orders_list_response import PostV1EcommerceOrdersListResponse
-from .types.post_v1ecommerce_orders_reserve_response import PostV1EcommerceOrdersReserveResponse
-from .types.post_v1ecommerce_products_list_response import PostV1EcommerceProductsListResponse
-from .types.post_v1ecommerce_stock_list_response import PostV1EcommerceStockListResponse
+from .types.orders_cancel_ecommerce_response import OrdersCancelEcommerceResponse
+from .types.orders_create_ecommerce_request_lines_item import OrdersCreateEcommerceRequestLinesItem
+from .types.orders_create_ecommerce_request_partner import OrdersCreateEcommerceRequestPartner
+from .types.orders_create_ecommerce_response import OrdersCreateEcommerceResponse
+from .types.orders_fulfill_ecommerce_response import OrdersFulfillEcommerceResponse
+from .types.orders_get_ecommerce_response import OrdersGetEcommerceResponse
+from .types.orders_list_ecommerce_request_filter_item import OrdersListEcommerceRequestFilterItem
+from .types.orders_list_ecommerce_request_sort_item import OrdersListEcommerceRequestSortItem
+from .types.orders_list_ecommerce_response import OrdersListEcommerceResponse
+from .types.orders_reserve_ecommerce_response import OrdersReserveEcommerceResponse
+from .types.products_list_ecommerce_response import ProductsListEcommerceResponse
+from .types.stock_list_ecommerce_response import StockListEcommerceResponse
 from pydantic import ValidationError
 
 # this is used as the default value for optional parameters
@@ -42,25 +44,25 @@ class RawEcommerceClient:
     def __init__(self, *, client_wrapper: SyncClientWrapper):
         self._client_wrapper = client_wrapper
 
-    def post_v1ecommerce_orders_create(
+    def orders_create(
         self,
         *,
-        lines: typing.Sequence[PostV1EcommerceOrdersCreateRequestLinesItem],
+        lines: typing.Sequence[OrdersCreateEcommerceRequestLinesItem],
         channel: typing.Optional[str] = OMIT,
         external_ref: typing.Optional[str] = OMIT,
         partner_id: typing.Optional[str] = OMIT,
-        partner: typing.Optional[PostV1EcommerceOrdersCreateRequestPartner] = OMIT,
+        partner: typing.Optional[OrdersCreateEcommerceRequestPartner] = OMIT,
         warehouse_id: typing.Optional[str] = OMIT,
         currency: typing.Optional[str] = OMIT,
         ship_to_country_code: typing.Optional[str] = OMIT,
         marketplace: typing.Optional[str] = OMIT,
         notes: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> HttpResponse[PostV1EcommerceOrdersCreateResponse]:
+    ) -> HttpResponse[OrdersCreateEcommerceResponse]:
         """
         Parameters
         ----------
-        lines : typing.Sequence[PostV1EcommerceOrdersCreateRequestLinesItem]
+        lines : typing.Sequence[OrdersCreateEcommerceRequestLinesItem]
 
         channel : typing.Optional[str]
 
@@ -68,7 +70,7 @@ class RawEcommerceClient:
 
         partner_id : typing.Optional[str]
 
-        partner : typing.Optional[PostV1EcommerceOrdersCreateRequestPartner]
+        partner : typing.Optional[OrdersCreateEcommerceRequestPartner]
 
         warehouse_id : typing.Optional[str]
 
@@ -85,7 +87,7 @@ class RawEcommerceClient:
 
         Returns
         -------
-        HttpResponse[PostV1EcommerceOrdersCreateResponse]
+        HttpResponse[OrdersCreateEcommerceResponse]
             Default Response
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -96,7 +98,7 @@ class RawEcommerceClient:
                 "externalRef": external_ref,
                 "partnerId": partner_id,
                 "partner": convert_and_respect_annotation_metadata(
-                    object_=partner, annotation=PostV1EcommerceOrdersCreateRequestPartner, direction="write"
+                    object_=partner, annotation=OrdersCreateEcommerceRequestPartner, direction="write"
                 ),
                 "warehouseId": warehouse_id,
                 "currency": currency,
@@ -104,9 +106,7 @@ class RawEcommerceClient:
                 "marketplace": marketplace,
                 "notes": notes,
                 "lines": convert_and_respect_annotation_metadata(
-                    object_=lines,
-                    annotation=typing.Sequence[PostV1EcommerceOrdersCreateRequestLinesItem],
-                    direction="write",
+                    object_=lines, annotation=typing.Sequence[OrdersCreateEcommerceRequestLinesItem], direction="write"
                 ),
             },
             headers={
@@ -118,9 +118,9 @@ class RawEcommerceClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1EcommerceOrdersCreateResponse,
+                    OrdersCreateEcommerceResponse,
                     parse_obj_as(
-                        type_=PostV1EcommerceOrdersCreateResponse,  # type: ignore
+                        type_=OrdersCreateEcommerceResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -138,6 +138,17 @@ class RawEcommerceClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -171,6 +182,17 @@ class RawEcommerceClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -222,9 +244,9 @@ class RawEcommerceClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    def post_v1ecommerce_orders_get(
+    def orders_get(
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
-    ) -> HttpResponse[PostV1EcommerceOrdersGetResponse]:
+    ) -> HttpResponse[OrdersGetEcommerceResponse]:
         """
         Parameters
         ----------
@@ -235,7 +257,7 @@ class RawEcommerceClient:
 
         Returns
         -------
-        HttpResponse[PostV1EcommerceOrdersGetResponse]
+        HttpResponse[OrdersGetEcommerceResponse]
             Default Response
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -253,9 +275,9 @@ class RawEcommerceClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1EcommerceOrdersGetResponse,
+                    OrdersGetEcommerceResponse,
                     parse_obj_as(
-                        type_=PostV1EcommerceOrdersGetResponse,  # type: ignore
+                        type_=OrdersGetEcommerceResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -273,6 +295,17 @@ class RawEcommerceClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -306,6 +339,17 @@ class RawEcommerceClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -357,16 +401,16 @@ class RawEcommerceClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    def post_v1ecommerce_orders_list(
+    def orders_list(
         self,
         *,
         page: typing.Optional[int] = OMIT,
         page_size: typing.Optional[int] = OMIT,
-        sort: typing.Optional[typing.Sequence[PostV1EcommerceOrdersListRequestSortItem]] = OMIT,
-        filter: typing.Optional[typing.Sequence[PostV1EcommerceOrdersListRequestFilterItem]] = OMIT,
+        sort: typing.Optional[typing.Sequence[OrdersListEcommerceRequestSortItem]] = OMIT,
+        filter: typing.Optional[typing.Sequence[OrdersListEcommerceRequestFilterItem]] = OMIT,
         totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> HttpResponse[PostV1EcommerceOrdersListResponse]:
+    ) -> HttpResponse[OrdersListEcommerceResponse]:
         """
         Parameters
         ----------
@@ -374,9 +418,9 @@ class RawEcommerceClient:
 
         page_size : typing.Optional[int]
 
-        sort : typing.Optional[typing.Sequence[PostV1EcommerceOrdersListRequestSortItem]]
+        sort : typing.Optional[typing.Sequence[OrdersListEcommerceRequestSortItem]]
 
-        filter : typing.Optional[typing.Sequence[PostV1EcommerceOrdersListRequestFilterItem]]
+        filter : typing.Optional[typing.Sequence[OrdersListEcommerceRequestFilterItem]]
 
         totals : typing.Optional[typing.Sequence[str]]
             Numeric fields to sum over every row matching the filter (not only the current page)
@@ -386,7 +430,7 @@ class RawEcommerceClient:
 
         Returns
         -------
-        HttpResponse[PostV1EcommerceOrdersListResponse]
+        HttpResponse[OrdersListEcommerceResponse]
             Default Response
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -396,14 +440,10 @@ class RawEcommerceClient:
                 "page": page,
                 "pageSize": page_size,
                 "sort": convert_and_respect_annotation_metadata(
-                    object_=sort,
-                    annotation=typing.Sequence[PostV1EcommerceOrdersListRequestSortItem],
-                    direction="write",
+                    object_=sort, annotation=typing.Sequence[OrdersListEcommerceRequestSortItem], direction="write"
                 ),
                 "filter": convert_and_respect_annotation_metadata(
-                    object_=filter,
-                    annotation=typing.Sequence[PostV1EcommerceOrdersListRequestFilterItem],
-                    direction="write",
+                    object_=filter, annotation=typing.Sequence[OrdersListEcommerceRequestFilterItem], direction="write"
                 ),
                 "totals": totals,
             },
@@ -416,9 +456,9 @@ class RawEcommerceClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1EcommerceOrdersListResponse,
+                    OrdersListEcommerceResponse,
                     parse_obj_as(
-                        type_=PostV1EcommerceOrdersListResponse,  # type: ignore
+                        type_=OrdersListEcommerceResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -436,6 +476,17 @@ class RawEcommerceClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -469,6 +520,17 @@ class RawEcommerceClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -520,13 +582,13 @@ class RawEcommerceClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    def post_v1ecommerce_orders_reserve(
+    def orders_reserve(
         self,
         *,
         id: str,
         warehouse_id: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> HttpResponse[PostV1EcommerceOrdersReserveResponse]:
+    ) -> HttpResponse[OrdersReserveEcommerceResponse]:
         """
         Parameters
         ----------
@@ -539,7 +601,7 @@ class RawEcommerceClient:
 
         Returns
         -------
-        HttpResponse[PostV1EcommerceOrdersReserveResponse]
+        HttpResponse[OrdersReserveEcommerceResponse]
             Default Response
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -558,9 +620,9 @@ class RawEcommerceClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1EcommerceOrdersReserveResponse,
+                    OrdersReserveEcommerceResponse,
                     parse_obj_as(
-                        type_=PostV1EcommerceOrdersReserveResponse,  # type: ignore
+                        type_=OrdersReserveEcommerceResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -578,6 +640,17 @@ class RawEcommerceClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -611,6 +684,17 @@ class RawEcommerceClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -662,21 +746,21 @@ class RawEcommerceClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    def post_v1ecommerce_orders_fulfill(
+    def orders_fulfill(
         self,
         *,
         id: str,
-        date: typing.Optional[str] = OMIT,
+        date: typing.Optional[dt.date] = OMIT,
         cogs_account_code: typing.Optional[str] = OMIT,
         inventory_account_code: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> HttpResponse[PostV1EcommerceOrdersFulfillResponse]:
+    ) -> HttpResponse[OrdersFulfillEcommerceResponse]:
         """
         Parameters
         ----------
         id : str
 
-        date : typing.Optional[str]
+        date : typing.Optional[dt.date]
 
         cogs_account_code : typing.Optional[str]
 
@@ -687,7 +771,7 @@ class RawEcommerceClient:
 
         Returns
         -------
-        HttpResponse[PostV1EcommerceOrdersFulfillResponse]
+        HttpResponse[OrdersFulfillEcommerceResponse]
             Default Response
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -708,9 +792,9 @@ class RawEcommerceClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1EcommerceOrdersFulfillResponse,
+                    OrdersFulfillEcommerceResponse,
                     parse_obj_as(
-                        type_=PostV1EcommerceOrdersFulfillResponse,  # type: ignore
+                        type_=OrdersFulfillEcommerceResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -728,6 +812,17 @@ class RawEcommerceClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -761,6 +856,17 @@ class RawEcommerceClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -812,9 +918,9 @@ class RawEcommerceClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    def post_v1ecommerce_orders_cancel(
+    def orders_cancel(
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
-    ) -> HttpResponse[PostV1EcommerceOrdersCancelResponse]:
+    ) -> HttpResponse[OrdersCancelEcommerceResponse]:
         """
         Parameters
         ----------
@@ -825,7 +931,7 @@ class RawEcommerceClient:
 
         Returns
         -------
-        HttpResponse[PostV1EcommerceOrdersCancelResponse]
+        HttpResponse[OrdersCancelEcommerceResponse]
             Default Response
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -843,9 +949,9 @@ class RawEcommerceClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1EcommerceOrdersCancelResponse,
+                    OrdersCancelEcommerceResponse,
                     parse_obj_as(
-                        type_=PostV1EcommerceOrdersCancelResponse,  # type: ignore
+                        type_=OrdersCancelEcommerceResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -863,6 +969,17 @@ class RawEcommerceClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -896,6 +1013,17 @@ class RawEcommerceClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -947,7 +1075,7 @@ class RawEcommerceClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    def post_v1ecommerce_products_list(
+    def products_list(
         self,
         *,
         warehouse_id: typing.Optional[str] = OMIT,
@@ -956,7 +1084,7 @@ class RawEcommerceClient:
         page: typing.Optional[int] = OMIT,
         page_size: typing.Optional[int] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> HttpResponse[PostV1EcommerceProductsListResponse]:
+    ) -> HttpResponse[ProductsListEcommerceResponse]:
         """
         Parameters
         ----------
@@ -975,7 +1103,7 @@ class RawEcommerceClient:
 
         Returns
         -------
-        HttpResponse[PostV1EcommerceProductsListResponse]
+        HttpResponse[ProductsListEcommerceResponse]
             Default Response
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -997,9 +1125,9 @@ class RawEcommerceClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1EcommerceProductsListResponse,
+                    ProductsListEcommerceResponse,
                     parse_obj_as(
-                        type_=PostV1EcommerceProductsListResponse,  # type: ignore
+                        type_=ProductsListEcommerceResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -1017,6 +1145,17 @@ class RawEcommerceClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -1050,6 +1189,17 @@ class RawEcommerceClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -1101,9 +1251,9 @@ class RawEcommerceClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    def post_v1ecommerce_stock_list(
+    def stock_list(
         self, *, warehouse_id: typing.Optional[str] = OMIT, request_options: typing.Optional[RequestOptions] = None
-    ) -> HttpResponse[PostV1EcommerceStockListResponse]:
+    ) -> HttpResponse[StockListEcommerceResponse]:
         """
         Parameters
         ----------
@@ -1114,7 +1264,7 @@ class RawEcommerceClient:
 
         Returns
         -------
-        HttpResponse[PostV1EcommerceStockListResponse]
+        HttpResponse[StockListEcommerceResponse]
             Default Response
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -1132,9 +1282,9 @@ class RawEcommerceClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1EcommerceStockListResponse,
+                    StockListEcommerceResponse,
                     parse_obj_as(
-                        type_=PostV1EcommerceStockListResponse,  # type: ignore
+                        type_=StockListEcommerceResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -1152,6 +1302,17 @@ class RawEcommerceClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -1185,6 +1346,17 @@ class RawEcommerceClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -1241,25 +1413,25 @@ class AsyncRawEcommerceClient:
     def __init__(self, *, client_wrapper: AsyncClientWrapper):
         self._client_wrapper = client_wrapper
 
-    async def post_v1ecommerce_orders_create(
+    async def orders_create(
         self,
         *,
-        lines: typing.Sequence[PostV1EcommerceOrdersCreateRequestLinesItem],
+        lines: typing.Sequence[OrdersCreateEcommerceRequestLinesItem],
         channel: typing.Optional[str] = OMIT,
         external_ref: typing.Optional[str] = OMIT,
         partner_id: typing.Optional[str] = OMIT,
-        partner: typing.Optional[PostV1EcommerceOrdersCreateRequestPartner] = OMIT,
+        partner: typing.Optional[OrdersCreateEcommerceRequestPartner] = OMIT,
         warehouse_id: typing.Optional[str] = OMIT,
         currency: typing.Optional[str] = OMIT,
         ship_to_country_code: typing.Optional[str] = OMIT,
         marketplace: typing.Optional[str] = OMIT,
         notes: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> AsyncHttpResponse[PostV1EcommerceOrdersCreateResponse]:
+    ) -> AsyncHttpResponse[OrdersCreateEcommerceResponse]:
         """
         Parameters
         ----------
-        lines : typing.Sequence[PostV1EcommerceOrdersCreateRequestLinesItem]
+        lines : typing.Sequence[OrdersCreateEcommerceRequestLinesItem]
 
         channel : typing.Optional[str]
 
@@ -1267,7 +1439,7 @@ class AsyncRawEcommerceClient:
 
         partner_id : typing.Optional[str]
 
-        partner : typing.Optional[PostV1EcommerceOrdersCreateRequestPartner]
+        partner : typing.Optional[OrdersCreateEcommerceRequestPartner]
 
         warehouse_id : typing.Optional[str]
 
@@ -1284,7 +1456,7 @@ class AsyncRawEcommerceClient:
 
         Returns
         -------
-        AsyncHttpResponse[PostV1EcommerceOrdersCreateResponse]
+        AsyncHttpResponse[OrdersCreateEcommerceResponse]
             Default Response
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -1295,7 +1467,7 @@ class AsyncRawEcommerceClient:
                 "externalRef": external_ref,
                 "partnerId": partner_id,
                 "partner": convert_and_respect_annotation_metadata(
-                    object_=partner, annotation=PostV1EcommerceOrdersCreateRequestPartner, direction="write"
+                    object_=partner, annotation=OrdersCreateEcommerceRequestPartner, direction="write"
                 ),
                 "warehouseId": warehouse_id,
                 "currency": currency,
@@ -1303,9 +1475,7 @@ class AsyncRawEcommerceClient:
                 "marketplace": marketplace,
                 "notes": notes,
                 "lines": convert_and_respect_annotation_metadata(
-                    object_=lines,
-                    annotation=typing.Sequence[PostV1EcommerceOrdersCreateRequestLinesItem],
-                    direction="write",
+                    object_=lines, annotation=typing.Sequence[OrdersCreateEcommerceRequestLinesItem], direction="write"
                 ),
             },
             headers={
@@ -1317,9 +1487,9 @@ class AsyncRawEcommerceClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1EcommerceOrdersCreateResponse,
+                    OrdersCreateEcommerceResponse,
                     parse_obj_as(
-                        type_=PostV1EcommerceOrdersCreateResponse,  # type: ignore
+                        type_=OrdersCreateEcommerceResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -1337,6 +1507,17 @@ class AsyncRawEcommerceClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -1370,6 +1551,17 @@ class AsyncRawEcommerceClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -1421,9 +1613,9 @@ class AsyncRawEcommerceClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    async def post_v1ecommerce_orders_get(
+    async def orders_get(
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
-    ) -> AsyncHttpResponse[PostV1EcommerceOrdersGetResponse]:
+    ) -> AsyncHttpResponse[OrdersGetEcommerceResponse]:
         """
         Parameters
         ----------
@@ -1434,7 +1626,7 @@ class AsyncRawEcommerceClient:
 
         Returns
         -------
-        AsyncHttpResponse[PostV1EcommerceOrdersGetResponse]
+        AsyncHttpResponse[OrdersGetEcommerceResponse]
             Default Response
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -1452,9 +1644,9 @@ class AsyncRawEcommerceClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1EcommerceOrdersGetResponse,
+                    OrdersGetEcommerceResponse,
                     parse_obj_as(
-                        type_=PostV1EcommerceOrdersGetResponse,  # type: ignore
+                        type_=OrdersGetEcommerceResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -1472,6 +1664,17 @@ class AsyncRawEcommerceClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -1505,6 +1708,17 @@ class AsyncRawEcommerceClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -1556,16 +1770,16 @@ class AsyncRawEcommerceClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    async def post_v1ecommerce_orders_list(
+    async def orders_list(
         self,
         *,
         page: typing.Optional[int] = OMIT,
         page_size: typing.Optional[int] = OMIT,
-        sort: typing.Optional[typing.Sequence[PostV1EcommerceOrdersListRequestSortItem]] = OMIT,
-        filter: typing.Optional[typing.Sequence[PostV1EcommerceOrdersListRequestFilterItem]] = OMIT,
+        sort: typing.Optional[typing.Sequence[OrdersListEcommerceRequestSortItem]] = OMIT,
+        filter: typing.Optional[typing.Sequence[OrdersListEcommerceRequestFilterItem]] = OMIT,
         totals: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> AsyncHttpResponse[PostV1EcommerceOrdersListResponse]:
+    ) -> AsyncHttpResponse[OrdersListEcommerceResponse]:
         """
         Parameters
         ----------
@@ -1573,9 +1787,9 @@ class AsyncRawEcommerceClient:
 
         page_size : typing.Optional[int]
 
-        sort : typing.Optional[typing.Sequence[PostV1EcommerceOrdersListRequestSortItem]]
+        sort : typing.Optional[typing.Sequence[OrdersListEcommerceRequestSortItem]]
 
-        filter : typing.Optional[typing.Sequence[PostV1EcommerceOrdersListRequestFilterItem]]
+        filter : typing.Optional[typing.Sequence[OrdersListEcommerceRequestFilterItem]]
 
         totals : typing.Optional[typing.Sequence[str]]
             Numeric fields to sum over every row matching the filter (not only the current page)
@@ -1585,7 +1799,7 @@ class AsyncRawEcommerceClient:
 
         Returns
         -------
-        AsyncHttpResponse[PostV1EcommerceOrdersListResponse]
+        AsyncHttpResponse[OrdersListEcommerceResponse]
             Default Response
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -1595,14 +1809,10 @@ class AsyncRawEcommerceClient:
                 "page": page,
                 "pageSize": page_size,
                 "sort": convert_and_respect_annotation_metadata(
-                    object_=sort,
-                    annotation=typing.Sequence[PostV1EcommerceOrdersListRequestSortItem],
-                    direction="write",
+                    object_=sort, annotation=typing.Sequence[OrdersListEcommerceRequestSortItem], direction="write"
                 ),
                 "filter": convert_and_respect_annotation_metadata(
-                    object_=filter,
-                    annotation=typing.Sequence[PostV1EcommerceOrdersListRequestFilterItem],
-                    direction="write",
+                    object_=filter, annotation=typing.Sequence[OrdersListEcommerceRequestFilterItem], direction="write"
                 ),
                 "totals": totals,
             },
@@ -1615,9 +1825,9 @@ class AsyncRawEcommerceClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1EcommerceOrdersListResponse,
+                    OrdersListEcommerceResponse,
                     parse_obj_as(
-                        type_=PostV1EcommerceOrdersListResponse,  # type: ignore
+                        type_=OrdersListEcommerceResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -1635,6 +1845,17 @@ class AsyncRawEcommerceClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -1668,6 +1889,17 @@ class AsyncRawEcommerceClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -1719,13 +1951,13 @@ class AsyncRawEcommerceClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    async def post_v1ecommerce_orders_reserve(
+    async def orders_reserve(
         self,
         *,
         id: str,
         warehouse_id: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> AsyncHttpResponse[PostV1EcommerceOrdersReserveResponse]:
+    ) -> AsyncHttpResponse[OrdersReserveEcommerceResponse]:
         """
         Parameters
         ----------
@@ -1738,7 +1970,7 @@ class AsyncRawEcommerceClient:
 
         Returns
         -------
-        AsyncHttpResponse[PostV1EcommerceOrdersReserveResponse]
+        AsyncHttpResponse[OrdersReserveEcommerceResponse]
             Default Response
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -1757,9 +1989,9 @@ class AsyncRawEcommerceClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1EcommerceOrdersReserveResponse,
+                    OrdersReserveEcommerceResponse,
                     parse_obj_as(
-                        type_=PostV1EcommerceOrdersReserveResponse,  # type: ignore
+                        type_=OrdersReserveEcommerceResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -1777,6 +2009,17 @@ class AsyncRawEcommerceClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -1810,6 +2053,17 @@ class AsyncRawEcommerceClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -1861,21 +2115,21 @@ class AsyncRawEcommerceClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    async def post_v1ecommerce_orders_fulfill(
+    async def orders_fulfill(
         self,
         *,
         id: str,
-        date: typing.Optional[str] = OMIT,
+        date: typing.Optional[dt.date] = OMIT,
         cogs_account_code: typing.Optional[str] = OMIT,
         inventory_account_code: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> AsyncHttpResponse[PostV1EcommerceOrdersFulfillResponse]:
+    ) -> AsyncHttpResponse[OrdersFulfillEcommerceResponse]:
         """
         Parameters
         ----------
         id : str
 
-        date : typing.Optional[str]
+        date : typing.Optional[dt.date]
 
         cogs_account_code : typing.Optional[str]
 
@@ -1886,7 +2140,7 @@ class AsyncRawEcommerceClient:
 
         Returns
         -------
-        AsyncHttpResponse[PostV1EcommerceOrdersFulfillResponse]
+        AsyncHttpResponse[OrdersFulfillEcommerceResponse]
             Default Response
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -1907,9 +2161,9 @@ class AsyncRawEcommerceClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1EcommerceOrdersFulfillResponse,
+                    OrdersFulfillEcommerceResponse,
                     parse_obj_as(
-                        type_=PostV1EcommerceOrdersFulfillResponse,  # type: ignore
+                        type_=OrdersFulfillEcommerceResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -1927,6 +2181,17 @@ class AsyncRawEcommerceClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -1960,6 +2225,17 @@ class AsyncRawEcommerceClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -2011,9 +2287,9 @@ class AsyncRawEcommerceClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    async def post_v1ecommerce_orders_cancel(
+    async def orders_cancel(
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
-    ) -> AsyncHttpResponse[PostV1EcommerceOrdersCancelResponse]:
+    ) -> AsyncHttpResponse[OrdersCancelEcommerceResponse]:
         """
         Parameters
         ----------
@@ -2024,7 +2300,7 @@ class AsyncRawEcommerceClient:
 
         Returns
         -------
-        AsyncHttpResponse[PostV1EcommerceOrdersCancelResponse]
+        AsyncHttpResponse[OrdersCancelEcommerceResponse]
             Default Response
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -2042,9 +2318,9 @@ class AsyncRawEcommerceClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1EcommerceOrdersCancelResponse,
+                    OrdersCancelEcommerceResponse,
                     parse_obj_as(
-                        type_=PostV1EcommerceOrdersCancelResponse,  # type: ignore
+                        type_=OrdersCancelEcommerceResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -2062,6 +2338,17 @@ class AsyncRawEcommerceClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -2095,6 +2382,17 @@ class AsyncRawEcommerceClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -2146,7 +2444,7 @@ class AsyncRawEcommerceClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    async def post_v1ecommerce_products_list(
+    async def products_list(
         self,
         *,
         warehouse_id: typing.Optional[str] = OMIT,
@@ -2155,7 +2453,7 @@ class AsyncRawEcommerceClient:
         page: typing.Optional[int] = OMIT,
         page_size: typing.Optional[int] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> AsyncHttpResponse[PostV1EcommerceProductsListResponse]:
+    ) -> AsyncHttpResponse[ProductsListEcommerceResponse]:
         """
         Parameters
         ----------
@@ -2174,7 +2472,7 @@ class AsyncRawEcommerceClient:
 
         Returns
         -------
-        AsyncHttpResponse[PostV1EcommerceProductsListResponse]
+        AsyncHttpResponse[ProductsListEcommerceResponse]
             Default Response
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -2196,9 +2494,9 @@ class AsyncRawEcommerceClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1EcommerceProductsListResponse,
+                    ProductsListEcommerceResponse,
                     parse_obj_as(
-                        type_=PostV1EcommerceProductsListResponse,  # type: ignore
+                        type_=ProductsListEcommerceResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -2216,6 +2514,17 @@ class AsyncRawEcommerceClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -2249,6 +2558,17 @@ class AsyncRawEcommerceClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -2300,9 +2620,9 @@ class AsyncRawEcommerceClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    async def post_v1ecommerce_stock_list(
+    async def stock_list(
         self, *, warehouse_id: typing.Optional[str] = OMIT, request_options: typing.Optional[RequestOptions] = None
-    ) -> AsyncHttpResponse[PostV1EcommerceStockListResponse]:
+    ) -> AsyncHttpResponse[StockListEcommerceResponse]:
         """
         Parameters
         ----------
@@ -2313,7 +2633,7 @@ class AsyncRawEcommerceClient:
 
         Returns
         -------
-        AsyncHttpResponse[PostV1EcommerceStockListResponse]
+        AsyncHttpResponse[StockListEcommerceResponse]
             Default Response
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -2331,9 +2651,9 @@ class AsyncRawEcommerceClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    PostV1EcommerceStockListResponse,
+                    StockListEcommerceResponse,
                     parse_obj_as(
-                        type_=PostV1EcommerceStockListResponse,  # type: ignore
+                        type_=StockListEcommerceResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -2351,6 +2671,17 @@ class AsyncRawEcommerceClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,
@@ -2384,6 +2715,17 @@ class AsyncRawEcommerceClient:
                 )
             if _response.status_code == 409:
                 raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         ErrorResponse,

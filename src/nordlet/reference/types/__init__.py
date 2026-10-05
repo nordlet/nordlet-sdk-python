@@ -6,295 +6,247 @@ import typing
 from importlib import import_module
 
 if typing.TYPE_CHECKING:
-    from .post_v1reference_banks_list_request_filter_item import PostV1ReferenceBanksListRequestFilterItem
-    from .post_v1reference_banks_list_request_filter_item_op import PostV1ReferenceBanksListRequestFilterItemOp
-    from .post_v1reference_banks_list_request_filter_item_value import PostV1ReferenceBanksListRequestFilterItemValue
-    from .post_v1reference_banks_list_request_filter_item_value_three_item import (
-        PostV1ReferenceBanksListRequestFilterItemValueThreeItem,
+    from .banks_list_reference_request_filter_item import BanksListReferenceRequestFilterItem
+    from .banks_list_reference_request_filter_item_op import BanksListReferenceRequestFilterItemOp
+    from .banks_list_reference_request_filter_item_value import BanksListReferenceRequestFilterItemValue
+    from .banks_list_reference_request_filter_item_value_three_item import (
+        BanksListReferenceRequestFilterItemValueThreeItem,
     )
-    from .post_v1reference_banks_list_request_sort_item import PostV1ReferenceBanksListRequestSortItem
-    from .post_v1reference_banks_list_request_sort_item_dir import PostV1ReferenceBanksListRequestSortItemDir
-    from .post_v1reference_banks_list_response import PostV1ReferenceBanksListResponse
-    from .post_v1reference_banks_list_response_rows_item import PostV1ReferenceBanksListResponseRowsItem
-    from .post_v1reference_banks_upsert_response import PostV1ReferenceBanksUpsertResponse
-    from .post_v1reference_cn_codes_list_request_filter_item import PostV1ReferenceCnCodesListRequestFilterItem
-    from .post_v1reference_cn_codes_list_request_filter_item_op import PostV1ReferenceCnCodesListRequestFilterItemOp
-    from .post_v1reference_cn_codes_list_request_filter_item_value import (
-        PostV1ReferenceCnCodesListRequestFilterItemValue,
+    from .banks_list_reference_request_sort_item import BanksListReferenceRequestSortItem
+    from .banks_list_reference_request_sort_item_dir import BanksListReferenceRequestSortItemDir
+    from .banks_list_reference_response import BanksListReferenceResponse
+    from .banks_list_reference_response_rows_item import BanksListReferenceResponseRowsItem
+    from .banks_upsert_reference_response import BanksUpsertReferenceResponse
+    from .cn_codes_list_reference_request_filter_item import CnCodesListReferenceRequestFilterItem
+    from .cn_codes_list_reference_request_filter_item_op import CnCodesListReferenceRequestFilterItemOp
+    from .cn_codes_list_reference_request_filter_item_value import CnCodesListReferenceRequestFilterItemValue
+    from .cn_codes_list_reference_request_filter_item_value_three_item import (
+        CnCodesListReferenceRequestFilterItemValueThreeItem,
     )
-    from .post_v1reference_cn_codes_list_request_filter_item_value_three_item import (
-        PostV1ReferenceCnCodesListRequestFilterItemValueThreeItem,
+    from .cn_codes_list_reference_request_sort_item import CnCodesListReferenceRequestSortItem
+    from .cn_codes_list_reference_request_sort_item_dir import CnCodesListReferenceRequestSortItemDir
+    from .cn_codes_list_reference_response import CnCodesListReferenceResponse
+    from .cn_codes_list_reference_response_rows_item import CnCodesListReferenceResponseRowsItem
+    from .cn_codes_upsert_reference_request_rows_item import CnCodesUpsertReferenceRequestRowsItem
+    from .cn_codes_upsert_reference_response import CnCodesUpsertReferenceResponse
+    from .compliance_versions_list_reference_response import ComplianceVersionsListReferenceResponse
+    from .compliance_versions_list_reference_response_rows_item import ComplianceVersionsListReferenceResponseRowsItem
+    from .countries_list_reference_response import CountriesListReferenceResponse
+    from .countries_list_reference_response_rows_item import CountriesListReferenceResponseRowsItem
+    from .currencies_list_reference_request_filter_item import CurrenciesListReferenceRequestFilterItem
+    from .currencies_list_reference_request_filter_item_op import CurrenciesListReferenceRequestFilterItemOp
+    from .currencies_list_reference_request_filter_item_value import CurrenciesListReferenceRequestFilterItemValue
+    from .currencies_list_reference_request_filter_item_value_three_item import (
+        CurrenciesListReferenceRequestFilterItemValueThreeItem,
     )
-    from .post_v1reference_cn_codes_list_request_sort_item import PostV1ReferenceCnCodesListRequestSortItem
-    from .post_v1reference_cn_codes_list_request_sort_item_dir import PostV1ReferenceCnCodesListRequestSortItemDir
-    from .post_v1reference_cn_codes_list_response import PostV1ReferenceCnCodesListResponse
-    from .post_v1reference_cn_codes_list_response_rows_item import PostV1ReferenceCnCodesListResponseRowsItem
-    from .post_v1reference_cn_codes_upsert_request_rows_item import PostV1ReferenceCnCodesUpsertRequestRowsItem
-    from .post_v1reference_cn_codes_upsert_response import PostV1ReferenceCnCodesUpsertResponse
-    from .post_v1reference_compliance_versions_list_response import PostV1ReferenceComplianceVersionsListResponse
-    from .post_v1reference_compliance_versions_list_response_rows_item import (
-        PostV1ReferenceComplianceVersionsListResponseRowsItem,
+    from .currencies_list_reference_request_sort_item import CurrenciesListReferenceRequestSortItem
+    from .currencies_list_reference_request_sort_item_dir import CurrenciesListReferenceRequestSortItemDir
+    from .currencies_list_reference_response import CurrenciesListReferenceResponse
+    from .currencies_list_reference_response_rows_item import CurrenciesListReferenceResponseRowsItem
+    from .eu_vat_rates_list_reference_response import EuVatRatesListReferenceResponse
+    from .eu_vat_rates_list_reference_response_rows_item import EuVatRatesListReferenceResponseRowsItem
+    from .eu_vat_rates_list_reference_response_rows_item_category import EuVatRatesListReferenceResponseRowsItemCategory
+    from .eu_vat_rates_list_reference_response_rows_item_source import EuVatRatesListReferenceResponseRowsItemSource
+    from .eu_vat_rates_set_overrides_reference_request_rates_item import EuVatRatesSetOverridesReferenceRequestRatesItem
+    from .eu_vat_rates_set_overrides_reference_request_rates_item_category import (
+        EuVatRatesSetOverridesReferenceRequestRatesItemCategory,
     )
-    from .post_v1reference_countries_list_response import PostV1ReferenceCountriesListResponse
-    from .post_v1reference_countries_list_response_rows_item import PostV1ReferenceCountriesListResponseRowsItem
-    from .post_v1reference_currencies_list_request_filter_item import PostV1ReferenceCurrenciesListRequestFilterItem
-    from .post_v1reference_currencies_list_request_filter_item_op import (
-        PostV1ReferenceCurrenciesListRequestFilterItemOp,
+    from .eu_vat_rates_set_overrides_reference_response import EuVatRatesSetOverridesReferenceResponse
+    from .eu_vat_rates_set_overrides_reference_response_rows_item import EuVatRatesSetOverridesReferenceResponseRowsItem
+    from .eu_vat_rates_set_overrides_reference_response_rows_item_category import (
+        EuVatRatesSetOverridesReferenceResponseRowsItemCategory,
     )
-    from .post_v1reference_currencies_list_request_filter_item_value import (
-        PostV1ReferenceCurrenciesListRequestFilterItemValue,
+    from .eu_vat_rates_set_overrides_reference_response_source import EuVatRatesSetOverridesReferenceResponseSource
+    from .exchange_rates_list_reference_request_filter_item import ExchangeRatesListReferenceRequestFilterItem
+    from .exchange_rates_list_reference_request_filter_item_op import ExchangeRatesListReferenceRequestFilterItemOp
+    from .exchange_rates_list_reference_request_filter_item_value import (
+        ExchangeRatesListReferenceRequestFilterItemValue,
     )
-    from .post_v1reference_currencies_list_request_filter_item_value_three_item import (
-        PostV1ReferenceCurrenciesListRequestFilterItemValueThreeItem,
+    from .exchange_rates_list_reference_request_filter_item_value_three_item import (
+        ExchangeRatesListReferenceRequestFilterItemValueThreeItem,
     )
-    from .post_v1reference_currencies_list_request_sort_item import PostV1ReferenceCurrenciesListRequestSortItem
-    from .post_v1reference_currencies_list_request_sort_item_dir import PostV1ReferenceCurrenciesListRequestSortItemDir
-    from .post_v1reference_currencies_list_response import PostV1ReferenceCurrenciesListResponse
-    from .post_v1reference_currencies_list_response_rows_item import PostV1ReferenceCurrenciesListResponseRowsItem
-    from .post_v1reference_eu_vat_rates_list_response import PostV1ReferenceEuVatRatesListResponse
-    from .post_v1reference_eu_vat_rates_list_response_rows_item import PostV1ReferenceEuVatRatesListResponseRowsItem
-    from .post_v1reference_eu_vat_rates_list_response_rows_item_category import (
-        PostV1ReferenceEuVatRatesListResponseRowsItemCategory,
+    from .exchange_rates_list_reference_request_sort_item import ExchangeRatesListReferenceRequestSortItem
+    from .exchange_rates_list_reference_request_sort_item_dir import ExchangeRatesListReferenceRequestSortItemDir
+    from .exchange_rates_list_reference_response import ExchangeRatesListReferenceResponse
+    from .exchange_rates_list_reference_response_rows_item import ExchangeRatesListReferenceResponseRowsItem
+    from .exchange_rates_overrides_delete_reference_response import ExchangeRatesOverridesDeleteReferenceResponse
+    from .exchange_rates_overrides_list_reference_request_filter_item import (
+        ExchangeRatesOverridesListReferenceRequestFilterItem,
     )
-    from .post_v1reference_eu_vat_rates_list_response_rows_item_source import (
-        PostV1ReferenceEuVatRatesListResponseRowsItemSource,
+    from .exchange_rates_overrides_list_reference_request_filter_item_op import (
+        ExchangeRatesOverridesListReferenceRequestFilterItemOp,
     )
-    from .post_v1reference_eu_vat_rates_set_overrides_request_rates_item import (
-        PostV1ReferenceEuVatRatesSetOverridesRequestRatesItem,
+    from .exchange_rates_overrides_list_reference_request_filter_item_value import (
+        ExchangeRatesOverridesListReferenceRequestFilterItemValue,
     )
-    from .post_v1reference_eu_vat_rates_set_overrides_request_rates_item_category import (
-        PostV1ReferenceEuVatRatesSetOverridesRequestRatesItemCategory,
+    from .exchange_rates_overrides_list_reference_request_filter_item_value_three_item import (
+        ExchangeRatesOverridesListReferenceRequestFilterItemValueThreeItem,
     )
-    from .post_v1reference_eu_vat_rates_set_overrides_response import PostV1ReferenceEuVatRatesSetOverridesResponse
-    from .post_v1reference_eu_vat_rates_set_overrides_response_rows_item import (
-        PostV1ReferenceEuVatRatesSetOverridesResponseRowsItem,
+    from .exchange_rates_overrides_list_reference_request_sort_item import (
+        ExchangeRatesOverridesListReferenceRequestSortItem,
     )
-    from .post_v1reference_eu_vat_rates_set_overrides_response_rows_item_category import (
-        PostV1ReferenceEuVatRatesSetOverridesResponseRowsItemCategory,
+    from .exchange_rates_overrides_list_reference_request_sort_item_dir import (
+        ExchangeRatesOverridesListReferenceRequestSortItemDir,
     )
-    from .post_v1reference_eu_vat_rates_set_overrides_response_source import (
-        PostV1ReferenceEuVatRatesSetOverridesResponseSource,
+    from .exchange_rates_overrides_list_reference_response import ExchangeRatesOverridesListReferenceResponse
+    from .exchange_rates_overrides_list_reference_response_rows_item import (
+        ExchangeRatesOverridesListReferenceResponseRowsItem,
     )
-    from .post_v1reference_exchange_rates_list_request_filter_item import (
-        PostV1ReferenceExchangeRatesListRequestFilterItem,
+    from .exchange_rates_set_reference_response import ExchangeRatesSetReferenceResponse
+    from .exchange_rates_sync_reference_response import ExchangeRatesSyncReferenceResponse
+    from .intrastat_thresholds_list_reference_response import IntrastatThresholdsListReferenceResponse
+    from .intrastat_thresholds_list_reference_response_rows_item import IntrastatThresholdsListReferenceResponseRowsItem
+    from .lt_cities_list_reference_response import LtCitiesListReferenceResponse
+    from .lt_cities_list_reference_response_rows_item import LtCitiesListReferenceResponseRowsItem
+    from .lt_counties_list_reference_response import LtCountiesListReferenceResponse
+    from .lt_counties_list_reference_response_rows_item import LtCountiesListReferenceResponseRowsItem
+    from .lt_municipalities_list_reference_response import LtMunicipalitiesListReferenceResponse
+    from .lt_municipalities_list_reference_response_rows_item import LtMunicipalitiesListReferenceResponseRowsItem
+    from .lt_regions_list_reference_response import LtRegionsListReferenceResponse
+    from .lt_regions_list_reference_response_rows_item import LtRegionsListReferenceResponseRowsItem
+    from .series_create_reference_response import SeriesCreateReferenceResponse
+    from .series_list_reference_request_filter_item import SeriesListReferenceRequestFilterItem
+    from .series_list_reference_request_filter_item_op import SeriesListReferenceRequestFilterItemOp
+    from .series_list_reference_request_filter_item_value import SeriesListReferenceRequestFilterItemValue
+    from .series_list_reference_request_filter_item_value_three_item import (
+        SeriesListReferenceRequestFilterItemValueThreeItem,
     )
-    from .post_v1reference_exchange_rates_list_request_filter_item_op import (
-        PostV1ReferenceExchangeRatesListRequestFilterItemOp,
+    from .series_list_reference_request_sort_item import SeriesListReferenceRequestSortItem
+    from .series_list_reference_request_sort_item_dir import SeriesListReferenceRequestSortItemDir
+    from .series_list_reference_response import SeriesListReferenceResponse
+    from .series_list_reference_response_rows_item import SeriesListReferenceResponseRowsItem
+    from .units_list_reference_request_filter_item import UnitsListReferenceRequestFilterItem
+    from .units_list_reference_request_filter_item_op import UnitsListReferenceRequestFilterItemOp
+    from .units_list_reference_request_filter_item_value import UnitsListReferenceRequestFilterItemValue
+    from .units_list_reference_request_filter_item_value_three_item import (
+        UnitsListReferenceRequestFilterItemValueThreeItem,
     )
-    from .post_v1reference_exchange_rates_list_request_filter_item_value import (
-        PostV1ReferenceExchangeRatesListRequestFilterItemValue,
+    from .units_list_reference_request_sort_item import UnitsListReferenceRequestSortItem
+    from .units_list_reference_request_sort_item_dir import UnitsListReferenceRequestSortItemDir
+    from .units_list_reference_response import UnitsListReferenceResponse
+    from .units_list_reference_response_rows_item import UnitsListReferenceResponseRowsItem
+    from .vat_classifiers_list_reference_request_filter_item import VatClassifiersListReferenceRequestFilterItem
+    from .vat_classifiers_list_reference_request_filter_item_op import VatClassifiersListReferenceRequestFilterItemOp
+    from .vat_classifiers_list_reference_request_filter_item_value import (
+        VatClassifiersListReferenceRequestFilterItemValue,
     )
-    from .post_v1reference_exchange_rates_list_request_filter_item_value_three_item import (
-        PostV1ReferenceExchangeRatesListRequestFilterItemValueThreeItem,
+    from .vat_classifiers_list_reference_request_filter_item_value_three_item import (
+        VatClassifiersListReferenceRequestFilterItemValueThreeItem,
     )
-    from .post_v1reference_exchange_rates_list_request_sort_item import PostV1ReferenceExchangeRatesListRequestSortItem
-    from .post_v1reference_exchange_rates_list_request_sort_item_dir import (
-        PostV1ReferenceExchangeRatesListRequestSortItemDir,
-    )
-    from .post_v1reference_exchange_rates_list_response import PostV1ReferenceExchangeRatesListResponse
-    from .post_v1reference_exchange_rates_list_response_rows_item import (
-        PostV1ReferenceExchangeRatesListResponseRowsItem,
-    )
-    from .post_v1reference_exchange_rates_overrides_delete_response import (
-        PostV1ReferenceExchangeRatesOverridesDeleteResponse,
-    )
-    from .post_v1reference_exchange_rates_overrides_list_request_filter_item import (
-        PostV1ReferenceExchangeRatesOverridesListRequestFilterItem,
-    )
-    from .post_v1reference_exchange_rates_overrides_list_request_filter_item_op import (
-        PostV1ReferenceExchangeRatesOverridesListRequestFilterItemOp,
-    )
-    from .post_v1reference_exchange_rates_overrides_list_request_filter_item_value import (
-        PostV1ReferenceExchangeRatesOverridesListRequestFilterItemValue,
-    )
-    from .post_v1reference_exchange_rates_overrides_list_request_filter_item_value_three_item import (
-        PostV1ReferenceExchangeRatesOverridesListRequestFilterItemValueThreeItem,
-    )
-    from .post_v1reference_exchange_rates_overrides_list_request_sort_item import (
-        PostV1ReferenceExchangeRatesOverridesListRequestSortItem,
-    )
-    from .post_v1reference_exchange_rates_overrides_list_request_sort_item_dir import (
-        PostV1ReferenceExchangeRatesOverridesListRequestSortItemDir,
-    )
-    from .post_v1reference_exchange_rates_overrides_list_response import (
-        PostV1ReferenceExchangeRatesOverridesListResponse,
-    )
-    from .post_v1reference_exchange_rates_overrides_list_response_rows_item import (
-        PostV1ReferenceExchangeRatesOverridesListResponseRowsItem,
-    )
-    from .post_v1reference_exchange_rates_set_response import PostV1ReferenceExchangeRatesSetResponse
-    from .post_v1reference_exchange_rates_sync_response import PostV1ReferenceExchangeRatesSyncResponse
-    from .post_v1reference_intrastat_thresholds_list_response import PostV1ReferenceIntrastatThresholdsListResponse
-    from .post_v1reference_intrastat_thresholds_list_response_rows_item import (
-        PostV1ReferenceIntrastatThresholdsListResponseRowsItem,
-    )
-    from .post_v1reference_lt_cities_list_response import PostV1ReferenceLtCitiesListResponse
-    from .post_v1reference_lt_cities_list_response_rows_item import PostV1ReferenceLtCitiesListResponseRowsItem
-    from .post_v1reference_lt_counties_list_response import PostV1ReferenceLtCountiesListResponse
-    from .post_v1reference_lt_counties_list_response_rows_item import PostV1ReferenceLtCountiesListResponseRowsItem
-    from .post_v1reference_lt_municipalities_list_response import PostV1ReferenceLtMunicipalitiesListResponse
-    from .post_v1reference_lt_municipalities_list_response_rows_item import (
-        PostV1ReferenceLtMunicipalitiesListResponseRowsItem,
-    )
-    from .post_v1reference_lt_regions_list_response import PostV1ReferenceLtRegionsListResponse
-    from .post_v1reference_lt_regions_list_response_rows_item import PostV1ReferenceLtRegionsListResponseRowsItem
-    from .post_v1reference_series_create_response import PostV1ReferenceSeriesCreateResponse
-    from .post_v1reference_series_list_request_filter_item import PostV1ReferenceSeriesListRequestFilterItem
-    from .post_v1reference_series_list_request_filter_item_op import PostV1ReferenceSeriesListRequestFilterItemOp
-    from .post_v1reference_series_list_request_filter_item_value import PostV1ReferenceSeriesListRequestFilterItemValue
-    from .post_v1reference_series_list_request_filter_item_value_three_item import (
-        PostV1ReferenceSeriesListRequestFilterItemValueThreeItem,
-    )
-    from .post_v1reference_series_list_request_sort_item import PostV1ReferenceSeriesListRequestSortItem
-    from .post_v1reference_series_list_request_sort_item_dir import PostV1ReferenceSeriesListRequestSortItemDir
-    from .post_v1reference_series_list_response import PostV1ReferenceSeriesListResponse
-    from .post_v1reference_series_list_response_rows_item import PostV1ReferenceSeriesListResponseRowsItem
-    from .post_v1reference_units_list_request_filter_item import PostV1ReferenceUnitsListRequestFilterItem
-    from .post_v1reference_units_list_request_filter_item_op import PostV1ReferenceUnitsListRequestFilterItemOp
-    from .post_v1reference_units_list_request_filter_item_value import PostV1ReferenceUnitsListRequestFilterItemValue
-    from .post_v1reference_units_list_request_filter_item_value_three_item import (
-        PostV1ReferenceUnitsListRequestFilterItemValueThreeItem,
-    )
-    from .post_v1reference_units_list_request_sort_item import PostV1ReferenceUnitsListRequestSortItem
-    from .post_v1reference_units_list_request_sort_item_dir import PostV1ReferenceUnitsListRequestSortItemDir
-    from .post_v1reference_units_list_response import PostV1ReferenceUnitsListResponse
-    from .post_v1reference_units_list_response_rows_item import PostV1ReferenceUnitsListResponseRowsItem
-    from .post_v1reference_vat_classifiers_list_request_filter_item import (
-        PostV1ReferenceVatClassifiersListRequestFilterItem,
-    )
-    from .post_v1reference_vat_classifiers_list_request_filter_item_op import (
-        PostV1ReferenceVatClassifiersListRequestFilterItemOp,
-    )
-    from .post_v1reference_vat_classifiers_list_request_filter_item_value import (
-        PostV1ReferenceVatClassifiersListRequestFilterItemValue,
-    )
-    from .post_v1reference_vat_classifiers_list_request_filter_item_value_three_item import (
-        PostV1ReferenceVatClassifiersListRequestFilterItemValueThreeItem,
-    )
-    from .post_v1reference_vat_classifiers_list_request_sort_item import (
-        PostV1ReferenceVatClassifiersListRequestSortItem,
-    )
-    from .post_v1reference_vat_classifiers_list_request_sort_item_dir import (
-        PostV1ReferenceVatClassifiersListRequestSortItemDir,
-    )
-    from .post_v1reference_vat_classifiers_list_response import PostV1ReferenceVatClassifiersListResponse
-    from .post_v1reference_vat_classifiers_list_response_rows_item import (
-        PostV1ReferenceVatClassifiersListResponseRowsItem,
-    )
-    from .post_v1reference_vat_classifiers_upsert_request_rows_item import (
-        PostV1ReferenceVatClassifiersUpsertRequestRowsItem,
-    )
-    from .post_v1reference_vat_classifiers_upsert_response import PostV1ReferenceVatClassifiersUpsertResponse
-    from .post_v1reference_vat_resolve_request_supply_type import PostV1ReferenceVatResolveRequestSupplyType
-    from .post_v1reference_vat_resolve_response import PostV1ReferenceVatResolveResponse
-    from .post_v1reference_vat_resolve_response_rates_item import PostV1ReferenceVatResolveResponseRatesItem
-    from .post_v1reference_vat_resolve_response_rates_item_category import (
-        PostV1ReferenceVatResolveResponseRatesItemCategory,
-    )
-    from .post_v1reference_vat_resolve_response_scheme import PostV1ReferenceVatResolveResponseScheme
+    from .vat_classifiers_list_reference_request_sort_item import VatClassifiersListReferenceRequestSortItem
+    from .vat_classifiers_list_reference_request_sort_item_dir import VatClassifiersListReferenceRequestSortItemDir
+    from .vat_classifiers_list_reference_response import VatClassifiersListReferenceResponse
+    from .vat_classifiers_list_reference_response_rows_item import VatClassifiersListReferenceResponseRowsItem
+    from .vat_classifiers_upsert_reference_request_rows_item import VatClassifiersUpsertReferenceRequestRowsItem
+    from .vat_classifiers_upsert_reference_response import VatClassifiersUpsertReferenceResponse
+    from .vat_resolve_reference_request_supply_type import VatResolveReferenceRequestSupplyType
+    from .vat_resolve_reference_response import VatResolveReferenceResponse
+    from .vat_resolve_reference_response_rates_item import VatResolveReferenceResponseRatesItem
+    from .vat_resolve_reference_response_rates_item_category import VatResolveReferenceResponseRatesItemCategory
+    from .vat_resolve_reference_response_scheme import VatResolveReferenceResponseScheme
 _dynamic_imports: typing.Dict[str, str] = {
-    "PostV1ReferenceBanksListRequestFilterItem": ".post_v1reference_banks_list_request_filter_item",
-    "PostV1ReferenceBanksListRequestFilterItemOp": ".post_v1reference_banks_list_request_filter_item_op",
-    "PostV1ReferenceBanksListRequestFilterItemValue": ".post_v1reference_banks_list_request_filter_item_value",
-    "PostV1ReferenceBanksListRequestFilterItemValueThreeItem": ".post_v1reference_banks_list_request_filter_item_value_three_item",
-    "PostV1ReferenceBanksListRequestSortItem": ".post_v1reference_banks_list_request_sort_item",
-    "PostV1ReferenceBanksListRequestSortItemDir": ".post_v1reference_banks_list_request_sort_item_dir",
-    "PostV1ReferenceBanksListResponse": ".post_v1reference_banks_list_response",
-    "PostV1ReferenceBanksListResponseRowsItem": ".post_v1reference_banks_list_response_rows_item",
-    "PostV1ReferenceBanksUpsertResponse": ".post_v1reference_banks_upsert_response",
-    "PostV1ReferenceCnCodesListRequestFilterItem": ".post_v1reference_cn_codes_list_request_filter_item",
-    "PostV1ReferenceCnCodesListRequestFilterItemOp": ".post_v1reference_cn_codes_list_request_filter_item_op",
-    "PostV1ReferenceCnCodesListRequestFilterItemValue": ".post_v1reference_cn_codes_list_request_filter_item_value",
-    "PostV1ReferenceCnCodesListRequestFilterItemValueThreeItem": ".post_v1reference_cn_codes_list_request_filter_item_value_three_item",
-    "PostV1ReferenceCnCodesListRequestSortItem": ".post_v1reference_cn_codes_list_request_sort_item",
-    "PostV1ReferenceCnCodesListRequestSortItemDir": ".post_v1reference_cn_codes_list_request_sort_item_dir",
-    "PostV1ReferenceCnCodesListResponse": ".post_v1reference_cn_codes_list_response",
-    "PostV1ReferenceCnCodesListResponseRowsItem": ".post_v1reference_cn_codes_list_response_rows_item",
-    "PostV1ReferenceCnCodesUpsertRequestRowsItem": ".post_v1reference_cn_codes_upsert_request_rows_item",
-    "PostV1ReferenceCnCodesUpsertResponse": ".post_v1reference_cn_codes_upsert_response",
-    "PostV1ReferenceComplianceVersionsListResponse": ".post_v1reference_compliance_versions_list_response",
-    "PostV1ReferenceComplianceVersionsListResponseRowsItem": ".post_v1reference_compliance_versions_list_response_rows_item",
-    "PostV1ReferenceCountriesListResponse": ".post_v1reference_countries_list_response",
-    "PostV1ReferenceCountriesListResponseRowsItem": ".post_v1reference_countries_list_response_rows_item",
-    "PostV1ReferenceCurrenciesListRequestFilterItem": ".post_v1reference_currencies_list_request_filter_item",
-    "PostV1ReferenceCurrenciesListRequestFilterItemOp": ".post_v1reference_currencies_list_request_filter_item_op",
-    "PostV1ReferenceCurrenciesListRequestFilterItemValue": ".post_v1reference_currencies_list_request_filter_item_value",
-    "PostV1ReferenceCurrenciesListRequestFilterItemValueThreeItem": ".post_v1reference_currencies_list_request_filter_item_value_three_item",
-    "PostV1ReferenceCurrenciesListRequestSortItem": ".post_v1reference_currencies_list_request_sort_item",
-    "PostV1ReferenceCurrenciesListRequestSortItemDir": ".post_v1reference_currencies_list_request_sort_item_dir",
-    "PostV1ReferenceCurrenciesListResponse": ".post_v1reference_currencies_list_response",
-    "PostV1ReferenceCurrenciesListResponseRowsItem": ".post_v1reference_currencies_list_response_rows_item",
-    "PostV1ReferenceEuVatRatesListResponse": ".post_v1reference_eu_vat_rates_list_response",
-    "PostV1ReferenceEuVatRatesListResponseRowsItem": ".post_v1reference_eu_vat_rates_list_response_rows_item",
-    "PostV1ReferenceEuVatRatesListResponseRowsItemCategory": ".post_v1reference_eu_vat_rates_list_response_rows_item_category",
-    "PostV1ReferenceEuVatRatesListResponseRowsItemSource": ".post_v1reference_eu_vat_rates_list_response_rows_item_source",
-    "PostV1ReferenceEuVatRatesSetOverridesRequestRatesItem": ".post_v1reference_eu_vat_rates_set_overrides_request_rates_item",
-    "PostV1ReferenceEuVatRatesSetOverridesRequestRatesItemCategory": ".post_v1reference_eu_vat_rates_set_overrides_request_rates_item_category",
-    "PostV1ReferenceEuVatRatesSetOverridesResponse": ".post_v1reference_eu_vat_rates_set_overrides_response",
-    "PostV1ReferenceEuVatRatesSetOverridesResponseRowsItem": ".post_v1reference_eu_vat_rates_set_overrides_response_rows_item",
-    "PostV1ReferenceEuVatRatesSetOverridesResponseRowsItemCategory": ".post_v1reference_eu_vat_rates_set_overrides_response_rows_item_category",
-    "PostV1ReferenceEuVatRatesSetOverridesResponseSource": ".post_v1reference_eu_vat_rates_set_overrides_response_source",
-    "PostV1ReferenceExchangeRatesListRequestFilterItem": ".post_v1reference_exchange_rates_list_request_filter_item",
-    "PostV1ReferenceExchangeRatesListRequestFilterItemOp": ".post_v1reference_exchange_rates_list_request_filter_item_op",
-    "PostV1ReferenceExchangeRatesListRequestFilterItemValue": ".post_v1reference_exchange_rates_list_request_filter_item_value",
-    "PostV1ReferenceExchangeRatesListRequestFilterItemValueThreeItem": ".post_v1reference_exchange_rates_list_request_filter_item_value_three_item",
-    "PostV1ReferenceExchangeRatesListRequestSortItem": ".post_v1reference_exchange_rates_list_request_sort_item",
-    "PostV1ReferenceExchangeRatesListRequestSortItemDir": ".post_v1reference_exchange_rates_list_request_sort_item_dir",
-    "PostV1ReferenceExchangeRatesListResponse": ".post_v1reference_exchange_rates_list_response",
-    "PostV1ReferenceExchangeRatesListResponseRowsItem": ".post_v1reference_exchange_rates_list_response_rows_item",
-    "PostV1ReferenceExchangeRatesOverridesDeleteResponse": ".post_v1reference_exchange_rates_overrides_delete_response",
-    "PostV1ReferenceExchangeRatesOverridesListRequestFilterItem": ".post_v1reference_exchange_rates_overrides_list_request_filter_item",
-    "PostV1ReferenceExchangeRatesOverridesListRequestFilterItemOp": ".post_v1reference_exchange_rates_overrides_list_request_filter_item_op",
-    "PostV1ReferenceExchangeRatesOverridesListRequestFilterItemValue": ".post_v1reference_exchange_rates_overrides_list_request_filter_item_value",
-    "PostV1ReferenceExchangeRatesOverridesListRequestFilterItemValueThreeItem": ".post_v1reference_exchange_rates_overrides_list_request_filter_item_value_three_item",
-    "PostV1ReferenceExchangeRatesOverridesListRequestSortItem": ".post_v1reference_exchange_rates_overrides_list_request_sort_item",
-    "PostV1ReferenceExchangeRatesOverridesListRequestSortItemDir": ".post_v1reference_exchange_rates_overrides_list_request_sort_item_dir",
-    "PostV1ReferenceExchangeRatesOverridesListResponse": ".post_v1reference_exchange_rates_overrides_list_response",
-    "PostV1ReferenceExchangeRatesOverridesListResponseRowsItem": ".post_v1reference_exchange_rates_overrides_list_response_rows_item",
-    "PostV1ReferenceExchangeRatesSetResponse": ".post_v1reference_exchange_rates_set_response",
-    "PostV1ReferenceExchangeRatesSyncResponse": ".post_v1reference_exchange_rates_sync_response",
-    "PostV1ReferenceIntrastatThresholdsListResponse": ".post_v1reference_intrastat_thresholds_list_response",
-    "PostV1ReferenceIntrastatThresholdsListResponseRowsItem": ".post_v1reference_intrastat_thresholds_list_response_rows_item",
-    "PostV1ReferenceLtCitiesListResponse": ".post_v1reference_lt_cities_list_response",
-    "PostV1ReferenceLtCitiesListResponseRowsItem": ".post_v1reference_lt_cities_list_response_rows_item",
-    "PostV1ReferenceLtCountiesListResponse": ".post_v1reference_lt_counties_list_response",
-    "PostV1ReferenceLtCountiesListResponseRowsItem": ".post_v1reference_lt_counties_list_response_rows_item",
-    "PostV1ReferenceLtMunicipalitiesListResponse": ".post_v1reference_lt_municipalities_list_response",
-    "PostV1ReferenceLtMunicipalitiesListResponseRowsItem": ".post_v1reference_lt_municipalities_list_response_rows_item",
-    "PostV1ReferenceLtRegionsListResponse": ".post_v1reference_lt_regions_list_response",
-    "PostV1ReferenceLtRegionsListResponseRowsItem": ".post_v1reference_lt_regions_list_response_rows_item",
-    "PostV1ReferenceSeriesCreateResponse": ".post_v1reference_series_create_response",
-    "PostV1ReferenceSeriesListRequestFilterItem": ".post_v1reference_series_list_request_filter_item",
-    "PostV1ReferenceSeriesListRequestFilterItemOp": ".post_v1reference_series_list_request_filter_item_op",
-    "PostV1ReferenceSeriesListRequestFilterItemValue": ".post_v1reference_series_list_request_filter_item_value",
-    "PostV1ReferenceSeriesListRequestFilterItemValueThreeItem": ".post_v1reference_series_list_request_filter_item_value_three_item",
-    "PostV1ReferenceSeriesListRequestSortItem": ".post_v1reference_series_list_request_sort_item",
-    "PostV1ReferenceSeriesListRequestSortItemDir": ".post_v1reference_series_list_request_sort_item_dir",
-    "PostV1ReferenceSeriesListResponse": ".post_v1reference_series_list_response",
-    "PostV1ReferenceSeriesListResponseRowsItem": ".post_v1reference_series_list_response_rows_item",
-    "PostV1ReferenceUnitsListRequestFilterItem": ".post_v1reference_units_list_request_filter_item",
-    "PostV1ReferenceUnitsListRequestFilterItemOp": ".post_v1reference_units_list_request_filter_item_op",
-    "PostV1ReferenceUnitsListRequestFilterItemValue": ".post_v1reference_units_list_request_filter_item_value",
-    "PostV1ReferenceUnitsListRequestFilterItemValueThreeItem": ".post_v1reference_units_list_request_filter_item_value_three_item",
-    "PostV1ReferenceUnitsListRequestSortItem": ".post_v1reference_units_list_request_sort_item",
-    "PostV1ReferenceUnitsListRequestSortItemDir": ".post_v1reference_units_list_request_sort_item_dir",
-    "PostV1ReferenceUnitsListResponse": ".post_v1reference_units_list_response",
-    "PostV1ReferenceUnitsListResponseRowsItem": ".post_v1reference_units_list_response_rows_item",
-    "PostV1ReferenceVatClassifiersListRequestFilterItem": ".post_v1reference_vat_classifiers_list_request_filter_item",
-    "PostV1ReferenceVatClassifiersListRequestFilterItemOp": ".post_v1reference_vat_classifiers_list_request_filter_item_op",
-    "PostV1ReferenceVatClassifiersListRequestFilterItemValue": ".post_v1reference_vat_classifiers_list_request_filter_item_value",
-    "PostV1ReferenceVatClassifiersListRequestFilterItemValueThreeItem": ".post_v1reference_vat_classifiers_list_request_filter_item_value_three_item",
-    "PostV1ReferenceVatClassifiersListRequestSortItem": ".post_v1reference_vat_classifiers_list_request_sort_item",
-    "PostV1ReferenceVatClassifiersListRequestSortItemDir": ".post_v1reference_vat_classifiers_list_request_sort_item_dir",
-    "PostV1ReferenceVatClassifiersListResponse": ".post_v1reference_vat_classifiers_list_response",
-    "PostV1ReferenceVatClassifiersListResponseRowsItem": ".post_v1reference_vat_classifiers_list_response_rows_item",
-    "PostV1ReferenceVatClassifiersUpsertRequestRowsItem": ".post_v1reference_vat_classifiers_upsert_request_rows_item",
-    "PostV1ReferenceVatClassifiersUpsertResponse": ".post_v1reference_vat_classifiers_upsert_response",
-    "PostV1ReferenceVatResolveRequestSupplyType": ".post_v1reference_vat_resolve_request_supply_type",
-    "PostV1ReferenceVatResolveResponse": ".post_v1reference_vat_resolve_response",
-    "PostV1ReferenceVatResolveResponseRatesItem": ".post_v1reference_vat_resolve_response_rates_item",
-    "PostV1ReferenceVatResolveResponseRatesItemCategory": ".post_v1reference_vat_resolve_response_rates_item_category",
-    "PostV1ReferenceVatResolveResponseScheme": ".post_v1reference_vat_resolve_response_scheme",
+    "BanksListReferenceRequestFilterItem": ".banks_list_reference_request_filter_item",
+    "BanksListReferenceRequestFilterItemOp": ".banks_list_reference_request_filter_item_op",
+    "BanksListReferenceRequestFilterItemValue": ".banks_list_reference_request_filter_item_value",
+    "BanksListReferenceRequestFilterItemValueThreeItem": ".banks_list_reference_request_filter_item_value_three_item",
+    "BanksListReferenceRequestSortItem": ".banks_list_reference_request_sort_item",
+    "BanksListReferenceRequestSortItemDir": ".banks_list_reference_request_sort_item_dir",
+    "BanksListReferenceResponse": ".banks_list_reference_response",
+    "BanksListReferenceResponseRowsItem": ".banks_list_reference_response_rows_item",
+    "BanksUpsertReferenceResponse": ".banks_upsert_reference_response",
+    "CnCodesListReferenceRequestFilterItem": ".cn_codes_list_reference_request_filter_item",
+    "CnCodesListReferenceRequestFilterItemOp": ".cn_codes_list_reference_request_filter_item_op",
+    "CnCodesListReferenceRequestFilterItemValue": ".cn_codes_list_reference_request_filter_item_value",
+    "CnCodesListReferenceRequestFilterItemValueThreeItem": ".cn_codes_list_reference_request_filter_item_value_three_item",
+    "CnCodesListReferenceRequestSortItem": ".cn_codes_list_reference_request_sort_item",
+    "CnCodesListReferenceRequestSortItemDir": ".cn_codes_list_reference_request_sort_item_dir",
+    "CnCodesListReferenceResponse": ".cn_codes_list_reference_response",
+    "CnCodesListReferenceResponseRowsItem": ".cn_codes_list_reference_response_rows_item",
+    "CnCodesUpsertReferenceRequestRowsItem": ".cn_codes_upsert_reference_request_rows_item",
+    "CnCodesUpsertReferenceResponse": ".cn_codes_upsert_reference_response",
+    "ComplianceVersionsListReferenceResponse": ".compliance_versions_list_reference_response",
+    "ComplianceVersionsListReferenceResponseRowsItem": ".compliance_versions_list_reference_response_rows_item",
+    "CountriesListReferenceResponse": ".countries_list_reference_response",
+    "CountriesListReferenceResponseRowsItem": ".countries_list_reference_response_rows_item",
+    "CurrenciesListReferenceRequestFilterItem": ".currencies_list_reference_request_filter_item",
+    "CurrenciesListReferenceRequestFilterItemOp": ".currencies_list_reference_request_filter_item_op",
+    "CurrenciesListReferenceRequestFilterItemValue": ".currencies_list_reference_request_filter_item_value",
+    "CurrenciesListReferenceRequestFilterItemValueThreeItem": ".currencies_list_reference_request_filter_item_value_three_item",
+    "CurrenciesListReferenceRequestSortItem": ".currencies_list_reference_request_sort_item",
+    "CurrenciesListReferenceRequestSortItemDir": ".currencies_list_reference_request_sort_item_dir",
+    "CurrenciesListReferenceResponse": ".currencies_list_reference_response",
+    "CurrenciesListReferenceResponseRowsItem": ".currencies_list_reference_response_rows_item",
+    "EuVatRatesListReferenceResponse": ".eu_vat_rates_list_reference_response",
+    "EuVatRatesListReferenceResponseRowsItem": ".eu_vat_rates_list_reference_response_rows_item",
+    "EuVatRatesListReferenceResponseRowsItemCategory": ".eu_vat_rates_list_reference_response_rows_item_category",
+    "EuVatRatesListReferenceResponseRowsItemSource": ".eu_vat_rates_list_reference_response_rows_item_source",
+    "EuVatRatesSetOverridesReferenceRequestRatesItem": ".eu_vat_rates_set_overrides_reference_request_rates_item",
+    "EuVatRatesSetOverridesReferenceRequestRatesItemCategory": ".eu_vat_rates_set_overrides_reference_request_rates_item_category",
+    "EuVatRatesSetOverridesReferenceResponse": ".eu_vat_rates_set_overrides_reference_response",
+    "EuVatRatesSetOverridesReferenceResponseRowsItem": ".eu_vat_rates_set_overrides_reference_response_rows_item",
+    "EuVatRatesSetOverridesReferenceResponseRowsItemCategory": ".eu_vat_rates_set_overrides_reference_response_rows_item_category",
+    "EuVatRatesSetOverridesReferenceResponseSource": ".eu_vat_rates_set_overrides_reference_response_source",
+    "ExchangeRatesListReferenceRequestFilterItem": ".exchange_rates_list_reference_request_filter_item",
+    "ExchangeRatesListReferenceRequestFilterItemOp": ".exchange_rates_list_reference_request_filter_item_op",
+    "ExchangeRatesListReferenceRequestFilterItemValue": ".exchange_rates_list_reference_request_filter_item_value",
+    "ExchangeRatesListReferenceRequestFilterItemValueThreeItem": ".exchange_rates_list_reference_request_filter_item_value_three_item",
+    "ExchangeRatesListReferenceRequestSortItem": ".exchange_rates_list_reference_request_sort_item",
+    "ExchangeRatesListReferenceRequestSortItemDir": ".exchange_rates_list_reference_request_sort_item_dir",
+    "ExchangeRatesListReferenceResponse": ".exchange_rates_list_reference_response",
+    "ExchangeRatesListReferenceResponseRowsItem": ".exchange_rates_list_reference_response_rows_item",
+    "ExchangeRatesOverridesDeleteReferenceResponse": ".exchange_rates_overrides_delete_reference_response",
+    "ExchangeRatesOverridesListReferenceRequestFilterItem": ".exchange_rates_overrides_list_reference_request_filter_item",
+    "ExchangeRatesOverridesListReferenceRequestFilterItemOp": ".exchange_rates_overrides_list_reference_request_filter_item_op",
+    "ExchangeRatesOverridesListReferenceRequestFilterItemValue": ".exchange_rates_overrides_list_reference_request_filter_item_value",
+    "ExchangeRatesOverridesListReferenceRequestFilterItemValueThreeItem": ".exchange_rates_overrides_list_reference_request_filter_item_value_three_item",
+    "ExchangeRatesOverridesListReferenceRequestSortItem": ".exchange_rates_overrides_list_reference_request_sort_item",
+    "ExchangeRatesOverridesListReferenceRequestSortItemDir": ".exchange_rates_overrides_list_reference_request_sort_item_dir",
+    "ExchangeRatesOverridesListReferenceResponse": ".exchange_rates_overrides_list_reference_response",
+    "ExchangeRatesOverridesListReferenceResponseRowsItem": ".exchange_rates_overrides_list_reference_response_rows_item",
+    "ExchangeRatesSetReferenceResponse": ".exchange_rates_set_reference_response",
+    "ExchangeRatesSyncReferenceResponse": ".exchange_rates_sync_reference_response",
+    "IntrastatThresholdsListReferenceResponse": ".intrastat_thresholds_list_reference_response",
+    "IntrastatThresholdsListReferenceResponseRowsItem": ".intrastat_thresholds_list_reference_response_rows_item",
+    "LtCitiesListReferenceResponse": ".lt_cities_list_reference_response",
+    "LtCitiesListReferenceResponseRowsItem": ".lt_cities_list_reference_response_rows_item",
+    "LtCountiesListReferenceResponse": ".lt_counties_list_reference_response",
+    "LtCountiesListReferenceResponseRowsItem": ".lt_counties_list_reference_response_rows_item",
+    "LtMunicipalitiesListReferenceResponse": ".lt_municipalities_list_reference_response",
+    "LtMunicipalitiesListReferenceResponseRowsItem": ".lt_municipalities_list_reference_response_rows_item",
+    "LtRegionsListReferenceResponse": ".lt_regions_list_reference_response",
+    "LtRegionsListReferenceResponseRowsItem": ".lt_regions_list_reference_response_rows_item",
+    "SeriesCreateReferenceResponse": ".series_create_reference_response",
+    "SeriesListReferenceRequestFilterItem": ".series_list_reference_request_filter_item",
+    "SeriesListReferenceRequestFilterItemOp": ".series_list_reference_request_filter_item_op",
+    "SeriesListReferenceRequestFilterItemValue": ".series_list_reference_request_filter_item_value",
+    "SeriesListReferenceRequestFilterItemValueThreeItem": ".series_list_reference_request_filter_item_value_three_item",
+    "SeriesListReferenceRequestSortItem": ".series_list_reference_request_sort_item",
+    "SeriesListReferenceRequestSortItemDir": ".series_list_reference_request_sort_item_dir",
+    "SeriesListReferenceResponse": ".series_list_reference_response",
+    "SeriesListReferenceResponseRowsItem": ".series_list_reference_response_rows_item",
+    "UnitsListReferenceRequestFilterItem": ".units_list_reference_request_filter_item",
+    "UnitsListReferenceRequestFilterItemOp": ".units_list_reference_request_filter_item_op",
+    "UnitsListReferenceRequestFilterItemValue": ".units_list_reference_request_filter_item_value",
+    "UnitsListReferenceRequestFilterItemValueThreeItem": ".units_list_reference_request_filter_item_value_three_item",
+    "UnitsListReferenceRequestSortItem": ".units_list_reference_request_sort_item",
+    "UnitsListReferenceRequestSortItemDir": ".units_list_reference_request_sort_item_dir",
+    "UnitsListReferenceResponse": ".units_list_reference_response",
+    "UnitsListReferenceResponseRowsItem": ".units_list_reference_response_rows_item",
+    "VatClassifiersListReferenceRequestFilterItem": ".vat_classifiers_list_reference_request_filter_item",
+    "VatClassifiersListReferenceRequestFilterItemOp": ".vat_classifiers_list_reference_request_filter_item_op",
+    "VatClassifiersListReferenceRequestFilterItemValue": ".vat_classifiers_list_reference_request_filter_item_value",
+    "VatClassifiersListReferenceRequestFilterItemValueThreeItem": ".vat_classifiers_list_reference_request_filter_item_value_three_item",
+    "VatClassifiersListReferenceRequestSortItem": ".vat_classifiers_list_reference_request_sort_item",
+    "VatClassifiersListReferenceRequestSortItemDir": ".vat_classifiers_list_reference_request_sort_item_dir",
+    "VatClassifiersListReferenceResponse": ".vat_classifiers_list_reference_response",
+    "VatClassifiersListReferenceResponseRowsItem": ".vat_classifiers_list_reference_response_rows_item",
+    "VatClassifiersUpsertReferenceRequestRowsItem": ".vat_classifiers_upsert_reference_request_rows_item",
+    "VatClassifiersUpsertReferenceResponse": ".vat_classifiers_upsert_reference_response",
+    "VatResolveReferenceRequestSupplyType": ".vat_resolve_reference_request_supply_type",
+    "VatResolveReferenceResponse": ".vat_resolve_reference_response",
+    "VatResolveReferenceResponseRatesItem": ".vat_resolve_reference_response_rates_item",
+    "VatResolveReferenceResponseRatesItemCategory": ".vat_resolve_reference_response_rates_item_category",
+    "VatResolveReferenceResponseScheme": ".vat_resolve_reference_response_scheme",
 }
 
 
@@ -320,106 +272,106 @@ def __dir__():
 
 
 __all__ = [
-    "PostV1ReferenceBanksListRequestFilterItem",
-    "PostV1ReferenceBanksListRequestFilterItemOp",
-    "PostV1ReferenceBanksListRequestFilterItemValue",
-    "PostV1ReferenceBanksListRequestFilterItemValueThreeItem",
-    "PostV1ReferenceBanksListRequestSortItem",
-    "PostV1ReferenceBanksListRequestSortItemDir",
-    "PostV1ReferenceBanksListResponse",
-    "PostV1ReferenceBanksListResponseRowsItem",
-    "PostV1ReferenceBanksUpsertResponse",
-    "PostV1ReferenceCnCodesListRequestFilterItem",
-    "PostV1ReferenceCnCodesListRequestFilterItemOp",
-    "PostV1ReferenceCnCodesListRequestFilterItemValue",
-    "PostV1ReferenceCnCodesListRequestFilterItemValueThreeItem",
-    "PostV1ReferenceCnCodesListRequestSortItem",
-    "PostV1ReferenceCnCodesListRequestSortItemDir",
-    "PostV1ReferenceCnCodesListResponse",
-    "PostV1ReferenceCnCodesListResponseRowsItem",
-    "PostV1ReferenceCnCodesUpsertRequestRowsItem",
-    "PostV1ReferenceCnCodesUpsertResponse",
-    "PostV1ReferenceComplianceVersionsListResponse",
-    "PostV1ReferenceComplianceVersionsListResponseRowsItem",
-    "PostV1ReferenceCountriesListResponse",
-    "PostV1ReferenceCountriesListResponseRowsItem",
-    "PostV1ReferenceCurrenciesListRequestFilterItem",
-    "PostV1ReferenceCurrenciesListRequestFilterItemOp",
-    "PostV1ReferenceCurrenciesListRequestFilterItemValue",
-    "PostV1ReferenceCurrenciesListRequestFilterItemValueThreeItem",
-    "PostV1ReferenceCurrenciesListRequestSortItem",
-    "PostV1ReferenceCurrenciesListRequestSortItemDir",
-    "PostV1ReferenceCurrenciesListResponse",
-    "PostV1ReferenceCurrenciesListResponseRowsItem",
-    "PostV1ReferenceEuVatRatesListResponse",
-    "PostV1ReferenceEuVatRatesListResponseRowsItem",
-    "PostV1ReferenceEuVatRatesListResponseRowsItemCategory",
-    "PostV1ReferenceEuVatRatesListResponseRowsItemSource",
-    "PostV1ReferenceEuVatRatesSetOverridesRequestRatesItem",
-    "PostV1ReferenceEuVatRatesSetOverridesRequestRatesItemCategory",
-    "PostV1ReferenceEuVatRatesSetOverridesResponse",
-    "PostV1ReferenceEuVatRatesSetOverridesResponseRowsItem",
-    "PostV1ReferenceEuVatRatesSetOverridesResponseRowsItemCategory",
-    "PostV1ReferenceEuVatRatesSetOverridesResponseSource",
-    "PostV1ReferenceExchangeRatesListRequestFilterItem",
-    "PostV1ReferenceExchangeRatesListRequestFilterItemOp",
-    "PostV1ReferenceExchangeRatesListRequestFilterItemValue",
-    "PostV1ReferenceExchangeRatesListRequestFilterItemValueThreeItem",
-    "PostV1ReferenceExchangeRatesListRequestSortItem",
-    "PostV1ReferenceExchangeRatesListRequestSortItemDir",
-    "PostV1ReferenceExchangeRatesListResponse",
-    "PostV1ReferenceExchangeRatesListResponseRowsItem",
-    "PostV1ReferenceExchangeRatesOverridesDeleteResponse",
-    "PostV1ReferenceExchangeRatesOverridesListRequestFilterItem",
-    "PostV1ReferenceExchangeRatesOverridesListRequestFilterItemOp",
-    "PostV1ReferenceExchangeRatesOverridesListRequestFilterItemValue",
-    "PostV1ReferenceExchangeRatesOverridesListRequestFilterItemValueThreeItem",
-    "PostV1ReferenceExchangeRatesOverridesListRequestSortItem",
-    "PostV1ReferenceExchangeRatesOverridesListRequestSortItemDir",
-    "PostV1ReferenceExchangeRatesOverridesListResponse",
-    "PostV1ReferenceExchangeRatesOverridesListResponseRowsItem",
-    "PostV1ReferenceExchangeRatesSetResponse",
-    "PostV1ReferenceExchangeRatesSyncResponse",
-    "PostV1ReferenceIntrastatThresholdsListResponse",
-    "PostV1ReferenceIntrastatThresholdsListResponseRowsItem",
-    "PostV1ReferenceLtCitiesListResponse",
-    "PostV1ReferenceLtCitiesListResponseRowsItem",
-    "PostV1ReferenceLtCountiesListResponse",
-    "PostV1ReferenceLtCountiesListResponseRowsItem",
-    "PostV1ReferenceLtMunicipalitiesListResponse",
-    "PostV1ReferenceLtMunicipalitiesListResponseRowsItem",
-    "PostV1ReferenceLtRegionsListResponse",
-    "PostV1ReferenceLtRegionsListResponseRowsItem",
-    "PostV1ReferenceSeriesCreateResponse",
-    "PostV1ReferenceSeriesListRequestFilterItem",
-    "PostV1ReferenceSeriesListRequestFilterItemOp",
-    "PostV1ReferenceSeriesListRequestFilterItemValue",
-    "PostV1ReferenceSeriesListRequestFilterItemValueThreeItem",
-    "PostV1ReferenceSeriesListRequestSortItem",
-    "PostV1ReferenceSeriesListRequestSortItemDir",
-    "PostV1ReferenceSeriesListResponse",
-    "PostV1ReferenceSeriesListResponseRowsItem",
-    "PostV1ReferenceUnitsListRequestFilterItem",
-    "PostV1ReferenceUnitsListRequestFilterItemOp",
-    "PostV1ReferenceUnitsListRequestFilterItemValue",
-    "PostV1ReferenceUnitsListRequestFilterItemValueThreeItem",
-    "PostV1ReferenceUnitsListRequestSortItem",
-    "PostV1ReferenceUnitsListRequestSortItemDir",
-    "PostV1ReferenceUnitsListResponse",
-    "PostV1ReferenceUnitsListResponseRowsItem",
-    "PostV1ReferenceVatClassifiersListRequestFilterItem",
-    "PostV1ReferenceVatClassifiersListRequestFilterItemOp",
-    "PostV1ReferenceVatClassifiersListRequestFilterItemValue",
-    "PostV1ReferenceVatClassifiersListRequestFilterItemValueThreeItem",
-    "PostV1ReferenceVatClassifiersListRequestSortItem",
-    "PostV1ReferenceVatClassifiersListRequestSortItemDir",
-    "PostV1ReferenceVatClassifiersListResponse",
-    "PostV1ReferenceVatClassifiersListResponseRowsItem",
-    "PostV1ReferenceVatClassifiersUpsertRequestRowsItem",
-    "PostV1ReferenceVatClassifiersUpsertResponse",
-    "PostV1ReferenceVatResolveRequestSupplyType",
-    "PostV1ReferenceVatResolveResponse",
-    "PostV1ReferenceVatResolveResponseRatesItem",
-    "PostV1ReferenceVatResolveResponseRatesItemCategory",
-    "PostV1ReferenceVatResolveResponseScheme",
+    "BanksListReferenceRequestFilterItem",
+    "BanksListReferenceRequestFilterItemOp",
+    "BanksListReferenceRequestFilterItemValue",
+    "BanksListReferenceRequestFilterItemValueThreeItem",
+    "BanksListReferenceRequestSortItem",
+    "BanksListReferenceRequestSortItemDir",
+    "BanksListReferenceResponse",
+    "BanksListReferenceResponseRowsItem",
+    "BanksUpsertReferenceResponse",
+    "CnCodesListReferenceRequestFilterItem",
+    "CnCodesListReferenceRequestFilterItemOp",
+    "CnCodesListReferenceRequestFilterItemValue",
+    "CnCodesListReferenceRequestFilterItemValueThreeItem",
+    "CnCodesListReferenceRequestSortItem",
+    "CnCodesListReferenceRequestSortItemDir",
+    "CnCodesListReferenceResponse",
+    "CnCodesListReferenceResponseRowsItem",
+    "CnCodesUpsertReferenceRequestRowsItem",
+    "CnCodesUpsertReferenceResponse",
+    "ComplianceVersionsListReferenceResponse",
+    "ComplianceVersionsListReferenceResponseRowsItem",
+    "CountriesListReferenceResponse",
+    "CountriesListReferenceResponseRowsItem",
+    "CurrenciesListReferenceRequestFilterItem",
+    "CurrenciesListReferenceRequestFilterItemOp",
+    "CurrenciesListReferenceRequestFilterItemValue",
+    "CurrenciesListReferenceRequestFilterItemValueThreeItem",
+    "CurrenciesListReferenceRequestSortItem",
+    "CurrenciesListReferenceRequestSortItemDir",
+    "CurrenciesListReferenceResponse",
+    "CurrenciesListReferenceResponseRowsItem",
+    "EuVatRatesListReferenceResponse",
+    "EuVatRatesListReferenceResponseRowsItem",
+    "EuVatRatesListReferenceResponseRowsItemCategory",
+    "EuVatRatesListReferenceResponseRowsItemSource",
+    "EuVatRatesSetOverridesReferenceRequestRatesItem",
+    "EuVatRatesSetOverridesReferenceRequestRatesItemCategory",
+    "EuVatRatesSetOverridesReferenceResponse",
+    "EuVatRatesSetOverridesReferenceResponseRowsItem",
+    "EuVatRatesSetOverridesReferenceResponseRowsItemCategory",
+    "EuVatRatesSetOverridesReferenceResponseSource",
+    "ExchangeRatesListReferenceRequestFilterItem",
+    "ExchangeRatesListReferenceRequestFilterItemOp",
+    "ExchangeRatesListReferenceRequestFilterItemValue",
+    "ExchangeRatesListReferenceRequestFilterItemValueThreeItem",
+    "ExchangeRatesListReferenceRequestSortItem",
+    "ExchangeRatesListReferenceRequestSortItemDir",
+    "ExchangeRatesListReferenceResponse",
+    "ExchangeRatesListReferenceResponseRowsItem",
+    "ExchangeRatesOverridesDeleteReferenceResponse",
+    "ExchangeRatesOverridesListReferenceRequestFilterItem",
+    "ExchangeRatesOverridesListReferenceRequestFilterItemOp",
+    "ExchangeRatesOverridesListReferenceRequestFilterItemValue",
+    "ExchangeRatesOverridesListReferenceRequestFilterItemValueThreeItem",
+    "ExchangeRatesOverridesListReferenceRequestSortItem",
+    "ExchangeRatesOverridesListReferenceRequestSortItemDir",
+    "ExchangeRatesOverridesListReferenceResponse",
+    "ExchangeRatesOverridesListReferenceResponseRowsItem",
+    "ExchangeRatesSetReferenceResponse",
+    "ExchangeRatesSyncReferenceResponse",
+    "IntrastatThresholdsListReferenceResponse",
+    "IntrastatThresholdsListReferenceResponseRowsItem",
+    "LtCitiesListReferenceResponse",
+    "LtCitiesListReferenceResponseRowsItem",
+    "LtCountiesListReferenceResponse",
+    "LtCountiesListReferenceResponseRowsItem",
+    "LtMunicipalitiesListReferenceResponse",
+    "LtMunicipalitiesListReferenceResponseRowsItem",
+    "LtRegionsListReferenceResponse",
+    "LtRegionsListReferenceResponseRowsItem",
+    "SeriesCreateReferenceResponse",
+    "SeriesListReferenceRequestFilterItem",
+    "SeriesListReferenceRequestFilterItemOp",
+    "SeriesListReferenceRequestFilterItemValue",
+    "SeriesListReferenceRequestFilterItemValueThreeItem",
+    "SeriesListReferenceRequestSortItem",
+    "SeriesListReferenceRequestSortItemDir",
+    "SeriesListReferenceResponse",
+    "SeriesListReferenceResponseRowsItem",
+    "UnitsListReferenceRequestFilterItem",
+    "UnitsListReferenceRequestFilterItemOp",
+    "UnitsListReferenceRequestFilterItemValue",
+    "UnitsListReferenceRequestFilterItemValueThreeItem",
+    "UnitsListReferenceRequestSortItem",
+    "UnitsListReferenceRequestSortItemDir",
+    "UnitsListReferenceResponse",
+    "UnitsListReferenceResponseRowsItem",
+    "VatClassifiersListReferenceRequestFilterItem",
+    "VatClassifiersListReferenceRequestFilterItemOp",
+    "VatClassifiersListReferenceRequestFilterItemValue",
+    "VatClassifiersListReferenceRequestFilterItemValueThreeItem",
+    "VatClassifiersListReferenceRequestSortItem",
+    "VatClassifiersListReferenceRequestSortItemDir",
+    "VatClassifiersListReferenceResponse",
+    "VatClassifiersListReferenceResponseRowsItem",
+    "VatClassifiersUpsertReferenceRequestRowsItem",
+    "VatClassifiersUpsertReferenceResponse",
+    "VatResolveReferenceRequestSupplyType",
+    "VatResolveReferenceResponse",
+    "VatResolveReferenceResponseRatesItem",
+    "VatResolveReferenceResponseRatesItemCategory",
+    "VatResolveReferenceResponseScheme",
 ]

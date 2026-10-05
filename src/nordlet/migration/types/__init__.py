@@ -6,171 +6,127 @@ import typing
 from importlib import import_module
 
 if typing.TYPE_CHECKING:
-    from .post_v1migration_books_import_request_accounts_item import PostV1MigrationBooksImportRequestAccountsItem
-    from .post_v1migration_books_import_request_accounts_item_type import (
-        PostV1MigrationBooksImportRequestAccountsItemType,
+    from .books_import_migration_request_accounts_item import BooksImportMigrationRequestAccountsItem
+    from .books_import_migration_request_accounts_item_type import BooksImportMigrationRequestAccountsItemType
+    from .books_import_migration_request_asset_groups_item import BooksImportMigrationRequestAssetGroupsItem
+    from .books_import_migration_request_fixed_assets_item import BooksImportMigrationRequestFixedAssetsItem
+    from .books_import_migration_request_items_item import BooksImportMigrationRequestItemsItem
+    from .books_import_migration_request_items_item_type import BooksImportMigrationRequestItemsItemType
+    from .books_import_migration_request_journal_item import BooksImportMigrationRequestJournalItem
+    from .books_import_migration_request_journal_item_entries_item import (
+        BooksImportMigrationRequestJournalItemEntriesItem,
     )
-    from .post_v1migration_books_import_request_asset_groups_item import (
-        PostV1MigrationBooksImportRequestAssetGroupsItem,
+    from .books_import_migration_request_open_payables_item import BooksImportMigrationRequestOpenPayablesItem
+    from .books_import_migration_request_open_receivables_item import BooksImportMigrationRequestOpenReceivablesItem
+    from .books_import_migration_request_opening_balances import BooksImportMigrationRequestOpeningBalances
+    from .books_import_migration_request_opening_balances_entries_item import (
+        BooksImportMigrationRequestOpeningBalancesEntriesItem,
     )
-    from .post_v1migration_books_import_request_fixed_assets_item import (
-        PostV1MigrationBooksImportRequestFixedAssetsItem,
+    from .books_import_migration_request_partners_item import BooksImportMigrationRequestPartnersItem
+    from .books_import_migration_request_partners_item_address import BooksImportMigrationRequestPartnersItemAddress
+    from .books_import_migration_request_partners_item_type import BooksImportMigrationRequestPartnersItemType
+    from .books_import_migration_request_stock_item import BooksImportMigrationRequestStockItem
+    from .books_import_migration_response import BooksImportMigrationResponse
+    from .books_import_migration_response_accounts import BooksImportMigrationResponseAccounts
+    from .books_import_migration_response_asset_groups import BooksImportMigrationResponseAssetGroups
+    from .books_import_migration_response_fixed_assets import BooksImportMigrationResponseFixedAssets
+    from .books_import_migration_response_items import BooksImportMigrationResponseItems
+    from .books_import_migration_response_journal import BooksImportMigrationResponseJournal
+    from .books_import_migration_response_number_series_item import BooksImportMigrationResponseNumberSeriesItem
+    from .books_import_migration_response_open_payables import BooksImportMigrationResponseOpenPayables
+    from .books_import_migration_response_open_receivables import BooksImportMigrationResponseOpenReceivables
+    from .books_import_migration_response_opening_balances import BooksImportMigrationResponseOpeningBalances
+    from .books_import_migration_response_partners import BooksImportMigrationResponsePartners
+    from .books_import_migration_response_stock import BooksImportMigrationResponseStock
+    from .books_validate_migration_request_accounts_item import BooksValidateMigrationRequestAccountsItem
+    from .books_validate_migration_request_accounts_item_type import BooksValidateMigrationRequestAccountsItemType
+    from .books_validate_migration_request_asset_groups_item import BooksValidateMigrationRequestAssetGroupsItem
+    from .books_validate_migration_request_fixed_assets_item import BooksValidateMigrationRequestFixedAssetsItem
+    from .books_validate_migration_request_items_item import BooksValidateMigrationRequestItemsItem
+    from .books_validate_migration_request_items_item_type import BooksValidateMigrationRequestItemsItemType
+    from .books_validate_migration_request_journal_item import BooksValidateMigrationRequestJournalItem
+    from .books_validate_migration_request_journal_item_entries_item import (
+        BooksValidateMigrationRequestJournalItemEntriesItem,
     )
-    from .post_v1migration_books_import_request_items_item import PostV1MigrationBooksImportRequestItemsItem
-    from .post_v1migration_books_import_request_items_item_type import PostV1MigrationBooksImportRequestItemsItemType
-    from .post_v1migration_books_import_request_journal_item import PostV1MigrationBooksImportRequestJournalItem
-    from .post_v1migration_books_import_request_journal_item_entries_item import (
-        PostV1MigrationBooksImportRequestJournalItemEntriesItem,
+    from .books_validate_migration_request_open_payables_item import BooksValidateMigrationRequestOpenPayablesItem
+    from .books_validate_migration_request_open_receivables_item import BooksValidateMigrationRequestOpenReceivablesItem
+    from .books_validate_migration_request_opening_balances import BooksValidateMigrationRequestOpeningBalances
+    from .books_validate_migration_request_opening_balances_entries_item import (
+        BooksValidateMigrationRequestOpeningBalancesEntriesItem,
     )
-    from .post_v1migration_books_import_request_open_payables_item import (
-        PostV1MigrationBooksImportRequestOpenPayablesItem,
-    )
-    from .post_v1migration_books_import_request_open_receivables_item import (
-        PostV1MigrationBooksImportRequestOpenReceivablesItem,
-    )
-    from .post_v1migration_books_import_request_opening_balances import PostV1MigrationBooksImportRequestOpeningBalances
-    from .post_v1migration_books_import_request_opening_balances_entries_item import (
-        PostV1MigrationBooksImportRequestOpeningBalancesEntriesItem,
-    )
-    from .post_v1migration_books_import_request_partners_item import PostV1MigrationBooksImportRequestPartnersItem
-    from .post_v1migration_books_import_request_partners_item_address import (
-        PostV1MigrationBooksImportRequestPartnersItemAddress,
-    )
-    from .post_v1migration_books_import_request_partners_item_type import (
-        PostV1MigrationBooksImportRequestPartnersItemType,
-    )
-    from .post_v1migration_books_import_request_stock_item import PostV1MigrationBooksImportRequestStockItem
-    from .post_v1migration_books_import_response import PostV1MigrationBooksImportResponse
-    from .post_v1migration_books_import_response_accounts import PostV1MigrationBooksImportResponseAccounts
-    from .post_v1migration_books_import_response_asset_groups import PostV1MigrationBooksImportResponseAssetGroups
-    from .post_v1migration_books_import_response_fixed_assets import PostV1MigrationBooksImportResponseFixedAssets
-    from .post_v1migration_books_import_response_items import PostV1MigrationBooksImportResponseItems
-    from .post_v1migration_books_import_response_journal import PostV1MigrationBooksImportResponseJournal
-    from .post_v1migration_books_import_response_number_series_item import (
-        PostV1MigrationBooksImportResponseNumberSeriesItem,
-    )
-    from .post_v1migration_books_import_response_open_payables import PostV1MigrationBooksImportResponseOpenPayables
-    from .post_v1migration_books_import_response_open_receivables import (
-        PostV1MigrationBooksImportResponseOpenReceivables,
-    )
-    from .post_v1migration_books_import_response_opening_balances import (
-        PostV1MigrationBooksImportResponseOpeningBalances,
-    )
-    from .post_v1migration_books_import_response_partners import PostV1MigrationBooksImportResponsePartners
-    from .post_v1migration_books_import_response_stock import PostV1MigrationBooksImportResponseStock
-    from .post_v1migration_books_validate_request_accounts_item import PostV1MigrationBooksValidateRequestAccountsItem
-    from .post_v1migration_books_validate_request_accounts_item_type import (
-        PostV1MigrationBooksValidateRequestAccountsItemType,
-    )
-    from .post_v1migration_books_validate_request_asset_groups_item import (
-        PostV1MigrationBooksValidateRequestAssetGroupsItem,
-    )
-    from .post_v1migration_books_validate_request_fixed_assets_item import (
-        PostV1MigrationBooksValidateRequestFixedAssetsItem,
-    )
-    from .post_v1migration_books_validate_request_items_item import PostV1MigrationBooksValidateRequestItemsItem
-    from .post_v1migration_books_validate_request_items_item_type import (
-        PostV1MigrationBooksValidateRequestItemsItemType,
-    )
-    from .post_v1migration_books_validate_request_journal_item import PostV1MigrationBooksValidateRequestJournalItem
-    from .post_v1migration_books_validate_request_journal_item_entries_item import (
-        PostV1MigrationBooksValidateRequestJournalItemEntriesItem,
-    )
-    from .post_v1migration_books_validate_request_open_payables_item import (
-        PostV1MigrationBooksValidateRequestOpenPayablesItem,
-    )
-    from .post_v1migration_books_validate_request_open_receivables_item import (
-        PostV1MigrationBooksValidateRequestOpenReceivablesItem,
-    )
-    from .post_v1migration_books_validate_request_opening_balances import (
-        PostV1MigrationBooksValidateRequestOpeningBalances,
-    )
-    from .post_v1migration_books_validate_request_opening_balances_entries_item import (
-        PostV1MigrationBooksValidateRequestOpeningBalancesEntriesItem,
-    )
-    from .post_v1migration_books_validate_request_partners_item import PostV1MigrationBooksValidateRequestPartnersItem
-    from .post_v1migration_books_validate_request_partners_item_address import (
-        PostV1MigrationBooksValidateRequestPartnersItemAddress,
-    )
-    from .post_v1migration_books_validate_request_partners_item_type import (
-        PostV1MigrationBooksValidateRequestPartnersItemType,
-    )
-    from .post_v1migration_books_validate_request_stock_item import PostV1MigrationBooksValidateRequestStockItem
-    from .post_v1migration_books_validate_response import PostV1MigrationBooksValidateResponse
-    from .post_v1migration_books_validate_response_accounts import PostV1MigrationBooksValidateResponseAccounts
-    from .post_v1migration_books_validate_response_asset_groups import PostV1MigrationBooksValidateResponseAssetGroups
-    from .post_v1migration_books_validate_response_fixed_assets import PostV1MigrationBooksValidateResponseFixedAssets
-    from .post_v1migration_books_validate_response_items import PostV1MigrationBooksValidateResponseItems
-    from .post_v1migration_books_validate_response_journal import PostV1MigrationBooksValidateResponseJournal
-    from .post_v1migration_books_validate_response_number_series_item import (
-        PostV1MigrationBooksValidateResponseNumberSeriesItem,
-    )
-    from .post_v1migration_books_validate_response_open_payables import PostV1MigrationBooksValidateResponseOpenPayables
-    from .post_v1migration_books_validate_response_open_receivables import (
-        PostV1MigrationBooksValidateResponseOpenReceivables,
-    )
-    from .post_v1migration_books_validate_response_opening_balances import (
-        PostV1MigrationBooksValidateResponseOpeningBalances,
-    )
-    from .post_v1migration_books_validate_response_partners import PostV1MigrationBooksValidateResponsePartners
-    from .post_v1migration_books_validate_response_stock import PostV1MigrationBooksValidateResponseStock
+    from .books_validate_migration_request_partners_item import BooksValidateMigrationRequestPartnersItem
+    from .books_validate_migration_request_partners_item_address import BooksValidateMigrationRequestPartnersItemAddress
+    from .books_validate_migration_request_partners_item_type import BooksValidateMigrationRequestPartnersItemType
+    from .books_validate_migration_request_stock_item import BooksValidateMigrationRequestStockItem
+    from .books_validate_migration_response import BooksValidateMigrationResponse
+    from .books_validate_migration_response_accounts import BooksValidateMigrationResponseAccounts
+    from .books_validate_migration_response_asset_groups import BooksValidateMigrationResponseAssetGroups
+    from .books_validate_migration_response_fixed_assets import BooksValidateMigrationResponseFixedAssets
+    from .books_validate_migration_response_items import BooksValidateMigrationResponseItems
+    from .books_validate_migration_response_journal import BooksValidateMigrationResponseJournal
+    from .books_validate_migration_response_number_series_item import BooksValidateMigrationResponseNumberSeriesItem
+    from .books_validate_migration_response_open_payables import BooksValidateMigrationResponseOpenPayables
+    from .books_validate_migration_response_open_receivables import BooksValidateMigrationResponseOpenReceivables
+    from .books_validate_migration_response_opening_balances import BooksValidateMigrationResponseOpeningBalances
+    from .books_validate_migration_response_partners import BooksValidateMigrationResponsePartners
+    from .books_validate_migration_response_stock import BooksValidateMigrationResponseStock
 _dynamic_imports: typing.Dict[str, str] = {
-    "PostV1MigrationBooksImportRequestAccountsItem": ".post_v1migration_books_import_request_accounts_item",
-    "PostV1MigrationBooksImportRequestAccountsItemType": ".post_v1migration_books_import_request_accounts_item_type",
-    "PostV1MigrationBooksImportRequestAssetGroupsItem": ".post_v1migration_books_import_request_asset_groups_item",
-    "PostV1MigrationBooksImportRequestFixedAssetsItem": ".post_v1migration_books_import_request_fixed_assets_item",
-    "PostV1MigrationBooksImportRequestItemsItem": ".post_v1migration_books_import_request_items_item",
-    "PostV1MigrationBooksImportRequestItemsItemType": ".post_v1migration_books_import_request_items_item_type",
-    "PostV1MigrationBooksImportRequestJournalItem": ".post_v1migration_books_import_request_journal_item",
-    "PostV1MigrationBooksImportRequestJournalItemEntriesItem": ".post_v1migration_books_import_request_journal_item_entries_item",
-    "PostV1MigrationBooksImportRequestOpenPayablesItem": ".post_v1migration_books_import_request_open_payables_item",
-    "PostV1MigrationBooksImportRequestOpenReceivablesItem": ".post_v1migration_books_import_request_open_receivables_item",
-    "PostV1MigrationBooksImportRequestOpeningBalances": ".post_v1migration_books_import_request_opening_balances",
-    "PostV1MigrationBooksImportRequestOpeningBalancesEntriesItem": ".post_v1migration_books_import_request_opening_balances_entries_item",
-    "PostV1MigrationBooksImportRequestPartnersItem": ".post_v1migration_books_import_request_partners_item",
-    "PostV1MigrationBooksImportRequestPartnersItemAddress": ".post_v1migration_books_import_request_partners_item_address",
-    "PostV1MigrationBooksImportRequestPartnersItemType": ".post_v1migration_books_import_request_partners_item_type",
-    "PostV1MigrationBooksImportRequestStockItem": ".post_v1migration_books_import_request_stock_item",
-    "PostV1MigrationBooksImportResponse": ".post_v1migration_books_import_response",
-    "PostV1MigrationBooksImportResponseAccounts": ".post_v1migration_books_import_response_accounts",
-    "PostV1MigrationBooksImportResponseAssetGroups": ".post_v1migration_books_import_response_asset_groups",
-    "PostV1MigrationBooksImportResponseFixedAssets": ".post_v1migration_books_import_response_fixed_assets",
-    "PostV1MigrationBooksImportResponseItems": ".post_v1migration_books_import_response_items",
-    "PostV1MigrationBooksImportResponseJournal": ".post_v1migration_books_import_response_journal",
-    "PostV1MigrationBooksImportResponseNumberSeriesItem": ".post_v1migration_books_import_response_number_series_item",
-    "PostV1MigrationBooksImportResponseOpenPayables": ".post_v1migration_books_import_response_open_payables",
-    "PostV1MigrationBooksImportResponseOpenReceivables": ".post_v1migration_books_import_response_open_receivables",
-    "PostV1MigrationBooksImportResponseOpeningBalances": ".post_v1migration_books_import_response_opening_balances",
-    "PostV1MigrationBooksImportResponsePartners": ".post_v1migration_books_import_response_partners",
-    "PostV1MigrationBooksImportResponseStock": ".post_v1migration_books_import_response_stock",
-    "PostV1MigrationBooksValidateRequestAccountsItem": ".post_v1migration_books_validate_request_accounts_item",
-    "PostV1MigrationBooksValidateRequestAccountsItemType": ".post_v1migration_books_validate_request_accounts_item_type",
-    "PostV1MigrationBooksValidateRequestAssetGroupsItem": ".post_v1migration_books_validate_request_asset_groups_item",
-    "PostV1MigrationBooksValidateRequestFixedAssetsItem": ".post_v1migration_books_validate_request_fixed_assets_item",
-    "PostV1MigrationBooksValidateRequestItemsItem": ".post_v1migration_books_validate_request_items_item",
-    "PostV1MigrationBooksValidateRequestItemsItemType": ".post_v1migration_books_validate_request_items_item_type",
-    "PostV1MigrationBooksValidateRequestJournalItem": ".post_v1migration_books_validate_request_journal_item",
-    "PostV1MigrationBooksValidateRequestJournalItemEntriesItem": ".post_v1migration_books_validate_request_journal_item_entries_item",
-    "PostV1MigrationBooksValidateRequestOpenPayablesItem": ".post_v1migration_books_validate_request_open_payables_item",
-    "PostV1MigrationBooksValidateRequestOpenReceivablesItem": ".post_v1migration_books_validate_request_open_receivables_item",
-    "PostV1MigrationBooksValidateRequestOpeningBalances": ".post_v1migration_books_validate_request_opening_balances",
-    "PostV1MigrationBooksValidateRequestOpeningBalancesEntriesItem": ".post_v1migration_books_validate_request_opening_balances_entries_item",
-    "PostV1MigrationBooksValidateRequestPartnersItem": ".post_v1migration_books_validate_request_partners_item",
-    "PostV1MigrationBooksValidateRequestPartnersItemAddress": ".post_v1migration_books_validate_request_partners_item_address",
-    "PostV1MigrationBooksValidateRequestPartnersItemType": ".post_v1migration_books_validate_request_partners_item_type",
-    "PostV1MigrationBooksValidateRequestStockItem": ".post_v1migration_books_validate_request_stock_item",
-    "PostV1MigrationBooksValidateResponse": ".post_v1migration_books_validate_response",
-    "PostV1MigrationBooksValidateResponseAccounts": ".post_v1migration_books_validate_response_accounts",
-    "PostV1MigrationBooksValidateResponseAssetGroups": ".post_v1migration_books_validate_response_asset_groups",
-    "PostV1MigrationBooksValidateResponseFixedAssets": ".post_v1migration_books_validate_response_fixed_assets",
-    "PostV1MigrationBooksValidateResponseItems": ".post_v1migration_books_validate_response_items",
-    "PostV1MigrationBooksValidateResponseJournal": ".post_v1migration_books_validate_response_journal",
-    "PostV1MigrationBooksValidateResponseNumberSeriesItem": ".post_v1migration_books_validate_response_number_series_item",
-    "PostV1MigrationBooksValidateResponseOpenPayables": ".post_v1migration_books_validate_response_open_payables",
-    "PostV1MigrationBooksValidateResponseOpenReceivables": ".post_v1migration_books_validate_response_open_receivables",
-    "PostV1MigrationBooksValidateResponseOpeningBalances": ".post_v1migration_books_validate_response_opening_balances",
-    "PostV1MigrationBooksValidateResponsePartners": ".post_v1migration_books_validate_response_partners",
-    "PostV1MigrationBooksValidateResponseStock": ".post_v1migration_books_validate_response_stock",
+    "BooksImportMigrationRequestAccountsItem": ".books_import_migration_request_accounts_item",
+    "BooksImportMigrationRequestAccountsItemType": ".books_import_migration_request_accounts_item_type",
+    "BooksImportMigrationRequestAssetGroupsItem": ".books_import_migration_request_asset_groups_item",
+    "BooksImportMigrationRequestFixedAssetsItem": ".books_import_migration_request_fixed_assets_item",
+    "BooksImportMigrationRequestItemsItem": ".books_import_migration_request_items_item",
+    "BooksImportMigrationRequestItemsItemType": ".books_import_migration_request_items_item_type",
+    "BooksImportMigrationRequestJournalItem": ".books_import_migration_request_journal_item",
+    "BooksImportMigrationRequestJournalItemEntriesItem": ".books_import_migration_request_journal_item_entries_item",
+    "BooksImportMigrationRequestOpenPayablesItem": ".books_import_migration_request_open_payables_item",
+    "BooksImportMigrationRequestOpenReceivablesItem": ".books_import_migration_request_open_receivables_item",
+    "BooksImportMigrationRequestOpeningBalances": ".books_import_migration_request_opening_balances",
+    "BooksImportMigrationRequestOpeningBalancesEntriesItem": ".books_import_migration_request_opening_balances_entries_item",
+    "BooksImportMigrationRequestPartnersItem": ".books_import_migration_request_partners_item",
+    "BooksImportMigrationRequestPartnersItemAddress": ".books_import_migration_request_partners_item_address",
+    "BooksImportMigrationRequestPartnersItemType": ".books_import_migration_request_partners_item_type",
+    "BooksImportMigrationRequestStockItem": ".books_import_migration_request_stock_item",
+    "BooksImportMigrationResponse": ".books_import_migration_response",
+    "BooksImportMigrationResponseAccounts": ".books_import_migration_response_accounts",
+    "BooksImportMigrationResponseAssetGroups": ".books_import_migration_response_asset_groups",
+    "BooksImportMigrationResponseFixedAssets": ".books_import_migration_response_fixed_assets",
+    "BooksImportMigrationResponseItems": ".books_import_migration_response_items",
+    "BooksImportMigrationResponseJournal": ".books_import_migration_response_journal",
+    "BooksImportMigrationResponseNumberSeriesItem": ".books_import_migration_response_number_series_item",
+    "BooksImportMigrationResponseOpenPayables": ".books_import_migration_response_open_payables",
+    "BooksImportMigrationResponseOpenReceivables": ".books_import_migration_response_open_receivables",
+    "BooksImportMigrationResponseOpeningBalances": ".books_import_migration_response_opening_balances",
+    "BooksImportMigrationResponsePartners": ".books_import_migration_response_partners",
+    "BooksImportMigrationResponseStock": ".books_import_migration_response_stock",
+    "BooksValidateMigrationRequestAccountsItem": ".books_validate_migration_request_accounts_item",
+    "BooksValidateMigrationRequestAccountsItemType": ".books_validate_migration_request_accounts_item_type",
+    "BooksValidateMigrationRequestAssetGroupsItem": ".books_validate_migration_request_asset_groups_item",
+    "BooksValidateMigrationRequestFixedAssetsItem": ".books_validate_migration_request_fixed_assets_item",
+    "BooksValidateMigrationRequestItemsItem": ".books_validate_migration_request_items_item",
+    "BooksValidateMigrationRequestItemsItemType": ".books_validate_migration_request_items_item_type",
+    "BooksValidateMigrationRequestJournalItem": ".books_validate_migration_request_journal_item",
+    "BooksValidateMigrationRequestJournalItemEntriesItem": ".books_validate_migration_request_journal_item_entries_item",
+    "BooksValidateMigrationRequestOpenPayablesItem": ".books_validate_migration_request_open_payables_item",
+    "BooksValidateMigrationRequestOpenReceivablesItem": ".books_validate_migration_request_open_receivables_item",
+    "BooksValidateMigrationRequestOpeningBalances": ".books_validate_migration_request_opening_balances",
+    "BooksValidateMigrationRequestOpeningBalancesEntriesItem": ".books_validate_migration_request_opening_balances_entries_item",
+    "BooksValidateMigrationRequestPartnersItem": ".books_validate_migration_request_partners_item",
+    "BooksValidateMigrationRequestPartnersItemAddress": ".books_validate_migration_request_partners_item_address",
+    "BooksValidateMigrationRequestPartnersItemType": ".books_validate_migration_request_partners_item_type",
+    "BooksValidateMigrationRequestStockItem": ".books_validate_migration_request_stock_item",
+    "BooksValidateMigrationResponse": ".books_validate_migration_response",
+    "BooksValidateMigrationResponseAccounts": ".books_validate_migration_response_accounts",
+    "BooksValidateMigrationResponseAssetGroups": ".books_validate_migration_response_asset_groups",
+    "BooksValidateMigrationResponseFixedAssets": ".books_validate_migration_response_fixed_assets",
+    "BooksValidateMigrationResponseItems": ".books_validate_migration_response_items",
+    "BooksValidateMigrationResponseJournal": ".books_validate_migration_response_journal",
+    "BooksValidateMigrationResponseNumberSeriesItem": ".books_validate_migration_response_number_series_item",
+    "BooksValidateMigrationResponseOpenPayables": ".books_validate_migration_response_open_payables",
+    "BooksValidateMigrationResponseOpenReceivables": ".books_validate_migration_response_open_receivables",
+    "BooksValidateMigrationResponseOpeningBalances": ".books_validate_migration_response_opening_balances",
+    "BooksValidateMigrationResponsePartners": ".books_validate_migration_response_partners",
+    "BooksValidateMigrationResponseStock": ".books_validate_migration_response_stock",
 }
 
 
@@ -196,60 +152,60 @@ def __dir__():
 
 
 __all__ = [
-    "PostV1MigrationBooksImportRequestAccountsItem",
-    "PostV1MigrationBooksImportRequestAccountsItemType",
-    "PostV1MigrationBooksImportRequestAssetGroupsItem",
-    "PostV1MigrationBooksImportRequestFixedAssetsItem",
-    "PostV1MigrationBooksImportRequestItemsItem",
-    "PostV1MigrationBooksImportRequestItemsItemType",
-    "PostV1MigrationBooksImportRequestJournalItem",
-    "PostV1MigrationBooksImportRequestJournalItemEntriesItem",
-    "PostV1MigrationBooksImportRequestOpenPayablesItem",
-    "PostV1MigrationBooksImportRequestOpenReceivablesItem",
-    "PostV1MigrationBooksImportRequestOpeningBalances",
-    "PostV1MigrationBooksImportRequestOpeningBalancesEntriesItem",
-    "PostV1MigrationBooksImportRequestPartnersItem",
-    "PostV1MigrationBooksImportRequestPartnersItemAddress",
-    "PostV1MigrationBooksImportRequestPartnersItemType",
-    "PostV1MigrationBooksImportRequestStockItem",
-    "PostV1MigrationBooksImportResponse",
-    "PostV1MigrationBooksImportResponseAccounts",
-    "PostV1MigrationBooksImportResponseAssetGroups",
-    "PostV1MigrationBooksImportResponseFixedAssets",
-    "PostV1MigrationBooksImportResponseItems",
-    "PostV1MigrationBooksImportResponseJournal",
-    "PostV1MigrationBooksImportResponseNumberSeriesItem",
-    "PostV1MigrationBooksImportResponseOpenPayables",
-    "PostV1MigrationBooksImportResponseOpenReceivables",
-    "PostV1MigrationBooksImportResponseOpeningBalances",
-    "PostV1MigrationBooksImportResponsePartners",
-    "PostV1MigrationBooksImportResponseStock",
-    "PostV1MigrationBooksValidateRequestAccountsItem",
-    "PostV1MigrationBooksValidateRequestAccountsItemType",
-    "PostV1MigrationBooksValidateRequestAssetGroupsItem",
-    "PostV1MigrationBooksValidateRequestFixedAssetsItem",
-    "PostV1MigrationBooksValidateRequestItemsItem",
-    "PostV1MigrationBooksValidateRequestItemsItemType",
-    "PostV1MigrationBooksValidateRequestJournalItem",
-    "PostV1MigrationBooksValidateRequestJournalItemEntriesItem",
-    "PostV1MigrationBooksValidateRequestOpenPayablesItem",
-    "PostV1MigrationBooksValidateRequestOpenReceivablesItem",
-    "PostV1MigrationBooksValidateRequestOpeningBalances",
-    "PostV1MigrationBooksValidateRequestOpeningBalancesEntriesItem",
-    "PostV1MigrationBooksValidateRequestPartnersItem",
-    "PostV1MigrationBooksValidateRequestPartnersItemAddress",
-    "PostV1MigrationBooksValidateRequestPartnersItemType",
-    "PostV1MigrationBooksValidateRequestStockItem",
-    "PostV1MigrationBooksValidateResponse",
-    "PostV1MigrationBooksValidateResponseAccounts",
-    "PostV1MigrationBooksValidateResponseAssetGroups",
-    "PostV1MigrationBooksValidateResponseFixedAssets",
-    "PostV1MigrationBooksValidateResponseItems",
-    "PostV1MigrationBooksValidateResponseJournal",
-    "PostV1MigrationBooksValidateResponseNumberSeriesItem",
-    "PostV1MigrationBooksValidateResponseOpenPayables",
-    "PostV1MigrationBooksValidateResponseOpenReceivables",
-    "PostV1MigrationBooksValidateResponseOpeningBalances",
-    "PostV1MigrationBooksValidateResponsePartners",
-    "PostV1MigrationBooksValidateResponseStock",
+    "BooksImportMigrationRequestAccountsItem",
+    "BooksImportMigrationRequestAccountsItemType",
+    "BooksImportMigrationRequestAssetGroupsItem",
+    "BooksImportMigrationRequestFixedAssetsItem",
+    "BooksImportMigrationRequestItemsItem",
+    "BooksImportMigrationRequestItemsItemType",
+    "BooksImportMigrationRequestJournalItem",
+    "BooksImportMigrationRequestJournalItemEntriesItem",
+    "BooksImportMigrationRequestOpenPayablesItem",
+    "BooksImportMigrationRequestOpenReceivablesItem",
+    "BooksImportMigrationRequestOpeningBalances",
+    "BooksImportMigrationRequestOpeningBalancesEntriesItem",
+    "BooksImportMigrationRequestPartnersItem",
+    "BooksImportMigrationRequestPartnersItemAddress",
+    "BooksImportMigrationRequestPartnersItemType",
+    "BooksImportMigrationRequestStockItem",
+    "BooksImportMigrationResponse",
+    "BooksImportMigrationResponseAccounts",
+    "BooksImportMigrationResponseAssetGroups",
+    "BooksImportMigrationResponseFixedAssets",
+    "BooksImportMigrationResponseItems",
+    "BooksImportMigrationResponseJournal",
+    "BooksImportMigrationResponseNumberSeriesItem",
+    "BooksImportMigrationResponseOpenPayables",
+    "BooksImportMigrationResponseOpenReceivables",
+    "BooksImportMigrationResponseOpeningBalances",
+    "BooksImportMigrationResponsePartners",
+    "BooksImportMigrationResponseStock",
+    "BooksValidateMigrationRequestAccountsItem",
+    "BooksValidateMigrationRequestAccountsItemType",
+    "BooksValidateMigrationRequestAssetGroupsItem",
+    "BooksValidateMigrationRequestFixedAssetsItem",
+    "BooksValidateMigrationRequestItemsItem",
+    "BooksValidateMigrationRequestItemsItemType",
+    "BooksValidateMigrationRequestJournalItem",
+    "BooksValidateMigrationRequestJournalItemEntriesItem",
+    "BooksValidateMigrationRequestOpenPayablesItem",
+    "BooksValidateMigrationRequestOpenReceivablesItem",
+    "BooksValidateMigrationRequestOpeningBalances",
+    "BooksValidateMigrationRequestOpeningBalancesEntriesItem",
+    "BooksValidateMigrationRequestPartnersItem",
+    "BooksValidateMigrationRequestPartnersItemAddress",
+    "BooksValidateMigrationRequestPartnersItemType",
+    "BooksValidateMigrationRequestStockItem",
+    "BooksValidateMigrationResponse",
+    "BooksValidateMigrationResponseAccounts",
+    "BooksValidateMigrationResponseAssetGroups",
+    "BooksValidateMigrationResponseFixedAssets",
+    "BooksValidateMigrationResponseItems",
+    "BooksValidateMigrationResponseJournal",
+    "BooksValidateMigrationResponseNumberSeriesItem",
+    "BooksValidateMigrationResponseOpenPayables",
+    "BooksValidateMigrationResponseOpenReceivables",
+    "BooksValidateMigrationResponseOpeningBalances",
+    "BooksValidateMigrationResponsePartners",
+    "BooksValidateMigrationResponseStock",
 ]

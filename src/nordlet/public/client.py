@@ -5,7 +5,7 @@ import typing
 from ..core.client_wrapper import AsyncClientWrapper, SyncClientWrapper
 from ..core.request_options import RequestOptions
 from .raw_client import AsyncRawPublicClient, RawPublicClient
-from .types.post_v1public_integration_requests_response import PostV1PublicIntegrationRequestsResponse
+from .types.integration_requests_public_response import IntegrationRequestsPublicResponse
 
 # this is used as the default value for optional parameters
 OMIT = typing.cast(typing.Any, ...)
@@ -26,7 +26,7 @@ class PublicClient:
         """
         return self._raw_client
 
-    def post_v1public_integration_requests(
+    def integration_requests(
         self,
         *,
         integration: str,
@@ -36,7 +36,7 @@ class PublicClient:
         details: typing.Optional[str] = OMIT,
         website: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> PostV1PublicIntegrationRequestsResponse:
+    ) -> IntegrationRequestsPublicResponse:
         """
         Parameters
         ----------
@@ -57,7 +57,7 @@ class PublicClient:
 
         Returns
         -------
-        PostV1PublicIntegrationRequestsResponse
+        IntegrationRequestsPublicResponse
             Default Response
 
         Examples
@@ -67,13 +67,13 @@ class PublicClient:
         client = Nordlet(
             token="YOUR_TOKEN",
         )
-        client.public.post_v1public_integration_requests(
+        client.public.integration_requests(
             integration="integration",
             name="name",
             email="email",
         )
         """
-        _response = self._raw_client.post_v1public_integration_requests(
+        _response = self._raw_client.integration_requests(
             integration=integration,
             name=name,
             email=email,
@@ -84,7 +84,7 @@ class PublicClient:
         )
         return _response.data
 
-    def get_v1public_pay_token(self, token: str, *, request_options: typing.Optional[RequestOptions] = None) -> None:
+    def pay(self, token: str, *, request_options: typing.Optional[RequestOptions] = None) -> None:
         """
         Parameters
         ----------
@@ -104,11 +104,11 @@ class PublicClient:
         client = Nordlet(
             token="YOUR_TOKEN",
         )
-        client.public.get_v1public_pay_token(
+        client.public.pay(
             token="token",
         )
         """
-        _response = self._raw_client.get_v1public_pay_token(token, request_options=request_options)
+        _response = self._raw_client.pay(token, request_options=request_options)
         return _response.data
 
 
@@ -127,7 +127,7 @@ class AsyncPublicClient:
         """
         return self._raw_client
 
-    async def post_v1public_integration_requests(
+    async def integration_requests(
         self,
         *,
         integration: str,
@@ -137,7 +137,7 @@ class AsyncPublicClient:
         details: typing.Optional[str] = OMIT,
         website: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> PostV1PublicIntegrationRequestsResponse:
+    ) -> IntegrationRequestsPublicResponse:
         """
         Parameters
         ----------
@@ -158,7 +158,7 @@ class AsyncPublicClient:
 
         Returns
         -------
-        PostV1PublicIntegrationRequestsResponse
+        IntegrationRequestsPublicResponse
             Default Response
 
         Examples
@@ -173,7 +173,7 @@ class AsyncPublicClient:
 
 
         async def main() -> None:
-            await client.public.post_v1public_integration_requests(
+            await client.public.integration_requests(
                 integration="integration",
                 name="name",
                 email="email",
@@ -182,7 +182,7 @@ class AsyncPublicClient:
 
         asyncio.run(main())
         """
-        _response = await self._raw_client.post_v1public_integration_requests(
+        _response = await self._raw_client.integration_requests(
             integration=integration,
             name=name,
             email=email,
@@ -193,9 +193,7 @@ class AsyncPublicClient:
         )
         return _response.data
 
-    async def get_v1public_pay_token(
-        self, token: str, *, request_options: typing.Optional[RequestOptions] = None
-    ) -> None:
+    async def pay(self, token: str, *, request_options: typing.Optional[RequestOptions] = None) -> None:
         """
         Parameters
         ----------
@@ -220,12 +218,12 @@ class AsyncPublicClient:
 
 
         async def main() -> None:
-            await client.public.get_v1public_pay_token(
+            await client.public.pay(
                 token="token",
             )
 
 
         asyncio.run(main())
         """
-        _response = await self._raw_client.get_v1public_pay_token(token, request_options=request_options)
+        _response = await self._raw_client.pay(token, request_options=request_options)
         return _response.data
