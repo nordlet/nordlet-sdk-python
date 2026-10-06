@@ -11,6 +11,9 @@ from .types.accounts_list_bank_request_filter_item import AccountsListBankReques
 from .types.accounts_list_bank_request_sort_item import AccountsListBankRequestSortItem
 from .types.accounts_list_bank_response import AccountsListBankResponse
 from .types.accounts_update_bank_response import AccountsUpdateBankResponse
+from .types.direct_debits_candidates_bank_request_filter_item import DirectDebitsCandidatesBankRequestFilterItem
+from .types.direct_debits_candidates_bank_request_sort_item import DirectDebitsCandidatesBankRequestSortItem
+from .types.direct_debits_candidates_bank_response import DirectDebitsCandidatesBankResponse
 from .types.direct_debits_export_bank_response import DirectDebitsExportBankResponse
 from .types.feeds_accounts_configure_bank_request_sync_schedule import FeedsAccountsConfigureBankRequestSyncSchedule
 from .types.feeds_accounts_configure_bank_response import FeedsAccountsConfigureBankResponse
@@ -1284,6 +1287,52 @@ class BankClient:
         client.bank.mandates_list()
         """
         _response = self._raw_client.mandates_list(
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
+        )
+        return _response.data
+
+    def direct_debits_candidates(
+        self,
+        *,
+        page: typing.Optional[int] = OMIT,
+        page_size: typing.Optional[int] = OMIT,
+        sort: typing.Optional[typing.Sequence[DirectDebitsCandidatesBankRequestSortItem]] = OMIT,
+        filter: typing.Optional[typing.Sequence[DirectDebitsCandidatesBankRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> DirectDebitsCandidatesBankResponse:
+        """
+        Parameters
+        ----------
+        page : typing.Optional[int]
+
+        page_size : typing.Optional[int]
+
+        sort : typing.Optional[typing.Sequence[DirectDebitsCandidatesBankRequestSortItem]]
+
+        filter : typing.Optional[typing.Sequence[DirectDebitsCandidatesBankRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        DirectDebitsCandidatesBankResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.bank.direct_debits_candidates()
+        """
+        _response = self._raw_client.direct_debits_candidates(
             page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
@@ -3440,6 +3489,60 @@ class AsyncBankClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.mandates_list(
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
+        )
+        return _response.data
+
+    async def direct_debits_candidates(
+        self,
+        *,
+        page: typing.Optional[int] = OMIT,
+        page_size: typing.Optional[int] = OMIT,
+        sort: typing.Optional[typing.Sequence[DirectDebitsCandidatesBankRequestSortItem]] = OMIT,
+        filter: typing.Optional[typing.Sequence[DirectDebitsCandidatesBankRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> DirectDebitsCandidatesBankResponse:
+        """
+        Parameters
+        ----------
+        page : typing.Optional[int]
+
+        page_size : typing.Optional[int]
+
+        sort : typing.Optional[typing.Sequence[DirectDebitsCandidatesBankRequestSortItem]]
+
+        filter : typing.Optional[typing.Sequence[DirectDebitsCandidatesBankRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        DirectDebitsCandidatesBankResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.bank.direct_debits_candidates()
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.direct_debits_candidates(
             page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data

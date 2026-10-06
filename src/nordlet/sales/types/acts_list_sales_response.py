@@ -15,6 +15,17 @@ class ActsListSalesResponse(UniversalBaseModel):
     page_size: typing_extensions.Annotated[int, FieldMetadata(alias="pageSize"), pydantic.Field(alias="pageSize")]
     total: int
     totals: typing.Optional[typing.Dict[str, str]] = None
+    totals_by_currency: typing_extensions.Annotated[
+        typing.Optional[typing.Dict[str, typing.Dict[str, str]]],
+        FieldMetadata(alias="totalsByCurrency"),
+        pydantic.Field(
+            alias="totalsByCurrency",
+            description="The requested totals split by currency code, present when the listed records carry a currency",
+        ),
+    ] = None
+    """
+    The requested totals split by currency code, present when the listed records carry a currency
+    """
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

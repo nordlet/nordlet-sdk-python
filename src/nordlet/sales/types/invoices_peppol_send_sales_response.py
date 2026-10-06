@@ -12,7 +12,9 @@ class InvoicesPeppolSendSalesResponse(UniversalBaseModel):
     sent: bool
     message_id: typing_extensions.Annotated[str, FieldMetadata(alias="messageId"), pydantic.Field(alias="messageId")]
     receiver_id: typing_extensions.Annotated[str, FieldMetadata(alias="receiverId"), pydantic.Field(alias="receiverId")]
-    file_id: typing_extensions.Annotated[str, FieldMetadata(alias="fileId"), pydantic.Field(alias="fileId")]
+    file_id: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="fileId"), pydantic.Field(alias="fileId")
+    ] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

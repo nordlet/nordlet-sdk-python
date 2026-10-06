@@ -880,6 +880,7 @@ class RawPayrollClient:
         gross_overrides: typing.Optional[typing.Sequence[RunsCreatePayrollRequestGrossOverridesItem]] = OMIT,
         lines: typing.Optional[typing.Sequence[RunsCreatePayrollRequestLinesItem]] = OMIT,
         notes: typing.Optional[str] = OMIT,
+        pay_date: typing.Optional[dt.date] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[RunsCreatePayrollResponse]:
         """
@@ -896,6 +897,8 @@ class RawPayrollClient:
         lines : typing.Optional[typing.Sequence[RunsCreatePayrollRequestLinesItem]]
 
         notes : typing.Optional[str]
+
+        pay_date : typing.Optional[dt.date]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -921,6 +924,7 @@ class RawPayrollClient:
                     object_=lines, annotation=typing.Sequence[RunsCreatePayrollRequestLinesItem], direction="write"
                 ),
                 "notes": notes,
+                "payDate": pay_date,
             },
             headers={
                 "content-type": "application/json",
@@ -2926,6 +2930,7 @@ class AsyncRawPayrollClient:
         gross_overrides: typing.Optional[typing.Sequence[RunsCreatePayrollRequestGrossOverridesItem]] = OMIT,
         lines: typing.Optional[typing.Sequence[RunsCreatePayrollRequestLinesItem]] = OMIT,
         notes: typing.Optional[str] = OMIT,
+        pay_date: typing.Optional[dt.date] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[RunsCreatePayrollResponse]:
         """
@@ -2942,6 +2947,8 @@ class AsyncRawPayrollClient:
         lines : typing.Optional[typing.Sequence[RunsCreatePayrollRequestLinesItem]]
 
         notes : typing.Optional[str]
+
+        pay_date : typing.Optional[dt.date]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -2967,6 +2974,7 @@ class AsyncRawPayrollClient:
                     object_=lines, annotation=typing.Sequence[RunsCreatePayrollRequestLinesItem], direction="write"
                 ),
                 "notes": notes,
+                "payDate": pay_date,
             },
             headers={
                 "content-type": "application/json",

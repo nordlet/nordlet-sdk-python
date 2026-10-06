@@ -91,6 +91,7 @@ if typing.TYPE_CHECKING:
     from .oss_reports_response_totals import OssReportsResponseTotals
     from .partner_balances_reports_response import PartnerBalancesReportsResponse
     from .partner_balances_reports_response_rows_item import PartnerBalancesReportsResponseRowsItem
+    from .partner_balances_reports_response_totals import PartnerBalancesReportsResponseTotals
     from .pos_sales_reports_response import PosSalesReportsResponse
     from .pos_sales_reports_response_by_rate_item import PosSalesReportsResponseByRateItem
     from .pos_sales_reports_response_rows_item import PosSalesReportsResponseRowsItem
@@ -192,6 +193,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "OssReportsResponseTotals": ".oss_reports_response_totals",
     "PartnerBalancesReportsResponse": ".partner_balances_reports_response",
     "PartnerBalancesReportsResponseRowsItem": ".partner_balances_reports_response_rows_item",
+    "PartnerBalancesReportsResponseTotals": ".partner_balances_reports_response_totals",
     "PosSalesReportsResponse": ".pos_sales_reports_response",
     "PosSalesReportsResponseByRateItem": ".pos_sales_reports_response_by_rate_item",
     "PosSalesReportsResponseRowsItem": ".pos_sales_reports_response_rows_item",
@@ -317,6 +319,7 @@ __all__ = [
     "OssReportsResponseTotals",
     "PartnerBalancesReportsResponse",
     "PartnerBalancesReportsResponseRowsItem",
+    "PartnerBalancesReportsResponseTotals",
     "PosSalesReportsResponse",
     "PosSalesReportsResponseByRateItem",
     "PosSalesReportsResponseRowsItem",

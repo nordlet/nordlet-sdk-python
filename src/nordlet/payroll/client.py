@@ -248,6 +248,7 @@ class PayrollClient:
         gross_overrides: typing.Optional[typing.Sequence[RunsCreatePayrollRequestGrossOverridesItem]] = OMIT,
         lines: typing.Optional[typing.Sequence[RunsCreatePayrollRequestLinesItem]] = OMIT,
         notes: typing.Optional[str] = OMIT,
+        pay_date: typing.Optional[dt.date] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> RunsCreatePayrollResponse:
         """
@@ -264,6 +265,8 @@ class PayrollClient:
         lines : typing.Optional[typing.Sequence[RunsCreatePayrollRequestLinesItem]]
 
         notes : typing.Optional[str]
+
+        pay_date : typing.Optional[dt.date]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -292,6 +295,7 @@ class PayrollClient:
             gross_overrides=gross_overrides,
             lines=lines,
             notes=notes,
+            pay_date=pay_date,
             request_options=request_options,
         )
         return _response.data
@@ -827,6 +831,7 @@ class AsyncPayrollClient:
         gross_overrides: typing.Optional[typing.Sequence[RunsCreatePayrollRequestGrossOverridesItem]] = OMIT,
         lines: typing.Optional[typing.Sequence[RunsCreatePayrollRequestLinesItem]] = OMIT,
         notes: typing.Optional[str] = OMIT,
+        pay_date: typing.Optional[dt.date] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> RunsCreatePayrollResponse:
         """
@@ -843,6 +848,8 @@ class AsyncPayrollClient:
         lines : typing.Optional[typing.Sequence[RunsCreatePayrollRequestLinesItem]]
 
         notes : typing.Optional[str]
+
+        pay_date : typing.Optional[dt.date]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -879,6 +886,7 @@ class AsyncPayrollClient:
             gross_overrides=gross_overrides,
             lines=lines,
             notes=notes,
+            pay_date=pay_date,
             request_options=request_options,
         )
         return _response.data

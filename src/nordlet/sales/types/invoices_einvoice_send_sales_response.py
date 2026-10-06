@@ -21,7 +21,9 @@ class InvoicesEinvoiceSendSalesResponse(UniversalBaseModel):
     ] = None
     status: InvoicesEinvoiceSendSalesResponseStatus
     detail: typing.Optional[str] = None
-    file_id: typing_extensions.Annotated[str, FieldMetadata(alias="fileId"), pydantic.Field(alias="fileId")]
+    file_id: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="fileId"), pydantic.Field(alias="fileId")
+    ] = None
     warnings: typing.List[str]
 
     if IS_PYDANTIC_V2:

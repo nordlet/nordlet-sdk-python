@@ -32,6 +32,9 @@ class JournalTransactionsListLedgerResponseRowsItem(UniversalBaseModel):
     posted_at: typing_extensions.Annotated[
         typing.Optional[dt.datetime], FieldMetadata(alias="postedAt"), pydantic.Field(alias="postedAt")
     ] = None
+    partner_name: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="partnerName"), pydantic.Field(alias="partnerName")
+    ] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

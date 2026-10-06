@@ -6,6 +6,13 @@ import typing
 from importlib import import_module
 
 if typing.TYPE_CHECKING:
+    from .types_options_leads_response import TypesOptionsLeadsResponse
+    from .types_options_leads_response_rows_item import TypesOptionsLeadsResponseRowsItem
+    from .types_list_leads_response import TypesListLeadsResponse
+    from .types_list_leads_response_rows_item import TypesListLeadsResponseRowsItem
+    from .types_delete_leads_response import TypesDeleteLeadsResponse
+    from .types_update_leads_response import TypesUpdateLeadsResponse
+    from .types_create_leads_response import TypesCreateLeadsResponse
     from .convert_leads_request_partner_type import ConvertLeadsRequestPartnerType
     from .convert_leads_response import ConvertLeadsResponse
     from .convert_leads_response_lead import ConvertLeadsResponseLead
@@ -77,6 +84,13 @@ _dynamic_imports: typing.Dict[str, str] = {
     "SourcesOptionsLeadsResponse": ".sources_options_leads_response",
     "SourcesOptionsLeadsResponseRowsItem": ".sources_options_leads_response_rows_item",
     "SourcesUpdateLeadsResponse": ".sources_update_leads_response",
+    "TypesCreateLeadsResponse": ".types_create_leads_response",
+    "TypesDeleteLeadsResponse": ".types_delete_leads_response",
+    "TypesListLeadsResponse": ".types_list_leads_response",
+    "TypesListLeadsResponseRowsItem": ".types_list_leads_response_rows_item",
+    "TypesOptionsLeadsResponse": ".types_options_leads_response",
+    "TypesOptionsLeadsResponseRowsItem": ".types_options_leads_response_rows_item",
+    "TypesUpdateLeadsResponse": ".types_update_leads_response",
     "UpdateLeadsRequestDocumentsItem": ".update_leads_request_documents_item",
     "UpdateLeadsRequestStatus": ".update_leads_request_status",
     "UpdateLeadsResponse": ".update_leads_response",
@@ -139,6 +153,13 @@ __all__ = [
     "SourcesOptionsLeadsResponse",
     "SourcesOptionsLeadsResponseRowsItem",
     "SourcesUpdateLeadsResponse",
+    "TypesCreateLeadsResponse",
+    "TypesDeleteLeadsResponse",
+    "TypesListLeadsResponse",
+    "TypesListLeadsResponseRowsItem",
+    "TypesOptionsLeadsResponse",
+    "TypesOptionsLeadsResponseRowsItem",
+    "TypesUpdateLeadsResponse",
     "UpdateLeadsRequestDocumentsItem",
     "UpdateLeadsRequestStatus",
     "UpdateLeadsResponse",

@@ -16,6 +16,7 @@ class DebtRemindersPreviewPartnersResponseRowsItemInvoicesItem(UniversalBaseMode
         dt.date, FieldMetadata(alias="issueDate"), pydantic.Field(alias="issueDate")
     ]
     due_date: typing_extensions.Annotated[dt.date, FieldMetadata(alias="dueDate"), pydantic.Field(alias="dueDate")]
+    currency: str
     remaining: str
     days_late: typing_extensions.Annotated[int, FieldMetadata(alias="daysLate"), pydantic.Field(alias="daysLate")]
     interest: str

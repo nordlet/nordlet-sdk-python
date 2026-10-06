@@ -18,6 +18,9 @@ class RunsApprovePayrollResponse(UniversalBaseModel):
     country_code: typing_extensions.Annotated[
         str, FieldMetadata(alias="countryCode"), pydantic.Field(alias="countryCode")
     ]
+    pay_date: typing_extensions.Annotated[
+        typing.Optional[dt.date], FieldMetadata(alias="payDate"), pydantic.Field(alias="payDate")
+    ] = None
     status: RunsApprovePayrollResponseStatus
     gross_total: typing_extensions.Annotated[str, FieldMetadata(alias="grossTotal"), pydantic.Field(alias="grossTotal")]
     tax_allowance_total: typing_extensions.Annotated[

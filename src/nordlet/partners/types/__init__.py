@@ -76,6 +76,9 @@ if typing.TYPE_CHECKING:
     from .debt_reminders_preview_partners_response_rows_item_locale import (
         DebtRemindersPreviewPartnersResponseRowsItemLocale,
     )
+    from .debt_reminders_preview_partners_response_rows_item_totals_item import (
+        DebtRemindersPreviewPartnersResponseRowsItemTotalsItem,
+    )
     from .delete_partners_response import DeletePartnersResponse
     from .files_list_partners_response import FilesListPartnersResponse
     from .files_list_partners_response_rows_item import FilesListPartnersResponseRowsItem
@@ -231,6 +234,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "DebtRemindersPreviewPartnersResponseRowsItem": ".debt_reminders_preview_partners_response_rows_item",
     "DebtRemindersPreviewPartnersResponseRowsItemInvoicesItem": ".debt_reminders_preview_partners_response_rows_item_invoices_item",
     "DebtRemindersPreviewPartnersResponseRowsItemLocale": ".debt_reminders_preview_partners_response_rows_item_locale",
+    "DebtRemindersPreviewPartnersResponseRowsItemTotalsItem": ".debt_reminders_preview_partners_response_rows_item_totals_item",
     "DeletePartnersResponse": ".delete_partners_response",
     "FilesListPartnersResponse": ".files_list_partners_response",
     "FilesListPartnersResponseRowsItem": ".files_list_partners_response_rows_item",
@@ -398,6 +402,7 @@ __all__ = [
     "DebtRemindersPreviewPartnersResponseRowsItem",
     "DebtRemindersPreviewPartnersResponseRowsItemInvoicesItem",
     "DebtRemindersPreviewPartnersResponseRowsItemLocale",
+    "DebtRemindersPreviewPartnersResponseRowsItemTotalsItem",
     "DeletePartnersResponse",
     "FilesListPartnersResponse",
     "FilesListPartnersResponseRowsItem",

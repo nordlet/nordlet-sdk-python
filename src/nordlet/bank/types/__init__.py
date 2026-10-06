@@ -16,6 +16,18 @@ if typing.TYPE_CHECKING:
     from .accounts_list_bank_response import AccountsListBankResponse
     from .accounts_list_bank_response_rows_item import AccountsListBankResponseRowsItem
     from .accounts_update_bank_response import AccountsUpdateBankResponse
+    from .direct_debits_candidates_bank_request_filter_item import DirectDebitsCandidatesBankRequestFilterItem
+    from .direct_debits_candidates_bank_request_filter_item_op import DirectDebitsCandidatesBankRequestFilterItemOp
+    from .direct_debits_candidates_bank_request_filter_item_value import (
+        DirectDebitsCandidatesBankRequestFilterItemValue,
+    )
+    from .direct_debits_candidates_bank_request_filter_item_value_three_item import (
+        DirectDebitsCandidatesBankRequestFilterItemValueThreeItem,
+    )
+    from .direct_debits_candidates_bank_request_sort_item import DirectDebitsCandidatesBankRequestSortItem
+    from .direct_debits_candidates_bank_request_sort_item_dir import DirectDebitsCandidatesBankRequestSortItemDir
+    from .direct_debits_candidates_bank_response import DirectDebitsCandidatesBankResponse
+    from .direct_debits_candidates_bank_response_rows_item import DirectDebitsCandidatesBankResponseRowsItem
     from .direct_debits_export_bank_response import DirectDebitsExportBankResponse
     from .feeds_accounts_configure_bank_request_sync_schedule import FeedsAccountsConfigureBankRequestSyncSchedule
     from .feeds_accounts_configure_bank_response import FeedsAccountsConfigureBankResponse
@@ -195,6 +207,14 @@ _dynamic_imports: typing.Dict[str, str] = {
     "AccountsListBankResponse": ".accounts_list_bank_response",
     "AccountsListBankResponseRowsItem": ".accounts_list_bank_response_rows_item",
     "AccountsUpdateBankResponse": ".accounts_update_bank_response",
+    "DirectDebitsCandidatesBankRequestFilterItem": ".direct_debits_candidates_bank_request_filter_item",
+    "DirectDebitsCandidatesBankRequestFilterItemOp": ".direct_debits_candidates_bank_request_filter_item_op",
+    "DirectDebitsCandidatesBankRequestFilterItemValue": ".direct_debits_candidates_bank_request_filter_item_value",
+    "DirectDebitsCandidatesBankRequestFilterItemValueThreeItem": ".direct_debits_candidates_bank_request_filter_item_value_three_item",
+    "DirectDebitsCandidatesBankRequestSortItem": ".direct_debits_candidates_bank_request_sort_item",
+    "DirectDebitsCandidatesBankRequestSortItemDir": ".direct_debits_candidates_bank_request_sort_item_dir",
+    "DirectDebitsCandidatesBankResponse": ".direct_debits_candidates_bank_response",
+    "DirectDebitsCandidatesBankResponseRowsItem": ".direct_debits_candidates_bank_response_rows_item",
     "DirectDebitsExportBankResponse": ".direct_debits_export_bank_response",
     "FeedsAccountsConfigureBankRequestSyncSchedule": ".feeds_accounts_configure_bank_request_sync_schedule",
     "FeedsAccountsConfigureBankResponse": ".feeds_accounts_configure_bank_response",
@@ -378,6 +398,14 @@ __all__ = [
     "AccountsListBankResponse",
     "AccountsListBankResponseRowsItem",
     "AccountsUpdateBankResponse",
+    "DirectDebitsCandidatesBankRequestFilterItem",
+    "DirectDebitsCandidatesBankRequestFilterItemOp",
+    "DirectDebitsCandidatesBankRequestFilterItemValue",
+    "DirectDebitsCandidatesBankRequestFilterItemValueThreeItem",
+    "DirectDebitsCandidatesBankRequestSortItem",
+    "DirectDebitsCandidatesBankRequestSortItemDir",
+    "DirectDebitsCandidatesBankResponse",
+    "DirectDebitsCandidatesBankResponseRowsItem",
     "DirectDebitsExportBankResponse",
     "FeedsAccountsConfigureBankRequestSyncSchedule",
     "FeedsAccountsConfigureBankResponse",

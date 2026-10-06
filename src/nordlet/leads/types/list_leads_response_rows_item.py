@@ -28,6 +28,12 @@ class ListLeadsResponseRowsItem(UniversalBaseModel):
     source_name: typing_extensions.Annotated[
         typing.Optional[str], FieldMetadata(alias="sourceName"), pydantic.Field(alias="sourceName")
     ] = None
+    type_id: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="typeId"), pydantic.Field(alias="typeId")
+    ] = None
+    type_name: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="typeName"), pydantic.Field(alias="typeName")
+    ] = None
     status: ListLeadsResponseRowsItemStatus
     estimated_value: typing_extensions.Annotated[
         typing.Optional[str], FieldMetadata(alias="estimatedValue"), pydantic.Field(alias="estimatedValue")

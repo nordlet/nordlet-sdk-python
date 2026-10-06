@@ -12,6 +12,9 @@ from .debt_reminders_preview_partners_response_rows_item_invoices_item import (
 from .debt_reminders_preview_partners_response_rows_item_locale import (
     DebtRemindersPreviewPartnersResponseRowsItemLocale,
 )
+from .debt_reminders_preview_partners_response_rows_item_totals_item import (
+    DebtRemindersPreviewPartnersResponseRowsItemTotalsItem,
+)
 
 
 class DebtRemindersPreviewPartnersResponseRowsItem(UniversalBaseModel):
@@ -21,12 +24,8 @@ class DebtRemindersPreviewPartnersResponseRowsItem(UniversalBaseModel):
     ]
     email: str
     locale: DebtRemindersPreviewPartnersResponseRowsItemLocale
-    currency: str
     invoices: typing.List[DebtRemindersPreviewPartnersResponseRowsItemInvoicesItem]
-    total_due: typing_extensions.Annotated[str, FieldMetadata(alias="totalDue"), pydantic.Field(alias="totalDue")]
-    interest_due: typing_extensions.Annotated[
-        str, FieldMetadata(alias="interestDue"), pydantic.Field(alias="interestDue")
-    ]
+    totals: typing.List[DebtRemindersPreviewPartnersResponseRowsItemTotalsItem]
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

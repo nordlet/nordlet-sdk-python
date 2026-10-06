@@ -5750,6 +5750,14 @@ client.leads.create(
 <dl>
 <dd>
 
+**type_id:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **status:** `typing.Optional[CreateLeadsRequestStatus]` 
     
 </dd>
@@ -5973,6 +5981,14 @@ client.leads.update(
 <dd>
 
 **source_id:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**type_id:** `typing.Optional[str]` 
     
 </dd>
 </dl>
@@ -6705,6 +6721,305 @@ client = Nordlet(
 )
 
 client.leads.sources_options()
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.leads.<a href="src/nordlet/leads/client.py">types_create</a>(...) -> TypesCreateLeadsResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.leads.types_create(
+    name="name",
+)
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**name:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**is_active:** `typing.Optional[bool]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.leads.<a href="src/nordlet/leads/client.py">types_update</a>(...) -> TypesUpdateLeadsResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.leads.types_update(
+    id="id",
+)
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**name:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**is_active:** `typing.Optional[bool]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.leads.<a href="src/nordlet/leads/client.py">types_delete</a>(...) -> TypesDeleteLeadsResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.leads.types_delete(
+    id="id",
+)
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.leads.<a href="src/nordlet/leads/client.py">types_list</a>() -> TypesListLeadsResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.leads.types_list()
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.leads.<a href="src/nordlet/leads/client.py">types_options</a>() -> TypesOptionsLeadsResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.leads.types_options()
 
 ```
 </dd>
@@ -20888,7 +21203,7 @@ client.declarations.ie_ct1generate(
 <dl>
 <dd>
 
-Build the working paper for the Form B1 annual return of a financial year — company details, registered office, directors and secretary from Settings → Officers, the members from Settings → Shareholders, the issued share capital and the figures of the financial statements — in the order the CORE screens ask for them. The CRO publishes no file format for the B1, so it is keyed into CORE.
+Build the working paper for the Form B1 annual return of a financial year - company details, registered office, directors and secretary from Settings → Officers, the members from Settings → Shareholders, the issued share capital and the figures of the financial statements - in the order the CORE screens ask for them. The CRO publishes no file format for the B1, so it is keyed into CORE.
 </dd>
 </dl>
 </dd>
@@ -26048,7 +26363,7 @@ client.migration.books_validate(
 <dl>
 <dd>
 
-Brings a company over from another system in one call: chart of accounts, partners, items, opening balances (or the full journal history), open customer and supplier invoices, fixed assets with their accumulated depreciation, and stock on hand. The whole package is written in one database transaction — if any row fails, nothing is stored.
+Brings a company over from another system in one call: chart of accounts, partners, items, opening balances (or the full journal history), open customer and supplier invoices, fixed assets with their accumulated depreciation, and stock on hand. The whole package is written in one database transaction - if any row fails, nothing is stored.
 </dd>
 </dl>
 </dd>
@@ -31011,6 +31326,14 @@ client.payroll.runs_create(
 <dd>
 
 **notes:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**pay_date:** `typing.Optional[datetime.date]` 
     
 </dd>
 </dl>
@@ -42595,6 +42918,95 @@ client.bank.mandates_list()
 <dd>
 
 **filter:** `typing.Optional[typing.List[MandatesListBankRequestFilterItem]]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**totals:** `typing.Optional[typing.List[str]]` — Numeric fields to sum over every row matching the filter (not only the current page)
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.bank.<a href="src/nordlet/bank/client.py">direct_debits_candidates</a>(...) -> DirectDebitsCandidatesBankResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.bank.direct_debits_candidates()
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**page:** `typing.Optional[int]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**page_size:** `typing.Optional[int]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sort:** `typing.Optional[typing.List[DirectDebitsCandidatesBankRequestSortItem]]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filter:** `typing.Optional[typing.List[DirectDebitsCandidatesBankRequestFilterItem]]` 
     
 </dd>
 </dl>

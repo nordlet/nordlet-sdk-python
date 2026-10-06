@@ -24,6 +24,11 @@ from .types.sources_delete_leads_response import SourcesDeleteLeadsResponse
 from .types.sources_list_leads_response import SourcesListLeadsResponse
 from .types.sources_options_leads_response import SourcesOptionsLeadsResponse
 from .types.sources_update_leads_response import SourcesUpdateLeadsResponse
+from .types.types_create_leads_response import TypesCreateLeadsResponse
+from .types.types_delete_leads_response import TypesDeleteLeadsResponse
+from .types.types_list_leads_response import TypesListLeadsResponse
+from .types.types_options_leads_response import TypesOptionsLeadsResponse
+from .types.types_update_leads_response import TypesUpdateLeadsResponse
 from .types.update_leads_request_documents_item import UpdateLeadsRequestDocumentsItem
 from .types.update_leads_request_status import UpdateLeadsRequestStatus
 from .types.update_leads_response import UpdateLeadsResponse
@@ -57,6 +62,7 @@ class LeadsClient:
         website: typing.Optional[str] = OMIT,
         country_code: typing.Optional[str] = OMIT,
         source_id: typing.Optional[str] = OMIT,
+        type_id: typing.Optional[str] = OMIT,
         status: typing.Optional[CreateLeadsRequestStatus] = OMIT,
         estimated_value: typing.Optional[str] = OMIT,
         currency: typing.Optional[str] = OMIT,
@@ -82,6 +88,8 @@ class LeadsClient:
         country_code : typing.Optional[str]
 
         source_id : typing.Optional[str]
+
+        type_id : typing.Optional[str]
 
         status : typing.Optional[CreateLeadsRequestStatus]
 
@@ -124,6 +132,7 @@ class LeadsClient:
             website=website,
             country_code=country_code,
             source_id=source_id,
+            type_id=type_id,
             status=status,
             estimated_value=estimated_value,
             currency=currency,
@@ -174,6 +183,7 @@ class LeadsClient:
         website: typing.Optional[str] = OMIT,
         country_code: typing.Optional[str] = OMIT,
         source_id: typing.Optional[str] = OMIT,
+        type_id: typing.Optional[str] = OMIT,
         status: typing.Optional[UpdateLeadsRequestStatus] = OMIT,
         estimated_value: typing.Optional[str] = OMIT,
         currency: typing.Optional[str] = OMIT,
@@ -200,6 +210,8 @@ class LeadsClient:
         country_code : typing.Optional[str]
 
         source_id : typing.Optional[str]
+
+        type_id : typing.Optional[str]
 
         status : typing.Optional[UpdateLeadsRequestStatus]
 
@@ -241,6 +253,7 @@ class LeadsClient:
             website=website,
             country_code=country_code,
             source_id=source_id,
+            type_id=type_id,
             status=status,
             estimated_value=estimated_value,
             currency=currency,
@@ -605,6 +618,161 @@ class LeadsClient:
         _response = self._raw_client.sources_options(request_options=request_options)
         return _response.data
 
+    def types_create(
+        self,
+        *,
+        name: str,
+        is_active: typing.Optional[bool] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> TypesCreateLeadsResponse:
+        """
+        Parameters
+        ----------
+        name : str
+
+        is_active : typing.Optional[bool]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        TypesCreateLeadsResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.leads.types_create(
+            name="name",
+        )
+        """
+        _response = self._raw_client.types_create(name=name, is_active=is_active, request_options=request_options)
+        return _response.data
+
+    def types_update(
+        self,
+        *,
+        id: str,
+        name: typing.Optional[str] = OMIT,
+        is_active: typing.Optional[bool] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> TypesUpdateLeadsResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        name : typing.Optional[str]
+
+        is_active : typing.Optional[bool]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        TypesUpdateLeadsResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.leads.types_update(
+            id="id",
+        )
+        """
+        _response = self._raw_client.types_update(
+            id=id, name=name, is_active=is_active, request_options=request_options
+        )
+        return _response.data
+
+    def types_delete(
+        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> TypesDeleteLeadsResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        TypesDeleteLeadsResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.leads.types_delete(
+            id="id",
+        )
+        """
+        _response = self._raw_client.types_delete(id=id, request_options=request_options)
+        return _response.data
+
+    def types_list(self, *, request_options: typing.Optional[RequestOptions] = None) -> TypesListLeadsResponse:
+        """
+        Parameters
+        ----------
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        TypesListLeadsResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.leads.types_list()
+        """
+        _response = self._raw_client.types_list(request_options=request_options)
+        return _response.data
+
+    def types_options(self, *, request_options: typing.Optional[RequestOptions] = None) -> TypesOptionsLeadsResponse:
+        """
+        Parameters
+        ----------
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        TypesOptionsLeadsResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.leads.types_options()
+        """
+        _response = self._raw_client.types_options(request_options=request_options)
+        return _response.data
+
     def convert(
         self,
         *,
@@ -677,6 +845,7 @@ class AsyncLeadsClient:
         website: typing.Optional[str] = OMIT,
         country_code: typing.Optional[str] = OMIT,
         source_id: typing.Optional[str] = OMIT,
+        type_id: typing.Optional[str] = OMIT,
         status: typing.Optional[CreateLeadsRequestStatus] = OMIT,
         estimated_value: typing.Optional[str] = OMIT,
         currency: typing.Optional[str] = OMIT,
@@ -702,6 +871,8 @@ class AsyncLeadsClient:
         country_code : typing.Optional[str]
 
         source_id : typing.Optional[str]
+
+        type_id : typing.Optional[str]
 
         status : typing.Optional[CreateLeadsRequestStatus]
 
@@ -752,6 +923,7 @@ class AsyncLeadsClient:
             website=website,
             country_code=country_code,
             source_id=source_id,
+            type_id=type_id,
             status=status,
             estimated_value=estimated_value,
             currency=currency,
@@ -810,6 +982,7 @@ class AsyncLeadsClient:
         website: typing.Optional[str] = OMIT,
         country_code: typing.Optional[str] = OMIT,
         source_id: typing.Optional[str] = OMIT,
+        type_id: typing.Optional[str] = OMIT,
         status: typing.Optional[UpdateLeadsRequestStatus] = OMIT,
         estimated_value: typing.Optional[str] = OMIT,
         currency: typing.Optional[str] = OMIT,
@@ -836,6 +1009,8 @@ class AsyncLeadsClient:
         country_code : typing.Optional[str]
 
         source_id : typing.Optional[str]
+
+        type_id : typing.Optional[str]
 
         status : typing.Optional[UpdateLeadsRequestStatus]
 
@@ -885,6 +1060,7 @@ class AsyncLeadsClient:
             website=website,
             country_code=country_code,
             source_id=source_id,
+            type_id=type_id,
             status=status,
             estimated_value=estimated_value,
             currency=currency,
@@ -1339,6 +1515,203 @@ class AsyncLeadsClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.sources_options(request_options=request_options)
+        return _response.data
+
+    async def types_create(
+        self,
+        *,
+        name: str,
+        is_active: typing.Optional[bool] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> TypesCreateLeadsResponse:
+        """
+        Parameters
+        ----------
+        name : str
+
+        is_active : typing.Optional[bool]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        TypesCreateLeadsResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.leads.types_create(
+                name="name",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.types_create(name=name, is_active=is_active, request_options=request_options)
+        return _response.data
+
+    async def types_update(
+        self,
+        *,
+        id: str,
+        name: typing.Optional[str] = OMIT,
+        is_active: typing.Optional[bool] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> TypesUpdateLeadsResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        name : typing.Optional[str]
+
+        is_active : typing.Optional[bool]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        TypesUpdateLeadsResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.leads.types_update(
+                id="id",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.types_update(
+            id=id, name=name, is_active=is_active, request_options=request_options
+        )
+        return _response.data
+
+    async def types_delete(
+        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> TypesDeleteLeadsResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        TypesDeleteLeadsResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.leads.types_delete(
+                id="id",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.types_delete(id=id, request_options=request_options)
+        return _response.data
+
+    async def types_list(self, *, request_options: typing.Optional[RequestOptions] = None) -> TypesListLeadsResponse:
+        """
+        Parameters
+        ----------
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        TypesListLeadsResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.leads.types_list()
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.types_list(request_options=request_options)
+        return _response.data
+
+    async def types_options(
+        self, *, request_options: typing.Optional[RequestOptions] = None
+    ) -> TypesOptionsLeadsResponse:
+        """
+        Parameters
+        ----------
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        TypesOptionsLeadsResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.leads.types_options()
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.types_options(request_options=request_options)
         return _response.data
 
     async def convert(
