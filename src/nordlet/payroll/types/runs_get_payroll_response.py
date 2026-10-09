@@ -53,6 +53,17 @@ class RunsGetPayrollResponse(UniversalBaseModel):
     approved_at: typing_extensions.Annotated[
         typing.Optional[dt.datetime], FieldMetadata(alias="approvedAt"), pydantic.Field(alias="approvedAt")
     ] = None
+    reversed_at: typing_extensions.Annotated[
+        typing.Optional[dt.datetime], FieldMetadata(alias="reversedAt"), pydantic.Field(alias="reversedAt")
+    ] = None
+    reversal_journal_transaction_id: typing_extensions.Annotated[
+        typing.Optional[str],
+        FieldMetadata(alias="reversalJournalTransactionId"),
+        pydantic.Field(alias="reversalJournalTransactionId"),
+    ] = None
+    reversal_reason: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="reversalReason"), pydantic.Field(alias="reversalReason")
+    ] = None
     lines: typing.List[RunsGetPayrollResponseLinesItem]
 
     if IS_PYDANTIC_V2:

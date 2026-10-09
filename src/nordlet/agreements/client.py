@@ -29,6 +29,8 @@ from .types.insurance_policies_list_agreements_request_filter_item import (
 )
 from .types.insurance_policies_list_agreements_request_sort_item import InsurancePoliciesListAgreementsRequestSortItem
 from .types.insurance_policies_list_agreements_response import InsurancePoliciesListAgreementsResponse
+from .types.settings_get_agreements_response import SettingsGetAgreementsResponse
+from .types.settings_update_agreements_response import SettingsUpdateAgreementsResponse
 from .types.types_create_agreements_response import TypesCreateAgreementsResponse
 from .types.types_list_agreements_request_filter_item import TypesListAgreementsRequestFilterItem
 from .types.types_list_agreements_request_sort_item import TypesListAgreementsRequestSortItem
@@ -52,6 +54,60 @@ class AgreementsClient:
         RawAgreementsClient
         """
         return self._raw_client
+
+    def settings_get(self, *, request_options: typing.Optional[RequestOptions] = None) -> SettingsGetAgreementsResponse:
+        """
+        Parameters
+        ----------
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        SettingsGetAgreementsResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.agreements.settings_get()
+        """
+        _response = self._raw_client.settings_get(request_options=request_options)
+        return _response.data
+
+    def settings_update(
+        self, *, auto_billing: bool, request_options: typing.Optional[RequestOptions] = None
+    ) -> SettingsUpdateAgreementsResponse:
+        """
+        Parameters
+        ----------
+        auto_billing : bool
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        SettingsUpdateAgreementsResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.agreements.settings_update(
+            auto_billing=True,
+        )
+        """
+        _response = self._raw_client.settings_update(auto_billing=auto_billing, request_options=request_options)
+        return _response.data
 
     def types_create(
         self, *, code: str, name: str, request_options: typing.Optional[RequestOptions] = None
@@ -649,6 +705,78 @@ class AsyncAgreementsClient:
         AsyncRawAgreementsClient
         """
         return self._raw_client
+
+    async def settings_get(
+        self, *, request_options: typing.Optional[RequestOptions] = None
+    ) -> SettingsGetAgreementsResponse:
+        """
+        Parameters
+        ----------
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        SettingsGetAgreementsResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.agreements.settings_get()
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.settings_get(request_options=request_options)
+        return _response.data
+
+    async def settings_update(
+        self, *, auto_billing: bool, request_options: typing.Optional[RequestOptions] = None
+    ) -> SettingsUpdateAgreementsResponse:
+        """
+        Parameters
+        ----------
+        auto_billing : bool
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        SettingsUpdateAgreementsResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.agreements.settings_update(
+                auto_billing=True,
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.settings_update(auto_billing=auto_billing, request_options=request_options)
+        return _response.data
 
     async def types_create(
         self, *, code: str, name: str, request_options: typing.Optional[RequestOptions] = None

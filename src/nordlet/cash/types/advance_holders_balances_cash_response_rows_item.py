@@ -14,6 +14,7 @@ class AdvanceHoldersBalancesCashResponseRowsItem(UniversalBaseModel):
     last_name: typing_extensions.Annotated[str, FieldMetadata(alias="lastName"), pydantic.Field(alias="lastName")]
     issued: str
     returned: str
+    settled: str
     balance: str
 
     if IS_PYDANTIC_V2:

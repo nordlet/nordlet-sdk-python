@@ -15,6 +15,7 @@ class AdvanceReconciliationReportsResponseRowsItem(UniversalBaseModel):
     opening: str
     issued: str
     returned: str
+    settled: str
     closing: str
 
     if IS_PYDANTIC_V2:

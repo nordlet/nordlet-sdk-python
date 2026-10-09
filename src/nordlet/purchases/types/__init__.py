@@ -6,6 +6,18 @@ import typing
 from importlib import import_module
 
 if typing.TYPE_CHECKING:
+    from .deferrals_list_purchases_request_filter_item import DeferralsListPurchasesRequestFilterItem
+    from .deferrals_list_purchases_request_filter_item_op import DeferralsListPurchasesRequestFilterItemOp
+    from .deferrals_list_purchases_request_filter_item_value import DeferralsListPurchasesRequestFilterItemValue
+    from .deferrals_list_purchases_request_filter_item_value_three_item import (
+        DeferralsListPurchasesRequestFilterItemValueThreeItem,
+    )
+    from .deferrals_list_purchases_request_sort_item import DeferralsListPurchasesRequestSortItem
+    from .deferrals_list_purchases_request_sort_item_dir import DeferralsListPurchasesRequestSortItemDir
+    from .deferrals_list_purchases_response import DeferralsListPurchasesResponse
+    from .deferrals_list_purchases_response_rows_item import DeferralsListPurchasesResponseRowsItem
+    from .deferrals_list_purchases_response_rows_item_status import DeferralsListPurchasesResponseRowsItemStatus
+    from .deferrals_post_purchases_response import DeferralsPostPurchasesResponse
     from .invoices_create_purchases_request_lines_item import InvoicesCreatePurchasesRequestLinesItem
     from .invoices_create_purchases_request_lines_item_quantity import InvoicesCreatePurchasesRequestLinesItemQuantity
     from .invoices_create_purchases_request_type import InvoicesCreatePurchasesRequestType
@@ -107,6 +119,16 @@ if typing.TYPE_CHECKING:
     from .receipts_list_purchases_response import ReceiptsListPurchasesResponse
     from .receipts_list_purchases_response_rows_item import ReceiptsListPurchasesResponseRowsItem
 _dynamic_imports: typing.Dict[str, str] = {
+    "DeferralsListPurchasesRequestFilterItem": ".deferrals_list_purchases_request_filter_item",
+    "DeferralsListPurchasesRequestFilterItemOp": ".deferrals_list_purchases_request_filter_item_op",
+    "DeferralsListPurchasesRequestFilterItemValue": ".deferrals_list_purchases_request_filter_item_value",
+    "DeferralsListPurchasesRequestFilterItemValueThreeItem": ".deferrals_list_purchases_request_filter_item_value_three_item",
+    "DeferralsListPurchasesRequestSortItem": ".deferrals_list_purchases_request_sort_item",
+    "DeferralsListPurchasesRequestSortItemDir": ".deferrals_list_purchases_request_sort_item_dir",
+    "DeferralsListPurchasesResponse": ".deferrals_list_purchases_response",
+    "DeferralsListPurchasesResponseRowsItem": ".deferrals_list_purchases_response_rows_item",
+    "DeferralsListPurchasesResponseRowsItemStatus": ".deferrals_list_purchases_response_rows_item_status",
+    "DeferralsPostPurchasesResponse": ".deferrals_post_purchases_response",
     "InvoicesCreatePurchasesRequestLinesItem": ".invoices_create_purchases_request_lines_item",
     "InvoicesCreatePurchasesRequestLinesItemQuantity": ".invoices_create_purchases_request_lines_item_quantity",
     "InvoicesCreatePurchasesRequestType": ".invoices_create_purchases_request_type",
@@ -224,6 +246,16 @@ def __dir__():
 
 
 __all__ = [
+    "DeferralsListPurchasesRequestFilterItem",
+    "DeferralsListPurchasesRequestFilterItemOp",
+    "DeferralsListPurchasesRequestFilterItemValue",
+    "DeferralsListPurchasesRequestFilterItemValueThreeItem",
+    "DeferralsListPurchasesRequestSortItem",
+    "DeferralsListPurchasesRequestSortItemDir",
+    "DeferralsListPurchasesResponse",
+    "DeferralsListPurchasesResponseRowsItem",
+    "DeferralsListPurchasesResponseRowsItemStatus",
+    "DeferralsPostPurchasesResponse",
     "InvoicesCreatePurchasesRequestLinesItem",
     "InvoicesCreatePurchasesRequestLinesItemQuantity",
     "InvoicesCreatePurchasesRequestType",

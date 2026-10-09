@@ -102,6 +102,8 @@ if typing.TYPE_CHECKING:
     from .groups_list_assets_request_sort_item_dir import GroupsListAssetsRequestSortItemDir
     from .groups_list_assets_response import GroupsListAssetsResponse
     from .groups_list_assets_response_rows_item import GroupsListAssetsResponseRowsItem
+    from .settings_get_assets_response import SettingsGetAssetsResponse
+    from .settings_update_assets_response import SettingsUpdateAssetsResponse
 _dynamic_imports: typing.Dict[str, str] = {
     "AssetsCreateAssetsRequestDocumentsItem": ".assets_create_assets_request_documents_item",
     "AssetsCreateAssetsResponse": ".assets_create_assets_response",
@@ -169,6 +171,8 @@ _dynamic_imports: typing.Dict[str, str] = {
     "GroupsListAssetsRequestSortItemDir": ".groups_list_assets_request_sort_item_dir",
     "GroupsListAssetsResponse": ".groups_list_assets_response",
     "GroupsListAssetsResponseRowsItem": ".groups_list_assets_response_rows_item",
+    "SettingsGetAssetsResponse": ".settings_get_assets_response",
+    "SettingsUpdateAssetsResponse": ".settings_update_assets_response",
 }
 
 
@@ -260,4 +264,6 @@ __all__ = [
     "GroupsListAssetsRequestSortItemDir",
     "GroupsListAssetsResponse",
     "GroupsListAssetsResponseRowsItem",
+    "SettingsGetAssetsResponse",
+    "SettingsUpdateAssetsResponse",
 ]

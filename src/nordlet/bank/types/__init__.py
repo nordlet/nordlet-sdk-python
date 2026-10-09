@@ -184,6 +184,12 @@ if typing.TYPE_CHECKING:
     from .transactions_match_bank_request_document_type import TransactionsMatchBankRequestDocumentType
     from .transactions_match_bank_response import TransactionsMatchBankResponse
     from .transactions_match_bank_response_status import TransactionsMatchBankResponseStatus
+    from .transactions_match_many_bank_request_allocations_item import TransactionsMatchManyBankRequestAllocationsItem
+    from .transactions_match_many_bank_request_allocations_item_document_type import (
+        TransactionsMatchManyBankRequestAllocationsItemDocumentType,
+    )
+    from .transactions_match_many_bank_response import TransactionsMatchManyBankResponse
+    from .transactions_match_many_bank_response_status import TransactionsMatchManyBankResponseStatus
     from .transactions_record_bank_request_document_type import TransactionsRecordBankRequestDocumentType
     from .transactions_record_bank_response import TransactionsRecordBankResponse
     from .transactions_record_bank_response_status import TransactionsRecordBankResponseStatus
@@ -355,6 +361,10 @@ _dynamic_imports: typing.Dict[str, str] = {
     "TransactionsMatchBankRequestDocumentType": ".transactions_match_bank_request_document_type",
     "TransactionsMatchBankResponse": ".transactions_match_bank_response",
     "TransactionsMatchBankResponseStatus": ".transactions_match_bank_response_status",
+    "TransactionsMatchManyBankRequestAllocationsItem": ".transactions_match_many_bank_request_allocations_item",
+    "TransactionsMatchManyBankRequestAllocationsItemDocumentType": ".transactions_match_many_bank_request_allocations_item_document_type",
+    "TransactionsMatchManyBankResponse": ".transactions_match_many_bank_response",
+    "TransactionsMatchManyBankResponseStatus": ".transactions_match_many_bank_response_status",
     "TransactionsRecordBankRequestDocumentType": ".transactions_record_bank_request_document_type",
     "TransactionsRecordBankResponse": ".transactions_record_bank_response",
     "TransactionsRecordBankResponseStatus": ".transactions_record_bank_response_status",
@@ -546,6 +556,10 @@ __all__ = [
     "TransactionsMatchBankRequestDocumentType",
     "TransactionsMatchBankResponse",
     "TransactionsMatchBankResponseStatus",
+    "TransactionsMatchManyBankRequestAllocationsItem",
+    "TransactionsMatchManyBankRequestAllocationsItemDocumentType",
+    "TransactionsMatchManyBankResponse",
+    "TransactionsMatchManyBankResponseStatus",
     "TransactionsRecordBankRequestDocumentType",
     "TransactionsRecordBankResponse",
     "TransactionsRecordBankResponseStatus",

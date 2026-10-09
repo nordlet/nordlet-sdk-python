@@ -73,6 +73,12 @@ if typing.TYPE_CHECKING:
         RunsListPayrollResponseRowsItemComponentTotalsItemKind,
     )
     from .runs_list_payroll_response_rows_item_status import RunsListPayrollResponseRowsItemStatus
+    from .runs_reverse_payroll_response import RunsReversePayrollResponse
+    from .runs_reverse_payroll_response_component_totals_item import RunsReversePayrollResponseComponentTotalsItem
+    from .runs_reverse_payroll_response_component_totals_item_kind import (
+        RunsReversePayrollResponseComponentTotalsItemKind,
+    )
+    from .runs_reverse_payroll_response_status import RunsReversePayrollResponseStatus
     from .schedules_create_payroll_response import SchedulesCreatePayrollResponse
     from .schedules_list_payroll_response import SchedulesListPayrollResponse
     from .schedules_list_payroll_response_rows_item import SchedulesListPayrollResponseRowsItem
@@ -128,6 +134,10 @@ _dynamic_imports: typing.Dict[str, str] = {
     "RunsListPayrollResponseRowsItemComponentTotalsItem": ".runs_list_payroll_response_rows_item_component_totals_item",
     "RunsListPayrollResponseRowsItemComponentTotalsItemKind": ".runs_list_payroll_response_rows_item_component_totals_item_kind",
     "RunsListPayrollResponseRowsItemStatus": ".runs_list_payroll_response_rows_item_status",
+    "RunsReversePayrollResponse": ".runs_reverse_payroll_response",
+    "RunsReversePayrollResponseComponentTotalsItem": ".runs_reverse_payroll_response_component_totals_item",
+    "RunsReversePayrollResponseComponentTotalsItemKind": ".runs_reverse_payroll_response_component_totals_item_kind",
+    "RunsReversePayrollResponseStatus": ".runs_reverse_payroll_response_status",
     "SchedulesCreatePayrollResponse": ".schedules_create_payroll_response",
     "SchedulesListPayrollResponse": ".schedules_list_payroll_response",
     "SchedulesListPayrollResponseRowsItem": ".schedules_list_payroll_response_rows_item",
@@ -207,6 +217,10 @@ __all__ = [
     "RunsListPayrollResponseRowsItemComponentTotalsItem",
     "RunsListPayrollResponseRowsItemComponentTotalsItemKind",
     "RunsListPayrollResponseRowsItemStatus",
+    "RunsReversePayrollResponse",
+    "RunsReversePayrollResponseComponentTotalsItem",
+    "RunsReversePayrollResponseComponentTotalsItemKind",
+    "RunsReversePayrollResponseStatus",
     "SchedulesCreatePayrollResponse",
     "SchedulesListPayrollResponse",
     "SchedulesListPayrollResponseRowsItem",

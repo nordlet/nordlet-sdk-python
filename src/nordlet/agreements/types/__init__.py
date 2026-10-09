@@ -79,6 +79,8 @@ if typing.TYPE_CHECKING:
     )
     from .insurance_policies_list_agreements_response import InsurancePoliciesListAgreementsResponse
     from .insurance_policies_list_agreements_response_rows_item import InsurancePoliciesListAgreementsResponseRowsItem
+    from .settings_get_agreements_response import SettingsGetAgreementsResponse
+    from .settings_update_agreements_response import SettingsUpdateAgreementsResponse
 _dynamic_imports: typing.Dict[str, str] = {
     "AgreementsBillingRunAgreementsResponse": ".agreements_billing_run_agreements_response",
     "AgreementsBillingRunAgreementsResponseErrorsItem": ".agreements_billing_run_agreements_response_errors_item",
@@ -128,6 +130,8 @@ _dynamic_imports: typing.Dict[str, str] = {
     "InsurancePoliciesListAgreementsRequestSortItemDir": ".insurance_policies_list_agreements_request_sort_item_dir",
     "InsurancePoliciesListAgreementsResponse": ".insurance_policies_list_agreements_response",
     "InsurancePoliciesListAgreementsResponseRowsItem": ".insurance_policies_list_agreements_response_rows_item",
+    "SettingsGetAgreementsResponse": ".settings_get_agreements_response",
+    "SettingsUpdateAgreementsResponse": ".settings_update_agreements_response",
     "TypesCreateAgreementsResponse": ".types_create_agreements_response",
     "TypesListAgreementsRequestFilterItem": ".types_list_agreements_request_filter_item",
     "TypesListAgreementsRequestFilterItemOp": ".types_list_agreements_request_filter_item_op",
@@ -210,6 +214,8 @@ __all__ = [
     "InsurancePoliciesListAgreementsRequestSortItemDir",
     "InsurancePoliciesListAgreementsResponse",
     "InsurancePoliciesListAgreementsResponseRowsItem",
+    "SettingsGetAgreementsResponse",
+    "SettingsUpdateAgreementsResponse",
     "TypesCreateAgreementsResponse",
     "TypesListAgreementsRequestFilterItem",
     "TypesListAgreementsRequestFilterItemOp",

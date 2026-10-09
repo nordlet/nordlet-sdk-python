@@ -2061,6 +2061,7 @@ class RawSalesClient:
         series: typing.Optional[str] = OMIT,
         issue_date: typing.Optional[dt.date] = OMIT,
         warehouse_id: typing.Optional[str] = OMIT,
+        return_to_stock: typing.Optional[bool] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[InvoicesIssueSalesResponse]:
         """
@@ -2073,6 +2074,8 @@ class RawSalesClient:
         issue_date : typing.Optional[dt.date]
 
         warehouse_id : typing.Optional[str]
+
+        return_to_stock : typing.Optional[bool]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -2090,6 +2093,7 @@ class RawSalesClient:
                 "series": series,
                 "issueDate": issue_date,
                 "warehouseId": warehouse_id,
+                "returnToStock": return_to_stock,
             },
             headers={
                 "content-type": "application/json",
@@ -8109,6 +8113,7 @@ class AsyncRawSalesClient:
         series: typing.Optional[str] = OMIT,
         issue_date: typing.Optional[dt.date] = OMIT,
         warehouse_id: typing.Optional[str] = OMIT,
+        return_to_stock: typing.Optional[bool] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[InvoicesIssueSalesResponse]:
         """
@@ -8121,6 +8126,8 @@ class AsyncRawSalesClient:
         issue_date : typing.Optional[dt.date]
 
         warehouse_id : typing.Optional[str]
+
+        return_to_stock : typing.Optional[bool]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -8138,6 +8145,7 @@ class AsyncRawSalesClient:
                 "series": series,
                 "issueDate": issue_date,
                 "warehouseId": warehouse_id,
+                "returnToStock": return_to_stock,
             },
             headers={
                 "content-type": "application/json",

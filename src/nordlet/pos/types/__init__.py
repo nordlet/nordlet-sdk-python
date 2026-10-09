@@ -16,6 +16,19 @@ if typing.TYPE_CHECKING:
     from .devices_list_pos_response import DevicesListPosResponse
     from .devices_list_pos_response_rows_item import DevicesListPosResponseRowsItem
     from .devices_update_pos_response import DevicesUpdatePosResponse
+    from .receipts_create_pos_request_lines_item import ReceiptsCreatePosRequestLinesItem
+    from .receipts_create_pos_response import ReceiptsCreatePosResponse
+    from .receipts_create_pos_response_lines_item import ReceiptsCreatePosResponseLinesItem
+    from .receipts_get_pos_response import ReceiptsGetPosResponse
+    from .receipts_get_pos_response_lines_item import ReceiptsGetPosResponseLinesItem
+    from .receipts_list_pos_request_filter_item import ReceiptsListPosRequestFilterItem
+    from .receipts_list_pos_request_filter_item_op import ReceiptsListPosRequestFilterItemOp
+    from .receipts_list_pos_request_filter_item_value import ReceiptsListPosRequestFilterItemValue
+    from .receipts_list_pos_request_filter_item_value_three_item import ReceiptsListPosRequestFilterItemValueThreeItem
+    from .receipts_list_pos_request_sort_item import ReceiptsListPosRequestSortItem
+    from .receipts_list_pos_request_sort_item_dir import ReceiptsListPosRequestSortItemDir
+    from .receipts_list_pos_response import ReceiptsListPosResponse
+    from .receipts_list_pos_response_rows_item import ReceiptsListPosResponseRowsItem
     from .reports_create_pos_request_item_lines_item import ReportsCreatePosRequestItemLinesItem
     from .reports_create_pos_request_vat_lines_item import ReportsCreatePosRequestVatLinesItem
     from .reports_create_pos_response import ReportsCreatePosResponse
@@ -30,6 +43,21 @@ if typing.TYPE_CHECKING:
     from .reports_list_pos_request_sort_item_dir import ReportsListPosRequestSortItemDir
     from .reports_list_pos_response import ReportsListPosResponse
     from .reports_list_pos_response_rows_item import ReportsListPosResponseRowsItem
+    from .shifts_close_pos_response import ShiftsClosePosResponse
+    from .shifts_close_pos_response_status import ShiftsClosePosResponseStatus
+    from .shifts_get_pos_response import ShiftsGetPosResponse
+    from .shifts_get_pos_response_status import ShiftsGetPosResponseStatus
+    from .shifts_list_pos_request_filter_item import ShiftsListPosRequestFilterItem
+    from .shifts_list_pos_request_filter_item_op import ShiftsListPosRequestFilterItemOp
+    from .shifts_list_pos_request_filter_item_value import ShiftsListPosRequestFilterItemValue
+    from .shifts_list_pos_request_filter_item_value_three_item import ShiftsListPosRequestFilterItemValueThreeItem
+    from .shifts_list_pos_request_sort_item import ShiftsListPosRequestSortItem
+    from .shifts_list_pos_request_sort_item_dir import ShiftsListPosRequestSortItemDir
+    from .shifts_list_pos_response import ShiftsListPosResponse
+    from .shifts_list_pos_response_rows_item import ShiftsListPosResponseRowsItem
+    from .shifts_list_pos_response_rows_item_status import ShiftsListPosResponseRowsItemStatus
+    from .shifts_open_pos_response import ShiftsOpenPosResponse
+    from .shifts_open_pos_response_status import ShiftsOpenPosResponseStatus
 _dynamic_imports: typing.Dict[str, str] = {
     "DevicesCreatePosResponse": ".devices_create_pos_response",
     "DevicesListPosRequestFilterItem": ".devices_list_pos_request_filter_item",
@@ -41,6 +69,19 @@ _dynamic_imports: typing.Dict[str, str] = {
     "DevicesListPosResponse": ".devices_list_pos_response",
     "DevicesListPosResponseRowsItem": ".devices_list_pos_response_rows_item",
     "DevicesUpdatePosResponse": ".devices_update_pos_response",
+    "ReceiptsCreatePosRequestLinesItem": ".receipts_create_pos_request_lines_item",
+    "ReceiptsCreatePosResponse": ".receipts_create_pos_response",
+    "ReceiptsCreatePosResponseLinesItem": ".receipts_create_pos_response_lines_item",
+    "ReceiptsGetPosResponse": ".receipts_get_pos_response",
+    "ReceiptsGetPosResponseLinesItem": ".receipts_get_pos_response_lines_item",
+    "ReceiptsListPosRequestFilterItem": ".receipts_list_pos_request_filter_item",
+    "ReceiptsListPosRequestFilterItemOp": ".receipts_list_pos_request_filter_item_op",
+    "ReceiptsListPosRequestFilterItemValue": ".receipts_list_pos_request_filter_item_value",
+    "ReceiptsListPosRequestFilterItemValueThreeItem": ".receipts_list_pos_request_filter_item_value_three_item",
+    "ReceiptsListPosRequestSortItem": ".receipts_list_pos_request_sort_item",
+    "ReceiptsListPosRequestSortItemDir": ".receipts_list_pos_request_sort_item_dir",
+    "ReceiptsListPosResponse": ".receipts_list_pos_response",
+    "ReceiptsListPosResponseRowsItem": ".receipts_list_pos_response_rows_item",
     "ReportsCreatePosRequestItemLinesItem": ".reports_create_pos_request_item_lines_item",
     "ReportsCreatePosRequestVatLinesItem": ".reports_create_pos_request_vat_lines_item",
     "ReportsCreatePosResponse": ".reports_create_pos_response",
@@ -55,6 +96,21 @@ _dynamic_imports: typing.Dict[str, str] = {
     "ReportsListPosRequestSortItemDir": ".reports_list_pos_request_sort_item_dir",
     "ReportsListPosResponse": ".reports_list_pos_response",
     "ReportsListPosResponseRowsItem": ".reports_list_pos_response_rows_item",
+    "ShiftsClosePosResponse": ".shifts_close_pos_response",
+    "ShiftsClosePosResponseStatus": ".shifts_close_pos_response_status",
+    "ShiftsGetPosResponse": ".shifts_get_pos_response",
+    "ShiftsGetPosResponseStatus": ".shifts_get_pos_response_status",
+    "ShiftsListPosRequestFilterItem": ".shifts_list_pos_request_filter_item",
+    "ShiftsListPosRequestFilterItemOp": ".shifts_list_pos_request_filter_item_op",
+    "ShiftsListPosRequestFilterItemValue": ".shifts_list_pos_request_filter_item_value",
+    "ShiftsListPosRequestFilterItemValueThreeItem": ".shifts_list_pos_request_filter_item_value_three_item",
+    "ShiftsListPosRequestSortItem": ".shifts_list_pos_request_sort_item",
+    "ShiftsListPosRequestSortItemDir": ".shifts_list_pos_request_sort_item_dir",
+    "ShiftsListPosResponse": ".shifts_list_pos_response",
+    "ShiftsListPosResponseRowsItem": ".shifts_list_pos_response_rows_item",
+    "ShiftsListPosResponseRowsItemStatus": ".shifts_list_pos_response_rows_item_status",
+    "ShiftsOpenPosResponse": ".shifts_open_pos_response",
+    "ShiftsOpenPosResponseStatus": ".shifts_open_pos_response_status",
 }
 
 
@@ -90,6 +146,19 @@ __all__ = [
     "DevicesListPosResponse",
     "DevicesListPosResponseRowsItem",
     "DevicesUpdatePosResponse",
+    "ReceiptsCreatePosRequestLinesItem",
+    "ReceiptsCreatePosResponse",
+    "ReceiptsCreatePosResponseLinesItem",
+    "ReceiptsGetPosResponse",
+    "ReceiptsGetPosResponseLinesItem",
+    "ReceiptsListPosRequestFilterItem",
+    "ReceiptsListPosRequestFilterItemOp",
+    "ReceiptsListPosRequestFilterItemValue",
+    "ReceiptsListPosRequestFilterItemValueThreeItem",
+    "ReceiptsListPosRequestSortItem",
+    "ReceiptsListPosRequestSortItemDir",
+    "ReceiptsListPosResponse",
+    "ReceiptsListPosResponseRowsItem",
     "ReportsCreatePosRequestItemLinesItem",
     "ReportsCreatePosRequestVatLinesItem",
     "ReportsCreatePosResponse",
@@ -104,4 +173,19 @@ __all__ = [
     "ReportsListPosRequestSortItemDir",
     "ReportsListPosResponse",
     "ReportsListPosResponseRowsItem",
+    "ShiftsClosePosResponse",
+    "ShiftsClosePosResponseStatus",
+    "ShiftsGetPosResponse",
+    "ShiftsGetPosResponseStatus",
+    "ShiftsListPosRequestFilterItem",
+    "ShiftsListPosRequestFilterItemOp",
+    "ShiftsListPosRequestFilterItemValue",
+    "ShiftsListPosRequestFilterItemValueThreeItem",
+    "ShiftsListPosRequestSortItem",
+    "ShiftsListPosRequestSortItemDir",
+    "ShiftsListPosResponse",
+    "ShiftsListPosResponseRowsItem",
+    "ShiftsListPosResponseRowsItemStatus",
+    "ShiftsOpenPosResponse",
+    "ShiftsOpenPosResponseStatus",
 ]

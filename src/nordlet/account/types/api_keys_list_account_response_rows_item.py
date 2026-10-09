@@ -22,6 +22,9 @@ class ApiKeysListAccountResponseRowsItem(UniversalBaseModel):
     replaced_by_key_id: typing_extensions.Annotated[
         typing.Optional[str], FieldMetadata(alias="replacedByKeyId"), pydantic.Field(alias="replacedByKeyId")
     ] = None
+    created_by_user_id: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="createdByUserId"), pydantic.Field(alias="createdByUserId")
+    ] = None
     revoked_at: typing_extensions.Annotated[
         typing.Optional[dt.datetime], FieldMetadata(alias="revokedAt"), pydantic.Field(alias="revokedAt")
     ] = None

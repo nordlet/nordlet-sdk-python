@@ -2,4 +2,4 @@
 
 import typing
 
-RunsGetPayrollResponseStatus = typing.Union[typing.Literal["draft", "approved"], typing.Any]
+RunsGetPayrollResponseStatus = typing.Union[typing.Literal["draft", "approved", "reversed"], typing.Any]

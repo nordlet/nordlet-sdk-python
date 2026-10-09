@@ -8,6 +8,12 @@ from ..core.request_options import RequestOptions
 from .raw_client import AsyncRawCashClient, RawCashClient
 from .types.advance_holders_balances_cash_response import AdvanceHoldersBalancesCashResponse
 from .types.balance_cash_response import BalanceCashResponse
+from .types.expense_reports_create_cash_request_lines_item import ExpenseReportsCreateCashRequestLinesItem
+from .types.expense_reports_create_cash_response import ExpenseReportsCreateCashResponse
+from .types.expense_reports_get_cash_response import ExpenseReportsGetCashResponse
+from .types.expense_reports_list_cash_request_filter_item import ExpenseReportsListCashRequestFilterItem
+from .types.expense_reports_list_cash_request_sort_item import ExpenseReportsListCashRequestSortItem
+from .types.expense_reports_list_cash_response import ExpenseReportsListCashResponse
 from .types.orders_create_cash_request_type import OrdersCreateCashRequestType
 from .types.orders_create_cash_response import OrdersCreateCashResponse
 from .types.orders_get_cash_response import OrdersGetCashResponse
@@ -41,8 +47,10 @@ class CashClient:
         date: dt.date,
         amount: str,
         purpose: str,
-        counter_account_code: str,
+        counter_account_code: typing.Optional[str] = OMIT,
         cash_account_code: typing.Optional[str] = OMIT,
+        sale_invoice_id: typing.Optional[str] = OMIT,
+        purchase_invoice_id: typing.Optional[str] = OMIT,
         series: typing.Optional[str] = OMIT,
         partner_id: typing.Optional[str] = OMIT,
         employee_id: typing.Optional[str] = OMIT,
@@ -60,9 +68,13 @@ class CashClient:
 
         purpose : str
 
-        counter_account_code : str
+        counter_account_code : typing.Optional[str]
 
         cash_account_code : typing.Optional[str]
+
+        sale_invoice_id : typing.Optional[str]
+
+        purchase_invoice_id : typing.Optional[str]
 
         series : typing.Optional[str]
 
@@ -96,7 +108,6 @@ class CashClient:
             ),
             amount="121.0000",
             purpose="purpose",
-            counter_account_code="counterAccountCode",
         )
         """
         _response = self._raw_client.orders_create(
@@ -106,6 +117,8 @@ class CashClient:
             purpose=purpose,
             counter_account_code=counter_account_code,
             cash_account_code=cash_account_code,
+            sale_invoice_id=sale_invoice_id,
+            purchase_invoice_id=purchase_invoice_id,
             series=series,
             partner_id=partner_id,
             employee_id=employee_id,
@@ -224,6 +237,139 @@ class CashClient:
         )
         return _response.data
 
+    def expense_reports_create(
+        self,
+        *,
+        employee_id: str,
+        date: dt.date,
+        lines: typing.Sequence[ExpenseReportsCreateCashRequestLinesItem],
+        notes: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> ExpenseReportsCreateCashResponse:
+        """
+        Parameters
+        ----------
+        employee_id : str
+
+        date : dt.date
+
+        lines : typing.Sequence[ExpenseReportsCreateCashRequestLinesItem]
+
+        notes : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        ExpenseReportsCreateCashResponse
+            Default Response
+
+        Examples
+        --------
+        import datetime
+
+        from nordlet import Nordlet
+        from nordlet.cash import ExpenseReportsCreateCashRequestLinesItem
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.cash.expense_reports_create(
+            employee_id="employeeId",
+            date=datetime.date.fromisoformat(
+                "2026-07-01",
+            ),
+            lines=[
+                ExpenseReportsCreateCashRequestLinesItem(
+                    description="description",
+                    account_code="accountCode",
+                    net_amount="121.00",
+                )
+            ],
+        )
+        """
+        _response = self._raw_client.expense_reports_create(
+            employee_id=employee_id, date=date, lines=lines, notes=notes, request_options=request_options
+        )
+        return _response.data
+
+    def expense_reports_get(
+        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> ExpenseReportsGetCashResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        ExpenseReportsGetCashResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.cash.expense_reports_get(
+            id="id",
+        )
+        """
+        _response = self._raw_client.expense_reports_get(id=id, request_options=request_options)
+        return _response.data
+
+    def expense_reports_list(
+        self,
+        *,
+        page: typing.Optional[int] = OMIT,
+        page_size: typing.Optional[int] = OMIT,
+        sort: typing.Optional[typing.Sequence[ExpenseReportsListCashRequestSortItem]] = OMIT,
+        filter: typing.Optional[typing.Sequence[ExpenseReportsListCashRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> ExpenseReportsListCashResponse:
+        """
+        Parameters
+        ----------
+        page : typing.Optional[int]
+
+        page_size : typing.Optional[int]
+
+        sort : typing.Optional[typing.Sequence[ExpenseReportsListCashRequestSortItem]]
+
+        filter : typing.Optional[typing.Sequence[ExpenseReportsListCashRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        ExpenseReportsListCashResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.cash.expense_reports_list()
+        """
+        _response = self._raw_client.expense_reports_list(
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
+        )
+        return _response.data
+
     def advance_holders_balances(
         self, *, request_options: typing.Optional[RequestOptions] = None
     ) -> AdvanceHoldersBalancesCashResponse:
@@ -273,8 +419,10 @@ class AsyncCashClient:
         date: dt.date,
         amount: str,
         purpose: str,
-        counter_account_code: str,
+        counter_account_code: typing.Optional[str] = OMIT,
         cash_account_code: typing.Optional[str] = OMIT,
+        sale_invoice_id: typing.Optional[str] = OMIT,
+        purchase_invoice_id: typing.Optional[str] = OMIT,
         series: typing.Optional[str] = OMIT,
         partner_id: typing.Optional[str] = OMIT,
         employee_id: typing.Optional[str] = OMIT,
@@ -292,9 +440,13 @@ class AsyncCashClient:
 
         purpose : str
 
-        counter_account_code : str
+        counter_account_code : typing.Optional[str]
 
         cash_account_code : typing.Optional[str]
+
+        sale_invoice_id : typing.Optional[str]
+
+        purchase_invoice_id : typing.Optional[str]
 
         series : typing.Optional[str]
 
@@ -332,7 +484,6 @@ class AsyncCashClient:
                 ),
                 amount="121.0000",
                 purpose="purpose",
-                counter_account_code="counterAccountCode",
             )
 
 
@@ -345,6 +496,8 @@ class AsyncCashClient:
             purpose=purpose,
             counter_account_code=counter_account_code,
             cash_account_code=cash_account_code,
+            sale_invoice_id=sale_invoice_id,
+            purchase_invoice_id=purchase_invoice_id,
             series=series,
             partner_id=partner_id,
             employee_id=employee_id,
@@ -486,6 +639,162 @@ class AsyncCashClient:
         """
         _response = await self._raw_client.balance(
             cash_account_code=cash_account_code, as_of=as_of, request_options=request_options
+        )
+        return _response.data
+
+    async def expense_reports_create(
+        self,
+        *,
+        employee_id: str,
+        date: dt.date,
+        lines: typing.Sequence[ExpenseReportsCreateCashRequestLinesItem],
+        notes: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> ExpenseReportsCreateCashResponse:
+        """
+        Parameters
+        ----------
+        employee_id : str
+
+        date : dt.date
+
+        lines : typing.Sequence[ExpenseReportsCreateCashRequestLinesItem]
+
+        notes : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        ExpenseReportsCreateCashResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+        import datetime
+
+        from nordlet import AsyncNordlet
+        from nordlet.cash import ExpenseReportsCreateCashRequestLinesItem
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.cash.expense_reports_create(
+                employee_id="employeeId",
+                date=datetime.date.fromisoformat(
+                    "2026-07-01",
+                ),
+                lines=[
+                    ExpenseReportsCreateCashRequestLinesItem(
+                        description="description",
+                        account_code="accountCode",
+                        net_amount="121.00",
+                    )
+                ],
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.expense_reports_create(
+            employee_id=employee_id, date=date, lines=lines, notes=notes, request_options=request_options
+        )
+        return _response.data
+
+    async def expense_reports_get(
+        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> ExpenseReportsGetCashResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        ExpenseReportsGetCashResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.cash.expense_reports_get(
+                id="id",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.expense_reports_get(id=id, request_options=request_options)
+        return _response.data
+
+    async def expense_reports_list(
+        self,
+        *,
+        page: typing.Optional[int] = OMIT,
+        page_size: typing.Optional[int] = OMIT,
+        sort: typing.Optional[typing.Sequence[ExpenseReportsListCashRequestSortItem]] = OMIT,
+        filter: typing.Optional[typing.Sequence[ExpenseReportsListCashRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> ExpenseReportsListCashResponse:
+        """
+        Parameters
+        ----------
+        page : typing.Optional[int]
+
+        page_size : typing.Optional[int]
+
+        sort : typing.Optional[typing.Sequence[ExpenseReportsListCashRequestSortItem]]
+
+        filter : typing.Optional[typing.Sequence[ExpenseReportsListCashRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        ExpenseReportsListCashResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.cash.expense_reports_list()
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.expense_reports_list(
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
         return _response.data
 

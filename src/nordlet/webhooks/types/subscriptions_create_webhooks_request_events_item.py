@@ -17,6 +17,7 @@ SubscriptionsCreateWebhooksRequestEventsItem = typing.Union[
         "lead.created",
         "partner_inquiry.created",
         "payroll_run.approved",
+        "payroll_run.reversed",
         "pos_report.created",
         "price_list.updated",
         "purchase_invoice.paid",

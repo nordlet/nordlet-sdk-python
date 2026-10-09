@@ -73,6 +73,8 @@ if typing.TYPE_CHECKING:
         GroupsListAssetsRequestSortItemDir,
         GroupsListAssetsResponse,
         GroupsListAssetsResponseRowsItem,
+        SettingsGetAssetsResponse,
+        SettingsUpdateAssetsResponse,
     )
 _dynamic_imports: typing.Dict[str, str] = {
     "AssetsCreateAssetsRequestDocumentsItem": ".types",
@@ -141,6 +143,8 @@ _dynamic_imports: typing.Dict[str, str] = {
     "GroupsListAssetsRequestSortItemDir": ".types",
     "GroupsListAssetsResponse": ".types",
     "GroupsListAssetsResponseRowsItem": ".types",
+    "SettingsGetAssetsResponse": ".types",
+    "SettingsUpdateAssetsResponse": ".types",
 }
 
 
@@ -232,4 +236,6 @@ __all__ = [
     "GroupsListAssetsRequestSortItemDir",
     "GroupsListAssetsResponse",
     "GroupsListAssetsResponseRowsItem",
+    "SettingsGetAssetsResponse",
+    "SettingsUpdateAssetsResponse",
 ]

@@ -61,6 +61,7 @@ from .types.inquiries_update_partners_response import InquiriesUpdatePartnersRes
 from .types.list_partners_request_filter_item import ListPartnersRequestFilterItem
 from .types.list_partners_request_sort_item import ListPartnersRequestSortItem
 from .types.list_partners_response import ListPartnersResponse
+from .types.merge_partners_response import MergePartnersResponse
 from .types.statuses_create_partners_response import StatusesCreatePartnersResponse
 from .types.statuses_delete_partners_response import StatusesDeletePartnersResponse
 from .types.statuses_list_partners_response import StatusesListPartnersResponse
@@ -1476,6 +1477,39 @@ class PartnersClient:
         )
         """
         _response = self._raw_client.delete(id=id, request_options=request_options)
+        return _response.data
+
+    def merge(
+        self, *, source_id: str, target_id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> MergePartnersResponse:
+        """
+        Parameters
+        ----------
+        source_id : str
+
+        target_id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        MergePartnersResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.partners.merge(
+            source_id="sourceId",
+            target_id="targetId",
+        )
+        """
+        _response = self._raw_client.merge(source_id=source_id, target_id=target_id, request_options=request_options)
         return _response.data
 
     def anonymize(
@@ -3650,6 +3684,49 @@ class AsyncPartnersClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.delete(id=id, request_options=request_options)
+        return _response.data
+
+    async def merge(
+        self, *, source_id: str, target_id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> MergePartnersResponse:
+        """
+        Parameters
+        ----------
+        source_id : str
+
+        target_id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        MergePartnersResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.partners.merge(
+                source_id="sourceId",
+                target_id="targetId",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.merge(
+            source_id=source_id, target_id=target_id, request_options=request_options
+        )
         return _response.data
 
     async def anonymize(

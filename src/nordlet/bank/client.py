@@ -74,6 +74,8 @@ from .types.transactions_list_bank_request_sort_item import TransactionsListBank
 from .types.transactions_list_bank_response import TransactionsListBankResponse
 from .types.transactions_match_bank_request_document_type import TransactionsMatchBankRequestDocumentType
 from .types.transactions_match_bank_response import TransactionsMatchBankResponse
+from .types.transactions_match_many_bank_request_allocations_item import TransactionsMatchManyBankRequestAllocationsItem
+from .types.transactions_match_many_bank_response import TransactionsMatchManyBankResponse
 from .types.transactions_record_bank_request_document_type import TransactionsRecordBankRequestDocumentType
 from .types.transactions_record_bank_response import TransactionsRecordBankResponse
 from .types.transactions_suggest_matches_bank_response import TransactionsSuggestMatchesBankResponse
@@ -439,6 +441,52 @@ class BankClient:
             document_id=document_id,
             invoice_amount=invoice_amount,
             request_options=request_options,
+        )
+        return _response.data
+
+    def transactions_match_many(
+        self,
+        *,
+        transaction_id: str,
+        allocations: typing.Sequence[TransactionsMatchManyBankRequestAllocationsItem],
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> TransactionsMatchManyBankResponse:
+        """
+        Parameters
+        ----------
+        transaction_id : str
+
+        allocations : typing.Sequence[TransactionsMatchManyBankRequestAllocationsItem]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        TransactionsMatchManyBankResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+        from nordlet.bank import TransactionsMatchManyBankRequestAllocationsItem
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.bank.transactions_match_many(
+            transaction_id="transactionId",
+            allocations=[
+                TransactionsMatchManyBankRequestAllocationsItem(
+                    document_type="sale_invoice",
+                    document_id="documentId",
+                    amount="121.0000",
+                )
+            ],
+        )
+        """
+        _response = self._raw_client.transactions_match_many(
+            transaction_id=transaction_id, allocations=allocations, request_options=request_options
         )
         return _response.data
 
@@ -2507,6 +2555,60 @@ class AsyncBankClient:
             document_id=document_id,
             invoice_amount=invoice_amount,
             request_options=request_options,
+        )
+        return _response.data
+
+    async def transactions_match_many(
+        self,
+        *,
+        transaction_id: str,
+        allocations: typing.Sequence[TransactionsMatchManyBankRequestAllocationsItem],
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> TransactionsMatchManyBankResponse:
+        """
+        Parameters
+        ----------
+        transaction_id : str
+
+        allocations : typing.Sequence[TransactionsMatchManyBankRequestAllocationsItem]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        TransactionsMatchManyBankResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+        from nordlet.bank import TransactionsMatchManyBankRequestAllocationsItem
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.bank.transactions_match_many(
+                transaction_id="transactionId",
+                allocations=[
+                    TransactionsMatchManyBankRequestAllocationsItem(
+                        document_type="sale_invoice",
+                        document_id="documentId",
+                        amount="121.0000",
+                    )
+                ],
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.transactions_match_many(
+            transaction_id=transaction_id, allocations=allocations, request_options=request_options
         )
         return _response.data
 

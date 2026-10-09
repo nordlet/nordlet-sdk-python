@@ -6,6 +6,10 @@ import typing
 from ..core.client_wrapper import AsyncClientWrapper, SyncClientWrapper
 from ..core.request_options import RequestOptions
 from .raw_client import AsyncRawPurchasesClient, RawPurchasesClient
+from .types.deferrals_list_purchases_request_filter_item import DeferralsListPurchasesRequestFilterItem
+from .types.deferrals_list_purchases_request_sort_item import DeferralsListPurchasesRequestSortItem
+from .types.deferrals_list_purchases_response import DeferralsListPurchasesResponse
+from .types.deferrals_post_purchases_response import DeferralsPostPurchasesResponse
 from .types.invoices_create_purchases_request_lines_item import InvoicesCreatePurchasesRequestLinesItem
 from .types.invoices_create_purchases_request_type import InvoicesCreatePurchasesRequestType
 from .types.invoices_create_purchases_response import InvoicesCreatePurchasesResponse
@@ -357,6 +361,80 @@ class PurchasesClient:
         _response = self._raw_client.invoices_register(
             id=id, registration_date=registration_date, warehouse_id=warehouse_id, request_options=request_options
         )
+        return _response.data
+
+    def deferrals_list(
+        self,
+        *,
+        page: typing.Optional[int] = OMIT,
+        page_size: typing.Optional[int] = OMIT,
+        sort: typing.Optional[typing.Sequence[DeferralsListPurchasesRequestSortItem]] = OMIT,
+        filter: typing.Optional[typing.Sequence[DeferralsListPurchasesRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> DeferralsListPurchasesResponse:
+        """
+        Parameters
+        ----------
+        page : typing.Optional[int]
+
+        page_size : typing.Optional[int]
+
+        sort : typing.Optional[typing.Sequence[DeferralsListPurchasesRequestSortItem]]
+
+        filter : typing.Optional[typing.Sequence[DeferralsListPurchasesRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        DeferralsListPurchasesResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.purchases.deferrals_list()
+        """
+        _response = self._raw_client.deferrals_list(
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
+        )
+        return _response.data
+
+    def deferrals_post(
+        self, *, as_of_date: typing.Optional[dt.date] = OMIT, request_options: typing.Optional[RequestOptions] = None
+    ) -> DeferralsPostPurchasesResponse:
+        """
+        Parameters
+        ----------
+        as_of_date : typing.Optional[dt.date]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        DeferralsPostPurchasesResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.purchases.deferrals_post()
+        """
+        _response = self._raw_client.deferrals_post(as_of_date=as_of_date, request_options=request_options)
         return _response.data
 
     def invoices_list(
@@ -1342,6 +1420,96 @@ class AsyncPurchasesClient:
         _response = await self._raw_client.invoices_register(
             id=id, registration_date=registration_date, warehouse_id=warehouse_id, request_options=request_options
         )
+        return _response.data
+
+    async def deferrals_list(
+        self,
+        *,
+        page: typing.Optional[int] = OMIT,
+        page_size: typing.Optional[int] = OMIT,
+        sort: typing.Optional[typing.Sequence[DeferralsListPurchasesRequestSortItem]] = OMIT,
+        filter: typing.Optional[typing.Sequence[DeferralsListPurchasesRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> DeferralsListPurchasesResponse:
+        """
+        Parameters
+        ----------
+        page : typing.Optional[int]
+
+        page_size : typing.Optional[int]
+
+        sort : typing.Optional[typing.Sequence[DeferralsListPurchasesRequestSortItem]]
+
+        filter : typing.Optional[typing.Sequence[DeferralsListPurchasesRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        DeferralsListPurchasesResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.purchases.deferrals_list()
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.deferrals_list(
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
+        )
+        return _response.data
+
+    async def deferrals_post(
+        self, *, as_of_date: typing.Optional[dt.date] = OMIT, request_options: typing.Optional[RequestOptions] = None
+    ) -> DeferralsPostPurchasesResponse:
+        """
+        Parameters
+        ----------
+        as_of_date : typing.Optional[dt.date]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        DeferralsPostPurchasesResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.purchases.deferrals_post()
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.deferrals_post(as_of_date=as_of_date, request_options=request_options)
         return _response.data
 
     async def invoices_list(

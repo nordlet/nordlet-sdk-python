@@ -21,6 +21,7 @@ from .types.runs_get_payroll_response import RunsGetPayrollResponse
 from .types.runs_list_payroll_request_filter_item import RunsListPayrollRequestFilterItem
 from .types.runs_list_payroll_request_sort_item import RunsListPayrollRequestSortItem
 from .types.runs_list_payroll_response import RunsListPayrollResponse
+from .types.runs_reverse_payroll_response import RunsReversePayrollResponse
 from .types.schedules_create_payroll_response import SchedulesCreatePayrollResponse
 from .types.schedules_list_payroll_response import SchedulesListPayrollResponse
 
@@ -490,6 +491,39 @@ class PayrollClient:
             deduction_account_code=deduction_account_code,
             request_options=request_options,
         )
+        return _response.data
+
+    def runs_reverse(
+        self, *, id: str, reason: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> RunsReversePayrollResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        reason : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        RunsReversePayrollResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.payroll.runs_reverse(
+            id="id",
+            reason="reason",
+        )
+        """
+        _response = self._raw_client.runs_reverse(id=id, reason=reason, request_options=request_options)
         return _response.data
 
     def runs_cancel(
@@ -1115,6 +1149,47 @@ class AsyncPayrollClient:
             deduction_account_code=deduction_account_code,
             request_options=request_options,
         )
+        return _response.data
+
+    async def runs_reverse(
+        self, *, id: str, reason: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> RunsReversePayrollResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        reason : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        RunsReversePayrollResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.payroll.runs_reverse(
+                id="id",
+                reason="reason",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.runs_reverse(id=id, reason=reason, request_options=request_options)
         return _response.data
 
     async def runs_cancel(

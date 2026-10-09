@@ -6,6 +6,13 @@ import typing
 from ..core.client_wrapper import AsyncClientWrapper, SyncClientWrapper
 from ..core.request_options import RequestOptions
 from .raw_client import AsyncRawHrClient, RawHrClient
+from .types.business_trips_approve_hr_response import BusinessTripsApproveHrResponse
+from .types.business_trips_create_hr_response import BusinessTripsCreateHrResponse
+from .types.business_trips_delete_hr_response import BusinessTripsDeleteHrResponse
+from .types.business_trips_get_hr_response import BusinessTripsGetHrResponse
+from .types.business_trips_list_hr_request_filter_item import BusinessTripsListHrRequestFilterItem
+from .types.business_trips_list_hr_request_sort_item import BusinessTripsListHrRequestSortItem
+from .types.business_trips_list_hr_response import BusinessTripsListHrResponse
 from .types.contracts_create_hr_request_salary_type import ContractsCreateHrRequestSalaryType
 from .types.contracts_create_hr_request_type import ContractsCreateHrRequestType
 from .types.contracts_create_hr_response import ContractsCreateHrResponse
@@ -42,6 +49,11 @@ from .types.incapacity_certificates_list_hr_request_sort_item import IncapacityC
 from .types.incapacity_certificates_list_hr_response import IncapacityCertificatesListHrResponse
 from .types.leave_balances_list_hr_response import LeaveBalancesListHrResponse
 from .types.leave_balances_set_hr_response import LeaveBalancesSetHrResponse
+from .types.per_diem_rates_create_hr_response import PerDiemRatesCreateHrResponse
+from .types.per_diem_rates_delete_hr_response import PerDiemRatesDeleteHrResponse
+from .types.per_diem_rates_list_hr_request_filter_item import PerDiemRatesListHrRequestFilterItem
+from .types.per_diem_rates_list_hr_request_sort_item import PerDiemRatesListHrRequestSortItem
+from .types.per_diem_rates_list_hr_response import PerDiemRatesListHrResponse
 from .types.positions_create_hr_request_translations_value import PositionsCreateHrRequestTranslationsValue
 from .types.positions_create_hr_response import PositionsCreateHrResponse
 from .types.positions_list_hr_request_filter_item import PositionsListHrRequestFilterItem
@@ -974,6 +986,327 @@ class HrClient:
         _response = self._raw_client.incapacity_certificates_list(
             page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
+        return _response.data
+
+    def per_diem_rates_create(
+        self,
+        *,
+        country_code: str,
+        daily_amount: str,
+        valid_from: dt.date,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PerDiemRatesCreateHrResponse:
+        """
+        Parameters
+        ----------
+        country_code : str
+
+        daily_amount : str
+
+        valid_from : dt.date
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PerDiemRatesCreateHrResponse
+            Default Response
+
+        Examples
+        --------
+        import datetime
+
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.hr.per_diem_rates_create(
+            country_code="countryCode",
+            daily_amount="121.00",
+            valid_from=datetime.date.fromisoformat(
+                "2026-07-01",
+            ),
+        )
+        """
+        _response = self._raw_client.per_diem_rates_create(
+            country_code=country_code, daily_amount=daily_amount, valid_from=valid_from, request_options=request_options
+        )
+        return _response.data
+
+    def per_diem_rates_list(
+        self,
+        *,
+        page: typing.Optional[int] = OMIT,
+        page_size: typing.Optional[int] = OMIT,
+        sort: typing.Optional[typing.Sequence[PerDiemRatesListHrRequestSortItem]] = OMIT,
+        filter: typing.Optional[typing.Sequence[PerDiemRatesListHrRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PerDiemRatesListHrResponse:
+        """
+        Parameters
+        ----------
+        page : typing.Optional[int]
+
+        page_size : typing.Optional[int]
+
+        sort : typing.Optional[typing.Sequence[PerDiemRatesListHrRequestSortItem]]
+
+        filter : typing.Optional[typing.Sequence[PerDiemRatesListHrRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PerDiemRatesListHrResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.hr.per_diem_rates_list()
+        """
+        _response = self._raw_client.per_diem_rates_list(
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
+        )
+        return _response.data
+
+    def per_diem_rates_delete(
+        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> PerDiemRatesDeleteHrResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PerDiemRatesDeleteHrResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.hr.per_diem_rates_delete(
+            id="id",
+        )
+        """
+        _response = self._raw_client.per_diem_rates_delete(id=id, request_options=request_options)
+        return _response.data
+
+    def business_trips_create(
+        self,
+        *,
+        employee_id: str,
+        destination_country_code: str,
+        purpose: str,
+        start_date: dt.date,
+        end_date: dt.date,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> BusinessTripsCreateHrResponse:
+        """
+        Parameters
+        ----------
+        employee_id : str
+
+        destination_country_code : str
+
+        purpose : str
+
+        start_date : dt.date
+
+        end_date : dt.date
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        BusinessTripsCreateHrResponse
+            Default Response
+
+        Examples
+        --------
+        import datetime
+
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.hr.business_trips_create(
+            employee_id="employeeId",
+            destination_country_code="destinationCountryCode",
+            purpose="purpose",
+            start_date=datetime.date.fromisoformat(
+                "2026-07-01",
+            ),
+            end_date=datetime.date.fromisoformat(
+                "2026-07-01",
+            ),
+        )
+        """
+        _response = self._raw_client.business_trips_create(
+            employee_id=employee_id,
+            destination_country_code=destination_country_code,
+            purpose=purpose,
+            start_date=start_date,
+            end_date=end_date,
+            request_options=request_options,
+        )
+        return _response.data
+
+    def business_trips_get(
+        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> BusinessTripsGetHrResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        BusinessTripsGetHrResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.hr.business_trips_get(
+            id="id",
+        )
+        """
+        _response = self._raw_client.business_trips_get(id=id, request_options=request_options)
+        return _response.data
+
+    def business_trips_list(
+        self,
+        *,
+        page: typing.Optional[int] = OMIT,
+        page_size: typing.Optional[int] = OMIT,
+        sort: typing.Optional[typing.Sequence[BusinessTripsListHrRequestSortItem]] = OMIT,
+        filter: typing.Optional[typing.Sequence[BusinessTripsListHrRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> BusinessTripsListHrResponse:
+        """
+        Parameters
+        ----------
+        page : typing.Optional[int]
+
+        page_size : typing.Optional[int]
+
+        sort : typing.Optional[typing.Sequence[BusinessTripsListHrRequestSortItem]]
+
+        filter : typing.Optional[typing.Sequence[BusinessTripsListHrRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        BusinessTripsListHrResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.hr.business_trips_list()
+        """
+        _response = self._raw_client.business_trips_list(
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
+        )
+        return _response.data
+
+    def business_trips_approve(
+        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> BusinessTripsApproveHrResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        BusinessTripsApproveHrResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.hr.business_trips_approve(
+            id="id",
+        )
+        """
+        _response = self._raw_client.business_trips_approve(id=id, request_options=request_options)
+        return _response.data
+
+    def business_trips_delete(
+        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> BusinessTripsDeleteHrResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        BusinessTripsDeleteHrResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.hr.business_trips_delete(
+            id="id",
+        )
+        """
+        _response = self._raw_client.business_trips_delete(id=id, request_options=request_options)
         return _response.data
 
     def employees_records_create(
@@ -2461,6 +2794,389 @@ class AsyncHrClient:
         _response = await self._raw_client.incapacity_certificates_list(
             page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
+        return _response.data
+
+    async def per_diem_rates_create(
+        self,
+        *,
+        country_code: str,
+        daily_amount: str,
+        valid_from: dt.date,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PerDiemRatesCreateHrResponse:
+        """
+        Parameters
+        ----------
+        country_code : str
+
+        daily_amount : str
+
+        valid_from : dt.date
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PerDiemRatesCreateHrResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+        import datetime
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.hr.per_diem_rates_create(
+                country_code="countryCode",
+                daily_amount="121.00",
+                valid_from=datetime.date.fromisoformat(
+                    "2026-07-01",
+                ),
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.per_diem_rates_create(
+            country_code=country_code, daily_amount=daily_amount, valid_from=valid_from, request_options=request_options
+        )
+        return _response.data
+
+    async def per_diem_rates_list(
+        self,
+        *,
+        page: typing.Optional[int] = OMIT,
+        page_size: typing.Optional[int] = OMIT,
+        sort: typing.Optional[typing.Sequence[PerDiemRatesListHrRequestSortItem]] = OMIT,
+        filter: typing.Optional[typing.Sequence[PerDiemRatesListHrRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PerDiemRatesListHrResponse:
+        """
+        Parameters
+        ----------
+        page : typing.Optional[int]
+
+        page_size : typing.Optional[int]
+
+        sort : typing.Optional[typing.Sequence[PerDiemRatesListHrRequestSortItem]]
+
+        filter : typing.Optional[typing.Sequence[PerDiemRatesListHrRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PerDiemRatesListHrResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.hr.per_diem_rates_list()
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.per_diem_rates_list(
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
+        )
+        return _response.data
+
+    async def per_diem_rates_delete(
+        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> PerDiemRatesDeleteHrResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PerDiemRatesDeleteHrResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.hr.per_diem_rates_delete(
+                id="id",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.per_diem_rates_delete(id=id, request_options=request_options)
+        return _response.data
+
+    async def business_trips_create(
+        self,
+        *,
+        employee_id: str,
+        destination_country_code: str,
+        purpose: str,
+        start_date: dt.date,
+        end_date: dt.date,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> BusinessTripsCreateHrResponse:
+        """
+        Parameters
+        ----------
+        employee_id : str
+
+        destination_country_code : str
+
+        purpose : str
+
+        start_date : dt.date
+
+        end_date : dt.date
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        BusinessTripsCreateHrResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+        import datetime
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.hr.business_trips_create(
+                employee_id="employeeId",
+                destination_country_code="destinationCountryCode",
+                purpose="purpose",
+                start_date=datetime.date.fromisoformat(
+                    "2026-07-01",
+                ),
+                end_date=datetime.date.fromisoformat(
+                    "2026-07-01",
+                ),
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.business_trips_create(
+            employee_id=employee_id,
+            destination_country_code=destination_country_code,
+            purpose=purpose,
+            start_date=start_date,
+            end_date=end_date,
+            request_options=request_options,
+        )
+        return _response.data
+
+    async def business_trips_get(
+        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> BusinessTripsGetHrResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        BusinessTripsGetHrResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.hr.business_trips_get(
+                id="id",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.business_trips_get(id=id, request_options=request_options)
+        return _response.data
+
+    async def business_trips_list(
+        self,
+        *,
+        page: typing.Optional[int] = OMIT,
+        page_size: typing.Optional[int] = OMIT,
+        sort: typing.Optional[typing.Sequence[BusinessTripsListHrRequestSortItem]] = OMIT,
+        filter: typing.Optional[typing.Sequence[BusinessTripsListHrRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> BusinessTripsListHrResponse:
+        """
+        Parameters
+        ----------
+        page : typing.Optional[int]
+
+        page_size : typing.Optional[int]
+
+        sort : typing.Optional[typing.Sequence[BusinessTripsListHrRequestSortItem]]
+
+        filter : typing.Optional[typing.Sequence[BusinessTripsListHrRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        BusinessTripsListHrResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.hr.business_trips_list()
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.business_trips_list(
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
+        )
+        return _response.data
+
+    async def business_trips_approve(
+        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> BusinessTripsApproveHrResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        BusinessTripsApproveHrResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.hr.business_trips_approve(
+                id="id",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.business_trips_approve(id=id, request_options=request_options)
+        return _response.data
+
+    async def business_trips_delete(
+        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> BusinessTripsDeleteHrResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        BusinessTripsDeleteHrResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.hr.business_trips_delete(
+                id="id",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.business_trips_delete(id=id, request_options=request_options)
         return _response.data
 
     async def employees_records_create(

@@ -7,6 +7,16 @@ from importlib import import_module
 
 if typing.TYPE_CHECKING:
     from .types import (
+        DeferralsListPurchasesRequestFilterItem,
+        DeferralsListPurchasesRequestFilterItemOp,
+        DeferralsListPurchasesRequestFilterItemValue,
+        DeferralsListPurchasesRequestFilterItemValueThreeItem,
+        DeferralsListPurchasesRequestSortItem,
+        DeferralsListPurchasesRequestSortItemDir,
+        DeferralsListPurchasesResponse,
+        DeferralsListPurchasesResponseRowsItem,
+        DeferralsListPurchasesResponseRowsItemStatus,
+        DeferralsPostPurchasesResponse,
         InvoicesCreatePurchasesRequestLinesItem,
         InvoicesCreatePurchasesRequestLinesItemQuantity,
         InvoicesCreatePurchasesRequestType,
@@ -101,6 +111,16 @@ if typing.TYPE_CHECKING:
         ReceiptsListPurchasesResponseRowsItem,
     )
 _dynamic_imports: typing.Dict[str, str] = {
+    "DeferralsListPurchasesRequestFilterItem": ".types",
+    "DeferralsListPurchasesRequestFilterItemOp": ".types",
+    "DeferralsListPurchasesRequestFilterItemValue": ".types",
+    "DeferralsListPurchasesRequestFilterItemValueThreeItem": ".types",
+    "DeferralsListPurchasesRequestSortItem": ".types",
+    "DeferralsListPurchasesRequestSortItemDir": ".types",
+    "DeferralsListPurchasesResponse": ".types",
+    "DeferralsListPurchasesResponseRowsItem": ".types",
+    "DeferralsListPurchasesResponseRowsItemStatus": ".types",
+    "DeferralsPostPurchasesResponse": ".types",
     "InvoicesCreatePurchasesRequestLinesItem": ".types",
     "InvoicesCreatePurchasesRequestLinesItemQuantity": ".types",
     "InvoicesCreatePurchasesRequestType": ".types",
@@ -218,6 +238,16 @@ def __dir__():
 
 
 __all__ = [
+    "DeferralsListPurchasesRequestFilterItem",
+    "DeferralsListPurchasesRequestFilterItemOp",
+    "DeferralsListPurchasesRequestFilterItemValue",
+    "DeferralsListPurchasesRequestFilterItemValueThreeItem",
+    "DeferralsListPurchasesRequestSortItem",
+    "DeferralsListPurchasesRequestSortItemDir",
+    "DeferralsListPurchasesResponse",
+    "DeferralsListPurchasesResponseRowsItem",
+    "DeferralsListPurchasesResponseRowsItemStatus",
+    "DeferralsPostPurchasesResponse",
     "InvoicesCreatePurchasesRequestLinesItem",
     "InvoicesCreatePurchasesRequestLinesItemQuantity",
     "InvoicesCreatePurchasesRequestType",

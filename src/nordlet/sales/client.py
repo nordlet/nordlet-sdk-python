@@ -659,6 +659,7 @@ class SalesClient:
         series: typing.Optional[str] = OMIT,
         issue_date: typing.Optional[dt.date] = OMIT,
         warehouse_id: typing.Optional[str] = OMIT,
+        return_to_stock: typing.Optional[bool] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> InvoicesIssueSalesResponse:
         """
@@ -671,6 +672,8 @@ class SalesClient:
         issue_date : typing.Optional[dt.date]
 
         warehouse_id : typing.Optional[str]
+
+        return_to_stock : typing.Optional[bool]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -692,7 +695,12 @@ class SalesClient:
         )
         """
         _response = self._raw_client.invoices_issue(
-            id=id, series=series, issue_date=issue_date, warehouse_id=warehouse_id, request_options=request_options
+            id=id,
+            series=series,
+            issue_date=issue_date,
+            warehouse_id=warehouse_id,
+            return_to_stock=return_to_stock,
+            request_options=request_options,
         )
         return _response.data
 
@@ -2310,6 +2318,7 @@ class AsyncSalesClient:
         series: typing.Optional[str] = OMIT,
         issue_date: typing.Optional[dt.date] = OMIT,
         warehouse_id: typing.Optional[str] = OMIT,
+        return_to_stock: typing.Optional[bool] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> InvoicesIssueSalesResponse:
         """
@@ -2322,6 +2331,8 @@ class AsyncSalesClient:
         issue_date : typing.Optional[dt.date]
 
         warehouse_id : typing.Optional[str]
+
+        return_to_stock : typing.Optional[bool]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -2351,7 +2362,12 @@ class AsyncSalesClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.invoices_issue(
-            id=id, series=series, issue_date=issue_date, warehouse_id=warehouse_id, request_options=request_options
+            id=id,
+            series=series,
+            issue_date=issue_date,
+            warehouse_id=warehouse_id,
+            return_to_stock=return_to_stock,
+            request_options=request_options,
         )
         return _response.data
 

@@ -27,6 +27,8 @@ from .types.groups_create_assets_response import GroupsCreateAssetsResponse
 from .types.groups_list_assets_request_filter_item import GroupsListAssetsRequestFilterItem
 from .types.groups_list_assets_request_sort_item import GroupsListAssetsRequestSortItem
 from .types.groups_list_assets_response import GroupsListAssetsResponse
+from .types.settings_get_assets_response import SettingsGetAssetsResponse
+from .types.settings_update_assets_response import SettingsUpdateAssetsResponse
 
 # this is used as the default value for optional parameters
 OMIT = typing.cast(typing.Any, ...)
@@ -46,6 +48,62 @@ class AssetsClient:
         RawAssetsClient
         """
         return self._raw_client
+
+    def settings_get(self, *, request_options: typing.Optional[RequestOptions] = None) -> SettingsGetAssetsResponse:
+        """
+        Parameters
+        ----------
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        SettingsGetAssetsResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.assets.settings_get()
+        """
+        _response = self._raw_client.settings_get(request_options=request_options)
+        return _response.data
+
+    def settings_update(
+        self, *, auto_depreciation: bool, request_options: typing.Optional[RequestOptions] = None
+    ) -> SettingsUpdateAssetsResponse:
+        """
+        Parameters
+        ----------
+        auto_depreciation : bool
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        SettingsUpdateAssetsResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.assets.settings_update(
+            auto_depreciation=True,
+        )
+        """
+        _response = self._raw_client.settings_update(
+            auto_depreciation=auto_depreciation, request_options=request_options
+        )
+        return _response.data
 
     def groups_create(
         self,
@@ -646,6 +704,80 @@ class AsyncAssetsClient:
         AsyncRawAssetsClient
         """
         return self._raw_client
+
+    async def settings_get(
+        self, *, request_options: typing.Optional[RequestOptions] = None
+    ) -> SettingsGetAssetsResponse:
+        """
+        Parameters
+        ----------
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        SettingsGetAssetsResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.assets.settings_get()
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.settings_get(request_options=request_options)
+        return _response.data
+
+    async def settings_update(
+        self, *, auto_depreciation: bool, request_options: typing.Optional[RequestOptions] = None
+    ) -> SettingsUpdateAssetsResponse:
+        """
+        Parameters
+        ----------
+        auto_depreciation : bool
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        SettingsUpdateAssetsResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.assets.settings_update(
+                auto_depreciation=True,
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.settings_update(
+            auto_depreciation=auto_depreciation, request_options=request_options
+        )
+        return _response.data
 
     async def groups_create(
         self,

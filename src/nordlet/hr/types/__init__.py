@@ -6,6 +6,24 @@ import typing
 from importlib import import_module
 
 if typing.TYPE_CHECKING:
+    from .business_trips_approve_hr_response import BusinessTripsApproveHrResponse
+    from .business_trips_approve_hr_response_status import BusinessTripsApproveHrResponseStatus
+    from .business_trips_create_hr_response import BusinessTripsCreateHrResponse
+    from .business_trips_create_hr_response_status import BusinessTripsCreateHrResponseStatus
+    from .business_trips_delete_hr_response import BusinessTripsDeleteHrResponse
+    from .business_trips_get_hr_response import BusinessTripsGetHrResponse
+    from .business_trips_get_hr_response_status import BusinessTripsGetHrResponseStatus
+    from .business_trips_list_hr_request_filter_item import BusinessTripsListHrRequestFilterItem
+    from .business_trips_list_hr_request_filter_item_op import BusinessTripsListHrRequestFilterItemOp
+    from .business_trips_list_hr_request_filter_item_value import BusinessTripsListHrRequestFilterItemValue
+    from .business_trips_list_hr_request_filter_item_value_three_item import (
+        BusinessTripsListHrRequestFilterItemValueThreeItem,
+    )
+    from .business_trips_list_hr_request_sort_item import BusinessTripsListHrRequestSortItem
+    from .business_trips_list_hr_request_sort_item_dir import BusinessTripsListHrRequestSortItemDir
+    from .business_trips_list_hr_response import BusinessTripsListHrResponse
+    from .business_trips_list_hr_response_rows_item import BusinessTripsListHrResponseRowsItem
+    from .business_trips_list_hr_response_rows_item_status import BusinessTripsListHrResponseRowsItemStatus
     from .contracts_create_hr_request_salary_type import ContractsCreateHrRequestSalaryType
     from .contracts_create_hr_request_type import ContractsCreateHrRequestType
     from .contracts_create_hr_response import ContractsCreateHrResponse
@@ -102,6 +120,18 @@ if typing.TYPE_CHECKING:
     from .leave_balances_list_hr_response import LeaveBalancesListHrResponse
     from .leave_balances_list_hr_response_rows_item import LeaveBalancesListHrResponseRowsItem
     from .leave_balances_set_hr_response import LeaveBalancesSetHrResponse
+    from .per_diem_rates_create_hr_response import PerDiemRatesCreateHrResponse
+    from .per_diem_rates_delete_hr_response import PerDiemRatesDeleteHrResponse
+    from .per_diem_rates_list_hr_request_filter_item import PerDiemRatesListHrRequestFilterItem
+    from .per_diem_rates_list_hr_request_filter_item_op import PerDiemRatesListHrRequestFilterItemOp
+    from .per_diem_rates_list_hr_request_filter_item_value import PerDiemRatesListHrRequestFilterItemValue
+    from .per_diem_rates_list_hr_request_filter_item_value_three_item import (
+        PerDiemRatesListHrRequestFilterItemValueThreeItem,
+    )
+    from .per_diem_rates_list_hr_request_sort_item import PerDiemRatesListHrRequestSortItem
+    from .per_diem_rates_list_hr_request_sort_item_dir import PerDiemRatesListHrRequestSortItemDir
+    from .per_diem_rates_list_hr_response import PerDiemRatesListHrResponse
+    from .per_diem_rates_list_hr_response_rows_item import PerDiemRatesListHrResponseRowsItem
     from .positions_create_hr_request_translations_value import PositionsCreateHrRequestTranslationsValue
     from .positions_create_hr_response import PositionsCreateHrResponse
     from .positions_create_hr_response_translations_value import PositionsCreateHrResponseTranslationsValue
@@ -134,6 +164,22 @@ if typing.TYPE_CHECKING:
     from .timesheets_upsert_hr_response_days_item import TimesheetsUpsertHrResponseDaysItem
     from .timesheets_upsert_hr_response_days_item_type import TimesheetsUpsertHrResponseDaysItemType
 _dynamic_imports: typing.Dict[str, str] = {
+    "BusinessTripsApproveHrResponse": ".business_trips_approve_hr_response",
+    "BusinessTripsApproveHrResponseStatus": ".business_trips_approve_hr_response_status",
+    "BusinessTripsCreateHrResponse": ".business_trips_create_hr_response",
+    "BusinessTripsCreateHrResponseStatus": ".business_trips_create_hr_response_status",
+    "BusinessTripsDeleteHrResponse": ".business_trips_delete_hr_response",
+    "BusinessTripsGetHrResponse": ".business_trips_get_hr_response",
+    "BusinessTripsGetHrResponseStatus": ".business_trips_get_hr_response_status",
+    "BusinessTripsListHrRequestFilterItem": ".business_trips_list_hr_request_filter_item",
+    "BusinessTripsListHrRequestFilterItemOp": ".business_trips_list_hr_request_filter_item_op",
+    "BusinessTripsListHrRequestFilterItemValue": ".business_trips_list_hr_request_filter_item_value",
+    "BusinessTripsListHrRequestFilterItemValueThreeItem": ".business_trips_list_hr_request_filter_item_value_three_item",
+    "BusinessTripsListHrRequestSortItem": ".business_trips_list_hr_request_sort_item",
+    "BusinessTripsListHrRequestSortItemDir": ".business_trips_list_hr_request_sort_item_dir",
+    "BusinessTripsListHrResponse": ".business_trips_list_hr_response",
+    "BusinessTripsListHrResponseRowsItem": ".business_trips_list_hr_response_rows_item",
+    "BusinessTripsListHrResponseRowsItemStatus": ".business_trips_list_hr_response_rows_item_status",
     "ContractsCreateHrRequestSalaryType": ".contracts_create_hr_request_salary_type",
     "ContractsCreateHrRequestType": ".contracts_create_hr_request_type",
     "ContractsCreateHrResponse": ".contracts_create_hr_response",
@@ -224,6 +270,16 @@ _dynamic_imports: typing.Dict[str, str] = {
     "LeaveBalancesListHrResponse": ".leave_balances_list_hr_response",
     "LeaveBalancesListHrResponseRowsItem": ".leave_balances_list_hr_response_rows_item",
     "LeaveBalancesSetHrResponse": ".leave_balances_set_hr_response",
+    "PerDiemRatesCreateHrResponse": ".per_diem_rates_create_hr_response",
+    "PerDiemRatesDeleteHrResponse": ".per_diem_rates_delete_hr_response",
+    "PerDiemRatesListHrRequestFilterItem": ".per_diem_rates_list_hr_request_filter_item",
+    "PerDiemRatesListHrRequestFilterItemOp": ".per_diem_rates_list_hr_request_filter_item_op",
+    "PerDiemRatesListHrRequestFilterItemValue": ".per_diem_rates_list_hr_request_filter_item_value",
+    "PerDiemRatesListHrRequestFilterItemValueThreeItem": ".per_diem_rates_list_hr_request_filter_item_value_three_item",
+    "PerDiemRatesListHrRequestSortItem": ".per_diem_rates_list_hr_request_sort_item",
+    "PerDiemRatesListHrRequestSortItemDir": ".per_diem_rates_list_hr_request_sort_item_dir",
+    "PerDiemRatesListHrResponse": ".per_diem_rates_list_hr_response",
+    "PerDiemRatesListHrResponseRowsItem": ".per_diem_rates_list_hr_response_rows_item",
     "PositionsCreateHrRequestTranslationsValue": ".positions_create_hr_request_translations_value",
     "PositionsCreateHrResponse": ".positions_create_hr_response",
     "PositionsCreateHrResponseTranslationsValue": ".positions_create_hr_response_translations_value",
@@ -278,6 +334,22 @@ def __dir__():
 
 
 __all__ = [
+    "BusinessTripsApproveHrResponse",
+    "BusinessTripsApproveHrResponseStatus",
+    "BusinessTripsCreateHrResponse",
+    "BusinessTripsCreateHrResponseStatus",
+    "BusinessTripsDeleteHrResponse",
+    "BusinessTripsGetHrResponse",
+    "BusinessTripsGetHrResponseStatus",
+    "BusinessTripsListHrRequestFilterItem",
+    "BusinessTripsListHrRequestFilterItemOp",
+    "BusinessTripsListHrRequestFilterItemValue",
+    "BusinessTripsListHrRequestFilterItemValueThreeItem",
+    "BusinessTripsListHrRequestSortItem",
+    "BusinessTripsListHrRequestSortItemDir",
+    "BusinessTripsListHrResponse",
+    "BusinessTripsListHrResponseRowsItem",
+    "BusinessTripsListHrResponseRowsItemStatus",
     "ContractsCreateHrRequestSalaryType",
     "ContractsCreateHrRequestType",
     "ContractsCreateHrResponse",
@@ -368,6 +440,16 @@ __all__ = [
     "LeaveBalancesListHrResponse",
     "LeaveBalancesListHrResponseRowsItem",
     "LeaveBalancesSetHrResponse",
+    "PerDiemRatesCreateHrResponse",
+    "PerDiemRatesDeleteHrResponse",
+    "PerDiemRatesListHrRequestFilterItem",
+    "PerDiemRatesListHrRequestFilterItemOp",
+    "PerDiemRatesListHrRequestFilterItemValue",
+    "PerDiemRatesListHrRequestFilterItemValueThreeItem",
+    "PerDiemRatesListHrRequestSortItem",
+    "PerDiemRatesListHrRequestSortItemDir",
+    "PerDiemRatesListHrResponse",
+    "PerDiemRatesListHrResponseRowsItem",
     "PositionsCreateHrRequestTranslationsValue",
     "PositionsCreateHrResponse",
     "PositionsCreateHrResponseTranslationsValue",

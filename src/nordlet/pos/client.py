@@ -11,6 +11,12 @@ from .types.devices_list_pos_request_filter_item import DevicesListPosRequestFil
 from .types.devices_list_pos_request_sort_item import DevicesListPosRequestSortItem
 from .types.devices_list_pos_response import DevicesListPosResponse
 from .types.devices_update_pos_response import DevicesUpdatePosResponse
+from .types.receipts_create_pos_request_lines_item import ReceiptsCreatePosRequestLinesItem
+from .types.receipts_create_pos_response import ReceiptsCreatePosResponse
+from .types.receipts_get_pos_response import ReceiptsGetPosResponse
+from .types.receipts_list_pos_request_filter_item import ReceiptsListPosRequestFilterItem
+from .types.receipts_list_pos_request_sort_item import ReceiptsListPosRequestSortItem
+from .types.receipts_list_pos_response import ReceiptsListPosResponse
 from .types.reports_create_pos_request_item_lines_item import ReportsCreatePosRequestItemLinesItem
 from .types.reports_create_pos_request_vat_lines_item import ReportsCreatePosRequestVatLinesItem
 from .types.reports_create_pos_response import ReportsCreatePosResponse
@@ -18,6 +24,12 @@ from .types.reports_get_pos_response import ReportsGetPosResponse
 from .types.reports_list_pos_request_filter_item import ReportsListPosRequestFilterItem
 from .types.reports_list_pos_request_sort_item import ReportsListPosRequestSortItem
 from .types.reports_list_pos_response import ReportsListPosResponse
+from .types.shifts_close_pos_response import ShiftsClosePosResponse
+from .types.shifts_get_pos_response import ShiftsGetPosResponse
+from .types.shifts_list_pos_request_filter_item import ShiftsListPosRequestFilterItem
+from .types.shifts_list_pos_request_sort_item import ShiftsListPosRequestSortItem
+from .types.shifts_list_pos_response import ShiftsListPosResponse
+from .types.shifts_open_pos_response import ShiftsOpenPosResponse
 
 # this is used as the default value for optional parameters
 OMIT = typing.cast(typing.Any, ...)
@@ -373,6 +385,298 @@ class PosClient:
         """
         _response = self._raw_client.reports_list(
             page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
+        )
+        return _response.data
+
+    def shifts_open(
+        self,
+        *,
+        device_id: str,
+        warehouse_id: typing.Optional[str] = OMIT,
+        opening_cash: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> ShiftsOpenPosResponse:
+        """
+        Parameters
+        ----------
+        device_id : str
+
+        warehouse_id : typing.Optional[str]
+
+        opening_cash : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        ShiftsOpenPosResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.pos.shifts_open(
+            device_id="deviceId",
+        )
+        """
+        _response = self._raw_client.shifts_open(
+            device_id=device_id, warehouse_id=warehouse_id, opening_cash=opening_cash, request_options=request_options
+        )
+        return _response.data
+
+    def shifts_get(self, *, id: str, request_options: typing.Optional[RequestOptions] = None) -> ShiftsGetPosResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        ShiftsGetPosResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.pos.shifts_get(
+            id="id",
+        )
+        """
+        _response = self._raw_client.shifts_get(id=id, request_options=request_options)
+        return _response.data
+
+    def shifts_list(
+        self,
+        *,
+        page: typing.Optional[int] = OMIT,
+        page_size: typing.Optional[int] = OMIT,
+        sort: typing.Optional[typing.Sequence[ShiftsListPosRequestSortItem]] = OMIT,
+        filter: typing.Optional[typing.Sequence[ShiftsListPosRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> ShiftsListPosResponse:
+        """
+        Parameters
+        ----------
+        page : typing.Optional[int]
+
+        page_size : typing.Optional[int]
+
+        sort : typing.Optional[typing.Sequence[ShiftsListPosRequestSortItem]]
+
+        filter : typing.Optional[typing.Sequence[ShiftsListPosRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        ShiftsListPosResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.pos.shifts_list()
+        """
+        _response = self._raw_client.shifts_list(
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
+        )
+        return _response.data
+
+    def receipts_create(
+        self,
+        *,
+        shift_id: str,
+        lines: typing.Sequence[ReceiptsCreatePosRequestLinesItem],
+        cash_amount: typing.Optional[str] = OMIT,
+        card_amount: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> ReceiptsCreatePosResponse:
+        """
+        Parameters
+        ----------
+        shift_id : str
+
+        lines : typing.Sequence[ReceiptsCreatePosRequestLinesItem]
+
+        cash_amount : typing.Optional[str]
+
+        card_amount : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        ReceiptsCreatePosResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+        from nordlet.pos import ReceiptsCreatePosRequestLinesItem
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.pos.receipts_create(
+            shift_id="shiftId",
+            lines=[
+                ReceiptsCreatePosRequestLinesItem(
+                    quantity="121.0000",
+                    unit_price_incl_vat="121.0000",
+                    vat_rate_percent="121.00",
+                )
+            ],
+        )
+        """
+        _response = self._raw_client.receipts_create(
+            shift_id=shift_id,
+            lines=lines,
+            cash_amount=cash_amount,
+            card_amount=card_amount,
+            request_options=request_options,
+        )
+        return _response.data
+
+    def receipts_list(
+        self,
+        *,
+        page: typing.Optional[int] = OMIT,
+        page_size: typing.Optional[int] = OMIT,
+        sort: typing.Optional[typing.Sequence[ReceiptsListPosRequestSortItem]] = OMIT,
+        filter: typing.Optional[typing.Sequence[ReceiptsListPosRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> ReceiptsListPosResponse:
+        """
+        Parameters
+        ----------
+        page : typing.Optional[int]
+
+        page_size : typing.Optional[int]
+
+        sort : typing.Optional[typing.Sequence[ReceiptsListPosRequestSortItem]]
+
+        filter : typing.Optional[typing.Sequence[ReceiptsListPosRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        ReceiptsListPosResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.pos.receipts_list()
+        """
+        _response = self._raw_client.receipts_list(
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
+        )
+        return _response.data
+
+    def receipts_get(
+        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> ReceiptsGetPosResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        ReceiptsGetPosResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.pos.receipts_get(
+            id="id",
+        )
+        """
+        _response = self._raw_client.receipts_get(id=id, request_options=request_options)
+        return _response.data
+
+    def shifts_close(
+        self,
+        *,
+        id: str,
+        counted_cash: str,
+        date: typing.Optional[dt.date] = OMIT,
+        report_number: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> ShiftsClosePosResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        counted_cash : str
+
+        date : typing.Optional[dt.date]
+
+        report_number : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        ShiftsClosePosResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.pos.shifts_close(
+            id="id",
+            counted_cash="121.00",
+        )
+        """
+        _response = self._raw_client.shifts_close(
+            id=id, counted_cash=counted_cash, date=date, report_number=report_number, request_options=request_options
         )
         return _response.data
 
@@ -776,5 +1080,355 @@ class AsyncPosClient:
         """
         _response = await self._raw_client.reports_list(
             page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
+        )
+        return _response.data
+
+    async def shifts_open(
+        self,
+        *,
+        device_id: str,
+        warehouse_id: typing.Optional[str] = OMIT,
+        opening_cash: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> ShiftsOpenPosResponse:
+        """
+        Parameters
+        ----------
+        device_id : str
+
+        warehouse_id : typing.Optional[str]
+
+        opening_cash : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        ShiftsOpenPosResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.pos.shifts_open(
+                device_id="deviceId",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.shifts_open(
+            device_id=device_id, warehouse_id=warehouse_id, opening_cash=opening_cash, request_options=request_options
+        )
+        return _response.data
+
+    async def shifts_get(
+        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> ShiftsGetPosResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        ShiftsGetPosResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.pos.shifts_get(
+                id="id",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.shifts_get(id=id, request_options=request_options)
+        return _response.data
+
+    async def shifts_list(
+        self,
+        *,
+        page: typing.Optional[int] = OMIT,
+        page_size: typing.Optional[int] = OMIT,
+        sort: typing.Optional[typing.Sequence[ShiftsListPosRequestSortItem]] = OMIT,
+        filter: typing.Optional[typing.Sequence[ShiftsListPosRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> ShiftsListPosResponse:
+        """
+        Parameters
+        ----------
+        page : typing.Optional[int]
+
+        page_size : typing.Optional[int]
+
+        sort : typing.Optional[typing.Sequence[ShiftsListPosRequestSortItem]]
+
+        filter : typing.Optional[typing.Sequence[ShiftsListPosRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        ShiftsListPosResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.pos.shifts_list()
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.shifts_list(
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
+        )
+        return _response.data
+
+    async def receipts_create(
+        self,
+        *,
+        shift_id: str,
+        lines: typing.Sequence[ReceiptsCreatePosRequestLinesItem],
+        cash_amount: typing.Optional[str] = OMIT,
+        card_amount: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> ReceiptsCreatePosResponse:
+        """
+        Parameters
+        ----------
+        shift_id : str
+
+        lines : typing.Sequence[ReceiptsCreatePosRequestLinesItem]
+
+        cash_amount : typing.Optional[str]
+
+        card_amount : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        ReceiptsCreatePosResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+        from nordlet.pos import ReceiptsCreatePosRequestLinesItem
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.pos.receipts_create(
+                shift_id="shiftId",
+                lines=[
+                    ReceiptsCreatePosRequestLinesItem(
+                        quantity="121.0000",
+                        unit_price_incl_vat="121.0000",
+                        vat_rate_percent="121.00",
+                    )
+                ],
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.receipts_create(
+            shift_id=shift_id,
+            lines=lines,
+            cash_amount=cash_amount,
+            card_amount=card_amount,
+            request_options=request_options,
+        )
+        return _response.data
+
+    async def receipts_list(
+        self,
+        *,
+        page: typing.Optional[int] = OMIT,
+        page_size: typing.Optional[int] = OMIT,
+        sort: typing.Optional[typing.Sequence[ReceiptsListPosRequestSortItem]] = OMIT,
+        filter: typing.Optional[typing.Sequence[ReceiptsListPosRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> ReceiptsListPosResponse:
+        """
+        Parameters
+        ----------
+        page : typing.Optional[int]
+
+        page_size : typing.Optional[int]
+
+        sort : typing.Optional[typing.Sequence[ReceiptsListPosRequestSortItem]]
+
+        filter : typing.Optional[typing.Sequence[ReceiptsListPosRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        ReceiptsListPosResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.pos.receipts_list()
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.receipts_list(
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
+        )
+        return _response.data
+
+    async def receipts_get(
+        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> ReceiptsGetPosResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        ReceiptsGetPosResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.pos.receipts_get(
+                id="id",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.receipts_get(id=id, request_options=request_options)
+        return _response.data
+
+    async def shifts_close(
+        self,
+        *,
+        id: str,
+        counted_cash: str,
+        date: typing.Optional[dt.date] = OMIT,
+        report_number: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> ShiftsClosePosResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        counted_cash : str
+
+        date : typing.Optional[dt.date]
+
+        report_number : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        ShiftsClosePosResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.pos.shifts_close(
+                id="id",
+                counted_cash="121.00",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.shifts_close(
+            id=id, counted_cash=counted_cash, date=date, report_number=report_number, request_options=request_options
         )
         return _response.data

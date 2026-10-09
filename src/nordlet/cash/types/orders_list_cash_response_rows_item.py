@@ -35,6 +35,12 @@ class OrdersListCashResponseRowsItem(UniversalBaseModel):
     journal_transaction_id: typing_extensions.Annotated[
         typing.Optional[str], FieldMetadata(alias="journalTransactionId"), pydantic.Field(alias="journalTransactionId")
     ] = None
+    sale_invoice_id: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="saleInvoiceId"), pydantic.Field(alias="saleInvoiceId")
+    ] = None
+    purchase_invoice_id: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="purchaseInvoiceId"), pydantic.Field(alias="purchaseInvoiceId")
+    ] = None
     notes: typing.Optional[str] = None
     created_at: typing_extensions.Annotated[
         dt.datetime, FieldMetadata(alias="createdAt"), pydantic.Field(alias="createdAt")
