@@ -35,6 +35,8 @@ if typing.TYPE_CHECKING:
     from .operation_types.client import AsyncOperationTypesClient, OperationTypesClient
     from .partners.client import AsyncPartnersClient, PartnersClient
     from .payroll.client import AsyncPayrollClient, PayrollClient
+    from .peppol.client import AsyncPeppolClient, PeppolClient
+    from .platform_sellers.client import AsyncPlatformSellersClient, PlatformSellersClient
     from .pos.client import AsyncPosClient, PosClient
     from .production.client import AsyncProductionClient, ProductionClient
     from .projects.client import AsyncProjectsClient, ProjectsClient
@@ -140,9 +142,11 @@ class Nordlet:
         self._document_series: typing.Optional[DocumentSeriesClient] = None
         self._purchases: typing.Optional[PurchasesClient] = None
         self._capture: typing.Optional[CaptureClient] = None
+        self._peppol: typing.Optional[PeppolClient] = None
         self._declarations: typing.Optional[DeclarationsClient] = None
         self._ledger: typing.Optional[LedgerClient] = None
         self._officers: typing.Optional[OfficersClient] = None
+        self._platform_sellers: typing.Optional[PlatformSellersClient] = None
         self._migration: typing.Optional[MigrationClient] = None
         self._assets: typing.Optional[AssetsClient] = None
         self._hr: typing.Optional[HrClient] = None
@@ -240,6 +244,14 @@ class Nordlet:
         return self._capture
 
     @property
+    def peppol(self):
+        if self._peppol is None:
+            from .peppol.client import PeppolClient  # noqa: E402
+
+            self._peppol = PeppolClient(client_wrapper=self._client_wrapper)
+        return self._peppol
+
+    @property
     def declarations(self):
         if self._declarations is None:
             from .declarations.client import DeclarationsClient  # noqa: E402
@@ -262,6 +274,14 @@ class Nordlet:
 
             self._officers = OfficersClient(client_wrapper=self._client_wrapper)
         return self._officers
+
+    @property
+    def platform_sellers(self):
+        if self._platform_sellers is None:
+            from .platform_sellers.client import PlatformSellersClient  # noqa: E402
+
+            self._platform_sellers = PlatformSellersClient(client_wrapper=self._client_wrapper)
+        return self._platform_sellers
 
     @property
     def migration(self):
@@ -562,9 +582,11 @@ class AsyncNordlet:
         self._document_series: typing.Optional[AsyncDocumentSeriesClient] = None
         self._purchases: typing.Optional[AsyncPurchasesClient] = None
         self._capture: typing.Optional[AsyncCaptureClient] = None
+        self._peppol: typing.Optional[AsyncPeppolClient] = None
         self._declarations: typing.Optional[AsyncDeclarationsClient] = None
         self._ledger: typing.Optional[AsyncLedgerClient] = None
         self._officers: typing.Optional[AsyncOfficersClient] = None
+        self._platform_sellers: typing.Optional[AsyncPlatformSellersClient] = None
         self._migration: typing.Optional[AsyncMigrationClient] = None
         self._assets: typing.Optional[AsyncAssetsClient] = None
         self._hr: typing.Optional[AsyncHrClient] = None
@@ -662,6 +684,14 @@ class AsyncNordlet:
         return self._capture
 
     @property
+    def peppol(self):
+        if self._peppol is None:
+            from .peppol.client import AsyncPeppolClient  # noqa: E402
+
+            self._peppol = AsyncPeppolClient(client_wrapper=self._client_wrapper)
+        return self._peppol
+
+    @property
     def declarations(self):
         if self._declarations is None:
             from .declarations.client import AsyncDeclarationsClient  # noqa: E402
@@ -684,6 +714,14 @@ class AsyncNordlet:
 
             self._officers = AsyncOfficersClient(client_wrapper=self._client_wrapper)
         return self._officers
+
+    @property
+    def platform_sellers(self):
+        if self._platform_sellers is None:
+            from .platform_sellers.client import AsyncPlatformSellersClient  # noqa: E402
+
+            self._platform_sellers = AsyncPlatformSellersClient(client_wrapper=self._client_wrapper)
+        return self._platform_sellers
 
     @property
     def migration(self):

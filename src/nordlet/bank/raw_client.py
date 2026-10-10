@@ -22,10 +22,12 @@ from ..errors.too_many_requests_error import TooManyRequestsError
 from ..errors.unauthorized_error import UnauthorizedError
 from ..errors.unprocessable_entity_error import UnprocessableEntityError
 from ..types.error_response import ErrorResponse
+from .types.accounts_create_bank_request_type import AccountsCreateBankRequestType
 from .types.accounts_create_bank_response import AccountsCreateBankResponse
 from .types.accounts_list_bank_request_filter_item import AccountsListBankRequestFilterItem
 from .types.accounts_list_bank_request_sort_item import AccountsListBankRequestSortItem
 from .types.accounts_list_bank_response import AccountsListBankResponse
+from .types.accounts_update_bank_request_type import AccountsUpdateBankRequestType
 from .types.accounts_update_bank_response import AccountsUpdateBankResponse
 from .types.direct_debits_candidates_bank_request_filter_item import DirectDebitsCandidatesBankRequestFilterItem
 from .types.direct_debits_candidates_bank_request_sort_item import DirectDebitsCandidatesBankRequestSortItem
@@ -110,6 +112,7 @@ class RawBankClient:
         self,
         *,
         name: str,
+        type: typing.Optional[AccountsCreateBankRequestType] = OMIT,
         iban: typing.Optional[str] = OMIT,
         currency: typing.Optional[str] = OMIT,
         account_code: typing.Optional[str] = OMIT,
@@ -120,6 +123,8 @@ class RawBankClient:
         Parameters
         ----------
         name : str
+
+        type : typing.Optional[AccountsCreateBankRequestType]
 
         iban : typing.Optional[str]
 
@@ -142,6 +147,7 @@ class RawBankClient:
             method="POST",
             json={
                 "name": name,
+                "type": type,
                 "iban": iban,
                 "currency": currency,
                 "accountCode": account_code,
@@ -468,6 +474,7 @@ class RawBankClient:
         *,
         id: str,
         name: typing.Optional[str] = OMIT,
+        type: typing.Optional[AccountsUpdateBankRequestType] = OMIT,
         iban: typing.Optional[str] = OMIT,
         account_code: typing.Optional[str] = OMIT,
         is_active: typing.Optional[bool] = OMIT,
@@ -479,6 +486,8 @@ class RawBankClient:
         id : str
 
         name : typing.Optional[str]
+
+        type : typing.Optional[AccountsUpdateBankRequestType]
 
         iban : typing.Optional[str]
 
@@ -500,6 +509,7 @@ class RawBankClient:
             json={
                 "id": id,
                 "name": name,
+                "type": type,
                 "iban": iban,
                 "accountCode": account_code,
                 "isActive": is_active,
@@ -7866,6 +7876,7 @@ class AsyncRawBankClient:
         self,
         *,
         name: str,
+        type: typing.Optional[AccountsCreateBankRequestType] = OMIT,
         iban: typing.Optional[str] = OMIT,
         currency: typing.Optional[str] = OMIT,
         account_code: typing.Optional[str] = OMIT,
@@ -7876,6 +7887,8 @@ class AsyncRawBankClient:
         Parameters
         ----------
         name : str
+
+        type : typing.Optional[AccountsCreateBankRequestType]
 
         iban : typing.Optional[str]
 
@@ -7898,6 +7911,7 @@ class AsyncRawBankClient:
             method="POST",
             json={
                 "name": name,
+                "type": type,
                 "iban": iban,
                 "currency": currency,
                 "accountCode": account_code,
@@ -8224,6 +8238,7 @@ class AsyncRawBankClient:
         *,
         id: str,
         name: typing.Optional[str] = OMIT,
+        type: typing.Optional[AccountsUpdateBankRequestType] = OMIT,
         iban: typing.Optional[str] = OMIT,
         account_code: typing.Optional[str] = OMIT,
         is_active: typing.Optional[bool] = OMIT,
@@ -8235,6 +8250,8 @@ class AsyncRawBankClient:
         id : str
 
         name : typing.Optional[str]
+
+        type : typing.Optional[AccountsUpdateBankRequestType]
 
         iban : typing.Optional[str]
 
@@ -8256,6 +8273,7 @@ class AsyncRawBankClient:
             json={
                 "id": id,
                 "name": name,
+                "type": type,
                 "iban": iban,
                 "accountCode": account_code,
                 "isActive": is_active,

@@ -304,6 +304,25 @@ if typing.TYPE_CHECKING:
     from .es_verifactu_declaracion_responsable_declarations_response import (
         EsVerifactuDeclaracionResponsableDeclarationsResponse,
     )
+    from .eu_dac7preview_declarations_response import EuDac7PreviewDeclarationsResponse
+    from .eu_dac7preview_declarations_response_sellers_item import EuDac7PreviewDeclarationsResponseSellersItem
+    from .eu_dac7xml_declarations_response import EuDac7XmlDeclarationsResponse
+    from .eu_digital_reporting_list_declarations_response import EuDigitalReportingListDeclarationsResponse
+    from .eu_digital_reporting_list_declarations_response_transactions_item import (
+        EuDigitalReportingListDeclarationsResponseTransactionsItem,
+    )
+    from .eu_digital_reporting_list_declarations_response_transactions_item_article import (
+        EuDigitalReportingListDeclarationsResponseTransactionsItemArticle,
+    )
+    from .eu_digital_reporting_list_declarations_response_transactions_item_direction import (
+        EuDigitalReportingListDeclarationsResponseTransactionsItemDirection,
+    )
+    from .eu_digital_reporting_list_declarations_response_transactions_item_document_type import (
+        EuDigitalReportingListDeclarationsResponseTransactionsItemDocumentType,
+    )
+    from .eu_digital_reporting_list_declarations_response_transactions_item_lines_item import (
+        EuDigitalReportingListDeclarationsResponseTransactionsItemLinesItem,
+    )
     from .eu_distance_sales_threshold_get_declarations_response import EuDistanceSalesThresholdGetDeclarationsResponse
     from .eu_distance_sales_threshold_get_declarations_response_current_year import (
         EuDistanceSalesThresholdGetDeclarationsResponseCurrentYear,
@@ -329,6 +348,13 @@ if typing.TYPE_CHECKING:
         EuOssComputeDeclarationsResponseRowsItemRateType,
     )
     from .eu_oss_compute_declarations_response_totals import EuOssComputeDeclarationsResponseTotals
+    from .eu_own_goods_transfers_compute_declarations_response import EuOwnGoodsTransfersComputeDeclarationsResponse
+    from .eu_own_goods_transfers_compute_declarations_response_rows_item import (
+        EuOwnGoodsTransfersComputeDeclarationsResponseRowsItem,
+    )
+    from .eu_own_goods_transfers_compute_declarations_response_transfers_item import (
+        EuOwnGoodsTransfersComputeDeclarationsResponseTransfersItem,
+    )
     from .eu_sme_cross_border_report_compute_declarations_response import (
         EuSmeCrossBorderReportComputeDeclarationsResponse,
     )
@@ -739,6 +765,15 @@ _dynamic_imports: typing.Dict[str, str] = {
     "EeEmploymentRegisterSendDeclarationsResponse": ".ee_employment_register_send_declarations_response",
     "EeEmploymentRegisterSendDeclarationsResponseState": ".ee_employment_register_send_declarations_response_state",
     "EsVerifactuDeclaracionResponsableDeclarationsResponse": ".es_verifactu_declaracion_responsable_declarations_response",
+    "EuDac7PreviewDeclarationsResponse": ".eu_dac7preview_declarations_response",
+    "EuDac7PreviewDeclarationsResponseSellersItem": ".eu_dac7preview_declarations_response_sellers_item",
+    "EuDac7XmlDeclarationsResponse": ".eu_dac7xml_declarations_response",
+    "EuDigitalReportingListDeclarationsResponse": ".eu_digital_reporting_list_declarations_response",
+    "EuDigitalReportingListDeclarationsResponseTransactionsItem": ".eu_digital_reporting_list_declarations_response_transactions_item",
+    "EuDigitalReportingListDeclarationsResponseTransactionsItemArticle": ".eu_digital_reporting_list_declarations_response_transactions_item_article",
+    "EuDigitalReportingListDeclarationsResponseTransactionsItemDirection": ".eu_digital_reporting_list_declarations_response_transactions_item_direction",
+    "EuDigitalReportingListDeclarationsResponseTransactionsItemDocumentType": ".eu_digital_reporting_list_declarations_response_transactions_item_document_type",
+    "EuDigitalReportingListDeclarationsResponseTransactionsItemLinesItem": ".eu_digital_reporting_list_declarations_response_transactions_item_lines_item",
     "EuDistanceSalesThresholdGetDeclarationsResponse": ".eu_distance_sales_threshold_get_declarations_response",
     "EuDistanceSalesThresholdGetDeclarationsResponseCurrentYear": ".eu_distance_sales_threshold_get_declarations_response_current_year",
     "EuDistanceSalesThresholdGetDeclarationsResponsePrecedingYear": ".eu_distance_sales_threshold_get_declarations_response_preceding_year",
@@ -754,6 +789,9 @@ _dynamic_imports: typing.Dict[str, str] = {
     "EuOssComputeDeclarationsResponseRowsItem": ".eu_oss_compute_declarations_response_rows_item",
     "EuOssComputeDeclarationsResponseRowsItemRateType": ".eu_oss_compute_declarations_response_rows_item_rate_type",
     "EuOssComputeDeclarationsResponseTotals": ".eu_oss_compute_declarations_response_totals",
+    "EuOwnGoodsTransfersComputeDeclarationsResponse": ".eu_own_goods_transfers_compute_declarations_response",
+    "EuOwnGoodsTransfersComputeDeclarationsResponseRowsItem": ".eu_own_goods_transfers_compute_declarations_response_rows_item",
+    "EuOwnGoodsTransfersComputeDeclarationsResponseTransfersItem": ".eu_own_goods_transfers_compute_declarations_response_transfers_item",
     "EuSmeCrossBorderReportComputeDeclarationsResponse": ".eu_sme_cross_border_report_compute_declarations_response",
     "EuSmeCrossBorderReportComputeDeclarationsResponseRowsItem": ".eu_sme_cross_border_report_compute_declarations_response_rows_item",
     "EuSmeThresholdGetDeclarationsResponse": ".eu_sme_threshold_get_declarations_response",
@@ -1110,6 +1148,15 @@ __all__ = [
     "EeEmploymentRegisterSendDeclarationsResponse",
     "EeEmploymentRegisterSendDeclarationsResponseState",
     "EsVerifactuDeclaracionResponsableDeclarationsResponse",
+    "EuDac7PreviewDeclarationsResponse",
+    "EuDac7PreviewDeclarationsResponseSellersItem",
+    "EuDac7XmlDeclarationsResponse",
+    "EuDigitalReportingListDeclarationsResponse",
+    "EuDigitalReportingListDeclarationsResponseTransactionsItem",
+    "EuDigitalReportingListDeclarationsResponseTransactionsItemArticle",
+    "EuDigitalReportingListDeclarationsResponseTransactionsItemDirection",
+    "EuDigitalReportingListDeclarationsResponseTransactionsItemDocumentType",
+    "EuDigitalReportingListDeclarationsResponseTransactionsItemLinesItem",
     "EuDistanceSalesThresholdGetDeclarationsResponse",
     "EuDistanceSalesThresholdGetDeclarationsResponseCurrentYear",
     "EuDistanceSalesThresholdGetDeclarationsResponsePrecedingYear",
@@ -1125,6 +1172,9 @@ __all__ = [
     "EuOssComputeDeclarationsResponseRowsItem",
     "EuOssComputeDeclarationsResponseRowsItemRateType",
     "EuOssComputeDeclarationsResponseTotals",
+    "EuOwnGoodsTransfersComputeDeclarationsResponse",
+    "EuOwnGoodsTransfersComputeDeclarationsResponseRowsItem",
+    "EuOwnGoodsTransfersComputeDeclarationsResponseTransfersItem",
     "EuSmeCrossBorderReportComputeDeclarationsResponse",
     "EuSmeCrossBorderReportComputeDeclarationsResponseRowsItem",
     "EuSmeThresholdGetDeclarationsResponse",

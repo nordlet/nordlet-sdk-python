@@ -79,6 +79,7 @@ if typing.TYPE_CHECKING:
         WarehousesListInventoryRequestSortItemDir,
         WarehousesListInventoryResponse,
         WarehousesListInventoryResponseRowsItem,
+        WarehousesUpdateInventoryResponse,
     )
 _dynamic_imports: typing.Dict[str, str] = {
     "LandedCostsCreateInventoryRequestMethod": ".types",
@@ -153,6 +154,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "WarehousesListInventoryRequestSortItemDir": ".types",
     "WarehousesListInventoryResponse": ".types",
     "WarehousesListInventoryResponseRowsItem": ".types",
+    "WarehousesUpdateInventoryResponse": ".types",
 }
 
 
@@ -250,4 +252,5 @@ __all__ = [
     "WarehousesListInventoryRequestSortItemDir",
     "WarehousesListInventoryResponse",
     "WarehousesListInventoryResponseRowsItem",
+    "WarehousesUpdateInventoryResponse",
 ]

@@ -139,6 +139,8 @@ if typing.TYPE_CHECKING:
     from .vat_classifiers_list_reference_response_rows_item import VatClassifiersListReferenceResponseRowsItem
     from .vat_classifiers_upsert_reference_request_rows_item import VatClassifiersUpsertReferenceRequestRowsItem
     from .vat_classifiers_upsert_reference_response import VatClassifiersUpsertReferenceResponse
+    from .vat_resolve_reference_request_goods_kind import VatResolveReferenceRequestGoodsKind
+    from .vat_resolve_reference_request_service_kind import VatResolveReferenceRequestServiceKind
     from .vat_resolve_reference_request_supply_type import VatResolveReferenceRequestSupplyType
     from .vat_resolve_reference_response import VatResolveReferenceResponse
     from .vat_resolve_reference_response_rates_item import VatResolveReferenceResponseRatesItem
@@ -242,6 +244,8 @@ _dynamic_imports: typing.Dict[str, str] = {
     "VatClassifiersListReferenceResponseRowsItem": ".vat_classifiers_list_reference_response_rows_item",
     "VatClassifiersUpsertReferenceRequestRowsItem": ".vat_classifiers_upsert_reference_request_rows_item",
     "VatClassifiersUpsertReferenceResponse": ".vat_classifiers_upsert_reference_response",
+    "VatResolveReferenceRequestGoodsKind": ".vat_resolve_reference_request_goods_kind",
+    "VatResolveReferenceRequestServiceKind": ".vat_resolve_reference_request_service_kind",
     "VatResolveReferenceRequestSupplyType": ".vat_resolve_reference_request_supply_type",
     "VatResolveReferenceResponse": ".vat_resolve_reference_response",
     "VatResolveReferenceResponseRatesItem": ".vat_resolve_reference_response_rates_item",
@@ -369,6 +373,8 @@ __all__ = [
     "VatClassifiersListReferenceResponseRowsItem",
     "VatClassifiersUpsertReferenceRequestRowsItem",
     "VatClassifiersUpsertReferenceResponse",
+    "VatResolveReferenceRequestGoodsKind",
+    "VatResolveReferenceRequestServiceKind",
     "VatResolveReferenceRequestSupplyType",
     "VatResolveReferenceResponse",
     "VatResolveReferenceResponseRatesItem",

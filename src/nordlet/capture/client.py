@@ -8,6 +8,8 @@ from ..core.request_options import RequestOptions
 from .raw_client import AsyncRawCaptureClient, RawCaptureClient
 from .types.documents_confirm_capture_request_lines_item import DocumentsConfirmCaptureRequestLinesItem
 from .types.documents_confirm_capture_request_new_supplier import DocumentsConfirmCaptureRequestNewSupplier
+from .types.documents_confirm_capture_request_opposite_lines_item import DocumentsConfirmCaptureRequestOppositeLinesItem
+from .types.documents_confirm_capture_request_type import DocumentsConfirmCaptureRequestType
 from .types.documents_confirm_capture_response import DocumentsConfirmCaptureResponse
 from .types.documents_delete_capture_response import DocumentsDeleteCaptureResponse
 from .types.documents_extract_capture_response import DocumentsExtractCaptureResponse
@@ -379,12 +381,17 @@ class CaptureClient:
         lines: typing.Sequence[DocumentsConfirmCaptureRequestLinesItem],
         partner_id: typing.Optional[str] = OMIT,
         new_supplier: typing.Optional[DocumentsConfirmCaptureRequestNewSupplier] = OMIT,
+        type: typing.Optional[DocumentsConfirmCaptureRequestType] = OMIT,
         due_date: typing.Optional[dt.date] = OMIT,
         currency: typing.Optional[str] = OMIT,
         notes: typing.Optional[str] = OMIT,
+        opposite_lines: typing.Optional[typing.Sequence[DocumentsConfirmCaptureRequestOppositeLinesItem]] = OMIT,
+        opposite_document_number: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> DocumentsConfirmCaptureResponse:
         """
+        Creates the purchase invoice (or credit note, see `type`) from `lines`. Lines with the opposite sign go in `oppositeLines` and are saved as a second document of the opposite type for the same supplier: a purchase credit note against the new invoice, or a purchase invoice next to the new credit note. It is numbered `oppositeDocumentNumber`, by default the document number followed by "-CR" (credit note) or "-INV" (invoice).
+
         Parameters
         ----------
         id : str
@@ -399,11 +406,17 @@ class CaptureClient:
 
         new_supplier : typing.Optional[DocumentsConfirmCaptureRequestNewSupplier]
 
+        type : typing.Optional[DocumentsConfirmCaptureRequestType]
+
         due_date : typing.Optional[dt.date]
 
         currency : typing.Optional[str]
 
         notes : typing.Optional[str]
+
+        opposite_lines : typing.Optional[typing.Sequence[DocumentsConfirmCaptureRequestOppositeLinesItem]]
+
+        opposite_document_number : typing.Optional[str]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -439,9 +452,12 @@ class CaptureClient:
             lines=lines,
             partner_id=partner_id,
             new_supplier=new_supplier,
+            type=type,
             due_date=due_date,
             currency=currency,
             notes=notes,
+            opposite_lines=opposite_lines,
+            opposite_document_number=opposite_document_number,
             request_options=request_options,
         )
         return _response.data
@@ -872,12 +888,17 @@ class AsyncCaptureClient:
         lines: typing.Sequence[DocumentsConfirmCaptureRequestLinesItem],
         partner_id: typing.Optional[str] = OMIT,
         new_supplier: typing.Optional[DocumentsConfirmCaptureRequestNewSupplier] = OMIT,
+        type: typing.Optional[DocumentsConfirmCaptureRequestType] = OMIT,
         due_date: typing.Optional[dt.date] = OMIT,
         currency: typing.Optional[str] = OMIT,
         notes: typing.Optional[str] = OMIT,
+        opposite_lines: typing.Optional[typing.Sequence[DocumentsConfirmCaptureRequestOppositeLinesItem]] = OMIT,
+        opposite_document_number: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> DocumentsConfirmCaptureResponse:
         """
+        Creates the purchase invoice (or credit note, see `type`) from `lines`. Lines with the opposite sign go in `oppositeLines` and are saved as a second document of the opposite type for the same supplier: a purchase credit note against the new invoice, or a purchase invoice next to the new credit note. It is numbered `oppositeDocumentNumber`, by default the document number followed by "-CR" (credit note) or "-INV" (invoice).
+
         Parameters
         ----------
         id : str
@@ -892,11 +913,17 @@ class AsyncCaptureClient:
 
         new_supplier : typing.Optional[DocumentsConfirmCaptureRequestNewSupplier]
 
+        type : typing.Optional[DocumentsConfirmCaptureRequestType]
+
         due_date : typing.Optional[dt.date]
 
         currency : typing.Optional[str]
 
         notes : typing.Optional[str]
+
+        opposite_lines : typing.Optional[typing.Sequence[DocumentsConfirmCaptureRequestOppositeLinesItem]]
+
+        opposite_document_number : typing.Optional[str]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -939,9 +966,12 @@ class AsyncCaptureClient:
             lines=lines,
             partner_id=partner_id,
             new_supplier=new_supplier,
+            type=type,
             due_date=due_date,
             currency=currency,
             notes=notes,
+            opposite_lines=opposite_lines,
+            opposite_document_number=opposite_document_number,
             request_options=request_options,
         )
         return _response.data

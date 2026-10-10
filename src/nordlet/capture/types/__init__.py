@@ -9,11 +9,22 @@ if typing.TYPE_CHECKING:
     from .documents_confirm_capture_request_lines_item import DocumentsConfirmCaptureRequestLinesItem
     from .documents_confirm_capture_request_lines_item_quantity import DocumentsConfirmCaptureRequestLinesItemQuantity
     from .documents_confirm_capture_request_new_supplier import DocumentsConfirmCaptureRequestNewSupplier
+    from .documents_confirm_capture_request_opposite_lines_item import DocumentsConfirmCaptureRequestOppositeLinesItem
+    from .documents_confirm_capture_request_opposite_lines_item_quantity import (
+        DocumentsConfirmCaptureRequestOppositeLinesItemQuantity,
+    )
+    from .documents_confirm_capture_request_type import DocumentsConfirmCaptureRequestType
     from .documents_confirm_capture_response import DocumentsConfirmCaptureResponse
     from .documents_confirm_capture_response_capture import DocumentsConfirmCaptureResponseCapture
     from .documents_confirm_capture_response_capture_extraction import DocumentsConfirmCaptureResponseCaptureExtraction
+    from .documents_confirm_capture_response_capture_extraction_document_type import (
+        DocumentsConfirmCaptureResponseCaptureExtractionDocumentType,
+    )
     from .documents_confirm_capture_response_capture_extraction_lines_item import (
         DocumentsConfirmCaptureResponseCaptureExtractionLinesItem,
+    )
+    from .documents_confirm_capture_response_capture_extraction_opposite_lines_item import (
+        DocumentsConfirmCaptureResponseCaptureExtractionOppositeLinesItem,
     )
     from .documents_confirm_capture_response_capture_extraction_supplier import (
         DocumentsConfirmCaptureResponseCaptureExtractionSupplier,
@@ -26,11 +37,30 @@ if typing.TYPE_CHECKING:
     )
     from .documents_confirm_capture_response_invoice_status import DocumentsConfirmCaptureResponseInvoiceStatus
     from .documents_confirm_capture_response_invoice_type import DocumentsConfirmCaptureResponseInvoiceType
+    from .documents_confirm_capture_response_opposite_invoice import DocumentsConfirmCaptureResponseOppositeInvoice
+    from .documents_confirm_capture_response_opposite_invoice_lines_item import (
+        DocumentsConfirmCaptureResponseOppositeInvoiceLinesItem,
+    )
+    from .documents_confirm_capture_response_opposite_invoice_payment_status import (
+        DocumentsConfirmCaptureResponseOppositeInvoicePaymentStatus,
+    )
+    from .documents_confirm_capture_response_opposite_invoice_status import (
+        DocumentsConfirmCaptureResponseOppositeInvoiceStatus,
+    )
+    from .documents_confirm_capture_response_opposite_invoice_type import (
+        DocumentsConfirmCaptureResponseOppositeInvoiceType,
+    )
     from .documents_delete_capture_response import DocumentsDeleteCaptureResponse
     from .documents_extract_capture_response import DocumentsExtractCaptureResponse
     from .documents_extract_capture_response_extraction import DocumentsExtractCaptureResponseExtraction
+    from .documents_extract_capture_response_extraction_document_type import (
+        DocumentsExtractCaptureResponseExtractionDocumentType,
+    )
     from .documents_extract_capture_response_extraction_lines_item import (
         DocumentsExtractCaptureResponseExtractionLinesItem,
+    )
+    from .documents_extract_capture_response_extraction_opposite_lines_item import (
+        DocumentsExtractCaptureResponseExtractionOppositeLinesItem,
     )
     from .documents_extract_capture_response_extraction_supplier import (
         DocumentsExtractCaptureResponseExtractionSupplier,
@@ -38,7 +68,13 @@ if typing.TYPE_CHECKING:
     from .documents_extract_capture_response_status import DocumentsExtractCaptureResponseStatus
     from .documents_get_capture_response import DocumentsGetCaptureResponse
     from .documents_get_capture_response_extraction import DocumentsGetCaptureResponseExtraction
+    from .documents_get_capture_response_extraction_document_type import (
+        DocumentsGetCaptureResponseExtractionDocumentType,
+    )
     from .documents_get_capture_response_extraction_lines_item import DocumentsGetCaptureResponseExtractionLinesItem
+    from .documents_get_capture_response_extraction_opposite_lines_item import (
+        DocumentsGetCaptureResponseExtractionOppositeLinesItem,
+    )
     from .documents_get_capture_response_extraction_supplier import DocumentsGetCaptureResponseExtractionSupplier
     from .documents_get_capture_response_status import DocumentsGetCaptureResponseStatus
     from .documents_list_capture_request_filter_item import DocumentsListCaptureRequestFilterItem
@@ -52,8 +88,14 @@ if typing.TYPE_CHECKING:
     from .documents_list_capture_response import DocumentsListCaptureResponse
     from .documents_list_capture_response_rows_item import DocumentsListCaptureResponseRowsItem
     from .documents_list_capture_response_rows_item_extraction import DocumentsListCaptureResponseRowsItemExtraction
+    from .documents_list_capture_response_rows_item_extraction_document_type import (
+        DocumentsListCaptureResponseRowsItemExtractionDocumentType,
+    )
     from .documents_list_capture_response_rows_item_extraction_lines_item import (
         DocumentsListCaptureResponseRowsItemExtractionLinesItem,
+    )
+    from .documents_list_capture_response_rows_item_extraction_opposite_lines_item import (
+        DocumentsListCaptureResponseRowsItemExtractionOppositeLinesItem,
     )
     from .documents_list_capture_response_rows_item_extraction_supplier import (
         DocumentsListCaptureResponseRowsItemExtractionSupplier,
@@ -61,8 +103,14 @@ if typing.TYPE_CHECKING:
     from .documents_list_capture_response_rows_item_status import DocumentsListCaptureResponseRowsItemStatus
     from .documents_upload_capture_response import DocumentsUploadCaptureResponse
     from .documents_upload_capture_response_extraction import DocumentsUploadCaptureResponseExtraction
+    from .documents_upload_capture_response_extraction_document_type import (
+        DocumentsUploadCaptureResponseExtractionDocumentType,
+    )
     from .documents_upload_capture_response_extraction_lines_item import (
         DocumentsUploadCaptureResponseExtractionLinesItem,
+    )
+    from .documents_upload_capture_response_extraction_opposite_lines_item import (
+        DocumentsUploadCaptureResponseExtractionOppositeLinesItem,
     )
     from .documents_upload_capture_response_extraction_supplier import DocumentsUploadCaptureResponseExtractionSupplier
     from .documents_upload_capture_response_status import DocumentsUploadCaptureResponseStatus
@@ -77,10 +125,15 @@ _dynamic_imports: typing.Dict[str, str] = {
     "DocumentsConfirmCaptureRequestLinesItem": ".documents_confirm_capture_request_lines_item",
     "DocumentsConfirmCaptureRequestLinesItemQuantity": ".documents_confirm_capture_request_lines_item_quantity",
     "DocumentsConfirmCaptureRequestNewSupplier": ".documents_confirm_capture_request_new_supplier",
+    "DocumentsConfirmCaptureRequestOppositeLinesItem": ".documents_confirm_capture_request_opposite_lines_item",
+    "DocumentsConfirmCaptureRequestOppositeLinesItemQuantity": ".documents_confirm_capture_request_opposite_lines_item_quantity",
+    "DocumentsConfirmCaptureRequestType": ".documents_confirm_capture_request_type",
     "DocumentsConfirmCaptureResponse": ".documents_confirm_capture_response",
     "DocumentsConfirmCaptureResponseCapture": ".documents_confirm_capture_response_capture",
     "DocumentsConfirmCaptureResponseCaptureExtraction": ".documents_confirm_capture_response_capture_extraction",
+    "DocumentsConfirmCaptureResponseCaptureExtractionDocumentType": ".documents_confirm_capture_response_capture_extraction_document_type",
     "DocumentsConfirmCaptureResponseCaptureExtractionLinesItem": ".documents_confirm_capture_response_capture_extraction_lines_item",
+    "DocumentsConfirmCaptureResponseCaptureExtractionOppositeLinesItem": ".documents_confirm_capture_response_capture_extraction_opposite_lines_item",
     "DocumentsConfirmCaptureResponseCaptureExtractionSupplier": ".documents_confirm_capture_response_capture_extraction_supplier",
     "DocumentsConfirmCaptureResponseCaptureStatus": ".documents_confirm_capture_response_capture_status",
     "DocumentsConfirmCaptureResponseInvoice": ".documents_confirm_capture_response_invoice",
@@ -88,15 +141,24 @@ _dynamic_imports: typing.Dict[str, str] = {
     "DocumentsConfirmCaptureResponseInvoicePaymentStatus": ".documents_confirm_capture_response_invoice_payment_status",
     "DocumentsConfirmCaptureResponseInvoiceStatus": ".documents_confirm_capture_response_invoice_status",
     "DocumentsConfirmCaptureResponseInvoiceType": ".documents_confirm_capture_response_invoice_type",
+    "DocumentsConfirmCaptureResponseOppositeInvoice": ".documents_confirm_capture_response_opposite_invoice",
+    "DocumentsConfirmCaptureResponseOppositeInvoiceLinesItem": ".documents_confirm_capture_response_opposite_invoice_lines_item",
+    "DocumentsConfirmCaptureResponseOppositeInvoicePaymentStatus": ".documents_confirm_capture_response_opposite_invoice_payment_status",
+    "DocumentsConfirmCaptureResponseOppositeInvoiceStatus": ".documents_confirm_capture_response_opposite_invoice_status",
+    "DocumentsConfirmCaptureResponseOppositeInvoiceType": ".documents_confirm_capture_response_opposite_invoice_type",
     "DocumentsDeleteCaptureResponse": ".documents_delete_capture_response",
     "DocumentsExtractCaptureResponse": ".documents_extract_capture_response",
     "DocumentsExtractCaptureResponseExtraction": ".documents_extract_capture_response_extraction",
+    "DocumentsExtractCaptureResponseExtractionDocumentType": ".documents_extract_capture_response_extraction_document_type",
     "DocumentsExtractCaptureResponseExtractionLinesItem": ".documents_extract_capture_response_extraction_lines_item",
+    "DocumentsExtractCaptureResponseExtractionOppositeLinesItem": ".documents_extract_capture_response_extraction_opposite_lines_item",
     "DocumentsExtractCaptureResponseExtractionSupplier": ".documents_extract_capture_response_extraction_supplier",
     "DocumentsExtractCaptureResponseStatus": ".documents_extract_capture_response_status",
     "DocumentsGetCaptureResponse": ".documents_get_capture_response",
     "DocumentsGetCaptureResponseExtraction": ".documents_get_capture_response_extraction",
+    "DocumentsGetCaptureResponseExtractionDocumentType": ".documents_get_capture_response_extraction_document_type",
     "DocumentsGetCaptureResponseExtractionLinesItem": ".documents_get_capture_response_extraction_lines_item",
+    "DocumentsGetCaptureResponseExtractionOppositeLinesItem": ".documents_get_capture_response_extraction_opposite_lines_item",
     "DocumentsGetCaptureResponseExtractionSupplier": ".documents_get_capture_response_extraction_supplier",
     "DocumentsGetCaptureResponseStatus": ".documents_get_capture_response_status",
     "DocumentsListCaptureRequestFilterItem": ".documents_list_capture_request_filter_item",
@@ -108,12 +170,16 @@ _dynamic_imports: typing.Dict[str, str] = {
     "DocumentsListCaptureResponse": ".documents_list_capture_response",
     "DocumentsListCaptureResponseRowsItem": ".documents_list_capture_response_rows_item",
     "DocumentsListCaptureResponseRowsItemExtraction": ".documents_list_capture_response_rows_item_extraction",
+    "DocumentsListCaptureResponseRowsItemExtractionDocumentType": ".documents_list_capture_response_rows_item_extraction_document_type",
     "DocumentsListCaptureResponseRowsItemExtractionLinesItem": ".documents_list_capture_response_rows_item_extraction_lines_item",
+    "DocumentsListCaptureResponseRowsItemExtractionOppositeLinesItem": ".documents_list_capture_response_rows_item_extraction_opposite_lines_item",
     "DocumentsListCaptureResponseRowsItemExtractionSupplier": ".documents_list_capture_response_rows_item_extraction_supplier",
     "DocumentsListCaptureResponseRowsItemStatus": ".documents_list_capture_response_rows_item_status",
     "DocumentsUploadCaptureResponse": ".documents_upload_capture_response",
     "DocumentsUploadCaptureResponseExtraction": ".documents_upload_capture_response_extraction",
+    "DocumentsUploadCaptureResponseExtractionDocumentType": ".documents_upload_capture_response_extraction_document_type",
     "DocumentsUploadCaptureResponseExtractionLinesItem": ".documents_upload_capture_response_extraction_lines_item",
+    "DocumentsUploadCaptureResponseExtractionOppositeLinesItem": ".documents_upload_capture_response_extraction_opposite_lines_item",
     "DocumentsUploadCaptureResponseExtractionSupplier": ".documents_upload_capture_response_extraction_supplier",
     "DocumentsUploadCaptureResponseStatus": ".documents_upload_capture_response_status",
     "InboundEmailCaptureRequestAttachmentsItem": ".inbound_email_capture_request_attachments_item",
@@ -151,10 +217,15 @@ __all__ = [
     "DocumentsConfirmCaptureRequestLinesItem",
     "DocumentsConfirmCaptureRequestLinesItemQuantity",
     "DocumentsConfirmCaptureRequestNewSupplier",
+    "DocumentsConfirmCaptureRequestOppositeLinesItem",
+    "DocumentsConfirmCaptureRequestOppositeLinesItemQuantity",
+    "DocumentsConfirmCaptureRequestType",
     "DocumentsConfirmCaptureResponse",
     "DocumentsConfirmCaptureResponseCapture",
     "DocumentsConfirmCaptureResponseCaptureExtraction",
+    "DocumentsConfirmCaptureResponseCaptureExtractionDocumentType",
     "DocumentsConfirmCaptureResponseCaptureExtractionLinesItem",
+    "DocumentsConfirmCaptureResponseCaptureExtractionOppositeLinesItem",
     "DocumentsConfirmCaptureResponseCaptureExtractionSupplier",
     "DocumentsConfirmCaptureResponseCaptureStatus",
     "DocumentsConfirmCaptureResponseInvoice",
@@ -162,15 +233,24 @@ __all__ = [
     "DocumentsConfirmCaptureResponseInvoicePaymentStatus",
     "DocumentsConfirmCaptureResponseInvoiceStatus",
     "DocumentsConfirmCaptureResponseInvoiceType",
+    "DocumentsConfirmCaptureResponseOppositeInvoice",
+    "DocumentsConfirmCaptureResponseOppositeInvoiceLinesItem",
+    "DocumentsConfirmCaptureResponseOppositeInvoicePaymentStatus",
+    "DocumentsConfirmCaptureResponseOppositeInvoiceStatus",
+    "DocumentsConfirmCaptureResponseOppositeInvoiceType",
     "DocumentsDeleteCaptureResponse",
     "DocumentsExtractCaptureResponse",
     "DocumentsExtractCaptureResponseExtraction",
+    "DocumentsExtractCaptureResponseExtractionDocumentType",
     "DocumentsExtractCaptureResponseExtractionLinesItem",
+    "DocumentsExtractCaptureResponseExtractionOppositeLinesItem",
     "DocumentsExtractCaptureResponseExtractionSupplier",
     "DocumentsExtractCaptureResponseStatus",
     "DocumentsGetCaptureResponse",
     "DocumentsGetCaptureResponseExtraction",
+    "DocumentsGetCaptureResponseExtractionDocumentType",
     "DocumentsGetCaptureResponseExtractionLinesItem",
+    "DocumentsGetCaptureResponseExtractionOppositeLinesItem",
     "DocumentsGetCaptureResponseExtractionSupplier",
     "DocumentsGetCaptureResponseStatus",
     "DocumentsListCaptureRequestFilterItem",
@@ -182,12 +262,16 @@ __all__ = [
     "DocumentsListCaptureResponse",
     "DocumentsListCaptureResponseRowsItem",
     "DocumentsListCaptureResponseRowsItemExtraction",
+    "DocumentsListCaptureResponseRowsItemExtractionDocumentType",
     "DocumentsListCaptureResponseRowsItemExtractionLinesItem",
+    "DocumentsListCaptureResponseRowsItemExtractionOppositeLinesItem",
     "DocumentsListCaptureResponseRowsItemExtractionSupplier",
     "DocumentsListCaptureResponseRowsItemStatus",
     "DocumentsUploadCaptureResponse",
     "DocumentsUploadCaptureResponseExtraction",
+    "DocumentsUploadCaptureResponseExtractionDocumentType",
     "DocumentsUploadCaptureResponseExtractionLinesItem",
+    "DocumentsUploadCaptureResponseExtractionOppositeLinesItem",
     "DocumentsUploadCaptureResponseExtractionSupplier",
     "DocumentsUploadCaptureResponseStatus",
     "InboundEmailCaptureRequestAttachmentsItem",

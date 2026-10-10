@@ -42,6 +42,15 @@ class SettlementsPostBankResponse(UniversalBaseModel):
     unmatched_count: typing_extensions.Annotated[
         int, FieldMetadata(alias="unmatchedCount"), pydantic.Field(alias="unmatchedCount")
     ]
+    cleared_net: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="clearedNet"), pydantic.Field(alias="clearedNet")
+    ] = None
+    clearing_difference: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="clearingDifference"), pydantic.Field(alias="clearingDifference")
+    ] = None
+    clearing_open_count: typing_extensions.Annotated[
+        int, FieldMetadata(alias="clearingOpenCount"), pydantic.Field(alias="clearingOpenCount")
+    ]
     created_at: typing_extensions.Annotated[
         dt.datetime, FieldMetadata(alias="createdAt"), pydantic.Field(alias="createdAt")
     ]

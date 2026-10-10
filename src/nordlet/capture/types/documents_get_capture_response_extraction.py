@@ -7,11 +7,20 @@ import pydantic
 import typing_extensions
 from ...core.pydantic_utilities import IS_PYDANTIC_V2, UniversalBaseModel
 from ...core.serialization import FieldMetadata
+from .documents_get_capture_response_extraction_document_type import DocumentsGetCaptureResponseExtractionDocumentType
 from .documents_get_capture_response_extraction_lines_item import DocumentsGetCaptureResponseExtractionLinesItem
+from .documents_get_capture_response_extraction_opposite_lines_item import (
+    DocumentsGetCaptureResponseExtractionOppositeLinesItem,
+)
 from .documents_get_capture_response_extraction_supplier import DocumentsGetCaptureResponseExtractionSupplier
 
 
 class DocumentsGetCaptureResponseExtraction(UniversalBaseModel):
+    document_type: typing_extensions.Annotated[
+        typing.Optional[DocumentsGetCaptureResponseExtractionDocumentType],
+        FieldMetadata(alias="documentType"),
+        pydantic.Field(alias="documentType"),
+    ] = None
     supplier: DocumentsGetCaptureResponseExtractionSupplier
     document_number: typing_extensions.Annotated[
         typing.Optional[str], FieldMetadata(alias="documentNumber"), pydantic.Field(alias="documentNumber")
@@ -34,6 +43,11 @@ class DocumentsGetCaptureResponseExtraction(UniversalBaseModel):
     ] = None
     notes: typing.Optional[str] = None
     lines: typing.List[DocumentsGetCaptureResponseExtractionLinesItem]
+    opposite_lines: typing_extensions.Annotated[
+        typing.Optional[typing.List[DocumentsGetCaptureResponseExtractionOppositeLinesItem]],
+        FieldMetadata(alias="oppositeLines"),
+        pydantic.Field(alias="oppositeLines"),
+    ] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

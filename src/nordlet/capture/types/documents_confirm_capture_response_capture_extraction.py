@@ -7,8 +7,14 @@ import pydantic
 import typing_extensions
 from ...core.pydantic_utilities import IS_PYDANTIC_V2, UniversalBaseModel
 from ...core.serialization import FieldMetadata
+from .documents_confirm_capture_response_capture_extraction_document_type import (
+    DocumentsConfirmCaptureResponseCaptureExtractionDocumentType,
+)
 from .documents_confirm_capture_response_capture_extraction_lines_item import (
     DocumentsConfirmCaptureResponseCaptureExtractionLinesItem,
+)
+from .documents_confirm_capture_response_capture_extraction_opposite_lines_item import (
+    DocumentsConfirmCaptureResponseCaptureExtractionOppositeLinesItem,
 )
 from .documents_confirm_capture_response_capture_extraction_supplier import (
     DocumentsConfirmCaptureResponseCaptureExtractionSupplier,
@@ -16,6 +22,11 @@ from .documents_confirm_capture_response_capture_extraction_supplier import (
 
 
 class DocumentsConfirmCaptureResponseCaptureExtraction(UniversalBaseModel):
+    document_type: typing_extensions.Annotated[
+        typing.Optional[DocumentsConfirmCaptureResponseCaptureExtractionDocumentType],
+        FieldMetadata(alias="documentType"),
+        pydantic.Field(alias="documentType"),
+    ] = None
     supplier: DocumentsConfirmCaptureResponseCaptureExtractionSupplier
     document_number: typing_extensions.Annotated[
         typing.Optional[str], FieldMetadata(alias="documentNumber"), pydantic.Field(alias="documentNumber")
@@ -38,6 +49,11 @@ class DocumentsConfirmCaptureResponseCaptureExtraction(UniversalBaseModel):
     ] = None
     notes: typing.Optional[str] = None
     lines: typing.List[DocumentsConfirmCaptureResponseCaptureExtractionLinesItem]
+    opposite_lines: typing_extensions.Annotated[
+        typing.Optional[typing.List[DocumentsConfirmCaptureResponseCaptureExtractionOppositeLinesItem]],
+        FieldMetadata(alias="oppositeLines"),
+        pydantic.Field(alias="oppositeLines"),
+    ] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

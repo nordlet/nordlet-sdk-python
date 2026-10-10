@@ -328,6 +328,7 @@ class PurchasesClient:
         id: str,
         registration_date: typing.Optional[dt.date] = OMIT,
         warehouse_id: typing.Optional[str] = OMIT,
+        return_from_stock: typing.Optional[bool] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> InvoicesRegisterPurchasesResponse:
         """
@@ -338,6 +339,8 @@ class PurchasesClient:
         registration_date : typing.Optional[dt.date]
 
         warehouse_id : typing.Optional[str]
+
+        return_from_stock : typing.Optional[bool]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -359,7 +362,11 @@ class PurchasesClient:
         )
         """
         _response = self._raw_client.invoices_register(
-            id=id, registration_date=registration_date, warehouse_id=warehouse_id, request_options=request_options
+            id=id,
+            registration_date=registration_date,
+            warehouse_id=warehouse_id,
+            return_from_stock=return_from_stock,
+            request_options=request_options,
         )
         return _response.data
 
@@ -1379,6 +1386,7 @@ class AsyncPurchasesClient:
         id: str,
         registration_date: typing.Optional[dt.date] = OMIT,
         warehouse_id: typing.Optional[str] = OMIT,
+        return_from_stock: typing.Optional[bool] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> InvoicesRegisterPurchasesResponse:
         """
@@ -1389,6 +1397,8 @@ class AsyncPurchasesClient:
         registration_date : typing.Optional[dt.date]
 
         warehouse_id : typing.Optional[str]
+
+        return_from_stock : typing.Optional[bool]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -1418,7 +1428,11 @@ class AsyncPurchasesClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.invoices_register(
-            id=id, registration_date=registration_date, warehouse_id=warehouse_id, request_options=request_options
+            id=id,
+            registration_date=registration_date,
+            warehouse_id=warehouse_id,
+            return_from_stock=return_from_stock,
+            request_options=request_options,
         )
         return _response.data
 

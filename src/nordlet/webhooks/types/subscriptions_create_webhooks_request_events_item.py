@@ -6,6 +6,7 @@ SubscriptionsCreateWebhooksRequestEventsItem = typing.Union[
     typing.Literal[
         "agreement.invoice_generated",
         "bank_feed.synced",
+        "document_capture.peppol_received",
         "filing.failed",
         "filing.rejected",
         "goods_receipt.posted",
@@ -33,6 +34,9 @@ SubscriptionsCreateWebhooksRequestEventsItem = typing.Union[
         "sale_invoice.einvoice_sent",
         "sale_invoice.issued",
         "sale_invoice.paid",
+        "sale_invoice.peppol_delivered",
+        "sale_invoice.peppol_failed",
+        "sale_invoice.peppol_rejected",
         "sale_invoice.peppol_sent",
         "sale_invoice.sent",
         "sales_order.created",

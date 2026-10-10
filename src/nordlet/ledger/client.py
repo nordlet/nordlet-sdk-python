@@ -1070,6 +1070,7 @@ class LedgerClient:
         date: dt.date,
         entries: typing.Sequence[JournalTransactionsCreateLedgerRequestEntriesItem],
         description: typing.Optional[str] = OMIT,
+        currency: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> JournalTransactionsCreateLedgerResponse:
         """
@@ -1080,6 +1081,8 @@ class LedgerClient:
         entries : typing.Sequence[JournalTransactionsCreateLedgerRequestEntriesItem]
 
         description : typing.Optional[str]
+
+        currency : typing.Optional[str]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -1111,7 +1114,7 @@ class LedgerClient:
         )
         """
         _response = self._raw_client.journal_transactions_create(
-            date=date, entries=entries, description=description, request_options=request_options
+            date=date, entries=entries, description=description, currency=currency, request_options=request_options
         )
         return _response.data
 
@@ -2422,6 +2425,7 @@ class AsyncLedgerClient:
         date: dt.date,
         entries: typing.Sequence[JournalTransactionsCreateLedgerRequestEntriesItem],
         description: typing.Optional[str] = OMIT,
+        currency: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> JournalTransactionsCreateLedgerResponse:
         """
@@ -2432,6 +2436,8 @@ class AsyncLedgerClient:
         entries : typing.Sequence[JournalTransactionsCreateLedgerRequestEntriesItem]
 
         description : typing.Optional[str]
+
+        currency : typing.Optional[str]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -2470,7 +2476,7 @@ class AsyncLedgerClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.journal_transactions_create(
-            date=date, entries=entries, description=description, request_options=request_options
+            date=date, entries=entries, description=description, currency=currency, request_options=request_options
         )
         return _response.data
 

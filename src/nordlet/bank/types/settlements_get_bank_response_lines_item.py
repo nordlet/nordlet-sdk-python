@@ -40,6 +40,20 @@ class SettlementsGetBankResponseLinesItem(UniversalBaseModel):
         FieldMetadata(alias="matchStatus"),
         pydantic.Field(alias="matchStatus"),
     ]
+    clearing_bank_account_id: typing_extensions.Annotated[
+        typing.Optional[str],
+        FieldMetadata(alias="clearingBankAccountId"),
+        pydantic.Field(alias="clearingBankAccountId"),
+    ] = None
+    clearing_booked: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="clearingBooked"), pydantic.Field(alias="clearingBooked")
+    ] = None
+    clearing_difference: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="clearingDifference"), pydantic.Field(alias="clearingDifference")
+    ] = None
+    clearing_unposted: typing_extensions.Annotated[
+        bool, FieldMetadata(alias="clearingUnposted"), pydantic.Field(alias="clearingUnposted")
+    ]
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

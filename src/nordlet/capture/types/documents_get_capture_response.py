@@ -31,6 +31,9 @@ class DocumentsGetCaptureResponse(UniversalBaseModel):
         typing.Optional[str], FieldMetadata(alias="purchaseInvoiceId"), pydantic.Field(alias="purchaseInvoiceId")
     ] = None
     error: typing.Optional[str] = None
+    sender_id: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="senderId"), pydantic.Field(alias="senderId")
+    ] = None
     created_at: typing_extensions.Annotated[
         dt.datetime, FieldMetadata(alias="createdAt"), pydantic.Field(alias="createdAt")
     ]

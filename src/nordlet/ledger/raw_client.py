@@ -4054,6 +4054,7 @@ class RawLedgerClient:
         date: dt.date,
         entries: typing.Sequence[JournalTransactionsCreateLedgerRequestEntriesItem],
         description: typing.Optional[str] = OMIT,
+        currency: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[JournalTransactionsCreateLedgerResponse]:
         """
@@ -4064,6 +4065,8 @@ class RawLedgerClient:
         entries : typing.Sequence[JournalTransactionsCreateLedgerRequestEntriesItem]
 
         description : typing.Optional[str]
+
+        currency : typing.Optional[str]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -4079,6 +4082,7 @@ class RawLedgerClient:
             json={
                 "date": date,
                 "description": description,
+                "currency": currency,
                 "entries": convert_and_respect_annotation_metadata(
                     object_=entries,
                     annotation=typing.Sequence[JournalTransactionsCreateLedgerRequestEntriesItem],
@@ -8688,6 +8692,7 @@ class AsyncRawLedgerClient:
         date: dt.date,
         entries: typing.Sequence[JournalTransactionsCreateLedgerRequestEntriesItem],
         description: typing.Optional[str] = OMIT,
+        currency: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[JournalTransactionsCreateLedgerResponse]:
         """
@@ -8698,6 +8703,8 @@ class AsyncRawLedgerClient:
         entries : typing.Sequence[JournalTransactionsCreateLedgerRequestEntriesItem]
 
         description : typing.Optional[str]
+
+        currency : typing.Optional[str]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -8713,6 +8720,7 @@ class AsyncRawLedgerClient:
             json={
                 "date": date,
                 "description": description,
+                "currency": currency,
                 "entries": convert_and_respect_annotation_metadata(
                     object_=entries,
                     annotation=typing.Sequence[JournalTransactionsCreateLedgerRequestEntriesItem],

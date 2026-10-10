@@ -7,7 +7,9 @@ from importlib import import_module
 
 if typing.TYPE_CHECKING:
     from .types import (
+        AccountsCreateBankRequestType,
         AccountsCreateBankResponse,
+        AccountsCreateBankResponseType,
         AccountsListBankRequestFilterItem,
         AccountsListBankRequestFilterItemOp,
         AccountsListBankRequestFilterItemValue,
@@ -16,7 +18,10 @@ if typing.TYPE_CHECKING:
         AccountsListBankRequestSortItemDir,
         AccountsListBankResponse,
         AccountsListBankResponseRowsItem,
+        AccountsListBankResponseRowsItemType,
+        AccountsUpdateBankRequestType,
         AccountsUpdateBankResponse,
+        AccountsUpdateBankResponseType,
         DirectDebitsCandidatesBankRequestFilterItem,
         DirectDebitsCandidatesBankRequestFilterItemOp,
         DirectDebitsCandidatesBankRequestFilterItemValue,
@@ -179,7 +184,9 @@ if typing.TYPE_CHECKING:
         TransactionsUnmatchBankResponseStatus,
     )
 _dynamic_imports: typing.Dict[str, str] = {
+    "AccountsCreateBankRequestType": ".types",
     "AccountsCreateBankResponse": ".types",
+    "AccountsCreateBankResponseType": ".types",
     "AccountsListBankRequestFilterItem": ".types",
     "AccountsListBankRequestFilterItemOp": ".types",
     "AccountsListBankRequestFilterItemValue": ".types",
@@ -188,7 +195,10 @@ _dynamic_imports: typing.Dict[str, str] = {
     "AccountsListBankRequestSortItemDir": ".types",
     "AccountsListBankResponse": ".types",
     "AccountsListBankResponseRowsItem": ".types",
+    "AccountsListBankResponseRowsItemType": ".types",
+    "AccountsUpdateBankRequestType": ".types",
     "AccountsUpdateBankResponse": ".types",
+    "AccountsUpdateBankResponseType": ".types",
     "DirectDebitsCandidatesBankRequestFilterItem": ".types",
     "DirectDebitsCandidatesBankRequestFilterItemOp": ".types",
     "DirectDebitsCandidatesBankRequestFilterItemValue": ".types",
@@ -374,7 +384,9 @@ def __dir__():
 
 
 __all__ = [
+    "AccountsCreateBankRequestType",
     "AccountsCreateBankResponse",
+    "AccountsCreateBankResponseType",
     "AccountsListBankRequestFilterItem",
     "AccountsListBankRequestFilterItemOp",
     "AccountsListBankRequestFilterItemValue",
@@ -383,7 +395,10 @@ __all__ = [
     "AccountsListBankRequestSortItemDir",
     "AccountsListBankResponse",
     "AccountsListBankResponseRowsItem",
+    "AccountsListBankResponseRowsItemType",
+    "AccountsUpdateBankRequestType",
     "AccountsUpdateBankResponse",
+    "AccountsUpdateBankResponseType",
     "DirectDebitsCandidatesBankRequestFilterItem",
     "DirectDebitsCandidatesBankRequestFilterItemOp",
     "DirectDebitsCandidatesBankRequestFilterItemValue",

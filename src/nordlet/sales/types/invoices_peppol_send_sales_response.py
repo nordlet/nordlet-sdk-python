@@ -6,12 +6,15 @@ import pydantic
 import typing_extensions
 from ...core.pydantic_utilities import IS_PYDANTIC_V2, UniversalBaseModel
 from ...core.serialization import FieldMetadata
+from .invoices_peppol_send_sales_response_status import InvoicesPeppolSendSalesResponseStatus
 
 
 class InvoicesPeppolSendSalesResponse(UniversalBaseModel):
     sent: bool
     message_id: typing_extensions.Annotated[str, FieldMetadata(alias="messageId"), pydantic.Field(alias="messageId")]
     receiver_id: typing_extensions.Annotated[str, FieldMetadata(alias="receiverId"), pydantic.Field(alias="receiverId")]
+    status: InvoicesPeppolSendSalesResponseStatus
+    detail: typing.Optional[str] = None
     file_id: typing_extensions.Annotated[
         typing.Optional[str], FieldMetadata(alias="fileId"), pydantic.Field(alias="fileId")
     ] = None

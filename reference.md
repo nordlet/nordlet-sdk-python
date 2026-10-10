@@ -1360,6 +1360,54 @@ client.reference.vat_resolve()
 <dl>
 <dd>
 
+**service_kind:** `typing.Optional[VatResolveReferenceRequestServiceKind]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**service_country_code:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**underlying_supplier_gave_vat_number:** `typing.Optional[bool]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**underlying_supplier_charges_vat:** `typing.Optional[bool]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**goods_kind:** `typing.Optional[VatResolveReferenceRequestGoodsKind]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**goods_location_country_code:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
     
 </dd>
@@ -10440,6 +10488,20 @@ client.sales.invoices_peppol_xml(
 <dl>
 <dd>
 
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Send an issued invoice or credit note to the customer over Peppol through the company's own access point (Settings → Compliance → EU; Nordlet supports Recommand, Storecove and e-invoice.be). Without one the call is refused with 422 and the document can only be downloaded with `sales/invoices/peppol-xml`. `status` is `pending` until the receiving access point confirms, then `delivered`; `failed` and `rejected` come with `detail`, and the invoice can then be sent again. Later changes arrive through the access point's webhook and are announced as `sale_invoice.peppol_delivered`, `sale_invoice.peppol_rejected` and `sale_invoice.peppol_failed`.
+</dd>
+</dl>
+</dd>
+</dl>
+
 #### 🔌 Usage
 
 <dl>
@@ -10458,6 +10520,79 @@ client = Nordlet(
 )
 
 client.sales.invoices_peppol_send(
+    id="id",
+)
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.sales.<a href="src/nordlet/sales/client.py">invoices_peppol_status</a>(...) -> InvoicesPeppolStatusSalesResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Ask the company's Peppol access point what happened to an invoice sent with `sales/invoices/peppol-send`, and store the answer: `pending`, `delivered` (the receiving access point confirmed it), `rejected` (the receiver refused it, see `detail`) or `failed` (it could not be delivered, see `detail`). The access point's webhook updates the same fields without this call. Storecove has no call for the status of a sent document, so for a Storecove access point this answers 422 and the status comes only from its webhook.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.sales.invoices_peppol_status(
     id="id",
 )
 
@@ -11536,6 +11671,14 @@ client.sales.invoices_apply_advance(
 <dd>
 
 **date:** `typing.Optional[datetime.date]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**amount:** `typing.Optional[str]` — Gross amount of the advance to apply; defaults to the unapplied advance or the unpaid balance of the invoice, whichever is smaller
     
 </dd>
 </dl>
@@ -14678,6 +14821,14 @@ client.purchases.invoices_register(
 <dl>
 <dd>
 
+**return_from_stock:** `typing.Optional[bool]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
     
 </dd>
@@ -16658,6 +16809,20 @@ client.capture.documents_delete(
 <dl>
 <dd>
 
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates the purchase invoice (or credit note, see `type`) from `lines`. Lines with the opposite sign go in `oppositeLines` and are saved as a second document of the opposite type for the same supplier: a purchase credit note against the new invoice, or a purchase invoice next to the new credit note. It is numbered `oppositeDocumentNumber`, by default the document number followed by "-CR" (credit note) or "-INV" (invoice).
+</dd>
+</dl>
+</dd>
+</dl>
+
 #### 🔌 Usage
 
 <dl>
@@ -16748,6 +16913,14 @@ client.capture.documents_confirm(
 <dl>
 <dd>
 
+**type:** `typing.Optional[DocumentsConfirmCaptureRequestType]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **due_date:** `typing.Optional[datetime.date]` 
     
 </dd>
@@ -16765,6 +16938,170 @@ client.capture.documents_confirm(
 <dd>
 
 **notes:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**opposite_lines:** `typing.Optional[typing.List[DocumentsConfirmCaptureRequestOppositeLinesItem]]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**opposite_document_number:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## peppol
+<details><summary><code>client.peppol.<a href="src/nordlet/peppol/client.py">participants_lookup</a>(...) -> ParticipantsLookupPeppolResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Look a receiver up on the Peppol network (SML and SMP) and say which Peppol BIS Billing 3.0 documents it accepts. Give `partnerId` to look up a partner by its Peppol ID, VAT code or registration code, or `participantId` as "<scheme>:<identifier>". Works without an access point.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.peppol.participants_lookup()
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**partner_id:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**participant_id:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.peppol.<a href="src/nordlet/peppol/client.py">webhooks</a>(...) -> WebhooksPeppolResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.peppol.webhooks(
+    provider="recommand",
+    company_id="companyId",
+)
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**provider:** `WebhooksPeppolRequestProvider` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**company_id:** `str` 
     
 </dd>
 </dl>
@@ -17982,6 +18319,275 @@ client.declarations.eu_ioss_compute(
 <dd>
 
 **month:** `int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">eu_own_goods_transfers_compute</a>(...) -> EuOwnGoodsTransfersComputeDeclarationsResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.declarations.eu_own_goods_transfers_compute(
+    year=1000000,
+    month=1000000,
+)
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**year:** `int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**month:** `int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">eu_digital_reporting_list</a>(...) -> EuDigitalReportingListDeclarationsResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+import datetime
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.declarations.eu_digital_reporting_list(
+    from_date=datetime.date.fromisoformat("2026-07-01"),
+    to_date=datetime.date.fromisoformat("2026-07-01"),
+)
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**from_date:** `datetime.date` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**to_date:** `datetime.date` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">eu_dac7preview</a>(...) -> EuDac7PreviewDeclarationsResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Which platform sellers are reportable for the year (Council Directive (EU) 2021/514, Annex V) and why the others are excluded, the data still missing, and how the company files the report in its Member State.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.declarations.eu_dac7preview(
+    year=1000000,
+)
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**year:** `int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">eu_dac7xml</a>(...) -> EuDac7XmlDeclarationsResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.declarations.eu_dac7xml(
+    year=1000000,
+)
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**year:** `int` 
     
 </dd>
 </dl>
@@ -22367,7 +22973,7 @@ client.declarations.pl_jpk_mag_generate(
 <dl>
 <dd>
 
-Generate PIT-11(29) for every person on the payroll of one year: the pay, the deductible costs, the advance withheld and the social and health contributions taken off it. One document per person, because that is how the form is filed.
+Generate PIT-11(29) for every person on the payroll of one year: the pay, the deductible costs, the advance withheld and the social and health contributions taken off it. One document per person, because that is how the form is filed, addressed to the tax office of the place of residence of that person (employee field plKodUrzedu); a person without that code is refused with 422.
 </dd>
 </dl>
 </dd>
@@ -25806,6 +26412,14 @@ client.ledger.journal_transactions_create(
 <dl>
 <dd>
 
+**currency:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
     
 </dd>
@@ -26373,6 +26987,651 @@ client = Nordlet(
 )
 
 client.officers.delete(
+    id="id",
+)
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## PlatformSellers
+<details><summary><code>client.platform_sellers.<a href="src/nordlet/platform_sellers/client.py">list</a>(...) -> ListPlatformSellersResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Individuals and entities that sell goods, rent out property or transport, or perform personal services through the platform the company operates. The yearly DAC7 report is built from them.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.platform_sellers.list()
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**page:** `typing.Optional[int]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**page_size:** `typing.Optional[int]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sort:** `typing.Optional[typing.List[ListPlatformSellersRequestSortItem]]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filter:** `typing.Optional[typing.List[ListPlatformSellersRequestFilterItem]]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**totals:** `typing.Optional[typing.List[str]]` — Numeric fields to sum over every row matching the filter (not only the current page)
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.platform_sellers.<a href="src/nordlet/platform_sellers/client.py">get</a>(...) -> GetPlatformSellersResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.platform_sellers.get(
+    id="id",
+)
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.platform_sellers.<a href="src/nordlet/platform_sellers/client.py">create</a>(...) -> CreatePlatformSellersResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+from nordlet.platform_sellers import CreatePlatformSellersRequestAddress
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.platform_sellers.create(
+    kind="individual",
+    address=CreatePlatformSellersRequestAddress(
+        country_code="countryCode",
+    ),
+)
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**kind:** `CreatePlatformSellersRequestKind` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**address:** `CreatePlatformSellersRequestAddress` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**partner_id:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**first_name:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**middle_name:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**last_name:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**entity_name:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**tax_residences:** `typing.Optional[typing.List[CreatePlatformSellersRequestTaxResidencesItem]]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**vat_code:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**business_registration_number:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**birth_date:** `typing.Optional[datetime.date]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**birth_city:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**birth_country_code:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**iban:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**account_holder_name:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**government_entity:** `typing.Optional[bool]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**listed_entity:** `typing.Optional[bool]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**permanent_establishments:** `typing.Optional[typing.List[str]]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**activities:** `typing.Optional[typing.List[CreatePlatformSellersRequestActivitiesItem]]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.platform_sellers.<a href="src/nordlet/platform_sellers/client.py">update</a>(...) -> UpdatePlatformSellersResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+from nordlet.platform_sellers import UpdatePlatformSellersRequestAddress
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.platform_sellers.update(
+    id="id",
+    kind="individual",
+    address=UpdatePlatformSellersRequestAddress(
+        country_code="countryCode",
+    ),
+)
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**kind:** `UpdatePlatformSellersRequestKind` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**address:** `UpdatePlatformSellersRequestAddress` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**partner_id:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**first_name:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**middle_name:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**last_name:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**entity_name:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**tax_residences:** `typing.Optional[typing.List[UpdatePlatformSellersRequestTaxResidencesItem]]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**vat_code:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**business_registration_number:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**birth_date:** `typing.Optional[datetime.date]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**birth_city:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**birth_country_code:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**iban:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**account_holder_name:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**government_entity:** `typing.Optional[bool]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**listed_entity:** `typing.Optional[bool]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**permanent_establishments:** `typing.Optional[typing.List[str]]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**activities:** `typing.Optional[typing.List[UpdatePlatformSellersRequestActivitiesItem]]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.platform_sellers.<a href="src/nordlet/platform_sellers/client.py">delete</a>(...) -> DeletePlatformSellersResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.platform_sellers.delete(
     id="id",
 )
 
@@ -34215,6 +35474,14 @@ client.inventory.warehouses_create(
 <dl>
 <dd>
 
+**country_code:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
     
 </dd>
@@ -34297,6 +35564,81 @@ client.inventory.warehouses_list()
 <dd>
 
 **totals:** `typing.Optional[typing.List[str]]` — Numeric fields to sum over every row matching the filter (not only the current page)
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.inventory.<a href="src/nordlet/inventory/client.py">warehouses_update</a>(...) -> WarehousesUpdateInventoryResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.inventory.warehouses_update(
+    id="id",
+)
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**name:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**country_code:** `typing.Optional[str]` 
     
 </dd>
 </dl>
@@ -42708,6 +44050,14 @@ client.bank.accounts_create(
 <dl>
 <dd>
 
+**type:** `typing.Optional[AccountsCreateBankRequestType]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **iban:** `typing.Optional[str]` 
     
 </dd>
@@ -42889,6 +44239,14 @@ client.bank.accounts_update(
 <dd>
 
 **name:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**type:** `typing.Optional[AccountsUpdateBankRequestType]` 
     
 </dd>
 </dl>

@@ -8,6 +8,7 @@ from ...core.pydantic_utilities import IS_PYDANTIC_V2, UniversalBaseModel
 
 class OnlineSalesReportsResponseRowsItem(UniversalBaseModel):
     channel: str
+    currency: str
     orders: int
     fulfilled: int
     cancelled: int

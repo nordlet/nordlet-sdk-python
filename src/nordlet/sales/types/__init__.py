@@ -188,6 +188,9 @@ if typing.TYPE_CHECKING:
     from .invoices_pdf_sales_request_locale import InvoicesPdfSalesRequestLocale
     from .invoices_pdf_sales_response import InvoicesPdfSalesResponse
     from .invoices_peppol_send_sales_response import InvoicesPeppolSendSalesResponse
+    from .invoices_peppol_send_sales_response_status import InvoicesPeppolSendSalesResponseStatus
+    from .invoices_peppol_status_sales_response import InvoicesPeppolStatusSalesResponse
+    from .invoices_peppol_status_sales_response_status import InvoicesPeppolStatusSalesResponseStatus
     from .invoices_peppol_xml_sales_response import InvoicesPeppolXmlSalesResponse
     from .invoices_send_sales_request_locale import InvoicesSendSalesRequestLocale
     from .invoices_send_sales_response import InvoicesSendSalesResponse
@@ -439,6 +442,9 @@ _dynamic_imports: typing.Dict[str, str] = {
     "InvoicesPdfSalesRequestLocale": ".invoices_pdf_sales_request_locale",
     "InvoicesPdfSalesResponse": ".invoices_pdf_sales_response",
     "InvoicesPeppolSendSalesResponse": ".invoices_peppol_send_sales_response",
+    "InvoicesPeppolSendSalesResponseStatus": ".invoices_peppol_send_sales_response_status",
+    "InvoicesPeppolStatusSalesResponse": ".invoices_peppol_status_sales_response",
+    "InvoicesPeppolStatusSalesResponseStatus": ".invoices_peppol_status_sales_response_status",
     "InvoicesPeppolXmlSalesResponse": ".invoices_peppol_xml_sales_response",
     "InvoicesSendSalesRequestLocale": ".invoices_send_sales_request_locale",
     "InvoicesSendSalesResponse": ".invoices_send_sales_response",
@@ -688,6 +694,9 @@ __all__ = [
     "InvoicesPdfSalesRequestLocale",
     "InvoicesPdfSalesResponse",
     "InvoicesPeppolSendSalesResponse",
+    "InvoicesPeppolSendSalesResponseStatus",
+    "InvoicesPeppolStatusSalesResponse",
+    "InvoicesPeppolStatusSalesResponseStatus",
     "InvoicesPeppolXmlSalesResponse",
     "InvoicesSendSalesRequestLocale",
     "InvoicesSendSalesResponse",

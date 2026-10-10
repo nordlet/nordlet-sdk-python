@@ -41,6 +41,7 @@ from .types.invoices_payment_settings_update_sales_response import InvoicesPayme
 from .types.invoices_pdf_sales_request_locale import InvoicesPdfSalesRequestLocale
 from .types.invoices_pdf_sales_response import InvoicesPdfSalesResponse
 from .types.invoices_peppol_send_sales_response import InvoicesPeppolSendSalesResponse
+from .types.invoices_peppol_status_sales_response import InvoicesPeppolStatusSalesResponse
 from .types.invoices_peppol_xml_sales_response import InvoicesPeppolXmlSalesResponse
 from .types.invoices_send_sales_request_locale import InvoicesSendSalesRequestLocale
 from .types.invoices_send_sales_response import InvoicesSendSalesResponse
@@ -372,6 +373,8 @@ class SalesClient:
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> InvoicesPeppolSendSalesResponse:
         """
+        Send an issued invoice or credit note to the customer over Peppol through the company's own access point (Settings → Compliance → EU; Nordlet supports Recommand, Storecove and e-invoice.be). Without one the call is refused with 422 and the document can only be downloaded with `sales/invoices/peppol-xml`. `status` is `pending` until the receiving access point confirms, then `delivered`; `failed` and `rejected` come with `detail`, and the invoice can then be sent again. Later changes arrive through the access point's webhook and are announced as `sale_invoice.peppol_delivered`, `sale_invoice.peppol_rejected` and `sale_invoice.peppol_failed`.
+
         Parameters
         ----------
         id : str
@@ -396,6 +399,38 @@ class SalesClient:
         )
         """
         _response = self._raw_client.invoices_peppol_send(id=id, request_options=request_options)
+        return _response.data
+
+    def invoices_peppol_status(
+        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> InvoicesPeppolStatusSalesResponse:
+        """
+        Ask the company's Peppol access point what happened to an invoice sent with `sales/invoices/peppol-send`, and store the answer: `pending`, `delivered` (the receiving access point confirmed it), `rejected` (the receiver refused it, see `detail`) or `failed` (it could not be delivered, see `detail`). The access point's webhook updates the same fields without this call. Storecove has no call for the status of a sent document, so for a Storecove access point this answers 422 and the status comes only from its webhook.
+
+        Parameters
+        ----------
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        InvoicesPeppolStatusSalesResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.sales.invoices_peppol_status(
+            id="id",
+        )
+        """
+        _response = self._raw_client.invoices_peppol_status(id=id, request_options=request_options)
         return _response.data
 
     def invoices_einvoice_xml(
@@ -905,6 +940,7 @@ class SalesClient:
         advance_id: str,
         invoice_id: str,
         date: typing.Optional[dt.date] = OMIT,
+        amount: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> InvoicesApplyAdvanceSalesResponse:
         """
@@ -915,6 +951,9 @@ class SalesClient:
         invoice_id : str
 
         date : typing.Optional[dt.date]
+
+        amount : typing.Optional[str]
+            Gross amount of the advance to apply; defaults to the unapplied advance or the unpaid balance of the invoice, whichever is smaller
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -937,7 +976,7 @@ class SalesClient:
         )
         """
         _response = self._raw_client.invoices_apply_advance(
-            advance_id=advance_id, invoice_id=invoice_id, date=date, request_options=request_options
+            advance_id=advance_id, invoice_id=invoice_id, date=date, amount=amount, request_options=request_options
         )
         return _response.data
 
@@ -1983,6 +2022,8 @@ class AsyncSalesClient:
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> InvoicesPeppolSendSalesResponse:
         """
+        Send an issued invoice or credit note to the customer over Peppol through the company's own access point (Settings → Compliance → EU; Nordlet supports Recommand, Storecove and e-invoice.be). Without one the call is refused with 422 and the document can only be downloaded with `sales/invoices/peppol-xml`. `status` is `pending` until the receiving access point confirms, then `delivered`; `failed` and `rejected` come with `detail`, and the invoice can then be sent again. Later changes arrive through the access point's webhook and are announced as `sale_invoice.peppol_delivered`, `sale_invoice.peppol_rejected` and `sale_invoice.peppol_failed`.
+
         Parameters
         ----------
         id : str
@@ -2015,6 +2056,46 @@ class AsyncSalesClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.invoices_peppol_send(id=id, request_options=request_options)
+        return _response.data
+
+    async def invoices_peppol_status(
+        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> InvoicesPeppolStatusSalesResponse:
+        """
+        Ask the company's Peppol access point what happened to an invoice sent with `sales/invoices/peppol-send`, and store the answer: `pending`, `delivered` (the receiving access point confirmed it), `rejected` (the receiver refused it, see `detail`) or `failed` (it could not be delivered, see `detail`). The access point's webhook updates the same fields without this call. Storecove has no call for the status of a sent document, so for a Storecove access point this answers 422 and the status comes only from its webhook.
+
+        Parameters
+        ----------
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        InvoicesPeppolStatusSalesResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.sales.invoices_peppol_status(
+                id="id",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.invoices_peppol_status(id=id, request_options=request_options)
         return _response.data
 
     async def invoices_einvoice_xml(
@@ -2620,6 +2701,7 @@ class AsyncSalesClient:
         advance_id: str,
         invoice_id: str,
         date: typing.Optional[dt.date] = OMIT,
+        amount: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> InvoicesApplyAdvanceSalesResponse:
         """
@@ -2630,6 +2712,9 @@ class AsyncSalesClient:
         invoice_id : str
 
         date : typing.Optional[dt.date]
+
+        amount : typing.Optional[str]
+            Gross amount of the advance to apply; defaults to the unapplied advance or the unpaid balance of the invoice, whichever is smaller
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -2660,7 +2745,7 @@ class AsyncSalesClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.invoices_apply_advance(
-            advance_id=advance_id, invoice_id=invoice_id, date=date, request_options=request_options
+            advance_id=advance_id, invoice_id=invoice_id, date=date, amount=amount, request_options=request_options
         )
         return _response.data
 

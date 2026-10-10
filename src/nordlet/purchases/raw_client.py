@@ -836,6 +836,7 @@ class RawPurchasesClient:
         id: str,
         registration_date: typing.Optional[dt.date] = OMIT,
         warehouse_id: typing.Optional[str] = OMIT,
+        return_from_stock: typing.Optional[bool] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[InvoicesRegisterPurchasesResponse]:
         """
@@ -846,6 +847,8 @@ class RawPurchasesClient:
         registration_date : typing.Optional[dt.date]
 
         warehouse_id : typing.Optional[str]
+
+        return_from_stock : typing.Optional[bool]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -862,6 +865,7 @@ class RawPurchasesClient:
                 "id": id,
                 "registrationDate": registration_date,
                 "warehouseId": warehouse_id,
+                "returnFromStock": return_from_stock,
             },
             headers={
                 "content-type": "application/json",
@@ -4657,6 +4661,7 @@ class AsyncRawPurchasesClient:
         id: str,
         registration_date: typing.Optional[dt.date] = OMIT,
         warehouse_id: typing.Optional[str] = OMIT,
+        return_from_stock: typing.Optional[bool] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[InvoicesRegisterPurchasesResponse]:
         """
@@ -4667,6 +4672,8 @@ class AsyncRawPurchasesClient:
         registration_date : typing.Optional[dt.date]
 
         warehouse_id : typing.Optional[str]
+
+        return_from_stock : typing.Optional[bool]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -4683,6 +4690,7 @@ class AsyncRawPurchasesClient:
                 "id": id,
                 "registrationDate": registration_date,
                 "warehouseId": warehouse_id,
+                "returnFromStock": return_from_stock,
             },
             headers={
                 "content-type": "application/json",

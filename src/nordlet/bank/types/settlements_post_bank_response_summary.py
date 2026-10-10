@@ -22,6 +22,9 @@ class SettlementsPostBankResponseSummary(UniversalBaseModel):
     suspense_amount: typing_extensions.Annotated[
         str, FieldMetadata(alias="suspenseAmount"), pydantic.Field(alias="suspenseAmount")
     ]
+    cleared_amount: typing_extensions.Annotated[
+        str, FieldMetadata(alias="clearedAmount"), pydantic.Field(alias="clearedAmount")
+    ]
     fx_rate: typing_extensions.Annotated[str, FieldMetadata(alias="fxRate"), pydantic.Field(alias="fxRate")]
     exchange_difference: typing_extensions.Annotated[
         str, FieldMetadata(alias="exchangeDifference"), pydantic.Field(alias="exchangeDifference")

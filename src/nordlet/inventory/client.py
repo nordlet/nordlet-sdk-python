@@ -42,6 +42,7 @@ from .types.warehouses_create_inventory_response import WarehousesCreateInventor
 from .types.warehouses_list_inventory_request_filter_item import WarehousesListInventoryRequestFilterItem
 from .types.warehouses_list_inventory_request_sort_item import WarehousesListInventoryRequestSortItem
 from .types.warehouses_list_inventory_response import WarehousesListInventoryResponse
+from .types.warehouses_update_inventory_response import WarehousesUpdateInventoryResponse
 
 # this is used as the default value for optional parameters
 OMIT = typing.cast(typing.Any, ...)
@@ -127,6 +128,7 @@ class InventoryClient:
         code: str,
         name: str,
         is_default: typing.Optional[bool] = OMIT,
+        country_code: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> WarehousesCreateInventoryResponse:
         """
@@ -137,6 +139,8 @@ class InventoryClient:
         name : str
 
         is_default : typing.Optional[bool]
+
+        country_code : typing.Optional[str]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -159,7 +163,7 @@ class InventoryClient:
         )
         """
         _response = self._raw_client.warehouses_create(
-            code=code, name=name, is_default=is_default, request_options=request_options
+            code=code, name=name, is_default=is_default, country_code=country_code, request_options=request_options
         )
         return _response.data
 
@@ -206,6 +210,47 @@ class InventoryClient:
         """
         _response = self._raw_client.warehouses_list(
             page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
+        )
+        return _response.data
+
+    def warehouses_update(
+        self,
+        *,
+        id: str,
+        name: typing.Optional[str] = OMIT,
+        country_code: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> WarehousesUpdateInventoryResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        name : typing.Optional[str]
+
+        country_code : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        WarehousesUpdateInventoryResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.inventory.warehouses_update(
+            id="id",
+        )
+        """
+        _response = self._raw_client.warehouses_update(
+            id=id, name=name, country_code=country_code, request_options=request_options
         )
         return _response.data
 
@@ -1131,6 +1176,7 @@ class AsyncInventoryClient:
         code: str,
         name: str,
         is_default: typing.Optional[bool] = OMIT,
+        country_code: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> WarehousesCreateInventoryResponse:
         """
@@ -1141,6 +1187,8 @@ class AsyncInventoryClient:
         name : str
 
         is_default : typing.Optional[bool]
+
+        country_code : typing.Optional[str]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -1171,7 +1219,7 @@ class AsyncInventoryClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.warehouses_create(
-            code=code, name=name, is_default=is_default, request_options=request_options
+            code=code, name=name, is_default=is_default, country_code=country_code, request_options=request_options
         )
         return _response.data
 
@@ -1226,6 +1274,55 @@ class AsyncInventoryClient:
         """
         _response = await self._raw_client.warehouses_list(
             page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
+        )
+        return _response.data
+
+    async def warehouses_update(
+        self,
+        *,
+        id: str,
+        name: typing.Optional[str] = OMIT,
+        country_code: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> WarehousesUpdateInventoryResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        name : typing.Optional[str]
+
+        country_code : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        WarehousesUpdateInventoryResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.inventory.warehouses_update(
+                id="id",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.warehouses_update(
+            id=id, name=name, country_code=country_code, request_options=request_options
         )
         return _response.data
 

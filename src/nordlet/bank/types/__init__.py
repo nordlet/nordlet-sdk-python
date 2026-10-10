@@ -6,7 +6,9 @@ import typing
 from importlib import import_module
 
 if typing.TYPE_CHECKING:
+    from .accounts_create_bank_request_type import AccountsCreateBankRequestType
     from .accounts_create_bank_response import AccountsCreateBankResponse
+    from .accounts_create_bank_response_type import AccountsCreateBankResponseType
     from .accounts_list_bank_request_filter_item import AccountsListBankRequestFilterItem
     from .accounts_list_bank_request_filter_item_op import AccountsListBankRequestFilterItemOp
     from .accounts_list_bank_request_filter_item_value import AccountsListBankRequestFilterItemValue
@@ -15,7 +17,10 @@ if typing.TYPE_CHECKING:
     from .accounts_list_bank_request_sort_item_dir import AccountsListBankRequestSortItemDir
     from .accounts_list_bank_response import AccountsListBankResponse
     from .accounts_list_bank_response_rows_item import AccountsListBankResponseRowsItem
+    from .accounts_list_bank_response_rows_item_type import AccountsListBankResponseRowsItemType
+    from .accounts_update_bank_request_type import AccountsUpdateBankRequestType
     from .accounts_update_bank_response import AccountsUpdateBankResponse
+    from .accounts_update_bank_response_type import AccountsUpdateBankResponseType
     from .direct_debits_candidates_bank_request_filter_item import DirectDebitsCandidatesBankRequestFilterItem
     from .direct_debits_candidates_bank_request_filter_item_op import DirectDebitsCandidatesBankRequestFilterItemOp
     from .direct_debits_candidates_bank_request_filter_item_value import (
@@ -203,7 +208,9 @@ if typing.TYPE_CHECKING:
     from .transactions_unmatch_bank_response import TransactionsUnmatchBankResponse
     from .transactions_unmatch_bank_response_status import TransactionsUnmatchBankResponseStatus
 _dynamic_imports: typing.Dict[str, str] = {
+    "AccountsCreateBankRequestType": ".accounts_create_bank_request_type",
     "AccountsCreateBankResponse": ".accounts_create_bank_response",
+    "AccountsCreateBankResponseType": ".accounts_create_bank_response_type",
     "AccountsListBankRequestFilterItem": ".accounts_list_bank_request_filter_item",
     "AccountsListBankRequestFilterItemOp": ".accounts_list_bank_request_filter_item_op",
     "AccountsListBankRequestFilterItemValue": ".accounts_list_bank_request_filter_item_value",
@@ -212,7 +219,10 @@ _dynamic_imports: typing.Dict[str, str] = {
     "AccountsListBankRequestSortItemDir": ".accounts_list_bank_request_sort_item_dir",
     "AccountsListBankResponse": ".accounts_list_bank_response",
     "AccountsListBankResponseRowsItem": ".accounts_list_bank_response_rows_item",
+    "AccountsListBankResponseRowsItemType": ".accounts_list_bank_response_rows_item_type",
+    "AccountsUpdateBankRequestType": ".accounts_update_bank_request_type",
     "AccountsUpdateBankResponse": ".accounts_update_bank_response",
+    "AccountsUpdateBankResponseType": ".accounts_update_bank_response_type",
     "DirectDebitsCandidatesBankRequestFilterItem": ".direct_debits_candidates_bank_request_filter_item",
     "DirectDebitsCandidatesBankRequestFilterItemOp": ".direct_debits_candidates_bank_request_filter_item_op",
     "DirectDebitsCandidatesBankRequestFilterItemValue": ".direct_debits_candidates_bank_request_filter_item_value",
@@ -398,7 +408,9 @@ def __dir__():
 
 
 __all__ = [
+    "AccountsCreateBankRequestType",
     "AccountsCreateBankResponse",
+    "AccountsCreateBankResponseType",
     "AccountsListBankRequestFilterItem",
     "AccountsListBankRequestFilterItemOp",
     "AccountsListBankRequestFilterItemValue",
@@ -407,7 +419,10 @@ __all__ = [
     "AccountsListBankRequestSortItemDir",
     "AccountsListBankResponse",
     "AccountsListBankResponseRowsItem",
+    "AccountsListBankResponseRowsItemType",
+    "AccountsUpdateBankRequestType",
     "AccountsUpdateBankResponse",
+    "AccountsUpdateBankResponseType",
     "DirectDebitsCandidatesBankRequestFilterItem",
     "DirectDebitsCandidatesBankRequestFilterItemOp",
     "DirectDebitsCandidatesBankRequestFilterItemValue",

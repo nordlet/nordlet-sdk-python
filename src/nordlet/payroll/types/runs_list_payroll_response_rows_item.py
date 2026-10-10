@@ -43,6 +43,7 @@ class RunsListPayrollResponseRowsItem(UniversalBaseModel):
         pydantic.Field(alias="componentTotals"),
     ]
     net_total: typing_extensions.Annotated[str, FieldMetadata(alias="netTotal"), pydantic.Field(alias="netTotal")]
+    paid_amount: typing_extensions.Annotated[str, FieldMetadata(alias="paidAmount"), pydantic.Field(alias="paidAmount")]
     journal_transaction_id: typing_extensions.Annotated[
         typing.Optional[str], FieldMetadata(alias="journalTransactionId"), pydantic.Field(alias="journalTransactionId")
     ] = None

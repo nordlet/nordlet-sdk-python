@@ -14,6 +14,9 @@ class WarehousesCreateInventoryResponse(UniversalBaseModel):
     code: str
     name: str
     is_default: typing_extensions.Annotated[bool, FieldMetadata(alias="isDefault"), pydantic.Field(alias="isDefault")]
+    country_code: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="countryCode"), pydantic.Field(alias="countryCode")
+    ] = None
     created_at: typing_extensions.Annotated[
         dt.datetime, FieldMetadata(alias="createdAt"), pydantic.Field(alias="createdAt")
     ]

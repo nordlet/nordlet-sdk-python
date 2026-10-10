@@ -24,6 +24,8 @@ from ..errors.unprocessable_entity_error import UnprocessableEntityError
 from ..types.error_response import ErrorResponse
 from .types.documents_confirm_capture_request_lines_item import DocumentsConfirmCaptureRequestLinesItem
 from .types.documents_confirm_capture_request_new_supplier import DocumentsConfirmCaptureRequestNewSupplier
+from .types.documents_confirm_capture_request_opposite_lines_item import DocumentsConfirmCaptureRequestOppositeLinesItem
+from .types.documents_confirm_capture_request_type import DocumentsConfirmCaptureRequestType
 from .types.documents_confirm_capture_response import DocumentsConfirmCaptureResponse
 from .types.documents_delete_capture_response import DocumentsDeleteCaptureResponse
 from .types.documents_extract_capture_response import DocumentsExtractCaptureResponse
@@ -1548,12 +1550,17 @@ class RawCaptureClient:
         lines: typing.Sequence[DocumentsConfirmCaptureRequestLinesItem],
         partner_id: typing.Optional[str] = OMIT,
         new_supplier: typing.Optional[DocumentsConfirmCaptureRequestNewSupplier] = OMIT,
+        type: typing.Optional[DocumentsConfirmCaptureRequestType] = OMIT,
         due_date: typing.Optional[dt.date] = OMIT,
         currency: typing.Optional[str] = OMIT,
         notes: typing.Optional[str] = OMIT,
+        opposite_lines: typing.Optional[typing.Sequence[DocumentsConfirmCaptureRequestOppositeLinesItem]] = OMIT,
+        opposite_document_number: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[DocumentsConfirmCaptureResponse]:
         """
+        Creates the purchase invoice (or credit note, see `type`) from `lines`. Lines with the opposite sign go in `oppositeLines` and are saved as a second document of the opposite type for the same supplier: a purchase credit note against the new invoice, or a purchase invoice next to the new credit note. It is numbered `oppositeDocumentNumber`, by default the document number followed by "-CR" (credit note) or "-INV" (invoice).
+
         Parameters
         ----------
         id : str
@@ -1568,11 +1575,17 @@ class RawCaptureClient:
 
         new_supplier : typing.Optional[DocumentsConfirmCaptureRequestNewSupplier]
 
+        type : typing.Optional[DocumentsConfirmCaptureRequestType]
+
         due_date : typing.Optional[dt.date]
 
         currency : typing.Optional[str]
 
         notes : typing.Optional[str]
+
+        opposite_lines : typing.Optional[typing.Sequence[DocumentsConfirmCaptureRequestOppositeLinesItem]]
+
+        opposite_document_number : typing.Optional[str]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -1591,6 +1604,7 @@ class RawCaptureClient:
                 "newSupplier": convert_and_respect_annotation_metadata(
                     object_=new_supplier, annotation=DocumentsConfirmCaptureRequestNewSupplier, direction="write"
                 ),
+                "type": type,
                 "documentNumber": document_number,
                 "documentDate": document_date,
                 "dueDate": due_date,
@@ -1601,6 +1615,12 @@ class RawCaptureClient:
                     annotation=typing.Sequence[DocumentsConfirmCaptureRequestLinesItem],
                     direction="write",
                 ),
+                "oppositeLines": convert_and_respect_annotation_metadata(
+                    object_=opposite_lines,
+                    annotation=typing.Sequence[DocumentsConfirmCaptureRequestOppositeLinesItem],
+                    direction="write",
+                ),
+                "oppositeDocumentNumber": opposite_document_number,
             },
             headers={
                 "content-type": "application/json",
@@ -3241,12 +3261,17 @@ class AsyncRawCaptureClient:
         lines: typing.Sequence[DocumentsConfirmCaptureRequestLinesItem],
         partner_id: typing.Optional[str] = OMIT,
         new_supplier: typing.Optional[DocumentsConfirmCaptureRequestNewSupplier] = OMIT,
+        type: typing.Optional[DocumentsConfirmCaptureRequestType] = OMIT,
         due_date: typing.Optional[dt.date] = OMIT,
         currency: typing.Optional[str] = OMIT,
         notes: typing.Optional[str] = OMIT,
+        opposite_lines: typing.Optional[typing.Sequence[DocumentsConfirmCaptureRequestOppositeLinesItem]] = OMIT,
+        opposite_document_number: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[DocumentsConfirmCaptureResponse]:
         """
+        Creates the purchase invoice (or credit note, see `type`) from `lines`. Lines with the opposite sign go in `oppositeLines` and are saved as a second document of the opposite type for the same supplier: a purchase credit note against the new invoice, or a purchase invoice next to the new credit note. It is numbered `oppositeDocumentNumber`, by default the document number followed by "-CR" (credit note) or "-INV" (invoice).
+
         Parameters
         ----------
         id : str
@@ -3261,11 +3286,17 @@ class AsyncRawCaptureClient:
 
         new_supplier : typing.Optional[DocumentsConfirmCaptureRequestNewSupplier]
 
+        type : typing.Optional[DocumentsConfirmCaptureRequestType]
+
         due_date : typing.Optional[dt.date]
 
         currency : typing.Optional[str]
 
         notes : typing.Optional[str]
+
+        opposite_lines : typing.Optional[typing.Sequence[DocumentsConfirmCaptureRequestOppositeLinesItem]]
+
+        opposite_document_number : typing.Optional[str]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -3284,6 +3315,7 @@ class AsyncRawCaptureClient:
                 "newSupplier": convert_and_respect_annotation_metadata(
                     object_=new_supplier, annotation=DocumentsConfirmCaptureRequestNewSupplier, direction="write"
                 ),
+                "type": type,
                 "documentNumber": document_number,
                 "documentDate": document_date,
                 "dueDate": due_date,
@@ -3294,6 +3326,12 @@ class AsyncRawCaptureClient:
                     annotation=typing.Sequence[DocumentsConfirmCaptureRequestLinesItem],
                     direction="write",
                 ),
+                "oppositeLines": convert_and_respect_annotation_metadata(
+                    object_=opposite_lines,
+                    annotation=typing.Sequence[DocumentsConfirmCaptureRequestOppositeLinesItem],
+                    direction="write",
+                ),
+                "oppositeDocumentNumber": opposite_document_number,
             },
             headers={
                 "content-type": "application/json",

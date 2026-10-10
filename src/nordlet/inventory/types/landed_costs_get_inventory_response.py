@@ -26,6 +26,9 @@ class LandedCostsGetInventoryResponse(UniversalBaseModel):
     created_at: typing_extensions.Annotated[
         dt.datetime, FieldMetadata(alias="createdAt"), pydantic.Field(alias="createdAt")
     ]
+    journal_transaction_id: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="journalTransactionId"), pydantic.Field(alias="journalTransactionId")
+    ] = None
     lines: typing.List[LandedCostsGetInventoryResponseLinesItem]
 
     if IS_PYDANTIC_V2:

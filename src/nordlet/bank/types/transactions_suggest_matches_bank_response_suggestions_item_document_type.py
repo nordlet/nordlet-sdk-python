@@ -3,5 +3,5 @@
 import typing
 
 TransactionsSuggestMatchesBankResponseSuggestionsItemDocumentType = typing.Union[
-    typing.Literal["sale_invoice", "purchase_invoice"], typing.Any
+    typing.Literal["sale_invoice", "purchase_invoice", "payroll_run"], typing.Any
 ]

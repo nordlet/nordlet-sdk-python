@@ -2,4 +2,6 @@
 
 import typing
 
-TransactionsRecordBankRequestDocumentType = typing.Union[typing.Literal["sale_invoice", "purchase_invoice"], typing.Any]
+TransactionsRecordBankRequestDocumentType = typing.Union[
+    typing.Literal["sale_invoice", "purchase_invoice", "payroll_run"], typing.Any
+]

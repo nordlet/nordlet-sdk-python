@@ -7,11 +7,13 @@ import pydantic
 import typing_extensions
 from ...core.pydantic_utilities import IS_PYDANTIC_V2, UniversalBaseModel
 from ...core.serialization import FieldMetadata
+from .accounts_list_bank_response_rows_item_type import AccountsListBankResponseRowsItemType
 
 
 class AccountsListBankResponseRowsItem(UniversalBaseModel):
     id: str
     name: str
+    type: AccountsListBankResponseRowsItemType
     iban: typing.Optional[str] = None
     currency: str
     account_code: typing_extensions.Annotated[

@@ -6,10 +6,12 @@ import typing
 from ..core.client_wrapper import AsyncClientWrapper, SyncClientWrapper
 from ..core.request_options import RequestOptions
 from .raw_client import AsyncRawBankClient, RawBankClient
+from .types.accounts_create_bank_request_type import AccountsCreateBankRequestType
 from .types.accounts_create_bank_response import AccountsCreateBankResponse
 from .types.accounts_list_bank_request_filter_item import AccountsListBankRequestFilterItem
 from .types.accounts_list_bank_request_sort_item import AccountsListBankRequestSortItem
 from .types.accounts_list_bank_response import AccountsListBankResponse
+from .types.accounts_update_bank_request_type import AccountsUpdateBankRequestType
 from .types.accounts_update_bank_response import AccountsUpdateBankResponse
 from .types.direct_debits_candidates_bank_request_filter_item import DirectDebitsCandidatesBankRequestFilterItem
 from .types.direct_debits_candidates_bank_request_sort_item import DirectDebitsCandidatesBankRequestSortItem
@@ -104,6 +106,7 @@ class BankClient:
         self,
         *,
         name: str,
+        type: typing.Optional[AccountsCreateBankRequestType] = OMIT,
         iban: typing.Optional[str] = OMIT,
         currency: typing.Optional[str] = OMIT,
         account_code: typing.Optional[str] = OMIT,
@@ -114,6 +117,8 @@ class BankClient:
         Parameters
         ----------
         name : str
+
+        type : typing.Optional[AccountsCreateBankRequestType]
 
         iban : typing.Optional[str]
 
@@ -144,6 +149,7 @@ class BankClient:
         """
         _response = self._raw_client.accounts_create(
             name=name,
+            type=type,
             iban=iban,
             currency=currency,
             account_code=account_code,
@@ -203,6 +209,7 @@ class BankClient:
         *,
         id: str,
         name: typing.Optional[str] = OMIT,
+        type: typing.Optional[AccountsUpdateBankRequestType] = OMIT,
         iban: typing.Optional[str] = OMIT,
         account_code: typing.Optional[str] = OMIT,
         is_active: typing.Optional[bool] = OMIT,
@@ -214,6 +221,8 @@ class BankClient:
         id : str
 
         name : typing.Optional[str]
+
+        type : typing.Optional[AccountsUpdateBankRequestType]
 
         iban : typing.Optional[str]
 
@@ -241,7 +250,13 @@ class BankClient:
         )
         """
         _response = self._raw_client.accounts_update(
-            id=id, name=name, iban=iban, account_code=account_code, is_active=is_active, request_options=request_options
+            id=id,
+            name=name,
+            type=type,
+            iban=iban,
+            account_code=account_code,
+            is_active=is_active,
+            request_options=request_options,
         )
         return _response.data
 
@@ -2163,6 +2178,7 @@ class AsyncBankClient:
         self,
         *,
         name: str,
+        type: typing.Optional[AccountsCreateBankRequestType] = OMIT,
         iban: typing.Optional[str] = OMIT,
         currency: typing.Optional[str] = OMIT,
         account_code: typing.Optional[str] = OMIT,
@@ -2173,6 +2189,8 @@ class AsyncBankClient:
         Parameters
         ----------
         name : str
+
+        type : typing.Optional[AccountsCreateBankRequestType]
 
         iban : typing.Optional[str]
 
@@ -2211,6 +2229,7 @@ class AsyncBankClient:
         """
         _response = await self._raw_client.accounts_create(
             name=name,
+            type=type,
             iban=iban,
             currency=currency,
             account_code=account_code,
@@ -2278,6 +2297,7 @@ class AsyncBankClient:
         *,
         id: str,
         name: typing.Optional[str] = OMIT,
+        type: typing.Optional[AccountsUpdateBankRequestType] = OMIT,
         iban: typing.Optional[str] = OMIT,
         account_code: typing.Optional[str] = OMIT,
         is_active: typing.Optional[bool] = OMIT,
@@ -2289,6 +2309,8 @@ class AsyncBankClient:
         id : str
 
         name : typing.Optional[str]
+
+        type : typing.Optional[AccountsUpdateBankRequestType]
 
         iban : typing.Optional[str]
 
@@ -2324,7 +2346,13 @@ class AsyncBankClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.accounts_update(
-            id=id, name=name, iban=iban, account_code=account_code, is_active=is_active, request_options=request_options
+            id=id,
+            name=name,
+            type=type,
+            iban=iban,
+            account_code=account_code,
+            is_active=is_active,
+            request_options=request_options,
         )
         return _response.data
 

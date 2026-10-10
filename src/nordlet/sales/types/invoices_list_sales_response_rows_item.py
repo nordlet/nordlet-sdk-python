@@ -159,6 +159,21 @@ class InvoicesListSalesResponseRowsItem(UniversalBaseModel):
         FieldMetadata(alias="einvoiceCheckedAt"),
         pydantic.Field(alias="einvoiceCheckedAt"),
     ] = None
+    peppol_message_id: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="peppolMessageId"), pydantic.Field(alias="peppolMessageId")
+    ] = None
+    peppol_status: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="peppolStatus"), pydantic.Field(alias="peppolStatus")
+    ] = None
+    peppol_detail: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="peppolDetail"), pydantic.Field(alias="peppolDetail")
+    ] = None
+    peppol_sent_at: typing_extensions.Annotated[
+        typing.Optional[dt.datetime], FieldMetadata(alias="peppolSentAt"), pydantic.Field(alias="peppolSentAt")
+    ] = None
+    peppol_checked_at: typing_extensions.Annotated[
+        typing.Optional[dt.datetime], FieldMetadata(alias="peppolCheckedAt"), pydantic.Field(alias="peppolCheckedAt")
+    ] = None
     created_at: typing_extensions.Annotated[
         dt.datetime, FieldMetadata(alias="createdAt"), pydantic.Field(alias="createdAt")
     ]

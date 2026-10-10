@@ -55,6 +55,8 @@ from .types.vat_classifiers_list_reference_request_sort_item import VatClassifie
 from .types.vat_classifiers_list_reference_response import VatClassifiersListReferenceResponse
 from .types.vat_classifiers_upsert_reference_request_rows_item import VatClassifiersUpsertReferenceRequestRowsItem
 from .types.vat_classifiers_upsert_reference_response import VatClassifiersUpsertReferenceResponse
+from .types.vat_resolve_reference_request_goods_kind import VatResolveReferenceRequestGoodsKind
+from .types.vat_resolve_reference_request_service_kind import VatResolveReferenceRequestServiceKind
 from .types.vat_resolve_reference_request_supply_type import VatResolveReferenceRequestSupplyType
 from .types.vat_resolve_reference_response import VatResolveReferenceResponse
 
@@ -749,6 +751,12 @@ class ReferenceClient:
         acting_as_marketplace: typing.Optional[bool] = OMIT,
         seller_established_in_eu: typing.Optional[bool] = OMIT,
         imported_consignment_value_eur: typing.Optional[str] = OMIT,
+        service_kind: typing.Optional[VatResolveReferenceRequestServiceKind] = OMIT,
+        service_country_code: typing.Optional[str] = OMIT,
+        underlying_supplier_gave_vat_number: typing.Optional[bool] = OMIT,
+        underlying_supplier_charges_vat: typing.Optional[bool] = OMIT,
+        goods_kind: typing.Optional[VatResolveReferenceRequestGoodsKind] = OMIT,
+        goods_location_country_code: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> VatResolveReferenceResponse:
         """
@@ -773,6 +781,18 @@ class ReferenceClient:
         seller_established_in_eu : typing.Optional[bool]
 
         imported_consignment_value_eur : typing.Optional[str]
+
+        service_kind : typing.Optional[VatResolveReferenceRequestServiceKind]
+
+        service_country_code : typing.Optional[str]
+
+        underlying_supplier_gave_vat_number : typing.Optional[bool]
+
+        underlying_supplier_charges_vat : typing.Optional[bool]
+
+        goods_kind : typing.Optional[VatResolveReferenceRequestGoodsKind]
+
+        goods_location_country_code : typing.Optional[str]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -802,6 +822,12 @@ class ReferenceClient:
             acting_as_marketplace=acting_as_marketplace,
             seller_established_in_eu=seller_established_in_eu,
             imported_consignment_value_eur=imported_consignment_value_eur,
+            service_kind=service_kind,
+            service_country_code=service_country_code,
+            underlying_supplier_gave_vat_number=underlying_supplier_gave_vat_number,
+            underlying_supplier_charges_vat=underlying_supplier_charges_vat,
+            goods_kind=goods_kind,
+            goods_location_country_code=goods_location_country_code,
             request_options=request_options,
         )
         return _response.data
@@ -1906,6 +1932,12 @@ class AsyncReferenceClient:
         acting_as_marketplace: typing.Optional[bool] = OMIT,
         seller_established_in_eu: typing.Optional[bool] = OMIT,
         imported_consignment_value_eur: typing.Optional[str] = OMIT,
+        service_kind: typing.Optional[VatResolveReferenceRequestServiceKind] = OMIT,
+        service_country_code: typing.Optional[str] = OMIT,
+        underlying_supplier_gave_vat_number: typing.Optional[bool] = OMIT,
+        underlying_supplier_charges_vat: typing.Optional[bool] = OMIT,
+        goods_kind: typing.Optional[VatResolveReferenceRequestGoodsKind] = OMIT,
+        goods_location_country_code: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> VatResolveReferenceResponse:
         """
@@ -1930,6 +1962,18 @@ class AsyncReferenceClient:
         seller_established_in_eu : typing.Optional[bool]
 
         imported_consignment_value_eur : typing.Optional[str]
+
+        service_kind : typing.Optional[VatResolveReferenceRequestServiceKind]
+
+        service_country_code : typing.Optional[str]
+
+        underlying_supplier_gave_vat_number : typing.Optional[bool]
+
+        underlying_supplier_charges_vat : typing.Optional[bool]
+
+        goods_kind : typing.Optional[VatResolveReferenceRequestGoodsKind]
+
+        goods_location_country_code : typing.Optional[str]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -1967,6 +2011,12 @@ class AsyncReferenceClient:
             acting_as_marketplace=acting_as_marketplace,
             seller_established_in_eu=seller_established_in_eu,
             imported_consignment_value_eur=imported_consignment_value_eur,
+            service_kind=service_kind,
+            service_country_code=service_country_code,
+            underlying_supplier_gave_vat_number=underlying_supplier_gave_vat_number,
+            underlying_supplier_charges_vat=underlying_supplier_charges_vat,
+            goods_kind=goods_kind,
+            goods_location_country_code=goods_location_country_code,
             request_options=request_options,
         )
         return _response.data

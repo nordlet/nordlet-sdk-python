@@ -72,9 +72,13 @@ from .types.ee_employment_register_send_declarations_response import EeEmploymen
 from .types.es_verifactu_declaracion_responsable_declarations_response import (
     EsVerifactuDeclaracionResponsableDeclarationsResponse,
 )
+from .types.eu_dac7preview_declarations_response import EuDac7PreviewDeclarationsResponse
+from .types.eu_dac7xml_declarations_response import EuDac7XmlDeclarationsResponse
+from .types.eu_digital_reporting_list_declarations_response import EuDigitalReportingListDeclarationsResponse
 from .types.eu_distance_sales_threshold_get_declarations_response import EuDistanceSalesThresholdGetDeclarationsResponse
 from .types.eu_ioss_compute_declarations_response import EuIossComputeDeclarationsResponse
 from .types.eu_oss_compute_declarations_response import EuOssComputeDeclarationsResponse
+from .types.eu_own_goods_transfers_compute_declarations_response import EuOwnGoodsTransfersComputeDeclarationsResponse
 from .types.eu_sme_cross_border_report_compute_declarations_response import (
     EuSmeCrossBorderReportComputeDeclarationsResponse,
 )
@@ -847,6 +851,144 @@ class DeclarationsClient:
         )
         """
         _response = self._raw_client.eu_ioss_compute(year=year, month=month, request_options=request_options)
+        return _response.data
+
+    def eu_own_goods_transfers_compute(
+        self, *, year: int, month: int, request_options: typing.Optional[RequestOptions] = None
+    ) -> EuOwnGoodsTransfersComputeDeclarationsResponse:
+        """
+        Parameters
+        ----------
+        year : int
+
+        month : int
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        EuOwnGoodsTransfersComputeDeclarationsResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.declarations.eu_own_goods_transfers_compute(
+            year=1000000,
+            month=1000000,
+        )
+        """
+        _response = self._raw_client.eu_own_goods_transfers_compute(
+            year=year, month=month, request_options=request_options
+        )
+        return _response.data
+
+    def eu_digital_reporting_list(
+        self, *, from_date: dt.date, to_date: dt.date, request_options: typing.Optional[RequestOptions] = None
+    ) -> EuDigitalReportingListDeclarationsResponse:
+        """
+        Parameters
+        ----------
+        from_date : dt.date
+
+        to_date : dt.date
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        EuDigitalReportingListDeclarationsResponse
+            Default Response
+
+        Examples
+        --------
+        import datetime
+
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.declarations.eu_digital_reporting_list(
+            from_date=datetime.date.fromisoformat(
+                "2026-07-01",
+            ),
+            to_date=datetime.date.fromisoformat(
+                "2026-07-01",
+            ),
+        )
+        """
+        _response = self._raw_client.eu_digital_reporting_list(
+            from_date=from_date, to_date=to_date, request_options=request_options
+        )
+        return _response.data
+
+    def eu_dac7preview(
+        self, *, year: int, request_options: typing.Optional[RequestOptions] = None
+    ) -> EuDac7PreviewDeclarationsResponse:
+        """
+        Which platform sellers are reportable for the year (Council Directive (EU) 2021/514, Annex V) and why the others are excluded, the data still missing, and how the company files the report in its Member State.
+
+        Parameters
+        ----------
+        year : int
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        EuDac7PreviewDeclarationsResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.declarations.eu_dac7preview(
+            year=1000000,
+        )
+        """
+        _response = self._raw_client.eu_dac7preview(year=year, request_options=request_options)
+        return _response.data
+
+    def eu_dac7xml(
+        self, *, year: int, request_options: typing.Optional[RequestOptions] = None
+    ) -> EuDac7XmlDeclarationsResponse:
+        """
+        Parameters
+        ----------
+        year : int
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        EuDac7XmlDeclarationsResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.declarations.eu_dac7xml(
+            year=1000000,
+        )
+        """
+        _response = self._raw_client.eu_dac7xml(year=year, request_options=request_options)
         return _response.data
 
     def eu_distance_sales_threshold_get(
@@ -3067,7 +3209,7 @@ class DeclarationsClient:
         self, *, year: int, request_options: typing.Optional[RequestOptions] = None
     ) -> PlPit11GenerateDeclarationsResponse:
         """
-        Generate PIT-11(29) for every person on the payroll of one year: the pay, the deductible costs, the advance withheld and the social and health contributions taken off it. One document per person, because that is how the form is filed.
+        Generate PIT-11(29) for every person on the payroll of one year: the pay, the deductible costs, the advance withheld and the social and health contributions taken off it. One document per person, because that is how the form is filed, addressed to the tax office of the place of residence of that person (employee field plKodUrzedu); a person without that code is refused with 422.
 
         Parameters
         ----------
@@ -4595,6 +4737,175 @@ class AsyncDeclarationsClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.eu_ioss_compute(year=year, month=month, request_options=request_options)
+        return _response.data
+
+    async def eu_own_goods_transfers_compute(
+        self, *, year: int, month: int, request_options: typing.Optional[RequestOptions] = None
+    ) -> EuOwnGoodsTransfersComputeDeclarationsResponse:
+        """
+        Parameters
+        ----------
+        year : int
+
+        month : int
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        EuOwnGoodsTransfersComputeDeclarationsResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.declarations.eu_own_goods_transfers_compute(
+                year=1000000,
+                month=1000000,
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.eu_own_goods_transfers_compute(
+            year=year, month=month, request_options=request_options
+        )
+        return _response.data
+
+    async def eu_digital_reporting_list(
+        self, *, from_date: dt.date, to_date: dt.date, request_options: typing.Optional[RequestOptions] = None
+    ) -> EuDigitalReportingListDeclarationsResponse:
+        """
+        Parameters
+        ----------
+        from_date : dt.date
+
+        to_date : dt.date
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        EuDigitalReportingListDeclarationsResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+        import datetime
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.declarations.eu_digital_reporting_list(
+                from_date=datetime.date.fromisoformat(
+                    "2026-07-01",
+                ),
+                to_date=datetime.date.fromisoformat(
+                    "2026-07-01",
+                ),
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.eu_digital_reporting_list(
+            from_date=from_date, to_date=to_date, request_options=request_options
+        )
+        return _response.data
+
+    async def eu_dac7preview(
+        self, *, year: int, request_options: typing.Optional[RequestOptions] = None
+    ) -> EuDac7PreviewDeclarationsResponse:
+        """
+        Which platform sellers are reportable for the year (Council Directive (EU) 2021/514, Annex V) and why the others are excluded, the data still missing, and how the company files the report in its Member State.
+
+        Parameters
+        ----------
+        year : int
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        EuDac7PreviewDeclarationsResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.declarations.eu_dac7preview(
+                year=1000000,
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.eu_dac7preview(year=year, request_options=request_options)
+        return _response.data
+
+    async def eu_dac7xml(
+        self, *, year: int, request_options: typing.Optional[RequestOptions] = None
+    ) -> EuDac7XmlDeclarationsResponse:
+        """
+        Parameters
+        ----------
+        year : int
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        EuDac7XmlDeclarationsResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.declarations.eu_dac7xml(
+                year=1000000,
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.eu_dac7xml(year=year, request_options=request_options)
         return _response.data
 
     async def eu_distance_sales_threshold_get(
@@ -7231,7 +7542,7 @@ class AsyncDeclarationsClient:
         self, *, year: int, request_options: typing.Optional[RequestOptions] = None
     ) -> PlPit11GenerateDeclarationsResponse:
         """
-        Generate PIT-11(29) for every person on the payroll of one year: the pay, the deductible costs, the advance withheld and the social and health contributions taken off it. One document per person, because that is how the form is filed.
+        Generate PIT-11(29) for every person on the payroll of one year: the pay, the deductible costs, the advance withheld and the social and health contributions taken off it. One document per person, because that is how the form is filed, addressed to the tax office of the place of residence of that person (employee field plKodUrzedu); a person without that code is refused with 422.
 
         Parameters
         ----------
