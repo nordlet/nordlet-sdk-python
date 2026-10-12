@@ -12,11 +12,11 @@ class AccountGetBillingResponsePlansValue(UniversalBaseModel):
     monthly_fee_eur: typing_extensions.Annotated[
         str, FieldMetadata(alias="monthlyFeeEur"), pydantic.Field(alias="monthlyFeeEur")
     ]
-    included_requests: typing_extensions.Annotated[
-        int, FieldMetadata(alias="includedRequests"), pydantic.Field(alias="includedRequests")
+    included_invoices: typing_extensions.Annotated[
+        int, FieldMetadata(alias="includedInvoices"), pydantic.Field(alias="includedInvoices")
     ]
-    request_overage_eur: typing_extensions.Annotated[
-        str, FieldMetadata(alias="requestOverageEur"), pydantic.Field(alias="requestOverageEur")
+    invoice_overage_eur: typing_extensions.Annotated[
+        str, FieldMetadata(alias="invoiceOverageEur"), pydantic.Field(alias="invoiceOverageEur")
     ]
     included_database_bytes: typing_extensions.Annotated[
         float, FieldMetadata(alias="includedDatabaseBytes"), pydantic.Field(alias="includedDatabaseBytes")

@@ -77,12 +77,6 @@ class UpdatePartnersResponse(UniversalBaseModel):
     eori_code: typing_extensions.Annotated[
         typing.Optional[str], FieldMetadata(alias="eoriCode"), pydantic.Field(alias="eoriCode")
     ] = None
-    other_code: typing_extensions.Annotated[
-        typing.Optional[str], FieldMetadata(alias="otherCode"), pydantic.Field(alias="otherCode")
-    ] = None
-    foreign_tax_number: typing_extensions.Annotated[
-        typing.Optional[str], FieldMetadata(alias="foreignTaxNumber"), pydantic.Field(alias="foreignTaxNumber")
-    ] = None
     auto_debt_reminder: typing_extensions.Annotated[
         bool, FieldMetadata(alias="autoDebtReminder"), pydantic.Field(alias="autoDebtReminder")
     ]

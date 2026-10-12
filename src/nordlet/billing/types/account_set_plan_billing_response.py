@@ -7,6 +7,8 @@ import pydantic
 import typing_extensions
 from ...core.pydantic_utilities import IS_PYDANTIC_V2, UniversalBaseModel
 from ...core.serialization import FieldMetadata
+from .account_set_plan_billing_response_account_type import AccountSetPlanBillingResponseAccountType
+from .account_set_plan_billing_response_auto_top_up import AccountSetPlanBillingResponseAutoTopUp
 from .account_set_plan_billing_response_month_to_date import AccountSetPlanBillingResponseMonthToDate
 from .account_set_plan_billing_response_plan import AccountSetPlanBillingResponsePlan
 from .account_set_plan_billing_response_plans_value import AccountSetPlanBillingResponsePlansValue
@@ -16,6 +18,11 @@ from .account_set_plan_billing_response_top_up import AccountSetPlanBillingRespo
 
 class AccountSetPlanBillingResponse(UniversalBaseModel):
     plan: AccountSetPlanBillingResponsePlan
+    account_type: typing_extensions.Annotated[
+        AccountSetPlanBillingResponseAccountType,
+        FieldMetadata(alias="accountType"),
+        pydantic.Field(alias="accountType"),
+    ]
     status: AccountSetPlanBillingResponseStatus
     balance_cents: typing_extensions.Annotated[
         int, FieldMetadata(alias="balanceCents"), pydantic.Field(alias="balanceCents")
@@ -52,8 +59,20 @@ class AccountSetPlanBillingResponse(UniversalBaseModel):
         pydantic.Field(alias="monthToDate"),
     ]
     plans: typing.Dict[str, AccountSetPlanBillingResponsePlansValue]
+    api_request_eur: typing_extensions.Annotated[
+        str, FieldMetadata(alias="apiRequestEur"), pydantic.Field(alias="apiRequestEur")
+    ]
     top_up: typing_extensions.Annotated[
         AccountSetPlanBillingResponseTopUp, FieldMetadata(alias="topUp"), pydantic.Field(alias="topUp")
+    ]
+    auto_top_up: typing_extensions.Annotated[
+        AccountSetPlanBillingResponseAutoTopUp, FieldMetadata(alias="autoTopUp"), pydantic.Field(alias="autoTopUp")
+    ]
+    overdraft_cap_cents: typing_extensions.Annotated[
+        int, FieldMetadata(alias="overdraftCapCents"), pydantic.Field(alias="overdraftCapCents")
+    ]
+    overdraft_cap_max_cents: typing_extensions.Annotated[
+        int, FieldMetadata(alias="overdraftCapMaxCents"), pydantic.Field(alias="overdraftCapMaxCents")
     ]
     trial_days: typing_extensions.Annotated[int, FieldMetadata(alias="trialDays"), pydantic.Field(alias="trialDays")]
 

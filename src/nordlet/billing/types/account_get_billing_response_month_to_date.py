@@ -14,6 +14,9 @@ class AccountGetBillingResponseMonthToDate(UniversalBaseModel):
     api_requests: typing_extensions.Annotated[
         int, FieldMetadata(alias="apiRequests"), pydantic.Field(alias="apiRequests")
     ]
+    sale_invoices: typing_extensions.Annotated[
+        int, FieldMetadata(alias="saleInvoices"), pydantic.Field(alias="saleInvoices")
+    ]
     ocr_pages: typing_extensions.Annotated[int, FieldMetadata(alias="ocrPages"), pydantic.Field(alias="ocrPages")]
     file_bytes: typing_extensions.Annotated[float, FieldMetadata(alias="fileBytes"), pydantic.Field(alias="fileBytes")]
     database_bytes: typing_extensions.Annotated[

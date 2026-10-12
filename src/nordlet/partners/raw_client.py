@@ -3246,8 +3246,6 @@ class RawPartnersClient:
         website: typing.Optional[str] = OMIT,
         fax: typing.Optional[str] = OMIT,
         eori_code: typing.Optional[str] = OMIT,
-        other_code: typing.Optional[str] = OMIT,
-        foreign_tax_number: typing.Optional[str] = OMIT,
         auto_debt_reminder: typing.Optional[bool] = OMIT,
         late_interest_percent: typing.Optional[str] = OMIT,
         first_call_date: typing.Optional[dt.date] = OMIT,
@@ -3311,10 +3309,6 @@ class RawPartnersClient:
 
         eori_code : typing.Optional[str]
 
-        other_code : typing.Optional[str]
-
-        foreign_tax_number : typing.Optional[str]
-
         auto_debt_reminder : typing.Optional[bool]
 
         late_interest_percent : typing.Optional[str]
@@ -3377,8 +3371,6 @@ class RawPartnersClient:
                 "website": website,
                 "fax": fax,
                 "eoriCode": eori_code,
-                "otherCode": other_code,
-                "foreignTaxNumber": foreign_tax_number,
                 "autoDebtReminder": auto_debt_reminder,
                 "lateInterestPercent": late_interest_percent,
                 "firstCallDate": first_call_date,
@@ -3552,8 +3544,6 @@ class RawPartnersClient:
         website: typing.Optional[str] = OMIT,
         fax: typing.Optional[str] = OMIT,
         eori_code: typing.Optional[str] = OMIT,
-        other_code: typing.Optional[str] = OMIT,
-        foreign_tax_number: typing.Optional[str] = OMIT,
         auto_debt_reminder: typing.Optional[bool] = OMIT,
         late_interest_percent: typing.Optional[str] = OMIT,
         first_call_date: typing.Optional[dt.date] = OMIT,
@@ -3617,10 +3607,6 @@ class RawPartnersClient:
 
         eori_code : typing.Optional[str]
 
-        other_code : typing.Optional[str]
-
-        foreign_tax_number : typing.Optional[str]
-
         auto_debt_reminder : typing.Optional[bool]
 
         late_interest_percent : typing.Optional[str]
@@ -3683,8 +3669,6 @@ class RawPartnersClient:
                 "website": website,
                 "fax": fax,
                 "eoriCode": eori_code,
-                "otherCode": other_code,
-                "foreignTaxNumber": foreign_tax_number,
                 "autoDebtReminder": auto_debt_reminder,
                 "lateInterestPercent": late_interest_percent,
                 "firstCallDate": first_call_date,
@@ -4016,8 +4000,6 @@ class RawPartnersClient:
         website: typing.Optional[str] = OMIT,
         fax: typing.Optional[str] = OMIT,
         eori_code: typing.Optional[str] = OMIT,
-        other_code: typing.Optional[str] = OMIT,
-        foreign_tax_number: typing.Optional[str] = OMIT,
         auto_debt_reminder: typing.Optional[bool] = OMIT,
         late_interest_percent: typing.Optional[str] = OMIT,
         first_call_date: typing.Optional[dt.date] = OMIT,
@@ -4083,10 +4065,6 @@ class RawPartnersClient:
 
         eori_code : typing.Optional[str]
 
-        other_code : typing.Optional[str]
-
-        foreign_tax_number : typing.Optional[str]
-
         auto_debt_reminder : typing.Optional[bool]
 
         late_interest_percent : typing.Optional[str]
@@ -4150,8 +4128,6 @@ class RawPartnersClient:
                 "website": website,
                 "fax": fax,
                 "eoriCode": eori_code,
-                "otherCode": other_code,
-                "foreignTaxNumber": foreign_tax_number,
                 "autoDebtReminder": auto_debt_reminder,
                 "lateInterestPercent": late_interest_percent,
                 "firstCallDate": first_call_date,
@@ -10275,8 +10251,6 @@ class AsyncRawPartnersClient:
         website: typing.Optional[str] = OMIT,
         fax: typing.Optional[str] = OMIT,
         eori_code: typing.Optional[str] = OMIT,
-        other_code: typing.Optional[str] = OMIT,
-        foreign_tax_number: typing.Optional[str] = OMIT,
         auto_debt_reminder: typing.Optional[bool] = OMIT,
         late_interest_percent: typing.Optional[str] = OMIT,
         first_call_date: typing.Optional[dt.date] = OMIT,
@@ -10340,10 +10314,6 @@ class AsyncRawPartnersClient:
 
         eori_code : typing.Optional[str]
 
-        other_code : typing.Optional[str]
-
-        foreign_tax_number : typing.Optional[str]
-
         auto_debt_reminder : typing.Optional[bool]
 
         late_interest_percent : typing.Optional[str]
@@ -10406,8 +10376,6 @@ class AsyncRawPartnersClient:
                 "website": website,
                 "fax": fax,
                 "eoriCode": eori_code,
-                "otherCode": other_code,
-                "foreignTaxNumber": foreign_tax_number,
                 "autoDebtReminder": auto_debt_reminder,
                 "lateInterestPercent": late_interest_percent,
                 "firstCallDate": first_call_date,
@@ -10581,8 +10549,6 @@ class AsyncRawPartnersClient:
         website: typing.Optional[str] = OMIT,
         fax: typing.Optional[str] = OMIT,
         eori_code: typing.Optional[str] = OMIT,
-        other_code: typing.Optional[str] = OMIT,
-        foreign_tax_number: typing.Optional[str] = OMIT,
         auto_debt_reminder: typing.Optional[bool] = OMIT,
         late_interest_percent: typing.Optional[str] = OMIT,
         first_call_date: typing.Optional[dt.date] = OMIT,
@@ -10646,10 +10612,6 @@ class AsyncRawPartnersClient:
 
         eori_code : typing.Optional[str]
 
-        other_code : typing.Optional[str]
-
-        foreign_tax_number : typing.Optional[str]
-
         auto_debt_reminder : typing.Optional[bool]
 
         late_interest_percent : typing.Optional[str]
@@ -10712,8 +10674,6 @@ class AsyncRawPartnersClient:
                 "website": website,
                 "fax": fax,
                 "eoriCode": eori_code,
-                "otherCode": other_code,
-                "foreignTaxNumber": foreign_tax_number,
                 "autoDebtReminder": auto_debt_reminder,
                 "lateInterestPercent": late_interest_percent,
                 "firstCallDate": first_call_date,
@@ -11045,8 +11005,6 @@ class AsyncRawPartnersClient:
         website: typing.Optional[str] = OMIT,
         fax: typing.Optional[str] = OMIT,
         eori_code: typing.Optional[str] = OMIT,
-        other_code: typing.Optional[str] = OMIT,
-        foreign_tax_number: typing.Optional[str] = OMIT,
         auto_debt_reminder: typing.Optional[bool] = OMIT,
         late_interest_percent: typing.Optional[str] = OMIT,
         first_call_date: typing.Optional[dt.date] = OMIT,
@@ -11112,10 +11070,6 @@ class AsyncRawPartnersClient:
 
         eori_code : typing.Optional[str]
 
-        other_code : typing.Optional[str]
-
-        foreign_tax_number : typing.Optional[str]
-
         auto_debt_reminder : typing.Optional[bool]
 
         late_interest_percent : typing.Optional[str]
@@ -11179,8 +11133,6 @@ class AsyncRawPartnersClient:
                 "website": website,
                 "fax": fax,
                 "eoriCode": eori_code,
-                "otherCode": other_code,
-                "foreignTaxNumber": foreign_tax_number,
                 "autoDebtReminder": auto_debt_reminder,
                 "lateInterestPercent": late_interest_percent,
                 "firstCallDate": first_call_date,

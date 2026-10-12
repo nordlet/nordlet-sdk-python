@@ -139,6 +139,20 @@ if typing.TYPE_CHECKING:
     from .match_rules_list_bank_response_rows_item import MatchRulesListBankResponseRowsItem
     from .match_rules_update_bank_response import MatchRulesUpdateBankResponse
     from .payments_export_bank_response import PaymentsExportBankResponse
+    from .securities_get_bank_response import SecuritiesGetBankResponse
+    from .securities_get_bank_response_operations_item import SecuritiesGetBankResponseOperationsItem
+    from .securities_get_bank_response_operations_item_status import SecuritiesGetBankResponseOperationsItemStatus
+    from .securities_import_bank_response import SecuritiesImportBankResponse
+    from .securities_list_bank_request_filter_item import SecuritiesListBankRequestFilterItem
+    from .securities_list_bank_request_filter_item_op import SecuritiesListBankRequestFilterItemOp
+    from .securities_list_bank_request_filter_item_value import SecuritiesListBankRequestFilterItemValue
+    from .securities_list_bank_request_filter_item_value_three_item import (
+        SecuritiesListBankRequestFilterItemValueThreeItem,
+    )
+    from .securities_list_bank_request_sort_item import SecuritiesListBankRequestSortItem
+    from .securities_list_bank_request_sort_item_dir import SecuritiesListBankRequestSortItemDir
+    from .securities_list_bank_response import SecuritiesListBankResponse
+    from .securities_list_bank_response_rows_item import SecuritiesListBankResponseRowsItem
     from .settlements_commission_bank_response import SettlementsCommissionBankResponse
     from .settlements_commission_bank_response_match_status import SettlementsCommissionBankResponseMatchStatus
     from .settlements_get_bank_response import SettlementsGetBankResponse
@@ -325,6 +339,18 @@ _dynamic_imports: typing.Dict[str, str] = {
     "MatchRulesListBankResponseRowsItem": ".match_rules_list_bank_response_rows_item",
     "MatchRulesUpdateBankResponse": ".match_rules_update_bank_response",
     "PaymentsExportBankResponse": ".payments_export_bank_response",
+    "SecuritiesGetBankResponse": ".securities_get_bank_response",
+    "SecuritiesGetBankResponseOperationsItem": ".securities_get_bank_response_operations_item",
+    "SecuritiesGetBankResponseOperationsItemStatus": ".securities_get_bank_response_operations_item_status",
+    "SecuritiesImportBankResponse": ".securities_import_bank_response",
+    "SecuritiesListBankRequestFilterItem": ".securities_list_bank_request_filter_item",
+    "SecuritiesListBankRequestFilterItemOp": ".securities_list_bank_request_filter_item_op",
+    "SecuritiesListBankRequestFilterItemValue": ".securities_list_bank_request_filter_item_value",
+    "SecuritiesListBankRequestFilterItemValueThreeItem": ".securities_list_bank_request_filter_item_value_three_item",
+    "SecuritiesListBankRequestSortItem": ".securities_list_bank_request_sort_item",
+    "SecuritiesListBankRequestSortItemDir": ".securities_list_bank_request_sort_item_dir",
+    "SecuritiesListBankResponse": ".securities_list_bank_response",
+    "SecuritiesListBankResponseRowsItem": ".securities_list_bank_response_rows_item",
     "SettlementsCommissionBankResponse": ".settlements_commission_bank_response",
     "SettlementsCommissionBankResponseMatchStatus": ".settlements_commission_bank_response_match_status",
     "SettlementsGetBankResponse": ".settlements_get_bank_response",
@@ -525,6 +551,18 @@ __all__ = [
     "MatchRulesListBankResponseRowsItem",
     "MatchRulesUpdateBankResponse",
     "PaymentsExportBankResponse",
+    "SecuritiesGetBankResponse",
+    "SecuritiesGetBankResponseOperationsItem",
+    "SecuritiesGetBankResponseOperationsItemStatus",
+    "SecuritiesImportBankResponse",
+    "SecuritiesListBankRequestFilterItem",
+    "SecuritiesListBankRequestFilterItemOp",
+    "SecuritiesListBankRequestFilterItemValue",
+    "SecuritiesListBankRequestFilterItemValueThreeItem",
+    "SecuritiesListBankRequestSortItem",
+    "SecuritiesListBankRequestSortItemDir",
+    "SecuritiesListBankResponse",
+    "SecuritiesListBankResponseRowsItem",
     "SettlementsCommissionBankResponse",
     "SettlementsCommissionBankResponseMatchStatus",
     "SettlementsGetBankResponse",

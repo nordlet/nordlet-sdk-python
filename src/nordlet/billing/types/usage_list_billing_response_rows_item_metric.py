@@ -3,5 +3,5 @@
 import typing
 
 UsageListBillingResponseRowsItemMetric = typing.Union[
-    typing.Literal["api_request", "ocr_page", "file_storage_bytes", "database_bytes"], typing.Any
+    typing.Literal["api_request", "ocr_page", "file_storage_bytes", "database_bytes", "sale_invoice"], typing.Any
 ]

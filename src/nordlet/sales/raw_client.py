@@ -36,6 +36,21 @@ from .types.acts_pdf_sales_response import ActsPdfSalesResponse
 from .types.acts_update_sales_request_lines_item import ActsUpdateSalesRequestLinesItem
 from .types.acts_update_sales_request_type import ActsUpdateSalesRequestType
 from .types.acts_update_sales_response import ActsUpdateSalesResponse
+from .types.invoice_templates_create_sales_request_document_type import InvoiceTemplatesCreateSalesRequestDocumentType
+from .types.invoice_templates_create_sales_request_lines_item import InvoiceTemplatesCreateSalesRequestLinesItem
+from .types.invoice_templates_create_sales_request_supply_type import InvoiceTemplatesCreateSalesRequestSupplyType
+from .types.invoice_templates_create_sales_request_vat_scheme import InvoiceTemplatesCreateSalesRequestVatScheme
+from .types.invoice_templates_create_sales_response import InvoiceTemplatesCreateSalesResponse
+from .types.invoice_templates_delete_sales_response import InvoiceTemplatesDeleteSalesResponse
+from .types.invoice_templates_get_sales_response import InvoiceTemplatesGetSalesResponse
+from .types.invoice_templates_list_sales_request_filter_item import InvoiceTemplatesListSalesRequestFilterItem
+from .types.invoice_templates_list_sales_request_sort_item import InvoiceTemplatesListSalesRequestSortItem
+from .types.invoice_templates_list_sales_response import InvoiceTemplatesListSalesResponse
+from .types.invoice_templates_update_sales_request_document_type import InvoiceTemplatesUpdateSalesRequestDocumentType
+from .types.invoice_templates_update_sales_request_lines_item import InvoiceTemplatesUpdateSalesRequestLinesItem
+from .types.invoice_templates_update_sales_request_supply_type import InvoiceTemplatesUpdateSalesRequestSupplyType
+from .types.invoice_templates_update_sales_request_vat_scheme import InvoiceTemplatesUpdateSalesRequestVatScheme
+from .types.invoice_templates_update_sales_response import InvoiceTemplatesUpdateSalesResponse
 from .types.invoices_apply_advance_sales_response import InvoicesApplyAdvanceSalesResponse
 from .types.invoices_create_sales_request_lines_item import InvoicesCreateSalesRequestLinesItem
 from .types.invoices_create_sales_request_type import InvoicesCreateSalesRequestType
@@ -4816,6 +4831,1021 @@ class RawSalesClient:
                     ActsPdfSalesResponse,
                     parse_obj_as(
                         type_=ActsPdfSalesResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return HttpResponse(response=_response, data=_data)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 422:
+                raise UnprocessableEntityError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
+    def invoice_templates_create(
+        self,
+        *,
+        name: str,
+        document_type: typing.Optional[InvoiceTemplatesCreateSalesRequestDocumentType] = OMIT,
+        partner_id: typing.Optional[str] = OMIT,
+        currency: typing.Optional[str] = OMIT,
+        payment_term_days: typing.Optional[int] = OMIT,
+        vat_scheme: typing.Optional[InvoiceTemplatesCreateSalesRequestVatScheme] = OMIT,
+        vat_country_code: typing.Optional[str] = OMIT,
+        agreement_id: typing.Optional[str] = OMIT,
+        operation_type_id: typing.Optional[str] = OMIT,
+        document_series_id: typing.Optional[str] = OMIT,
+        discount_percent: typing.Optional[str] = OMIT,
+        issued_by_name: typing.Optional[str] = OMIT,
+        issued_by_title: typing.Optional[str] = OMIT,
+        received_by_name: typing.Optional[str] = OMIT,
+        received_by_title: typing.Optional[str] = OMIT,
+        notes: typing.Optional[str] = OMIT,
+        supply_type: typing.Optional[InvoiceTemplatesCreateSalesRequestSupplyType] = OMIT,
+        series_label: typing.Optional[str] = OMIT,
+        order_number: typing.Optional[str] = OMIT,
+        intrastat_transport_mode: typing.Optional[str] = OMIT,
+        intrastat_delivery_terms: typing.Optional[str] = OMIT,
+        intrastat_region: typing.Optional[str] = OMIT,
+        intrastat_nature_of_transaction: typing.Optional[str] = OMIT,
+        lines: typing.Optional[typing.Sequence[InvoiceTemplatesCreateSalesRequestLinesItem]] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> HttpResponse[InvoiceTemplatesCreateSalesResponse]:
+        """
+        Parameters
+        ----------
+        name : str
+
+        document_type : typing.Optional[InvoiceTemplatesCreateSalesRequestDocumentType]
+
+        partner_id : typing.Optional[str]
+
+        currency : typing.Optional[str]
+
+        payment_term_days : typing.Optional[int]
+
+        vat_scheme : typing.Optional[InvoiceTemplatesCreateSalesRequestVatScheme]
+
+        vat_country_code : typing.Optional[str]
+
+        agreement_id : typing.Optional[str]
+
+        operation_type_id : typing.Optional[str]
+
+        document_series_id : typing.Optional[str]
+
+        discount_percent : typing.Optional[str]
+
+        issued_by_name : typing.Optional[str]
+
+        issued_by_title : typing.Optional[str]
+
+        received_by_name : typing.Optional[str]
+
+        received_by_title : typing.Optional[str]
+
+        notes : typing.Optional[str]
+
+        supply_type : typing.Optional[InvoiceTemplatesCreateSalesRequestSupplyType]
+
+        series_label : typing.Optional[str]
+
+        order_number : typing.Optional[str]
+
+        intrastat_transport_mode : typing.Optional[str]
+
+        intrastat_delivery_terms : typing.Optional[str]
+
+        intrastat_region : typing.Optional[str]
+
+        intrastat_nature_of_transaction : typing.Optional[str]
+
+        lines : typing.Optional[typing.Sequence[InvoiceTemplatesCreateSalesRequestLinesItem]]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        HttpResponse[InvoiceTemplatesCreateSalesResponse]
+            Default Response
+        """
+        _response = self._client_wrapper.httpx_client.request(
+            "v1/sales/invoice-templates/create",
+            method="POST",
+            json={
+                "name": name,
+                "documentType": document_type,
+                "partnerId": partner_id,
+                "currency": currency,
+                "paymentTermDays": payment_term_days,
+                "vatScheme": vat_scheme,
+                "vatCountryCode": vat_country_code,
+                "agreementId": agreement_id,
+                "operationTypeId": operation_type_id,
+                "documentSeriesId": document_series_id,
+                "discountPercent": discount_percent,
+                "issuedByName": issued_by_name,
+                "issuedByTitle": issued_by_title,
+                "receivedByName": received_by_name,
+                "receivedByTitle": received_by_title,
+                "notes": notes,
+                "supplyType": supply_type,
+                "seriesLabel": series_label,
+                "orderNumber": order_number,
+                "intrastatTransportMode": intrastat_transport_mode,
+                "intrastatDeliveryTerms": intrastat_delivery_terms,
+                "intrastatRegion": intrastat_region,
+                "intrastatNatureOfTransaction": intrastat_nature_of_transaction,
+                "lines": convert_and_respect_annotation_metadata(
+                    object_=lines,
+                    annotation=typing.Sequence[InvoiceTemplatesCreateSalesRequestLinesItem],
+                    direction="write",
+                ),
+            },
+            headers={
+                "content-type": "application/json",
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    InvoiceTemplatesCreateSalesResponse,
+                    parse_obj_as(
+                        type_=InvoiceTemplatesCreateSalesResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return HttpResponse(response=_response, data=_data)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 422:
+                raise UnprocessableEntityError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
+    def invoice_templates_update(
+        self,
+        *,
+        id: str,
+        name: typing.Optional[str] = OMIT,
+        document_type: typing.Optional[InvoiceTemplatesUpdateSalesRequestDocumentType] = OMIT,
+        partner_id: typing.Optional[str] = OMIT,
+        currency: typing.Optional[str] = OMIT,
+        payment_term_days: typing.Optional[int] = OMIT,
+        vat_scheme: typing.Optional[InvoiceTemplatesUpdateSalesRequestVatScheme] = OMIT,
+        vat_country_code: typing.Optional[str] = OMIT,
+        agreement_id: typing.Optional[str] = OMIT,
+        operation_type_id: typing.Optional[str] = OMIT,
+        document_series_id: typing.Optional[str] = OMIT,
+        discount_percent: typing.Optional[str] = OMIT,
+        issued_by_name: typing.Optional[str] = OMIT,
+        issued_by_title: typing.Optional[str] = OMIT,
+        received_by_name: typing.Optional[str] = OMIT,
+        received_by_title: typing.Optional[str] = OMIT,
+        notes: typing.Optional[str] = OMIT,
+        supply_type: typing.Optional[InvoiceTemplatesUpdateSalesRequestSupplyType] = OMIT,
+        series_label: typing.Optional[str] = OMIT,
+        order_number: typing.Optional[str] = OMIT,
+        intrastat_transport_mode: typing.Optional[str] = OMIT,
+        intrastat_delivery_terms: typing.Optional[str] = OMIT,
+        intrastat_region: typing.Optional[str] = OMIT,
+        intrastat_nature_of_transaction: typing.Optional[str] = OMIT,
+        lines: typing.Optional[typing.Sequence[InvoiceTemplatesUpdateSalesRequestLinesItem]] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> HttpResponse[InvoiceTemplatesUpdateSalesResponse]:
+        """
+        Parameters
+        ----------
+        id : str
+
+        name : typing.Optional[str]
+
+        document_type : typing.Optional[InvoiceTemplatesUpdateSalesRequestDocumentType]
+
+        partner_id : typing.Optional[str]
+
+        currency : typing.Optional[str]
+
+        payment_term_days : typing.Optional[int]
+
+        vat_scheme : typing.Optional[InvoiceTemplatesUpdateSalesRequestVatScheme]
+
+        vat_country_code : typing.Optional[str]
+
+        agreement_id : typing.Optional[str]
+
+        operation_type_id : typing.Optional[str]
+
+        document_series_id : typing.Optional[str]
+
+        discount_percent : typing.Optional[str]
+
+        issued_by_name : typing.Optional[str]
+
+        issued_by_title : typing.Optional[str]
+
+        received_by_name : typing.Optional[str]
+
+        received_by_title : typing.Optional[str]
+
+        notes : typing.Optional[str]
+
+        supply_type : typing.Optional[InvoiceTemplatesUpdateSalesRequestSupplyType]
+
+        series_label : typing.Optional[str]
+
+        order_number : typing.Optional[str]
+
+        intrastat_transport_mode : typing.Optional[str]
+
+        intrastat_delivery_terms : typing.Optional[str]
+
+        intrastat_region : typing.Optional[str]
+
+        intrastat_nature_of_transaction : typing.Optional[str]
+
+        lines : typing.Optional[typing.Sequence[InvoiceTemplatesUpdateSalesRequestLinesItem]]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        HttpResponse[InvoiceTemplatesUpdateSalesResponse]
+            Default Response
+        """
+        _response = self._client_wrapper.httpx_client.request(
+            "v1/sales/invoice-templates/update",
+            method="POST",
+            json={
+                "id": id,
+                "name": name,
+                "documentType": document_type,
+                "partnerId": partner_id,
+                "currency": currency,
+                "paymentTermDays": payment_term_days,
+                "vatScheme": vat_scheme,
+                "vatCountryCode": vat_country_code,
+                "agreementId": agreement_id,
+                "operationTypeId": operation_type_id,
+                "documentSeriesId": document_series_id,
+                "discountPercent": discount_percent,
+                "issuedByName": issued_by_name,
+                "issuedByTitle": issued_by_title,
+                "receivedByName": received_by_name,
+                "receivedByTitle": received_by_title,
+                "notes": notes,
+                "supplyType": supply_type,
+                "seriesLabel": series_label,
+                "orderNumber": order_number,
+                "intrastatTransportMode": intrastat_transport_mode,
+                "intrastatDeliveryTerms": intrastat_delivery_terms,
+                "intrastatRegion": intrastat_region,
+                "intrastatNatureOfTransaction": intrastat_nature_of_transaction,
+                "lines": convert_and_respect_annotation_metadata(
+                    object_=lines,
+                    annotation=typing.Sequence[InvoiceTemplatesUpdateSalesRequestLinesItem],
+                    direction="write",
+                ),
+            },
+            headers={
+                "content-type": "application/json",
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    InvoiceTemplatesUpdateSalesResponse,
+                    parse_obj_as(
+                        type_=InvoiceTemplatesUpdateSalesResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return HttpResponse(response=_response, data=_data)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 422:
+                raise UnprocessableEntityError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
+    def invoice_templates_get(
+        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> HttpResponse[InvoiceTemplatesGetSalesResponse]:
+        """
+        Parameters
+        ----------
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        HttpResponse[InvoiceTemplatesGetSalesResponse]
+            Default Response
+        """
+        _response = self._client_wrapper.httpx_client.request(
+            "v1/sales/invoice-templates/get",
+            method="POST",
+            json={
+                "id": id,
+            },
+            headers={
+                "content-type": "application/json",
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    InvoiceTemplatesGetSalesResponse,
+                    parse_obj_as(
+                        type_=InvoiceTemplatesGetSalesResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return HttpResponse(response=_response, data=_data)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 422:
+                raise UnprocessableEntityError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
+    def invoice_templates_delete(
+        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> HttpResponse[InvoiceTemplatesDeleteSalesResponse]:
+        """
+        Parameters
+        ----------
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        HttpResponse[InvoiceTemplatesDeleteSalesResponse]
+            Default Response
+        """
+        _response = self._client_wrapper.httpx_client.request(
+            "v1/sales/invoice-templates/delete",
+            method="POST",
+            json={
+                "id": id,
+            },
+            headers={
+                "content-type": "application/json",
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    InvoiceTemplatesDeleteSalesResponse,
+                    parse_obj_as(
+                        type_=InvoiceTemplatesDeleteSalesResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return HttpResponse(response=_response, data=_data)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 422:
+                raise UnprocessableEntityError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
+    def invoice_templates_list(
+        self,
+        *,
+        page: typing.Optional[int] = OMIT,
+        page_size: typing.Optional[int] = OMIT,
+        sort: typing.Optional[typing.Sequence[InvoiceTemplatesListSalesRequestSortItem]] = OMIT,
+        filter: typing.Optional[typing.Sequence[InvoiceTemplatesListSalesRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> HttpResponse[InvoiceTemplatesListSalesResponse]:
+        """
+        Parameters
+        ----------
+        page : typing.Optional[int]
+
+        page_size : typing.Optional[int]
+
+        sort : typing.Optional[typing.Sequence[InvoiceTemplatesListSalesRequestSortItem]]
+
+        filter : typing.Optional[typing.Sequence[InvoiceTemplatesListSalesRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        HttpResponse[InvoiceTemplatesListSalesResponse]
+            Default Response
+        """
+        _response = self._client_wrapper.httpx_client.request(
+            "v1/sales/invoice-templates/list",
+            method="POST",
+            json={
+                "page": page,
+                "pageSize": page_size,
+                "sort": convert_and_respect_annotation_metadata(
+                    object_=sort,
+                    annotation=typing.Sequence[InvoiceTemplatesListSalesRequestSortItem],
+                    direction="write",
+                ),
+                "filter": convert_and_respect_annotation_metadata(
+                    object_=filter,
+                    annotation=typing.Sequence[InvoiceTemplatesListSalesRequestFilterItem],
+                    direction="write",
+                ),
+                "totals": totals,
+            },
+            headers={
+                "content-type": "application/json",
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    InvoiceTemplatesListSalesResponse,
+                    parse_obj_as(
+                        type_=InvoiceTemplatesListSalesResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -11034,6 +12064,1021 @@ class AsyncRawSalesClient:
                     ActsPdfSalesResponse,
                     parse_obj_as(
                         type_=ActsPdfSalesResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return AsyncHttpResponse(response=_response, data=_data)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 422:
+                raise UnprocessableEntityError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
+    async def invoice_templates_create(
+        self,
+        *,
+        name: str,
+        document_type: typing.Optional[InvoiceTemplatesCreateSalesRequestDocumentType] = OMIT,
+        partner_id: typing.Optional[str] = OMIT,
+        currency: typing.Optional[str] = OMIT,
+        payment_term_days: typing.Optional[int] = OMIT,
+        vat_scheme: typing.Optional[InvoiceTemplatesCreateSalesRequestVatScheme] = OMIT,
+        vat_country_code: typing.Optional[str] = OMIT,
+        agreement_id: typing.Optional[str] = OMIT,
+        operation_type_id: typing.Optional[str] = OMIT,
+        document_series_id: typing.Optional[str] = OMIT,
+        discount_percent: typing.Optional[str] = OMIT,
+        issued_by_name: typing.Optional[str] = OMIT,
+        issued_by_title: typing.Optional[str] = OMIT,
+        received_by_name: typing.Optional[str] = OMIT,
+        received_by_title: typing.Optional[str] = OMIT,
+        notes: typing.Optional[str] = OMIT,
+        supply_type: typing.Optional[InvoiceTemplatesCreateSalesRequestSupplyType] = OMIT,
+        series_label: typing.Optional[str] = OMIT,
+        order_number: typing.Optional[str] = OMIT,
+        intrastat_transport_mode: typing.Optional[str] = OMIT,
+        intrastat_delivery_terms: typing.Optional[str] = OMIT,
+        intrastat_region: typing.Optional[str] = OMIT,
+        intrastat_nature_of_transaction: typing.Optional[str] = OMIT,
+        lines: typing.Optional[typing.Sequence[InvoiceTemplatesCreateSalesRequestLinesItem]] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> AsyncHttpResponse[InvoiceTemplatesCreateSalesResponse]:
+        """
+        Parameters
+        ----------
+        name : str
+
+        document_type : typing.Optional[InvoiceTemplatesCreateSalesRequestDocumentType]
+
+        partner_id : typing.Optional[str]
+
+        currency : typing.Optional[str]
+
+        payment_term_days : typing.Optional[int]
+
+        vat_scheme : typing.Optional[InvoiceTemplatesCreateSalesRequestVatScheme]
+
+        vat_country_code : typing.Optional[str]
+
+        agreement_id : typing.Optional[str]
+
+        operation_type_id : typing.Optional[str]
+
+        document_series_id : typing.Optional[str]
+
+        discount_percent : typing.Optional[str]
+
+        issued_by_name : typing.Optional[str]
+
+        issued_by_title : typing.Optional[str]
+
+        received_by_name : typing.Optional[str]
+
+        received_by_title : typing.Optional[str]
+
+        notes : typing.Optional[str]
+
+        supply_type : typing.Optional[InvoiceTemplatesCreateSalesRequestSupplyType]
+
+        series_label : typing.Optional[str]
+
+        order_number : typing.Optional[str]
+
+        intrastat_transport_mode : typing.Optional[str]
+
+        intrastat_delivery_terms : typing.Optional[str]
+
+        intrastat_region : typing.Optional[str]
+
+        intrastat_nature_of_transaction : typing.Optional[str]
+
+        lines : typing.Optional[typing.Sequence[InvoiceTemplatesCreateSalesRequestLinesItem]]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        AsyncHttpResponse[InvoiceTemplatesCreateSalesResponse]
+            Default Response
+        """
+        _response = await self._client_wrapper.httpx_client.request(
+            "v1/sales/invoice-templates/create",
+            method="POST",
+            json={
+                "name": name,
+                "documentType": document_type,
+                "partnerId": partner_id,
+                "currency": currency,
+                "paymentTermDays": payment_term_days,
+                "vatScheme": vat_scheme,
+                "vatCountryCode": vat_country_code,
+                "agreementId": agreement_id,
+                "operationTypeId": operation_type_id,
+                "documentSeriesId": document_series_id,
+                "discountPercent": discount_percent,
+                "issuedByName": issued_by_name,
+                "issuedByTitle": issued_by_title,
+                "receivedByName": received_by_name,
+                "receivedByTitle": received_by_title,
+                "notes": notes,
+                "supplyType": supply_type,
+                "seriesLabel": series_label,
+                "orderNumber": order_number,
+                "intrastatTransportMode": intrastat_transport_mode,
+                "intrastatDeliveryTerms": intrastat_delivery_terms,
+                "intrastatRegion": intrastat_region,
+                "intrastatNatureOfTransaction": intrastat_nature_of_transaction,
+                "lines": convert_and_respect_annotation_metadata(
+                    object_=lines,
+                    annotation=typing.Sequence[InvoiceTemplatesCreateSalesRequestLinesItem],
+                    direction="write",
+                ),
+            },
+            headers={
+                "content-type": "application/json",
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    InvoiceTemplatesCreateSalesResponse,
+                    parse_obj_as(
+                        type_=InvoiceTemplatesCreateSalesResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return AsyncHttpResponse(response=_response, data=_data)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 422:
+                raise UnprocessableEntityError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
+    async def invoice_templates_update(
+        self,
+        *,
+        id: str,
+        name: typing.Optional[str] = OMIT,
+        document_type: typing.Optional[InvoiceTemplatesUpdateSalesRequestDocumentType] = OMIT,
+        partner_id: typing.Optional[str] = OMIT,
+        currency: typing.Optional[str] = OMIT,
+        payment_term_days: typing.Optional[int] = OMIT,
+        vat_scheme: typing.Optional[InvoiceTemplatesUpdateSalesRequestVatScheme] = OMIT,
+        vat_country_code: typing.Optional[str] = OMIT,
+        agreement_id: typing.Optional[str] = OMIT,
+        operation_type_id: typing.Optional[str] = OMIT,
+        document_series_id: typing.Optional[str] = OMIT,
+        discount_percent: typing.Optional[str] = OMIT,
+        issued_by_name: typing.Optional[str] = OMIT,
+        issued_by_title: typing.Optional[str] = OMIT,
+        received_by_name: typing.Optional[str] = OMIT,
+        received_by_title: typing.Optional[str] = OMIT,
+        notes: typing.Optional[str] = OMIT,
+        supply_type: typing.Optional[InvoiceTemplatesUpdateSalesRequestSupplyType] = OMIT,
+        series_label: typing.Optional[str] = OMIT,
+        order_number: typing.Optional[str] = OMIT,
+        intrastat_transport_mode: typing.Optional[str] = OMIT,
+        intrastat_delivery_terms: typing.Optional[str] = OMIT,
+        intrastat_region: typing.Optional[str] = OMIT,
+        intrastat_nature_of_transaction: typing.Optional[str] = OMIT,
+        lines: typing.Optional[typing.Sequence[InvoiceTemplatesUpdateSalesRequestLinesItem]] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> AsyncHttpResponse[InvoiceTemplatesUpdateSalesResponse]:
+        """
+        Parameters
+        ----------
+        id : str
+
+        name : typing.Optional[str]
+
+        document_type : typing.Optional[InvoiceTemplatesUpdateSalesRequestDocumentType]
+
+        partner_id : typing.Optional[str]
+
+        currency : typing.Optional[str]
+
+        payment_term_days : typing.Optional[int]
+
+        vat_scheme : typing.Optional[InvoiceTemplatesUpdateSalesRequestVatScheme]
+
+        vat_country_code : typing.Optional[str]
+
+        agreement_id : typing.Optional[str]
+
+        operation_type_id : typing.Optional[str]
+
+        document_series_id : typing.Optional[str]
+
+        discount_percent : typing.Optional[str]
+
+        issued_by_name : typing.Optional[str]
+
+        issued_by_title : typing.Optional[str]
+
+        received_by_name : typing.Optional[str]
+
+        received_by_title : typing.Optional[str]
+
+        notes : typing.Optional[str]
+
+        supply_type : typing.Optional[InvoiceTemplatesUpdateSalesRequestSupplyType]
+
+        series_label : typing.Optional[str]
+
+        order_number : typing.Optional[str]
+
+        intrastat_transport_mode : typing.Optional[str]
+
+        intrastat_delivery_terms : typing.Optional[str]
+
+        intrastat_region : typing.Optional[str]
+
+        intrastat_nature_of_transaction : typing.Optional[str]
+
+        lines : typing.Optional[typing.Sequence[InvoiceTemplatesUpdateSalesRequestLinesItem]]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        AsyncHttpResponse[InvoiceTemplatesUpdateSalesResponse]
+            Default Response
+        """
+        _response = await self._client_wrapper.httpx_client.request(
+            "v1/sales/invoice-templates/update",
+            method="POST",
+            json={
+                "id": id,
+                "name": name,
+                "documentType": document_type,
+                "partnerId": partner_id,
+                "currency": currency,
+                "paymentTermDays": payment_term_days,
+                "vatScheme": vat_scheme,
+                "vatCountryCode": vat_country_code,
+                "agreementId": agreement_id,
+                "operationTypeId": operation_type_id,
+                "documentSeriesId": document_series_id,
+                "discountPercent": discount_percent,
+                "issuedByName": issued_by_name,
+                "issuedByTitle": issued_by_title,
+                "receivedByName": received_by_name,
+                "receivedByTitle": received_by_title,
+                "notes": notes,
+                "supplyType": supply_type,
+                "seriesLabel": series_label,
+                "orderNumber": order_number,
+                "intrastatTransportMode": intrastat_transport_mode,
+                "intrastatDeliveryTerms": intrastat_delivery_terms,
+                "intrastatRegion": intrastat_region,
+                "intrastatNatureOfTransaction": intrastat_nature_of_transaction,
+                "lines": convert_and_respect_annotation_metadata(
+                    object_=lines,
+                    annotation=typing.Sequence[InvoiceTemplatesUpdateSalesRequestLinesItem],
+                    direction="write",
+                ),
+            },
+            headers={
+                "content-type": "application/json",
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    InvoiceTemplatesUpdateSalesResponse,
+                    parse_obj_as(
+                        type_=InvoiceTemplatesUpdateSalesResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return AsyncHttpResponse(response=_response, data=_data)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 422:
+                raise UnprocessableEntityError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
+    async def invoice_templates_get(
+        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> AsyncHttpResponse[InvoiceTemplatesGetSalesResponse]:
+        """
+        Parameters
+        ----------
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        AsyncHttpResponse[InvoiceTemplatesGetSalesResponse]
+            Default Response
+        """
+        _response = await self._client_wrapper.httpx_client.request(
+            "v1/sales/invoice-templates/get",
+            method="POST",
+            json={
+                "id": id,
+            },
+            headers={
+                "content-type": "application/json",
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    InvoiceTemplatesGetSalesResponse,
+                    parse_obj_as(
+                        type_=InvoiceTemplatesGetSalesResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return AsyncHttpResponse(response=_response, data=_data)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 422:
+                raise UnprocessableEntityError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
+    async def invoice_templates_delete(
+        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> AsyncHttpResponse[InvoiceTemplatesDeleteSalesResponse]:
+        """
+        Parameters
+        ----------
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        AsyncHttpResponse[InvoiceTemplatesDeleteSalesResponse]
+            Default Response
+        """
+        _response = await self._client_wrapper.httpx_client.request(
+            "v1/sales/invoice-templates/delete",
+            method="POST",
+            json={
+                "id": id,
+            },
+            headers={
+                "content-type": "application/json",
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    InvoiceTemplatesDeleteSalesResponse,
+                    parse_obj_as(
+                        type_=InvoiceTemplatesDeleteSalesResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return AsyncHttpResponse(response=_response, data=_data)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 422:
+                raise UnprocessableEntityError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
+    async def invoice_templates_list(
+        self,
+        *,
+        page: typing.Optional[int] = OMIT,
+        page_size: typing.Optional[int] = OMIT,
+        sort: typing.Optional[typing.Sequence[InvoiceTemplatesListSalesRequestSortItem]] = OMIT,
+        filter: typing.Optional[typing.Sequence[InvoiceTemplatesListSalesRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> AsyncHttpResponse[InvoiceTemplatesListSalesResponse]:
+        """
+        Parameters
+        ----------
+        page : typing.Optional[int]
+
+        page_size : typing.Optional[int]
+
+        sort : typing.Optional[typing.Sequence[InvoiceTemplatesListSalesRequestSortItem]]
+
+        filter : typing.Optional[typing.Sequence[InvoiceTemplatesListSalesRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        AsyncHttpResponse[InvoiceTemplatesListSalesResponse]
+            Default Response
+        """
+        _response = await self._client_wrapper.httpx_client.request(
+            "v1/sales/invoice-templates/list",
+            method="POST",
+            json={
+                "page": page,
+                "pageSize": page_size,
+                "sort": convert_and_respect_annotation_metadata(
+                    object_=sort,
+                    annotation=typing.Sequence[InvoiceTemplatesListSalesRequestSortItem],
+                    direction="write",
+                ),
+                "filter": convert_and_respect_annotation_metadata(
+                    object_=filter,
+                    annotation=typing.Sequence[InvoiceTemplatesListSalesRequestFilterItem],
+                    direction="write",
+                ),
+                "totals": totals,
+            },
+            headers={
+                "content-type": "application/json",
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    InvoiceTemplatesListSalesResponse,
+                    parse_obj_as(
+                        type_=InvoiceTemplatesListSalesResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )

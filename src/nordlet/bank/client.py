@@ -56,6 +56,11 @@ from .types.match_rules_delete_bank_response import MatchRulesDeleteBankResponse
 from .types.match_rules_list_bank_response import MatchRulesListBankResponse
 from .types.match_rules_update_bank_response import MatchRulesUpdateBankResponse
 from .types.payments_export_bank_response import PaymentsExportBankResponse
+from .types.securities_get_bank_response import SecuritiesGetBankResponse
+from .types.securities_import_bank_response import SecuritiesImportBankResponse
+from .types.securities_list_bank_request_filter_item import SecuritiesListBankRequestFilterItem
+from .types.securities_list_bank_request_sort_item import SecuritiesListBankRequestSortItem
+from .types.securities_list_bank_response import SecuritiesListBankResponse
 from .types.settlements_commission_bank_response import SettlementsCommissionBankResponse
 from .types.settlements_get_bank_response import SettlementsGetBankResponse
 from .types.settlements_import_bank_request_provider import SettlementsImportBankRequestProvider
@@ -1793,6 +1798,124 @@ class BankClient:
         _response = self._raw_client.settlements_post(
             id=id, date=date, commission_percent=commission_percent, request_options=request_options
         )
+        return _response.data
+
+    def securities_import(
+        self,
+        *,
+        bank_account_id: str,
+        content: str,
+        file_name: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> SecuritiesImportBankResponse:
+        """
+        Parameters
+        ----------
+        bank_account_id : str
+
+        content : str
+
+        file_name : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        SecuritiesImportBankResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.bank.securities_import(
+            bank_account_id="bankAccountId",
+            content="content",
+        )
+        """
+        _response = self._raw_client.securities_import(
+            bank_account_id=bank_account_id, content=content, file_name=file_name, request_options=request_options
+        )
+        return _response.data
+
+    def securities_list(
+        self,
+        *,
+        page: typing.Optional[int] = OMIT,
+        page_size: typing.Optional[int] = OMIT,
+        sort: typing.Optional[typing.Sequence[SecuritiesListBankRequestSortItem]] = OMIT,
+        filter: typing.Optional[typing.Sequence[SecuritiesListBankRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> SecuritiesListBankResponse:
+        """
+        Parameters
+        ----------
+        page : typing.Optional[int]
+
+        page_size : typing.Optional[int]
+
+        sort : typing.Optional[typing.Sequence[SecuritiesListBankRequestSortItem]]
+
+        filter : typing.Optional[typing.Sequence[SecuritiesListBankRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        SecuritiesListBankResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.bank.securities_list()
+        """
+        _response = self._raw_client.securities_list(
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
+        )
+        return _response.data
+
+    def securities_get(
+        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> SecuritiesGetBankResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        SecuritiesGetBankResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.bank.securities_get(
+            id="id",
+        )
+        """
+        _response = self._raw_client.securities_get(id=id, request_options=request_options)
         return _response.data
 
     def feeds_banks_list(
@@ -4150,6 +4273,148 @@ class AsyncBankClient:
         _response = await self._raw_client.settlements_post(
             id=id, date=date, commission_percent=commission_percent, request_options=request_options
         )
+        return _response.data
+
+    async def securities_import(
+        self,
+        *,
+        bank_account_id: str,
+        content: str,
+        file_name: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> SecuritiesImportBankResponse:
+        """
+        Parameters
+        ----------
+        bank_account_id : str
+
+        content : str
+
+        file_name : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        SecuritiesImportBankResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.bank.securities_import(
+                bank_account_id="bankAccountId",
+                content="content",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.securities_import(
+            bank_account_id=bank_account_id, content=content, file_name=file_name, request_options=request_options
+        )
+        return _response.data
+
+    async def securities_list(
+        self,
+        *,
+        page: typing.Optional[int] = OMIT,
+        page_size: typing.Optional[int] = OMIT,
+        sort: typing.Optional[typing.Sequence[SecuritiesListBankRequestSortItem]] = OMIT,
+        filter: typing.Optional[typing.Sequence[SecuritiesListBankRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> SecuritiesListBankResponse:
+        """
+        Parameters
+        ----------
+        page : typing.Optional[int]
+
+        page_size : typing.Optional[int]
+
+        sort : typing.Optional[typing.Sequence[SecuritiesListBankRequestSortItem]]
+
+        filter : typing.Optional[typing.Sequence[SecuritiesListBankRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        SecuritiesListBankResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.bank.securities_list()
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.securities_list(
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
+        )
+        return _response.data
+
+    async def securities_get(
+        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> SecuritiesGetBankResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        SecuritiesGetBankResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.bank.securities_get(
+                id="id",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.securities_get(id=id, request_options=request_options)
         return _response.data
 
     async def feeds_banks_list(

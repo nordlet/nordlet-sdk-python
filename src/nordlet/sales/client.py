@@ -20,6 +20,21 @@ from .types.acts_pdf_sales_response import ActsPdfSalesResponse
 from .types.acts_update_sales_request_lines_item import ActsUpdateSalesRequestLinesItem
 from .types.acts_update_sales_request_type import ActsUpdateSalesRequestType
 from .types.acts_update_sales_response import ActsUpdateSalesResponse
+from .types.invoice_templates_create_sales_request_document_type import InvoiceTemplatesCreateSalesRequestDocumentType
+from .types.invoice_templates_create_sales_request_lines_item import InvoiceTemplatesCreateSalesRequestLinesItem
+from .types.invoice_templates_create_sales_request_supply_type import InvoiceTemplatesCreateSalesRequestSupplyType
+from .types.invoice_templates_create_sales_request_vat_scheme import InvoiceTemplatesCreateSalesRequestVatScheme
+from .types.invoice_templates_create_sales_response import InvoiceTemplatesCreateSalesResponse
+from .types.invoice_templates_delete_sales_response import InvoiceTemplatesDeleteSalesResponse
+from .types.invoice_templates_get_sales_response import InvoiceTemplatesGetSalesResponse
+from .types.invoice_templates_list_sales_request_filter_item import InvoiceTemplatesListSalesRequestFilterItem
+from .types.invoice_templates_list_sales_request_sort_item import InvoiceTemplatesListSalesRequestSortItem
+from .types.invoice_templates_list_sales_response import InvoiceTemplatesListSalesResponse
+from .types.invoice_templates_update_sales_request_document_type import InvoiceTemplatesUpdateSalesRequestDocumentType
+from .types.invoice_templates_update_sales_request_lines_item import InvoiceTemplatesUpdateSalesRequestLinesItem
+from .types.invoice_templates_update_sales_request_supply_type import InvoiceTemplatesUpdateSalesRequestSupplyType
+from .types.invoice_templates_update_sales_request_vat_scheme import InvoiceTemplatesUpdateSalesRequestVatScheme
+from .types.invoice_templates_update_sales_response import InvoiceTemplatesUpdateSalesResponse
 from .types.invoices_apply_advance_sales_response import InvoicesApplyAdvanceSalesResponse
 from .types.invoices_create_sales_request_lines_item import InvoicesCreateSalesRequestLinesItem
 from .types.invoices_create_sales_request_type import InvoicesCreateSalesRequestType
@@ -1348,6 +1363,372 @@ class SalesClient:
         )
         """
         _response = self._raw_client.acts_pdf(id=id, locale=locale, request_options=request_options)
+        return _response.data
+
+    def invoice_templates_create(
+        self,
+        *,
+        name: str,
+        document_type: typing.Optional[InvoiceTemplatesCreateSalesRequestDocumentType] = OMIT,
+        partner_id: typing.Optional[str] = OMIT,
+        currency: typing.Optional[str] = OMIT,
+        payment_term_days: typing.Optional[int] = OMIT,
+        vat_scheme: typing.Optional[InvoiceTemplatesCreateSalesRequestVatScheme] = OMIT,
+        vat_country_code: typing.Optional[str] = OMIT,
+        agreement_id: typing.Optional[str] = OMIT,
+        operation_type_id: typing.Optional[str] = OMIT,
+        document_series_id: typing.Optional[str] = OMIT,
+        discount_percent: typing.Optional[str] = OMIT,
+        issued_by_name: typing.Optional[str] = OMIT,
+        issued_by_title: typing.Optional[str] = OMIT,
+        received_by_name: typing.Optional[str] = OMIT,
+        received_by_title: typing.Optional[str] = OMIT,
+        notes: typing.Optional[str] = OMIT,
+        supply_type: typing.Optional[InvoiceTemplatesCreateSalesRequestSupplyType] = OMIT,
+        series_label: typing.Optional[str] = OMIT,
+        order_number: typing.Optional[str] = OMIT,
+        intrastat_transport_mode: typing.Optional[str] = OMIT,
+        intrastat_delivery_terms: typing.Optional[str] = OMIT,
+        intrastat_region: typing.Optional[str] = OMIT,
+        intrastat_nature_of_transaction: typing.Optional[str] = OMIT,
+        lines: typing.Optional[typing.Sequence[InvoiceTemplatesCreateSalesRequestLinesItem]] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> InvoiceTemplatesCreateSalesResponse:
+        """
+        Parameters
+        ----------
+        name : str
+
+        document_type : typing.Optional[InvoiceTemplatesCreateSalesRequestDocumentType]
+
+        partner_id : typing.Optional[str]
+
+        currency : typing.Optional[str]
+
+        payment_term_days : typing.Optional[int]
+
+        vat_scheme : typing.Optional[InvoiceTemplatesCreateSalesRequestVatScheme]
+
+        vat_country_code : typing.Optional[str]
+
+        agreement_id : typing.Optional[str]
+
+        operation_type_id : typing.Optional[str]
+
+        document_series_id : typing.Optional[str]
+
+        discount_percent : typing.Optional[str]
+
+        issued_by_name : typing.Optional[str]
+
+        issued_by_title : typing.Optional[str]
+
+        received_by_name : typing.Optional[str]
+
+        received_by_title : typing.Optional[str]
+
+        notes : typing.Optional[str]
+
+        supply_type : typing.Optional[InvoiceTemplatesCreateSalesRequestSupplyType]
+
+        series_label : typing.Optional[str]
+
+        order_number : typing.Optional[str]
+
+        intrastat_transport_mode : typing.Optional[str]
+
+        intrastat_delivery_terms : typing.Optional[str]
+
+        intrastat_region : typing.Optional[str]
+
+        intrastat_nature_of_transaction : typing.Optional[str]
+
+        lines : typing.Optional[typing.Sequence[InvoiceTemplatesCreateSalesRequestLinesItem]]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        InvoiceTemplatesCreateSalesResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.sales.invoice_templates_create(
+            name="name",
+        )
+        """
+        _response = self._raw_client.invoice_templates_create(
+            name=name,
+            document_type=document_type,
+            partner_id=partner_id,
+            currency=currency,
+            payment_term_days=payment_term_days,
+            vat_scheme=vat_scheme,
+            vat_country_code=vat_country_code,
+            agreement_id=agreement_id,
+            operation_type_id=operation_type_id,
+            document_series_id=document_series_id,
+            discount_percent=discount_percent,
+            issued_by_name=issued_by_name,
+            issued_by_title=issued_by_title,
+            received_by_name=received_by_name,
+            received_by_title=received_by_title,
+            notes=notes,
+            supply_type=supply_type,
+            series_label=series_label,
+            order_number=order_number,
+            intrastat_transport_mode=intrastat_transport_mode,
+            intrastat_delivery_terms=intrastat_delivery_terms,
+            intrastat_region=intrastat_region,
+            intrastat_nature_of_transaction=intrastat_nature_of_transaction,
+            lines=lines,
+            request_options=request_options,
+        )
+        return _response.data
+
+    def invoice_templates_update(
+        self,
+        *,
+        id: str,
+        name: typing.Optional[str] = OMIT,
+        document_type: typing.Optional[InvoiceTemplatesUpdateSalesRequestDocumentType] = OMIT,
+        partner_id: typing.Optional[str] = OMIT,
+        currency: typing.Optional[str] = OMIT,
+        payment_term_days: typing.Optional[int] = OMIT,
+        vat_scheme: typing.Optional[InvoiceTemplatesUpdateSalesRequestVatScheme] = OMIT,
+        vat_country_code: typing.Optional[str] = OMIT,
+        agreement_id: typing.Optional[str] = OMIT,
+        operation_type_id: typing.Optional[str] = OMIT,
+        document_series_id: typing.Optional[str] = OMIT,
+        discount_percent: typing.Optional[str] = OMIT,
+        issued_by_name: typing.Optional[str] = OMIT,
+        issued_by_title: typing.Optional[str] = OMIT,
+        received_by_name: typing.Optional[str] = OMIT,
+        received_by_title: typing.Optional[str] = OMIT,
+        notes: typing.Optional[str] = OMIT,
+        supply_type: typing.Optional[InvoiceTemplatesUpdateSalesRequestSupplyType] = OMIT,
+        series_label: typing.Optional[str] = OMIT,
+        order_number: typing.Optional[str] = OMIT,
+        intrastat_transport_mode: typing.Optional[str] = OMIT,
+        intrastat_delivery_terms: typing.Optional[str] = OMIT,
+        intrastat_region: typing.Optional[str] = OMIT,
+        intrastat_nature_of_transaction: typing.Optional[str] = OMIT,
+        lines: typing.Optional[typing.Sequence[InvoiceTemplatesUpdateSalesRequestLinesItem]] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> InvoiceTemplatesUpdateSalesResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        name : typing.Optional[str]
+
+        document_type : typing.Optional[InvoiceTemplatesUpdateSalesRequestDocumentType]
+
+        partner_id : typing.Optional[str]
+
+        currency : typing.Optional[str]
+
+        payment_term_days : typing.Optional[int]
+
+        vat_scheme : typing.Optional[InvoiceTemplatesUpdateSalesRequestVatScheme]
+
+        vat_country_code : typing.Optional[str]
+
+        agreement_id : typing.Optional[str]
+
+        operation_type_id : typing.Optional[str]
+
+        document_series_id : typing.Optional[str]
+
+        discount_percent : typing.Optional[str]
+
+        issued_by_name : typing.Optional[str]
+
+        issued_by_title : typing.Optional[str]
+
+        received_by_name : typing.Optional[str]
+
+        received_by_title : typing.Optional[str]
+
+        notes : typing.Optional[str]
+
+        supply_type : typing.Optional[InvoiceTemplatesUpdateSalesRequestSupplyType]
+
+        series_label : typing.Optional[str]
+
+        order_number : typing.Optional[str]
+
+        intrastat_transport_mode : typing.Optional[str]
+
+        intrastat_delivery_terms : typing.Optional[str]
+
+        intrastat_region : typing.Optional[str]
+
+        intrastat_nature_of_transaction : typing.Optional[str]
+
+        lines : typing.Optional[typing.Sequence[InvoiceTemplatesUpdateSalesRequestLinesItem]]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        InvoiceTemplatesUpdateSalesResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.sales.invoice_templates_update(
+            id="id",
+        )
+        """
+        _response = self._raw_client.invoice_templates_update(
+            id=id,
+            name=name,
+            document_type=document_type,
+            partner_id=partner_id,
+            currency=currency,
+            payment_term_days=payment_term_days,
+            vat_scheme=vat_scheme,
+            vat_country_code=vat_country_code,
+            agreement_id=agreement_id,
+            operation_type_id=operation_type_id,
+            document_series_id=document_series_id,
+            discount_percent=discount_percent,
+            issued_by_name=issued_by_name,
+            issued_by_title=issued_by_title,
+            received_by_name=received_by_name,
+            received_by_title=received_by_title,
+            notes=notes,
+            supply_type=supply_type,
+            series_label=series_label,
+            order_number=order_number,
+            intrastat_transport_mode=intrastat_transport_mode,
+            intrastat_delivery_terms=intrastat_delivery_terms,
+            intrastat_region=intrastat_region,
+            intrastat_nature_of_transaction=intrastat_nature_of_transaction,
+            lines=lines,
+            request_options=request_options,
+        )
+        return _response.data
+
+    def invoice_templates_get(
+        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> InvoiceTemplatesGetSalesResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        InvoiceTemplatesGetSalesResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.sales.invoice_templates_get(
+            id="id",
+        )
+        """
+        _response = self._raw_client.invoice_templates_get(id=id, request_options=request_options)
+        return _response.data
+
+    def invoice_templates_delete(
+        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> InvoiceTemplatesDeleteSalesResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        InvoiceTemplatesDeleteSalesResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.sales.invoice_templates_delete(
+            id="id",
+        )
+        """
+        _response = self._raw_client.invoice_templates_delete(id=id, request_options=request_options)
+        return _response.data
+
+    def invoice_templates_list(
+        self,
+        *,
+        page: typing.Optional[int] = OMIT,
+        page_size: typing.Optional[int] = OMIT,
+        sort: typing.Optional[typing.Sequence[InvoiceTemplatesListSalesRequestSortItem]] = OMIT,
+        filter: typing.Optional[typing.Sequence[InvoiceTemplatesListSalesRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> InvoiceTemplatesListSalesResponse:
+        """
+        Parameters
+        ----------
+        page : typing.Optional[int]
+
+        page_size : typing.Optional[int]
+
+        sort : typing.Optional[typing.Sequence[InvoiceTemplatesListSalesRequestSortItem]]
+
+        filter : typing.Optional[typing.Sequence[InvoiceTemplatesListSalesRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        InvoiceTemplatesListSalesResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.sales.invoice_templates_list()
+        """
+        _response = self._raw_client.invoice_templates_list(
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
+        )
         return _response.data
 
     def recognition_compute(
@@ -3185,6 +3566,412 @@ class AsyncSalesClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.acts_pdf(id=id, locale=locale, request_options=request_options)
+        return _response.data
+
+    async def invoice_templates_create(
+        self,
+        *,
+        name: str,
+        document_type: typing.Optional[InvoiceTemplatesCreateSalesRequestDocumentType] = OMIT,
+        partner_id: typing.Optional[str] = OMIT,
+        currency: typing.Optional[str] = OMIT,
+        payment_term_days: typing.Optional[int] = OMIT,
+        vat_scheme: typing.Optional[InvoiceTemplatesCreateSalesRequestVatScheme] = OMIT,
+        vat_country_code: typing.Optional[str] = OMIT,
+        agreement_id: typing.Optional[str] = OMIT,
+        operation_type_id: typing.Optional[str] = OMIT,
+        document_series_id: typing.Optional[str] = OMIT,
+        discount_percent: typing.Optional[str] = OMIT,
+        issued_by_name: typing.Optional[str] = OMIT,
+        issued_by_title: typing.Optional[str] = OMIT,
+        received_by_name: typing.Optional[str] = OMIT,
+        received_by_title: typing.Optional[str] = OMIT,
+        notes: typing.Optional[str] = OMIT,
+        supply_type: typing.Optional[InvoiceTemplatesCreateSalesRequestSupplyType] = OMIT,
+        series_label: typing.Optional[str] = OMIT,
+        order_number: typing.Optional[str] = OMIT,
+        intrastat_transport_mode: typing.Optional[str] = OMIT,
+        intrastat_delivery_terms: typing.Optional[str] = OMIT,
+        intrastat_region: typing.Optional[str] = OMIT,
+        intrastat_nature_of_transaction: typing.Optional[str] = OMIT,
+        lines: typing.Optional[typing.Sequence[InvoiceTemplatesCreateSalesRequestLinesItem]] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> InvoiceTemplatesCreateSalesResponse:
+        """
+        Parameters
+        ----------
+        name : str
+
+        document_type : typing.Optional[InvoiceTemplatesCreateSalesRequestDocumentType]
+
+        partner_id : typing.Optional[str]
+
+        currency : typing.Optional[str]
+
+        payment_term_days : typing.Optional[int]
+
+        vat_scheme : typing.Optional[InvoiceTemplatesCreateSalesRequestVatScheme]
+
+        vat_country_code : typing.Optional[str]
+
+        agreement_id : typing.Optional[str]
+
+        operation_type_id : typing.Optional[str]
+
+        document_series_id : typing.Optional[str]
+
+        discount_percent : typing.Optional[str]
+
+        issued_by_name : typing.Optional[str]
+
+        issued_by_title : typing.Optional[str]
+
+        received_by_name : typing.Optional[str]
+
+        received_by_title : typing.Optional[str]
+
+        notes : typing.Optional[str]
+
+        supply_type : typing.Optional[InvoiceTemplatesCreateSalesRequestSupplyType]
+
+        series_label : typing.Optional[str]
+
+        order_number : typing.Optional[str]
+
+        intrastat_transport_mode : typing.Optional[str]
+
+        intrastat_delivery_terms : typing.Optional[str]
+
+        intrastat_region : typing.Optional[str]
+
+        intrastat_nature_of_transaction : typing.Optional[str]
+
+        lines : typing.Optional[typing.Sequence[InvoiceTemplatesCreateSalesRequestLinesItem]]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        InvoiceTemplatesCreateSalesResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.sales.invoice_templates_create(
+                name="name",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.invoice_templates_create(
+            name=name,
+            document_type=document_type,
+            partner_id=partner_id,
+            currency=currency,
+            payment_term_days=payment_term_days,
+            vat_scheme=vat_scheme,
+            vat_country_code=vat_country_code,
+            agreement_id=agreement_id,
+            operation_type_id=operation_type_id,
+            document_series_id=document_series_id,
+            discount_percent=discount_percent,
+            issued_by_name=issued_by_name,
+            issued_by_title=issued_by_title,
+            received_by_name=received_by_name,
+            received_by_title=received_by_title,
+            notes=notes,
+            supply_type=supply_type,
+            series_label=series_label,
+            order_number=order_number,
+            intrastat_transport_mode=intrastat_transport_mode,
+            intrastat_delivery_terms=intrastat_delivery_terms,
+            intrastat_region=intrastat_region,
+            intrastat_nature_of_transaction=intrastat_nature_of_transaction,
+            lines=lines,
+            request_options=request_options,
+        )
+        return _response.data
+
+    async def invoice_templates_update(
+        self,
+        *,
+        id: str,
+        name: typing.Optional[str] = OMIT,
+        document_type: typing.Optional[InvoiceTemplatesUpdateSalesRequestDocumentType] = OMIT,
+        partner_id: typing.Optional[str] = OMIT,
+        currency: typing.Optional[str] = OMIT,
+        payment_term_days: typing.Optional[int] = OMIT,
+        vat_scheme: typing.Optional[InvoiceTemplatesUpdateSalesRequestVatScheme] = OMIT,
+        vat_country_code: typing.Optional[str] = OMIT,
+        agreement_id: typing.Optional[str] = OMIT,
+        operation_type_id: typing.Optional[str] = OMIT,
+        document_series_id: typing.Optional[str] = OMIT,
+        discount_percent: typing.Optional[str] = OMIT,
+        issued_by_name: typing.Optional[str] = OMIT,
+        issued_by_title: typing.Optional[str] = OMIT,
+        received_by_name: typing.Optional[str] = OMIT,
+        received_by_title: typing.Optional[str] = OMIT,
+        notes: typing.Optional[str] = OMIT,
+        supply_type: typing.Optional[InvoiceTemplatesUpdateSalesRequestSupplyType] = OMIT,
+        series_label: typing.Optional[str] = OMIT,
+        order_number: typing.Optional[str] = OMIT,
+        intrastat_transport_mode: typing.Optional[str] = OMIT,
+        intrastat_delivery_terms: typing.Optional[str] = OMIT,
+        intrastat_region: typing.Optional[str] = OMIT,
+        intrastat_nature_of_transaction: typing.Optional[str] = OMIT,
+        lines: typing.Optional[typing.Sequence[InvoiceTemplatesUpdateSalesRequestLinesItem]] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> InvoiceTemplatesUpdateSalesResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        name : typing.Optional[str]
+
+        document_type : typing.Optional[InvoiceTemplatesUpdateSalesRequestDocumentType]
+
+        partner_id : typing.Optional[str]
+
+        currency : typing.Optional[str]
+
+        payment_term_days : typing.Optional[int]
+
+        vat_scheme : typing.Optional[InvoiceTemplatesUpdateSalesRequestVatScheme]
+
+        vat_country_code : typing.Optional[str]
+
+        agreement_id : typing.Optional[str]
+
+        operation_type_id : typing.Optional[str]
+
+        document_series_id : typing.Optional[str]
+
+        discount_percent : typing.Optional[str]
+
+        issued_by_name : typing.Optional[str]
+
+        issued_by_title : typing.Optional[str]
+
+        received_by_name : typing.Optional[str]
+
+        received_by_title : typing.Optional[str]
+
+        notes : typing.Optional[str]
+
+        supply_type : typing.Optional[InvoiceTemplatesUpdateSalesRequestSupplyType]
+
+        series_label : typing.Optional[str]
+
+        order_number : typing.Optional[str]
+
+        intrastat_transport_mode : typing.Optional[str]
+
+        intrastat_delivery_terms : typing.Optional[str]
+
+        intrastat_region : typing.Optional[str]
+
+        intrastat_nature_of_transaction : typing.Optional[str]
+
+        lines : typing.Optional[typing.Sequence[InvoiceTemplatesUpdateSalesRequestLinesItem]]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        InvoiceTemplatesUpdateSalesResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.sales.invoice_templates_update(
+                id="id",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.invoice_templates_update(
+            id=id,
+            name=name,
+            document_type=document_type,
+            partner_id=partner_id,
+            currency=currency,
+            payment_term_days=payment_term_days,
+            vat_scheme=vat_scheme,
+            vat_country_code=vat_country_code,
+            agreement_id=agreement_id,
+            operation_type_id=operation_type_id,
+            document_series_id=document_series_id,
+            discount_percent=discount_percent,
+            issued_by_name=issued_by_name,
+            issued_by_title=issued_by_title,
+            received_by_name=received_by_name,
+            received_by_title=received_by_title,
+            notes=notes,
+            supply_type=supply_type,
+            series_label=series_label,
+            order_number=order_number,
+            intrastat_transport_mode=intrastat_transport_mode,
+            intrastat_delivery_terms=intrastat_delivery_terms,
+            intrastat_region=intrastat_region,
+            intrastat_nature_of_transaction=intrastat_nature_of_transaction,
+            lines=lines,
+            request_options=request_options,
+        )
+        return _response.data
+
+    async def invoice_templates_get(
+        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> InvoiceTemplatesGetSalesResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        InvoiceTemplatesGetSalesResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.sales.invoice_templates_get(
+                id="id",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.invoice_templates_get(id=id, request_options=request_options)
+        return _response.data
+
+    async def invoice_templates_delete(
+        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> InvoiceTemplatesDeleteSalesResponse:
+        """
+        Parameters
+        ----------
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        InvoiceTemplatesDeleteSalesResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.sales.invoice_templates_delete(
+                id="id",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.invoice_templates_delete(id=id, request_options=request_options)
+        return _response.data
+
+    async def invoice_templates_list(
+        self,
+        *,
+        page: typing.Optional[int] = OMIT,
+        page_size: typing.Optional[int] = OMIT,
+        sort: typing.Optional[typing.Sequence[InvoiceTemplatesListSalesRequestSortItem]] = OMIT,
+        filter: typing.Optional[typing.Sequence[InvoiceTemplatesListSalesRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> InvoiceTemplatesListSalesResponse:
+        """
+        Parameters
+        ----------
+        page : typing.Optional[int]
+
+        page_size : typing.Optional[int]
+
+        sort : typing.Optional[typing.Sequence[InvoiceTemplatesListSalesRequestSortItem]]
+
+        filter : typing.Optional[typing.Sequence[InvoiceTemplatesListSalesRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        InvoiceTemplatesListSalesResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.sales.invoice_templates_list()
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.invoice_templates_list(
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
+        )
         return _response.data
 
     async def recognition_compute(

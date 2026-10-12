@@ -41,6 +41,46 @@ if typing.TYPE_CHECKING:
     from .acts_update_sales_response_lines_item import ActsUpdateSalesResponseLinesItem
     from .acts_update_sales_response_status import ActsUpdateSalesResponseStatus
     from .acts_update_sales_response_type import ActsUpdateSalesResponseType
+    from .invoice_templates_create_sales_request_document_type import InvoiceTemplatesCreateSalesRequestDocumentType
+    from .invoice_templates_create_sales_request_lines_item import InvoiceTemplatesCreateSalesRequestLinesItem
+    from .invoice_templates_create_sales_request_supply_type import InvoiceTemplatesCreateSalesRequestSupplyType
+    from .invoice_templates_create_sales_request_vat_scheme import InvoiceTemplatesCreateSalesRequestVatScheme
+    from .invoice_templates_create_sales_response import InvoiceTemplatesCreateSalesResponse
+    from .invoice_templates_create_sales_response_document_type import InvoiceTemplatesCreateSalesResponseDocumentType
+    from .invoice_templates_create_sales_response_lines_item import InvoiceTemplatesCreateSalesResponseLinesItem
+    from .invoice_templates_create_sales_response_supply_type import InvoiceTemplatesCreateSalesResponseSupplyType
+    from .invoice_templates_delete_sales_response import InvoiceTemplatesDeleteSalesResponse
+    from .invoice_templates_get_sales_response import InvoiceTemplatesGetSalesResponse
+    from .invoice_templates_get_sales_response_document_type import InvoiceTemplatesGetSalesResponseDocumentType
+    from .invoice_templates_get_sales_response_lines_item import InvoiceTemplatesGetSalesResponseLinesItem
+    from .invoice_templates_get_sales_response_supply_type import InvoiceTemplatesGetSalesResponseSupplyType
+    from .invoice_templates_list_sales_request_filter_item import InvoiceTemplatesListSalesRequestFilterItem
+    from .invoice_templates_list_sales_request_filter_item_op import InvoiceTemplatesListSalesRequestFilterItemOp
+    from .invoice_templates_list_sales_request_filter_item_value import InvoiceTemplatesListSalesRequestFilterItemValue
+    from .invoice_templates_list_sales_request_filter_item_value_three_item import (
+        InvoiceTemplatesListSalesRequestFilterItemValueThreeItem,
+    )
+    from .invoice_templates_list_sales_request_sort_item import InvoiceTemplatesListSalesRequestSortItem
+    from .invoice_templates_list_sales_request_sort_item_dir import InvoiceTemplatesListSalesRequestSortItemDir
+    from .invoice_templates_list_sales_response import InvoiceTemplatesListSalesResponse
+    from .invoice_templates_list_sales_response_rows_item import InvoiceTemplatesListSalesResponseRowsItem
+    from .invoice_templates_list_sales_response_rows_item_document_type import (
+        InvoiceTemplatesListSalesResponseRowsItemDocumentType,
+    )
+    from .invoice_templates_list_sales_response_rows_item_lines_item import (
+        InvoiceTemplatesListSalesResponseRowsItemLinesItem,
+    )
+    from .invoice_templates_list_sales_response_rows_item_supply_type import (
+        InvoiceTemplatesListSalesResponseRowsItemSupplyType,
+    )
+    from .invoice_templates_update_sales_request_document_type import InvoiceTemplatesUpdateSalesRequestDocumentType
+    from .invoice_templates_update_sales_request_lines_item import InvoiceTemplatesUpdateSalesRequestLinesItem
+    from .invoice_templates_update_sales_request_supply_type import InvoiceTemplatesUpdateSalesRequestSupplyType
+    from .invoice_templates_update_sales_request_vat_scheme import InvoiceTemplatesUpdateSalesRequestVatScheme
+    from .invoice_templates_update_sales_response import InvoiceTemplatesUpdateSalesResponse
+    from .invoice_templates_update_sales_response_document_type import InvoiceTemplatesUpdateSalesResponseDocumentType
+    from .invoice_templates_update_sales_response_lines_item import InvoiceTemplatesUpdateSalesResponseLinesItem
+    from .invoice_templates_update_sales_response_supply_type import InvoiceTemplatesUpdateSalesResponseSupplyType
     from .invoices_apply_advance_sales_response import InvoicesApplyAdvanceSalesResponse
     from .invoices_apply_advance_sales_response_lines_item import InvoicesApplyAdvanceSalesResponseLinesItem
     from .invoices_apply_advance_sales_response_lines_item_recognition_method import (
@@ -333,6 +373,38 @@ _dynamic_imports: typing.Dict[str, str] = {
     "ActsUpdateSalesResponseLinesItem": ".acts_update_sales_response_lines_item",
     "ActsUpdateSalesResponseStatus": ".acts_update_sales_response_status",
     "ActsUpdateSalesResponseType": ".acts_update_sales_response_type",
+    "InvoiceTemplatesCreateSalesRequestDocumentType": ".invoice_templates_create_sales_request_document_type",
+    "InvoiceTemplatesCreateSalesRequestLinesItem": ".invoice_templates_create_sales_request_lines_item",
+    "InvoiceTemplatesCreateSalesRequestSupplyType": ".invoice_templates_create_sales_request_supply_type",
+    "InvoiceTemplatesCreateSalesRequestVatScheme": ".invoice_templates_create_sales_request_vat_scheme",
+    "InvoiceTemplatesCreateSalesResponse": ".invoice_templates_create_sales_response",
+    "InvoiceTemplatesCreateSalesResponseDocumentType": ".invoice_templates_create_sales_response_document_type",
+    "InvoiceTemplatesCreateSalesResponseLinesItem": ".invoice_templates_create_sales_response_lines_item",
+    "InvoiceTemplatesCreateSalesResponseSupplyType": ".invoice_templates_create_sales_response_supply_type",
+    "InvoiceTemplatesDeleteSalesResponse": ".invoice_templates_delete_sales_response",
+    "InvoiceTemplatesGetSalesResponse": ".invoice_templates_get_sales_response",
+    "InvoiceTemplatesGetSalesResponseDocumentType": ".invoice_templates_get_sales_response_document_type",
+    "InvoiceTemplatesGetSalesResponseLinesItem": ".invoice_templates_get_sales_response_lines_item",
+    "InvoiceTemplatesGetSalesResponseSupplyType": ".invoice_templates_get_sales_response_supply_type",
+    "InvoiceTemplatesListSalesRequestFilterItem": ".invoice_templates_list_sales_request_filter_item",
+    "InvoiceTemplatesListSalesRequestFilterItemOp": ".invoice_templates_list_sales_request_filter_item_op",
+    "InvoiceTemplatesListSalesRequestFilterItemValue": ".invoice_templates_list_sales_request_filter_item_value",
+    "InvoiceTemplatesListSalesRequestFilterItemValueThreeItem": ".invoice_templates_list_sales_request_filter_item_value_three_item",
+    "InvoiceTemplatesListSalesRequestSortItem": ".invoice_templates_list_sales_request_sort_item",
+    "InvoiceTemplatesListSalesRequestSortItemDir": ".invoice_templates_list_sales_request_sort_item_dir",
+    "InvoiceTemplatesListSalesResponse": ".invoice_templates_list_sales_response",
+    "InvoiceTemplatesListSalesResponseRowsItem": ".invoice_templates_list_sales_response_rows_item",
+    "InvoiceTemplatesListSalesResponseRowsItemDocumentType": ".invoice_templates_list_sales_response_rows_item_document_type",
+    "InvoiceTemplatesListSalesResponseRowsItemLinesItem": ".invoice_templates_list_sales_response_rows_item_lines_item",
+    "InvoiceTemplatesListSalesResponseRowsItemSupplyType": ".invoice_templates_list_sales_response_rows_item_supply_type",
+    "InvoiceTemplatesUpdateSalesRequestDocumentType": ".invoice_templates_update_sales_request_document_type",
+    "InvoiceTemplatesUpdateSalesRequestLinesItem": ".invoice_templates_update_sales_request_lines_item",
+    "InvoiceTemplatesUpdateSalesRequestSupplyType": ".invoice_templates_update_sales_request_supply_type",
+    "InvoiceTemplatesUpdateSalesRequestVatScheme": ".invoice_templates_update_sales_request_vat_scheme",
+    "InvoiceTemplatesUpdateSalesResponse": ".invoice_templates_update_sales_response",
+    "InvoiceTemplatesUpdateSalesResponseDocumentType": ".invoice_templates_update_sales_response_document_type",
+    "InvoiceTemplatesUpdateSalesResponseLinesItem": ".invoice_templates_update_sales_response_lines_item",
+    "InvoiceTemplatesUpdateSalesResponseSupplyType": ".invoice_templates_update_sales_response_supply_type",
     "InvoicesApplyAdvanceSalesResponse": ".invoices_apply_advance_sales_response",
     "InvoicesApplyAdvanceSalesResponseLinesItem": ".invoices_apply_advance_sales_response_lines_item",
     "InvoicesApplyAdvanceSalesResponseLinesItemRecognitionMethod": ".invoices_apply_advance_sales_response_lines_item_recognition_method",
@@ -585,6 +657,38 @@ __all__ = [
     "ActsUpdateSalesResponseLinesItem",
     "ActsUpdateSalesResponseStatus",
     "ActsUpdateSalesResponseType",
+    "InvoiceTemplatesCreateSalesRequestDocumentType",
+    "InvoiceTemplatesCreateSalesRequestLinesItem",
+    "InvoiceTemplatesCreateSalesRequestSupplyType",
+    "InvoiceTemplatesCreateSalesRequestVatScheme",
+    "InvoiceTemplatesCreateSalesResponse",
+    "InvoiceTemplatesCreateSalesResponseDocumentType",
+    "InvoiceTemplatesCreateSalesResponseLinesItem",
+    "InvoiceTemplatesCreateSalesResponseSupplyType",
+    "InvoiceTemplatesDeleteSalesResponse",
+    "InvoiceTemplatesGetSalesResponse",
+    "InvoiceTemplatesGetSalesResponseDocumentType",
+    "InvoiceTemplatesGetSalesResponseLinesItem",
+    "InvoiceTemplatesGetSalesResponseSupplyType",
+    "InvoiceTemplatesListSalesRequestFilterItem",
+    "InvoiceTemplatesListSalesRequestFilterItemOp",
+    "InvoiceTemplatesListSalesRequestFilterItemValue",
+    "InvoiceTemplatesListSalesRequestFilterItemValueThreeItem",
+    "InvoiceTemplatesListSalesRequestSortItem",
+    "InvoiceTemplatesListSalesRequestSortItemDir",
+    "InvoiceTemplatesListSalesResponse",
+    "InvoiceTemplatesListSalesResponseRowsItem",
+    "InvoiceTemplatesListSalesResponseRowsItemDocumentType",
+    "InvoiceTemplatesListSalesResponseRowsItemLinesItem",
+    "InvoiceTemplatesListSalesResponseRowsItemSupplyType",
+    "InvoiceTemplatesUpdateSalesRequestDocumentType",
+    "InvoiceTemplatesUpdateSalesRequestLinesItem",
+    "InvoiceTemplatesUpdateSalesRequestSupplyType",
+    "InvoiceTemplatesUpdateSalesRequestVatScheme",
+    "InvoiceTemplatesUpdateSalesResponse",
+    "InvoiceTemplatesUpdateSalesResponseDocumentType",
+    "InvoiceTemplatesUpdateSalesResponseLinesItem",
+    "InvoiceTemplatesUpdateSalesResponseSupplyType",
     "InvoicesApplyAdvanceSalesResponse",
     "InvoicesApplyAdvanceSalesResponseLinesItem",
     "InvoicesApplyAdvanceSalesResponseLinesItemRecognitionMethod",

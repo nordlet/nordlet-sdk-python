@@ -16,6 +16,9 @@ class MeAccountResponseBilling(UniversalBaseModel):
     balance_cents: typing_extensions.Annotated[
         int, FieldMetadata(alias="balanceCents"), pydantic.Field(alias="balanceCents")
     ]
+    overdraft_allowance_cents: typing_extensions.Annotated[
+        int, FieldMetadata(alias="overdraftAllowanceCents"), pydantic.Field(alias="overdraftAllowanceCents")
+    ]
     trial_ends_at: typing_extensions.Annotated[
         typing.Optional[dt.datetime], FieldMetadata(alias="trialEndsAt"), pydantic.Field(alias="trialEndsAt")
     ] = None
@@ -24,6 +27,10 @@ class MeAccountResponseBilling(UniversalBaseModel):
     ]
     payer_email: typing_extensions.Annotated[str, FieldMetadata(alias="payerEmail"), pydantic.Field(alias="payerEmail")]
     is_payer: typing_extensions.Annotated[bool, FieldMetadata(alias="isPayer"), pydantic.Field(alias="isPayer")]
+    plan_chosen: typing_extensions.Annotated[
+        bool, FieldMetadata(alias="planChosen"), pydantic.Field(alias="planChosen")
+    ]
+    flat_rate: typing_extensions.Annotated[bool, FieldMetadata(alias="flatRate"), pydantic.Field(alias="flatRate")]
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

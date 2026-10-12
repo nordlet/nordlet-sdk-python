@@ -7,11 +7,21 @@ from ..core.client_wrapper import AsyncClientWrapper, SyncClientWrapper
 from ..core.request_options import RequestOptions
 from .raw_client import AsyncRawBillingClient, RawBillingClient
 from .types.account_get_billing_response import AccountGetBillingResponse
+from .types.account_set_account_type_billing_request_account_type import AccountSetAccountTypeBillingRequestAccountType
+from .types.account_set_account_type_billing_response import AccountSetAccountTypeBillingResponse
+from .types.account_set_auto_top_up_billing_response import AccountSetAutoTopUpBillingResponse
+from .types.account_set_overdraft_cap_billing_response import AccountSetOverdraftCapBillingResponse
 from .types.account_set_plan_billing_request_plan import AccountSetPlanBillingRequestPlan
 from .types.account_set_plan_billing_response import AccountSetPlanBillingResponse
+from .types.flat_rate_confirm_billing_response import FlatRateConfirmBillingResponse
+from .types.flat_rate_create_billing_request_locale import FlatRateCreateBillingRequestLocale
+from .types.flat_rate_create_billing_request_plan import FlatRateCreateBillingRequestPlan
+from .types.flat_rate_create_billing_response import FlatRateCreateBillingResponse
 from .types.portal_create_billing_request_locale import PortalCreateBillingRequestLocale
 from .types.portal_create_billing_response import PortalCreateBillingResponse
+from .types.topup_confirm_billing_response import TopupConfirmBillingResponse
 from .types.topup_create_billing_request_locale import TopupCreateBillingRequestLocale
+from .types.topup_create_billing_request_return_to import TopupCreateBillingRequestReturnTo
 from .types.topup_create_billing_response import TopupCreateBillingResponse
 from .types.transactions_list_billing_response import TransactionsListBillingResponse
 from .types.usage_list_billing_response import UsageListBillingResponse
@@ -89,11 +99,112 @@ class BillingClient:
         _response = self._raw_client.account_set_plan(plan=plan, request_options=request_options)
         return _response.data
 
+    def account_set_account_type(
+        self,
+        *,
+        account_type: AccountSetAccountTypeBillingRequestAccountType,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> AccountSetAccountTypeBillingResponse:
+        """
+        Parameters
+        ----------
+        account_type : AccountSetAccountTypeBillingRequestAccountType
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        AccountSetAccountTypeBillingResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.billing.account_set_account_type(
+            account_type="flat_rate",
+        )
+        """
+        _response = self._raw_client.account_set_account_type(
+            account_type=account_type, request_options=request_options
+        )
+        return _response.data
+
+    def account_set_auto_top_up(
+        self, *, enabled: bool, amount_cents: int, request_options: typing.Optional[RequestOptions] = None
+    ) -> AccountSetAutoTopUpBillingResponse:
+        """
+        Parameters
+        ----------
+        enabled : bool
+
+        amount_cents : int
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        AccountSetAutoTopUpBillingResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.billing.account_set_auto_top_up(
+            enabled=True,
+            amount_cents=1000000,
+        )
+        """
+        _response = self._raw_client.account_set_auto_top_up(
+            enabled=enabled, amount_cents=amount_cents, request_options=request_options
+        )
+        return _response.data
+
+    def account_set_overdraft_cap(
+        self, *, cap_cents: int, request_options: typing.Optional[RequestOptions] = None
+    ) -> AccountSetOverdraftCapBillingResponse:
+        """
+        Parameters
+        ----------
+        cap_cents : int
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        AccountSetOverdraftCapBillingResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.billing.account_set_overdraft_cap(
+            cap_cents=1000000,
+        )
+        """
+        _response = self._raw_client.account_set_overdraft_cap(cap_cents=cap_cents, request_options=request_options)
+        return _response.data
+
     def topup_create(
         self,
         *,
         amount_cents: int,
         locale: typing.Optional[TopupCreateBillingRequestLocale] = OMIT,
+        return_to: typing.Optional[TopupCreateBillingRequestReturnTo] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> TopupCreateBillingResponse:
         """
@@ -102,6 +213,8 @@ class BillingClient:
         amount_cents : int
 
         locale : typing.Optional[TopupCreateBillingRequestLocale]
+
+        return_to : typing.Optional[TopupCreateBillingRequestReturnTo]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -123,8 +236,102 @@ class BillingClient:
         )
         """
         _response = self._raw_client.topup_create(
-            amount_cents=amount_cents, locale=locale, request_options=request_options
+            amount_cents=amount_cents, locale=locale, return_to=return_to, request_options=request_options
         )
+        return _response.data
+
+    def topup_confirm(
+        self, *, session_id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> TopupConfirmBillingResponse:
+        """
+        Parameters
+        ----------
+        session_id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        TopupConfirmBillingResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.billing.topup_confirm(
+            session_id="sessionId",
+        )
+        """
+        _response = self._raw_client.topup_confirm(session_id=session_id, request_options=request_options)
+        return _response.data
+
+    def flat_rate_create(
+        self,
+        *,
+        locale: typing.Optional[FlatRateCreateBillingRequestLocale] = OMIT,
+        plan: typing.Optional[FlatRateCreateBillingRequestPlan] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> FlatRateCreateBillingResponse:
+        """
+        Parameters
+        ----------
+        locale : typing.Optional[FlatRateCreateBillingRequestLocale]
+
+        plan : typing.Optional[FlatRateCreateBillingRequestPlan]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        FlatRateCreateBillingResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.billing.flat_rate_create()
+        """
+        _response = self._raw_client.flat_rate_create(locale=locale, plan=plan, request_options=request_options)
+        return _response.data
+
+    def flat_rate_confirm(
+        self, *, session_id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> FlatRateConfirmBillingResponse:
+        """
+        Parameters
+        ----------
+        session_id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        FlatRateConfirmBillingResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.billing.flat_rate_confirm(
+            session_id="sessionId",
+        )
+        """
+        _response = self._raw_client.flat_rate_confirm(session_id=session_id, request_options=request_options)
         return _response.data
 
     def portal_create(
@@ -313,11 +520,138 @@ class AsyncBillingClient:
         _response = await self._raw_client.account_set_plan(plan=plan, request_options=request_options)
         return _response.data
 
+    async def account_set_account_type(
+        self,
+        *,
+        account_type: AccountSetAccountTypeBillingRequestAccountType,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> AccountSetAccountTypeBillingResponse:
+        """
+        Parameters
+        ----------
+        account_type : AccountSetAccountTypeBillingRequestAccountType
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        AccountSetAccountTypeBillingResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.billing.account_set_account_type(
+                account_type="flat_rate",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.account_set_account_type(
+            account_type=account_type, request_options=request_options
+        )
+        return _response.data
+
+    async def account_set_auto_top_up(
+        self, *, enabled: bool, amount_cents: int, request_options: typing.Optional[RequestOptions] = None
+    ) -> AccountSetAutoTopUpBillingResponse:
+        """
+        Parameters
+        ----------
+        enabled : bool
+
+        amount_cents : int
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        AccountSetAutoTopUpBillingResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.billing.account_set_auto_top_up(
+                enabled=True,
+                amount_cents=1000000,
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.account_set_auto_top_up(
+            enabled=enabled, amount_cents=amount_cents, request_options=request_options
+        )
+        return _response.data
+
+    async def account_set_overdraft_cap(
+        self, *, cap_cents: int, request_options: typing.Optional[RequestOptions] = None
+    ) -> AccountSetOverdraftCapBillingResponse:
+        """
+        Parameters
+        ----------
+        cap_cents : int
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        AccountSetOverdraftCapBillingResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.billing.account_set_overdraft_cap(
+                cap_cents=1000000,
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.account_set_overdraft_cap(
+            cap_cents=cap_cents, request_options=request_options
+        )
+        return _response.data
+
     async def topup_create(
         self,
         *,
         amount_cents: int,
         locale: typing.Optional[TopupCreateBillingRequestLocale] = OMIT,
+        return_to: typing.Optional[TopupCreateBillingRequestReturnTo] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> TopupCreateBillingResponse:
         """
@@ -326,6 +660,8 @@ class AsyncBillingClient:
         amount_cents : int
 
         locale : typing.Optional[TopupCreateBillingRequestLocale]
+
+        return_to : typing.Optional[TopupCreateBillingRequestReturnTo]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -355,8 +691,126 @@ class AsyncBillingClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.topup_create(
-            amount_cents=amount_cents, locale=locale, request_options=request_options
+            amount_cents=amount_cents, locale=locale, return_to=return_to, request_options=request_options
         )
+        return _response.data
+
+    async def topup_confirm(
+        self, *, session_id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> TopupConfirmBillingResponse:
+        """
+        Parameters
+        ----------
+        session_id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        TopupConfirmBillingResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.billing.topup_confirm(
+                session_id="sessionId",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.topup_confirm(session_id=session_id, request_options=request_options)
+        return _response.data
+
+    async def flat_rate_create(
+        self,
+        *,
+        locale: typing.Optional[FlatRateCreateBillingRequestLocale] = OMIT,
+        plan: typing.Optional[FlatRateCreateBillingRequestPlan] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> FlatRateCreateBillingResponse:
+        """
+        Parameters
+        ----------
+        locale : typing.Optional[FlatRateCreateBillingRequestLocale]
+
+        plan : typing.Optional[FlatRateCreateBillingRequestPlan]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        FlatRateCreateBillingResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.billing.flat_rate_create()
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.flat_rate_create(locale=locale, plan=plan, request_options=request_options)
+        return _response.data
+
+    async def flat_rate_confirm(
+        self, *, session_id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> FlatRateConfirmBillingResponse:
+        """
+        Parameters
+        ----------
+        session_id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        FlatRateConfirmBillingResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.billing.flat_rate_confirm(
+                session_id="sessionId",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.flat_rate_confirm(session_id=session_id, request_options=request_options)
         return _response.data
 
     async def portal_create(

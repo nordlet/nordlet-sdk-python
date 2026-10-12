@@ -2,4 +2,4 @@
 
 import typing
 
-AccountsUpdateBankRequestType = typing.Union[typing.Literal["bank", "stripe"], typing.Any]
+AccountsUpdateBankRequestType = typing.Union[typing.Literal["bank", "stripe", "broker"], typing.Any]

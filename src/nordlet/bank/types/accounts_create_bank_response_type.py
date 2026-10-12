@@ -2,4 +2,4 @@
 
 import typing
 
-AccountsCreateBankResponseType = typing.Union[typing.Literal["bank", "stripe"], typing.Any]
+AccountsCreateBankResponseType = typing.Union[typing.Literal["bank", "stripe", "broker"], typing.Any]

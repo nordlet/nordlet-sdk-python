@@ -2,4 +2,4 @@
 
 import typing
 
-AccountsCreateBankRequestType = typing.Union[typing.Literal["bank", "stripe"], typing.Any]
+AccountsCreateBankRequestType = typing.Union[typing.Literal["bank", "stripe", "broker"], typing.Any]
