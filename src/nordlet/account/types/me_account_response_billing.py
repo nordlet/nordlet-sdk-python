@@ -7,6 +7,7 @@ import pydantic
 import typing_extensions
 from ...core.pydantic_utilities import IS_PYDANTIC_V2, UniversalBaseModel
 from ...core.serialization import FieldMetadata
+from .me_account_response_billing_account_type import MeAccountResponseBillingAccountType
 from .me_account_response_billing_status import MeAccountResponseBillingStatus
 
 
@@ -31,6 +32,9 @@ class MeAccountResponseBilling(UniversalBaseModel):
         bool, FieldMetadata(alias="planChosen"), pydantic.Field(alias="planChosen")
     ]
     flat_rate: typing_extensions.Annotated[bool, FieldMetadata(alias="flatRate"), pydantic.Field(alias="flatRate")]
+    account_type: typing_extensions.Annotated[
+        MeAccountResponseBillingAccountType, FieldMetadata(alias="accountType"), pydantic.Field(alias="accountType")
+    ]
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

@@ -66,6 +66,7 @@ if typing.TYPE_CHECKING:
     from .logout_account_response import LogoutAccountResponse
     from .me_account_response import MeAccountResponse
     from .me_account_response_billing import MeAccountResponseBilling
+    from .me_account_response_billing_account_type import MeAccountResponseBillingAccountType
     from .me_account_response_billing_status import MeAccountResponseBillingStatus
     from .me_account_response_companies_item import MeAccountResponseCompaniesItem
     from .me_account_response_companies_item_status import MeAccountResponseCompaniesItemStatus
@@ -151,6 +152,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "LogoutAccountResponse": ".logout_account_response",
     "MeAccountResponse": ".me_account_response",
     "MeAccountResponseBilling": ".me_account_response_billing",
+    "MeAccountResponseBillingAccountType": ".me_account_response_billing_account_type",
     "MeAccountResponseBillingStatus": ".me_account_response_billing_status",
     "MeAccountResponseCompaniesItem": ".me_account_response_companies_item",
     "MeAccountResponseCompaniesItemStatus": ".me_account_response_companies_item_status",
@@ -260,6 +262,7 @@ __all__ = [
     "LogoutAccountResponse",
     "MeAccountResponse",
     "MeAccountResponseBilling",
+    "MeAccountResponseBillingAccountType",
     "MeAccountResponseBillingStatus",
     "MeAccountResponseCompaniesItem",
     "MeAccountResponseCompaniesItemStatus",
