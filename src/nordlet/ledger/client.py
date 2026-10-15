@@ -7,14 +7,12 @@ from ..core.client_wrapper import AsyncClientWrapper, SyncClientWrapper
 from ..core.request_options import RequestOptions
 from .raw_client import AsyncRawLedgerClient, RawLedgerClient
 from .types.accounts_apply_template_ledger_response import AccountsApplyTemplateLedgerResponse
-from .types.accounts_create_ledger_request_translations_value import AccountsCreateLedgerRequestTranslationsValue
 from .types.accounts_create_ledger_request_type import AccountsCreateLedgerRequestType
 from .types.accounts_create_ledger_response import AccountsCreateLedgerResponse
 from .types.accounts_list_ledger_request_filter_item import AccountsListLedgerRequestFilterItem
 from .types.accounts_list_ledger_request_sort_item import AccountsListLedgerRequestSortItem
 from .types.accounts_list_ledger_response import AccountsListLedgerResponse
 from .types.accounts_switch_chart_ledger_response import AccountsSwitchChartLedgerResponse
-from .types.accounts_update_ledger_request_translations_value import AccountsUpdateLedgerRequestTranslationsValue
 from .types.accounts_update_ledger_response import AccountsUpdateLedgerResponse
 from .types.cost_center_groups_create_ledger_response import CostCenterGroupsCreateLedgerResponse
 from .types.cost_center_groups_delete_ledger_response import CostCenterGroupsDeleteLedgerResponse
@@ -130,7 +128,6 @@ class LedgerClient:
         code: str,
         name: str,
         type: AccountsCreateLedgerRequestType,
-        translations: typing.Optional[typing.Dict[str, AccountsCreateLedgerRequestTranslationsValue]] = OMIT,
         parent_id: typing.Optional[str] = OMIT,
         is_postable: typing.Optional[bool] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
@@ -143,8 +140,6 @@ class LedgerClient:
         name : str
 
         type : AccountsCreateLedgerRequestType
-
-        translations : typing.Optional[typing.Dict[str, AccountsCreateLedgerRequestTranslationsValue]]
 
         parent_id : typing.Optional[str]
 
@@ -175,7 +170,6 @@ class LedgerClient:
             code=code,
             name=name,
             type=type,
-            translations=translations,
             parent_id=parent_id,
             is_postable=is_postable,
             request_options=request_options,
@@ -187,9 +181,6 @@ class LedgerClient:
         *,
         id: str,
         name: typing.Optional[str] = OMIT,
-        translations: typing.Optional[
-            typing.Dict[str, typing.Optional[AccountsUpdateLedgerRequestTranslationsValue]]
-        ] = OMIT,
         parent_id: typing.Optional[str] = OMIT,
         is_postable: typing.Optional[bool] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
@@ -200,8 +191,6 @@ class LedgerClient:
         id : str
 
         name : typing.Optional[str]
-
-        translations : typing.Optional[typing.Dict[str, typing.Optional[AccountsUpdateLedgerRequestTranslationsValue]]]
 
         parent_id : typing.Optional[str]
 
@@ -227,12 +216,7 @@ class LedgerClient:
         )
         """
         _response = self._raw_client.accounts_update(
-            id=id,
-            name=name,
-            translations=translations,
-            parent_id=parent_id,
-            is_postable=is_postable,
-            request_options=request_options,
+            id=id, name=name, parent_id=parent_id, is_postable=is_postable, request_options=request_options
         )
         return _response.data
 
@@ -1307,7 +1291,6 @@ class AsyncLedgerClient:
         code: str,
         name: str,
         type: AccountsCreateLedgerRequestType,
-        translations: typing.Optional[typing.Dict[str, AccountsCreateLedgerRequestTranslationsValue]] = OMIT,
         parent_id: typing.Optional[str] = OMIT,
         is_postable: typing.Optional[bool] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
@@ -1320,8 +1303,6 @@ class AsyncLedgerClient:
         name : str
 
         type : AccountsCreateLedgerRequestType
-
-        translations : typing.Optional[typing.Dict[str, AccountsCreateLedgerRequestTranslationsValue]]
 
         parent_id : typing.Optional[str]
 
@@ -1360,7 +1341,6 @@ class AsyncLedgerClient:
             code=code,
             name=name,
             type=type,
-            translations=translations,
             parent_id=parent_id,
             is_postable=is_postable,
             request_options=request_options,
@@ -1372,9 +1352,6 @@ class AsyncLedgerClient:
         *,
         id: str,
         name: typing.Optional[str] = OMIT,
-        translations: typing.Optional[
-            typing.Dict[str, typing.Optional[AccountsUpdateLedgerRequestTranslationsValue]]
-        ] = OMIT,
         parent_id: typing.Optional[str] = OMIT,
         is_postable: typing.Optional[bool] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
@@ -1385,8 +1362,6 @@ class AsyncLedgerClient:
         id : str
 
         name : typing.Optional[str]
-
-        translations : typing.Optional[typing.Dict[str, typing.Optional[AccountsUpdateLedgerRequestTranslationsValue]]]
 
         parent_id : typing.Optional[str]
 
@@ -1420,12 +1395,7 @@ class AsyncLedgerClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.accounts_update(
-            id=id,
-            name=name,
-            translations=translations,
-            parent_id=parent_id,
-            is_postable=is_postable,
-            request_options=request_options,
+            id=id, name=name, parent_id=parent_id, is_postable=is_postable, request_options=request_options
         )
         return _response.data
 

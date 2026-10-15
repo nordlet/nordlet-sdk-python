@@ -7,7 +7,6 @@ import pydantic
 import typing_extensions
 from ...core.pydantic_utilities import IS_PYDANTIC_V2, UniversalBaseModel
 from ...core.serialization import FieldMetadata
-from .accounts_update_ledger_response_translations_value import AccountsUpdateLedgerResponseTranslationsValue
 from .accounts_update_ledger_response_type import AccountsUpdateLedgerResponseType
 
 
@@ -15,9 +14,15 @@ class AccountsUpdateLedgerResponse(UniversalBaseModel):
     id: str
     code: str
     name: str
-    translations: typing.Optional[typing.Dict[str, typing.Optional[AccountsUpdateLedgerResponseTranslationsValue]]] = (
-        None
-    )
+    display_name: typing_extensions.Annotated[
+        str,
+        FieldMetadata(alias="displayName"),
+        pydantic.Field(alias="displayName", description="The name in the language of the Accept-Language header"),
+    ]
+    """
+    The name in the language of the Accept-Language header
+    """
+
     type: AccountsUpdateLedgerResponseType
     parent_id: typing_extensions.Annotated[
         typing.Optional[str], FieldMetadata(alias="parentId"), pydantic.Field(alias="parentId")

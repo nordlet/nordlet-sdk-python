@@ -25281,14 +25281,6 @@ client.ledger.accounts_create(
 <dl>
 <dd>
 
-**translations:** `typing.Optional[typing.Dict[str, AccountsCreateLedgerRequestTranslationsValue]]` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
 **parent_id:** `typing.Optional[str]` 
     
 </dd>
@@ -25365,14 +25357,6 @@ client.ledger.accounts_update(
 <dd>
 
 **name:** `typing.Optional[str]` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**translations:** `typing.Optional[typing.Dict[str, typing.Optional[AccountsUpdateLedgerRequestTranslationsValue]]]` 
     
 </dd>
 </dl>
@@ -46075,6 +46059,55 @@ client.bank.import_templates_get(
     
 </dd>
 </dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.bank.<a href="src/nordlet/bank/client.py">import_templates_list_builtin</a>() -> ImportTemplatesListBuiltinBankResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.bank.import_templates_list_builtin()
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
 
 <dl>
 <dd>

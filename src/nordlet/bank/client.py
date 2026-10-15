@@ -39,6 +39,7 @@ from .types.import_templates_get_bank_response import ImportTemplatesGetBankResp
 from .types.import_templates_list_bank_request_filter_item import ImportTemplatesListBankRequestFilterItem
 from .types.import_templates_list_bank_request_sort_item import ImportTemplatesListBankRequestSortItem
 from .types.import_templates_list_bank_response import ImportTemplatesListBankResponse
+from .types.import_templates_list_builtin_bank_response import ImportTemplatesListBuiltinBankResponse
 from .types.import_templates_update_bank_request_fields_item import ImportTemplatesUpdateBankRequestFieldsItem
 from .types.import_templates_update_bank_request_type import ImportTemplatesUpdateBankRequestType
 from .types.import_templates_update_bank_response import ImportTemplatesUpdateBankResponse
@@ -906,6 +907,32 @@ class BankClient:
         )
         """
         _response = self._raw_client.import_templates_get(id=id, request_options=request_options)
+        return _response.data
+
+    def import_templates_list_builtin(
+        self, *, request_options: typing.Optional[RequestOptions] = None
+    ) -> ImportTemplatesListBuiltinBankResponse:
+        """
+        Parameters
+        ----------
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        ImportTemplatesListBuiltinBankResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.bank.import_templates_list_builtin()
+        """
+        _response = self._raw_client.import_templates_list_builtin(request_options=request_options)
         return _response.data
 
     def import_templates_list(
@@ -3214,6 +3241,40 @@ class AsyncBankClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.import_templates_get(id=id, request_options=request_options)
+        return _response.data
+
+    async def import_templates_list_builtin(
+        self, *, request_options: typing.Optional[RequestOptions] = None
+    ) -> ImportTemplatesListBuiltinBankResponse:
+        """
+        Parameters
+        ----------
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        ImportTemplatesListBuiltinBankResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.bank.import_templates_list_builtin()
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.import_templates_list_builtin(request_options=request_options)
         return _response.data
 
     async def import_templates_list(

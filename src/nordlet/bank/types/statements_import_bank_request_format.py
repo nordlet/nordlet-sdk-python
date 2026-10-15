@@ -2,4 +2,6 @@
 
 import typing
 
-StatementsImportBankRequestFormat = typing.Union[typing.Literal["camt053", "mt940", "stripe-csv"], typing.Any]
+StatementsImportBankRequestFormat = typing.Union[
+    typing.Literal["camt053", "mt940", "stripe-csv", "revolut-csv"], typing.Any
+]

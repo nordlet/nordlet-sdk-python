@@ -3,5 +3,5 @@
 import typing
 
 ImportTemplatesCreateBankResponseType = typing.Union[
-    typing.Literal["stripe", "iso20022", "bank_connection"], typing.Any
+    typing.Literal["stripe", "iso20022", "bank_connection", "revolut"], typing.Any
 ]

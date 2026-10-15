@@ -7,10 +7,8 @@ from importlib import import_module
 
 if typing.TYPE_CHECKING:
     from .accounts_apply_template_ledger_response import AccountsApplyTemplateLedgerResponse
-    from .accounts_create_ledger_request_translations_value import AccountsCreateLedgerRequestTranslationsValue
     from .accounts_create_ledger_request_type import AccountsCreateLedgerRequestType
     from .accounts_create_ledger_response import AccountsCreateLedgerResponse
-    from .accounts_create_ledger_response_translations_value import AccountsCreateLedgerResponseTranslationsValue
     from .accounts_create_ledger_response_type import AccountsCreateLedgerResponseType
     from .accounts_list_ledger_request_filter_item import AccountsListLedgerRequestFilterItem
     from .accounts_list_ledger_request_filter_item_op import AccountsListLedgerRequestFilterItemOp
@@ -22,14 +20,9 @@ if typing.TYPE_CHECKING:
     from .accounts_list_ledger_request_sort_item_dir import AccountsListLedgerRequestSortItemDir
     from .accounts_list_ledger_response import AccountsListLedgerResponse
     from .accounts_list_ledger_response_rows_item import AccountsListLedgerResponseRowsItem
-    from .accounts_list_ledger_response_rows_item_translations_value import (
-        AccountsListLedgerResponseRowsItemTranslationsValue,
-    )
     from .accounts_list_ledger_response_rows_item_type import AccountsListLedgerResponseRowsItemType
     from .accounts_switch_chart_ledger_response import AccountsSwitchChartLedgerResponse
-    from .accounts_update_ledger_request_translations_value import AccountsUpdateLedgerRequestTranslationsValue
     from .accounts_update_ledger_response import AccountsUpdateLedgerResponse
-    from .accounts_update_ledger_response_translations_value import AccountsUpdateLedgerResponseTranslationsValue
     from .accounts_update_ledger_response_type import AccountsUpdateLedgerResponseType
     from .cost_center_groups_create_ledger_response import CostCenterGroupsCreateLedgerResponse
     from .cost_center_groups_delete_ledger_response import CostCenterGroupsDeleteLedgerResponse
@@ -154,10 +147,8 @@ if typing.TYPE_CHECKING:
     from .statement_rows_set_ledger_response import StatementRowsSetLedgerResponse
 _dynamic_imports: typing.Dict[str, str] = {
     "AccountsApplyTemplateLedgerResponse": ".accounts_apply_template_ledger_response",
-    "AccountsCreateLedgerRequestTranslationsValue": ".accounts_create_ledger_request_translations_value",
     "AccountsCreateLedgerRequestType": ".accounts_create_ledger_request_type",
     "AccountsCreateLedgerResponse": ".accounts_create_ledger_response",
-    "AccountsCreateLedgerResponseTranslationsValue": ".accounts_create_ledger_response_translations_value",
     "AccountsCreateLedgerResponseType": ".accounts_create_ledger_response_type",
     "AccountsListLedgerRequestFilterItem": ".accounts_list_ledger_request_filter_item",
     "AccountsListLedgerRequestFilterItemOp": ".accounts_list_ledger_request_filter_item_op",
@@ -167,12 +158,9 @@ _dynamic_imports: typing.Dict[str, str] = {
     "AccountsListLedgerRequestSortItemDir": ".accounts_list_ledger_request_sort_item_dir",
     "AccountsListLedgerResponse": ".accounts_list_ledger_response",
     "AccountsListLedgerResponseRowsItem": ".accounts_list_ledger_response_rows_item",
-    "AccountsListLedgerResponseRowsItemTranslationsValue": ".accounts_list_ledger_response_rows_item_translations_value",
     "AccountsListLedgerResponseRowsItemType": ".accounts_list_ledger_response_rows_item_type",
     "AccountsSwitchChartLedgerResponse": ".accounts_switch_chart_ledger_response",
-    "AccountsUpdateLedgerRequestTranslationsValue": ".accounts_update_ledger_request_translations_value",
     "AccountsUpdateLedgerResponse": ".accounts_update_ledger_response",
-    "AccountsUpdateLedgerResponseTranslationsValue": ".accounts_update_ledger_response_translations_value",
     "AccountsUpdateLedgerResponseType": ".accounts_update_ledger_response_type",
     "CostCenterGroupsCreateLedgerResponse": ".cost_center_groups_create_ledger_response",
     "CostCenterGroupsDeleteLedgerResponse": ".cost_center_groups_delete_ledger_response",
@@ -291,10 +279,8 @@ def __dir__():
 
 __all__ = [
     "AccountsApplyTemplateLedgerResponse",
-    "AccountsCreateLedgerRequestTranslationsValue",
     "AccountsCreateLedgerRequestType",
     "AccountsCreateLedgerResponse",
-    "AccountsCreateLedgerResponseTranslationsValue",
     "AccountsCreateLedgerResponseType",
     "AccountsListLedgerRequestFilterItem",
     "AccountsListLedgerRequestFilterItemOp",
@@ -304,12 +290,9 @@ __all__ = [
     "AccountsListLedgerRequestSortItemDir",
     "AccountsListLedgerResponse",
     "AccountsListLedgerResponseRowsItem",
-    "AccountsListLedgerResponseRowsItemTranslationsValue",
     "AccountsListLedgerResponseRowsItemType",
     "AccountsSwitchChartLedgerResponse",
-    "AccountsUpdateLedgerRequestTranslationsValue",
     "AccountsUpdateLedgerResponse",
-    "AccountsUpdateLedgerResponseTranslationsValue",
     "AccountsUpdateLedgerResponseType",
     "CostCenterGroupsCreateLedgerResponse",
     "CostCenterGroupsDeleteLedgerResponse",

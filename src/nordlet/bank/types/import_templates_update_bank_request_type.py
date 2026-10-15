@@ -2,4 +2,6 @@
 
 import typing
 
-ImportTemplatesUpdateBankRequestType = typing.Union[typing.Literal["stripe", "iso20022", "bank_connection"], typing.Any]
+ImportTemplatesUpdateBankRequestType = typing.Union[
+    typing.Literal["stripe", "iso20022", "bank_connection", "revolut"], typing.Any
+]

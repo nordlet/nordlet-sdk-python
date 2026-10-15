@@ -60,6 +60,11 @@ class ImportTemplatesUpdateBankResponse(UniversalBaseModel):
     full_refund_label: typing_extensions.Annotated[
         typing.Optional[str], FieldMetadata(alias="fullRefundLabel"), pydantic.Field(alias="fullRefundLabel")
     ] = None
+    builtin: bool = pydantic.Field()
+    """
+    Provided by Nordlet for every company; it cannot be changed or deleted
+    """
+
     created_at: typing_extensions.Annotated[
         dt.datetime, FieldMetadata(alias="createdAt"), pydantic.Field(alias="createdAt")
     ]

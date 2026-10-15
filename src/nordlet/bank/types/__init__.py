@@ -99,6 +99,14 @@ if typing.TYPE_CHECKING:
         ImportTemplatesListBankResponseRowsItemFieldsItem,
     )
     from .import_templates_list_bank_response_rows_item_type import ImportTemplatesListBankResponseRowsItemType
+    from .import_templates_list_builtin_bank_response import ImportTemplatesListBuiltinBankResponse
+    from .import_templates_list_builtin_bank_response_rows_item import ImportTemplatesListBuiltinBankResponseRowsItem
+    from .import_templates_list_builtin_bank_response_rows_item_fields_item import (
+        ImportTemplatesListBuiltinBankResponseRowsItemFieldsItem,
+    )
+    from .import_templates_list_builtin_bank_response_rows_item_type import (
+        ImportTemplatesListBuiltinBankResponseRowsItemType,
+    )
     from .import_templates_update_bank_request_fields_item import ImportTemplatesUpdateBankRequestFieldsItem
     from .import_templates_update_bank_request_type import ImportTemplatesUpdateBankRequestType
     from .import_templates_update_bank_response import ImportTemplatesUpdateBankResponse
@@ -299,6 +307,10 @@ _dynamic_imports: typing.Dict[str, str] = {
     "ImportTemplatesListBankResponseRowsItem": ".import_templates_list_bank_response_rows_item",
     "ImportTemplatesListBankResponseRowsItemFieldsItem": ".import_templates_list_bank_response_rows_item_fields_item",
     "ImportTemplatesListBankResponseRowsItemType": ".import_templates_list_bank_response_rows_item_type",
+    "ImportTemplatesListBuiltinBankResponse": ".import_templates_list_builtin_bank_response",
+    "ImportTemplatesListBuiltinBankResponseRowsItem": ".import_templates_list_builtin_bank_response_rows_item",
+    "ImportTemplatesListBuiltinBankResponseRowsItemFieldsItem": ".import_templates_list_builtin_bank_response_rows_item_fields_item",
+    "ImportTemplatesListBuiltinBankResponseRowsItemType": ".import_templates_list_builtin_bank_response_rows_item_type",
     "ImportTemplatesUpdateBankRequestFieldsItem": ".import_templates_update_bank_request_fields_item",
     "ImportTemplatesUpdateBankRequestType": ".import_templates_update_bank_request_type",
     "ImportTemplatesUpdateBankResponse": ".import_templates_update_bank_response",
@@ -511,6 +523,10 @@ __all__ = [
     "ImportTemplatesListBankResponseRowsItem",
     "ImportTemplatesListBankResponseRowsItemFieldsItem",
     "ImportTemplatesListBankResponseRowsItemType",
+    "ImportTemplatesListBuiltinBankResponse",
+    "ImportTemplatesListBuiltinBankResponseRowsItem",
+    "ImportTemplatesListBuiltinBankResponseRowsItemFieldsItem",
+    "ImportTemplatesListBuiltinBankResponseRowsItemType",
     "ImportTemplatesUpdateBankRequestFieldsItem",
     "ImportTemplatesUpdateBankRequestType",
     "ImportTemplatesUpdateBankResponse",

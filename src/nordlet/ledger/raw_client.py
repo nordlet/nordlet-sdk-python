@@ -23,14 +23,12 @@ from ..errors.unauthorized_error import UnauthorizedError
 from ..errors.unprocessable_entity_error import UnprocessableEntityError
 from ..types.error_response import ErrorResponse
 from .types.accounts_apply_template_ledger_response import AccountsApplyTemplateLedgerResponse
-from .types.accounts_create_ledger_request_translations_value import AccountsCreateLedgerRequestTranslationsValue
 from .types.accounts_create_ledger_request_type import AccountsCreateLedgerRequestType
 from .types.accounts_create_ledger_response import AccountsCreateLedgerResponse
 from .types.accounts_list_ledger_request_filter_item import AccountsListLedgerRequestFilterItem
 from .types.accounts_list_ledger_request_sort_item import AccountsListLedgerRequestSortItem
 from .types.accounts_list_ledger_response import AccountsListLedgerResponse
 from .types.accounts_switch_chart_ledger_response import AccountsSwitchChartLedgerResponse
-from .types.accounts_update_ledger_request_translations_value import AccountsUpdateLedgerRequestTranslationsValue
 from .types.accounts_update_ledger_response import AccountsUpdateLedgerResponse
 from .types.cost_center_groups_create_ledger_response import CostCenterGroupsCreateLedgerResponse
 from .types.cost_center_groups_delete_ledger_response import CostCenterGroupsDeleteLedgerResponse
@@ -271,7 +269,6 @@ class RawLedgerClient:
         code: str,
         name: str,
         type: AccountsCreateLedgerRequestType,
-        translations: typing.Optional[typing.Dict[str, AccountsCreateLedgerRequestTranslationsValue]] = OMIT,
         parent_id: typing.Optional[str] = OMIT,
         is_postable: typing.Optional[bool] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
@@ -284,8 +281,6 @@ class RawLedgerClient:
         name : str
 
         type : AccountsCreateLedgerRequestType
-
-        translations : typing.Optional[typing.Dict[str, AccountsCreateLedgerRequestTranslationsValue]]
 
         parent_id : typing.Optional[str]
 
@@ -305,11 +300,6 @@ class RawLedgerClient:
             json={
                 "code": code,
                 "name": name,
-                "translations": convert_and_respect_annotation_metadata(
-                    object_=translations,
-                    annotation=typing.Dict[str, AccountsCreateLedgerRequestTranslationsValue],
-                    direction="write",
-                ),
                 "type": type,
                 "parentId": parent_id,
                 "isPostable": is_postable,
@@ -454,9 +444,6 @@ class RawLedgerClient:
         *,
         id: str,
         name: typing.Optional[str] = OMIT,
-        translations: typing.Optional[
-            typing.Dict[str, typing.Optional[AccountsUpdateLedgerRequestTranslationsValue]]
-        ] = OMIT,
         parent_id: typing.Optional[str] = OMIT,
         is_postable: typing.Optional[bool] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
@@ -467,8 +454,6 @@ class RawLedgerClient:
         id : str
 
         name : typing.Optional[str]
-
-        translations : typing.Optional[typing.Dict[str, typing.Optional[AccountsUpdateLedgerRequestTranslationsValue]]]
 
         parent_id : typing.Optional[str]
 
@@ -488,13 +473,6 @@ class RawLedgerClient:
             json={
                 "id": id,
                 "name": name,
-                "translations": convert_and_respect_annotation_metadata(
-                    object_=translations,
-                    annotation=typing.Optional[
-                        typing.Dict[str, typing.Optional[AccountsUpdateLedgerRequestTranslationsValue]]
-                    ],
-                    direction="write",
-                ),
                 "parentId": parent_id,
                 "isPostable": is_postable,
             },
@@ -4909,7 +4887,6 @@ class AsyncRawLedgerClient:
         code: str,
         name: str,
         type: AccountsCreateLedgerRequestType,
-        translations: typing.Optional[typing.Dict[str, AccountsCreateLedgerRequestTranslationsValue]] = OMIT,
         parent_id: typing.Optional[str] = OMIT,
         is_postable: typing.Optional[bool] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
@@ -4922,8 +4899,6 @@ class AsyncRawLedgerClient:
         name : str
 
         type : AccountsCreateLedgerRequestType
-
-        translations : typing.Optional[typing.Dict[str, AccountsCreateLedgerRequestTranslationsValue]]
 
         parent_id : typing.Optional[str]
 
@@ -4943,11 +4918,6 @@ class AsyncRawLedgerClient:
             json={
                 "code": code,
                 "name": name,
-                "translations": convert_and_respect_annotation_metadata(
-                    object_=translations,
-                    annotation=typing.Dict[str, AccountsCreateLedgerRequestTranslationsValue],
-                    direction="write",
-                ),
                 "type": type,
                 "parentId": parent_id,
                 "isPostable": is_postable,
@@ -5092,9 +5062,6 @@ class AsyncRawLedgerClient:
         *,
         id: str,
         name: typing.Optional[str] = OMIT,
-        translations: typing.Optional[
-            typing.Dict[str, typing.Optional[AccountsUpdateLedgerRequestTranslationsValue]]
-        ] = OMIT,
         parent_id: typing.Optional[str] = OMIT,
         is_postable: typing.Optional[bool] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
@@ -5105,8 +5072,6 @@ class AsyncRawLedgerClient:
         id : str
 
         name : typing.Optional[str]
-
-        translations : typing.Optional[typing.Dict[str, typing.Optional[AccountsUpdateLedgerRequestTranslationsValue]]]
 
         parent_id : typing.Optional[str]
 
@@ -5126,13 +5091,6 @@ class AsyncRawLedgerClient:
             json={
                 "id": id,
                 "name": name,
-                "translations": convert_and_respect_annotation_metadata(
-                    object_=translations,
-                    annotation=typing.Optional[
-                        typing.Dict[str, typing.Optional[AccountsUpdateLedgerRequestTranslationsValue]]
-                    ],
-                    direction="write",
-                ),
                 "parentId": parent_id,
                 "isPostable": is_postable,
             },

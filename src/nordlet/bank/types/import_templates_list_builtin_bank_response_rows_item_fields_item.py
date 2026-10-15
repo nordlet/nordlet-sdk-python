@@ -3,11 +3,19 @@
 import typing
 
 import pydantic
+import typing_extensions
 from ...core.pydantic_utilities import IS_PYDANTIC_V2, UniversalBaseModel
+from ...core.serialization import FieldMetadata
 
 
-class AccountsUpdateLedgerResponseTranslationsValue(UniversalBaseModel):
+class ImportTemplatesListBuiltinBankResponseRowsItemFieldsItem(UniversalBaseModel):
     name: str
+    account_code: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="accountCode"), pydantic.Field(alias="accountCode")
+    ] = None
+    create_partner: typing_extensions.Annotated[
+        bool, FieldMetadata(alias="createPartner"), pydantic.Field(alias="createPartner")
+    ]
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2
