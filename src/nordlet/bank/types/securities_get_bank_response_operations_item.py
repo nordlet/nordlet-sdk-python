@@ -12,6 +12,9 @@ from .securities_get_bank_response_operations_item_status import SecuritiesGetBa
 
 class SecuritiesGetBankResponseOperationsItem(UniversalBaseModel):
     id: str
+    bank_account_id: typing_extensions.Annotated[
+        str, FieldMetadata(alias="bankAccountId"), pydantic.Field(alias="bankAccountId")
+    ]
     kind: str
     date: dt.date
     time: typing.Optional[str] = None

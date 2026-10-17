@@ -62,6 +62,9 @@ from .types.securities_import_bank_response import SecuritiesImportBankResponse
 from .types.securities_list_bank_request_filter_item import SecuritiesListBankRequestFilterItem
 from .types.securities_list_bank_request_sort_item import SecuritiesListBankRequestSortItem
 from .types.securities_list_bank_response import SecuritiesListBankResponse
+from .types.securities_operations_list_bank_request_filter_item import SecuritiesOperationsListBankRequestFilterItem
+from .types.securities_operations_list_bank_request_sort_item import SecuritiesOperationsListBankRequestSortItem
+from .types.securities_operations_list_bank_response import SecuritiesOperationsListBankResponse
 from .types.settlements_commission_bank_response import SettlementsCommissionBankResponse
 from .types.settlements_get_bank_response import SettlementsGetBankResponse
 from .types.settlements_import_bank_request_provider import SettlementsImportBankRequestProvider
@@ -1943,6 +1946,52 @@ class BankClient:
         )
         """
         _response = self._raw_client.securities_get(id=id, request_options=request_options)
+        return _response.data
+
+    def securities_operations_list(
+        self,
+        *,
+        page: typing.Optional[int] = OMIT,
+        page_size: typing.Optional[int] = OMIT,
+        sort: typing.Optional[typing.Sequence[SecuritiesOperationsListBankRequestSortItem]] = OMIT,
+        filter: typing.Optional[typing.Sequence[SecuritiesOperationsListBankRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> SecuritiesOperationsListBankResponse:
+        """
+        Parameters
+        ----------
+        page : typing.Optional[int]
+
+        page_size : typing.Optional[int]
+
+        sort : typing.Optional[typing.Sequence[SecuritiesOperationsListBankRequestSortItem]]
+
+        filter : typing.Optional[typing.Sequence[SecuritiesOperationsListBankRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        SecuritiesOperationsListBankResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.bank.securities_operations_list()
+        """
+        _response = self._raw_client.securities_operations_list(
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
+        )
         return _response.data
 
     def feeds_banks_list(
@@ -4476,6 +4525,60 @@ class AsyncBankClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.securities_get(id=id, request_options=request_options)
+        return _response.data
+
+    async def securities_operations_list(
+        self,
+        *,
+        page: typing.Optional[int] = OMIT,
+        page_size: typing.Optional[int] = OMIT,
+        sort: typing.Optional[typing.Sequence[SecuritiesOperationsListBankRequestSortItem]] = OMIT,
+        filter: typing.Optional[typing.Sequence[SecuritiesOperationsListBankRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> SecuritiesOperationsListBankResponse:
+        """
+        Parameters
+        ----------
+        page : typing.Optional[int]
+
+        page_size : typing.Optional[int]
+
+        sort : typing.Optional[typing.Sequence[SecuritiesOperationsListBankRequestSortItem]]
+
+        filter : typing.Optional[typing.Sequence[SecuritiesOperationsListBankRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        SecuritiesOperationsListBankResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.bank.securities_operations_list()
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.securities_operations_list(
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
+        )
         return _response.data
 
     async def feeds_banks_list(

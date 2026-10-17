@@ -13923,11 +13923,14 @@ class RawDeclarationsClient:
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
     def configs_list(
-        self, *, request_options: typing.Optional[RequestOptions] = None
+        self, *, country: typing.Optional[str] = OMIT, request_options: typing.Optional[RequestOptions] = None
     ) -> HttpResponse[ConfigsListDeclarationsResponse]:
         """
         Parameters
         ----------
+        country : typing.Optional[str]
+            List the systems of this country instead of the company country
+
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
@@ -13939,7 +13942,9 @@ class RawDeclarationsClient:
         _response = self._client_wrapper.httpx_client.request(
             "v1/declarations/configs/list",
             method="POST",
-            json={},
+            json={
+                "country": country,
+            },
             headers={
                 "content-type": "application/json",
             },
@@ -29455,11 +29460,14 @@ class AsyncRawDeclarationsClient:
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
     async def configs_list(
-        self, *, request_options: typing.Optional[RequestOptions] = None
+        self, *, country: typing.Optional[str] = OMIT, request_options: typing.Optional[RequestOptions] = None
     ) -> AsyncHttpResponse[ConfigsListDeclarationsResponse]:
         """
         Parameters
         ----------
+        country : typing.Optional[str]
+            List the systems of this country instead of the company country
+
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
@@ -29471,7 +29479,9 @@ class AsyncRawDeclarationsClient:
         _response = await self._client_wrapper.httpx_client.request(
             "v1/declarations/configs/list",
             method="POST",
-            json={},
+            json={
+                "country": country,
+            },
             headers={
                 "content-type": "application/json",
             },

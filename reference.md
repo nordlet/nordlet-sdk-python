@@ -24371,7 +24371,7 @@ client.declarations.li_lohnlisten_generate(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">configs_list</a>() -> ConfigsListDeclarationsResponse</code></summary>
+<details><summary><code>client.declarations.<a href="src/nordlet/declarations/client.py">configs_list</a>(...) -> ConfigsListDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -24404,6 +24404,14 @@ client.declarations.configs_list()
 
 <dl>
 <dd>
+
+<dl>
+<dd>
+
+**country:** `typing.Optional[str]` — List the systems of this country instead of the company country
+    
+</dd>
+</dl>
 
 <dl>
 <dd>
@@ -48009,6 +48017,95 @@ client.bank.securities_get(
 <dd>
 
 **id:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.bank.<a href="src/nordlet/bank/client.py">securities_operations_list</a>(...) -> SecuritiesOperationsListBankResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from nordlet import Nordlet
+from nordlet.environment import NordletEnvironment
+
+client = Nordlet(
+    token="<token>",
+    environment=NordletEnvironment.PRODUCTION,
+)
+
+client.bank.securities_operations_list()
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**page:** `typing.Optional[int]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**page_size:** `typing.Optional[int]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sort:** `typing.Optional[typing.List[SecuritiesOperationsListBankRequestSortItem]]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filter:** `typing.Optional[typing.List[SecuritiesOperationsListBankRequestFilterItem]]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**totals:** `typing.Optional[typing.List[str]]` — Numeric fields to sum over every row matching the filter (not only the current page)
     
 </dd>
 </dl>

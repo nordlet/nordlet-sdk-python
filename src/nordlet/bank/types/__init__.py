@@ -161,6 +161,21 @@ if typing.TYPE_CHECKING:
     from .securities_list_bank_request_sort_item_dir import SecuritiesListBankRequestSortItemDir
     from .securities_list_bank_response import SecuritiesListBankResponse
     from .securities_list_bank_response_rows_item import SecuritiesListBankResponseRowsItem
+    from .securities_operations_list_bank_request_filter_item import SecuritiesOperationsListBankRequestFilterItem
+    from .securities_operations_list_bank_request_filter_item_op import SecuritiesOperationsListBankRequestFilterItemOp
+    from .securities_operations_list_bank_request_filter_item_value import (
+        SecuritiesOperationsListBankRequestFilterItemValue,
+    )
+    from .securities_operations_list_bank_request_filter_item_value_three_item import (
+        SecuritiesOperationsListBankRequestFilterItemValueThreeItem,
+    )
+    from .securities_operations_list_bank_request_sort_item import SecuritiesOperationsListBankRequestSortItem
+    from .securities_operations_list_bank_request_sort_item_dir import SecuritiesOperationsListBankRequestSortItemDir
+    from .securities_operations_list_bank_response import SecuritiesOperationsListBankResponse
+    from .securities_operations_list_bank_response_rows_item import SecuritiesOperationsListBankResponseRowsItem
+    from .securities_operations_list_bank_response_rows_item_status import (
+        SecuritiesOperationsListBankResponseRowsItemStatus,
+    )
     from .settlements_commission_bank_response import SettlementsCommissionBankResponse
     from .settlements_commission_bank_response_match_status import SettlementsCommissionBankResponseMatchStatus
     from .settlements_get_bank_response import SettlementsGetBankResponse
@@ -363,6 +378,15 @@ _dynamic_imports: typing.Dict[str, str] = {
     "SecuritiesListBankRequestSortItemDir": ".securities_list_bank_request_sort_item_dir",
     "SecuritiesListBankResponse": ".securities_list_bank_response",
     "SecuritiesListBankResponseRowsItem": ".securities_list_bank_response_rows_item",
+    "SecuritiesOperationsListBankRequestFilterItem": ".securities_operations_list_bank_request_filter_item",
+    "SecuritiesOperationsListBankRequestFilterItemOp": ".securities_operations_list_bank_request_filter_item_op",
+    "SecuritiesOperationsListBankRequestFilterItemValue": ".securities_operations_list_bank_request_filter_item_value",
+    "SecuritiesOperationsListBankRequestFilterItemValueThreeItem": ".securities_operations_list_bank_request_filter_item_value_three_item",
+    "SecuritiesOperationsListBankRequestSortItem": ".securities_operations_list_bank_request_sort_item",
+    "SecuritiesOperationsListBankRequestSortItemDir": ".securities_operations_list_bank_request_sort_item_dir",
+    "SecuritiesOperationsListBankResponse": ".securities_operations_list_bank_response",
+    "SecuritiesOperationsListBankResponseRowsItem": ".securities_operations_list_bank_response_rows_item",
+    "SecuritiesOperationsListBankResponseRowsItemStatus": ".securities_operations_list_bank_response_rows_item_status",
     "SettlementsCommissionBankResponse": ".settlements_commission_bank_response",
     "SettlementsCommissionBankResponseMatchStatus": ".settlements_commission_bank_response_match_status",
     "SettlementsGetBankResponse": ".settlements_get_bank_response",
@@ -579,6 +603,15 @@ __all__ = [
     "SecuritiesListBankRequestSortItemDir",
     "SecuritiesListBankResponse",
     "SecuritiesListBankResponseRowsItem",
+    "SecuritiesOperationsListBankRequestFilterItem",
+    "SecuritiesOperationsListBankRequestFilterItemOp",
+    "SecuritiesOperationsListBankRequestFilterItemValue",
+    "SecuritiesOperationsListBankRequestFilterItemValueThreeItem",
+    "SecuritiesOperationsListBankRequestSortItem",
+    "SecuritiesOperationsListBankRequestSortItemDir",
+    "SecuritiesOperationsListBankResponse",
+    "SecuritiesOperationsListBankResponseRowsItem",
+    "SecuritiesOperationsListBankResponseRowsItemStatus",
     "SettlementsCommissionBankResponse",
     "SettlementsCommissionBankResponseMatchStatus",
     "SettlementsGetBankResponse",

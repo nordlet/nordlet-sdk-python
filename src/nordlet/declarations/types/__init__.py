@@ -146,12 +146,18 @@ if typing.TYPE_CHECKING:
     from .configs_list_declarations_response_rows_item_fields_item import (
         ConfigsListDeclarationsResponseRowsItemFieldsItem,
     )
+    from .configs_list_declarations_response_rows_item_fields_item_company_field import (
+        ConfigsListDeclarationsResponseRowsItemFieldsItemCompanyField,
+    )
     from .configs_list_declarations_response_rows_item_fields_item_kind import (
         ConfigsListDeclarationsResponseRowsItemFieldsItemKind,
     )
     from .configs_update_declarations_response import ConfigsUpdateDeclarationsResponse
     from .configs_update_declarations_response_endpoints_item import ConfigsUpdateDeclarationsResponseEndpointsItem
     from .configs_update_declarations_response_fields_item import ConfigsUpdateDeclarationsResponseFieldsItem
+    from .configs_update_declarations_response_fields_item_company_field import (
+        ConfigsUpdateDeclarationsResponseFieldsItemCompanyField,
+    )
     from .configs_update_declarations_response_fields_item_kind import ConfigsUpdateDeclarationsResponseFieldsItemKind
     from .cy_he32generate_declarations_response import CyHe32GenerateDeclarationsResponse
     from .cy_he32generate_declarations_response_fields_item import CyHe32GenerateDeclarationsResponseFieldsItem
@@ -697,10 +703,12 @@ _dynamic_imports: typing.Dict[str, str] = {
     "ConfigsListDeclarationsResponseRowsItem": ".configs_list_declarations_response_rows_item",
     "ConfigsListDeclarationsResponseRowsItemEndpointsItem": ".configs_list_declarations_response_rows_item_endpoints_item",
     "ConfigsListDeclarationsResponseRowsItemFieldsItem": ".configs_list_declarations_response_rows_item_fields_item",
+    "ConfigsListDeclarationsResponseRowsItemFieldsItemCompanyField": ".configs_list_declarations_response_rows_item_fields_item_company_field",
     "ConfigsListDeclarationsResponseRowsItemFieldsItemKind": ".configs_list_declarations_response_rows_item_fields_item_kind",
     "ConfigsUpdateDeclarationsResponse": ".configs_update_declarations_response",
     "ConfigsUpdateDeclarationsResponseEndpointsItem": ".configs_update_declarations_response_endpoints_item",
     "ConfigsUpdateDeclarationsResponseFieldsItem": ".configs_update_declarations_response_fields_item",
+    "ConfigsUpdateDeclarationsResponseFieldsItemCompanyField": ".configs_update_declarations_response_fields_item_company_field",
     "ConfigsUpdateDeclarationsResponseFieldsItemKind": ".configs_update_declarations_response_fields_item_kind",
     "CyHe32GenerateDeclarationsResponse": ".cy_he32generate_declarations_response",
     "CyHe32GenerateDeclarationsResponseFieldsItem": ".cy_he32generate_declarations_response_fields_item",
@@ -1080,10 +1088,12 @@ __all__ = [
     "ConfigsListDeclarationsResponseRowsItem",
     "ConfigsListDeclarationsResponseRowsItemEndpointsItem",
     "ConfigsListDeclarationsResponseRowsItemFieldsItem",
+    "ConfigsListDeclarationsResponseRowsItemFieldsItemCompanyField",
     "ConfigsListDeclarationsResponseRowsItemFieldsItemKind",
     "ConfigsUpdateDeclarationsResponse",
     "ConfigsUpdateDeclarationsResponseEndpointsItem",
     "ConfigsUpdateDeclarationsResponseFieldsItem",
+    "ConfigsUpdateDeclarationsResponseFieldsItemCompanyField",
     "ConfigsUpdateDeclarationsResponseFieldsItemKind",
     "CyHe32GenerateDeclarationsResponse",
     "CyHe32GenerateDeclarationsResponseFieldsItem",

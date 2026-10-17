@@ -3,7 +3,12 @@
 import typing
 
 import pydantic
+import typing_extensions
 from ...core.pydantic_utilities import IS_PYDANTIC_V2, UniversalBaseModel
+from ...core.serialization import FieldMetadata
+from .configs_list_declarations_response_rows_item_fields_item_company_field import (
+    ConfigsListDeclarationsResponseRowsItemFieldsItemCompanyField,
+)
 from .configs_list_declarations_response_rows_item_fields_item_kind import (
     ConfigsListDeclarationsResponseRowsItemFieldsItemKind,
 )
@@ -14,6 +19,11 @@ class ConfigsListDeclarationsResponseRowsItemFieldsItem(UniversalBaseModel):
     kind: ConfigsListDeclarationsResponseRowsItemFieldsItemKind
     multiline: typing.Optional[bool] = None
     options: typing.Optional[typing.List[str]] = None
+    company_field: typing_extensions.Annotated[
+        typing.Optional[ConfigsListDeclarationsResponseRowsItemFieldsItemCompanyField],
+        FieldMetadata(alias="companyField"),
+        pydantic.Field(alias="companyField"),
+    ] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

@@ -3535,11 +3535,14 @@ class DeclarationsClient:
         return _response.data
 
     def configs_list(
-        self, *, request_options: typing.Optional[RequestOptions] = None
+        self, *, country: typing.Optional[str] = OMIT, request_options: typing.Optional[RequestOptions] = None
     ) -> ConfigsListDeclarationsResponse:
         """
         Parameters
         ----------
+        country : typing.Optional[str]
+            List the systems of this country instead of the company country
+
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
@@ -3557,7 +3560,7 @@ class DeclarationsClient:
         )
         client.declarations.configs_list()
         """
-        _response = self._raw_client.configs_list(request_options=request_options)
+        _response = self._raw_client.configs_list(country=country, request_options=request_options)
         return _response.data
 
     def configs_update(
@@ -7948,11 +7951,14 @@ class AsyncDeclarationsClient:
         return _response.data
 
     async def configs_list(
-        self, *, request_options: typing.Optional[RequestOptions] = None
+        self, *, country: typing.Optional[str] = OMIT, request_options: typing.Optional[RequestOptions] = None
     ) -> ConfigsListDeclarationsResponse:
         """
         Parameters
         ----------
+        country : typing.Optional[str]
+            List the systems of this country instead of the company country
+
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
@@ -7978,7 +7984,7 @@ class AsyncDeclarationsClient:
 
         asyncio.run(main())
         """
-        _response = await self._raw_client.configs_list(request_options=request_options)
+        _response = await self._raw_client.configs_list(country=country, request_options=request_options)
         return _response.data
 
     async def configs_update(
