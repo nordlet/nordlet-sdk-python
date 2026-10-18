@@ -6,6 +6,7 @@ import typing
 from importlib import import_module
 
 if typing.TYPE_CHECKING:
+    from .calc_payroll_request_payments_item import CalcPayrollRequestPaymentsItem
     from .calc_payroll_response import CalcPayrollResponse
     from .calc_payroll_response_components_item import CalcPayrollResponseComponentsItem
     from .calc_payroll_response_components_item_kind import CalcPayrollResponseComponentsItemKind
@@ -17,6 +18,8 @@ if typing.TYPE_CHECKING:
     from .lines_attendance_payroll_response_components_item import LinesAttendancePayrollResponseComponentsItem
     from .lines_attendance_payroll_response_components_item_kind import LinesAttendancePayrollResponseComponentsItemKind
     from .lines_attendance_payroll_response_deductions_item import LinesAttendancePayrollResponseDeductionsItem
+    from .payment_types_list_payroll_response import PaymentTypesListPayrollResponse
+    from .payment_types_list_payroll_response_rows_item import PaymentTypesListPayrollResponseRowsItem
     from .payments_export_payroll_request_locale import PaymentsExportPayrollRequestLocale
     from .payments_export_payroll_response import PaymentsExportPayrollResponse
     from .runs_approve_payroll_response import RunsApprovePayrollResponse
@@ -83,6 +86,7 @@ if typing.TYPE_CHECKING:
     from .schedules_list_payroll_response import SchedulesListPayrollResponse
     from .schedules_list_payroll_response_rows_item import SchedulesListPayrollResponseRowsItem
 _dynamic_imports: typing.Dict[str, str] = {
+    "CalcPayrollRequestPaymentsItem": ".calc_payroll_request_payments_item",
     "CalcPayrollResponse": ".calc_payroll_response",
     "CalcPayrollResponseComponentsItem": ".calc_payroll_response_components_item",
     "CalcPayrollResponseComponentsItemKind": ".calc_payroll_response_components_item_kind",
@@ -94,6 +98,8 @@ _dynamic_imports: typing.Dict[str, str] = {
     "LinesAttendancePayrollResponseComponentsItem": ".lines_attendance_payroll_response_components_item",
     "LinesAttendancePayrollResponseComponentsItemKind": ".lines_attendance_payroll_response_components_item_kind",
     "LinesAttendancePayrollResponseDeductionsItem": ".lines_attendance_payroll_response_deductions_item",
+    "PaymentTypesListPayrollResponse": ".payment_types_list_payroll_response",
+    "PaymentTypesListPayrollResponseRowsItem": ".payment_types_list_payroll_response_rows_item",
     "PaymentsExportPayrollRequestLocale": ".payments_export_payroll_request_locale",
     "PaymentsExportPayrollResponse": ".payments_export_payroll_response",
     "RunsApprovePayrollResponse": ".runs_approve_payroll_response",
@@ -166,6 +172,7 @@ def __dir__():
 
 
 __all__ = [
+    "CalcPayrollRequestPaymentsItem",
     "CalcPayrollResponse",
     "CalcPayrollResponseComponentsItem",
     "CalcPayrollResponseComponentsItemKind",
@@ -177,6 +184,8 @@ __all__ = [
     "LinesAttendancePayrollResponseComponentsItem",
     "LinesAttendancePayrollResponseComponentsItemKind",
     "LinesAttendancePayrollResponseDeductionsItem",
+    "PaymentTypesListPayrollResponse",
+    "PaymentTypesListPayrollResponseRowsItem",
     "PaymentsExportPayrollRequestLocale",
     "PaymentsExportPayrollResponse",
     "RunsApprovePayrollResponse",

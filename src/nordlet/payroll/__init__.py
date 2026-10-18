@@ -7,6 +7,7 @@ from importlib import import_module
 
 if typing.TYPE_CHECKING:
     from .types import (
+        CalcPayrollRequestPaymentsItem,
         CalcPayrollResponse,
         CalcPayrollResponseComponentsItem,
         CalcPayrollResponseComponentsItemKind,
@@ -18,6 +19,8 @@ if typing.TYPE_CHECKING:
         LinesAttendancePayrollResponseComponentsItem,
         LinesAttendancePayrollResponseComponentsItemKind,
         LinesAttendancePayrollResponseDeductionsItem,
+        PaymentTypesListPayrollResponse,
+        PaymentTypesListPayrollResponseRowsItem,
         PaymentsExportPayrollRequestLocale,
         PaymentsExportPayrollResponse,
         RunsApprovePayrollResponse,
@@ -67,6 +70,7 @@ if typing.TYPE_CHECKING:
         SchedulesListPayrollResponseRowsItem,
     )
 _dynamic_imports: typing.Dict[str, str] = {
+    "CalcPayrollRequestPaymentsItem": ".types",
     "CalcPayrollResponse": ".types",
     "CalcPayrollResponseComponentsItem": ".types",
     "CalcPayrollResponseComponentsItemKind": ".types",
@@ -78,6 +82,8 @@ _dynamic_imports: typing.Dict[str, str] = {
     "LinesAttendancePayrollResponseComponentsItem": ".types",
     "LinesAttendancePayrollResponseComponentsItemKind": ".types",
     "LinesAttendancePayrollResponseDeductionsItem": ".types",
+    "PaymentTypesListPayrollResponse": ".types",
+    "PaymentTypesListPayrollResponseRowsItem": ".types",
     "PaymentsExportPayrollRequestLocale": ".types",
     "PaymentsExportPayrollResponse": ".types",
     "RunsApprovePayrollResponse": ".types",
@@ -150,6 +156,7 @@ def __dir__():
 
 
 __all__ = [
+    "CalcPayrollRequestPaymentsItem",
     "CalcPayrollResponse",
     "CalcPayrollResponseComponentsItem",
     "CalcPayrollResponseComponentsItemKind",
@@ -161,6 +168,8 @@ __all__ = [
     "LinesAttendancePayrollResponseComponentsItem",
     "LinesAttendancePayrollResponseComponentsItemKind",
     "LinesAttendancePayrollResponseDeductionsItem",
+    "PaymentTypesListPayrollResponse",
+    "PaymentTypesListPayrollResponseRowsItem",
     "PaymentsExportPayrollRequestLocale",
     "PaymentsExportPayrollResponse",
     "RunsApprovePayrollResponse",

@@ -22,6 +22,9 @@ class LtGpm312ComputeDeclarationsResponseRowsItem(UniversalBaseModel):
     gpm_withheld: typing_extensions.Annotated[
         str, FieldMetadata(alias="gpmWithheld"), pydantic.Field(alias="gpmWithheld")
     ]
+    gpm_rate_percent: typing_extensions.Annotated[
+        str, FieldMetadata(alias="gpmRatePercent"), pydantic.Field(alias="gpmRatePercent")
+    ]
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

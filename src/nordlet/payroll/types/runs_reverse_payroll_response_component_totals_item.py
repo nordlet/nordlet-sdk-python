@@ -3,7 +3,9 @@
 import typing
 
 import pydantic
+import typing_extensions
 from ...core.pydantic_utilities import IS_PYDANTIC_V2, UniversalBaseModel
+from ...core.serialization import FieldMetadata
 from .runs_reverse_payroll_response_component_totals_item_kind import RunsReversePayrollResponseComponentTotalsItemKind
 
 
@@ -13,6 +15,9 @@ class RunsReversePayrollResponseComponentTotalsItem(UniversalBaseModel):
     amount: str
     rate: typing.Optional[str] = None
     base: typing.Optional[str] = None
+    payment_type: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="paymentType"), pydantic.Field(alias="paymentType")
+    ] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

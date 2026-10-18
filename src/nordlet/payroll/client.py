@@ -6,10 +6,12 @@ import typing
 from ..core.client_wrapper import AsyncClientWrapper, SyncClientWrapper
 from ..core.request_options import RequestOptions
 from .raw_client import AsyncRawPayrollClient, RawPayrollClient
+from .types.calc_payroll_request_payments_item import CalcPayrollRequestPaymentsItem
 from .types.calc_payroll_response import CalcPayrollResponse
 from .types.departments_create_payroll_response import DepartmentsCreatePayrollResponse
 from .types.departments_list_payroll_response import DepartmentsListPayrollResponse
 from .types.lines_attendance_payroll_response import LinesAttendancePayrollResponse
+from .types.payment_types_list_payroll_response import PaymentTypesListPayrollResponse
 from .types.payments_export_payroll_request_locale import PaymentsExportPayrollRequestLocale
 from .types.payments_export_payroll_response import PaymentsExportPayrollResponse
 from .types.runs_approve_payroll_response import RunsApprovePayrollResponse
@@ -171,6 +173,32 @@ class PayrollClient:
         _response = self._raw_client.schedules_list(request_options=request_options)
         return _response.data
 
+    def payment_types_list(
+        self, *, request_options: typing.Optional[RequestOptions] = None
+    ) -> PaymentTypesListPayrollResponse:
+        """
+        Parameters
+        ----------
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PaymentTypesListPayrollResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.payroll.payment_types_list()
+        """
+        _response = self._raw_client.payment_types_list(request_options=request_options)
+        return _response.data
+
     def calc(
         self,
         *,
@@ -182,6 +210,7 @@ class PayrollClient:
         fixed_term: typing.Optional[bool] = OMIT,
         benefit_in_kind: typing.Optional[str] = OMIT,
         options: typing.Optional[typing.Dict[str, str]] = OMIT,
+        payments: typing.Optional[typing.Sequence[CalcPayrollRequestPaymentsItem]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> CalcPayrollResponse:
         """
@@ -202,6 +231,8 @@ class PayrollClient:
         benefit_in_kind : typing.Optional[str]
 
         options : typing.Optional[typing.Dict[str, str]]
+
+        payments : typing.Optional[typing.Sequence[CalcPayrollRequestPaymentsItem]]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -236,6 +267,7 @@ class PayrollClient:
             fixed_term=fixed_term,
             benefit_in_kind=benefit_in_kind,
             options=options,
+            payments=payments,
             request_options=request_options,
         )
         return _response.data
@@ -780,6 +812,40 @@ class AsyncPayrollClient:
         _response = await self._raw_client.schedules_list(request_options=request_options)
         return _response.data
 
+    async def payment_types_list(
+        self, *, request_options: typing.Optional[RequestOptions] = None
+    ) -> PaymentTypesListPayrollResponse:
+        """
+        Parameters
+        ----------
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PaymentTypesListPayrollResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.payroll.payment_types_list()
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.payment_types_list(request_options=request_options)
+        return _response.data
+
     async def calc(
         self,
         *,
@@ -791,6 +857,7 @@ class AsyncPayrollClient:
         fixed_term: typing.Optional[bool] = OMIT,
         benefit_in_kind: typing.Optional[str] = OMIT,
         options: typing.Optional[typing.Dict[str, str]] = OMIT,
+        payments: typing.Optional[typing.Sequence[CalcPayrollRequestPaymentsItem]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> CalcPayrollResponse:
         """
@@ -811,6 +878,8 @@ class AsyncPayrollClient:
         benefit_in_kind : typing.Optional[str]
 
         options : typing.Optional[typing.Dict[str, str]]
+
+        payments : typing.Optional[typing.Sequence[CalcPayrollRequestPaymentsItem]]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -852,6 +921,7 @@ class AsyncPayrollClient:
             fixed_term=fixed_term,
             benefit_in_kind=benefit_in_kind,
             options=options,
+            payments=payments,
             request_options=request_options,
         )
         return _response.data
