@@ -25,6 +25,7 @@ SubscriptionsCreateWebhooksRequestEventsItem = typing.Union[
         "purchase_invoice.registered",
         "purchase_order.approved",
         "purchase_order.received",
+        "recurring_invoice.generated",
         "refund_liability.actual",
         "refund_liability.trued_up",
         "report.completed",

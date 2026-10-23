@@ -52,6 +52,8 @@ class RawWebhooksClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[SubscriptionsCreateWebhooksResponse]:
         """
+        Register a webhook endpoint for the given event types (`*` for every event). The URL must be an https address that resolves to a public network (422 otherwise). The signing secret is generated unless `secret` is given, and this call is the only one that returns it.
+
         Parameters
         ----------
         url : str
@@ -222,6 +224,8 @@ class RawWebhooksClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[SubscriptionsListWebhooksResponse]:
         """
+        List the company's webhook subscriptions with their last delivery state. Filterable by `url` and `isActive`; sortable by `createdAt` and `url`.
+
         Parameters
         ----------
         page : typing.Optional[int]
@@ -406,6 +410,8 @@ class RawWebhooksClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[SubscriptionsUpdateWebhooksResponse]:
         """
+        Change the URL, event types or `isActive` flag of a subscription; at least one field is required (400) and a new URL must be an https address that resolves to a public network (422). Setting `isActive` to true also clears `pausedAt` and `consecutiveFailures`, which is how a subscription paused after 5 failed deliveries in a row is switched back on.
+
         Parameters
         ----------
         id : str
@@ -572,6 +578,8 @@ class RawWebhooksClient:
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> HttpResponse[SubscriptionsDeleteWebhooksResponse]:
         """
+        Delete a webhook subscription.
+
         Parameters
         ----------
         id : str
@@ -736,6 +744,8 @@ class RawWebhooksClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[DeliveriesListWebhooksResponse]:
         """
+        List the company's webhook deliveries, newest first. Filterable by `status`, `eventType` and `subscriptionId`; sortable by `createdAt`.
+
         Parameters
         ----------
         page : typing.Optional[int]
@@ -912,6 +922,8 @@ class RawWebhooksClient:
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> HttpResponse[DeliveriesRedeliverWebhooksResponse]:
         """
+        Send a delivery again now: its status goes back to `pending` with the attempt count and last error cleared. Answers 409 when the subscription is inactive.
+
         Parameters
         ----------
         id : str
@@ -1079,6 +1091,8 @@ class AsyncRawWebhooksClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[SubscriptionsCreateWebhooksResponse]:
         """
+        Register a webhook endpoint for the given event types (`*` for every event). The URL must be an https address that resolves to a public network (422 otherwise). The signing secret is generated unless `secret` is given, and this call is the only one that returns it.
+
         Parameters
         ----------
         url : str
@@ -1249,6 +1263,8 @@ class AsyncRawWebhooksClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[SubscriptionsListWebhooksResponse]:
         """
+        List the company's webhook subscriptions with their last delivery state. Filterable by `url` and `isActive`; sortable by `createdAt` and `url`.
+
         Parameters
         ----------
         page : typing.Optional[int]
@@ -1433,6 +1449,8 @@ class AsyncRawWebhooksClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[SubscriptionsUpdateWebhooksResponse]:
         """
+        Change the URL, event types or `isActive` flag of a subscription; at least one field is required (400) and a new URL must be an https address that resolves to a public network (422). Setting `isActive` to true also clears `pausedAt` and `consecutiveFailures`, which is how a subscription paused after 5 failed deliveries in a row is switched back on.
+
         Parameters
         ----------
         id : str
@@ -1599,6 +1617,8 @@ class AsyncRawWebhooksClient:
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> AsyncHttpResponse[SubscriptionsDeleteWebhooksResponse]:
         """
+        Delete a webhook subscription.
+
         Parameters
         ----------
         id : str
@@ -1763,6 +1783,8 @@ class AsyncRawWebhooksClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[DeliveriesListWebhooksResponse]:
         """
+        List the company's webhook deliveries, newest first. Filterable by `status`, `eventType` and `subscriptionId`; sortable by `createdAt`.
+
         Parameters
         ----------
         page : typing.Optional[int]
@@ -1939,6 +1961,8 @@ class AsyncRawWebhooksClient:
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> AsyncHttpResponse[DeliveriesRedeliverWebhooksResponse]:
         """
+        Send a delivery again now: its status goes back to `pending` with the attempt count and last error cleared. Answers 409 when the subscription is inactive.
+
         Parameters
         ----------
         id : str

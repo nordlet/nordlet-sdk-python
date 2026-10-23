@@ -110,6 +110,8 @@ class PartnersClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AddressesCreatePartnersResponse:
         """
+        Adds an address of type billing, shipping, registered or other to the partner in `partnerId`.
+
         Parameters
         ----------
         partner_id : str
@@ -170,6 +172,8 @@ class PartnersClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AddressesUpdatePartnersResponse:
         """
+        Changes the given fields of a partner address.
+
         Parameters
         ----------
         id : str
@@ -221,6 +225,8 @@ class PartnersClient:
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> AddressesDeletePartnersResponse:
         """
+        Deletes a partner address.
+
         Parameters
         ----------
         id : str
@@ -258,6 +264,8 @@ class PartnersClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AddressesListPartnersResponse:
         """
+        Lists partner addresses; filterable by `partnerId`, `type` and `city`, sortable by `createdAt`.
+
         Parameters
         ----------
         page : typing.Optional[int]
@@ -305,6 +313,8 @@ class PartnersClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> ContactsCreatePartnersResponse:
         """
+        Adds a contact person to the partner in `partnerId`.
+
         Parameters
         ----------
         name : str
@@ -362,6 +372,8 @@ class PartnersClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> ContactsUpdatePartnersResponse:
         """
+        Changes the given fields of a partner contact.
+
         Parameters
         ----------
         id : str
@@ -404,6 +416,8 @@ class PartnersClient:
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> ContactsDeletePartnersResponse:
         """
+        Deletes a partner contact.
+
         Parameters
         ----------
         id : str
@@ -441,6 +455,8 @@ class PartnersClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> ContactsListPartnersResponse:
         """
+        Lists partner contacts; filterable by `partnerId`, `name` and `email`, sortable by `createdAt`.
+
         Parameters
         ----------
         page : typing.Optional[int]
@@ -488,6 +504,8 @@ class PartnersClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> BankAccountsCreatePartnersResponse:
         """
+        Adds a bank account to the partner in `partnerId`. The IBAN is stored without spaces in upper case; an IBAN the partner already has is refused with 409. With `isDefault` true the partner's other accounts lose their default mark.
+
         Parameters
         ----------
         iban : str
@@ -545,6 +563,8 @@ class PartnersClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> BankAccountsUpdatePartnersResponse:
         """
+        Changes the given fields of a partner bank account. A new IBAN is stored without spaces in upper case and is refused with 409 when the partner already has it; when the account is the default after the change, the partner's other accounts lose their default mark.
+
         Parameters
         ----------
         id : str
@@ -593,6 +613,8 @@ class PartnersClient:
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> BankAccountsDeletePartnersResponse:
         """
+        Deletes a partner bank account.
+
         Parameters
         ----------
         id : str
@@ -630,6 +652,8 @@ class PartnersClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> BankAccountsListPartnersResponse:
         """
+        Lists partner bank accounts; filterable by `partnerId` and `iban`, sortable by `createdAt`.
+
         Parameters
         ----------
         page : typing.Optional[int]
@@ -669,6 +693,8 @@ class PartnersClient:
         self, *, partner_id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> FilesListPartnersResponse:
         """
+        Lists the files attached to a partner, newest first. `partners/create` attaches one with `documentRef`, and `leads/convert` moves the lead's files here.
+
         Parameters
         ----------
         partner_id : str
@@ -699,6 +725,8 @@ class PartnersClient:
         self, *, request_options: typing.Optional[RequestOptions] = None
     ) -> DebtRemindersPreviewPartnersResponse:
         """
+        Runs the selection of the daily debt-reminder job for this company as of the company's current date and returns what it would send, without sending or recording anything. A partner is included when it has `autoDebtReminder`, is active, has an e-mail address, got no reminder in the last 7 days and has issued invoices or advance invoices past their due date with an unpaid remainder; the interest per invoice is the remainder times the partner's `lateInterestPercent` times the days late over 365, and the totals are per currency. Sent reminders are listed by `partners/debt-reminders/list`.
+
         Parameters
         ----------
         request_options : typing.Optional[RequestOptions]
@@ -732,6 +760,8 @@ class PartnersClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> DebtRemindersListPartnersResponse:
         """
+        Lists the debt reminders the daily job has sent, one row per partner and currency with the ids of the invoices it covered; filterable by `partnerId`, sortable by `sentAt`.
+
         Parameters
         ----------
         page : typing.Optional[int]
@@ -775,6 +805,8 @@ class PartnersClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> ValidateVatPartnersResponse:
         """
+        Checks a VAT number against VIES, either a free `vatCode` or the VAT code of the partner in `partnerId` (exactly one of the two); a code without an EU country prefix and 2 to 12 alphanumeric characters is refused with 422, as is a partner without a VAT code, and a VIES outage answers 503. With a partner the outcome is written to it (`vatValid`, `vatValidatedAt`): an invalid number or a VIES name that shares no word with the partner's name opens or refreshes the partner's VAT review (`vat_review.opened`), a VIES failure opens one with reason `service_error`, and a valid matching number resolves the open review as `revalidated` (`vat_review.resolved`). Reviews are listed and closed with `partners/vat-reviews/list` and `partners/vat-reviews/resolve`.
+
         Parameters
         ----------
         vat_code : typing.Optional[str]
@@ -814,6 +846,8 @@ class PartnersClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> VatReviewsListPartnersResponse:
         """
+        Lists the VAT reviews opened by VIES checks of partners' VAT codes, with reason `invalid`, `name_mismatch` or `service_error`; filterable by `partnerId`, `status` and `reason`, sortable by `createdAt`.
+
         Parameters
         ----------
         page : typing.Optional[int]
@@ -858,6 +892,8 @@ class PartnersClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> VatReviewsResolvePartnersResponse:
         """
+        Closes an open VAT review as `confirmed_valid`, `confirmed_invalid` or `dismissed`, with an optional note. The first two also set the partner's `vatValid` and stamp `vatValidatedAt` when the partner still carries the reviewed VAT code; `dismissed` leaves the partner unchanged. A review that is already resolved answers 409; emits `vat_review.resolved`.
+
         Parameters
         ----------
         id : str
@@ -931,6 +967,8 @@ class PartnersClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> CreatePartnersResponse:
         """
+        Creates a partner. `groupId`, `statusId` and `priceListId` must belong to the company; without `legalCountryClass` the class is derived from the address country (`lt`, `eu` or `non_eu`); `documentRef` attaches an uploaded file that is not yet linked to a record; a `code` already used by a live partner of the company is refused with 409. A `vatCode` is checked against VIES at once and the result stored on the partner: an invalid number, a VIES name that shares no word with the partner's name, or a VIES failure opens a VAT review (`vat_review.opened`), while a code that is not an EU VAT number is stored unchecked (see `partners/validate-vat`).
+
         Parameters
         ----------
         name : str
@@ -1099,6 +1137,8 @@ class PartnersClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> FindOrCreatePartnersResponse:
         """
+        Returns the live partner matched by `code`, then `vatCode`, then `email` (at least one is required), or creates one from the body with the same validation and VIES check as `partners/create`; `created` says which happened. A creation that loses a race on the partner code returns the partner the other call created.
+
         Parameters
         ----------
         name : str
@@ -1229,6 +1269,8 @@ class PartnersClient:
 
     def get(self, *, id: str, request_options: typing.Optional[RequestOptions] = None) -> GetPartnersResponse:
         """
+        Returns one partner; a deleted partner answers 404.
+
         Parameters
         ----------
         id : str
@@ -1296,6 +1338,8 @@ class PartnersClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> UpdatePartnersResponse:
         """
+        Changes the given fields of a partner; the clearable fields accept null. A new address country re-derives `legalCountryClass` unless the class is given, and a `code` already used by another live partner of the company is refused with 409. A changed `vatCode` resets the VIES result and is checked at once as in `partners/create`; a removed code, or one that is not an EU VAT number, resolves the partner's open VAT review as `superseded` (`vat_review.resolved`).
+
         Parameters
         ----------
         id : str
@@ -1429,6 +1473,8 @@ class PartnersClient:
 
     def delete(self, *, id: str, request_options: typing.Optional[RequestOptions] = None) -> DeletePartnersResponse:
         """
+        Marks a partner as deleted; it no longer appears in lists or lookups.
+
         Parameters
         ----------
         id : str
@@ -1459,6 +1505,8 @@ class PartnersClient:
         self, *, source_id: str, target_id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> MergePartnersResponse:
         """
+        Moves every row that references the duplicate `sourceId` through a foreign key to partners (looked up in the database catalogue, within the company) to `targetId`, then marks the source partner as deleted; `moved` lists the tables, columns and row counts. Merging a partner into itself is 422, and when both partners hold the same unique entry (for example the same IBAN or item supplier row) the merge is refused with 409 until it is removed from one of them. When the kept partner has an open VAT review, the duplicate's open review is resolved as `superseded` (`vat_review.resolved`).
+
         Parameters
         ----------
         source_id : str
@@ -1531,6 +1579,8 @@ class PartnersClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> ListPartnersResponse:
         """
+        Lists live partners; filterable by `name`, `code`, `vatCode`, `email`, `type`, `isCustomer`, `isSupplier`, `isActive`, `legalCountryClass`, `isEmployee`, `groupId`, `statusId` and `nextCallDate`, sortable by `name`, `code`, `createdAt`, `nextCallDate` and `rating`.
+
         Parameters
         ----------
         page : typing.Optional[int]
@@ -1570,6 +1620,8 @@ class PartnersClient:
         self, *, code: str, name: str, request_options: typing.Optional[RequestOptions] = None
     ) -> GroupsCreatePartnersResponse:
         """
+        Creates a partner group; a `code` already used by a group of the company is refused with 409.
+
         Parameters
         ----------
         code : str
@@ -1608,6 +1660,8 @@ class PartnersClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> GroupsUpdatePartnersResponse:
         """
+        Changes the code or name of a partner group; a code already used by another group of the company is refused with 409.
+
         Parameters
         ----------
         id : str
@@ -1642,6 +1696,8 @@ class PartnersClient:
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> GroupsDeletePartnersResponse:
         """
+        Deletes a partner group; a group still assigned to a live partner is refused with 409.
+
         Parameters
         ----------
         id : str
@@ -1670,6 +1726,8 @@ class PartnersClient:
 
     def groups_list(self, *, request_options: typing.Optional[RequestOptions] = None) -> GroupsListPartnersResponse:
         """
+        Lists the company's partner groups ordered by code.
+
         Parameters
         ----------
         request_options : typing.Optional[RequestOptions]
@@ -1701,6 +1759,8 @@ class PartnersClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> StatusesCreatePartnersResponse:
         """
+        Creates a partner status with a `sortOrder`; a `code` already used by a status of the company is refused with 409.
+
         Parameters
         ----------
         code : str
@@ -1744,6 +1804,8 @@ class PartnersClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> StatusesUpdatePartnersResponse:
         """
+        Changes the code, name or sort order of a partner status; a code already used by another status of the company is refused with 409.
+
         Parameters
         ----------
         id : str
@@ -1782,6 +1844,8 @@ class PartnersClient:
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> StatusesDeletePartnersResponse:
         """
+        Deletes a partner status; a status still assigned to a live partner is refused with 409.
+
         Parameters
         ----------
         id : str
@@ -1810,6 +1874,8 @@ class PartnersClient:
 
     def statuses_list(self, *, request_options: typing.Optional[RequestOptions] = None) -> StatusesListPartnersResponse:
         """
+        Lists the company's partner statuses ordered by sort order, then code.
+
         Parameters
         ----------
         request_options : typing.Optional[RequestOptions]
@@ -1847,6 +1913,8 @@ class PartnersClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> InquiriesCreatePartnersResponse:
         """
+        Records an inquiry in status `new`, from a partner (`partnerId`) or from a contact given by `contactName` or `contactEmail`; without any of the three it is refused with 422. `assignedUserId` must be a member of the company. Emits `partner_inquiry.created`.
+
         Parameters
         ----------
         subject : str
@@ -1914,6 +1982,8 @@ class PartnersClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> InquiriesUpdatePartnersResponse:
         """
+        Changes the given fields of an inquiry; `partnerId` and `assignedUserId` accept null. Setting `status` to `closed` stamps `closedAt`, and moving a closed inquiry to another status clears it.
+
         Parameters
         ----------
         id : str
@@ -1968,6 +2038,8 @@ class PartnersClient:
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> InquiriesGetPartnersResponse:
         """
+        Returns one inquiry with the name of its partner.
+
         Parameters
         ----------
         id : str
@@ -2005,6 +2077,8 @@ class PartnersClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> InquiriesListPartnersResponse:
         """
+        Lists inquiries with their partner names; filterable by `status`, `channel`, `partnerId`, `assignedUserId` and `subject`, sortable by `createdAt` and `updatedAt`.
+
         Parameters
         ----------
         page : typing.Optional[int]
@@ -2048,6 +2122,8 @@ class PartnersClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> CreditCheckPartnersResponse:
         """
+        Compares a partner's open receivables plus an optional `additionalAmount` with its `creditLimit`. The open receivables are the unpaid remainder of the partner's issued invoices, advance invoices and credit notes (credit notes negative), converted to the company's base currency at each invoice's `fxRate`. Without a credit limit `available` is null and `exceeded` is false.
+
         Parameters
         ----------
         partner_id : str
@@ -2107,6 +2183,8 @@ class AsyncPartnersClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AddressesCreatePartnersResponse:
         """
+        Adds an address of type billing, shipping, registered or other to the partner in `partnerId`.
+
         Parameters
         ----------
         partner_id : str
@@ -2175,6 +2253,8 @@ class AsyncPartnersClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AddressesUpdatePartnersResponse:
         """
+        Changes the given fields of a partner address.
+
         Parameters
         ----------
         id : str
@@ -2234,6 +2314,8 @@ class AsyncPartnersClient:
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> AddressesDeletePartnersResponse:
         """
+        Deletes a partner address.
+
         Parameters
         ----------
         id : str
@@ -2279,6 +2361,8 @@ class AsyncPartnersClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AddressesListPartnersResponse:
         """
+        Lists partner addresses; filterable by `partnerId`, `type` and `city`, sortable by `createdAt`.
+
         Parameters
         ----------
         page : typing.Optional[int]
@@ -2334,6 +2418,8 @@ class AsyncPartnersClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> ContactsCreatePartnersResponse:
         """
+        Adds a contact person to the partner in `partnerId`.
+
         Parameters
         ----------
         name : str
@@ -2399,6 +2485,8 @@ class AsyncPartnersClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> ContactsUpdatePartnersResponse:
         """
+        Changes the given fields of a partner contact.
+
         Parameters
         ----------
         id : str
@@ -2449,6 +2537,8 @@ class AsyncPartnersClient:
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> ContactsDeletePartnersResponse:
         """
+        Deletes a partner contact.
+
         Parameters
         ----------
         id : str
@@ -2494,6 +2584,8 @@ class AsyncPartnersClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> ContactsListPartnersResponse:
         """
+        Lists partner contacts; filterable by `partnerId`, `name` and `email`, sortable by `createdAt`.
+
         Parameters
         ----------
         page : typing.Optional[int]
@@ -2549,6 +2641,8 @@ class AsyncPartnersClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> BankAccountsCreatePartnersResponse:
         """
+        Adds a bank account to the partner in `partnerId`. The IBAN is stored without spaces in upper case; an IBAN the partner already has is refused with 409. With `isDefault` true the partner's other accounts lose their default mark.
+
         Parameters
         ----------
         iban : str
@@ -2614,6 +2708,8 @@ class AsyncPartnersClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> BankAccountsUpdatePartnersResponse:
         """
+        Changes the given fields of a partner bank account. A new IBAN is stored without spaces in upper case and is refused with 409 when the partner already has it; when the account is the default after the change, the partner's other accounts lose their default mark.
+
         Parameters
         ----------
         id : str
@@ -2670,6 +2766,8 @@ class AsyncPartnersClient:
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> BankAccountsDeletePartnersResponse:
         """
+        Deletes a partner bank account.
+
         Parameters
         ----------
         id : str
@@ -2715,6 +2813,8 @@ class AsyncPartnersClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> BankAccountsListPartnersResponse:
         """
+        Lists partner bank accounts; filterable by `partnerId` and `iban`, sortable by `createdAt`.
+
         Parameters
         ----------
         page : typing.Optional[int]
@@ -2762,6 +2862,8 @@ class AsyncPartnersClient:
         self, *, partner_id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> FilesListPartnersResponse:
         """
+        Lists the files attached to a partner, newest first. `partners/create` attaches one with `documentRef`, and `leads/convert` moves the lead's files here.
+
         Parameters
         ----------
         partner_id : str
@@ -2800,6 +2902,8 @@ class AsyncPartnersClient:
         self, *, request_options: typing.Optional[RequestOptions] = None
     ) -> DebtRemindersPreviewPartnersResponse:
         """
+        Runs the selection of the daily debt-reminder job for this company as of the company's current date and returns what it would send, without sending or recording anything. A partner is included when it has `autoDebtReminder`, is active, has an e-mail address, got no reminder in the last 7 days and has issued invoices or advance invoices past their due date with an unpaid remainder; the interest per invoice is the remainder times the partner's `lateInterestPercent` times the days late over 365, and the totals are per currency. Sent reminders are listed by `partners/debt-reminders/list`.
+
         Parameters
         ----------
         request_options : typing.Optional[RequestOptions]
@@ -2841,6 +2945,8 @@ class AsyncPartnersClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> DebtRemindersListPartnersResponse:
         """
+        Lists the debt reminders the daily job has sent, one row per partner and currency with the ids of the invoices it covered; filterable by `partnerId`, sortable by `sentAt`.
+
         Parameters
         ----------
         page : typing.Optional[int]
@@ -2892,6 +2998,8 @@ class AsyncPartnersClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> ValidateVatPartnersResponse:
         """
+        Checks a VAT number against VIES, either a free `vatCode` or the VAT code of the partner in `partnerId` (exactly one of the two); a code without an EU country prefix and 2 to 12 alphanumeric characters is refused with 422, as is a partner without a VAT code, and a VIES outage answers 503. With a partner the outcome is written to it (`vatValid`, `vatValidatedAt`): an invalid number or a VIES name that shares no word with the partner's name opens or refreshes the partner's VAT review (`vat_review.opened`), a VIES failure opens one with reason `service_error`, and a valid matching number resolves the open review as `revalidated` (`vat_review.resolved`). Reviews are listed and closed with `partners/vat-reviews/list` and `partners/vat-reviews/resolve`.
+
         Parameters
         ----------
         vat_code : typing.Optional[str]
@@ -2939,6 +3047,8 @@ class AsyncPartnersClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> VatReviewsListPartnersResponse:
         """
+        Lists the VAT reviews opened by VIES checks of partners' VAT codes, with reason `invalid`, `name_mismatch` or `service_error`; filterable by `partnerId`, `status` and `reason`, sortable by `createdAt`.
+
         Parameters
         ----------
         page : typing.Optional[int]
@@ -2991,6 +3101,8 @@ class AsyncPartnersClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> VatReviewsResolvePartnersResponse:
         """
+        Closes an open VAT review as `confirmed_valid`, `confirmed_invalid` or `dismissed`, with an optional note. The first two also set the partner's `vatValid` and stamp `vatValidatedAt` when the partner still carries the reviewed VAT code; `dismissed` leaves the partner unchanged. A review that is already resolved answers 409; emits `vat_review.resolved`.
+
         Parameters
         ----------
         id : str
@@ -3072,6 +3184,8 @@ class AsyncPartnersClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> CreatePartnersResponse:
         """
+        Creates a partner. `groupId`, `statusId` and `priceListId` must belong to the company; without `legalCountryClass` the class is derived from the address country (`lt`, `eu` or `non_eu`); `documentRef` attaches an uploaded file that is not yet linked to a record; a `code` already used by a live partner of the company is refused with 409. A `vatCode` is checked against VIES at once and the result stored on the partner: an invalid number, a VIES name that shares no word with the partner's name, or a VIES failure opens a VAT review (`vat_review.opened`), while a code that is not an EU VAT number is stored unchecked (see `partners/validate-vat`).
+
         Parameters
         ----------
         name : str
@@ -3248,6 +3362,8 @@ class AsyncPartnersClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> FindOrCreatePartnersResponse:
         """
+        Returns the live partner matched by `code`, then `vatCode`, then `email` (at least one is required), or creates one from the body with the same validation and VIES check as `partners/create`; `created` says which happened. A creation that loses a race on the partner code returns the partner the other call created.
+
         Parameters
         ----------
         name : str
@@ -3386,6 +3502,8 @@ class AsyncPartnersClient:
 
     async def get(self, *, id: str, request_options: typing.Optional[RequestOptions] = None) -> GetPartnersResponse:
         """
+        Returns one partner; a deleted partner answers 404.
+
         Parameters
         ----------
         id : str
@@ -3461,6 +3579,8 @@ class AsyncPartnersClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> UpdatePartnersResponse:
         """
+        Changes the given fields of a partner; the clearable fields accept null. A new address country re-derives `legalCountryClass` unless the class is given, and a `code` already used by another live partner of the company is refused with 409. A changed `vatCode` resets the VIES result and is checked at once as in `partners/create`; a removed code, or one that is not an EU VAT number, resolves the partner's open VAT review as `superseded` (`vat_review.resolved`).
+
         Parameters
         ----------
         id : str
@@ -3604,6 +3724,8 @@ class AsyncPartnersClient:
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> DeletePartnersResponse:
         """
+        Marks a partner as deleted; it no longer appears in lists or lookups.
+
         Parameters
         ----------
         id : str
@@ -3642,6 +3764,8 @@ class AsyncPartnersClient:
         self, *, source_id: str, target_id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> MergePartnersResponse:
         """
+        Moves every row that references the duplicate `sourceId` through a foreign key to partners (looked up in the database catalogue, within the company) to `targetId`, then marks the source partner as deleted; `moved` lists the tables, columns and row counts. Merging a partner into itself is 422, and when both partners hold the same unique entry (for example the same IBAN or item supplier row) the merge is refused with 409 until it is removed from one of them. When the kept partner has an open VAT review, the duplicate's open review is resolved as `superseded` (`vat_review.resolved`).
+
         Parameters
         ----------
         source_id : str
@@ -3732,6 +3856,8 @@ class AsyncPartnersClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> ListPartnersResponse:
         """
+        Lists live partners; filterable by `name`, `code`, `vatCode`, `email`, `type`, `isCustomer`, `isSupplier`, `isActive`, `legalCountryClass`, `isEmployee`, `groupId`, `statusId` and `nextCallDate`, sortable by `name`, `code`, `createdAt`, `nextCallDate` and `rating`.
+
         Parameters
         ----------
         page : typing.Optional[int]
@@ -3779,6 +3905,8 @@ class AsyncPartnersClient:
         self, *, code: str, name: str, request_options: typing.Optional[RequestOptions] = None
     ) -> GroupsCreatePartnersResponse:
         """
+        Creates a partner group; a `code` already used by a group of the company is refused with 409.
+
         Parameters
         ----------
         code : str
@@ -3825,6 +3953,8 @@ class AsyncPartnersClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> GroupsUpdatePartnersResponse:
         """
+        Changes the code or name of a partner group; a code already used by another group of the company is refused with 409.
+
         Parameters
         ----------
         id : str
@@ -3867,6 +3997,8 @@ class AsyncPartnersClient:
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> GroupsDeletePartnersResponse:
         """
+        Deletes a partner group; a group still assigned to a live partner is refused with 409.
+
         Parameters
         ----------
         id : str
@@ -3905,6 +4037,8 @@ class AsyncPartnersClient:
         self, *, request_options: typing.Optional[RequestOptions] = None
     ) -> GroupsListPartnersResponse:
         """
+        Lists the company's partner groups ordered by code.
+
         Parameters
         ----------
         request_options : typing.Optional[RequestOptions]
@@ -3944,6 +4078,8 @@ class AsyncPartnersClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> StatusesCreatePartnersResponse:
         """
+        Creates a partner status with a `sortOrder`; a `code` already used by a status of the company is refused with 409.
+
         Parameters
         ----------
         code : str
@@ -3995,6 +4131,8 @@ class AsyncPartnersClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> StatusesUpdatePartnersResponse:
         """
+        Changes the code, name or sort order of a partner status; a code already used by another status of the company is refused with 409.
+
         Parameters
         ----------
         id : str
@@ -4041,6 +4179,8 @@ class AsyncPartnersClient:
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> StatusesDeletePartnersResponse:
         """
+        Deletes a partner status; a status still assigned to a live partner is refused with 409.
+
         Parameters
         ----------
         id : str
@@ -4079,6 +4219,8 @@ class AsyncPartnersClient:
         self, *, request_options: typing.Optional[RequestOptions] = None
     ) -> StatusesListPartnersResponse:
         """
+        Lists the company's partner statuses ordered by sort order, then code.
+
         Parameters
         ----------
         request_options : typing.Optional[RequestOptions]
@@ -4124,6 +4266,8 @@ class AsyncPartnersClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> InquiriesCreatePartnersResponse:
         """
+        Records an inquiry in status `new`, from a partner (`partnerId`) or from a contact given by `contactName` or `contactEmail`; without any of the three it is refused with 422. `assignedUserId` must be a member of the company. Emits `partner_inquiry.created`.
+
         Parameters
         ----------
         subject : str
@@ -4199,6 +4343,8 @@ class AsyncPartnersClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> InquiriesUpdatePartnersResponse:
         """
+        Changes the given fields of an inquiry; `partnerId` and `assignedUserId` accept null. Setting `status` to `closed` stamps `closedAt`, and moving a closed inquiry to another status clears it.
+
         Parameters
         ----------
         id : str
@@ -4261,6 +4407,8 @@ class AsyncPartnersClient:
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> InquiriesGetPartnersResponse:
         """
+        Returns one inquiry with the name of its partner.
+
         Parameters
         ----------
         id : str
@@ -4306,6 +4454,8 @@ class AsyncPartnersClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> InquiriesListPartnersResponse:
         """
+        Lists inquiries with their partner names; filterable by `status`, `channel`, `partnerId`, `assignedUserId` and `subject`, sortable by `createdAt` and `updatedAt`.
+
         Parameters
         ----------
         page : typing.Optional[int]
@@ -4357,6 +4507,8 @@ class AsyncPartnersClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> CreditCheckPartnersResponse:
         """
+        Compares a partner's open receivables plus an optional `additionalAmount` with its `creditLimit`. The open receivables are the unpaid remainder of the partner's issued invoices, advance invoices and credit notes (credit notes negative), converted to the company's base currency at each invoice's `fxRate`. Without a credit limit `available` is null and `exceeded` is false.
+
         Parameters
         ----------
         partner_id : str

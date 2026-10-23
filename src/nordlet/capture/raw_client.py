@@ -55,6 +55,8 @@ class RawCaptureClient:
         self, *, request_options: typing.Optional[RequestOptions] = None
     ) -> HttpResponse[SettingsGetCaptureResponse]:
         """
+        Return the company's document capture settings: whether intake by e-mail is enabled, whether e-mailed documents are read on arrival, the company's intake e-mail address and whether a reading provider is configured. The intake token behind the address is created on the first call.
+
         Parameters
         ----------
         request_options : typing.Optional[RequestOptions]
@@ -212,6 +214,8 @@ class RawCaptureClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[SettingsUpdateCaptureResponse]:
         """
+        Switch `intakeEnabled` (documents sent to the intake address are accepted) and `captureAutoExtract` (they are read on arrival) on or off; at least one field is required.
+
         Parameters
         ----------
         intake_enabled : typing.Optional[bool]
@@ -372,6 +376,8 @@ class RawCaptureClient:
         self, *, request_options: typing.Optional[RequestOptions] = None
     ) -> HttpResponse[SettingsRegenerateIntakeCaptureResponse]:
         """
+        Replace the company's intake token, so the previous intake e-mail address stops working and the settings come back with the new one.
+
         Parameters
         ----------
         request_options : typing.Optional[RequestOptions]
@@ -536,6 +542,8 @@ class RawCaptureClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[InboundEmailCaptureResponse]:
         """
+        Endpoint for the inbound e-mail provider (Postmark field names or the generic `to`, `from`, `subject` and `attachments` form). It needs the `x-inbound-secret` header and finds the company by the `intake+<token>@` recipient address (404 when unknown, 403 when intake is disabled). Every PDF, image, Word or PowerPoint attachment up to 10 MB becomes a `pending` capture (`accepted`), anything else is `skipped`; when the company has automatic reading on, is not on trial and a reading provider is configured, each capture is read at once.
+
         Parameters
         ----------
         postmark_to : typing.Optional[str]
@@ -729,6 +737,8 @@ class RawCaptureClient:
         self, *, file_name: str, mime_type: str, content: str, request_options: typing.Optional[RequestOptions] = None
     ) -> HttpResponse[DocumentsUploadCaptureResponse]:
         """
+        Upload a supplier document (PDF, image, Word or PowerPoint, up to 10 MB; 422 for any other type) as a capture and read it at once. The result holds the extracted supplier, dates, totals and lines, the partner matched by VAT code, then partner code, then name, the raw text, and `status` `extracted` or `failed` with `error`. Needs a configured reading provider, is refused with 402 for a company on trial until its first top-up, and counts every page read as `ocr_page` usage. The draft is reviewed and saved with `capture/documents/confirm`.
+
         Parameters
         ----------
         file_name : str
@@ -893,6 +903,8 @@ class RawCaptureClient:
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> HttpResponse[DocumentsExtractCaptureResponse]:
         """
+        Read a stored capture again and replace its draft (supplier, totals, lines, matched partner). A capture received over Peppol is parsed from its document again without a reading provider; any other needs the provider and, for a company on trial, the first top-up (402). Refused with 409 once the capture is linked to a purchase invoice.
+
         Parameters
         ----------
         id : str
@@ -1050,6 +1062,8 @@ class RawCaptureClient:
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> HttpResponse[DocumentsGetCaptureResponse]:
         """
+        Return one capture with its extraction and raw text.
+
         Parameters
         ----------
         id : str
@@ -1214,6 +1228,8 @@ class RawCaptureClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[DocumentsListCaptureResponse]:
         """
+        List captures without raw text. Filterable by `status`, `matchedPartnerId` and `purchaseInvoiceId`; sortable by `createdAt` and `updatedAt`.
+
         Parameters
         ----------
         page : typing.Optional[int]
@@ -1388,6 +1404,8 @@ class RawCaptureClient:
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> HttpResponse[DocumentsDeleteCaptureResponse]:
         """
+        Delete a capture and its stored file (409 once it is linked to a purchase invoice).
+
         Parameters
         ----------
         id : str
@@ -1766,6 +1784,8 @@ class AsyncRawCaptureClient:
         self, *, request_options: typing.Optional[RequestOptions] = None
     ) -> AsyncHttpResponse[SettingsGetCaptureResponse]:
         """
+        Return the company's document capture settings: whether intake by e-mail is enabled, whether e-mailed documents are read on arrival, the company's intake e-mail address and whether a reading provider is configured. The intake token behind the address is created on the first call.
+
         Parameters
         ----------
         request_options : typing.Optional[RequestOptions]
@@ -1923,6 +1943,8 @@ class AsyncRawCaptureClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[SettingsUpdateCaptureResponse]:
         """
+        Switch `intakeEnabled` (documents sent to the intake address are accepted) and `captureAutoExtract` (they are read on arrival) on or off; at least one field is required.
+
         Parameters
         ----------
         intake_enabled : typing.Optional[bool]
@@ -2083,6 +2105,8 @@ class AsyncRawCaptureClient:
         self, *, request_options: typing.Optional[RequestOptions] = None
     ) -> AsyncHttpResponse[SettingsRegenerateIntakeCaptureResponse]:
         """
+        Replace the company's intake token, so the previous intake e-mail address stops working and the settings come back with the new one.
+
         Parameters
         ----------
         request_options : typing.Optional[RequestOptions]
@@ -2247,6 +2271,8 @@ class AsyncRawCaptureClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[InboundEmailCaptureResponse]:
         """
+        Endpoint for the inbound e-mail provider (Postmark field names or the generic `to`, `from`, `subject` and `attachments` form). It needs the `x-inbound-secret` header and finds the company by the `intake+<token>@` recipient address (404 when unknown, 403 when intake is disabled). Every PDF, image, Word or PowerPoint attachment up to 10 MB becomes a `pending` capture (`accepted`), anything else is `skipped`; when the company has automatic reading on, is not on trial and a reading provider is configured, each capture is read at once.
+
         Parameters
         ----------
         postmark_to : typing.Optional[str]
@@ -2440,6 +2466,8 @@ class AsyncRawCaptureClient:
         self, *, file_name: str, mime_type: str, content: str, request_options: typing.Optional[RequestOptions] = None
     ) -> AsyncHttpResponse[DocumentsUploadCaptureResponse]:
         """
+        Upload a supplier document (PDF, image, Word or PowerPoint, up to 10 MB; 422 for any other type) as a capture and read it at once. The result holds the extracted supplier, dates, totals and lines, the partner matched by VAT code, then partner code, then name, the raw text, and `status` `extracted` or `failed` with `error`. Needs a configured reading provider, is refused with 402 for a company on trial until its first top-up, and counts every page read as `ocr_page` usage. The draft is reviewed and saved with `capture/documents/confirm`.
+
         Parameters
         ----------
         file_name : str
@@ -2604,6 +2632,8 @@ class AsyncRawCaptureClient:
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> AsyncHttpResponse[DocumentsExtractCaptureResponse]:
         """
+        Read a stored capture again and replace its draft (supplier, totals, lines, matched partner). A capture received over Peppol is parsed from its document again without a reading provider; any other needs the provider and, for a company on trial, the first top-up (402). Refused with 409 once the capture is linked to a purchase invoice.
+
         Parameters
         ----------
         id : str
@@ -2761,6 +2791,8 @@ class AsyncRawCaptureClient:
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> AsyncHttpResponse[DocumentsGetCaptureResponse]:
         """
+        Return one capture with its extraction and raw text.
+
         Parameters
         ----------
         id : str
@@ -2925,6 +2957,8 @@ class AsyncRawCaptureClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[DocumentsListCaptureResponse]:
         """
+        List captures without raw text. Filterable by `status`, `matchedPartnerId` and `purchaseInvoiceId`; sortable by `createdAt` and `updatedAt`.
+
         Parameters
         ----------
         page : typing.Optional[int]
@@ -3099,6 +3133,8 @@ class AsyncRawCaptureClient:
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> AsyncHttpResponse[DocumentsDeleteCaptureResponse]:
         """
+        Delete a capture and its stored file (409 once it is linked to a purchase invoice).
+
         Parameters
         ----------
         id : str

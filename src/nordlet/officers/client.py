@@ -72,6 +72,8 @@ class OfficersClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> CreateOfficersResponse:
         """
+        Add an officer to the company's register (`officers/list`); `signsAccounts` defaults to true. Refused with 422 when `resignedOn` is before `appointedOn`.
+
         Parameters
         ----------
         name : str
@@ -138,6 +140,8 @@ class OfficersClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> UpdateOfficersResponse:
         """
+        Replace the recorded data of an officer; every field is written as sent, so a field left out is cleared and `signsAccounts` falls back to true. Refused with 422 when `resignedOn` is before `appointedOn`.
+
         Parameters
         ----------
         id : str
@@ -195,6 +199,8 @@ class OfficersClient:
 
     def delete(self, *, id: str, request_options: typing.Optional[RequestOptions] = None) -> DeleteOfficersResponse:
         """
+        Remove an officer from the company's register.
+
         Parameters
         ----------
         id : str
@@ -285,6 +291,8 @@ class AsyncOfficersClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> CreateOfficersResponse:
         """
+        Add an officer to the company's register (`officers/list`); `signsAccounts` defaults to true. Refused with 422 when `resignedOn` is before `appointedOn`.
+
         Parameters
         ----------
         name : str
@@ -359,6 +367,8 @@ class AsyncOfficersClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> UpdateOfficersResponse:
         """
+        Replace the recorded data of an officer; every field is written as sent, so a field left out is cleared and `signsAccounts` falls back to true. Refused with 422 when `resignedOn` is before `appointedOn`.
+
         Parameters
         ----------
         id : str
@@ -426,6 +436,8 @@ class AsyncOfficersClient:
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> DeleteOfficersResponse:
         """
+        Remove an officer from the company's register.
+
         Parameters
         ----------
         id : str

@@ -48,6 +48,8 @@ class RawFilesClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[UploadFilesResponse]:
         """
+        Store a base64-encoded file of up to 10 MB (413 above that) under an `entity` and optional `entityId`, and return its record with the SHA-256 of the content and its `storageKey`, which other calls take as `documentRef`.
+
         Parameters
         ----------
         entity : str
@@ -219,6 +221,8 @@ class RawFilesClient:
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> HttpResponse[GetFilesResponse]:
         """
+        Return a file record with its content, base64-encoded.
+
         Parameters
         ----------
         id : str
@@ -383,6 +387,8 @@ class RawFilesClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[ListFilesResponse]:
         """
+        List the company's files. Filterable by `entity`, `entityId` and `fileName`; sortable by `createdAt`, `fileName` and `sizeBytes`.
+
         Parameters
         ----------
         page : typing.Optional[int]
@@ -557,6 +563,8 @@ class RawFilesClient:
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> HttpResponse[DeleteFilesResponse]:
         """
+        Delete a file record and its stored content.
+
         Parameters
         ----------
         id : str
@@ -726,6 +734,8 @@ class AsyncRawFilesClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[UploadFilesResponse]:
         """
+        Store a base64-encoded file of up to 10 MB (413 above that) under an `entity` and optional `entityId`, and return its record with the SHA-256 of the content and its `storageKey`, which other calls take as `documentRef`.
+
         Parameters
         ----------
         entity : str
@@ -897,6 +907,8 @@ class AsyncRawFilesClient:
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> AsyncHttpResponse[GetFilesResponse]:
         """
+        Return a file record with its content, base64-encoded.
+
         Parameters
         ----------
         id : str
@@ -1061,6 +1073,8 @@ class AsyncRawFilesClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[ListFilesResponse]:
         """
+        List the company's files. Filterable by `entity`, `entityId` and `fileName`; sortable by `createdAt`, `fileName` and `sizeBytes`.
+
         Parameters
         ----------
         page : typing.Optional[int]
@@ -1235,6 +1249,8 @@ class AsyncRawFilesClient:
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> AsyncHttpResponse[DeleteFilesResponse]:
         """
+        Delete a file record and its stored content.
+
         Parameters
         ----------
         id : str

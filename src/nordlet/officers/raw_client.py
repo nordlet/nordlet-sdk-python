@@ -204,6 +204,8 @@ class RawOfficersClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[CreateOfficersResponse]:
         """
+        Add an officer to the company's register (`officers/list`); `signsAccounts` defaults to true. Refused with 422 when `resignedOn` is before `appointedOn`.
+
         Parameters
         ----------
         name : str
@@ -393,6 +395,8 @@ class RawOfficersClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[UpdateOfficersResponse]:
         """
+        Replace the recorded data of an officer; every field is written as sent, so a field left out is cleared and `signsAccounts` falls back to true. Refused with 422 when `resignedOn` is before `appointedOn`.
+
         Parameters
         ----------
         id : str
@@ -574,6 +578,8 @@ class RawOfficersClient:
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> HttpResponse[DeleteOfficersResponse]:
         """
+        Remove an officer from the company's register.
+
         Parameters
         ----------
         id : str
@@ -901,6 +907,8 @@ class AsyncRawOfficersClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[CreateOfficersResponse]:
         """
+        Add an officer to the company's register (`officers/list`); `signsAccounts` defaults to true. Refused with 422 when `resignedOn` is before `appointedOn`.
+
         Parameters
         ----------
         name : str
@@ -1090,6 +1098,8 @@ class AsyncRawOfficersClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[UpdateOfficersResponse]:
         """
+        Replace the recorded data of an officer; every field is written as sent, so a field left out is cleared and `signsAccounts` falls back to true. Refused with 422 when `resignedOn` is before `appointedOn`.
+
         Parameters
         ----------
         id : str
@@ -1271,6 +1281,8 @@ class AsyncRawOfficersClient:
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> AsyncHttpResponse[DeleteOfficersResponse]:
         """
+        Remove an officer from the company's register.
+
         Parameters
         ----------
         id : str

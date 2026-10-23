@@ -126,6 +126,10 @@ class InvoicesIssueSalesResponse(UniversalBaseModel):
     received_by_title: typing_extensions.Annotated[
         typing.Optional[str], FieldMetadata(alias="receivedByTitle"), pydantic.Field(alias="receivedByTitle")
     ] = None
+    locale: typing.Optional[str] = None
+    recurring_invoice_id: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="recurringInvoiceId"), pydantic.Field(alias="recurringInvoiceId")
+    ] = None
     locked_at: typing_extensions.Annotated[
         typing.Optional[dt.datetime], FieldMetadata(alias="lockedAt"), pydantic.Field(alias="lockedAt")
     ] = None

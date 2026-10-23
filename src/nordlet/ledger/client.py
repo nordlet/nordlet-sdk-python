@@ -87,6 +87,8 @@ class LedgerClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AccountsListLedgerResponse:
         """
+        Lists the company's chart of accounts. Filterable by `code`, `name`, `type` and `isPostable`; sortable by `code` and `name`.
+
         Parameters
         ----------
         page : typing.Optional[int]
@@ -133,6 +135,8 @@ class LedgerClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AccountsCreateLedgerResponse:
         """
+        Adds an account to the company's chart of accounts. `parentId` must name an account of the same company. Answers 409 when an account with the same `code` already exists.
+
         Parameters
         ----------
         code : str
@@ -186,6 +190,8 @@ class LedgerClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AccountsUpdateLedgerResponse:
         """
+        Changes the name, parent or postability of an account; the code and type cannot be changed. An account cannot be its own parent.
+
         Parameters
         ----------
         id : str
@@ -224,6 +230,8 @@ class LedgerClient:
         self, *, request_options: typing.Optional[RequestOptions] = None
     ) -> AccountsApplyTemplateLedgerResponse:
         """
+        Adds the accounts of the company's chart template that the chart does not have yet (an account whose code already exists is not replaced) and sets the parent links the template defines. Returns the number of accounts in the chart afterwards.
+
         Parameters
         ----------
         request_options : typing.Optional[RequestOptions]
@@ -285,6 +293,8 @@ class LedgerClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PeriodsListLedgerResponse:
         """
+        Lists the company's accounting periods with their `open` or `locked` status. Filterable by `year`, `month` and `status`; sortable by `year` and `month`.
+
         Parameters
         ----------
         page : typing.Optional[int]
@@ -324,6 +334,8 @@ class LedgerClient:
         self, *, year: int, month: int, request_options: typing.Optional[RequestOptions] = None
     ) -> PeriodsLockLedgerResponse:
         """
+        Locks the month so that postings dated in it are refused with 409 (`ledger/journal/transactions/create`, `cash/orders/create` and `cash/expense-reports/create` among them). Before locking a month that is not locked yet, posts the pending ratable revenue recognition tranches scheduled up to the month end and emits `revenue_recognition.posted` when there were any; when the month is the company's fiscal year end and no year-end close is posted for that year, posts the year-end close that moves the income and expense balances of the fiscal year to the retained earnings account (posting rule `closing.retainedEarnings`).
+
         Parameters
         ----------
         year : int
@@ -357,6 +369,8 @@ class LedgerClient:
         self, *, year: int, month: int, request_options: typing.Optional[RequestOptions] = None
     ) -> PeriodsUnlockLedgerResponse:
         """
+        Opens the month for posting again. When the month is the company's fiscal year end and a year-end close is posted for it, posts a reversal of that close dated the same day.
+
         Parameters
         ----------
         year : int
@@ -397,6 +411,8 @@ class LedgerClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> JournalTransactionsListLedgerResponse:
         """
+        Lists journal transactions with the partner name. Filterable by `date`, `status`, `documentType`, `partnerId` and `documentId`; sortable by `date` and `createdAt`.
+
         Parameters
         ----------
         page : typing.Optional[int]
@@ -441,6 +457,8 @@ class LedgerClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> CostCentersCreateLedgerResponse:
         """
+        Creates a cost center, optionally inside a cost center group. Answers 409 when the `code` is already used.
+
         Parameters
         ----------
         code : str
@@ -484,6 +502,8 @@ class LedgerClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> CostCentersUpdateLedgerResponse:
         """
+        Changes the name, group or active flag of a cost center. An inactive cost center is refused on new manual journal entries (`ledger/journal/transactions/create` answers 422).
+
         Parameters
         ----------
         id : str
@@ -529,6 +549,8 @@ class LedgerClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> CostCentersListLedgerResponse:
         """
+        Lists cost centers with their group name. Filterable by `code`, `name`, `isActive` and `groupId`; sortable by `code`, `name` and `createdAt`.
+
         Parameters
         ----------
         page : typing.Optional[int]
@@ -568,6 +590,8 @@ class LedgerClient:
         self, *, code: str, name: str, request_options: typing.Optional[RequestOptions] = None
     ) -> CostCenterGroupsCreateLedgerResponse:
         """
+        Creates a cost center group. Answers 409 when the `code` is already used.
+
         Parameters
         ----------
         code : str
@@ -606,6 +630,8 @@ class LedgerClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> CostCenterGroupsUpdateLedgerResponse:
         """
+        Changes the code or name of a cost center group. Answers 409 when the new code is already used.
+
         Parameters
         ----------
         id : str
@@ -642,6 +668,8 @@ class LedgerClient:
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> CostCenterGroupsDeleteLedgerResponse:
         """
+        Deletes a cost center group. Answers 409 while cost centers are still assigned to it.
+
         Parameters
         ----------
         id : str
@@ -679,6 +707,8 @@ class LedgerClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> CostCenterGroupsListLedgerResponse:
         """
+        Lists cost center groups. Filterable and sortable by `code` and `name`.
+
         Parameters
         ----------
         page : typing.Optional[int]
@@ -718,6 +748,8 @@ class LedgerClient:
         self, *, request_options: typing.Optional[RequestOptions] = None
     ) -> PostingRulesListLedgerResponse:
         """
+        Lists every posting rule with its default account code on the company's chart template, the account code in effect and whether the company has overridden it.
+
         Parameters
         ----------
         request_options : typing.Optional[RequestOptions]
@@ -747,6 +779,8 @@ class LedgerClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostingRulesUpdateLedgerResponse:
         """
+        Overrides the account code of one or more posting rules; an `accountCode` of null removes the override and the chart default applies again. Every code given must be a postable account of the company's chart, else 422.
+
         Parameters
         ----------
         rules : typing.Sequence[PostingRulesUpdateLedgerRequestRulesItem]
@@ -796,6 +830,8 @@ class LedgerClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> OwnersCreateLedgerResponse:
         """
+        Adds an owner of the company. `equityAccountCode` defaults to the share capital account of the company's chart; a code that is not in the chart of accounts answers 422.
+
         Parameters
         ----------
         name : str
@@ -877,6 +913,8 @@ class LedgerClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> OwnersUpdateLedgerResponse:
         """
+        Changes the fields of an owner. An `equityAccountCode` that is not in the chart of accounts answers 422.
+
         Parameters
         ----------
         id : str
@@ -946,6 +984,8 @@ class LedgerClient:
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> OwnersDeleteLedgerResponse:
         """
+        Deletes an owner.
+
         Parameters
         ----------
         id : str
@@ -983,6 +1023,8 @@ class LedgerClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> OwnersListLedgerResponse:
         """
+        Lists the company's owners. Filterable by `name` and `code`; sortable by `name` and `createdAt`.
+
         Parameters
         ----------
         page : typing.Optional[int]
@@ -1022,6 +1064,8 @@ class LedgerClient:
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> JournalTransactionsGetLedgerResponse:
         """
+        Returns a journal transaction with its entries, ordered by account code.
+
         Parameters
         ----------
         id : str
@@ -1058,6 +1102,8 @@ class LedgerClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> JournalTransactionsCreateLedgerResponse:
         """
+        Posts a manual journal transaction (`documentType` `manual`, status `posted`) in the company's base currency. Every `accountCode` must be a postable account of the chart, cost centers must exist and be active, projects must exist, and the debits must equal the credits. Answers 422 for an amount with more than two decimals, for a `currency` other than the base currency and for an inactive cost center, and 409 when the accounting period of `date` is locked.
+
         Parameters
         ----------
         date : dt.date
@@ -1139,6 +1185,8 @@ class LedgerClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> StatementRowsListLedgerResponse:
         """
+        Every postable account of the company with the row of `scheme` it falls into, by a mapping (`ledger/statement-rows/set`) or by the layout default, and the amount it carries there: the balance up to `toDate` on a balance-sheet row, the movement from `fromDate` to `toDate` on an income-statement row. `toDate` defaults to today and `fromDate` to 1 January of that year. `rows` holds the row totals and `unmapped` the accounts with a balance but no row.
+
         Parameters
         ----------
         scheme : str
@@ -1242,6 +1290,8 @@ class AsyncLedgerClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AccountsListLedgerResponse:
         """
+        Lists the company's chart of accounts. Filterable by `code`, `name`, `type` and `isPostable`; sortable by `code` and `name`.
+
         Parameters
         ----------
         page : typing.Optional[int]
@@ -1296,6 +1346,8 @@ class AsyncLedgerClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AccountsCreateLedgerResponse:
         """
+        Adds an account to the company's chart of accounts. `parentId` must name an account of the same company. Answers 409 when an account with the same `code` already exists.
+
         Parameters
         ----------
         code : str
@@ -1357,6 +1409,8 @@ class AsyncLedgerClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AccountsUpdateLedgerResponse:
         """
+        Changes the name, parent or postability of an account; the code and type cannot be changed. An account cannot be its own parent.
+
         Parameters
         ----------
         id : str
@@ -1403,6 +1457,8 @@ class AsyncLedgerClient:
         self, *, request_options: typing.Optional[RequestOptions] = None
     ) -> AccountsApplyTemplateLedgerResponse:
         """
+        Adds the accounts of the company's chart template that the chart does not have yet (an account whose code already exists is not replaced) and sets the parent links the template defines. Returns the number of accounts in the chart afterwards.
+
         Parameters
         ----------
         request_options : typing.Optional[RequestOptions]
@@ -1480,6 +1536,8 @@ class AsyncLedgerClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PeriodsListLedgerResponse:
         """
+        Lists the company's accounting periods with their `open` or `locked` status. Filterable by `year`, `month` and `status`; sortable by `year` and `month`.
+
         Parameters
         ----------
         page : typing.Optional[int]
@@ -1527,6 +1585,8 @@ class AsyncLedgerClient:
         self, *, year: int, month: int, request_options: typing.Optional[RequestOptions] = None
     ) -> PeriodsLockLedgerResponse:
         """
+        Locks the month so that postings dated in it are refused with 409 (`ledger/journal/transactions/create`, `cash/orders/create` and `cash/expense-reports/create` among them). Before locking a month that is not locked yet, posts the pending ratable revenue recognition tranches scheduled up to the month end and emits `revenue_recognition.posted` when there were any; when the month is the company's fiscal year end and no year-end close is posted for that year, posts the year-end close that moves the income and expense balances of the fiscal year to the retained earnings account (posting rule `closing.retainedEarnings`).
+
         Parameters
         ----------
         year : int
@@ -1568,6 +1628,8 @@ class AsyncLedgerClient:
         self, *, year: int, month: int, request_options: typing.Optional[RequestOptions] = None
     ) -> PeriodsUnlockLedgerResponse:
         """
+        Opens the month for posting again. When the month is the company's fiscal year end and a year-end close is posted for it, posts a reversal of that close dated the same day.
+
         Parameters
         ----------
         year : int
@@ -1616,6 +1678,8 @@ class AsyncLedgerClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> JournalTransactionsListLedgerResponse:
         """
+        Lists journal transactions with the partner name. Filterable by `date`, `status`, `documentType`, `partnerId` and `documentId`; sortable by `date` and `createdAt`.
+
         Parameters
         ----------
         page : typing.Optional[int]
@@ -1668,6 +1732,8 @@ class AsyncLedgerClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> CostCentersCreateLedgerResponse:
         """
+        Creates a cost center, optionally inside a cost center group. Answers 409 when the `code` is already used.
+
         Parameters
         ----------
         code : str
@@ -1719,6 +1785,8 @@ class AsyncLedgerClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> CostCentersUpdateLedgerResponse:
         """
+        Changes the name, group or active flag of a cost center. An inactive cost center is refused on new manual journal entries (`ledger/journal/transactions/create` answers 422).
+
         Parameters
         ----------
         id : str
@@ -1772,6 +1840,8 @@ class AsyncLedgerClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> CostCentersListLedgerResponse:
         """
+        Lists cost centers with their group name. Filterable by `code`, `name`, `isActive` and `groupId`; sortable by `code`, `name` and `createdAt`.
+
         Parameters
         ----------
         page : typing.Optional[int]
@@ -1819,6 +1889,8 @@ class AsyncLedgerClient:
         self, *, code: str, name: str, request_options: typing.Optional[RequestOptions] = None
     ) -> CostCenterGroupsCreateLedgerResponse:
         """
+        Creates a cost center group. Answers 409 when the `code` is already used.
+
         Parameters
         ----------
         code : str
@@ -1867,6 +1939,8 @@ class AsyncLedgerClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> CostCenterGroupsUpdateLedgerResponse:
         """
+        Changes the code or name of a cost center group. Answers 409 when the new code is already used.
+
         Parameters
         ----------
         id : str
@@ -1911,6 +1985,8 @@ class AsyncLedgerClient:
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> CostCenterGroupsDeleteLedgerResponse:
         """
+        Deletes a cost center group. Answers 409 while cost centers are still assigned to it.
+
         Parameters
         ----------
         id : str
@@ -1956,6 +2032,8 @@ class AsyncLedgerClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> CostCenterGroupsListLedgerResponse:
         """
+        Lists cost center groups. Filterable and sortable by `code` and `name`.
+
         Parameters
         ----------
         page : typing.Optional[int]
@@ -2003,6 +2081,8 @@ class AsyncLedgerClient:
         self, *, request_options: typing.Optional[RequestOptions] = None
     ) -> PostingRulesListLedgerResponse:
         """
+        Lists every posting rule with its default account code on the company's chart template, the account code in effect and whether the company has overridden it.
+
         Parameters
         ----------
         request_options : typing.Optional[RequestOptions]
@@ -2040,6 +2120,8 @@ class AsyncLedgerClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PostingRulesUpdateLedgerResponse:
         """
+        Overrides the account code of one or more posting rules; an `accountCode` of null removes the override and the chart default applies again. Every code given must be a postable account of the company's chart, else 422.
+
         Parameters
         ----------
         rules : typing.Sequence[PostingRulesUpdateLedgerRequestRulesItem]
@@ -2097,6 +2179,8 @@ class AsyncLedgerClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> OwnersCreateLedgerResponse:
         """
+        Adds an owner of the company. `equityAccountCode` defaults to the share capital account of the company's chart; a code that is not in the chart of accounts answers 422.
+
         Parameters
         ----------
         name : str
@@ -2186,6 +2270,8 @@ class AsyncLedgerClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> OwnersUpdateLedgerResponse:
         """
+        Changes the fields of an owner. An `equityAccountCode` that is not in the chart of accounts answers 422.
+
         Parameters
         ----------
         id : str
@@ -2263,6 +2349,8 @@ class AsyncLedgerClient:
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> OwnersDeleteLedgerResponse:
         """
+        Deletes an owner.
+
         Parameters
         ----------
         id : str
@@ -2308,6 +2396,8 @@ class AsyncLedgerClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> OwnersListLedgerResponse:
         """
+        Lists the company's owners. Filterable by `name` and `code`; sortable by `name` and `createdAt`.
+
         Parameters
         ----------
         page : typing.Optional[int]
@@ -2355,6 +2445,8 @@ class AsyncLedgerClient:
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> JournalTransactionsGetLedgerResponse:
         """
+        Returns a journal transaction with its entries, ordered by account code.
+
         Parameters
         ----------
         id : str
@@ -2399,6 +2491,8 @@ class AsyncLedgerClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> JournalTransactionsCreateLedgerResponse:
         """
+        Posts a manual journal transaction (`documentType` `manual`, status `posted`) in the company's base currency. Every `accountCode` must be a postable account of the chart, cost centers must exist and be active, projects must exist, and the debits must equal the credits. Answers 422 for an amount with more than two decimals, for a `currency` other than the base currency and for an inactive cost center, and 409 when the accounting period of `date` is locked.
+
         Parameters
         ----------
         date : dt.date
@@ -2495,6 +2589,8 @@ class AsyncLedgerClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> StatementRowsListLedgerResponse:
         """
+        Every postable account of the company with the row of `scheme` it falls into, by a mapping (`ledger/statement-rows/set`) or by the layout default, and the amount it carries there: the balance up to `toDate` on a balance-sheet row, the movement from `fromDate` to `toDate` on an income-statement row. `toDate` defaults to today and `fromDate` to 1 January of that year. `rows` holds the row totals and `unmapped` the accounts with a balance but no row.
+
         Parameters
         ----------
         scheme : str

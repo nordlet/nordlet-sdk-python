@@ -65,6 +65,8 @@ class RawAgreementsClient:
         self, *, request_options: typing.Optional[RequestOptions] = None
     ) -> HttpResponse[SettingsGetAgreementsResponse]:
         """
+        Return whether automatic agreement billing is switched on for the company.
+
         Parameters
         ----------
         request_options : typing.Optional[RequestOptions]
@@ -218,6 +220,8 @@ class RawAgreementsClient:
         self, *, auto_billing: bool, request_options: typing.Optional[RequestOptions] = None
     ) -> HttpResponse[SettingsUpdateAgreementsResponse]:
         """
+        Switch automatic agreement billing on or off for the company. With it on, a scheduled job runs the same billing as `agreements/agreements/billing/run` for the company once a day.
+
         Parameters
         ----------
         auto_billing : bool
@@ -375,6 +379,8 @@ class RawAgreementsClient:
         self, *, code: str, name: str, request_options: typing.Optional[RequestOptions] = None
     ) -> HttpResponse[TypesCreateAgreementsResponse]:
         """
+        Create an agreement type with a `code` and a `name`. Answers 409 when the company already has a type with that code.
+
         Parameters
         ----------
         code : str
@@ -542,6 +548,8 @@ class RawAgreementsClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[TypesListAgreementsResponse]:
         """
+        List the company's agreement types. Filterable and sortable by `code` and `name`.
+
         Parameters
         ----------
         page : typing.Optional[int]
@@ -735,6 +743,8 @@ class RawAgreementsClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[AgreementsCreateAgreementsResponse]:
         """
+        Create an agreement for exactly one party, a partner, an employee or a bank account, which must exist in the company (400 otherwise). Without `kind`, an employee agreement is `employment`, a bank account agreement is `bank` and a partner agreement is `other`; a `documentRef` (the `storageKey` of an uploaded file) attaches that file to the agreement. Answers 409 when the company already has an agreement with that `number`.
+
         Parameters
         ----------
         number : str
@@ -944,6 +954,8 @@ class RawAgreementsClient:
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> HttpResponse[AgreementsGetAgreementsResponse]:
         """
+        Return one agreement with its items.
+
         Parameters
         ----------
         id : str
@@ -1114,6 +1126,8 @@ class RawAgreementsClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[AgreementsUpdateAgreementsResponse]:
         """
+        Change the given fields of an agreement and return it with its items. The party, `number`, `startDate`, `currency` and items are not changed by this call.
+
         Parameters
         ----------
         id : str
@@ -1301,6 +1315,8 @@ class RawAgreementsClient:
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> HttpResponse[AgreementsDeleteAgreementsResponse]:
         """
+        Mark an agreement as deleted. It is no longer returned, changed or billed.
+
         Parameters
         ----------
         id : str
@@ -1465,6 +1481,8 @@ class RawAgreementsClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[AgreementsListAgreementsResponse]:
         """
+        List the company's agreements without their items, each with `partnerName`. Filterable by `number`, `name`, `partnerId`, `employeeId`, `bankAccountId`, `kind`, `typeId`, `status`, `startDate`, `endDate` and `value`; sortable by `number`, `startDate` and `createdAt` (default `startDate` descending).
+
         Parameters
         ----------
         page : typing.Optional[int]
@@ -1645,6 +1663,8 @@ class RawAgreementsClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[AgreementsGenerateInvoiceAgreementsResponse]:
         """
+        Create a draft sale invoice for the next unbilled period of an active agreement that has a partner and a `billingPeriod`. The period follows the monthly, quarterly or annual grid from `startDate`, continues after the last period already invoiced for the agreement, and is prorated by days when it starts late or is cut by `endDate`; an `autoRenew` agreement has its `endDate` moved forward by whole terms instead (`renewedEndDate`). The lines come from the agreement items, else one line of `value`, with revenue recognised ratably over the period. Answers 422 when the agreement is not active, has no partner, billing period, items or value, carries VAT while the company is not a VAT payer, is fully billed through its end date, or when the next period starts after `asOfDate` (default today). Emits `agreement.invoice_generated`.
+
         Parameters
         ----------
         id : str
@@ -1805,6 +1825,8 @@ class RawAgreementsClient:
         self, *, as_of_date: typing.Optional[dt.date] = OMIT, request_options: typing.Optional[RequestOptions] = None
     ) -> HttpResponse[AgreementsBillingRunAgreementsResponse]:
         """
+        Generate the invoices due up to `asOfDate` (default today) for every active agreement of the company that has a partner and a billing period, one invoice per period and at most 60 per agreement in one run, in the same way as `agreements/agreements/generate-invoice`. An agreement that is fully billed and whose `endDate` has passed is set to `expired`. A failing agreement is listed in `errors` and does not stop the run. Each invoice emits `agreement.invoice_generated`.
+
         Parameters
         ----------
         as_of_date : typing.Optional[dt.date]
@@ -1972,6 +1994,8 @@ class RawAgreementsClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[InsurancePoliciesCreateAgreementsResponse]:
         """
+        Create an insurance policy. Answers 422 when `toDate` is before `fromDate`, 400 when `insurerPartnerId` is not a partner of the company, and 409 when the company already has a policy with that `policyNumber`.
+
         Parameters
         ----------
         policy_number : str
@@ -2157,6 +2181,8 @@ class RawAgreementsClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[InsurancePoliciesListAgreementsResponse]:
         """
+        List the company's insurance policies. Filterable by `policyNumber`, `insurerPartnerId` and `toDate`; sortable by `policyNumber` and `toDate` (default `toDate` descending).
+
         Parameters
         ----------
         page : typing.Optional[int]
@@ -2335,6 +2361,8 @@ class RawAgreementsClient:
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> HttpResponse[InsurancePoliciesDeleteAgreementsResponse]:
         """
+        Mark an insurance policy as deleted.
+
         Parameters
         ----------
         id : str
@@ -2497,6 +2525,8 @@ class AsyncRawAgreementsClient:
         self, *, request_options: typing.Optional[RequestOptions] = None
     ) -> AsyncHttpResponse[SettingsGetAgreementsResponse]:
         """
+        Return whether automatic agreement billing is switched on for the company.
+
         Parameters
         ----------
         request_options : typing.Optional[RequestOptions]
@@ -2650,6 +2680,8 @@ class AsyncRawAgreementsClient:
         self, *, auto_billing: bool, request_options: typing.Optional[RequestOptions] = None
     ) -> AsyncHttpResponse[SettingsUpdateAgreementsResponse]:
         """
+        Switch automatic agreement billing on or off for the company. With it on, a scheduled job runs the same billing as `agreements/agreements/billing/run` for the company once a day.
+
         Parameters
         ----------
         auto_billing : bool
@@ -2807,6 +2839,8 @@ class AsyncRawAgreementsClient:
         self, *, code: str, name: str, request_options: typing.Optional[RequestOptions] = None
     ) -> AsyncHttpResponse[TypesCreateAgreementsResponse]:
         """
+        Create an agreement type with a `code` and a `name`. Answers 409 when the company already has a type with that code.
+
         Parameters
         ----------
         code : str
@@ -2974,6 +3008,8 @@ class AsyncRawAgreementsClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[TypesListAgreementsResponse]:
         """
+        List the company's agreement types. Filterable and sortable by `code` and `name`.
+
         Parameters
         ----------
         page : typing.Optional[int]
@@ -3167,6 +3203,8 @@ class AsyncRawAgreementsClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[AgreementsCreateAgreementsResponse]:
         """
+        Create an agreement for exactly one party, a partner, an employee or a bank account, which must exist in the company (400 otherwise). Without `kind`, an employee agreement is `employment`, a bank account agreement is `bank` and a partner agreement is `other`; a `documentRef` (the `storageKey` of an uploaded file) attaches that file to the agreement. Answers 409 when the company already has an agreement with that `number`.
+
         Parameters
         ----------
         number : str
@@ -3376,6 +3414,8 @@ class AsyncRawAgreementsClient:
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> AsyncHttpResponse[AgreementsGetAgreementsResponse]:
         """
+        Return one agreement with its items.
+
         Parameters
         ----------
         id : str
@@ -3546,6 +3586,8 @@ class AsyncRawAgreementsClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[AgreementsUpdateAgreementsResponse]:
         """
+        Change the given fields of an agreement and return it with its items. The party, `number`, `startDate`, `currency` and items are not changed by this call.
+
         Parameters
         ----------
         id : str
@@ -3733,6 +3775,8 @@ class AsyncRawAgreementsClient:
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> AsyncHttpResponse[AgreementsDeleteAgreementsResponse]:
         """
+        Mark an agreement as deleted. It is no longer returned, changed or billed.
+
         Parameters
         ----------
         id : str
@@ -3897,6 +3941,8 @@ class AsyncRawAgreementsClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[AgreementsListAgreementsResponse]:
         """
+        List the company's agreements without their items, each with `partnerName`. Filterable by `number`, `name`, `partnerId`, `employeeId`, `bankAccountId`, `kind`, `typeId`, `status`, `startDate`, `endDate` and `value`; sortable by `number`, `startDate` and `createdAt` (default `startDate` descending).
+
         Parameters
         ----------
         page : typing.Optional[int]
@@ -4077,6 +4123,8 @@ class AsyncRawAgreementsClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[AgreementsGenerateInvoiceAgreementsResponse]:
         """
+        Create a draft sale invoice for the next unbilled period of an active agreement that has a partner and a `billingPeriod`. The period follows the monthly, quarterly or annual grid from `startDate`, continues after the last period already invoiced for the agreement, and is prorated by days when it starts late or is cut by `endDate`; an `autoRenew` agreement has its `endDate` moved forward by whole terms instead (`renewedEndDate`). The lines come from the agreement items, else one line of `value`, with revenue recognised ratably over the period. Answers 422 when the agreement is not active, has no partner, billing period, items or value, carries VAT while the company is not a VAT payer, is fully billed through its end date, or when the next period starts after `asOfDate` (default today). Emits `agreement.invoice_generated`.
+
         Parameters
         ----------
         id : str
@@ -4237,6 +4285,8 @@ class AsyncRawAgreementsClient:
         self, *, as_of_date: typing.Optional[dt.date] = OMIT, request_options: typing.Optional[RequestOptions] = None
     ) -> AsyncHttpResponse[AgreementsBillingRunAgreementsResponse]:
         """
+        Generate the invoices due up to `asOfDate` (default today) for every active agreement of the company that has a partner and a billing period, one invoice per period and at most 60 per agreement in one run, in the same way as `agreements/agreements/generate-invoice`. An agreement that is fully billed and whose `endDate` has passed is set to `expired`. A failing agreement is listed in `errors` and does not stop the run. Each invoice emits `agreement.invoice_generated`.
+
         Parameters
         ----------
         as_of_date : typing.Optional[dt.date]
@@ -4404,6 +4454,8 @@ class AsyncRawAgreementsClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[InsurancePoliciesCreateAgreementsResponse]:
         """
+        Create an insurance policy. Answers 422 when `toDate` is before `fromDate`, 400 when `insurerPartnerId` is not a partner of the company, and 409 when the company already has a policy with that `policyNumber`.
+
         Parameters
         ----------
         policy_number : str
@@ -4589,6 +4641,8 @@ class AsyncRawAgreementsClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[InsurancePoliciesListAgreementsResponse]:
         """
+        List the company's insurance policies. Filterable by `policyNumber`, `insurerPartnerId` and `toDate`; sortable by `policyNumber` and `toDate` (default `toDate` descending).
+
         Parameters
         ----------
         page : typing.Optional[int]
@@ -4767,6 +4821,8 @@ class AsyncRawAgreementsClient:
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> AsyncHttpResponse[InsurancePoliciesDeleteAgreementsResponse]:
         """
+        Mark an insurance policy as deleted.
+
         Parameters
         ----------
         id : str

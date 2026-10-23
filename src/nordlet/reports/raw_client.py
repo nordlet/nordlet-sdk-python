@@ -73,6 +73,8 @@ class RawReportsClient:
         self, *, from_date: dt.date, to_date: dt.date, request_options: typing.Optional[RequestOptions] = None
     ) -> HttpResponse[TrialBalanceReportsResponse]:
         """
+        Trial balance of the posted ledger for a period: for every account with an opening balance or movement, the balance before `fromDate`, the debit and credit turnover between `fromDate` and `toDate`, and the closing balance, with debit and credit totals. Template account names follow the `Accept-Language` header.
+
         Parameters
         ----------
         from_date : dt.date
@@ -233,6 +235,8 @@ class RawReportsClient:
         self, *, year: int, request_options: typing.Optional[RequestOptions] = None
     ) -> HttpResponse[SizeCategoryReportsResponse]:
         """
+        Classify the company's size for a calendar year as micro, small, medium or large from total assets at the year end, the net turnover of the year and the average number of employees under employment contracts, against the limits returned in `thresholds`; a category applies when at least two of its three limits are met. This is the default category of `reports/financial-statements`.
+
         Parameters
         ----------
         year : int
@@ -395,6 +399,8 @@ class RawReportsClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[FinancialStatementsReportsResponse]:
         """
+        Balance sheet at `toDate` and profit and loss for the period from the posted ledger, year-end closing entries excluded, laid out by size category: `category` when given, else the one `reports/size-category` derives for the period. Micro gets the short balance sheet and profit and loss; the other categories add the balance sheet and profit and loss detail; medium and large also get the changes in equity and a cash flow summary. Line groupings follow the company's chart template.
+
         Parameters
         ----------
         from_date : dt.date
@@ -564,6 +570,8 @@ class RawReportsClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[GeneralJournalReportsResponse]:
         """
+        Posted journal transactions of a period in date order, each with its lines (account, debit, credit), paged with `page` and `pageSize` and the total count. Template account names follow the `Accept-Language` header.
+
         Parameters
         ----------
         from_date : dt.date
@@ -735,6 +743,8 @@ class RawReportsClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[GlDetailReportsResponse]:
         """
+        Ledger card of one account for a period: the opening balance before `fromDate`, every posted line in date order with a running balance, and the closing balance.
+
         Parameters
         ----------
         account_code : str
@@ -898,6 +908,8 @@ class RawReportsClient:
         self, *, request_options: typing.Optional[RequestOptions] = None
     ) -> HttpResponse[PartnerBalancesReportsResponse]:
         """
+        Open balance per partner: receivables from issued sale invoices and payables from registered purchase invoices that are not fully paid, credit notes reducing the balance, converted to the base currency at the document rate, with totals.
+
         Parameters
         ----------
         request_options : typing.Optional[RequestOptions]
@@ -1055,6 +1067,8 @@ class RawReportsClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[DebtAgingReportsResponse]:
         """
+        Ageing of the open receivables or payables (`side`) at `asOf` (default the company's current date) per partner: not yet due, 1 to 30, 31 to 60, 61 to 90 and over 90 days past the due date. Counts documents dated on or before `asOf` and payments made up to that date.
+
         Parameters
         ----------
         side : typing.Optional[DebtAgingReportsRequestSide]
@@ -1215,6 +1229,8 @@ class RawReportsClient:
         self, *, months: typing.Optional[int] = OMIT, request_options: typing.Optional[RequestOptions] = None
     ) -> HttpResponse[MonthlySummaryReportsResponse]:
         """
+        One row per calendar month for the last `months` months ending with the current one: the receivable and payable balances at the end of the month and the revenue, expenses and net result posted in it, year-end closing entries excluded.
+
         Parameters
         ----------
         months : typing.Optional[int]
@@ -1376,6 +1392,8 @@ class RawReportsClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[StockBalanceReportsResponse]:
         """
+        Quantity and value on hand per item and warehouse at `asOf`, summed from the stock movements dated on or before it; `warehouseId` limits the report to one warehouse. Rows with zero quantity and zero value are left out.
+
         Parameters
         ----------
         as_of : dt.date
@@ -1542,6 +1560,8 @@ class RawReportsClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[StockMovementReportsResponse]:
         """
+        Stock movement per item for a period: opening quantity and value before `fromDate`, quantities and values received and issued between `fromDate` and `toDate`, and the closing figures; `warehouseId` and `itemId` narrow the report.
+
         Parameters
         ----------
         from_date : dt.date
@@ -1713,6 +1733,8 @@ class RawReportsClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[VatSummaryReportsResponse]:
         """
+        VAT of issued sale invoices (by issue date) or registered purchase invoices (by registration date) in a period, summed per VAT rate: net, VAT and gross in the base currency and the number of documents, credit notes counting negative. The rows of `reports/vat-detail` grouped by rate.
+
         Parameters
         ----------
         from_date : dt.date
@@ -1876,6 +1898,8 @@ class RawReportsClient:
         self, *, from_date: dt.date, to_date: dt.date, request_options: typing.Optional[RequestOptions] = None
     ) -> HttpResponse[CashFlowReportsResponse]:
         """
+        Cash flow statement of a period from the posted transactions that touch a cash account: the inflow and outflow of every counterpart account, grouped into operating, investing and financing by the account prefixes of the company's chart template, with opening and closing cash and `balanced` telling whether opening cash plus the net change equals closing cash. Template account names follow the `Accept-Language` header.
+
         Parameters
         ----------
         from_date : dt.date
@@ -2040,6 +2064,8 @@ class RawReportsClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[StockAgingReportsResponse]:
         """
+        Age of the stock on hand at `asOf` per item and warehouse: the remaining quantity and value of each FIFO receipt layer, bucketed by days since the receipt (0 to 30, 31 to 60, 61 to 90, over 90), with totals; `warehouseId` limits the report to one warehouse. When movements after `asOf` exist, the layers are rebuilt by replaying the movements up to that date.
+
         Parameters
         ----------
         as_of : dt.date
@@ -2200,6 +2226,8 @@ class RawReportsClient:
         self, *, warehouse_id: typing.Optional[str] = OMIT, request_options: typing.Optional[RequestOptions] = None
     ) -> HttpResponse[StockShortageReportsResponse]:
         """
+        Items whose reserved quantity exceeds the quantity on hand, per warehouse: on hand, reserved and the shortage. Only items with a reservation are checked; `warehouseId` limits the report to one warehouse.
+
         Parameters
         ----------
         warehouse_id : typing.Optional[str]
@@ -2863,6 +2891,8 @@ class RawReportsClient:
         self, *, from_date: dt.date, to_date: dt.date, request_options: typing.Optional[RequestOptions] = None
     ) -> HttpResponse[EuPurchasesReportsResponse]:
         """
+        Registered purchase invoices of a period (by registration date) from partners in another EU country, summed per partner country and VAT rate: net and VAT in the base currency and the number of documents, credit notes counting negative. The partner's country is the country code of its address, else the first two characters of its VAT number.
+
         Parameters
         ----------
         from_date : dt.date
@@ -3028,6 +3058,8 @@ class RawReportsClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[VatDetailReportsResponse]:
         """
+        VAT of issued sale invoices (by issue date) or registered purchase invoices (by registration date) in a period, one row per document and VAT rate: net, VAT and gross in the base currency, with totals; credit notes count negative. `reports/vat-summary` groups these rows by rate.
+
         Parameters
         ----------
         from_date : dt.date
@@ -3191,6 +3223,8 @@ class RawReportsClient:
         self, *, from_date: dt.date, to_date: dt.date, request_options: typing.Optional[RequestOptions] = None
     ) -> HttpResponse[PosSalesReportsResponse]:
         """
+        POS reports of a period (by report date): per report the net, VAT, gross, cash and card amounts and the cost of goods sold, the net and VAT per VAT rate across the reports, and totals.
+
         Parameters
         ----------
         from_date : dt.date
@@ -3351,6 +3385,8 @@ class RawReportsClient:
         self, *, from_date: dt.date, to_date: dt.date, request_options: typing.Optional[RequestOptions] = None
     ) -> HttpResponse[OnlineSalesReportsResponse]:
         """
+        Sales orders created in a period, grouped by channel and currency: the number of orders, how many are fulfilled, cancelled or still open (new or reserved), and the net and gross of the orders that are not cancelled, computed from their lines.
+
         Parameters
         ----------
         from_date : dt.date
@@ -3511,6 +3547,8 @@ class RawReportsClient:
         self, *, from_date: dt.date, to_date: dt.date, request_options: typing.Optional[RequestOptions] = None
     ) -> HttpResponse[OssReportsResponse]:
         """
+        Issued sale invoices and credit notes of a period (by issue date) to partners in another EU country, summed per partner country and VAT rate: net and VAT in the base currency and the number of documents. The partner's country is the country code of its address, else the first two characters of its VAT number.
+
         Parameters
         ----------
         from_date : dt.date
@@ -3671,6 +3709,8 @@ class RawReportsClient:
         self, *, from_date: dt.date, to_date: dt.date, request_options: typing.Optional[RequestOptions] = None
     ) -> HttpResponse[AdvanceReconciliationReportsResponse]:
         """
+        Cash advances per employee for a period: the balance before `fromDate`, the advances paid out and returned through cash orders in the period, the amount settled by expense reports dated in the period, and the closing balance. A cash order counts as an advance when it names an employee and its counter account is the `cash.advances` posting rule.
+
         Parameters
         ----------
         from_date : dt.date
@@ -3836,6 +3876,8 @@ class RawReportsClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[WriteOffActsReportsResponse]:
         """
+        Stock issued by write-offs and stock takes in a period: one row per outgoing movement with item, warehouse, quantity, cost and notes, and the total cost; `warehouseId` limits the report to one warehouse.
+
         Parameters
         ----------
         from_date : dt.date
@@ -3999,6 +4041,8 @@ class RawReportsClient:
         self, *, from_date: dt.date, to_date: dt.date, request_options: typing.Optional[RequestOptions] = None
     ) -> HttpResponse[CostCentersReportsResponse]:
         """
+        Income, expenses and result per cost centre for a period, from the posted journal lines assigned to a cost centre.
+
         Parameters
         ----------
         from_date : dt.date
@@ -4164,6 +4208,8 @@ class RawReportsClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[CostCenterActivityReportsResponse]:
         """
+        Posted journal lines of one cost centre for a period, summed per account: debit, credit and net. Template account names follow the `Accept-Language` header.
+
         Parameters
         ----------
         from_date : dt.date
@@ -4332,6 +4378,8 @@ class RawReportsClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[CostCenterItemsReportsResponse]:
         """
+        Net purchases per cost centre and item for a period, from the lines of registered purchase invoices (by registration date) that carry a cost centre, credit notes counting negative; `costCenterId` limits the report to one cost centre. A line without an item is reported under its description.
+
         Parameters
         ----------
         from_date : dt.date
@@ -4500,6 +4548,8 @@ class RawReportsClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[JobsCreateReportsResponse]:
         """
+        Queue a report to be built in the background in one or more formats (`json`, `xlsx`, `pdf`) and stored as files; the job is returned at once with status `queued`. `reportType` is one of trial-balance, partner-balances, debt-aging, stock-balance, vat-summary, vat-detail, eu-purchases, oss, pos-sales, online-sales, advance-reconciliation, write-off-acts, cost-centers, cost-center-activity, cost-center-items and cash-flow, and `params` is the body of that report route; an unknown type or invalid params are refused with 422. Follow the job with `reports/jobs/get`, download its outputs with `files/get`, and listen for `report.completed` or `report.failed`; a report that does not finish within ten minutes fails.
+
         Parameters
         ----------
         report_type : str
@@ -4663,6 +4713,8 @@ class RawReportsClient:
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> HttpResponse[JobsGetReportsResponse]:
         """
+        Return one report job with its status (`queued`, `running`, `completed` or `failed`), the error of a failed job and the output files of a completed one.
+
         Parameters
         ----------
         id : str
@@ -4827,6 +4879,8 @@ class RawReportsClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[JobsListReportsResponse]:
         """
+        List the company's report jobs, newest first; filterable by `status` and `reportType`, sortable by `createdAt`.
+
         Parameters
         ----------
         page : typing.Optional[int]
@@ -5006,6 +5060,8 @@ class AsyncRawReportsClient:
         self, *, from_date: dt.date, to_date: dt.date, request_options: typing.Optional[RequestOptions] = None
     ) -> AsyncHttpResponse[TrialBalanceReportsResponse]:
         """
+        Trial balance of the posted ledger for a period: for every account with an opening balance or movement, the balance before `fromDate`, the debit and credit turnover between `fromDate` and `toDate`, and the closing balance, with debit and credit totals. Template account names follow the `Accept-Language` header.
+
         Parameters
         ----------
         from_date : dt.date
@@ -5166,6 +5222,8 @@ class AsyncRawReportsClient:
         self, *, year: int, request_options: typing.Optional[RequestOptions] = None
     ) -> AsyncHttpResponse[SizeCategoryReportsResponse]:
         """
+        Classify the company's size for a calendar year as micro, small, medium or large from total assets at the year end, the net turnover of the year and the average number of employees under employment contracts, against the limits returned in `thresholds`; a category applies when at least two of its three limits are met. This is the default category of `reports/financial-statements`.
+
         Parameters
         ----------
         year : int
@@ -5328,6 +5386,8 @@ class AsyncRawReportsClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[FinancialStatementsReportsResponse]:
         """
+        Balance sheet at `toDate` and profit and loss for the period from the posted ledger, year-end closing entries excluded, laid out by size category: `category` when given, else the one `reports/size-category` derives for the period. Micro gets the short balance sheet and profit and loss; the other categories add the balance sheet and profit and loss detail; medium and large also get the changes in equity and a cash flow summary. Line groupings follow the company's chart template.
+
         Parameters
         ----------
         from_date : dt.date
@@ -5497,6 +5557,8 @@ class AsyncRawReportsClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[GeneralJournalReportsResponse]:
         """
+        Posted journal transactions of a period in date order, each with its lines (account, debit, credit), paged with `page` and `pageSize` and the total count. Template account names follow the `Accept-Language` header.
+
         Parameters
         ----------
         from_date : dt.date
@@ -5668,6 +5730,8 @@ class AsyncRawReportsClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[GlDetailReportsResponse]:
         """
+        Ledger card of one account for a period: the opening balance before `fromDate`, every posted line in date order with a running balance, and the closing balance.
+
         Parameters
         ----------
         account_code : str
@@ -5831,6 +5895,8 @@ class AsyncRawReportsClient:
         self, *, request_options: typing.Optional[RequestOptions] = None
     ) -> AsyncHttpResponse[PartnerBalancesReportsResponse]:
         """
+        Open balance per partner: receivables from issued sale invoices and payables from registered purchase invoices that are not fully paid, credit notes reducing the balance, converted to the base currency at the document rate, with totals.
+
         Parameters
         ----------
         request_options : typing.Optional[RequestOptions]
@@ -5988,6 +6054,8 @@ class AsyncRawReportsClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[DebtAgingReportsResponse]:
         """
+        Ageing of the open receivables or payables (`side`) at `asOf` (default the company's current date) per partner: not yet due, 1 to 30, 31 to 60, 61 to 90 and over 90 days past the due date. Counts documents dated on or before `asOf` and payments made up to that date.
+
         Parameters
         ----------
         side : typing.Optional[DebtAgingReportsRequestSide]
@@ -6148,6 +6216,8 @@ class AsyncRawReportsClient:
         self, *, months: typing.Optional[int] = OMIT, request_options: typing.Optional[RequestOptions] = None
     ) -> AsyncHttpResponse[MonthlySummaryReportsResponse]:
         """
+        One row per calendar month for the last `months` months ending with the current one: the receivable and payable balances at the end of the month and the revenue, expenses and net result posted in it, year-end closing entries excluded.
+
         Parameters
         ----------
         months : typing.Optional[int]
@@ -6309,6 +6379,8 @@ class AsyncRawReportsClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[StockBalanceReportsResponse]:
         """
+        Quantity and value on hand per item and warehouse at `asOf`, summed from the stock movements dated on or before it; `warehouseId` limits the report to one warehouse. Rows with zero quantity and zero value are left out.
+
         Parameters
         ----------
         as_of : dt.date
@@ -6475,6 +6547,8 @@ class AsyncRawReportsClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[StockMovementReportsResponse]:
         """
+        Stock movement per item for a period: opening quantity and value before `fromDate`, quantities and values received and issued between `fromDate` and `toDate`, and the closing figures; `warehouseId` and `itemId` narrow the report.
+
         Parameters
         ----------
         from_date : dt.date
@@ -6646,6 +6720,8 @@ class AsyncRawReportsClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[VatSummaryReportsResponse]:
         """
+        VAT of issued sale invoices (by issue date) or registered purchase invoices (by registration date) in a period, summed per VAT rate: net, VAT and gross in the base currency and the number of documents, credit notes counting negative. The rows of `reports/vat-detail` grouped by rate.
+
         Parameters
         ----------
         from_date : dt.date
@@ -6809,6 +6885,8 @@ class AsyncRawReportsClient:
         self, *, from_date: dt.date, to_date: dt.date, request_options: typing.Optional[RequestOptions] = None
     ) -> AsyncHttpResponse[CashFlowReportsResponse]:
         """
+        Cash flow statement of a period from the posted transactions that touch a cash account: the inflow and outflow of every counterpart account, grouped into operating, investing and financing by the account prefixes of the company's chart template, with opening and closing cash and `balanced` telling whether opening cash plus the net change equals closing cash. Template account names follow the `Accept-Language` header.
+
         Parameters
         ----------
         from_date : dt.date
@@ -6973,6 +7051,8 @@ class AsyncRawReportsClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[StockAgingReportsResponse]:
         """
+        Age of the stock on hand at `asOf` per item and warehouse: the remaining quantity and value of each FIFO receipt layer, bucketed by days since the receipt (0 to 30, 31 to 60, 61 to 90, over 90), with totals; `warehouseId` limits the report to one warehouse. When movements after `asOf` exist, the layers are rebuilt by replaying the movements up to that date.
+
         Parameters
         ----------
         as_of : dt.date
@@ -7133,6 +7213,8 @@ class AsyncRawReportsClient:
         self, *, warehouse_id: typing.Optional[str] = OMIT, request_options: typing.Optional[RequestOptions] = None
     ) -> AsyncHttpResponse[StockShortageReportsResponse]:
         """
+        Items whose reserved quantity exceeds the quantity on hand, per warehouse: on hand, reserved and the shortage. Only items with a reservation are checked; `warehouseId` limits the report to one warehouse.
+
         Parameters
         ----------
         warehouse_id : typing.Optional[str]
@@ -7796,6 +7878,8 @@ class AsyncRawReportsClient:
         self, *, from_date: dt.date, to_date: dt.date, request_options: typing.Optional[RequestOptions] = None
     ) -> AsyncHttpResponse[EuPurchasesReportsResponse]:
         """
+        Registered purchase invoices of a period (by registration date) from partners in another EU country, summed per partner country and VAT rate: net and VAT in the base currency and the number of documents, credit notes counting negative. The partner's country is the country code of its address, else the first two characters of its VAT number.
+
         Parameters
         ----------
         from_date : dt.date
@@ -7961,6 +8045,8 @@ class AsyncRawReportsClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[VatDetailReportsResponse]:
         """
+        VAT of issued sale invoices (by issue date) or registered purchase invoices (by registration date) in a period, one row per document and VAT rate: net, VAT and gross in the base currency, with totals; credit notes count negative. `reports/vat-summary` groups these rows by rate.
+
         Parameters
         ----------
         from_date : dt.date
@@ -8124,6 +8210,8 @@ class AsyncRawReportsClient:
         self, *, from_date: dt.date, to_date: dt.date, request_options: typing.Optional[RequestOptions] = None
     ) -> AsyncHttpResponse[PosSalesReportsResponse]:
         """
+        POS reports of a period (by report date): per report the net, VAT, gross, cash and card amounts and the cost of goods sold, the net and VAT per VAT rate across the reports, and totals.
+
         Parameters
         ----------
         from_date : dt.date
@@ -8284,6 +8372,8 @@ class AsyncRawReportsClient:
         self, *, from_date: dt.date, to_date: dt.date, request_options: typing.Optional[RequestOptions] = None
     ) -> AsyncHttpResponse[OnlineSalesReportsResponse]:
         """
+        Sales orders created in a period, grouped by channel and currency: the number of orders, how many are fulfilled, cancelled or still open (new or reserved), and the net and gross of the orders that are not cancelled, computed from their lines.
+
         Parameters
         ----------
         from_date : dt.date
@@ -8444,6 +8534,8 @@ class AsyncRawReportsClient:
         self, *, from_date: dt.date, to_date: dt.date, request_options: typing.Optional[RequestOptions] = None
     ) -> AsyncHttpResponse[OssReportsResponse]:
         """
+        Issued sale invoices and credit notes of a period (by issue date) to partners in another EU country, summed per partner country and VAT rate: net and VAT in the base currency and the number of documents. The partner's country is the country code of its address, else the first two characters of its VAT number.
+
         Parameters
         ----------
         from_date : dt.date
@@ -8604,6 +8696,8 @@ class AsyncRawReportsClient:
         self, *, from_date: dt.date, to_date: dt.date, request_options: typing.Optional[RequestOptions] = None
     ) -> AsyncHttpResponse[AdvanceReconciliationReportsResponse]:
         """
+        Cash advances per employee for a period: the balance before `fromDate`, the advances paid out and returned through cash orders in the period, the amount settled by expense reports dated in the period, and the closing balance. A cash order counts as an advance when it names an employee and its counter account is the `cash.advances` posting rule.
+
         Parameters
         ----------
         from_date : dt.date
@@ -8769,6 +8863,8 @@ class AsyncRawReportsClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[WriteOffActsReportsResponse]:
         """
+        Stock issued by write-offs and stock takes in a period: one row per outgoing movement with item, warehouse, quantity, cost and notes, and the total cost; `warehouseId` limits the report to one warehouse.
+
         Parameters
         ----------
         from_date : dt.date
@@ -8932,6 +9028,8 @@ class AsyncRawReportsClient:
         self, *, from_date: dt.date, to_date: dt.date, request_options: typing.Optional[RequestOptions] = None
     ) -> AsyncHttpResponse[CostCentersReportsResponse]:
         """
+        Income, expenses and result per cost centre for a period, from the posted journal lines assigned to a cost centre.
+
         Parameters
         ----------
         from_date : dt.date
@@ -9097,6 +9195,8 @@ class AsyncRawReportsClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[CostCenterActivityReportsResponse]:
         """
+        Posted journal lines of one cost centre for a period, summed per account: debit, credit and net. Template account names follow the `Accept-Language` header.
+
         Parameters
         ----------
         from_date : dt.date
@@ -9265,6 +9365,8 @@ class AsyncRawReportsClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[CostCenterItemsReportsResponse]:
         """
+        Net purchases per cost centre and item for a period, from the lines of registered purchase invoices (by registration date) that carry a cost centre, credit notes counting negative; `costCenterId` limits the report to one cost centre. A line without an item is reported under its description.
+
         Parameters
         ----------
         from_date : dt.date
@@ -9433,6 +9535,8 @@ class AsyncRawReportsClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[JobsCreateReportsResponse]:
         """
+        Queue a report to be built in the background in one or more formats (`json`, `xlsx`, `pdf`) and stored as files; the job is returned at once with status `queued`. `reportType` is one of trial-balance, partner-balances, debt-aging, stock-balance, vat-summary, vat-detail, eu-purchases, oss, pos-sales, online-sales, advance-reconciliation, write-off-acts, cost-centers, cost-center-activity, cost-center-items and cash-flow, and `params` is the body of that report route; an unknown type or invalid params are refused with 422. Follow the job with `reports/jobs/get`, download its outputs with `files/get`, and listen for `report.completed` or `report.failed`; a report that does not finish within ten minutes fails.
+
         Parameters
         ----------
         report_type : str
@@ -9596,6 +9700,8 @@ class AsyncRawReportsClient:
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> AsyncHttpResponse[JobsGetReportsResponse]:
         """
+        Return one report job with its status (`queued`, `running`, `completed` or `failed`), the error of a failed job and the output files of a completed one.
+
         Parameters
         ----------
         id : str
@@ -9760,6 +9866,8 @@ class AsyncRawReportsClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[JobsListReportsResponse]:
         """
+        List the company's report jobs, newest first; filterable by `status` and `reportType`, sortable by `createdAt`.
+
         Parameters
         ----------
         page : typing.Optional[int]

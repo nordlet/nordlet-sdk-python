@@ -102,6 +102,8 @@ class RawHrClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[PositionsCreateHrResponse]:
         """
+        Creates a job position with an optional code and name translations, for use in `hr/contracts/create`.
+
         Parameters
         ----------
         name : str
@@ -277,6 +279,8 @@ class RawHrClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[PositionsUpdateHrResponse]:
         """
+        Changes the code, name or translations of a position; a null `translations` removes them.
+
         Parameters
         ----------
         id : str
@@ -456,6 +460,8 @@ class RawHrClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[PositionsListHrResponse]:
         """
+        Lists the company's positions; filterable and sortable by `name` and `code`.
+
         Parameters
         ----------
         page : typing.Optional[int]
@@ -650,6 +656,8 @@ class RawHrClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[EmployeesCreateHrResponse]:
         """
+        Creates an employee record. `payrollOptions` holds the country-specific settings the payroll engine reads for the person (see `hr/employees/fields`); `applyAllowance` defaults to true and `pensionAccumulation` to false.
+
         Parameters
         ----------
         first_name : str
@@ -887,6 +895,8 @@ class RawHrClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[EmployeesUpdateHrResponse]:
         """
+        Changes the given fields of an employee; a null clears the fields that allow it (code, personal code, birth date, contact details, address, IBAN, social insurance number and start, hire date, notes). `status` and `terminationDate` are set here too.
+
         Parameters
         ----------
         id : str
@@ -1110,6 +1120,8 @@ class RawHrClient:
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> HttpResponse[EmployeesGetHrResponse]:
         """
+        Reads one employee.
+
         Parameters
         ----------
         id : str
@@ -1429,6 +1441,8 @@ class RawHrClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[EmployeesListHrResponse]:
         """
+        Lists the employees that are not deleted; filterable by `firstName`, `lastName`, `code`, `status` and `email`, sortable by `lastName`, `code` and `createdAt`.
+
         Parameters
         ----------
         page : typing.Optional[int]
@@ -1603,6 +1617,8 @@ class RawHrClient:
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> HttpResponse[EmployeesDeleteHrResponse]:
         """
+        Marks the employee deleted; the record stays and no longer appears in lists or payroll runs. `hr/employees/anonymize` also blanks the personal data.
+
         Parameters
         ----------
         id : str
@@ -1934,6 +1950,8 @@ class RawHrClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[ContractsCreateHrResponse]:
         """
+        Creates an employment contract for an employee. A `permanent` contract takes no `endDate` and a `fixed_term` one requires it; the number comes from `contractNo` or, with `agreementId`, from the employee's agreement; `workHours` defaults by `salaryType`. Answers 422 when the end date is before the start, and 409 when the employee already has a contract overlapping the period (end it with `hr/contracts/end` first) or the contract number already exists.
+
         Parameters
         ----------
         employee_id : str
@@ -2132,6 +2150,8 @@ class RawHrClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[ContractsEndHrResponse]:
         """
+        Ends a contract on `endDate` with an optional reason. Answers 422 when the end date is before the contract start.
+
         Parameters
         ----------
         id : str
@@ -2302,6 +2322,8 @@ class RawHrClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[ContractsListHrResponse]:
         """
+        Lists employment contracts; filterable by `employeeId`, `agreementId`, `status` and `contractNo`, sortable by `startDate` and `contractNo`.
+
         Parameters
         ----------
         page : typing.Optional[int]
@@ -2482,6 +2504,8 @@ class RawHrClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[LeaveBalancesSetHrResponse]:
         """
+        Creates or replaces the leave entitlement of an employee for a year; `usedDays` is kept unless given (0 on a new row) and `remainingDays` is the entitled days less the used ones.
+
         Parameters
         ----------
         employee_id : str
@@ -2652,6 +2676,8 @@ class RawHrClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[LeaveBalancesListHrResponse]:
         """
+        Lists leave balances, narrowed to an employee and/or a year when given, oldest year first.
+
         Parameters
         ----------
         employee_id : typing.Optional[str]
@@ -2821,6 +2847,8 @@ class RawHrClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[IncapacityCertificatesCreateHrResponse]:
         """
+        Records a sick-leave certificate of an employee. Answers 422 when `toDate` is before `fromDate`. `payroll/runs/create` warns when a certificate covers working days of a month that has no timesheet.
+
         Parameters
         ----------
         employee_id : str
@@ -3003,6 +3031,8 @@ class RawHrClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[IncapacityCertificatesListHrResponse]:
         """
+        Lists incapacity certificates; filterable by `employeeId` and `number`, sortable by `fromDate` and `number`.
+
         Parameters
         ----------
         page : typing.Optional[int]
@@ -3186,6 +3216,8 @@ class RawHrClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[PerDiemRatesCreateHrResponse]:
         """
+        Adds the company's daily per diem rate for a destination country from `validFrom`; `hr/business-trips/create` takes the latest rate valid on the trip's start date. Answers 409 when a rate for that country already starts on that date.
+
         Parameters
         ----------
         country_code : str
@@ -3356,6 +3388,8 @@ class RawHrClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[PerDiemRatesListHrResponse]:
         """
+        Lists per diem rates; filterable by `countryCode`, sortable by `countryCode` and `validFrom`.
+
         Parameters
         ----------
         page : typing.Optional[int]
@@ -3530,6 +3564,8 @@ class RawHrClient:
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> HttpResponse[PerDiemRatesDeleteHrResponse]:
         """
+        Deletes a per diem rate.
+
         Parameters
         ----------
         id : str
@@ -3694,6 +3730,8 @@ class RawHrClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[BusinessTripsCreateHrResponse]:
         """
+        Stores the trip as a draft with `days` counted as calendar days, both ends included, and `perDiemAmount` as the days times the company's rate for the destination valid on the start date (`hr/per-diem-rates/create`). Answers 422 when the trip ends before it starts or no rate covers the destination on that date, and 409 when the employee already has a trip overlapping the dates.
+
         Parameters
         ----------
         employee_id : str
@@ -3863,6 +3901,8 @@ class RawHrClient:
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> HttpResponse[BusinessTripsGetHrResponse]:
         """
+        Reads one business trip.
+
         Parameters
         ----------
         id : str
@@ -4027,6 +4067,8 @@ class RawHrClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[BusinessTripsListHrResponse]:
         """
+        Lists business trips; filterable by `employeeId`, `status` and `payrollRunId`, sortable by `startDate`.
+
         Parameters
         ----------
         page : typing.Optional[int]
@@ -4201,6 +4243,8 @@ class RawHrClient:
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> HttpResponse[BusinessTripsApproveHrResponse]:
         """
+        Sets the trip's status to `approved`. `payroll/runs/create` without explicit lines adds the per diem of every approved trip ending in the run month as an untaxed addition and sets the trip's `payrollRunId`; reversing or cancelling the run releases the trip again. Answers 409 when the trip is not a draft.
+
         Parameters
         ----------
         id : str
@@ -4358,6 +4402,8 @@ class RawHrClient:
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> HttpResponse[BusinessTripsDeleteHrResponse]:
         """
+        Deletes a draft trip; answers 409 when the trip is not a draft.
+
         Parameters
         ----------
         id : str
@@ -4525,6 +4571,8 @@ class RawHrClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[EmployeesRecordsCreateHrResponse]:
         """
+        Adds an education, qualification, certificate or training record to an employee, optionally linked to one of the company's uploaded files (`fileId`).
+
         Parameters
         ----------
         employee_id : str
@@ -4713,6 +4761,8 @@ class RawHrClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[EmployeesRecordsUpdateHrResponse]:
         """
+        Changes the given fields of an employee record; `issuedAt`, `validUntil` and `fileId` can be cleared with null.
+
         Parameters
         ----------
         id : str
@@ -4891,6 +4941,8 @@ class RawHrClient:
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> HttpResponse[EmployeesRecordsDeleteHrResponse]:
         """
+        Deletes an employee record.
+
         Parameters
         ----------
         id : str
@@ -5055,6 +5107,8 @@ class RawHrClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[EmployeesRecordsListHrResponse]:
         """
+        Lists employee records; filterable by `employeeId`, `type` and `title`, sortable by `createdAt` and `issuedAt`.
+
         Parameters
         ----------
         page : typing.Optional[int]
@@ -5231,6 +5285,8 @@ class RawHrClient:
         self, *, employee_id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> HttpResponse[EmployeesAttachmentsListHrResponse]:
         """
+        Lists the files uploaded against an employee, newest first.
+
         Parameters
         ----------
         employee_id : str
@@ -5393,6 +5449,8 @@ class RawHrClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[TimesheetsGenerateHrResponse]:
         """
+        Builds the timesheet of the month for every employee with a contract in it, or for one employee with `employeeId`, replacing any existing timesheet: the Monday to Friday days within the contract get the contract's daily hours (its weekly hours over five), and for a Lithuanian company the public holidays are `holiday` days with 0 hours. Answers 422 when no contract covers the month.
+
         Parameters
         ----------
         year : int
@@ -5562,6 +5620,8 @@ class RawHrClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[TimesheetsUpsertHrResponse]:
         """
+        Creates or replaces the timesheet of an employee for a month from the given days; `workedDays` and `workedHours` count the `work` and `business_trip` days with hours. Answers 422 for a day outside the month, a day given twice or more than 24 hours in a day. `payroll/runs/create` reads the timesheet for the paid days, the days worked and the business-trip days of the month.
+
         Parameters
         ----------
         employee_id : str
@@ -5730,6 +5790,8 @@ class RawHrClient:
         self, *, employee_id: str, year: int, month: int, request_options: typing.Optional[RequestOptions] = None
     ) -> HttpResponse[TimesheetsGetHrResponse]:
         """
+        Reads the timesheet of an employee for a month.
+
         Parameters
         ----------
         employee_id : str
@@ -5893,6 +5955,8 @@ class RawHrClient:
         self, *, year: int, month: int, request_options: typing.Optional[RequestOptions] = None
     ) -> HttpResponse[TimesheetsListHrResponse]:
         """
+        Lists the timesheets of a month, ordered by employee name.
+
         Parameters
         ----------
         year : int
@@ -6053,6 +6117,8 @@ class RawHrClient:
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> HttpResponse[TimesheetsDeleteHrResponse]:
         """
+        Deletes a timesheet.
+
         Parameters
         ----------
         id : str
@@ -6220,6 +6286,8 @@ class AsyncRawHrClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[PositionsCreateHrResponse]:
         """
+        Creates a job position with an optional code and name translations, for use in `hr/contracts/create`.
+
         Parameters
         ----------
         name : str
@@ -6395,6 +6463,8 @@ class AsyncRawHrClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[PositionsUpdateHrResponse]:
         """
+        Changes the code, name or translations of a position; a null `translations` removes them.
+
         Parameters
         ----------
         id : str
@@ -6574,6 +6644,8 @@ class AsyncRawHrClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[PositionsListHrResponse]:
         """
+        Lists the company's positions; filterable and sortable by `name` and `code`.
+
         Parameters
         ----------
         page : typing.Optional[int]
@@ -6768,6 +6840,8 @@ class AsyncRawHrClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[EmployeesCreateHrResponse]:
         """
+        Creates an employee record. `payrollOptions` holds the country-specific settings the payroll engine reads for the person (see `hr/employees/fields`); `applyAllowance` defaults to true and `pensionAccumulation` to false.
+
         Parameters
         ----------
         first_name : str
@@ -7005,6 +7079,8 @@ class AsyncRawHrClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[EmployeesUpdateHrResponse]:
         """
+        Changes the given fields of an employee; a null clears the fields that allow it (code, personal code, birth date, contact details, address, IBAN, social insurance number and start, hire date, notes). `status` and `terminationDate` are set here too.
+
         Parameters
         ----------
         id : str
@@ -7228,6 +7304,8 @@ class AsyncRawHrClient:
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> AsyncHttpResponse[EmployeesGetHrResponse]:
         """
+        Reads one employee.
+
         Parameters
         ----------
         id : str
@@ -7547,6 +7625,8 @@ class AsyncRawHrClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[EmployeesListHrResponse]:
         """
+        Lists the employees that are not deleted; filterable by `firstName`, `lastName`, `code`, `status` and `email`, sortable by `lastName`, `code` and `createdAt`.
+
         Parameters
         ----------
         page : typing.Optional[int]
@@ -7721,6 +7801,8 @@ class AsyncRawHrClient:
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> AsyncHttpResponse[EmployeesDeleteHrResponse]:
         """
+        Marks the employee deleted; the record stays and no longer appears in lists or payroll runs. `hr/employees/anonymize` also blanks the personal data.
+
         Parameters
         ----------
         id : str
@@ -8052,6 +8134,8 @@ class AsyncRawHrClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[ContractsCreateHrResponse]:
         """
+        Creates an employment contract for an employee. A `permanent` contract takes no `endDate` and a `fixed_term` one requires it; the number comes from `contractNo` or, with `agreementId`, from the employee's agreement; `workHours` defaults by `salaryType`. Answers 422 when the end date is before the start, and 409 when the employee already has a contract overlapping the period (end it with `hr/contracts/end` first) or the contract number already exists.
+
         Parameters
         ----------
         employee_id : str
@@ -8250,6 +8334,8 @@ class AsyncRawHrClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[ContractsEndHrResponse]:
         """
+        Ends a contract on `endDate` with an optional reason. Answers 422 when the end date is before the contract start.
+
         Parameters
         ----------
         id : str
@@ -8420,6 +8506,8 @@ class AsyncRawHrClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[ContractsListHrResponse]:
         """
+        Lists employment contracts; filterable by `employeeId`, `agreementId`, `status` and `contractNo`, sortable by `startDate` and `contractNo`.
+
         Parameters
         ----------
         page : typing.Optional[int]
@@ -8600,6 +8688,8 @@ class AsyncRawHrClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[LeaveBalancesSetHrResponse]:
         """
+        Creates or replaces the leave entitlement of an employee for a year; `usedDays` is kept unless given (0 on a new row) and `remainingDays` is the entitled days less the used ones.
+
         Parameters
         ----------
         employee_id : str
@@ -8770,6 +8860,8 @@ class AsyncRawHrClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[LeaveBalancesListHrResponse]:
         """
+        Lists leave balances, narrowed to an employee and/or a year when given, oldest year first.
+
         Parameters
         ----------
         employee_id : typing.Optional[str]
@@ -8939,6 +9031,8 @@ class AsyncRawHrClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[IncapacityCertificatesCreateHrResponse]:
         """
+        Records a sick-leave certificate of an employee. Answers 422 when `toDate` is before `fromDate`. `payroll/runs/create` warns when a certificate covers working days of a month that has no timesheet.
+
         Parameters
         ----------
         employee_id : str
@@ -9121,6 +9215,8 @@ class AsyncRawHrClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[IncapacityCertificatesListHrResponse]:
         """
+        Lists incapacity certificates; filterable by `employeeId` and `number`, sortable by `fromDate` and `number`.
+
         Parameters
         ----------
         page : typing.Optional[int]
@@ -9304,6 +9400,8 @@ class AsyncRawHrClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[PerDiemRatesCreateHrResponse]:
         """
+        Adds the company's daily per diem rate for a destination country from `validFrom`; `hr/business-trips/create` takes the latest rate valid on the trip's start date. Answers 409 when a rate for that country already starts on that date.
+
         Parameters
         ----------
         country_code : str
@@ -9474,6 +9572,8 @@ class AsyncRawHrClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[PerDiemRatesListHrResponse]:
         """
+        Lists per diem rates; filterable by `countryCode`, sortable by `countryCode` and `validFrom`.
+
         Parameters
         ----------
         page : typing.Optional[int]
@@ -9648,6 +9748,8 @@ class AsyncRawHrClient:
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> AsyncHttpResponse[PerDiemRatesDeleteHrResponse]:
         """
+        Deletes a per diem rate.
+
         Parameters
         ----------
         id : str
@@ -9812,6 +9914,8 @@ class AsyncRawHrClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[BusinessTripsCreateHrResponse]:
         """
+        Stores the trip as a draft with `days` counted as calendar days, both ends included, and `perDiemAmount` as the days times the company's rate for the destination valid on the start date (`hr/per-diem-rates/create`). Answers 422 when the trip ends before it starts or no rate covers the destination on that date, and 409 when the employee already has a trip overlapping the dates.
+
         Parameters
         ----------
         employee_id : str
@@ -9981,6 +10085,8 @@ class AsyncRawHrClient:
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> AsyncHttpResponse[BusinessTripsGetHrResponse]:
         """
+        Reads one business trip.
+
         Parameters
         ----------
         id : str
@@ -10145,6 +10251,8 @@ class AsyncRawHrClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[BusinessTripsListHrResponse]:
         """
+        Lists business trips; filterable by `employeeId`, `status` and `payrollRunId`, sortable by `startDate`.
+
         Parameters
         ----------
         page : typing.Optional[int]
@@ -10319,6 +10427,8 @@ class AsyncRawHrClient:
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> AsyncHttpResponse[BusinessTripsApproveHrResponse]:
         """
+        Sets the trip's status to `approved`. `payroll/runs/create` without explicit lines adds the per diem of every approved trip ending in the run month as an untaxed addition and sets the trip's `payrollRunId`; reversing or cancelling the run releases the trip again. Answers 409 when the trip is not a draft.
+
         Parameters
         ----------
         id : str
@@ -10476,6 +10586,8 @@ class AsyncRawHrClient:
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> AsyncHttpResponse[BusinessTripsDeleteHrResponse]:
         """
+        Deletes a draft trip; answers 409 when the trip is not a draft.
+
         Parameters
         ----------
         id : str
@@ -10643,6 +10755,8 @@ class AsyncRawHrClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[EmployeesRecordsCreateHrResponse]:
         """
+        Adds an education, qualification, certificate or training record to an employee, optionally linked to one of the company's uploaded files (`fileId`).
+
         Parameters
         ----------
         employee_id : str
@@ -10831,6 +10945,8 @@ class AsyncRawHrClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[EmployeesRecordsUpdateHrResponse]:
         """
+        Changes the given fields of an employee record; `issuedAt`, `validUntil` and `fileId` can be cleared with null.
+
         Parameters
         ----------
         id : str
@@ -11009,6 +11125,8 @@ class AsyncRawHrClient:
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> AsyncHttpResponse[EmployeesRecordsDeleteHrResponse]:
         """
+        Deletes an employee record.
+
         Parameters
         ----------
         id : str
@@ -11173,6 +11291,8 @@ class AsyncRawHrClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[EmployeesRecordsListHrResponse]:
         """
+        Lists employee records; filterable by `employeeId`, `type` and `title`, sortable by `createdAt` and `issuedAt`.
+
         Parameters
         ----------
         page : typing.Optional[int]
@@ -11349,6 +11469,8 @@ class AsyncRawHrClient:
         self, *, employee_id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> AsyncHttpResponse[EmployeesAttachmentsListHrResponse]:
         """
+        Lists the files uploaded against an employee, newest first.
+
         Parameters
         ----------
         employee_id : str
@@ -11511,6 +11633,8 @@ class AsyncRawHrClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[TimesheetsGenerateHrResponse]:
         """
+        Builds the timesheet of the month for every employee with a contract in it, or for one employee with `employeeId`, replacing any existing timesheet: the Monday to Friday days within the contract get the contract's daily hours (its weekly hours over five), and for a Lithuanian company the public holidays are `holiday` days with 0 hours. Answers 422 when no contract covers the month.
+
         Parameters
         ----------
         year : int
@@ -11680,6 +11804,8 @@ class AsyncRawHrClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[TimesheetsUpsertHrResponse]:
         """
+        Creates or replaces the timesheet of an employee for a month from the given days; `workedDays` and `workedHours` count the `work` and `business_trip` days with hours. Answers 422 for a day outside the month, a day given twice or more than 24 hours in a day. `payroll/runs/create` reads the timesheet for the paid days, the days worked and the business-trip days of the month.
+
         Parameters
         ----------
         employee_id : str
@@ -11848,6 +11974,8 @@ class AsyncRawHrClient:
         self, *, employee_id: str, year: int, month: int, request_options: typing.Optional[RequestOptions] = None
     ) -> AsyncHttpResponse[TimesheetsGetHrResponse]:
         """
+        Reads the timesheet of an employee for a month.
+
         Parameters
         ----------
         employee_id : str
@@ -12011,6 +12139,8 @@ class AsyncRawHrClient:
         self, *, year: int, month: int, request_options: typing.Optional[RequestOptions] = None
     ) -> AsyncHttpResponse[TimesheetsListHrResponse]:
         """
+        Lists the timesheets of a month, ordered by employee name.
+
         Parameters
         ----------
         year : int
@@ -12171,6 +12301,8 @@ class AsyncRawHrClient:
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> AsyncHttpResponse[TimesheetsDeleteHrResponse]:
         """
+        Deletes a timesheet.
+
         Parameters
         ----------
         id : str

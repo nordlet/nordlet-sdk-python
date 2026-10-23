@@ -50,6 +50,8 @@ class ConsolidationClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> GroupsCreateConsolidationResponse:
         """
+        Create a consolidation group owned by the calling company; `presentationCurrency` defaults to the company's base currency. Members are added with `consolidation/members/add`.
+
         Parameters
         ----------
         name : str
@@ -84,6 +86,8 @@ class ConsolidationClient:
         self, *, request_options: typing.Optional[RequestOptions] = None
     ) -> GroupsListConsolidationResponse:
         """
+        List the calling company's consolidation groups with their member counts.
+
         Parameters
         ----------
         request_options : typing.Optional[RequestOptions]
@@ -110,6 +114,8 @@ class ConsolidationClient:
         self, *, group_id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> GroupsGetConsolidationResponse:
         """
+        Return one consolidation group with its members, each with its ownership percentage and consolidation method.
+
         Parameters
         ----------
         group_id : str
@@ -145,6 +151,8 @@ class ConsolidationClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> GroupsUpdateConsolidationResponse:
         """
+        Rename a consolidation group or change its presentation currency.
+
         Parameters
         ----------
         group_id : str
@@ -181,6 +189,8 @@ class ConsolidationClient:
         self, *, group_id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> GroupsDeleteConsolidationResponse:
         """
+        Delete a consolidation group.
+
         Parameters
         ----------
         group_id : str
@@ -217,6 +227,8 @@ class ConsolidationClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> MembersAddConsolidationResponse:
         """
+        Add a company to a consolidation group with its ownership percentage and method (`full`, `proportional` or `equity`), or change those of an existing member. Another company can be added only by a signed-in user who is owner, admin or accountant of it; an API key is refused with 403.
+
         Parameters
         ----------
         group_id : str
@@ -260,6 +272,8 @@ class ConsolidationClient:
         self, *, group_id: str, member_company_id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> MembersRemoveConsolidationResponse:
         """
+        Remove a company from a consolidation group.
+
         Parameters
         ----------
         group_id : str
@@ -375,6 +389,8 @@ class ConsolidationClient:
         self, *, group_id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> IntercompanyLinksListConsolidationResponse:
         """
+        List the intercompany links of a group: which partner record of which member company stands for which other member company.
+
         Parameters
         ----------
         group_id : str
@@ -405,6 +421,8 @@ class ConsolidationClient:
         self, *, group_id: str, id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> IntercompanyLinksRemoveConsolidationResponse:
         """
+        Remove an intercompany link from a group.
+
         Parameters
         ----------
         group_id : str
@@ -498,6 +516,8 @@ class ConsolidationClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> ReportConsolidationResponse:
         """
+        Consolidated financial statements of a group for a period in its presentation currency, with the consolidated trial balance and cash flow, each member's contribution and the intercompany candidates. Each member's balances are translated at the group owner's exchange rates of `toDate` and taken in full, in proportion to the ownership (`proportional`) or as an equity-method investment (`equity`); a fully consolidated member held below 100 % yields the non-controlling interest, and `eliminations` are amounts added to account codes before the statements are assembled (`balanced` tells whether they net to zero). Refused with 422 when the group has no members.
+
         Parameters
         ----------
         group_id : str
@@ -571,6 +591,8 @@ class AsyncConsolidationClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> GroupsCreateConsolidationResponse:
         """
+        Create a consolidation group owned by the calling company; `presentationCurrency` defaults to the company's base currency. Members are added with `consolidation/members/add`.
+
         Parameters
         ----------
         name : str
@@ -613,6 +635,8 @@ class AsyncConsolidationClient:
         self, *, request_options: typing.Optional[RequestOptions] = None
     ) -> GroupsListConsolidationResponse:
         """
+        List the calling company's consolidation groups with their member counts.
+
         Parameters
         ----------
         request_options : typing.Optional[RequestOptions]
@@ -647,6 +671,8 @@ class AsyncConsolidationClient:
         self, *, group_id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> GroupsGetConsolidationResponse:
         """
+        Return one consolidation group with its members, each with its ownership percentage and consolidation method.
+
         Parameters
         ----------
         group_id : str
@@ -690,6 +716,8 @@ class AsyncConsolidationClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> GroupsUpdateConsolidationResponse:
         """
+        Rename a consolidation group or change its presentation currency.
+
         Parameters
         ----------
         group_id : str
@@ -734,6 +762,8 @@ class AsyncConsolidationClient:
         self, *, group_id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> GroupsDeleteConsolidationResponse:
         """
+        Delete a consolidation group.
+
         Parameters
         ----------
         group_id : str
@@ -778,6 +808,8 @@ class AsyncConsolidationClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> MembersAddConsolidationResponse:
         """
+        Add a company to a consolidation group with its ownership percentage and method (`full`, `proportional` or `equity`), or change those of an existing member. Another company can be added only by a signed-in user who is owner, admin or accountant of it; an API key is refused with 403.
+
         Parameters
         ----------
         group_id : str
@@ -829,6 +861,8 @@ class AsyncConsolidationClient:
         self, *, group_id: str, member_company_id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> MembersRemoveConsolidationResponse:
         """
+        Remove a company from a consolidation group.
+
         Parameters
         ----------
         group_id : str
@@ -968,6 +1002,8 @@ class AsyncConsolidationClient:
         self, *, group_id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> IntercompanyLinksListConsolidationResponse:
         """
+        List the intercompany links of a group: which partner record of which member company stands for which other member company.
+
         Parameters
         ----------
         group_id : str
@@ -1006,6 +1042,8 @@ class AsyncConsolidationClient:
         self, *, group_id: str, id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> IntercompanyLinksRemoveConsolidationResponse:
         """
+        Remove an intercompany link from a group.
+
         Parameters
         ----------
         group_id : str
@@ -1114,6 +1152,8 @@ class AsyncConsolidationClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> ReportConsolidationResponse:
         """
+        Consolidated financial statements of a group for a period in its presentation currency, with the consolidated trial balance and cash flow, each member's contribution and the intercompany candidates. Each member's balances are translated at the group owner's exchange rates of `toDate` and taken in full, in proportion to the ownership (`proportional`) or as an equity-method investment (`equity`); a fully consolidated member held below 100 % yields the non-controlling interest, and `eliminations` are amounts added to account codes before the statements are assembled (`balanced` tells whether they net to zero). Refused with 422 when the group has no members.
+
         Parameters
         ----------
         group_id : str

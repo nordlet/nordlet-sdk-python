@@ -58,6 +58,8 @@ class RawProjectsClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[CreateProjectsResponse]:
         """
+        Create a project; `partnerId` is the customer that `projects/time-entries/bill` invoices by default. A duplicate `code` is refused with 409.
+
         Parameters
         ----------
         code : str
@@ -231,6 +233,8 @@ class RawProjectsClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[UpdateProjectsResponse]:
         """
+        Change a project's name, customer, `status` (`active`, `completed`, `archived`) or notes; only the fields sent are changed. An archived project accepts no new time entries.
+
         Parameters
         ----------
         id : str
@@ -400,6 +404,8 @@ class RawProjectsClient:
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> HttpResponse[GetProjectsResponse]:
         """
+        Return one project.
+
         Parameters
         ----------
         id : str
@@ -564,6 +570,8 @@ class RawProjectsClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[ListProjectsResponse]:
         """
+        List projects. Filterable by `code`, `name`, `status` and `partnerId`; sortable by `code`, `name` and `createdAt`.
+
         Parameters
         ----------
         page : typing.Optional[int]
@@ -747,6 +755,8 @@ class RawProjectsClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[TimeEntriesCreateProjectsResponse]:
         """
+        Record hours worked on a project on a date, optionally for an employee and with the `hourlyRate` used when billing. `hours` must be positive (422); an archived project is refused with 409.
+
         Parameters
         ----------
         project_id : str
@@ -930,6 +940,8 @@ class RawProjectsClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[TimeEntriesUpdateProjectsResponse]:
         """
+        Change a time entry; only the fields sent are changed. `hours` must be positive (422); an entry already billed to an invoice cannot be changed (409).
+
         Parameters
         ----------
         id : str
@@ -1102,6 +1114,8 @@ class RawProjectsClient:
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> HttpResponse[TimeEntriesDeleteProjectsResponse]:
         """
+        Delete a time entry (409 once it is billed).
+
         Parameters
         ----------
         id : str
@@ -1266,6 +1280,8 @@ class RawProjectsClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[TimeEntriesListProjectsResponse]:
         """
+        List time entries. Filterable by `projectId`, `employeeId`, `billable`, `billedInvoiceId` and `date`; sortable by `date`, `createdAt` and `hours`.
+
         Parameters
         ----------
         page : typing.Optional[int]
@@ -1456,6 +1472,8 @@ class RawProjectsClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[TimeEntriesBillProjectsResponse]:
         """
+        Create a draft sale invoice from the project's unbilled billable time entries, optionally limited to `dateFrom` and `dateTo`, and mark them billed; needs the `sales:write` scope, and the invoice is issued with `sales/invoices/issue`. The customer is `partnerId`, else the project's partner (422 without either); each entry is priced at its own `hourlyRate`, else the call's `hourlyRate` (422 when an entry has neither); `groupBy` `rate` makes one line per rate with the summed hours, `entry` one line per entry; `itemId`, `vatRatePercent` and `vatClassifierCode` go onto every line. No matching entries is 422.
+
         Parameters
         ----------
         project_id : str
@@ -1651,6 +1669,8 @@ class RawProjectsClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[ReportProjectsResponse]:
         """
+        Profitability per project: `revenue` and `costs` from posted journal entries tagged with the project (income accounts credit less debit, expense accounts debit less credit), `profit` as their difference, and the hours from time entries (total, billable, billed, unbilled, and the unbilled amount at the entries' hourly rates). `projectId` limits the report to one project; `dateFrom` and `dateTo` limit the journal dates and the entry dates. Nothing is changed.
+
         Parameters
         ----------
         project_id : typing.Optional[str]
@@ -1825,6 +1845,8 @@ class AsyncRawProjectsClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[CreateProjectsResponse]:
         """
+        Create a project; `partnerId` is the customer that `projects/time-entries/bill` invoices by default. A duplicate `code` is refused with 409.
+
         Parameters
         ----------
         code : str
@@ -1998,6 +2020,8 @@ class AsyncRawProjectsClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[UpdateProjectsResponse]:
         """
+        Change a project's name, customer, `status` (`active`, `completed`, `archived`) or notes; only the fields sent are changed. An archived project accepts no new time entries.
+
         Parameters
         ----------
         id : str
@@ -2167,6 +2191,8 @@ class AsyncRawProjectsClient:
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> AsyncHttpResponse[GetProjectsResponse]:
         """
+        Return one project.
+
         Parameters
         ----------
         id : str
@@ -2331,6 +2357,8 @@ class AsyncRawProjectsClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[ListProjectsResponse]:
         """
+        List projects. Filterable by `code`, `name`, `status` and `partnerId`; sortable by `code`, `name` and `createdAt`.
+
         Parameters
         ----------
         page : typing.Optional[int]
@@ -2514,6 +2542,8 @@ class AsyncRawProjectsClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[TimeEntriesCreateProjectsResponse]:
         """
+        Record hours worked on a project on a date, optionally for an employee and with the `hourlyRate` used when billing. `hours` must be positive (422); an archived project is refused with 409.
+
         Parameters
         ----------
         project_id : str
@@ -2697,6 +2727,8 @@ class AsyncRawProjectsClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[TimeEntriesUpdateProjectsResponse]:
         """
+        Change a time entry; only the fields sent are changed. `hours` must be positive (422); an entry already billed to an invoice cannot be changed (409).
+
         Parameters
         ----------
         id : str
@@ -2869,6 +2901,8 @@ class AsyncRawProjectsClient:
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> AsyncHttpResponse[TimeEntriesDeleteProjectsResponse]:
         """
+        Delete a time entry (409 once it is billed).
+
         Parameters
         ----------
         id : str
@@ -3033,6 +3067,8 @@ class AsyncRawProjectsClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[TimeEntriesListProjectsResponse]:
         """
+        List time entries. Filterable by `projectId`, `employeeId`, `billable`, `billedInvoiceId` and `date`; sortable by `date`, `createdAt` and `hours`.
+
         Parameters
         ----------
         page : typing.Optional[int]
@@ -3223,6 +3259,8 @@ class AsyncRawProjectsClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[TimeEntriesBillProjectsResponse]:
         """
+        Create a draft sale invoice from the project's unbilled billable time entries, optionally limited to `dateFrom` and `dateTo`, and mark them billed; needs the `sales:write` scope, and the invoice is issued with `sales/invoices/issue`. The customer is `partnerId`, else the project's partner (422 without either); each entry is priced at its own `hourlyRate`, else the call's `hourlyRate` (422 when an entry has neither); `groupBy` `rate` makes one line per rate with the summed hours, `entry` one line per entry; `itemId`, `vatRatePercent` and `vatClassifierCode` go onto every line. No matching entries is 422.
+
         Parameters
         ----------
         project_id : str
@@ -3418,6 +3456,8 @@ class AsyncRawProjectsClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[ReportProjectsResponse]:
         """
+        Profitability per project: `revenue` and `costs` from posted journal entries tagged with the project (income accounts credit less debit, expense accounts debit less credit), `profit` as their difference, and the hours from time entries (total, billable, billed, unbilled, and the unbilled amount at the entries' hourly rates). `projectId` limits the report to one project; `dateFrom` and `dateTo` limit the journal dates and the entry dates. Nothing is changed.
+
         Parameters
         ----------
         project_id : typing.Optional[str]

@@ -91,6 +91,8 @@ class PlatformSellersClient:
 
     def get(self, *, id: str, request_options: typing.Optional[RequestOptions] = None) -> GetPlatformSellersResponse:
         """
+        Read one platform seller with its activities, ordered by year.
+
         Parameters
         ----------
         id : str
@@ -142,6 +144,8 @@ class PlatformSellersClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> CreatePlatformSellersResponse:
         """
+        Record a seller on the company's platform for the DAC7 report: an `individual` (first and last name required) or an `entity` (`entityName` required), with its `activities` per year and quarter. An `immovable_property` activity needs `propertyAddress`; property address, type and rented days on any other kind of activity are refused. These checks answer 422; a `partnerId` that does not exist answers 404. The report is built from the sellers with `declarations/eu/dac7/preview` and `declarations/eu/dac7/xml`.
+
         Parameters
         ----------
         kind : CreatePlatformSellersRequestKind
@@ -255,6 +259,8 @@ class PlatformSellersClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> UpdatePlatformSellersResponse:
         """
+        Replace a platform seller's details and all of its activities with the ones given, under the same checks as `platform-sellers/create`.
+
         Parameters
         ----------
         id : str
@@ -350,6 +356,8 @@ class PlatformSellersClient:
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> DeletePlatformSellersResponse:
         """
+        Mark a platform seller as deleted. It leaves the lists and the DAC7 report.
+
         Parameters
         ----------
         id : str
@@ -452,6 +460,8 @@ class AsyncPlatformSellersClient:
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> GetPlatformSellersResponse:
         """
+        Read one platform seller with its activities, ordered by year.
+
         Parameters
         ----------
         id : str
@@ -511,6 +521,8 @@ class AsyncPlatformSellersClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> CreatePlatformSellersResponse:
         """
+        Record a seller on the company's platform for the DAC7 report: an `individual` (first and last name required) or an `entity` (`entityName` required), with its `activities` per year and quarter. An `immovable_property` activity needs `propertyAddress`; property address, type and rented days on any other kind of activity are refused. These checks answer 422; a `partnerId` that does not exist answers 404. The report is built from the sellers with `declarations/eu/dac7/preview` and `declarations/eu/dac7/xml`.
+
         Parameters
         ----------
         kind : CreatePlatformSellersRequestKind
@@ -632,6 +644,8 @@ class AsyncPlatformSellersClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> UpdatePlatformSellersResponse:
         """
+        Replace a platform seller's details and all of its activities with the ones given, under the same checks as `platform-sellers/create`.
+
         Parameters
         ----------
         id : str
@@ -735,6 +749,8 @@ class AsyncPlatformSellersClient:
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> DeletePlatformSellersResponse:
         """
+        Mark a platform seller as deleted. It leaves the lists and the DAC7 report.
+
         Parameters
         ----------
         id : str

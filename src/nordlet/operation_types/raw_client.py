@@ -71,6 +71,8 @@ class RawOperationTypesClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[CreateOperationTypesResponse]:
         """
+        Create an operation type: a `code` with the flags that say what it is for (`isSale`, `isPurchase`, ...), an optional `invoiceType` (`invoice`, `credit_note`, `proforma`, `advance`) and optional account codes. An invoice names it in `operationTypeId`: a sale invoice needs `isSale` and a matching `invoiceType`, a purchase invoice `isPurchase`, and the type's account codes then replace the default posting accounts when the invoice is issued (`sales/invoices/issue`) or registered (`purchases/invoices/register`). `includeInVatRegister: false` keeps the type's invoices out of the Lithuanian i.SAF and FR0600, `includeInSaft: false` out of the SAF-T file. Account codes must exist and be postable and `payerPartnerId` must be an active partner (422 otherwise); a repeated `code` is refused with 409.
+
         Parameters
         ----------
         code : str
@@ -328,6 +330,8 @@ class RawOperationTypesClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[UpdateOperationTypesResponse]:
         """
+        Change an operation type's fields; omitted ones keep their value. A `code` already used by another type is refused with 409, a body without changes with 400.
+
         Parameters
         ----------
         id : str
@@ -560,6 +564,8 @@ class RawOperationTypesClient:
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> HttpResponse[GetOperationTypesResponse]:
         """
+        Read one operation type.
+
         Parameters
         ----------
         id : str
@@ -717,6 +723,8 @@ class RawOperationTypesClient:
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> HttpResponse[DeleteOperationTypesResponse]:
         """
+        Delete an operation type that no sale invoice, purchase invoice or document series refers to. Otherwise the call is refused with 409; deactivate the type with `operation-types/update` instead.
+
         Parameters
         ----------
         id : str
@@ -881,6 +889,8 @@ class RawOperationTypesClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[ListOperationTypesResponse]:
         """
+        List operation types. Filterable by `code`, `name`, `isSale`, `isPurchase` and `isActive`; sortable by `code`, `name`, `sortOrder` and `createdAt`.
+
         Parameters
         ----------
         page : typing.Optional[int]
@@ -1087,6 +1097,8 @@ class AsyncRawOperationTypesClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[CreateOperationTypesResponse]:
         """
+        Create an operation type: a `code` with the flags that say what it is for (`isSale`, `isPurchase`, ...), an optional `invoiceType` (`invoice`, `credit_note`, `proforma`, `advance`) and optional account codes. An invoice names it in `operationTypeId`: a sale invoice needs `isSale` and a matching `invoiceType`, a purchase invoice `isPurchase`, and the type's account codes then replace the default posting accounts when the invoice is issued (`sales/invoices/issue`) or registered (`purchases/invoices/register`). `includeInVatRegister: false` keeps the type's invoices out of the Lithuanian i.SAF and FR0600, `includeInSaft: false` out of the SAF-T file. Account codes must exist and be postable and `payerPartnerId` must be an active partner (422 otherwise); a repeated `code` is refused with 409.
+
         Parameters
         ----------
         code : str
@@ -1344,6 +1356,8 @@ class AsyncRawOperationTypesClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[UpdateOperationTypesResponse]:
         """
+        Change an operation type's fields; omitted ones keep their value. A `code` already used by another type is refused with 409, a body without changes with 400.
+
         Parameters
         ----------
         id : str
@@ -1576,6 +1590,8 @@ class AsyncRawOperationTypesClient:
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> AsyncHttpResponse[GetOperationTypesResponse]:
         """
+        Read one operation type.
+
         Parameters
         ----------
         id : str
@@ -1733,6 +1749,8 @@ class AsyncRawOperationTypesClient:
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> AsyncHttpResponse[DeleteOperationTypesResponse]:
         """
+        Delete an operation type that no sale invoice, purchase invoice or document series refers to. Otherwise the call is refused with 409; deactivate the type with `operation-types/update` instead.
+
         Parameters
         ----------
         id : str
@@ -1897,6 +1915,8 @@ class AsyncRawOperationTypesClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[ListOperationTypesResponse]:
         """
+        List operation types. Filterable by `code`, `name`, `isSale`, `isPurchase` and `isActive`; sortable by `code`, `name`, `sortOrder` and `createdAt`.
+
         Parameters
         ----------
         page : typing.Optional[int]

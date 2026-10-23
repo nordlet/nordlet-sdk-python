@@ -59,6 +59,8 @@ class TransportClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> WaybillsCreateTransportResponse:
         """
+        Create a draft waybill to the consignee. The cargo lines are `lines` or, when none are given and `saleInvoiceId` is set, the product lines of that sale invoice (422 when it has none); a line without `description`, `unit` or `productCode` takes them from its item. `documentDate` defaults to the company's today and `series` to `VAZ`.
+
         Parameters
         ----------
         consignee_partner_id : str
@@ -167,6 +169,8 @@ class TransportClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> WaybillsUpdateTransportResponse:
         """
+        Change a draft waybill; omitted fields keep their value, the optional ones can be cleared with null, and `lines`, when given, replace all existing lines. A waybill that is already issued or cancelled is refused with 409.
+
         Parameters
         ----------
         id : str
@@ -251,6 +255,8 @@ class TransportClient:
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> WaybillsIssueTransportResponse:
         """
+        Issue a draft waybill: it takes the next number of its `series` for the year of `documentDate` and becomes `issued`. Without a vehicle plate or without lines the call is refused with 422, a waybill that is not a draft with 409. Only issued waybills can go into the Lithuanian i.VAZ file (`declarations/lt/ivaz/generate`) and the Romanian e-Transport declaration (`declarations/ro/etransport/build`).
+
         Parameters
         ----------
         id : str
@@ -281,6 +287,8 @@ class TransportClient:
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> WaybillsCancelTransportResponse:
         """
+        Cancel a draft or issued waybill. An already cancelled one is refused with 409.
+
         Parameters
         ----------
         id : str
@@ -311,6 +319,8 @@ class TransportClient:
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> WaybillsGetTransportResponse:
         """
+        Read one waybill with its lines.
+
         Parameters
         ----------
         id : str
@@ -348,6 +358,8 @@ class TransportClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> WaybillsListTransportResponse:
         """
+        List waybills with the consignee's name. Filterable by `status`, `consigneePartnerId`, `documentDate`, `fullNumber` and `dispatchAt`; sortable by `createdAt`, `dispatchAt` and `fullNumber`.
+
         Parameters
         ----------
         page : typing.Optional[int]
@@ -422,6 +434,8 @@ class AsyncTransportClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> WaybillsCreateTransportResponse:
         """
+        Create a draft waybill to the consignee. The cargo lines are `lines` or, when none are given and `saleInvoiceId` is set, the product lines of that sale invoice (422 when it has none); a line without `description`, `unit` or `productCode` takes them from its item. `documentDate` defaults to the company's today and `series` to `VAZ`.
+
         Parameters
         ----------
         consignee_partner_id : str
@@ -537,6 +551,8 @@ class AsyncTransportClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> WaybillsUpdateTransportResponse:
         """
+        Change a draft waybill; omitted fields keep their value, the optional ones can be cleared with null, and `lines`, when given, replace all existing lines. A waybill that is already issued or cancelled is refused with 409.
+
         Parameters
         ----------
         id : str
@@ -629,6 +645,8 @@ class AsyncTransportClient:
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> WaybillsIssueTransportResponse:
         """
+        Issue a draft waybill: it takes the next number of its `series` for the year of `documentDate` and becomes `issued`. Without a vehicle plate or without lines the call is refused with 422, a waybill that is not a draft with 409. Only issued waybills can go into the Lithuanian i.VAZ file (`declarations/lt/ivaz/generate`) and the Romanian e-Transport declaration (`declarations/ro/etransport/build`).
+
         Parameters
         ----------
         id : str
@@ -667,6 +685,8 @@ class AsyncTransportClient:
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> WaybillsCancelTransportResponse:
         """
+        Cancel a draft or issued waybill. An already cancelled one is refused with 409.
+
         Parameters
         ----------
         id : str
@@ -705,6 +725,8 @@ class AsyncTransportClient:
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> WaybillsGetTransportResponse:
         """
+        Read one waybill with its lines.
+
         Parameters
         ----------
         id : str
@@ -750,6 +772,8 @@ class AsyncTransportClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> WaybillsListTransportResponse:
         """
+        List waybills with the consignee's name. Filterable by `status`, `consigneePartnerId`, `documentDate`, `fullNumber` and `dispatchAt`; sortable by `createdAt`, `dispatchAt` and `fullNumber`.
+
         Parameters
         ----------
         page : typing.Optional[int]

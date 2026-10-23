@@ -59,6 +59,8 @@ class RawDocumentSeriesClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[CreateDocumentSeriesResponse]:
         """
+        Create a numbering series for sale invoices, credit notes, proformas or advance invoices (`documentType`). Numbers run from `nextNumber`, padded to `numberLength` digits, and are written as `prefix`-number or, with `printSeries` false, as the bare number; a series may be bound to an operation type (a default series of an operation type is picked for its documents that name no series) and to a warehouse, which `sales/invoices/issue` takes the goods from. `isDefault` makes it the default of its document type and clears the previous one. Answers 422 when only one end of the allocated range `allocatedFrom`..`allocatedTo` is given or the range is reversed, 409 when the prefix exists for the document type.
+
         Parameters
         ----------
         prefix : str
@@ -268,6 +270,8 @@ class RawDocumentSeriesClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[UpdateDocumentSeriesResponse]:
         """
+        Change a document series; fields left out keep their value. `nextNumber` cannot go below its current value (409); `isDefault` clears the previous default of the document type. Answers 422 for an incomplete or reversed allocated range, 409 when the prefix is taken for the document type.
+
         Parameters
         ----------
         id : str
@@ -464,6 +468,8 @@ class RawDocumentSeriesClient:
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> HttpResponse[GetDocumentSeriesResponse]:
         """
+        Return one document series.
+
         Parameters
         ----------
         id : str
@@ -621,6 +627,8 @@ class RawDocumentSeriesClient:
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> HttpResponse[DeleteDocumentSeriesResponse]:
         """
+        Delete a document series no sale document uses. Answers 409 when invoices reference it; deactivate it with `isActive` instead.
+
         Parameters
         ----------
         id : str
@@ -785,6 +793,8 @@ class RawDocumentSeriesClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[ListDocumentSeriesResponse]:
         """
+        List document series. Filterable by documentType, prefix, operationTypeId and isActive; sortable by prefix, documentType and createdAt.
+
         Parameters
         ----------
         page : typing.Optional[int]
@@ -979,6 +989,8 @@ class AsyncRawDocumentSeriesClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[CreateDocumentSeriesResponse]:
         """
+        Create a numbering series for sale invoices, credit notes, proformas or advance invoices (`documentType`). Numbers run from `nextNumber`, padded to `numberLength` digits, and are written as `prefix`-number or, with `printSeries` false, as the bare number; a series may be bound to an operation type (a default series of an operation type is picked for its documents that name no series) and to a warehouse, which `sales/invoices/issue` takes the goods from. `isDefault` makes it the default of its document type and clears the previous one. Answers 422 when only one end of the allocated range `allocatedFrom`..`allocatedTo` is given or the range is reversed, 409 when the prefix exists for the document type.
+
         Parameters
         ----------
         prefix : str
@@ -1188,6 +1200,8 @@ class AsyncRawDocumentSeriesClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[UpdateDocumentSeriesResponse]:
         """
+        Change a document series; fields left out keep their value. `nextNumber` cannot go below its current value (409); `isDefault` clears the previous default of the document type. Answers 422 for an incomplete or reversed allocated range, 409 when the prefix is taken for the document type.
+
         Parameters
         ----------
         id : str
@@ -1384,6 +1398,8 @@ class AsyncRawDocumentSeriesClient:
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> AsyncHttpResponse[GetDocumentSeriesResponse]:
         """
+        Return one document series.
+
         Parameters
         ----------
         id : str
@@ -1541,6 +1557,8 @@ class AsyncRawDocumentSeriesClient:
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> AsyncHttpResponse[DeleteDocumentSeriesResponse]:
         """
+        Delete a document series no sale document uses. Answers 409 when invoices reference it; deactivate it with `isActive` instead.
+
         Parameters
         ----------
         id : str
@@ -1705,6 +1723,8 @@ class AsyncRawDocumentSeriesClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[ListDocumentSeriesResponse]:
         """
+        List document series. Filterable by documentType, prefix, operationTypeId and isActive; sortable by prefix, documentType and createdAt.
+
         Parameters
         ----------
         page : typing.Optional[int]

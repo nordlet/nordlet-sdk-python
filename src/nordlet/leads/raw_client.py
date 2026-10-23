@@ -79,6 +79,8 @@ class RawLeadsClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[CreateLeadsResponse]:
         """
+        Creates a lead in status `new`, `contacted`, `qualified` or `lost`. `assignedUserId` must be a member of the company and `sourceId` and `typeId` must exist in it; `countryCode` and `currency` are stored in upper case; `documents` attach uploaded files not yet linked to a record, and `notes` become the lead's first notes with the caller as author. Emits `lead.created`.
+
         Parameters
         ----------
         name : str
@@ -280,6 +282,8 @@ class RawLeadsClient:
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> HttpResponse[GetLeadsResponse]:
         """
+        Returns one lead with its source and type names.
+
         Parameters
         ----------
         id : str
@@ -454,6 +458,8 @@ class RawLeadsClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[UpdateLeadsResponse]:
         """
+        Changes the given fields of a lead; the clearable fields accept null, `documents` attach more uploaded files, and `countryCode` and `currency` are stored in upper case. A lead that is already converted cannot change `status` (409).
+
         Parameters
         ----------
         id : str
@@ -655,6 +661,8 @@ class RawLeadsClient:
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> HttpResponse[DeleteLeadsResponse]:
         """
+        Deletes a lead with its notes and detaches its files, which stay in the company's files without a record.
+
         Parameters
         ----------
         id : str
@@ -819,6 +827,8 @@ class RawLeadsClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[ListLeadsResponse]:
         """
+        Lists leads with their source and type names; filterable by `name`, `contactName`, `email`, `phone`, `status`, `sourceId`, `typeId`, `countryCode`, `assignedUserId`, `partnerId`, `estimatedValue` and `createdAt`, sortable by `name`, `status`, `estimatedValue`, `createdAt` and `updatedAt`.
+
         Parameters
         ----------
         page : typing.Optional[int]
@@ -993,6 +1003,8 @@ class RawLeadsClient:
         self, *, lead_id: str, body: str, request_options: typing.Optional[RequestOptions] = None
     ) -> HttpResponse[NotesCreateLeadsResponse]:
         """
+        Adds a note to a lead with the caller as author and refreshes the lead's `updatedAt`.
+
         Parameters
         ----------
         lead_id : str
@@ -1153,6 +1165,8 @@ class RawLeadsClient:
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> HttpResponse[NotesDeleteLeadsResponse]:
         """
+        Deletes a lead note.
+
         Parameters
         ----------
         id : str
@@ -1310,6 +1324,8 @@ class RawLeadsClient:
         self, *, lead_id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> HttpResponse[NotesListLeadsResponse]:
         """
+        Lists the notes of a lead, newest first.
+
         Parameters
         ----------
         lead_id : str
@@ -1467,6 +1483,8 @@ class RawLeadsClient:
         self, *, lead_id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> HttpResponse[FilesListLeadsResponse]:
         """
+        Lists the files attached to a lead, newest first.
+
         Parameters
         ----------
         lead_id : str
@@ -1628,6 +1646,8 @@ class RawLeadsClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[SourcesCreateLeadsResponse]:
         """
+        Creates a lead source; a `name` already used by a source of the company is refused with 409.
+
         Parameters
         ----------
         name : str
@@ -1793,6 +1813,8 @@ class RawLeadsClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[SourcesUpdateLeadsResponse]:
         """
+        Changes the name or `isActive` flag of a lead source; a name already used by another source of the company is refused with 409.
+
         Parameters
         ----------
         id : str
@@ -1956,6 +1978,8 @@ class RawLeadsClient:
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> HttpResponse[SourcesDeleteLeadsResponse]:
         """
+        Deletes a lead source; one still referenced by a lead is refused with 409 and should be deactivated with `leads/sources/update` instead.
+
         Parameters
         ----------
         id : str
@@ -2113,6 +2137,8 @@ class RawLeadsClient:
         self, *, request_options: typing.Optional[RequestOptions] = None
     ) -> HttpResponse[SourcesListLeadsResponse]:
         """
+        Lists all lead sources of the company, active and inactive, ordered by name.
+
         Parameters
         ----------
         request_options : typing.Optional[RequestOptions]
@@ -2266,6 +2292,8 @@ class RawLeadsClient:
         self, *, request_options: typing.Optional[RequestOptions] = None
     ) -> HttpResponse[SourcesOptionsLeadsResponse]:
         """
+        Lists the id and name of the active lead sources, ordered by name.
+
         Parameters
         ----------
         request_options : typing.Optional[RequestOptions]
@@ -2423,6 +2451,8 @@ class RawLeadsClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[TypesCreateLeadsResponse]:
         """
+        Creates a lead type; a `name` already used by a type of the company is refused with 409.
+
         Parameters
         ----------
         name : str
@@ -2588,6 +2618,8 @@ class RawLeadsClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[TypesUpdateLeadsResponse]:
         """
+        Changes the name or `isActive` flag of a lead type; a name already used by another type of the company is refused with 409.
+
         Parameters
         ----------
         id : str
@@ -2751,6 +2783,8 @@ class RawLeadsClient:
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> HttpResponse[TypesDeleteLeadsResponse]:
         """
+        Deletes a lead type; one still referenced by a lead is refused with 409 and should be deactivated with `leads/types/update` instead.
+
         Parameters
         ----------
         id : str
@@ -2908,6 +2942,8 @@ class RawLeadsClient:
         self, *, request_options: typing.Optional[RequestOptions] = None
     ) -> HttpResponse[TypesListLeadsResponse]:
         """
+        Lists all lead types of the company, active and inactive, ordered by name.
+
         Parameters
         ----------
         request_options : typing.Optional[RequestOptions]
@@ -3061,6 +3097,8 @@ class RawLeadsClient:
         self, *, request_options: typing.Optional[RequestOptions] = None
     ) -> HttpResponse[TypesOptionsLeadsResponse]:
         """
+        Lists the id and name of the active lead types, ordered by name.
+
         Parameters
         ----------
         request_options : typing.Optional[RequestOptions]
@@ -3410,6 +3448,8 @@ class AsyncRawLeadsClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[CreateLeadsResponse]:
         """
+        Creates a lead in status `new`, `contacted`, `qualified` or `lost`. `assignedUserId` must be a member of the company and `sourceId` and `typeId` must exist in it; `countryCode` and `currency` are stored in upper case; `documents` attach uploaded files not yet linked to a record, and `notes` become the lead's first notes with the caller as author. Emits `lead.created`.
+
         Parameters
         ----------
         name : str
@@ -3611,6 +3651,8 @@ class AsyncRawLeadsClient:
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> AsyncHttpResponse[GetLeadsResponse]:
         """
+        Returns one lead with its source and type names.
+
         Parameters
         ----------
         id : str
@@ -3785,6 +3827,8 @@ class AsyncRawLeadsClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[UpdateLeadsResponse]:
         """
+        Changes the given fields of a lead; the clearable fields accept null, `documents` attach more uploaded files, and `countryCode` and `currency` are stored in upper case. A lead that is already converted cannot change `status` (409).
+
         Parameters
         ----------
         id : str
@@ -3986,6 +4030,8 @@ class AsyncRawLeadsClient:
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> AsyncHttpResponse[DeleteLeadsResponse]:
         """
+        Deletes a lead with its notes and detaches its files, which stay in the company's files without a record.
+
         Parameters
         ----------
         id : str
@@ -4150,6 +4196,8 @@ class AsyncRawLeadsClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[ListLeadsResponse]:
         """
+        Lists leads with their source and type names; filterable by `name`, `contactName`, `email`, `phone`, `status`, `sourceId`, `typeId`, `countryCode`, `assignedUserId`, `partnerId`, `estimatedValue` and `createdAt`, sortable by `name`, `status`, `estimatedValue`, `createdAt` and `updatedAt`.
+
         Parameters
         ----------
         page : typing.Optional[int]
@@ -4324,6 +4372,8 @@ class AsyncRawLeadsClient:
         self, *, lead_id: str, body: str, request_options: typing.Optional[RequestOptions] = None
     ) -> AsyncHttpResponse[NotesCreateLeadsResponse]:
         """
+        Adds a note to a lead with the caller as author and refreshes the lead's `updatedAt`.
+
         Parameters
         ----------
         lead_id : str
@@ -4484,6 +4534,8 @@ class AsyncRawLeadsClient:
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> AsyncHttpResponse[NotesDeleteLeadsResponse]:
         """
+        Deletes a lead note.
+
         Parameters
         ----------
         id : str
@@ -4641,6 +4693,8 @@ class AsyncRawLeadsClient:
         self, *, lead_id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> AsyncHttpResponse[NotesListLeadsResponse]:
         """
+        Lists the notes of a lead, newest first.
+
         Parameters
         ----------
         lead_id : str
@@ -4798,6 +4852,8 @@ class AsyncRawLeadsClient:
         self, *, lead_id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> AsyncHttpResponse[FilesListLeadsResponse]:
         """
+        Lists the files attached to a lead, newest first.
+
         Parameters
         ----------
         lead_id : str
@@ -4959,6 +5015,8 @@ class AsyncRawLeadsClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[SourcesCreateLeadsResponse]:
         """
+        Creates a lead source; a `name` already used by a source of the company is refused with 409.
+
         Parameters
         ----------
         name : str
@@ -5124,6 +5182,8 @@ class AsyncRawLeadsClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[SourcesUpdateLeadsResponse]:
         """
+        Changes the name or `isActive` flag of a lead source; a name already used by another source of the company is refused with 409.
+
         Parameters
         ----------
         id : str
@@ -5287,6 +5347,8 @@ class AsyncRawLeadsClient:
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> AsyncHttpResponse[SourcesDeleteLeadsResponse]:
         """
+        Deletes a lead source; one still referenced by a lead is refused with 409 and should be deactivated with `leads/sources/update` instead.
+
         Parameters
         ----------
         id : str
@@ -5444,6 +5506,8 @@ class AsyncRawLeadsClient:
         self, *, request_options: typing.Optional[RequestOptions] = None
     ) -> AsyncHttpResponse[SourcesListLeadsResponse]:
         """
+        Lists all lead sources of the company, active and inactive, ordered by name.
+
         Parameters
         ----------
         request_options : typing.Optional[RequestOptions]
@@ -5597,6 +5661,8 @@ class AsyncRawLeadsClient:
         self, *, request_options: typing.Optional[RequestOptions] = None
     ) -> AsyncHttpResponse[SourcesOptionsLeadsResponse]:
         """
+        Lists the id and name of the active lead sources, ordered by name.
+
         Parameters
         ----------
         request_options : typing.Optional[RequestOptions]
@@ -5754,6 +5820,8 @@ class AsyncRawLeadsClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[TypesCreateLeadsResponse]:
         """
+        Creates a lead type; a `name` already used by a type of the company is refused with 409.
+
         Parameters
         ----------
         name : str
@@ -5919,6 +5987,8 @@ class AsyncRawLeadsClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[TypesUpdateLeadsResponse]:
         """
+        Changes the name or `isActive` flag of a lead type; a name already used by another type of the company is refused with 409.
+
         Parameters
         ----------
         id : str
@@ -6082,6 +6152,8 @@ class AsyncRawLeadsClient:
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> AsyncHttpResponse[TypesDeleteLeadsResponse]:
         """
+        Deletes a lead type; one still referenced by a lead is refused with 409 and should be deactivated with `leads/types/update` instead.
+
         Parameters
         ----------
         id : str
@@ -6239,6 +6311,8 @@ class AsyncRawLeadsClient:
         self, *, request_options: typing.Optional[RequestOptions] = None
     ) -> AsyncHttpResponse[TypesListLeadsResponse]:
         """
+        Lists all lead types of the company, active and inactive, ordered by name.
+
         Parameters
         ----------
         request_options : typing.Optional[RequestOptions]
@@ -6392,6 +6466,8 @@ class AsyncRawLeadsClient:
         self, *, request_options: typing.Optional[RequestOptions] = None
     ) -> AsyncHttpResponse[TypesOptionsLeadsResponse]:
         """
+        Lists the id and name of the active lead types, ordered by name.
+
         Parameters
         ----------
         request_options : typing.Optional[RequestOptions]

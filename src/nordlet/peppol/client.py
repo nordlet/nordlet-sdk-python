@@ -74,6 +74,8 @@ class PeppolClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> WebhooksPeppolResponse:
         """
+        Apply one event: a delivery status event updates the Peppol status of the sale invoice with that message id and, when the status changes, emits `sale_invoice.peppol_delivered`, `sale_invoice.peppol_rejected` or `sale_invoice.peppol_failed`; a received-document event fetches the document from the access point, stores it as a document capture with the matched supplier, emits `document_capture.peppol_received` and marks it read at the access point (a document already stored is skipped). `handled` is false when the event matched no invoice or document. Answers 404 when no company uses that provider account, 401 when the signature does not match.
+
         Parameters
         ----------
         provider : WebhooksPeppolRequestProvider
@@ -173,6 +175,8 @@ class AsyncPeppolClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> WebhooksPeppolResponse:
         """
+        Apply one event: a delivery status event updates the Peppol status of the sale invoice with that message id and, when the status changes, emits `sale_invoice.peppol_delivered`, `sale_invoice.peppol_rejected` or `sale_invoice.peppol_failed`; a received-document event fetches the document from the access point, stores it as a document capture with the matched supplier, emits `document_capture.peppol_received` and marks it read at the access point (a document already stored is skipped). `handled` is false when the event matched no invoice or document. Answers 404 when no company uses that provider account, 401 when the signature does not match.
+
         Parameters
         ----------
         provider : WebhooksPeppolRequestProvider
