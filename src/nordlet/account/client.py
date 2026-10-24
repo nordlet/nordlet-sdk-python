@@ -41,6 +41,7 @@ from .types.invites_revoke_account_response import InvitesRevokeAccountResponse
 from .types.locale_set_account_request_locale import LocaleSetAccountRequestLocale
 from .types.locale_set_account_response import LocaleSetAccountResponse
 from .types.login_link_consume_account_response import LoginLinkConsumeAccountResponse
+from .types.login_link_request_account_request_app import LoginLinkRequestAccountRequestApp
 from .types.login_link_request_account_request_locale import LoginLinkRequestAccountRequestLocale
 from .types.login_link_request_account_response import LoginLinkRequestAccountResponse
 from .types.logout_account_response import LogoutAccountResponse
@@ -87,10 +88,11 @@ class AccountClient:
         accept_terms: typing.Optional[bool] = OMIT,
         accept_dpa: typing.Optional[bool] = OMIT,
         referral_code: typing.Optional[str] = OMIT,
+        app: typing.Optional[LoginLinkRequestAccountRequestApp] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> LoginLinkRequestAccountResponse:
         """
-        Create a sign-in link for the e-mail address and send it; the link is valid for 15 minutes and is consumed with `account/login-link/consume`. When an unused link was requested for the same address within the last minute, the call answers `sent` without sending another. `locale` sets the language of the e-mail and of the link; `acceptTerms`, `acceptDpa` and `referralCode` are stored with the link and used when the address has no account yet.
+        Create a sign-in link for the e-mail address and send it; the link is valid for 15 minutes and is consumed with `account/login-link/consume`. When an unused link was requested for the same address within the last minute, the call answers `sent` without sending another. `locale` sets the language of the e-mail and of the link; `app` set to `invoice` makes the link open the invoice app instead of the Nordlet app; `acceptTerms`, `acceptDpa` and `referralCode` are stored with the link and used when the address has no account yet.
 
         Parameters
         ----------
@@ -103,6 +105,8 @@ class AccountClient:
         accept_dpa : typing.Optional[bool]
 
         referral_code : typing.Optional[str]
+
+        app : typing.Optional[LoginLinkRequestAccountRequestApp]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -129,6 +133,7 @@ class AccountClient:
             accept_terms=accept_terms,
             accept_dpa=accept_dpa,
             referral_code=referral_code,
+            app=app,
             request_options=request_options,
         )
         return _response.data
@@ -1603,10 +1608,11 @@ class AsyncAccountClient:
         accept_terms: typing.Optional[bool] = OMIT,
         accept_dpa: typing.Optional[bool] = OMIT,
         referral_code: typing.Optional[str] = OMIT,
+        app: typing.Optional[LoginLinkRequestAccountRequestApp] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> LoginLinkRequestAccountResponse:
         """
-        Create a sign-in link for the e-mail address and send it; the link is valid for 15 minutes and is consumed with `account/login-link/consume`. When an unused link was requested for the same address within the last minute, the call answers `sent` without sending another. `locale` sets the language of the e-mail and of the link; `acceptTerms`, `acceptDpa` and `referralCode` are stored with the link and used when the address has no account yet.
+        Create a sign-in link for the e-mail address and send it; the link is valid for 15 minutes and is consumed with `account/login-link/consume`. When an unused link was requested for the same address within the last minute, the call answers `sent` without sending another. `locale` sets the language of the e-mail and of the link; `app` set to `invoice` makes the link open the invoice app instead of the Nordlet app; `acceptTerms`, `acceptDpa` and `referralCode` are stored with the link and used when the address has no account yet.
 
         Parameters
         ----------
@@ -1619,6 +1625,8 @@ class AsyncAccountClient:
         accept_dpa : typing.Optional[bool]
 
         referral_code : typing.Optional[str]
+
+        app : typing.Optional[LoginLinkRequestAccountRequestApp]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -1653,6 +1661,7 @@ class AsyncAccountClient:
             accept_terms=accept_terms,
             accept_dpa=accept_dpa,
             referral_code=referral_code,
+            app=app,
             request_options=request_options,
         )
         return _response.data

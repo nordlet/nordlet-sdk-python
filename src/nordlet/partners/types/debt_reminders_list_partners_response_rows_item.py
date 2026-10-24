@@ -7,11 +7,13 @@ import pydantic
 import typing_extensions
 from ...core.pydantic_utilities import IS_PYDANTIC_V2, UniversalBaseModel
 from ...core.serialization import FieldMetadata
+from .debt_reminders_list_partners_response_rows_item_kind import DebtRemindersListPartnersResponseRowsItemKind
 
 
 class DebtRemindersListPartnersResponseRowsItem(UniversalBaseModel):
     id: str
     partner_id: typing_extensions.Annotated[str, FieldMetadata(alias="partnerId"), pydantic.Field(alias="partnerId")]
+    kind: DebtRemindersListPartnersResponseRowsItemKind
     sent_to: typing_extensions.Annotated[str, FieldMetadata(alias="sentTo"), pydantic.Field(alias="sentTo")]
     invoice_count: typing_extensions.Annotated[
         int, FieldMetadata(alias="invoiceCount"), pydantic.Field(alias="invoiceCount")

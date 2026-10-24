@@ -68,6 +68,7 @@ if typing.TYPE_CHECKING:
     from .debt_reminders_list_partners_request_sort_item_dir import DebtRemindersListPartnersRequestSortItemDir
     from .debt_reminders_list_partners_response import DebtRemindersListPartnersResponse
     from .debt_reminders_list_partners_response_rows_item import DebtRemindersListPartnersResponseRowsItem
+    from .debt_reminders_list_partners_response_rows_item_kind import DebtRemindersListPartnersResponseRowsItemKind
     from .debt_reminders_preview_partners_response import DebtRemindersPreviewPartnersResponse
     from .debt_reminders_preview_partners_response_rows_item import DebtRemindersPreviewPartnersResponseRowsItem
     from .debt_reminders_preview_partners_response_rows_item_invoices_item import (
@@ -78,6 +79,13 @@ if typing.TYPE_CHECKING:
     )
     from .debt_reminders_preview_partners_response_rows_item_totals_item import (
         DebtRemindersPreviewPartnersResponseRowsItemTotalsItem,
+    )
+    from .debt_reminders_settings_get_partners_response import DebtRemindersSettingsGetPartnersResponse
+    from .debt_reminders_settings_update_partners_response import DebtRemindersSettingsUpdatePartnersResponse
+    from .debt_reminders_upcoming_partners_response import DebtRemindersUpcomingPartnersResponse
+    from .debt_reminders_upcoming_partners_response_rows_item import DebtRemindersUpcomingPartnersResponseRowsItem
+    from .debt_reminders_upcoming_partners_response_rows_item_kind import (
+        DebtRemindersUpcomingPartnersResponseRowsItemKind,
     )
     from .delete_partners_response import DeletePartnersResponse
     from .files_list_partners_response import FilesListPartnersResponse
@@ -232,11 +240,17 @@ _dynamic_imports: typing.Dict[str, str] = {
     "DebtRemindersListPartnersRequestSortItemDir": ".debt_reminders_list_partners_request_sort_item_dir",
     "DebtRemindersListPartnersResponse": ".debt_reminders_list_partners_response",
     "DebtRemindersListPartnersResponseRowsItem": ".debt_reminders_list_partners_response_rows_item",
+    "DebtRemindersListPartnersResponseRowsItemKind": ".debt_reminders_list_partners_response_rows_item_kind",
     "DebtRemindersPreviewPartnersResponse": ".debt_reminders_preview_partners_response",
     "DebtRemindersPreviewPartnersResponseRowsItem": ".debt_reminders_preview_partners_response_rows_item",
     "DebtRemindersPreviewPartnersResponseRowsItemInvoicesItem": ".debt_reminders_preview_partners_response_rows_item_invoices_item",
     "DebtRemindersPreviewPartnersResponseRowsItemLocale": ".debt_reminders_preview_partners_response_rows_item_locale",
     "DebtRemindersPreviewPartnersResponseRowsItemTotalsItem": ".debt_reminders_preview_partners_response_rows_item_totals_item",
+    "DebtRemindersSettingsGetPartnersResponse": ".debt_reminders_settings_get_partners_response",
+    "DebtRemindersSettingsUpdatePartnersResponse": ".debt_reminders_settings_update_partners_response",
+    "DebtRemindersUpcomingPartnersResponse": ".debt_reminders_upcoming_partners_response",
+    "DebtRemindersUpcomingPartnersResponseRowsItem": ".debt_reminders_upcoming_partners_response_rows_item",
+    "DebtRemindersUpcomingPartnersResponseRowsItemKind": ".debt_reminders_upcoming_partners_response_rows_item_kind",
     "DeletePartnersResponse": ".delete_partners_response",
     "FilesListPartnersResponse": ".files_list_partners_response",
     "FilesListPartnersResponseRowsItem": ".files_list_partners_response_rows_item",
@@ -402,11 +416,17 @@ __all__ = [
     "DebtRemindersListPartnersRequestSortItemDir",
     "DebtRemindersListPartnersResponse",
     "DebtRemindersListPartnersResponseRowsItem",
+    "DebtRemindersListPartnersResponseRowsItemKind",
     "DebtRemindersPreviewPartnersResponse",
     "DebtRemindersPreviewPartnersResponseRowsItem",
     "DebtRemindersPreviewPartnersResponseRowsItemInvoicesItem",
     "DebtRemindersPreviewPartnersResponseRowsItemLocale",
     "DebtRemindersPreviewPartnersResponseRowsItemTotalsItem",
+    "DebtRemindersSettingsGetPartnersResponse",
+    "DebtRemindersSettingsUpdatePartnersResponse",
+    "DebtRemindersUpcomingPartnersResponse",
+    "DebtRemindersUpcomingPartnersResponseRowsItem",
+    "DebtRemindersUpcomingPartnersResponseRowsItemKind",
     "DeletePartnersResponse",
     "FilesListPartnersResponse",
     "FilesListPartnersResponseRowsItem",

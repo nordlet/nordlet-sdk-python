@@ -61,6 +61,7 @@ if typing.TYPE_CHECKING:
     from .locale_set_account_response_scope import LocaleSetAccountResponseScope
     from .login_link_consume_account_response import LoginLinkConsumeAccountResponse
     from .login_link_consume_account_response_user import LoginLinkConsumeAccountResponseUser
+    from .login_link_request_account_request_app import LoginLinkRequestAccountRequestApp
     from .login_link_request_account_request_locale import LoginLinkRequestAccountRequestLocale
     from .login_link_request_account_response import LoginLinkRequestAccountResponse
     from .logout_account_response import LogoutAccountResponse
@@ -147,6 +148,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "LocaleSetAccountResponseScope": ".locale_set_account_response_scope",
     "LoginLinkConsumeAccountResponse": ".login_link_consume_account_response",
     "LoginLinkConsumeAccountResponseUser": ".login_link_consume_account_response_user",
+    "LoginLinkRequestAccountRequestApp": ".login_link_request_account_request_app",
     "LoginLinkRequestAccountRequestLocale": ".login_link_request_account_request_locale",
     "LoginLinkRequestAccountResponse": ".login_link_request_account_response",
     "LogoutAccountResponse": ".logout_account_response",
@@ -257,6 +259,7 @@ __all__ = [
     "LocaleSetAccountResponseScope",
     "LoginLinkConsumeAccountResponse",
     "LoginLinkConsumeAccountResponseUser",
+    "LoginLinkRequestAccountRequestApp",
     "LoginLinkRequestAccountRequestLocale",
     "LoginLinkRequestAccountResponse",
     "LogoutAccountResponse",
