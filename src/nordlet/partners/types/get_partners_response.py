@@ -41,6 +41,12 @@ class GetPartnersResponse(UniversalBaseModel):
     payment_term_days: typing_extensions.Annotated[
         typing.Optional[int], FieldMetadata(alias="paymentTermDays"), pydantic.Field(alias="paymentTermDays")
     ] = None
+    invoice_currency: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="invoiceCurrency"), pydantic.Field(alias="invoiceCurrency")
+    ] = None
+    invoice_locale: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="invoiceLocale"), pydantic.Field(alias="invoiceLocale")
+    ] = None
     credit_limit: typing_extensions.Annotated[
         typing.Optional[str], FieldMetadata(alias="creditLimit"), pydantic.Field(alias="creditLimit")
     ] = None

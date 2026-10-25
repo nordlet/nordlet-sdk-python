@@ -2,4 +2,6 @@
 
 import typing
 
-AccountSetOverdraftCapBillingResponsePlan = typing.Union[typing.Literal["starter", "business", "scale"], typing.Any]
+AccountSetOverdraftCapBillingResponsePlan = typing.Union[
+    typing.Literal["starter", "business", "scale", "invoicing"], typing.Any
+]

@@ -2,4 +2,6 @@
 
 import typing
 
-AccountSetAccountTypeBillingResponsePlan = typing.Union[typing.Literal["starter", "business", "scale"], typing.Any]
+AccountSetAccountTypeBillingResponsePlan = typing.Union[
+    typing.Literal["starter", "business", "scale", "invoicing"], typing.Any
+]

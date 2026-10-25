@@ -6,8 +6,34 @@ import typing
 from importlib import import_module
 
 if typing.TYPE_CHECKING:
-    from .types import IntegrationRequestsPublicResponse
-_dynamic_imports: typing.Dict[str, str] = {"IntegrationRequestsPublicResponse": ".types"}
+    from .types import (
+        IntegrationRequestsPublicResponse,
+        InvoicesCheckoutPublicResponse,
+        InvoicesGetPublicResponse,
+        InvoicesGetPublicResponseBuyer,
+        InvoicesGetPublicResponseBuyerAddress,
+        InvoicesGetPublicResponseLinesItem,
+        InvoicesGetPublicResponsePaymentStatus,
+        InvoicesGetPublicResponseSeller,
+        InvoicesGetPublicResponseSellerAddress,
+        InvoicesGetPublicResponseStatus,
+        InvoicesGetPublicResponseType,
+        InvoicesPdfPublicResponse,
+    )
+_dynamic_imports: typing.Dict[str, str] = {
+    "IntegrationRequestsPublicResponse": ".types",
+    "InvoicesCheckoutPublicResponse": ".types",
+    "InvoicesGetPublicResponse": ".types",
+    "InvoicesGetPublicResponseBuyer": ".types",
+    "InvoicesGetPublicResponseBuyerAddress": ".types",
+    "InvoicesGetPublicResponseLinesItem": ".types",
+    "InvoicesGetPublicResponsePaymentStatus": ".types",
+    "InvoicesGetPublicResponseSeller": ".types",
+    "InvoicesGetPublicResponseSellerAddress": ".types",
+    "InvoicesGetPublicResponseStatus": ".types",
+    "InvoicesGetPublicResponseType": ".types",
+    "InvoicesPdfPublicResponse": ".types",
+}
 
 
 def __getattr__(attr_name: str) -> typing.Any:
@@ -31,4 +57,17 @@ def __dir__():
     return sorted(lazy_attrs)
 
 
-__all__ = ["IntegrationRequestsPublicResponse"]
+__all__ = [
+    "IntegrationRequestsPublicResponse",
+    "InvoicesCheckoutPublicResponse",
+    "InvoicesGetPublicResponse",
+    "InvoicesGetPublicResponseBuyer",
+    "InvoicesGetPublicResponseBuyerAddress",
+    "InvoicesGetPublicResponseLinesItem",
+    "InvoicesGetPublicResponsePaymentStatus",
+    "InvoicesGetPublicResponseSeller",
+    "InvoicesGetPublicResponseSellerAddress",
+    "InvoicesGetPublicResponseStatus",
+    "InvoicesGetPublicResponseType",
+    "InvoicesPdfPublicResponse",
+]

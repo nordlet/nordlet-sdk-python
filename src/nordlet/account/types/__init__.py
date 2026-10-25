@@ -16,6 +16,9 @@ if typing.TYPE_CHECKING:
     from .companies_create_account_request_accounts_kept_by import CompaniesCreateAccountRequestAccountsKeptBy
     from .companies_create_account_request_address import CompaniesCreateAccountRequestAddress
     from .companies_create_account_request_country_code import CompaniesCreateAccountRequestCountryCode
+    from .companies_create_account_request_default_invoice_locale import (
+        CompaniesCreateAccountRequestDefaultInvoiceLocale,
+    )
     from .companies_create_account_request_vat_period import CompaniesCreateAccountRequestVatPeriod
     from .companies_create_account_response import CompaniesCreateAccountResponse
     from .companies_delete_account_response import CompaniesDeleteAccountResponse
@@ -27,6 +30,9 @@ if typing.TYPE_CHECKING:
     from .companies_select_account_response import CompaniesSelectAccountResponse
     from .companies_update_account_request_accounts_kept_by import CompaniesUpdateAccountRequestAccountsKeptBy
     from .companies_update_account_request_address import CompaniesUpdateAccountRequestAddress
+    from .companies_update_account_request_default_invoice_locale import (
+        CompaniesUpdateAccountRequestDefaultInvoiceLocale,
+    )
     from .companies_update_account_request_logo import CompaniesUpdateAccountRequestLogo
     from .companies_update_account_request_vat_period import CompaniesUpdateAccountRequestVatPeriod
     from .companies_update_account_response import CompaniesUpdateAccountResponse
@@ -103,6 +109,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "CompaniesCreateAccountRequestAccountsKeptBy": ".companies_create_account_request_accounts_kept_by",
     "CompaniesCreateAccountRequestAddress": ".companies_create_account_request_address",
     "CompaniesCreateAccountRequestCountryCode": ".companies_create_account_request_country_code",
+    "CompaniesCreateAccountRequestDefaultInvoiceLocale": ".companies_create_account_request_default_invoice_locale",
     "CompaniesCreateAccountRequestVatPeriod": ".companies_create_account_request_vat_period",
     "CompaniesCreateAccountResponse": ".companies_create_account_response",
     "CompaniesDeleteAccountResponse": ".companies_delete_account_response",
@@ -114,6 +121,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "CompaniesSelectAccountResponse": ".companies_select_account_response",
     "CompaniesUpdateAccountRequestAccountsKeptBy": ".companies_update_account_request_accounts_kept_by",
     "CompaniesUpdateAccountRequestAddress": ".companies_update_account_request_address",
+    "CompaniesUpdateAccountRequestDefaultInvoiceLocale": ".companies_update_account_request_default_invoice_locale",
     "CompaniesUpdateAccountRequestLogo": ".companies_update_account_request_logo",
     "CompaniesUpdateAccountRequestVatPeriod": ".companies_update_account_request_vat_period",
     "CompaniesUpdateAccountResponse": ".companies_update_account_response",
@@ -214,6 +222,7 @@ __all__ = [
     "CompaniesCreateAccountRequestAccountsKeptBy",
     "CompaniesCreateAccountRequestAddress",
     "CompaniesCreateAccountRequestCountryCode",
+    "CompaniesCreateAccountRequestDefaultInvoiceLocale",
     "CompaniesCreateAccountRequestVatPeriod",
     "CompaniesCreateAccountResponse",
     "CompaniesDeleteAccountResponse",
@@ -225,6 +234,7 @@ __all__ = [
     "CompaniesSelectAccountResponse",
     "CompaniesUpdateAccountRequestAccountsKeptBy",
     "CompaniesUpdateAccountRequestAddress",
+    "CompaniesUpdateAccountRequestDefaultInvoiceLocale",
     "CompaniesUpdateAccountRequestLogo",
     "CompaniesUpdateAccountRequestVatPeriod",
     "CompaniesUpdateAccountResponse",

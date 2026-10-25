@@ -19,6 +19,7 @@ from .types.flat_rate_create_billing_request_plan import FlatRateCreateBillingRe
 from .types.flat_rate_create_billing_response import FlatRateCreateBillingResponse
 from .types.portal_create_billing_request_locale import PortalCreateBillingRequestLocale
 from .types.portal_create_billing_response import PortalCreateBillingResponse
+from .types.subscription_cancel_billing_response import SubscriptionCancelBillingResponse
 from .types.topup_confirm_billing_response import TopupConfirmBillingResponse
 from .types.topup_create_billing_request_locale import TopupCreateBillingRequestLocale
 from .types.topup_create_billing_request_return_to import TopupCreateBillingRequestReturnTo
@@ -292,7 +293,7 @@ class BillingClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> FlatRateCreateBillingResponse:
         """
-        Open a Stripe Checkout session for a flat-rate subscription on `plan`, with the trial period of `trialDays` days, and return its URL; a Stripe customer is created for the user when there is none. Answers 409 when a flat-rate subscription is already active and 503 when online payments are not configured or the plan has no price.
+        Open a Stripe Checkout session for a flat-rate subscription on `plan`, with the trial period of `trialDays` days, and return its URL; a Stripe customer is created for the user when there is none. The `invoicing` plan of the invoice tool takes its trial days from the server setting `INVOICE_PLAN_TRIAL_DAYS` and returns to the invoice app. Answers 409 when a flat-rate subscription is already active and 503 when online payments are not configured, the plan has no price, or the Invoicing trial is not set.
 
         Parameters
         ----------
@@ -350,6 +351,34 @@ class BillingClient:
         )
         """
         _response = self._raw_client.flat_rate_confirm(session_id=session_id, request_options=request_options)
+        return _response.data
+
+    def subscription_cancel(
+        self, *, request_options: typing.Optional[RequestOptions] = None
+    ) -> SubscriptionCancelBillingResponse:
+        """
+        Cancel the user's Stripe subscription at the end of the period already paid: the plan stays active until `subscriptionCancelAt`, and Stripe then ends the subscription, which its `customer.subscription.deleted` webhook records. Answers 503 when online payments are not configured and 409 when the account has no subscription.
+
+        Parameters
+        ----------
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        SubscriptionCancelBillingResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.billing.subscription_cancel()
+        """
+        _response = self._raw_client.subscription_cancel(request_options=request_options)
         return _response.data
 
     def portal_create(
@@ -779,7 +808,7 @@ class AsyncBillingClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> FlatRateCreateBillingResponse:
         """
-        Open a Stripe Checkout session for a flat-rate subscription on `plan`, with the trial period of `trialDays` days, and return its URL; a Stripe customer is created for the user when there is none. Answers 409 when a flat-rate subscription is already active and 503 when online payments are not configured or the plan has no price.
+        Open a Stripe Checkout session for a flat-rate subscription on `plan`, with the trial period of `trialDays` days, and return its URL; a Stripe customer is created for the user when there is none. The `invoicing` plan of the invoice tool takes its trial days from the server setting `INVOICE_PLAN_TRIAL_DAYS` and returns to the invoice app. Answers 409 when a flat-rate subscription is already active and 503 when online payments are not configured, the plan has no price, or the Invoicing trial is not set.
 
         Parameters
         ----------
@@ -853,6 +882,42 @@ class AsyncBillingClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.flat_rate_confirm(session_id=session_id, request_options=request_options)
+        return _response.data
+
+    async def subscription_cancel(
+        self, *, request_options: typing.Optional[RequestOptions] = None
+    ) -> SubscriptionCancelBillingResponse:
+        """
+        Cancel the user's Stripe subscription at the end of the period already paid: the plan stays active until `subscriptionCancelAt`, and Stripe then ends the subscription, which its `customer.subscription.deleted` webhook records. Answers 503 when online payments are not configured and 409 when the account has no subscription.
+
+        Parameters
+        ----------
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        SubscriptionCancelBillingResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.billing.subscription_cancel()
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.subscription_cancel(request_options=request_options)
         return _response.data
 
     async def portal_create(

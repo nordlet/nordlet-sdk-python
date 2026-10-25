@@ -2,4 +2,4 @@
 
 import typing
 
-TopupConfirmBillingResponsePlan = typing.Union[typing.Literal["starter", "business", "scale"], typing.Any]
+TopupConfirmBillingResponsePlan = typing.Union[typing.Literal["starter", "business", "scale", "invoicing"], typing.Any]

@@ -43,6 +43,18 @@ class AccountGetBillingResponse(UniversalBaseModel):
     has_subscription: typing_extensions.Annotated[
         bool, FieldMetadata(alias="hasSubscription"), pydantic.Field(alias="hasSubscription")
     ]
+    subscription_cancel_at: typing_extensions.Annotated[
+        typing.Optional[dt.datetime],
+        FieldMetadata(alias="subscriptionCancelAt"),
+        pydantic.Field(
+            alias="subscriptionCancelAt",
+            description="When the Stripe subscription ends after `subscription/cancel`; null while it renews",
+        ),
+    ] = None
+    """
+    When the Stripe subscription ends after `subscription/cancel`; null while it renews
+    """
+
     payment_failed_at: typing_extensions.Annotated[
         typing.Optional[dt.datetime], FieldMetadata(alias="paymentFailedAt"), pydantic.Field(alias="paymentFailedAt")
     ] = None

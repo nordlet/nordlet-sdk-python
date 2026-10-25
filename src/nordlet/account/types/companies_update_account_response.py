@@ -61,6 +61,48 @@ class CompaniesUpdateAccountResponse(UniversalBaseModel):
     bank_name: typing_extensions.Annotated[
         typing.Optional[str], FieldMetadata(alias="bankName"), pydantic.Field(alias="bankName")
     ] = None
+    bank_bic: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="bankBic"), pydantic.Field(alias="bankBic")
+    ] = None
+    bank_code: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="bankCode"), pydantic.Field(alias="bankCode")
+    ] = None
+    bank_branch_code: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="bankBranchCode"), pydantic.Field(alias="bankBranchCode")
+    ] = None
+    bank_account_number: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="bankAccountNumber"), pydantic.Field(alias="bankAccountNumber")
+    ] = None
+    invoice_prefix: typing_extensions.Annotated[
+        str,
+        FieldMetadata(alias="invoicePrefix"),
+        pydantic.Field(
+            alias="invoicePrefix",
+            description="Prefix of the numbers of invoices issued without a document series (SF when none was set)",
+        ),
+    ]
+    """
+    Prefix of the numbers of invoices issued without a document series (SF when none was set)
+    """
+
+    next_invoice_number: typing_extensions.Annotated[
+        str,
+        FieldMetadata(alias="nextInvoiceNumber"),
+        pydantic.Field(
+            alias="nextInvoiceNumber",
+            description="Number the next invoice issued without a document series gets, before any country-specific format",
+        ),
+    ]
+    """
+    Number the next invoice issued without a document series gets, before any country-specific format
+    """
+
+    default_invoice_locale: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="defaultInvoiceLocale"), pydantic.Field(alias="defaultInvoiceLocale")
+    ] = None
+    default_invoice_note: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="defaultInvoiceNote"), pydantic.Field(alias="defaultInvoiceNote")
+    ] = None
     peppol_id: typing_extensions.Annotated[
         typing.Optional[str], FieldMetadata(alias="peppolId"), pydantic.Field(alias="peppolId")
     ] = None

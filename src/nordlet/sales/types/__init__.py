@@ -41,6 +41,8 @@ if typing.TYPE_CHECKING:
     from .acts_update_sales_response_lines_item import ActsUpdateSalesResponseLinesItem
     from .acts_update_sales_response_status import ActsUpdateSalesResponseStatus
     from .acts_update_sales_response_type import ActsUpdateSalesResponseType
+    from .exports_month_sales_request_format import ExportsMonthSalesRequestFormat
+    from .exports_month_sales_response import ExportsMonthSalesResponse
     from .invoice_templates_create_sales_request_document_type import InvoiceTemplatesCreateSalesRequestDocumentType
     from .invoice_templates_create_sales_request_lines_item import InvoiceTemplatesCreateSalesRequestLinesItem
     from .invoice_templates_create_sales_request_supply_type import InvoiceTemplatesCreateSalesRequestSupplyType
@@ -112,6 +114,9 @@ if typing.TYPE_CHECKING:
         InvoicesApplyAdvanceSalesResponseVatEvidenceVies,
     )
     from .invoices_apply_advance_sales_response_vat_scheme import InvoicesApplyAdvanceSalesResponseVatScheme
+    from .invoices_card_payments_connect_sales_response import InvoicesCardPaymentsConnectSalesResponse
+    from .invoices_card_payments_disconnect_sales_response import InvoicesCardPaymentsDisconnectSalesResponse
+    from .invoices_card_payments_get_sales_response import InvoicesCardPaymentsGetSalesResponse
     from .invoices_create_sales_request_lines_item import InvoicesCreateSalesRequestLinesItem
     from .invoices_create_sales_request_lines_item_quantity import InvoicesCreateSalesRequestLinesItemQuantity
     from .invoices_create_sales_request_lines_item_recognition import InvoicesCreateSalesRequestLinesItemRecognition
@@ -284,6 +289,18 @@ if typing.TYPE_CHECKING:
     from .invoices_update_sales_response_vat_evidence_scheme import InvoicesUpdateSalesResponseVatEvidenceScheme
     from .invoices_update_sales_response_vat_evidence_vies import InvoicesUpdateSalesResponseVatEvidenceVies
     from .invoices_update_sales_response_vat_scheme import InvoicesUpdateSalesResponseVatScheme
+    from .invoices_view_sales_response import InvoicesViewSalesResponse
+    from .invoices_view_sales_response_buyer import InvoicesViewSalesResponseBuyer
+    from .invoices_view_sales_response_buyer_address import InvoicesViewSalesResponseBuyerAddress
+    from .invoices_view_sales_response_lines_item import InvoicesViewSalesResponseLinesItem
+    from .invoices_view_sales_response_payment_status import InvoicesViewSalesResponsePaymentStatus
+    from .invoices_view_sales_response_seller import InvoicesViewSalesResponseSeller
+    from .invoices_view_sales_response_seller_address import InvoicesViewSalesResponseSellerAddress
+    from .invoices_view_sales_response_status import InvoicesViewSalesResponseStatus
+    from .invoices_view_sales_response_type import InvoicesViewSalesResponseType
+    from .payments_list_sales_response import PaymentsListSalesResponse
+    from .payments_list_sales_response_rows_item import PaymentsListSalesResponseRowsItem
+    from .payments_list_sales_response_rows_item_method import PaymentsListSalesResponseRowsItemMethod
     from .recognition_compute_sales_response import RecognitionComputeSalesResponse
     from .recognition_compute_sales_response_rows_item import RecognitionComputeSalesResponseRowsItem
     from .recognition_modify_sales_request_approach import RecognitionModifySalesRequestApproach
@@ -421,6 +438,8 @@ _dynamic_imports: typing.Dict[str, str] = {
     "ActsUpdateSalesResponseLinesItem": ".acts_update_sales_response_lines_item",
     "ActsUpdateSalesResponseStatus": ".acts_update_sales_response_status",
     "ActsUpdateSalesResponseType": ".acts_update_sales_response_type",
+    "ExportsMonthSalesRequestFormat": ".exports_month_sales_request_format",
+    "ExportsMonthSalesResponse": ".exports_month_sales_response",
     "InvoiceTemplatesCreateSalesRequestDocumentType": ".invoice_templates_create_sales_request_document_type",
     "InvoiceTemplatesCreateSalesRequestLinesItem": ".invoice_templates_create_sales_request_lines_item",
     "InvoiceTemplatesCreateSalesRequestSupplyType": ".invoice_templates_create_sales_request_supply_type",
@@ -468,6 +487,9 @@ _dynamic_imports: typing.Dict[str, str] = {
     "InvoicesApplyAdvanceSalesResponseVatEvidenceScheme": ".invoices_apply_advance_sales_response_vat_evidence_scheme",
     "InvoicesApplyAdvanceSalesResponseVatEvidenceVies": ".invoices_apply_advance_sales_response_vat_evidence_vies",
     "InvoicesApplyAdvanceSalesResponseVatScheme": ".invoices_apply_advance_sales_response_vat_scheme",
+    "InvoicesCardPaymentsConnectSalesResponse": ".invoices_card_payments_connect_sales_response",
+    "InvoicesCardPaymentsDisconnectSalesResponse": ".invoices_card_payments_disconnect_sales_response",
+    "InvoicesCardPaymentsGetSalesResponse": ".invoices_card_payments_get_sales_response",
     "InvoicesCreateSalesRequestLinesItem": ".invoices_create_sales_request_lines_item",
     "InvoicesCreateSalesRequestLinesItemQuantity": ".invoices_create_sales_request_lines_item_quantity",
     "InvoicesCreateSalesRequestLinesItemRecognition": ".invoices_create_sales_request_lines_item_recognition",
@@ -606,6 +628,18 @@ _dynamic_imports: typing.Dict[str, str] = {
     "InvoicesUpdateSalesResponseVatEvidenceScheme": ".invoices_update_sales_response_vat_evidence_scheme",
     "InvoicesUpdateSalesResponseVatEvidenceVies": ".invoices_update_sales_response_vat_evidence_vies",
     "InvoicesUpdateSalesResponseVatScheme": ".invoices_update_sales_response_vat_scheme",
+    "InvoicesViewSalesResponse": ".invoices_view_sales_response",
+    "InvoicesViewSalesResponseBuyer": ".invoices_view_sales_response_buyer",
+    "InvoicesViewSalesResponseBuyerAddress": ".invoices_view_sales_response_buyer_address",
+    "InvoicesViewSalesResponseLinesItem": ".invoices_view_sales_response_lines_item",
+    "InvoicesViewSalesResponsePaymentStatus": ".invoices_view_sales_response_payment_status",
+    "InvoicesViewSalesResponseSeller": ".invoices_view_sales_response_seller",
+    "InvoicesViewSalesResponseSellerAddress": ".invoices_view_sales_response_seller_address",
+    "InvoicesViewSalesResponseStatus": ".invoices_view_sales_response_status",
+    "InvoicesViewSalesResponseType": ".invoices_view_sales_response_type",
+    "PaymentsListSalesResponse": ".payments_list_sales_response",
+    "PaymentsListSalesResponseRowsItem": ".payments_list_sales_response_rows_item",
+    "PaymentsListSalesResponseRowsItemMethod": ".payments_list_sales_response_rows_item_method",
     "RecognitionComputeSalesResponse": ".recognition_compute_sales_response",
     "RecognitionComputeSalesResponseRowsItem": ".recognition_compute_sales_response_rows_item",
     "RecognitionModifySalesRequestApproach": ".recognition_modify_sales_request_approach",
@@ -739,6 +773,8 @@ __all__ = [
     "ActsUpdateSalesResponseLinesItem",
     "ActsUpdateSalesResponseStatus",
     "ActsUpdateSalesResponseType",
+    "ExportsMonthSalesRequestFormat",
+    "ExportsMonthSalesResponse",
     "InvoiceTemplatesCreateSalesRequestDocumentType",
     "InvoiceTemplatesCreateSalesRequestLinesItem",
     "InvoiceTemplatesCreateSalesRequestSupplyType",
@@ -786,6 +822,9 @@ __all__ = [
     "InvoicesApplyAdvanceSalesResponseVatEvidenceScheme",
     "InvoicesApplyAdvanceSalesResponseVatEvidenceVies",
     "InvoicesApplyAdvanceSalesResponseVatScheme",
+    "InvoicesCardPaymentsConnectSalesResponse",
+    "InvoicesCardPaymentsDisconnectSalesResponse",
+    "InvoicesCardPaymentsGetSalesResponse",
     "InvoicesCreateSalesRequestLinesItem",
     "InvoicesCreateSalesRequestLinesItemQuantity",
     "InvoicesCreateSalesRequestLinesItemRecognition",
@@ -924,6 +963,18 @@ __all__ = [
     "InvoicesUpdateSalesResponseVatEvidenceScheme",
     "InvoicesUpdateSalesResponseVatEvidenceVies",
     "InvoicesUpdateSalesResponseVatScheme",
+    "InvoicesViewSalesResponse",
+    "InvoicesViewSalesResponseBuyer",
+    "InvoicesViewSalesResponseBuyerAddress",
+    "InvoicesViewSalesResponseLinesItem",
+    "InvoicesViewSalesResponsePaymentStatus",
+    "InvoicesViewSalesResponseSeller",
+    "InvoicesViewSalesResponseSellerAddress",
+    "InvoicesViewSalesResponseStatus",
+    "InvoicesViewSalesResponseType",
+    "PaymentsListSalesResponse",
+    "PaymentsListSalesResponseRowsItem",
+    "PaymentsListSalesResponseRowsItemMethod",
     "RecognitionComputeSalesResponse",
     "RecognitionComputeSalesResponseRowsItem",
     "RecognitionModifySalesRequestApproach",

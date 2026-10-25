@@ -50,6 +50,8 @@ if typing.TYPE_CHECKING:
     from .contacts_update_partners_response import ContactsUpdatePartnersResponse
     from .create_partners_request_address import CreatePartnersRequestAddress
     from .create_partners_request_correspondence_address import CreatePartnersRequestCorrespondenceAddress
+    from .create_partners_request_invoice_currency import CreatePartnersRequestInvoiceCurrency
+    from .create_partners_request_invoice_locale import CreatePartnersRequestInvoiceLocale
     from .create_partners_request_legal_country_class import CreatePartnersRequestLegalCountryClass
     from .create_partners_request_type import CreatePartnersRequestType
     from .create_partners_response import CreatePartnersResponse
@@ -92,6 +94,8 @@ if typing.TYPE_CHECKING:
     from .files_list_partners_response_rows_item import FilesListPartnersResponseRowsItem
     from .find_or_create_partners_request_address import FindOrCreatePartnersRequestAddress
     from .find_or_create_partners_request_correspondence_address import FindOrCreatePartnersRequestCorrespondenceAddress
+    from .find_or_create_partners_request_invoice_currency import FindOrCreatePartnersRequestInvoiceCurrency
+    from .find_or_create_partners_request_invoice_locale import FindOrCreatePartnersRequestInvoiceLocale
     from .find_or_create_partners_request_legal_country_class import FindOrCreatePartnersRequestLegalCountryClass
     from .find_or_create_partners_request_type import FindOrCreatePartnersRequestType
     from .find_or_create_partners_response import FindOrCreatePartnersResponse
@@ -155,6 +159,8 @@ if typing.TYPE_CHECKING:
     from .statuses_update_partners_response import StatusesUpdatePartnersResponse
     from .update_partners_request_address import UpdatePartnersRequestAddress
     from .update_partners_request_correspondence_address import UpdatePartnersRequestCorrespondenceAddress
+    from .update_partners_request_invoice_currency import UpdatePartnersRequestInvoiceCurrency
+    from .update_partners_request_invoice_locale import UpdatePartnersRequestInvoiceLocale
     from .update_partners_request_legal_country_class import UpdatePartnersRequestLegalCountryClass
     from .update_partners_request_type import UpdatePartnersRequestType
     from .update_partners_response import UpdatePartnersResponse
@@ -224,6 +230,8 @@ _dynamic_imports: typing.Dict[str, str] = {
     "ContactsUpdatePartnersResponse": ".contacts_update_partners_response",
     "CreatePartnersRequestAddress": ".create_partners_request_address",
     "CreatePartnersRequestCorrespondenceAddress": ".create_partners_request_correspondence_address",
+    "CreatePartnersRequestInvoiceCurrency": ".create_partners_request_invoice_currency",
+    "CreatePartnersRequestInvoiceLocale": ".create_partners_request_invoice_locale",
     "CreatePartnersRequestLegalCountryClass": ".create_partners_request_legal_country_class",
     "CreatePartnersRequestType": ".create_partners_request_type",
     "CreatePartnersResponse": ".create_partners_response",
@@ -256,6 +264,8 @@ _dynamic_imports: typing.Dict[str, str] = {
     "FilesListPartnersResponseRowsItem": ".files_list_partners_response_rows_item",
     "FindOrCreatePartnersRequestAddress": ".find_or_create_partners_request_address",
     "FindOrCreatePartnersRequestCorrespondenceAddress": ".find_or_create_partners_request_correspondence_address",
+    "FindOrCreatePartnersRequestInvoiceCurrency": ".find_or_create_partners_request_invoice_currency",
+    "FindOrCreatePartnersRequestInvoiceLocale": ".find_or_create_partners_request_invoice_locale",
     "FindOrCreatePartnersRequestLegalCountryClass": ".find_or_create_partners_request_legal_country_class",
     "FindOrCreatePartnersRequestType": ".find_or_create_partners_request_type",
     "FindOrCreatePartnersResponse": ".find_or_create_partners_response",
@@ -311,6 +321,8 @@ _dynamic_imports: typing.Dict[str, str] = {
     "StatusesUpdatePartnersResponse": ".statuses_update_partners_response",
     "UpdatePartnersRequestAddress": ".update_partners_request_address",
     "UpdatePartnersRequestCorrespondenceAddress": ".update_partners_request_correspondence_address",
+    "UpdatePartnersRequestInvoiceCurrency": ".update_partners_request_invoice_currency",
+    "UpdatePartnersRequestInvoiceLocale": ".update_partners_request_invoice_locale",
     "UpdatePartnersRequestLegalCountryClass": ".update_partners_request_legal_country_class",
     "UpdatePartnersRequestType": ".update_partners_request_type",
     "UpdatePartnersResponse": ".update_partners_response",
@@ -400,6 +412,8 @@ __all__ = [
     "ContactsUpdatePartnersResponse",
     "CreatePartnersRequestAddress",
     "CreatePartnersRequestCorrespondenceAddress",
+    "CreatePartnersRequestInvoiceCurrency",
+    "CreatePartnersRequestInvoiceLocale",
     "CreatePartnersRequestLegalCountryClass",
     "CreatePartnersRequestType",
     "CreatePartnersResponse",
@@ -432,6 +446,8 @@ __all__ = [
     "FilesListPartnersResponseRowsItem",
     "FindOrCreatePartnersRequestAddress",
     "FindOrCreatePartnersRequestCorrespondenceAddress",
+    "FindOrCreatePartnersRequestInvoiceCurrency",
+    "FindOrCreatePartnersRequestInvoiceLocale",
     "FindOrCreatePartnersRequestLegalCountryClass",
     "FindOrCreatePartnersRequestType",
     "FindOrCreatePartnersResponse",
@@ -487,6 +503,8 @@ __all__ = [
     "StatusesUpdatePartnersResponse",
     "UpdatePartnersRequestAddress",
     "UpdatePartnersRequestCorrespondenceAddress",
+    "UpdatePartnersRequestInvoiceCurrency",
+    "UpdatePartnersRequestInvoiceLocale",
     "UpdatePartnersRequestLegalCountryClass",
     "UpdatePartnersRequestType",
     "UpdatePartnersResponse",

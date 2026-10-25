@@ -2,4 +2,4 @@
 
 import typing
 
-FlatRateCreateBillingRequestPlan = typing.Union[typing.Literal["starter", "business", "scale"], typing.Any]
+FlatRateCreateBillingRequestPlan = typing.Union[typing.Literal["starter", "business", "scale", "invoicing"], typing.Any]

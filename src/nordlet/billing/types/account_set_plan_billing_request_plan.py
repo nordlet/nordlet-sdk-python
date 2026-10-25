@@ -2,4 +2,4 @@
 
 import typing
 
-AccountSetPlanBillingRequestPlan = typing.Union[typing.Literal["starter", "business", "scale"], typing.Any]
+AccountSetPlanBillingRequestPlan = typing.Union[typing.Literal["starter", "business", "scale", "invoicing"], typing.Any]

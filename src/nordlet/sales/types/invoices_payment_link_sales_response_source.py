@@ -2,4 +2,4 @@
 
 import typing
 
-InvoicesPaymentLinkSalesResponseSource = typing.Union[typing.Literal["template"], typing.Any]
+InvoicesPaymentLinkSalesResponseSource = typing.Union[typing.Literal["stripe", "template"], typing.Any]

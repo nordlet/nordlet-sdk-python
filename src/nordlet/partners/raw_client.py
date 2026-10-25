@@ -45,6 +45,8 @@ from .types.contacts_list_partners_response import ContactsListPartnersResponse
 from .types.contacts_update_partners_response import ContactsUpdatePartnersResponse
 from .types.create_partners_request_address import CreatePartnersRequestAddress
 from .types.create_partners_request_correspondence_address import CreatePartnersRequestCorrespondenceAddress
+from .types.create_partners_request_invoice_currency import CreatePartnersRequestInvoiceCurrency
+from .types.create_partners_request_invoice_locale import CreatePartnersRequestInvoiceLocale
 from .types.create_partners_request_legal_country_class import CreatePartnersRequestLegalCountryClass
 from .types.create_partners_request_type import CreatePartnersRequestType
 from .types.create_partners_response import CreatePartnersResponse
@@ -62,6 +64,8 @@ from .types.find_or_create_partners_request_address import FindOrCreatePartnersR
 from .types.find_or_create_partners_request_correspondence_address import (
     FindOrCreatePartnersRequestCorrespondenceAddress,
 )
+from .types.find_or_create_partners_request_invoice_currency import FindOrCreatePartnersRequestInvoiceCurrency
+from .types.find_or_create_partners_request_invoice_locale import FindOrCreatePartnersRequestInvoiceLocale
 from .types.find_or_create_partners_request_legal_country_class import FindOrCreatePartnersRequestLegalCountryClass
 from .types.find_or_create_partners_request_type import FindOrCreatePartnersRequestType
 from .types.find_or_create_partners_response import FindOrCreatePartnersResponse
@@ -87,6 +91,8 @@ from .types.statuses_list_partners_response import StatusesListPartnersResponse
 from .types.statuses_update_partners_response import StatusesUpdatePartnersResponse
 from .types.update_partners_request_address import UpdatePartnersRequestAddress
 from .types.update_partners_request_correspondence_address import UpdatePartnersRequestCorrespondenceAddress
+from .types.update_partners_request_invoice_currency import UpdatePartnersRequestInvoiceCurrency
+from .types.update_partners_request_invoice_locale import UpdatePartnersRequestInvoiceLocale
 from .types.update_partners_request_legal_country_class import UpdatePartnersRequestLegalCountryClass
 from .types.update_partners_request_type import UpdatePartnersRequestType
 from .types.update_partners_response import UpdatePartnersResponse
@@ -2399,7 +2405,7 @@ class RawPartnersClient:
         self, *, request_options: typing.Optional[RequestOptions] = None
     ) -> HttpResponse[DebtRemindersPreviewPartnersResponse]:
         """
-        Runs the overdue selection of the daily debt-reminder job for this company as of the company's current date and returns the overdue reminders it would send, without sending or recording anything. A partner is included when it has `autoDebtReminder`, is active, has an e-mail address, got no overdue reminder in the last `repeatDays` days (`partners/debt-reminders/settings/get`) and has issued invoices or advance invoices past their due date with an unpaid remainder; the interest per invoice is the remainder times the partner's `lateInterestPercent` times the days late over 365, and the totals are per currency. Sent reminders are listed by `partners/debt-reminders/list`.
+        Runs the overdue selection of the daily debt-reminder job for this company as of the company's current date and returns the overdue reminders it would send, without sending or recording anything. A partner is included when it has `autoDebtReminder`, is active, has an e-mail address, got no overdue reminder in the last `repeatDays` days (`partners/debt-reminders/settings/get`) and has issued invoices or advance invoices with `debtRemindersEnabled` past their due date with an unpaid remainder; the interest per invoice is the remainder times the partner's `lateInterestPercent` times the days late over 365, and the totals are per currency. Sent reminders are listed by `partners/debt-reminders/list`.
 
         Parameters
         ----------
@@ -2900,7 +2906,7 @@ class RawPartnersClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[DebtRemindersSettingsUpdatePartnersResponse]:
         """
-        Changes the given fields of the company's debt-reminder schedule. `daysBefore` (1 to 90, or null to send nothing before the due date) makes the daily job send one "payment due soon" reminder per invoice that many days before its due date; `repeatDays` (1 to 90) is the number of days between overdue reminders to a partner. Only partners with `autoDebtReminder` get reminders. A body without fields is refused with 400.
+        Changes the given fields of the company's debt-reminder schedule. `daysBefore` (1 to 90, or null to send nothing before the due date) makes the daily job send one "payment due soon" reminder per invoice that many days before its due date; `repeatDays` (1 to 90) is the number of days between overdue reminders to a partner. Only partners with `autoDebtReminder` get reminders, and only for invoices with `debtRemindersEnabled`. A body without fields is refused with 400.
 
         Parameters
         ----------
@@ -3062,7 +3068,7 @@ class RawPartnersClient:
         self, *, request_options: typing.Optional[RequestOptions] = None
     ) -> HttpResponse[DebtRemindersUpcomingPartnersResponse]:
         """
-        Returns the next reminder the daily debt-reminder job would send for each unpaid issued invoice or advance invoice of the partners that get reminders (`autoDebtReminder`, active, with an e-mail address), as of the company's current date and sorted by `date`. A `before_due` reminder is sent once per invoice, `daysBefore` days before its due date or on the first daily run after that while the due date is still ahead; `overdue` reminders start the day after the due date and repeat every `repeatDays` days per partner, counting only overdue reminders. Nothing is sent or recorded.
+        Returns the next reminder the daily debt-reminder job would send for each unpaid issued invoice or advance invoice with `debtRemindersEnabled` of the partners that get reminders (`autoDebtReminder`, active, with an e-mail address), as of the company's current date and sorted by `date`. A `before_due` reminder is sent once per invoice, `daysBefore` days before its due date or on the first daily run after that while the due date is still ahead; `overdue` reminders start the day after the due date and repeat every `repeatDays` days per partner, counting only overdue reminders. Nothing is sent or recorded.
 
         Parameters
         ----------
@@ -3749,6 +3755,8 @@ class RawPartnersClient:
         is_customer: typing.Optional[bool] = OMIT,
         is_supplier: typing.Optional[bool] = OMIT,
         payment_term_days: typing.Optional[int] = OMIT,
+        invoice_currency: typing.Optional[CreatePartnersRequestInvoiceCurrency] = OMIT,
+        invoice_locale: typing.Optional[CreatePartnersRequestInvoiceLocale] = OMIT,
         credit_limit: typing.Optional[str] = OMIT,
         price_list_id: typing.Optional[str] = OMIT,
         group_id: typing.Optional[str] = OMIT,
@@ -3801,6 +3809,12 @@ class RawPartnersClient:
         is_supplier : typing.Optional[bool]
 
         payment_term_days : typing.Optional[int]
+
+        invoice_currency : typing.Optional[CreatePartnersRequestInvoiceCurrency]
+            Currency a new invoice for this partner starts with when the invoice names none
+
+        invoice_locale : typing.Optional[CreatePartnersRequestInvoiceLocale]
+            Language a new invoice for this partner starts with when the invoice names none
 
         credit_limit : typing.Optional[str]
 
@@ -3870,6 +3884,8 @@ class RawPartnersClient:
                 "isCustomer": is_customer,
                 "isSupplier": is_supplier,
                 "paymentTermDays": payment_term_days,
+                "invoiceCurrency": invoice_currency,
+                "invoiceLocale": invoice_locale,
                 "creditLimit": credit_limit,
                 "priceListId": price_list_id,
                 "groupId": group_id,
@@ -4049,6 +4065,8 @@ class RawPartnersClient:
         is_customer: typing.Optional[bool] = OMIT,
         is_supplier: typing.Optional[bool] = OMIT,
         payment_term_days: typing.Optional[int] = OMIT,
+        invoice_currency: typing.Optional[FindOrCreatePartnersRequestInvoiceCurrency] = OMIT,
+        invoice_locale: typing.Optional[FindOrCreatePartnersRequestInvoiceLocale] = OMIT,
         credit_limit: typing.Optional[str] = OMIT,
         price_list_id: typing.Optional[str] = OMIT,
         group_id: typing.Optional[str] = OMIT,
@@ -4101,6 +4119,12 @@ class RawPartnersClient:
         is_supplier : typing.Optional[bool]
 
         payment_term_days : typing.Optional[int]
+
+        invoice_currency : typing.Optional[FindOrCreatePartnersRequestInvoiceCurrency]
+            Currency a new invoice for this partner starts with when the invoice names none
+
+        invoice_locale : typing.Optional[FindOrCreatePartnersRequestInvoiceLocale]
+            Language a new invoice for this partner starts with when the invoice names none
 
         credit_limit : typing.Optional[str]
 
@@ -4170,6 +4194,8 @@ class RawPartnersClient:
                 "isCustomer": is_customer,
                 "isSupplier": is_supplier,
                 "paymentTermDays": payment_term_days,
+                "invoiceCurrency": invoice_currency,
+                "invoiceLocale": invoice_locale,
                 "creditLimit": credit_limit,
                 "priceListId": price_list_id,
                 "groupId": group_id,
@@ -4509,6 +4535,8 @@ class RawPartnersClient:
         is_customer: typing.Optional[bool] = OMIT,
         is_supplier: typing.Optional[bool] = OMIT,
         payment_term_days: typing.Optional[int] = OMIT,
+        invoice_currency: typing.Optional[UpdatePartnersRequestInvoiceCurrency] = OMIT,
+        invoice_locale: typing.Optional[UpdatePartnersRequestInvoiceLocale] = OMIT,
         credit_limit: typing.Optional[str] = OMIT,
         price_list_id: typing.Optional[str] = OMIT,
         group_id: typing.Optional[str] = OMIT,
@@ -4563,6 +4591,12 @@ class RawPartnersClient:
         is_supplier : typing.Optional[bool]
 
         payment_term_days : typing.Optional[int]
+
+        invoice_currency : typing.Optional[UpdatePartnersRequestInvoiceCurrency]
+            Currency a new invoice for this partner starts with when the invoice names none
+
+        invoice_locale : typing.Optional[UpdatePartnersRequestInvoiceLocale]
+            Language a new invoice for this partner starts with when the invoice names none
 
         credit_limit : typing.Optional[str]
 
@@ -4633,6 +4667,8 @@ class RawPartnersClient:
                 "isCustomer": is_customer,
                 "isSupplier": is_supplier,
                 "paymentTermDays": payment_term_days,
+                "invoiceCurrency": invoice_currency,
+                "invoiceLocale": invoice_locale,
                 "creditLimit": credit_limit,
                 "priceListId": price_list_id,
                 "groupId": group_id,
@@ -9956,7 +9992,7 @@ class AsyncRawPartnersClient:
         self, *, request_options: typing.Optional[RequestOptions] = None
     ) -> AsyncHttpResponse[DebtRemindersPreviewPartnersResponse]:
         """
-        Runs the overdue selection of the daily debt-reminder job for this company as of the company's current date and returns the overdue reminders it would send, without sending or recording anything. A partner is included when it has `autoDebtReminder`, is active, has an e-mail address, got no overdue reminder in the last `repeatDays` days (`partners/debt-reminders/settings/get`) and has issued invoices or advance invoices past their due date with an unpaid remainder; the interest per invoice is the remainder times the partner's `lateInterestPercent` times the days late over 365, and the totals are per currency. Sent reminders are listed by `partners/debt-reminders/list`.
+        Runs the overdue selection of the daily debt-reminder job for this company as of the company's current date and returns the overdue reminders it would send, without sending or recording anything. A partner is included when it has `autoDebtReminder`, is active, has an e-mail address, got no overdue reminder in the last `repeatDays` days (`partners/debt-reminders/settings/get`) and has issued invoices or advance invoices with `debtRemindersEnabled` past their due date with an unpaid remainder; the interest per invoice is the remainder times the partner's `lateInterestPercent` times the days late over 365, and the totals are per currency. Sent reminders are listed by `partners/debt-reminders/list`.
 
         Parameters
         ----------
@@ -10457,7 +10493,7 @@ class AsyncRawPartnersClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[DebtRemindersSettingsUpdatePartnersResponse]:
         """
-        Changes the given fields of the company's debt-reminder schedule. `daysBefore` (1 to 90, or null to send nothing before the due date) makes the daily job send one "payment due soon" reminder per invoice that many days before its due date; `repeatDays` (1 to 90) is the number of days between overdue reminders to a partner. Only partners with `autoDebtReminder` get reminders. A body without fields is refused with 400.
+        Changes the given fields of the company's debt-reminder schedule. `daysBefore` (1 to 90, or null to send nothing before the due date) makes the daily job send one "payment due soon" reminder per invoice that many days before its due date; `repeatDays` (1 to 90) is the number of days between overdue reminders to a partner. Only partners with `autoDebtReminder` get reminders, and only for invoices with `debtRemindersEnabled`. A body without fields is refused with 400.
 
         Parameters
         ----------
@@ -10619,7 +10655,7 @@ class AsyncRawPartnersClient:
         self, *, request_options: typing.Optional[RequestOptions] = None
     ) -> AsyncHttpResponse[DebtRemindersUpcomingPartnersResponse]:
         """
-        Returns the next reminder the daily debt-reminder job would send for each unpaid issued invoice or advance invoice of the partners that get reminders (`autoDebtReminder`, active, with an e-mail address), as of the company's current date and sorted by `date`. A `before_due` reminder is sent once per invoice, `daysBefore` days before its due date or on the first daily run after that while the due date is still ahead; `overdue` reminders start the day after the due date and repeat every `repeatDays` days per partner, counting only overdue reminders. Nothing is sent or recorded.
+        Returns the next reminder the daily debt-reminder job would send for each unpaid issued invoice or advance invoice with `debtRemindersEnabled` of the partners that get reminders (`autoDebtReminder`, active, with an e-mail address), as of the company's current date and sorted by `date`. A `before_due` reminder is sent once per invoice, `daysBefore` days before its due date or on the first daily run after that while the due date is still ahead; `overdue` reminders start the day after the due date and repeat every `repeatDays` days per partner, counting only overdue reminders. Nothing is sent or recorded.
 
         Parameters
         ----------
@@ -11306,6 +11342,8 @@ class AsyncRawPartnersClient:
         is_customer: typing.Optional[bool] = OMIT,
         is_supplier: typing.Optional[bool] = OMIT,
         payment_term_days: typing.Optional[int] = OMIT,
+        invoice_currency: typing.Optional[CreatePartnersRequestInvoiceCurrency] = OMIT,
+        invoice_locale: typing.Optional[CreatePartnersRequestInvoiceLocale] = OMIT,
         credit_limit: typing.Optional[str] = OMIT,
         price_list_id: typing.Optional[str] = OMIT,
         group_id: typing.Optional[str] = OMIT,
@@ -11358,6 +11396,12 @@ class AsyncRawPartnersClient:
         is_supplier : typing.Optional[bool]
 
         payment_term_days : typing.Optional[int]
+
+        invoice_currency : typing.Optional[CreatePartnersRequestInvoiceCurrency]
+            Currency a new invoice for this partner starts with when the invoice names none
+
+        invoice_locale : typing.Optional[CreatePartnersRequestInvoiceLocale]
+            Language a new invoice for this partner starts with when the invoice names none
 
         credit_limit : typing.Optional[str]
 
@@ -11427,6 +11471,8 @@ class AsyncRawPartnersClient:
                 "isCustomer": is_customer,
                 "isSupplier": is_supplier,
                 "paymentTermDays": payment_term_days,
+                "invoiceCurrency": invoice_currency,
+                "invoiceLocale": invoice_locale,
                 "creditLimit": credit_limit,
                 "priceListId": price_list_id,
                 "groupId": group_id,
@@ -11606,6 +11652,8 @@ class AsyncRawPartnersClient:
         is_customer: typing.Optional[bool] = OMIT,
         is_supplier: typing.Optional[bool] = OMIT,
         payment_term_days: typing.Optional[int] = OMIT,
+        invoice_currency: typing.Optional[FindOrCreatePartnersRequestInvoiceCurrency] = OMIT,
+        invoice_locale: typing.Optional[FindOrCreatePartnersRequestInvoiceLocale] = OMIT,
         credit_limit: typing.Optional[str] = OMIT,
         price_list_id: typing.Optional[str] = OMIT,
         group_id: typing.Optional[str] = OMIT,
@@ -11658,6 +11706,12 @@ class AsyncRawPartnersClient:
         is_supplier : typing.Optional[bool]
 
         payment_term_days : typing.Optional[int]
+
+        invoice_currency : typing.Optional[FindOrCreatePartnersRequestInvoiceCurrency]
+            Currency a new invoice for this partner starts with when the invoice names none
+
+        invoice_locale : typing.Optional[FindOrCreatePartnersRequestInvoiceLocale]
+            Language a new invoice for this partner starts with when the invoice names none
 
         credit_limit : typing.Optional[str]
 
@@ -11727,6 +11781,8 @@ class AsyncRawPartnersClient:
                 "isCustomer": is_customer,
                 "isSupplier": is_supplier,
                 "paymentTermDays": payment_term_days,
+                "invoiceCurrency": invoice_currency,
+                "invoiceLocale": invoice_locale,
                 "creditLimit": credit_limit,
                 "priceListId": price_list_id,
                 "groupId": group_id,
@@ -12066,6 +12122,8 @@ class AsyncRawPartnersClient:
         is_customer: typing.Optional[bool] = OMIT,
         is_supplier: typing.Optional[bool] = OMIT,
         payment_term_days: typing.Optional[int] = OMIT,
+        invoice_currency: typing.Optional[UpdatePartnersRequestInvoiceCurrency] = OMIT,
+        invoice_locale: typing.Optional[UpdatePartnersRequestInvoiceLocale] = OMIT,
         credit_limit: typing.Optional[str] = OMIT,
         price_list_id: typing.Optional[str] = OMIT,
         group_id: typing.Optional[str] = OMIT,
@@ -12120,6 +12178,12 @@ class AsyncRawPartnersClient:
         is_supplier : typing.Optional[bool]
 
         payment_term_days : typing.Optional[int]
+
+        invoice_currency : typing.Optional[UpdatePartnersRequestInvoiceCurrency]
+            Currency a new invoice for this partner starts with when the invoice names none
+
+        invoice_locale : typing.Optional[UpdatePartnersRequestInvoiceLocale]
+            Language a new invoice for this partner starts with when the invoice names none
 
         credit_limit : typing.Optional[str]
 
@@ -12190,6 +12254,8 @@ class AsyncRawPartnersClient:
                 "isCustomer": is_customer,
                 "isSupplier": is_supplier,
                 "paymentTermDays": payment_term_days,
+                "invoiceCurrency": invoice_currency,
+                "invoiceLocale": invoice_locale,
                 "creditLimit": credit_limit,
                 "priceListId": price_list_id,
                 "groupId": group_id,

@@ -2,4 +2,40 @@
 
 import typing
 
-InvoicesPdfSalesRequestLocale = typing.Union[typing.Literal["en", "lt", "de"], typing.Any]
+InvoicesPdfSalesRequestLocale = typing.Union[
+    typing.Literal[
+        "en",
+        "lt",
+        "de",
+        "fr",
+        "es",
+        "it",
+        "pt",
+        "nl",
+        "pl",
+        "sv",
+        "da",
+        "no",
+        "fi",
+        "et",
+        "lv",
+        "cs",
+        "sk",
+        "hu",
+        "ro",
+        "bg",
+        "hr",
+        "sl",
+        "el",
+        "mt",
+        "is",
+        "ga",
+        "zh",
+        "ja",
+        "ar",
+        "hi",
+        "ru",
+        "tr",
+    ],
+    typing.Any,
+]

@@ -6,6 +6,9 @@ from ..core.client_wrapper import AsyncClientWrapper, SyncClientWrapper
 from ..core.request_options import RequestOptions
 from .raw_client import AsyncRawPublicClient, RawPublicClient
 from .types.integration_requests_public_response import IntegrationRequestsPublicResponse
+from .types.invoices_checkout_public_response import InvoicesCheckoutPublicResponse
+from .types.invoices_get_public_response import InvoicesGetPublicResponse
+from .types.invoices_pdf_public_response import InvoicesPdfPublicResponse
 
 # this is used as the default value for optional parameters
 OMIT = typing.cast(typing.Any, ...)
@@ -88,7 +91,7 @@ class PublicClient:
 
     def pay(self, token: str, *, request_options: typing.Optional[RequestOptions] = None) -> None:
         """
-        Redirect (302) to the company's payment page for the issued invoice that carries this payment token, rendered from the template set with `sales/invoices/payment-settings/update` with the invoice number, the amount still unpaid, the currency, the token, the invoice id and the customer name (see `sales/invoices/payment-link`). Answers 404 when the token matches no issued invoice or the company has no template, and 409 when the invoice is already paid.
+        Redirect (302) to the company's payment page for the issued invoice that carries this payment token, rendered from the template set with `sales/invoices/payment-settings/update` with the invoice number, the amount still unpaid, the currency, the token, the invoice id and the customer name (see `sales/invoices/payment-link`). Answers 404 when the token matches no issued invoice, the invoice has `payLinkEnabled` false or the company has no template, and 409 when the invoice is already paid.
 
         Parameters
         ----------
@@ -113,6 +116,102 @@ class PublicClient:
         )
         """
         _response = self._raw_client.pay(token, request_options=request_options)
+        return _response.data
+
+    def invoices_get(
+        self, *, token: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> InvoicesGetPublicResponse:
+        """
+        Return the issued sale document that carries this customer token (`token` of `sales/invoices/view`), in the shape of `sales/invoices/view` without the token. Answers 404 when the token matches no issued document.
+
+        Parameters
+        ----------
+        token : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        InvoicesGetPublicResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.public.invoices_get(
+            token="token",
+        )
+        """
+        _response = self._raw_client.invoices_get(token=token, request_options=request_options)
+        return _response.data
+
+    def invoices_checkout(
+        self, *, token: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> InvoicesCheckoutPublicResponse:
+        """
+        Open a Stripe Checkout page on the company's connected Stripe account for the amount still unpaid on the issued invoice that carries this customer token, and return its `url`. Stripe sends the customer back to the public invoice page. Answers 404 when the token matches no issued invoice, the invoice has `payLinkEnabled` false or the company has no Stripe account that can take charges, 409 when the invoice is already paid and 422 when Stripe cannot take the amount in the invoice currency.
+
+        Parameters
+        ----------
+        token : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        InvoicesCheckoutPublicResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.public.invoices_checkout(
+            token="token",
+        )
+        """
+        _response = self._raw_client.invoices_checkout(token=token, request_options=request_options)
+        return _response.data
+
+    def invoices_pdf(
+        self, *, token: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> InvoicesPdfPublicResponse:
+        """
+        Return the PDF of the issued sale document that carries this customer token, base64-encoded, as `sales/invoices/pdf` renders it in the document's own language, English when it has none. Answers 404 when the token matches no issued document.
+
+        Parameters
+        ----------
+        token : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        InvoicesPdfPublicResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.public.invoices_pdf(
+            token="token",
+        )
+        """
+        _response = self._raw_client.invoices_pdf(token=token, request_options=request_options)
         return _response.data
 
 
@@ -201,7 +300,7 @@ class AsyncPublicClient:
 
     async def pay(self, token: str, *, request_options: typing.Optional[RequestOptions] = None) -> None:
         """
-        Redirect (302) to the company's payment page for the issued invoice that carries this payment token, rendered from the template set with `sales/invoices/payment-settings/update` with the invoice number, the amount still unpaid, the currency, the token, the invoice id and the customer name (see `sales/invoices/payment-link`). Answers 404 when the token matches no issued invoice or the company has no template, and 409 when the invoice is already paid.
+        Redirect (302) to the company's payment page for the issued invoice that carries this payment token, rendered from the template set with `sales/invoices/payment-settings/update` with the invoice number, the amount still unpaid, the currency, the token, the invoice id and the customer name (see `sales/invoices/payment-link`). Answers 404 when the token matches no issued invoice, the invoice has `payLinkEnabled` false or the company has no template, and 409 when the invoice is already paid.
 
         Parameters
         ----------
@@ -234,4 +333,124 @@ class AsyncPublicClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.pay(token, request_options=request_options)
+        return _response.data
+
+    async def invoices_get(
+        self, *, token: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> InvoicesGetPublicResponse:
+        """
+        Return the issued sale document that carries this customer token (`token` of `sales/invoices/view`), in the shape of `sales/invoices/view` without the token. Answers 404 when the token matches no issued document.
+
+        Parameters
+        ----------
+        token : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        InvoicesGetPublicResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.public.invoices_get(
+                token="token",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.invoices_get(token=token, request_options=request_options)
+        return _response.data
+
+    async def invoices_checkout(
+        self, *, token: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> InvoicesCheckoutPublicResponse:
+        """
+        Open a Stripe Checkout page on the company's connected Stripe account for the amount still unpaid on the issued invoice that carries this customer token, and return its `url`. Stripe sends the customer back to the public invoice page. Answers 404 when the token matches no issued invoice, the invoice has `payLinkEnabled` false or the company has no Stripe account that can take charges, 409 when the invoice is already paid and 422 when Stripe cannot take the amount in the invoice currency.
+
+        Parameters
+        ----------
+        token : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        InvoicesCheckoutPublicResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.public.invoices_checkout(
+                token="token",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.invoices_checkout(token=token, request_options=request_options)
+        return _response.data
+
+    async def invoices_pdf(
+        self, *, token: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> InvoicesPdfPublicResponse:
+        """
+        Return the PDF of the issued sale document that carries this customer token, base64-encoded, as `sales/invoices/pdf` renders it in the document's own language, English when it has none. Answers 404 when the token matches no issued document.
+
+        Parameters
+        ----------
+        token : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        InvoicesPdfPublicResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.public.invoices_pdf(
+                token="token",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.invoices_pdf(token=token, request_options=request_options)
         return _response.data

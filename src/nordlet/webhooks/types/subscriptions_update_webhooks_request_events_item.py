@@ -39,6 +39,7 @@ SubscriptionsUpdateWebhooksRequestEventsItem = typing.Union[
         "sale_invoice.peppol_failed",
         "sale_invoice.peppol_rejected",
         "sale_invoice.peppol_sent",
+        "sale_invoice.quote_sent",
         "sale_invoice.sent",
         "sales_order.created",
         "sales_order.fulfilled",

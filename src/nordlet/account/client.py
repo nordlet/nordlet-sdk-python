@@ -15,6 +15,9 @@ from .types.companies_archive_account_response import CompaniesArchiveAccountRes
 from .types.companies_create_account_request_accounts_kept_by import CompaniesCreateAccountRequestAccountsKeptBy
 from .types.companies_create_account_request_address import CompaniesCreateAccountRequestAddress
 from .types.companies_create_account_request_country_code import CompaniesCreateAccountRequestCountryCode
+from .types.companies_create_account_request_default_invoice_locale import (
+    CompaniesCreateAccountRequestDefaultInvoiceLocale,
+)
 from .types.companies_create_account_request_vat_period import CompaniesCreateAccountRequestVatPeriod
 from .types.companies_create_account_response import CompaniesCreateAccountResponse
 from .types.companies_delete_account_response import CompaniesDeleteAccountResponse
@@ -22,6 +25,9 @@ from .types.companies_profile_account_response import CompaniesProfileAccountRes
 from .types.companies_select_account_response import CompaniesSelectAccountResponse
 from .types.companies_update_account_request_accounts_kept_by import CompaniesUpdateAccountRequestAccountsKeptBy
 from .types.companies_update_account_request_address import CompaniesUpdateAccountRequestAddress
+from .types.companies_update_account_request_default_invoice_locale import (
+    CompaniesUpdateAccountRequestDefaultInvoiceLocale,
+)
 from .types.companies_update_account_request_logo import CompaniesUpdateAccountRequestLogo
 from .types.companies_update_account_request_vat_period import CompaniesUpdateAccountRequestVatPeriod
 from .types.companies_update_account_response import CompaniesUpdateAccountResponse
@@ -596,6 +602,13 @@ class AccountClient:
         phone: typing.Optional[str] = OMIT,
         iban: typing.Optional[str] = OMIT,
         bank_name: typing.Optional[str] = OMIT,
+        bank_bic: typing.Optional[str] = OMIT,
+        bank_code: typing.Optional[str] = OMIT,
+        bank_branch_code: typing.Optional[str] = OMIT,
+        bank_account_number: typing.Optional[str] = OMIT,
+        invoice_prefix: typing.Optional[str] = OMIT,
+        default_invoice_locale: typing.Optional[CompaniesCreateAccountRequestDefaultInvoiceLocale] = OMIT,
+        default_invoice_note: typing.Optional[str] = OMIT,
         peppol_id: typing.Optional[str] = OMIT,
         sepa_creditor_id: typing.Optional[str] = OMIT,
         default_invoice_currency: typing.Optional[str] = OMIT,
@@ -645,6 +658,25 @@ class AccountClient:
         iban : typing.Optional[str]
 
         bank_name : typing.Optional[str]
+
+        bank_bic : typing.Optional[str]
+
+        bank_code : typing.Optional[str]
+            Sort code, routing number, BSB, IFSC or institution number
+
+        bank_branch_code : typing.Optional[str]
+            Transit number (Canada)
+
+        bank_account_number : typing.Optional[str]
+
+        invoice_prefix : typing.Optional[str]
+            Prefix of the numbers of invoices issued without a document series; SF when not set
+
+        default_invoice_locale : typing.Optional[CompaniesCreateAccountRequestDefaultInvoiceLocale]
+            Language a new invoice starts with when neither the invoice nor its partner names one
+
+        default_invoice_note : typing.Optional[str]
+            Note a new invoice, proforma or advance invoice starts with when it names no notes
 
         peppol_id : typing.Optional[str]
 
@@ -713,6 +745,13 @@ class AccountClient:
             phone=phone,
             iban=iban,
             bank_name=bank_name,
+            bank_bic=bank_bic,
+            bank_code=bank_code,
+            bank_branch_code=bank_branch_code,
+            bank_account_number=bank_account_number,
+            invoice_prefix=invoice_prefix,
+            default_invoice_locale=default_invoice_locale,
+            default_invoice_note=default_invoice_note,
             peppol_id=peppol_id,
             sepa_creditor_id=sepa_creditor_id,
             default_invoice_currency=default_invoice_currency,
@@ -809,6 +848,13 @@ class AccountClient:
         phone: typing.Optional[str] = OMIT,
         iban: typing.Optional[str] = OMIT,
         bank_name: typing.Optional[str] = OMIT,
+        bank_bic: typing.Optional[str] = OMIT,
+        bank_code: typing.Optional[str] = OMIT,
+        bank_branch_code: typing.Optional[str] = OMIT,
+        bank_account_number: typing.Optional[str] = OMIT,
+        invoice_prefix: typing.Optional[str] = OMIT,
+        default_invoice_locale: typing.Optional[CompaniesUpdateAccountRequestDefaultInvoiceLocale] = OMIT,
+        default_invoice_note: typing.Optional[str] = OMIT,
         peppol_id: typing.Optional[str] = OMIT,
         sepa_creditor_id: typing.Optional[str] = OMIT,
         default_invoice_currency: typing.Optional[str] = OMIT,
@@ -856,6 +902,25 @@ class AccountClient:
         iban : typing.Optional[str]
 
         bank_name : typing.Optional[str]
+
+        bank_bic : typing.Optional[str]
+
+        bank_code : typing.Optional[str]
+            Sort code, routing number, BSB, IFSC or institution number
+
+        bank_branch_code : typing.Optional[str]
+            Transit number (Canada)
+
+        bank_account_number : typing.Optional[str]
+
+        invoice_prefix : typing.Optional[str]
+            Prefix of the numbers of invoices issued without a document series; SF when not set
+
+        default_invoice_locale : typing.Optional[CompaniesUpdateAccountRequestDefaultInvoiceLocale]
+            Language a new invoice starts with when neither the invoice nor its partner names one
+
+        default_invoice_note : typing.Optional[str]
+            Note a new invoice, proforma or advance invoice starts with when it names no notes
 
         peppol_id : typing.Optional[str]
 
@@ -915,6 +980,13 @@ class AccountClient:
             phone=phone,
             iban=iban,
             bank_name=bank_name,
+            bank_bic=bank_bic,
+            bank_code=bank_code,
+            bank_branch_code=bank_branch_code,
+            bank_account_number=bank_account_number,
+            invoice_prefix=invoice_prefix,
+            default_invoice_locale=default_invoice_locale,
+            default_invoice_note=default_invoice_note,
             peppol_id=peppol_id,
             sepa_creditor_id=sepa_creditor_id,
             default_invoice_currency=default_invoice_currency,
@@ -2232,6 +2304,13 @@ class AsyncAccountClient:
         phone: typing.Optional[str] = OMIT,
         iban: typing.Optional[str] = OMIT,
         bank_name: typing.Optional[str] = OMIT,
+        bank_bic: typing.Optional[str] = OMIT,
+        bank_code: typing.Optional[str] = OMIT,
+        bank_branch_code: typing.Optional[str] = OMIT,
+        bank_account_number: typing.Optional[str] = OMIT,
+        invoice_prefix: typing.Optional[str] = OMIT,
+        default_invoice_locale: typing.Optional[CompaniesCreateAccountRequestDefaultInvoiceLocale] = OMIT,
+        default_invoice_note: typing.Optional[str] = OMIT,
         peppol_id: typing.Optional[str] = OMIT,
         sepa_creditor_id: typing.Optional[str] = OMIT,
         default_invoice_currency: typing.Optional[str] = OMIT,
@@ -2281,6 +2360,25 @@ class AsyncAccountClient:
         iban : typing.Optional[str]
 
         bank_name : typing.Optional[str]
+
+        bank_bic : typing.Optional[str]
+
+        bank_code : typing.Optional[str]
+            Sort code, routing number, BSB, IFSC or institution number
+
+        bank_branch_code : typing.Optional[str]
+            Transit number (Canada)
+
+        bank_account_number : typing.Optional[str]
+
+        invoice_prefix : typing.Optional[str]
+            Prefix of the numbers of invoices issued without a document series; SF when not set
+
+        default_invoice_locale : typing.Optional[CompaniesCreateAccountRequestDefaultInvoiceLocale]
+            Language a new invoice starts with when neither the invoice nor its partner names one
+
+        default_invoice_note : typing.Optional[str]
+            Note a new invoice, proforma or advance invoice starts with when it names no notes
 
         peppol_id : typing.Optional[str]
 
@@ -2357,6 +2455,13 @@ class AsyncAccountClient:
             phone=phone,
             iban=iban,
             bank_name=bank_name,
+            bank_bic=bank_bic,
+            bank_code=bank_code,
+            bank_branch_code=bank_branch_code,
+            bank_account_number=bank_account_number,
+            invoice_prefix=invoice_prefix,
+            default_invoice_locale=default_invoice_locale,
+            default_invoice_note=default_invoice_note,
             peppol_id=peppol_id,
             sepa_creditor_id=sepa_creditor_id,
             default_invoice_currency=default_invoice_currency,
@@ -2469,6 +2574,13 @@ class AsyncAccountClient:
         phone: typing.Optional[str] = OMIT,
         iban: typing.Optional[str] = OMIT,
         bank_name: typing.Optional[str] = OMIT,
+        bank_bic: typing.Optional[str] = OMIT,
+        bank_code: typing.Optional[str] = OMIT,
+        bank_branch_code: typing.Optional[str] = OMIT,
+        bank_account_number: typing.Optional[str] = OMIT,
+        invoice_prefix: typing.Optional[str] = OMIT,
+        default_invoice_locale: typing.Optional[CompaniesUpdateAccountRequestDefaultInvoiceLocale] = OMIT,
+        default_invoice_note: typing.Optional[str] = OMIT,
         peppol_id: typing.Optional[str] = OMIT,
         sepa_creditor_id: typing.Optional[str] = OMIT,
         default_invoice_currency: typing.Optional[str] = OMIT,
@@ -2516,6 +2628,25 @@ class AsyncAccountClient:
         iban : typing.Optional[str]
 
         bank_name : typing.Optional[str]
+
+        bank_bic : typing.Optional[str]
+
+        bank_code : typing.Optional[str]
+            Sort code, routing number, BSB, IFSC or institution number
+
+        bank_branch_code : typing.Optional[str]
+            Transit number (Canada)
+
+        bank_account_number : typing.Optional[str]
+
+        invoice_prefix : typing.Optional[str]
+            Prefix of the numbers of invoices issued without a document series; SF when not set
+
+        default_invoice_locale : typing.Optional[CompaniesUpdateAccountRequestDefaultInvoiceLocale]
+            Language a new invoice starts with when neither the invoice nor its partner names one
+
+        default_invoice_note : typing.Optional[str]
+            Note a new invoice, proforma or advance invoice starts with when it names no notes
 
         peppol_id : typing.Optional[str]
 
@@ -2583,6 +2714,13 @@ class AsyncAccountClient:
             phone=phone,
             iban=iban,
             bank_name=bank_name,
+            bank_bic=bank_bic,
+            bank_code=bank_code,
+            bank_branch_code=bank_branch_code,
+            bank_account_number=bank_account_number,
+            invoice_prefix=invoice_prefix,
+            default_invoice_locale=default_invoice_locale,
+            default_invoice_note=default_invoice_note,
             peppol_id=peppol_id,
             sepa_creditor_id=sepa_creditor_id,
             default_invoice_currency=default_invoice_currency,

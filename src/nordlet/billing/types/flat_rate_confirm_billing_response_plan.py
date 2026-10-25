@@ -2,4 +2,6 @@
 
 import typing
 
-FlatRateConfirmBillingResponsePlan = typing.Union[typing.Literal["starter", "business", "scale"], typing.Any]
+FlatRateConfirmBillingResponsePlan = typing.Union[
+    typing.Literal["starter", "business", "scale", "invoicing"], typing.Any
+]

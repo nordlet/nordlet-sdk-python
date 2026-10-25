@@ -41,6 +41,12 @@ class InvoicesListSalesResponseRowsItem(UniversalBaseModel):
     net_total: typing_extensions.Annotated[str, FieldMetadata(alias="netTotal"), pydantic.Field(alias="netTotal")]
     vat_total: typing_extensions.Annotated[str, FieldMetadata(alias="vatTotal"), pydantic.Field(alias="vatTotal")]
     gross_total: typing_extensions.Annotated[str, FieldMetadata(alias="grossTotal"), pydantic.Field(alias="grossTotal")]
+    sales_tax_percent: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="salesTaxPercent"), pydantic.Field(alias="salesTaxPercent")
+    ] = None
+    sales_tax_total: typing_extensions.Annotated[
+        str, FieldMetadata(alias="salesTaxTotal"), pydantic.Field(alias="salesTaxTotal")
+    ]
     paid_amount: typing_extensions.Annotated[str, FieldMetadata(alias="paidAmount"), pydantic.Field(alias="paidAmount")]
     journal_transaction_id: typing_extensions.Annotated[
         typing.Optional[str], FieldMetadata(alias="journalTransactionId"), pydantic.Field(alias="journalTransactionId")
@@ -137,6 +143,12 @@ class InvoicesListSalesResponseRowsItem(UniversalBaseModel):
     pay_token: typing_extensions.Annotated[
         typing.Optional[str], FieldMetadata(alias="payToken"), pydantic.Field(alias="payToken")
     ] = None
+    pay_link_enabled: typing_extensions.Annotated[
+        bool, FieldMetadata(alias="payLinkEnabled"), pydantic.Field(alias="payLinkEnabled")
+    ]
+    debt_reminders_enabled: typing_extensions.Annotated[
+        bool, FieldMetadata(alias="debtRemindersEnabled"), pydantic.Field(alias="debtRemindersEnabled")
+    ]
     einvoice_system: typing_extensions.Annotated[
         typing.Optional[str], FieldMetadata(alias="einvoiceSystem"), pydantic.Field(alias="einvoiceSystem")
     ] = None

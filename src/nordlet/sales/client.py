@@ -20,6 +20,8 @@ from .types.acts_pdf_sales_response import ActsPdfSalesResponse
 from .types.acts_update_sales_request_lines_item import ActsUpdateSalesRequestLinesItem
 from .types.acts_update_sales_request_type import ActsUpdateSalesRequestType
 from .types.acts_update_sales_response import ActsUpdateSalesResponse
+from .types.exports_month_sales_request_format import ExportsMonthSalesRequestFormat
+from .types.exports_month_sales_response import ExportsMonthSalesResponse
 from .types.invoice_templates_create_sales_request_document_type import InvoiceTemplatesCreateSalesRequestDocumentType
 from .types.invoice_templates_create_sales_request_lines_item import InvoiceTemplatesCreateSalesRequestLinesItem
 from .types.invoice_templates_create_sales_request_supply_type import InvoiceTemplatesCreateSalesRequestSupplyType
@@ -36,6 +38,9 @@ from .types.invoice_templates_update_sales_request_supply_type import InvoiceTem
 from .types.invoice_templates_update_sales_request_vat_scheme import InvoiceTemplatesUpdateSalesRequestVatScheme
 from .types.invoice_templates_update_sales_response import InvoiceTemplatesUpdateSalesResponse
 from .types.invoices_apply_advance_sales_response import InvoicesApplyAdvanceSalesResponse
+from .types.invoices_card_payments_connect_sales_response import InvoicesCardPaymentsConnectSalesResponse
+from .types.invoices_card_payments_disconnect_sales_response import InvoicesCardPaymentsDisconnectSalesResponse
+from .types.invoices_card_payments_get_sales_response import InvoicesCardPaymentsGetSalesResponse
 from .types.invoices_create_sales_request_lines_item import InvoicesCreateSalesRequestLinesItem
 from .types.invoices_create_sales_request_locale import InvoicesCreateSalesRequestLocale
 from .types.invoices_create_sales_request_type import InvoicesCreateSalesRequestType
@@ -66,6 +71,8 @@ from .types.invoices_update_sales_request_lines_item import InvoicesUpdateSalesR
 from .types.invoices_update_sales_request_locale import InvoicesUpdateSalesRequestLocale
 from .types.invoices_update_sales_request_vat_scheme import InvoicesUpdateSalesRequestVatScheme
 from .types.invoices_update_sales_response import InvoicesUpdateSalesResponse
+from .types.invoices_view_sales_response import InvoicesViewSalesResponse
+from .types.payments_list_sales_response import PaymentsListSalesResponse
 from .types.recognition_compute_sales_response import RecognitionComputeSalesResponse
 from .types.recognition_modify_sales_request_approach import RecognitionModifySalesRequestApproach
 from .types.recognition_modify_sales_request_new_milestones_item import RecognitionModifySalesRequestNewMilestonesItem
@@ -140,6 +147,8 @@ class SalesClient:
         notes: typing.Optional[str] = OMIT,
         document_ref: typing.Optional[str] = OMIT,
         locale: typing.Optional[InvoicesCreateSalesRequestLocale] = OMIT,
+        pay_link_enabled: typing.Optional[bool] = OMIT,
+        debt_reminders_enabled: typing.Optional[bool] = OMIT,
         operation_type_id: typing.Optional[str] = OMIT,
         document_series_id: typing.Optional[str] = OMIT,
         series_label: typing.Optional[str] = OMIT,
@@ -149,6 +158,7 @@ class SalesClient:
         received_by_name: typing.Optional[str] = OMIT,
         received_by_title: typing.Optional[str] = OMIT,
         discount_percent: typing.Optional[str] = OMIT,
+        sales_tax_percent: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> InvoicesCreateSalesResponse:
         """
@@ -199,6 +209,12 @@ class SalesClient:
         locale : typing.Optional[InvoicesCreateSalesRequestLocale]
             Language of the PDF and of the e-mail the invoice is sent with; unset means the language asked for when the PDF is made
 
+        pay_link_enabled : typing.Optional[bool]
+            Whether the PDF and the e-mail carry the payment link of the company payment link template
+
+        debt_reminders_enabled : typing.Optional[bool]
+            Whether automatic debt reminders include this invoice when its partner has them turned on
+
         operation_type_id : typing.Optional[str]
 
         document_series_id : typing.Optional[str]
@@ -216,6 +232,9 @@ class SalesClient:
         received_by_title : typing.Optional[str]
 
         discount_percent : typing.Optional[str]
+
+        sales_tax_percent : typing.Optional[str]
+            Sales tax as a percent of the net total, added to the invoice total. It is not posted to the ledger and is left out of VAT and national tax reports. Invoices only.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -259,6 +278,8 @@ class SalesClient:
             notes=notes,
             document_ref=document_ref,
             locale=locale,
+            pay_link_enabled=pay_link_enabled,
+            debt_reminders_enabled=debt_reminders_enabled,
             operation_type_id=operation_type_id,
             document_series_id=document_series_id,
             series_label=series_label,
@@ -268,6 +289,7 @@ class SalesClient:
             received_by_name=received_by_name,
             received_by_title=received_by_title,
             discount_percent=discount_percent,
+            sales_tax_percent=sales_tax_percent,
             request_options=request_options,
         )
         return _response.data
@@ -342,16 +364,49 @@ class SalesClient:
         _response = self._raw_client.invoices_pdf(id=id, locale=locale, request_options=request_options)
         return _response.data
 
+    def invoices_view(
+        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> InvoicesViewSalesResponse:
+        """
+        Return a sale document as its customer sees it: the seller as printed on it (the snapshot taken at issue, else the company), the buyer with address and e-mail, the lines, the totals, `paidOn` (the date of the latest payment once the document is paid), `payUrl` (as in `sales/invoices/payment-link`) and `token`, the document's customer token for `public/invoices/get` and `public/invoices/pdf`, created on first use; `token` is null on a draft.
+
+        Parameters
+        ----------
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        InvoicesViewSalesResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.sales.invoices_view(
+            id="id",
+        )
+        """
+        _response = self._raw_client.invoices_view(id=id, request_options=request_options)
+        return _response.data
+
     def invoices_send(
         self,
         *,
         id: str,
         to: typing.Optional[str] = OMIT,
         locale: typing.Optional[InvoicesSendSalesRequestLocale] = OMIT,
+        quote: typing.Optional[bool] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> InvoicesSendSalesResponse:
         """
-        E-mail an issued sale document as a PDF attachment to `to`, else to the partner's e-mail address, and emit `sale_invoice.sent`. The PDF is the one of `sales/invoices/pdf`. Answers 422 when e-mail sending is not configured, when the document is not issued, or when neither `to` nor the partner's e-mail is set.
+        E-mail an issued sale document as a PDF attachment to `to`, else to the partner's e-mail address, and emit `sale_invoice.sent`. The PDF is the one of `sales/invoices/pdf`. With `quote: true` the document must be a draft: it is e-mailed as a quote (PDF titled quote, no payment link), stays a draft, and `sale_invoice.quote_sent` is emitted instead. Answers 422 when e-mail sending is not configured, when the document is not issued (or, with `quote`, not a draft), or when neither `to` nor the partner's e-mail is set.
 
         Parameters
         ----------
@@ -360,6 +415,8 @@ class SalesClient:
         to : typing.Optional[str]
 
         locale : typing.Optional[InvoicesSendSalesRequestLocale]
+
+        quote : typing.Optional[bool]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -380,7 +437,9 @@ class SalesClient:
             id="id",
         )
         """
-        _response = self._raw_client.invoices_send(id=id, to=to, locale=locale, request_options=request_options)
+        _response = self._raw_client.invoices_send(
+            id=id, to=to, locale=locale, quote=quote, request_options=request_options
+        )
         return _response.data
 
     def invoices_peppol_xml(
@@ -593,6 +652,8 @@ class SalesClient:
         deemed_supplier: typing.Optional[bool] = OMIT,
         notes: typing.Optional[str] = OMIT,
         locale: typing.Optional[InvoicesUpdateSalesRequestLocale] = OMIT,
+        pay_link_enabled: typing.Optional[bool] = OMIT,
+        debt_reminders_enabled: typing.Optional[bool] = OMIT,
         operation_type_id: typing.Optional[str] = OMIT,
         document_series_id: typing.Optional[str] = OMIT,
         series_label: typing.Optional[str] = OMIT,
@@ -602,11 +663,12 @@ class SalesClient:
         issued_by_title: typing.Optional[str] = OMIT,
         received_by_name: typing.Optional[str] = OMIT,
         received_by_title: typing.Optional[str] = OMIT,
+        sales_tax_percent: typing.Optional[str] = OMIT,
         lines: typing.Optional[typing.Sequence[InvoicesUpdateSalesRequestLinesItem]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> InvoicesUpdateSalesResponse:
         """
-        Change a draft sale document. Fields left out keep their value, `lines` replaces every line, and a changed `discountPercent` recomputes the existing lines. Answers 409 when the document is issued or locked, and 422 under the checks of `sales/invoices/create` (the credited document's partner and currency, the OSS and IOSS country, VAT on the lines, the operation type and document series).
+        Change a draft sale document. Fields left out keep their value, `lines` replaces every line, a changed `discountPercent` recomputes the existing lines, and `salesTaxPercent` (invoices only, null removes it) recomputes the sales tax and the total. Answers 409 when the document is issued or locked, and 422 under the checks of `sales/invoices/create` (the credited document's partner and currency, the OSS and IOSS country, VAT on the lines, the operation type and document series).
 
         Parameters
         ----------
@@ -640,6 +702,10 @@ class SalesClient:
 
         locale : typing.Optional[InvoicesUpdateSalesRequestLocale]
 
+        pay_link_enabled : typing.Optional[bool]
+
+        debt_reminders_enabled : typing.Optional[bool]
+
         operation_type_id : typing.Optional[str]
 
         document_series_id : typing.Optional[str]
@@ -657,6 +723,8 @@ class SalesClient:
         received_by_name : typing.Optional[str]
 
         received_by_title : typing.Optional[str]
+
+        sales_tax_percent : typing.Optional[str]
 
         lines : typing.Optional[typing.Sequence[InvoicesUpdateSalesRequestLinesItem]]
 
@@ -695,6 +763,8 @@ class SalesClient:
             deemed_supplier=deemed_supplier,
             notes=notes,
             locale=locale,
+            pay_link_enabled=pay_link_enabled,
+            debt_reminders_enabled=debt_reminders_enabled,
             operation_type_id=operation_type_id,
             document_series_id=document_series_id,
             series_label=series_label,
@@ -704,6 +774,7 @@ class SalesClient:
             issued_by_title=issued_by_title,
             received_by_name=received_by_name,
             received_by_title=received_by_title,
+            sales_tax_percent=sales_tax_percent,
             lines=lines,
             request_options=request_options,
         )
@@ -863,7 +934,7 @@ class SalesClient:
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> InvoicesPaymentLinkSalesResponse:
         """
-        Return the customer payment link of a sale document, rendered from the company's payment link template (`sales/invoices/payment-settings/update`); `url` is null when the company has no template or the document is not issued. The document's payment token is created on first use. Answers 409 when the document is already paid.
+        Return the customer payment link of a sale document: the Stripe card payment page (`source` `stripe`) when the company's Stripe account is connected and can take charges (`sales/invoices/card-payments/get`), else the link rendered from the company's payment link template (`sales/invoices/payment-settings/update`, `source` `template`); `url` is null when the company has neither, the document is not issued or its `payLinkEnabled` is false. The document's payment token is created on first use. Answers 409 when the document is already paid.
 
         Parameters
         ----------
@@ -2494,6 +2565,191 @@ class SalesClient:
         )
         return _response.data
 
+    def payments_list(
+        self,
+        *,
+        from_: dt.date,
+        to: dt.date,
+        page: typing.Optional[int] = OMIT,
+        page_size: typing.Optional[int] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PaymentsListSalesResponse:
+        """
+        List the money received on sale documents between `from` and `to` (inclusive), oldest first: bank payments matched to the document, card settlements of a payment provider and cash receipt orders. A reversed bank match is a row with a negative amount on the date it was reversed. Credit notes, advances applied to a final invoice and balances carried over by a migration are not money received and are left out. `amount` is in the document currency; `method` is `card` for a settlement or a payment into a Stripe bank account, `cash` for a cash order and `bank_transfer` otherwise.
+
+        Parameters
+        ----------
+        from_ : dt.date
+
+        to : dt.date
+
+        page : typing.Optional[int]
+
+        page_size : typing.Optional[int]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PaymentsListSalesResponse
+            Default Response
+
+        Examples
+        --------
+        import datetime
+
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.sales.payments_list(
+            from_=datetime.date.fromisoformat(
+                "2026-07-01",
+            ),
+            to=datetime.date.fromisoformat(
+                "2026-07-01",
+            ),
+        )
+        """
+        _response = self._raw_client.payments_list(
+            from_=from_, to=to, page=page, page_size=page_size, request_options=request_options
+        )
+        return _response.data
+
+    def exports_month(
+        self,
+        *,
+        month: str,
+        format: ExportsMonthSalesRequestFormat,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> ExportsMonthSalesResponse:
+        """
+        Export one calendar month for the accountant as a single file: every invoice and credit note issued in the month (number, dates, client, currency, net, VAT, total and the amount paid so far) and every payment received in the month as listed by `sales/payments/list`. `format` is `csv` (comma separated, UTF-8, one section per table) or `pdf`. `format` `nordlet` instead returns a JSON package that `migration/books/validate` and `migration/books/import` accept: every posted journal transaction dated in the month with its debit and credit lines, the accounts those lines use (with their parent accounts) and the partners of those transactions; its cutoverDate is the day after the month ends. The file comes back base64-encoded in `data`.
+
+        Parameters
+        ----------
+        month : str
+
+        format : ExportsMonthSalesRequestFormat
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        ExportsMonthSalesResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.sales.exports_month(
+            month="month",
+            format="csv",
+        )
+        """
+        _response = self._raw_client.exports_month(month=month, format=format, request_options=request_options)
+        return _response.data
+
+    def invoices_card_payments_get(
+        self, *, request_options: typing.Optional[RequestOptions] = None
+    ) -> InvoicesCardPaymentsGetSalesResponse:
+        """
+        Return whether the company's Stripe account is connected for card payments and whether Stripe lets it take charges yet. While the account is connected but cannot take charges, Stripe is asked again on each call. When `chargesEnabled` is true, payment links of issued invoices open a Stripe Checkout page on that account.
+
+        Parameters
+        ----------
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        InvoicesCardPaymentsGetSalesResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.sales.invoices_card_payments_get()
+        """
+        _response = self._raw_client.invoices_card_payments_get(request_options=request_options)
+        return _response.data
+
+    def invoices_card_payments_connect(
+        self, *, return_url: str, refresh_url: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> InvoicesCardPaymentsConnectSalesResponse:
+        """
+        Start or continue connecting the company's own Stripe account for card payments: creates the Stripe account on first use and returns the Stripe-hosted onboarding `url`. Stripe sends the user back to `returnUrl` when onboarding ends and to `refreshUrl` when the link has expired. Answers 503 when Stripe is not configured.
+
+        Parameters
+        ----------
+        return_url : str
+
+        refresh_url : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        InvoicesCardPaymentsConnectSalesResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.sales.invoices_card_payments_connect(
+            return_url="returnUrl",
+            refresh_url="refreshUrl",
+        )
+        """
+        _response = self._raw_client.invoices_card_payments_connect(
+            return_url=return_url, refresh_url=refresh_url, request_options=request_options
+        )
+        return _response.data
+
+    def invoices_card_payments_disconnect(
+        self, *, request_options: typing.Optional[RequestOptions] = None
+    ) -> InvoicesCardPaymentsDisconnectSalesResponse:
+        """
+        Disconnect the company's Stripe account: payment links fall back to the payment link template. The Stripe account itself is left as it is.
+
+        Parameters
+        ----------
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        InvoicesCardPaymentsDisconnectSalesResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.sales.invoices_card_payments_disconnect()
+        """
+        _response = self._raw_client.invoices_card_payments_disconnect(request_options=request_options)
+        return _response.data
+
 
 class AsyncSalesClient:
     def __init__(self, *, client_wrapper: AsyncClientWrapper):
@@ -2533,6 +2789,8 @@ class AsyncSalesClient:
         notes: typing.Optional[str] = OMIT,
         document_ref: typing.Optional[str] = OMIT,
         locale: typing.Optional[InvoicesCreateSalesRequestLocale] = OMIT,
+        pay_link_enabled: typing.Optional[bool] = OMIT,
+        debt_reminders_enabled: typing.Optional[bool] = OMIT,
         operation_type_id: typing.Optional[str] = OMIT,
         document_series_id: typing.Optional[str] = OMIT,
         series_label: typing.Optional[str] = OMIT,
@@ -2542,6 +2800,7 @@ class AsyncSalesClient:
         received_by_name: typing.Optional[str] = OMIT,
         received_by_title: typing.Optional[str] = OMIT,
         discount_percent: typing.Optional[str] = OMIT,
+        sales_tax_percent: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> InvoicesCreateSalesResponse:
         """
@@ -2592,6 +2851,12 @@ class AsyncSalesClient:
         locale : typing.Optional[InvoicesCreateSalesRequestLocale]
             Language of the PDF and of the e-mail the invoice is sent with; unset means the language asked for when the PDF is made
 
+        pay_link_enabled : typing.Optional[bool]
+            Whether the PDF and the e-mail carry the payment link of the company payment link template
+
+        debt_reminders_enabled : typing.Optional[bool]
+            Whether automatic debt reminders include this invoice when its partner has them turned on
+
         operation_type_id : typing.Optional[str]
 
         document_series_id : typing.Optional[str]
@@ -2609,6 +2874,9 @@ class AsyncSalesClient:
         received_by_title : typing.Optional[str]
 
         discount_percent : typing.Optional[str]
+
+        sales_tax_percent : typing.Optional[str]
+            Sales tax as a percent of the net total, added to the invoice total. It is not posted to the ledger and is left out of VAT and national tax reports. Invoices only.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -2660,6 +2928,8 @@ class AsyncSalesClient:
             notes=notes,
             document_ref=document_ref,
             locale=locale,
+            pay_link_enabled=pay_link_enabled,
+            debt_reminders_enabled=debt_reminders_enabled,
             operation_type_id=operation_type_id,
             document_series_id=document_series_id,
             series_label=series_label,
@@ -2669,6 +2939,7 @@ class AsyncSalesClient:
             received_by_name=received_by_name,
             received_by_title=received_by_title,
             discount_percent=discount_percent,
+            sales_tax_percent=sales_tax_percent,
             request_options=request_options,
         )
         return _response.data
@@ -2759,16 +3030,57 @@ class AsyncSalesClient:
         _response = await self._raw_client.invoices_pdf(id=id, locale=locale, request_options=request_options)
         return _response.data
 
+    async def invoices_view(
+        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> InvoicesViewSalesResponse:
+        """
+        Return a sale document as its customer sees it: the seller as printed on it (the snapshot taken at issue, else the company), the buyer with address and e-mail, the lines, the totals, `paidOn` (the date of the latest payment once the document is paid), `payUrl` (as in `sales/invoices/payment-link`) and `token`, the document's customer token for `public/invoices/get` and `public/invoices/pdf`, created on first use; `token` is null on a draft.
+
+        Parameters
+        ----------
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        InvoicesViewSalesResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.sales.invoices_view(
+                id="id",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.invoices_view(id=id, request_options=request_options)
+        return _response.data
+
     async def invoices_send(
         self,
         *,
         id: str,
         to: typing.Optional[str] = OMIT,
         locale: typing.Optional[InvoicesSendSalesRequestLocale] = OMIT,
+        quote: typing.Optional[bool] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> InvoicesSendSalesResponse:
         """
-        E-mail an issued sale document as a PDF attachment to `to`, else to the partner's e-mail address, and emit `sale_invoice.sent`. The PDF is the one of `sales/invoices/pdf`. Answers 422 when e-mail sending is not configured, when the document is not issued, or when neither `to` nor the partner's e-mail is set.
+        E-mail an issued sale document as a PDF attachment to `to`, else to the partner's e-mail address, and emit `sale_invoice.sent`. The PDF is the one of `sales/invoices/pdf`. With `quote: true` the document must be a draft: it is e-mailed as a quote (PDF titled quote, no payment link), stays a draft, and `sale_invoice.quote_sent` is emitted instead. Answers 422 when e-mail sending is not configured, when the document is not issued (or, with `quote`, not a draft), or when neither `to` nor the partner's e-mail is set.
 
         Parameters
         ----------
@@ -2777,6 +3089,8 @@ class AsyncSalesClient:
         to : typing.Optional[str]
 
         locale : typing.Optional[InvoicesSendSalesRequestLocale]
+
+        quote : typing.Optional[bool]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -2805,7 +3119,9 @@ class AsyncSalesClient:
 
         asyncio.run(main())
         """
-        _response = await self._raw_client.invoices_send(id=id, to=to, locale=locale, request_options=request_options)
+        _response = await self._raw_client.invoices_send(
+            id=id, to=to, locale=locale, quote=quote, request_options=request_options
+        )
         return _response.data
 
     async def invoices_peppol_xml(
@@ -3066,6 +3382,8 @@ class AsyncSalesClient:
         deemed_supplier: typing.Optional[bool] = OMIT,
         notes: typing.Optional[str] = OMIT,
         locale: typing.Optional[InvoicesUpdateSalesRequestLocale] = OMIT,
+        pay_link_enabled: typing.Optional[bool] = OMIT,
+        debt_reminders_enabled: typing.Optional[bool] = OMIT,
         operation_type_id: typing.Optional[str] = OMIT,
         document_series_id: typing.Optional[str] = OMIT,
         series_label: typing.Optional[str] = OMIT,
@@ -3075,11 +3393,12 @@ class AsyncSalesClient:
         issued_by_title: typing.Optional[str] = OMIT,
         received_by_name: typing.Optional[str] = OMIT,
         received_by_title: typing.Optional[str] = OMIT,
+        sales_tax_percent: typing.Optional[str] = OMIT,
         lines: typing.Optional[typing.Sequence[InvoicesUpdateSalesRequestLinesItem]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> InvoicesUpdateSalesResponse:
         """
-        Change a draft sale document. Fields left out keep their value, `lines` replaces every line, and a changed `discountPercent` recomputes the existing lines. Answers 409 when the document is issued or locked, and 422 under the checks of `sales/invoices/create` (the credited document's partner and currency, the OSS and IOSS country, VAT on the lines, the operation type and document series).
+        Change a draft sale document. Fields left out keep their value, `lines` replaces every line, a changed `discountPercent` recomputes the existing lines, and `salesTaxPercent` (invoices only, null removes it) recomputes the sales tax and the total. Answers 409 when the document is issued or locked, and 422 under the checks of `sales/invoices/create` (the credited document's partner and currency, the OSS and IOSS country, VAT on the lines, the operation type and document series).
 
         Parameters
         ----------
@@ -3113,6 +3432,10 @@ class AsyncSalesClient:
 
         locale : typing.Optional[InvoicesUpdateSalesRequestLocale]
 
+        pay_link_enabled : typing.Optional[bool]
+
+        debt_reminders_enabled : typing.Optional[bool]
+
         operation_type_id : typing.Optional[str]
 
         document_series_id : typing.Optional[str]
@@ -3130,6 +3453,8 @@ class AsyncSalesClient:
         received_by_name : typing.Optional[str]
 
         received_by_title : typing.Optional[str]
+
+        sales_tax_percent : typing.Optional[str]
 
         lines : typing.Optional[typing.Sequence[InvoicesUpdateSalesRequestLinesItem]]
 
@@ -3176,6 +3501,8 @@ class AsyncSalesClient:
             deemed_supplier=deemed_supplier,
             notes=notes,
             locale=locale,
+            pay_link_enabled=pay_link_enabled,
+            debt_reminders_enabled=debt_reminders_enabled,
             operation_type_id=operation_type_id,
             document_series_id=document_series_id,
             series_label=series_label,
@@ -3185,6 +3512,7 @@ class AsyncSalesClient:
             issued_by_title=issued_by_title,
             received_by_name=received_by_name,
             received_by_title=received_by_title,
+            sales_tax_percent=sales_tax_percent,
             lines=lines,
             request_options=request_options,
         )
@@ -3376,7 +3704,7 @@ class AsyncSalesClient:
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> InvoicesPaymentLinkSalesResponse:
         """
-        Return the customer payment link of a sale document, rendered from the company's payment link template (`sales/invoices/payment-settings/update`); `url` is null when the company has no template or the document is not issued. The document's payment token is created on first use. Answers 409 when the document is already paid.
+        Return the customer payment link of a sale document: the Stripe card payment page (`source` `stripe`) when the company's Stripe account is connected and can take charges (`sales/invoices/card-payments/get`), else the link rendered from the company's payment link template (`sales/invoices/payment-settings/update`, `source` `template`); `url` is null when the company has neither, the document is not issued or its `payLinkEnabled` is false. The document's payment token is created on first use. Answers 409 when the document is already paid.
 
         Parameters
         ----------
@@ -5274,4 +5602,228 @@ class AsyncSalesClient:
         _response = await self._raw_client.refund_liability_true_up(
             invoice_id=invoice_id, estimated_total=estimated_total, date=date, request_options=request_options
         )
+        return _response.data
+
+    async def payments_list(
+        self,
+        *,
+        from_: dt.date,
+        to: dt.date,
+        page: typing.Optional[int] = OMIT,
+        page_size: typing.Optional[int] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PaymentsListSalesResponse:
+        """
+        List the money received on sale documents between `from` and `to` (inclusive), oldest first: bank payments matched to the document, card settlements of a payment provider and cash receipt orders. A reversed bank match is a row with a negative amount on the date it was reversed. Credit notes, advances applied to a final invoice and balances carried over by a migration are not money received and are left out. `amount` is in the document currency; `method` is `card` for a settlement or a payment into a Stripe bank account, `cash` for a cash order and `bank_transfer` otherwise.
+
+        Parameters
+        ----------
+        from_ : dt.date
+
+        to : dt.date
+
+        page : typing.Optional[int]
+
+        page_size : typing.Optional[int]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PaymentsListSalesResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+        import datetime
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.sales.payments_list(
+                from_=datetime.date.fromisoformat(
+                    "2026-07-01",
+                ),
+                to=datetime.date.fromisoformat(
+                    "2026-07-01",
+                ),
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.payments_list(
+            from_=from_, to=to, page=page, page_size=page_size, request_options=request_options
+        )
+        return _response.data
+
+    async def exports_month(
+        self,
+        *,
+        month: str,
+        format: ExportsMonthSalesRequestFormat,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> ExportsMonthSalesResponse:
+        """
+        Export one calendar month for the accountant as a single file: every invoice and credit note issued in the month (number, dates, client, currency, net, VAT, total and the amount paid so far) and every payment received in the month as listed by `sales/payments/list`. `format` is `csv` (comma separated, UTF-8, one section per table) or `pdf`. `format` `nordlet` instead returns a JSON package that `migration/books/validate` and `migration/books/import` accept: every posted journal transaction dated in the month with its debit and credit lines, the accounts those lines use (with their parent accounts) and the partners of those transactions; its cutoverDate is the day after the month ends. The file comes back base64-encoded in `data`.
+
+        Parameters
+        ----------
+        month : str
+
+        format : ExportsMonthSalesRequestFormat
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        ExportsMonthSalesResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.sales.exports_month(
+                month="month",
+                format="csv",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.exports_month(month=month, format=format, request_options=request_options)
+        return _response.data
+
+    async def invoices_card_payments_get(
+        self, *, request_options: typing.Optional[RequestOptions] = None
+    ) -> InvoicesCardPaymentsGetSalesResponse:
+        """
+        Return whether the company's Stripe account is connected for card payments and whether Stripe lets it take charges yet. While the account is connected but cannot take charges, Stripe is asked again on each call. When `chargesEnabled` is true, payment links of issued invoices open a Stripe Checkout page on that account.
+
+        Parameters
+        ----------
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        InvoicesCardPaymentsGetSalesResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.sales.invoices_card_payments_get()
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.invoices_card_payments_get(request_options=request_options)
+        return _response.data
+
+    async def invoices_card_payments_connect(
+        self, *, return_url: str, refresh_url: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> InvoicesCardPaymentsConnectSalesResponse:
+        """
+        Start or continue connecting the company's own Stripe account for card payments: creates the Stripe account on first use and returns the Stripe-hosted onboarding `url`. Stripe sends the user back to `returnUrl` when onboarding ends and to `refreshUrl` when the link has expired. Answers 503 when Stripe is not configured.
+
+        Parameters
+        ----------
+        return_url : str
+
+        refresh_url : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        InvoicesCardPaymentsConnectSalesResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.sales.invoices_card_payments_connect(
+                return_url="returnUrl",
+                refresh_url="refreshUrl",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.invoices_card_payments_connect(
+            return_url=return_url, refresh_url=refresh_url, request_options=request_options
+        )
+        return _response.data
+
+    async def invoices_card_payments_disconnect(
+        self, *, request_options: typing.Optional[RequestOptions] = None
+    ) -> InvoicesCardPaymentsDisconnectSalesResponse:
+        """
+        Disconnect the company's Stripe account: payment links fall back to the payment link template. The Stripe account itself is left as it is.
+
+        Parameters
+        ----------
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        InvoicesCardPaymentsDisconnectSalesResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.sales.invoices_card_payments_disconnect()
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.invoices_card_payments_disconnect(request_options=request_options)
         return _response.data
