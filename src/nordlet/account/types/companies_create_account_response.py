@@ -17,6 +17,7 @@ class CompaniesCreateAccountResponse(UniversalBaseModel):
     ] = None
     role: str
     is_sandbox: typing_extensions.Annotated[bool, FieldMetadata(alias="isSandbox"), pydantic.Field(alias="isSandbox")]
+    cash_basis: typing_extensions.Annotated[bool, FieldMetadata(alias="cashBasis"), pydantic.Field(alias="cashBasis")]
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

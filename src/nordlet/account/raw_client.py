@@ -2404,6 +2404,7 @@ class RawAccountClient:
         country_code: typing.Optional[CompaniesCreateAccountRequestCountryCode] = OMIT,
         base_currency: typing.Optional[str] = OMIT,
         is_sandbox: typing.Optional[bool] = OMIT,
+        cash_basis: typing.Optional[bool] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[CompaniesCreateAccountResponse]:
         """
@@ -2491,6 +2492,9 @@ class RawAccountClient:
         is_sandbox : typing.Optional[bool]
             Sandbox companies hold test data and are purged immediately on delete (immutable after creation)
 
+        cash_basis : typing.Optional[bool]
+            The company determines its profit on a cash basis (receipts and payments, in Germany the Einnahmenüberschussrechnung of § 4 Abs. 3 EStG); it gets the cash-basis returns in its filing calendar (immutable after creation)
+
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
@@ -2541,6 +2545,7 @@ class RawAccountClient:
                 "countryCode": country_code,
                 "baseCurrency": base_currency,
                 "isSandbox": is_sandbox,
+                "cashBasis": cash_basis,
             },
             headers={
                 "content-type": "application/json",
@@ -3031,7 +3036,7 @@ class RawAccountClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[CompaniesUpdateAccountResponse]:
         """
-        Change the profile of the active company; owners and admins may call it. Only the fields sent are changed, and the nullable ones can be sent as null to clear them. `logo` stores a base64-encoded image as a file of the company and sets `logoFileId`. The country, base currency and sandbox flag are fixed at creation.
+        Change the profile of the active company; owners and admins may call it. Only the fields sent are changed, and the nullable ones can be sent as null to clear them. `logo` stores a base64-encoded image as a file of the company and sets `logoFileId`. The country, base currency, sandbox flag and cash-basis flag are fixed at creation.
 
         Parameters
         ----------
@@ -8812,6 +8817,7 @@ class AsyncRawAccountClient:
         country_code: typing.Optional[CompaniesCreateAccountRequestCountryCode] = OMIT,
         base_currency: typing.Optional[str] = OMIT,
         is_sandbox: typing.Optional[bool] = OMIT,
+        cash_basis: typing.Optional[bool] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[CompaniesCreateAccountResponse]:
         """
@@ -8899,6 +8905,9 @@ class AsyncRawAccountClient:
         is_sandbox : typing.Optional[bool]
             Sandbox companies hold test data and are purged immediately on delete (immutable after creation)
 
+        cash_basis : typing.Optional[bool]
+            The company determines its profit on a cash basis (receipts and payments, in Germany the Einnahmenüberschussrechnung of § 4 Abs. 3 EStG); it gets the cash-basis returns in its filing calendar (immutable after creation)
+
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
@@ -8949,6 +8958,7 @@ class AsyncRawAccountClient:
                 "countryCode": country_code,
                 "baseCurrency": base_currency,
                 "isSandbox": is_sandbox,
+                "cashBasis": cash_basis,
             },
             headers={
                 "content-type": "application/json",
@@ -9439,7 +9449,7 @@ class AsyncRawAccountClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[CompaniesUpdateAccountResponse]:
         """
-        Change the profile of the active company; owners and admins may call it. Only the fields sent are changed, and the nullable ones can be sent as null to clear them. `logo` stores a base64-encoded image as a file of the company and sets `logoFileId`. The country, base currency and sandbox flag are fixed at creation.
+        Change the profile of the active company; owners and admins may call it. Only the fields sent are changed, and the nullable ones can be sent as null to clear them. `logo` stores a base64-encoded image as a file of the company and sets `logoFileId`. The country, base currency, sandbox flag and cash-basis flag are fixed at creation.
 
         Parameters
         ----------

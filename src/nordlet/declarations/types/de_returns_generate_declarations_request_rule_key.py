@@ -11,6 +11,7 @@ DeReturnsGenerateDeclarationsRequestRuleKey = typing.Union[
         "de-annual-vat-return",
         "de-payroll-withholding",
         "de-payroll-statements",
+        "de-euer",
     ],
     typing.Any,
 ]

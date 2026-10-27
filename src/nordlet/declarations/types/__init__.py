@@ -174,6 +174,9 @@ if typing.TYPE_CHECKING:
     )
     from .de_deuev_generate_declarations_response import DeDeuevGenerateDeclarationsResponse
     from .de_deuev_generate_declarations_response_records_item import DeDeuevGenerateDeclarationsResponseRecordsItem
+    from .de_euer_get_declarations_response import DeEuerGetDeclarationsResponse
+    from .de_euer_get_declarations_response_rows_item import DeEuerGetDeclarationsResponseRowsItem
+    from .de_euer_get_declarations_response_rows_item_anlage import DeEuerGetDeclarationsResponseRowsItemAnlage
     from .de_return_facts_get_declarations_response import DeReturnFactsGetDeclarationsResponse
     from .de_return_facts_get_declarations_response_facts import DeReturnFactsGetDeclarationsResponseFacts
     from .de_return_facts_get_declarations_response_facts_contracts_item import (
@@ -187,6 +190,9 @@ if typing.TYPE_CHECKING:
     )
     from .de_return_facts_get_declarations_response_facts_distributions_item import (
         DeReturnFactsGetDeclarationsResponseFactsDistributionsItem,
+    )
+    from .de_return_facts_get_declarations_response_facts_euer_einkunftsart import (
+        DeReturnFactsGetDeclarationsResponseFactsEuerEinkunftsart,
     )
     from .de_return_facts_get_declarations_response_facts_foreign_income_item import (
         DeReturnFactsGetDeclarationsResponseFactsForeignIncomeItem,
@@ -228,6 +234,9 @@ if typing.TYPE_CHECKING:
     from .de_return_facts_set_declarations_request_facts_distributions_item import (
         DeReturnFactsSetDeclarationsRequestFactsDistributionsItem,
     )
+    from .de_return_facts_set_declarations_request_facts_euer_einkunftsart import (
+        DeReturnFactsSetDeclarationsRequestFactsEuerEinkunftsart,
+    )
     from .de_return_facts_set_declarations_request_facts_foreign_income_item import (
         DeReturnFactsSetDeclarationsRequestFactsForeignIncomeItem,
     )
@@ -268,6 +277,9 @@ if typing.TYPE_CHECKING:
     )
     from .de_return_facts_set_declarations_response_facts_distributions_item import (
         DeReturnFactsSetDeclarationsResponseFactsDistributionsItem,
+    )
+    from .de_return_facts_set_declarations_response_facts_euer_einkunftsart import (
+        DeReturnFactsSetDeclarationsResponseFactsEuerEinkunftsart,
     )
     from .de_return_facts_set_declarations_response_facts_foreign_income_item import (
         DeReturnFactsSetDeclarationsResponseFactsForeignIncomeItem,
@@ -721,12 +733,16 @@ _dynamic_imports: typing.Dict[str, str] = {
     "DeBeitragsnachweisGenerateDeclarationsResponseRecordsItemPositionenItem": ".de_beitragsnachweis_generate_declarations_response_records_item_positionen_item",
     "DeDeuevGenerateDeclarationsResponse": ".de_deuev_generate_declarations_response",
     "DeDeuevGenerateDeclarationsResponseRecordsItem": ".de_deuev_generate_declarations_response_records_item",
+    "DeEuerGetDeclarationsResponse": ".de_euer_get_declarations_response",
+    "DeEuerGetDeclarationsResponseRowsItem": ".de_euer_get_declarations_response_rows_item",
+    "DeEuerGetDeclarationsResponseRowsItemAnlage": ".de_euer_get_declarations_response_rows_item_anlage",
     "DeReturnFactsGetDeclarationsResponse": ".de_return_facts_get_declarations_response",
     "DeReturnFactsGetDeclarationsResponseFacts": ".de_return_facts_get_declarations_response_facts",
     "DeReturnFactsGetDeclarationsResponseFactsContractsItem": ".de_return_facts_get_declarations_response_facts_contracts_item",
     "DeReturnFactsGetDeclarationsResponseFactsContributionsItem": ".de_return_facts_get_declarations_response_facts_contributions_item",
     "DeReturnFactsGetDeclarationsResponseFactsContributionsItemKind": ".de_return_facts_get_declarations_response_facts_contributions_item_kind",
     "DeReturnFactsGetDeclarationsResponseFactsDistributionsItem": ".de_return_facts_get_declarations_response_facts_distributions_item",
+    "DeReturnFactsGetDeclarationsResponseFactsEuerEinkunftsart": ".de_return_facts_get_declarations_response_facts_euer_einkunftsart",
     "DeReturnFactsGetDeclarationsResponseFactsForeignIncomeItem": ".de_return_facts_get_declarations_response_facts_foreign_income_item",
     "DeReturnFactsGetDeclarationsResponseFactsForeignIncomeItemKind": ".de_return_facts_get_declarations_response_facts_foreign_income_item_kind",
     "DeReturnFactsGetDeclarationsResponseFactsLandHoldingsItem": ".de_return_facts_get_declarations_response_facts_land_holdings_item",
@@ -741,6 +757,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "DeReturnFactsSetDeclarationsRequestFactsContributionsItem": ".de_return_facts_set_declarations_request_facts_contributions_item",
     "DeReturnFactsSetDeclarationsRequestFactsContributionsItemKind": ".de_return_facts_set_declarations_request_facts_contributions_item_kind",
     "DeReturnFactsSetDeclarationsRequestFactsDistributionsItem": ".de_return_facts_set_declarations_request_facts_distributions_item",
+    "DeReturnFactsSetDeclarationsRequestFactsEuerEinkunftsart": ".de_return_facts_set_declarations_request_facts_euer_einkunftsart",
     "DeReturnFactsSetDeclarationsRequestFactsForeignIncomeItem": ".de_return_facts_set_declarations_request_facts_foreign_income_item",
     "DeReturnFactsSetDeclarationsRequestFactsForeignIncomeItemKind": ".de_return_facts_set_declarations_request_facts_foreign_income_item_kind",
     "DeReturnFactsSetDeclarationsRequestFactsLandHoldingsItem": ".de_return_facts_set_declarations_request_facts_land_holdings_item",
@@ -756,6 +773,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "DeReturnFactsSetDeclarationsResponseFactsContributionsItem": ".de_return_facts_set_declarations_response_facts_contributions_item",
     "DeReturnFactsSetDeclarationsResponseFactsContributionsItemKind": ".de_return_facts_set_declarations_response_facts_contributions_item_kind",
     "DeReturnFactsSetDeclarationsResponseFactsDistributionsItem": ".de_return_facts_set_declarations_response_facts_distributions_item",
+    "DeReturnFactsSetDeclarationsResponseFactsEuerEinkunftsart": ".de_return_facts_set_declarations_response_facts_euer_einkunftsart",
     "DeReturnFactsSetDeclarationsResponseFactsForeignIncomeItem": ".de_return_facts_set_declarations_response_facts_foreign_income_item",
     "DeReturnFactsSetDeclarationsResponseFactsForeignIncomeItemKind": ".de_return_facts_set_declarations_response_facts_foreign_income_item_kind",
     "DeReturnFactsSetDeclarationsResponseFactsLandHoldingsItem": ".de_return_facts_set_declarations_response_facts_land_holdings_item",
@@ -1106,12 +1124,16 @@ __all__ = [
     "DeBeitragsnachweisGenerateDeclarationsResponseRecordsItemPositionenItem",
     "DeDeuevGenerateDeclarationsResponse",
     "DeDeuevGenerateDeclarationsResponseRecordsItem",
+    "DeEuerGetDeclarationsResponse",
+    "DeEuerGetDeclarationsResponseRowsItem",
+    "DeEuerGetDeclarationsResponseRowsItemAnlage",
     "DeReturnFactsGetDeclarationsResponse",
     "DeReturnFactsGetDeclarationsResponseFacts",
     "DeReturnFactsGetDeclarationsResponseFactsContractsItem",
     "DeReturnFactsGetDeclarationsResponseFactsContributionsItem",
     "DeReturnFactsGetDeclarationsResponseFactsContributionsItemKind",
     "DeReturnFactsGetDeclarationsResponseFactsDistributionsItem",
+    "DeReturnFactsGetDeclarationsResponseFactsEuerEinkunftsart",
     "DeReturnFactsGetDeclarationsResponseFactsForeignIncomeItem",
     "DeReturnFactsGetDeclarationsResponseFactsForeignIncomeItemKind",
     "DeReturnFactsGetDeclarationsResponseFactsLandHoldingsItem",
@@ -1126,6 +1148,7 @@ __all__ = [
     "DeReturnFactsSetDeclarationsRequestFactsContributionsItem",
     "DeReturnFactsSetDeclarationsRequestFactsContributionsItemKind",
     "DeReturnFactsSetDeclarationsRequestFactsDistributionsItem",
+    "DeReturnFactsSetDeclarationsRequestFactsEuerEinkunftsart",
     "DeReturnFactsSetDeclarationsRequestFactsForeignIncomeItem",
     "DeReturnFactsSetDeclarationsRequestFactsForeignIncomeItemKind",
     "DeReturnFactsSetDeclarationsRequestFactsLandHoldingsItem",
@@ -1141,6 +1164,7 @@ __all__ = [
     "DeReturnFactsSetDeclarationsResponseFactsContributionsItem",
     "DeReturnFactsSetDeclarationsResponseFactsContributionsItemKind",
     "DeReturnFactsSetDeclarationsResponseFactsDistributionsItem",
+    "DeReturnFactsSetDeclarationsResponseFactsEuerEinkunftsart",
     "DeReturnFactsSetDeclarationsResponseFactsForeignIncomeItem",
     "DeReturnFactsSetDeclarationsResponseFactsForeignIncomeItemKind",
     "DeReturnFactsSetDeclarationsResponseFactsLandHoldingsItem",

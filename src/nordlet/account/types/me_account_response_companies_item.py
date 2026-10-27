@@ -19,6 +19,7 @@ class MeAccountResponseCompaniesItem(UniversalBaseModel):
     ] = None
     role: str
     is_sandbox: typing_extensions.Annotated[bool, FieldMetadata(alias="isSandbox"), pydantic.Field(alias="isSandbox")]
+    cash_basis: typing_extensions.Annotated[bool, FieldMetadata(alias="cashBasis"), pydantic.Field(alias="cashBasis")]
     status: MeAccountResponseCompaniesItemStatus
     deleted_at: typing_extensions.Annotated[
         typing.Optional[dt.datetime], FieldMetadata(alias="deletedAt"), pydantic.Field(alias="deletedAt")

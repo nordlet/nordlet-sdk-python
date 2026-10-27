@@ -16,6 +16,9 @@ from .de_return_facts_get_declarations_response_facts_contributions_item import 
 from .de_return_facts_get_declarations_response_facts_distributions_item import (
     DeReturnFactsGetDeclarationsResponseFactsDistributionsItem,
 )
+from .de_return_facts_get_declarations_response_facts_euer_einkunftsart import (
+    DeReturnFactsGetDeclarationsResponseFactsEuerEinkunftsart,
+)
 from .de_return_facts_get_declarations_response_facts_foreign_income_item import (
     DeReturnFactsGetDeclarationsResponseFactsForeignIncomeItem,
 )
@@ -113,6 +116,17 @@ class DeReturnFactsGetDeclarationsResponseFacts(UniversalBaseModel):
     ] = None
     distance_sales: typing_extensions.Annotated[
         typing.Optional[str], FieldMetadata(alias="distanceSales"), pydantic.Field(alias="distanceSales")
+    ] = None
+    euer_einkunftsart: typing_extensions.Annotated[
+        typing.Optional[DeReturnFactsGetDeclarationsResponseFactsEuerEinkunftsart],
+        FieldMetadata(alias="euerEinkunftsart"),
+        pydantic.Field(alias="euerEinkunftsart"),
+    ] = None
+    euer_entnahmen: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="euerEntnahmen"), pydantic.Field(alias="euerEntnahmen")
+    ] = None
+    euer_einlagen: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="euerEinlagen"), pydantic.Field(alias="euerEinlagen")
     ] = None
 
     if IS_PYDANTIC_V2:

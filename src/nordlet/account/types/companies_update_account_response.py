@@ -26,6 +26,7 @@ class CompaniesUpdateAccountResponse(UniversalBaseModel):
         bool, FieldMetadata(alias="isVatPayer"), pydantic.Field(alias="isVatPayer")
     ]
     is_sandbox: typing_extensions.Annotated[bool, FieldMetadata(alias="isSandbox"), pydantic.Field(alias="isSandbox")]
+    cash_basis: typing_extensions.Annotated[bool, FieldMetadata(alias="cashBasis"), pydantic.Field(alias="cashBasis")]
     country_code: typing_extensions.Annotated[
         str, FieldMetadata(alias="countryCode"), pydantic.Field(alias="countryCode")
     ]
