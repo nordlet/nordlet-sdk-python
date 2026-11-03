@@ -57,6 +57,9 @@ from .types.members_remove_account_response import MembersRemoveAccountResponse
 from .types.members_set_role_account_request_role import MembersSetRoleAccountRequestRole
 from .types.members_set_role_account_response import MembersSetRoleAccountResponse
 from .types.members_transfer_ownership_account_response import MembersTransferOwnershipAccountResponse
+from .types.oauth_authorize_approve_account_response import OauthAuthorizeApproveAccountResponse
+from .types.oauth_authorize_deny_account_response import OauthAuthorizeDenyAccountResponse
+from .types.oauth_authorize_describe_account_response import OauthAuthorizeDescribeAccountResponse
 from .types.profile_update_account_response import ProfileUpdateAccountResponse
 from .types.referral_convert_account_response import ReferralConvertAccountResponse
 from .types.referral_get_account_response import ReferralGetAccountResponse
@@ -204,7 +207,7 @@ class AccountClient:
 
     def me(self, *, request_options: typing.Optional[RequestOptions] = None) -> MeAccountResponse:
         """
-        Return the signed-in user, their active company and role in it, the companies they belong to and their consent state. `billing` is the billing account that pays for the active company (its payer, or the user when there is none or no company), with `isPayer` saying whether that is the user; `referralPoints` is the user's current points balance.
+        Return the signed-in user, their active company and role in it, the companies they belong to and their consent state. `billing` is the billing account of the request's site (the `x-nordlet-site` header, `app` when absent) that pays for the active company (its payer, or the user when there is none or no company), with `isPayer` saying whether that is the user; `referralPoints` is the user's current points balance. An API key may call it too: the active company is then the one named in the `x-nordlet-company` header, and `companies` lists every company the key works in.
 
         Parameters
         ----------
@@ -337,7 +340,7 @@ class AccountClient:
         self, *, user_id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> MembersRemoveAccountResponse:
         """
-        Remove a member from the active company; owners and admins may call it. Their sessions lose this company as the active one and the API keys they created for it are revoked. Refused with 422 for the caller themself and with 403 for the owner.
+        Remove a member from the active company; owners and admins may call it. Their sessions lose this company as the active one and their API keys stop working in it. Refused with 422 for the caller themself and with 403 for the owner.
 
         Parameters
         ----------
@@ -780,7 +783,7 @@ class AccountClient:
         self, *, company_id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> CompaniesSelectAccountResponse:
         """
-        Make one of the caller's companies the active company of the session. Refused with 403 when the caller is not a member and with 422 when the company is archived or deleted.
+        Make one of the caller's companies the active company of the session. Refused with 403 when the caller is not a member, with 422 when the company is archived or deleted, and with 422 for an API key, which names the company in the `x-nordlet-company` header of each call instead.
 
         Parameters
         ----------
@@ -1114,7 +1117,7 @@ class AccountClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> ApiKeysCreateAccountResponse:
         """
-        Create an API key for the active company and return the key itself once; owners, admins and developers may call it. `scopes` defaults to the caller's own scopes and may not exceed them (403); without `expiresInDays` the key does not expire.
+        Create an API key for the signed-in person and return the key itself once. Owners, admins and developers of the active company may call it. The key works in every company the person is a member of, with the rights of their role in each; every call names the company in the `x-nordlet-company` header. `scopes` defaults to the caller's scopes in the active company and may not exceed them (403); in each company the key's scopes are further limited to the person's role there. Without `expiresInDays` the key does not expire.
 
         Parameters
         ----------
@@ -1150,7 +1153,7 @@ class AccountClient:
 
     def api_keys_list(self, *, request_options: typing.Optional[RequestOptions] = None) -> ApiKeysListAccountResponse:
         """
-        List the API keys of the active company, including expired and revoked ones.
+        List the signed-in person's API keys, including expired and revoked ones.
 
         Parameters
         ----------
@@ -1183,7 +1186,7 @@ class AccountClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> ApiKeysRotateAccountResponse:
         """
-        Create a new key with the name and scopes of the key `id` and return it once; the old key keeps working for `overlapHours` and then expires, and its `replacedByKeyId` points to the new one. `expiresInDays` applies to the new key. Refused with 409 when the old key is revoked.
+        Create a new key with the name and scopes of the signed-in person's key `id` and return it once; the old key keeps working for `overlapHours` and then expires, and its `replacedByKeyId` points to the new one. `expiresInDays` applies to the new key. Refused with 409 when the old key is revoked or belongs to an app connected through OAuth, which renews its own access.
 
         Parameters
         ----------
@@ -1221,7 +1224,7 @@ class AccountClient:
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> ApiKeysRevokeAccountResponse:
         """
-        Revoke an API key of the active company at once.
+        Revoke one of the signed-in person's API keys at once.
 
         Parameters
         ----------
@@ -1444,7 +1447,7 @@ class AccountClient:
 
     def export(self, *, request_options: typing.Optional[RequestOptions] = None) -> ExportAccountResponse:
         """
-        Return the user's profile, consent state, memberships, unexpired sessions, billing account, credit transactions and the audit entries they made in their companies (the most recent 5000 of each of the last two).
+        Return the user's profile, consent state, memberships, unexpired sessions, billing accounts (`billing` is the `app` site's, `billingAccounts` has one per site), credit transactions and the audit entries they made in their companies (the most recent 5000 of each of the last two).
 
         Parameters
         ----------
@@ -1661,6 +1664,204 @@ class AccountClient:
         _response = self._raw_client.table_settings_list(request_options=request_options)
         return _response.data
 
+    def oauth_authorize_describe(
+        self,
+        *,
+        client_id: str,
+        redirect_uri: typing.Optional[str] = OMIT,
+        response_type: typing.Optional[str] = OMIT,
+        code_challenge: typing.Optional[str] = OMIT,
+        code_challenge_method: typing.Optional[str] = OMIT,
+        state: typing.Optional[str] = OMIT,
+        scope: typing.Optional[str] = OMIT,
+        resource: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> OauthAuthorizeDescribeAccountResponse:
+        """
+        Check an OAuth authorization request of an app that wants to connect to Nordlet (such as Claude) and return the name the app registered, the address the signed-in person is sent back to and the scopes asked for. Refused with 422 when the request is invalid: unknown app, redirect address not registered for it, no PKCE (S256), unknown scope or a resource other than the MCP server.
+
+        Parameters
+        ----------
+        client_id : str
+
+        redirect_uri : typing.Optional[str]
+
+        response_type : typing.Optional[str]
+
+        code_challenge : typing.Optional[str]
+
+        code_challenge_method : typing.Optional[str]
+
+        state : typing.Optional[str]
+
+        scope : typing.Optional[str]
+
+        resource : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        OauthAuthorizeDescribeAccountResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.account.oauth_authorize_describe(
+            client_id="clientId",
+        )
+        """
+        _response = self._raw_client.oauth_authorize_describe(
+            client_id=client_id,
+            redirect_uri=redirect_uri,
+            response_type=response_type,
+            code_challenge=code_challenge,
+            code_challenge_method=code_challenge_method,
+            state=state,
+            scope=scope,
+            resource=resource,
+            request_options=request_options,
+        )
+        return _response.data
+
+    def oauth_authorize_approve(
+        self,
+        *,
+        client_id: str,
+        redirect_uri: typing.Optional[str] = OMIT,
+        response_type: typing.Optional[str] = OMIT,
+        code_challenge: typing.Optional[str] = OMIT,
+        code_challenge_method: typing.Optional[str] = OMIT,
+        state: typing.Optional[str] = OMIT,
+        scope: typing.Optional[str] = OMIT,
+        resource: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> OauthAuthorizeApproveAccountResponse:
+        """
+        Allow the app of an OAuth authorization request to act for the signed-in person and return the app's redirect address with a one-time authorization code (valid for 5 minutes). The app exchanges the code at `/oauth/token` for an access token that works like an API key of the person: in every company they are a member of, with the rights of their role there. The connection is listed among the person's API keys under the app's name and is revoked there. Refused with 422 like `account/oauth/authorize/describe`.
+
+        Parameters
+        ----------
+        client_id : str
+
+        redirect_uri : typing.Optional[str]
+
+        response_type : typing.Optional[str]
+
+        code_challenge : typing.Optional[str]
+
+        code_challenge_method : typing.Optional[str]
+
+        state : typing.Optional[str]
+
+        scope : typing.Optional[str]
+
+        resource : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        OauthAuthorizeApproveAccountResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.account.oauth_authorize_approve(
+            client_id="clientId",
+        )
+        """
+        _response = self._raw_client.oauth_authorize_approve(
+            client_id=client_id,
+            redirect_uri=redirect_uri,
+            response_type=response_type,
+            code_challenge=code_challenge,
+            code_challenge_method=code_challenge_method,
+            state=state,
+            scope=scope,
+            resource=resource,
+            request_options=request_options,
+        )
+        return _response.data
+
+    def oauth_authorize_deny(
+        self,
+        *,
+        client_id: str,
+        redirect_uri: typing.Optional[str] = OMIT,
+        response_type: typing.Optional[str] = OMIT,
+        code_challenge: typing.Optional[str] = OMIT,
+        code_challenge_method: typing.Optional[str] = OMIT,
+        state: typing.Optional[str] = OMIT,
+        scope: typing.Optional[str] = OMIT,
+        resource: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> OauthAuthorizeDenyAccountResponse:
+        """
+        Refuse an OAuth authorization request and return the app's redirect address with the error `access_denied`. Refused with 422 like `account/oauth/authorize/describe`.
+
+        Parameters
+        ----------
+        client_id : str
+
+        redirect_uri : typing.Optional[str]
+
+        response_type : typing.Optional[str]
+
+        code_challenge : typing.Optional[str]
+
+        code_challenge_method : typing.Optional[str]
+
+        state : typing.Optional[str]
+
+        scope : typing.Optional[str]
+
+        resource : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        OauthAuthorizeDenyAccountResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.account.oauth_authorize_deny(
+            client_id="clientId",
+        )
+        """
+        _response = self._raw_client.oauth_authorize_deny(
+            client_id=client_id,
+            redirect_uri=redirect_uri,
+            response_type=response_type,
+            code_challenge=code_challenge,
+            code_challenge_method=code_challenge_method,
+            state=state,
+            scope=scope,
+            resource=resource,
+            request_options=request_options,
+        )
+        return _response.data
+
 
 class AsyncAccountClient:
     def __init__(self, *, client_wrapper: AsyncClientWrapper):
@@ -1819,7 +2020,7 @@ class AsyncAccountClient:
 
     async def me(self, *, request_options: typing.Optional[RequestOptions] = None) -> MeAccountResponse:
         """
-        Return the signed-in user, their active company and role in it, the companies they belong to and their consent state. `billing` is the billing account that pays for the active company (its payer, or the user when there is none or no company), with `isPayer` saying whether that is the user; `referralPoints` is the user's current points balance.
+        Return the signed-in user, their active company and role in it, the companies they belong to and their consent state. `billing` is the billing account of the request's site (the `x-nordlet-site` header, `app` when absent) that pays for the active company (its payer, or the user when there is none or no company), with `isPayer` saying whether that is the user; `referralPoints` is the user's current points balance. An API key may call it too: the active company is then the one named in the `x-nordlet-company` header, and `companies` lists every company the key works in.
 
         Parameters
         ----------
@@ -1986,7 +2187,7 @@ class AsyncAccountClient:
         self, *, user_id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> MembersRemoveAccountResponse:
         """
-        Remove a member from the active company; owners and admins may call it. Their sessions lose this company as the active one and the API keys they created for it are revoked. Refused with 422 for the caller themself and with 403 for the owner.
+        Remove a member from the active company; owners and admins may call it. Their sessions lose this company as the active one and their API keys stop working in it. Refused with 422 for the caller themself and with 403 for the owner.
 
         Parameters
         ----------
@@ -2495,7 +2696,7 @@ class AsyncAccountClient:
         self, *, company_id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> CompaniesSelectAccountResponse:
         """
-        Make one of the caller's companies the active company of the session. Refused with 403 when the caller is not a member and with 422 when the company is archived or deleted.
+        Make one of the caller's companies the active company of the session. Refused with 403 when the caller is not a member, with 422 when the company is archived or deleted, and with 422 for an API key, which names the company in the `x-nordlet-company` header of each call instead.
 
         Parameters
         ----------
@@ -2877,7 +3078,7 @@ class AsyncAccountClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> ApiKeysCreateAccountResponse:
         """
-        Create an API key for the active company and return the key itself once; owners, admins and developers may call it. `scopes` defaults to the caller's own scopes and may not exceed them (403); without `expiresInDays` the key does not expire.
+        Create an API key for the signed-in person and return the key itself once. Owners, admins and developers of the active company may call it. The key works in every company the person is a member of, with the rights of their role in each; every call names the company in the `x-nordlet-company` header. `scopes` defaults to the caller's scopes in the active company and may not exceed them (403); in each company the key's scopes are further limited to the person's role there. Without `expiresInDays` the key does not expire.
 
         Parameters
         ----------
@@ -2923,7 +3124,7 @@ class AsyncAccountClient:
         self, *, request_options: typing.Optional[RequestOptions] = None
     ) -> ApiKeysListAccountResponse:
         """
-        List the API keys of the active company, including expired and revoked ones.
+        List the signed-in person's API keys, including expired and revoked ones.
 
         Parameters
         ----------
@@ -2964,7 +3165,7 @@ class AsyncAccountClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> ApiKeysRotateAccountResponse:
         """
-        Create a new key with the name and scopes of the key `id` and return it once; the old key keeps working for `overlapHours` and then expires, and its `replacedByKeyId` points to the new one. `expiresInDays` applies to the new key. Refused with 409 when the old key is revoked.
+        Create a new key with the name and scopes of the signed-in person's key `id` and return it once; the old key keeps working for `overlapHours` and then expires, and its `replacedByKeyId` points to the new one. `expiresInDays` applies to the new key. Refused with 409 when the old key is revoked or belongs to an app connected through OAuth, which renews its own access.
 
         Parameters
         ----------
@@ -3010,7 +3211,7 @@ class AsyncAccountClient:
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> ApiKeysRevokeAccountResponse:
         """
-        Revoke an API key of the active company at once.
+        Revoke one of the signed-in person's API keys at once.
 
         Parameters
         ----------
@@ -3291,7 +3492,7 @@ class AsyncAccountClient:
 
     async def export(self, *, request_options: typing.Optional[RequestOptions] = None) -> ExportAccountResponse:
         """
-        Return the user's profile, consent state, memberships, unexpired sessions, billing account, credit transactions and the audit entries they made in their companies (the most recent 5000 of each of the last two).
+        Return the user's profile, consent state, memberships, unexpired sessions, billing accounts (`billing` is the `app` site's, `billingAccounts` has one per site), credit transactions and the audit entries they made in their companies (the most recent 5000 of each of the last two).
 
         Parameters
         ----------
@@ -3564,4 +3765,226 @@ class AsyncAccountClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.table_settings_list(request_options=request_options)
+        return _response.data
+
+    async def oauth_authorize_describe(
+        self,
+        *,
+        client_id: str,
+        redirect_uri: typing.Optional[str] = OMIT,
+        response_type: typing.Optional[str] = OMIT,
+        code_challenge: typing.Optional[str] = OMIT,
+        code_challenge_method: typing.Optional[str] = OMIT,
+        state: typing.Optional[str] = OMIT,
+        scope: typing.Optional[str] = OMIT,
+        resource: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> OauthAuthorizeDescribeAccountResponse:
+        """
+        Check an OAuth authorization request of an app that wants to connect to Nordlet (such as Claude) and return the name the app registered, the address the signed-in person is sent back to and the scopes asked for. Refused with 422 when the request is invalid: unknown app, redirect address not registered for it, no PKCE (S256), unknown scope or a resource other than the MCP server.
+
+        Parameters
+        ----------
+        client_id : str
+
+        redirect_uri : typing.Optional[str]
+
+        response_type : typing.Optional[str]
+
+        code_challenge : typing.Optional[str]
+
+        code_challenge_method : typing.Optional[str]
+
+        state : typing.Optional[str]
+
+        scope : typing.Optional[str]
+
+        resource : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        OauthAuthorizeDescribeAccountResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.account.oauth_authorize_describe(
+                client_id="clientId",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.oauth_authorize_describe(
+            client_id=client_id,
+            redirect_uri=redirect_uri,
+            response_type=response_type,
+            code_challenge=code_challenge,
+            code_challenge_method=code_challenge_method,
+            state=state,
+            scope=scope,
+            resource=resource,
+            request_options=request_options,
+        )
+        return _response.data
+
+    async def oauth_authorize_approve(
+        self,
+        *,
+        client_id: str,
+        redirect_uri: typing.Optional[str] = OMIT,
+        response_type: typing.Optional[str] = OMIT,
+        code_challenge: typing.Optional[str] = OMIT,
+        code_challenge_method: typing.Optional[str] = OMIT,
+        state: typing.Optional[str] = OMIT,
+        scope: typing.Optional[str] = OMIT,
+        resource: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> OauthAuthorizeApproveAccountResponse:
+        """
+        Allow the app of an OAuth authorization request to act for the signed-in person and return the app's redirect address with a one-time authorization code (valid for 5 minutes). The app exchanges the code at `/oauth/token` for an access token that works like an API key of the person: in every company they are a member of, with the rights of their role there. The connection is listed among the person's API keys under the app's name and is revoked there. Refused with 422 like `account/oauth/authorize/describe`.
+
+        Parameters
+        ----------
+        client_id : str
+
+        redirect_uri : typing.Optional[str]
+
+        response_type : typing.Optional[str]
+
+        code_challenge : typing.Optional[str]
+
+        code_challenge_method : typing.Optional[str]
+
+        state : typing.Optional[str]
+
+        scope : typing.Optional[str]
+
+        resource : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        OauthAuthorizeApproveAccountResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.account.oauth_authorize_approve(
+                client_id="clientId",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.oauth_authorize_approve(
+            client_id=client_id,
+            redirect_uri=redirect_uri,
+            response_type=response_type,
+            code_challenge=code_challenge,
+            code_challenge_method=code_challenge_method,
+            state=state,
+            scope=scope,
+            resource=resource,
+            request_options=request_options,
+        )
+        return _response.data
+
+    async def oauth_authorize_deny(
+        self,
+        *,
+        client_id: str,
+        redirect_uri: typing.Optional[str] = OMIT,
+        response_type: typing.Optional[str] = OMIT,
+        code_challenge: typing.Optional[str] = OMIT,
+        code_challenge_method: typing.Optional[str] = OMIT,
+        state: typing.Optional[str] = OMIT,
+        scope: typing.Optional[str] = OMIT,
+        resource: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> OauthAuthorizeDenyAccountResponse:
+        """
+        Refuse an OAuth authorization request and return the app's redirect address with the error `access_denied`. Refused with 422 like `account/oauth/authorize/describe`.
+
+        Parameters
+        ----------
+        client_id : str
+
+        redirect_uri : typing.Optional[str]
+
+        response_type : typing.Optional[str]
+
+        code_challenge : typing.Optional[str]
+
+        code_challenge_method : typing.Optional[str]
+
+        state : typing.Optional[str]
+
+        scope : typing.Optional[str]
+
+        resource : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        OauthAuthorizeDenyAccountResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.account.oauth_authorize_deny(
+                client_id="clientId",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.oauth_authorize_deny(
+            client_id=client_id,
+            redirect_uri=redirect_uri,
+            response_type=response_type,
+            code_challenge=code_challenge,
+            code_challenge_method=code_challenge_method,
+            state=state,
+            scope=scope,
+            resource=resource,
+            request_options=request_options,
+        )
         return _response.data

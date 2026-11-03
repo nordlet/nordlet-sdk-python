@@ -12,11 +12,17 @@ from .account_set_overdraft_cap_billing_response_auto_top_up import AccountSetOv
 from .account_set_overdraft_cap_billing_response_month_to_date import AccountSetOverdraftCapBillingResponseMonthToDate
 from .account_set_overdraft_cap_billing_response_plan import AccountSetOverdraftCapBillingResponsePlan
 from .account_set_overdraft_cap_billing_response_plans_value import AccountSetOverdraftCapBillingResponsePlansValue
+from .account_set_overdraft_cap_billing_response_site import AccountSetOverdraftCapBillingResponseSite
 from .account_set_overdraft_cap_billing_response_status import AccountSetOverdraftCapBillingResponseStatus
 from .account_set_overdraft_cap_billing_response_top_up import AccountSetOverdraftCapBillingResponseTopUp
 
 
 class AccountSetOverdraftCapBillingResponse(UniversalBaseModel):
+    site: AccountSetOverdraftCapBillingResponseSite = pydantic.Field()
+    """
+    The site whose plan this is, from the `x-nordlet-site` header
+    """
+
     plan: AccountSetOverdraftCapBillingResponsePlan
     account_type: typing_extensions.Annotated[
         AccountSetOverdraftCapBillingResponseAccountType,

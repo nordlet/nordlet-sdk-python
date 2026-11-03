@@ -12,11 +12,17 @@ from .flat_rate_confirm_billing_response_auto_top_up import FlatRateConfirmBilli
 from .flat_rate_confirm_billing_response_month_to_date import FlatRateConfirmBillingResponseMonthToDate
 from .flat_rate_confirm_billing_response_plan import FlatRateConfirmBillingResponsePlan
 from .flat_rate_confirm_billing_response_plans_value import FlatRateConfirmBillingResponsePlansValue
+from .flat_rate_confirm_billing_response_site import FlatRateConfirmBillingResponseSite
 from .flat_rate_confirm_billing_response_status import FlatRateConfirmBillingResponseStatus
 from .flat_rate_confirm_billing_response_top_up import FlatRateConfirmBillingResponseTopUp
 
 
 class FlatRateConfirmBillingResponse(UniversalBaseModel):
+    site: FlatRateConfirmBillingResponseSite = pydantic.Field()
+    """
+    The site whose plan this is, from the `x-nordlet-site` header
+    """
+
     plan: FlatRateConfirmBillingResponsePlan
     account_type: typing_extensions.Annotated[
         FlatRateConfirmBillingResponseAccountType,

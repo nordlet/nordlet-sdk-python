@@ -36,6 +36,7 @@ RecurringInvoicesCreateSalesRequestLocale = typing.Union[
         "hi",
         "ru",
         "tr",
+        "uk",
     ],
     typing.Any,
 ]

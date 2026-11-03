@@ -9,6 +9,7 @@ from ...core.pydantic_utilities import IS_PYDANTIC_V2, UniversalBaseModel
 from ...core.serialization import FieldMetadata
 from .export_account_response_audit_entries_item import ExportAccountResponseAuditEntriesItem
 from .export_account_response_billing import ExportAccountResponseBilling
+from .export_account_response_billing_accounts_item import ExportAccountResponseBillingAccountsItem
 from .export_account_response_consent import ExportAccountResponseConsent
 from .export_account_response_credit_transactions_item import ExportAccountResponseCreditTransactionsItem
 from .export_account_response_memberships_item import ExportAccountResponseMembershipsItem
@@ -25,6 +26,11 @@ class ExportAccountResponse(UniversalBaseModel):
     memberships: typing.List[ExportAccountResponseMembershipsItem]
     sessions: typing.List[ExportAccountResponseSessionsItem]
     billing: typing.Optional[ExportAccountResponseBilling] = None
+    billing_accounts: typing_extensions.Annotated[
+        typing.List[ExportAccountResponseBillingAccountsItem],
+        FieldMetadata(alias="billingAccounts"),
+        pydantic.Field(alias="billingAccounts"),
+    ]
     credit_transactions: typing_extensions.Annotated[
         typing.List[ExportAccountResponseCreditTransactionsItem],
         FieldMetadata(alias="creditTransactions"),

@@ -2967,7 +2967,7 @@ class RawSalesClient:
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> HttpResponse[InvoicesPaymentLinkSalesResponse]:
         """
-        Return the customer payment link of a sale document: the Stripe card payment page (`source` `stripe`) when the company's Stripe account is connected and can take charges (`sales/invoices/card-payments/get`), else the link rendered from the company's payment link template (`sales/invoices/payment-settings/update`, `source` `template`); `url` is null when the company has neither, the document is not issued or its `payLinkEnabled` is false. The document's payment token is created on first use. Answers 409 when the document is already paid.
+        Return the customer payment link of a sale document: the Stripe card payment page (`source` `stripe`) when the company's Stripe account is connected and can take charges (`sales/invoices/card-payments/get`), else the link rendered from the company's payment link template (`sales/invoices/payment-settings/update`, `source` `template`); `url` is null when the company has neither, the document is a credit note, is not issued or its `payLinkEnabled` is false. The document's payment token is created on first use. Answers 409 when the document is already paid.
 
         Parameters
         ----------
@@ -12512,7 +12512,7 @@ class AsyncRawSalesClient:
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> AsyncHttpResponse[InvoicesPaymentLinkSalesResponse]:
         """
-        Return the customer payment link of a sale document: the Stripe card payment page (`source` `stripe`) when the company's Stripe account is connected and can take charges (`sales/invoices/card-payments/get`), else the link rendered from the company's payment link template (`sales/invoices/payment-settings/update`, `source` `template`); `url` is null when the company has neither, the document is not issued or its `payLinkEnabled` is false. The document's payment token is created on first use. Answers 409 when the document is already paid.
+        Return the customer payment link of a sale document: the Stripe card payment page (`source` `stripe`) when the company's Stripe account is connected and can take charges (`sales/invoices/card-payments/get`), else the link rendered from the company's payment link template (`sales/invoices/payment-settings/update`, `source` `template`); `url` is null when the company has neither, the document is a credit note, is not issued or its `payLinkEnabled` is false. The document's payment token is created on first use. Answers 409 when the document is already paid.
 
         Parameters
         ----------

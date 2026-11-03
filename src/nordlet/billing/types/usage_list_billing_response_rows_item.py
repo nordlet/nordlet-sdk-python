@@ -8,10 +8,12 @@ import typing_extensions
 from ...core.pydantic_utilities import IS_PYDANTIC_V2, UniversalBaseModel
 from ...core.serialization import FieldMetadata
 from .usage_list_billing_response_rows_item_metric import UsageListBillingResponseRowsItemMetric
+from .usage_list_billing_response_rows_item_site import UsageListBillingResponseRowsItemSite
 
 
 class UsageListBillingResponseRowsItem(UniversalBaseModel):
     company_id: typing_extensions.Annotated[str, FieldMetadata(alias="companyId"), pydantic.Field(alias="companyId")]
+    site: UsageListBillingResponseRowsItemSite
     date: dt.date
     metric: UsageListBillingResponseRowsItemMetric
     quantity: float

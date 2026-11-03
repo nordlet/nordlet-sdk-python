@@ -27,6 +27,11 @@ class ImportTemplatesUpdateBankResponse(UniversalBaseModel):
         FieldMetadata(alias="invoiceVatRatePercent"),
         pydantic.Field(alias="invoiceVatRatePercent"),
     ] = None
+    invoice_vat_classifier_code: typing_extensions.Annotated[
+        typing.Optional[str],
+        FieldMetadata(alias="invoiceVatClassifierCode"),
+        pydantic.Field(alias="invoiceVatClassifierCode"),
+    ] = None
     company_meta_field: typing_extensions.Annotated[
         typing.Optional[str], FieldMetadata(alias="companyMetaField"), pydantic.Field(alias="companyMetaField")
     ] = None

@@ -12,11 +12,17 @@ from .account_set_plan_billing_response_auto_top_up import AccountSetPlanBilling
 from .account_set_plan_billing_response_month_to_date import AccountSetPlanBillingResponseMonthToDate
 from .account_set_plan_billing_response_plan import AccountSetPlanBillingResponsePlan
 from .account_set_plan_billing_response_plans_value import AccountSetPlanBillingResponsePlansValue
+from .account_set_plan_billing_response_site import AccountSetPlanBillingResponseSite
 from .account_set_plan_billing_response_status import AccountSetPlanBillingResponseStatus
 from .account_set_plan_billing_response_top_up import AccountSetPlanBillingResponseTopUp
 
 
 class AccountSetPlanBillingResponse(UniversalBaseModel):
+    site: AccountSetPlanBillingResponseSite = pydantic.Field()
+    """
+    The site whose plan this is, from the `x-nordlet-site` header
+    """
+
     plan: AccountSetPlanBillingResponsePlan
     account_type: typing_extensions.Annotated[
         AccountSetPlanBillingResponseAccountType,

@@ -12,11 +12,17 @@ from .topup_confirm_billing_response_auto_top_up import TopupConfirmBillingRespo
 from .topup_confirm_billing_response_month_to_date import TopupConfirmBillingResponseMonthToDate
 from .topup_confirm_billing_response_plan import TopupConfirmBillingResponsePlan
 from .topup_confirm_billing_response_plans_value import TopupConfirmBillingResponsePlansValue
+from .topup_confirm_billing_response_site import TopupConfirmBillingResponseSite
 from .topup_confirm_billing_response_status import TopupConfirmBillingResponseStatus
 from .topup_confirm_billing_response_top_up import TopupConfirmBillingResponseTopUp
 
 
 class TopupConfirmBillingResponse(UniversalBaseModel):
+    site: TopupConfirmBillingResponseSite = pydantic.Field()
+    """
+    The site whose plan this is, from the `x-nordlet-site` header
+    """
+
     plan: TopupConfirmBillingResponsePlan
     account_type: typing_extensions.Annotated[
         TopupConfirmBillingResponseAccountType, FieldMetadata(alias="accountType"), pydantic.Field(alias="accountType")

@@ -137,6 +137,13 @@ if typing.TYPE_CHECKING:
     from .vat_classifiers_list_reference_request_sort_item_dir import VatClassifiersListReferenceRequestSortItemDir
     from .vat_classifiers_list_reference_response import VatClassifiersListReferenceResponse
     from .vat_classifiers_list_reference_response_rows_item import VatClassifiersListReferenceResponseRowsItem
+    from .vat_classifiers_list_reference_response_rows_item_rate_from_line import (
+        VatClassifiersListReferenceResponseRowsItemRateFromLine,
+    )
+    from .vat_classifiers_list_reference_response_rows_item_scheme import (
+        VatClassifiersListReferenceResponseRowsItemScheme,
+    )
+    from .vat_classifiers_list_reference_response_rows_item_side import VatClassifiersListReferenceResponseRowsItemSide
     from .vat_classifiers_upsert_reference_request_rows_item import VatClassifiersUpsertReferenceRequestRowsItem
     from .vat_classifiers_upsert_reference_response import VatClassifiersUpsertReferenceResponse
     from .vat_resolve_reference_request_goods_kind import VatResolveReferenceRequestGoodsKind
@@ -242,6 +249,9 @@ _dynamic_imports: typing.Dict[str, str] = {
     "VatClassifiersListReferenceRequestSortItemDir": ".vat_classifiers_list_reference_request_sort_item_dir",
     "VatClassifiersListReferenceResponse": ".vat_classifiers_list_reference_response",
     "VatClassifiersListReferenceResponseRowsItem": ".vat_classifiers_list_reference_response_rows_item",
+    "VatClassifiersListReferenceResponseRowsItemRateFromLine": ".vat_classifiers_list_reference_response_rows_item_rate_from_line",
+    "VatClassifiersListReferenceResponseRowsItemScheme": ".vat_classifiers_list_reference_response_rows_item_scheme",
+    "VatClassifiersListReferenceResponseRowsItemSide": ".vat_classifiers_list_reference_response_rows_item_side",
     "VatClassifiersUpsertReferenceRequestRowsItem": ".vat_classifiers_upsert_reference_request_rows_item",
     "VatClassifiersUpsertReferenceResponse": ".vat_classifiers_upsert_reference_response",
     "VatResolveReferenceRequestGoodsKind": ".vat_resolve_reference_request_goods_kind",
@@ -371,6 +381,9 @@ __all__ = [
     "VatClassifiersListReferenceRequestSortItemDir",
     "VatClassifiersListReferenceResponse",
     "VatClassifiersListReferenceResponseRowsItem",
+    "VatClassifiersListReferenceResponseRowsItemRateFromLine",
+    "VatClassifiersListReferenceResponseRowsItemScheme",
+    "VatClassifiersListReferenceResponseRowsItemSide",
     "VatClassifiersUpsertReferenceRequestRowsItem",
     "VatClassifiersUpsertReferenceResponse",
     "VatResolveReferenceRequestGoodsKind",

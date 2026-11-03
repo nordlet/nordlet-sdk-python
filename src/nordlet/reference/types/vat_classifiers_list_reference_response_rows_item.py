@@ -6,6 +6,11 @@ import pydantic
 import typing_extensions
 from ...core.pydantic_utilities import IS_PYDANTIC_V2, UniversalBaseModel
 from ...core.serialization import FieldMetadata
+from .vat_classifiers_list_reference_response_rows_item_rate_from_line import (
+    VatClassifiersListReferenceResponseRowsItemRateFromLine,
+)
+from .vat_classifiers_list_reference_response_rows_item_scheme import VatClassifiersListReferenceResponseRowsItemScheme
+from .vat_classifiers_list_reference_response_rows_item_side import VatClassifiersListReferenceResponseRowsItemSide
 
 
 class VatClassifiersListReferenceResponseRowsItem(UniversalBaseModel):
@@ -14,9 +19,19 @@ class VatClassifiersListReferenceResponseRowsItem(UniversalBaseModel):
         str, FieldMetadata(alias="countryCode"), pydantic.Field(alias="countryCode")
     ]
     name: str
+    name_en: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="nameEn"), pydantic.Field(alias="nameEn")
+    ] = None
     rate_percent: typing_extensions.Annotated[
         typing.Optional[str], FieldMetadata(alias="ratePercent"), pydantic.Field(alias="ratePercent")
     ] = None
+    side: VatClassifiersListReferenceResponseRowsItemSide
+    scheme: typing.Optional[VatClassifiersListReferenceResponseRowsItemScheme] = None
+    rate_from_line: typing_extensions.Annotated[
+        VatClassifiersListReferenceResponseRowsItemRateFromLine,
+        FieldMetadata(alias="rateFromLine"),
+        pydantic.Field(alias="rateFromLine"),
+    ]
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

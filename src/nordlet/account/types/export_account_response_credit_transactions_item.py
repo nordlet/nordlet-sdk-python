@@ -7,10 +7,12 @@ import pydantic
 import typing_extensions
 from ...core.pydantic_utilities import IS_PYDANTIC_V2, UniversalBaseModel
 from ...core.serialization import FieldMetadata
+from .export_account_response_credit_transactions_item_site import ExportAccountResponseCreditTransactionsItemSite
 
 
 class ExportAccountResponseCreditTransactionsItem(UniversalBaseModel):
     id: str
+    site: ExportAccountResponseCreditTransactionsItemSite
     type: str
     amount_cents: typing_extensions.Annotated[
         int, FieldMetadata(alias="amountCents"), pydantic.Field(alias="amountCents")

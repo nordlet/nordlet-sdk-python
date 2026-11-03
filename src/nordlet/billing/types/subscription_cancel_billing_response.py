@@ -12,11 +12,17 @@ from .subscription_cancel_billing_response_auto_top_up import SubscriptionCancel
 from .subscription_cancel_billing_response_month_to_date import SubscriptionCancelBillingResponseMonthToDate
 from .subscription_cancel_billing_response_plan import SubscriptionCancelBillingResponsePlan
 from .subscription_cancel_billing_response_plans_value import SubscriptionCancelBillingResponsePlansValue
+from .subscription_cancel_billing_response_site import SubscriptionCancelBillingResponseSite
 from .subscription_cancel_billing_response_status import SubscriptionCancelBillingResponseStatus
 from .subscription_cancel_billing_response_top_up import SubscriptionCancelBillingResponseTopUp
 
 
 class SubscriptionCancelBillingResponse(UniversalBaseModel):
+    site: SubscriptionCancelBillingResponseSite = pydantic.Field()
+    """
+    The site whose plan this is, from the `x-nordlet-site` header
+    """
+
     plan: SubscriptionCancelBillingResponsePlan
     account_type: typing_extensions.Annotated[
         SubscriptionCancelBillingResponseAccountType,
