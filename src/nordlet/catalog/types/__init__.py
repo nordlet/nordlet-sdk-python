@@ -16,6 +16,7 @@ if typing.TYPE_CHECKING:
     from .items_create_catalog_request_translations_value import ItemsCreateCatalogRequestTranslationsValue
     from .items_create_catalog_request_type import ItemsCreateCatalogRequestType
     from .items_create_catalog_response import ItemsCreateCatalogResponse
+    from .items_create_catalog_response_alternative_units_item import ItemsCreateCatalogResponseAlternativeUnitsItem
     from .items_create_catalog_response_components_item import ItemsCreateCatalogResponseComponentsItem
     from .items_create_catalog_response_tracking import ItemsCreateCatalogResponseTracking
     from .items_create_catalog_response_translations_value import ItemsCreateCatalogResponseTranslationsValue
@@ -24,6 +25,7 @@ if typing.TYPE_CHECKING:
     from .items_files_list_catalog_response import ItemsFilesListCatalogResponse
     from .items_files_list_catalog_response_rows_item import ItemsFilesListCatalogResponseRowsItem
     from .items_get_catalog_response import ItemsGetCatalogResponse
+    from .items_get_catalog_response_alternative_units_item import ItemsGetCatalogResponseAlternativeUnitsItem
     from .items_get_catalog_response_components_item import ItemsGetCatalogResponseComponentsItem
     from .items_get_catalog_response_tracking import ItemsGetCatalogResponseTracking
     from .items_get_catalog_response_translations_value import ItemsGetCatalogResponseTranslationsValue
@@ -46,6 +48,9 @@ if typing.TYPE_CHECKING:
     from .items_list_catalog_request_sort_item_dir import ItemsListCatalogRequestSortItemDir
     from .items_list_catalog_response import ItemsListCatalogResponse
     from .items_list_catalog_response_rows_item import ItemsListCatalogResponseRowsItem
+    from .items_list_catalog_response_rows_item_alternative_units_item import (
+        ItemsListCatalogResponseRowsItemAlternativeUnitsItem,
+    )
     from .items_list_catalog_response_rows_item_components_item import ItemsListCatalogResponseRowsItemComponentsItem
     from .items_list_catalog_response_rows_item_tracking import ItemsListCatalogResponseRowsItemTracking
     from .items_list_catalog_response_rows_item_translations_value import (
@@ -56,11 +61,17 @@ if typing.TYPE_CHECKING:
     from .items_suppliers_list_catalog_response import ItemsSuppliersListCatalogResponse
     from .items_suppliers_list_catalog_response_rows_item import ItemsSuppliersListCatalogResponseRowsItem
     from .items_suppliers_upsert_catalog_response import ItemsSuppliersUpsertCatalogResponse
+    from .items_units_create_catalog_response import ItemsUnitsCreateCatalogResponse
+    from .items_units_delete_catalog_response import ItemsUnitsDeleteCatalogResponse
+    from .items_units_list_catalog_response import ItemsUnitsListCatalogResponse
+    from .items_units_list_catalog_response_rows_item import ItemsUnitsListCatalogResponseRowsItem
+    from .items_units_update_catalog_response import ItemsUnitsUpdateCatalogResponse
     from .items_update_catalog_request_components_item import ItemsUpdateCatalogRequestComponentsItem
     from .items_update_catalog_request_tracking import ItemsUpdateCatalogRequestTracking
     from .items_update_catalog_request_translations_value import ItemsUpdateCatalogRequestTranslationsValue
     from .items_update_catalog_request_type import ItemsUpdateCatalogRequestType
     from .items_update_catalog_response import ItemsUpdateCatalogResponse
+    from .items_update_catalog_response_alternative_units_item import ItemsUpdateCatalogResponseAlternativeUnitsItem
     from .items_update_catalog_response_components_item import ItemsUpdateCatalogResponseComponentsItem
     from .items_update_catalog_response_tracking import ItemsUpdateCatalogResponseTracking
     from .items_update_catalog_response_translations_value import ItemsUpdateCatalogResponseTranslationsValue
@@ -94,6 +105,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "ItemsCreateCatalogRequestTranslationsValue": ".items_create_catalog_request_translations_value",
     "ItemsCreateCatalogRequestType": ".items_create_catalog_request_type",
     "ItemsCreateCatalogResponse": ".items_create_catalog_response",
+    "ItemsCreateCatalogResponseAlternativeUnitsItem": ".items_create_catalog_response_alternative_units_item",
     "ItemsCreateCatalogResponseComponentsItem": ".items_create_catalog_response_components_item",
     "ItemsCreateCatalogResponseTracking": ".items_create_catalog_response_tracking",
     "ItemsCreateCatalogResponseTranslationsValue": ".items_create_catalog_response_translations_value",
@@ -102,6 +114,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "ItemsFilesListCatalogResponse": ".items_files_list_catalog_response",
     "ItemsFilesListCatalogResponseRowsItem": ".items_files_list_catalog_response_rows_item",
     "ItemsGetCatalogResponse": ".items_get_catalog_response",
+    "ItemsGetCatalogResponseAlternativeUnitsItem": ".items_get_catalog_response_alternative_units_item",
     "ItemsGetCatalogResponseComponentsItem": ".items_get_catalog_response_components_item",
     "ItemsGetCatalogResponseTracking": ".items_get_catalog_response_tracking",
     "ItemsGetCatalogResponseTranslationsValue": ".items_get_catalog_response_translations_value",
@@ -124,6 +137,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "ItemsListCatalogRequestSortItemDir": ".items_list_catalog_request_sort_item_dir",
     "ItemsListCatalogResponse": ".items_list_catalog_response",
     "ItemsListCatalogResponseRowsItem": ".items_list_catalog_response_rows_item",
+    "ItemsListCatalogResponseRowsItemAlternativeUnitsItem": ".items_list_catalog_response_rows_item_alternative_units_item",
     "ItemsListCatalogResponseRowsItemComponentsItem": ".items_list_catalog_response_rows_item_components_item",
     "ItemsListCatalogResponseRowsItemTracking": ".items_list_catalog_response_rows_item_tracking",
     "ItemsListCatalogResponseRowsItemTranslationsValue": ".items_list_catalog_response_rows_item_translations_value",
@@ -132,11 +146,17 @@ _dynamic_imports: typing.Dict[str, str] = {
     "ItemsSuppliersListCatalogResponse": ".items_suppliers_list_catalog_response",
     "ItemsSuppliersListCatalogResponseRowsItem": ".items_suppliers_list_catalog_response_rows_item",
     "ItemsSuppliersUpsertCatalogResponse": ".items_suppliers_upsert_catalog_response",
+    "ItemsUnitsCreateCatalogResponse": ".items_units_create_catalog_response",
+    "ItemsUnitsDeleteCatalogResponse": ".items_units_delete_catalog_response",
+    "ItemsUnitsListCatalogResponse": ".items_units_list_catalog_response",
+    "ItemsUnitsListCatalogResponseRowsItem": ".items_units_list_catalog_response_rows_item",
+    "ItemsUnitsUpdateCatalogResponse": ".items_units_update_catalog_response",
     "ItemsUpdateCatalogRequestComponentsItem": ".items_update_catalog_request_components_item",
     "ItemsUpdateCatalogRequestTracking": ".items_update_catalog_request_tracking",
     "ItemsUpdateCatalogRequestTranslationsValue": ".items_update_catalog_request_translations_value",
     "ItemsUpdateCatalogRequestType": ".items_update_catalog_request_type",
     "ItemsUpdateCatalogResponse": ".items_update_catalog_response",
+    "ItemsUpdateCatalogResponseAlternativeUnitsItem": ".items_update_catalog_response_alternative_units_item",
     "ItemsUpdateCatalogResponseComponentsItem": ".items_update_catalog_response_components_item",
     "ItemsUpdateCatalogResponseTracking": ".items_update_catalog_response_tracking",
     "ItemsUpdateCatalogResponseTranslationsValue": ".items_update_catalog_response_translations_value",
@@ -194,6 +214,7 @@ __all__ = [
     "ItemsCreateCatalogRequestTranslationsValue",
     "ItemsCreateCatalogRequestType",
     "ItemsCreateCatalogResponse",
+    "ItemsCreateCatalogResponseAlternativeUnitsItem",
     "ItemsCreateCatalogResponseComponentsItem",
     "ItemsCreateCatalogResponseTracking",
     "ItemsCreateCatalogResponseTranslationsValue",
@@ -202,6 +223,7 @@ __all__ = [
     "ItemsFilesListCatalogResponse",
     "ItemsFilesListCatalogResponseRowsItem",
     "ItemsGetCatalogResponse",
+    "ItemsGetCatalogResponseAlternativeUnitsItem",
     "ItemsGetCatalogResponseComponentsItem",
     "ItemsGetCatalogResponseTracking",
     "ItemsGetCatalogResponseTranslationsValue",
@@ -224,6 +246,7 @@ __all__ = [
     "ItemsListCatalogRequestSortItemDir",
     "ItemsListCatalogResponse",
     "ItemsListCatalogResponseRowsItem",
+    "ItemsListCatalogResponseRowsItemAlternativeUnitsItem",
     "ItemsListCatalogResponseRowsItemComponentsItem",
     "ItemsListCatalogResponseRowsItemTracking",
     "ItemsListCatalogResponseRowsItemTranslationsValue",
@@ -232,11 +255,17 @@ __all__ = [
     "ItemsSuppliersListCatalogResponse",
     "ItemsSuppliersListCatalogResponseRowsItem",
     "ItemsSuppliersUpsertCatalogResponse",
+    "ItemsUnitsCreateCatalogResponse",
+    "ItemsUnitsDeleteCatalogResponse",
+    "ItemsUnitsListCatalogResponse",
+    "ItemsUnitsListCatalogResponseRowsItem",
+    "ItemsUnitsUpdateCatalogResponse",
     "ItemsUpdateCatalogRequestComponentsItem",
     "ItemsUpdateCatalogRequestTracking",
     "ItemsUpdateCatalogRequestTranslationsValue",
     "ItemsUpdateCatalogRequestType",
     "ItemsUpdateCatalogResponse",
+    "ItemsUpdateCatalogResponseAlternativeUnitsItem",
     "ItemsUpdateCatalogResponseComponentsItem",
     "ItemsUpdateCatalogResponseTracking",
     "ItemsUpdateCatalogResponseTranslationsValue",

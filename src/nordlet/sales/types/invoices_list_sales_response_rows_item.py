@@ -199,6 +199,17 @@ class InvoicesListSalesResponseRowsItem(UniversalBaseModel):
     partner_name: typing_extensions.Annotated[
         typing.Optional[str], FieldMetadata(alias="partnerName"), pydantic.Field(alias="partnerName")
     ] = None
+    advance_unapplied_amount: typing_extensions.Annotated[
+        typing.Optional[str],
+        FieldMetadata(alias="advanceUnappliedAmount"),
+        pydantic.Field(
+            alias="advanceUnappliedAmount",
+            description="Gross amount of an advance invoice not yet applied or credited; null on other documents",
+        ),
+    ] = None
+    """
+    Gross amount of an advance invoice not yet applied or credited; null on other documents
+    """
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

@@ -13,6 +13,9 @@ class UnitsCreateCatalogResponse(UniversalBaseModel):
     id: str
     code: str
     name: str
+    rec20code: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="rec20Code"), pydantic.Field(alias="rec20Code")
+    ] = None
     is_active: typing_extensions.Annotated[bool, FieldMetadata(alias="isActive"), pydantic.Field(alias="isActive")]
     created_at: typing_extensions.Annotated[
         dt.datetime, FieldMetadata(alias="createdAt"), pydantic.Field(alias="createdAt")

@@ -210,7 +210,7 @@ class RawBillingClient:
         self, *, plan: AccountSetPlanBillingRequestPlan, request_options: typing.Optional[RequestOptions] = None
     ) -> HttpResponse[AccountSetPlanBillingResponse]:
         """
-        Change the plan of the user's flat-rate billing account of the request's site; answers 422 when the plan is not one of that site's plans and 409 when the account type is not `flat_rate`. With a Stripe subscription and payments configured, the subscription is moved to the new plan.
+        Change the plan of the user's flat-rate billing account of the request's site; answers 422 when the plan is not one of that site's plans and 409 when the account type is not `flat_rate`. With a Stripe subscription and payments configured, the subscription is moved to the new plan. On the day of the change, the plan fee (without a subscription) and the storage are split by hour, each hour at the plan in force when the hour starts, and the sale invoices of the day count against the plan in force when they were made.
 
         Parameters
         ----------
@@ -2304,7 +2304,7 @@ class AsyncRawBillingClient:
         self, *, plan: AccountSetPlanBillingRequestPlan, request_options: typing.Optional[RequestOptions] = None
     ) -> AsyncHttpResponse[AccountSetPlanBillingResponse]:
         """
-        Change the plan of the user's flat-rate billing account of the request's site; answers 422 when the plan is not one of that site's plans and 409 when the account type is not `flat_rate`. With a Stripe subscription and payments configured, the subscription is moved to the new plan.
+        Change the plan of the user's flat-rate billing account of the request's site; answers 422 when the plan is not one of that site's plans and 409 when the account type is not `flat_rate`. With a Stripe subscription and payments configured, the subscription is moved to the new plan. On the day of the change, the plan fee (without a subscription) and the storage are split by hour, each hour at the plan in force when the hour starts, and the sale invoices of the day count against the plan in force when they were made.
 
         Parameters
         ----------

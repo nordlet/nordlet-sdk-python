@@ -60,6 +60,9 @@ class GetCalendarResponseSubmissionsItem(UniversalBaseModel):
     delivery_error: typing_extensions.Annotated[
         typing.Optional[str], FieldMetadata(alias="deliveryError"), pydantic.Field(alias="deliveryError")
     ] = None
+    confirmation_pending: typing_extensions.Annotated[
+        bool, FieldMetadata(alias="confirmationPending"), pydantic.Field(alias="confirmationPending")
+    ]
     sent_sha256: typing_extensions.Annotated[
         typing.Optional[str], FieldMetadata(alias="sentSha256"), pydantic.Field(alias="sentSha256")
     ] = None

@@ -42,6 +42,9 @@ class VehiclesUpdateFleetResponse(UniversalBaseModel):
         typing.Optional[str], FieldMetadata(alias="insuranceDue"), pydantic.Field(alias="insuranceDue")
     ] = None
     status: VehiclesUpdateFleetResponseStatus
+    disposal_date: typing_extensions.Annotated[
+        typing.Optional[dt.date], FieldMetadata(alias="disposalDate"), pydantic.Field(alias="disposalDate")
+    ] = None
     notes: typing.Optional[str] = None
     documents: typing.Optional[typing.List[VehiclesUpdateFleetResponseDocumentsItem]] = None
     current_assignment: typing_extensions.Annotated[

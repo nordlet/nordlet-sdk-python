@@ -30,6 +30,10 @@ from .types.items_list_catalog_response import ItemsListCatalogResponse
 from .types.items_suppliers_delete_catalog_response import ItemsSuppliersDeleteCatalogResponse
 from .types.items_suppliers_list_catalog_response import ItemsSuppliersListCatalogResponse
 from .types.items_suppliers_upsert_catalog_response import ItemsSuppliersUpsertCatalogResponse
+from .types.items_units_create_catalog_response import ItemsUnitsCreateCatalogResponse
+from .types.items_units_delete_catalog_response import ItemsUnitsDeleteCatalogResponse
+from .types.items_units_list_catalog_response import ItemsUnitsListCatalogResponse
+from .types.items_units_update_catalog_response import ItemsUnitsUpdateCatalogResponse
 from .types.items_update_catalog_request_components_item import ItemsUpdateCatalogRequestComponentsItem
 from .types.items_update_catalog_request_tracking import ItemsUpdateCatalogRequestTracking
 from .types.items_update_catalog_request_translations_value import ItemsUpdateCatalogRequestTranslationsValue
@@ -846,17 +850,20 @@ class CatalogClient:
         *,
         code: str,
         name: str,
+        rec20code: typing.Optional[str] = OMIT,
         is_active: typing.Optional[bool] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> UnitsCreateCatalogResponse:
         """
-        Create a unit of measure of the company's own, in addition to the global measurement units (`reference/units/list`). 409 when the code already exists.
+        Create a unit of measure of the company's own, in addition to the global measurement units (`reference/units/list`). `rec20Code` is the UN/ECE Recommendation 20 code e-invoices carry for the unit. 409 when the code already exists.
 
         Parameters
         ----------
         code : str
 
         name : str
+
+        rec20code : typing.Optional[str]
 
         is_active : typing.Optional[bool]
 
@@ -881,7 +888,7 @@ class CatalogClient:
         )
         """
         _response = self._raw_client.units_create(
-            code=code, name=name, is_active=is_active, request_options=request_options
+            code=code, name=name, rec20code=rec20code, is_active=is_active, request_options=request_options
         )
         return _response.data
 
@@ -891,11 +898,12 @@ class CatalogClient:
         id: str,
         code: typing.Optional[str] = OMIT,
         name: typing.Optional[str] = OMIT,
+        rec20code: typing.Optional[str] = OMIT,
         is_active: typing.Optional[bool] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> UnitsUpdateCatalogResponse:
         """
-        Change the code, name or active flag of a company unit. 409 when the new code already exists.
+        Change the code, name, UN/ECE Recommendation 20 code or active flag of a company unit. 409 when the new code already exists.
 
         Parameters
         ----------
@@ -904,6 +912,8 @@ class CatalogClient:
         code : typing.Optional[str]
 
         name : typing.Optional[str]
+
+        rec20code : typing.Optional[str]
 
         is_active : typing.Optional[bool]
 
@@ -927,7 +937,7 @@ class CatalogClient:
         )
         """
         _response = self._raw_client.units_update(
-            id=id, code=code, name=name, is_active=is_active, request_options=request_options
+            id=id, code=code, name=name, rec20code=rec20code, is_active=is_active, request_options=request_options
         )
         return _response.data
 
@@ -1299,6 +1309,184 @@ class CatalogClient:
         )
         """
         _response = self._raw_client.items_suppliers_delete(id=id, request_options=request_options)
+        return _response.data
+
+    def items_units_create(
+        self,
+        *,
+        item_id: str,
+        unit_code: str,
+        factor: str,
+        is_default_sale: typing.Optional[bool] = OMIT,
+        is_default_purchase: typing.Optional[bool] = OMIT,
+        barcode: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> ItemsUnitsCreateCatalogResponse:
+        """
+        Add an alternative unit to an item: `factor` is how many of the item's own unit one `unitCode` holds (a box of 12 pieces has factor 12). Document lines entered in that unit keep the entered quantity and unit price and move `quantity × factor` of the item's unit in stock and filings. `isDefaultSale` and `isDefaultPurchase` mark the unit the app offers first on sale and purchase documents; setting one clears it on the item's other units. 422 when `unitCode` is the item's own unit or not a known unit; 409 when the item already has that unit.
+
+        Parameters
+        ----------
+        item_id : str
+
+        unit_code : str
+
+        factor : str
+
+        is_default_sale : typing.Optional[bool]
+
+        is_default_purchase : typing.Optional[bool]
+
+        barcode : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        ItemsUnitsCreateCatalogResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.catalog.items_units_create(
+            item_id="itemId",
+            unit_code="unitCode",
+            factor="121.000000",
+        )
+        """
+        _response = self._raw_client.items_units_create(
+            item_id=item_id,
+            unit_code=unit_code,
+            factor=factor,
+            is_default_sale=is_default_sale,
+            is_default_purchase=is_default_purchase,
+            barcode=barcode,
+            request_options=request_options,
+        )
+        return _response.data
+
+    def items_units_update(
+        self,
+        *,
+        id: str,
+        factor: typing.Optional[str] = OMIT,
+        is_default_sale: typing.Optional[bool] = OMIT,
+        is_default_purchase: typing.Optional[bool] = OMIT,
+        barcode: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> ItemsUnitsUpdateCatalogResponse:
+        """
+        Change the factor, default flags or barcode of an alternative unit. Document lines already entered keep the factor they were saved with; the new factor applies to lines entered or recalculated after the change.
+
+        Parameters
+        ----------
+        id : str
+
+        factor : typing.Optional[str]
+
+        is_default_sale : typing.Optional[bool]
+
+        is_default_purchase : typing.Optional[bool]
+
+        barcode : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        ItemsUnitsUpdateCatalogResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.catalog.items_units_update(
+            id="id",
+        )
+        """
+        _response = self._raw_client.items_units_update(
+            id=id,
+            factor=factor,
+            is_default_sale=is_default_sale,
+            is_default_purchase=is_default_purchase,
+            barcode=barcode,
+            request_options=request_options,
+        )
+        return _response.data
+
+    def items_units_delete(
+        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> ItemsUnitsDeleteCatalogResponse:
+        """
+        Delete an alternative unit of an item. Document lines already entered in it keep their unit and factor.
+
+        Parameters
+        ----------
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        ItemsUnitsDeleteCatalogResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.catalog.items_units_delete(
+            id="id",
+        )
+        """
+        _response = self._raw_client.items_units_delete(id=id, request_options=request_options)
+        return _response.data
+
+    def items_units_list(
+        self, *, item_id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> ItemsUnitsListCatalogResponse:
+        """
+        List the alternative units of an item, ordered by unit code.
+
+        Parameters
+        ----------
+        item_id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        ItemsUnitsListCatalogResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.catalog.items_units_list(
+            item_id="itemId",
+        )
+        """
+        _response = self._raw_client.items_units_list(item_id=item_id, request_options=request_options)
         return _response.data
 
     def price_lists_create(
@@ -2419,17 +2607,20 @@ class AsyncCatalogClient:
         *,
         code: str,
         name: str,
+        rec20code: typing.Optional[str] = OMIT,
         is_active: typing.Optional[bool] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> UnitsCreateCatalogResponse:
         """
-        Create a unit of measure of the company's own, in addition to the global measurement units (`reference/units/list`). 409 when the code already exists.
+        Create a unit of measure of the company's own, in addition to the global measurement units (`reference/units/list`). `rec20Code` is the UN/ECE Recommendation 20 code e-invoices carry for the unit. 409 when the code already exists.
 
         Parameters
         ----------
         code : str
 
         name : str
+
+        rec20code : typing.Optional[str]
 
         is_active : typing.Optional[bool]
 
@@ -2462,7 +2653,7 @@ class AsyncCatalogClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.units_create(
-            code=code, name=name, is_active=is_active, request_options=request_options
+            code=code, name=name, rec20code=rec20code, is_active=is_active, request_options=request_options
         )
         return _response.data
 
@@ -2472,11 +2663,12 @@ class AsyncCatalogClient:
         id: str,
         code: typing.Optional[str] = OMIT,
         name: typing.Optional[str] = OMIT,
+        rec20code: typing.Optional[str] = OMIT,
         is_active: typing.Optional[bool] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> UnitsUpdateCatalogResponse:
         """
-        Change the code, name or active flag of a company unit. 409 when the new code already exists.
+        Change the code, name, UN/ECE Recommendation 20 code or active flag of a company unit. 409 when the new code already exists.
 
         Parameters
         ----------
@@ -2485,6 +2677,8 @@ class AsyncCatalogClient:
         code : typing.Optional[str]
 
         name : typing.Optional[str]
+
+        rec20code : typing.Optional[str]
 
         is_active : typing.Optional[bool]
 
@@ -2516,7 +2710,7 @@ class AsyncCatalogClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.units_update(
-            id=id, code=code, name=name, is_active=is_active, request_options=request_options
+            id=id, code=code, name=name, rec20code=rec20code, is_active=is_active, request_options=request_options
         )
         return _response.data
 
@@ -2968,6 +3162,216 @@ class AsyncCatalogClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.items_suppliers_delete(id=id, request_options=request_options)
+        return _response.data
+
+    async def items_units_create(
+        self,
+        *,
+        item_id: str,
+        unit_code: str,
+        factor: str,
+        is_default_sale: typing.Optional[bool] = OMIT,
+        is_default_purchase: typing.Optional[bool] = OMIT,
+        barcode: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> ItemsUnitsCreateCatalogResponse:
+        """
+        Add an alternative unit to an item: `factor` is how many of the item's own unit one `unitCode` holds (a box of 12 pieces has factor 12). Document lines entered in that unit keep the entered quantity and unit price and move `quantity × factor` of the item's unit in stock and filings. `isDefaultSale` and `isDefaultPurchase` mark the unit the app offers first on sale and purchase documents; setting one clears it on the item's other units. 422 when `unitCode` is the item's own unit or not a known unit; 409 when the item already has that unit.
+
+        Parameters
+        ----------
+        item_id : str
+
+        unit_code : str
+
+        factor : str
+
+        is_default_sale : typing.Optional[bool]
+
+        is_default_purchase : typing.Optional[bool]
+
+        barcode : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        ItemsUnitsCreateCatalogResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.catalog.items_units_create(
+                item_id="itemId",
+                unit_code="unitCode",
+                factor="121.000000",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.items_units_create(
+            item_id=item_id,
+            unit_code=unit_code,
+            factor=factor,
+            is_default_sale=is_default_sale,
+            is_default_purchase=is_default_purchase,
+            barcode=barcode,
+            request_options=request_options,
+        )
+        return _response.data
+
+    async def items_units_update(
+        self,
+        *,
+        id: str,
+        factor: typing.Optional[str] = OMIT,
+        is_default_sale: typing.Optional[bool] = OMIT,
+        is_default_purchase: typing.Optional[bool] = OMIT,
+        barcode: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> ItemsUnitsUpdateCatalogResponse:
+        """
+        Change the factor, default flags or barcode of an alternative unit. Document lines already entered keep the factor they were saved with; the new factor applies to lines entered or recalculated after the change.
+
+        Parameters
+        ----------
+        id : str
+
+        factor : typing.Optional[str]
+
+        is_default_sale : typing.Optional[bool]
+
+        is_default_purchase : typing.Optional[bool]
+
+        barcode : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        ItemsUnitsUpdateCatalogResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.catalog.items_units_update(
+                id="id",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.items_units_update(
+            id=id,
+            factor=factor,
+            is_default_sale=is_default_sale,
+            is_default_purchase=is_default_purchase,
+            barcode=barcode,
+            request_options=request_options,
+        )
+        return _response.data
+
+    async def items_units_delete(
+        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> ItemsUnitsDeleteCatalogResponse:
+        """
+        Delete an alternative unit of an item. Document lines already entered in it keep their unit and factor.
+
+        Parameters
+        ----------
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        ItemsUnitsDeleteCatalogResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.catalog.items_units_delete(
+                id="id",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.items_units_delete(id=id, request_options=request_options)
+        return _response.data
+
+    async def items_units_list(
+        self, *, item_id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> ItemsUnitsListCatalogResponse:
+        """
+        List the alternative units of an item, ordered by unit code.
+
+        Parameters
+        ----------
+        item_id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        ItemsUnitsListCatalogResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.catalog.items_units_list(
+                item_id="itemId",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.items_units_list(item_id=item_id, request_options=request_options)
         return _response.data
 
     async def price_lists_create(

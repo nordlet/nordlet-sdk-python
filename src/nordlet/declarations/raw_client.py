@@ -130,6 +130,7 @@ from .types.lt_intrastat_compute_declarations_response import LtIntrastatCompute
 from .types.lt_intrastat_obligation_declarations_response import LtIntrastatObligationDeclarationsResponse
 from .types.lt_isaf_generate_declarations_request_data_type import LtIsafGenerateDeclarationsRequestDataType
 from .types.lt_isaf_generate_declarations_response import LtIsafGenerateDeclarationsResponse
+from .types.lt_ivaz_amend_declarations_request_corrections_item import LtIvazAmendDeclarationsRequestCorrectionsItem
 from .types.lt_ivaz_amend_declarations_response import LtIvazAmendDeclarationsResponse
 from .types.lt_ivaz_cancel_declarations_request_entries_item import LtIvazCancelDeclarationsRequestEntriesItem
 from .types.lt_ivaz_cancel_declarations_response import LtIvazCancelDeclarationsResponse
@@ -165,6 +166,7 @@ from .types.pl_zus_dra_pdf_declarations_response import PlZusDraPdfDeclarationsR
 from .types.ro_etransport_build_declarations_response import RoEtransportBuildDeclarationsResponse
 from .types.ro_etransport_status_declarations_response import RoEtransportStatusDeclarationsResponse
 from .types.ro_etransport_submit_declarations_response import RoEtransportSubmitDeclarationsResponse
+from .types.submissions_confirm_declarations_response import SubmissionsConfirmDeclarationsResponse
 from .types.submissions_create_declarations_request_data_type import SubmissionsCreateDeclarationsRequestDataType
 from .types.submissions_create_declarations_request_obligation import SubmissionsCreateDeclarationsRequestObligation
 from .types.submissions_create_declarations_response import SubmissionsCreateDeclarationsResponse
@@ -1754,16 +1756,19 @@ class RawDeclarationsClient:
         *,
         waybill_ids: typing.Sequence[str],
         persist: typing.Optional[bool] = OMIT,
+        corrections: typing.Optional[typing.Sequence[LtIvazAmendDeclarationsRequestCorrectionsItem]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[LtIvazAmendDeclarationsResponse]:
         """
-        Builds an i.VAZ amendment message for up to 100 issued waybills, carrying their current data as TransportDocumentAmendment elements. Answers 422 when the registration code of the company is not numeric or when a waybill is not issued. With `persist`, the file is stored and a submission for `lt-ivaz-amendment` is created.
+        Builds an i.VAZ amendment message for up to 100 issued waybills as TransportDocumentAmendment elements. `corrections` carries corrected values per waybill: `consigneePartnerId`, `unloadAddress`, `vehiclePlate`, `trailerPlate`, `driverName`, `driverSurname` (the last three can be cleared with null) and line `quantity` by line id; the message carries the waybill with them applied, and with `persist` they are also stored on the waybill. Answers 422 when the registration code of the company is not numeric, when a waybill is not issued, or when a correction names a waybill not in `waybillIds`, a waybill twice, a line not on its waybill or a consignee partner the company does not have. With `persist`, the file is stored and a submission for `lt-ivaz-amendment` is created.
 
         Parameters
         ----------
         waybill_ids : typing.Sequence[str]
 
         persist : typing.Optional[bool]
+
+        corrections : typing.Optional[typing.Sequence[LtIvazAmendDeclarationsRequestCorrectionsItem]]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -1779,6 +1784,11 @@ class RawDeclarationsClient:
             json={
                 "waybillIds": waybill_ids,
                 "persist": persist,
+                "corrections": convert_and_respect_annotation_metadata(
+                    object_=corrections,
+                    annotation=typing.Sequence[LtIvazAmendDeclarationsRequestCorrectionsItem],
+                    direction="write",
+                ),
             },
             headers={
                 "content-type": "application/json",
@@ -12726,7 +12736,7 @@ class RawDeclarationsClient:
         self, *, year: int, request_options: typing.Optional[RequestOptions] = None
     ) -> HttpResponse[PlCit8GenerateDeclarationsResponse]:
         """
-        Generate CIT-8(34), the annual corporate income tax return, from the ledger of the year and the recorded tax adjustments. The tax office code and the small-taxpayer setting come from the e-Deklaracje compliance settings, the seat address from the JPK gateway settings. Names the annexes the figures would need, which are not produced.
+        Generate CIT-8(34), the annual corporate income tax return, from the ledger of the year and the recorded tax adjustments. The tax office code and the small-taxpayer setting come from the e-Deklaracje compliance settings, the seat address from the JPK gateway settings. Names the annexes the figures would need, which are not produced. Answers 422 for a tax year that starts before 2025-01-01, which the CIT-8(34) schema does not accept.
 
         Parameters
         ----------
@@ -15456,6 +15466,165 @@ class RawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
+    def submissions_confirm(
+        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> HttpResponse[SubmissionsConfirmDeclarationsResponse]:
+        """
+        Sends a submission whose `confirmationPending` is true once more with the stored file and the token the administration handed back with its warnings (the advis of Erhvervsstyrelsen's Regnskab Indberet, which files the annual report only when it is sent again with that token), and returns the updated submission. Answers 409 when the submission is not waiting for a confirmation.
+
+        Parameters
+        ----------
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        HttpResponse[SubmissionsConfirmDeclarationsResponse]
+            Default Response
+        """
+        _response = self._client_wrapper.httpx_client.request(
+            "v1/declarations/submissions/confirm",
+            method="POST",
+            json={
+                "id": id,
+            },
+            headers={
+                "content-type": "application/json",
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    SubmissionsConfirmDeclarationsResponse,
+                    parse_obj_as(
+                        type_=SubmissionsConfirmDeclarationsResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return HttpResponse(response=_response, data=_data)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 422:
+                raise UnprocessableEntityError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
     def submissions_create(
         self,
         *,
@@ -17552,16 +17721,19 @@ class AsyncRawDeclarationsClient:
         *,
         waybill_ids: typing.Sequence[str],
         persist: typing.Optional[bool] = OMIT,
+        corrections: typing.Optional[typing.Sequence[LtIvazAmendDeclarationsRequestCorrectionsItem]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[LtIvazAmendDeclarationsResponse]:
         """
-        Builds an i.VAZ amendment message for up to 100 issued waybills, carrying their current data as TransportDocumentAmendment elements. Answers 422 when the registration code of the company is not numeric or when a waybill is not issued. With `persist`, the file is stored and a submission for `lt-ivaz-amendment` is created.
+        Builds an i.VAZ amendment message for up to 100 issued waybills as TransportDocumentAmendment elements. `corrections` carries corrected values per waybill: `consigneePartnerId`, `unloadAddress`, `vehiclePlate`, `trailerPlate`, `driverName`, `driverSurname` (the last three can be cleared with null) and line `quantity` by line id; the message carries the waybill with them applied, and with `persist` they are also stored on the waybill. Answers 422 when the registration code of the company is not numeric, when a waybill is not issued, or when a correction names a waybill not in `waybillIds`, a waybill twice, a line not on its waybill or a consignee partner the company does not have. With `persist`, the file is stored and a submission for `lt-ivaz-amendment` is created.
 
         Parameters
         ----------
         waybill_ids : typing.Sequence[str]
 
         persist : typing.Optional[bool]
+
+        corrections : typing.Optional[typing.Sequence[LtIvazAmendDeclarationsRequestCorrectionsItem]]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -17577,6 +17749,11 @@ class AsyncRawDeclarationsClient:
             json={
                 "waybillIds": waybill_ids,
                 "persist": persist,
+                "corrections": convert_and_respect_annotation_metadata(
+                    object_=corrections,
+                    annotation=typing.Sequence[LtIvazAmendDeclarationsRequestCorrectionsItem],
+                    direction="write",
+                ),
             },
             headers={
                 "content-type": "application/json",
@@ -28524,7 +28701,7 @@ class AsyncRawDeclarationsClient:
         self, *, year: int, request_options: typing.Optional[RequestOptions] = None
     ) -> AsyncHttpResponse[PlCit8GenerateDeclarationsResponse]:
         """
-        Generate CIT-8(34), the annual corporate income tax return, from the ledger of the year and the recorded tax adjustments. The tax office code and the small-taxpayer setting come from the e-Deklaracje compliance settings, the seat address from the JPK gateway settings. Names the annexes the figures would need, which are not produced.
+        Generate CIT-8(34), the annual corporate income tax return, from the ledger of the year and the recorded tax adjustments. The tax office code and the small-taxpayer setting come from the e-Deklaracje compliance settings, the seat address from the JPK gateway settings. Names the annexes the figures would need, which are not produced. Answers 422 for a tax year that starts before 2025-01-01, which the CIT-8(34) schema does not accept.
 
         Parameters
         ----------
@@ -31131,6 +31308,165 @@ class AsyncRawDeclarationsClient:
                     SubmissionsRetryDeclarationsResponse,
                     parse_obj_as(
                         type_=SubmissionsRetryDeclarationsResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return AsyncHttpResponse(response=_response, data=_data)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 422:
+                raise UnprocessableEntityError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
+    async def submissions_confirm(
+        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> AsyncHttpResponse[SubmissionsConfirmDeclarationsResponse]:
+        """
+        Sends a submission whose `confirmationPending` is true once more with the stored file and the token the administration handed back with its warnings (the advis of Erhvervsstyrelsen's Regnskab Indberet, which files the annual report only when it is sent again with that token), and returns the updated submission. Answers 409 when the submission is not waiting for a confirmation.
+
+        Parameters
+        ----------
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        AsyncHttpResponse[SubmissionsConfirmDeclarationsResponse]
+            Default Response
+        """
+        _response = await self._client_wrapper.httpx_client.request(
+            "v1/declarations/submissions/confirm",
+            method="POST",
+            json={
+                "id": id,
+            },
+            headers={
+                "content-type": "application/json",
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    SubmissionsConfirmDeclarationsResponse,
+                    parse_obj_as(
+                        type_=SubmissionsConfirmDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )

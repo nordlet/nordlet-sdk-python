@@ -503,6 +503,10 @@ if typing.TYPE_CHECKING:
     from .lt_isaf_generate_declarations_request_data_type import LtIsafGenerateDeclarationsRequestDataType
     from .lt_isaf_generate_declarations_response import LtIsafGenerateDeclarationsResponse
     from .lt_isaf_generate_declarations_response_counts import LtIsafGenerateDeclarationsResponseCounts
+    from .lt_ivaz_amend_declarations_request_corrections_item import LtIvazAmendDeclarationsRequestCorrectionsItem
+    from .lt_ivaz_amend_declarations_request_corrections_item_lines_item import (
+        LtIvazAmendDeclarationsRequestCorrectionsItemLinesItem,
+    )
     from .lt_ivaz_amend_declarations_response import LtIvazAmendDeclarationsResponse
     from .lt_ivaz_amend_declarations_response_counts import LtIvazAmendDeclarationsResponseCounts
     from .lt_ivaz_cancel_declarations_request_entries_item import LtIvazCancelDeclarationsRequestEntriesItem
@@ -602,6 +606,9 @@ if typing.TYPE_CHECKING:
     from .ro_etransport_status_declarations_response_state import RoEtransportStatusDeclarationsResponseState
     from .ro_etransport_submit_declarations_response import RoEtransportSubmitDeclarationsResponse
     from .ro_etransport_submit_declarations_response_state import RoEtransportSubmitDeclarationsResponseState
+    from .submissions_confirm_declarations_response import SubmissionsConfirmDeclarationsResponse
+    from .submissions_confirm_declarations_response_environment import SubmissionsConfirmDeclarationsResponseEnvironment
+    from .submissions_confirm_declarations_response_status import SubmissionsConfirmDeclarationsResponseStatus
     from .submissions_create_declarations_request_data_type import SubmissionsCreateDeclarationsRequestDataType
     from .submissions_create_declarations_request_obligation import SubmissionsCreateDeclarationsRequestObligation
     from .submissions_create_declarations_response import SubmissionsCreateDeclarationsResponse
@@ -900,6 +907,8 @@ _dynamic_imports: typing.Dict[str, str] = {
     "LtIsafGenerateDeclarationsRequestDataType": ".lt_isaf_generate_declarations_request_data_type",
     "LtIsafGenerateDeclarationsResponse": ".lt_isaf_generate_declarations_response",
     "LtIsafGenerateDeclarationsResponseCounts": ".lt_isaf_generate_declarations_response_counts",
+    "LtIvazAmendDeclarationsRequestCorrectionsItem": ".lt_ivaz_amend_declarations_request_corrections_item",
+    "LtIvazAmendDeclarationsRequestCorrectionsItemLinesItem": ".lt_ivaz_amend_declarations_request_corrections_item_lines_item",
     "LtIvazAmendDeclarationsResponse": ".lt_ivaz_amend_declarations_response",
     "LtIvazAmendDeclarationsResponseCounts": ".lt_ivaz_amend_declarations_response_counts",
     "LtIvazCancelDeclarationsRequestEntriesItem": ".lt_ivaz_cancel_declarations_request_entries_item",
@@ -979,6 +988,9 @@ _dynamic_imports: typing.Dict[str, str] = {
     "RoEtransportStatusDeclarationsResponseState": ".ro_etransport_status_declarations_response_state",
     "RoEtransportSubmitDeclarationsResponse": ".ro_etransport_submit_declarations_response",
     "RoEtransportSubmitDeclarationsResponseState": ".ro_etransport_submit_declarations_response_state",
+    "SubmissionsConfirmDeclarationsResponse": ".submissions_confirm_declarations_response",
+    "SubmissionsConfirmDeclarationsResponseEnvironment": ".submissions_confirm_declarations_response_environment",
+    "SubmissionsConfirmDeclarationsResponseStatus": ".submissions_confirm_declarations_response_status",
     "SubmissionsCreateDeclarationsRequestDataType": ".submissions_create_declarations_request_data_type",
     "SubmissionsCreateDeclarationsRequestObligation": ".submissions_create_declarations_request_obligation",
     "SubmissionsCreateDeclarationsResponse": ".submissions_create_declarations_response",
@@ -1291,6 +1303,8 @@ __all__ = [
     "LtIsafGenerateDeclarationsRequestDataType",
     "LtIsafGenerateDeclarationsResponse",
     "LtIsafGenerateDeclarationsResponseCounts",
+    "LtIvazAmendDeclarationsRequestCorrectionsItem",
+    "LtIvazAmendDeclarationsRequestCorrectionsItemLinesItem",
     "LtIvazAmendDeclarationsResponse",
     "LtIvazAmendDeclarationsResponseCounts",
     "LtIvazCancelDeclarationsRequestEntriesItem",
@@ -1370,6 +1384,9 @@ __all__ = [
     "RoEtransportStatusDeclarationsResponseState",
     "RoEtransportSubmitDeclarationsResponse",
     "RoEtransportSubmitDeclarationsResponseState",
+    "SubmissionsConfirmDeclarationsResponse",
+    "SubmissionsConfirmDeclarationsResponseEnvironment",
+    "SubmissionsConfirmDeclarationsResponseStatus",
     "SubmissionsCreateDeclarationsRequestDataType",
     "SubmissionsCreateDeclarationsRequestObligation",
     "SubmissionsCreateDeclarationsResponse",

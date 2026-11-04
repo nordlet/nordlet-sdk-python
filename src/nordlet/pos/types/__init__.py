@@ -29,6 +29,19 @@ if typing.TYPE_CHECKING:
     from .receipts_list_pos_request_sort_item_dir import ReceiptsListPosRequestSortItemDir
     from .receipts_list_pos_response import ReceiptsListPosResponse
     from .receipts_list_pos_response_rows_item import ReceiptsListPosResponseRowsItem
+    from .refunds_create_pos_request_lines_item import RefundsCreatePosRequestLinesItem
+    from .refunds_create_pos_response import RefundsCreatePosResponse
+    from .refunds_create_pos_response_lines_item import RefundsCreatePosResponseLinesItem
+    from .refunds_get_pos_response import RefundsGetPosResponse
+    from .refunds_get_pos_response_lines_item import RefundsGetPosResponseLinesItem
+    from .refunds_list_pos_request_filter_item import RefundsListPosRequestFilterItem
+    from .refunds_list_pos_request_filter_item_op import RefundsListPosRequestFilterItemOp
+    from .refunds_list_pos_request_filter_item_value import RefundsListPosRequestFilterItemValue
+    from .refunds_list_pos_request_filter_item_value_three_item import RefundsListPosRequestFilterItemValueThreeItem
+    from .refunds_list_pos_request_sort_item import RefundsListPosRequestSortItem
+    from .refunds_list_pos_request_sort_item_dir import RefundsListPosRequestSortItemDir
+    from .refunds_list_pos_response import RefundsListPosResponse
+    from .refunds_list_pos_response_rows_item import RefundsListPosResponseRowsItem
     from .reports_create_pos_request_item_lines_item import ReportsCreatePosRequestItemLinesItem
     from .reports_create_pos_request_vat_lines_item import ReportsCreatePosRequestVatLinesItem
     from .reports_create_pos_response import ReportsCreatePosResponse
@@ -82,6 +95,19 @@ _dynamic_imports: typing.Dict[str, str] = {
     "ReceiptsListPosRequestSortItemDir": ".receipts_list_pos_request_sort_item_dir",
     "ReceiptsListPosResponse": ".receipts_list_pos_response",
     "ReceiptsListPosResponseRowsItem": ".receipts_list_pos_response_rows_item",
+    "RefundsCreatePosRequestLinesItem": ".refunds_create_pos_request_lines_item",
+    "RefundsCreatePosResponse": ".refunds_create_pos_response",
+    "RefundsCreatePosResponseLinesItem": ".refunds_create_pos_response_lines_item",
+    "RefundsGetPosResponse": ".refunds_get_pos_response",
+    "RefundsGetPosResponseLinesItem": ".refunds_get_pos_response_lines_item",
+    "RefundsListPosRequestFilterItem": ".refunds_list_pos_request_filter_item",
+    "RefundsListPosRequestFilterItemOp": ".refunds_list_pos_request_filter_item_op",
+    "RefundsListPosRequestFilterItemValue": ".refunds_list_pos_request_filter_item_value",
+    "RefundsListPosRequestFilterItemValueThreeItem": ".refunds_list_pos_request_filter_item_value_three_item",
+    "RefundsListPosRequestSortItem": ".refunds_list_pos_request_sort_item",
+    "RefundsListPosRequestSortItemDir": ".refunds_list_pos_request_sort_item_dir",
+    "RefundsListPosResponse": ".refunds_list_pos_response",
+    "RefundsListPosResponseRowsItem": ".refunds_list_pos_response_rows_item",
     "ReportsCreatePosRequestItemLinesItem": ".reports_create_pos_request_item_lines_item",
     "ReportsCreatePosRequestVatLinesItem": ".reports_create_pos_request_vat_lines_item",
     "ReportsCreatePosResponse": ".reports_create_pos_response",
@@ -159,6 +185,19 @@ __all__ = [
     "ReceiptsListPosRequestSortItemDir",
     "ReceiptsListPosResponse",
     "ReceiptsListPosResponseRowsItem",
+    "RefundsCreatePosRequestLinesItem",
+    "RefundsCreatePosResponse",
+    "RefundsCreatePosResponseLinesItem",
+    "RefundsGetPosResponse",
+    "RefundsGetPosResponseLinesItem",
+    "RefundsListPosRequestFilterItem",
+    "RefundsListPosRequestFilterItemOp",
+    "RefundsListPosRequestFilterItemValue",
+    "RefundsListPosRequestFilterItemValueThreeItem",
+    "RefundsListPosRequestSortItem",
+    "RefundsListPosRequestSortItemDir",
+    "RefundsListPosResponse",
+    "RefundsListPosResponseRowsItem",
     "ReportsCreatePosRequestItemLinesItem",
     "ReportsCreatePosRequestVatLinesItem",
     "ReportsCreatePosResponse",

@@ -18,6 +18,8 @@ PostingRulesUpdateLedgerRequestRulesItemKey = typing.Union[
         "inventory.stock",
         "production.laborApplied",
         "production.scrap",
+        "pos.cashShortage",
+        "pos.cashSurplus",
         "bank.fxGain",
         "bank.fxLoss",
         "bank.fees",

@@ -17,6 +17,10 @@ class InvoicesGetPurchasesResponseLinesItem(UniversalBaseModel):
     description: str
     unit: str
     quantity: str
+    unit_factor: typing_extensions.Annotated[str, FieldMetadata(alias="unitFactor"), pydantic.Field(alias="unitFactor")]
+    base_quantity: typing_extensions.Annotated[
+        str, FieldMetadata(alias="baseQuantity"), pydantic.Field(alias="baseQuantity")
+    ]
     unit_price_excl_vat: typing_extensions.Annotated[
         typing.Optional[str], FieldMetadata(alias="unitPriceExclVat"), pydantic.Field(alias="unitPriceExclVat")
     ] = None
@@ -43,6 +47,12 @@ class InvoicesGetPurchasesResponseLinesItem(UniversalBaseModel):
     ] = None
     deferral_end_date: typing_extensions.Annotated[
         typing.Optional[dt.date], FieldMetadata(alias="deferralEndDate"), pydantic.Field(alias="deferralEndDate")
+    ] = None
+    lot_number: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="lotNumber"), pydantic.Field(alias="lotNumber")
+    ] = None
+    expiry_date: typing_extensions.Annotated[
+        typing.Optional[dt.date], FieldMetadata(alias="expiryDate"), pydantic.Field(alias="expiryDate")
     ] = None
     line_net: typing_extensions.Annotated[str, FieldMetadata(alias="lineNet"), pydantic.Field(alias="lineNet")]
     line_vat: typing_extensions.Annotated[str, FieldMetadata(alias="lineVat"), pydantic.Field(alias="lineVat")]

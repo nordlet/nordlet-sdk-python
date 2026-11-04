@@ -29,6 +29,9 @@ class MaintenanceCancelProductionResponse(UniversalBaseModel):
         typing.Optional[str], FieldMetadata(alias="downtimeHours"), pydantic.Field(alias="downtimeHours")
     ] = None
     cost: typing.Optional[str] = None
+    purchase_invoice_id: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="purchaseInvoiceId"), pydantic.Field(alias="purchaseInvoiceId")
+    ] = None
     notes: typing.Optional[str] = None
     created_at: typing_extensions.Annotated[
         dt.datetime, FieldMetadata(alias="createdAt"), pydantic.Field(alias="createdAt")

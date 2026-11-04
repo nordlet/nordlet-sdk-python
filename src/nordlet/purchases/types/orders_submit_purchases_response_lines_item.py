@@ -16,6 +16,10 @@ class OrdersSubmitPurchasesResponseLinesItem(UniversalBaseModel):
     description: str
     unit: str
     quantity: str
+    unit_factor: typing_extensions.Annotated[str, FieldMetadata(alias="unitFactor"), pydantic.Field(alias="unitFactor")]
+    base_quantity: typing_extensions.Annotated[
+        str, FieldMetadata(alias="baseQuantity"), pydantic.Field(alias="baseQuantity")
+    ]
     received_qty: typing_extensions.Annotated[
         str, FieldMetadata(alias="receivedQty"), pydantic.Field(alias="receivedQty")
     ]

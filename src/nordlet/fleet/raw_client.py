@@ -62,12 +62,13 @@ class RawFleetClient:
         fixed_asset_id: typing.Optional[str] = OMIT,
         technical_inspection_due: typing.Optional[dt.date] = OMIT,
         insurance_due: typing.Optional[dt.date] = OMIT,
+        disposal_date: typing.Optional[dt.date] = OMIT,
         notes: typing.Optional[str] = OMIT,
         documents: typing.Optional[typing.Sequence[VehiclesCreateFleetRequestDocumentsItem]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[VehiclesCreateFleetResponse]:
         """
-        Register a vehicle. The plate number is stored in upper case and must be unique in the company (409 otherwise); `fixedAssetId` must name an existing fixed asset. Uploaded `documents` are attached to the vehicle.
+        Register a vehicle. The plate number is stored in upper case and must be unique in the company (409 otherwise); `fixedAssetId` must name an existing fixed asset. Uploaded `documents` are attached to the vehicle. `disposalDate`, the day the vehicle was sold or scrapped, is the last day of its car benefit in kind.
 
         Parameters
         ----------
@@ -92,6 +93,8 @@ class RawFleetClient:
         technical_inspection_due : typing.Optional[dt.date]
 
         insurance_due : typing.Optional[dt.date]
+
+        disposal_date : typing.Optional[dt.date]
 
         notes : typing.Optional[str]
 
@@ -120,6 +123,7 @@ class RawFleetClient:
                 "fixedAssetId": fixed_asset_id,
                 "technicalInspectionDue": technical_inspection_due,
                 "insuranceDue": insurance_due,
+                "disposalDate": disposal_date,
                 "notes": notes,
                 "documents": convert_and_respect_annotation_metadata(
                     object_=documents,
@@ -278,11 +282,12 @@ class RawFleetClient:
         technical_inspection_due: typing.Optional[dt.date] = OMIT,
         insurance_due: typing.Optional[dt.date] = OMIT,
         status: typing.Optional[VehiclesUpdateFleetRequestStatus] = OMIT,
+        disposal_date: typing.Optional[dt.date] = OMIT,
         notes: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[VehiclesUpdateFleetResponse]:
         """
-        Change a vehicle's details or set its `status` to `active`, `sold` or `scrapped`; omitted fields keep their value. A plate number already used by another vehicle is refused with 409.
+        Change a vehicle's details or set its `status` to `active`, `sold` or `scrapped` and its `disposalDate`, the last day of its car benefit in kind; omitted fields keep their value. A plate number already used by another vehicle is refused with 409.
 
         Parameters
         ----------
@@ -312,6 +317,8 @@ class RawFleetClient:
 
         status : typing.Optional[VehiclesUpdateFleetRequestStatus]
 
+        disposal_date : typing.Optional[dt.date]
+
         notes : typing.Optional[str]
 
         request_options : typing.Optional[RequestOptions]
@@ -339,6 +346,7 @@ class RawFleetClient:
                 "technicalInspectionDue": technical_inspection_due,
                 "insuranceDue": insurance_due,
                 "status": status,
+                "disposalDate": disposal_date,
                 "notes": notes,
             },
             headers={
@@ -1353,7 +1361,7 @@ class RawFleetClient:
         self, *, year: int, month: int, request_options: typing.Optional[RequestOptions] = None
     ) -> HttpResponse[NaturaPreviewFleetResponse]:
         """
-        Preview the car benefit in kind of a month for a Lithuanian company: every assignment with `privateUse` that overlaps the month is valued at 0.75 % of the vehicle's market value when the employer pays the fuel, else 0.70 %, one row per employee and vehicle, with the total. A company registered in another country is refused with 422. The same amounts are added to a payroll run created with `includeNatura` (`payroll/runs/create`).
+        Preview the car benefit in kind of a month for a Lithuanian company: every assignment with `privateUse` that overlaps the month is valued at 0.75 % of the vehicle's market value when the employer pays the fuel, else 0.70 %, one row per employee and vehicle, with the total. A month the assignment starts or ends in, or the vehicle's `disposalDate` falls in, is valued by its calendar days with the car; after the `disposalDate` there is no benefit. A company registered in another country is refused with 422. The same amounts are added to a payroll run created with `includeNatura` (`payroll/runs/create`).
 
         Parameters
         ----------
@@ -1530,12 +1538,13 @@ class AsyncRawFleetClient:
         fixed_asset_id: typing.Optional[str] = OMIT,
         technical_inspection_due: typing.Optional[dt.date] = OMIT,
         insurance_due: typing.Optional[dt.date] = OMIT,
+        disposal_date: typing.Optional[dt.date] = OMIT,
         notes: typing.Optional[str] = OMIT,
         documents: typing.Optional[typing.Sequence[VehiclesCreateFleetRequestDocumentsItem]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[VehiclesCreateFleetResponse]:
         """
-        Register a vehicle. The plate number is stored in upper case and must be unique in the company (409 otherwise); `fixedAssetId` must name an existing fixed asset. Uploaded `documents` are attached to the vehicle.
+        Register a vehicle. The plate number is stored in upper case and must be unique in the company (409 otherwise); `fixedAssetId` must name an existing fixed asset. Uploaded `documents` are attached to the vehicle. `disposalDate`, the day the vehicle was sold or scrapped, is the last day of its car benefit in kind.
 
         Parameters
         ----------
@@ -1560,6 +1569,8 @@ class AsyncRawFleetClient:
         technical_inspection_due : typing.Optional[dt.date]
 
         insurance_due : typing.Optional[dt.date]
+
+        disposal_date : typing.Optional[dt.date]
 
         notes : typing.Optional[str]
 
@@ -1588,6 +1599,7 @@ class AsyncRawFleetClient:
                 "fixedAssetId": fixed_asset_id,
                 "technicalInspectionDue": technical_inspection_due,
                 "insuranceDue": insurance_due,
+                "disposalDate": disposal_date,
                 "notes": notes,
                 "documents": convert_and_respect_annotation_metadata(
                     object_=documents,
@@ -1746,11 +1758,12 @@ class AsyncRawFleetClient:
         technical_inspection_due: typing.Optional[dt.date] = OMIT,
         insurance_due: typing.Optional[dt.date] = OMIT,
         status: typing.Optional[VehiclesUpdateFleetRequestStatus] = OMIT,
+        disposal_date: typing.Optional[dt.date] = OMIT,
         notes: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[VehiclesUpdateFleetResponse]:
         """
-        Change a vehicle's details or set its `status` to `active`, `sold` or `scrapped`; omitted fields keep their value. A plate number already used by another vehicle is refused with 409.
+        Change a vehicle's details or set its `status` to `active`, `sold` or `scrapped` and its `disposalDate`, the last day of its car benefit in kind; omitted fields keep their value. A plate number already used by another vehicle is refused with 409.
 
         Parameters
         ----------
@@ -1780,6 +1793,8 @@ class AsyncRawFleetClient:
 
         status : typing.Optional[VehiclesUpdateFleetRequestStatus]
 
+        disposal_date : typing.Optional[dt.date]
+
         notes : typing.Optional[str]
 
         request_options : typing.Optional[RequestOptions]
@@ -1807,6 +1822,7 @@ class AsyncRawFleetClient:
                 "technicalInspectionDue": technical_inspection_due,
                 "insuranceDue": insurance_due,
                 "status": status,
+                "disposalDate": disposal_date,
                 "notes": notes,
             },
             headers={
@@ -2821,7 +2837,7 @@ class AsyncRawFleetClient:
         self, *, year: int, month: int, request_options: typing.Optional[RequestOptions] = None
     ) -> AsyncHttpResponse[NaturaPreviewFleetResponse]:
         """
-        Preview the car benefit in kind of a month for a Lithuanian company: every assignment with `privateUse` that overlaps the month is valued at 0.75 % of the vehicle's market value when the employer pays the fuel, else 0.70 %, one row per employee and vehicle, with the total. A company registered in another country is refused with 422. The same amounts are added to a payroll run created with `includeNatura` (`payroll/runs/create`).
+        Preview the car benefit in kind of a month for a Lithuanian company: every assignment with `privateUse` that overlaps the month is valued at 0.75 % of the vehicle's market value when the employer pays the fuel, else 0.70 %, one row per employee and vehicle, with the total. A month the assignment starts or ends in, or the vehicle's `disposalDate` falls in, is valued by its calendar days with the car; after the `disposalDate` there is no benefit. A company registered in another country is refused with 422. The same amounts are added to a payroll run created with `includeNatura` (`payroll/runs/create`).
 
         Parameters
         ----------

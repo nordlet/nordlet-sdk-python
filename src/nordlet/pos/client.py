@@ -17,6 +17,12 @@ from .types.receipts_get_pos_response import ReceiptsGetPosResponse
 from .types.receipts_list_pos_request_filter_item import ReceiptsListPosRequestFilterItem
 from .types.receipts_list_pos_request_sort_item import ReceiptsListPosRequestSortItem
 from .types.receipts_list_pos_response import ReceiptsListPosResponse
+from .types.refunds_create_pos_request_lines_item import RefundsCreatePosRequestLinesItem
+from .types.refunds_create_pos_response import RefundsCreatePosResponse
+from .types.refunds_get_pos_response import RefundsGetPosResponse
+from .types.refunds_list_pos_request_filter_item import RefundsListPosRequestFilterItem
+from .types.refunds_list_pos_request_sort_item import RefundsListPosRequestSortItem
+from .types.refunds_list_pos_response import RefundsListPosResponse
 from .types.reports_create_pos_request_item_lines_item import ReportsCreatePosRequestItemLinesItem
 from .types.reports_create_pos_request_vat_lines_item import ReportsCreatePosRequestVatLinesItem
 from .types.reports_create_pos_response import ReportsCreatePosResponse
@@ -236,7 +242,7 @@ class PosClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> ReportsCreatePosResponse:
         """
-        Record a daily cash register report (Z-report) and post it to the ledger in one journal entry: the cash and card takings are debited to `cashAccountCode` and `cardAccountCode`, the net of the `vatLines` is credited to `revenueAccountCode` and their VAT to `vatAccountCode`. `itemLines` write the sold products off `warehouseId` FIFO (a set is expanded to its product components) and add the cost of goods sold, debited to `cogsAccountCode` against the stock accounts. Account codes default to the company's chart. Refused with 422 when cash plus card differs from the gross total, the item lines have no warehouse or the device is inactive, with 409 when the accounting period is locked or the `reportNumber` already exists. Emits `pos_report.created` and, per item line, `stock.changed`.
+        Record a daily cash register report (Z-report) and post it to the ledger in one journal entry: the cash and card takings are debited to `cashAccountCode` and `cardAccountCode`, the net of the `vatLines` is credited to `revenueAccountCode` and their VAT to `vatAccountCode`. `itemLines` write the sold products off `warehouseId`, the first-expiring lot first (lots without an expiry date after those with one, then the oldest layers first), leaving out expired lots (a set is expanded to its product components) and add the cost of goods sold, debited to `cogsAccountCode` against the stock accounts. `cogsAccountCode` and `inventoryAccountCode` default to the posting rules `inventory.cogs` and `inventory.stock`, the other account codes to the company's chart. Refused with 422 when cash plus card differs from the gross total, the item lines have no warehouse or the device is inactive, with 409 when the accounting period is locked or the `reportNumber` already exists. Emits `pos_report.created` and, per item line, `stock.changed`.
 
         Parameters
         ----------
@@ -659,6 +665,138 @@ class PosClient:
         _response = self._raw_client.receipts_get(id=id, request_options=request_options)
         return _response.data
 
+    def refunds_create(
+        self,
+        *,
+        shift_id: str,
+        receipt_id: str,
+        lines: typing.Sequence[RefundsCreatePosRequestLinesItem],
+        date: typing.Optional[dt.date] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> RefundsCreatePosResponse:
+        """
+        Refund `quantity` of lines of a receipt, paid in cash out of the open shift `shiftId`, on `date` (default: the company's today). A line refunded in part is priced from its VAT-inclusive unit price, the rest of a line at what is left of its amounts. One journal entry debits the chart's POS revenue and VAT accounts with the net and VAT and credits the chart's cash account with the gross. When the receipt's shift is closed, the stock lines go back into the warehouse at the cost they left it on that shift's report, debited to their stock accounts (`inventory.stock` for layers without one) against `inventory.cogs`; when it is still open, the refunded quantities are left out of the stock write-off at its close. A receipt of another open shift is refused with 422, as are a line not on the receipt, a line named twice, a zero quantity and a quantity above what is left to refund; 409 when the shift is closed or the accounting period is locked.
+
+        Parameters
+        ----------
+        shift_id : str
+
+        receipt_id : str
+
+        lines : typing.Sequence[RefundsCreatePosRequestLinesItem]
+
+        date : typing.Optional[dt.date]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        RefundsCreatePosResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+        from nordlet.pos import RefundsCreatePosRequestLinesItem
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.pos.refunds_create(
+            shift_id="shiftId",
+            receipt_id="receiptId",
+            lines=[
+                RefundsCreatePosRequestLinesItem(
+                    receipt_line_id="receiptLineId",
+                    quantity="121.0000",
+                )
+            ],
+        )
+        """
+        _response = self._raw_client.refunds_create(
+            shift_id=shift_id, receipt_id=receipt_id, lines=lines, date=date, request_options=request_options
+        )
+        return _response.data
+
+    def refunds_get(self, *, id: str, request_options: typing.Optional[RequestOptions] = None) -> RefundsGetPosResponse:
+        """
+        Read one POS refund with its lines.
+
+        Parameters
+        ----------
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        RefundsGetPosResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.pos.refunds_get(
+            id="id",
+        )
+        """
+        _response = self._raw_client.refunds_get(id=id, request_options=request_options)
+        return _response.data
+
+    def refunds_list(
+        self,
+        *,
+        page: typing.Optional[int] = OMIT,
+        page_size: typing.Optional[int] = OMIT,
+        sort: typing.Optional[typing.Sequence[RefundsListPosRequestSortItem]] = OMIT,
+        filter: typing.Optional[typing.Sequence[RefundsListPosRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> RefundsListPosResponse:
+        """
+        List POS refunds without their lines. Filterable by `shiftId` and `receiptId`; sortable by `date` and `createdAt`.
+
+        Parameters
+        ----------
+        page : typing.Optional[int]
+
+        page_size : typing.Optional[int]
+
+        sort : typing.Optional[typing.Sequence[RefundsListPosRequestSortItem]]
+
+        filter : typing.Optional[typing.Sequence[RefundsListPosRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        RefundsListPosResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.pos.refunds_list()
+        """
+        _response = self._raw_client.refunds_list(
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
+        )
+        return _response.data
+
     def shifts_close(
         self,
         *,
@@ -669,7 +807,7 @@ class PosClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> ShiftsClosePosResponse:
         """
-        Close an open shift: its receipts are summed by VAT rate and by product into one POS report, created as by `pos/reports/create` with number `reportNumber` (default `Z-<device serial>-<n>`, n being the device's closed shifts plus one) on `date` (default: the company's today), which posts the takings and the stock write-off to the ledger and emits `pos_report.created`. The response adds `expectedCash` (opening cash plus the cash receipts) and `cashDifference` (`countedCash` less expected). A shift without receipts is refused with 422, a closed one with 409.
+        Close an open shift: its receipts are summed by VAT rate and by product into one POS report, created as by `pos/reports/create` with number `reportNumber` (default `Z-<device serial>-<n>`, n being the device's closed shifts plus one) on `date` (default: the company's today), which posts the takings and the stock write-off to the ledger and emits `pos_report.created`. Quantities refunded from the shift's receipts by `pos/refunds/create` are left out of the stock write-off. The response adds `expectedCash` (opening cash plus the cash receipts less the cash refunds paid out of the shift) and `cashDifference` (`countedCash` less expected). A difference is posted in its own journal entry on `date` (document type `pos_shift`): a shortage debits the `pos.cashShortage` rule account and credits the chart's cash account, a surplus debits the cash account and credits `pos.cashSurplus`; 422 when the company's chart lacks the account. A shift without receipts is refused with 422, a closed one with 409.
 
         Parameters
         ----------
@@ -932,7 +1070,7 @@ class AsyncPosClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> ReportsCreatePosResponse:
         """
-        Record a daily cash register report (Z-report) and post it to the ledger in one journal entry: the cash and card takings are debited to `cashAccountCode` and `cardAccountCode`, the net of the `vatLines` is credited to `revenueAccountCode` and their VAT to `vatAccountCode`. `itemLines` write the sold products off `warehouseId` FIFO (a set is expanded to its product components) and add the cost of goods sold, debited to `cogsAccountCode` against the stock accounts. Account codes default to the company's chart. Refused with 422 when cash plus card differs from the gross total, the item lines have no warehouse or the device is inactive, with 409 when the accounting period is locked or the `reportNumber` already exists. Emits `pos_report.created` and, per item line, `stock.changed`.
+        Record a daily cash register report (Z-report) and post it to the ledger in one journal entry: the cash and card takings are debited to `cashAccountCode` and `cardAccountCode`, the net of the `vatLines` is credited to `revenueAccountCode` and their VAT to `vatAccountCode`. `itemLines` write the sold products off `warehouseId`, the first-expiring lot first (lots without an expiry date after those with one, then the oldest layers first), leaving out expired lots (a set is expanded to its product components) and add the cost of goods sold, debited to `cogsAccountCode` against the stock accounts. `cogsAccountCode` and `inventoryAccountCode` default to the posting rules `inventory.cogs` and `inventory.stock`, the other account codes to the company's chart. Refused with 422 when cash plus card differs from the gross total, the item lines have no warehouse or the device is inactive, with 409 when the accounting period is locked or the `reportNumber` already exists. Emits `pos_report.created` and, per item line, `stock.changed`.
 
         Parameters
         ----------
@@ -1430,6 +1568,164 @@ class AsyncPosClient:
         _response = await self._raw_client.receipts_get(id=id, request_options=request_options)
         return _response.data
 
+    async def refunds_create(
+        self,
+        *,
+        shift_id: str,
+        receipt_id: str,
+        lines: typing.Sequence[RefundsCreatePosRequestLinesItem],
+        date: typing.Optional[dt.date] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> RefundsCreatePosResponse:
+        """
+        Refund `quantity` of lines of a receipt, paid in cash out of the open shift `shiftId`, on `date` (default: the company's today). A line refunded in part is priced from its VAT-inclusive unit price, the rest of a line at what is left of its amounts. One journal entry debits the chart's POS revenue and VAT accounts with the net and VAT and credits the chart's cash account with the gross. When the receipt's shift is closed, the stock lines go back into the warehouse at the cost they left it on that shift's report, debited to their stock accounts (`inventory.stock` for layers without one) against `inventory.cogs`; when it is still open, the refunded quantities are left out of the stock write-off at its close. A receipt of another open shift is refused with 422, as are a line not on the receipt, a line named twice, a zero quantity and a quantity above what is left to refund; 409 when the shift is closed or the accounting period is locked.
+
+        Parameters
+        ----------
+        shift_id : str
+
+        receipt_id : str
+
+        lines : typing.Sequence[RefundsCreatePosRequestLinesItem]
+
+        date : typing.Optional[dt.date]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        RefundsCreatePosResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+        from nordlet.pos import RefundsCreatePosRequestLinesItem
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.pos.refunds_create(
+                shift_id="shiftId",
+                receipt_id="receiptId",
+                lines=[
+                    RefundsCreatePosRequestLinesItem(
+                        receipt_line_id="receiptLineId",
+                        quantity="121.0000",
+                    )
+                ],
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.refunds_create(
+            shift_id=shift_id, receipt_id=receipt_id, lines=lines, date=date, request_options=request_options
+        )
+        return _response.data
+
+    async def refunds_get(
+        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> RefundsGetPosResponse:
+        """
+        Read one POS refund with its lines.
+
+        Parameters
+        ----------
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        RefundsGetPosResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.pos.refunds_get(
+                id="id",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.refunds_get(id=id, request_options=request_options)
+        return _response.data
+
+    async def refunds_list(
+        self,
+        *,
+        page: typing.Optional[int] = OMIT,
+        page_size: typing.Optional[int] = OMIT,
+        sort: typing.Optional[typing.Sequence[RefundsListPosRequestSortItem]] = OMIT,
+        filter: typing.Optional[typing.Sequence[RefundsListPosRequestFilterItem]] = OMIT,
+        totals: typing.Optional[typing.Sequence[str]] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> RefundsListPosResponse:
+        """
+        List POS refunds without their lines. Filterable by `shiftId` and `receiptId`; sortable by `date` and `createdAt`.
+
+        Parameters
+        ----------
+        page : typing.Optional[int]
+
+        page_size : typing.Optional[int]
+
+        sort : typing.Optional[typing.Sequence[RefundsListPosRequestSortItem]]
+
+        filter : typing.Optional[typing.Sequence[RefundsListPosRequestFilterItem]]
+
+        totals : typing.Optional[typing.Sequence[str]]
+            Numeric fields to sum over every row matching the filter (not only the current page)
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        RefundsListPosResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.pos.refunds_list()
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.refunds_list(
+            page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
+        )
+        return _response.data
+
     async def shifts_close(
         self,
         *,
@@ -1440,7 +1736,7 @@ class AsyncPosClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> ShiftsClosePosResponse:
         """
-        Close an open shift: its receipts are summed by VAT rate and by product into one POS report, created as by `pos/reports/create` with number `reportNumber` (default `Z-<device serial>-<n>`, n being the device's closed shifts plus one) on `date` (default: the company's today), which posts the takings and the stock write-off to the ledger and emits `pos_report.created`. The response adds `expectedCash` (opening cash plus the cash receipts) and `cashDifference` (`countedCash` less expected). A shift without receipts is refused with 422, a closed one with 409.
+        Close an open shift: its receipts are summed by VAT rate and by product into one POS report, created as by `pos/reports/create` with number `reportNumber` (default `Z-<device serial>-<n>`, n being the device's closed shifts plus one) on `date` (default: the company's today), which posts the takings and the stock write-off to the ledger and emits `pos_report.created`. Quantities refunded from the shift's receipts by `pos/refunds/create` are left out of the stock write-off. The response adds `expectedCash` (opening cash plus the cash receipts less the cash refunds paid out of the shift) and `cashDifference` (`countedCash` less expected). A difference is posted in its own journal entry on `date` (document type `pos_shift`): a shortage debits the `pos.cashShortage` rule account and credits the chart's cash account, a surplus debits the cash account and credits `pos.cashSurplus`; 422 when the company's chart lacks the account. A shift without receipts is refused with 422, a closed one with 409.
 
         Parameters
         ----------

@@ -16,6 +16,10 @@ class WaybillsIssueTransportResponseLinesItem(UniversalBaseModel):
     description: str
     unit: str
     quantity: str
+    unit_factor: typing_extensions.Annotated[str, FieldMetadata(alias="unitFactor"), pydantic.Field(alias="unitFactor")]
+    base_quantity: typing_extensions.Annotated[
+        str, FieldMetadata(alias="baseQuantity"), pydantic.Field(alias="baseQuantity")
+    ]
     product_code: typing_extensions.Annotated[
         typing.Optional[str], FieldMetadata(alias="productCode"), pydantic.Field(alias="productCode")
     ] = None

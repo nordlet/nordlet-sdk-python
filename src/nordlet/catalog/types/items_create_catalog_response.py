@@ -7,6 +7,7 @@ import pydantic
 import typing_extensions
 from ...core.pydantic_utilities import IS_PYDANTIC_V2, UniversalBaseModel
 from ...core.serialization import FieldMetadata
+from .items_create_catalog_response_alternative_units_item import ItemsCreateCatalogResponseAlternativeUnitsItem
 from .items_create_catalog_response_components_item import ItemsCreateCatalogResponseComponentsItem
 from .items_create_catalog_response_tracking import ItemsCreateCatalogResponseTracking
 from .items_create_catalog_response_translations_value import ItemsCreateCatalogResponseTranslationsValue
@@ -60,6 +61,11 @@ class ItemsCreateCatalogResponse(UniversalBaseModel):
     ] = None
     translations: typing.Optional[typing.Dict[str, typing.Optional[ItemsCreateCatalogResponseTranslationsValue]]] = None
     components: typing.List[ItemsCreateCatalogResponseComponentsItem]
+    alternative_units: typing_extensions.Annotated[
+        typing.List[ItemsCreateCatalogResponseAlternativeUnitsItem],
+        FieldMetadata(alias="alternativeUnits"),
+        pydantic.Field(alias="alternativeUnits"),
+    ]
     kind_id: typing_extensions.Annotated[
         typing.Optional[str], FieldMetadata(alias="kindId"), pydantic.Field(alias="kindId")
     ] = None

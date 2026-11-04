@@ -16,6 +16,10 @@ class ActsGetSalesResponseLinesItem(UniversalBaseModel):
     description: str
     unit: str
     quantity: str
+    unit_factor: typing_extensions.Annotated[str, FieldMetadata(alias="unitFactor"), pydantic.Field(alias="unitFactor")]
+    base_quantity: typing_extensions.Annotated[
+        str, FieldMetadata(alias="baseQuantity"), pydantic.Field(alias="baseQuantity")
+    ]
     unit_price_excl_vat: typing_extensions.Annotated[
         typing.Optional[str], FieldMetadata(alias="unitPriceExclVat"), pydantic.Field(alias="unitPriceExclVat")
     ] = None

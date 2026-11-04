@@ -114,6 +114,7 @@ from .types.lt_intrastat_compute_declarations_response import LtIntrastatCompute
 from .types.lt_intrastat_obligation_declarations_response import LtIntrastatObligationDeclarationsResponse
 from .types.lt_isaf_generate_declarations_request_data_type import LtIsafGenerateDeclarationsRequestDataType
 from .types.lt_isaf_generate_declarations_response import LtIsafGenerateDeclarationsResponse
+from .types.lt_ivaz_amend_declarations_request_corrections_item import LtIvazAmendDeclarationsRequestCorrectionsItem
 from .types.lt_ivaz_amend_declarations_response import LtIvazAmendDeclarationsResponse
 from .types.lt_ivaz_cancel_declarations_request_entries_item import LtIvazCancelDeclarationsRequestEntriesItem
 from .types.lt_ivaz_cancel_declarations_response import LtIvazCancelDeclarationsResponse
@@ -149,6 +150,7 @@ from .types.pl_zus_dra_pdf_declarations_response import PlZusDraPdfDeclarationsR
 from .types.ro_etransport_build_declarations_response import RoEtransportBuildDeclarationsResponse
 from .types.ro_etransport_status_declarations_response import RoEtransportStatusDeclarationsResponse
 from .types.ro_etransport_submit_declarations_response import RoEtransportSubmitDeclarationsResponse
+from .types.submissions_confirm_declarations_response import SubmissionsConfirmDeclarationsResponse
 from .types.submissions_create_declarations_request_data_type import SubmissionsCreateDeclarationsRequestDataType
 from .types.submissions_create_declarations_request_obligation import SubmissionsCreateDeclarationsRequestObligation
 from .types.submissions_create_declarations_response import SubmissionsCreateDeclarationsResponse
@@ -630,16 +632,19 @@ class DeclarationsClient:
         *,
         waybill_ids: typing.Sequence[str],
         persist: typing.Optional[bool] = OMIT,
+        corrections: typing.Optional[typing.Sequence[LtIvazAmendDeclarationsRequestCorrectionsItem]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> LtIvazAmendDeclarationsResponse:
         """
-        Builds an i.VAZ amendment message for up to 100 issued waybills, carrying their current data as TransportDocumentAmendment elements. Answers 422 when the registration code of the company is not numeric or when a waybill is not issued. With `persist`, the file is stored and a submission for `lt-ivaz-amendment` is created.
+        Builds an i.VAZ amendment message for up to 100 issued waybills as TransportDocumentAmendment elements. `corrections` carries corrected values per waybill: `consigneePartnerId`, `unloadAddress`, `vehiclePlate`, `trailerPlate`, `driverName`, `driverSurname` (the last three can be cleared with null) and line `quantity` by line id; the message carries the waybill with them applied, and with `persist` they are also stored on the waybill. Answers 422 when the registration code of the company is not numeric, when a waybill is not issued, or when a correction names a waybill not in `waybillIds`, a waybill twice, a line not on its waybill or a consignee partner the company does not have. With `persist`, the file is stored and a submission for `lt-ivaz-amendment` is created.
 
         Parameters
         ----------
         waybill_ids : typing.Sequence[str]
 
         persist : typing.Optional[bool]
+
+        corrections : typing.Optional[typing.Sequence[LtIvazAmendDeclarationsRequestCorrectionsItem]]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -661,7 +666,7 @@ class DeclarationsClient:
         )
         """
         _response = self._raw_client.lt_ivaz_amend(
-            waybill_ids=waybill_ids, persist=persist, request_options=request_options
+            waybill_ids=waybill_ids, persist=persist, corrections=corrections, request_options=request_options
         )
         return _response.data
 
@@ -3354,7 +3359,7 @@ class DeclarationsClient:
         self, *, year: int, request_options: typing.Optional[RequestOptions] = None
     ) -> PlCit8GenerateDeclarationsResponse:
         """
-        Generate CIT-8(34), the annual corporate income tax return, from the ledger of the year and the recorded tax adjustments. The tax office code and the small-taxpayer setting come from the e-Deklaracje compliance settings, the seat address from the JPK gateway settings. Names the annexes the figures would need, which are not produced.
+        Generate CIT-8(34), the annual corporate income tax return, from the ledger of the year and the recorded tax adjustments. The tax office code and the small-taxpayer setting come from the e-Deklaracje compliance settings, the seat address from the JPK gateway settings. Names the annexes the figures would need, which are not produced. Answers 422 for a tax year that starts before 2025-01-01, which the CIT-8(34) schema does not accept.
 
         Parameters
         ----------
@@ -3926,6 +3931,38 @@ class DeclarationsClient:
         )
         """
         _response = self._raw_client.submissions_retry(id=id, request_options=request_options)
+        return _response.data
+
+    def submissions_confirm(
+        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> SubmissionsConfirmDeclarationsResponse:
+        """
+        Sends a submission whose `confirmationPending` is true once more with the stored file and the token the administration handed back with its warnings (the advis of Erhvervsstyrelsen's Regnskab Indberet, which files the annual report only when it is sent again with that token), and returns the updated submission. Answers 409 when the submission is not waiting for a confirmation.
+
+        Parameters
+        ----------
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        SubmissionsConfirmDeclarationsResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.declarations.submissions_confirm(
+            id="id",
+        )
+        """
+        _response = self._raw_client.submissions_confirm(id=id, request_options=request_options)
         return _response.data
 
     def submissions_create(
@@ -4595,16 +4632,19 @@ class AsyncDeclarationsClient:
         *,
         waybill_ids: typing.Sequence[str],
         persist: typing.Optional[bool] = OMIT,
+        corrections: typing.Optional[typing.Sequence[LtIvazAmendDeclarationsRequestCorrectionsItem]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> LtIvazAmendDeclarationsResponse:
         """
-        Builds an i.VAZ amendment message for up to 100 issued waybills, carrying their current data as TransportDocumentAmendment elements. Answers 422 when the registration code of the company is not numeric or when a waybill is not issued. With `persist`, the file is stored and a submission for `lt-ivaz-amendment` is created.
+        Builds an i.VAZ amendment message for up to 100 issued waybills as TransportDocumentAmendment elements. `corrections` carries corrected values per waybill: `consigneePartnerId`, `unloadAddress`, `vehiclePlate`, `trailerPlate`, `driverName`, `driverSurname` (the last three can be cleared with null) and line `quantity` by line id; the message carries the waybill with them applied, and with `persist` they are also stored on the waybill. Answers 422 when the registration code of the company is not numeric, when a waybill is not issued, or when a correction names a waybill not in `waybillIds`, a waybill twice, a line not on its waybill or a consignee partner the company does not have. With `persist`, the file is stored and a submission for `lt-ivaz-amendment` is created.
 
         Parameters
         ----------
         waybill_ids : typing.Sequence[str]
 
         persist : typing.Optional[bool]
+
+        corrections : typing.Optional[typing.Sequence[LtIvazAmendDeclarationsRequestCorrectionsItem]]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -4634,7 +4674,7 @@ class AsyncDeclarationsClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.lt_ivaz_amend(
-            waybill_ids=waybill_ids, persist=persist, request_options=request_options
+            waybill_ids=waybill_ids, persist=persist, corrections=corrections, request_options=request_options
         )
         return _response.data
 
@@ -7840,7 +7880,7 @@ class AsyncDeclarationsClient:
         self, *, year: int, request_options: typing.Optional[RequestOptions] = None
     ) -> PlCit8GenerateDeclarationsResponse:
         """
-        Generate CIT-8(34), the annual corporate income tax return, from the ledger of the year and the recorded tax adjustments. The tax office code and the small-taxpayer setting come from the e-Deklaracje compliance settings, the seat address from the JPK gateway settings. Names the annexes the figures would need, which are not produced.
+        Generate CIT-8(34), the annual corporate income tax return, from the ledger of the year and the recorded tax adjustments. The tax office code and the small-taxpayer setting come from the e-Deklaracje compliance settings, the seat address from the JPK gateway settings. Names the annexes the figures would need, which are not produced. Answers 422 for a tax year that starts before 2025-01-01, which the CIT-8(34) schema does not accept.
 
         Parameters
         ----------
@@ -8548,6 +8588,46 @@ class AsyncDeclarationsClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.submissions_retry(id=id, request_options=request_options)
+        return _response.data
+
+    async def submissions_confirm(
+        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> SubmissionsConfirmDeclarationsResponse:
+        """
+        Sends a submission whose `confirmationPending` is true once more with the stored file and the token the administration handed back with its warnings (the advis of Erhvervsstyrelsen's Regnskab Indberet, which files the annual report only when it is sent again with that token), and returns the updated submission. Answers 409 when the submission is not waiting for a confirmation.
+
+        Parameters
+        ----------
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        SubmissionsConfirmDeclarationsResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.declarations.submissions_confirm(
+                id="id",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.submissions_confirm(id=id, request_options=request_options)
         return _response.data
 
     async def submissions_create(

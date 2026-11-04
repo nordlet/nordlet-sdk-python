@@ -44,6 +44,12 @@ class InvoicesCreatePurchasesRequestLinesItem(UniversalBaseModel):
     deferral_end_date: typing_extensions.Annotated[
         typing.Optional[dt.date], FieldMetadata(alias="deferralEndDate"), pydantic.Field(alias="deferralEndDate")
     ] = None
+    lot_number: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="lotNumber"), pydantic.Field(alias="lotNumber")
+    ] = None
+    expiry_date: typing_extensions.Annotated[
+        typing.Optional[dt.date], FieldMetadata(alias="expiryDate"), pydantic.Field(alias="expiryDate")
+    ] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2
