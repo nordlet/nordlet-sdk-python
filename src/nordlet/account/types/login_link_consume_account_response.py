@@ -15,6 +15,9 @@ class LoginLinkConsumeAccountResponse(UniversalBaseModel):
     expires_at: typing_extensions.Annotated[
         dt.datetime, FieldMetadata(alias="expiresAt"), pydantic.Field(alias="expiresAt")
     ]
+    two_factor_required: typing_extensions.Annotated[
+        bool, FieldMetadata(alias="twoFactorRequired"), pydantic.Field(alias="twoFactorRequired")
+    ]
     user: LoginLinkConsumeAccountResponseUser
     is_new_user: typing_extensions.Annotated[bool, FieldMetadata(alias="isNewUser"), pydantic.Field(alias="isNewUser")]
 

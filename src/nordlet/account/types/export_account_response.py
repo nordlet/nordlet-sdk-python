@@ -7,12 +7,16 @@ import pydantic
 import typing_extensions
 from ...core.pydantic_utilities import IS_PYDANTIC_V2, UniversalBaseModel
 from ...core.serialization import FieldMetadata
+from .export_account_response_api_keys_item import ExportAccountResponseApiKeysItem
 from .export_account_response_audit_entries_item import ExportAccountResponseAuditEntriesItem
+from .export_account_response_auth_events_item import ExportAccountResponseAuthEventsItem
 from .export_account_response_billing import ExportAccountResponseBilling
 from .export_account_response_billing_accounts_item import ExportAccountResponseBillingAccountsItem
 from .export_account_response_consent import ExportAccountResponseConsent
 from .export_account_response_credit_transactions_item import ExportAccountResponseCreditTransactionsItem
 from .export_account_response_memberships_item import ExportAccountResponseMembershipsItem
+from .export_account_response_oauth_grants_item import ExportAccountResponseOauthGrantsItem
+from .export_account_response_referral_points_item import ExportAccountResponseReferralPointsItem
 from .export_account_response_sessions_item import ExportAccountResponseSessionsItem
 from .export_account_response_user import ExportAccountResponseUser
 
@@ -40,6 +44,24 @@ class ExportAccountResponse(UniversalBaseModel):
         typing.List[ExportAccountResponseAuditEntriesItem],
         FieldMetadata(alias="auditEntries"),
         pydantic.Field(alias="auditEntries"),
+    ]
+    auth_events: typing_extensions.Annotated[
+        typing.List[ExportAccountResponseAuthEventsItem],
+        FieldMetadata(alias="authEvents"),
+        pydantic.Field(alias="authEvents"),
+    ]
+    api_keys: typing_extensions.Annotated[
+        typing.List[ExportAccountResponseApiKeysItem], FieldMetadata(alias="apiKeys"), pydantic.Field(alias="apiKeys")
+    ]
+    oauth_grants: typing_extensions.Annotated[
+        typing.List[ExportAccountResponseOauthGrantsItem],
+        FieldMetadata(alias="oauthGrants"),
+        pydantic.Field(alias="oauthGrants"),
+    ]
+    referral_points: typing_extensions.Annotated[
+        typing.List[ExportAccountResponseReferralPointsItem],
+        FieldMetadata(alias="referralPoints"),
+        pydantic.Field(alias="referralPoints"),
     ]
 
     if IS_PYDANTIC_V2:

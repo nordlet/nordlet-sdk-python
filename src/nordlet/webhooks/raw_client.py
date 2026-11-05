@@ -31,6 +31,7 @@ from .types.subscriptions_delete_webhooks_response import SubscriptionsDeleteWeb
 from .types.subscriptions_list_webhooks_request_filter_item import SubscriptionsListWebhooksRequestFilterItem
 from .types.subscriptions_list_webhooks_request_sort_item import SubscriptionsListWebhooksRequestSortItem
 from .types.subscriptions_list_webhooks_response import SubscriptionsListWebhooksResponse
+from .types.subscriptions_rotate_secret_webhooks_response import SubscriptionsRotateSecretWebhooksResponse
 from .types.subscriptions_update_webhooks_request_events_item import SubscriptionsUpdateWebhooksRequestEventsItem
 from .types.subscriptions_update_webhooks_response import SubscriptionsUpdateWebhooksResponse
 from pydantic import ValidationError
@@ -52,7 +53,7 @@ class RawWebhooksClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[SubscriptionsCreateWebhooksResponse]:
         """
-        Register a webhook endpoint for the given event types (`*` for every event). The URL must be an https address that resolves to a public network (422 otherwise). The signing secret is generated unless `secret` is given, and this call is the only one that returns it.
+        Register a webhook endpoint for the given event types (`*` for every event). The URL must be an https address that resolves to a public network (422 otherwise). The signing secret is generated unless `secret` is given (at least 32 characters), and this call is the only one that returns it. Answers 503 when the platform encryption key is not configured.
 
         Parameters
         ----------
@@ -277,6 +278,168 @@ class RawWebhooksClient:
                     SubscriptionsListWebhooksResponse,
                     parse_obj_as(
                         type_=SubscriptionsListWebhooksResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return HttpResponse(response=_response, data=_data)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 422:
+                raise UnprocessableEntityError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
+    def subscriptions_rotate_secret(
+        self, *, id: str, secret: typing.Optional[str] = OMIT, request_options: typing.Optional[RequestOptions] = None
+    ) -> HttpResponse[SubscriptionsRotateSecretWebhooksResponse]:
+        """
+        Replace the signing secret of a subscription and return the new one; this call is the only one that returns it. The secret is generated unless `secret` is given (at least 32 characters). For 24 hours `x-nordlet-signature-v2` carries two `v1=` values, one with the new secret and one with the previous one, so a receiver can switch secrets without refusing deliveries; `x-nordlet-signature` uses the new secret only. Answers 404 for an unknown subscription and 503 when the platform encryption key is not configured.
+
+        Parameters
+        ----------
+        id : str
+
+        secret : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        HttpResponse[SubscriptionsRotateSecretWebhooksResponse]
+            Default Response
+        """
+        _response = self._client_wrapper.httpx_client.request(
+            "v1/webhooks/subscriptions/rotate-secret",
+            method="POST",
+            json={
+                "id": id,
+                "secret": secret,
+            },
+            headers={
+                "content-type": "application/json",
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    SubscriptionsRotateSecretWebhooksResponse,
+                    parse_obj_as(
+                        type_=SubscriptionsRotateSecretWebhooksResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -1091,7 +1254,7 @@ class AsyncRawWebhooksClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[SubscriptionsCreateWebhooksResponse]:
         """
-        Register a webhook endpoint for the given event types (`*` for every event). The URL must be an https address that resolves to a public network (422 otherwise). The signing secret is generated unless `secret` is given, and this call is the only one that returns it.
+        Register a webhook endpoint for the given event types (`*` for every event). The URL must be an https address that resolves to a public network (422 otherwise). The signing secret is generated unless `secret` is given (at least 32 characters), and this call is the only one that returns it. Answers 503 when the platform encryption key is not configured.
 
         Parameters
         ----------
@@ -1316,6 +1479,168 @@ class AsyncRawWebhooksClient:
                     SubscriptionsListWebhooksResponse,
                     parse_obj_as(
                         type_=SubscriptionsListWebhooksResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return AsyncHttpResponse(response=_response, data=_data)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 422:
+                raise UnprocessableEntityError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
+    async def subscriptions_rotate_secret(
+        self, *, id: str, secret: typing.Optional[str] = OMIT, request_options: typing.Optional[RequestOptions] = None
+    ) -> AsyncHttpResponse[SubscriptionsRotateSecretWebhooksResponse]:
+        """
+        Replace the signing secret of a subscription and return the new one; this call is the only one that returns it. The secret is generated unless `secret` is given (at least 32 characters). For 24 hours `x-nordlet-signature-v2` carries two `v1=` values, one with the new secret and one with the previous one, so a receiver can switch secrets without refusing deliveries; `x-nordlet-signature` uses the new secret only. Answers 404 for an unknown subscription and 503 when the platform encryption key is not configured.
+
+        Parameters
+        ----------
+        id : str
+
+        secret : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        AsyncHttpResponse[SubscriptionsRotateSecretWebhooksResponse]
+            Default Response
+        """
+        _response = await self._client_wrapper.httpx_client.request(
+            "v1/webhooks/subscriptions/rotate-secret",
+            method="POST",
+            json={
+                "id": id,
+                "secret": secret,
+            },
+            headers={
+                "content-type": "application/json",
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    SubscriptionsRotateSecretWebhooksResponse,
+                    parse_obj_as(
+                        type_=SubscriptionsRotateSecretWebhooksResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )

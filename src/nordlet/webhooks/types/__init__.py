@@ -37,6 +37,10 @@ if typing.TYPE_CHECKING:
     from .subscriptions_list_webhooks_response_rows_item_last_delivery_status import (
         SubscriptionsListWebhooksResponseRowsItemLastDeliveryStatus,
     )
+    from .subscriptions_rotate_secret_webhooks_response import SubscriptionsRotateSecretWebhooksResponse
+    from .subscriptions_rotate_secret_webhooks_response_last_delivery_status import (
+        SubscriptionsRotateSecretWebhooksResponseLastDeliveryStatus,
+    )
     from .subscriptions_update_webhooks_request_events_item import SubscriptionsUpdateWebhooksRequestEventsItem
     from .subscriptions_update_webhooks_response import SubscriptionsUpdateWebhooksResponse
     from .subscriptions_update_webhooks_response_last_delivery_status import (
@@ -66,6 +70,8 @@ _dynamic_imports: typing.Dict[str, str] = {
     "SubscriptionsListWebhooksResponse": ".subscriptions_list_webhooks_response",
     "SubscriptionsListWebhooksResponseRowsItem": ".subscriptions_list_webhooks_response_rows_item",
     "SubscriptionsListWebhooksResponseRowsItemLastDeliveryStatus": ".subscriptions_list_webhooks_response_rows_item_last_delivery_status",
+    "SubscriptionsRotateSecretWebhooksResponse": ".subscriptions_rotate_secret_webhooks_response",
+    "SubscriptionsRotateSecretWebhooksResponseLastDeliveryStatus": ".subscriptions_rotate_secret_webhooks_response_last_delivery_status",
     "SubscriptionsUpdateWebhooksRequestEventsItem": ".subscriptions_update_webhooks_request_events_item",
     "SubscriptionsUpdateWebhooksResponse": ".subscriptions_update_webhooks_response",
     "SubscriptionsUpdateWebhooksResponseLastDeliveryStatus": ".subscriptions_update_webhooks_response_last_delivery_status",
@@ -117,6 +123,8 @@ __all__ = [
     "SubscriptionsListWebhooksResponse",
     "SubscriptionsListWebhooksResponseRowsItem",
     "SubscriptionsListWebhooksResponseRowsItemLastDeliveryStatus",
+    "SubscriptionsRotateSecretWebhooksResponse",
+    "SubscriptionsRotateSecretWebhooksResponseLastDeliveryStatus",
     "SubscriptionsUpdateWebhooksRequestEventsItem",
     "SubscriptionsUpdateWebhooksResponse",
     "SubscriptionsUpdateWebhooksResponseLastDeliveryStatus",

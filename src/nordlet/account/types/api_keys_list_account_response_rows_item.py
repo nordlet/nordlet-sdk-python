@@ -12,6 +12,9 @@ from ...core.serialization import FieldMetadata
 class ApiKeysListAccountResponseRowsItem(UniversalBaseModel):
     id: str
     name: str
+    last_four: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="lastFour"), pydantic.Field(alias="lastFour")
+    ] = None
     scopes: typing.List[str]
     last_used_at: typing_extensions.Annotated[
         typing.Optional[dt.datetime], FieldMetadata(alias="lastUsedAt"), pydantic.Field(alias="lastUsedAt")

@@ -15,6 +15,9 @@ class InvitesAcceptAccountResponse(UniversalBaseModel):
     expires_at: typing_extensions.Annotated[
         dt.datetime, FieldMetadata(alias="expiresAt"), pydantic.Field(alias="expiresAt")
     ]
+    two_factor_required: typing_extensions.Annotated[
+        bool, FieldMetadata(alias="twoFactorRequired"), pydantic.Field(alias="twoFactorRequired")
+    ]
     user: InvitesAcceptAccountResponseUser
 
     if IS_PYDANTIC_V2:

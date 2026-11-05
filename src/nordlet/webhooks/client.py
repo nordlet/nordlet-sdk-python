@@ -15,6 +15,7 @@ from .types.subscriptions_delete_webhooks_response import SubscriptionsDeleteWeb
 from .types.subscriptions_list_webhooks_request_filter_item import SubscriptionsListWebhooksRequestFilterItem
 from .types.subscriptions_list_webhooks_request_sort_item import SubscriptionsListWebhooksRequestSortItem
 from .types.subscriptions_list_webhooks_response import SubscriptionsListWebhooksResponse
+from .types.subscriptions_rotate_secret_webhooks_response import SubscriptionsRotateSecretWebhooksResponse
 from .types.subscriptions_update_webhooks_request_events_item import SubscriptionsUpdateWebhooksRequestEventsItem
 from .types.subscriptions_update_webhooks_response import SubscriptionsUpdateWebhooksResponse
 
@@ -46,7 +47,7 @@ class WebhooksClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> SubscriptionsCreateWebhooksResponse:
         """
-        Register a webhook endpoint for the given event types (`*` for every event). The URL must be an https address that resolves to a public network (422 otherwise). The signing secret is generated unless `secret` is given, and this call is the only one that returns it.
+        Register a webhook endpoint for the given event types (`*` for every event). The URL must be an https address that resolves to a public network (422 otherwise). The signing secret is generated unless `secret` is given (at least 32 characters), and this call is the only one that returns it. Answers 503 when the platform encryption key is not configured.
 
         Parameters
         ----------
@@ -127,6 +128,40 @@ class WebhooksClient:
         _response = self._raw_client.subscriptions_list(
             page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
+        return _response.data
+
+    def subscriptions_rotate_secret(
+        self, *, id: str, secret: typing.Optional[str] = OMIT, request_options: typing.Optional[RequestOptions] = None
+    ) -> SubscriptionsRotateSecretWebhooksResponse:
+        """
+        Replace the signing secret of a subscription and return the new one; this call is the only one that returns it. The secret is generated unless `secret` is given (at least 32 characters). For 24 hours `x-nordlet-signature-v2` carries two `v1=` values, one with the new secret and one with the previous one, so a receiver can switch secrets without refusing deliveries; `x-nordlet-signature` uses the new secret only. Answers 404 for an unknown subscription and 503 when the platform encryption key is not configured.
+
+        Parameters
+        ----------
+        id : str
+
+        secret : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        SubscriptionsRotateSecretWebhooksResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.webhooks.subscriptions_rotate_secret(
+            id="id",
+        )
+        """
+        _response = self._raw_client.subscriptions_rotate_secret(id=id, secret=secret, request_options=request_options)
         return _response.data
 
     def subscriptions_update(
@@ -312,7 +347,7 @@ class AsyncWebhooksClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> SubscriptionsCreateWebhooksResponse:
         """
-        Register a webhook endpoint for the given event types (`*` for every event). The URL must be an https address that resolves to a public network (422 otherwise). The signing secret is generated unless `secret` is given, and this call is the only one that returns it.
+        Register a webhook endpoint for the given event types (`*` for every event). The URL must be an https address that resolves to a public network (422 otherwise). The signing secret is generated unless `secret` is given (at least 32 characters), and this call is the only one that returns it. Answers 503 when the platform encryption key is not configured.
 
         Parameters
         ----------
@@ -408,6 +443,50 @@ class AsyncWebhooksClient:
         """
         _response = await self._raw_client.subscriptions_list(
             page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
+        )
+        return _response.data
+
+    async def subscriptions_rotate_secret(
+        self, *, id: str, secret: typing.Optional[str] = OMIT, request_options: typing.Optional[RequestOptions] = None
+    ) -> SubscriptionsRotateSecretWebhooksResponse:
+        """
+        Replace the signing secret of a subscription and return the new one; this call is the only one that returns it. The secret is generated unless `secret` is given (at least 32 characters). For 24 hours `x-nordlet-signature-v2` carries two `v1=` values, one with the new secret and one with the previous one, so a receiver can switch secrets without refusing deliveries; `x-nordlet-signature` uses the new secret only. Answers 404 for an unknown subscription and 503 when the platform encryption key is not configured.
+
+        Parameters
+        ----------
+        id : str
+
+        secret : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        SubscriptionsRotateSecretWebhooksResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.webhooks.subscriptions_rotate_secret(
+                id="id",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.subscriptions_rotate_secret(
+            id=id, secret=secret, request_options=request_options
         )
         return _response.data
 
