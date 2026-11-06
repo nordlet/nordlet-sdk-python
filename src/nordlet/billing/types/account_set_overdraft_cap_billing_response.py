@@ -36,6 +36,17 @@ class AccountSetOverdraftCapBillingResponse(UniversalBaseModel):
     trial_ends_at: typing_extensions.Annotated[
         typing.Optional[dt.datetime], FieldMetadata(alias="trialEndsAt"), pydantic.Field(alias="trialEndsAt")
     ] = None
+    free_sandbox_started_at: typing_extensions.Annotated[
+        typing.Optional[dt.datetime],
+        FieldMetadata(alias="freeSandboxStartedAt"),
+        pydantic.Field(
+            alias="freeSandboxStartedAt", description="When the free sandbox plan was started; it ends at `trialEndsAt`"
+        ),
+    ] = None
+    """
+    When the free sandbox plan was started; it ends at `trialEndsAt`
+    """
+
     first_top_up_at: typing_extensions.Annotated[
         typing.Optional[dt.datetime], FieldMetadata(alias="firstTopUpAt"), pydantic.Field(alias="firstTopUpAt")
     ] = None

@@ -12,6 +12,7 @@ from .types.api_keys_revoke_account_response import ApiKeysRevokeAccountResponse
 from .types.api_keys_rotate_account_response import ApiKeysRotateAccountResponse
 from .types.companies_activate_account_response import CompaniesActivateAccountResponse
 from .types.companies_archive_account_response import CompaniesArchiveAccountResponse
+from .types.companies_convert_to_live_account_response import CompaniesConvertToLiveAccountResponse
 from .types.companies_create_account_request_accounts_kept_by import CompaniesCreateAccountRequestAccountsKeptBy
 from .types.companies_create_account_request_address import CompaniesCreateAccountRequestAddress
 from .types.companies_create_account_request_country_code import CompaniesCreateAccountRequestCountryCode
@@ -637,7 +638,7 @@ class AccountClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> CompaniesCreateAccountResponse:
         """
-        Create a company with the caller as its owner and payer, seed its chart of accounts from the template of `countryCode`, and make it the active company of the session. `timeZone` defaults to the country's, `isVatPayer` to true and `defaultInvoiceCurrency` to the base currency. Refused with 422 when `baseCurrency` is not a supported currency.
+        Create a company with the caller as its owner and payer, seed its chart of accounts from the template of `countryCode`, and make it the active company of the session. `timeZone` defaults to the country's, `isVatPayer` to true and `defaultInvoiceCurrency` to the base currency. Without a paid plan the caller may create only one sandbox company, which starts the free sandbox plan; a live company, a second sandbox company, or a sandbox company after the free sandbox has ended is refused with 402. Refused with 422 when `baseCurrency` is not a supported currency.
 
         Parameters
         ----------
@@ -719,7 +720,7 @@ class AccountClient:
             Currency the ledger is kept in; defaults to the national currency of countryCode (immutable after creation)
 
         is_sandbox : typing.Optional[bool]
-            Sandbox companies hold test data and are purged immediately on delete (immutable after creation)
+            Sandbox companies hold test data and are purged immediately on delete; `companies/convert-to-live` turns one into a live company
 
         cash_basis : typing.Optional[bool]
             The company determines its profit on a cash basis (receipts and payments, in Germany the Einnahmenüberschussrechnung of § 4 Abs. 3 EStG); it gets the cash-basis returns in its filing calendar (immutable after creation)
@@ -1080,6 +1081,38 @@ class AccountClient:
         )
         """
         _response = self._raw_client.companies_delete(company_id=company_id, request_options=request_options)
+        return _response.data
+
+    def companies_convert_to_live(
+        self, *, company_id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> CompaniesConvertToLiveAccountResponse:
+        """
+        Turn the sandbox company `companyId` into a live company and keep all of its data: from then on its filings go to the authorities' production systems and a delete is no longer purged at once. The caller must be the company's owner and payer and have a paid plan (a flat-rate subscription or per-request billing). Refused with 403 when the caller is not the owner or not the payer, 409 when the company is not a sandbox company and 402 when the caller has no paid plan.
+
+        Parameters
+        ----------
+        company_id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        CompaniesConvertToLiveAccountResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.account.companies_convert_to_live(
+            company_id="companyId",
+        )
+        """
+        _response = self._raw_client.companies_convert_to_live(company_id=company_id, request_options=request_options)
         return _response.data
 
     def companies_activate(
@@ -2724,7 +2757,7 @@ class AsyncAccountClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> CompaniesCreateAccountResponse:
         """
-        Create a company with the caller as its owner and payer, seed its chart of accounts from the template of `countryCode`, and make it the active company of the session. `timeZone` defaults to the country's, `isVatPayer` to true and `defaultInvoiceCurrency` to the base currency. Refused with 422 when `baseCurrency` is not a supported currency.
+        Create a company with the caller as its owner and payer, seed its chart of accounts from the template of `countryCode`, and make it the active company of the session. `timeZone` defaults to the country's, `isVatPayer` to true and `defaultInvoiceCurrency` to the base currency. Without a paid plan the caller may create only one sandbox company, which starts the free sandbox plan; a live company, a second sandbox company, or a sandbox company after the free sandbox has ended is refused with 402. Refused with 422 when `baseCurrency` is not a supported currency.
 
         Parameters
         ----------
@@ -2806,7 +2839,7 @@ class AsyncAccountClient:
             Currency the ledger is kept in; defaults to the national currency of countryCode (immutable after creation)
 
         is_sandbox : typing.Optional[bool]
-            Sandbox companies hold test data and are purged immediately on delete (immutable after creation)
+            Sandbox companies hold test data and are purged immediately on delete; `companies/convert-to-live` turns one into a live company
 
         cash_basis : typing.Optional[bool]
             The company determines its profit on a cash basis (receipts and payments, in Germany the Einnahmenüberschussrechnung of § 4 Abs. 3 EStG); it gets the cash-basis returns in its filing calendar (immutable after creation)
@@ -3215,6 +3248,48 @@ class AsyncAccountClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.companies_delete(company_id=company_id, request_options=request_options)
+        return _response.data
+
+    async def companies_convert_to_live(
+        self, *, company_id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> CompaniesConvertToLiveAccountResponse:
+        """
+        Turn the sandbox company `companyId` into a live company and keep all of its data: from then on its filings go to the authorities' production systems and a delete is no longer purged at once. The caller must be the company's owner and payer and have a paid plan (a flat-rate subscription or per-request billing). Refused with 403 when the caller is not the owner or not the payer, 409 when the company is not a sandbox company and 402 when the caller has no paid plan.
+
+        Parameters
+        ----------
+        company_id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        CompaniesConvertToLiveAccountResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.account.companies_convert_to_live(
+                company_id="companyId",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.companies_convert_to_live(
+            company_id=company_id, request_options=request_options
+        )
         return _response.data
 
     async def companies_activate(

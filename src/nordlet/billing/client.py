@@ -17,6 +17,7 @@ from .types.flat_rate_confirm_billing_response import FlatRateConfirmBillingResp
 from .types.flat_rate_create_billing_request_locale import FlatRateCreateBillingRequestLocale
 from .types.flat_rate_create_billing_request_plan import FlatRateCreateBillingRequestPlan
 from .types.flat_rate_create_billing_response import FlatRateCreateBillingResponse
+from .types.free_sandbox_start_billing_response import FreeSandboxStartBillingResponse
 from .types.portal_create_billing_request_locale import PortalCreateBillingRequestLocale
 from .types.portal_create_billing_response import PortalCreateBillingResponse
 from .types.subscription_cancel_billing_response import SubscriptionCancelBillingResponse
@@ -216,10 +217,11 @@ class BillingClient:
         amount_cents: int,
         locale: typing.Optional[TopupCreateBillingRequestLocale] = OMIT,
         return_to: typing.Optional[TopupCreateBillingRequestReturnTo] = OMIT,
+        convert_company_id: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> TopupCreateBillingResponse:
         """
-        Open a Stripe Checkout session for a one-time credit top-up of `amountCents` and return its URL; a Stripe customer is created for the user when there is none. `returnTo` chooses whether Checkout returns to the credits page or to the onboarding plan page, in `locale`. Answers 409 on a site without top-ups and 503 when online payments are not configured.
+        Open a Stripe Checkout session for a one-time credit top-up of `amountCents` and return its URL; a Stripe customer is created for the user when there is none. `returnTo` chooses whether Checkout returns to the credits page or to the onboarding plan page, in `locale`; with `convertCompanyId` it returns to the onboarding plan page, which then converts that sandbox company to a live company. Answers 409 on a site without top-ups and 503 when online payments are not configured.
 
         Parameters
         ----------
@@ -228,6 +230,8 @@ class BillingClient:
         locale : typing.Optional[TopupCreateBillingRequestLocale]
 
         return_to : typing.Optional[TopupCreateBillingRequestReturnTo]
+
+        convert_company_id : typing.Optional[str]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -249,7 +253,11 @@ class BillingClient:
         )
         """
         _response = self._raw_client.topup_create(
-            amount_cents=amount_cents, locale=locale, return_to=return_to, request_options=request_options
+            amount_cents=amount_cents,
+            locale=locale,
+            return_to=return_to,
+            convert_company_id=convert_company_id,
+            request_options=request_options,
         )
         return _response.data
 
@@ -285,21 +293,52 @@ class BillingClient:
         _response = self._raw_client.topup_confirm(session_id=session_id, request_options=request_options)
         return _response.data
 
+    def free_sandbox_start(
+        self, *, request_options: typing.Optional[RequestOptions] = None
+    ) -> FreeSandboxStartBillingResponse:
+        """
+        Start the free sandbox plan of the caller's `app` billing account: one sandbox company, free for 14 days from now, without a payment. A free sandbox that is already running keeps its end date. After `trialEndsAt` the sandbox company answers 402 until a paid plan is chosen. Answers 409 on the `invoice` site, when a paid plan is already active, and when the free sandbox of this account has already ended.
+
+        Parameters
+        ----------
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        FreeSandboxStartBillingResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.billing.free_sandbox_start()
+        """
+        _response = self._raw_client.free_sandbox_start(request_options=request_options)
+        return _response.data
+
     def flat_rate_create(
         self,
         *,
         locale: typing.Optional[FlatRateCreateBillingRequestLocale] = OMIT,
         plan: typing.Optional[FlatRateCreateBillingRequestPlan] = OMIT,
+        convert_company_id: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> FlatRateCreateBillingResponse:
         """
-        Open a Stripe Checkout session for a flat-rate subscription on `plan` (by default the first plan of the request's site) for the billing account of the request's site, with the trial period of `trialDays` days, and return its URL; a Stripe customer is created for that account when it has none. The `invoicing` plan of the `invoice` site takes its trial days from the server setting `INVOICE_PLAN_TRIAL_DAYS` and returns to the invoice app. Answers 422 when the plan is not one of the site's plans, 409 when the site's flat-rate subscription is already active and 503 when online payments are not configured, the plan has no price, or the Invoicing trial is not set.
+        Open a Stripe Checkout session for a flat-rate subscription on `plan` (by default the first plan of the request's site) for the billing account of the request's site and return its URL; a Stripe customer is created for that account when it has none. The plans of the `app` site have no trial period: the first month is charged at checkout. The `invoicing` plan of the `invoice` site takes its trial days from the server setting `INVOICE_PLAN_TRIAL_DAYS` and returns to the invoice app. With `convertCompanyId` Checkout returns to the onboarding plan page, which then converts that sandbox company to a live company. Answers 422 when the plan is not one of the site's plans, 409 when the site's flat-rate subscription is already active and 503 when online payments are not configured, the plan has no price, or the Invoicing trial is not set.
 
         Parameters
         ----------
         locale : typing.Optional[FlatRateCreateBillingRequestLocale]
 
         plan : typing.Optional[FlatRateCreateBillingRequestPlan]
+
+        convert_company_id : typing.Optional[str]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -318,7 +357,9 @@ class BillingClient:
         )
         client.billing.flat_rate_create()
         """
-        _response = self._raw_client.flat_rate_create(locale=locale, plan=plan, request_options=request_options)
+        _response = self._raw_client.flat_rate_create(
+            locale=locale, plan=plan, convert_company_id=convert_company_id, request_options=request_options
+        )
         return _response.data
 
     def flat_rate_confirm(
@@ -715,10 +756,11 @@ class AsyncBillingClient:
         amount_cents: int,
         locale: typing.Optional[TopupCreateBillingRequestLocale] = OMIT,
         return_to: typing.Optional[TopupCreateBillingRequestReturnTo] = OMIT,
+        convert_company_id: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> TopupCreateBillingResponse:
         """
-        Open a Stripe Checkout session for a one-time credit top-up of `amountCents` and return its URL; a Stripe customer is created for the user when there is none. `returnTo` chooses whether Checkout returns to the credits page or to the onboarding plan page, in `locale`. Answers 409 on a site without top-ups and 503 when online payments are not configured.
+        Open a Stripe Checkout session for a one-time credit top-up of `amountCents` and return its URL; a Stripe customer is created for the user when there is none. `returnTo` chooses whether Checkout returns to the credits page or to the onboarding plan page, in `locale`; with `convertCompanyId` it returns to the onboarding plan page, which then converts that sandbox company to a live company. Answers 409 on a site without top-ups and 503 when online payments are not configured.
 
         Parameters
         ----------
@@ -727,6 +769,8 @@ class AsyncBillingClient:
         locale : typing.Optional[TopupCreateBillingRequestLocale]
 
         return_to : typing.Optional[TopupCreateBillingRequestReturnTo]
+
+        convert_company_id : typing.Optional[str]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -756,7 +800,11 @@ class AsyncBillingClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.topup_create(
-            amount_cents=amount_cents, locale=locale, return_to=return_to, request_options=request_options
+            amount_cents=amount_cents,
+            locale=locale,
+            return_to=return_to,
+            convert_company_id=convert_company_id,
+            request_options=request_options,
         )
         return _response.data
 
@@ -800,21 +848,60 @@ class AsyncBillingClient:
         _response = await self._raw_client.topup_confirm(session_id=session_id, request_options=request_options)
         return _response.data
 
+    async def free_sandbox_start(
+        self, *, request_options: typing.Optional[RequestOptions] = None
+    ) -> FreeSandboxStartBillingResponse:
+        """
+        Start the free sandbox plan of the caller's `app` billing account: one sandbox company, free for 14 days from now, without a payment. A free sandbox that is already running keeps its end date. After `trialEndsAt` the sandbox company answers 402 until a paid plan is chosen. Answers 409 on the `invoice` site, when a paid plan is already active, and when the free sandbox of this account has already ended.
+
+        Parameters
+        ----------
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        FreeSandboxStartBillingResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.billing.free_sandbox_start()
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.free_sandbox_start(request_options=request_options)
+        return _response.data
+
     async def flat_rate_create(
         self,
         *,
         locale: typing.Optional[FlatRateCreateBillingRequestLocale] = OMIT,
         plan: typing.Optional[FlatRateCreateBillingRequestPlan] = OMIT,
+        convert_company_id: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> FlatRateCreateBillingResponse:
         """
-        Open a Stripe Checkout session for a flat-rate subscription on `plan` (by default the first plan of the request's site) for the billing account of the request's site, with the trial period of `trialDays` days, and return its URL; a Stripe customer is created for that account when it has none. The `invoicing` plan of the `invoice` site takes its trial days from the server setting `INVOICE_PLAN_TRIAL_DAYS` and returns to the invoice app. Answers 422 when the plan is not one of the site's plans, 409 when the site's flat-rate subscription is already active and 503 when online payments are not configured, the plan has no price, or the Invoicing trial is not set.
+        Open a Stripe Checkout session for a flat-rate subscription on `plan` (by default the first plan of the request's site) for the billing account of the request's site and return its URL; a Stripe customer is created for that account when it has none. The plans of the `app` site have no trial period: the first month is charged at checkout. The `invoicing` plan of the `invoice` site takes its trial days from the server setting `INVOICE_PLAN_TRIAL_DAYS` and returns to the invoice app. With `convertCompanyId` Checkout returns to the onboarding plan page, which then converts that sandbox company to a live company. Answers 422 when the plan is not one of the site's plans, 409 when the site's flat-rate subscription is already active and 503 when online payments are not configured, the plan has no price, or the Invoicing trial is not set.
 
         Parameters
         ----------
         locale : typing.Optional[FlatRateCreateBillingRequestLocale]
 
         plan : typing.Optional[FlatRateCreateBillingRequestPlan]
+
+        convert_company_id : typing.Optional[str]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -841,7 +928,9 @@ class AsyncBillingClient:
 
         asyncio.run(main())
         """
-        _response = await self._raw_client.flat_rate_create(locale=locale, plan=plan, request_options=request_options)
+        _response = await self._raw_client.flat_rate_create(
+            locale=locale, plan=plan, convert_company_id=convert_company_id, request_options=request_options
+        )
         return _response.data
 
     async def flat_rate_confirm(

@@ -31,6 +31,18 @@ class MeAccountResponseBilling(UniversalBaseModel):
     plan_chosen: typing_extensions.Annotated[
         bool, FieldMetadata(alias="planChosen"), pydantic.Field(alias="planChosen")
     ]
+    free_sandbox: typing_extensions.Annotated[
+        bool,
+        FieldMetadata(alias="freeSandbox"),
+        pydantic.Field(
+            alias="freeSandbox",
+            description="The payer has no paid plan and has started the free sandbox plan (running or ended)",
+        ),
+    ]
+    """
+    The payer has no paid plan and has started the free sandbox plan (running or ended)
+    """
+
     flat_rate: typing_extensions.Annotated[bool, FieldMetadata(alias="flatRate"), pydantic.Field(alias="flatRate")]
     account_type: typing_extensions.Annotated[
         MeAccountResponseBillingAccountType, FieldMetadata(alias="accountType"), pydantic.Field(alias="accountType")

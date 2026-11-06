@@ -13,6 +13,7 @@ if typing.TYPE_CHECKING:
     from .api_keys_rotate_account_response import ApiKeysRotateAccountResponse
     from .companies_activate_account_response import CompaniesActivateAccountResponse
     from .companies_archive_account_response import CompaniesArchiveAccountResponse
+    from .companies_convert_to_live_account_response import CompaniesConvertToLiveAccountResponse
     from .companies_create_account_request_accounts_kept_by import CompaniesCreateAccountRequestAccountsKeptBy
     from .companies_create_account_request_address import CompaniesCreateAccountRequestAddress
     from .companies_create_account_request_country_code import CompaniesCreateAccountRequestCountryCode
@@ -123,6 +124,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "ApiKeysRotateAccountResponse": ".api_keys_rotate_account_response",
     "CompaniesActivateAccountResponse": ".companies_activate_account_response",
     "CompaniesArchiveAccountResponse": ".companies_archive_account_response",
+    "CompaniesConvertToLiveAccountResponse": ".companies_convert_to_live_account_response",
     "CompaniesCreateAccountRequestAccountsKeptBy": ".companies_create_account_request_accounts_kept_by",
     "CompaniesCreateAccountRequestAddress": ".companies_create_account_request_address",
     "CompaniesCreateAccountRequestCountryCode": ".companies_create_account_request_country_code",
@@ -253,6 +255,7 @@ __all__ = [
     "ApiKeysRotateAccountResponse",
     "CompaniesActivateAccountResponse",
     "CompaniesArchiveAccountResponse",
+    "CompaniesConvertToLiveAccountResponse",
     "CompaniesCreateAccountRequestAccountsKeptBy",
     "CompaniesCreateAccountRequestAddress",
     "CompaniesCreateAccountRequestCountryCode",
