@@ -6,6 +6,7 @@ import pydantic
 import typing_extensions
 from ...core.pydantic_utilities import IS_PYDANTIC_V2, UniversalBaseModel
 from ...core.serialization import FieldMetadata
+from .companies_create_account_response_vat_period import CompaniesCreateAccountResponseVatPeriod
 
 
 class CompaniesCreateAccountResponse(UniversalBaseModel):
@@ -18,6 +19,23 @@ class CompaniesCreateAccountResponse(UniversalBaseModel):
     role: str
     is_sandbox: typing_extensions.Annotated[bool, FieldMetadata(alias="isSandbox"), pydantic.Field(alias="isSandbox")]
     cash_basis: typing_extensions.Annotated[bool, FieldMetadata(alias="cashBasis"), pydantic.Field(alias="cashBasis")]
+    country_code: typing_extensions.Annotated[
+        str, FieldMetadata(alias="countryCode"), pydantic.Field(alias="countryCode")
+    ]
+    base_currency: typing_extensions.Annotated[
+        str, FieldMetadata(alias="baseCurrency"), pydantic.Field(alias="baseCurrency")
+    ]
+    is_vat_payer: typing_extensions.Annotated[
+        bool, FieldMetadata(alias="isVatPayer"), pydantic.Field(alias="isVatPayer")
+    ]
+    vat_period: typing_extensions.Annotated[
+        typing.Optional[CompaniesCreateAccountResponseVatPeriod],
+        FieldMetadata(alias="vatPeriod"),
+        pydantic.Field(alias="vatPeriod"),
+    ] = None
+    fiscal_year_end_month: typing_extensions.Annotated[
+        typing.Optional[int], FieldMetadata(alias="fiscalYearEndMonth"), pydantic.Field(alias="fiscalYearEndMonth")
+    ] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

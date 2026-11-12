@@ -17,6 +17,9 @@ class MeAccountResponseUser(UniversalBaseModel):
     is_super_admin: typing_extensions.Annotated[
         bool, FieldMetadata(alias="isSuperAdmin"), pydantic.Field(alias="isSuperAdmin")
     ]
+    white_label: typing_extensions.Annotated[
+        bool, FieldMetadata(alias="whiteLabel"), pydantic.Field(alias="whiteLabel")
+    ]
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

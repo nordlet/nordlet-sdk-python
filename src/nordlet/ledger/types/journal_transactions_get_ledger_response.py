@@ -31,6 +31,11 @@ class JournalTransactionsGetLedgerResponse(UniversalBaseModel):
     posted_at: typing_extensions.Annotated[
         typing.Optional[dt.datetime], FieldMetadata(alias="postedAt"), pydantic.Field(alias="postedAt")
     ] = None
+    reversed_by_transaction_id: typing_extensions.Annotated[
+        typing.Optional[str],
+        FieldMetadata(alias="reversedByTransactionId"),
+        pydantic.Field(alias="reversedByTransactionId"),
+    ] = None
     entries: typing.List[JournalTransactionsGetLedgerResponseEntriesItem]
 
     if IS_PYDANTIC_V2:

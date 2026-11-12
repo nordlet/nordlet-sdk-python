@@ -148,6 +148,7 @@ if typing.TYPE_CHECKING:
     from .invoices_create_sales_response_vat_evidence_scheme import InvoicesCreateSalesResponseVatEvidenceScheme
     from .invoices_create_sales_response_vat_evidence_vies import InvoicesCreateSalesResponseVatEvidenceVies
     from .invoices_create_sales_response_vat_scheme import InvoicesCreateSalesResponseVatScheme
+    from .invoices_create_sales_response_warnings_item import InvoicesCreateSalesResponseWarningsItem
     from .invoices_delete_sales_response import InvoicesDeleteSalesResponse
     from .invoices_einvoice_send_sales_response import InvoicesEinvoiceSendSalesResponse
     from .invoices_einvoice_send_sales_response_status import InvoicesEinvoiceSendSalesResponseStatus
@@ -194,6 +195,7 @@ if typing.TYPE_CHECKING:
     from .invoices_issue_sales_response_vat_evidence_scheme import InvoicesIssueSalesResponseVatEvidenceScheme
     from .invoices_issue_sales_response_vat_evidence_vies import InvoicesIssueSalesResponseVatEvidenceVies
     from .invoices_issue_sales_response_vat_scheme import InvoicesIssueSalesResponseVatScheme
+    from .invoices_issue_sales_response_warnings_item import InvoicesIssueSalesResponseWarningsItem
     from .invoices_list_sales_request_filter_item import InvoicesListSalesRequestFilterItem
     from .invoices_list_sales_request_filter_item_op import InvoicesListSalesRequestFilterItemOp
     from .invoices_list_sales_request_filter_item_value import InvoicesListSalesRequestFilterItemValue
@@ -513,6 +515,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "InvoicesCreateSalesResponseVatEvidenceScheme": ".invoices_create_sales_response_vat_evidence_scheme",
     "InvoicesCreateSalesResponseVatEvidenceVies": ".invoices_create_sales_response_vat_evidence_vies",
     "InvoicesCreateSalesResponseVatScheme": ".invoices_create_sales_response_vat_scheme",
+    "InvoicesCreateSalesResponseWarningsItem": ".invoices_create_sales_response_warnings_item",
     "InvoicesDeleteSalesResponse": ".invoices_delete_sales_response",
     "InvoicesEinvoiceSendSalesResponse": ".invoices_einvoice_send_sales_response",
     "InvoicesEinvoiceSendSalesResponseStatus": ".invoices_einvoice_send_sales_response_status",
@@ -551,6 +554,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "InvoicesIssueSalesResponseVatEvidenceScheme": ".invoices_issue_sales_response_vat_evidence_scheme",
     "InvoicesIssueSalesResponseVatEvidenceVies": ".invoices_issue_sales_response_vat_evidence_vies",
     "InvoicesIssueSalesResponseVatScheme": ".invoices_issue_sales_response_vat_scheme",
+    "InvoicesIssueSalesResponseWarningsItem": ".invoices_issue_sales_response_warnings_item",
     "InvoicesListSalesRequestFilterItem": ".invoices_list_sales_request_filter_item",
     "InvoicesListSalesRequestFilterItemOp": ".invoices_list_sales_request_filter_item_op",
     "InvoicesListSalesRequestFilterItemValue": ".invoices_list_sales_request_filter_item_value",
@@ -848,6 +852,7 @@ __all__ = [
     "InvoicesCreateSalesResponseVatEvidenceScheme",
     "InvoicesCreateSalesResponseVatEvidenceVies",
     "InvoicesCreateSalesResponseVatScheme",
+    "InvoicesCreateSalesResponseWarningsItem",
     "InvoicesDeleteSalesResponse",
     "InvoicesEinvoiceSendSalesResponse",
     "InvoicesEinvoiceSendSalesResponseStatus",
@@ -886,6 +891,7 @@ __all__ = [
     "InvoicesIssueSalesResponseVatEvidenceScheme",
     "InvoicesIssueSalesResponseVatEvidenceVies",
     "InvoicesIssueSalesResponseVatScheme",
+    "InvoicesIssueSalesResponseWarningsItem",
     "InvoicesListSalesRequestFilterItem",
     "InvoicesListSalesRequestFilterItemOp",
     "InvoicesListSalesRequestFilterItemValue",

@@ -2,4 +2,6 @@
 
 import typing
 
-DocumentsConfirmCaptureResponseOppositeInvoiceStatus = typing.Union[typing.Literal["draft", "registered"], typing.Any]
+DocumentsConfirmCaptureResponseOppositeInvoiceStatus = typing.Union[
+    typing.Literal["draft", "registered", "reversed"], typing.Any
+]

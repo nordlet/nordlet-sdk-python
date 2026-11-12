@@ -38,6 +38,9 @@ class TransactionsRecordBankResponse(UniversalBaseModel):
     journal_transaction_id: typing_extensions.Annotated[
         typing.Optional[str], FieldMetadata(alias="journalTransactionId"), pydantic.Field(alias="journalTransactionId")
     ] = None
+    ignore_reason: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="ignoreReason"), pydantic.Field(alias="ignoreReason")
+    ] = None
     created_at: typing_extensions.Annotated[
         dt.datetime, FieldMetadata(alias="createdAt"), pydantic.Field(alias="createdAt")
     ]

@@ -20,6 +20,7 @@ from .types.invoices_list_purchases_request_sort_item import InvoicesListPurchas
 from .types.invoices_list_purchases_response import InvoicesListPurchasesResponse
 from .types.invoices_match_purchases_response import InvoicesMatchPurchasesResponse
 from .types.invoices_register_purchases_response import InvoicesRegisterPurchasesResponse
+from .types.invoices_reverse_purchases_response import InvoicesReversePurchasesResponse
 from .types.invoices_update_purchases_request_lines_item import InvoicesUpdatePurchasesRequestLinesItem
 from .types.invoices_update_purchases_response import InvoicesUpdatePurchasesResponse
 from .types.orders_approve_purchases_response import OrdersApprovePurchasesResponse
@@ -82,10 +83,13 @@ class PurchasesClient:
         intrastat_nature_of_transaction: typing.Optional[str] = OMIT,
         einvoice_number: typing.Optional[str] = OMIT,
         document_ref: typing.Optional[str] = OMIT,
+        net_total: typing.Optional[str] = OMIT,
+        vat_total: typing.Optional[str] = OMIT,
+        gross_total: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> InvoicesCreatePurchasesResponse:
         """
-        Create a draft purchase invoice or credit note (`type`) from a supplier document; it is posted with `purchases/invoices/register`. Lines without a unit price take the item's supplier or purchase price, `currency` defaults to the company's invoice currency, `documentRef` links an uploaded file, and the gross total leaves out self-assessed VAT. `creditedInvoiceId` (credit notes only) must be an invoice of the same partner, `purchaseOrderId` an order of the same partner that is not draft, submitted or cancelled, and `operationTypeId` an active purchase operation type, each 422 otherwise; the same `documentNumber` for the same partner is refused with 409.
+        Create a draft purchase invoice or credit note (`type`) from a supplier document; it is posted with `purchases/invoices/register`. Lines without a unit price take the item's supplier or purchase price, `currency` defaults to the company's invoice currency, `documentRef` links an uploaded file, and the gross total is the amount owed: it leaves out self-assessed VAT (reverse charge, intra-EU acquisitions and import VAT the buyer declares in its VAT return) and the value of lines whose VAT type is import VAT assessed by customs. `netTotal`, `vatTotal` and `grossTotal` are the totals printed on the document, with the meanings of the response fields: a difference of at most 0.01 from the totals of the lines is put on the line with the largest amount and the printed totals are stored, a larger one is refused with 422 naming both sets of totals. `creditedInvoiceId` (credit notes only) must be an invoice of the same partner, `purchaseOrderId` an order of the same partner that is not draft, submitted or cancelled, and `operationTypeId` an active purchase operation type, each 422 otherwise; the same `documentNumber` for the same partner is refused with 409; numbers are compared without regard to case, and spaces, dashes, slashes, dots and underscores count as one separator. `warnings` lists what does not refuse the document but needs a look: `vat_type_not_valid_on_date`, `vat_type_domestic_for_eu_partner` and `vat_type_intra_eu_for_domestic_partner` as on `sales/invoices/create` (on the document date), and `possible_duplicate` when the supplier already has a document of the same type with the same document date and gross total.
 
         Parameters
         ----------
@@ -122,6 +126,12 @@ class PurchasesClient:
         einvoice_number : typing.Optional[str]
 
         document_ref : typing.Optional[str]
+
+        net_total : typing.Optional[str]
+
+        vat_total : typing.Optional[str]
+
+        gross_total : typing.Optional[str]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -168,6 +178,9 @@ class PurchasesClient:
             intrastat_nature_of_transaction=intrastat_nature_of_transaction,
             einvoice_number=einvoice_number,
             document_ref=document_ref,
+            net_total=net_total,
+            vat_total=vat_total,
+            gross_total=gross_total,
             request_options=request_options,
         )
         return _response.data
@@ -222,10 +235,13 @@ class PurchasesClient:
         intrastat_nature_of_transaction: typing.Optional[str] = OMIT,
         einvoice_number: typing.Optional[str] = OMIT,
         lines: typing.Optional[typing.Sequence[InvoicesUpdatePurchasesRequestLinesItem]] = OMIT,
+        net_total: typing.Optional[str] = OMIT,
+        vat_total: typing.Optional[str] = OMIT,
+        gross_total: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> InvoicesUpdatePurchasesResponse:
         """
-        Change a draft purchase invoice (409 once registered); only the fields sent are changed, and `lines` replace all existing lines with the totals recomputed. `purchaseOrderId` and `operationTypeId` are checked as on `purchases/invoices/create` (422). A `documentNumber` already used for the partner is refused with 409.
+        Change a draft purchase invoice (409 once registered); only the fields sent are changed, and `lines` replace all existing lines with the totals recomputed. `netTotal`, `vatTotal` and `grossTotal` are the printed totals as on `purchases/invoices/create`; sent without `lines`, they are applied to the stored lines. `purchaseOrderId` and `operationTypeId` are checked as on `purchases/invoices/create` (422). A `documentNumber` already used for the partner is refused with 409, compared as on `purchases/invoices/create`.
 
         Parameters
         ----------
@@ -258,6 +274,12 @@ class PurchasesClient:
         einvoice_number : typing.Optional[str]
 
         lines : typing.Optional[typing.Sequence[InvoicesUpdatePurchasesRequestLinesItem]]
+
+        net_total : typing.Optional[str]
+
+        vat_total : typing.Optional[str]
+
+        gross_total : typing.Optional[str]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -294,6 +316,9 @@ class PurchasesClient:
             intrastat_nature_of_transaction=intrastat_nature_of_transaction,
             einvoice_number=einvoice_number,
             lines=lines,
+            net_total=net_total,
+            vat_total=vat_total,
+            gross_total=gross_total,
             request_options=request_options,
         )
         return _response.data
@@ -340,7 +365,7 @@ class PurchasesClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> InvoicesRegisterPurchasesResponse:
         """
-        Register a draft purchase invoice or credit note: posts the journal entry dated `registrationDate` (default the document date) and sets the status to `registered`. The entry debits each line's expense account (the line's `accountCode`, else the item's purchase or expense account, else the operation type's expense account, else the `purchases.goodsForResale` or `purchases.defaultExpense` rule account), debits VAT receivable (a company that is not a VAT payer books the VAT into the expense instead), credits payables (the operation type's credit account when set) and credits output VAT for self-assessed VAT; a credit note posts the reverse. Lines with `deferralStartDate` and `deferralEndDate` are debited to the `purchases.prepaidExpenses` account instead and get a monthly release schedule for `purchases/deferrals/post`. With `warehouseId` the product lines of an invoice are received into stock at their base-currency cost, into the lot named by the line's `lotNumber` (an unknown lot is created, and the line's `expiryDate` is stored on a lot that has none) (422 on an order-linked invoice, whose goods arrive through `purchases/receipts/create`, for a line that is also deferred and for a lot- or serial-tracked item without `lotNumber`); `returnFromStock` on a credit note that credits an invoice takes the goods back out of stock at their FIFO cost and books the difference to the credited amount on the `inventory.cogs` account (422 on an invoice, without `creditedInvoiceId`, or when no goods of the credited invoice are in stock). A credit note that credits a registered invoice in the same currency is applied to it as a payment up to the open amount. Refused with 409 when already registered or the accounting period is locked, and with 422 when the credit notes would exceed the credited invoice, a posting account is missing or no exchange rate exists for the date. Emits `purchase_invoice.registered`, `purchase_invoice.paid` when the credited invoice becomes fully paid, and `stock.changed` when stock moves.
+        Register a draft purchase invoice or credit note: posts the journal entry dated `registrationDate` (default the document date) and sets the status to `registered`. The entry debits each line's expense account (the line's `accountCode`, else the item's purchase or expense account, else the operation type's expense account, else the `purchases.goodsForResale` or `purchases.defaultExpense` rule account), debits VAT receivable with the deductible VAT (the share of the line's VAT that its VAT type allows to deduct; the rest, and all VAT of a company that is not a VAT payer, is booked into the expense), credits payables (the operation type's credit account when set) and credits output VAT for self-assessed VAT (reverse charge, intra-EU acquisitions and import VAT the buyer declares in its VAT return); a line whose VAT type is import VAT assessed by customs posts only its VAT, owed to the document's partner, and is not received into stock; a credit note posts the reverse. Lines with `deferralStartDate` and `deferralEndDate` are debited to the `purchases.prepaidExpenses` account instead and get a monthly release schedule for `purchases/deferrals/post`. With `warehouseId` the product lines of an invoice are received into stock at their base-currency cost, into the lot named by the line's `lotNumber` (an unknown lot is created, and the line's `expiryDate` is stored on a lot that has none) (422 on an order-linked invoice, whose goods arrive through `purchases/receipts/create`, for a line that is also deferred and for a lot- or serial-tracked item without `lotNumber`); `returnFromStock` on a credit note that credits an invoice takes the goods back out of stock at their FIFO cost and books the difference to the credited amount on the `inventory.cogs` account (422 on an invoice, without `creditedInvoiceId`, or when no goods of the credited invoice are in stock). A credit note that credits a registered invoice in the same currency is applied to it as a payment up to the open amount. Refused with 409 when already registered or the accounting period is locked, and with 422 when the credit notes would exceed the credited invoice, the gross total differs from what the lines give by more than 0.01 (or the converted amounts by more than their conversion rounding), a posting account is missing or no exchange rate exists for the date. Emits `purchase_invoice.registered`, `purchase_invoice.paid` when the credited invoice becomes fully paid, and `stock.changed` when stock moves. `warnings` carries the VAT type warnings of `purchases/invoices/create`.
 
         Parameters
         ----------
@@ -504,6 +529,48 @@ class PurchasesClient:
         _response = self._raw_client.invoices_list(
             page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
         )
+        return _response.data
+
+    def invoices_reverse(
+        self,
+        *,
+        id: str,
+        reason: str,
+        date: typing.Optional[dt.date] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> InvoicesReversePurchasesResponse:
+        """
+        Posts a journal entry dated `date` (default the registration date) that mirrors the document's entry (debits and credits swapped), reverses the prepaid-expense releases already posted for it, cancels its pending releases and sets the status to `reversed` with the reason. The reversed document leaves the VAT returns, the open items and payment matching, and its supplier `documentNumber` can be entered again. `date` must be in the month of the registration date and not before it (422; correct an earlier month with a credit note). Answers 409 when the document is not registered, when the accounting period of `date` is locked (naming the period), when registered credit notes credit it, when payments are matched to it (naming them; unmatch them first), and when it moved goods in or out of stock or is the source of a landed cost (post a credit note with `returnFromStock` instead).
+
+        Parameters
+        ----------
+        id : str
+
+        reason : str
+
+        date : typing.Optional[dt.date]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        InvoicesReversePurchasesResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.purchases.invoices_reverse(
+            id="id",
+            reason="reason",
+        )
+        """
+        _response = self._raw_client.invoices_reverse(id=id, reason=reason, date=date, request_options=request_options)
         return _response.data
 
     def orders_create(
@@ -1153,10 +1220,13 @@ class AsyncPurchasesClient:
         intrastat_nature_of_transaction: typing.Optional[str] = OMIT,
         einvoice_number: typing.Optional[str] = OMIT,
         document_ref: typing.Optional[str] = OMIT,
+        net_total: typing.Optional[str] = OMIT,
+        vat_total: typing.Optional[str] = OMIT,
+        gross_total: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> InvoicesCreatePurchasesResponse:
         """
-        Create a draft purchase invoice or credit note (`type`) from a supplier document; it is posted with `purchases/invoices/register`. Lines without a unit price take the item's supplier or purchase price, `currency` defaults to the company's invoice currency, `documentRef` links an uploaded file, and the gross total leaves out self-assessed VAT. `creditedInvoiceId` (credit notes only) must be an invoice of the same partner, `purchaseOrderId` an order of the same partner that is not draft, submitted or cancelled, and `operationTypeId` an active purchase operation type, each 422 otherwise; the same `documentNumber` for the same partner is refused with 409.
+        Create a draft purchase invoice or credit note (`type`) from a supplier document; it is posted with `purchases/invoices/register`. Lines without a unit price take the item's supplier or purchase price, `currency` defaults to the company's invoice currency, `documentRef` links an uploaded file, and the gross total is the amount owed: it leaves out self-assessed VAT (reverse charge, intra-EU acquisitions and import VAT the buyer declares in its VAT return) and the value of lines whose VAT type is import VAT assessed by customs. `netTotal`, `vatTotal` and `grossTotal` are the totals printed on the document, with the meanings of the response fields: a difference of at most 0.01 from the totals of the lines is put on the line with the largest amount and the printed totals are stored, a larger one is refused with 422 naming both sets of totals. `creditedInvoiceId` (credit notes only) must be an invoice of the same partner, `purchaseOrderId` an order of the same partner that is not draft, submitted or cancelled, and `operationTypeId` an active purchase operation type, each 422 otherwise; the same `documentNumber` for the same partner is refused with 409; numbers are compared without regard to case, and spaces, dashes, slashes, dots and underscores count as one separator. `warnings` lists what does not refuse the document but needs a look: `vat_type_not_valid_on_date`, `vat_type_domestic_for_eu_partner` and `vat_type_intra_eu_for_domestic_partner` as on `sales/invoices/create` (on the document date), and `possible_duplicate` when the supplier already has a document of the same type with the same document date and gross total.
 
         Parameters
         ----------
@@ -1193,6 +1263,12 @@ class AsyncPurchasesClient:
         einvoice_number : typing.Optional[str]
 
         document_ref : typing.Optional[str]
+
+        net_total : typing.Optional[str]
+
+        vat_total : typing.Optional[str]
+
+        gross_total : typing.Optional[str]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -1246,6 +1322,9 @@ class AsyncPurchasesClient:
             intrastat_nature_of_transaction=intrastat_nature_of_transaction,
             einvoice_number=einvoice_number,
             document_ref=document_ref,
+            net_total=net_total,
+            vat_total=vat_total,
+            gross_total=gross_total,
             request_options=request_options,
         )
         return _response.data
@@ -1308,10 +1387,13 @@ class AsyncPurchasesClient:
         intrastat_nature_of_transaction: typing.Optional[str] = OMIT,
         einvoice_number: typing.Optional[str] = OMIT,
         lines: typing.Optional[typing.Sequence[InvoicesUpdatePurchasesRequestLinesItem]] = OMIT,
+        net_total: typing.Optional[str] = OMIT,
+        vat_total: typing.Optional[str] = OMIT,
+        gross_total: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> InvoicesUpdatePurchasesResponse:
         """
-        Change a draft purchase invoice (409 once registered); only the fields sent are changed, and `lines` replace all existing lines with the totals recomputed. `purchaseOrderId` and `operationTypeId` are checked as on `purchases/invoices/create` (422). A `documentNumber` already used for the partner is refused with 409.
+        Change a draft purchase invoice (409 once registered); only the fields sent are changed, and `lines` replace all existing lines with the totals recomputed. `netTotal`, `vatTotal` and `grossTotal` are the printed totals as on `purchases/invoices/create`; sent without `lines`, they are applied to the stored lines. `purchaseOrderId` and `operationTypeId` are checked as on `purchases/invoices/create` (422). A `documentNumber` already used for the partner is refused with 409, compared as on `purchases/invoices/create`.
 
         Parameters
         ----------
@@ -1344,6 +1426,12 @@ class AsyncPurchasesClient:
         einvoice_number : typing.Optional[str]
 
         lines : typing.Optional[typing.Sequence[InvoicesUpdatePurchasesRequestLinesItem]]
+
+        net_total : typing.Optional[str]
+
+        vat_total : typing.Optional[str]
+
+        gross_total : typing.Optional[str]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -1388,6 +1476,9 @@ class AsyncPurchasesClient:
             intrastat_nature_of_transaction=intrastat_nature_of_transaction,
             einvoice_number=einvoice_number,
             lines=lines,
+            net_total=net_total,
+            vat_total=vat_total,
+            gross_total=gross_total,
             request_options=request_options,
         )
         return _response.data
@@ -1442,7 +1533,7 @@ class AsyncPurchasesClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> InvoicesRegisterPurchasesResponse:
         """
-        Register a draft purchase invoice or credit note: posts the journal entry dated `registrationDate` (default the document date) and sets the status to `registered`. The entry debits each line's expense account (the line's `accountCode`, else the item's purchase or expense account, else the operation type's expense account, else the `purchases.goodsForResale` or `purchases.defaultExpense` rule account), debits VAT receivable (a company that is not a VAT payer books the VAT into the expense instead), credits payables (the operation type's credit account when set) and credits output VAT for self-assessed VAT; a credit note posts the reverse. Lines with `deferralStartDate` and `deferralEndDate` are debited to the `purchases.prepaidExpenses` account instead and get a monthly release schedule for `purchases/deferrals/post`. With `warehouseId` the product lines of an invoice are received into stock at their base-currency cost, into the lot named by the line's `lotNumber` (an unknown lot is created, and the line's `expiryDate` is stored on a lot that has none) (422 on an order-linked invoice, whose goods arrive through `purchases/receipts/create`, for a line that is also deferred and for a lot- or serial-tracked item without `lotNumber`); `returnFromStock` on a credit note that credits an invoice takes the goods back out of stock at their FIFO cost and books the difference to the credited amount on the `inventory.cogs` account (422 on an invoice, without `creditedInvoiceId`, or when no goods of the credited invoice are in stock). A credit note that credits a registered invoice in the same currency is applied to it as a payment up to the open amount. Refused with 409 when already registered or the accounting period is locked, and with 422 when the credit notes would exceed the credited invoice, a posting account is missing or no exchange rate exists for the date. Emits `purchase_invoice.registered`, `purchase_invoice.paid` when the credited invoice becomes fully paid, and `stock.changed` when stock moves.
+        Register a draft purchase invoice or credit note: posts the journal entry dated `registrationDate` (default the document date) and sets the status to `registered`. The entry debits each line's expense account (the line's `accountCode`, else the item's purchase or expense account, else the operation type's expense account, else the `purchases.goodsForResale` or `purchases.defaultExpense` rule account), debits VAT receivable with the deductible VAT (the share of the line's VAT that its VAT type allows to deduct; the rest, and all VAT of a company that is not a VAT payer, is booked into the expense), credits payables (the operation type's credit account when set) and credits output VAT for self-assessed VAT (reverse charge, intra-EU acquisitions and import VAT the buyer declares in its VAT return); a line whose VAT type is import VAT assessed by customs posts only its VAT, owed to the document's partner, and is not received into stock; a credit note posts the reverse. Lines with `deferralStartDate` and `deferralEndDate` are debited to the `purchases.prepaidExpenses` account instead and get a monthly release schedule for `purchases/deferrals/post`. With `warehouseId` the product lines of an invoice are received into stock at their base-currency cost, into the lot named by the line's `lotNumber` (an unknown lot is created, and the line's `expiryDate` is stored on a lot that has none) (422 on an order-linked invoice, whose goods arrive through `purchases/receipts/create`, for a line that is also deferred and for a lot- or serial-tracked item without `lotNumber`); `returnFromStock` on a credit note that credits an invoice takes the goods back out of stock at their FIFO cost and books the difference to the credited amount on the `inventory.cogs` account (422 on an invoice, without `creditedInvoiceId`, or when no goods of the credited invoice are in stock). A credit note that credits a registered invoice in the same currency is applied to it as a payment up to the open amount. Refused with 409 when already registered or the accounting period is locked, and with 422 when the credit notes would exceed the credited invoice, the gross total differs from what the lines give by more than 0.01 (or the converted amounts by more than their conversion rounding), a posting account is missing or no exchange rate exists for the date. Emits `purchase_invoice.registered`, `purchase_invoice.paid` when the credited invoice becomes fully paid, and `stock.changed` when stock moves. `warnings` carries the VAT type warnings of `purchases/invoices/create`.
 
         Parameters
         ----------
@@ -1637,6 +1728,58 @@ class AsyncPurchasesClient:
         """
         _response = await self._raw_client.invoices_list(
             page=page, page_size=page_size, sort=sort, filter=filter, totals=totals, request_options=request_options
+        )
+        return _response.data
+
+    async def invoices_reverse(
+        self,
+        *,
+        id: str,
+        reason: str,
+        date: typing.Optional[dt.date] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> InvoicesReversePurchasesResponse:
+        """
+        Posts a journal entry dated `date` (default the registration date) that mirrors the document's entry (debits and credits swapped), reverses the prepaid-expense releases already posted for it, cancels its pending releases and sets the status to `reversed` with the reason. The reversed document leaves the VAT returns, the open items and payment matching, and its supplier `documentNumber` can be entered again. `date` must be in the month of the registration date and not before it (422; correct an earlier month with a credit note). Answers 409 when the document is not registered, when the accounting period of `date` is locked (naming the period), when registered credit notes credit it, when payments are matched to it (naming them; unmatch them first), and when it moved goods in or out of stock or is the source of a landed cost (post a credit note with `returnFromStock` instead).
+
+        Parameters
+        ----------
+        id : str
+
+        reason : str
+
+        date : typing.Optional[dt.date]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        InvoicesReversePurchasesResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.purchases.invoices_reverse(
+                id="id",
+                reason="reason",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.invoices_reverse(
+            id=id, reason=reason, date=date, request_options=request_options
         )
         return _response.data
 

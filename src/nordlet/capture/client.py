@@ -17,14 +17,6 @@ from .types.documents_get_capture_response import DocumentsGetCaptureResponse
 from .types.documents_list_capture_request_filter_item import DocumentsListCaptureRequestFilterItem
 from .types.documents_list_capture_request_sort_item import DocumentsListCaptureRequestSortItem
 from .types.documents_list_capture_response import DocumentsListCaptureResponse
-from .types.documents_upload_capture_response import DocumentsUploadCaptureResponse
-from .types.inbound_email_capture_request_attachments_item import InboundEmailCaptureRequestAttachmentsItem
-from .types.inbound_email_capture_request_to import InboundEmailCaptureRequestTo
-from .types.inbound_email_capture_request_to_full_item import InboundEmailCaptureRequestToFullItem
-from .types.inbound_email_capture_response import InboundEmailCaptureResponse
-from .types.settings_get_capture_response import SettingsGetCaptureResponse
-from .types.settings_regenerate_intake_capture_response import SettingsRegenerateIntakeCaptureResponse
-from .types.settings_update_capture_response import SettingsUpdateCaptureResponse
 
 # this is used as the default value for optional parameters
 OMIT = typing.cast(typing.Any, ...)
@@ -45,212 +37,11 @@ class CaptureClient:
         """
         return self._raw_client
 
-    def settings_get(self, *, request_options: typing.Optional[RequestOptions] = None) -> SettingsGetCaptureResponse:
-        """
-        Return the company's document capture settings: whether intake by e-mail is enabled, whether e-mailed documents are read on arrival, the company's intake e-mail address and whether a reading provider is configured. The intake token behind the address is created on the first call.
-
-        Parameters
-        ----------
-        request_options : typing.Optional[RequestOptions]
-            Request-specific configuration.
-
-        Returns
-        -------
-        SettingsGetCaptureResponse
-            Default Response
-
-        Examples
-        --------
-        from nordlet import Nordlet
-
-        client = Nordlet(
-            token="YOUR_TOKEN",
-        )
-        client.capture.settings_get()
-        """
-        _response = self._raw_client.settings_get(request_options=request_options)
-        return _response.data
-
-    def settings_update(
-        self,
-        *,
-        intake_enabled: typing.Optional[bool] = OMIT,
-        capture_auto_extract: typing.Optional[bool] = OMIT,
-        request_options: typing.Optional[RequestOptions] = None,
-    ) -> SettingsUpdateCaptureResponse:
-        """
-        Switch `intakeEnabled` (documents sent to the intake address are accepted) and `captureAutoExtract` (they are read on arrival) on or off; at least one field is required.
-
-        Parameters
-        ----------
-        intake_enabled : typing.Optional[bool]
-
-        capture_auto_extract : typing.Optional[bool]
-
-        request_options : typing.Optional[RequestOptions]
-            Request-specific configuration.
-
-        Returns
-        -------
-        SettingsUpdateCaptureResponse
-            Default Response
-
-        Examples
-        --------
-        from nordlet import Nordlet
-
-        client = Nordlet(
-            token="YOUR_TOKEN",
-        )
-        client.capture.settings_update()
-        """
-        _response = self._raw_client.settings_update(
-            intake_enabled=intake_enabled, capture_auto_extract=capture_auto_extract, request_options=request_options
-        )
-        return _response.data
-
-    def settings_regenerate_intake(
-        self, *, request_options: typing.Optional[RequestOptions] = None
-    ) -> SettingsRegenerateIntakeCaptureResponse:
-        """
-        Replace the company's intake token, so the previous intake e-mail address stops working and the settings come back with the new one.
-
-        Parameters
-        ----------
-        request_options : typing.Optional[RequestOptions]
-            Request-specific configuration.
-
-        Returns
-        -------
-        SettingsRegenerateIntakeCaptureResponse
-            Default Response
-
-        Examples
-        --------
-        from nordlet import Nordlet
-
-        client = Nordlet(
-            token="YOUR_TOKEN",
-        )
-        client.capture.settings_regenerate_intake()
-        """
-        _response = self._raw_client.settings_regenerate_intake(request_options=request_options)
-        return _response.data
-
-    def inbound_email(
-        self,
-        *,
-        postmark_to: typing.Optional[str] = OMIT,
-        to_full: typing.Optional[typing.Sequence[InboundEmailCaptureRequestToFullItem]] = OMIT,
-        postmark_from: typing.Optional[str] = OMIT,
-        postmark_subject: typing.Optional[str] = OMIT,
-        postmark_attachments: typing.Optional[typing.Sequence[InboundEmailCaptureRequestAttachmentsItem]] = OMIT,
-        to: typing.Optional[InboundEmailCaptureRequestTo] = OMIT,
-        from_: typing.Optional[str] = OMIT,
-        subject: typing.Optional[str] = OMIT,
-        attachments: typing.Optional[typing.Sequence[InboundEmailCaptureRequestAttachmentsItem]] = OMIT,
-        request_options: typing.Optional[RequestOptions] = None,
-    ) -> InboundEmailCaptureResponse:
-        """
-        Endpoint for the inbound e-mail provider (Postmark field names or the generic `to`, `from`, `subject` and `attachments` form). It needs the `x-inbound-secret` header and finds the company by the `intake+<token>@` recipient address (404 when unknown, 403 when intake is disabled). Every PDF, image, Word or PowerPoint attachment up to 10 MB becomes a `pending` capture (`accepted`), anything else is `skipped`; when the company has automatic reading on, is not on trial and a reading provider is configured, each capture is read at once.
-
-        Parameters
-        ----------
-        postmark_to : typing.Optional[str]
-
-        to_full : typing.Optional[typing.Sequence[InboundEmailCaptureRequestToFullItem]]
-
-        postmark_from : typing.Optional[str]
-
-        postmark_subject : typing.Optional[str]
-
-        postmark_attachments : typing.Optional[typing.Sequence[InboundEmailCaptureRequestAttachmentsItem]]
-
-        to : typing.Optional[InboundEmailCaptureRequestTo]
-
-        from_ : typing.Optional[str]
-
-        subject : typing.Optional[str]
-
-        attachments : typing.Optional[typing.Sequence[InboundEmailCaptureRequestAttachmentsItem]]
-
-        request_options : typing.Optional[RequestOptions]
-            Request-specific configuration.
-
-        Returns
-        -------
-        InboundEmailCaptureResponse
-            Default Response
-
-        Examples
-        --------
-        from nordlet import Nordlet
-
-        client = Nordlet(
-            token="YOUR_TOKEN",
-        )
-        client.capture.inbound_email()
-        """
-        _response = self._raw_client.inbound_email(
-            postmark_to=postmark_to,
-            to_full=to_full,
-            postmark_from=postmark_from,
-            postmark_subject=postmark_subject,
-            postmark_attachments=postmark_attachments,
-            to=to,
-            from_=from_,
-            subject=subject,
-            attachments=attachments,
-            request_options=request_options,
-        )
-        return _response.data
-
-    def documents_upload(
-        self, *, file_name: str, mime_type: str, content: str, request_options: typing.Optional[RequestOptions] = None
-    ) -> DocumentsUploadCaptureResponse:
-        """
-        Upload a supplier document (PDF, image, Word or PowerPoint, up to 10 MB; 422 for any other type) as a capture and read it at once. The result holds the extracted supplier, dates, totals and lines, the partner matched by VAT code, then partner code, then name, the raw text, and `status` `extracted` or `failed` with `error`. Needs a configured reading provider, is refused with 402 for a company on trial until its first top-up, and counts every page read as `ocr_page` usage. The draft is reviewed and saved with `capture/documents/confirm`.
-
-        Parameters
-        ----------
-        file_name : str
-
-        mime_type : str
-
-        content : str
-            Base64-encoded scan, photo or PDF of the supplier document
-
-        request_options : typing.Optional[RequestOptions]
-            Request-specific configuration.
-
-        Returns
-        -------
-        DocumentsUploadCaptureResponse
-            Default Response
-
-        Examples
-        --------
-        from nordlet import Nordlet
-
-        client = Nordlet(
-            token="YOUR_TOKEN",
-        )
-        client.capture.documents_upload(
-            file_name="fileName",
-            mime_type="mimeType",
-            content="content",
-        )
-        """
-        _response = self._raw_client.documents_upload(
-            file_name=file_name, mime_type=mime_type, content=content, request_options=request_options
-        )
-        return _response.data
-
     def documents_extract(
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> DocumentsExtractCaptureResponse:
         """
-        Read a stored capture again and replace its draft (supplier, totals, lines, matched partner). A capture received over Peppol is parsed from its document again without a reading provider; any other needs the provider and, for a company on trial, the first top-up (402). Refused with 409 once the capture is linked to a purchase invoice.
+        Parse a capture received over Peppol from its stored document again and replace its draft (supplier, totals, lines, matched partner). Refused with 422 for a capture that was not received over Peppol and with 409 once the capture is linked to a purchase invoice.
 
         Parameters
         ----------
@@ -282,7 +73,7 @@ class CaptureClient:
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> DocumentsGetCaptureResponse:
         """
-        Return one capture with its extraction and raw text.
+        Return one document received over Peppol (a capture) with its draft: supplier, dates, totals and lines.
 
         Parameters
         ----------
@@ -321,7 +112,7 @@ class CaptureClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> DocumentsListCaptureResponse:
         """
-        List captures without raw text. Filterable by `status`, `matchedPartnerId` and `purchaseInvoiceId`; sortable by `createdAt` and `updatedAt`.
+        List the documents received over Peppol (captures) with their drafts. Filterable by `status`, `matchedPartnerId` and `purchaseInvoiceId`; sortable by `createdAt` and `updatedAt`.
 
         Parameters
         ----------
@@ -496,254 +287,11 @@ class AsyncCaptureClient:
         """
         return self._raw_client
 
-    async def settings_get(
-        self, *, request_options: typing.Optional[RequestOptions] = None
-    ) -> SettingsGetCaptureResponse:
-        """
-        Return the company's document capture settings: whether intake by e-mail is enabled, whether e-mailed documents are read on arrival, the company's intake e-mail address and whether a reading provider is configured. The intake token behind the address is created on the first call.
-
-        Parameters
-        ----------
-        request_options : typing.Optional[RequestOptions]
-            Request-specific configuration.
-
-        Returns
-        -------
-        SettingsGetCaptureResponse
-            Default Response
-
-        Examples
-        --------
-        import asyncio
-
-        from nordlet import AsyncNordlet
-
-        client = AsyncNordlet(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.capture.settings_get()
-
-
-        asyncio.run(main())
-        """
-        _response = await self._raw_client.settings_get(request_options=request_options)
-        return _response.data
-
-    async def settings_update(
-        self,
-        *,
-        intake_enabled: typing.Optional[bool] = OMIT,
-        capture_auto_extract: typing.Optional[bool] = OMIT,
-        request_options: typing.Optional[RequestOptions] = None,
-    ) -> SettingsUpdateCaptureResponse:
-        """
-        Switch `intakeEnabled` (documents sent to the intake address are accepted) and `captureAutoExtract` (they are read on arrival) on or off; at least one field is required.
-
-        Parameters
-        ----------
-        intake_enabled : typing.Optional[bool]
-
-        capture_auto_extract : typing.Optional[bool]
-
-        request_options : typing.Optional[RequestOptions]
-            Request-specific configuration.
-
-        Returns
-        -------
-        SettingsUpdateCaptureResponse
-            Default Response
-
-        Examples
-        --------
-        import asyncio
-
-        from nordlet import AsyncNordlet
-
-        client = AsyncNordlet(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.capture.settings_update()
-
-
-        asyncio.run(main())
-        """
-        _response = await self._raw_client.settings_update(
-            intake_enabled=intake_enabled, capture_auto_extract=capture_auto_extract, request_options=request_options
-        )
-        return _response.data
-
-    async def settings_regenerate_intake(
-        self, *, request_options: typing.Optional[RequestOptions] = None
-    ) -> SettingsRegenerateIntakeCaptureResponse:
-        """
-        Replace the company's intake token, so the previous intake e-mail address stops working and the settings come back with the new one.
-
-        Parameters
-        ----------
-        request_options : typing.Optional[RequestOptions]
-            Request-specific configuration.
-
-        Returns
-        -------
-        SettingsRegenerateIntakeCaptureResponse
-            Default Response
-
-        Examples
-        --------
-        import asyncio
-
-        from nordlet import AsyncNordlet
-
-        client = AsyncNordlet(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.capture.settings_regenerate_intake()
-
-
-        asyncio.run(main())
-        """
-        _response = await self._raw_client.settings_regenerate_intake(request_options=request_options)
-        return _response.data
-
-    async def inbound_email(
-        self,
-        *,
-        postmark_to: typing.Optional[str] = OMIT,
-        to_full: typing.Optional[typing.Sequence[InboundEmailCaptureRequestToFullItem]] = OMIT,
-        postmark_from: typing.Optional[str] = OMIT,
-        postmark_subject: typing.Optional[str] = OMIT,
-        postmark_attachments: typing.Optional[typing.Sequence[InboundEmailCaptureRequestAttachmentsItem]] = OMIT,
-        to: typing.Optional[InboundEmailCaptureRequestTo] = OMIT,
-        from_: typing.Optional[str] = OMIT,
-        subject: typing.Optional[str] = OMIT,
-        attachments: typing.Optional[typing.Sequence[InboundEmailCaptureRequestAttachmentsItem]] = OMIT,
-        request_options: typing.Optional[RequestOptions] = None,
-    ) -> InboundEmailCaptureResponse:
-        """
-        Endpoint for the inbound e-mail provider (Postmark field names or the generic `to`, `from`, `subject` and `attachments` form). It needs the `x-inbound-secret` header and finds the company by the `intake+<token>@` recipient address (404 when unknown, 403 when intake is disabled). Every PDF, image, Word or PowerPoint attachment up to 10 MB becomes a `pending` capture (`accepted`), anything else is `skipped`; when the company has automatic reading on, is not on trial and a reading provider is configured, each capture is read at once.
-
-        Parameters
-        ----------
-        postmark_to : typing.Optional[str]
-
-        to_full : typing.Optional[typing.Sequence[InboundEmailCaptureRequestToFullItem]]
-
-        postmark_from : typing.Optional[str]
-
-        postmark_subject : typing.Optional[str]
-
-        postmark_attachments : typing.Optional[typing.Sequence[InboundEmailCaptureRequestAttachmentsItem]]
-
-        to : typing.Optional[InboundEmailCaptureRequestTo]
-
-        from_ : typing.Optional[str]
-
-        subject : typing.Optional[str]
-
-        attachments : typing.Optional[typing.Sequence[InboundEmailCaptureRequestAttachmentsItem]]
-
-        request_options : typing.Optional[RequestOptions]
-            Request-specific configuration.
-
-        Returns
-        -------
-        InboundEmailCaptureResponse
-            Default Response
-
-        Examples
-        --------
-        import asyncio
-
-        from nordlet import AsyncNordlet
-
-        client = AsyncNordlet(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.capture.inbound_email()
-
-
-        asyncio.run(main())
-        """
-        _response = await self._raw_client.inbound_email(
-            postmark_to=postmark_to,
-            to_full=to_full,
-            postmark_from=postmark_from,
-            postmark_subject=postmark_subject,
-            postmark_attachments=postmark_attachments,
-            to=to,
-            from_=from_,
-            subject=subject,
-            attachments=attachments,
-            request_options=request_options,
-        )
-        return _response.data
-
-    async def documents_upload(
-        self, *, file_name: str, mime_type: str, content: str, request_options: typing.Optional[RequestOptions] = None
-    ) -> DocumentsUploadCaptureResponse:
-        """
-        Upload a supplier document (PDF, image, Word or PowerPoint, up to 10 MB; 422 for any other type) as a capture and read it at once. The result holds the extracted supplier, dates, totals and lines, the partner matched by VAT code, then partner code, then name, the raw text, and `status` `extracted` or `failed` with `error`. Needs a configured reading provider, is refused with 402 for a company on trial until its first top-up, and counts every page read as `ocr_page` usage. The draft is reviewed and saved with `capture/documents/confirm`.
-
-        Parameters
-        ----------
-        file_name : str
-
-        mime_type : str
-
-        content : str
-            Base64-encoded scan, photo or PDF of the supplier document
-
-        request_options : typing.Optional[RequestOptions]
-            Request-specific configuration.
-
-        Returns
-        -------
-        DocumentsUploadCaptureResponse
-            Default Response
-
-        Examples
-        --------
-        import asyncio
-
-        from nordlet import AsyncNordlet
-
-        client = AsyncNordlet(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.capture.documents_upload(
-                file_name="fileName",
-                mime_type="mimeType",
-                content="content",
-            )
-
-
-        asyncio.run(main())
-        """
-        _response = await self._raw_client.documents_upload(
-            file_name=file_name, mime_type=mime_type, content=content, request_options=request_options
-        )
-        return _response.data
-
     async def documents_extract(
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> DocumentsExtractCaptureResponse:
         """
-        Read a stored capture again and replace its draft (supplier, totals, lines, matched partner). A capture received over Peppol is parsed from its document again without a reading provider; any other needs the provider and, for a company on trial, the first top-up (402). Refused with 409 once the capture is linked to a purchase invoice.
+        Parse a capture received over Peppol from its stored document again and replace its draft (supplier, totals, lines, matched partner). Refused with 422 for a capture that was not received over Peppol and with 409 once the capture is linked to a purchase invoice.
 
         Parameters
         ----------
@@ -783,7 +331,7 @@ class AsyncCaptureClient:
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> DocumentsGetCaptureResponse:
         """
-        Return one capture with its extraction and raw text.
+        Return one document received over Peppol (a capture) with its draft: supplier, dates, totals and lines.
 
         Parameters
         ----------
@@ -830,7 +378,7 @@ class AsyncCaptureClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> DocumentsListCaptureResponse:
         """
-        List captures without raw text. Filterable by `status`, `matchedPartnerId` and `purchaseInvoiceId`; sortable by `createdAt` and `updatedAt`.
+        List the documents received over Peppol (captures) with their drafts. Filterable by `status`, `matchedPartnerId` and `purchaseInvoiceId`; sortable by `createdAt` and `updatedAt`.
 
         Parameters
         ----------

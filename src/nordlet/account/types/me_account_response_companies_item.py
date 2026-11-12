@@ -8,6 +8,7 @@ import typing_extensions
 from ...core.pydantic_utilities import IS_PYDANTIC_V2, UniversalBaseModel
 from ...core.serialization import FieldMetadata
 from .me_account_response_companies_item_status import MeAccountResponseCompaniesItemStatus
+from .me_account_response_companies_item_vat_period import MeAccountResponseCompaniesItemVatPeriod
 
 
 class MeAccountResponseCompaniesItem(UniversalBaseModel):
@@ -20,6 +21,23 @@ class MeAccountResponseCompaniesItem(UniversalBaseModel):
     role: str
     is_sandbox: typing_extensions.Annotated[bool, FieldMetadata(alias="isSandbox"), pydantic.Field(alias="isSandbox")]
     cash_basis: typing_extensions.Annotated[bool, FieldMetadata(alias="cashBasis"), pydantic.Field(alias="cashBasis")]
+    country_code: typing_extensions.Annotated[
+        str, FieldMetadata(alias="countryCode"), pydantic.Field(alias="countryCode")
+    ]
+    base_currency: typing_extensions.Annotated[
+        str, FieldMetadata(alias="baseCurrency"), pydantic.Field(alias="baseCurrency")
+    ]
+    is_vat_payer: typing_extensions.Annotated[
+        bool, FieldMetadata(alias="isVatPayer"), pydantic.Field(alias="isVatPayer")
+    ]
+    vat_period: typing_extensions.Annotated[
+        typing.Optional[MeAccountResponseCompaniesItemVatPeriod],
+        FieldMetadata(alias="vatPeriod"),
+        pydantic.Field(alias="vatPeriod"),
+    ] = None
+    fiscal_year_end_month: typing_extensions.Annotated[
+        typing.Optional[int], FieldMetadata(alias="fiscalYearEndMonth"), pydantic.Field(alias="fiscalYearEndMonth")
+    ] = None
     status: MeAccountResponseCompaniesItemStatus
     deleted_at: typing_extensions.Annotated[
         typing.Optional[dt.datetime], FieldMetadata(alias="deletedAt"), pydantic.Field(alias="deletedAt")

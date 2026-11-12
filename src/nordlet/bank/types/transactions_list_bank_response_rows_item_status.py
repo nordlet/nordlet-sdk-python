@@ -2,4 +2,4 @@
 
 import typing
 
-TransactionsListBankResponseRowsItemStatus = typing.Union[typing.Literal["new", "matched"], typing.Any]
+TransactionsListBankResponseRowsItemStatus = typing.Union[typing.Literal["new", "matched", "ignored"], typing.Any]

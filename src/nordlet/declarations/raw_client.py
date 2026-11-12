@@ -6733,7 +6733,7 @@ class RawDeclarationsClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[TaxPaymentsUpdateDeclarationsResponse]:
         """
-        Changes the kind, amount, payment date, reference or description of a recorded tax payment; fields left out keep their value and an empty `reference` clears it. Answers 422 when the new amount is zero.
+        Changes the kind, amount, payment date, reference or description of a recorded tax payment; fields left out keep their value and an empty `reference` clears it. Answers 422 when the new amount is zero, and 409 when the kind or amount of a payment booked from a bank transaction (`bank/transactions/post`) changes.
 
         Parameters
         ----------
@@ -6907,7 +6907,7 @@ class RawDeclarationsClient:
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> HttpResponse[TaxPaymentsDeleteDeclarationsResponse]:
         """
-        Deletes a recorded tax payment.
+        Deletes a recorded tax payment. Answers 409 when the payment is booked from a bank transaction (`bank/transactions/post`).
 
         Parameters
         ----------
@@ -14176,7 +14176,7 @@ class RawDeclarationsClient:
         self, *, country: typing.Optional[str] = OMIT, request_options: typing.Optional[RequestOptions] = None
     ) -> HttpResponse[ConfigsListDeclarationsResponse]:
         """
-        Lists the filing systems the company can configure: those of the company country (or of `country` when given), the EU-wide systems and the cross-border e-invoicing systems `it_sdi`, `pl_ksef` and `ro_efactura`. Each row carries the stored values, with a secret or certificate field shown as `__secret_set__` and the fields taken from the company profile filled from it.
+        Lists the filing systems the company can configure: those of the company country (or of `country` when given), the EU-wide systems and the cross-border e-invoicing systems `it_sdi`, `pl_ksef` and `ro_efactura`. Each row carries the stored values, with a secret or certificate field shown as `__secret_set__` and the fields taken from the company profile filled from it. Each field carries its `label` in the language of `Accept-Language` (English otherwise) when Nordlet has one, and a `select` field its allowed values in `options`. Set the values with `declarations/configs/update` {system, config: {key: value}}.
 
         Parameters
         ----------
@@ -22698,7 +22698,7 @@ class AsyncRawDeclarationsClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[TaxPaymentsUpdateDeclarationsResponse]:
         """
-        Changes the kind, amount, payment date, reference or description of a recorded tax payment; fields left out keep their value and an empty `reference` clears it. Answers 422 when the new amount is zero.
+        Changes the kind, amount, payment date, reference or description of a recorded tax payment; fields left out keep their value and an empty `reference` clears it. Answers 422 when the new amount is zero, and 409 when the kind or amount of a payment booked from a bank transaction (`bank/transactions/post`) changes.
 
         Parameters
         ----------
@@ -22872,7 +22872,7 @@ class AsyncRawDeclarationsClient:
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> AsyncHttpResponse[TaxPaymentsDeleteDeclarationsResponse]:
         """
-        Deletes a recorded tax payment.
+        Deletes a recorded tax payment. Answers 409 when the payment is booked from a bank transaction (`bank/transactions/post`).
 
         Parameters
         ----------
@@ -30141,7 +30141,7 @@ class AsyncRawDeclarationsClient:
         self, *, country: typing.Optional[str] = OMIT, request_options: typing.Optional[RequestOptions] = None
     ) -> AsyncHttpResponse[ConfigsListDeclarationsResponse]:
         """
-        Lists the filing systems the company can configure: those of the company country (or of `country` when given), the EU-wide systems and the cross-border e-invoicing systems `it_sdi`, `pl_ksef` and `ro_efactura`. Each row carries the stored values, with a secret or certificate field shown as `__secret_set__` and the fields taken from the company profile filled from it.
+        Lists the filing systems the company can configure: those of the company country (or of `country` when given), the EU-wide systems and the cross-border e-invoicing systems `it_sdi`, `pl_ksef` and `ro_efactura`. Each row carries the stored values, with a secret or certificate field shown as `__secret_set__` and the fields taken from the company profile filled from it. Each field carries its `label` in the language of `Accept-Language` (English otherwise) when Nordlet has one, and a `select` field its allowed values in `options`. Set the values with `declarations/configs/update` {system, config: {key: value}}.
 
         Parameters
         ----------

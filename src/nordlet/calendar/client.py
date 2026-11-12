@@ -142,7 +142,7 @@ class CalendarClient:
         self, *, key: str, request_options: typing.Optional[RequestOptions] = None
     ) -> DownloadCalendarResponse:
         """
-        Builds the file of a deadline whose format Nordlet produces but whose administration takes it only through the company's own account or program. Nothing is sent and no filing is recorded.
+        Builds the file of a deadline whose format Nordlet produces but whose administration takes it only through the company's own account or program. Nothing is sent and no filing is recorded. `key` is `<ruleKey>:<period>` as `calendar/list` returns it. Answers 404 for an unknown rule or an invalid period, and 422 with the reason when Nordlet builds no single file for the deadline.
 
         Parameters
         ----------
@@ -449,7 +449,7 @@ class AsyncCalendarClient:
         self, *, key: str, request_options: typing.Optional[RequestOptions] = None
     ) -> DownloadCalendarResponse:
         """
-        Builds the file of a deadline whose format Nordlet produces but whose administration takes it only through the company's own account or program. Nothing is sent and no filing is recorded.
+        Builds the file of a deadline whose format Nordlet produces but whose administration takes it only through the company's own account or program. Nothing is sent and no filing is recorded. `key` is `<ruleKey>:<period>` as `calendar/list` returns it. Answers 404 for an unknown rule or an invalid period, and 422 with the reason when Nordlet builds no single file for the deadline.
 
         Parameters
         ----------

@@ -8,16 +8,13 @@ from ...core.pydantic_utilities import IS_PYDANTIC_V2, UniversalBaseModel
 from ...core.serialization import FieldMetadata
 
 
-class DocumentsUploadCaptureResponseExtractionSupplier(UniversalBaseModel):
+class BrandUpdateAccountResponse(UniversalBaseModel):
     name: typing.Optional[str] = None
-    code: typing.Optional[str] = None
-    vat_code: typing_extensions.Annotated[
-        typing.Optional[str], FieldMetadata(alias="vatCode"), pydantic.Field(alias="vatCode")
+    logo_url: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="logoUrl"), pydantic.Field(alias="logoUrl")
     ] = None
-    country_code: typing_extensions.Annotated[
-        typing.Optional[str], FieldMetadata(alias="countryCode"), pydantic.Field(alias="countryCode")
-    ] = None
-    iban: typing.Optional[str] = None
+    color: typing.Optional[str] = None
+    footer: typing.Optional[str] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

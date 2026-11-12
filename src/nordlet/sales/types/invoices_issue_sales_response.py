@@ -13,6 +13,7 @@ from .invoices_issue_sales_response_status import InvoicesIssueSalesResponseStat
 from .invoices_issue_sales_response_type import InvoicesIssueSalesResponseType
 from .invoices_issue_sales_response_vat_evidence import InvoicesIssueSalesResponseVatEvidence
 from .invoices_issue_sales_response_vat_scheme import InvoicesIssueSalesResponseVatScheme
+from .invoices_issue_sales_response_warnings_item import InvoicesIssueSalesResponseWarningsItem
 
 
 class InvoicesIssueSalesResponse(UniversalBaseModel):
@@ -216,6 +217,7 @@ class InvoicesIssueSalesResponse(UniversalBaseModel):
         FieldMetadata(alias="vatEvidence"),
         pydantic.Field(alias="vatEvidence"),
     ] = None
+    warnings: typing.List[InvoicesIssueSalesResponseWarningsItem]
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

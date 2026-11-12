@@ -4,11 +4,13 @@ import typing
 
 import pydantic
 from ...core.pydantic_utilities import IS_PYDANTIC_V2, UniversalBaseModel
+from .transactions_import_bank_response_duplicates_item import TransactionsImportBankResponseDuplicatesItem
 
 
 class TransactionsImportBankResponse(UniversalBaseModel):
     imported: int
     skipped: int
+    duplicates: typing.List[TransactionsImportBankResponseDuplicatesItem]
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

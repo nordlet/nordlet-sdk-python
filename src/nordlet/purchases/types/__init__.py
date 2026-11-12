@@ -26,6 +26,7 @@ if typing.TYPE_CHECKING:
     from .invoices_create_purchases_response_payment_status import InvoicesCreatePurchasesResponsePaymentStatus
     from .invoices_create_purchases_response_status import InvoicesCreatePurchasesResponseStatus
     from .invoices_create_purchases_response_type import InvoicesCreatePurchasesResponseType
+    from .invoices_create_purchases_response_warnings_item import InvoicesCreatePurchasesResponseWarningsItem
     from .invoices_delete_purchases_response import InvoicesDeletePurchasesResponse
     from .invoices_get_purchases_response import InvoicesGetPurchasesResponse
     from .invoices_get_purchases_response_lines_item import InvoicesGetPurchasesResponseLinesItem
@@ -56,6 +57,12 @@ if typing.TYPE_CHECKING:
     from .invoices_register_purchases_response_payment_status import InvoicesRegisterPurchasesResponsePaymentStatus
     from .invoices_register_purchases_response_status import InvoicesRegisterPurchasesResponseStatus
     from .invoices_register_purchases_response_type import InvoicesRegisterPurchasesResponseType
+    from .invoices_register_purchases_response_warnings_item import InvoicesRegisterPurchasesResponseWarningsItem
+    from .invoices_reverse_purchases_response import InvoicesReversePurchasesResponse
+    from .invoices_reverse_purchases_response_lines_item import InvoicesReversePurchasesResponseLinesItem
+    from .invoices_reverse_purchases_response_payment_status import InvoicesReversePurchasesResponsePaymentStatus
+    from .invoices_reverse_purchases_response_status import InvoicesReversePurchasesResponseStatus
+    from .invoices_reverse_purchases_response_type import InvoicesReversePurchasesResponseType
     from .invoices_update_purchases_request_lines_item import InvoicesUpdatePurchasesRequestLinesItem
     from .invoices_update_purchases_request_lines_item_quantity import InvoicesUpdatePurchasesRequestLinesItemQuantity
     from .invoices_update_purchases_response import InvoicesUpdatePurchasesResponse
@@ -137,6 +144,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "InvoicesCreatePurchasesResponsePaymentStatus": ".invoices_create_purchases_response_payment_status",
     "InvoicesCreatePurchasesResponseStatus": ".invoices_create_purchases_response_status",
     "InvoicesCreatePurchasesResponseType": ".invoices_create_purchases_response_type",
+    "InvoicesCreatePurchasesResponseWarningsItem": ".invoices_create_purchases_response_warnings_item",
     "InvoicesDeletePurchasesResponse": ".invoices_delete_purchases_response",
     "InvoicesGetPurchasesResponse": ".invoices_get_purchases_response",
     "InvoicesGetPurchasesResponseLinesItem": ".invoices_get_purchases_response_lines_item",
@@ -163,6 +171,12 @@ _dynamic_imports: typing.Dict[str, str] = {
     "InvoicesRegisterPurchasesResponsePaymentStatus": ".invoices_register_purchases_response_payment_status",
     "InvoicesRegisterPurchasesResponseStatus": ".invoices_register_purchases_response_status",
     "InvoicesRegisterPurchasesResponseType": ".invoices_register_purchases_response_type",
+    "InvoicesRegisterPurchasesResponseWarningsItem": ".invoices_register_purchases_response_warnings_item",
+    "InvoicesReversePurchasesResponse": ".invoices_reverse_purchases_response",
+    "InvoicesReversePurchasesResponseLinesItem": ".invoices_reverse_purchases_response_lines_item",
+    "InvoicesReversePurchasesResponsePaymentStatus": ".invoices_reverse_purchases_response_payment_status",
+    "InvoicesReversePurchasesResponseStatus": ".invoices_reverse_purchases_response_status",
+    "InvoicesReversePurchasesResponseType": ".invoices_reverse_purchases_response_type",
     "InvoicesUpdatePurchasesRequestLinesItem": ".invoices_update_purchases_request_lines_item",
     "InvoicesUpdatePurchasesRequestLinesItemQuantity": ".invoices_update_purchases_request_lines_item_quantity",
     "InvoicesUpdatePurchasesResponse": ".invoices_update_purchases_response",
@@ -264,6 +278,7 @@ __all__ = [
     "InvoicesCreatePurchasesResponsePaymentStatus",
     "InvoicesCreatePurchasesResponseStatus",
     "InvoicesCreatePurchasesResponseType",
+    "InvoicesCreatePurchasesResponseWarningsItem",
     "InvoicesDeletePurchasesResponse",
     "InvoicesGetPurchasesResponse",
     "InvoicesGetPurchasesResponseLinesItem",
@@ -290,6 +305,12 @@ __all__ = [
     "InvoicesRegisterPurchasesResponsePaymentStatus",
     "InvoicesRegisterPurchasesResponseStatus",
     "InvoicesRegisterPurchasesResponseType",
+    "InvoicesRegisterPurchasesResponseWarningsItem",
+    "InvoicesReversePurchasesResponse",
+    "InvoicesReversePurchasesResponseLinesItem",
+    "InvoicesReversePurchasesResponsePaymentStatus",
+    "InvoicesReversePurchasesResponseStatus",
+    "InvoicesReversePurchasesResponseType",
     "InvoicesUpdatePurchasesRequestLinesItem",
     "InvoicesUpdatePurchasesRequestLinesItemQuantity",
     "InvoicesUpdatePurchasesResponse",

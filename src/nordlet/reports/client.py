@@ -30,6 +30,7 @@ from .types.monthly_summary_reports_response import MonthlySummaryReportsRespons
 from .types.online_sales_reports_response import OnlineSalesReportsResponse
 from .types.oss_reports_response import OssReportsResponse
 from .types.partner_balances_reports_response import PartnerBalancesReportsResponse
+from .types.period_checklist_reports_response import PeriodChecklistReportsResponse
 from .types.pos_sales_reports_response import PosSalesReportsResponse
 from .types.sie_reports_response import SieReportsResponse
 from .types.size_category_reports_response import SizeCategoryReportsResponse
@@ -801,6 +802,38 @@ class ReportsClient:
         )
         """
         _response = self._raw_client.fec(from_date=from_date, to_date=to_date, request_options=request_options)
+        return _response.data
+
+    def period_checklist(
+        self, *, period: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> PeriodChecklistReportsResponse:
+        """
+        Lists what is still open for `period`: a month (`YYYY-MM`) or the fiscal year that ends in `YYYY`. Items: draft sale documents (invoices, credit notes and advance invoices with an issue date in the period) and draft purchase documents dated in the period, bank lines dated in the period with status `new`, assets with depreciation months not posted up to the period end, expense deferral rows due by the period end and not posted, active recurring invoices whose next run date is on or before the period end, payroll runs of the period's months still in draft, and for a fiscal year the issued sale and registered purchase documents in a currency other than the base currency still open at the year end. Each item carries the `count` and the `ids` of the documents, rows, assets, recurring invoices or runs; an item with nothing open is left out. `ledger/periods/lock` returns the same items as `warnings`.
+
+        Parameters
+        ----------
+        period : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PeriodChecklistReportsResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.reports.period_checklist(
+            period="period",
+        )
+        """
+        _response = self._raw_client.period_checklist(period=period, request_options=request_options)
         return _response.data
 
     def eu_purchases(
@@ -2253,6 +2286,46 @@ class AsyncReportsClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.fec(from_date=from_date, to_date=to_date, request_options=request_options)
+        return _response.data
+
+    async def period_checklist(
+        self, *, period: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> PeriodChecklistReportsResponse:
+        """
+        Lists what is still open for `period`: a month (`YYYY-MM`) or the fiscal year that ends in `YYYY`. Items: draft sale documents (invoices, credit notes and advance invoices with an issue date in the period) and draft purchase documents dated in the period, bank lines dated in the period with status `new`, assets with depreciation months not posted up to the period end, expense deferral rows due by the period end and not posted, active recurring invoices whose next run date is on or before the period end, payroll runs of the period's months still in draft, and for a fiscal year the issued sale and registered purchase documents in a currency other than the base currency still open at the year end. Each item carries the `count` and the `ids` of the documents, rows, assets, recurring invoices or runs; an item with nothing open is left out. `ledger/periods/lock` returns the same items as `warnings`.
+
+        Parameters
+        ----------
+        period : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PeriodChecklistReportsResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.reports.period_checklist(
+                period="period",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.period_checklist(period=period, request_options=request_options)
         return _response.data
 
     async def eu_purchases(

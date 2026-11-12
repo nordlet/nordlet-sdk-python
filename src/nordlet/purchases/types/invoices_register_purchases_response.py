@@ -11,6 +11,7 @@ from .invoices_register_purchases_response_lines_item import InvoicesRegisterPur
 from .invoices_register_purchases_response_payment_status import InvoicesRegisterPurchasesResponsePaymentStatus
 from .invoices_register_purchases_response_status import InvoicesRegisterPurchasesResponseStatus
 from .invoices_register_purchases_response_type import InvoicesRegisterPurchasesResponseType
+from .invoices_register_purchases_response_warnings_item import InvoicesRegisterPurchasesResponseWarningsItem
 
 
 class InvoicesRegisterPurchasesResponse(UniversalBaseModel):
@@ -42,6 +43,17 @@ class InvoicesRegisterPurchasesResponse(UniversalBaseModel):
     paid_amount: typing_extensions.Annotated[str, FieldMetadata(alias="paidAmount"), pydantic.Field(alias="paidAmount")]
     journal_transaction_id: typing_extensions.Annotated[
         typing.Optional[str], FieldMetadata(alias="journalTransactionId"), pydantic.Field(alias="journalTransactionId")
+    ] = None
+    reversed_at: typing_extensions.Annotated[
+        typing.Optional[dt.datetime], FieldMetadata(alias="reversedAt"), pydantic.Field(alias="reversedAt")
+    ] = None
+    reversal_journal_transaction_id: typing_extensions.Annotated[
+        typing.Optional[str],
+        FieldMetadata(alias="reversalJournalTransactionId"),
+        pydantic.Field(alias="reversalJournalTransactionId"),
+    ] = None
+    reversal_reason: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="reversalReason"), pydantic.Field(alias="reversalReason")
     ] = None
     credited_invoice_id: typing_extensions.Annotated[
         typing.Optional[str], FieldMetadata(alias="creditedInvoiceId"), pydantic.Field(alias="creditedInvoiceId")
@@ -84,6 +96,7 @@ class InvoicesRegisterPurchasesResponse(UniversalBaseModel):
         dt.datetime, FieldMetadata(alias="updatedAt"), pydantic.Field(alias="updatedAt")
     ]
     lines: typing.List[InvoicesRegisterPurchasesResponseLinesItem]
+    warnings: typing.List[InvoicesRegisterPurchasesResponseWarningsItem]
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

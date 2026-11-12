@@ -101,26 +101,6 @@ if typing.TYPE_CHECKING:
         DocumentsListCaptureResponseRowsItemExtractionSupplier,
     )
     from .documents_list_capture_response_rows_item_status import DocumentsListCaptureResponseRowsItemStatus
-    from .documents_upload_capture_response import DocumentsUploadCaptureResponse
-    from .documents_upload_capture_response_extraction import DocumentsUploadCaptureResponseExtraction
-    from .documents_upload_capture_response_extraction_document_type import (
-        DocumentsUploadCaptureResponseExtractionDocumentType,
-    )
-    from .documents_upload_capture_response_extraction_lines_item import (
-        DocumentsUploadCaptureResponseExtractionLinesItem,
-    )
-    from .documents_upload_capture_response_extraction_opposite_lines_item import (
-        DocumentsUploadCaptureResponseExtractionOppositeLinesItem,
-    )
-    from .documents_upload_capture_response_extraction_supplier import DocumentsUploadCaptureResponseExtractionSupplier
-    from .documents_upload_capture_response_status import DocumentsUploadCaptureResponseStatus
-    from .inbound_email_capture_request_attachments_item import InboundEmailCaptureRequestAttachmentsItem
-    from .inbound_email_capture_request_to import InboundEmailCaptureRequestTo
-    from .inbound_email_capture_request_to_full_item import InboundEmailCaptureRequestToFullItem
-    from .inbound_email_capture_response import InboundEmailCaptureResponse
-    from .settings_get_capture_response import SettingsGetCaptureResponse
-    from .settings_regenerate_intake_capture_response import SettingsRegenerateIntakeCaptureResponse
-    from .settings_update_capture_response import SettingsUpdateCaptureResponse
 _dynamic_imports: typing.Dict[str, str] = {
     "DocumentsConfirmCaptureRequestLinesItem": ".documents_confirm_capture_request_lines_item",
     "DocumentsConfirmCaptureRequestLinesItemQuantity": ".documents_confirm_capture_request_lines_item_quantity",
@@ -175,20 +155,6 @@ _dynamic_imports: typing.Dict[str, str] = {
     "DocumentsListCaptureResponseRowsItemExtractionOppositeLinesItem": ".documents_list_capture_response_rows_item_extraction_opposite_lines_item",
     "DocumentsListCaptureResponseRowsItemExtractionSupplier": ".documents_list_capture_response_rows_item_extraction_supplier",
     "DocumentsListCaptureResponseRowsItemStatus": ".documents_list_capture_response_rows_item_status",
-    "DocumentsUploadCaptureResponse": ".documents_upload_capture_response",
-    "DocumentsUploadCaptureResponseExtraction": ".documents_upload_capture_response_extraction",
-    "DocumentsUploadCaptureResponseExtractionDocumentType": ".documents_upload_capture_response_extraction_document_type",
-    "DocumentsUploadCaptureResponseExtractionLinesItem": ".documents_upload_capture_response_extraction_lines_item",
-    "DocumentsUploadCaptureResponseExtractionOppositeLinesItem": ".documents_upload_capture_response_extraction_opposite_lines_item",
-    "DocumentsUploadCaptureResponseExtractionSupplier": ".documents_upload_capture_response_extraction_supplier",
-    "DocumentsUploadCaptureResponseStatus": ".documents_upload_capture_response_status",
-    "InboundEmailCaptureRequestAttachmentsItem": ".inbound_email_capture_request_attachments_item",
-    "InboundEmailCaptureRequestTo": ".inbound_email_capture_request_to",
-    "InboundEmailCaptureRequestToFullItem": ".inbound_email_capture_request_to_full_item",
-    "InboundEmailCaptureResponse": ".inbound_email_capture_response",
-    "SettingsGetCaptureResponse": ".settings_get_capture_response",
-    "SettingsRegenerateIntakeCaptureResponse": ".settings_regenerate_intake_capture_response",
-    "SettingsUpdateCaptureResponse": ".settings_update_capture_response",
 }
 
 
@@ -267,18 +233,4 @@ __all__ = [
     "DocumentsListCaptureResponseRowsItemExtractionOppositeLinesItem",
     "DocumentsListCaptureResponseRowsItemExtractionSupplier",
     "DocumentsListCaptureResponseRowsItemStatus",
-    "DocumentsUploadCaptureResponse",
-    "DocumentsUploadCaptureResponseExtraction",
-    "DocumentsUploadCaptureResponseExtractionDocumentType",
-    "DocumentsUploadCaptureResponseExtractionLinesItem",
-    "DocumentsUploadCaptureResponseExtractionOppositeLinesItem",
-    "DocumentsUploadCaptureResponseExtractionSupplier",
-    "DocumentsUploadCaptureResponseStatus",
-    "InboundEmailCaptureRequestAttachmentsItem",
-    "InboundEmailCaptureRequestTo",
-    "InboundEmailCaptureRequestToFullItem",
-    "InboundEmailCaptureResponse",
-    "SettingsGetCaptureResponse",
-    "SettingsRegenerateIntakeCaptureResponse",
-    "SettingsUpdateCaptureResponse",
 ]

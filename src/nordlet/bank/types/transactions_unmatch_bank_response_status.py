@@ -2,4 +2,4 @@
 
 import typing
 
-TransactionsUnmatchBankResponseStatus = typing.Union[typing.Literal["new", "matched"], typing.Any]
+TransactionsUnmatchBankResponseStatus = typing.Union[typing.Literal["new", "matched", "ignored"], typing.Any]

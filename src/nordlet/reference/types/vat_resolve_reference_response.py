@@ -25,6 +25,9 @@ class VatResolveReferenceResponse(UniversalBaseModel):
     rates: typing.List[VatResolveReferenceResponseRatesItem]
     legal_basis: typing_extensions.Annotated[str, FieldMetadata(alias="legalBasis"), pydantic.Field(alias="legalBasis")]
     notes: typing.List[str]
+    vat_type_codes: typing_extensions.Annotated[
+        typing.List[str], FieldMetadata(alias="vatTypeCodes"), pydantic.Field(alias="vatTypeCodes")
+    ]
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

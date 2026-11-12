@@ -16,14 +16,25 @@ from .configs_list_declarations_response_rows_item_fields_item_kind import (
 
 class ConfigsListDeclarationsResponseRowsItemFieldsItem(UniversalBaseModel):
     key: str
+    label: typing.Optional[str] = None
     kind: ConfigsListDeclarationsResponseRowsItemFieldsItemKind
     multiline: typing.Optional[bool] = None
-    options: typing.Optional[typing.List[str]] = None
+    options: typing.Optional[typing.List[str]] = pydantic.Field(default=None)
+    """
+    The allowed values of a `select` field
+    """
+
     company_field: typing_extensions.Annotated[
         typing.Optional[ConfigsListDeclarationsResponseRowsItemFieldsItemCompanyField],
         FieldMetadata(alias="companyField"),
-        pydantic.Field(alias="companyField"),
+        pydantic.Field(
+            alias="companyField",
+            description="The company profile field the value is taken from; change it with `account/companies/update`",
+        ),
     ] = None
+    """
+    The company profile field the value is taken from; change it with `account/companies/update`
+    """
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

@@ -3,17 +3,15 @@
 import typing
 
 import pydantic
-import typing_extensions
 from ...core.pydantic_utilities import IS_PYDANTIC_V2, UniversalBaseModel
-from ...core.serialization import FieldMetadata
+from .period_checklist_reports_response_items_item_code import PeriodChecklistReportsResponseItemsItemCode
 
 
-class InboundEmailCaptureResponse(UniversalBaseModel):
-    accepted: int
-    skipped: int
-    capture_ids: typing_extensions.Annotated[
-        typing.List[str], FieldMetadata(alias="captureIds"), pydantic.Field(alias="captureIds")
-    ]
+class PeriodChecklistReportsResponseItemsItem(UniversalBaseModel):
+    code: PeriodChecklistReportsResponseItemsItemCode
+    count: int
+    message: str
+    ids: typing.List[str]
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

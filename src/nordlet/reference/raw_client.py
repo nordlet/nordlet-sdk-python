@@ -73,6 +73,7 @@ from .types.vat_classifiers_upsert_reference_request_rows_item import VatClassif
 from .types.vat_classifiers_upsert_reference_response import VatClassifiersUpsertReferenceResponse
 from .types.vat_resolve_reference_request_goods_kind import VatResolveReferenceRequestGoodsKind
 from .types.vat_resolve_reference_request_service_kind import VatResolveReferenceRequestServiceKind
+from .types.vat_resolve_reference_request_side import VatResolveReferenceRequestSide
 from .types.vat_resolve_reference_request_supply_type import VatResolveReferenceRequestSupplyType
 from .types.vat_resolve_reference_response import VatResolveReferenceResponse
 from pydantic import ValidationError
@@ -2292,7 +2293,7 @@ class RawReferenceClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[VatClassifiersListReferenceResponse]:
         """
-        Lists the company's VAT types (code, country, name and rate). A document line names one in `vatClassifierCode` and takes its rate, VAT scheme and return boxes from it; a company that has VAT types refuses a line without one (422). `side` says whether the type is for sale lines, purchase lines or both, `scheme` is its VAT scheme and `nameEn` its English name; both are null for a type the company added itself. A type without a rate takes the line's `vatRatePercent` on the sides where `rateFromLine` is true, and 0% elsewhere. Filterable by `code`, `countryCode` and `ratePercent`; sortable by `code` and `ratePercent`.
+        Lists the company's VAT types (code, country, name and rate). A document line names one in `vatClassifierCode` and takes its rate, VAT scheme and return boxes from it; a company that has VAT types refuses a line without one (422). `side` says whether the type is for sale lines, purchase lines or both, `scheme` is its VAT scheme and `nameEn` its English name; both are null for a type the company added itself. A type without a rate takes the line's `vatRatePercent` on the sides where `rateFromLine` is true, and 0% elsewhere. Filterable by `code`, `countryCode`, `ratePercent`, `side` and `scheme`; `side` and `scheme` take `eq`, `ne` and `in`, and `side` `sale` or `purchase` also matches the types for both sides. Sortable by `code` and `ratePercent`.
 
         Parameters
         ----------
@@ -2977,6 +2978,7 @@ class RawReferenceClient:
         customer_country_code: typing.Optional[str] = OMIT,
         customer_is_business: typing.Optional[bool] = OMIT,
         supply_type: typing.Optional[VatResolveReferenceRequestSupplyType] = OMIT,
+        side: typing.Optional[VatResolveReferenceRequestSide] = OMIT,
         date: typing.Optional[dt.date] = OMIT,
         below_distance_sales_threshold: typing.Optional[bool] = OMIT,
         facilitated_by_marketplace: typing.Optional[bool] = OMIT,
@@ -2992,7 +2994,7 @@ class RawReferenceClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[VatResolveReferenceResponse]:
         """
-        Works out the VAT treatment of a supply by this company: the scheme (domestic, intra-EU B2B, reverse charge, OSS, IOSS, marketplace deemed supplier, export, out of scope or SME exempt), the country whose VAT applies, its rates with the company's overrides applied, and the legal basis. The customer comes from `partnerId` (country from the partner's address or VAT number, business status from the VAT number) or from `customerCountryCode` and `customerIsBusiness`; `date` defaults to the company's current date; when `belowDistanceSalesThreshold` is not given, the distance-sales threshold is tracked from the company's ledger. Answers 422 when the partner has neither an address country nor a VAT code.
+        Works out the VAT treatment of a supply by this company: the scheme (domestic, intra-EU B2B, reverse charge, OSS, IOSS, marketplace deemed supplier, export, out of scope or SME exempt), the country whose VAT applies, its rates with the company's overrides applied, and the legal basis. The customer comes from `partnerId` (country from the partner's address or VAT number, business status from the VAT number) or from `customerCountryCode` and `customerIsBusiness`; `date` defaults to the company's current date; when `belowDistanceSalesThreshold` is not given, the distance-sales threshold is tracked from the company's ledger. Answers 422 when the partner has neither an address country nor a VAT code. `vatTypeCodes` lists the codes of the VAT types of the company's country that fit the treatment and are valid on `date` (for `vatClassifierCode` on a line), empty when none is known; when they all belong to one of the schemes `intra_eu_b2b` and `reverse_charge`, `scheme` is that scheme. With `side` `purchase` the partner (or `customerCountryCode` and `customerIsBusiness`) is the supplier, the treatment is that of the supplier's supply to this company, `vatTypeCodes` are purchase types, and the marketplace, platform-service and special-goods fields are not used.
 
         Parameters
         ----------
@@ -3003,6 +3005,8 @@ class RawReferenceClient:
         customer_is_business : typing.Optional[bool]
 
         supply_type : typing.Optional[VatResolveReferenceRequestSupplyType]
+
+        side : typing.Optional[VatResolveReferenceRequestSide]
 
         date : typing.Optional[dt.date]
 
@@ -3044,6 +3048,7 @@ class RawReferenceClient:
                 "customerCountryCode": customer_country_code,
                 "customerIsBusiness": customer_is_business,
                 "supplyType": supply_type,
+                "side": side,
                 "date": date,
                 "belowDistanceSalesThreshold": below_distance_sales_threshold,
                 "facilitatedByMarketplace": facilitated_by_marketplace,
@@ -6605,7 +6610,7 @@ class AsyncRawReferenceClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[VatClassifiersListReferenceResponse]:
         """
-        Lists the company's VAT types (code, country, name and rate). A document line names one in `vatClassifierCode` and takes its rate, VAT scheme and return boxes from it; a company that has VAT types refuses a line without one (422). `side` says whether the type is for sale lines, purchase lines or both, `scheme` is its VAT scheme and `nameEn` its English name; both are null for a type the company added itself. A type without a rate takes the line's `vatRatePercent` on the sides where `rateFromLine` is true, and 0% elsewhere. Filterable by `code`, `countryCode` and `ratePercent`; sortable by `code` and `ratePercent`.
+        Lists the company's VAT types (code, country, name and rate). A document line names one in `vatClassifierCode` and takes its rate, VAT scheme and return boxes from it; a company that has VAT types refuses a line without one (422). `side` says whether the type is for sale lines, purchase lines or both, `scheme` is its VAT scheme and `nameEn` its English name; both are null for a type the company added itself. A type without a rate takes the line's `vatRatePercent` on the sides where `rateFromLine` is true, and 0% elsewhere. Filterable by `code`, `countryCode`, `ratePercent`, `side` and `scheme`; `side` and `scheme` take `eq`, `ne` and `in`, and `side` `sale` or `purchase` also matches the types for both sides. Sortable by `code` and `ratePercent`.
 
         Parameters
         ----------
@@ -7290,6 +7295,7 @@ class AsyncRawReferenceClient:
         customer_country_code: typing.Optional[str] = OMIT,
         customer_is_business: typing.Optional[bool] = OMIT,
         supply_type: typing.Optional[VatResolveReferenceRequestSupplyType] = OMIT,
+        side: typing.Optional[VatResolveReferenceRequestSide] = OMIT,
         date: typing.Optional[dt.date] = OMIT,
         below_distance_sales_threshold: typing.Optional[bool] = OMIT,
         facilitated_by_marketplace: typing.Optional[bool] = OMIT,
@@ -7305,7 +7311,7 @@ class AsyncRawReferenceClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[VatResolveReferenceResponse]:
         """
-        Works out the VAT treatment of a supply by this company: the scheme (domestic, intra-EU B2B, reverse charge, OSS, IOSS, marketplace deemed supplier, export, out of scope or SME exempt), the country whose VAT applies, its rates with the company's overrides applied, and the legal basis. The customer comes from `partnerId` (country from the partner's address or VAT number, business status from the VAT number) or from `customerCountryCode` and `customerIsBusiness`; `date` defaults to the company's current date; when `belowDistanceSalesThreshold` is not given, the distance-sales threshold is tracked from the company's ledger. Answers 422 when the partner has neither an address country nor a VAT code.
+        Works out the VAT treatment of a supply by this company: the scheme (domestic, intra-EU B2B, reverse charge, OSS, IOSS, marketplace deemed supplier, export, out of scope or SME exempt), the country whose VAT applies, its rates with the company's overrides applied, and the legal basis. The customer comes from `partnerId` (country from the partner's address or VAT number, business status from the VAT number) or from `customerCountryCode` and `customerIsBusiness`; `date` defaults to the company's current date; when `belowDistanceSalesThreshold` is not given, the distance-sales threshold is tracked from the company's ledger. Answers 422 when the partner has neither an address country nor a VAT code. `vatTypeCodes` lists the codes of the VAT types of the company's country that fit the treatment and are valid on `date` (for `vatClassifierCode` on a line), empty when none is known; when they all belong to one of the schemes `intra_eu_b2b` and `reverse_charge`, `scheme` is that scheme. With `side` `purchase` the partner (or `customerCountryCode` and `customerIsBusiness`) is the supplier, the treatment is that of the supplier's supply to this company, `vatTypeCodes` are purchase types, and the marketplace, platform-service and special-goods fields are not used.
 
         Parameters
         ----------
@@ -7316,6 +7322,8 @@ class AsyncRawReferenceClient:
         customer_is_business : typing.Optional[bool]
 
         supply_type : typing.Optional[VatResolveReferenceRequestSupplyType]
+
+        side : typing.Optional[VatResolveReferenceRequestSide]
 
         date : typing.Optional[dt.date]
 
@@ -7357,6 +7365,7 @@ class AsyncRawReferenceClient:
                 "customerCountryCode": customer_country_code,
                 "customerIsBusiness": customer_is_business,
                 "supplyType": supply_type,
+                "side": side,
                 "date": date,
                 "belowDistanceSalesThreshold": below_distance_sales_threshold,
                 "facilitatedByMarketplace": facilitated_by_marketplace,

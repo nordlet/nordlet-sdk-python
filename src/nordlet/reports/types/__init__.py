@@ -92,6 +92,9 @@ if typing.TYPE_CHECKING:
     from .partner_balances_reports_response import PartnerBalancesReportsResponse
     from .partner_balances_reports_response_rows_item import PartnerBalancesReportsResponseRowsItem
     from .partner_balances_reports_response_totals import PartnerBalancesReportsResponseTotals
+    from .period_checklist_reports_response import PeriodChecklistReportsResponse
+    from .period_checklist_reports_response_items_item import PeriodChecklistReportsResponseItemsItem
+    from .period_checklist_reports_response_items_item_code import PeriodChecklistReportsResponseItemsItemCode
     from .pos_sales_reports_response import PosSalesReportsResponse
     from .pos_sales_reports_response_by_rate_item import PosSalesReportsResponseByRateItem
     from .pos_sales_reports_response_rows_item import PosSalesReportsResponseRowsItem
@@ -194,6 +197,9 @@ _dynamic_imports: typing.Dict[str, str] = {
     "PartnerBalancesReportsResponse": ".partner_balances_reports_response",
     "PartnerBalancesReportsResponseRowsItem": ".partner_balances_reports_response_rows_item",
     "PartnerBalancesReportsResponseTotals": ".partner_balances_reports_response_totals",
+    "PeriodChecklistReportsResponse": ".period_checklist_reports_response",
+    "PeriodChecklistReportsResponseItemsItem": ".period_checklist_reports_response_items_item",
+    "PeriodChecklistReportsResponseItemsItemCode": ".period_checklist_reports_response_items_item_code",
     "PosSalesReportsResponse": ".pos_sales_reports_response",
     "PosSalesReportsResponseByRateItem": ".pos_sales_reports_response_by_rate_item",
     "PosSalesReportsResponseRowsItem": ".pos_sales_reports_response_rows_item",
@@ -320,6 +326,9 @@ __all__ = [
     "PartnerBalancesReportsResponse",
     "PartnerBalancesReportsResponseRowsItem",
     "PartnerBalancesReportsResponseTotals",
+    "PeriodChecklistReportsResponse",
+    "PeriodChecklistReportsResponseItemsItem",
+    "PeriodChecklistReportsResponseItemsItemCode",
     "PosSalesReportsResponse",
     "PosSalesReportsResponseByRateItem",
     "PosSalesReportsResponseRowsItem",

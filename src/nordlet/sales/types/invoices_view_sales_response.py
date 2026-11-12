@@ -51,6 +51,9 @@ class InvoicesViewSalesResponse(UniversalBaseModel):
     card_payment_received: typing_extensions.Annotated[
         bool, FieldMetadata(alias="cardPaymentReceived"), pydantic.Field(alias="cardPaymentReceived")
     ]
+    sent_with: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="sentWith"), pydantic.Field(alias="sentWith")
+    ] = None
     seller: InvoicesViewSalesResponseSeller
     buyer: InvoicesViewSalesResponseBuyer
     lines: typing.List[InvoicesViewSalesResponseLinesItem]

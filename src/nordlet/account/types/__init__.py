@@ -11,6 +11,8 @@ if typing.TYPE_CHECKING:
     from .api_keys_list_account_response_rows_item import ApiKeysListAccountResponseRowsItem
     from .api_keys_revoke_account_response import ApiKeysRevokeAccountResponse
     from .api_keys_rotate_account_response import ApiKeysRotateAccountResponse
+    from .brand_get_account_response import BrandGetAccountResponse
+    from .brand_update_account_response import BrandUpdateAccountResponse
     from .companies_activate_account_response import CompaniesActivateAccountResponse
     from .companies_archive_account_response import CompaniesArchiveAccountResponse
     from .companies_convert_to_live_account_response import CompaniesConvertToLiveAccountResponse
@@ -22,6 +24,7 @@ if typing.TYPE_CHECKING:
     )
     from .companies_create_account_request_vat_period import CompaniesCreateAccountRequestVatPeriod
     from .companies_create_account_response import CompaniesCreateAccountResponse
+    from .companies_create_account_response_vat_period import CompaniesCreateAccountResponseVatPeriod
     from .companies_delete_account_response import CompaniesDeleteAccountResponse
     from .companies_profile_account_response import CompaniesProfileAccountResponse
     from .companies_profile_account_response_accounts_kept_by import CompaniesProfileAccountResponseAccountsKeptBy
@@ -85,6 +88,7 @@ if typing.TYPE_CHECKING:
     from .me_account_response_billing_status import MeAccountResponseBillingStatus
     from .me_account_response_companies_item import MeAccountResponseCompaniesItem
     from .me_account_response_companies_item_status import MeAccountResponseCompaniesItemStatus
+    from .me_account_response_companies_item_vat_period import MeAccountResponseCompaniesItemVatPeriod
     from .me_account_response_consent import MeAccountResponseConsent
     from .me_account_response_user import MeAccountResponseUser
     from .members_list_account_response import MembersListAccountResponse
@@ -122,6 +126,8 @@ _dynamic_imports: typing.Dict[str, str] = {
     "ApiKeysListAccountResponseRowsItem": ".api_keys_list_account_response_rows_item",
     "ApiKeysRevokeAccountResponse": ".api_keys_revoke_account_response",
     "ApiKeysRotateAccountResponse": ".api_keys_rotate_account_response",
+    "BrandGetAccountResponse": ".brand_get_account_response",
+    "BrandUpdateAccountResponse": ".brand_update_account_response",
     "CompaniesActivateAccountResponse": ".companies_activate_account_response",
     "CompaniesArchiveAccountResponse": ".companies_archive_account_response",
     "CompaniesConvertToLiveAccountResponse": ".companies_convert_to_live_account_response",
@@ -131,6 +137,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "CompaniesCreateAccountRequestDefaultInvoiceLocale": ".companies_create_account_request_default_invoice_locale",
     "CompaniesCreateAccountRequestVatPeriod": ".companies_create_account_request_vat_period",
     "CompaniesCreateAccountResponse": ".companies_create_account_response",
+    "CompaniesCreateAccountResponseVatPeriod": ".companies_create_account_response_vat_period",
     "CompaniesDeleteAccountResponse": ".companies_delete_account_response",
     "CompaniesProfileAccountResponse": ".companies_profile_account_response",
     "CompaniesProfileAccountResponseAccountsKeptBy": ".companies_profile_account_response_accounts_kept_by",
@@ -192,6 +199,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "MeAccountResponseBillingStatus": ".me_account_response_billing_status",
     "MeAccountResponseCompaniesItem": ".me_account_response_companies_item",
     "MeAccountResponseCompaniesItemStatus": ".me_account_response_companies_item_status",
+    "MeAccountResponseCompaniesItemVatPeriod": ".me_account_response_companies_item_vat_period",
     "MeAccountResponseConsent": ".me_account_response_consent",
     "MeAccountResponseUser": ".me_account_response_user",
     "MembersListAccountResponse": ".members_list_account_response",
@@ -253,6 +261,8 @@ __all__ = [
     "ApiKeysListAccountResponseRowsItem",
     "ApiKeysRevokeAccountResponse",
     "ApiKeysRotateAccountResponse",
+    "BrandGetAccountResponse",
+    "BrandUpdateAccountResponse",
     "CompaniesActivateAccountResponse",
     "CompaniesArchiveAccountResponse",
     "CompaniesConvertToLiveAccountResponse",
@@ -262,6 +272,7 @@ __all__ = [
     "CompaniesCreateAccountRequestDefaultInvoiceLocale",
     "CompaniesCreateAccountRequestVatPeriod",
     "CompaniesCreateAccountResponse",
+    "CompaniesCreateAccountResponseVatPeriod",
     "CompaniesDeleteAccountResponse",
     "CompaniesProfileAccountResponse",
     "CompaniesProfileAccountResponseAccountsKeptBy",
@@ -323,6 +334,7 @@ __all__ = [
     "MeAccountResponseBillingStatus",
     "MeAccountResponseCompaniesItem",
     "MeAccountResponseCompaniesItemStatus",
+    "MeAccountResponseCompaniesItemVatPeriod",
     "MeAccountResponseConsent",
     "MeAccountResponseUser",
     "MembersListAccountResponse",

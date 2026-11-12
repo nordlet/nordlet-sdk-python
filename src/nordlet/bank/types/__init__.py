@@ -147,6 +147,14 @@ if typing.TYPE_CHECKING:
     from .match_rules_list_bank_response_rows_item import MatchRulesListBankResponseRowsItem
     from .match_rules_update_bank_response import MatchRulesUpdateBankResponse
     from .payments_export_bank_response import PaymentsExportBankResponse
+    from .reconciliation_get_bank_response import ReconciliationGetBankResponse
+    from .reconciliation_get_bank_response_statement_balance_source import (
+        ReconciliationGetBankResponseStatementBalanceSource,
+    )
+    from .reconciliation_get_bank_response_unbooked_lines_item import ReconciliationGetBankResponseUnbookedLinesItem
+    from .reconciliation_get_bank_response_unbooked_lines_item_status import (
+        ReconciliationGetBankResponseUnbookedLinesItemStatus,
+    )
     from .securities_get_bank_response import SecuritiesGetBankResponse
     from .securities_get_bank_response_operations_item import SecuritiesGetBankResponseOperationsItem
     from .securities_get_bank_response_operations_item_status import SecuritiesGetBankResponseOperationsItemStatus
@@ -210,8 +218,11 @@ if typing.TYPE_CHECKING:
     from .statements_import_bank_request_format import StatementsImportBankRequestFormat
     from .statements_import_bank_response import StatementsImportBankResponse
     from .statements_import_bank_response_statements_item import StatementsImportBankResponseStatementsItem
+    from .transactions_ignore_bank_response import TransactionsIgnoreBankResponse
+    from .transactions_ignore_bank_response_status import TransactionsIgnoreBankResponseStatus
     from .transactions_import_bank_request_transactions_item import TransactionsImportBankRequestTransactionsItem
     from .transactions_import_bank_response import TransactionsImportBankResponse
+    from .transactions_import_bank_response_duplicates_item import TransactionsImportBankResponseDuplicatesItem
     from .transactions_list_bank_request_filter_item import TransactionsListBankRequestFilterItem
     from .transactions_list_bank_request_filter_item_op import TransactionsListBankRequestFilterItemOp
     from .transactions_list_bank_request_filter_item_value import TransactionsListBankRequestFilterItemValue
@@ -224,6 +235,8 @@ if typing.TYPE_CHECKING:
     from .transactions_list_bank_response_rows_item import TransactionsListBankResponseRowsItem
     from .transactions_list_bank_response_rows_item_status import TransactionsListBankResponseRowsItemStatus
     from .transactions_match_bank_request_document_type import TransactionsMatchBankRequestDocumentType
+    from .transactions_match_bank_request_remainder import TransactionsMatchBankRequestRemainder
+    from .transactions_match_bank_request_remainder_treatment import TransactionsMatchBankRequestRemainderTreatment
     from .transactions_match_bank_response import TransactionsMatchBankResponse
     from .transactions_match_bank_response_status import TransactionsMatchBankResponseStatus
     from .transactions_match_many_bank_request_allocations_item import TransactionsMatchManyBankRequestAllocationsItem
@@ -232,6 +245,8 @@ if typing.TYPE_CHECKING:
     )
     from .transactions_match_many_bank_response import TransactionsMatchManyBankResponse
     from .transactions_match_many_bank_response_status import TransactionsMatchManyBankResponseStatus
+    from .transactions_post_bank_response import TransactionsPostBankResponse
+    from .transactions_post_bank_response_status import TransactionsPostBankResponseStatus
     from .transactions_record_bank_request_document_type import TransactionsRecordBankRequestDocumentType
     from .transactions_record_bank_response import TransactionsRecordBankResponse
     from .transactions_record_bank_response_status import TransactionsRecordBankResponseStatus
@@ -242,6 +257,8 @@ if typing.TYPE_CHECKING:
     from .transactions_suggest_matches_bank_response_suggestions_item_document_type import (
         TransactionsSuggestMatchesBankResponseSuggestionsItemDocumentType,
     )
+    from .transactions_unignore_bank_response import TransactionsUnignoreBankResponse
+    from .transactions_unignore_bank_response_status import TransactionsUnignoreBankResponseStatus
     from .transactions_unmatch_bank_response import TransactionsUnmatchBankResponse
     from .transactions_unmatch_bank_response_status import TransactionsUnmatchBankResponseStatus
 _dynamic_imports: typing.Dict[str, str] = {
@@ -366,6 +383,10 @@ _dynamic_imports: typing.Dict[str, str] = {
     "MatchRulesListBankResponseRowsItem": ".match_rules_list_bank_response_rows_item",
     "MatchRulesUpdateBankResponse": ".match_rules_update_bank_response",
     "PaymentsExportBankResponse": ".payments_export_bank_response",
+    "ReconciliationGetBankResponse": ".reconciliation_get_bank_response",
+    "ReconciliationGetBankResponseStatementBalanceSource": ".reconciliation_get_bank_response_statement_balance_source",
+    "ReconciliationGetBankResponseUnbookedLinesItem": ".reconciliation_get_bank_response_unbooked_lines_item",
+    "ReconciliationGetBankResponseUnbookedLinesItemStatus": ".reconciliation_get_bank_response_unbooked_lines_item_status",
     "SecuritiesGetBankResponse": ".securities_get_bank_response",
     "SecuritiesGetBankResponseOperationsItem": ".securities_get_bank_response_operations_item",
     "SecuritiesGetBankResponseOperationsItemStatus": ".securities_get_bank_response_operations_item_status",
@@ -419,8 +440,11 @@ _dynamic_imports: typing.Dict[str, str] = {
     "StatementsImportBankRequestFormat": ".statements_import_bank_request_format",
     "StatementsImportBankResponse": ".statements_import_bank_response",
     "StatementsImportBankResponseStatementsItem": ".statements_import_bank_response_statements_item",
+    "TransactionsIgnoreBankResponse": ".transactions_ignore_bank_response",
+    "TransactionsIgnoreBankResponseStatus": ".transactions_ignore_bank_response_status",
     "TransactionsImportBankRequestTransactionsItem": ".transactions_import_bank_request_transactions_item",
     "TransactionsImportBankResponse": ".transactions_import_bank_response",
+    "TransactionsImportBankResponseDuplicatesItem": ".transactions_import_bank_response_duplicates_item",
     "TransactionsListBankRequestFilterItem": ".transactions_list_bank_request_filter_item",
     "TransactionsListBankRequestFilterItemOp": ".transactions_list_bank_request_filter_item_op",
     "TransactionsListBankRequestFilterItemValue": ".transactions_list_bank_request_filter_item_value",
@@ -431,18 +455,24 @@ _dynamic_imports: typing.Dict[str, str] = {
     "TransactionsListBankResponseRowsItem": ".transactions_list_bank_response_rows_item",
     "TransactionsListBankResponseRowsItemStatus": ".transactions_list_bank_response_rows_item_status",
     "TransactionsMatchBankRequestDocumentType": ".transactions_match_bank_request_document_type",
+    "TransactionsMatchBankRequestRemainder": ".transactions_match_bank_request_remainder",
+    "TransactionsMatchBankRequestRemainderTreatment": ".transactions_match_bank_request_remainder_treatment",
     "TransactionsMatchBankResponse": ".transactions_match_bank_response",
     "TransactionsMatchBankResponseStatus": ".transactions_match_bank_response_status",
     "TransactionsMatchManyBankRequestAllocationsItem": ".transactions_match_many_bank_request_allocations_item",
     "TransactionsMatchManyBankRequestAllocationsItemDocumentType": ".transactions_match_many_bank_request_allocations_item_document_type",
     "TransactionsMatchManyBankResponse": ".transactions_match_many_bank_response",
     "TransactionsMatchManyBankResponseStatus": ".transactions_match_many_bank_response_status",
+    "TransactionsPostBankResponse": ".transactions_post_bank_response",
+    "TransactionsPostBankResponseStatus": ".transactions_post_bank_response_status",
     "TransactionsRecordBankRequestDocumentType": ".transactions_record_bank_request_document_type",
     "TransactionsRecordBankResponse": ".transactions_record_bank_response",
     "TransactionsRecordBankResponseStatus": ".transactions_record_bank_response_status",
     "TransactionsSuggestMatchesBankResponse": ".transactions_suggest_matches_bank_response",
     "TransactionsSuggestMatchesBankResponseSuggestionsItem": ".transactions_suggest_matches_bank_response_suggestions_item",
     "TransactionsSuggestMatchesBankResponseSuggestionsItemDocumentType": ".transactions_suggest_matches_bank_response_suggestions_item_document_type",
+    "TransactionsUnignoreBankResponse": ".transactions_unignore_bank_response",
+    "TransactionsUnignoreBankResponseStatus": ".transactions_unignore_bank_response_status",
     "TransactionsUnmatchBankResponse": ".transactions_unmatch_bank_response",
     "TransactionsUnmatchBankResponseStatus": ".transactions_unmatch_bank_response_status",
 }
@@ -591,6 +621,10 @@ __all__ = [
     "MatchRulesListBankResponseRowsItem",
     "MatchRulesUpdateBankResponse",
     "PaymentsExportBankResponse",
+    "ReconciliationGetBankResponse",
+    "ReconciliationGetBankResponseStatementBalanceSource",
+    "ReconciliationGetBankResponseUnbookedLinesItem",
+    "ReconciliationGetBankResponseUnbookedLinesItemStatus",
     "SecuritiesGetBankResponse",
     "SecuritiesGetBankResponseOperationsItem",
     "SecuritiesGetBankResponseOperationsItemStatus",
@@ -644,8 +678,11 @@ __all__ = [
     "StatementsImportBankRequestFormat",
     "StatementsImportBankResponse",
     "StatementsImportBankResponseStatementsItem",
+    "TransactionsIgnoreBankResponse",
+    "TransactionsIgnoreBankResponseStatus",
     "TransactionsImportBankRequestTransactionsItem",
     "TransactionsImportBankResponse",
+    "TransactionsImportBankResponseDuplicatesItem",
     "TransactionsListBankRequestFilterItem",
     "TransactionsListBankRequestFilterItemOp",
     "TransactionsListBankRequestFilterItemValue",
@@ -656,18 +693,24 @@ __all__ = [
     "TransactionsListBankResponseRowsItem",
     "TransactionsListBankResponseRowsItemStatus",
     "TransactionsMatchBankRequestDocumentType",
+    "TransactionsMatchBankRequestRemainder",
+    "TransactionsMatchBankRequestRemainderTreatment",
     "TransactionsMatchBankResponse",
     "TransactionsMatchBankResponseStatus",
     "TransactionsMatchManyBankRequestAllocationsItem",
     "TransactionsMatchManyBankRequestAllocationsItemDocumentType",
     "TransactionsMatchManyBankResponse",
     "TransactionsMatchManyBankResponseStatus",
+    "TransactionsPostBankResponse",
+    "TransactionsPostBankResponseStatus",
     "TransactionsRecordBankRequestDocumentType",
     "TransactionsRecordBankResponse",
     "TransactionsRecordBankResponseStatus",
     "TransactionsSuggestMatchesBankResponse",
     "TransactionsSuggestMatchesBankResponseSuggestionsItem",
     "TransactionsSuggestMatchesBankResponseSuggestionsItemDocumentType",
+    "TransactionsUnignoreBankResponse",
+    "TransactionsUnignoreBankResponseStatus",
     "TransactionsUnmatchBankResponse",
     "TransactionsUnmatchBankResponseStatus",
 ]

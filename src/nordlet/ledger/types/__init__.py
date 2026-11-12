@@ -76,6 +76,8 @@ if typing.TYPE_CHECKING:
     from .journal_transactions_list_ledger_response_rows_item_status import (
         JournalTransactionsListLedgerResponseRowsItemStatus,
     )
+    from .journal_transactions_reverse_ledger_response import JournalTransactionsReverseLedgerResponse
+    from .journal_transactions_reverse_ledger_response_status import JournalTransactionsReverseLedgerResponseStatus
     from .owners_create_ledger_request_address import OwnersCreateLedgerRequestAddress
     from .owners_create_ledger_request_partner_liability import OwnersCreateLedgerRequestPartnerLiability
     from .owners_create_ledger_request_shares_type import OwnersCreateLedgerRequestSharesType
@@ -114,6 +116,8 @@ if typing.TYPE_CHECKING:
     from .periods_list_ledger_response_rows_item_status import PeriodsListLedgerResponseRowsItemStatus
     from .periods_lock_ledger_response import PeriodsLockLedgerResponse
     from .periods_lock_ledger_response_status import PeriodsLockLedgerResponseStatus
+    from .periods_lock_ledger_response_warnings_item import PeriodsLockLedgerResponseWarningsItem
+    from .periods_lock_ledger_response_warnings_item_code import PeriodsLockLedgerResponseWarningsItemCode
     from .periods_unlock_ledger_response import PeriodsUnlockLedgerResponse
     from .periods_unlock_ledger_response_status import PeriodsUnlockLedgerResponseStatus
     from .posting_rules_list_ledger_response import PostingRulesListLedgerResponse
@@ -198,6 +202,8 @@ _dynamic_imports: typing.Dict[str, str] = {
     "JournalTransactionsListLedgerResponse": ".journal_transactions_list_ledger_response",
     "JournalTransactionsListLedgerResponseRowsItem": ".journal_transactions_list_ledger_response_rows_item",
     "JournalTransactionsListLedgerResponseRowsItemStatus": ".journal_transactions_list_ledger_response_rows_item_status",
+    "JournalTransactionsReverseLedgerResponse": ".journal_transactions_reverse_ledger_response",
+    "JournalTransactionsReverseLedgerResponseStatus": ".journal_transactions_reverse_ledger_response_status",
     "OwnersCreateLedgerRequestAddress": ".owners_create_ledger_request_address",
     "OwnersCreateLedgerRequestPartnerLiability": ".owners_create_ledger_request_partner_liability",
     "OwnersCreateLedgerRequestSharesType": ".owners_create_ledger_request_shares_type",
@@ -232,6 +238,8 @@ _dynamic_imports: typing.Dict[str, str] = {
     "PeriodsListLedgerResponseRowsItemStatus": ".periods_list_ledger_response_rows_item_status",
     "PeriodsLockLedgerResponse": ".periods_lock_ledger_response",
     "PeriodsLockLedgerResponseStatus": ".periods_lock_ledger_response_status",
+    "PeriodsLockLedgerResponseWarningsItem": ".periods_lock_ledger_response_warnings_item",
+    "PeriodsLockLedgerResponseWarningsItemCode": ".periods_lock_ledger_response_warnings_item_code",
     "PeriodsUnlockLedgerResponse": ".periods_unlock_ledger_response",
     "PeriodsUnlockLedgerResponseStatus": ".periods_unlock_ledger_response_status",
     "PostingRulesListLedgerResponse": ".posting_rules_list_ledger_response",
@@ -330,6 +338,8 @@ __all__ = [
     "JournalTransactionsListLedgerResponse",
     "JournalTransactionsListLedgerResponseRowsItem",
     "JournalTransactionsListLedgerResponseRowsItemStatus",
+    "JournalTransactionsReverseLedgerResponse",
+    "JournalTransactionsReverseLedgerResponseStatus",
     "OwnersCreateLedgerRequestAddress",
     "OwnersCreateLedgerRequestPartnerLiability",
     "OwnersCreateLedgerRequestSharesType",
@@ -364,6 +374,8 @@ __all__ = [
     "PeriodsListLedgerResponseRowsItemStatus",
     "PeriodsLockLedgerResponse",
     "PeriodsLockLedgerResponseStatus",
+    "PeriodsLockLedgerResponseWarningsItem",
+    "PeriodsLockLedgerResponseWarningsItemCode",
     "PeriodsUnlockLedgerResponse",
     "PeriodsUnlockLedgerResponseStatus",
     "PostingRulesListLedgerResponse",
