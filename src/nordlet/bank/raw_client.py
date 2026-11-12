@@ -1037,7 +1037,7 @@ class RawBankClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[TransactionsListBankResponse]:
         """
-        List the bank transactions of the company. Filterable by id, bankAccountId, status, matchedDocumentId, date, amount, counterpartyIban, counterpartyName and externalId; sortable by date, createdAt and amount.
+        List the bank transactions of the company. Filterable by id, bankAccountId, status, matchedDocumentId, date, amount, counterpartyIban, counterpartyName, partnerId and externalId; sortable by date, createdAt and amount. `counterpartyName` is the name as the bank wrote it; `partnerId` and `partnerName` are the partner the line belongs to.
 
         Parameters
         ----------
@@ -10440,7 +10440,7 @@ class AsyncRawBankClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[TransactionsListBankResponse]:
         """
-        List the bank transactions of the company. Filterable by id, bankAccountId, status, matchedDocumentId, date, amount, counterpartyIban, counterpartyName and externalId; sortable by date, createdAt and amount.
+        List the bank transactions of the company. Filterable by id, bankAccountId, status, matchedDocumentId, date, amount, counterpartyIban, counterpartyName, partnerId and externalId; sortable by date, createdAt and amount. `counterpartyName` is the name as the bank wrote it; `partnerId` and `partnerName` are the partner the line belongs to.
 
         Parameters
         ----------

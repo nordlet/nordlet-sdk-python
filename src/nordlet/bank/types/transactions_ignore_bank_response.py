@@ -24,6 +24,12 @@ class TransactionsIgnoreBankResponse(UniversalBaseModel):
     counterparty_iban: typing_extensions.Annotated[
         typing.Optional[str], FieldMetadata(alias="counterpartyIban"), pydantic.Field(alias="counterpartyIban")
     ] = None
+    partner_id: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="partnerId"), pydantic.Field(alias="partnerId")
+    ] = None
+    partner_name: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="partnerName"), pydantic.Field(alias="partnerName")
+    ] = None
     description: typing.Optional[str] = None
     external_id: typing_extensions.Annotated[
         typing.Optional[str], FieldMetadata(alias="externalId"), pydantic.Field(alias="externalId")
