@@ -4067,7 +4067,7 @@ class RawHrClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[BusinessTripsListHrResponse]:
         """
-        Lists business trips; filterable by `employeeId`, `status` and `payrollRunId`, sortable by `startDate`.
+        Lists business trips; filterable by `employeeId`, `status`, `payrollRunId` and `purpose`, sortable by `startDate`.
 
         Parameters
         ----------
@@ -10251,7 +10251,7 @@ class AsyncRawHrClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[BusinessTripsListHrResponse]:
         """
-        Lists business trips; filterable by `employeeId`, `status` and `payrollRunId`, sortable by `startDate`.
+        Lists business trips; filterable by `employeeId`, `status`, `payrollRunId` and `purpose`, sortable by `startDate`.
 
         Parameters
         ----------

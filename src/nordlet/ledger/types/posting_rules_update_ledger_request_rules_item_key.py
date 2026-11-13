@@ -22,6 +22,8 @@ PostingRulesUpdateLedgerRequestRulesItemKey = typing.Union[
         "pos.cashSurplus",
         "bank.fxGain",
         "bank.fxLoss",
+        "bank.paymentDifferenceGain",
+        "bank.paymentDifferenceLoss",
         "bank.fees",
         "bank.cardPayments",
         "bank.topUps",

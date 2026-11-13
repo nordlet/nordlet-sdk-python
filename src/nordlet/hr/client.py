@@ -1254,7 +1254,7 @@ class HrClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> BusinessTripsListHrResponse:
         """
-        Lists business trips; filterable by `employeeId`, `status` and `payrollRunId`, sortable by `startDate`.
+        Lists business trips; filterable by `employeeId`, `status`, `payrollRunId` and `purpose`, sortable by `startDate`.
 
         Parameters
         ----------
@@ -3166,7 +3166,7 @@ class AsyncHrClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> BusinessTripsListHrResponse:
         """
-        Lists business trips; filterable by `employeeId`, `status` and `payrollRunId`, sortable by `startDate`.
+        Lists business trips; filterable by `employeeId`, `status`, `payrollRunId` and `purpose`, sortable by `startDate`.
 
         Parameters
         ----------

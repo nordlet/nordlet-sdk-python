@@ -347,7 +347,7 @@ class CashClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> ExpenseReportsListCashResponse:
         """
-        Lists expense reports without their lines. Filterable by `employeeId` and `date`; sortable by `date` and `number`.
+        Lists expense reports without their lines. Filterable by `employeeId`, `date` and `number`; sortable by `date` and `number`.
 
         Parameters
         ----------
@@ -783,7 +783,7 @@ class AsyncCashClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> ExpenseReportsListCashResponse:
         """
-        Lists expense reports without their lines. Filterable by `employeeId` and `date`; sortable by `date` and `number`.
+        Lists expense reports without their lines. Filterable by `employeeId`, `date` and `number`; sortable by `date` and `number`.
 
         Parameters
         ----------

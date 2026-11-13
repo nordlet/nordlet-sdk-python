@@ -949,7 +949,7 @@ class PartnersClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> VatReviewsListPartnersResponse:
         """
-        Lists the VAT reviews opened by VIES checks of partners' VAT codes, with reason `invalid`, `name_mismatch` or `service_error`; filterable by `partnerId`, `status` and `reason`, sortable by `createdAt`.
+        Lists the VAT reviews opened by VIES checks of partners' VAT codes, with reason `invalid`, `name_mismatch` or `service_error`; filterable by `partnerId`, `status`, `reason` and `vatCode`, sortable by `createdAt`.
 
         Parameters
         ----------
@@ -3298,7 +3298,7 @@ class AsyncPartnersClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> VatReviewsListPartnersResponse:
         """
-        Lists the VAT reviews opened by VIES checks of partners' VAT codes, with reason `invalid`, `name_mismatch` or `service_error`; filterable by `partnerId`, `status` and `reason`, sortable by `createdAt`.
+        Lists the VAT reviews opened by VIES checks of partners' VAT codes, with reason `invalid`, `name_mismatch` or `service_error`; filterable by `partnerId`, `status`, `reason` and `vatCode`, sortable by `createdAt`.
 
         Parameters
         ----------

@@ -1108,7 +1108,7 @@ class RawCashClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[ExpenseReportsListCashResponse]:
         """
-        Lists expense reports without their lines. Filterable by `employeeId` and `date`; sortable by `date` and `number`.
+        Lists expense reports without their lines. Filterable by `employeeId`, `date` and `number`; sortable by `date` and `number`.
 
         Parameters
         ----------
@@ -2504,7 +2504,7 @@ class AsyncRawCashClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[ExpenseReportsListCashResponse]:
         """
-        Lists expense reports without their lines. Filterable by `employeeId` and `date`; sortable by `date` and `number`.
+        Lists expense reports without their lines. Filterable by `employeeId`, `date` and `number`; sortable by `date` and `number`.
 
         Parameters
         ----------

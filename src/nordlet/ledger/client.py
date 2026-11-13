@@ -88,7 +88,7 @@ class LedgerClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AccountsListLedgerResponse:
         """
-        Lists the company's chart of accounts. Filterable by `code`, `name`, `type` and `isPostable`; sortable by `code` and `name`.
+        Lists the company's chart of accounts. Filterable by `code`, `name`, `type` and `isPostable`; sortable by `code` and `name`. A `name` filter with `contains` matches the stored name and the name shown in the language of the request (`displayName`).
 
         Parameters
         ----------
@@ -1335,7 +1335,7 @@ class AsyncLedgerClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AccountsListLedgerResponse:
         """
-        Lists the company's chart of accounts. Filterable by `code`, `name`, `type` and `isPostable`; sortable by `code` and `name`.
+        Lists the company's chart of accounts. Filterable by `code`, `name`, `type` and `isPostable`; sortable by `code` and `name`. A `name` filter with `contains` matches the stored name and the name shown in the language of the request (`displayName`).
 
         Parameters
         ----------
