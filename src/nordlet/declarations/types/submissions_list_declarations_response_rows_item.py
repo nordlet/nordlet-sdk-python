@@ -7,6 +7,12 @@ import pydantic
 import typing_extensions
 from ...core.pydantic_utilities import IS_PYDANTIC_V2, UniversalBaseModel
 from ...core.serialization import FieldMetadata
+from .submissions_list_declarations_response_rows_item_correction import (
+    SubmissionsListDeclarationsResponseRowsItemCorrection,
+)
+from .submissions_list_declarations_response_rows_item_correction_input import (
+    SubmissionsListDeclarationsResponseRowsItemCorrectionInput,
+)
 from .submissions_list_declarations_response_rows_item_environment import (
     SubmissionsListDeclarationsResponseRowsItemEnvironment,
 )
@@ -38,6 +44,14 @@ class SubmissionsListDeclarationsResponseRowsItem(UniversalBaseModel):
         typing.Optional[str], FieldMetadata(alias="documentKey"), pydantic.Field(alias="documentKey")
     ] = None
     amendment: int
+    authority_ref: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="authorityRef"), pydantic.Field(alias="authorityRef")
+    ] = None
+    correction_input: typing_extensions.Annotated[
+        typing.Optional[SubmissionsListDeclarationsResponseRowsItemCorrectionInput],
+        FieldMetadata(alias="correctionInput"),
+        pydantic.Field(alias="correctionInput"),
+    ] = None
     origin: str
     transport_system: typing_extensions.Annotated[
         typing.Optional[str], FieldMetadata(alias="transportSystem"), pydantic.Field(alias="transportSystem")
@@ -85,6 +99,8 @@ class SubmissionsListDeclarationsResponseRowsItem(UniversalBaseModel):
     updated_at: typing_extensions.Annotated[
         dt.datetime, FieldMetadata(alias="updatedAt"), pydantic.Field(alias="updatedAt")
     ]
+    can_amend: typing_extensions.Annotated[bool, FieldMetadata(alias="canAmend"), pydantic.Field(alias="canAmend")]
+    correction: typing.Optional[SubmissionsListDeclarationsResponseRowsItemCorrection] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

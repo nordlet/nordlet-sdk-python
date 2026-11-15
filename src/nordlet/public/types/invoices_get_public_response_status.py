@@ -2,4 +2,4 @@
 
 import typing
 
-InvoicesGetPublicResponseStatus = typing.Union[typing.Literal["draft", "issued"], typing.Any]
+InvoicesGetPublicResponseStatus = typing.Union[typing.Literal["draft", "issued", "reversed"], typing.Any]

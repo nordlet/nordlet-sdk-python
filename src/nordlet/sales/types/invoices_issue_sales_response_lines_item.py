@@ -42,6 +42,9 @@ class InvoicesIssueSalesResponseLinesItem(UniversalBaseModel):
     vat_exemption_basis: typing_extensions.Annotated[
         typing.Optional[str], FieldMetadata(alias="vatExemptionBasis"), pydantic.Field(alias="vatExemptionBasis")
     ] = None
+    asset_id: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="assetId"), pydantic.Field(alias="assetId")
+    ] = None
     cost_center_id: typing_extensions.Annotated[
         typing.Optional[str], FieldMetadata(alias="costCenterId"), pydantic.Field(alias="costCenterId")
     ] = None

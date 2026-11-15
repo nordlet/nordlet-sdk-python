@@ -793,7 +793,7 @@ class RawDocumentSeriesClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[ListDocumentSeriesResponse]:
         """
-        List document series. Filterable by documentType, prefix, operationTypeId and isActive; sortable by prefix, documentType and createdAt.
+        List document series. Filterable by documentType, prefix, operationTypeId and isActive; sortable by prefix, name, label, documentType, operationTypeName (the code and name of the operation type), nextNumber, numberLength, isDefault, isActive and createdAt.
 
         Parameters
         ----------
@@ -1723,7 +1723,7 @@ class AsyncRawDocumentSeriesClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[ListDocumentSeriesResponse]:
         """
-        List document series. Filterable by documentType, prefix, operationTypeId and isActive; sortable by prefix, documentType and createdAt.
+        List document series. Filterable by documentType, prefix, operationTypeId and isActive; sortable by prefix, name, label, documentType, operationTypeName (the code and name of the operation type), nextNumber, numberLength, isDefault, isActive and createdAt.
 
         Parameters
         ----------

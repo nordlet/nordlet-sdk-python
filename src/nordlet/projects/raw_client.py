@@ -570,7 +570,7 @@ class RawProjectsClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[ListProjectsResponse]:
         """
-        List projects. Filterable by `code`, `name`, `status` and `partnerId`; sortable by `code`, `name` and `createdAt`.
+        List projects. Filterable by `code`, `name`, `status` and `partnerId`; sortable by `code`, `name`, `status`, `createdAt`, and by the all-time figures of `projects/report`: `revenue`, `costs`, `profit`, `unbilledHours` and `unbilledAmount`.
 
         Parameters
         ----------
@@ -2357,7 +2357,7 @@ class AsyncRawProjectsClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[ListProjectsResponse]:
         """
-        List projects. Filterable by `code`, `name`, `status` and `partnerId`; sortable by `code`, `name` and `createdAt`.
+        List projects. Filterable by `code`, `name`, `status` and `partnerId`; sortable by `code`, `name`, `status`, `createdAt`, and by the all-time figures of `projects/report`: `revenue`, `costs`, `profit`, `unbilledHours` and `unbilledAmount`.
 
         Parameters
         ----------

@@ -250,7 +250,7 @@ class HrClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> EmployeesCreateHrResponse:
         """
-        Creates an employee record. `payrollOptions` holds the country-specific settings the payroll engine reads for the person (see `hr/employees/fields`); `applyAllowance` defaults to true and `pensionAccumulation` to false. An `iban` whose check digits fail (ISO 13616) is refused with 422.
+        Creates an employee record. `payrollOptions` holds the country-specific settings the payroll engine reads for the person (see `hr/employees/fields`); `applyAllowance` defaults to true and `pensionAccumulation` to false. An `iban` whose check digits fail (ISO 13616), a `birthDate` in the future or before 1900, and a `personalCode` that is not a valid OIB (Croatia) or DNI/NIE (Spain) are refused with 422.
 
         Parameters
         ----------
@@ -360,7 +360,7 @@ class HrClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> EmployeesUpdateHrResponse:
         """
-        Changes the given fields of an employee; a null clears the fields that allow it (code, personal code, birth date, contact details, address, IBAN, social insurance number and start, hire date, notes). `status` and `terminationDate` are set here too. An `iban` whose check digits fail (ISO 13616) is refused with 422.
+        Changes the given fields of an employee; a null clears the fields that allow it (code, personal code, birth date, contact details, address, IBAN, social insurance number and start, hire date, notes). `status` and `terminationDate` are set here too. An `iban` whose check digits fail (ISO 13616), a `birthDate` in the future or before 1900, and a `personalCode` that is not a valid OIB (Croatia) or DNI/NIE (Spain) are refused with 422.
 
         Parameters
         ----------
@@ -520,7 +520,7 @@ class HrClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> EmployeesListHrResponse:
         """
-        Lists the employees that are not deleted; filterable by `firstName`, `lastName`, `code`, `status` and `email`, sortable by `lastName`, `code` and `createdAt`.
+        Lists the employees that are not deleted; filterable by `firstName`, `lastName`, `code`, `status` and `email`, sortable by `lastName`, `code`, `email`, `hireDate`, `status`, `createdAt` and `activeContractNo` (the number of the latest active contract).
 
         Parameters
         ----------
@@ -1078,7 +1078,7 @@ class HrClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PerDiemRatesListHrResponse:
         """
-        Lists per diem rates; filterable by `countryCode`, sortable by `countryCode` and `validFrom`.
+        Lists per diem rates; filterable by `countryCode`, sortable by `countryCode`, `validFrom` and `dailyAmount`.
 
         Parameters
         ----------
@@ -1254,7 +1254,7 @@ class HrClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> BusinessTripsListHrResponse:
         """
-        Lists business trips; filterable by `employeeId`, `status`, `payrollRunId` and `purpose`, sortable by `startDate`.
+        Lists business trips; filterable by `employeeId`, `status`, `payrollRunId` and `purpose`, sortable by `startDate`, `employeeName` (the first and last name of the employee), `destinationCountryCode`, `purpose`, `perDiemAmount` and `status`.
 
         Parameters
         ----------
@@ -2013,7 +2013,7 @@ class AsyncHrClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> EmployeesCreateHrResponse:
         """
-        Creates an employee record. `payrollOptions` holds the country-specific settings the payroll engine reads for the person (see `hr/employees/fields`); `applyAllowance` defaults to true and `pensionAccumulation` to false. An `iban` whose check digits fail (ISO 13616) is refused with 422.
+        Creates an employee record. `payrollOptions` holds the country-specific settings the payroll engine reads for the person (see `hr/employees/fields`); `applyAllowance` defaults to true and `pensionAccumulation` to false. An `iban` whose check digits fail (ISO 13616), a `birthDate` in the future or before 1900, and a `personalCode` that is not a valid OIB (Croatia) or DNI/NIE (Spain) are refused with 422.
 
         Parameters
         ----------
@@ -2131,7 +2131,7 @@ class AsyncHrClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> EmployeesUpdateHrResponse:
         """
-        Changes the given fields of an employee; a null clears the fields that allow it (code, personal code, birth date, contact details, address, IBAN, social insurance number and start, hire date, notes). `status` and `terminationDate` are set here too. An `iban` whose check digits fail (ISO 13616) is refused with 422.
+        Changes the given fields of an employee; a null clears the fields that allow it (code, personal code, birth date, contact details, address, IBAN, social insurance number and start, hire date, notes). `status` and `terminationDate` are set here too. An `iban` whose check digits fail (ISO 13616), a `birthDate` in the future or before 1900, and a `personalCode` that is not a valid OIB (Croatia) or DNI/NIE (Spain) are refused with 422.
 
         Parameters
         ----------
@@ -2317,7 +2317,7 @@ class AsyncHrClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> EmployeesListHrResponse:
         """
-        Lists the employees that are not deleted; filterable by `firstName`, `lastName`, `code`, `status` and `email`, sortable by `lastName`, `code` and `createdAt`.
+        Lists the employees that are not deleted; filterable by `firstName`, `lastName`, `code`, `status` and `email`, sortable by `lastName`, `code`, `email`, `hireDate`, `status`, `createdAt` and `activeContractNo` (the number of the latest active contract).
 
         Parameters
         ----------
@@ -2959,7 +2959,7 @@ class AsyncHrClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PerDiemRatesListHrResponse:
         """
-        Lists per diem rates; filterable by `countryCode`, sortable by `countryCode` and `validFrom`.
+        Lists per diem rates; filterable by `countryCode`, sortable by `countryCode`, `validFrom` and `dailyAmount`.
 
         Parameters
         ----------
@@ -3166,7 +3166,7 @@ class AsyncHrClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> BusinessTripsListHrResponse:
         """
-        Lists business trips; filterable by `employeeId`, `status`, `payrollRunId` and `purpose`, sortable by `startDate`.
+        Lists business trips; filterable by `employeeId`, `status`, `payrollRunId` and `purpose`, sortable by `startDate`, `employeeName` (the first and last name of the employee), `destinationCountryCode`, `purpose`, `perDiemAmount` and `status`.
 
         Parameters
         ----------

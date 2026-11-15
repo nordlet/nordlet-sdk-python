@@ -2,4 +2,4 @@
 
 import typing
 
-InvoicesListSalesResponseRowsItemStatus = typing.Union[typing.Literal["draft", "issued"], typing.Any]
+InvoicesListSalesResponseRowsItemStatus = typing.Union[typing.Literal["draft", "issued", "reversed"], typing.Any]

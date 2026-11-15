@@ -151,6 +151,7 @@ from .types.ro_etransport_build_declarations_response import RoEtransportBuildDe
 from .types.ro_etransport_status_declarations_response import RoEtransportStatusDeclarationsResponse
 from .types.ro_etransport_submit_declarations_response import RoEtransportSubmitDeclarationsResponse
 from .types.submissions_confirm_declarations_response import SubmissionsConfirmDeclarationsResponse
+from .types.submissions_correction_preview_declarations_response import SubmissionsCorrectionPreviewDeclarationsResponse
 from .types.submissions_create_declarations_request_data_type import SubmissionsCreateDeclarationsRequestDataType
 from .types.submissions_create_declarations_request_obligation import SubmissionsCreateDeclarationsRequestObligation
 from .types.submissions_create_declarations_response import SubmissionsCreateDeclarationsResponse
@@ -174,6 +175,9 @@ from .types.tax_payments_list_declarations_request_tax import TaxPaymentsListDec
 from .types.tax_payments_list_declarations_response import TaxPaymentsListDeclarationsResponse
 from .types.tax_payments_update_declarations_request_kind import TaxPaymentsUpdateDeclarationsRequestKind
 from .types.tax_payments_update_declarations_response import TaxPaymentsUpdateDeclarationsResponse
+from .types.vat_prorata_get_declarations_response import VatProrataGetDeclarationsResponse
+from .types.vat_prorata_list_declarations_response import VatProrataListDeclarationsResponse
+from .types.vat_prorata_set_declarations_response import VatProrataSetDeclarationsResponse
 
 # this is used as the default value for optional parameters
 OMIT = typing.cast(typing.Any, ...)
@@ -1904,6 +1908,103 @@ class DeclarationsClient:
         )
         """
         _response = self._raw_client.tax_payments_delete(id=id, request_options=request_options)
+        return _response.data
+
+    def vat_prorata_set(
+        self, *, fiscal_year: int, percent: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> VatProrataSetDeclarationsResponse:
+        """
+        Sets the provisional pro-rata percentage of the company for a fiscal year (the year in which it ends, by the company's fiscal year end month). Purchase lines on a VAT type marked pro-rata (`prorata`) deduct that share of their VAT, book the rest into the line's expense, and the VAT returns declare only the deductible part. Without a percentage for the year such a line deducts 100 % and `purchases/invoices/register` answers the warning `prorata_not_set`. Setting it again replaces the percentage for documents registered afterwards; documents already registered are not changed and the year-end adjustment is not built.
+
+        Parameters
+        ----------
+        fiscal_year : int
+
+        percent : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        VatProrataSetDeclarationsResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.declarations.vat_prorata_set(
+            fiscal_year=1000000,
+            percent="percent",
+        )
+        """
+        _response = self._raw_client.vat_prorata_set(
+            fiscal_year=fiscal_year, percent=percent, request_options=request_options
+        )
+        return _response.data
+
+    def vat_prorata_get(
+        self, *, fiscal_year: int, request_options: typing.Optional[RequestOptions] = None
+    ) -> VatProrataGetDeclarationsResponse:
+        """
+        Answers the percentage set with `declarations/vat-prorata/set` for the fiscal year; 404 when none is set.
+
+        Parameters
+        ----------
+        fiscal_year : int
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        VatProrataGetDeclarationsResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.declarations.vat_prorata_get(
+            fiscal_year=1000000,
+        )
+        """
+        _response = self._raw_client.vat_prorata_get(fiscal_year=fiscal_year, request_options=request_options)
+        return _response.data
+
+    def vat_prorata_list(
+        self, *, request_options: typing.Optional[RequestOptions] = None
+    ) -> VatProrataListDeclarationsResponse:
+        """
+        Lists the percentages set with `declarations/vat-prorata/set`, oldest fiscal year first.
+
+        Parameters
+        ----------
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        VatProrataListDeclarationsResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.declarations.vat_prorata_list()
+        """
+        _response = self._raw_client.vat_prorata_list(request_options=request_options)
         return _response.data
 
     def annual_accounts_get(
@@ -3965,6 +4066,38 @@ class DeclarationsClient:
         _response = self._raw_client.submissions_confirm(id=id, request_options=request_options)
         return _response.data
 
+    def submissions_correction_preview(
+        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> SubmissionsCorrectionPreviewDeclarationsResponse:
+        """
+        Builds the file of a submitted or accepted submission again from the current data, the way it was built for that submission, and compares it with the file that was filed. `needed` is false when the two carry the same data: a correction would file the same return again. `changes` lists what differs, at most 500 entries (`changeCount` counts them all): for an XML file each element or attribute by its path below the root element (`field`), for another text file each line that is only in the filed file or only in the new one (`line`, its line number in that file); `filed` and `current` are the two values, null where the field or line is missing on that side. Dates and times of the moment a file was built (ISO date-times, and the dates of both builds written as YYYY-MM-DD, YYYYMMDD, DD.MM.YYYY or DDMMYYYY) are not counted as differences. A ZIP or PDF file is compared byte by byte and lists no `changes`. Answers 422 for a submission that is not submitted or accepted, whose deadline Nordlet cannot correct, or that has no stored file.
+
+        Parameters
+        ----------
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        SubmissionsCorrectionPreviewDeclarationsResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.declarations.submissions_correction_preview(
+            id="id",
+        )
+        """
+        _response = self._raw_client.submissions_correction_preview(id=id, request_options=request_options)
+        return _response.data
+
     def submissions_create(
         self,
         *,
@@ -4071,7 +4204,7 @@ class DeclarationsClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> SubmissionsListDeclarationsResponse:
         """
-        Lists the declaration submissions of the company, newest first, filterable by `obligation`, `status`, `periodYear` and `periodMonth` and sortable by `createdAt` or `periodYear`.
+        Lists the declaration submissions of the company, newest first, filterable by `obligation`, `status`, `periodYear` and `periodMonth` and sortable by `createdAt`, `periodYear`, `obligation`, `period` (the year, then the month), `fileName`, `status` and `externalRef`. `canAmend` is true on the newest submitted or accepted send of a period (per document for a deadline filed as one document per person) whose filing can be corrected; `correction` names the fields `calendar/submit` with `amend: true` takes for it.
 
         Parameters
         ----------
@@ -6161,6 +6294,127 @@ class AsyncDeclarationsClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.tax_payments_delete(id=id, request_options=request_options)
+        return _response.data
+
+    async def vat_prorata_set(
+        self, *, fiscal_year: int, percent: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> VatProrataSetDeclarationsResponse:
+        """
+        Sets the provisional pro-rata percentage of the company for a fiscal year (the year in which it ends, by the company's fiscal year end month). Purchase lines on a VAT type marked pro-rata (`prorata`) deduct that share of their VAT, book the rest into the line's expense, and the VAT returns declare only the deductible part. Without a percentage for the year such a line deducts 100 % and `purchases/invoices/register` answers the warning `prorata_not_set`. Setting it again replaces the percentage for documents registered afterwards; documents already registered are not changed and the year-end adjustment is not built.
+
+        Parameters
+        ----------
+        fiscal_year : int
+
+        percent : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        VatProrataSetDeclarationsResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.declarations.vat_prorata_set(
+                fiscal_year=1000000,
+                percent="percent",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.vat_prorata_set(
+            fiscal_year=fiscal_year, percent=percent, request_options=request_options
+        )
+        return _response.data
+
+    async def vat_prorata_get(
+        self, *, fiscal_year: int, request_options: typing.Optional[RequestOptions] = None
+    ) -> VatProrataGetDeclarationsResponse:
+        """
+        Answers the percentage set with `declarations/vat-prorata/set` for the fiscal year; 404 when none is set.
+
+        Parameters
+        ----------
+        fiscal_year : int
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        VatProrataGetDeclarationsResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.declarations.vat_prorata_get(
+                fiscal_year=1000000,
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.vat_prorata_get(fiscal_year=fiscal_year, request_options=request_options)
+        return _response.data
+
+    async def vat_prorata_list(
+        self, *, request_options: typing.Optional[RequestOptions] = None
+    ) -> VatProrataListDeclarationsResponse:
+        """
+        Lists the percentages set with `declarations/vat-prorata/set`, oldest fiscal year first.
+
+        Parameters
+        ----------
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        VatProrataListDeclarationsResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.declarations.vat_prorata_list()
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.vat_prorata_list(request_options=request_options)
         return _response.data
 
     async def annual_accounts_get(
@@ -8630,6 +8884,46 @@ class AsyncDeclarationsClient:
         _response = await self._raw_client.submissions_confirm(id=id, request_options=request_options)
         return _response.data
 
+    async def submissions_correction_preview(
+        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> SubmissionsCorrectionPreviewDeclarationsResponse:
+        """
+        Builds the file of a submitted or accepted submission again from the current data, the way it was built for that submission, and compares it with the file that was filed. `needed` is false when the two carry the same data: a correction would file the same return again. `changes` lists what differs, at most 500 entries (`changeCount` counts them all): for an XML file each element or attribute by its path below the root element (`field`), for another text file each line that is only in the filed file or only in the new one (`line`, its line number in that file); `filed` and `current` are the two values, null where the field or line is missing on that side. Dates and times of the moment a file was built (ISO date-times, and the dates of both builds written as YYYY-MM-DD, YYYYMMDD, DD.MM.YYYY or DDMMYYYY) are not counted as differences. A ZIP or PDF file is compared byte by byte and lists no `changes`. Answers 422 for a submission that is not submitted or accepted, whose deadline Nordlet cannot correct, or that has no stored file.
+
+        Parameters
+        ----------
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        SubmissionsCorrectionPreviewDeclarationsResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.declarations.submissions_correction_preview(
+                id="id",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.submissions_correction_preview(id=id, request_options=request_options)
+        return _response.data
+
     async def submissions_create(
         self,
         *,
@@ -8752,7 +9046,7 @@ class AsyncDeclarationsClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> SubmissionsListDeclarationsResponse:
         """
-        Lists the declaration submissions of the company, newest first, filterable by `obligation`, `status`, `periodYear` and `periodMonth` and sortable by `createdAt` or `periodYear`.
+        Lists the declaration submissions of the company, newest first, filterable by `obligation`, `status`, `periodYear` and `periodMonth` and sortable by `createdAt`, `periodYear`, `obligation`, `period` (the year, then the month), `fileName`, `status` and `externalRef`. `canAmend` is true on the newest submitted or accepted send of a period (per document for a deadline filed as one document per person) whose filing can be corrected; `correction` names the fields `calendar/submit` with `amend: true` takes for it.
 
         Parameters
         ----------

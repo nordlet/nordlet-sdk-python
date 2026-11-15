@@ -11,6 +11,7 @@ from .types.delete_calendar_response import DeleteCalendarResponse
 from .types.download_calendar_response import DownloadCalendarResponse
 from .types.get_calendar_response import GetCalendarResponse
 from .types.list_calendar_response import ListCalendarResponse
+from .types.submit_calendar_request_correction import SubmitCalendarRequestCorrection
 from .types.submit_calendar_response import SubmitCalendarResponse
 from .types.update_calendar_response import UpdateCalendarResponse
 
@@ -105,16 +106,26 @@ class CalendarClient:
         return _response.data
 
     def submit(
-        self, *, key: str, amend: typing.Optional[bool] = OMIT, request_options: typing.Optional[RequestOptions] = None
+        self,
+        *,
+        key: str,
+        amend: typing.Optional[bool] = OMIT,
+        correction: typing.Optional[SubmitCalendarRequestCorrection] = OMIT,
+        document_keys: typing.Optional[typing.Sequence[str]] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
     ) -> SubmitCalendarResponse:
         """
-        With amend: true the return is filed again as a correction of the one already submitted or accepted for the period; only returns whose format has a correction mark accept it.
+        With amend: true the return is filed again as a correction of the one already submitted or accepted for the period; only deadlines whose `calendar/get` row has `correction` accept it. `correction` carries what that row's `correction.required` and `correction.optional` name: `reason`, `reasonCode` (one of `correction.reasonCodes`), `authorityReference`, the administration's own number of the filing being corrected, and `discoveredOn`, the date the error was found (YYYY-MM-DD, not after the company's today); a missing required one answers 422 with fieldErrors. For a deadline filed as one document per person, `documentKeys` limits the correction to those documents.
 
         Parameters
         ----------
         key : str
 
         amend : typing.Optional[bool]
+
+        correction : typing.Optional[SubmitCalendarRequestCorrection]
+
+        document_keys : typing.Optional[typing.Sequence[str]]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -135,7 +146,9 @@ class CalendarClient:
             key="key",
         )
         """
-        _response = self._raw_client.submit(key=key, amend=amend, request_options=request_options)
+        _response = self._raw_client.submit(
+            key=key, amend=amend, correction=correction, document_keys=document_keys, request_options=request_options
+        )
         return _response.data
 
     def download(
@@ -404,16 +417,26 @@ class AsyncCalendarClient:
         return _response.data
 
     async def submit(
-        self, *, key: str, amend: typing.Optional[bool] = OMIT, request_options: typing.Optional[RequestOptions] = None
+        self,
+        *,
+        key: str,
+        amend: typing.Optional[bool] = OMIT,
+        correction: typing.Optional[SubmitCalendarRequestCorrection] = OMIT,
+        document_keys: typing.Optional[typing.Sequence[str]] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
     ) -> SubmitCalendarResponse:
         """
-        With amend: true the return is filed again as a correction of the one already submitted or accepted for the period; only returns whose format has a correction mark accept it.
+        With amend: true the return is filed again as a correction of the one already submitted or accepted for the period; only deadlines whose `calendar/get` row has `correction` accept it. `correction` carries what that row's `correction.required` and `correction.optional` name: `reason`, `reasonCode` (one of `correction.reasonCodes`), `authorityReference`, the administration's own number of the filing being corrected, and `discoveredOn`, the date the error was found (YYYY-MM-DD, not after the company's today); a missing required one answers 422 with fieldErrors. For a deadline filed as one document per person, `documentKeys` limits the correction to those documents.
 
         Parameters
         ----------
         key : str
 
         amend : typing.Optional[bool]
+
+        correction : typing.Optional[SubmitCalendarRequestCorrection]
+
+        document_keys : typing.Optional[typing.Sequence[str]]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -442,7 +465,9 @@ class AsyncCalendarClient:
 
         asyncio.run(main())
         """
-        _response = await self._raw_client.submit(key=key, amend=amend, request_options=request_options)
+        _response = await self._raw_client.submit(
+            key=key, amend=amend, correction=correction, document_keys=document_keys, request_options=request_options
+        )
         return _response.data
 
     async def download(

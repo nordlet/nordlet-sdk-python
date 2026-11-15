@@ -54,6 +54,17 @@ class InvoicesCreateSalesResponse(UniversalBaseModel):
     journal_transaction_id: typing_extensions.Annotated[
         typing.Optional[str], FieldMetadata(alias="journalTransactionId"), pydantic.Field(alias="journalTransactionId")
     ] = None
+    reversed_at: typing_extensions.Annotated[
+        typing.Optional[dt.datetime], FieldMetadata(alias="reversedAt"), pydantic.Field(alias="reversedAt")
+    ] = None
+    reversal_journal_transaction_id: typing_extensions.Annotated[
+        typing.Optional[str],
+        FieldMetadata(alias="reversalJournalTransactionId"),
+        pydantic.Field(alias="reversalJournalTransactionId"),
+    ] = None
+    reversal_reason: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="reversalReason"), pydantic.Field(alias="reversalReason")
+    ] = None
     applied_to_invoice_id: typing_extensions.Annotated[
         typing.Optional[str], FieldMetadata(alias="appliedToInvoiceId"), pydantic.Field(alias="appliedToInvoiceId")
     ] = None

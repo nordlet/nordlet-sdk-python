@@ -18,6 +18,9 @@ class JournalTransactionsCreateLedgerRequestEntriesItem(UniversalBaseModel):
     project_id: typing_extensions.Annotated[
         typing.Optional[str], FieldMetadata(alias="projectId"), pydantic.Field(alias="projectId")
     ] = None
+    partner_id: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="partnerId"), pydantic.Field(alias="partnerId")
+    ] = None
     debit: typing.Optional[str] = None
     credit: typing.Optional[str] = None
     description: typing.Optional[str] = None

@@ -44,6 +44,7 @@ if typing.TYPE_CHECKING:
     from .purchases.client import AsyncPurchasesClient, PurchasesClient
     from .reference.client import AsyncReferenceClient, ReferenceClient
     from .reports.client import AsyncReportsClient, ReportsClient
+    from .review.client import AsyncReviewClient, ReviewClient
     from .sales.client import AsyncSalesClient, SalesClient
     from .transport.client import AsyncTransportClient, TransportClient
     from .webhooks.client import AsyncWebhooksClient, WebhooksClient
@@ -148,6 +149,7 @@ class Nordlet:
         self._officers: typing.Optional[OfficersClient] = None
         self._platform_sellers: typing.Optional[PlatformSellersClient] = None
         self._migration: typing.Optional[MigrationClient] = None
+        self._review: typing.Optional[ReviewClient] = None
         self._assets: typing.Optional[AssetsClient] = None
         self._hr: typing.Optional[HrClient] = None
         self._fleet: typing.Optional[FleetClient] = None
@@ -290,6 +292,14 @@ class Nordlet:
 
             self._migration = MigrationClient(client_wrapper=self._client_wrapper)
         return self._migration
+
+    @property
+    def review(self):
+        if self._review is None:
+            from .review.client import ReviewClient  # noqa: E402
+
+            self._review = ReviewClient(client_wrapper=self._client_wrapper)
+        return self._review
 
     @property
     def assets(self):
@@ -588,6 +598,7 @@ class AsyncNordlet:
         self._officers: typing.Optional[AsyncOfficersClient] = None
         self._platform_sellers: typing.Optional[AsyncPlatformSellersClient] = None
         self._migration: typing.Optional[AsyncMigrationClient] = None
+        self._review: typing.Optional[AsyncReviewClient] = None
         self._assets: typing.Optional[AsyncAssetsClient] = None
         self._hr: typing.Optional[AsyncHrClient] = None
         self._fleet: typing.Optional[AsyncFleetClient] = None
@@ -730,6 +741,14 @@ class AsyncNordlet:
 
             self._migration = AsyncMigrationClient(client_wrapper=self._client_wrapper)
         return self._migration
+
+    @property
+    def review(self):
+        if self._review is None:
+            from .review.client import AsyncReviewClient  # noqa: E402
+
+            self._review = AsyncReviewClient(client_wrapper=self._client_wrapper)
+        return self._review
 
     @property
     def assets(self):

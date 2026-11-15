@@ -170,7 +170,7 @@ class CashClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> OrdersListCashResponse:
         """
-        Lists cash orders. Filterable by `type`, `date`, `partnerId`, `employeeId`, `fullNumber` and `amount`; sortable by `date`, `fullNumber`, `createdAt` and `amount`.
+        Lists cash orders. Filterable by `type`, `date`, `partnerId`, `employeeId`, `fullNumber` and `amount`; sortable by `date`, `fullNumber`, `createdAt`, `amount`, `type`, `purpose`, `counterAccountCode` and `counterpartyName` (the name of the partner, else the name of the employee).
 
         Parameters
         ----------
@@ -347,7 +347,7 @@ class CashClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> ExpenseReportsListCashResponse:
         """
-        Lists expense reports without their lines. Filterable by `employeeId`, `date` and `number`; sortable by `date` and `number`.
+        Lists expense reports without their lines. Filterable by `employeeId`, `date` and `number`; sortable by `date`, `number`, `total` and `employeeName` (the first and last name of the employee).
 
         Parameters
         ----------
@@ -388,7 +388,7 @@ class CashClient:
         self, *, request_options: typing.Optional[RequestOptions] = None
     ) -> AdvanceHoldersBalancesCashResponse:
         """
-        Returns, per employee, the cash advances issued to them (disbursements posted to the `cash.advances` account with the employee set), the amounts returned (receipts on the same account), the total settled by expense reports and the open balance (issued less returned less settled).
+        Returns, per employee, the cash advances issued to them (disbursements posted to the `cash.advances` account with the employee set, and bank payments matched to their expense reports), the amounts returned (receipts on the same account), the total settled by expense reports and the open balance (issued less returned less settled).
 
         Parameters
         ----------
@@ -575,7 +575,7 @@ class AsyncCashClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> OrdersListCashResponse:
         """
-        Lists cash orders. Filterable by `type`, `date`, `partnerId`, `employeeId`, `fullNumber` and `amount`; sortable by `date`, `fullNumber`, `createdAt` and `amount`.
+        Lists cash orders. Filterable by `type`, `date`, `partnerId`, `employeeId`, `fullNumber` and `amount`; sortable by `date`, `fullNumber`, `createdAt`, `amount`, `type`, `purpose`, `counterAccountCode` and `counterpartyName` (the name of the partner, else the name of the employee).
 
         Parameters
         ----------
@@ -783,7 +783,7 @@ class AsyncCashClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> ExpenseReportsListCashResponse:
         """
-        Lists expense reports without their lines. Filterable by `employeeId`, `date` and `number`; sortable by `date` and `number`.
+        Lists expense reports without their lines. Filterable by `employeeId`, `date` and `number`; sortable by `date`, `number`, `total` and `employeeName` (the first and last name of the employee).
 
         Parameters
         ----------
@@ -832,7 +832,7 @@ class AsyncCashClient:
         self, *, request_options: typing.Optional[RequestOptions] = None
     ) -> AdvanceHoldersBalancesCashResponse:
         """
-        Returns, per employee, the cash advances issued to them (disbursements posted to the `cash.advances` account with the employee set), the amounts returned (receipts on the same account), the total settled by expense reports and the open balance (issued less returned less settled).
+        Returns, per employee, the cash advances issued to them (disbursements posted to the `cash.advances` account with the employee set, and bank payments matched to their expense reports), the amounts returned (receipts on the same account), the total settled by expense reports and the open balance (issued less returned less settled).
 
         Parameters
         ----------

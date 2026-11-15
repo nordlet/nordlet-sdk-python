@@ -889,7 +889,7 @@ class RawOperationTypesClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[ListOperationTypesResponse]:
         """
-        List operation types. Filterable by `code`, `name`, `isSale`, `isPurchase` and `isActive`; sortable by `code`, `name`, `sortOrder` and `createdAt`.
+        List operation types. Filterable by `code`, `name`, `isSale`, `isPurchase` and `isActive`; sortable by `code`, `name`, `accounts` (the debit account code, then the credit account code), `flags` (the names of the flags that are set, in the order isPurchase, isSale, isWriteOff, isInternalMovement, isPurchaseReturn, isSalesReturn, isConsignment, isProduction, isAssetIn, isAssetOut, isCashRegisterSale), `isSale`, `isPurchase`, `sortOrder`, `isActive` and `createdAt`.
 
         Parameters
         ----------
@@ -1915,7 +1915,7 @@ class AsyncRawOperationTypesClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[ListOperationTypesResponse]:
         """
-        List operation types. Filterable by `code`, `name`, `isSale`, `isPurchase` and `isActive`; sortable by `code`, `name`, `sortOrder` and `createdAt`.
+        List operation types. Filterable by `code`, `name`, `isSale`, `isPurchase` and `isActive`; sortable by `code`, `name`, `accounts` (the debit account code, then the credit account code), `flags` (the names of the flags that are set, in the order isPurchase, isSale, isWriteOff, isInternalMovement, isPurchaseReturn, isSalesReturn, isConsignment, isProduction, isAssetIn, isAssetOut, isCashRegisterSale), `isSale`, `isPurchase`, `sortOrder`, `isActive` and `createdAt`.
 
         Parameters
         ----------

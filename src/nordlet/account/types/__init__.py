@@ -15,6 +15,33 @@ if typing.TYPE_CHECKING:
     from .brand_update_account_response import BrandUpdateAccountResponse
     from .companies_activate_account_response import CompaniesActivateAccountResponse
     from .companies_archive_account_response import CompaniesArchiveAccountResponse
+    from .companies_context_account_response import CompaniesContextAccountResponse
+    from .companies_context_account_response_bank_accounts_item import CompaniesContextAccountResponseBankAccountsItem
+    from .companies_context_account_response_filings_item import CompaniesContextAccountResponseFilingsItem
+    from .companies_context_account_response_filings_item_missing_settings import (
+        CompaniesContextAccountResponseFilingsItemMissingSettings,
+    )
+    from .companies_context_account_response_filings_item_missing_settings_operation import (
+        CompaniesContextAccountResponseFilingsItemMissingSettingsOperation,
+    )
+    from .companies_context_account_response_payroll import CompaniesContextAccountResponsePayroll
+    from .companies_context_account_response_payroll_employee_fields_item import (
+        CompaniesContextAccountResponsePayrollEmployeeFieldsItem,
+    )
+    from .companies_context_account_response_payroll_employee_fields_item_kind import (
+        CompaniesContextAccountResponsePayrollEmployeeFieldsItemKind,
+    )
+    from .companies_context_account_response_periods import CompaniesContextAccountResponsePeriods
+    from .companies_context_account_response_periods_locked_item import CompaniesContextAccountResponsePeriodsLockedItem
+    from .companies_context_account_response_periods_open_item import CompaniesContextAccountResponsePeriodsOpenItem
+    from .companies_context_account_response_profile import CompaniesContextAccountResponseProfile
+    from .companies_context_account_response_profile_accounts_kept_by import (
+        CompaniesContextAccountResponseProfileAccountsKeptBy,
+    )
+    from .companies_context_account_response_profile_address import CompaniesContextAccountResponseProfileAddress
+    from .companies_context_account_response_profile_status import CompaniesContextAccountResponseProfileStatus
+    from .companies_context_account_response_profile_vat_period import CompaniesContextAccountResponseProfileVatPeriod
+    from .companies_context_account_response_vat_types_used_item import CompaniesContextAccountResponseVatTypesUsedItem
     from .companies_convert_to_live_account_response import CompaniesConvertToLiveAccountResponse
     from .companies_create_account_request_accounts_kept_by import CompaniesCreateAccountRequestAccountsKeptBy
     from .companies_create_account_request_address import CompaniesCreateAccountRequestAddress
@@ -130,6 +157,23 @@ _dynamic_imports: typing.Dict[str, str] = {
     "BrandUpdateAccountResponse": ".brand_update_account_response",
     "CompaniesActivateAccountResponse": ".companies_activate_account_response",
     "CompaniesArchiveAccountResponse": ".companies_archive_account_response",
+    "CompaniesContextAccountResponse": ".companies_context_account_response",
+    "CompaniesContextAccountResponseBankAccountsItem": ".companies_context_account_response_bank_accounts_item",
+    "CompaniesContextAccountResponseFilingsItem": ".companies_context_account_response_filings_item",
+    "CompaniesContextAccountResponseFilingsItemMissingSettings": ".companies_context_account_response_filings_item_missing_settings",
+    "CompaniesContextAccountResponseFilingsItemMissingSettingsOperation": ".companies_context_account_response_filings_item_missing_settings_operation",
+    "CompaniesContextAccountResponsePayroll": ".companies_context_account_response_payroll",
+    "CompaniesContextAccountResponsePayrollEmployeeFieldsItem": ".companies_context_account_response_payroll_employee_fields_item",
+    "CompaniesContextAccountResponsePayrollEmployeeFieldsItemKind": ".companies_context_account_response_payroll_employee_fields_item_kind",
+    "CompaniesContextAccountResponsePeriods": ".companies_context_account_response_periods",
+    "CompaniesContextAccountResponsePeriodsLockedItem": ".companies_context_account_response_periods_locked_item",
+    "CompaniesContextAccountResponsePeriodsOpenItem": ".companies_context_account_response_periods_open_item",
+    "CompaniesContextAccountResponseProfile": ".companies_context_account_response_profile",
+    "CompaniesContextAccountResponseProfileAccountsKeptBy": ".companies_context_account_response_profile_accounts_kept_by",
+    "CompaniesContextAccountResponseProfileAddress": ".companies_context_account_response_profile_address",
+    "CompaniesContextAccountResponseProfileStatus": ".companies_context_account_response_profile_status",
+    "CompaniesContextAccountResponseProfileVatPeriod": ".companies_context_account_response_profile_vat_period",
+    "CompaniesContextAccountResponseVatTypesUsedItem": ".companies_context_account_response_vat_types_used_item",
     "CompaniesConvertToLiveAccountResponse": ".companies_convert_to_live_account_response",
     "CompaniesCreateAccountRequestAccountsKeptBy": ".companies_create_account_request_accounts_kept_by",
     "CompaniesCreateAccountRequestAddress": ".companies_create_account_request_address",
@@ -265,6 +309,23 @@ __all__ = [
     "BrandUpdateAccountResponse",
     "CompaniesActivateAccountResponse",
     "CompaniesArchiveAccountResponse",
+    "CompaniesContextAccountResponse",
+    "CompaniesContextAccountResponseBankAccountsItem",
+    "CompaniesContextAccountResponseFilingsItem",
+    "CompaniesContextAccountResponseFilingsItemMissingSettings",
+    "CompaniesContextAccountResponseFilingsItemMissingSettingsOperation",
+    "CompaniesContextAccountResponsePayroll",
+    "CompaniesContextAccountResponsePayrollEmployeeFieldsItem",
+    "CompaniesContextAccountResponsePayrollEmployeeFieldsItemKind",
+    "CompaniesContextAccountResponsePeriods",
+    "CompaniesContextAccountResponsePeriodsLockedItem",
+    "CompaniesContextAccountResponsePeriodsOpenItem",
+    "CompaniesContextAccountResponseProfile",
+    "CompaniesContextAccountResponseProfileAccountsKeptBy",
+    "CompaniesContextAccountResponseProfileAddress",
+    "CompaniesContextAccountResponseProfileStatus",
+    "CompaniesContextAccountResponseProfileVatPeriod",
+    "CompaniesContextAccountResponseVatTypesUsedItem",
     "CompaniesConvertToLiveAccountResponse",
     "CompaniesCreateAccountRequestAccountsKeptBy",
     "CompaniesCreateAccountRequestAddress",

@@ -80,6 +80,7 @@ from .types.invoices_pdf_sales_response import InvoicesPdfSalesResponse
 from .types.invoices_peppol_send_sales_response import InvoicesPeppolSendSalesResponse
 from .types.invoices_peppol_status_sales_response import InvoicesPeppolStatusSalesResponse
 from .types.invoices_peppol_xml_sales_response import InvoicesPeppolXmlSalesResponse
+from .types.invoices_reverse_sales_response import InvoicesReverseSalesResponse
 from .types.invoices_send_sales_request_locale import InvoicesSendSalesRequestLocale
 from .types.invoices_send_sales_response import InvoicesSendSalesResponse
 from .types.invoices_unlock_sales_response import InvoicesUnlockSalesResponse
@@ -168,7 +169,7 @@ class RawSalesClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[InvoicesCreateSalesResponse]:
         """
-        Create a draft sale document - an invoice, credit note, proforma or advance invoice (`type`) - with its lines; the totals are computed from the lines and `discountPercent`, and the number is assigned by `sales/invoices/issue`. Answers 422 when a credit note credits a proforma, another credit note or a document that is not issued, when the credited document has another partner or currency, when an OSS or IOSS document has no EU `vatCountryCode`, when the lines carry VAT but the company is not a VAT payer or the VAT scheme charges none, or when the operation type or document series is for another document type. `warnings` lists what does not refuse the document but needs a look: `vat_type_not_valid_on_date` (a line VAT type is not valid on the issue date, else today), `vat_type_domestic_for_eu_partner` (a domestic VAT type for a partner VAT-registered in another EU country), `vat_type_intra_eu_for_domestic_partner` (an intra-EU VAT type for a partner in the company country) and `vat_type_intra_eu_without_vat_number` (an intra-EU VAT type for a partner without a VAT number).
+        Create a draft sale document - an invoice, credit note, proforma or advance invoice (`type`) - with its lines; the totals are computed from the lines and `discountPercent`, and the number is assigned by `sales/invoices/issue`. Answers 422 when a credit note credits a proforma, another credit note or a document that is not issued, when the credited document has another partner or currency, when an OSS or IOSS document has no EU `vatCountryCode`, when the lines carry VAT but the company is not a VAT payer or the VAT scheme charges none, or when the operation type or document series is for another document type. `warnings` lists what does not refuse the document but needs a look, each with a `fix` naming the call or field that resolves it: `partner_vat_invalid` (the VAT number of the partner failed its VIES check), `vat_type_not_valid_on_date` (a line VAT type is not valid on the issue date, else today), `vat_type_domestic_for_eu_partner` (a domestic VAT type for a partner VAT-registered in another EU country), `vat_type_intra_eu_for_domestic_partner` (an intra-EU VAT type for a partner in the company country) and `vat_type_intra_eu_without_vat_number` (an intra-EU VAT type for a partner without a VAT number).
 
         Parameters
         ----------
@@ -2478,7 +2479,7 @@ class RawSalesClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[InvoicesIssueSalesResponse]:
         """
-        Issue a draft sale document: assigns the next number (from its document series, else from `series` or the type's default prefix and the year), the issue date (`issueDate`, else the draft's, else today) and a missing due date from the partner's payment term, and for an invoice, credit note or advance invoice posts the journal entry and stores the VAT evidence. `warehouseId` (or the series' warehouse) takes the sold goods of an invoice out of stock, the first-expiring lot first (lots without an expiry date after those with one, then the oldest layers first), leaving out expired lots, with a cost of goods sold entry; `returnToStock` puts them back for a credit note that credits an invoice. A credit note is set against the unpaid balance of the credited document. Emits `sale_invoice.issued`, `sale_invoice.paid` when a credit note settles the credited invoice in full, and `intercompany.invoice_mirrored` when the partner is linked to another company of the group (a draft purchase invoice is created there). Answers 409 when the document is already issued or locked or the accounting period is locked, 422 when the lines carry VAT under a scheme that charges none, when credit notes would exceed the credited total, or when `returnToStock` is used on anything but a credit note of an invoice. `warnings` carries the VAT type warnings of `sales/invoices/create` and `document_date_before_last_number` when the document is dated before the last number issued in its series.
+        Issue a draft sale document: assigns the next number (from its document series, else from `series` or the type's default prefix and the year), the issue date (`issueDate`, else the draft's, else today) and a missing due date from the partner's payment term, and for an invoice, credit note or advance invoice posts the journal entry and stores the VAT evidence. `warehouseId` (or the series' warehouse) takes the sold goods of an invoice out of stock, the first-expiring lot first (lots without an expiry date after those with one, then the oldest layers first), leaving out expired lots, with a cost of goods sold entry; `returnToStock` puts them back for a credit note that credits an invoice. A credit note is set against the unpaid balance of the credited document. Emits `sale_invoice.issued`, `sale_invoice.paid` when a credit note settles the credited invoice in full, and `intercompany.invoice_mirrored` when the partner is linked to another company of the group (a draft purchase invoice is created there). Answers 409 when the document is already issued or locked, the accounting period is locked or the credited invoice is reversed, 422 when the lines carry VAT under a scheme that charges none, when credit notes would exceed the credited total, or when `returnToStock` is used on anything but a credit note of an invoice. `warnings` carries the VAT type warnings of `sales/invoices/create` and `document_date_before_last_number` when the document is dated before the last number issued in its series.
 
         Parameters
         ----------
@@ -2522,6 +2523,168 @@ class RawSalesClient:
                     InvoicesIssueSalesResponse,
                     parse_obj_as(
                         type_=InvoicesIssueSalesResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return HttpResponse(response=_response, data=_data)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 422:
+                raise UnprocessableEntityError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
+    def invoices_reverse(
+        self, *, id: str, reason: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> HttpResponse[InvoicesReverseSalesResponse]:
+        """
+        Undoes an issued invoice or advance invoice: posts a journal entry dated the issue date that mirrors the invoice's entry (debits and credits swapped), cancels its pending revenue recognition and sets the status to `reversed` with the reason. The invoice keeps its number, which stays used, and leaves the VAT returns, the national lists, the reports, partner balances and debt aging. Emits `sale_invoice.reversed`. Answers 409 pointing to a credit note when the document is not issued, is a credit note, is locked, was e-mailed, was sent over Peppol or to an e-invoicing or tax authority system (or carries national marks registered at issue), has payments matched to it, is credited by a credit note, has an advance applied, moved goods in or out of stock, has revenue recognised or a refund liability, is the sale invoice of an asset disposal (naming the asset), was mirrored to another company of the group, or when the accounting period of its issue date is locked (naming the period).
+
+        Parameters
+        ----------
+        id : str
+
+        reason : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        HttpResponse[InvoicesReverseSalesResponse]
+            Default Response
+        """
+        _response = self._client_wrapper.httpx_client.request(
+            "v1/sales/invoices/reverse",
+            method="POST",
+            json={
+                "id": id,
+                "reason": reason,
+            },
+            headers={
+                "content-type": "application/json",
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    InvoicesReverseSalesResponse,
+                    parse_obj_as(
+                        type_=InvoicesReverseSalesResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -3812,7 +3975,7 @@ class RawSalesClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[InvoicesListSalesResponse]:
         """
-        List the sale documents of the company with the partner name. An advance invoice also carries `advanceUnappliedAmount`: its gross total less the amounts applied with `sales/invoices/apply-advance` and the issued credit notes on it (null on other documents). Filterable by partnerId, type, status, paymentStatus, fullNumber, issueDate, currency, agreementId, creditedInvoiceId, operationTypeId, documentSeriesId, lockedAt, grossTotal, netTotal, vatTotal, dueDate, orderNumber, seriesLabel, locale and recurringInvoiceId; sortable by createdAt, issueDate, fullNumber, grossTotal, netTotal, vatTotal, status and paymentStatus.
+        List the sale documents of the company with the partner name. An advance invoice also carries `advanceUnappliedAmount`: its gross total less the amounts applied with `sales/invoices/apply-advance` and the issued credit notes on it (null on other documents). Filterable by partnerId, type, status, paymentStatus, fullNumber, issueDate, currency, agreementId, creditedInvoiceId, operationTypeId, documentSeriesId, lockedAt, grossTotal, netTotal, vatTotal, dueDate, orderNumber, seriesLabel, locale and recurringInvoiceId; sortable by createdAt, issueDate, fullNumber, grossTotal, netTotal, vatTotal, status, paymentStatus, seriesLabel, partnerName (the name of the partner) and creditedInvoiceReference (the reference of the credited invoice).
 
         Parameters
         ----------
@@ -6071,7 +6234,7 @@ class RawSalesClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[InvoiceTemplatesListSalesResponse]:
         """
-        List invoice templates. Filterable by name, documentType and partnerId; sortable by name, documentType and createdAt.
+        List invoice templates. Filterable by name, documentType and partnerId; sortable by name, documentType, createdAt, currency, paymentTermDays and lines (the number of lines).
 
         Parameters
         ----------
@@ -7136,7 +7299,7 @@ class RawSalesClient:
         self, *, as_of_date: typing.Optional[dt.date] = OMIT, request_options: typing.Optional[RequestOptions] = None
     ) -> HttpResponse[RecurringInvoicesRunSalesResponse]:
         """
-        Generate every invoice due up to `asOfDate` (default today) from the active schedules of the company, catching up to 60 missed occurrences per schedule, as `sales/recurring-invoices/generate` does for one; each generated invoice emits `recurring_invoice.generated`. The answer lists what was generated and the schedules that failed; a failure is also stored as the schedule's `lastError`.
+        Generate every invoice due up to `asOfDate` (default today) from the active schedules of the company, catching up to 60 missed occurrences per schedule, as `sales/recurring-invoices/generate` does for one (409 when `asOfDate` is after the company's current date); each generated invoice emits `recurring_invoice.generated`. The answer lists what was generated and the schedules that failed; a failure is also stored as the schedule's `lastError`.
 
         Parameters
         ----------
@@ -7302,7 +7465,7 @@ class RawSalesClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[RecurringInvoicesListSalesResponse]:
         """
-        List recurring invoice schedules with the names of their template and partner. Filterable by status, partnerId, templateId, frequency, nextRunDate and autoIssue; sortable by nextRunDate, startDate, status, frequency and createdAt.
+        List recurring invoice schedules with the names of their template and partner. Filterable by status, partnerId, templateId, frequency, nextRunDate and autoIssue; sortable by nextRunDate, startDate, status, frequency, createdAt, templateName (the name of the template), partnerName (the name of the partner), interval and occurrences.
 
         Parameters
         ----------
@@ -9713,7 +9876,7 @@ class AsyncRawSalesClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[InvoicesCreateSalesResponse]:
         """
-        Create a draft sale document - an invoice, credit note, proforma or advance invoice (`type`) - with its lines; the totals are computed from the lines and `discountPercent`, and the number is assigned by `sales/invoices/issue`. Answers 422 when a credit note credits a proforma, another credit note or a document that is not issued, when the credited document has another partner or currency, when an OSS or IOSS document has no EU `vatCountryCode`, when the lines carry VAT but the company is not a VAT payer or the VAT scheme charges none, or when the operation type or document series is for another document type. `warnings` lists what does not refuse the document but needs a look: `vat_type_not_valid_on_date` (a line VAT type is not valid on the issue date, else today), `vat_type_domestic_for_eu_partner` (a domestic VAT type for a partner VAT-registered in another EU country), `vat_type_intra_eu_for_domestic_partner` (an intra-EU VAT type for a partner in the company country) and `vat_type_intra_eu_without_vat_number` (an intra-EU VAT type for a partner without a VAT number).
+        Create a draft sale document - an invoice, credit note, proforma or advance invoice (`type`) - with its lines; the totals are computed from the lines and `discountPercent`, and the number is assigned by `sales/invoices/issue`. Answers 422 when a credit note credits a proforma, another credit note or a document that is not issued, when the credited document has another partner or currency, when an OSS or IOSS document has no EU `vatCountryCode`, when the lines carry VAT but the company is not a VAT payer or the VAT scheme charges none, or when the operation type or document series is for another document type. `warnings` lists what does not refuse the document but needs a look, each with a `fix` naming the call or field that resolves it: `partner_vat_invalid` (the VAT number of the partner failed its VIES check), `vat_type_not_valid_on_date` (a line VAT type is not valid on the issue date, else today), `vat_type_domestic_for_eu_partner` (a domestic VAT type for a partner VAT-registered in another EU country), `vat_type_intra_eu_for_domestic_partner` (an intra-EU VAT type for a partner in the company country) and `vat_type_intra_eu_without_vat_number` (an intra-EU VAT type for a partner without a VAT number).
 
         Parameters
         ----------
@@ -12023,7 +12186,7 @@ class AsyncRawSalesClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[InvoicesIssueSalesResponse]:
         """
-        Issue a draft sale document: assigns the next number (from its document series, else from `series` or the type's default prefix and the year), the issue date (`issueDate`, else the draft's, else today) and a missing due date from the partner's payment term, and for an invoice, credit note or advance invoice posts the journal entry and stores the VAT evidence. `warehouseId` (or the series' warehouse) takes the sold goods of an invoice out of stock, the first-expiring lot first (lots without an expiry date after those with one, then the oldest layers first), leaving out expired lots, with a cost of goods sold entry; `returnToStock` puts them back for a credit note that credits an invoice. A credit note is set against the unpaid balance of the credited document. Emits `sale_invoice.issued`, `sale_invoice.paid` when a credit note settles the credited invoice in full, and `intercompany.invoice_mirrored` when the partner is linked to another company of the group (a draft purchase invoice is created there). Answers 409 when the document is already issued or locked or the accounting period is locked, 422 when the lines carry VAT under a scheme that charges none, when credit notes would exceed the credited total, or when `returnToStock` is used on anything but a credit note of an invoice. `warnings` carries the VAT type warnings of `sales/invoices/create` and `document_date_before_last_number` when the document is dated before the last number issued in its series.
+        Issue a draft sale document: assigns the next number (from its document series, else from `series` or the type's default prefix and the year), the issue date (`issueDate`, else the draft's, else today) and a missing due date from the partner's payment term, and for an invoice, credit note or advance invoice posts the journal entry and stores the VAT evidence. `warehouseId` (or the series' warehouse) takes the sold goods of an invoice out of stock, the first-expiring lot first (lots without an expiry date after those with one, then the oldest layers first), leaving out expired lots, with a cost of goods sold entry; `returnToStock` puts them back for a credit note that credits an invoice. A credit note is set against the unpaid balance of the credited document. Emits `sale_invoice.issued`, `sale_invoice.paid` when a credit note settles the credited invoice in full, and `intercompany.invoice_mirrored` when the partner is linked to another company of the group (a draft purchase invoice is created there). Answers 409 when the document is already issued or locked, the accounting period is locked or the credited invoice is reversed, 422 when the lines carry VAT under a scheme that charges none, when credit notes would exceed the credited total, or when `returnToStock` is used on anything but a credit note of an invoice. `warnings` carries the VAT type warnings of `sales/invoices/create` and `document_date_before_last_number` when the document is dated before the last number issued in its series.
 
         Parameters
         ----------
@@ -12067,6 +12230,168 @@ class AsyncRawSalesClient:
                     InvoicesIssueSalesResponse,
                     parse_obj_as(
                         type_=InvoicesIssueSalesResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return AsyncHttpResponse(response=_response, data=_data)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 422:
+                raise UnprocessableEntityError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
+    async def invoices_reverse(
+        self, *, id: str, reason: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> AsyncHttpResponse[InvoicesReverseSalesResponse]:
+        """
+        Undoes an issued invoice or advance invoice: posts a journal entry dated the issue date that mirrors the invoice's entry (debits and credits swapped), cancels its pending revenue recognition and sets the status to `reversed` with the reason. The invoice keeps its number, which stays used, and leaves the VAT returns, the national lists, the reports, partner balances and debt aging. Emits `sale_invoice.reversed`. Answers 409 pointing to a credit note when the document is not issued, is a credit note, is locked, was e-mailed, was sent over Peppol or to an e-invoicing or tax authority system (or carries national marks registered at issue), has payments matched to it, is credited by a credit note, has an advance applied, moved goods in or out of stock, has revenue recognised or a refund liability, is the sale invoice of an asset disposal (naming the asset), was mirrored to another company of the group, or when the accounting period of its issue date is locked (naming the period).
+
+        Parameters
+        ----------
+        id : str
+
+        reason : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        AsyncHttpResponse[InvoicesReverseSalesResponse]
+            Default Response
+        """
+        _response = await self._client_wrapper.httpx_client.request(
+            "v1/sales/invoices/reverse",
+            method="POST",
+            json={
+                "id": id,
+                "reason": reason,
+            },
+            headers={
+                "content-type": "application/json",
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    InvoicesReverseSalesResponse,
+                    parse_obj_as(
+                        type_=InvoicesReverseSalesResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -13357,7 +13682,7 @@ class AsyncRawSalesClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[InvoicesListSalesResponse]:
         """
-        List the sale documents of the company with the partner name. An advance invoice also carries `advanceUnappliedAmount`: its gross total less the amounts applied with `sales/invoices/apply-advance` and the issued credit notes on it (null on other documents). Filterable by partnerId, type, status, paymentStatus, fullNumber, issueDate, currency, agreementId, creditedInvoiceId, operationTypeId, documentSeriesId, lockedAt, grossTotal, netTotal, vatTotal, dueDate, orderNumber, seriesLabel, locale and recurringInvoiceId; sortable by createdAt, issueDate, fullNumber, grossTotal, netTotal, vatTotal, status and paymentStatus.
+        List the sale documents of the company with the partner name. An advance invoice also carries `advanceUnappliedAmount`: its gross total less the amounts applied with `sales/invoices/apply-advance` and the issued credit notes on it (null on other documents). Filterable by partnerId, type, status, paymentStatus, fullNumber, issueDate, currency, agreementId, creditedInvoiceId, operationTypeId, documentSeriesId, lockedAt, grossTotal, netTotal, vatTotal, dueDate, orderNumber, seriesLabel, locale and recurringInvoiceId; sortable by createdAt, issueDate, fullNumber, grossTotal, netTotal, vatTotal, status, paymentStatus, seriesLabel, partnerName (the name of the partner) and creditedInvoiceReference (the reference of the credited invoice).
 
         Parameters
         ----------
@@ -15616,7 +15941,7 @@ class AsyncRawSalesClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[InvoiceTemplatesListSalesResponse]:
         """
-        List invoice templates. Filterable by name, documentType and partnerId; sortable by name, documentType and createdAt.
+        List invoice templates. Filterable by name, documentType and partnerId; sortable by name, documentType, createdAt, currency, paymentTermDays and lines (the number of lines).
 
         Parameters
         ----------
@@ -16681,7 +17006,7 @@ class AsyncRawSalesClient:
         self, *, as_of_date: typing.Optional[dt.date] = OMIT, request_options: typing.Optional[RequestOptions] = None
     ) -> AsyncHttpResponse[RecurringInvoicesRunSalesResponse]:
         """
-        Generate every invoice due up to `asOfDate` (default today) from the active schedules of the company, catching up to 60 missed occurrences per schedule, as `sales/recurring-invoices/generate` does for one; each generated invoice emits `recurring_invoice.generated`. The answer lists what was generated and the schedules that failed; a failure is also stored as the schedule's `lastError`.
+        Generate every invoice due up to `asOfDate` (default today) from the active schedules of the company, catching up to 60 missed occurrences per schedule, as `sales/recurring-invoices/generate` does for one (409 when `asOfDate` is after the company's current date); each generated invoice emits `recurring_invoice.generated`. The answer lists what was generated and the schedules that failed; a failure is also stored as the schedule's `lastError`.
 
         Parameters
         ----------
@@ -16847,7 +17172,7 @@ class AsyncRawSalesClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[RecurringInvoicesListSalesResponse]:
         """
-        List recurring invoice schedules with the names of their template and partner. Filterable by status, partnerId, templateId, frequency, nextRunDate and autoIssue; sortable by nextRunDate, startDate, status, frequency and createdAt.
+        List recurring invoice schedules with the names of their template and partner. Filterable by status, partnerId, templateId, frequency, nextRunDate and autoIssue; sortable by nextRunDate, startDate, status, frequency, createdAt, templateName (the name of the template), partnerName (the name of the partner), interval and occurrences.
 
         Parameters
         ----------

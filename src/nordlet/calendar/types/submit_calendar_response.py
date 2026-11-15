@@ -7,6 +7,7 @@ import pydantic
 import typing_extensions
 from ...core.pydantic_utilities import IS_PYDANTIC_V2, UniversalBaseModel
 from ...core.serialization import FieldMetadata
+from .submit_calendar_response_correction_input import SubmitCalendarResponseCorrectionInput
 from .submit_calendar_response_environment import SubmitCalendarResponseEnvironment
 from .submit_calendar_response_status import SubmitCalendarResponseStatus
 
@@ -36,6 +37,14 @@ class SubmitCalendarResponse(UniversalBaseModel):
         typing.Optional[str], FieldMetadata(alias="documentKey"), pydantic.Field(alias="documentKey")
     ] = None
     amendment: int
+    authority_ref: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="authorityRef"), pydantic.Field(alias="authorityRef")
+    ] = None
+    correction_input: typing_extensions.Annotated[
+        typing.Optional[SubmitCalendarResponseCorrectionInput],
+        FieldMetadata(alias="correctionInput"),
+        pydantic.Field(alias="correctionInput"),
+    ] = None
     origin: str
     transport_system: typing_extensions.Annotated[
         typing.Optional[str], FieldMetadata(alias="transportSystem"), pydantic.Field(alias="transportSystem")

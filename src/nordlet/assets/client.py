@@ -488,7 +488,7 @@ class AssetsClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AssetsListAssetsResponse:
         """
-        List the fixed assets; filterable by `code`, `name`, `groupId`, `status`, `acquisitionDate`, `acquisitionCost` and `accumulatedDepreciation`, sortable by `code`, `name`, `acquisitionDate` and `acquisitionCost`.
+        List the fixed assets; filterable by `code`, `name`, `groupId`, `status`, `acquisitionDate`, `acquisitionCost` and `accumulatedDepreciation`, sortable by `code`, `name`, `acquisitionDate`, `acquisitionCost`, `groupName` (the name of the asset group), `vehiclePlate` (the plate number of the linked vehicle), `status`, `totalCost` (the acquisition cost plus the modernisations), `accumulatedDepreciation` and `netBookValue` (the total cost less the accumulated depreciation, zero when disposed).
 
         Parameters
         ----------
@@ -592,11 +592,12 @@ class AssetsClient:
         date: dt.date,
         reason: AssetsDisposeAssetsRequestReason,
         proceeds: typing.Optional[str] = OMIT,
+        sale_invoice_id: typing.Optional[str] = OMIT,
         notes: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AssetsDisposeAssetsResponse:
         """
-        Dispose of a fixed asset (sold, scrapped or written off). Removes its cost and accumulated depreciation, books the net book value as a disposal loss and the proceeds as a disposal gain (posting rules assets.disposalLoss, assets.disposalGain, assets.disposalProceeds), and stops its depreciation. Depreciation must be posted for every month before the disposal month.
+        Dispose of a fixed asset (sold, scrapped or written off). Removes its cost and accumulated depreciation, books the net book value as a disposal loss and the proceeds as a disposal gain (posting rules assets.disposalLoss, assets.disposalGain, assets.disposalProceeds), and stops its depreciation. Depreciation must be posted for every month before the disposal month. With `saleInvoiceId` (reason `sold`) the proceeds are the net of the issued invoice lines that name this asset (`assetId` on the sales invoice line, converted to the base currency at the invoice rate), `proceeds` must then be omitted, the buyer is the partner of the disposal entry, and the receivable and the VAT stay on the invoice; 422 when the invoice is not an issued invoice, has no line for the asset, or when `proceeds` is given with it.
 
         Parameters
         ----------
@@ -608,6 +609,9 @@ class AssetsClient:
 
         proceeds : typing.Optional[str]
             Sale price excluding VAT; 0 when scrapped or written off
+
+        sale_invoice_id : typing.Optional[str]
+            The issued sales invoice that sold the asset
 
         notes : typing.Optional[str]
 
@@ -637,7 +641,13 @@ class AssetsClient:
         )
         """
         _response = self._raw_client.assets_dispose(
-            id=id, date=date, reason=reason, proceeds=proceeds, notes=notes, request_options=request_options
+            id=id,
+            date=date,
+            reason=reason,
+            proceeds=proceeds,
+            sale_invoice_id=sale_invoice_id,
+            notes=notes,
+            request_options=request_options,
         )
         return _response.data
 
@@ -1231,7 +1241,7 @@ class AsyncAssetsClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AssetsListAssetsResponse:
         """
-        List the fixed assets; filterable by `code`, `name`, `groupId`, `status`, `acquisitionDate`, `acquisitionCost` and `accumulatedDepreciation`, sortable by `code`, `name`, `acquisitionDate` and `acquisitionCost`.
+        List the fixed assets; filterable by `code`, `name`, `groupId`, `status`, `acquisitionDate`, `acquisitionCost` and `accumulatedDepreciation`, sortable by `code`, `name`, `acquisitionDate`, `acquisitionCost`, `groupName` (the name of the asset group), `vehiclePlate` (the plate number of the linked vehicle), `status`, `totalCost` (the acquisition cost plus the modernisations), `accumulatedDepreciation` and `netBookValue` (the total cost less the accumulated depreciation, zero when disposed).
 
         Parameters
         ----------
@@ -1350,11 +1360,12 @@ class AsyncAssetsClient:
         date: dt.date,
         reason: AssetsDisposeAssetsRequestReason,
         proceeds: typing.Optional[str] = OMIT,
+        sale_invoice_id: typing.Optional[str] = OMIT,
         notes: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AssetsDisposeAssetsResponse:
         """
-        Dispose of a fixed asset (sold, scrapped or written off). Removes its cost and accumulated depreciation, books the net book value as a disposal loss and the proceeds as a disposal gain (posting rules assets.disposalLoss, assets.disposalGain, assets.disposalProceeds), and stops its depreciation. Depreciation must be posted for every month before the disposal month.
+        Dispose of a fixed asset (sold, scrapped or written off). Removes its cost and accumulated depreciation, books the net book value as a disposal loss and the proceeds as a disposal gain (posting rules assets.disposalLoss, assets.disposalGain, assets.disposalProceeds), and stops its depreciation. Depreciation must be posted for every month before the disposal month. With `saleInvoiceId` (reason `sold`) the proceeds are the net of the issued invoice lines that name this asset (`assetId` on the sales invoice line, converted to the base currency at the invoice rate), `proceeds` must then be omitted, the buyer is the partner of the disposal entry, and the receivable and the VAT stay on the invoice; 422 when the invoice is not an issued invoice, has no line for the asset, or when `proceeds` is given with it.
 
         Parameters
         ----------
@@ -1366,6 +1377,9 @@ class AsyncAssetsClient:
 
         proceeds : typing.Optional[str]
             Sale price excluding VAT; 0 when scrapped or written off
+
+        sale_invoice_id : typing.Optional[str]
+            The issued sales invoice that sold the asset
 
         notes : typing.Optional[str]
 
@@ -1402,7 +1416,13 @@ class AsyncAssetsClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.assets_dispose(
-            id=id, date=date, reason=reason, proceeds=proceeds, notes=notes, request_options=request_options
+            id=id,
+            date=date,
+            reason=reason,
+            proceeds=proceeds,
+            sale_invoice_id=sale_invoice_id,
+            notes=notes,
+            request_options=request_options,
         )
         return _response.data
 

@@ -88,6 +88,11 @@ class AssetsListAssetsResponseRowsItem(UniversalBaseModel):
         FieldMetadata(alias="disposalJournalTransactionId"),
         pydantic.Field(alias="disposalJournalTransactionId"),
     ] = None
+    disposal_sale_invoice_id: typing_extensions.Annotated[
+        typing.Optional[str],
+        FieldMetadata(alias="disposalSaleInvoiceId"),
+        pydantic.Field(alias="disposalSaleInvoiceId"),
+    ] = None
     created_at: typing_extensions.Annotated[
         dt.datetime, FieldMetadata(alias="createdAt"), pydantic.Field(alias="createdAt")
     ]

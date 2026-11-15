@@ -7,6 +7,7 @@ import pydantic
 import typing_extensions
 from ...core.pydantic_utilities import IS_PYDANTIC_V2, UniversalBaseModel
 from ...core.serialization import FieldMetadata
+from .get_calendar_response_correction import GetCalendarResponseCorrection
 from .get_calendar_response_kind import GetCalendarResponseKind
 from .get_calendar_response_submission import GetCalendarResponseSubmission
 from .get_calendar_response_submissions_item import GetCalendarResponseSubmissionsItem
@@ -29,6 +30,7 @@ class GetCalendarResponse(UniversalBaseModel):
     submissions: typing.List[GetCalendarResponseSubmissionsItem]
     can_submit: typing_extensions.Annotated[bool, FieldMetadata(alias="canSubmit"), pydantic.Field(alias="canSubmit")]
     can_amend: typing_extensions.Annotated[bool, FieldMetadata(alias="canAmend"), pydantic.Field(alias="canAmend")]
+    correction: typing.Optional[GetCalendarResponseCorrection] = None
     can_download: typing_extensions.Annotated[
         bool, FieldMetadata(alias="canDownload"), pydantic.Field(alias="canDownload")
     ]

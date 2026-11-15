@@ -1498,7 +1498,7 @@ class RawAssetsClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[AssetsListAssetsResponse]:
         """
-        List the fixed assets; filterable by `code`, `name`, `groupId`, `status`, `acquisitionDate`, `acquisitionCost` and `accumulatedDepreciation`, sortable by `code`, `name`, `acquisitionDate` and `acquisitionCost`.
+        List the fixed assets; filterable by `code`, `name`, `groupId`, `status`, `acquisitionDate`, `acquisitionCost` and `accumulatedDepreciation`, sortable by `code`, `name`, `acquisitionDate`, `acquisitionCost`, `groupName` (the name of the asset group), `vehiclePlate` (the plate number of the linked vehicle), `status`, `totalCost` (the acquisition cost plus the modernisations), `accumulatedDepreciation` and `netBookValue` (the total cost less the accumulated depreciation, zero when disposed).
 
         Parameters
         ----------
@@ -1855,11 +1855,12 @@ class RawAssetsClient:
         date: dt.date,
         reason: AssetsDisposeAssetsRequestReason,
         proceeds: typing.Optional[str] = OMIT,
+        sale_invoice_id: typing.Optional[str] = OMIT,
         notes: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[AssetsDisposeAssetsResponse]:
         """
-        Dispose of a fixed asset (sold, scrapped or written off). Removes its cost and accumulated depreciation, books the net book value as a disposal loss and the proceeds as a disposal gain (posting rules assets.disposalLoss, assets.disposalGain, assets.disposalProceeds), and stops its depreciation. Depreciation must be posted for every month before the disposal month.
+        Dispose of a fixed asset (sold, scrapped or written off). Removes its cost and accumulated depreciation, books the net book value as a disposal loss and the proceeds as a disposal gain (posting rules assets.disposalLoss, assets.disposalGain, assets.disposalProceeds), and stops its depreciation. Depreciation must be posted for every month before the disposal month. With `saleInvoiceId` (reason `sold`) the proceeds are the net of the issued invoice lines that name this asset (`assetId` on the sales invoice line, converted to the base currency at the invoice rate), `proceeds` must then be omitted, the buyer is the partner of the disposal entry, and the receivable and the VAT stay on the invoice; 422 when the invoice is not an issued invoice, has no line for the asset, or when `proceeds` is given with it.
 
         Parameters
         ----------
@@ -1871,6 +1872,9 @@ class RawAssetsClient:
 
         proceeds : typing.Optional[str]
             Sale price excluding VAT; 0 when scrapped or written off
+
+        sale_invoice_id : typing.Optional[str]
+            The issued sales invoice that sold the asset
 
         notes : typing.Optional[str]
 
@@ -1890,6 +1894,7 @@ class RawAssetsClient:
                 "date": date,
                 "reason": reason,
                 "proceeds": proceeds,
+                "saleInvoiceId": sale_invoice_id,
                 "notes": notes,
             },
             headers={
@@ -3799,7 +3804,7 @@ class AsyncRawAssetsClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[AssetsListAssetsResponse]:
         """
-        List the fixed assets; filterable by `code`, `name`, `groupId`, `status`, `acquisitionDate`, `acquisitionCost` and `accumulatedDepreciation`, sortable by `code`, `name`, `acquisitionDate` and `acquisitionCost`.
+        List the fixed assets; filterable by `code`, `name`, `groupId`, `status`, `acquisitionDate`, `acquisitionCost` and `accumulatedDepreciation`, sortable by `code`, `name`, `acquisitionDate`, `acquisitionCost`, `groupName` (the name of the asset group), `vehiclePlate` (the plate number of the linked vehicle), `status`, `totalCost` (the acquisition cost plus the modernisations), `accumulatedDepreciation` and `netBookValue` (the total cost less the accumulated depreciation, zero when disposed).
 
         Parameters
         ----------
@@ -4156,11 +4161,12 @@ class AsyncRawAssetsClient:
         date: dt.date,
         reason: AssetsDisposeAssetsRequestReason,
         proceeds: typing.Optional[str] = OMIT,
+        sale_invoice_id: typing.Optional[str] = OMIT,
         notes: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[AssetsDisposeAssetsResponse]:
         """
-        Dispose of a fixed asset (sold, scrapped or written off). Removes its cost and accumulated depreciation, books the net book value as a disposal loss and the proceeds as a disposal gain (posting rules assets.disposalLoss, assets.disposalGain, assets.disposalProceeds), and stops its depreciation. Depreciation must be posted for every month before the disposal month.
+        Dispose of a fixed asset (sold, scrapped or written off). Removes its cost and accumulated depreciation, books the net book value as a disposal loss and the proceeds as a disposal gain (posting rules assets.disposalLoss, assets.disposalGain, assets.disposalProceeds), and stops its depreciation. Depreciation must be posted for every month before the disposal month. With `saleInvoiceId` (reason `sold`) the proceeds are the net of the issued invoice lines that name this asset (`assetId` on the sales invoice line, converted to the base currency at the invoice rate), `proceeds` must then be omitted, the buyer is the partner of the disposal entry, and the receivable and the VAT stay on the invoice; 422 when the invoice is not an issued invoice, has no line for the asset, or when `proceeds` is given with it.
 
         Parameters
         ----------
@@ -4172,6 +4178,9 @@ class AsyncRawAssetsClient:
 
         proceeds : typing.Optional[str]
             Sale price excluding VAT; 0 when scrapped or written off
+
+        sale_invoice_id : typing.Optional[str]
+            The issued sales invoice that sold the asset
 
         notes : typing.Optional[str]
 
@@ -4191,6 +4200,7 @@ class AsyncRawAssetsClient:
                 "date": date,
                 "reason": reason,
                 "proceeds": proceeds,
+                "saleInvoiceId": sale_invoice_id,
                 "notes": notes,
             },
             headers={

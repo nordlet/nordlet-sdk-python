@@ -36,6 +36,18 @@ class InvoicesUpdateSalesRequestLinesItem(UniversalBaseModel):
         typing.Optional[str], FieldMetadata(alias="projectId"), pydantic.Field(alias="projectId")
     ] = None
     recognition: typing.Optional[InvoicesUpdateSalesRequestLinesItemRecognition] = None
+    asset_id: typing_extensions.Annotated[
+        typing.Optional[str],
+        FieldMetadata(alias="assetId"),
+        pydantic.Field(
+            alias="assetId",
+            description="A fixed asset sold on this line: the line net is booked to the assets.disposalProceeds posting rule account and `assets/assets/dispose` takes the proceeds from the issued invoice. Only on an invoice (422), only for an asset that is not disposed, and not with revenue recognition over time.",
+        ),
+    ] = None
+    """
+    A fixed asset sold on this line: the line net is booked to the assets.disposalProceeds posting rule account and `assets/assets/dispose` takes the proceeds from the issued invoice. Only on an invoice (422), only for an asset that is not disposed, and not with revenue recognition over time.
+    """
+
     vat_exemption_basis: typing_extensions.Annotated[
         typing.Optional[str], FieldMetadata(alias="vatExemptionBasis"), pydantic.Field(alias="vatExemptionBasis")
     ] = None

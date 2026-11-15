@@ -80,6 +80,7 @@ if typing.TYPE_CHECKING:
         StockMovementsListInventoryResponseRowsItemDirection,
     )
     from .stock_receive_inventory_response import StockReceiveInventoryResponse
+    from .stock_receive_inventory_response_warnings_item import StockReceiveInventoryResponseWarningsItem
     from .stock_take_inventory_request_lines_item import StockTakeInventoryRequestLinesItem
     from .stock_take_inventory_response import StockTakeInventoryResponse
     from .stock_take_inventory_response_rows_item import StockTakeInventoryResponseRowsItem
@@ -156,6 +157,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "StockMovementsListInventoryResponseRowsItem": ".stock_movements_list_inventory_response_rows_item",
     "StockMovementsListInventoryResponseRowsItemDirection": ".stock_movements_list_inventory_response_rows_item_direction",
     "StockReceiveInventoryResponse": ".stock_receive_inventory_response",
+    "StockReceiveInventoryResponseWarningsItem": ".stock_receive_inventory_response_warnings_item",
     "StockTakeInventoryRequestLinesItem": ".stock_take_inventory_request_lines_item",
     "StockTakeInventoryResponse": ".stock_take_inventory_response",
     "StockTakeInventoryResponseRowsItem": ".stock_take_inventory_response_rows_item",
@@ -254,6 +256,7 @@ __all__ = [
     "StockMovementsListInventoryResponseRowsItem",
     "StockMovementsListInventoryResponseRowsItemDirection",
     "StockReceiveInventoryResponse",
+    "StockReceiveInventoryResponseWarningsItem",
     "StockTakeInventoryRequestLinesItem",
     "StockTakeInventoryResponse",
     "StockTakeInventoryResponseRowsItem",

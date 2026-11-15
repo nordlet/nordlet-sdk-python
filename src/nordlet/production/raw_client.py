@@ -453,7 +453,7 @@ class RawProductionClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[WorkCentersListProductionResponse]:
         """
-        List work centers. `nextMaintenanceDate` is the latest completed maintenance date (the creation date when there is none) plus `maintenanceIntervalDays`, null without an interval. Filterable by `code`, `name` and `isActive`; sortable by `code`, `name` and `createdAt`.
+        List work centers. `nextMaintenanceDate` is the latest completed maintenance date (the creation date when there is none) plus `maintenanceIntervalDays`, null without an interval. Filterable by `code`, `name` and `isActive`; sortable by `code`, `name`, `createdAt`, `costPerHour`, `costAccountCode`, `maintenanceIntervalDays` and `nextMaintenanceDate`.
 
         Parameters
         ----------
@@ -2215,7 +2215,7 @@ class RawProductionClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[BomsListProductionResponse]:
         """
-        List bills of materials without their lines. Filterable by `code`, `name`, `finishedItemId` and `isActive`; sortable by `code` and `name`.
+        List bills of materials without their lines. Filterable by `code`, `name`, `finishedItemId` and `isActive`; sortable by `code`, `name`, `finishedItemName` (the name of the finished item) and `routingCode` (the code of the routing).
 
         Parameters
         ----------
@@ -4166,7 +4166,7 @@ class AsyncRawProductionClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[WorkCentersListProductionResponse]:
         """
-        List work centers. `nextMaintenanceDate` is the latest completed maintenance date (the creation date when there is none) plus `maintenanceIntervalDays`, null without an interval. Filterable by `code`, `name` and `isActive`; sortable by `code`, `name` and `createdAt`.
+        List work centers. `nextMaintenanceDate` is the latest completed maintenance date (the creation date when there is none) plus `maintenanceIntervalDays`, null without an interval. Filterable by `code`, `name` and `isActive`; sortable by `code`, `name`, `createdAt`, `costPerHour`, `costAccountCode`, `maintenanceIntervalDays` and `nextMaintenanceDate`.
 
         Parameters
         ----------
@@ -5928,7 +5928,7 @@ class AsyncRawProductionClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[BomsListProductionResponse]:
         """
-        List bills of materials without their lines. Filterable by `code`, `name`, `finishedItemId` and `isActive`; sortable by `code` and `name`.
+        List bills of materials without their lines. Filterable by `code`, `name`, `finishedItemId` and `isActive`; sortable by `code`, `name`, `finishedItemName` (the name of the finished item) and `routingCode` (the code of the routing).
 
         Parameters
         ----------

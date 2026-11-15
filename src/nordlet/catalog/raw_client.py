@@ -1131,7 +1131,7 @@ class RawCatalogClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[ItemsListCatalogResponse]:
         """
-        List the active items. Filterable: name, code, barcode, type, vatClassifierCode, groupId, kindId, externalId, manufacturer, department. Sortable: name, code, createdAt, updatedAt, salePriceExclVat; default name ascending. Rows carry no components; `catalog/items/get` returns them.
+        List the active items. Filterable: name, code, barcode, type, vatClassifierCode, groupId, kindId, externalId, manufacturer, department. Sortable: name, code, type, unit, vatRatePercent, createdAt, updatedAt, salePriceExclVat, purchasePriceExclVat; default name ascending. Rows carry no components; `catalog/items/get` returns them.
 
         Parameters
         ----------
@@ -6863,7 +6863,7 @@ class AsyncRawCatalogClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[ItemsListCatalogResponse]:
         """
-        List the active items. Filterable: name, code, barcode, type, vatClassifierCode, groupId, kindId, externalId, manufacturer, department. Sortable: name, code, createdAt, updatedAt, salePriceExclVat; default name ascending. Rows carry no components; `catalog/items/get` returns them.
+        List the active items. Filterable: name, code, barcode, type, vatClassifierCode, groupId, kindId, externalId, manufacturer, department. Sortable: name, code, type, unit, vatRatePercent, createdAt, updatedAt, salePriceExclVat, purchasePriceExclVat; default name ascending. Rows carry no components; `catalog/items/get` returns them.
 
         Parameters
         ----------

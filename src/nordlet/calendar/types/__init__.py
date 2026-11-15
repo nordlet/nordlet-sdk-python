@@ -7,86 +7,154 @@ from importlib import import_module
 
 if typing.TYPE_CHECKING:
     from .create_calendar_response import CreateCalendarResponse
+    from .create_calendar_response_correction import CreateCalendarResponseCorrection
+    from .create_calendar_response_correction_optional_item import CreateCalendarResponseCorrectionOptionalItem
+    from .create_calendar_response_correction_reason_codes_item import CreateCalendarResponseCorrectionReasonCodesItem
+    from .create_calendar_response_correction_required_item import CreateCalendarResponseCorrectionRequiredItem
     from .create_calendar_response_kind import CreateCalendarResponseKind
     from .create_calendar_response_submission import CreateCalendarResponseSubmission
+    from .create_calendar_response_submission_correction_input import CreateCalendarResponseSubmissionCorrectionInput
     from .create_calendar_response_submission_environment import CreateCalendarResponseSubmissionEnvironment
     from .create_calendar_response_submission_status import CreateCalendarResponseSubmissionStatus
     from .create_calendar_response_submissions_item import CreateCalendarResponseSubmissionsItem
+    from .create_calendar_response_submissions_item_correction_input import (
+        CreateCalendarResponseSubmissionsItemCorrectionInput,
+    )
     from .create_calendar_response_submissions_item_environment import CreateCalendarResponseSubmissionsItemEnvironment
     from .create_calendar_response_submissions_item_status import CreateCalendarResponseSubmissionsItemStatus
     from .delete_calendar_response import DeleteCalendarResponse
     from .download_calendar_response import DownloadCalendarResponse
     from .get_calendar_response import GetCalendarResponse
+    from .get_calendar_response_correction import GetCalendarResponseCorrection
+    from .get_calendar_response_correction_optional_item import GetCalendarResponseCorrectionOptionalItem
+    from .get_calendar_response_correction_reason_codes_item import GetCalendarResponseCorrectionReasonCodesItem
+    from .get_calendar_response_correction_required_item import GetCalendarResponseCorrectionRequiredItem
     from .get_calendar_response_kind import GetCalendarResponseKind
     from .get_calendar_response_submission import GetCalendarResponseSubmission
+    from .get_calendar_response_submission_correction_input import GetCalendarResponseSubmissionCorrectionInput
     from .get_calendar_response_submission_environment import GetCalendarResponseSubmissionEnvironment
     from .get_calendar_response_submission_status import GetCalendarResponseSubmissionStatus
     from .get_calendar_response_submissions_item import GetCalendarResponseSubmissionsItem
+    from .get_calendar_response_submissions_item_correction_input import (
+        GetCalendarResponseSubmissionsItemCorrectionInput,
+    )
     from .get_calendar_response_submissions_item_environment import GetCalendarResponseSubmissionsItemEnvironment
     from .get_calendar_response_submissions_item_status import GetCalendarResponseSubmissionsItemStatus
     from .list_calendar_response import ListCalendarResponse
     from .list_calendar_response_rows_item import ListCalendarResponseRowsItem
+    from .list_calendar_response_rows_item_correction import ListCalendarResponseRowsItemCorrection
+    from .list_calendar_response_rows_item_correction_optional_item import (
+        ListCalendarResponseRowsItemCorrectionOptionalItem,
+    )
+    from .list_calendar_response_rows_item_correction_reason_codes_item import (
+        ListCalendarResponseRowsItemCorrectionReasonCodesItem,
+    )
+    from .list_calendar_response_rows_item_correction_required_item import (
+        ListCalendarResponseRowsItemCorrectionRequiredItem,
+    )
     from .list_calendar_response_rows_item_kind import ListCalendarResponseRowsItemKind
     from .list_calendar_response_rows_item_submission import ListCalendarResponseRowsItemSubmission
+    from .list_calendar_response_rows_item_submission_correction_input import (
+        ListCalendarResponseRowsItemSubmissionCorrectionInput,
+    )
     from .list_calendar_response_rows_item_submission_environment import (
         ListCalendarResponseRowsItemSubmissionEnvironment,
     )
     from .list_calendar_response_rows_item_submission_status import ListCalendarResponseRowsItemSubmissionStatus
     from .list_calendar_response_rows_item_submissions_item import ListCalendarResponseRowsItemSubmissionsItem
+    from .list_calendar_response_rows_item_submissions_item_correction_input import (
+        ListCalendarResponseRowsItemSubmissionsItemCorrectionInput,
+    )
     from .list_calendar_response_rows_item_submissions_item_environment import (
         ListCalendarResponseRowsItemSubmissionsItemEnvironment,
     )
     from .list_calendar_response_rows_item_submissions_item_status import (
         ListCalendarResponseRowsItemSubmissionsItemStatus,
     )
+    from .submit_calendar_request_correction import SubmitCalendarRequestCorrection
     from .submit_calendar_response import SubmitCalendarResponse
+    from .submit_calendar_response_correction_input import SubmitCalendarResponseCorrectionInput
     from .submit_calendar_response_environment import SubmitCalendarResponseEnvironment
     from .submit_calendar_response_status import SubmitCalendarResponseStatus
     from .update_calendar_response import UpdateCalendarResponse
+    from .update_calendar_response_correction import UpdateCalendarResponseCorrection
+    from .update_calendar_response_correction_optional_item import UpdateCalendarResponseCorrectionOptionalItem
+    from .update_calendar_response_correction_reason_codes_item import UpdateCalendarResponseCorrectionReasonCodesItem
+    from .update_calendar_response_correction_required_item import UpdateCalendarResponseCorrectionRequiredItem
     from .update_calendar_response_kind import UpdateCalendarResponseKind
     from .update_calendar_response_submission import UpdateCalendarResponseSubmission
+    from .update_calendar_response_submission_correction_input import UpdateCalendarResponseSubmissionCorrectionInput
     from .update_calendar_response_submission_environment import UpdateCalendarResponseSubmissionEnvironment
     from .update_calendar_response_submission_status import UpdateCalendarResponseSubmissionStatus
     from .update_calendar_response_submissions_item import UpdateCalendarResponseSubmissionsItem
+    from .update_calendar_response_submissions_item_correction_input import (
+        UpdateCalendarResponseSubmissionsItemCorrectionInput,
+    )
     from .update_calendar_response_submissions_item_environment import UpdateCalendarResponseSubmissionsItemEnvironment
     from .update_calendar_response_submissions_item_status import UpdateCalendarResponseSubmissionsItemStatus
 _dynamic_imports: typing.Dict[str, str] = {
     "CreateCalendarResponse": ".create_calendar_response",
+    "CreateCalendarResponseCorrection": ".create_calendar_response_correction",
+    "CreateCalendarResponseCorrectionOptionalItem": ".create_calendar_response_correction_optional_item",
+    "CreateCalendarResponseCorrectionReasonCodesItem": ".create_calendar_response_correction_reason_codes_item",
+    "CreateCalendarResponseCorrectionRequiredItem": ".create_calendar_response_correction_required_item",
     "CreateCalendarResponseKind": ".create_calendar_response_kind",
     "CreateCalendarResponseSubmission": ".create_calendar_response_submission",
+    "CreateCalendarResponseSubmissionCorrectionInput": ".create_calendar_response_submission_correction_input",
     "CreateCalendarResponseSubmissionEnvironment": ".create_calendar_response_submission_environment",
     "CreateCalendarResponseSubmissionStatus": ".create_calendar_response_submission_status",
     "CreateCalendarResponseSubmissionsItem": ".create_calendar_response_submissions_item",
+    "CreateCalendarResponseSubmissionsItemCorrectionInput": ".create_calendar_response_submissions_item_correction_input",
     "CreateCalendarResponseSubmissionsItemEnvironment": ".create_calendar_response_submissions_item_environment",
     "CreateCalendarResponseSubmissionsItemStatus": ".create_calendar_response_submissions_item_status",
     "DeleteCalendarResponse": ".delete_calendar_response",
     "DownloadCalendarResponse": ".download_calendar_response",
     "GetCalendarResponse": ".get_calendar_response",
+    "GetCalendarResponseCorrection": ".get_calendar_response_correction",
+    "GetCalendarResponseCorrectionOptionalItem": ".get_calendar_response_correction_optional_item",
+    "GetCalendarResponseCorrectionReasonCodesItem": ".get_calendar_response_correction_reason_codes_item",
+    "GetCalendarResponseCorrectionRequiredItem": ".get_calendar_response_correction_required_item",
     "GetCalendarResponseKind": ".get_calendar_response_kind",
     "GetCalendarResponseSubmission": ".get_calendar_response_submission",
+    "GetCalendarResponseSubmissionCorrectionInput": ".get_calendar_response_submission_correction_input",
     "GetCalendarResponseSubmissionEnvironment": ".get_calendar_response_submission_environment",
     "GetCalendarResponseSubmissionStatus": ".get_calendar_response_submission_status",
     "GetCalendarResponseSubmissionsItem": ".get_calendar_response_submissions_item",
+    "GetCalendarResponseSubmissionsItemCorrectionInput": ".get_calendar_response_submissions_item_correction_input",
     "GetCalendarResponseSubmissionsItemEnvironment": ".get_calendar_response_submissions_item_environment",
     "GetCalendarResponseSubmissionsItemStatus": ".get_calendar_response_submissions_item_status",
     "ListCalendarResponse": ".list_calendar_response",
     "ListCalendarResponseRowsItem": ".list_calendar_response_rows_item",
+    "ListCalendarResponseRowsItemCorrection": ".list_calendar_response_rows_item_correction",
+    "ListCalendarResponseRowsItemCorrectionOptionalItem": ".list_calendar_response_rows_item_correction_optional_item",
+    "ListCalendarResponseRowsItemCorrectionReasonCodesItem": ".list_calendar_response_rows_item_correction_reason_codes_item",
+    "ListCalendarResponseRowsItemCorrectionRequiredItem": ".list_calendar_response_rows_item_correction_required_item",
     "ListCalendarResponseRowsItemKind": ".list_calendar_response_rows_item_kind",
     "ListCalendarResponseRowsItemSubmission": ".list_calendar_response_rows_item_submission",
+    "ListCalendarResponseRowsItemSubmissionCorrectionInput": ".list_calendar_response_rows_item_submission_correction_input",
     "ListCalendarResponseRowsItemSubmissionEnvironment": ".list_calendar_response_rows_item_submission_environment",
     "ListCalendarResponseRowsItemSubmissionStatus": ".list_calendar_response_rows_item_submission_status",
     "ListCalendarResponseRowsItemSubmissionsItem": ".list_calendar_response_rows_item_submissions_item",
+    "ListCalendarResponseRowsItemSubmissionsItemCorrectionInput": ".list_calendar_response_rows_item_submissions_item_correction_input",
     "ListCalendarResponseRowsItemSubmissionsItemEnvironment": ".list_calendar_response_rows_item_submissions_item_environment",
     "ListCalendarResponseRowsItemSubmissionsItemStatus": ".list_calendar_response_rows_item_submissions_item_status",
+    "SubmitCalendarRequestCorrection": ".submit_calendar_request_correction",
     "SubmitCalendarResponse": ".submit_calendar_response",
+    "SubmitCalendarResponseCorrectionInput": ".submit_calendar_response_correction_input",
     "SubmitCalendarResponseEnvironment": ".submit_calendar_response_environment",
     "SubmitCalendarResponseStatus": ".submit_calendar_response_status",
     "UpdateCalendarResponse": ".update_calendar_response",
+    "UpdateCalendarResponseCorrection": ".update_calendar_response_correction",
+    "UpdateCalendarResponseCorrectionOptionalItem": ".update_calendar_response_correction_optional_item",
+    "UpdateCalendarResponseCorrectionReasonCodesItem": ".update_calendar_response_correction_reason_codes_item",
+    "UpdateCalendarResponseCorrectionRequiredItem": ".update_calendar_response_correction_required_item",
     "UpdateCalendarResponseKind": ".update_calendar_response_kind",
     "UpdateCalendarResponseSubmission": ".update_calendar_response_submission",
+    "UpdateCalendarResponseSubmissionCorrectionInput": ".update_calendar_response_submission_correction_input",
     "UpdateCalendarResponseSubmissionEnvironment": ".update_calendar_response_submission_environment",
     "UpdateCalendarResponseSubmissionStatus": ".update_calendar_response_submission_status",
     "UpdateCalendarResponseSubmissionsItem": ".update_calendar_response_submissions_item",
+    "UpdateCalendarResponseSubmissionsItemCorrectionInput": ".update_calendar_response_submissions_item_correction_input",
     "UpdateCalendarResponseSubmissionsItemEnvironment": ".update_calendar_response_submissions_item_environment",
     "UpdateCalendarResponseSubmissionsItemStatus": ".update_calendar_response_submissions_item_status",
 }
@@ -115,41 +183,67 @@ def __dir__():
 
 __all__ = [
     "CreateCalendarResponse",
+    "CreateCalendarResponseCorrection",
+    "CreateCalendarResponseCorrectionOptionalItem",
+    "CreateCalendarResponseCorrectionReasonCodesItem",
+    "CreateCalendarResponseCorrectionRequiredItem",
     "CreateCalendarResponseKind",
     "CreateCalendarResponseSubmission",
+    "CreateCalendarResponseSubmissionCorrectionInput",
     "CreateCalendarResponseSubmissionEnvironment",
     "CreateCalendarResponseSubmissionStatus",
     "CreateCalendarResponseSubmissionsItem",
+    "CreateCalendarResponseSubmissionsItemCorrectionInput",
     "CreateCalendarResponseSubmissionsItemEnvironment",
     "CreateCalendarResponseSubmissionsItemStatus",
     "DeleteCalendarResponse",
     "DownloadCalendarResponse",
     "GetCalendarResponse",
+    "GetCalendarResponseCorrection",
+    "GetCalendarResponseCorrectionOptionalItem",
+    "GetCalendarResponseCorrectionReasonCodesItem",
+    "GetCalendarResponseCorrectionRequiredItem",
     "GetCalendarResponseKind",
     "GetCalendarResponseSubmission",
+    "GetCalendarResponseSubmissionCorrectionInput",
     "GetCalendarResponseSubmissionEnvironment",
     "GetCalendarResponseSubmissionStatus",
     "GetCalendarResponseSubmissionsItem",
+    "GetCalendarResponseSubmissionsItemCorrectionInput",
     "GetCalendarResponseSubmissionsItemEnvironment",
     "GetCalendarResponseSubmissionsItemStatus",
     "ListCalendarResponse",
     "ListCalendarResponseRowsItem",
+    "ListCalendarResponseRowsItemCorrection",
+    "ListCalendarResponseRowsItemCorrectionOptionalItem",
+    "ListCalendarResponseRowsItemCorrectionReasonCodesItem",
+    "ListCalendarResponseRowsItemCorrectionRequiredItem",
     "ListCalendarResponseRowsItemKind",
     "ListCalendarResponseRowsItemSubmission",
+    "ListCalendarResponseRowsItemSubmissionCorrectionInput",
     "ListCalendarResponseRowsItemSubmissionEnvironment",
     "ListCalendarResponseRowsItemSubmissionStatus",
     "ListCalendarResponseRowsItemSubmissionsItem",
+    "ListCalendarResponseRowsItemSubmissionsItemCorrectionInput",
     "ListCalendarResponseRowsItemSubmissionsItemEnvironment",
     "ListCalendarResponseRowsItemSubmissionsItemStatus",
+    "SubmitCalendarRequestCorrection",
     "SubmitCalendarResponse",
+    "SubmitCalendarResponseCorrectionInput",
     "SubmitCalendarResponseEnvironment",
     "SubmitCalendarResponseStatus",
     "UpdateCalendarResponse",
+    "UpdateCalendarResponseCorrection",
+    "UpdateCalendarResponseCorrectionOptionalItem",
+    "UpdateCalendarResponseCorrectionReasonCodesItem",
+    "UpdateCalendarResponseCorrectionRequiredItem",
     "UpdateCalendarResponseKind",
     "UpdateCalendarResponseSubmission",
+    "UpdateCalendarResponseSubmissionCorrectionInput",
     "UpdateCalendarResponseSubmissionEnvironment",
     "UpdateCalendarResponseSubmissionStatus",
     "UpdateCalendarResponseSubmissionsItem",
+    "UpdateCalendarResponseSubmissionsItemCorrectionInput",
     "UpdateCalendarResponseSubmissionsItemEnvironment",
     "UpdateCalendarResponseSubmissionsItemStatus",
 ]

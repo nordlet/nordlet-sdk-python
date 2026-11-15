@@ -6,11 +6,16 @@ import pydantic
 import typing_extensions
 from ...core.pydantic_utilities import IS_PYDANTIC_V2, UniversalBaseModel
 from ...core.serialization import FieldMetadata
+from .stock_receive_inventory_response_warnings_item import StockReceiveInventoryResponseWarningsItem
 
 
 class StockReceiveInventoryResponse(UniversalBaseModel):
     movement_id: typing_extensions.Annotated[str, FieldMetadata(alias="movementId"), pydantic.Field(alias="movementId")]
     total_cost: typing_extensions.Annotated[str, FieldMetadata(alias="totalCost"), pydantic.Field(alias="totalCost")]
+    journal_transaction_id: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="journalTransactionId"), pydantic.Field(alias="journalTransactionId")
+    ] = None
+    warnings: typing.List[StockReceiveInventoryResponseWarningsItem]
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

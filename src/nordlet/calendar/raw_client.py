@@ -10,6 +10,7 @@ from ..core.http_response import AsyncHttpResponse, HttpResponse
 from ..core.parse_error import ParsingError
 from ..core.pydantic_utilities import parse_obj_as
 from ..core.request_options import RequestOptions
+from ..core.serialization import convert_and_respect_annotation_metadata
 from ..errors.bad_request_error import BadRequestError
 from ..errors.conflict_error import ConflictError
 from ..errors.content_too_large_error import ContentTooLargeError
@@ -26,6 +27,7 @@ from .types.delete_calendar_response import DeleteCalendarResponse
 from .types.download_calendar_response import DownloadCalendarResponse
 from .types.get_calendar_response import GetCalendarResponse
 from .types.list_calendar_response import ListCalendarResponse
+from .types.submit_calendar_request_correction import SubmitCalendarRequestCorrection
 from .types.submit_calendar_response import SubmitCalendarResponse
 from .types.update_calendar_response import UpdateCalendarResponse
 from pydantic import ValidationError
@@ -368,16 +370,26 @@ class RawCalendarClient:
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
     def submit(
-        self, *, key: str, amend: typing.Optional[bool] = OMIT, request_options: typing.Optional[RequestOptions] = None
+        self,
+        *,
+        key: str,
+        amend: typing.Optional[bool] = OMIT,
+        correction: typing.Optional[SubmitCalendarRequestCorrection] = OMIT,
+        document_keys: typing.Optional[typing.Sequence[str]] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[SubmitCalendarResponse]:
         """
-        With amend: true the return is filed again as a correction of the one already submitted or accepted for the period; only returns whose format has a correction mark accept it.
+        With amend: true the return is filed again as a correction of the one already submitted or accepted for the period; only deadlines whose `calendar/get` row has `correction` accept it. `correction` carries what that row's `correction.required` and `correction.optional` name: `reason`, `reasonCode` (one of `correction.reasonCodes`), `authorityReference`, the administration's own number of the filing being corrected, and `discoveredOn`, the date the error was found (YYYY-MM-DD, not after the company's today); a missing required one answers 422 with fieldErrors. For a deadline filed as one document per person, `documentKeys` limits the correction to those documents.
 
         Parameters
         ----------
         key : str
 
         amend : typing.Optional[bool]
+
+        correction : typing.Optional[SubmitCalendarRequestCorrection]
+
+        document_keys : typing.Optional[typing.Sequence[str]]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -393,6 +405,10 @@ class RawCalendarClient:
             json={
                 "key": key,
                 "amend": amend,
+                "correction": convert_and_respect_annotation_metadata(
+                    object_=correction, annotation=SubmitCalendarRequestCorrection, direction="write"
+                ),
+                "documentKeys": document_keys,
             },
             headers={
                 "content-type": "application/json",
@@ -1534,16 +1550,26 @@ class AsyncRawCalendarClient:
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
     async def submit(
-        self, *, key: str, amend: typing.Optional[bool] = OMIT, request_options: typing.Optional[RequestOptions] = None
+        self,
+        *,
+        key: str,
+        amend: typing.Optional[bool] = OMIT,
+        correction: typing.Optional[SubmitCalendarRequestCorrection] = OMIT,
+        document_keys: typing.Optional[typing.Sequence[str]] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[SubmitCalendarResponse]:
         """
-        With amend: true the return is filed again as a correction of the one already submitted or accepted for the period; only returns whose format has a correction mark accept it.
+        With amend: true the return is filed again as a correction of the one already submitted or accepted for the period; only deadlines whose `calendar/get` row has `correction` accept it. `correction` carries what that row's `correction.required` and `correction.optional` name: `reason`, `reasonCode` (one of `correction.reasonCodes`), `authorityReference`, the administration's own number of the filing being corrected, and `discoveredOn`, the date the error was found (YYYY-MM-DD, not after the company's today); a missing required one answers 422 with fieldErrors. For a deadline filed as one document per person, `documentKeys` limits the correction to those documents.
 
         Parameters
         ----------
         key : str
 
         amend : typing.Optional[bool]
+
+        correction : typing.Optional[SubmitCalendarRequestCorrection]
+
+        document_keys : typing.Optional[typing.Sequence[str]]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -1559,6 +1585,10 @@ class AsyncRawCalendarClient:
             json={
                 "key": key,
                 "amend": amend,
+                "correction": convert_and_respect_annotation_metadata(
+                    object_=correction, annotation=SubmitCalendarRequestCorrection, direction="write"
+                ),
+                "documentKeys": document_keys,
             },
             headers={
                 "content-type": "application/json",

@@ -14,6 +14,7 @@ from .types.brand_get_account_response import BrandGetAccountResponse
 from .types.brand_update_account_response import BrandUpdateAccountResponse
 from .types.companies_activate_account_response import CompaniesActivateAccountResponse
 from .types.companies_archive_account_response import CompaniesArchiveAccountResponse
+from .types.companies_context_account_response import CompaniesContextAccountResponse
 from .types.companies_convert_to_live_account_response import CompaniesConvertToLiveAccountResponse
 from .types.companies_create_account_request_accounts_kept_by import CompaniesCreateAccountRequestAccountsKeptBy
 from .types.companies_create_account_request_address import CompaniesCreateAccountRequestAddress
@@ -846,6 +847,34 @@ class AccountClient:
         client.account.companies_profile()
         """
         _response = self._raw_client.companies_profile(request_options=request_options)
+        return _response.data
+
+    def companies_context(
+        self, *, request_options: typing.Optional[RequestOptions] = None
+    ) -> CompaniesContextAccountResponse:
+        """
+        Return what an agent needs to start working in the active company in one answer: the `profile` (as `account/companies/profile`), the accounting `periods` that are open and locked, the `postingRules` (rule key to account code), the `bankAccounts`, the `vatTypesUsed` on the company's invoice lines with their line counts, the country's `filings` due from 45 days back to 120 days ahead with their calendar `key` (as `calendar/list` returns it), the filing `system`, whether the file can be built (`canDownload`) or sent (`canSubmit`) and the `missingSettings` of the filing system (`declarations/configs/update` with the `system` and the `keys` that have no stored value; a filing may not need every key of its system), and the `payroll` options: the employee fields (`hr/employees/fields`) the country's payroll engine reads. An API key reads the company named in the `x-nordlet-company` header and needs the `account:read` scope.
+
+        Parameters
+        ----------
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        CompaniesContextAccountResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.account.companies_context()
+        """
+        _response = self._raw_client.companies_context(request_options=request_options)
         return _response.data
 
     def companies_update(
@@ -3059,6 +3088,42 @@ class AsyncAccountClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.companies_profile(request_options=request_options)
+        return _response.data
+
+    async def companies_context(
+        self, *, request_options: typing.Optional[RequestOptions] = None
+    ) -> CompaniesContextAccountResponse:
+        """
+        Return what an agent needs to start working in the active company in one answer: the `profile` (as `account/companies/profile`), the accounting `periods` that are open and locked, the `postingRules` (rule key to account code), the `bankAccounts`, the `vatTypesUsed` on the company's invoice lines with their line counts, the country's `filings` due from 45 days back to 120 days ahead with their calendar `key` (as `calendar/list` returns it), the filing `system`, whether the file can be built (`canDownload`) or sent (`canSubmit`) and the `missingSettings` of the filing system (`declarations/configs/update` with the `system` and the `keys` that have no stored value; a filing may not need every key of its system), and the `payroll` options: the employee fields (`hr/employees/fields`) the country's payroll engine reads. An API key reads the company named in the `x-nordlet-company` header and needs the `account:read` scope.
+
+        Parameters
+        ----------
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        CompaniesContextAccountResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.account.companies_context()
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.companies_context(request_options=request_options)
         return _response.data
 
     async def companies_update(

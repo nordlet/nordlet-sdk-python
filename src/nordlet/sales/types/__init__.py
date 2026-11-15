@@ -240,6 +240,29 @@ if typing.TYPE_CHECKING:
     from .invoices_peppol_status_sales_response import InvoicesPeppolStatusSalesResponse
     from .invoices_peppol_status_sales_response_status import InvoicesPeppolStatusSalesResponseStatus
     from .invoices_peppol_xml_sales_response import InvoicesPeppolXmlSalesResponse
+    from .invoices_reverse_sales_response import InvoicesReverseSalesResponse
+    from .invoices_reverse_sales_response_lines_item import InvoicesReverseSalesResponseLinesItem
+    from .invoices_reverse_sales_response_lines_item_recognition_method import (
+        InvoicesReverseSalesResponseLinesItemRecognitionMethod,
+    )
+    from .invoices_reverse_sales_response_lines_item_recognition_milestones_item import (
+        InvoicesReverseSalesResponseLinesItemRecognitionMilestonesItem,
+    )
+    from .invoices_reverse_sales_response_payment_status import InvoicesReverseSalesResponsePaymentStatus
+    from .invoices_reverse_sales_response_status import InvoicesReverseSalesResponseStatus
+    from .invoices_reverse_sales_response_type import InvoicesReverseSalesResponseType
+    from .invoices_reverse_sales_response_vat_evidence import InvoicesReverseSalesResponseVatEvidence
+    from .invoices_reverse_sales_response_vat_evidence_location import InvoicesReverseSalesResponseVatEvidenceLocation
+    from .invoices_reverse_sales_response_vat_evidence_partner import InvoicesReverseSalesResponseVatEvidencePartner
+    from .invoices_reverse_sales_response_vat_evidence_rate_table import (
+        InvoicesReverseSalesResponseVatEvidenceRateTable,
+    )
+    from .invoices_reverse_sales_response_vat_evidence_rates_item import (
+        InvoicesReverseSalesResponseVatEvidenceRatesItem,
+    )
+    from .invoices_reverse_sales_response_vat_evidence_scheme import InvoicesReverseSalesResponseVatEvidenceScheme
+    from .invoices_reverse_sales_response_vat_evidence_vies import InvoicesReverseSalesResponseVatEvidenceVies
+    from .invoices_reverse_sales_response_vat_scheme import InvoicesReverseSalesResponseVatScheme
     from .invoices_send_sales_request_locale import InvoicesSendSalesRequestLocale
     from .invoices_send_sales_response import InvoicesSendSalesResponse
     from .invoices_unlock_sales_response import InvoicesUnlockSalesResponse
@@ -593,6 +616,21 @@ _dynamic_imports: typing.Dict[str, str] = {
     "InvoicesPeppolStatusSalesResponse": ".invoices_peppol_status_sales_response",
     "InvoicesPeppolStatusSalesResponseStatus": ".invoices_peppol_status_sales_response_status",
     "InvoicesPeppolXmlSalesResponse": ".invoices_peppol_xml_sales_response",
+    "InvoicesReverseSalesResponse": ".invoices_reverse_sales_response",
+    "InvoicesReverseSalesResponseLinesItem": ".invoices_reverse_sales_response_lines_item",
+    "InvoicesReverseSalesResponseLinesItemRecognitionMethod": ".invoices_reverse_sales_response_lines_item_recognition_method",
+    "InvoicesReverseSalesResponseLinesItemRecognitionMilestonesItem": ".invoices_reverse_sales_response_lines_item_recognition_milestones_item",
+    "InvoicesReverseSalesResponsePaymentStatus": ".invoices_reverse_sales_response_payment_status",
+    "InvoicesReverseSalesResponseStatus": ".invoices_reverse_sales_response_status",
+    "InvoicesReverseSalesResponseType": ".invoices_reverse_sales_response_type",
+    "InvoicesReverseSalesResponseVatEvidence": ".invoices_reverse_sales_response_vat_evidence",
+    "InvoicesReverseSalesResponseVatEvidenceLocation": ".invoices_reverse_sales_response_vat_evidence_location",
+    "InvoicesReverseSalesResponseVatEvidencePartner": ".invoices_reverse_sales_response_vat_evidence_partner",
+    "InvoicesReverseSalesResponseVatEvidenceRateTable": ".invoices_reverse_sales_response_vat_evidence_rate_table",
+    "InvoicesReverseSalesResponseVatEvidenceRatesItem": ".invoices_reverse_sales_response_vat_evidence_rates_item",
+    "InvoicesReverseSalesResponseVatEvidenceScheme": ".invoices_reverse_sales_response_vat_evidence_scheme",
+    "InvoicesReverseSalesResponseVatEvidenceVies": ".invoices_reverse_sales_response_vat_evidence_vies",
+    "InvoicesReverseSalesResponseVatScheme": ".invoices_reverse_sales_response_vat_scheme",
     "InvoicesSendSalesRequestLocale": ".invoices_send_sales_request_locale",
     "InvoicesSendSalesResponse": ".invoices_send_sales_response",
     "InvoicesUnlockSalesResponse": ".invoices_unlock_sales_response",
@@ -930,6 +968,21 @@ __all__ = [
     "InvoicesPeppolStatusSalesResponse",
     "InvoicesPeppolStatusSalesResponseStatus",
     "InvoicesPeppolXmlSalesResponse",
+    "InvoicesReverseSalesResponse",
+    "InvoicesReverseSalesResponseLinesItem",
+    "InvoicesReverseSalesResponseLinesItemRecognitionMethod",
+    "InvoicesReverseSalesResponseLinesItemRecognitionMilestonesItem",
+    "InvoicesReverseSalesResponsePaymentStatus",
+    "InvoicesReverseSalesResponseStatus",
+    "InvoicesReverseSalesResponseType",
+    "InvoicesReverseSalesResponseVatEvidence",
+    "InvoicesReverseSalesResponseVatEvidenceLocation",
+    "InvoicesReverseSalesResponseVatEvidencePartner",
+    "InvoicesReverseSalesResponseVatEvidenceRateTable",
+    "InvoicesReverseSalesResponseVatEvidenceRatesItem",
+    "InvoicesReverseSalesResponseVatEvidenceScheme",
+    "InvoicesReverseSalesResponseVatEvidenceVies",
+    "InvoicesReverseSalesResponseVatScheme",
     "InvoicesSendSalesRequestLocale",
     "InvoicesSendSalesResponse",
     "InvoicesUnlockSalesResponse",

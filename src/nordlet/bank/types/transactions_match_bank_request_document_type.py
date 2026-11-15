@@ -3,5 +3,5 @@
 import typing
 
 TransactionsMatchBankRequestDocumentType = typing.Union[
-    typing.Literal["sale_invoice", "purchase_invoice", "payroll_run"], typing.Any
+    typing.Literal["sale_invoice", "purchase_invoice", "payroll_run", "expense_report"], typing.Any
 ]

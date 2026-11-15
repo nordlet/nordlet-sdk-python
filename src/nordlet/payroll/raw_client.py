@@ -1058,7 +1058,7 @@ class RawPayrollClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[RunsCreatePayrollResponse]:
         """
-        Creates a draft payroll run for a month, computing each line with the company country's payroll engine, the employee's approved runs of the year so far and of the two previous years, the month's timesheet and `payDate` (default the last day of the month). Without `lines`, every employee whose contract overlaps the month gets a line, whatever the employee's status: the gross is the contract's monthly salary reduced to the paid working days of the contract and the timesheet, unless `grossOverrides` sets it; the per diems of approved business trips ending in the month are added untaxed and the trips linked to the run; for a Lithuanian company the car benefit in kind (`includeNatura`) and the compensation for unused leave of a contract ending in the month are added. With `lines`, only the given employees are computed with their gross, additions and deductions; a taxable addition may carry a `paymentType` from `payroll/payment-types/list` and `hours`. Answers 422 when the country has no engine, an employee is given twice, has two contracts in the month, has no contract and no gross, or is paid by the hour or day without a gross; 409 when a run for the month already exists or the accounting period is locked.
+        Creates a draft payroll run for a month, computing each line with the company country's payroll engine, the employee's approved runs of the year so far and of the two previous years, the month's timesheet and `payDate` (default the last day of the month). Without `lines`, every employee whose contract overlaps the month gets a line, whatever the employee's status: the gross is the contract's monthly salary reduced to the paid working days of the contract and the timesheet, unless `grossOverrides` sets it; the per diems of approved business trips ending in the month are added untaxed and the trips linked to the run; for a Lithuanian company the car benefit in kind (`includeNatura`) and the compensation for unused leave of a contract ending in the month are added. With `lines`, only the given employees are computed with their gross, additions and deductions, and the per diems of their approved, unlinked business trips ending in the month are added untaxed and the trips linked to the run; a taxable addition may carry a `paymentType` from `payroll/payment-types/list` and `hours`. Answers 422 when the country has no engine, an employee is given twice, has two contracts in the month, has no contract and no gross, or is paid by the hour or day without a gross; 409 when a run for the month already exists or the accounting period is locked.
 
         Parameters
         ----------
@@ -1407,7 +1407,7 @@ class RawPayrollClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[RunsListPayrollResponse]:
         """
-        Lists payroll runs without their lines; filterable by `status`, `year` and `month`, sortable by `createdAt`, `year` and `month`.
+        Lists payroll runs without their lines; filterable by `status`, `year` and `month`, sortable by `createdAt`, `year`, `month`, `period` (the year, then the month), `status`, `grossTotal`, `incomeTaxTotal`, `contributions` (the employee plus the employer contributions) and `netTotal`.
 
         Parameters
         ----------
@@ -1764,6 +1764,8 @@ class RawPayrollClient:
         wage_account_code: typing.Optional[str] = OMIT,
         employer_account_code: typing.Optional[str] = OMIT,
         payable_account_code: typing.Optional[str] = OMIT,
+        income_tax_account_code: typing.Optional[str] = OMIT,
+        social_contributions_account_code: typing.Optional[str] = OMIT,
         gpm_account_code: typing.Optional[str] = OMIT,
         sodra_account_code: typing.Optional[str] = OMIT,
         employer_social_account_code: typing.Optional[str] = OMIT,
@@ -1771,7 +1773,7 @@ class RawPayrollClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[RunsApprovePayrollResponse]:
         """
-        Posts the run's journal entry dated the last day of the month and sets the status to `approved`: the wage expense (net pay, income tax, employee contributions and deductions) and the employer contributions are debited; the net payable, the income tax, the social contributions (on one account, or split between the employee and employer accounts when their codes differ) and the deductions are credited. The accounts default to the payroll accounts of the company's chart template; each can be given per call. Answers 409 when the run is not a draft or the accounting period is locked, 422 when the run has no lines or nothing to post, and emits `payroll_run.approved`. For an Irish company with the automation of the `ie-payroll-withholding` deadline switched on, the month's payroll submission is sent at once and a failure is added to the run's `warnings`. For a Lithuanian company the unused leave days a line paid as compensation, recorded per balance year when the run was created, are added to the used days of the leave balances. Undo with `payroll/runs/reverse`, pay with `payroll/payments/export`.
+        Posts the run's journal entry dated the last day of the month and sets the status to `approved`: the wage expense (net pay, income tax, employee contributions and deductions) and the employer contributions are debited; the net payable, the income tax, the social contributions (on one account, or split between the employee and employer accounts when their codes differ) and the deductions are credited. The accounts default to the payroll accounts of the company's chart template; each can be given per call (`incomeTaxAccountCode` and `socialContributionsAccountCode`; the older names `gpmAccountCode` and `sodraAccountCode` are still accepted). Answers 409 when the run is not a draft or the accounting period is locked, 422 when the run has no lines or nothing to post, and emits `payroll_run.approved`. For an Irish company with the automation of the `ie-payroll-withholding` deadline switched on, the month's payroll submission is sent at once and a failure is added to the run's `warnings`. For a Lithuanian company the unused leave days a line paid as compensation, recorded per balance year when the run was created, are added to the used days of the leave balances. Undo with `payroll/runs/reverse`, pay with `payroll/payments/export`.
 
         Parameters
         ----------
@@ -1782,6 +1784,10 @@ class RawPayrollClient:
         employer_account_code : typing.Optional[str]
 
         payable_account_code : typing.Optional[str]
+
+        income_tax_account_code : typing.Optional[str]
+
+        social_contributions_account_code : typing.Optional[str]
 
         gpm_account_code : typing.Optional[str]
 
@@ -1807,6 +1813,8 @@ class RawPayrollClient:
                 "wageAccountCode": wage_account_code,
                 "employerAccountCode": employer_account_code,
                 "payableAccountCode": payable_account_code,
+                "incomeTaxAccountCode": income_tax_account_code,
+                "socialContributionsAccountCode": social_contributions_account_code,
                 "gpmAccountCode": gpm_account_code,
                 "sodraAccountCode": sodra_account_code,
                 "employerSocialAccountCode": employer_social_account_code,
@@ -2278,7 +2286,7 @@ class RawPayrollClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[PaymentsExportPayrollResponse]:
         """
-        Builds a SEPA credit transfer file (pain.001.001.03) for an approved run: one transfer from the chosen bank account to each employee's IBAN for the line's net when it is positive, with a remittance text in `locale` (default the locale of the calling user) and the run period, executed on `executionDate` (default the company's current date). Answers 409 when the run is not approved, and 422 when the bank account has no IBAN or is not in the company's base currency, an employee has no IBAN (`hr/employees/update`) or no line has a positive net. The file is returned in `xml`; nothing is sent to the bank.
+        Builds a credit transfer file (ISO 20022 pain.001.001.03) for an approved run, a SEPA credit transfer in EUR and a generic pain.001 without the SEPA service level in any other currency, in the currency of the bank account: one transfer from the chosen bank account to each employee's IBAN for the line's net when it is positive, with a remittance text in `locale` (default the locale of the calling user) and the run period, executed on `executionDate` (default the company's current date). Answers 409 when the run is not approved, and 422 when the bank account has no IBAN or is not in the company's base currency, an employee has no IBAN (`hr/employees/update`) or no line has a positive net. The file is returned in `xml`; nothing is sent to the bank.
 
         Parameters
         ----------
@@ -3453,7 +3461,7 @@ class AsyncRawPayrollClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[RunsCreatePayrollResponse]:
         """
-        Creates a draft payroll run for a month, computing each line with the company country's payroll engine, the employee's approved runs of the year so far and of the two previous years, the month's timesheet and `payDate` (default the last day of the month). Without `lines`, every employee whose contract overlaps the month gets a line, whatever the employee's status: the gross is the contract's monthly salary reduced to the paid working days of the contract and the timesheet, unless `grossOverrides` sets it; the per diems of approved business trips ending in the month are added untaxed and the trips linked to the run; for a Lithuanian company the car benefit in kind (`includeNatura`) and the compensation for unused leave of a contract ending in the month are added. With `lines`, only the given employees are computed with their gross, additions and deductions; a taxable addition may carry a `paymentType` from `payroll/payment-types/list` and `hours`. Answers 422 when the country has no engine, an employee is given twice, has two contracts in the month, has no contract and no gross, or is paid by the hour or day without a gross; 409 when a run for the month already exists or the accounting period is locked.
+        Creates a draft payroll run for a month, computing each line with the company country's payroll engine, the employee's approved runs of the year so far and of the two previous years, the month's timesheet and `payDate` (default the last day of the month). Without `lines`, every employee whose contract overlaps the month gets a line, whatever the employee's status: the gross is the contract's monthly salary reduced to the paid working days of the contract and the timesheet, unless `grossOverrides` sets it; the per diems of approved business trips ending in the month are added untaxed and the trips linked to the run; for a Lithuanian company the car benefit in kind (`includeNatura`) and the compensation for unused leave of a contract ending in the month are added. With `lines`, only the given employees are computed with their gross, additions and deductions, and the per diems of their approved, unlinked business trips ending in the month are added untaxed and the trips linked to the run; a taxable addition may carry a `paymentType` from `payroll/payment-types/list` and `hours`. Answers 422 when the country has no engine, an employee is given twice, has two contracts in the month, has no contract and no gross, or is paid by the hour or day without a gross; 409 when a run for the month already exists or the accounting period is locked.
 
         Parameters
         ----------
@@ -3802,7 +3810,7 @@ class AsyncRawPayrollClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[RunsListPayrollResponse]:
         """
-        Lists payroll runs without their lines; filterable by `status`, `year` and `month`, sortable by `createdAt`, `year` and `month`.
+        Lists payroll runs without their lines; filterable by `status`, `year` and `month`, sortable by `createdAt`, `year`, `month`, `period` (the year, then the month), `status`, `grossTotal`, `incomeTaxTotal`, `contributions` (the employee plus the employer contributions) and `netTotal`.
 
         Parameters
         ----------
@@ -4159,6 +4167,8 @@ class AsyncRawPayrollClient:
         wage_account_code: typing.Optional[str] = OMIT,
         employer_account_code: typing.Optional[str] = OMIT,
         payable_account_code: typing.Optional[str] = OMIT,
+        income_tax_account_code: typing.Optional[str] = OMIT,
+        social_contributions_account_code: typing.Optional[str] = OMIT,
         gpm_account_code: typing.Optional[str] = OMIT,
         sodra_account_code: typing.Optional[str] = OMIT,
         employer_social_account_code: typing.Optional[str] = OMIT,
@@ -4166,7 +4176,7 @@ class AsyncRawPayrollClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[RunsApprovePayrollResponse]:
         """
-        Posts the run's journal entry dated the last day of the month and sets the status to `approved`: the wage expense (net pay, income tax, employee contributions and deductions) and the employer contributions are debited; the net payable, the income tax, the social contributions (on one account, or split between the employee and employer accounts when their codes differ) and the deductions are credited. The accounts default to the payroll accounts of the company's chart template; each can be given per call. Answers 409 when the run is not a draft or the accounting period is locked, 422 when the run has no lines or nothing to post, and emits `payroll_run.approved`. For an Irish company with the automation of the `ie-payroll-withholding` deadline switched on, the month's payroll submission is sent at once and a failure is added to the run's `warnings`. For a Lithuanian company the unused leave days a line paid as compensation, recorded per balance year when the run was created, are added to the used days of the leave balances. Undo with `payroll/runs/reverse`, pay with `payroll/payments/export`.
+        Posts the run's journal entry dated the last day of the month and sets the status to `approved`: the wage expense (net pay, income tax, employee contributions and deductions) and the employer contributions are debited; the net payable, the income tax, the social contributions (on one account, or split between the employee and employer accounts when their codes differ) and the deductions are credited. The accounts default to the payroll accounts of the company's chart template; each can be given per call (`incomeTaxAccountCode` and `socialContributionsAccountCode`; the older names `gpmAccountCode` and `sodraAccountCode` are still accepted). Answers 409 when the run is not a draft or the accounting period is locked, 422 when the run has no lines or nothing to post, and emits `payroll_run.approved`. For an Irish company with the automation of the `ie-payroll-withholding` deadline switched on, the month's payroll submission is sent at once and a failure is added to the run's `warnings`. For a Lithuanian company the unused leave days a line paid as compensation, recorded per balance year when the run was created, are added to the used days of the leave balances. Undo with `payroll/runs/reverse`, pay with `payroll/payments/export`.
 
         Parameters
         ----------
@@ -4177,6 +4187,10 @@ class AsyncRawPayrollClient:
         employer_account_code : typing.Optional[str]
 
         payable_account_code : typing.Optional[str]
+
+        income_tax_account_code : typing.Optional[str]
+
+        social_contributions_account_code : typing.Optional[str]
 
         gpm_account_code : typing.Optional[str]
 
@@ -4202,6 +4216,8 @@ class AsyncRawPayrollClient:
                 "wageAccountCode": wage_account_code,
                 "employerAccountCode": employer_account_code,
                 "payableAccountCode": payable_account_code,
+                "incomeTaxAccountCode": income_tax_account_code,
+                "socialContributionsAccountCode": social_contributions_account_code,
                 "gpmAccountCode": gpm_account_code,
                 "sodraAccountCode": sodra_account_code,
                 "employerSocialAccountCode": employer_social_account_code,
@@ -4673,7 +4689,7 @@ class AsyncRawPayrollClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[PaymentsExportPayrollResponse]:
         """
-        Builds a SEPA credit transfer file (pain.001.001.03) for an approved run: one transfer from the chosen bank account to each employee's IBAN for the line's net when it is positive, with a remittance text in `locale` (default the locale of the calling user) and the run period, executed on `executionDate` (default the company's current date). Answers 409 when the run is not approved, and 422 when the bank account has no IBAN or is not in the company's base currency, an employee has no IBAN (`hr/employees/update`) or no line has a positive net. The file is returned in `xml`; nothing is sent to the bank.
+        Builds a credit transfer file (ISO 20022 pain.001.001.03) for an approved run, a SEPA credit transfer in EUR and a generic pain.001 without the SEPA service level in any other currency, in the currency of the bank account: one transfer from the chosen bank account to each employee's IBAN for the line's net when it is positive, with a remittance text in `locale` (default the locale of the calling user) and the run period, executed on `executionDate` (default the company's current date). Answers 409 when the run is not approved, and 422 when the bank account has no IBAN or is not in the company's base currency, an employee has no IBAN (`hr/employees/update`) or no line has a positive net. The file is returned in `xml`; nothing is sent to the bank.
 
         Parameters
         ----------

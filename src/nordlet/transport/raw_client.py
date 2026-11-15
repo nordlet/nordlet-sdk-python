@@ -994,7 +994,7 @@ class RawTransportClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[WaybillsListTransportResponse]:
         """
-        List waybills with the consignee's name. Filterable by `status`, `consigneePartnerId`, `documentDate`, `fullNumber` and `dispatchAt`; sortable by `createdAt`, `dispatchAt` and `fullNumber`.
+        List waybills with the consignee's name. Filterable by `status`, `consigneePartnerId`, `documentDate`, `fullNumber` and `dispatchAt`; sortable by `createdAt`, `dispatchAt`, `fullNumber`, `consigneeName` (the name of the consignee), `vehiclePlate`, `unloadAddress`, `status` and `valueEur`.
 
         Parameters
         ----------
@@ -2125,7 +2125,7 @@ class AsyncRawTransportClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[WaybillsListTransportResponse]:
         """
-        List waybills with the consignee's name. Filterable by `status`, `consigneePartnerId`, `documentDate`, `fullNumber` and `dispatchAt`; sortable by `createdAt`, `dispatchAt` and `fullNumber`.
+        List waybills with the consignee's name. Filterable by `status`, `consigneePartnerId`, `documentDate`, `fullNumber` and `dispatchAt`; sortable by `createdAt`, `dispatchAt`, `fullNumber`, `consigneeName` (the name of the consignee), `vehiclePlate`, `unloadAddress`, `status` and `valueEur`.
 
         Parameters
         ----------

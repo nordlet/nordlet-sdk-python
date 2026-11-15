@@ -607,11 +607,21 @@ if typing.TYPE_CHECKING:
     from .ro_etransport_submit_declarations_response import RoEtransportSubmitDeclarationsResponse
     from .ro_etransport_submit_declarations_response_state import RoEtransportSubmitDeclarationsResponseState
     from .submissions_confirm_declarations_response import SubmissionsConfirmDeclarationsResponse
+    from .submissions_confirm_declarations_response_correction_input import (
+        SubmissionsConfirmDeclarationsResponseCorrectionInput,
+    )
     from .submissions_confirm_declarations_response_environment import SubmissionsConfirmDeclarationsResponseEnvironment
     from .submissions_confirm_declarations_response_status import SubmissionsConfirmDeclarationsResponseStatus
+    from .submissions_correction_preview_declarations_response import SubmissionsCorrectionPreviewDeclarationsResponse
+    from .submissions_correction_preview_declarations_response_changes_item import (
+        SubmissionsCorrectionPreviewDeclarationsResponseChangesItem,
+    )
     from .submissions_create_declarations_request_data_type import SubmissionsCreateDeclarationsRequestDataType
     from .submissions_create_declarations_request_obligation import SubmissionsCreateDeclarationsRequestObligation
     from .submissions_create_declarations_response import SubmissionsCreateDeclarationsResponse
+    from .submissions_create_declarations_response_correction_input import (
+        SubmissionsCreateDeclarationsResponseCorrectionInput,
+    )
     from .submissions_create_declarations_response_environment import SubmissionsCreateDeclarationsResponseEnvironment
     from .submissions_create_declarations_response_status import SubmissionsCreateDeclarationsResponseStatus
     from .submissions_list_declarations_request_filter_item import SubmissionsListDeclarationsRequestFilterItem
@@ -626,6 +636,21 @@ if typing.TYPE_CHECKING:
     from .submissions_list_declarations_request_sort_item_dir import SubmissionsListDeclarationsRequestSortItemDir
     from .submissions_list_declarations_response import SubmissionsListDeclarationsResponse
     from .submissions_list_declarations_response_rows_item import SubmissionsListDeclarationsResponseRowsItem
+    from .submissions_list_declarations_response_rows_item_correction import (
+        SubmissionsListDeclarationsResponseRowsItemCorrection,
+    )
+    from .submissions_list_declarations_response_rows_item_correction_input import (
+        SubmissionsListDeclarationsResponseRowsItemCorrectionInput,
+    )
+    from .submissions_list_declarations_response_rows_item_correction_optional_item import (
+        SubmissionsListDeclarationsResponseRowsItemCorrectionOptionalItem,
+    )
+    from .submissions_list_declarations_response_rows_item_correction_reason_codes_item import (
+        SubmissionsListDeclarationsResponseRowsItemCorrectionReasonCodesItem,
+    )
+    from .submissions_list_declarations_response_rows_item_correction_required_item import (
+        SubmissionsListDeclarationsResponseRowsItemCorrectionRequiredItem,
+    )
     from .submissions_list_declarations_response_rows_item_environment import (
         SubmissionsListDeclarationsResponseRowsItemEnvironment,
     )
@@ -634,9 +659,15 @@ if typing.TYPE_CHECKING:
     )
     from .submissions_mark_declarations_request_status import SubmissionsMarkDeclarationsRequestStatus
     from .submissions_mark_declarations_response import SubmissionsMarkDeclarationsResponse
+    from .submissions_mark_declarations_response_correction_input import (
+        SubmissionsMarkDeclarationsResponseCorrectionInput,
+    )
     from .submissions_mark_declarations_response_environment import SubmissionsMarkDeclarationsResponseEnvironment
     from .submissions_mark_declarations_response_status import SubmissionsMarkDeclarationsResponseStatus
     from .submissions_retry_declarations_response import SubmissionsRetryDeclarationsResponse
+    from .submissions_retry_declarations_response_correction_input import (
+        SubmissionsRetryDeclarationsResponseCorrectionInput,
+    )
     from .submissions_retry_declarations_response_environment import SubmissionsRetryDeclarationsResponseEnvironment
     from .submissions_retry_declarations_response_status import SubmissionsRetryDeclarationsResponseStatus
     from .tax_adjustments_create_declarations_request_kind import TaxAdjustmentsCreateDeclarationsRequestKind
@@ -663,6 +694,10 @@ if typing.TYPE_CHECKING:
     from .tax_payments_update_declarations_request_kind import TaxPaymentsUpdateDeclarationsRequestKind
     from .tax_payments_update_declarations_response import TaxPaymentsUpdateDeclarationsResponse
     from .tax_payments_update_declarations_response_kind import TaxPaymentsUpdateDeclarationsResponseKind
+    from .vat_prorata_get_declarations_response import VatProrataGetDeclarationsResponse
+    from .vat_prorata_list_declarations_response import VatProrataListDeclarationsResponse
+    from .vat_prorata_list_declarations_response_rows_item import VatProrataListDeclarationsResponseRowsItem
+    from .vat_prorata_set_declarations_response import VatProrataSetDeclarationsResponse
 _dynamic_imports: typing.Dict[str, str] = {
     "AnnualAccountsAttachmentsAddDeclarationsRequestKind": ".annual_accounts_attachments_add_declarations_request_kind",
     "AnnualAccountsAttachmentsAddDeclarationsResponse": ".annual_accounts_attachments_add_declarations_response",
@@ -989,11 +1024,15 @@ _dynamic_imports: typing.Dict[str, str] = {
     "RoEtransportSubmitDeclarationsResponse": ".ro_etransport_submit_declarations_response",
     "RoEtransportSubmitDeclarationsResponseState": ".ro_etransport_submit_declarations_response_state",
     "SubmissionsConfirmDeclarationsResponse": ".submissions_confirm_declarations_response",
+    "SubmissionsConfirmDeclarationsResponseCorrectionInput": ".submissions_confirm_declarations_response_correction_input",
     "SubmissionsConfirmDeclarationsResponseEnvironment": ".submissions_confirm_declarations_response_environment",
     "SubmissionsConfirmDeclarationsResponseStatus": ".submissions_confirm_declarations_response_status",
+    "SubmissionsCorrectionPreviewDeclarationsResponse": ".submissions_correction_preview_declarations_response",
+    "SubmissionsCorrectionPreviewDeclarationsResponseChangesItem": ".submissions_correction_preview_declarations_response_changes_item",
     "SubmissionsCreateDeclarationsRequestDataType": ".submissions_create_declarations_request_data_type",
     "SubmissionsCreateDeclarationsRequestObligation": ".submissions_create_declarations_request_obligation",
     "SubmissionsCreateDeclarationsResponse": ".submissions_create_declarations_response",
+    "SubmissionsCreateDeclarationsResponseCorrectionInput": ".submissions_create_declarations_response_correction_input",
     "SubmissionsCreateDeclarationsResponseEnvironment": ".submissions_create_declarations_response_environment",
     "SubmissionsCreateDeclarationsResponseStatus": ".submissions_create_declarations_response_status",
     "SubmissionsListDeclarationsRequestFilterItem": ".submissions_list_declarations_request_filter_item",
@@ -1004,13 +1043,20 @@ _dynamic_imports: typing.Dict[str, str] = {
     "SubmissionsListDeclarationsRequestSortItemDir": ".submissions_list_declarations_request_sort_item_dir",
     "SubmissionsListDeclarationsResponse": ".submissions_list_declarations_response",
     "SubmissionsListDeclarationsResponseRowsItem": ".submissions_list_declarations_response_rows_item",
+    "SubmissionsListDeclarationsResponseRowsItemCorrection": ".submissions_list_declarations_response_rows_item_correction",
+    "SubmissionsListDeclarationsResponseRowsItemCorrectionInput": ".submissions_list_declarations_response_rows_item_correction_input",
+    "SubmissionsListDeclarationsResponseRowsItemCorrectionOptionalItem": ".submissions_list_declarations_response_rows_item_correction_optional_item",
+    "SubmissionsListDeclarationsResponseRowsItemCorrectionReasonCodesItem": ".submissions_list_declarations_response_rows_item_correction_reason_codes_item",
+    "SubmissionsListDeclarationsResponseRowsItemCorrectionRequiredItem": ".submissions_list_declarations_response_rows_item_correction_required_item",
     "SubmissionsListDeclarationsResponseRowsItemEnvironment": ".submissions_list_declarations_response_rows_item_environment",
     "SubmissionsListDeclarationsResponseRowsItemStatus": ".submissions_list_declarations_response_rows_item_status",
     "SubmissionsMarkDeclarationsRequestStatus": ".submissions_mark_declarations_request_status",
     "SubmissionsMarkDeclarationsResponse": ".submissions_mark_declarations_response",
+    "SubmissionsMarkDeclarationsResponseCorrectionInput": ".submissions_mark_declarations_response_correction_input",
     "SubmissionsMarkDeclarationsResponseEnvironment": ".submissions_mark_declarations_response_environment",
     "SubmissionsMarkDeclarationsResponseStatus": ".submissions_mark_declarations_response_status",
     "SubmissionsRetryDeclarationsResponse": ".submissions_retry_declarations_response",
+    "SubmissionsRetryDeclarationsResponseCorrectionInput": ".submissions_retry_declarations_response_correction_input",
     "SubmissionsRetryDeclarationsResponseEnvironment": ".submissions_retry_declarations_response_environment",
     "SubmissionsRetryDeclarationsResponseStatus": ".submissions_retry_declarations_response_status",
     "TaxAdjustmentsCreateDeclarationsRequestKind": ".tax_adjustments_create_declarations_request_kind",
@@ -1035,6 +1081,10 @@ _dynamic_imports: typing.Dict[str, str] = {
     "TaxPaymentsUpdateDeclarationsRequestKind": ".tax_payments_update_declarations_request_kind",
     "TaxPaymentsUpdateDeclarationsResponse": ".tax_payments_update_declarations_response",
     "TaxPaymentsUpdateDeclarationsResponseKind": ".tax_payments_update_declarations_response_kind",
+    "VatProrataGetDeclarationsResponse": ".vat_prorata_get_declarations_response",
+    "VatProrataListDeclarationsResponse": ".vat_prorata_list_declarations_response",
+    "VatProrataListDeclarationsResponseRowsItem": ".vat_prorata_list_declarations_response_rows_item",
+    "VatProrataSetDeclarationsResponse": ".vat_prorata_set_declarations_response",
 }
 
 
@@ -1385,11 +1435,15 @@ __all__ = [
     "RoEtransportSubmitDeclarationsResponse",
     "RoEtransportSubmitDeclarationsResponseState",
     "SubmissionsConfirmDeclarationsResponse",
+    "SubmissionsConfirmDeclarationsResponseCorrectionInput",
     "SubmissionsConfirmDeclarationsResponseEnvironment",
     "SubmissionsConfirmDeclarationsResponseStatus",
+    "SubmissionsCorrectionPreviewDeclarationsResponse",
+    "SubmissionsCorrectionPreviewDeclarationsResponseChangesItem",
     "SubmissionsCreateDeclarationsRequestDataType",
     "SubmissionsCreateDeclarationsRequestObligation",
     "SubmissionsCreateDeclarationsResponse",
+    "SubmissionsCreateDeclarationsResponseCorrectionInput",
     "SubmissionsCreateDeclarationsResponseEnvironment",
     "SubmissionsCreateDeclarationsResponseStatus",
     "SubmissionsListDeclarationsRequestFilterItem",
@@ -1400,13 +1454,20 @@ __all__ = [
     "SubmissionsListDeclarationsRequestSortItemDir",
     "SubmissionsListDeclarationsResponse",
     "SubmissionsListDeclarationsResponseRowsItem",
+    "SubmissionsListDeclarationsResponseRowsItemCorrection",
+    "SubmissionsListDeclarationsResponseRowsItemCorrectionInput",
+    "SubmissionsListDeclarationsResponseRowsItemCorrectionOptionalItem",
+    "SubmissionsListDeclarationsResponseRowsItemCorrectionReasonCodesItem",
+    "SubmissionsListDeclarationsResponseRowsItemCorrectionRequiredItem",
     "SubmissionsListDeclarationsResponseRowsItemEnvironment",
     "SubmissionsListDeclarationsResponseRowsItemStatus",
     "SubmissionsMarkDeclarationsRequestStatus",
     "SubmissionsMarkDeclarationsResponse",
+    "SubmissionsMarkDeclarationsResponseCorrectionInput",
     "SubmissionsMarkDeclarationsResponseEnvironment",
     "SubmissionsMarkDeclarationsResponseStatus",
     "SubmissionsRetryDeclarationsResponse",
+    "SubmissionsRetryDeclarationsResponseCorrectionInput",
     "SubmissionsRetryDeclarationsResponseEnvironment",
     "SubmissionsRetryDeclarationsResponseStatus",
     "TaxAdjustmentsCreateDeclarationsRequestKind",
@@ -1431,4 +1492,8 @@ __all__ = [
     "TaxPaymentsUpdateDeclarationsRequestKind",
     "TaxPaymentsUpdateDeclarationsResponse",
     "TaxPaymentsUpdateDeclarationsResponseKind",
+    "VatProrataGetDeclarationsResponse",
+    "VatProrataListDeclarationsResponse",
+    "VatProrataListDeclarationsResponseRowsItem",
+    "VatProrataSetDeclarationsResponse",
 ]

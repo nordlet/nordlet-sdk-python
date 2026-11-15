@@ -24,6 +24,8 @@ if typing.TYPE_CHECKING:
     from .accounts_switch_chart_ledger_response import AccountsSwitchChartLedgerResponse
     from .accounts_update_ledger_response import AccountsUpdateLedgerResponse
     from .accounts_update_ledger_response_type import AccountsUpdateLedgerResponseType
+    from .accruals_create_ledger_request_lines_item import AccrualsCreateLedgerRequestLinesItem
+    from .accruals_create_ledger_response import AccrualsCreateLedgerResponse
     from .cost_center_groups_create_ledger_response import CostCenterGroupsCreateLedgerResponse
     from .cost_center_groups_delete_ledger_response import CostCenterGroupsDeleteLedgerResponse
     from .cost_center_groups_list_ledger_request_filter_item import CostCenterGroupsListLedgerRequestFilterItem
@@ -51,6 +53,10 @@ if typing.TYPE_CHECKING:
     from .cost_centers_list_ledger_response import CostCentersListLedgerResponse
     from .cost_centers_list_ledger_response_rows_item import CostCentersListLedgerResponseRowsItem
     from .cost_centers_update_ledger_response import CostCentersUpdateLedgerResponse
+    from .fx_revaluation_reverse_ledger_response import FxRevaluationReverseLedgerResponse
+    from .fx_revaluation_run_ledger_response import FxRevaluationRunLedgerResponse
+    from .fx_revaluation_run_ledger_response_lines_item import FxRevaluationRunLedgerResponseLinesItem
+    from .fx_revaluation_run_ledger_response_lines_item_kind import FxRevaluationRunLedgerResponseLinesItemKind
     from .journal_transactions_create_ledger_request_entries_item import (
         JournalTransactionsCreateLedgerRequestEntriesItem,
     )
@@ -149,6 +155,7 @@ if typing.TYPE_CHECKING:
         StatementRowsSchemesLedgerResponseRowsItemRowsItemStatement,
     )
     from .statement_rows_set_ledger_response import StatementRowsSetLedgerResponse
+    from .tax_provision_post_ledger_response import TaxProvisionPostLedgerResponse
 _dynamic_imports: typing.Dict[str, str] = {
     "AccountsApplyTemplateLedgerResponse": ".accounts_apply_template_ledger_response",
     "AccountsCreateLedgerRequestType": ".accounts_create_ledger_request_type",
@@ -166,6 +173,8 @@ _dynamic_imports: typing.Dict[str, str] = {
     "AccountsSwitchChartLedgerResponse": ".accounts_switch_chart_ledger_response",
     "AccountsUpdateLedgerResponse": ".accounts_update_ledger_response",
     "AccountsUpdateLedgerResponseType": ".accounts_update_ledger_response_type",
+    "AccrualsCreateLedgerRequestLinesItem": ".accruals_create_ledger_request_lines_item",
+    "AccrualsCreateLedgerResponse": ".accruals_create_ledger_response",
     "CostCenterGroupsCreateLedgerResponse": ".cost_center_groups_create_ledger_response",
     "CostCenterGroupsDeleteLedgerResponse": ".cost_center_groups_delete_ledger_response",
     "CostCenterGroupsListLedgerRequestFilterItem": ".cost_center_groups_list_ledger_request_filter_item",
@@ -187,6 +196,10 @@ _dynamic_imports: typing.Dict[str, str] = {
     "CostCentersListLedgerResponse": ".cost_centers_list_ledger_response",
     "CostCentersListLedgerResponseRowsItem": ".cost_centers_list_ledger_response_rows_item",
     "CostCentersUpdateLedgerResponse": ".cost_centers_update_ledger_response",
+    "FxRevaluationReverseLedgerResponse": ".fx_revaluation_reverse_ledger_response",
+    "FxRevaluationRunLedgerResponse": ".fx_revaluation_run_ledger_response",
+    "FxRevaluationRunLedgerResponseLinesItem": ".fx_revaluation_run_ledger_response_lines_item",
+    "FxRevaluationRunLedgerResponseLinesItemKind": ".fx_revaluation_run_ledger_response_lines_item_kind",
     "JournalTransactionsCreateLedgerRequestEntriesItem": ".journal_transactions_create_ledger_request_entries_item",
     "JournalTransactionsCreateLedgerResponse": ".journal_transactions_create_ledger_response",
     "JournalTransactionsCreateLedgerResponseStatus": ".journal_transactions_create_ledger_response_status",
@@ -261,6 +274,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "StatementRowsSchemesLedgerResponseRowsItemRowsItem": ".statement_rows_schemes_ledger_response_rows_item_rows_item",
     "StatementRowsSchemesLedgerResponseRowsItemRowsItemStatement": ".statement_rows_schemes_ledger_response_rows_item_rows_item_statement",
     "StatementRowsSetLedgerResponse": ".statement_rows_set_ledger_response",
+    "TaxProvisionPostLedgerResponse": ".tax_provision_post_ledger_response",
 }
 
 
@@ -302,6 +316,8 @@ __all__ = [
     "AccountsSwitchChartLedgerResponse",
     "AccountsUpdateLedgerResponse",
     "AccountsUpdateLedgerResponseType",
+    "AccrualsCreateLedgerRequestLinesItem",
+    "AccrualsCreateLedgerResponse",
     "CostCenterGroupsCreateLedgerResponse",
     "CostCenterGroupsDeleteLedgerResponse",
     "CostCenterGroupsListLedgerRequestFilterItem",
@@ -323,6 +339,10 @@ __all__ = [
     "CostCentersListLedgerResponse",
     "CostCentersListLedgerResponseRowsItem",
     "CostCentersUpdateLedgerResponse",
+    "FxRevaluationReverseLedgerResponse",
+    "FxRevaluationRunLedgerResponse",
+    "FxRevaluationRunLedgerResponseLinesItem",
+    "FxRevaluationRunLedgerResponseLinesItemKind",
     "JournalTransactionsCreateLedgerRequestEntriesItem",
     "JournalTransactionsCreateLedgerResponse",
     "JournalTransactionsCreateLedgerResponseStatus",
@@ -397,4 +417,5 @@ __all__ = [
     "StatementRowsSchemesLedgerResponseRowsItemRowsItem",
     "StatementRowsSchemesLedgerResponseRowsItemRowsItemStatement",
     "StatementRowsSetLedgerResponse",
+    "TaxProvisionPostLedgerResponse",
 ]
