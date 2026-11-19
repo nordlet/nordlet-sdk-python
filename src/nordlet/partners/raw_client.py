@@ -31,12 +31,15 @@ from .types.addresses_list_partners_response import AddressesListPartnersRespons
 from .types.addresses_update_partners_request_type import AddressesUpdatePartnersRequestType
 from .types.addresses_update_partners_response import AddressesUpdatePartnersResponse
 from .types.anonymize_partners_response import AnonymizePartnersResponse
+from .types.bank_accounts_create_partners_request_account_type import BankAccountsCreatePartnersRequestAccountType
 from .types.bank_accounts_create_partners_response import BankAccountsCreatePartnersResponse
 from .types.bank_accounts_delete_partners_response import BankAccountsDeletePartnersResponse
 from .types.bank_accounts_list_partners_request_filter_item import BankAccountsListPartnersRequestFilterItem
 from .types.bank_accounts_list_partners_request_sort_item import BankAccountsListPartnersRequestSortItem
 from .types.bank_accounts_list_partners_response import BankAccountsListPartnersResponse
+from .types.bank_accounts_update_partners_request_account_type import BankAccountsUpdatePartnersRequestAccountType
 from .types.bank_accounts_update_partners_response import BankAccountsUpdatePartnersResponse
+from .types.companies_house_get_partners_response import CompaniesHouseGetPartnersResponse
 from .types.contacts_create_partners_response import ContactsCreatePartnersResponse
 from .types.contacts_delete_partners_response import ContactsDeletePartnersResponse
 from .types.contacts_list_partners_request_filter_item import ContactsListPartnersRequestFilterItem
@@ -1537,8 +1540,11 @@ class RawPartnersClient:
     def bank_accounts_create(
         self,
         *,
-        iban: str,
         partner_id: str,
+        iban: typing.Optional[str] = OMIT,
+        bank_code: typing.Optional[str] = OMIT,
+        bank_account_number: typing.Optional[str] = OMIT,
+        account_type: typing.Optional[BankAccountsCreatePartnersRequestAccountType] = OMIT,
         bank_name: typing.Optional[str] = OMIT,
         bic: typing.Optional[str] = OMIT,
         currency: typing.Optional[str] = OMIT,
@@ -1546,19 +1552,29 @@ class RawPartnersClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[BankAccountsCreatePartnersResponse]:
         """
-        Adds a bank account to the partner in `partnerId`. The IBAN is stored without spaces in upper case; an IBAN whose check digits fail (ISO 13616) is refused with 422 and one the partner already has with 409. With `isDefault` true the partner's other accounts lose their default mark.
+        Adds a bank account to the partner in `partnerId`, identified by `iban` or, where the country has no IBAN, by `bankAccountNumber` with `bankCode` (sort code, routing number); one of them is required (422). The IBAN is stored without spaces in upper case and the bank code and account number without spaces and hyphens; an IBAN whose check digits fail (ISO 13616) is refused with 422 and an account the partner already has with 409. With `isDefault` true the partner's other accounts lose their default mark.
 
         Parameters
         ----------
-        iban : str
-
         partner_id : str
+
+        iban : typing.Optional[str]
+
+        bank_code : typing.Optional[str]
+            Sort code, routing number or other national bank code, for an account without an IBAN
+
+        bank_account_number : typing.Optional[str]
+            Account number, for an account without an IBAN
+
+        account_type : typing.Optional[BankAccountsCreatePartnersRequestAccountType]
+            Checking or savings account; a US ACH file needs it
 
         bank_name : typing.Optional[str]
 
         bic : typing.Optional[str]
 
         currency : typing.Optional[str]
+            Defaults to the company's base currency
 
         is_default : typing.Optional[bool]
 
@@ -1575,6 +1591,9 @@ class RawPartnersClient:
             method="POST",
             json={
                 "iban": iban,
+                "bankCode": bank_code,
+                "bankAccountNumber": bank_account_number,
+                "accountType": account_type,
                 "bankName": bank_name,
                 "bic": bic,
                 "currency": currency,
@@ -1721,6 +1740,9 @@ class RawPartnersClient:
         *,
         id: str,
         iban: typing.Optional[str] = OMIT,
+        bank_code: typing.Optional[str] = OMIT,
+        bank_account_number: typing.Optional[str] = OMIT,
+        account_type: typing.Optional[BankAccountsUpdatePartnersRequestAccountType] = OMIT,
         bank_name: typing.Optional[str] = OMIT,
         bic: typing.Optional[str] = OMIT,
         currency: typing.Optional[str] = OMIT,
@@ -1736,11 +1758,21 @@ class RawPartnersClient:
 
         iban : typing.Optional[str]
 
+        bank_code : typing.Optional[str]
+            Sort code, routing number or other national bank code, for an account without an IBAN
+
+        bank_account_number : typing.Optional[str]
+            Account number, for an account without an IBAN
+
+        account_type : typing.Optional[BankAccountsUpdatePartnersRequestAccountType]
+            Checking or savings account; a US ACH file needs it
+
         bank_name : typing.Optional[str]
 
         bic : typing.Optional[str]
 
         currency : typing.Optional[str]
+            Defaults to the company's base currency
 
         is_default : typing.Optional[bool]
 
@@ -1757,6 +1789,9 @@ class RawPartnersClient:
             method="POST",
             json={
                 "iban": iban,
+                "bankCode": bank_code,
+                "bankAccountNumber": bank_account_number,
+                "accountType": account_type,
                 "bankName": bank_name,
                 "bic": bic,
                 "currency": currency,
@@ -3227,7 +3262,7 @@ class RawPartnersClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[ValidateVatPartnersResponse]:
         """
-        Checks a VAT number against VIES, either a free `vatCode` or the VAT code of the partner in `partnerId` (exactly one of the two); a code without an EU country prefix and 2 to 12 alphanumeric characters is refused with 422, as is a partner without a VAT code, and a VIES outage answers 503. With a partner the outcome is written to it (`vatValid`, `vatValidatedAt`): an invalid number or a VIES name that shares no word with the partner's name opens or refreshes the partner's VAT review (`vat_review.opened`), a VIES failure opens one with reason `service_error`, and a valid matching number resolves the open review as `revalidated` (`vat_review.resolved`). Reviews are listed and closed with `partners/vat-reviews/list` and `partners/vat-reviews/resolve`.
+        Checks a VAT number against VIES, or a UK number (`GB` and 9 or 12 digits) with HMRC's Check a UK VAT number service, either a free `vatCode` or the VAT code of the partner in `partnerId` (exactly one of the two); a code without an EU country prefix and 2 to 12 alphanumeric characters or a UK prefix and 9 or 12 digits is refused with 422, as is a partner without a VAT code, and a VIES or HMRC outage, or a UK check that is not set up, answers 503. A UK check gives HMRC's consultation number as `requestIdentifier` when the company's own `vatCode` is a UK number HMRC knows. With a partner the outcome is written to it (`vatValid`, `vatValidatedAt`): an invalid number or a VIES name that shares no word with the partner's name opens or refreshes the partner's VAT review (`vat_review.opened`), a VIES failure opens one with reason `service_error`, and a valid matching number resolves the open review as `revalidated` (`vat_review.resolved`). Reviews are listed and closed with `partners/vat-reviews/list` and `partners/vat-reviews/resolve`.
 
         Parameters
         ----------
@@ -3262,6 +3297,165 @@ class RawPartnersClient:
                     ValidateVatPartnersResponse,
                     parse_obj_as(
                         type_=ValidateVatPartnersResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return HttpResponse(response=_response, data=_data)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 422:
+                raise UnprocessableEntityError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
+    def companies_house_get(
+        self, *, company_number: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> HttpResponse[CompaniesHouseGetPartnersResponse]:
+        """
+        Reads a UK company from the Companies House register by `companyNumber` (letters and digits; spaces are removed and letters upper-cased): its name, status, type, incorporation and cessation dates, registered office address (`subdivision` from the office's country: England, Wales, Scotland or Northern Ireland), accounting reference date, the next due dates of its accounts and confirmation statement, and SIC codes. Nothing is stored. A number Companies House does not know answers 404; a lookup that is not set up, Companies House being unreachable or its rate limit answers 503.
+
+        Parameters
+        ----------
+        company_number : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        HttpResponse[CompaniesHouseGetPartnersResponse]
+            Default Response
+        """
+        _response = self._client_wrapper.httpx_client.request(
+            "v1/partners/companies-house/get",
+            method="POST",
+            json={
+                "companyNumber": company_number,
+            },
+            headers={
+                "content-type": "application/json",
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    CompaniesHouseGetPartnersResponse,
+                    parse_obj_as(
+                        type_=CompaniesHouseGetPartnersResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -3752,6 +3946,7 @@ class RawPartnersClient:
         phone: typing.Optional[str] = OMIT,
         self_employment_cert_no: typing.Optional[str] = OMIT,
         birth_date: typing.Optional[dt.date] = OMIT,
+        is_business: typing.Optional[bool] = OMIT,
         is_customer: typing.Optional[bool] = OMIT,
         is_supplier: typing.Optional[bool] = OMIT,
         payment_term_days: typing.Optional[int] = OMIT,
@@ -3782,7 +3977,7 @@ class RawPartnersClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[CreatePartnersResponse]:
         """
-        Creates a partner; without `isCustomer` it is a customer unless `isSupplier` is true. `groupId`, `statusId` and `priceListId` must belong to the company; without `legalCountryClass` the class is derived from the address country (`lt`, `eu` or `non_eu`); `documentRef` attaches an uploaded file that is not yet linked to a record; a `code` already used by a live partner of the company is refused with 409. A `vatCode` is checked against VIES at once and the result stored on the partner: an invalid number, a VIES name that shares no word with the partner's name, or a VIES failure opens a VAT review (`vat_review.opened`), while a code that is not an EU VAT number is stored unchecked (see `partners/validate-vat`).
+        Creates a partner; without `isCustomer` it is a customer unless `isSupplier` is true. `groupId`, `statusId` and `priceListId` must belong to the company; without `legalCountryClass` the class is derived from the address country (`lt`, `eu` or `non_eu`); `documentRef` attaches an uploaded file that is not yet linked to a record; a `code` already used by a live partner of the company is refused with 409. A `vatCode` is checked at once against VIES, or a UK number with HMRC and the result stored on the partner: an invalid number, a VIES name that shares no word with the partner's name, or a VIES failure opens a VAT review (`vat_review.opened`), while a code that neither service can check is stored unchecked (see `partners/validate-vat`).
 
         Parameters
         ----------
@@ -3803,6 +3998,9 @@ class RawPartnersClient:
         self_employment_cert_no : typing.Optional[str]
 
         birth_date : typing.Optional[dt.date]
+
+        is_business : typing.Optional[bool]
+            Whether the partner acts as a business for VAT; when not set, a partner with a VAT code is a business. Regulation (EU) 282/2011 art. 18 lets a customer without a VAT number be treated as a business on other proof
 
         is_customer : typing.Optional[bool]
 
@@ -3881,6 +4079,7 @@ class RawPartnersClient:
                 "phone": phone,
                 "selfEmploymentCertNo": self_employment_cert_no,
                 "birthDate": birth_date,
+                "isBusiness": is_business,
                 "isCustomer": is_customer,
                 "isSupplier": is_supplier,
                 "paymentTermDays": payment_term_days,
@@ -4062,6 +4261,7 @@ class RawPartnersClient:
         phone: typing.Optional[str] = OMIT,
         self_employment_cert_no: typing.Optional[str] = OMIT,
         birth_date: typing.Optional[dt.date] = OMIT,
+        is_business: typing.Optional[bool] = OMIT,
         is_customer: typing.Optional[bool] = OMIT,
         is_supplier: typing.Optional[bool] = OMIT,
         payment_term_days: typing.Optional[int] = OMIT,
@@ -4114,6 +4314,9 @@ class RawPartnersClient:
         self_employment_cert_no : typing.Optional[str]
 
         birth_date : typing.Optional[dt.date]
+
+        is_business : typing.Optional[bool]
+            Whether the partner acts as a business for VAT; when not set, a partner with a VAT code is a business. Regulation (EU) 282/2011 art. 18 lets a customer without a VAT number be treated as a business on other proof
 
         is_customer : typing.Optional[bool]
 
@@ -4194,6 +4397,7 @@ class RawPartnersClient:
                 "phone": phone,
                 "selfEmploymentCertNo": self_employment_cert_no,
                 "birthDate": birth_date,
+                "isBusiness": is_business,
                 "isCustomer": is_customer,
                 "isSupplier": is_supplier,
                 "paymentTermDays": payment_term_days,
@@ -4536,6 +4740,7 @@ class RawPartnersClient:
         phone: typing.Optional[str] = OMIT,
         self_employment_cert_no: typing.Optional[str] = OMIT,
         birth_date: typing.Optional[dt.date] = OMIT,
+        is_business: typing.Optional[bool] = OMIT,
         is_customer: typing.Optional[bool] = OMIT,
         is_supplier: typing.Optional[bool] = OMIT,
         payment_term_days: typing.Optional[int] = OMIT,
@@ -4566,7 +4771,7 @@ class RawPartnersClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[UpdatePartnersResponse]:
         """
-        Changes the given fields of a partner; the clearable fields accept null. A new address country re-derives `legalCountryClass` unless the class is given, and a `code` already used by another live partner of the company is refused with 409. A changed `vatCode` resets the VIES result and is checked at once as in `partners/create`; a removed code, or one that is not an EU VAT number, resolves the partner's open VAT review as `superseded` (`vat_review.resolved`).
+        Changes the given fields of a partner; the clearable fields accept null. A new address country re-derives `legalCountryClass` unless the class is given, and a `code` already used by another live partner of the company is refused with 409. A changed `vatCode` resets the VIES result and is checked at once as in `partners/create`; a removed code, or one that neither service can check, resolves the partner's open VAT review as `superseded` (`vat_review.resolved`).
 
         Parameters
         ----------
@@ -4589,6 +4794,9 @@ class RawPartnersClient:
         self_employment_cert_no : typing.Optional[str]
 
         birth_date : typing.Optional[dt.date]
+
+        is_business : typing.Optional[bool]
+            Whether the partner acts as a business for VAT; when not set, a partner with a VAT code is a business. Regulation (EU) 282/2011 art. 18 lets a customer without a VAT number be treated as a business on other proof
 
         is_customer : typing.Optional[bool]
 
@@ -4668,6 +4876,7 @@ class RawPartnersClient:
                 "phone": phone,
                 "selfEmploymentCertNo": self_employment_cert_no,
                 "birthDate": birth_date,
+                "isBusiness": is_business,
                 "isCustomer": is_customer,
                 "isSupplier": is_supplier,
                 "paymentTermDays": payment_term_days,
@@ -9128,8 +9337,11 @@ class AsyncRawPartnersClient:
     async def bank_accounts_create(
         self,
         *,
-        iban: str,
         partner_id: str,
+        iban: typing.Optional[str] = OMIT,
+        bank_code: typing.Optional[str] = OMIT,
+        bank_account_number: typing.Optional[str] = OMIT,
+        account_type: typing.Optional[BankAccountsCreatePartnersRequestAccountType] = OMIT,
         bank_name: typing.Optional[str] = OMIT,
         bic: typing.Optional[str] = OMIT,
         currency: typing.Optional[str] = OMIT,
@@ -9137,19 +9349,29 @@ class AsyncRawPartnersClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[BankAccountsCreatePartnersResponse]:
         """
-        Adds a bank account to the partner in `partnerId`. The IBAN is stored without spaces in upper case; an IBAN whose check digits fail (ISO 13616) is refused with 422 and one the partner already has with 409. With `isDefault` true the partner's other accounts lose their default mark.
+        Adds a bank account to the partner in `partnerId`, identified by `iban` or, where the country has no IBAN, by `bankAccountNumber` with `bankCode` (sort code, routing number); one of them is required (422). The IBAN is stored without spaces in upper case and the bank code and account number without spaces and hyphens; an IBAN whose check digits fail (ISO 13616) is refused with 422 and an account the partner already has with 409. With `isDefault` true the partner's other accounts lose their default mark.
 
         Parameters
         ----------
-        iban : str
-
         partner_id : str
+
+        iban : typing.Optional[str]
+
+        bank_code : typing.Optional[str]
+            Sort code, routing number or other national bank code, for an account without an IBAN
+
+        bank_account_number : typing.Optional[str]
+            Account number, for an account without an IBAN
+
+        account_type : typing.Optional[BankAccountsCreatePartnersRequestAccountType]
+            Checking or savings account; a US ACH file needs it
 
         bank_name : typing.Optional[str]
 
         bic : typing.Optional[str]
 
         currency : typing.Optional[str]
+            Defaults to the company's base currency
 
         is_default : typing.Optional[bool]
 
@@ -9166,6 +9388,9 @@ class AsyncRawPartnersClient:
             method="POST",
             json={
                 "iban": iban,
+                "bankCode": bank_code,
+                "bankAccountNumber": bank_account_number,
+                "accountType": account_type,
                 "bankName": bank_name,
                 "bic": bic,
                 "currency": currency,
@@ -9312,6 +9537,9 @@ class AsyncRawPartnersClient:
         *,
         id: str,
         iban: typing.Optional[str] = OMIT,
+        bank_code: typing.Optional[str] = OMIT,
+        bank_account_number: typing.Optional[str] = OMIT,
+        account_type: typing.Optional[BankAccountsUpdatePartnersRequestAccountType] = OMIT,
         bank_name: typing.Optional[str] = OMIT,
         bic: typing.Optional[str] = OMIT,
         currency: typing.Optional[str] = OMIT,
@@ -9327,11 +9555,21 @@ class AsyncRawPartnersClient:
 
         iban : typing.Optional[str]
 
+        bank_code : typing.Optional[str]
+            Sort code, routing number or other national bank code, for an account without an IBAN
+
+        bank_account_number : typing.Optional[str]
+            Account number, for an account without an IBAN
+
+        account_type : typing.Optional[BankAccountsUpdatePartnersRequestAccountType]
+            Checking or savings account; a US ACH file needs it
+
         bank_name : typing.Optional[str]
 
         bic : typing.Optional[str]
 
         currency : typing.Optional[str]
+            Defaults to the company's base currency
 
         is_default : typing.Optional[bool]
 
@@ -9348,6 +9586,9 @@ class AsyncRawPartnersClient:
             method="POST",
             json={
                 "iban": iban,
+                "bankCode": bank_code,
+                "bankAccountNumber": bank_account_number,
+                "accountType": account_type,
                 "bankName": bank_name,
                 "bic": bic,
                 "currency": currency,
@@ -10818,7 +11059,7 @@ class AsyncRawPartnersClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[ValidateVatPartnersResponse]:
         """
-        Checks a VAT number against VIES, either a free `vatCode` or the VAT code of the partner in `partnerId` (exactly one of the two); a code without an EU country prefix and 2 to 12 alphanumeric characters is refused with 422, as is a partner without a VAT code, and a VIES outage answers 503. With a partner the outcome is written to it (`vatValid`, `vatValidatedAt`): an invalid number or a VIES name that shares no word with the partner's name opens or refreshes the partner's VAT review (`vat_review.opened`), a VIES failure opens one with reason `service_error`, and a valid matching number resolves the open review as `revalidated` (`vat_review.resolved`). Reviews are listed and closed with `partners/vat-reviews/list` and `partners/vat-reviews/resolve`.
+        Checks a VAT number against VIES, or a UK number (`GB` and 9 or 12 digits) with HMRC's Check a UK VAT number service, either a free `vatCode` or the VAT code of the partner in `partnerId` (exactly one of the two); a code without an EU country prefix and 2 to 12 alphanumeric characters or a UK prefix and 9 or 12 digits is refused with 422, as is a partner without a VAT code, and a VIES or HMRC outage, or a UK check that is not set up, answers 503. A UK check gives HMRC's consultation number as `requestIdentifier` when the company's own `vatCode` is a UK number HMRC knows. With a partner the outcome is written to it (`vatValid`, `vatValidatedAt`): an invalid number or a VIES name that shares no word with the partner's name opens or refreshes the partner's VAT review (`vat_review.opened`), a VIES failure opens one with reason `service_error`, and a valid matching number resolves the open review as `revalidated` (`vat_review.resolved`). Reviews are listed and closed with `partners/vat-reviews/list` and `partners/vat-reviews/resolve`.
 
         Parameters
         ----------
@@ -10853,6 +11094,165 @@ class AsyncRawPartnersClient:
                     ValidateVatPartnersResponse,
                     parse_obj_as(
                         type_=ValidateVatPartnersResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return AsyncHttpResponse(response=_response, data=_data)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 422:
+                raise UnprocessableEntityError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
+    async def companies_house_get(
+        self, *, company_number: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> AsyncHttpResponse[CompaniesHouseGetPartnersResponse]:
+        """
+        Reads a UK company from the Companies House register by `companyNumber` (letters and digits; spaces are removed and letters upper-cased): its name, status, type, incorporation and cessation dates, registered office address (`subdivision` from the office's country: England, Wales, Scotland or Northern Ireland), accounting reference date, the next due dates of its accounts and confirmation statement, and SIC codes. Nothing is stored. A number Companies House does not know answers 404; a lookup that is not set up, Companies House being unreachable or its rate limit answers 503.
+
+        Parameters
+        ----------
+        company_number : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        AsyncHttpResponse[CompaniesHouseGetPartnersResponse]
+            Default Response
+        """
+        _response = await self._client_wrapper.httpx_client.request(
+            "v1/partners/companies-house/get",
+            method="POST",
+            json={
+                "companyNumber": company_number,
+            },
+            headers={
+                "content-type": "application/json",
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    CompaniesHouseGetPartnersResponse,
+                    parse_obj_as(
+                        type_=CompaniesHouseGetPartnersResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -11343,6 +11743,7 @@ class AsyncRawPartnersClient:
         phone: typing.Optional[str] = OMIT,
         self_employment_cert_no: typing.Optional[str] = OMIT,
         birth_date: typing.Optional[dt.date] = OMIT,
+        is_business: typing.Optional[bool] = OMIT,
         is_customer: typing.Optional[bool] = OMIT,
         is_supplier: typing.Optional[bool] = OMIT,
         payment_term_days: typing.Optional[int] = OMIT,
@@ -11373,7 +11774,7 @@ class AsyncRawPartnersClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[CreatePartnersResponse]:
         """
-        Creates a partner; without `isCustomer` it is a customer unless `isSupplier` is true. `groupId`, `statusId` and `priceListId` must belong to the company; without `legalCountryClass` the class is derived from the address country (`lt`, `eu` or `non_eu`); `documentRef` attaches an uploaded file that is not yet linked to a record; a `code` already used by a live partner of the company is refused with 409. A `vatCode` is checked against VIES at once and the result stored on the partner: an invalid number, a VIES name that shares no word with the partner's name, or a VIES failure opens a VAT review (`vat_review.opened`), while a code that is not an EU VAT number is stored unchecked (see `partners/validate-vat`).
+        Creates a partner; without `isCustomer` it is a customer unless `isSupplier` is true. `groupId`, `statusId` and `priceListId` must belong to the company; without `legalCountryClass` the class is derived from the address country (`lt`, `eu` or `non_eu`); `documentRef` attaches an uploaded file that is not yet linked to a record; a `code` already used by a live partner of the company is refused with 409. A `vatCode` is checked at once against VIES, or a UK number with HMRC and the result stored on the partner: an invalid number, a VIES name that shares no word with the partner's name, or a VIES failure opens a VAT review (`vat_review.opened`), while a code that neither service can check is stored unchecked (see `partners/validate-vat`).
 
         Parameters
         ----------
@@ -11394,6 +11795,9 @@ class AsyncRawPartnersClient:
         self_employment_cert_no : typing.Optional[str]
 
         birth_date : typing.Optional[dt.date]
+
+        is_business : typing.Optional[bool]
+            Whether the partner acts as a business for VAT; when not set, a partner with a VAT code is a business. Regulation (EU) 282/2011 art. 18 lets a customer without a VAT number be treated as a business on other proof
 
         is_customer : typing.Optional[bool]
 
@@ -11472,6 +11876,7 @@ class AsyncRawPartnersClient:
                 "phone": phone,
                 "selfEmploymentCertNo": self_employment_cert_no,
                 "birthDate": birth_date,
+                "isBusiness": is_business,
                 "isCustomer": is_customer,
                 "isSupplier": is_supplier,
                 "paymentTermDays": payment_term_days,
@@ -11653,6 +12058,7 @@ class AsyncRawPartnersClient:
         phone: typing.Optional[str] = OMIT,
         self_employment_cert_no: typing.Optional[str] = OMIT,
         birth_date: typing.Optional[dt.date] = OMIT,
+        is_business: typing.Optional[bool] = OMIT,
         is_customer: typing.Optional[bool] = OMIT,
         is_supplier: typing.Optional[bool] = OMIT,
         payment_term_days: typing.Optional[int] = OMIT,
@@ -11705,6 +12111,9 @@ class AsyncRawPartnersClient:
         self_employment_cert_no : typing.Optional[str]
 
         birth_date : typing.Optional[dt.date]
+
+        is_business : typing.Optional[bool]
+            Whether the partner acts as a business for VAT; when not set, a partner with a VAT code is a business. Regulation (EU) 282/2011 art. 18 lets a customer without a VAT number be treated as a business on other proof
 
         is_customer : typing.Optional[bool]
 
@@ -11785,6 +12194,7 @@ class AsyncRawPartnersClient:
                 "phone": phone,
                 "selfEmploymentCertNo": self_employment_cert_no,
                 "birthDate": birth_date,
+                "isBusiness": is_business,
                 "isCustomer": is_customer,
                 "isSupplier": is_supplier,
                 "paymentTermDays": payment_term_days,
@@ -12127,6 +12537,7 @@ class AsyncRawPartnersClient:
         phone: typing.Optional[str] = OMIT,
         self_employment_cert_no: typing.Optional[str] = OMIT,
         birth_date: typing.Optional[dt.date] = OMIT,
+        is_business: typing.Optional[bool] = OMIT,
         is_customer: typing.Optional[bool] = OMIT,
         is_supplier: typing.Optional[bool] = OMIT,
         payment_term_days: typing.Optional[int] = OMIT,
@@ -12157,7 +12568,7 @@ class AsyncRawPartnersClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[UpdatePartnersResponse]:
         """
-        Changes the given fields of a partner; the clearable fields accept null. A new address country re-derives `legalCountryClass` unless the class is given, and a `code` already used by another live partner of the company is refused with 409. A changed `vatCode` resets the VIES result and is checked at once as in `partners/create`; a removed code, or one that is not an EU VAT number, resolves the partner's open VAT review as `superseded` (`vat_review.resolved`).
+        Changes the given fields of a partner; the clearable fields accept null. A new address country re-derives `legalCountryClass` unless the class is given, and a `code` already used by another live partner of the company is refused with 409. A changed `vatCode` resets the VIES result and is checked at once as in `partners/create`; a removed code, or one that neither service can check, resolves the partner's open VAT review as `superseded` (`vat_review.resolved`).
 
         Parameters
         ----------
@@ -12180,6 +12591,9 @@ class AsyncRawPartnersClient:
         self_employment_cert_no : typing.Optional[str]
 
         birth_date : typing.Optional[dt.date]
+
+        is_business : typing.Optional[bool]
+            Whether the partner acts as a business for VAT; when not set, a partner with a VAT code is a business. Regulation (EU) 282/2011 art. 18 lets a customer without a VAT number be treated as a business on other proof
 
         is_customer : typing.Optional[bool]
 
@@ -12259,6 +12673,7 @@ class AsyncRawPartnersClient:
                 "phone": phone,
                 "selfEmploymentCertNo": self_employment_cert_no,
                 "birthDate": birth_date,
+                "isBusiness": is_business,
                 "isCustomer": is_customer,
                 "isSupplier": is_supplier,
                 "paymentTermDays": payment_term_days,

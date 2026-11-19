@@ -7,6 +7,9 @@ import pydantic
 import typing_extensions
 from ...core.pydantic_utilities import IS_PYDANTIC_V2, UniversalBaseModel
 from ...core.serialization import FieldMetadata
+from .accounts_list_bank_response_rows_item_payment_file_settings import (
+    AccountsListBankResponseRowsItemPaymentFileSettings,
+)
 from .accounts_list_bank_response_rows_item_type import AccountsListBankResponseRowsItemType
 
 
@@ -15,6 +18,17 @@ class AccountsListBankResponseRowsItem(UniversalBaseModel):
     name: str
     type: AccountsListBankResponseRowsItemType
     iban: typing.Optional[str] = None
+    bank_code: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="bankCode"), pydantic.Field(alias="bankCode")
+    ] = None
+    bank_account_number: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="bankAccountNumber"), pydantic.Field(alias="bankAccountNumber")
+    ] = None
+    payment_file_settings: typing_extensions.Annotated[
+        AccountsListBankResponseRowsItemPaymentFileSettings,
+        FieldMetadata(alias="paymentFileSettings"),
+        pydantic.Field(alias="paymentFileSettings"),
+    ]
     currency: str
     account_code: typing_extensions.Annotated[
         str, FieldMetadata(alias="accountCode"), pydantic.Field(alias="accountCode")

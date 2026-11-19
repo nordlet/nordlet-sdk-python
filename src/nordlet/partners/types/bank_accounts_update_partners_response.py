@@ -7,12 +7,28 @@ import pydantic
 import typing_extensions
 from ...core.pydantic_utilities import IS_PYDANTIC_V2, UniversalBaseModel
 from ...core.serialization import FieldMetadata
+from .bank_accounts_update_partners_response_account_type import BankAccountsUpdatePartnersResponseAccountType
 
 
 class BankAccountsUpdatePartnersResponse(UniversalBaseModel):
     id: str
     partner_id: typing_extensions.Annotated[str, FieldMetadata(alias="partnerId"), pydantic.Field(alias="partnerId")]
-    iban: str
+    iban: typing.Optional[str] = None
+    bank_code: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="bankCode"), pydantic.Field(alias="bankCode")
+    ] = None
+    bank_account_number: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="bankAccountNumber"), pydantic.Field(alias="bankAccountNumber")
+    ] = None
+    account_type: typing_extensions.Annotated[
+        typing.Optional[BankAccountsUpdatePartnersResponseAccountType],
+        FieldMetadata(alias="accountType"),
+        pydantic.Field(alias="accountType", description="Checking or savings account; a US ACH file needs it"),
+    ] = None
+    """
+    Checking or savings account; a US ACH file needs it
+    """
+
     bank_name: typing_extensions.Annotated[
         typing.Optional[str], FieldMetadata(alias="bankName"), pydantic.Field(alias="bankName")
     ] = None

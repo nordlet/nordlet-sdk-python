@@ -39,6 +39,9 @@ if typing.TYPE_CHECKING:
         CompaniesContextAccountResponseProfileAccountsKeptBy,
     )
     from .companies_context_account_response_profile_address import CompaniesContextAccountResponseProfileAddress
+    from .companies_context_account_response_profile_fiscal_year_week_rule import (
+        CompaniesContextAccountResponseProfileFiscalYearWeekRule,
+    )
     from .companies_context_account_response_profile_status import CompaniesContextAccountResponseProfileStatus
     from .companies_context_account_response_profile_vat_period import CompaniesContextAccountResponseProfileVatPeriod
     from .companies_context_account_response_vat_types_used_item import CompaniesContextAccountResponseVatTypesUsedItem
@@ -49,6 +52,7 @@ if typing.TYPE_CHECKING:
     from .companies_create_account_request_default_invoice_locale import (
         CompaniesCreateAccountRequestDefaultInvoiceLocale,
     )
+    from .companies_create_account_request_fiscal_year_week_rule import CompaniesCreateAccountRequestFiscalYearWeekRule
     from .companies_create_account_request_vat_period import CompaniesCreateAccountRequestVatPeriod
     from .companies_create_account_response import CompaniesCreateAccountResponse
     from .companies_create_account_response_vat_period import CompaniesCreateAccountResponseVatPeriod
@@ -56,6 +60,9 @@ if typing.TYPE_CHECKING:
     from .companies_profile_account_response import CompaniesProfileAccountResponse
     from .companies_profile_account_response_accounts_kept_by import CompaniesProfileAccountResponseAccountsKeptBy
     from .companies_profile_account_response_address import CompaniesProfileAccountResponseAddress
+    from .companies_profile_account_response_fiscal_year_week_rule import (
+        CompaniesProfileAccountResponseFiscalYearWeekRule,
+    )
     from .companies_profile_account_response_status import CompaniesProfileAccountResponseStatus
     from .companies_profile_account_response_vat_period import CompaniesProfileAccountResponseVatPeriod
     from .companies_select_account_response import CompaniesSelectAccountResponse
@@ -64,11 +71,15 @@ if typing.TYPE_CHECKING:
     from .companies_update_account_request_default_invoice_locale import (
         CompaniesUpdateAccountRequestDefaultInvoiceLocale,
     )
+    from .companies_update_account_request_fiscal_year_week_rule import CompaniesUpdateAccountRequestFiscalYearWeekRule
     from .companies_update_account_request_logo import CompaniesUpdateAccountRequestLogo
     from .companies_update_account_request_vat_period import CompaniesUpdateAccountRequestVatPeriod
     from .companies_update_account_response import CompaniesUpdateAccountResponse
     from .companies_update_account_response_accounts_kept_by import CompaniesUpdateAccountResponseAccountsKeptBy
     from .companies_update_account_response_address import CompaniesUpdateAccountResponseAddress
+    from .companies_update_account_response_fiscal_year_week_rule import (
+        CompaniesUpdateAccountResponseFiscalYearWeekRule,
+    )
     from .companies_update_account_response_status import CompaniesUpdateAccountResponseStatus
     from .companies_update_account_response_vat_period import CompaniesUpdateAccountResponseVatPeriod
     from .consent_accept_account_response import ConsentAcceptAccountResponse
@@ -171,6 +182,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "CompaniesContextAccountResponseProfile": ".companies_context_account_response_profile",
     "CompaniesContextAccountResponseProfileAccountsKeptBy": ".companies_context_account_response_profile_accounts_kept_by",
     "CompaniesContextAccountResponseProfileAddress": ".companies_context_account_response_profile_address",
+    "CompaniesContextAccountResponseProfileFiscalYearWeekRule": ".companies_context_account_response_profile_fiscal_year_week_rule",
     "CompaniesContextAccountResponseProfileStatus": ".companies_context_account_response_profile_status",
     "CompaniesContextAccountResponseProfileVatPeriod": ".companies_context_account_response_profile_vat_period",
     "CompaniesContextAccountResponseVatTypesUsedItem": ".companies_context_account_response_vat_types_used_item",
@@ -179,6 +191,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "CompaniesCreateAccountRequestAddress": ".companies_create_account_request_address",
     "CompaniesCreateAccountRequestCountryCode": ".companies_create_account_request_country_code",
     "CompaniesCreateAccountRequestDefaultInvoiceLocale": ".companies_create_account_request_default_invoice_locale",
+    "CompaniesCreateAccountRequestFiscalYearWeekRule": ".companies_create_account_request_fiscal_year_week_rule",
     "CompaniesCreateAccountRequestVatPeriod": ".companies_create_account_request_vat_period",
     "CompaniesCreateAccountResponse": ".companies_create_account_response",
     "CompaniesCreateAccountResponseVatPeriod": ".companies_create_account_response_vat_period",
@@ -186,17 +199,20 @@ _dynamic_imports: typing.Dict[str, str] = {
     "CompaniesProfileAccountResponse": ".companies_profile_account_response",
     "CompaniesProfileAccountResponseAccountsKeptBy": ".companies_profile_account_response_accounts_kept_by",
     "CompaniesProfileAccountResponseAddress": ".companies_profile_account_response_address",
+    "CompaniesProfileAccountResponseFiscalYearWeekRule": ".companies_profile_account_response_fiscal_year_week_rule",
     "CompaniesProfileAccountResponseStatus": ".companies_profile_account_response_status",
     "CompaniesProfileAccountResponseVatPeriod": ".companies_profile_account_response_vat_period",
     "CompaniesSelectAccountResponse": ".companies_select_account_response",
     "CompaniesUpdateAccountRequestAccountsKeptBy": ".companies_update_account_request_accounts_kept_by",
     "CompaniesUpdateAccountRequestAddress": ".companies_update_account_request_address",
     "CompaniesUpdateAccountRequestDefaultInvoiceLocale": ".companies_update_account_request_default_invoice_locale",
+    "CompaniesUpdateAccountRequestFiscalYearWeekRule": ".companies_update_account_request_fiscal_year_week_rule",
     "CompaniesUpdateAccountRequestLogo": ".companies_update_account_request_logo",
     "CompaniesUpdateAccountRequestVatPeriod": ".companies_update_account_request_vat_period",
     "CompaniesUpdateAccountResponse": ".companies_update_account_response",
     "CompaniesUpdateAccountResponseAccountsKeptBy": ".companies_update_account_response_accounts_kept_by",
     "CompaniesUpdateAccountResponseAddress": ".companies_update_account_response_address",
+    "CompaniesUpdateAccountResponseFiscalYearWeekRule": ".companies_update_account_response_fiscal_year_week_rule",
     "CompaniesUpdateAccountResponseStatus": ".companies_update_account_response_status",
     "CompaniesUpdateAccountResponseVatPeriod": ".companies_update_account_response_vat_period",
     "ConsentAcceptAccountResponse": ".consent_accept_account_response",
@@ -323,6 +339,7 @@ __all__ = [
     "CompaniesContextAccountResponseProfile",
     "CompaniesContextAccountResponseProfileAccountsKeptBy",
     "CompaniesContextAccountResponseProfileAddress",
+    "CompaniesContextAccountResponseProfileFiscalYearWeekRule",
     "CompaniesContextAccountResponseProfileStatus",
     "CompaniesContextAccountResponseProfileVatPeriod",
     "CompaniesContextAccountResponseVatTypesUsedItem",
@@ -331,6 +348,7 @@ __all__ = [
     "CompaniesCreateAccountRequestAddress",
     "CompaniesCreateAccountRequestCountryCode",
     "CompaniesCreateAccountRequestDefaultInvoiceLocale",
+    "CompaniesCreateAccountRequestFiscalYearWeekRule",
     "CompaniesCreateAccountRequestVatPeriod",
     "CompaniesCreateAccountResponse",
     "CompaniesCreateAccountResponseVatPeriod",
@@ -338,17 +356,20 @@ __all__ = [
     "CompaniesProfileAccountResponse",
     "CompaniesProfileAccountResponseAccountsKeptBy",
     "CompaniesProfileAccountResponseAddress",
+    "CompaniesProfileAccountResponseFiscalYearWeekRule",
     "CompaniesProfileAccountResponseStatus",
     "CompaniesProfileAccountResponseVatPeriod",
     "CompaniesSelectAccountResponse",
     "CompaniesUpdateAccountRequestAccountsKeptBy",
     "CompaniesUpdateAccountRequestAddress",
     "CompaniesUpdateAccountRequestDefaultInvoiceLocale",
+    "CompaniesUpdateAccountRequestFiscalYearWeekRule",
     "CompaniesUpdateAccountRequestLogo",
     "CompaniesUpdateAccountRequestVatPeriod",
     "CompaniesUpdateAccountResponse",
     "CompaniesUpdateAccountResponseAccountsKeptBy",
     "CompaniesUpdateAccountResponseAddress",
+    "CompaniesUpdateAccountResponseFiscalYearWeekRule",
     "CompaniesUpdateAccountResponseStatus",
     "CompaniesUpdateAccountResponseVatPeriod",
     "ConsentAcceptAccountResponse",

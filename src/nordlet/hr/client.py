@@ -13,6 +13,7 @@ from .types.business_trips_get_hr_response import BusinessTripsGetHrResponse
 from .types.business_trips_list_hr_request_filter_item import BusinessTripsListHrRequestFilterItem
 from .types.business_trips_list_hr_request_sort_item import BusinessTripsListHrRequestSortItem
 from .types.business_trips_list_hr_response import BusinessTripsListHrResponse
+from .types.contracts_create_hr_request_pay_frequency import ContractsCreateHrRequestPayFrequency
 from .types.contracts_create_hr_request_salary_type import ContractsCreateHrRequestSalaryType
 from .types.contracts_create_hr_request_type import ContractsCreateHrRequestType
 from .types.contracts_create_hr_response import ContractsCreateHrResponse
@@ -24,6 +25,7 @@ from .types.employees_anonymize_hr_response import EmployeesAnonymizeHrResponse
 from .types.employees_attachments_list_hr_response import EmployeesAttachmentsListHrResponse
 from .types.employees_create_hr_request_address import EmployeesCreateHrRequestAddress
 from .types.employees_create_hr_request_attributes_item import EmployeesCreateHrRequestAttributesItem
+from .types.employees_create_hr_request_bank_account_type import EmployeesCreateHrRequestBankAccountType
 from .types.employees_create_hr_response import EmployeesCreateHrResponse
 from .types.employees_delete_hr_response import EmployeesDeleteHrResponse
 from .types.employees_fields_hr_response import EmployeesFieldsHrResponse
@@ -41,6 +43,7 @@ from .types.employees_records_update_hr_request_type import EmployeesRecordsUpda
 from .types.employees_records_update_hr_response import EmployeesRecordsUpdateHrResponse
 from .types.employees_update_hr_request_address import EmployeesUpdateHrRequestAddress
 from .types.employees_update_hr_request_attributes_item import EmployeesUpdateHrRequestAttributesItem
+from .types.employees_update_hr_request_bank_account_type import EmployeesUpdateHrRequestBankAccountType
 from .types.employees_update_hr_request_status import EmployeesUpdateHrRequestStatus
 from .types.employees_update_hr_response import EmployeesUpdateHrResponse
 from .types.incapacity_certificates_create_hr_response import IncapacityCertificatesCreateHrResponse
@@ -238,6 +241,9 @@ class HrClient:
         phone: typing.Optional[str] = OMIT,
         address: typing.Optional[EmployeesCreateHrRequestAddress] = OMIT,
         iban: typing.Optional[str] = OMIT,
+        bank_code: typing.Optional[str] = OMIT,
+        bank_account_number: typing.Optional[str] = OMIT,
+        bank_account_type: typing.Optional[EmployeesCreateHrRequestBankAccountType] = OMIT,
         social_insurance_no: typing.Optional[str] = OMIT,
         social_insurance_start: typing.Optional[dt.date] = OMIT,
         hire_date: typing.Optional[dt.date] = OMIT,
@@ -271,6 +277,15 @@ class HrClient:
         address : typing.Optional[EmployeesCreateHrRequestAddress]
 
         iban : typing.Optional[str]
+
+        bank_code : typing.Optional[str]
+            Sort code, routing number or other national bank code, for an account without an IBAN
+
+        bank_account_number : typing.Optional[str]
+            Account number, for an account without an IBAN
+
+        bank_account_type : typing.Optional[EmployeesCreateHrRequestBankAccountType]
+            Checking or savings account; a US ACH file needs it
 
         social_insurance_no : typing.Optional[str]
 
@@ -320,6 +335,9 @@ class HrClient:
             phone=phone,
             address=address,
             iban=iban,
+            bank_code=bank_code,
+            bank_account_number=bank_account_number,
+            bank_account_type=bank_account_type,
             social_insurance_no=social_insurance_no,
             social_insurance_start=social_insurance_start,
             hire_date=hire_date,
@@ -346,6 +364,9 @@ class HrClient:
         phone: typing.Optional[str] = OMIT,
         address: typing.Optional[EmployeesUpdateHrRequestAddress] = OMIT,
         iban: typing.Optional[str] = OMIT,
+        bank_code: typing.Optional[str] = OMIT,
+        bank_account_number: typing.Optional[str] = OMIT,
+        bank_account_type: typing.Optional[EmployeesUpdateHrRequestBankAccountType] = OMIT,
         social_insurance_no: typing.Optional[str] = OMIT,
         social_insurance_start: typing.Optional[dt.date] = OMIT,
         hire_date: typing.Optional[dt.date] = OMIT,
@@ -383,6 +404,15 @@ class HrClient:
         address : typing.Optional[EmployeesUpdateHrRequestAddress]
 
         iban : typing.Optional[str]
+
+        bank_code : typing.Optional[str]
+            Sort code, routing number or other national bank code, for an account without an IBAN
+
+        bank_account_number : typing.Optional[str]
+            Account number, for an account without an IBAN
+
+        bank_account_type : typing.Optional[EmployeesUpdateHrRequestBankAccountType]
+            Checking or savings account; a US ACH file needs it
 
         social_insurance_no : typing.Optional[str]
 
@@ -436,6 +466,9 @@ class HrClient:
             phone=phone,
             address=address,
             iban=iban,
+            bank_code=bank_code,
+            bank_account_number=bank_account_number,
+            bank_account_type=bank_account_type,
             social_insurance_no=social_insurance_no,
             social_insurance_start=social_insurance_start,
             hire_date=hire_date,
@@ -635,12 +668,13 @@ class HrClient:
         type: typing.Optional[ContractsCreateHrRequestType] = OMIT,
         end_date: typing.Optional[dt.date] = OMIT,
         salary_type: typing.Optional[ContractsCreateHrRequestSalaryType] = OMIT,
+        pay_frequency: typing.Optional[ContractsCreateHrRequestPayFrequency] = OMIT,
         work_hours: typing.Optional[str] = OMIT,
         notes: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> ContractsCreateHrResponse:
         """
-        Creates an employment contract for an employee. A `permanent` contract takes no `endDate` and a `fixed_term` one requires it; the number comes from `contractNo` or, with `agreementId`, from the employee's agreement; `workHours` defaults by `salaryType`. Answers 422 when the end date is before the start, and 409 when the employee already has a contract overlapping the period (end it with `hr/contracts/end` first) or the contract number already exists.
+        Creates an employment contract for an employee. A `permanent` contract takes no `endDate` and a `fixed_term` one requires it; the number comes from `contractNo` or, with `agreementId`, from the employee's agreement; `workHours` defaults by `salaryType`; `payFrequency` (default `monthly`) is the pay period of the payroll runs that pay the contract, one of `payroll/frequencies/list`. Answers 422 when the end date is before the start or the company country's payroll engine does not calculate the pay frequency, and 409 when the employee already has a contract overlapping the period (end it with `hr/contracts/end` first) or the contract number already exists.
 
         Parameters
         ----------
@@ -665,6 +699,8 @@ class HrClient:
         end_date : typing.Optional[dt.date]
 
         salary_type : typing.Optional[ContractsCreateHrRequestSalaryType]
+
+        pay_frequency : typing.Optional[ContractsCreateHrRequestPayFrequency]
 
         work_hours : typing.Optional[str]
 
@@ -707,6 +743,7 @@ class HrClient:
             type=type,
             end_date=end_date,
             salary_type=salary_type,
+            pay_frequency=pay_frequency,
             work_hours=work_hours,
             notes=notes,
             request_options=request_options,
@@ -1657,7 +1694,7 @@ class HrClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> TimesheetsUpsertHrResponse:
         """
-        Creates or replaces the timesheet of an employee for a month from the given days; `workedDays` and `workedHours` count the `work` and `business_trip` days with hours. Answers 422 for a day outside the month, a day given twice or more than 24 hours in a day. `payroll/runs/create` reads the timesheet for the paid days, the days worked and the business-trip days of the month.
+        Creates or replaces the timesheet of an employee for a month from the given days; `workedDays` and `workedHours` count the `work` and `business_trip` days with hours. Answers 422 for a day outside the month, a day given twice or more than 24 hours in a day. `payroll/runs/create` reads the timesheets of the months a run's period touches for the paid days, the days worked and the business-trip days of the period.
 
         Parameters
         ----------
@@ -2001,6 +2038,9 @@ class AsyncHrClient:
         phone: typing.Optional[str] = OMIT,
         address: typing.Optional[EmployeesCreateHrRequestAddress] = OMIT,
         iban: typing.Optional[str] = OMIT,
+        bank_code: typing.Optional[str] = OMIT,
+        bank_account_number: typing.Optional[str] = OMIT,
+        bank_account_type: typing.Optional[EmployeesCreateHrRequestBankAccountType] = OMIT,
         social_insurance_no: typing.Optional[str] = OMIT,
         social_insurance_start: typing.Optional[dt.date] = OMIT,
         hire_date: typing.Optional[dt.date] = OMIT,
@@ -2034,6 +2074,15 @@ class AsyncHrClient:
         address : typing.Optional[EmployeesCreateHrRequestAddress]
 
         iban : typing.Optional[str]
+
+        bank_code : typing.Optional[str]
+            Sort code, routing number or other national bank code, for an account without an IBAN
+
+        bank_account_number : typing.Optional[str]
+            Account number, for an account without an IBAN
+
+        bank_account_type : typing.Optional[EmployeesCreateHrRequestBankAccountType]
+            Checking or savings account; a US ACH file needs it
 
         social_insurance_no : typing.Optional[str]
 
@@ -2091,6 +2140,9 @@ class AsyncHrClient:
             phone=phone,
             address=address,
             iban=iban,
+            bank_code=bank_code,
+            bank_account_number=bank_account_number,
+            bank_account_type=bank_account_type,
             social_insurance_no=social_insurance_no,
             social_insurance_start=social_insurance_start,
             hire_date=hire_date,
@@ -2117,6 +2169,9 @@ class AsyncHrClient:
         phone: typing.Optional[str] = OMIT,
         address: typing.Optional[EmployeesUpdateHrRequestAddress] = OMIT,
         iban: typing.Optional[str] = OMIT,
+        bank_code: typing.Optional[str] = OMIT,
+        bank_account_number: typing.Optional[str] = OMIT,
+        bank_account_type: typing.Optional[EmployeesUpdateHrRequestBankAccountType] = OMIT,
         social_insurance_no: typing.Optional[str] = OMIT,
         social_insurance_start: typing.Optional[dt.date] = OMIT,
         hire_date: typing.Optional[dt.date] = OMIT,
@@ -2154,6 +2209,15 @@ class AsyncHrClient:
         address : typing.Optional[EmployeesUpdateHrRequestAddress]
 
         iban : typing.Optional[str]
+
+        bank_code : typing.Optional[str]
+            Sort code, routing number or other national bank code, for an account without an IBAN
+
+        bank_account_number : typing.Optional[str]
+            Account number, for an account without an IBAN
+
+        bank_account_type : typing.Optional[EmployeesUpdateHrRequestBankAccountType]
+            Checking or savings account; a US ACH file needs it
 
         social_insurance_no : typing.Optional[str]
 
@@ -2215,6 +2279,9 @@ class AsyncHrClient:
             phone=phone,
             address=address,
             iban=iban,
+            bank_code=bank_code,
+            bank_account_number=bank_account_number,
+            bank_account_type=bank_account_type,
             social_insurance_no=social_insurance_no,
             social_insurance_start=social_insurance_start,
             hire_date=hire_date,
@@ -2456,12 +2523,13 @@ class AsyncHrClient:
         type: typing.Optional[ContractsCreateHrRequestType] = OMIT,
         end_date: typing.Optional[dt.date] = OMIT,
         salary_type: typing.Optional[ContractsCreateHrRequestSalaryType] = OMIT,
+        pay_frequency: typing.Optional[ContractsCreateHrRequestPayFrequency] = OMIT,
         work_hours: typing.Optional[str] = OMIT,
         notes: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> ContractsCreateHrResponse:
         """
-        Creates an employment contract for an employee. A `permanent` contract takes no `endDate` and a `fixed_term` one requires it; the number comes from `contractNo` or, with `agreementId`, from the employee's agreement; `workHours` defaults by `salaryType`. Answers 422 when the end date is before the start, and 409 when the employee already has a contract overlapping the period (end it with `hr/contracts/end` first) or the contract number already exists.
+        Creates an employment contract for an employee. A `permanent` contract takes no `endDate` and a `fixed_term` one requires it; the number comes from `contractNo` or, with `agreementId`, from the employee's agreement; `workHours` defaults by `salaryType`; `payFrequency` (default `monthly`) is the pay period of the payroll runs that pay the contract, one of `payroll/frequencies/list`. Answers 422 when the end date is before the start or the company country's payroll engine does not calculate the pay frequency, and 409 when the employee already has a contract overlapping the period (end it with `hr/contracts/end` first) or the contract number already exists.
 
         Parameters
         ----------
@@ -2486,6 +2554,8 @@ class AsyncHrClient:
         end_date : typing.Optional[dt.date]
 
         salary_type : typing.Optional[ContractsCreateHrRequestSalaryType]
+
+        pay_frequency : typing.Optional[ContractsCreateHrRequestPayFrequency]
 
         work_hours : typing.Optional[str]
 
@@ -2535,6 +2605,7 @@ class AsyncHrClient:
             type=type,
             end_date=end_date,
             salary_type=salary_type,
+            pay_frequency=pay_frequency,
             work_hours=work_hours,
             notes=notes,
             request_options=request_options,
@@ -3641,7 +3712,7 @@ class AsyncHrClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> TimesheetsUpsertHrResponse:
         """
-        Creates or replaces the timesheet of an employee for a month from the given days; `workedDays` and `workedHours` count the `work` and `business_trip` days with hours. Answers 422 for a day outside the month, a day given twice or more than 24 hours in a day. `payroll/runs/create` reads the timesheet for the paid days, the days worked and the business-trip days of the month.
+        Creates or replaces the timesheet of an employee for a month from the given days; `workedDays` and `workedHours` count the `work` and `business_trip` days with hours. Answers 422 for a day outside the month, a day given twice or more than 24 hours in a day. `payroll/runs/create` reads the timesheets of the months a run's period touches for the paid days, the days worked and the business-trip days of the period.
 
         Parameters
         ----------

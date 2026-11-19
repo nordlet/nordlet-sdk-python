@@ -2,4 +2,4 @@
 
 import typing
 
-MandatesCancelBankResponseScheme = typing.Union[typing.Literal["CORE", "B2B"], typing.Any]
+MandatesCancelBankResponseScheme = typing.Union[typing.Literal["CORE", "B2B", "BACS", "PPD", "CCD"], typing.Any]

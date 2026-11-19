@@ -15,12 +15,15 @@ from .types.addresses_list_partners_response import AddressesListPartnersRespons
 from .types.addresses_update_partners_request_type import AddressesUpdatePartnersRequestType
 from .types.addresses_update_partners_response import AddressesUpdatePartnersResponse
 from .types.anonymize_partners_response import AnonymizePartnersResponse
+from .types.bank_accounts_create_partners_request_account_type import BankAccountsCreatePartnersRequestAccountType
 from .types.bank_accounts_create_partners_response import BankAccountsCreatePartnersResponse
 from .types.bank_accounts_delete_partners_response import BankAccountsDeletePartnersResponse
 from .types.bank_accounts_list_partners_request_filter_item import BankAccountsListPartnersRequestFilterItem
 from .types.bank_accounts_list_partners_request_sort_item import BankAccountsListPartnersRequestSortItem
 from .types.bank_accounts_list_partners_response import BankAccountsListPartnersResponse
+from .types.bank_accounts_update_partners_request_account_type import BankAccountsUpdatePartnersRequestAccountType
 from .types.bank_accounts_update_partners_response import BankAccountsUpdatePartnersResponse
+from .types.companies_house_get_partners_response import CompaniesHouseGetPartnersResponse
 from .types.contacts_create_partners_response import ContactsCreatePartnersResponse
 from .types.contacts_delete_partners_response import ContactsDeletePartnersResponse
 from .types.contacts_list_partners_request_filter_item import ContactsListPartnersRequestFilterItem
@@ -504,8 +507,11 @@ class PartnersClient:
     def bank_accounts_create(
         self,
         *,
-        iban: str,
         partner_id: str,
+        iban: typing.Optional[str] = OMIT,
+        bank_code: typing.Optional[str] = OMIT,
+        bank_account_number: typing.Optional[str] = OMIT,
+        account_type: typing.Optional[BankAccountsCreatePartnersRequestAccountType] = OMIT,
         bank_name: typing.Optional[str] = OMIT,
         bic: typing.Optional[str] = OMIT,
         currency: typing.Optional[str] = OMIT,
@@ -513,19 +519,29 @@ class PartnersClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> BankAccountsCreatePartnersResponse:
         """
-        Adds a bank account to the partner in `partnerId`. The IBAN is stored without spaces in upper case; an IBAN whose check digits fail (ISO 13616) is refused with 422 and one the partner already has with 409. With `isDefault` true the partner's other accounts lose their default mark.
+        Adds a bank account to the partner in `partnerId`, identified by `iban` or, where the country has no IBAN, by `bankAccountNumber` with `bankCode` (sort code, routing number); one of them is required (422). The IBAN is stored without spaces in upper case and the bank code and account number without spaces and hyphens; an IBAN whose check digits fail (ISO 13616) is refused with 422 and an account the partner already has with 409. With `isDefault` true the partner's other accounts lose their default mark.
 
         Parameters
         ----------
-        iban : str
-
         partner_id : str
+
+        iban : typing.Optional[str]
+
+        bank_code : typing.Optional[str]
+            Sort code, routing number or other national bank code, for an account without an IBAN
+
+        bank_account_number : typing.Optional[str]
+            Account number, for an account without an IBAN
+
+        account_type : typing.Optional[BankAccountsCreatePartnersRequestAccountType]
+            Checking or savings account; a US ACH file needs it
 
         bank_name : typing.Optional[str]
 
         bic : typing.Optional[str]
 
         currency : typing.Optional[str]
+            Defaults to the company's base currency
 
         is_default : typing.Optional[bool]
 
@@ -545,13 +561,15 @@ class PartnersClient:
             token="YOUR_TOKEN",
         )
         client.partners.bank_accounts_create(
-            iban="iban",
             partner_id="partnerId",
         )
         """
         _response = self._raw_client.bank_accounts_create(
-            iban=iban,
             partner_id=partner_id,
+            iban=iban,
+            bank_code=bank_code,
+            bank_account_number=bank_account_number,
+            account_type=account_type,
             bank_name=bank_name,
             bic=bic,
             currency=currency,
@@ -565,6 +583,9 @@ class PartnersClient:
         *,
         id: str,
         iban: typing.Optional[str] = OMIT,
+        bank_code: typing.Optional[str] = OMIT,
+        bank_account_number: typing.Optional[str] = OMIT,
+        account_type: typing.Optional[BankAccountsUpdatePartnersRequestAccountType] = OMIT,
         bank_name: typing.Optional[str] = OMIT,
         bic: typing.Optional[str] = OMIT,
         currency: typing.Optional[str] = OMIT,
@@ -580,11 +601,21 @@ class PartnersClient:
 
         iban : typing.Optional[str]
 
+        bank_code : typing.Optional[str]
+            Sort code, routing number or other national bank code, for an account without an IBAN
+
+        bank_account_number : typing.Optional[str]
+            Account number, for an account without an IBAN
+
+        account_type : typing.Optional[BankAccountsUpdatePartnersRequestAccountType]
+            Checking or savings account; a US ACH file needs it
+
         bank_name : typing.Optional[str]
 
         bic : typing.Optional[str]
 
         currency : typing.Optional[str]
+            Defaults to the company's base currency
 
         is_default : typing.Optional[bool]
 
@@ -610,6 +641,9 @@ class PartnersClient:
         _response = self._raw_client.bank_accounts_update(
             id=id,
             iban=iban,
+            bank_code=bank_code,
+            bank_account_number=bank_account_number,
+            account_type=account_type,
             bank_name=bank_name,
             bic=bic,
             currency=currency,
@@ -908,7 +942,7 @@ class PartnersClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> ValidateVatPartnersResponse:
         """
-        Checks a VAT number against VIES, either a free `vatCode` or the VAT code of the partner in `partnerId` (exactly one of the two); a code without an EU country prefix and 2 to 12 alphanumeric characters is refused with 422, as is a partner without a VAT code, and a VIES outage answers 503. With a partner the outcome is written to it (`vatValid`, `vatValidatedAt`): an invalid number or a VIES name that shares no word with the partner's name opens or refreshes the partner's VAT review (`vat_review.opened`), a VIES failure opens one with reason `service_error`, and a valid matching number resolves the open review as `revalidated` (`vat_review.resolved`). Reviews are listed and closed with `partners/vat-reviews/list` and `partners/vat-reviews/resolve`.
+        Checks a VAT number against VIES, or a UK number (`GB` and 9 or 12 digits) with HMRC's Check a UK VAT number service, either a free `vatCode` or the VAT code of the partner in `partnerId` (exactly one of the two); a code without an EU country prefix and 2 to 12 alphanumeric characters or a UK prefix and 9 or 12 digits is refused with 422, as is a partner without a VAT code, and a VIES or HMRC outage, or a UK check that is not set up, answers 503. A UK check gives HMRC's consultation number as `requestIdentifier` when the company's own `vatCode` is a UK number HMRC knows. With a partner the outcome is written to it (`vatValid`, `vatValidatedAt`): an invalid number or a VIES name that shares no word with the partner's name opens or refreshes the partner's VAT review (`vat_review.opened`), a VIES failure opens one with reason `service_error`, and a valid matching number resolves the open review as `revalidated` (`vat_review.resolved`). Reviews are listed and closed with `partners/vat-reviews/list` and `partners/vat-reviews/resolve`.
 
         Parameters
         ----------
@@ -936,6 +970,38 @@ class PartnersClient:
         _response = self._raw_client.validate_vat(
             vat_code=vat_code, partner_id=partner_id, request_options=request_options
         )
+        return _response.data
+
+    def companies_house_get(
+        self, *, company_number: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> CompaniesHouseGetPartnersResponse:
+        """
+        Reads a UK company from the Companies House register by `companyNumber` (letters and digits; spaces are removed and letters upper-cased): its name, status, type, incorporation and cessation dates, registered office address (`subdivision` from the office's country: England, Wales, Scotland or Northern Ireland), accounting reference date, the next due dates of its accounts and confirmation statement, and SIC codes. Nothing is stored. A number Companies House does not know answers 404; a lookup that is not set up, Companies House being unreachable or its rate limit answers 503.
+
+        Parameters
+        ----------
+        company_number : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        CompaniesHouseGetPartnersResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.partners.companies_house_get(
+            company_number="companyNumber",
+        )
+        """
+        _response = self._raw_client.companies_house_get(company_number=company_number, request_options=request_options)
         return _response.data
 
     def vat_reviews_list(
@@ -1042,6 +1108,7 @@ class PartnersClient:
         phone: typing.Optional[str] = OMIT,
         self_employment_cert_no: typing.Optional[str] = OMIT,
         birth_date: typing.Optional[dt.date] = OMIT,
+        is_business: typing.Optional[bool] = OMIT,
         is_customer: typing.Optional[bool] = OMIT,
         is_supplier: typing.Optional[bool] = OMIT,
         payment_term_days: typing.Optional[int] = OMIT,
@@ -1072,7 +1139,7 @@ class PartnersClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> CreatePartnersResponse:
         """
-        Creates a partner; without `isCustomer` it is a customer unless `isSupplier` is true. `groupId`, `statusId` and `priceListId` must belong to the company; without `legalCountryClass` the class is derived from the address country (`lt`, `eu` or `non_eu`); `documentRef` attaches an uploaded file that is not yet linked to a record; a `code` already used by a live partner of the company is refused with 409. A `vatCode` is checked against VIES at once and the result stored on the partner: an invalid number, a VIES name that shares no word with the partner's name, or a VIES failure opens a VAT review (`vat_review.opened`), while a code that is not an EU VAT number is stored unchecked (see `partners/validate-vat`).
+        Creates a partner; without `isCustomer` it is a customer unless `isSupplier` is true. `groupId`, `statusId` and `priceListId` must belong to the company; without `legalCountryClass` the class is derived from the address country (`lt`, `eu` or `non_eu`); `documentRef` attaches an uploaded file that is not yet linked to a record; a `code` already used by a live partner of the company is refused with 409. A `vatCode` is checked at once against VIES, or a UK number with HMRC and the result stored on the partner: an invalid number, a VIES name that shares no word with the partner's name, or a VIES failure opens a VAT review (`vat_review.opened`), while a code that neither service can check is stored unchecked (see `partners/validate-vat`).
 
         Parameters
         ----------
@@ -1093,6 +1160,9 @@ class PartnersClient:
         self_employment_cert_no : typing.Optional[str]
 
         birth_date : typing.Optional[dt.date]
+
+        is_business : typing.Optional[bool]
+            Whether the partner acts as a business for VAT; when not set, a partner with a VAT code is a business. Regulation (EU) 282/2011 art. 18 lets a customer without a VAT number be treated as a business on other proof
 
         is_customer : typing.Optional[bool]
 
@@ -1179,6 +1249,7 @@ class PartnersClient:
             phone=phone,
             self_employment_cert_no=self_employment_cert_no,
             birth_date=birth_date,
+            is_business=is_business,
             is_customer=is_customer,
             is_supplier=is_supplier,
             payment_term_days=payment_term_days,
@@ -1222,6 +1293,7 @@ class PartnersClient:
         phone: typing.Optional[str] = OMIT,
         self_employment_cert_no: typing.Optional[str] = OMIT,
         birth_date: typing.Optional[dt.date] = OMIT,
+        is_business: typing.Optional[bool] = OMIT,
         is_customer: typing.Optional[bool] = OMIT,
         is_supplier: typing.Optional[bool] = OMIT,
         payment_term_days: typing.Optional[int] = OMIT,
@@ -1274,6 +1346,9 @@ class PartnersClient:
         self_employment_cert_no : typing.Optional[str]
 
         birth_date : typing.Optional[dt.date]
+
+        is_business : typing.Optional[bool]
+            Whether the partner acts as a business for VAT; when not set, a partner with a VAT code is a business. Regulation (EU) 282/2011 art. 18 lets a customer without a VAT number be treated as a business on other proof
 
         is_customer : typing.Optional[bool]
 
@@ -1362,6 +1437,7 @@ class PartnersClient:
             phone=phone,
             self_employment_cert_no=self_employment_cert_no,
             birth_date=birth_date,
+            is_business=is_business,
             is_customer=is_customer,
             is_supplier=is_supplier,
             payment_term_days=payment_term_days,
@@ -1437,6 +1513,7 @@ class PartnersClient:
         phone: typing.Optional[str] = OMIT,
         self_employment_cert_no: typing.Optional[str] = OMIT,
         birth_date: typing.Optional[dt.date] = OMIT,
+        is_business: typing.Optional[bool] = OMIT,
         is_customer: typing.Optional[bool] = OMIT,
         is_supplier: typing.Optional[bool] = OMIT,
         payment_term_days: typing.Optional[int] = OMIT,
@@ -1467,7 +1544,7 @@ class PartnersClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> UpdatePartnersResponse:
         """
-        Changes the given fields of a partner; the clearable fields accept null. A new address country re-derives `legalCountryClass` unless the class is given, and a `code` already used by another live partner of the company is refused with 409. A changed `vatCode` resets the VIES result and is checked at once as in `partners/create`; a removed code, or one that is not an EU VAT number, resolves the partner's open VAT review as `superseded` (`vat_review.resolved`).
+        Changes the given fields of a partner; the clearable fields accept null. A new address country re-derives `legalCountryClass` unless the class is given, and a `code` already used by another live partner of the company is refused with 409. A changed `vatCode` resets the VIES result and is checked at once as in `partners/create`; a removed code, or one that neither service can check, resolves the partner's open VAT review as `superseded` (`vat_review.resolved`).
 
         Parameters
         ----------
@@ -1490,6 +1567,9 @@ class PartnersClient:
         self_employment_cert_no : typing.Optional[str]
 
         birth_date : typing.Optional[dt.date]
+
+        is_business : typing.Optional[bool]
+            Whether the partner acts as a business for VAT; when not set, a partner with a VAT code is a business. Regulation (EU) 282/2011 art. 18 lets a customer without a VAT number be treated as a business on other proof
 
         is_customer : typing.Optional[bool]
 
@@ -1577,6 +1657,7 @@ class PartnersClient:
             phone=phone,
             self_employment_cert_no=self_employment_cert_no,
             birth_date=birth_date,
+            is_business=is_business,
             is_customer=is_customer,
             is_supplier=is_supplier,
             payment_term_days=payment_term_days,
@@ -2769,8 +2850,11 @@ class AsyncPartnersClient:
     async def bank_accounts_create(
         self,
         *,
-        iban: str,
         partner_id: str,
+        iban: typing.Optional[str] = OMIT,
+        bank_code: typing.Optional[str] = OMIT,
+        bank_account_number: typing.Optional[str] = OMIT,
+        account_type: typing.Optional[BankAccountsCreatePartnersRequestAccountType] = OMIT,
         bank_name: typing.Optional[str] = OMIT,
         bic: typing.Optional[str] = OMIT,
         currency: typing.Optional[str] = OMIT,
@@ -2778,19 +2862,29 @@ class AsyncPartnersClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> BankAccountsCreatePartnersResponse:
         """
-        Adds a bank account to the partner in `partnerId`. The IBAN is stored without spaces in upper case; an IBAN whose check digits fail (ISO 13616) is refused with 422 and one the partner already has with 409. With `isDefault` true the partner's other accounts lose their default mark.
+        Adds a bank account to the partner in `partnerId`, identified by `iban` or, where the country has no IBAN, by `bankAccountNumber` with `bankCode` (sort code, routing number); one of them is required (422). The IBAN is stored without spaces in upper case and the bank code and account number without spaces and hyphens; an IBAN whose check digits fail (ISO 13616) is refused with 422 and an account the partner already has with 409. With `isDefault` true the partner's other accounts lose their default mark.
 
         Parameters
         ----------
-        iban : str
-
         partner_id : str
+
+        iban : typing.Optional[str]
+
+        bank_code : typing.Optional[str]
+            Sort code, routing number or other national bank code, for an account without an IBAN
+
+        bank_account_number : typing.Optional[str]
+            Account number, for an account without an IBAN
+
+        account_type : typing.Optional[BankAccountsCreatePartnersRequestAccountType]
+            Checking or savings account; a US ACH file needs it
 
         bank_name : typing.Optional[str]
 
         bic : typing.Optional[str]
 
         currency : typing.Optional[str]
+            Defaults to the company's base currency
 
         is_default : typing.Optional[bool]
 
@@ -2815,7 +2909,6 @@ class AsyncPartnersClient:
 
         async def main() -> None:
             await client.partners.bank_accounts_create(
-                iban="iban",
                 partner_id="partnerId",
             )
 
@@ -2823,8 +2916,11 @@ class AsyncPartnersClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.bank_accounts_create(
-            iban=iban,
             partner_id=partner_id,
+            iban=iban,
+            bank_code=bank_code,
+            bank_account_number=bank_account_number,
+            account_type=account_type,
             bank_name=bank_name,
             bic=bic,
             currency=currency,
@@ -2838,6 +2934,9 @@ class AsyncPartnersClient:
         *,
         id: str,
         iban: typing.Optional[str] = OMIT,
+        bank_code: typing.Optional[str] = OMIT,
+        bank_account_number: typing.Optional[str] = OMIT,
+        account_type: typing.Optional[BankAccountsUpdatePartnersRequestAccountType] = OMIT,
         bank_name: typing.Optional[str] = OMIT,
         bic: typing.Optional[str] = OMIT,
         currency: typing.Optional[str] = OMIT,
@@ -2853,11 +2952,21 @@ class AsyncPartnersClient:
 
         iban : typing.Optional[str]
 
+        bank_code : typing.Optional[str]
+            Sort code, routing number or other national bank code, for an account without an IBAN
+
+        bank_account_number : typing.Optional[str]
+            Account number, for an account without an IBAN
+
+        account_type : typing.Optional[BankAccountsUpdatePartnersRequestAccountType]
+            Checking or savings account; a US ACH file needs it
+
         bank_name : typing.Optional[str]
 
         bic : typing.Optional[str]
 
         currency : typing.Optional[str]
+            Defaults to the company's base currency
 
         is_default : typing.Optional[bool]
 
@@ -2891,6 +3000,9 @@ class AsyncPartnersClient:
         _response = await self._raw_client.bank_accounts_update(
             id=id,
             iban=iban,
+            bank_code=bank_code,
+            bank_account_number=bank_account_number,
+            account_type=account_type,
             bank_name=bank_name,
             bic=bic,
             currency=currency,
@@ -3253,7 +3365,7 @@ class AsyncPartnersClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> ValidateVatPartnersResponse:
         """
-        Checks a VAT number against VIES, either a free `vatCode` or the VAT code of the partner in `partnerId` (exactly one of the two); a code without an EU country prefix and 2 to 12 alphanumeric characters is refused with 422, as is a partner without a VAT code, and a VIES outage answers 503. With a partner the outcome is written to it (`vatValid`, `vatValidatedAt`): an invalid number or a VIES name that shares no word with the partner's name opens or refreshes the partner's VAT review (`vat_review.opened`), a VIES failure opens one with reason `service_error`, and a valid matching number resolves the open review as `revalidated` (`vat_review.resolved`). Reviews are listed and closed with `partners/vat-reviews/list` and `partners/vat-reviews/resolve`.
+        Checks a VAT number against VIES, or a UK number (`GB` and 9 or 12 digits) with HMRC's Check a UK VAT number service, either a free `vatCode` or the VAT code of the partner in `partnerId` (exactly one of the two); a code without an EU country prefix and 2 to 12 alphanumeric characters or a UK prefix and 9 or 12 digits is refused with 422, as is a partner without a VAT code, and a VIES or HMRC outage, or a UK check that is not set up, answers 503. A UK check gives HMRC's consultation number as `requestIdentifier` when the company's own `vatCode` is a UK number HMRC knows. With a partner the outcome is written to it (`vatValid`, `vatValidatedAt`): an invalid number or a VIES name that shares no word with the partner's name opens or refreshes the partner's VAT review (`vat_review.opened`), a VIES failure opens one with reason `service_error`, and a valid matching number resolves the open review as `revalidated` (`vat_review.resolved`). Reviews are listed and closed with `partners/vat-reviews/list` and `partners/vat-reviews/resolve`.
 
         Parameters
         ----------
@@ -3288,6 +3400,48 @@ class AsyncPartnersClient:
         """
         _response = await self._raw_client.validate_vat(
             vat_code=vat_code, partner_id=partner_id, request_options=request_options
+        )
+        return _response.data
+
+    async def companies_house_get(
+        self, *, company_number: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> CompaniesHouseGetPartnersResponse:
+        """
+        Reads a UK company from the Companies House register by `companyNumber` (letters and digits; spaces are removed and letters upper-cased): its name, status, type, incorporation and cessation dates, registered office address (`subdivision` from the office's country: England, Wales, Scotland or Northern Ireland), accounting reference date, the next due dates of its accounts and confirmation statement, and SIC codes. Nothing is stored. A number Companies House does not know answers 404; a lookup that is not set up, Companies House being unreachable or its rate limit answers 503.
+
+        Parameters
+        ----------
+        company_number : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        CompaniesHouseGetPartnersResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.partners.companies_house_get(
+                company_number="companyNumber",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.companies_house_get(
+            company_number=company_number, request_options=request_options
         )
         return _response.data
 
@@ -3411,6 +3565,7 @@ class AsyncPartnersClient:
         phone: typing.Optional[str] = OMIT,
         self_employment_cert_no: typing.Optional[str] = OMIT,
         birth_date: typing.Optional[dt.date] = OMIT,
+        is_business: typing.Optional[bool] = OMIT,
         is_customer: typing.Optional[bool] = OMIT,
         is_supplier: typing.Optional[bool] = OMIT,
         payment_term_days: typing.Optional[int] = OMIT,
@@ -3441,7 +3596,7 @@ class AsyncPartnersClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> CreatePartnersResponse:
         """
-        Creates a partner; without `isCustomer` it is a customer unless `isSupplier` is true. `groupId`, `statusId` and `priceListId` must belong to the company; without `legalCountryClass` the class is derived from the address country (`lt`, `eu` or `non_eu`); `documentRef` attaches an uploaded file that is not yet linked to a record; a `code` already used by a live partner of the company is refused with 409. A `vatCode` is checked against VIES at once and the result stored on the partner: an invalid number, a VIES name that shares no word with the partner's name, or a VIES failure opens a VAT review (`vat_review.opened`), while a code that is not an EU VAT number is stored unchecked (see `partners/validate-vat`).
+        Creates a partner; without `isCustomer` it is a customer unless `isSupplier` is true. `groupId`, `statusId` and `priceListId` must belong to the company; without `legalCountryClass` the class is derived from the address country (`lt`, `eu` or `non_eu`); `documentRef` attaches an uploaded file that is not yet linked to a record; a `code` already used by a live partner of the company is refused with 409. A `vatCode` is checked at once against VIES, or a UK number with HMRC and the result stored on the partner: an invalid number, a VIES name that shares no word with the partner's name, or a VIES failure opens a VAT review (`vat_review.opened`), while a code that neither service can check is stored unchecked (see `partners/validate-vat`).
 
         Parameters
         ----------
@@ -3462,6 +3617,9 @@ class AsyncPartnersClient:
         self_employment_cert_no : typing.Optional[str]
 
         birth_date : typing.Optional[dt.date]
+
+        is_business : typing.Optional[bool]
+            Whether the partner acts as a business for VAT; when not set, a partner with a VAT code is a business. Regulation (EU) 282/2011 art. 18 lets a customer without a VAT number be treated as a business on other proof
 
         is_customer : typing.Optional[bool]
 
@@ -3556,6 +3714,7 @@ class AsyncPartnersClient:
             phone=phone,
             self_employment_cert_no=self_employment_cert_no,
             birth_date=birth_date,
+            is_business=is_business,
             is_customer=is_customer,
             is_supplier=is_supplier,
             payment_term_days=payment_term_days,
@@ -3599,6 +3758,7 @@ class AsyncPartnersClient:
         phone: typing.Optional[str] = OMIT,
         self_employment_cert_no: typing.Optional[str] = OMIT,
         birth_date: typing.Optional[dt.date] = OMIT,
+        is_business: typing.Optional[bool] = OMIT,
         is_customer: typing.Optional[bool] = OMIT,
         is_supplier: typing.Optional[bool] = OMIT,
         payment_term_days: typing.Optional[int] = OMIT,
@@ -3651,6 +3811,9 @@ class AsyncPartnersClient:
         self_employment_cert_no : typing.Optional[str]
 
         birth_date : typing.Optional[dt.date]
+
+        is_business : typing.Optional[bool]
+            Whether the partner acts as a business for VAT; when not set, a partner with a VAT code is a business. Regulation (EU) 282/2011 art. 18 lets a customer without a VAT number be treated as a business on other proof
 
         is_customer : typing.Optional[bool]
 
@@ -3747,6 +3910,7 @@ class AsyncPartnersClient:
             phone=phone,
             self_employment_cert_no=self_employment_cert_no,
             birth_date=birth_date,
+            is_business=is_business,
             is_customer=is_customer,
             is_supplier=is_supplier,
             payment_term_days=payment_term_days,
@@ -3830,6 +3994,7 @@ class AsyncPartnersClient:
         phone: typing.Optional[str] = OMIT,
         self_employment_cert_no: typing.Optional[str] = OMIT,
         birth_date: typing.Optional[dt.date] = OMIT,
+        is_business: typing.Optional[bool] = OMIT,
         is_customer: typing.Optional[bool] = OMIT,
         is_supplier: typing.Optional[bool] = OMIT,
         payment_term_days: typing.Optional[int] = OMIT,
@@ -3860,7 +4025,7 @@ class AsyncPartnersClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> UpdatePartnersResponse:
         """
-        Changes the given fields of a partner; the clearable fields accept null. A new address country re-derives `legalCountryClass` unless the class is given, and a `code` already used by another live partner of the company is refused with 409. A changed `vatCode` resets the VIES result and is checked at once as in `partners/create`; a removed code, or one that is not an EU VAT number, resolves the partner's open VAT review as `superseded` (`vat_review.resolved`).
+        Changes the given fields of a partner; the clearable fields accept null. A new address country re-derives `legalCountryClass` unless the class is given, and a `code` already used by another live partner of the company is refused with 409. A changed `vatCode` resets the VIES result and is checked at once as in `partners/create`; a removed code, or one that neither service can check, resolves the partner's open VAT review as `superseded` (`vat_review.resolved`).
 
         Parameters
         ----------
@@ -3883,6 +4048,9 @@ class AsyncPartnersClient:
         self_employment_cert_no : typing.Optional[str]
 
         birth_date : typing.Optional[dt.date]
+
+        is_business : typing.Optional[bool]
+            Whether the partner acts as a business for VAT; when not set, a partner with a VAT code is a business. Regulation (EU) 282/2011 art. 18 lets a customer without a VAT number be treated as a business on other proof
 
         is_customer : typing.Optional[bool]
 
@@ -3978,6 +4146,7 @@ class AsyncPartnersClient:
             phone=phone,
             self_employment_cert_no=self_employment_cert_no,
             birth_date=birth_date,
+            is_business=is_business,
             is_customer=is_customer,
             is_supplier=is_supplier,
             payment_term_days=payment_term_days,

@@ -7,6 +7,7 @@ import pydantic
 import typing_extensions
 from ...core.pydantic_utilities import IS_PYDANTIC_V2, UniversalBaseModel
 from ...core.serialization import FieldMetadata
+from .mandates_list_bank_response_rows_item_account_type import MandatesListBankResponseRowsItemAccountType
 from .mandates_list_bank_response_rows_item_scheme import MandatesListBankResponseRowsItemScheme
 from .mandates_list_bank_response_rows_item_sequence_type import MandatesListBankResponseRowsItemSequenceType
 from .mandates_list_bank_response_rows_item_status import MandatesListBankResponseRowsItemStatus
@@ -24,8 +25,23 @@ class MandatesListBankResponseRowsItem(UniversalBaseModel):
     ]
     status: MandatesListBankResponseRowsItemStatus
     debtor_name: typing_extensions.Annotated[str, FieldMetadata(alias="debtorName"), pydantic.Field(alias="debtorName")]
-    iban: str
+    iban: typing.Optional[str] = None
     bic: typing.Optional[str] = None
+    bank_code: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="bankCode"), pydantic.Field(alias="bankCode")
+    ] = None
+    bank_account_number: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="bankAccountNumber"), pydantic.Field(alias="bankAccountNumber")
+    ] = None
+    account_type: typing_extensions.Annotated[
+        typing.Optional[MandatesListBankResponseRowsItemAccountType],
+        FieldMetadata(alias="accountType"),
+        pydantic.Field(alias="accountType", description="Checking or savings account; a US ACH file needs it"),
+    ] = None
+    """
+    Checking or savings account; a US ACH file needs it
+    """
+
     signature_date: typing_extensions.Annotated[
         dt.date, FieldMetadata(alias="signatureDate"), pydantic.Field(alias="signatureDate")
     ]
@@ -35,7 +51,15 @@ class MandatesListBankResponseRowsItem(UniversalBaseModel):
     last_collection_date: typing_extensions.Annotated[
         typing.Optional[dt.date], FieldMetadata(alias="lastCollectionDate"), pydantic.Field(alias="lastCollectionDate")
     ] = None
-    expires_on: typing_extensions.Annotated[str, FieldMetadata(alias="expiresOn"), pydantic.Field(alias="expiresOn")]
+    expires_on: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="expiresOn"), pydantic.Field(alias="expiresOn")
+    ] = None
+    lodged_on: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="lodgedOn"), pydantic.Field(alias="lodgedOn")
+    ] = None
+    cancellation_lodged_on: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="cancellationLodgedOn"), pydantic.Field(alias="cancellationLodgedOn")
+    ] = None
     cancelled_at: typing_extensions.Annotated[
         typing.Optional[dt.datetime], FieldMetadata(alias="cancelledAt"), pydantic.Field(alias="cancelledAt")
     ] = None

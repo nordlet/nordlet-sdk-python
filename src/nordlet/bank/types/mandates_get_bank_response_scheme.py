@@ -2,4 +2,4 @@
 
 import typing
 
-MandatesGetBankResponseScheme = typing.Union[typing.Literal["CORE", "B2B"], typing.Any]
+MandatesGetBankResponseScheme = typing.Union[typing.Literal["CORE", "B2B", "BACS", "PPD", "CCD"], typing.Any]

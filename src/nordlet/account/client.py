@@ -22,6 +22,9 @@ from .types.companies_create_account_request_country_code import CompaniesCreate
 from .types.companies_create_account_request_default_invoice_locale import (
     CompaniesCreateAccountRequestDefaultInvoiceLocale,
 )
+from .types.companies_create_account_request_fiscal_year_week_rule import (
+    CompaniesCreateAccountRequestFiscalYearWeekRule,
+)
 from .types.companies_create_account_request_vat_period import CompaniesCreateAccountRequestVatPeriod
 from .types.companies_create_account_response import CompaniesCreateAccountResponse
 from .types.companies_delete_account_response import CompaniesDeleteAccountResponse
@@ -31,6 +34,9 @@ from .types.companies_update_account_request_accounts_kept_by import CompaniesUp
 from .types.companies_update_account_request_address import CompaniesUpdateAccountRequestAddress
 from .types.companies_update_account_request_default_invoice_locale import (
     CompaniesUpdateAccountRequestDefaultInvoiceLocale,
+)
+from .types.companies_update_account_request_fiscal_year_week_rule import (
+    CompaniesUpdateAccountRequestFiscalYearWeekRule,
 )
 from .types.companies_update_account_request_logo import CompaniesUpdateAccountRequestLogo
 from .types.companies_update_account_request_vat_period import CompaniesUpdateAccountRequestVatPeriod
@@ -605,9 +611,14 @@ class AccountClient:
         code: typing.Optional[str] = OMIT,
         vat_code: typing.Optional[str] = OMIT,
         sme_exemption_number: typing.Optional[str] = OMIT,
+        identifiers: typing.Optional[typing.Dict[str, str]] = OMIT,
         is_vat_payer: typing.Optional[bool] = OMIT,
         vat_period: typing.Optional[CompaniesCreateAccountRequestVatPeriod] = OMIT,
+        vat_period_end_month: typing.Optional[int] = OMIT,
         fiscal_year_end_month: typing.Optional[int] = OMIT,
+        fiscal_year_end_day: typing.Optional[int] = OMIT,
+        fiscal_year_weekday: typing.Optional[int] = OMIT,
+        fiscal_year_week_rule: typing.Optional[CompaniesCreateAccountRequestFiscalYearWeekRule] = OMIT,
         time_zone: typing.Optional[str] = OMIT,
         filing_options: typing.Optional[typing.Dict[str, str]] = OMIT,
         address: typing.Optional[CompaniesCreateAccountRequestAddress] = OMIT,
@@ -641,7 +652,7 @@ class AccountClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> CompaniesCreateAccountResponse:
         """
-        Create a company with the caller as its owner and payer, seed its chart of accounts from the template of `countryCode`, and make it the active company of the session. `timeZone` defaults to the country's, `isVatPayer` to true and `defaultInvoiceCurrency` to the base currency. Without a paid plan the caller may create only one sandbox company, which starts the free sandbox plan; a live company, a second sandbox company, or a sandbox company after the free sandbox has ended is refused with 402. Refused with 422 when `baseCurrency` is not a supported currency. An API key may call it when it holds the `account:write` scope (403 otherwise): the company is created for the person the key belongs to, and the key works in it like in their other companies.
+        Create a company with the caller as its owner and payer, seed its chart of accounts from the template of `countryCode`, and make it the active company of the session. `timeZone` defaults to the country's, `isVatPayer` to true and `defaultInvoiceCurrency` to the base currency. Without a paid plan the caller may create only one sandbox company, which starts the free sandbox plan; a live company, a second sandbox company, or a sandbox company after the free sandbox has ended is refused with 402. Refused with 422 when `baseCurrency` is not a supported currency, when both `fiscalYearEndDay` and `fiscalYearWeekday` are given, when `fiscalYearWeekday` comes without `fiscalYearWeekRule`, or when an entry of `identifiers` is not an identifier of a company in `countryCode` or does not have its format. An API key may call it when it holds the `account:write` scope (403 otherwise): the company is created for the person the key belongs to, and the key works in it like in their other companies.
 
         Parameters
         ----------
@@ -653,11 +664,26 @@ class AccountClient:
 
         sme_exemption_number : typing.Optional[str]
 
+        identifiers : typing.Optional[typing.Dict[str, str]]
+            Registration numbers of the company other than `code` and `vatCode`, by key: `utr` (GB, Corporation Tax Unique Taxpayer Reference (UTR), 10 digits); `taxOfficeNumber` (GB, PAYE tax office number, 3 digits); `taxOfficeReference` (GB, PAYE tax office reference, 1 to 10 letters, digits or punctuation, not starting with a space); `accountsOfficeReference` (GB, Accounts Office reference, 13 characters: 3 digits, P, a letter, 7 digits and a digit or X); `ein` (US, Employer Identification Number (EIN), 9 digits whose first two are a prefix the IRS assigns); `deBusinessLicense` (US, Delaware business license number); `deWithholdingAccount` (US, Delaware withholding account number, 9 digits, the federal EIN); `deUnemploymentAccount` (US, Delaware unemployment insurance account number); `deUnemploymentRate` (US, Delaware unemployment insurance tax rate (%), a percentage from 0 to 100 with at most 4 decimals); `deEntityFileNumber` (US, Delaware Division of Corporations file number (formed in Delaware)); `deForeignEntityFileNumber` (US, Delaware Division of Corporations file number (formed in another state))
+
         is_vat_payer : typing.Optional[bool]
 
         vat_period : typing.Optional[CompaniesCreateAccountRequestVatPeriod]
 
+        vat_period_end_month : typing.Optional[int]
+            A month in which a VAT period ends, for VAT periods that do not follow the calendar quarters
+
         fiscal_year_end_month : typing.Optional[int]
+
+        fiscal_year_end_day : typing.Optional[int]
+            Day of `fiscalYearEndMonth` the fiscal year ends on; the last day of the month when omitted
+
+        fiscal_year_weekday : typing.Optional[int]
+            For a 52-53-week fiscal year: the weekday it always ends on, 0 Sunday to 6 Saturday
+
+        fiscal_year_week_rule : typing.Optional[CompaniesCreateAccountRequestFiscalYearWeekRule]
+            With `fiscalYearWeekday`: `last` ends the year on the last such weekday of `fiscalYearEndMonth`, `nearest` on the one nearest the last day of that month
 
         time_zone : typing.Optional[str]
 
@@ -752,9 +778,14 @@ class AccountClient:
             code=code,
             vat_code=vat_code,
             sme_exemption_number=sme_exemption_number,
+            identifiers=identifiers,
             is_vat_payer=is_vat_payer,
             vat_period=vat_period,
+            vat_period_end_month=vat_period_end_month,
             fiscal_year_end_month=fiscal_year_end_month,
+            fiscal_year_end_day=fiscal_year_end_day,
+            fiscal_year_weekday=fiscal_year_weekday,
+            fiscal_year_week_rule=fiscal_year_week_rule,
             time_zone=time_zone,
             filing_options=filing_options,
             address=address,
@@ -884,9 +915,14 @@ class AccountClient:
         code: typing.Optional[str] = OMIT,
         vat_code: typing.Optional[str] = OMIT,
         sme_exemption_number: typing.Optional[str] = OMIT,
+        identifiers: typing.Optional[typing.Dict[str, typing.Optional[str]]] = OMIT,
         is_vat_payer: typing.Optional[bool] = OMIT,
         vat_period: typing.Optional[CompaniesUpdateAccountRequestVatPeriod] = OMIT,
+        vat_period_end_month: typing.Optional[int] = OMIT,
         fiscal_year_end_month: typing.Optional[int] = OMIT,
+        fiscal_year_end_day: typing.Optional[int] = OMIT,
+        fiscal_year_weekday: typing.Optional[int] = OMIT,
+        fiscal_year_week_rule: typing.Optional[CompaniesUpdateAccountRequestFiscalYearWeekRule] = OMIT,
         time_zone: typing.Optional[str] = OMIT,
         filing_options: typing.Optional[typing.Dict[str, typing.Optional[str]]] = OMIT,
         address: typing.Optional[CompaniesUpdateAccountRequestAddress] = OMIT,
@@ -917,7 +953,7 @@ class AccountClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> CompaniesUpdateAccountResponse:
         """
-        Change the profile of the active company; owners and admins may call it. Only the fields sent are changed, and the nullable ones can be sent as null to clear them. `logo` stores a base64-encoded image as a file of the company and sets `logoFileId`. The country, base currency, sandbox flag and cash-basis flag are fixed at creation. An API key changes the company named in the `x-nordlet-company` header, needs the `account:write` scope and the owner or admin role there, and may send only `code`, `vatCode`, `smeExemptionNumber`, `legalForm`, `registryName`, `incorporatedOn`, `shareCapital`, `address`, `email`, `phone`, `accountsKeptBy`, `bookkeeperName`, `auditorName`, `auditorRegistrationNumber`, `auditRequired`; any other field is refused with 403.
+        Change the profile of the active company; owners and admins may call it. Only the fields sent are changed, and the nullable ones can be sent as null to clear them. `logo` stores a base64-encoded image as a file of the company and sets `logoFileId`. The country, base currency, sandbox flag and cash-basis flag are fixed at creation. Refused with 422 when, with the stored values, the company would have both `fiscalYearEndDay` and `fiscalYearWeekday`, or `fiscalYearWeekday` without `fiscalYearWeekRule`. `identifiers` replaces the stored set; an entry that is not an identifier of a company in the company's country or does not have its format is refused with 422. An API key changes the company named in the `x-nordlet-company` header, needs the `account:write` scope and the owner or admin role there, and may send only `code`, `vatCode`, `smeExemptionNumber`, `identifiers`, `legalForm`, `registryName`, `incorporatedOn`, `shareCapital`, `address`, `email`, `phone`, `accountsKeptBy`, `bookkeeperName`, `auditorName`, `auditorRegistrationNumber`, `auditRequired`; any other field is refused with 403.
 
         Parameters
         ----------
@@ -929,11 +965,26 @@ class AccountClient:
 
         sme_exemption_number : typing.Optional[str]
 
+        identifiers : typing.Optional[typing.Dict[str, typing.Optional[str]]]
+            Registration numbers of the company other than `code` and `vatCode`, by key: `utr` (GB, Corporation Tax Unique Taxpayer Reference (UTR), 10 digits); `taxOfficeNumber` (GB, PAYE tax office number, 3 digits); `taxOfficeReference` (GB, PAYE tax office reference, 1 to 10 letters, digits or punctuation, not starting with a space); `accountsOfficeReference` (GB, Accounts Office reference, 13 characters: 3 digits, P, a letter, 7 digits and a digit or X); `ein` (US, Employer Identification Number (EIN), 9 digits whose first two are a prefix the IRS assigns); `deBusinessLicense` (US, Delaware business license number); `deWithholdingAccount` (US, Delaware withholding account number, 9 digits, the federal EIN); `deUnemploymentAccount` (US, Delaware unemployment insurance account number); `deUnemploymentRate` (US, Delaware unemployment insurance tax rate (%), a percentage from 0 to 100 with at most 4 decimals); `deEntityFileNumber` (US, Delaware Division of Corporations file number (formed in Delaware)); `deForeignEntityFileNumber` (US, Delaware Division of Corporations file number (formed in another state))
+
         is_vat_payer : typing.Optional[bool]
 
         vat_period : typing.Optional[CompaniesUpdateAccountRequestVatPeriod]
 
+        vat_period_end_month : typing.Optional[int]
+            A month in which a VAT period ends, for VAT periods that do not follow the calendar quarters
+
         fiscal_year_end_month : typing.Optional[int]
+
+        fiscal_year_end_day : typing.Optional[int]
+            Day of `fiscalYearEndMonth` the fiscal year ends on; the last day of the month when omitted
+
+        fiscal_year_weekday : typing.Optional[int]
+            For a 52-53-week fiscal year: the weekday it always ends on, 0 Sunday to 6 Saturday
+
+        fiscal_year_week_rule : typing.Optional[CompaniesUpdateAccountRequestFiscalYearWeekRule]
+            With `fiscalYearWeekday`: `last` ends the year on the last such weekday of `fiscalYearEndMonth`, `nearest` on the one nearest the last day of that month
 
         time_zone : typing.Optional[str]
 
@@ -1016,9 +1067,14 @@ class AccountClient:
             code=code,
             vat_code=vat_code,
             sme_exemption_number=sme_exemption_number,
+            identifiers=identifiers,
             is_vat_payer=is_vat_payer,
             vat_period=vat_period,
+            vat_period_end_month=vat_period_end_month,
             fiscal_year_end_month=fiscal_year_end_month,
+            fiscal_year_end_day=fiscal_year_end_day,
+            fiscal_year_weekday=fiscal_year_weekday,
+            fiscal_year_week_rule=fiscal_year_week_rule,
             time_zone=time_zone,
             filing_options=filing_options,
             address=address,
@@ -2822,9 +2878,14 @@ class AsyncAccountClient:
         code: typing.Optional[str] = OMIT,
         vat_code: typing.Optional[str] = OMIT,
         sme_exemption_number: typing.Optional[str] = OMIT,
+        identifiers: typing.Optional[typing.Dict[str, str]] = OMIT,
         is_vat_payer: typing.Optional[bool] = OMIT,
         vat_period: typing.Optional[CompaniesCreateAccountRequestVatPeriod] = OMIT,
+        vat_period_end_month: typing.Optional[int] = OMIT,
         fiscal_year_end_month: typing.Optional[int] = OMIT,
+        fiscal_year_end_day: typing.Optional[int] = OMIT,
+        fiscal_year_weekday: typing.Optional[int] = OMIT,
+        fiscal_year_week_rule: typing.Optional[CompaniesCreateAccountRequestFiscalYearWeekRule] = OMIT,
         time_zone: typing.Optional[str] = OMIT,
         filing_options: typing.Optional[typing.Dict[str, str]] = OMIT,
         address: typing.Optional[CompaniesCreateAccountRequestAddress] = OMIT,
@@ -2858,7 +2919,7 @@ class AsyncAccountClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> CompaniesCreateAccountResponse:
         """
-        Create a company with the caller as its owner and payer, seed its chart of accounts from the template of `countryCode`, and make it the active company of the session. `timeZone` defaults to the country's, `isVatPayer` to true and `defaultInvoiceCurrency` to the base currency. Without a paid plan the caller may create only one sandbox company, which starts the free sandbox plan; a live company, a second sandbox company, or a sandbox company after the free sandbox has ended is refused with 402. Refused with 422 when `baseCurrency` is not a supported currency. An API key may call it when it holds the `account:write` scope (403 otherwise): the company is created for the person the key belongs to, and the key works in it like in their other companies.
+        Create a company with the caller as its owner and payer, seed its chart of accounts from the template of `countryCode`, and make it the active company of the session. `timeZone` defaults to the country's, `isVatPayer` to true and `defaultInvoiceCurrency` to the base currency. Without a paid plan the caller may create only one sandbox company, which starts the free sandbox plan; a live company, a second sandbox company, or a sandbox company after the free sandbox has ended is refused with 402. Refused with 422 when `baseCurrency` is not a supported currency, when both `fiscalYearEndDay` and `fiscalYearWeekday` are given, when `fiscalYearWeekday` comes without `fiscalYearWeekRule`, or when an entry of `identifiers` is not an identifier of a company in `countryCode` or does not have its format. An API key may call it when it holds the `account:write` scope (403 otherwise): the company is created for the person the key belongs to, and the key works in it like in their other companies.
 
         Parameters
         ----------
@@ -2870,11 +2931,26 @@ class AsyncAccountClient:
 
         sme_exemption_number : typing.Optional[str]
 
+        identifiers : typing.Optional[typing.Dict[str, str]]
+            Registration numbers of the company other than `code` and `vatCode`, by key: `utr` (GB, Corporation Tax Unique Taxpayer Reference (UTR), 10 digits); `taxOfficeNumber` (GB, PAYE tax office number, 3 digits); `taxOfficeReference` (GB, PAYE tax office reference, 1 to 10 letters, digits or punctuation, not starting with a space); `accountsOfficeReference` (GB, Accounts Office reference, 13 characters: 3 digits, P, a letter, 7 digits and a digit or X); `ein` (US, Employer Identification Number (EIN), 9 digits whose first two are a prefix the IRS assigns); `deBusinessLicense` (US, Delaware business license number); `deWithholdingAccount` (US, Delaware withholding account number, 9 digits, the federal EIN); `deUnemploymentAccount` (US, Delaware unemployment insurance account number); `deUnemploymentRate` (US, Delaware unemployment insurance tax rate (%), a percentage from 0 to 100 with at most 4 decimals); `deEntityFileNumber` (US, Delaware Division of Corporations file number (formed in Delaware)); `deForeignEntityFileNumber` (US, Delaware Division of Corporations file number (formed in another state))
+
         is_vat_payer : typing.Optional[bool]
 
         vat_period : typing.Optional[CompaniesCreateAccountRequestVatPeriod]
 
+        vat_period_end_month : typing.Optional[int]
+            A month in which a VAT period ends, for VAT periods that do not follow the calendar quarters
+
         fiscal_year_end_month : typing.Optional[int]
+
+        fiscal_year_end_day : typing.Optional[int]
+            Day of `fiscalYearEndMonth` the fiscal year ends on; the last day of the month when omitted
+
+        fiscal_year_weekday : typing.Optional[int]
+            For a 52-53-week fiscal year: the weekday it always ends on, 0 Sunday to 6 Saturday
+
+        fiscal_year_week_rule : typing.Optional[CompaniesCreateAccountRequestFiscalYearWeekRule]
+            With `fiscalYearWeekday`: `last` ends the year on the last such weekday of `fiscalYearEndMonth`, `nearest` on the one nearest the last day of that month
 
         time_zone : typing.Optional[str]
 
@@ -2977,9 +3053,14 @@ class AsyncAccountClient:
             code=code,
             vat_code=vat_code,
             sme_exemption_number=sme_exemption_number,
+            identifiers=identifiers,
             is_vat_payer=is_vat_payer,
             vat_period=vat_period,
+            vat_period_end_month=vat_period_end_month,
             fiscal_year_end_month=fiscal_year_end_month,
+            fiscal_year_end_day=fiscal_year_end_day,
+            fiscal_year_weekday=fiscal_year_weekday,
+            fiscal_year_week_rule=fiscal_year_week_rule,
             time_zone=time_zone,
             filing_options=filing_options,
             address=address,
@@ -3133,9 +3214,14 @@ class AsyncAccountClient:
         code: typing.Optional[str] = OMIT,
         vat_code: typing.Optional[str] = OMIT,
         sme_exemption_number: typing.Optional[str] = OMIT,
+        identifiers: typing.Optional[typing.Dict[str, typing.Optional[str]]] = OMIT,
         is_vat_payer: typing.Optional[bool] = OMIT,
         vat_period: typing.Optional[CompaniesUpdateAccountRequestVatPeriod] = OMIT,
+        vat_period_end_month: typing.Optional[int] = OMIT,
         fiscal_year_end_month: typing.Optional[int] = OMIT,
+        fiscal_year_end_day: typing.Optional[int] = OMIT,
+        fiscal_year_weekday: typing.Optional[int] = OMIT,
+        fiscal_year_week_rule: typing.Optional[CompaniesUpdateAccountRequestFiscalYearWeekRule] = OMIT,
         time_zone: typing.Optional[str] = OMIT,
         filing_options: typing.Optional[typing.Dict[str, typing.Optional[str]]] = OMIT,
         address: typing.Optional[CompaniesUpdateAccountRequestAddress] = OMIT,
@@ -3166,7 +3252,7 @@ class AsyncAccountClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> CompaniesUpdateAccountResponse:
         """
-        Change the profile of the active company; owners and admins may call it. Only the fields sent are changed, and the nullable ones can be sent as null to clear them. `logo` stores a base64-encoded image as a file of the company and sets `logoFileId`. The country, base currency, sandbox flag and cash-basis flag are fixed at creation. An API key changes the company named in the `x-nordlet-company` header, needs the `account:write` scope and the owner or admin role there, and may send only `code`, `vatCode`, `smeExemptionNumber`, `legalForm`, `registryName`, `incorporatedOn`, `shareCapital`, `address`, `email`, `phone`, `accountsKeptBy`, `bookkeeperName`, `auditorName`, `auditorRegistrationNumber`, `auditRequired`; any other field is refused with 403.
+        Change the profile of the active company; owners and admins may call it. Only the fields sent are changed, and the nullable ones can be sent as null to clear them. `logo` stores a base64-encoded image as a file of the company and sets `logoFileId`. The country, base currency, sandbox flag and cash-basis flag are fixed at creation. Refused with 422 when, with the stored values, the company would have both `fiscalYearEndDay` and `fiscalYearWeekday`, or `fiscalYearWeekday` without `fiscalYearWeekRule`. `identifiers` replaces the stored set; an entry that is not an identifier of a company in the company's country or does not have its format is refused with 422. An API key changes the company named in the `x-nordlet-company` header, needs the `account:write` scope and the owner or admin role there, and may send only `code`, `vatCode`, `smeExemptionNumber`, `identifiers`, `legalForm`, `registryName`, `incorporatedOn`, `shareCapital`, `address`, `email`, `phone`, `accountsKeptBy`, `bookkeeperName`, `auditorName`, `auditorRegistrationNumber`, `auditRequired`; any other field is refused with 403.
 
         Parameters
         ----------
@@ -3178,11 +3264,26 @@ class AsyncAccountClient:
 
         sme_exemption_number : typing.Optional[str]
 
+        identifiers : typing.Optional[typing.Dict[str, typing.Optional[str]]]
+            Registration numbers of the company other than `code` and `vatCode`, by key: `utr` (GB, Corporation Tax Unique Taxpayer Reference (UTR), 10 digits); `taxOfficeNumber` (GB, PAYE tax office number, 3 digits); `taxOfficeReference` (GB, PAYE tax office reference, 1 to 10 letters, digits or punctuation, not starting with a space); `accountsOfficeReference` (GB, Accounts Office reference, 13 characters: 3 digits, P, a letter, 7 digits and a digit or X); `ein` (US, Employer Identification Number (EIN), 9 digits whose first two are a prefix the IRS assigns); `deBusinessLicense` (US, Delaware business license number); `deWithholdingAccount` (US, Delaware withholding account number, 9 digits, the federal EIN); `deUnemploymentAccount` (US, Delaware unemployment insurance account number); `deUnemploymentRate` (US, Delaware unemployment insurance tax rate (%), a percentage from 0 to 100 with at most 4 decimals); `deEntityFileNumber` (US, Delaware Division of Corporations file number (formed in Delaware)); `deForeignEntityFileNumber` (US, Delaware Division of Corporations file number (formed in another state))
+
         is_vat_payer : typing.Optional[bool]
 
         vat_period : typing.Optional[CompaniesUpdateAccountRequestVatPeriod]
 
+        vat_period_end_month : typing.Optional[int]
+            A month in which a VAT period ends, for VAT periods that do not follow the calendar quarters
+
         fiscal_year_end_month : typing.Optional[int]
+
+        fiscal_year_end_day : typing.Optional[int]
+            Day of `fiscalYearEndMonth` the fiscal year ends on; the last day of the month when omitted
+
+        fiscal_year_weekday : typing.Optional[int]
+            For a 52-53-week fiscal year: the weekday it always ends on, 0 Sunday to 6 Saturday
+
+        fiscal_year_week_rule : typing.Optional[CompaniesUpdateAccountRequestFiscalYearWeekRule]
+            With `fiscalYearWeekday`: `last` ends the year on the last such weekday of `fiscalYearEndMonth`, `nearest` on the one nearest the last day of that month
 
         time_zone : typing.Optional[str]
 
@@ -3273,9 +3374,14 @@ class AsyncAccountClient:
             code=code,
             vat_code=vat_code,
             sme_exemption_number=sme_exemption_number,
+            identifiers=identifiers,
             is_vat_payer=is_vat_payer,
             vat_period=vat_period,
+            vat_period_end_month=vat_period_end_month,
             fiscal_year_end_month=fiscal_year_end_month,
+            fiscal_year_end_day=fiscal_year_end_day,
+            fiscal_year_weekday=fiscal_year_weekday,
+            fiscal_year_week_rule=fiscal_year_week_rule,
             time_zone=time_zone,
             filing_options=filing_options,
             address=address,

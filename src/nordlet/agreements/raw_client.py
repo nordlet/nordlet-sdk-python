@@ -772,6 +772,7 @@ class RawAgreementsClient:
         billing_period : typing.Optional[AgreementsCreateAgreementsRequestBillingPeriod]
 
         currency : typing.Optional[str]
+            Defaults to the company's base currency
 
         status : typing.Optional[AgreementsCreateAgreementsRequestStatus]
 
@@ -2011,6 +2012,7 @@ class RawAgreementsClient:
         premium : typing.Optional[str]
 
         currency : typing.Optional[str]
+            Defaults to the company's base currency
 
         notes : typing.Optional[str]
 
@@ -3232,6 +3234,7 @@ class AsyncRawAgreementsClient:
         billing_period : typing.Optional[AgreementsCreateAgreementsRequestBillingPeriod]
 
         currency : typing.Optional[str]
+            Defaults to the company's base currency
 
         status : typing.Optional[AgreementsCreateAgreementsRequestStatus]
 
@@ -4471,6 +4474,7 @@ class AsyncRawAgreementsClient:
         premium : typing.Optional[str]
 
         currency : typing.Optional[str]
+            Defaults to the company's base currency
 
         notes : typing.Optional[str]
 

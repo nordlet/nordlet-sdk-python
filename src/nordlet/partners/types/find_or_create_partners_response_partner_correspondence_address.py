@@ -19,6 +19,10 @@ class FindOrCreatePartnersResponsePartnerCorrespondenceAddress(UniversalBaseMode
     country_code: typing_extensions.Annotated[
         typing.Optional[str], FieldMetadata(alias="countryCode"), pydantic.Field(alias="countryCode")
     ] = None
+    subdivision: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    ISO 3166-2 code of the state, province or UK nation, such as US-CA or GB-SCT
+    """
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

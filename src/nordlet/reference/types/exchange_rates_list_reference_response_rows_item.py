@@ -10,6 +10,9 @@ from ...core.serialization import FieldMetadata
 
 
 class ExchangeRatesListReferenceResponseRowsItem(UniversalBaseModel):
+    base_currency: typing_extensions.Annotated[
+        str, FieldMetadata(alias="baseCurrency"), pydantic.Field(alias="baseCurrency")
+    ]
     currency_code: typing_extensions.Annotated[
         str, FieldMetadata(alias="currencyCode"), pydantic.Field(alias="currencyCode")
     ]

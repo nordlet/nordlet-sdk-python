@@ -32,6 +32,9 @@ class ListPartnersResponseRowsItem(UniversalBaseModel):
     birth_date: typing_extensions.Annotated[
         typing.Optional[dt.date], FieldMetadata(alias="birthDate"), pydantic.Field(alias="birthDate")
     ] = None
+    is_business: typing_extensions.Annotated[
+        typing.Optional[bool], FieldMetadata(alias="isBusiness"), pydantic.Field(alias="isBusiness")
+    ] = None
     is_customer: typing_extensions.Annotated[
         bool, FieldMetadata(alias="isCustomer"), pydantic.Field(alias="isCustomer")
     ]

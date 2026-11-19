@@ -10,6 +10,7 @@ from ...core.serialization import FieldMetadata
 from .runs_list_payroll_response_rows_item_component_totals_item import (
     RunsListPayrollResponseRowsItemComponentTotalsItem,
 )
+from .runs_list_payroll_response_rows_item_frequency import RunsListPayrollResponseRowsItemFrequency
 from .runs_list_payroll_response_rows_item_status import RunsListPayrollResponseRowsItemStatus
 
 
@@ -17,6 +18,15 @@ class RunsListPayrollResponseRowsItem(UniversalBaseModel):
     id: str
     year: int
     month: int
+    frequency: RunsListPayrollResponseRowsItemFrequency
+    period_start: typing_extensions.Annotated[
+        str, FieldMetadata(alias="periodStart"), pydantic.Field(alias="periodStart")
+    ]
+    period_end: typing_extensions.Annotated[str, FieldMetadata(alias="periodEnd"), pydantic.Field(alias="periodEnd")]
+    tax_year: typing_extensions.Annotated[int, FieldMetadata(alias="taxYear"), pydantic.Field(alias="taxYear")]
+    tax_period: typing_extensions.Annotated[
+        typing.Optional[int], FieldMetadata(alias="taxPeriod"), pydantic.Field(alias="taxPeriod")
+    ] = None
     country_code: typing_extensions.Annotated[
         str, FieldMetadata(alias="countryCode"), pydantic.Field(alias="countryCode")
     ]

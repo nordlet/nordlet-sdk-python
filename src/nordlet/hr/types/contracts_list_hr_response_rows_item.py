@@ -7,6 +7,7 @@ import pydantic
 import typing_extensions
 from ...core.pydantic_utilities import IS_PYDANTIC_V2, UniversalBaseModel
 from ...core.serialization import FieldMetadata
+from .contracts_list_hr_response_rows_item_pay_frequency import ContractsListHrResponseRowsItemPayFrequency
 from .contracts_list_hr_response_rows_item_salary_type import ContractsListHrResponseRowsItemSalaryType
 from .contracts_list_hr_response_rows_item_status import ContractsListHrResponseRowsItemStatus
 from .contracts_list_hr_response_rows_item_type import ContractsListHrResponseRowsItemType
@@ -42,6 +43,11 @@ class ContractsListHrResponseRowsItem(UniversalBaseModel):
     base_salary: typing_extensions.Annotated[str, FieldMetadata(alias="baseSalary"), pydantic.Field(alias="baseSalary")]
     salary_type: typing_extensions.Annotated[
         ContractsListHrResponseRowsItemSalaryType, FieldMetadata(alias="salaryType"), pydantic.Field(alias="salaryType")
+    ]
+    pay_frequency: typing_extensions.Annotated[
+        ContractsListHrResponseRowsItemPayFrequency,
+        FieldMetadata(alias="payFrequency"),
+        pydantic.Field(alias="payFrequency"),
     ]
     work_hours: typing_extensions.Annotated[str, FieldMetadata(alias="workHours"), pydantic.Field(alias="workHours")]
     work_hours_unit: typing_extensions.Annotated[

@@ -22,7 +22,9 @@ if typing.TYPE_CHECKING:
     from .addresses_update_partners_request_type import AddressesUpdatePartnersRequestType
     from .addresses_update_partners_response import AddressesUpdatePartnersResponse
     from .anonymize_partners_response import AnonymizePartnersResponse
+    from .bank_accounts_create_partners_request_account_type import BankAccountsCreatePartnersRequestAccountType
     from .bank_accounts_create_partners_response import BankAccountsCreatePartnersResponse
+    from .bank_accounts_create_partners_response_account_type import BankAccountsCreatePartnersResponseAccountType
     from .bank_accounts_delete_partners_response import BankAccountsDeletePartnersResponse
     from .bank_accounts_list_partners_request_filter_item import BankAccountsListPartnersRequestFilterItem
     from .bank_accounts_list_partners_request_filter_item_op import BankAccountsListPartnersRequestFilterItemOp
@@ -34,7 +36,20 @@ if typing.TYPE_CHECKING:
     from .bank_accounts_list_partners_request_sort_item_dir import BankAccountsListPartnersRequestSortItemDir
     from .bank_accounts_list_partners_response import BankAccountsListPartnersResponse
     from .bank_accounts_list_partners_response_rows_item import BankAccountsListPartnersResponseRowsItem
+    from .bank_accounts_list_partners_response_rows_item_account_type import (
+        BankAccountsListPartnersResponseRowsItemAccountType,
+    )
+    from .bank_accounts_update_partners_request_account_type import BankAccountsUpdatePartnersRequestAccountType
     from .bank_accounts_update_partners_response import BankAccountsUpdatePartnersResponse
+    from .bank_accounts_update_partners_response_account_type import BankAccountsUpdatePartnersResponseAccountType
+    from .companies_house_get_partners_response import CompaniesHouseGetPartnersResponse
+    from .companies_house_get_partners_response_accounting_reference_date import (
+        CompaniesHouseGetPartnersResponseAccountingReferenceDate,
+    )
+    from .companies_house_get_partners_response_address import CompaniesHouseGetPartnersResponseAddress
+    from .companies_house_get_partners_response_address_country_code import (
+        CompaniesHouseGetPartnersResponseAddressCountryCode,
+    )
     from .contacts_create_partners_response import ContactsCreatePartnersResponse
     from .contacts_delete_partners_response import ContactsDeletePartnersResponse
     from .contacts_list_partners_request_filter_item import ContactsListPartnersRequestFilterItem
@@ -206,7 +221,9 @@ _dynamic_imports: typing.Dict[str, str] = {
     "AddressesUpdatePartnersRequestType": ".addresses_update_partners_request_type",
     "AddressesUpdatePartnersResponse": ".addresses_update_partners_response",
     "AnonymizePartnersResponse": ".anonymize_partners_response",
+    "BankAccountsCreatePartnersRequestAccountType": ".bank_accounts_create_partners_request_account_type",
     "BankAccountsCreatePartnersResponse": ".bank_accounts_create_partners_response",
+    "BankAccountsCreatePartnersResponseAccountType": ".bank_accounts_create_partners_response_account_type",
     "BankAccountsDeletePartnersResponse": ".bank_accounts_delete_partners_response",
     "BankAccountsListPartnersRequestFilterItem": ".bank_accounts_list_partners_request_filter_item",
     "BankAccountsListPartnersRequestFilterItemOp": ".bank_accounts_list_partners_request_filter_item_op",
@@ -216,7 +233,14 @@ _dynamic_imports: typing.Dict[str, str] = {
     "BankAccountsListPartnersRequestSortItemDir": ".bank_accounts_list_partners_request_sort_item_dir",
     "BankAccountsListPartnersResponse": ".bank_accounts_list_partners_response",
     "BankAccountsListPartnersResponseRowsItem": ".bank_accounts_list_partners_response_rows_item",
+    "BankAccountsListPartnersResponseRowsItemAccountType": ".bank_accounts_list_partners_response_rows_item_account_type",
+    "BankAccountsUpdatePartnersRequestAccountType": ".bank_accounts_update_partners_request_account_type",
     "BankAccountsUpdatePartnersResponse": ".bank_accounts_update_partners_response",
+    "BankAccountsUpdatePartnersResponseAccountType": ".bank_accounts_update_partners_response_account_type",
+    "CompaniesHouseGetPartnersResponse": ".companies_house_get_partners_response",
+    "CompaniesHouseGetPartnersResponseAccountingReferenceDate": ".companies_house_get_partners_response_accounting_reference_date",
+    "CompaniesHouseGetPartnersResponseAddress": ".companies_house_get_partners_response_address",
+    "CompaniesHouseGetPartnersResponseAddressCountryCode": ".companies_house_get_partners_response_address_country_code",
     "ContactsCreatePartnersResponse": ".contacts_create_partners_response",
     "ContactsDeletePartnersResponse": ".contacts_delete_partners_response",
     "ContactsListPartnersRequestFilterItem": ".contacts_list_partners_request_filter_item",
@@ -388,7 +412,9 @@ __all__ = [
     "AddressesUpdatePartnersRequestType",
     "AddressesUpdatePartnersResponse",
     "AnonymizePartnersResponse",
+    "BankAccountsCreatePartnersRequestAccountType",
     "BankAccountsCreatePartnersResponse",
+    "BankAccountsCreatePartnersResponseAccountType",
     "BankAccountsDeletePartnersResponse",
     "BankAccountsListPartnersRequestFilterItem",
     "BankAccountsListPartnersRequestFilterItemOp",
@@ -398,7 +424,14 @@ __all__ = [
     "BankAccountsListPartnersRequestSortItemDir",
     "BankAccountsListPartnersResponse",
     "BankAccountsListPartnersResponseRowsItem",
+    "BankAccountsListPartnersResponseRowsItemAccountType",
+    "BankAccountsUpdatePartnersRequestAccountType",
     "BankAccountsUpdatePartnersResponse",
+    "BankAccountsUpdatePartnersResponseAccountType",
+    "CompaniesHouseGetPartnersResponse",
+    "CompaniesHouseGetPartnersResponseAccountingReferenceDate",
+    "CompaniesHouseGetPartnersResponseAddress",
+    "CompaniesHouseGetPartnersResponseAddressCountryCode",
     "ContactsCreatePartnersResponse",
     "ContactsDeletePartnersResponse",
     "ContactsListPartnersRequestFilterItem",

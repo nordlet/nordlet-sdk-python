@@ -6,9 +6,6 @@ import pydantic
 import typing_extensions
 from ...core.pydantic_utilities import IS_PYDANTIC_V2, UniversalBaseModel
 from ...core.serialization import FieldMetadata
-from .configs_list_declarations_response_rows_item_fields_item_company_field import (
-    ConfigsListDeclarationsResponseRowsItemFieldsItemCompanyField,
-)
 from .configs_list_declarations_response_rows_item_fields_item_kind import (
     ConfigsListDeclarationsResponseRowsItemFieldsItemKind,
 )
@@ -25,15 +22,15 @@ class ConfigsListDeclarationsResponseRowsItemFieldsItem(UniversalBaseModel):
     """
 
     company_field: typing_extensions.Annotated[
-        typing.Optional[ConfigsListDeclarationsResponseRowsItemFieldsItemCompanyField],
+        typing.Optional[str],
         FieldMetadata(alias="companyField"),
         pydantic.Field(
             alias="companyField",
-            description="The company profile field the value is taken from; change it with `account/companies/update`",
+            description="The company profile field the value is taken from: `code`, `vatCode`, or `identifiers.<key>` for an entry of `identifiers`; change it with `account/companies/update`",
         ),
     ] = None
     """
-    The company profile field the value is taken from; change it with `account/companies/update`
+    The company profile field the value is taken from: `code`, `vatCode`, or `identifiers.<key>` for an entry of `identifiers`; change it with `account/companies/update`
     """
 
     if IS_PYDANTIC_V2:

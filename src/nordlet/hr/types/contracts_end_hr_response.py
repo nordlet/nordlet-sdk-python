@@ -7,6 +7,7 @@ import pydantic
 import typing_extensions
 from ...core.pydantic_utilities import IS_PYDANTIC_V2, UniversalBaseModel
 from ...core.serialization import FieldMetadata
+from .contracts_end_hr_response_pay_frequency import ContractsEndHrResponsePayFrequency
 from .contracts_end_hr_response_salary_type import ContractsEndHrResponseSalaryType
 from .contracts_end_hr_response_status import ContractsEndHrResponseStatus
 from .contracts_end_hr_response_type import ContractsEndHrResponseType
@@ -42,6 +43,9 @@ class ContractsEndHrResponse(UniversalBaseModel):
     base_salary: typing_extensions.Annotated[str, FieldMetadata(alias="baseSalary"), pydantic.Field(alias="baseSalary")]
     salary_type: typing_extensions.Annotated[
         ContractsEndHrResponseSalaryType, FieldMetadata(alias="salaryType"), pydantic.Field(alias="salaryType")
+    ]
+    pay_frequency: typing_extensions.Annotated[
+        ContractsEndHrResponsePayFrequency, FieldMetadata(alias="payFrequency"), pydantic.Field(alias="payFrequency")
     ]
     work_hours: typing_extensions.Annotated[str, FieldMetadata(alias="workHours"), pydantic.Field(alias="workHours")]
     work_hours_unit: typing_extensions.Annotated[

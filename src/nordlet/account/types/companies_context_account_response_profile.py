@@ -10,6 +10,9 @@ from .companies_context_account_response_profile_accounts_kept_by import (
     CompaniesContextAccountResponseProfileAccountsKeptBy,
 )
 from .companies_context_account_response_profile_address import CompaniesContextAccountResponseProfileAddress
+from .companies_context_account_response_profile_fiscal_year_week_rule import (
+    CompaniesContextAccountResponseProfileFiscalYearWeekRule,
+)
 from .companies_context_account_response_profile_status import CompaniesContextAccountResponseProfileStatus
 from .companies_context_account_response_profile_vat_period import CompaniesContextAccountResponseProfileVatPeriod
 
@@ -21,6 +24,7 @@ class CompaniesContextAccountResponseProfile(UniversalBaseModel):
     vat_code: typing_extensions.Annotated[
         typing.Optional[str], FieldMetadata(alias="vatCode"), pydantic.Field(alias="vatCode")
     ] = None
+    identifiers: typing.Dict[str, str]
     sme_exemption_number: typing_extensions.Annotated[
         typing.Optional[str], FieldMetadata(alias="smeExemptionNumber"), pydantic.Field(alias="smeExemptionNumber")
     ] = None
@@ -42,12 +46,15 @@ class CompaniesContextAccountResponseProfile(UniversalBaseModel):
     """
 
     country_chart_template: typing_extensions.Annotated[
-        str,
+        typing.Optional[str],
         FieldMetadata(alias="countryChartTemplate"),
-        pydantic.Field(alias="countryChartTemplate", description="Chart of accounts template of the company country"),
-    ]
+        pydantic.Field(
+            alias="countryChartTemplate",
+            description="Chart of accounts template of the company country; null when Nordlet has no chart for it",
+        ),
+    ] = None
     """
-    Chart of accounts template of the company country
+    Chart of accounts template of the company country; null when Nordlet has no chart for it
     """
 
     base_currency: typing_extensions.Annotated[
@@ -137,8 +144,22 @@ class CompaniesContextAccountResponseProfile(UniversalBaseModel):
         FieldMetadata(alias="vatPeriod"),
         pydantic.Field(alias="vatPeriod"),
     ] = None
+    vat_period_end_month: typing_extensions.Annotated[
+        typing.Optional[int], FieldMetadata(alias="vatPeriodEndMonth"), pydantic.Field(alias="vatPeriodEndMonth")
+    ] = None
     fiscal_year_end_month: typing_extensions.Annotated[
         typing.Optional[int], FieldMetadata(alias="fiscalYearEndMonth"), pydantic.Field(alias="fiscalYearEndMonth")
+    ] = None
+    fiscal_year_end_day: typing_extensions.Annotated[
+        typing.Optional[int], FieldMetadata(alias="fiscalYearEndDay"), pydantic.Field(alias="fiscalYearEndDay")
+    ] = None
+    fiscal_year_weekday: typing_extensions.Annotated[
+        typing.Optional[int], FieldMetadata(alias="fiscalYearWeekday"), pydantic.Field(alias="fiscalYearWeekday")
+    ] = None
+    fiscal_year_week_rule: typing_extensions.Annotated[
+        typing.Optional[CompaniesContextAccountResponseProfileFiscalYearWeekRule],
+        FieldMetadata(alias="fiscalYearWeekRule"),
+        pydantic.Field(alias="fiscalYearWeekRule"),
     ] = None
     time_zone: typing_extensions.Annotated[str, FieldMetadata(alias="timeZone"), pydantic.Field(alias="timeZone")]
     filing_options: typing_extensions.Annotated[

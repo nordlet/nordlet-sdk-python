@@ -88,6 +88,19 @@ from .types.eu_sme_thresholds_list_declarations_response import EuSmeThresholdsL
 from .types.eu_union_turnover_get_declarations_response import EuUnionTurnoverGetDeclarationsResponse
 from .types.eu_vat_return_compute_declarations_response import EuVatReturnComputeDeclarationsResponse
 from .types.eu_vat_return_packs_list_declarations_response import EuVatReturnPacksListDeclarationsResponse
+from .types.gb_corporation_tax_compute_declarations_response import GbCorporationTaxComputeDeclarationsResponse
+from .types.gb_hmrc_authorize_url_get_declarations_response import GbHmrcAuthorizeUrlGetDeclarationsResponse
+from .types.gb_hmrc_connect_declarations_response import GbHmrcConnectDeclarationsResponse
+from .types.gb_vat_liabilities_list_declarations_request_device import GbVatLiabilitiesListDeclarationsRequestDevice
+from .types.gb_vat_liabilities_list_declarations_response import GbVatLiabilitiesListDeclarationsResponse
+from .types.gb_vat_obligations_list_declarations_request_device import GbVatObligationsListDeclarationsRequestDevice
+from .types.gb_vat_obligations_list_declarations_request_status import GbVatObligationsListDeclarationsRequestStatus
+from .types.gb_vat_obligations_list_declarations_response import GbVatObligationsListDeclarationsResponse
+from .types.gb_vat_payments_list_declarations_request_device import GbVatPaymentsListDeclarationsRequestDevice
+from .types.gb_vat_payments_list_declarations_response import GbVatPaymentsListDeclarationsResponse
+from .types.gb_vat_penalties_get_declarations_request_device import GbVatPenaltiesGetDeclarationsRequestDevice
+from .types.gb_vat_returns_get_declarations_request_device import GbVatReturnsGetDeclarationsRequestDevice
+from .types.gb_vat_returns_get_declarations_response import GbVatReturnsGetDeclarationsResponse
 from .types.ie_b1generate_declarations_response import IeB1GenerateDeclarationsResponse
 from .types.ie_ct1generate_declarations_response import IeCt1GenerateDeclarationsResponse
 from .types.it_sdi_purchase_preview_declarations_request_tipo_documento import (
@@ -175,6 +188,21 @@ from .types.tax_payments_list_declarations_request_tax import TaxPaymentsListDec
 from .types.tax_payments_list_declarations_response import TaxPaymentsListDeclarationsResponse
 from .types.tax_payments_update_declarations_request_kind import TaxPaymentsUpdateDeclarationsRequestKind
 from .types.tax_payments_update_declarations_response import TaxPaymentsUpdateDeclarationsResponse
+from .types.us940get_declarations_response import Us940GetDeclarationsResponse
+from .types.us941get_declarations_response import Us941GetDeclarationsResponse
+from .types.us_de_franchise_tax_compute_declarations_request_authorized_shares_item import (
+    UsDeFranchiseTaxComputeDeclarationsRequestAuthorizedSharesItem,
+)
+from .types.us_de_franchise_tax_compute_declarations_response import UsDeFranchiseTaxComputeDeclarationsResponse
+from .types.us_de_gross_receipts_get_declarations_request_activity import (
+    UsDeGrossReceiptsGetDeclarationsRequestActivity,
+)
+from .types.us_de_gross_receipts_get_declarations_response import UsDeGrossReceiptsGetDeclarationsResponse
+from .types.us_de_unemployment_get_declarations_response import UsDeUnemploymentGetDeclarationsResponse
+from .types.us_de_withholding_get_declarations_response import UsDeWithholdingGetDeclarationsResponse
+from .types.us_state_sales_get_declarations_response import UsStateSalesGetDeclarationsResponse
+from .types.us_w2list_declarations_response import UsW2ListDeclarationsResponse
+from .types.us_workweeks_list_declarations_response import UsWorkweeksListDeclarationsResponse
 from .types.vat_prorata_get_declarations_response import VatProrataGetDeclarationsResponse
 from .types.vat_prorata_list_declarations_response import VatProrataListDeclarationsResponse
 from .types.vat_prorata_set_declarations_response import VatProrataSetDeclarationsResponse
@@ -979,7 +1007,7 @@ class DeclarationsClient:
         self, *, year: int, request_options: typing.Optional[RequestOptions] = None
     ) -> EuDac7PreviewDeclarationsResponse:
         """
-        Which platform sellers are reportable for the year (Council Directive (EU) 2021/514, Annex V) and why the others are excluded, the data still missing, and how the company files the report in its Member State.
+        Which platform sellers are reportable for the year (Council Directive (EU) 2021/514, Annex V; for a UK company, the HMRC digital platform reporting rules and the jurisdictions HMRC lists as reportable for the year) and why the others are excluded, the data still missing, and how the company files the report in its Member State or with HMRC.
 
         Parameters
         ----------
@@ -1011,7 +1039,7 @@ class DeclarationsClient:
         self, *, year: int, request_options: typing.Optional[RequestOptions] = None
     ) -> EuDac7XmlDeclarationsResponse:
         """
-        Builds the DAC7 (DPI) XML report of a year for the Member State of the company and returns it base64-encoded with the file name the administration expects. Answers 422 when no DAC7 filing channel exists for the company country. The sellers and the missing data behind it come from `declarations/eu/dac7/preview`.
+        Builds the DAC7 (DPI) XML report of a year for the Member State of the company, or the HMRC digital platform report (OECD DPI XML 1.0, file name equal to the MessageRefId) for a UK company, and returns it base64-encoded with the file name the administration expects. Answers 422 when no DAC7 filing channel exists for the company country. The sellers and the missing data behind it come from `declarations/eu/dac7/preview`.
 
         Parameters
         ----------
@@ -3753,6 +3781,836 @@ class DeclarationsClient:
         _response = self._raw_client.li_lohnlisten_generate(year=year, request_options=request_options)
         return _response.data
 
+    def gb_hmrc_authorize_url_get(
+        self, *, request_options: typing.Optional[RequestOptions] = None
+    ) -> GbHmrcAuthorizeUrlGetDeclarationsResponse:
+        """
+        Starts connecting the company to HMRC's VAT (MTD) API: returns the HMRC sign-in address the user opens in the browser to grant Nordlet the `read:vat` and `write:vat` scopes. HMRC sends the browser back to Nordlet's registered address with `code` and `state`, which are passed to `declarations/gb/hmrc/connect`. Answers 503 when Nordlet's HMRC application is not set up.
+
+        Parameters
+        ----------
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        GbHmrcAuthorizeUrlGetDeclarationsResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.declarations.gb_hmrc_authorize_url_get()
+        """
+        _response = self._raw_client.gb_hmrc_authorize_url_get(request_options=request_options)
+        return _response.data
+
+    def gb_hmrc_connect(
+        self, *, code: str, state: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> GbHmrcConnectDeclarationsResponse:
+        """
+        Finishes connecting the company to HMRC: trades the `code` HMRC returned for the company's tokens and stores them in the `gb-hmrc-vat` settings. `state` must be the one of the sign-in address from `declarations/gb/hmrc/authorize-url/get`, else 422. HMRC lets the connection last 18 months; Nordlet renews the 4-hour access token itself.
+
+        Parameters
+        ----------
+        code : str
+
+        state : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        GbHmrcConnectDeclarationsResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.declarations.gb_hmrc_connect(
+            code="code",
+            state="state",
+        )
+        """
+        _response = self._raw_client.gb_hmrc_connect(code=code, state=state, request_options=request_options)
+        return _response.data
+
+    def gb_corporation_tax_compute(
+        self,
+        *,
+        period_start: dt.date,
+        period_end: dt.date,
+        taxable_total_profits: str,
+        exempt_distributions: typing.Optional[str] = OMIT,
+        associated_companies: typing.Optional[int] = OMIT,
+        close_investment_holding: typing.Optional[bool] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> GbCorporationTaxComputeDeclarationsResponse:
+        """
+        Computes UK Corporation Tax for an accounting period of at most 12 months from its taxable total profits: the small profits rate when the augmented profits (taxable total profits plus `exemptDistributions`) do not exceed the lower limit, the main rate less marginal relief between the limits, the main rate above the upper limit. The limits are reduced by days for a period shorter than 12 months and divided by one plus `associatedCompanies` (those that carried on a trade or business in the period). A period that straddles 1 April of a year whose limits differ is split into parts by financial year. A `closeInvestmentHolding` company pays the main rate. Financial years 2022 to 2026 are known; another answers 422.
+
+        Parameters
+        ----------
+        period_start : dt.date
+
+        period_end : dt.date
+
+        taxable_total_profits : str
+
+        exempt_distributions : typing.Optional[str]
+
+        associated_companies : typing.Optional[int]
+
+        close_investment_holding : typing.Optional[bool]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        GbCorporationTaxComputeDeclarationsResponse
+            Default Response
+
+        Examples
+        --------
+        import datetime
+
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.declarations.gb_corporation_tax_compute(
+            period_start=datetime.date.fromisoformat(
+                "2026-07-01",
+            ),
+            period_end=datetime.date.fromisoformat(
+                "2026-07-01",
+            ),
+            taxable_total_profits="taxableTotalProfits",
+        )
+        """
+        _response = self._raw_client.gb_corporation_tax_compute(
+            period_start=period_start,
+            period_end=period_end,
+            taxable_total_profits=taxable_total_profits,
+            exempt_distributions=exempt_distributions,
+            associated_companies=associated_companies,
+            close_investment_holding=close_investment_holding,
+            request_options=request_options,
+        )
+        return _response.data
+
+    def gb_vat_obligations_list(
+        self,
+        *,
+        device: GbVatObligationsListDeclarationsRequestDevice,
+        from_: typing.Optional[dt.date] = OMIT,
+        to: typing.Optional[dt.date] = OMIT,
+        status: typing.Optional[GbVatObligationsListDeclarationsRequestStatus] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> GbVatObligationsListDeclarationsResponse:
+        """
+        Lists the company's VAT return periods as HMRC holds them: open (`status` O) or fulfilled (F). Without `status`, `from` and `to` are required and at most 366 days apart. `device` carries the facts of the user's browser that HMRC requires.
+
+        Parameters
+        ----------
+        device : GbVatObligationsListDeclarationsRequestDevice
+            Facts of the browser the user files from, which HMRC requires with every VAT (MTD) API call: `navigator.userAgent`, a UUID the browser keeps for the device, every screen (width, height, scaling factor, colour depth in bits), the window size in pixels and the time zone as `UTC±hh:mm`.
+
+        from_ : typing.Optional[dt.date]
+
+        to : typing.Optional[dt.date]
+
+        status : typing.Optional[GbVatObligationsListDeclarationsRequestStatus]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        GbVatObligationsListDeclarationsResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+        from nordlet.declarations import (
+            GbVatObligationsListDeclarationsRequestDevice,
+            GbVatObligationsListDeclarationsRequestDeviceScreensItem,
+            GbVatObligationsListDeclarationsRequestDeviceWindowSize,
+        )
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.declarations.gb_vat_obligations_list(
+            device=GbVatObligationsListDeclarationsRequestDevice(
+                user_agent="userAgent",
+                device_id="deviceId",
+                screens=[
+                    GbVatObligationsListDeclarationsRequestDeviceScreensItem(
+                        width=1000000,
+                        height=1000000,
+                        scaling_factor=1.1,
+                        colour_depth=1000000,
+                    )
+                ],
+                window_size=GbVatObligationsListDeclarationsRequestDeviceWindowSize(
+                    width=1000000,
+                    height=1000000,
+                ),
+                timezone="timezone",
+            ),
+        )
+        """
+        _response = self._raw_client.gb_vat_obligations_list(
+            device=device, from_=from_, to=to, status=status, request_options=request_options
+        )
+        return _response.data
+
+    def gb_vat_returns_get(
+        self,
+        *,
+        device: GbVatReturnsGetDeclarationsRequestDevice,
+        period_key: str,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> GbVatReturnsGetDeclarationsResponse:
+        """
+        Reads a VAT return the company submitted to HMRC, by the `periodKey` of its obligation. Answers 404 when HMRC has no return for the period.
+
+        Parameters
+        ----------
+        device : GbVatReturnsGetDeclarationsRequestDevice
+            Facts of the browser the user files from, which HMRC requires with every VAT (MTD) API call: `navigator.userAgent`, a UUID the browser keeps for the device, every screen (width, height, scaling factor, colour depth in bits), the window size in pixels and the time zone as `UTC±hh:mm`.
+
+        period_key : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        GbVatReturnsGetDeclarationsResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+        from nordlet.declarations import (
+            GbVatReturnsGetDeclarationsRequestDevice,
+            GbVatReturnsGetDeclarationsRequestDeviceScreensItem,
+            GbVatReturnsGetDeclarationsRequestDeviceWindowSize,
+        )
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.declarations.gb_vat_returns_get(
+            device=GbVatReturnsGetDeclarationsRequestDevice(
+                user_agent="userAgent",
+                device_id="deviceId",
+                screens=[
+                    GbVatReturnsGetDeclarationsRequestDeviceScreensItem(
+                        width=1000000,
+                        height=1000000,
+                        scaling_factor=1.1,
+                        colour_depth=1000000,
+                    )
+                ],
+                window_size=GbVatReturnsGetDeclarationsRequestDeviceWindowSize(
+                    width=1000000,
+                    height=1000000,
+                ),
+                timezone="timezone",
+            ),
+            period_key="periodKey",
+        )
+        """
+        _response = self._raw_client.gb_vat_returns_get(
+            device=device, period_key=period_key, request_options=request_options
+        )
+        return _response.data
+
+    def gb_vat_liabilities_list(
+        self,
+        *,
+        device: GbVatLiabilitiesListDeclarationsRequestDevice,
+        from_: dt.date,
+        to: dt.date,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> GbVatLiabilitiesListDeclarationsResponse:
+        """
+        Lists the company's VAT liabilities HMRC holds whose period ends between `from` (2017-12-01 or later) and `to` (today or earlier), at most 365 days apart.
+
+        Parameters
+        ----------
+        device : GbVatLiabilitiesListDeclarationsRequestDevice
+            Facts of the browser the user files from, which HMRC requires with every VAT (MTD) API call: `navigator.userAgent`, a UUID the browser keeps for the device, every screen (width, height, scaling factor, colour depth in bits), the window size in pixels and the time zone as `UTC±hh:mm`.
+
+        from_ : dt.date
+
+        to : dt.date
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        GbVatLiabilitiesListDeclarationsResponse
+            Default Response
+
+        Examples
+        --------
+        import datetime
+
+        from nordlet import Nordlet
+        from nordlet.declarations import (
+            GbVatLiabilitiesListDeclarationsRequestDevice,
+            GbVatLiabilitiesListDeclarationsRequestDeviceScreensItem,
+            GbVatLiabilitiesListDeclarationsRequestDeviceWindowSize,
+        )
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.declarations.gb_vat_liabilities_list(
+            device=GbVatLiabilitiesListDeclarationsRequestDevice(
+                user_agent="userAgent",
+                device_id="deviceId",
+                screens=[
+                    GbVatLiabilitiesListDeclarationsRequestDeviceScreensItem(
+                        width=1000000,
+                        height=1000000,
+                        scaling_factor=1.1,
+                        colour_depth=1000000,
+                    )
+                ],
+                window_size=GbVatLiabilitiesListDeclarationsRequestDeviceWindowSize(
+                    width=1000000,
+                    height=1000000,
+                ),
+                timezone="timezone",
+            ),
+            from_=datetime.date.fromisoformat(
+                "2026-07-01",
+            ),
+            to=datetime.date.fromisoformat(
+                "2026-07-01",
+            ),
+        )
+        """
+        _response = self._raw_client.gb_vat_liabilities_list(
+            device=device, from_=from_, to=to, request_options=request_options
+        )
+        return _response.data
+
+    def gb_vat_payments_list(
+        self,
+        *,
+        device: GbVatPaymentsListDeclarationsRequestDevice,
+        from_: dt.date,
+        to: dt.date,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> GbVatPaymentsListDeclarationsResponse:
+        """
+        Lists the VAT payments HMRC received from the company between `from` (2017-12-01 or later) and `to` (today or earlier), at most 365 days apart.
+
+        Parameters
+        ----------
+        device : GbVatPaymentsListDeclarationsRequestDevice
+            Facts of the browser the user files from, which HMRC requires with every VAT (MTD) API call: `navigator.userAgent`, a UUID the browser keeps for the device, every screen (width, height, scaling factor, colour depth in bits), the window size in pixels and the time zone as `UTC±hh:mm`.
+
+        from_ : dt.date
+
+        to : dt.date
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        GbVatPaymentsListDeclarationsResponse
+            Default Response
+
+        Examples
+        --------
+        import datetime
+
+        from nordlet import Nordlet
+        from nordlet.declarations import (
+            GbVatPaymentsListDeclarationsRequestDevice,
+            GbVatPaymentsListDeclarationsRequestDeviceScreensItem,
+            GbVatPaymentsListDeclarationsRequestDeviceWindowSize,
+        )
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.declarations.gb_vat_payments_list(
+            device=GbVatPaymentsListDeclarationsRequestDevice(
+                user_agent="userAgent",
+                device_id="deviceId",
+                screens=[
+                    GbVatPaymentsListDeclarationsRequestDeviceScreensItem(
+                        width=1000000,
+                        height=1000000,
+                        scaling_factor=1.1,
+                        colour_depth=1000000,
+                    )
+                ],
+                window_size=GbVatPaymentsListDeclarationsRequestDeviceWindowSize(
+                    width=1000000,
+                    height=1000000,
+                ),
+                timezone="timezone",
+            ),
+            from_=datetime.date.fromisoformat(
+                "2026-07-01",
+            ),
+            to=datetime.date.fromisoformat(
+                "2026-07-01",
+            ),
+        )
+        """
+        _response = self._raw_client.gb_vat_payments_list(
+            device=device, from_=from_, to=to, request_options=request_options
+        )
+        return _response.data
+
+    def gb_vat_penalties_get(
+        self,
+        *,
+        device: GbVatPenaltiesGetDeclarationsRequestDevice,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> typing.Dict[str, typing.Any]:
+        """
+        Returns the penalties HMRC applied to the company's VAT account in the last 24 months as HMRC answers them: `totalisations`, `lateSubmissionPenalty` and `latePaymentPenalty`.
+
+        Parameters
+        ----------
+        device : GbVatPenaltiesGetDeclarationsRequestDevice
+            Facts of the browser the user files from, which HMRC requires with every VAT (MTD) API call: `navigator.userAgent`, a UUID the browser keeps for the device, every screen (width, height, scaling factor, colour depth in bits), the window size in pixels and the time zone as `UTC±hh:mm`.
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        typing.Dict[str, typing.Any]
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+        from nordlet.declarations import (
+            GbVatPenaltiesGetDeclarationsRequestDevice,
+            GbVatPenaltiesGetDeclarationsRequestDeviceScreensItem,
+            GbVatPenaltiesGetDeclarationsRequestDeviceWindowSize,
+        )
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.declarations.gb_vat_penalties_get(
+            device=GbVatPenaltiesGetDeclarationsRequestDevice(
+                user_agent="userAgent",
+                device_id="deviceId",
+                screens=[
+                    GbVatPenaltiesGetDeclarationsRequestDeviceScreensItem(
+                        width=1000000,
+                        height=1000000,
+                        scaling_factor=1.1,
+                        colour_depth=1000000,
+                    )
+                ],
+                window_size=GbVatPenaltiesGetDeclarationsRequestDeviceWindowSize(
+                    width=1000000,
+                    height=1000000,
+                ),
+                timezone="timezone",
+            ),
+        )
+        """
+        _response = self._raw_client.gb_vat_penalties_get(device=device, request_options=request_options)
+        return _response.data
+
+    def us941get(
+        self,
+        *,
+        year: int,
+        quarter: int,
+        deposits: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> Us941GetDeclarationsResponse:
+        """
+        The Form 941 figures of a quarter from the approved US payroll runs whose pay date (the period end without one) falls in it: line 1 the employees paid for the pay period that includes the 12th of the quarter's last month, line 2 the wages, line 3 the federal income tax withheld, lines 5a, 5c and 5d the social security, Medicare and Additional Medicare wages with their tax at 12.4%, 2.9% and 0.9%, line 7 the fractions of cents between those and the amounts withheld and owed, lines 10 and 12, and line 16 the liability of each month by pay date with the liability of each pay date for Schedule B. `deposits` (the deposits made for the quarter) fills line 13 and line 14 or 15. Lines 5b, 5f, 8, 9 and 11 are not filled. Answers 422 for a company outside the US.
+
+        Parameters
+        ----------
+        year : int
+
+        quarter : int
+
+        deposits : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        Us941GetDeclarationsResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.declarations.us941get(
+            year=1000000,
+            quarter=1000000,
+        )
+        """
+        _response = self._raw_client.us941get(
+            year=year, quarter=quarter, deposits=deposits, request_options=request_options
+        )
+        return _response.data
+
+    def us940get(
+        self, *, year: int, request_options: typing.Optional[RequestOptions] = None
+    ) -> Us940GetDeclarationsResponse:
+        """
+        The Form 940 figures of a year from the approved US payroll runs paid in it: line 1a the state of the employees paid (the `usWorkState` employee option) or line 1b when there are several, line 3 the payments to employees, line 5 the part of each employee's payments above $7,000, line 7 the taxable FUTA wages, line 8 at 0.6%, line 12, and Part 5 with the liability of each quarter when line 12 is more than $500. Exempt payments (line 4), the state unemployment tax adjustments (lines 9 and 10) and the credit reduction of Schedule A (line 11) are not filled. Answers 422 for a company outside the US.
+
+        Parameters
+        ----------
+        year : int
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        Us940GetDeclarationsResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.declarations.us940get(
+            year=1000000,
+        )
+        """
+        _response = self._raw_client.us940get(year=year, request_options=request_options)
+        return _response.data
+
+    def us_w2list(
+        self, *, year: int, request_options: typing.Optional[RequestOptions] = None
+    ) -> UsW2ListDeclarationsResponse:
+        """
+        The Forms W-2 of a year, one per employee paid in an approved US payroll run of the year, and the Form W-3 totals: box a the employee's `personalCode` (the social security number), box e the name, boxes 1 to 6 the wages, the federal income tax, the social security wages and tax and the Medicare wages and tax (with the Additional Medicare Tax), and boxes 15 to 17 for Delaware with the company's `deWithholdingAccount`; W-3 box c the number of forms and box e the company's `ein`. Answers 422 for a company outside the US.
+
+        Parameters
+        ----------
+        year : int
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        UsW2ListDeclarationsResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.declarations.us_w2list(
+            year=1000000,
+        )
+        """
+        _response = self._raw_client.us_w2list(year=year, request_options=request_options)
+        return _response.data
+
+    def us_de_withholding_get(
+        self, *, period: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> UsDeWithholdingGetDeclarationsResponse:
+        """
+        The Delaware withholding of a month (YYYY-MM), a quarter (YYYY-Qn) or a year (YYYY, for the annual reconciliation) from the approved US payroll runs paid in it: the employees with Delaware income tax withheld, their wages and the tax withheld. Answers 422 for a company outside the US.
+
+        Parameters
+        ----------
+        period : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        UsDeWithholdingGetDeclarationsResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.declarations.us_de_withholding_get(
+            period="period",
+        )
+        """
+        _response = self._raw_client.us_de_withholding_get(period=period, request_options=request_options)
+        return _response.data
+
+    def us_de_unemployment_get(
+        self, *, year: int, quarter: int, request_options: typing.Optional[RequestOptions] = None
+    ) -> UsDeUnemploymentGetDeclarationsResponse:
+        """
+        The Delaware unemployment insurance figures of a quarter from the approved US payroll runs paid in it, for the employees charged Delaware unemployment insurance: the total wages, the wages above each employee's yearly wage base, the taxable wages, the contributions, and each employee with the social security number (`personalCode`) and the wages of the quarter. Answers 422 for a company outside the US.
+
+        Parameters
+        ----------
+        year : int
+
+        quarter : int
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        UsDeUnemploymentGetDeclarationsResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.declarations.us_de_unemployment_get(
+            year=1000000,
+            quarter=1000000,
+        )
+        """
+        _response = self._raw_client.us_de_unemployment_get(year=year, quarter=quarter, request_options=request_options)
+        return _response.data
+
+    def us_de_gross_receipts_get(
+        self,
+        *,
+        period: str,
+        activity: UsDeGrossReceiptsGetDeclarationsRequestActivity,
+        excluded_receipts: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> UsDeGrossReceiptsGetDeclarationsResponse:
+        """
+        The Delaware gross receipts tax of a month (YYYY-MM) or a quarter (YYYY-Qn) for one business activity of the company's license: the net amounts of the sale invoices issued in the period (credit notes subtracted, advance invoices left out because the final invoice carries the sale, amounts in another currency at the rate stored on the invoice), less `excludedReceipts` (receipts from outside Delaware and from related entities, which the caller states), less the monthly or quarterly deduction of the activity, at the rate of the activity in 30 Del. C. chapters 23, 25, 27 and 29. An invoice in another currency without a stored rate is left out with a warning. Answers 422 for a company outside the US.
+
+        Parameters
+        ----------
+        period : str
+
+        activity : UsDeGrossReceiptsGetDeclarationsRequestActivity
+
+        excluded_receipts : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        UsDeGrossReceiptsGetDeclarationsResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.declarations.us_de_gross_receipts_get(
+            period="period",
+            activity="services",
+        )
+        """
+        _response = self._raw_client.us_de_gross_receipts_get(
+            period=period, activity=activity, excluded_receipts=excluded_receipts, request_options=request_options
+        )
+        return _response.data
+
+    def us_state_sales_get(
+        self, *, from_: dt.date, to: dt.date, request_options: typing.Optional[RequestOptions] = None
+    ) -> UsStateSalesGetDeclarationsResponse:
+        """
+        The sales of a US company per state between two issue dates, to see where its sales may oblige it to collect a state's sales tax: the number and net amount of the issued sale invoices and credit notes (subtracted) by the state of the customer's address (`subdivision`, since invoices carry no delivery address), the sales to customers in the US without a state, and the sales to customers outside the US. Advance invoices are left out because the final invoice carries the sale; amounts in another currency are at the rate stored on the invoice, and an invoice without one is left out with a warning. Answers 422 for a company outside the US.
+
+        Parameters
+        ----------
+        from_ : dt.date
+
+        to : dt.date
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        UsStateSalesGetDeclarationsResponse
+            Default Response
+
+        Examples
+        --------
+        import datetime
+
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.declarations.us_state_sales_get(
+            from_=datetime.date.fromisoformat(
+                "2026-07-01",
+            ),
+            to=datetime.date.fromisoformat(
+                "2026-07-01",
+            ),
+        )
+        """
+        _response = self._raw_client.us_state_sales_get(from_=from_, to=to, request_options=request_options)
+        return _response.data
+
+    def us_de_franchise_tax_compute(
+        self,
+        *,
+        authorized_shares: typing.Sequence[UsDeFranchiseTaxComputeDeclarationsRequestAuthorizedSharesItem],
+        issued_shares: typing.Optional[int] = OMIT,
+        total_gross_assets: typing.Optional[str] = OMIT,
+        large_corporate_filer: typing.Optional[bool] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> UsDeFranchiseTaxComputeDeclarationsResponse:
+        """
+        The Delaware franchise tax of a domestic corporation for its annual franchise tax report, by 8 Del. C. § 503: the authorized shares method on the total of `authorizedShares`, and, when `issuedShares` and `totalGrossAssets` (the total assets of Form 1120 Schedule L) are given, the assumed par value capital method, where a share class without `parValue` has no par value; `tax` is the lesser of the two (at least $175 and $400, at most $200,000), or $250,000 for a Large Corporate Filer. `annualReportFee` is the filing fee of a non-exempt domestic corporation, paid with the report. Answers 422 for a company outside the US.
+
+        Parameters
+        ----------
+        authorized_shares : typing.Sequence[UsDeFranchiseTaxComputeDeclarationsRequestAuthorizedSharesItem]
+
+        issued_shares : typing.Optional[int]
+
+        total_gross_assets : typing.Optional[str]
+
+        large_corporate_filer : typing.Optional[bool]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        UsDeFranchiseTaxComputeDeclarationsResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+        from nordlet.declarations import (
+            UsDeFranchiseTaxComputeDeclarationsRequestAuthorizedSharesItem,
+        )
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.declarations.us_de_franchise_tax_compute(
+            authorized_shares=[
+                UsDeFranchiseTaxComputeDeclarationsRequestAuthorizedSharesItem(
+                    shares=1000000,
+                )
+            ],
+        )
+        """
+        _response = self._raw_client.us_de_franchise_tax_compute(
+            authorized_shares=authorized_shares,
+            issued_shares=issued_shares,
+            total_gross_assets=total_gross_assets,
+            large_corporate_filer=large_corporate_filer,
+            request_options=request_options,
+        )
+        return _response.data
+
+    def us_workweeks_list(
+        self,
+        *,
+        from_: dt.date,
+        to: dt.date,
+        employee_id: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> UsWorkweeksListDeclarationsResponse:
+        """
+        The hours worked in each workweek that touches the period, per employee of a US company (or the one `employeeId`), for the overtime and records of the Fair Labor Standards Act: the workweek starts on the employee's `usWorkweekStart` day and runs 7 days; the hours are those entered on the work and business-trip days of the timesheets; `overtimeHours` are the hours above 40 in the workweek, 0 for an employee whose `usFlsaExempt` is yes. An employee without `usWorkweekStart` is left out with a warning. Overtime pay is entered on the payroll run as an addition of payment type `overtime-pay` with its hours. Answers 422 for a company outside the US.
+
+        Parameters
+        ----------
+        from_ : dt.date
+
+        to : dt.date
+
+        employee_id : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        UsWorkweeksListDeclarationsResponse
+            Default Response
+
+        Examples
+        --------
+        import datetime
+
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.declarations.us_workweeks_list(
+            from_=datetime.date.fromisoformat(
+                "2026-07-01",
+            ),
+            to=datetime.date.fromisoformat(
+                "2026-07-01",
+            ),
+        )
+        """
+        _response = self._raw_client.us_workweeks_list(
+            from_=from_, to=to, employee_id=employee_id, request_options=request_options
+        )
+        return _response.data
+
     def configs_list(
         self, *, country: typing.Optional[str] = OMIT, request_options: typing.Optional[RequestOptions] = None
     ) -> ConfigsListDeclarationsResponse:
@@ -5181,7 +6039,7 @@ class AsyncDeclarationsClient:
         self, *, year: int, request_options: typing.Optional[RequestOptions] = None
     ) -> EuDac7PreviewDeclarationsResponse:
         """
-        Which platform sellers are reportable for the year (Council Directive (EU) 2021/514, Annex V) and why the others are excluded, the data still missing, and how the company files the report in its Member State.
+        Which platform sellers are reportable for the year (Council Directive (EU) 2021/514, Annex V; for a UK company, the HMRC digital platform reporting rules and the jurisdictions HMRC lists as reportable for the year) and why the others are excluded, the data still missing, and how the company files the report in its Member State or with HMRC.
 
         Parameters
         ----------
@@ -5221,7 +6079,7 @@ class AsyncDeclarationsClient:
         self, *, year: int, request_options: typing.Optional[RequestOptions] = None
     ) -> EuDac7XmlDeclarationsResponse:
         """
-        Builds the DAC7 (DPI) XML report of a year for the Member State of the company and returns it base64-encoded with the file name the administration expects. Answers 422 when no DAC7 filing channel exists for the company country. The sellers and the missing data behind it come from `declarations/eu/dac7/preview`.
+        Builds the DAC7 (DPI) XML report of a year for the Member State of the company, or the HMRC digital platform report (OECD DPI XML 1.0, file name equal to the MessageRefId) for a UK company, and returns it base64-encoded with the file name the administration expects. Answers 422 when no DAC7 filing channel exists for the company country. The sellers and the missing data behind it come from `declarations/eu/dac7/preview`.
 
         Parameters
         ----------
@@ -8497,6 +9355,969 @@ class AsyncDeclarationsClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.li_lohnlisten_generate(year=year, request_options=request_options)
+        return _response.data
+
+    async def gb_hmrc_authorize_url_get(
+        self, *, request_options: typing.Optional[RequestOptions] = None
+    ) -> GbHmrcAuthorizeUrlGetDeclarationsResponse:
+        """
+        Starts connecting the company to HMRC's VAT (MTD) API: returns the HMRC sign-in address the user opens in the browser to grant Nordlet the `read:vat` and `write:vat` scopes. HMRC sends the browser back to Nordlet's registered address with `code` and `state`, which are passed to `declarations/gb/hmrc/connect`. Answers 503 when Nordlet's HMRC application is not set up.
+
+        Parameters
+        ----------
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        GbHmrcAuthorizeUrlGetDeclarationsResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.declarations.gb_hmrc_authorize_url_get()
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.gb_hmrc_authorize_url_get(request_options=request_options)
+        return _response.data
+
+    async def gb_hmrc_connect(
+        self, *, code: str, state: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> GbHmrcConnectDeclarationsResponse:
+        """
+        Finishes connecting the company to HMRC: trades the `code` HMRC returned for the company's tokens and stores them in the `gb-hmrc-vat` settings. `state` must be the one of the sign-in address from `declarations/gb/hmrc/authorize-url/get`, else 422. HMRC lets the connection last 18 months; Nordlet renews the 4-hour access token itself.
+
+        Parameters
+        ----------
+        code : str
+
+        state : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        GbHmrcConnectDeclarationsResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.declarations.gb_hmrc_connect(
+                code="code",
+                state="state",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.gb_hmrc_connect(code=code, state=state, request_options=request_options)
+        return _response.data
+
+    async def gb_corporation_tax_compute(
+        self,
+        *,
+        period_start: dt.date,
+        period_end: dt.date,
+        taxable_total_profits: str,
+        exempt_distributions: typing.Optional[str] = OMIT,
+        associated_companies: typing.Optional[int] = OMIT,
+        close_investment_holding: typing.Optional[bool] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> GbCorporationTaxComputeDeclarationsResponse:
+        """
+        Computes UK Corporation Tax for an accounting period of at most 12 months from its taxable total profits: the small profits rate when the augmented profits (taxable total profits plus `exemptDistributions`) do not exceed the lower limit, the main rate less marginal relief between the limits, the main rate above the upper limit. The limits are reduced by days for a period shorter than 12 months and divided by one plus `associatedCompanies` (those that carried on a trade or business in the period). A period that straddles 1 April of a year whose limits differ is split into parts by financial year. A `closeInvestmentHolding` company pays the main rate. Financial years 2022 to 2026 are known; another answers 422.
+
+        Parameters
+        ----------
+        period_start : dt.date
+
+        period_end : dt.date
+
+        taxable_total_profits : str
+
+        exempt_distributions : typing.Optional[str]
+
+        associated_companies : typing.Optional[int]
+
+        close_investment_holding : typing.Optional[bool]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        GbCorporationTaxComputeDeclarationsResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+        import datetime
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.declarations.gb_corporation_tax_compute(
+                period_start=datetime.date.fromisoformat(
+                    "2026-07-01",
+                ),
+                period_end=datetime.date.fromisoformat(
+                    "2026-07-01",
+                ),
+                taxable_total_profits="taxableTotalProfits",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.gb_corporation_tax_compute(
+            period_start=period_start,
+            period_end=period_end,
+            taxable_total_profits=taxable_total_profits,
+            exempt_distributions=exempt_distributions,
+            associated_companies=associated_companies,
+            close_investment_holding=close_investment_holding,
+            request_options=request_options,
+        )
+        return _response.data
+
+    async def gb_vat_obligations_list(
+        self,
+        *,
+        device: GbVatObligationsListDeclarationsRequestDevice,
+        from_: typing.Optional[dt.date] = OMIT,
+        to: typing.Optional[dt.date] = OMIT,
+        status: typing.Optional[GbVatObligationsListDeclarationsRequestStatus] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> GbVatObligationsListDeclarationsResponse:
+        """
+        Lists the company's VAT return periods as HMRC holds them: open (`status` O) or fulfilled (F). Without `status`, `from` and `to` are required and at most 366 days apart. `device` carries the facts of the user's browser that HMRC requires.
+
+        Parameters
+        ----------
+        device : GbVatObligationsListDeclarationsRequestDevice
+            Facts of the browser the user files from, which HMRC requires with every VAT (MTD) API call: `navigator.userAgent`, a UUID the browser keeps for the device, every screen (width, height, scaling factor, colour depth in bits), the window size in pixels and the time zone as `UTC±hh:mm`.
+
+        from_ : typing.Optional[dt.date]
+
+        to : typing.Optional[dt.date]
+
+        status : typing.Optional[GbVatObligationsListDeclarationsRequestStatus]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        GbVatObligationsListDeclarationsResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+        from nordlet.declarations import (
+            GbVatObligationsListDeclarationsRequestDevice,
+            GbVatObligationsListDeclarationsRequestDeviceScreensItem,
+            GbVatObligationsListDeclarationsRequestDeviceWindowSize,
+        )
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.declarations.gb_vat_obligations_list(
+                device=GbVatObligationsListDeclarationsRequestDevice(
+                    user_agent="userAgent",
+                    device_id="deviceId",
+                    screens=[
+                        GbVatObligationsListDeclarationsRequestDeviceScreensItem(
+                            width=1000000,
+                            height=1000000,
+                            scaling_factor=1.1,
+                            colour_depth=1000000,
+                        )
+                    ],
+                    window_size=GbVatObligationsListDeclarationsRequestDeviceWindowSize(
+                        width=1000000,
+                        height=1000000,
+                    ),
+                    timezone="timezone",
+                ),
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.gb_vat_obligations_list(
+            device=device, from_=from_, to=to, status=status, request_options=request_options
+        )
+        return _response.data
+
+    async def gb_vat_returns_get(
+        self,
+        *,
+        device: GbVatReturnsGetDeclarationsRequestDevice,
+        period_key: str,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> GbVatReturnsGetDeclarationsResponse:
+        """
+        Reads a VAT return the company submitted to HMRC, by the `periodKey` of its obligation. Answers 404 when HMRC has no return for the period.
+
+        Parameters
+        ----------
+        device : GbVatReturnsGetDeclarationsRequestDevice
+            Facts of the browser the user files from, which HMRC requires with every VAT (MTD) API call: `navigator.userAgent`, a UUID the browser keeps for the device, every screen (width, height, scaling factor, colour depth in bits), the window size in pixels and the time zone as `UTC±hh:mm`.
+
+        period_key : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        GbVatReturnsGetDeclarationsResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+        from nordlet.declarations import (
+            GbVatReturnsGetDeclarationsRequestDevice,
+            GbVatReturnsGetDeclarationsRequestDeviceScreensItem,
+            GbVatReturnsGetDeclarationsRequestDeviceWindowSize,
+        )
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.declarations.gb_vat_returns_get(
+                device=GbVatReturnsGetDeclarationsRequestDevice(
+                    user_agent="userAgent",
+                    device_id="deviceId",
+                    screens=[
+                        GbVatReturnsGetDeclarationsRequestDeviceScreensItem(
+                            width=1000000,
+                            height=1000000,
+                            scaling_factor=1.1,
+                            colour_depth=1000000,
+                        )
+                    ],
+                    window_size=GbVatReturnsGetDeclarationsRequestDeviceWindowSize(
+                        width=1000000,
+                        height=1000000,
+                    ),
+                    timezone="timezone",
+                ),
+                period_key="periodKey",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.gb_vat_returns_get(
+            device=device, period_key=period_key, request_options=request_options
+        )
+        return _response.data
+
+    async def gb_vat_liabilities_list(
+        self,
+        *,
+        device: GbVatLiabilitiesListDeclarationsRequestDevice,
+        from_: dt.date,
+        to: dt.date,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> GbVatLiabilitiesListDeclarationsResponse:
+        """
+        Lists the company's VAT liabilities HMRC holds whose period ends between `from` (2017-12-01 or later) and `to` (today or earlier), at most 365 days apart.
+
+        Parameters
+        ----------
+        device : GbVatLiabilitiesListDeclarationsRequestDevice
+            Facts of the browser the user files from, which HMRC requires with every VAT (MTD) API call: `navigator.userAgent`, a UUID the browser keeps for the device, every screen (width, height, scaling factor, colour depth in bits), the window size in pixels and the time zone as `UTC±hh:mm`.
+
+        from_ : dt.date
+
+        to : dt.date
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        GbVatLiabilitiesListDeclarationsResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+        import datetime
+
+        from nordlet import AsyncNordlet
+        from nordlet.declarations import (
+            GbVatLiabilitiesListDeclarationsRequestDevice,
+            GbVatLiabilitiesListDeclarationsRequestDeviceScreensItem,
+            GbVatLiabilitiesListDeclarationsRequestDeviceWindowSize,
+        )
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.declarations.gb_vat_liabilities_list(
+                device=GbVatLiabilitiesListDeclarationsRequestDevice(
+                    user_agent="userAgent",
+                    device_id="deviceId",
+                    screens=[
+                        GbVatLiabilitiesListDeclarationsRequestDeviceScreensItem(
+                            width=1000000,
+                            height=1000000,
+                            scaling_factor=1.1,
+                            colour_depth=1000000,
+                        )
+                    ],
+                    window_size=GbVatLiabilitiesListDeclarationsRequestDeviceWindowSize(
+                        width=1000000,
+                        height=1000000,
+                    ),
+                    timezone="timezone",
+                ),
+                from_=datetime.date.fromisoformat(
+                    "2026-07-01",
+                ),
+                to=datetime.date.fromisoformat(
+                    "2026-07-01",
+                ),
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.gb_vat_liabilities_list(
+            device=device, from_=from_, to=to, request_options=request_options
+        )
+        return _response.data
+
+    async def gb_vat_payments_list(
+        self,
+        *,
+        device: GbVatPaymentsListDeclarationsRequestDevice,
+        from_: dt.date,
+        to: dt.date,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> GbVatPaymentsListDeclarationsResponse:
+        """
+        Lists the VAT payments HMRC received from the company between `from` (2017-12-01 or later) and `to` (today or earlier), at most 365 days apart.
+
+        Parameters
+        ----------
+        device : GbVatPaymentsListDeclarationsRequestDevice
+            Facts of the browser the user files from, which HMRC requires with every VAT (MTD) API call: `navigator.userAgent`, a UUID the browser keeps for the device, every screen (width, height, scaling factor, colour depth in bits), the window size in pixels and the time zone as `UTC±hh:mm`.
+
+        from_ : dt.date
+
+        to : dt.date
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        GbVatPaymentsListDeclarationsResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+        import datetime
+
+        from nordlet import AsyncNordlet
+        from nordlet.declarations import (
+            GbVatPaymentsListDeclarationsRequestDevice,
+            GbVatPaymentsListDeclarationsRequestDeviceScreensItem,
+            GbVatPaymentsListDeclarationsRequestDeviceWindowSize,
+        )
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.declarations.gb_vat_payments_list(
+                device=GbVatPaymentsListDeclarationsRequestDevice(
+                    user_agent="userAgent",
+                    device_id="deviceId",
+                    screens=[
+                        GbVatPaymentsListDeclarationsRequestDeviceScreensItem(
+                            width=1000000,
+                            height=1000000,
+                            scaling_factor=1.1,
+                            colour_depth=1000000,
+                        )
+                    ],
+                    window_size=GbVatPaymentsListDeclarationsRequestDeviceWindowSize(
+                        width=1000000,
+                        height=1000000,
+                    ),
+                    timezone="timezone",
+                ),
+                from_=datetime.date.fromisoformat(
+                    "2026-07-01",
+                ),
+                to=datetime.date.fromisoformat(
+                    "2026-07-01",
+                ),
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.gb_vat_payments_list(
+            device=device, from_=from_, to=to, request_options=request_options
+        )
+        return _response.data
+
+    async def gb_vat_penalties_get(
+        self,
+        *,
+        device: GbVatPenaltiesGetDeclarationsRequestDevice,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> typing.Dict[str, typing.Any]:
+        """
+        Returns the penalties HMRC applied to the company's VAT account in the last 24 months as HMRC answers them: `totalisations`, `lateSubmissionPenalty` and `latePaymentPenalty`.
+
+        Parameters
+        ----------
+        device : GbVatPenaltiesGetDeclarationsRequestDevice
+            Facts of the browser the user files from, which HMRC requires with every VAT (MTD) API call: `navigator.userAgent`, a UUID the browser keeps for the device, every screen (width, height, scaling factor, colour depth in bits), the window size in pixels and the time zone as `UTC±hh:mm`.
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        typing.Dict[str, typing.Any]
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+        from nordlet.declarations import (
+            GbVatPenaltiesGetDeclarationsRequestDevice,
+            GbVatPenaltiesGetDeclarationsRequestDeviceScreensItem,
+            GbVatPenaltiesGetDeclarationsRequestDeviceWindowSize,
+        )
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.declarations.gb_vat_penalties_get(
+                device=GbVatPenaltiesGetDeclarationsRequestDevice(
+                    user_agent="userAgent",
+                    device_id="deviceId",
+                    screens=[
+                        GbVatPenaltiesGetDeclarationsRequestDeviceScreensItem(
+                            width=1000000,
+                            height=1000000,
+                            scaling_factor=1.1,
+                            colour_depth=1000000,
+                        )
+                    ],
+                    window_size=GbVatPenaltiesGetDeclarationsRequestDeviceWindowSize(
+                        width=1000000,
+                        height=1000000,
+                    ),
+                    timezone="timezone",
+                ),
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.gb_vat_penalties_get(device=device, request_options=request_options)
+        return _response.data
+
+    async def us941get(
+        self,
+        *,
+        year: int,
+        quarter: int,
+        deposits: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> Us941GetDeclarationsResponse:
+        """
+        The Form 941 figures of a quarter from the approved US payroll runs whose pay date (the period end without one) falls in it: line 1 the employees paid for the pay period that includes the 12th of the quarter's last month, line 2 the wages, line 3 the federal income tax withheld, lines 5a, 5c and 5d the social security, Medicare and Additional Medicare wages with their tax at 12.4%, 2.9% and 0.9%, line 7 the fractions of cents between those and the amounts withheld and owed, lines 10 and 12, and line 16 the liability of each month by pay date with the liability of each pay date for Schedule B. `deposits` (the deposits made for the quarter) fills line 13 and line 14 or 15. Lines 5b, 5f, 8, 9 and 11 are not filled. Answers 422 for a company outside the US.
+
+        Parameters
+        ----------
+        year : int
+
+        quarter : int
+
+        deposits : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        Us941GetDeclarationsResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.declarations.us941get(
+                year=1000000,
+                quarter=1000000,
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.us941get(
+            year=year, quarter=quarter, deposits=deposits, request_options=request_options
+        )
+        return _response.data
+
+    async def us940get(
+        self, *, year: int, request_options: typing.Optional[RequestOptions] = None
+    ) -> Us940GetDeclarationsResponse:
+        """
+        The Form 940 figures of a year from the approved US payroll runs paid in it: line 1a the state of the employees paid (the `usWorkState` employee option) or line 1b when there are several, line 3 the payments to employees, line 5 the part of each employee's payments above $7,000, line 7 the taxable FUTA wages, line 8 at 0.6%, line 12, and Part 5 with the liability of each quarter when line 12 is more than $500. Exempt payments (line 4), the state unemployment tax adjustments (lines 9 and 10) and the credit reduction of Schedule A (line 11) are not filled. Answers 422 for a company outside the US.
+
+        Parameters
+        ----------
+        year : int
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        Us940GetDeclarationsResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.declarations.us940get(
+                year=1000000,
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.us940get(year=year, request_options=request_options)
+        return _response.data
+
+    async def us_w2list(
+        self, *, year: int, request_options: typing.Optional[RequestOptions] = None
+    ) -> UsW2ListDeclarationsResponse:
+        """
+        The Forms W-2 of a year, one per employee paid in an approved US payroll run of the year, and the Form W-3 totals: box a the employee's `personalCode` (the social security number), box e the name, boxes 1 to 6 the wages, the federal income tax, the social security wages and tax and the Medicare wages and tax (with the Additional Medicare Tax), and boxes 15 to 17 for Delaware with the company's `deWithholdingAccount`; W-3 box c the number of forms and box e the company's `ein`. Answers 422 for a company outside the US.
+
+        Parameters
+        ----------
+        year : int
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        UsW2ListDeclarationsResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.declarations.us_w2list(
+                year=1000000,
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.us_w2list(year=year, request_options=request_options)
+        return _response.data
+
+    async def us_de_withholding_get(
+        self, *, period: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> UsDeWithholdingGetDeclarationsResponse:
+        """
+        The Delaware withholding of a month (YYYY-MM), a quarter (YYYY-Qn) or a year (YYYY, for the annual reconciliation) from the approved US payroll runs paid in it: the employees with Delaware income tax withheld, their wages and the tax withheld. Answers 422 for a company outside the US.
+
+        Parameters
+        ----------
+        period : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        UsDeWithholdingGetDeclarationsResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.declarations.us_de_withholding_get(
+                period="period",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.us_de_withholding_get(period=period, request_options=request_options)
+        return _response.data
+
+    async def us_de_unemployment_get(
+        self, *, year: int, quarter: int, request_options: typing.Optional[RequestOptions] = None
+    ) -> UsDeUnemploymentGetDeclarationsResponse:
+        """
+        The Delaware unemployment insurance figures of a quarter from the approved US payroll runs paid in it, for the employees charged Delaware unemployment insurance: the total wages, the wages above each employee's yearly wage base, the taxable wages, the contributions, and each employee with the social security number (`personalCode`) and the wages of the quarter. Answers 422 for a company outside the US.
+
+        Parameters
+        ----------
+        year : int
+
+        quarter : int
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        UsDeUnemploymentGetDeclarationsResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.declarations.us_de_unemployment_get(
+                year=1000000,
+                quarter=1000000,
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.us_de_unemployment_get(
+            year=year, quarter=quarter, request_options=request_options
+        )
+        return _response.data
+
+    async def us_de_gross_receipts_get(
+        self,
+        *,
+        period: str,
+        activity: UsDeGrossReceiptsGetDeclarationsRequestActivity,
+        excluded_receipts: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> UsDeGrossReceiptsGetDeclarationsResponse:
+        """
+        The Delaware gross receipts tax of a month (YYYY-MM) or a quarter (YYYY-Qn) for one business activity of the company's license: the net amounts of the sale invoices issued in the period (credit notes subtracted, advance invoices left out because the final invoice carries the sale, amounts in another currency at the rate stored on the invoice), less `excludedReceipts` (receipts from outside Delaware and from related entities, which the caller states), less the monthly or quarterly deduction of the activity, at the rate of the activity in 30 Del. C. chapters 23, 25, 27 and 29. An invoice in another currency without a stored rate is left out with a warning. Answers 422 for a company outside the US.
+
+        Parameters
+        ----------
+        period : str
+
+        activity : UsDeGrossReceiptsGetDeclarationsRequestActivity
+
+        excluded_receipts : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        UsDeGrossReceiptsGetDeclarationsResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.declarations.us_de_gross_receipts_get(
+                period="period",
+                activity="services",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.us_de_gross_receipts_get(
+            period=period, activity=activity, excluded_receipts=excluded_receipts, request_options=request_options
+        )
+        return _response.data
+
+    async def us_state_sales_get(
+        self, *, from_: dt.date, to: dt.date, request_options: typing.Optional[RequestOptions] = None
+    ) -> UsStateSalesGetDeclarationsResponse:
+        """
+        The sales of a US company per state between two issue dates, to see where its sales may oblige it to collect a state's sales tax: the number and net amount of the issued sale invoices and credit notes (subtracted) by the state of the customer's address (`subdivision`, since invoices carry no delivery address), the sales to customers in the US without a state, and the sales to customers outside the US. Advance invoices are left out because the final invoice carries the sale; amounts in another currency are at the rate stored on the invoice, and an invoice without one is left out with a warning. Answers 422 for a company outside the US.
+
+        Parameters
+        ----------
+        from_ : dt.date
+
+        to : dt.date
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        UsStateSalesGetDeclarationsResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+        import datetime
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.declarations.us_state_sales_get(
+                from_=datetime.date.fromisoformat(
+                    "2026-07-01",
+                ),
+                to=datetime.date.fromisoformat(
+                    "2026-07-01",
+                ),
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.us_state_sales_get(from_=from_, to=to, request_options=request_options)
+        return _response.data
+
+    async def us_de_franchise_tax_compute(
+        self,
+        *,
+        authorized_shares: typing.Sequence[UsDeFranchiseTaxComputeDeclarationsRequestAuthorizedSharesItem],
+        issued_shares: typing.Optional[int] = OMIT,
+        total_gross_assets: typing.Optional[str] = OMIT,
+        large_corporate_filer: typing.Optional[bool] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> UsDeFranchiseTaxComputeDeclarationsResponse:
+        """
+        The Delaware franchise tax of a domestic corporation for its annual franchise tax report, by 8 Del. C. § 503: the authorized shares method on the total of `authorizedShares`, and, when `issuedShares` and `totalGrossAssets` (the total assets of Form 1120 Schedule L) are given, the assumed par value capital method, where a share class without `parValue` has no par value; `tax` is the lesser of the two (at least $175 and $400, at most $200,000), or $250,000 for a Large Corporate Filer. `annualReportFee` is the filing fee of a non-exempt domestic corporation, paid with the report. Answers 422 for a company outside the US.
+
+        Parameters
+        ----------
+        authorized_shares : typing.Sequence[UsDeFranchiseTaxComputeDeclarationsRequestAuthorizedSharesItem]
+
+        issued_shares : typing.Optional[int]
+
+        total_gross_assets : typing.Optional[str]
+
+        large_corporate_filer : typing.Optional[bool]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        UsDeFranchiseTaxComputeDeclarationsResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+        from nordlet.declarations import (
+            UsDeFranchiseTaxComputeDeclarationsRequestAuthorizedSharesItem,
+        )
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.declarations.us_de_franchise_tax_compute(
+                authorized_shares=[
+                    UsDeFranchiseTaxComputeDeclarationsRequestAuthorizedSharesItem(
+                        shares=1000000,
+                    )
+                ],
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.us_de_franchise_tax_compute(
+            authorized_shares=authorized_shares,
+            issued_shares=issued_shares,
+            total_gross_assets=total_gross_assets,
+            large_corporate_filer=large_corporate_filer,
+            request_options=request_options,
+        )
+        return _response.data
+
+    async def us_workweeks_list(
+        self,
+        *,
+        from_: dt.date,
+        to: dt.date,
+        employee_id: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> UsWorkweeksListDeclarationsResponse:
+        """
+        The hours worked in each workweek that touches the period, per employee of a US company (or the one `employeeId`), for the overtime and records of the Fair Labor Standards Act: the workweek starts on the employee's `usWorkweekStart` day and runs 7 days; the hours are those entered on the work and business-trip days of the timesheets; `overtimeHours` are the hours above 40 in the workweek, 0 for an employee whose `usFlsaExempt` is yes. An employee without `usWorkweekStart` is left out with a warning. Overtime pay is entered on the payroll run as an addition of payment type `overtime-pay` with its hours. Answers 422 for a company outside the US.
+
+        Parameters
+        ----------
+        from_ : dt.date
+
+        to : dt.date
+
+        employee_id : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        UsWorkweeksListDeclarationsResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+        import datetime
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.declarations.us_workweeks_list(
+                from_=datetime.date.fromisoformat(
+                    "2026-07-01",
+                ),
+                to=datetime.date.fromisoformat(
+                    "2026-07-01",
+                ),
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.us_workweeks_list(
+            from_=from_, to=to, employee_id=employee_id, request_options=request_options
+        )
         return _response.data
 
     async def configs_list(

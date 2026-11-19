@@ -8,6 +8,7 @@ InvoicesIssueSalesResponseVatScheme = typing.Union[
         "intra_eu_b2b",
         "reverse_charge",
         "oss_union",
+        "oss_non_union",
         "ioss",
         "marketplace_deemed",
         "export",

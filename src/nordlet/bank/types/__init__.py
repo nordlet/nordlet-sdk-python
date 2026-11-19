@@ -6,8 +6,10 @@ import typing
 from importlib import import_module
 
 if typing.TYPE_CHECKING:
+    from .accounts_create_bank_request_payment_file_settings import AccountsCreateBankRequestPaymentFileSettings
     from .accounts_create_bank_request_type import AccountsCreateBankRequestType
     from .accounts_create_bank_response import AccountsCreateBankResponse
+    from .accounts_create_bank_response_payment_file_settings import AccountsCreateBankResponsePaymentFileSettings
     from .accounts_create_bank_response_type import AccountsCreateBankResponseType
     from .accounts_list_bank_request_filter_item import AccountsListBankRequestFilterItem
     from .accounts_list_bank_request_filter_item_op import AccountsListBankRequestFilterItemOp
@@ -17,9 +19,14 @@ if typing.TYPE_CHECKING:
     from .accounts_list_bank_request_sort_item_dir import AccountsListBankRequestSortItemDir
     from .accounts_list_bank_response import AccountsListBankResponse
     from .accounts_list_bank_response_rows_item import AccountsListBankResponseRowsItem
+    from .accounts_list_bank_response_rows_item_payment_file_settings import (
+        AccountsListBankResponseRowsItemPaymentFileSettings,
+    )
     from .accounts_list_bank_response_rows_item_type import AccountsListBankResponseRowsItemType
+    from .accounts_update_bank_request_payment_file_settings import AccountsUpdateBankRequestPaymentFileSettings
     from .accounts_update_bank_request_type import AccountsUpdateBankRequestType
     from .accounts_update_bank_response import AccountsUpdateBankResponse
+    from .accounts_update_bank_response_payment_file_settings import AccountsUpdateBankResponsePaymentFileSettings
     from .accounts_update_bank_response_type import AccountsUpdateBankResponseType
     from .direct_debits_candidates_bank_request_filter_item import DirectDebitsCandidatesBankRequestFilterItem
     from .direct_debits_candidates_bank_request_filter_item_op import DirectDebitsCandidatesBankRequestFilterItemOp
@@ -34,6 +41,7 @@ if typing.TYPE_CHECKING:
     from .direct_debits_candidates_bank_response import DirectDebitsCandidatesBankResponse
     from .direct_debits_candidates_bank_response_rows_item import DirectDebitsCandidatesBankResponseRowsItem
     from .direct_debits_export_bank_response import DirectDebitsExportBankResponse
+    from .direct_debits_export_bank_response_format import DirectDebitsExportBankResponseFormat
     from .feeds_accounts_configure_bank_request_sync_schedule import FeedsAccountsConfigureBankRequestSyncSchedule
     from .feeds_accounts_configure_bank_response import FeedsAccountsConfigureBankResponse
     from .feeds_accounts_configure_bank_response_sync_schedule import FeedsAccountsConfigureBankResponseSyncSchedule
@@ -112,17 +120,23 @@ if typing.TYPE_CHECKING:
     from .import_templates_update_bank_response import ImportTemplatesUpdateBankResponse
     from .import_templates_update_bank_response_fields_item import ImportTemplatesUpdateBankResponseFieldsItem
     from .import_templates_update_bank_response_type import ImportTemplatesUpdateBankResponseType
+    from .mandates_auddis_export_bank_response import MandatesAuddisExportBankResponse
+    from .mandates_auddis_export_bank_response_format import MandatesAuddisExportBankResponseFormat
     from .mandates_cancel_bank_response import MandatesCancelBankResponse
+    from .mandates_cancel_bank_response_account_type import MandatesCancelBankResponseAccountType
     from .mandates_cancel_bank_response_scheme import MandatesCancelBankResponseScheme
     from .mandates_cancel_bank_response_sequence_type import MandatesCancelBankResponseSequenceType
     from .mandates_cancel_bank_response_status import MandatesCancelBankResponseStatus
+    from .mandates_create_bank_request_account_type import MandatesCreateBankRequestAccountType
     from .mandates_create_bank_request_scheme import MandatesCreateBankRequestScheme
     from .mandates_create_bank_request_sequence_type import MandatesCreateBankRequestSequenceType
     from .mandates_create_bank_response import MandatesCreateBankResponse
+    from .mandates_create_bank_response_account_type import MandatesCreateBankResponseAccountType
     from .mandates_create_bank_response_scheme import MandatesCreateBankResponseScheme
     from .mandates_create_bank_response_sequence_type import MandatesCreateBankResponseSequenceType
     from .mandates_create_bank_response_status import MandatesCreateBankResponseStatus
     from .mandates_get_bank_response import MandatesGetBankResponse
+    from .mandates_get_bank_response_account_type import MandatesGetBankResponseAccountType
     from .mandates_get_bank_response_scheme import MandatesGetBankResponseScheme
     from .mandates_get_bank_response_sequence_type import MandatesGetBankResponseSequenceType
     from .mandates_get_bank_response_status import MandatesGetBankResponseStatus
@@ -134,10 +148,12 @@ if typing.TYPE_CHECKING:
     from .mandates_list_bank_request_sort_item_dir import MandatesListBankRequestSortItemDir
     from .mandates_list_bank_response import MandatesListBankResponse
     from .mandates_list_bank_response_rows_item import MandatesListBankResponseRowsItem
+    from .mandates_list_bank_response_rows_item_account_type import MandatesListBankResponseRowsItemAccountType
     from .mandates_list_bank_response_rows_item_scheme import MandatesListBankResponseRowsItemScheme
     from .mandates_list_bank_response_rows_item_sequence_type import MandatesListBankResponseRowsItemSequenceType
     from .mandates_list_bank_response_rows_item_status import MandatesListBankResponseRowsItemStatus
     from .mandates_update_bank_response import MandatesUpdateBankResponse
+    from .mandates_update_bank_response_account_type import MandatesUpdateBankResponseAccountType
     from .mandates_update_bank_response_scheme import MandatesUpdateBankResponseScheme
     from .mandates_update_bank_response_sequence_type import MandatesUpdateBankResponseSequenceType
     from .mandates_update_bank_response_status import MandatesUpdateBankResponseStatus
@@ -147,6 +163,7 @@ if typing.TYPE_CHECKING:
     from .match_rules_list_bank_response_rows_item import MatchRulesListBankResponseRowsItem
     from .match_rules_update_bank_response import MatchRulesUpdateBankResponse
     from .payments_export_bank_response import PaymentsExportBankResponse
+    from .payments_export_bank_response_format import PaymentsExportBankResponseFormat
     from .reconciliation_get_bank_response import ReconciliationGetBankResponse
     from .reconciliation_get_bank_response_statement_balance_source import (
         ReconciliationGetBankResponseStatementBalanceSource,
@@ -262,8 +279,10 @@ if typing.TYPE_CHECKING:
     from .transactions_unmatch_bank_response import TransactionsUnmatchBankResponse
     from .transactions_unmatch_bank_response_status import TransactionsUnmatchBankResponseStatus
 _dynamic_imports: typing.Dict[str, str] = {
+    "AccountsCreateBankRequestPaymentFileSettings": ".accounts_create_bank_request_payment_file_settings",
     "AccountsCreateBankRequestType": ".accounts_create_bank_request_type",
     "AccountsCreateBankResponse": ".accounts_create_bank_response",
+    "AccountsCreateBankResponsePaymentFileSettings": ".accounts_create_bank_response_payment_file_settings",
     "AccountsCreateBankResponseType": ".accounts_create_bank_response_type",
     "AccountsListBankRequestFilterItem": ".accounts_list_bank_request_filter_item",
     "AccountsListBankRequestFilterItemOp": ".accounts_list_bank_request_filter_item_op",
@@ -273,9 +292,12 @@ _dynamic_imports: typing.Dict[str, str] = {
     "AccountsListBankRequestSortItemDir": ".accounts_list_bank_request_sort_item_dir",
     "AccountsListBankResponse": ".accounts_list_bank_response",
     "AccountsListBankResponseRowsItem": ".accounts_list_bank_response_rows_item",
+    "AccountsListBankResponseRowsItemPaymentFileSettings": ".accounts_list_bank_response_rows_item_payment_file_settings",
     "AccountsListBankResponseRowsItemType": ".accounts_list_bank_response_rows_item_type",
+    "AccountsUpdateBankRequestPaymentFileSettings": ".accounts_update_bank_request_payment_file_settings",
     "AccountsUpdateBankRequestType": ".accounts_update_bank_request_type",
     "AccountsUpdateBankResponse": ".accounts_update_bank_response",
+    "AccountsUpdateBankResponsePaymentFileSettings": ".accounts_update_bank_response_payment_file_settings",
     "AccountsUpdateBankResponseType": ".accounts_update_bank_response_type",
     "DirectDebitsCandidatesBankRequestFilterItem": ".direct_debits_candidates_bank_request_filter_item",
     "DirectDebitsCandidatesBankRequestFilterItemOp": ".direct_debits_candidates_bank_request_filter_item_op",
@@ -286,6 +308,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "DirectDebitsCandidatesBankResponse": ".direct_debits_candidates_bank_response",
     "DirectDebitsCandidatesBankResponseRowsItem": ".direct_debits_candidates_bank_response_rows_item",
     "DirectDebitsExportBankResponse": ".direct_debits_export_bank_response",
+    "DirectDebitsExportBankResponseFormat": ".direct_debits_export_bank_response_format",
     "FeedsAccountsConfigureBankRequestSyncSchedule": ".feeds_accounts_configure_bank_request_sync_schedule",
     "FeedsAccountsConfigureBankResponse": ".feeds_accounts_configure_bank_response",
     "FeedsAccountsConfigureBankResponseSyncSchedule": ".feeds_accounts_configure_bank_response_sync_schedule",
@@ -348,17 +371,23 @@ _dynamic_imports: typing.Dict[str, str] = {
     "ImportTemplatesUpdateBankResponse": ".import_templates_update_bank_response",
     "ImportTemplatesUpdateBankResponseFieldsItem": ".import_templates_update_bank_response_fields_item",
     "ImportTemplatesUpdateBankResponseType": ".import_templates_update_bank_response_type",
+    "MandatesAuddisExportBankResponse": ".mandates_auddis_export_bank_response",
+    "MandatesAuddisExportBankResponseFormat": ".mandates_auddis_export_bank_response_format",
     "MandatesCancelBankResponse": ".mandates_cancel_bank_response",
+    "MandatesCancelBankResponseAccountType": ".mandates_cancel_bank_response_account_type",
     "MandatesCancelBankResponseScheme": ".mandates_cancel_bank_response_scheme",
     "MandatesCancelBankResponseSequenceType": ".mandates_cancel_bank_response_sequence_type",
     "MandatesCancelBankResponseStatus": ".mandates_cancel_bank_response_status",
+    "MandatesCreateBankRequestAccountType": ".mandates_create_bank_request_account_type",
     "MandatesCreateBankRequestScheme": ".mandates_create_bank_request_scheme",
     "MandatesCreateBankRequestSequenceType": ".mandates_create_bank_request_sequence_type",
     "MandatesCreateBankResponse": ".mandates_create_bank_response",
+    "MandatesCreateBankResponseAccountType": ".mandates_create_bank_response_account_type",
     "MandatesCreateBankResponseScheme": ".mandates_create_bank_response_scheme",
     "MandatesCreateBankResponseSequenceType": ".mandates_create_bank_response_sequence_type",
     "MandatesCreateBankResponseStatus": ".mandates_create_bank_response_status",
     "MandatesGetBankResponse": ".mandates_get_bank_response",
+    "MandatesGetBankResponseAccountType": ".mandates_get_bank_response_account_type",
     "MandatesGetBankResponseScheme": ".mandates_get_bank_response_scheme",
     "MandatesGetBankResponseSequenceType": ".mandates_get_bank_response_sequence_type",
     "MandatesGetBankResponseStatus": ".mandates_get_bank_response_status",
@@ -370,10 +399,12 @@ _dynamic_imports: typing.Dict[str, str] = {
     "MandatesListBankRequestSortItemDir": ".mandates_list_bank_request_sort_item_dir",
     "MandatesListBankResponse": ".mandates_list_bank_response",
     "MandatesListBankResponseRowsItem": ".mandates_list_bank_response_rows_item",
+    "MandatesListBankResponseRowsItemAccountType": ".mandates_list_bank_response_rows_item_account_type",
     "MandatesListBankResponseRowsItemScheme": ".mandates_list_bank_response_rows_item_scheme",
     "MandatesListBankResponseRowsItemSequenceType": ".mandates_list_bank_response_rows_item_sequence_type",
     "MandatesListBankResponseRowsItemStatus": ".mandates_list_bank_response_rows_item_status",
     "MandatesUpdateBankResponse": ".mandates_update_bank_response",
+    "MandatesUpdateBankResponseAccountType": ".mandates_update_bank_response_account_type",
     "MandatesUpdateBankResponseScheme": ".mandates_update_bank_response_scheme",
     "MandatesUpdateBankResponseSequenceType": ".mandates_update_bank_response_sequence_type",
     "MandatesUpdateBankResponseStatus": ".mandates_update_bank_response_status",
@@ -383,6 +414,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "MatchRulesListBankResponseRowsItem": ".match_rules_list_bank_response_rows_item",
     "MatchRulesUpdateBankResponse": ".match_rules_update_bank_response",
     "PaymentsExportBankResponse": ".payments_export_bank_response",
+    "PaymentsExportBankResponseFormat": ".payments_export_bank_response_format",
     "ReconciliationGetBankResponse": ".reconciliation_get_bank_response",
     "ReconciliationGetBankResponseStatementBalanceSource": ".reconciliation_get_bank_response_statement_balance_source",
     "ReconciliationGetBankResponseUnbookedLinesItem": ".reconciliation_get_bank_response_unbooked_lines_item",
@@ -500,8 +532,10 @@ def __dir__():
 
 
 __all__ = [
+    "AccountsCreateBankRequestPaymentFileSettings",
     "AccountsCreateBankRequestType",
     "AccountsCreateBankResponse",
+    "AccountsCreateBankResponsePaymentFileSettings",
     "AccountsCreateBankResponseType",
     "AccountsListBankRequestFilterItem",
     "AccountsListBankRequestFilterItemOp",
@@ -511,9 +545,12 @@ __all__ = [
     "AccountsListBankRequestSortItemDir",
     "AccountsListBankResponse",
     "AccountsListBankResponseRowsItem",
+    "AccountsListBankResponseRowsItemPaymentFileSettings",
     "AccountsListBankResponseRowsItemType",
+    "AccountsUpdateBankRequestPaymentFileSettings",
     "AccountsUpdateBankRequestType",
     "AccountsUpdateBankResponse",
+    "AccountsUpdateBankResponsePaymentFileSettings",
     "AccountsUpdateBankResponseType",
     "DirectDebitsCandidatesBankRequestFilterItem",
     "DirectDebitsCandidatesBankRequestFilterItemOp",
@@ -524,6 +561,7 @@ __all__ = [
     "DirectDebitsCandidatesBankResponse",
     "DirectDebitsCandidatesBankResponseRowsItem",
     "DirectDebitsExportBankResponse",
+    "DirectDebitsExportBankResponseFormat",
     "FeedsAccountsConfigureBankRequestSyncSchedule",
     "FeedsAccountsConfigureBankResponse",
     "FeedsAccountsConfigureBankResponseSyncSchedule",
@@ -586,17 +624,23 @@ __all__ = [
     "ImportTemplatesUpdateBankResponse",
     "ImportTemplatesUpdateBankResponseFieldsItem",
     "ImportTemplatesUpdateBankResponseType",
+    "MandatesAuddisExportBankResponse",
+    "MandatesAuddisExportBankResponseFormat",
     "MandatesCancelBankResponse",
+    "MandatesCancelBankResponseAccountType",
     "MandatesCancelBankResponseScheme",
     "MandatesCancelBankResponseSequenceType",
     "MandatesCancelBankResponseStatus",
+    "MandatesCreateBankRequestAccountType",
     "MandatesCreateBankRequestScheme",
     "MandatesCreateBankRequestSequenceType",
     "MandatesCreateBankResponse",
+    "MandatesCreateBankResponseAccountType",
     "MandatesCreateBankResponseScheme",
     "MandatesCreateBankResponseSequenceType",
     "MandatesCreateBankResponseStatus",
     "MandatesGetBankResponse",
+    "MandatesGetBankResponseAccountType",
     "MandatesGetBankResponseScheme",
     "MandatesGetBankResponseSequenceType",
     "MandatesGetBankResponseStatus",
@@ -608,10 +652,12 @@ __all__ = [
     "MandatesListBankRequestSortItemDir",
     "MandatesListBankResponse",
     "MandatesListBankResponseRowsItem",
+    "MandatesListBankResponseRowsItemAccountType",
     "MandatesListBankResponseRowsItemScheme",
     "MandatesListBankResponseRowsItemSequenceType",
     "MandatesListBankResponseRowsItemStatus",
     "MandatesUpdateBankResponse",
+    "MandatesUpdateBankResponseAccountType",
     "MandatesUpdateBankResponseScheme",
     "MandatesUpdateBankResponseSequenceType",
     "MandatesUpdateBankResponseStatus",
@@ -621,6 +667,7 @@ __all__ = [
     "MatchRulesListBankResponseRowsItem",
     "MatchRulesUpdateBankResponse",
     "PaymentsExportBankResponse",
+    "PaymentsExportBankResponseFormat",
     "ReconciliationGetBankResponse",
     "ReconciliationGetBankResponseStatementBalanceSource",
     "ReconciliationGetBankResponseUnbookedLinesItem",

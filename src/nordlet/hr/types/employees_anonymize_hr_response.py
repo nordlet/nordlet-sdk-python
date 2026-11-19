@@ -9,6 +9,7 @@ from ...core.pydantic_utilities import IS_PYDANTIC_V2, UniversalBaseModel
 from ...core.serialization import FieldMetadata
 from .employees_anonymize_hr_response_address import EmployeesAnonymizeHrResponseAddress
 from .employees_anonymize_hr_response_attributes_item import EmployeesAnonymizeHrResponseAttributesItem
+from .employees_anonymize_hr_response_bank_account_type import EmployeesAnonymizeHrResponseBankAccountType
 from .employees_anonymize_hr_response_status import EmployeesAnonymizeHrResponseStatus
 
 
@@ -27,6 +28,21 @@ class EmployeesAnonymizeHrResponse(UniversalBaseModel):
     phone: typing.Optional[str] = None
     address: typing.Optional[EmployeesAnonymizeHrResponseAddress] = None
     iban: typing.Optional[str] = None
+    bank_code: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="bankCode"), pydantic.Field(alias="bankCode")
+    ] = None
+    bank_account_number: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="bankAccountNumber"), pydantic.Field(alias="bankAccountNumber")
+    ] = None
+    bank_account_type: typing_extensions.Annotated[
+        typing.Optional[EmployeesAnonymizeHrResponseBankAccountType],
+        FieldMetadata(alias="bankAccountType"),
+        pydantic.Field(alias="bankAccountType", description="Checking or savings account; a US ACH file needs it"),
+    ] = None
+    """
+    Checking or savings account; a US ACH file needs it
+    """
+
     social_insurance_no: typing_extensions.Annotated[
         typing.Optional[str], FieldMetadata(alias="socialInsuranceNo"), pydantic.Field(alias="socialInsuranceNo")
     ] = None

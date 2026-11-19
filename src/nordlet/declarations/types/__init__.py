@@ -146,18 +146,12 @@ if typing.TYPE_CHECKING:
     from .configs_list_declarations_response_rows_item_fields_item import (
         ConfigsListDeclarationsResponseRowsItemFieldsItem,
     )
-    from .configs_list_declarations_response_rows_item_fields_item_company_field import (
-        ConfigsListDeclarationsResponseRowsItemFieldsItemCompanyField,
-    )
     from .configs_list_declarations_response_rows_item_fields_item_kind import (
         ConfigsListDeclarationsResponseRowsItemFieldsItemKind,
     )
     from .configs_update_declarations_response import ConfigsUpdateDeclarationsResponse
     from .configs_update_declarations_response_endpoints_item import ConfigsUpdateDeclarationsResponseEndpointsItem
     from .configs_update_declarations_response_fields_item import ConfigsUpdateDeclarationsResponseFieldsItem
-    from .configs_update_declarations_response_fields_item_company_field import (
-        ConfigsUpdateDeclarationsResponseFieldsItemCompanyField,
-    )
     from .configs_update_declarations_response_fields_item_kind import ConfigsUpdateDeclarationsResponseFieldsItemKind
     from .cy_he32generate_declarations_response import CyHe32GenerateDeclarationsResponse
     from .cy_he32generate_declarations_response_fields_item import CyHe32GenerateDeclarationsResponseFieldsItem
@@ -421,6 +415,70 @@ if typing.TYPE_CHECKING:
     from .eu_vat_return_packs_list_declarations_response_packs_item_frequency import (
         EuVatReturnPacksListDeclarationsResponsePacksItemFrequency,
     )
+    from .gb_corporation_tax_compute_declarations_response import GbCorporationTaxComputeDeclarationsResponse
+    from .gb_corporation_tax_compute_declarations_response_parts_item import (
+        GbCorporationTaxComputeDeclarationsResponsePartsItem,
+    )
+    from .gb_corporation_tax_compute_declarations_response_parts_item_rate import (
+        GbCorporationTaxComputeDeclarationsResponsePartsItemRate,
+    )
+    from .gb_hmrc_authorize_url_get_declarations_response import GbHmrcAuthorizeUrlGetDeclarationsResponse
+    from .gb_hmrc_connect_declarations_response import GbHmrcConnectDeclarationsResponse
+    from .gb_vat_liabilities_list_declarations_request_device import GbVatLiabilitiesListDeclarationsRequestDevice
+    from .gb_vat_liabilities_list_declarations_request_device_screens_item import (
+        GbVatLiabilitiesListDeclarationsRequestDeviceScreensItem,
+    )
+    from .gb_vat_liabilities_list_declarations_request_device_window_size import (
+        GbVatLiabilitiesListDeclarationsRequestDeviceWindowSize,
+    )
+    from .gb_vat_liabilities_list_declarations_response import GbVatLiabilitiesListDeclarationsResponse
+    from .gb_vat_liabilities_list_declarations_response_liabilities_item import (
+        GbVatLiabilitiesListDeclarationsResponseLiabilitiesItem,
+    )
+    from .gb_vat_liabilities_list_declarations_response_liabilities_item_tax_period import (
+        GbVatLiabilitiesListDeclarationsResponseLiabilitiesItemTaxPeriod,
+    )
+    from .gb_vat_obligations_list_declarations_request_device import GbVatObligationsListDeclarationsRequestDevice
+    from .gb_vat_obligations_list_declarations_request_device_screens_item import (
+        GbVatObligationsListDeclarationsRequestDeviceScreensItem,
+    )
+    from .gb_vat_obligations_list_declarations_request_device_window_size import (
+        GbVatObligationsListDeclarationsRequestDeviceWindowSize,
+    )
+    from .gb_vat_obligations_list_declarations_request_status import GbVatObligationsListDeclarationsRequestStatus
+    from .gb_vat_obligations_list_declarations_response import GbVatObligationsListDeclarationsResponse
+    from .gb_vat_obligations_list_declarations_response_obligations_item import (
+        GbVatObligationsListDeclarationsResponseObligationsItem,
+    )
+    from .gb_vat_obligations_list_declarations_response_obligations_item_status import (
+        GbVatObligationsListDeclarationsResponseObligationsItemStatus,
+    )
+    from .gb_vat_payments_list_declarations_request_device import GbVatPaymentsListDeclarationsRequestDevice
+    from .gb_vat_payments_list_declarations_request_device_screens_item import (
+        GbVatPaymentsListDeclarationsRequestDeviceScreensItem,
+    )
+    from .gb_vat_payments_list_declarations_request_device_window_size import (
+        GbVatPaymentsListDeclarationsRequestDeviceWindowSize,
+    )
+    from .gb_vat_payments_list_declarations_response import GbVatPaymentsListDeclarationsResponse
+    from .gb_vat_payments_list_declarations_response_payments_item import (
+        GbVatPaymentsListDeclarationsResponsePaymentsItem,
+    )
+    from .gb_vat_penalties_get_declarations_request_device import GbVatPenaltiesGetDeclarationsRequestDevice
+    from .gb_vat_penalties_get_declarations_request_device_screens_item import (
+        GbVatPenaltiesGetDeclarationsRequestDeviceScreensItem,
+    )
+    from .gb_vat_penalties_get_declarations_request_device_window_size import (
+        GbVatPenaltiesGetDeclarationsRequestDeviceWindowSize,
+    )
+    from .gb_vat_returns_get_declarations_request_device import GbVatReturnsGetDeclarationsRequestDevice
+    from .gb_vat_returns_get_declarations_request_device_screens_item import (
+        GbVatReturnsGetDeclarationsRequestDeviceScreensItem,
+    )
+    from .gb_vat_returns_get_declarations_request_device_window_size import (
+        GbVatReturnsGetDeclarationsRequestDeviceWindowSize,
+    )
+    from .gb_vat_returns_get_declarations_response import GbVatReturnsGetDeclarationsResponse
     from .ie_b1generate_declarations_response import IeB1GenerateDeclarationsResponse
     from .ie_b1generate_declarations_response_directors_item import IeB1GenerateDeclarationsResponseDirectorsItem
     from .ie_b1generate_declarations_response_fields_item import IeB1GenerateDeclarationsResponseFieldsItem
@@ -694,6 +752,49 @@ if typing.TYPE_CHECKING:
     from .tax_payments_update_declarations_request_kind import TaxPaymentsUpdateDeclarationsRequestKind
     from .tax_payments_update_declarations_response import TaxPaymentsUpdateDeclarationsResponse
     from .tax_payments_update_declarations_response_kind import TaxPaymentsUpdateDeclarationsResponseKind
+    from .us940get_declarations_response import Us940GetDeclarationsResponse
+    from .us940get_declarations_response_part5 import Us940GetDeclarationsResponsePart5
+    from .us941get_declarations_response import Us941GetDeclarationsResponse
+    from .us941get_declarations_response_line16 import Us941GetDeclarationsResponseLine16
+    from .us941get_declarations_response_line16months_item import Us941GetDeclarationsResponseLine16MonthsItem
+    from .us941get_declarations_response_line5a import Us941GetDeclarationsResponseLine5A
+    from .us941get_declarations_response_line5c import Us941GetDeclarationsResponseLine5C
+    from .us941get_declarations_response_line5d import Us941GetDeclarationsResponseLine5D
+    from .us941get_declarations_response_schedule_b_item import Us941GetDeclarationsResponseScheduleBItem
+    from .us_de_franchise_tax_compute_declarations_request_authorized_shares_item import (
+        UsDeFranchiseTaxComputeDeclarationsRequestAuthorizedSharesItem,
+    )
+    from .us_de_franchise_tax_compute_declarations_response import UsDeFranchiseTaxComputeDeclarationsResponse
+    from .us_de_franchise_tax_compute_declarations_response_method import (
+        UsDeFranchiseTaxComputeDeclarationsResponseMethod,
+    )
+    from .us_de_gross_receipts_get_declarations_request_activity import UsDeGrossReceiptsGetDeclarationsRequestActivity
+    from .us_de_gross_receipts_get_declarations_response import UsDeGrossReceiptsGetDeclarationsResponse
+    from .us_de_unemployment_get_declarations_response import UsDeUnemploymentGetDeclarationsResponse
+    from .us_de_unemployment_get_declarations_response_employees_item import (
+        UsDeUnemploymentGetDeclarationsResponseEmployeesItem,
+    )
+    from .us_de_withholding_get_declarations_response import UsDeWithholdingGetDeclarationsResponse
+    from .us_state_sales_get_declarations_response import UsStateSalesGetDeclarationsResponse
+    from .us_state_sales_get_declarations_response_outside_us import UsStateSalesGetDeclarationsResponseOutsideUs
+    from .us_state_sales_get_declarations_response_states_item import UsStateSalesGetDeclarationsResponseStatesItem
+    from .us_state_sales_get_declarations_response_without_state import UsStateSalesGetDeclarationsResponseWithoutState
+    from .us_w2list_declarations_response import UsW2ListDeclarationsResponse
+    from .us_w2list_declarations_response_forms_item import UsW2ListDeclarationsResponseFormsItem
+    from .us_w2list_declarations_response_forms_item_box_e import UsW2ListDeclarationsResponseFormsItemBoxE
+    from .us_w2list_declarations_response_forms_item_states_item import UsW2ListDeclarationsResponseFormsItemStatesItem
+    from .us_w2list_declarations_response_forms_item_states_item_box15 import (
+        UsW2ListDeclarationsResponseFormsItemStatesItemBox15,
+    )
+    from .us_w2list_declarations_response_w3 import UsW2ListDeclarationsResponseW3
+    from .us_workweeks_list_declarations_response import UsWorkweeksListDeclarationsResponse
+    from .us_workweeks_list_declarations_response_employees_item import UsWorkweeksListDeclarationsResponseEmployeesItem
+    from .us_workweeks_list_declarations_response_employees_item_weeks_item import (
+        UsWorkweeksListDeclarationsResponseEmployeesItemWeeksItem,
+    )
+    from .us_workweeks_list_declarations_response_employees_item_weeks_item_days_item import (
+        UsWorkweeksListDeclarationsResponseEmployeesItemWeeksItemDaysItem,
+    )
     from .vat_prorata_get_declarations_response import VatProrataGetDeclarationsResponse
     from .vat_prorata_list_declarations_response import VatProrataListDeclarationsResponse
     from .vat_prorata_list_declarations_response_rows_item import VatProrataListDeclarationsResponseRowsItem
@@ -757,12 +858,10 @@ _dynamic_imports: typing.Dict[str, str] = {
     "ConfigsListDeclarationsResponseRowsItem": ".configs_list_declarations_response_rows_item",
     "ConfigsListDeclarationsResponseRowsItemEndpointsItem": ".configs_list_declarations_response_rows_item_endpoints_item",
     "ConfigsListDeclarationsResponseRowsItemFieldsItem": ".configs_list_declarations_response_rows_item_fields_item",
-    "ConfigsListDeclarationsResponseRowsItemFieldsItemCompanyField": ".configs_list_declarations_response_rows_item_fields_item_company_field",
     "ConfigsListDeclarationsResponseRowsItemFieldsItemKind": ".configs_list_declarations_response_rows_item_fields_item_kind",
     "ConfigsUpdateDeclarationsResponse": ".configs_update_declarations_response",
     "ConfigsUpdateDeclarationsResponseEndpointsItem": ".configs_update_declarations_response_endpoints_item",
     "ConfigsUpdateDeclarationsResponseFieldsItem": ".configs_update_declarations_response_fields_item",
-    "ConfigsUpdateDeclarationsResponseFieldsItemCompanyField": ".configs_update_declarations_response_fields_item_company_field",
     "ConfigsUpdateDeclarationsResponseFieldsItemKind": ".configs_update_declarations_response_fields_item_kind",
     "CyHe32GenerateDeclarationsResponse": ".cy_he32generate_declarations_response",
     "CyHe32GenerateDeclarationsResponseFieldsItem": ".cy_he32generate_declarations_response_fields_item",
@@ -884,6 +983,36 @@ _dynamic_imports: typing.Dict[str, str] = {
     "EuVatReturnPacksListDeclarationsResponse": ".eu_vat_return_packs_list_declarations_response",
     "EuVatReturnPacksListDeclarationsResponsePacksItem": ".eu_vat_return_packs_list_declarations_response_packs_item",
     "EuVatReturnPacksListDeclarationsResponsePacksItemFrequency": ".eu_vat_return_packs_list_declarations_response_packs_item_frequency",
+    "GbCorporationTaxComputeDeclarationsResponse": ".gb_corporation_tax_compute_declarations_response",
+    "GbCorporationTaxComputeDeclarationsResponsePartsItem": ".gb_corporation_tax_compute_declarations_response_parts_item",
+    "GbCorporationTaxComputeDeclarationsResponsePartsItemRate": ".gb_corporation_tax_compute_declarations_response_parts_item_rate",
+    "GbHmrcAuthorizeUrlGetDeclarationsResponse": ".gb_hmrc_authorize_url_get_declarations_response",
+    "GbHmrcConnectDeclarationsResponse": ".gb_hmrc_connect_declarations_response",
+    "GbVatLiabilitiesListDeclarationsRequestDevice": ".gb_vat_liabilities_list_declarations_request_device",
+    "GbVatLiabilitiesListDeclarationsRequestDeviceScreensItem": ".gb_vat_liabilities_list_declarations_request_device_screens_item",
+    "GbVatLiabilitiesListDeclarationsRequestDeviceWindowSize": ".gb_vat_liabilities_list_declarations_request_device_window_size",
+    "GbVatLiabilitiesListDeclarationsResponse": ".gb_vat_liabilities_list_declarations_response",
+    "GbVatLiabilitiesListDeclarationsResponseLiabilitiesItem": ".gb_vat_liabilities_list_declarations_response_liabilities_item",
+    "GbVatLiabilitiesListDeclarationsResponseLiabilitiesItemTaxPeriod": ".gb_vat_liabilities_list_declarations_response_liabilities_item_tax_period",
+    "GbVatObligationsListDeclarationsRequestDevice": ".gb_vat_obligations_list_declarations_request_device",
+    "GbVatObligationsListDeclarationsRequestDeviceScreensItem": ".gb_vat_obligations_list_declarations_request_device_screens_item",
+    "GbVatObligationsListDeclarationsRequestDeviceWindowSize": ".gb_vat_obligations_list_declarations_request_device_window_size",
+    "GbVatObligationsListDeclarationsRequestStatus": ".gb_vat_obligations_list_declarations_request_status",
+    "GbVatObligationsListDeclarationsResponse": ".gb_vat_obligations_list_declarations_response",
+    "GbVatObligationsListDeclarationsResponseObligationsItem": ".gb_vat_obligations_list_declarations_response_obligations_item",
+    "GbVatObligationsListDeclarationsResponseObligationsItemStatus": ".gb_vat_obligations_list_declarations_response_obligations_item_status",
+    "GbVatPaymentsListDeclarationsRequestDevice": ".gb_vat_payments_list_declarations_request_device",
+    "GbVatPaymentsListDeclarationsRequestDeviceScreensItem": ".gb_vat_payments_list_declarations_request_device_screens_item",
+    "GbVatPaymentsListDeclarationsRequestDeviceWindowSize": ".gb_vat_payments_list_declarations_request_device_window_size",
+    "GbVatPaymentsListDeclarationsResponse": ".gb_vat_payments_list_declarations_response",
+    "GbVatPaymentsListDeclarationsResponsePaymentsItem": ".gb_vat_payments_list_declarations_response_payments_item",
+    "GbVatPenaltiesGetDeclarationsRequestDevice": ".gb_vat_penalties_get_declarations_request_device",
+    "GbVatPenaltiesGetDeclarationsRequestDeviceScreensItem": ".gb_vat_penalties_get_declarations_request_device_screens_item",
+    "GbVatPenaltiesGetDeclarationsRequestDeviceWindowSize": ".gb_vat_penalties_get_declarations_request_device_window_size",
+    "GbVatReturnsGetDeclarationsRequestDevice": ".gb_vat_returns_get_declarations_request_device",
+    "GbVatReturnsGetDeclarationsRequestDeviceScreensItem": ".gb_vat_returns_get_declarations_request_device_screens_item",
+    "GbVatReturnsGetDeclarationsRequestDeviceWindowSize": ".gb_vat_returns_get_declarations_request_device_window_size",
+    "GbVatReturnsGetDeclarationsResponse": ".gb_vat_returns_get_declarations_response",
     "IeB1GenerateDeclarationsResponse": ".ie_b1generate_declarations_response",
     "IeB1GenerateDeclarationsResponseDirectorsItem": ".ie_b1generate_declarations_response_directors_item",
     "IeB1GenerateDeclarationsResponseFieldsItem": ".ie_b1generate_declarations_response_fields_item",
@@ -1081,6 +1210,37 @@ _dynamic_imports: typing.Dict[str, str] = {
     "TaxPaymentsUpdateDeclarationsRequestKind": ".tax_payments_update_declarations_request_kind",
     "TaxPaymentsUpdateDeclarationsResponse": ".tax_payments_update_declarations_response",
     "TaxPaymentsUpdateDeclarationsResponseKind": ".tax_payments_update_declarations_response_kind",
+    "Us940GetDeclarationsResponse": ".us940get_declarations_response",
+    "Us940GetDeclarationsResponsePart5": ".us940get_declarations_response_part5",
+    "Us941GetDeclarationsResponse": ".us941get_declarations_response",
+    "Us941GetDeclarationsResponseLine16": ".us941get_declarations_response_line16",
+    "Us941GetDeclarationsResponseLine16MonthsItem": ".us941get_declarations_response_line16months_item",
+    "Us941GetDeclarationsResponseLine5A": ".us941get_declarations_response_line5a",
+    "Us941GetDeclarationsResponseLine5C": ".us941get_declarations_response_line5c",
+    "Us941GetDeclarationsResponseLine5D": ".us941get_declarations_response_line5d",
+    "Us941GetDeclarationsResponseScheduleBItem": ".us941get_declarations_response_schedule_b_item",
+    "UsDeFranchiseTaxComputeDeclarationsRequestAuthorizedSharesItem": ".us_de_franchise_tax_compute_declarations_request_authorized_shares_item",
+    "UsDeFranchiseTaxComputeDeclarationsResponse": ".us_de_franchise_tax_compute_declarations_response",
+    "UsDeFranchiseTaxComputeDeclarationsResponseMethod": ".us_de_franchise_tax_compute_declarations_response_method",
+    "UsDeGrossReceiptsGetDeclarationsRequestActivity": ".us_de_gross_receipts_get_declarations_request_activity",
+    "UsDeGrossReceiptsGetDeclarationsResponse": ".us_de_gross_receipts_get_declarations_response",
+    "UsDeUnemploymentGetDeclarationsResponse": ".us_de_unemployment_get_declarations_response",
+    "UsDeUnemploymentGetDeclarationsResponseEmployeesItem": ".us_de_unemployment_get_declarations_response_employees_item",
+    "UsDeWithholdingGetDeclarationsResponse": ".us_de_withholding_get_declarations_response",
+    "UsStateSalesGetDeclarationsResponse": ".us_state_sales_get_declarations_response",
+    "UsStateSalesGetDeclarationsResponseOutsideUs": ".us_state_sales_get_declarations_response_outside_us",
+    "UsStateSalesGetDeclarationsResponseStatesItem": ".us_state_sales_get_declarations_response_states_item",
+    "UsStateSalesGetDeclarationsResponseWithoutState": ".us_state_sales_get_declarations_response_without_state",
+    "UsW2ListDeclarationsResponse": ".us_w2list_declarations_response",
+    "UsW2ListDeclarationsResponseFormsItem": ".us_w2list_declarations_response_forms_item",
+    "UsW2ListDeclarationsResponseFormsItemBoxE": ".us_w2list_declarations_response_forms_item_box_e",
+    "UsW2ListDeclarationsResponseFormsItemStatesItem": ".us_w2list_declarations_response_forms_item_states_item",
+    "UsW2ListDeclarationsResponseFormsItemStatesItemBox15": ".us_w2list_declarations_response_forms_item_states_item_box15",
+    "UsW2ListDeclarationsResponseW3": ".us_w2list_declarations_response_w3",
+    "UsWorkweeksListDeclarationsResponse": ".us_workweeks_list_declarations_response",
+    "UsWorkweeksListDeclarationsResponseEmployeesItem": ".us_workweeks_list_declarations_response_employees_item",
+    "UsWorkweeksListDeclarationsResponseEmployeesItemWeeksItem": ".us_workweeks_list_declarations_response_employees_item_weeks_item",
+    "UsWorkweeksListDeclarationsResponseEmployeesItemWeeksItemDaysItem": ".us_workweeks_list_declarations_response_employees_item_weeks_item_days_item",
     "VatProrataGetDeclarationsResponse": ".vat_prorata_get_declarations_response",
     "VatProrataListDeclarationsResponse": ".vat_prorata_list_declarations_response",
     "VatProrataListDeclarationsResponseRowsItem": ".vat_prorata_list_declarations_response_rows_item",
@@ -1168,12 +1328,10 @@ __all__ = [
     "ConfigsListDeclarationsResponseRowsItem",
     "ConfigsListDeclarationsResponseRowsItemEndpointsItem",
     "ConfigsListDeclarationsResponseRowsItemFieldsItem",
-    "ConfigsListDeclarationsResponseRowsItemFieldsItemCompanyField",
     "ConfigsListDeclarationsResponseRowsItemFieldsItemKind",
     "ConfigsUpdateDeclarationsResponse",
     "ConfigsUpdateDeclarationsResponseEndpointsItem",
     "ConfigsUpdateDeclarationsResponseFieldsItem",
-    "ConfigsUpdateDeclarationsResponseFieldsItemCompanyField",
     "ConfigsUpdateDeclarationsResponseFieldsItemKind",
     "CyHe32GenerateDeclarationsResponse",
     "CyHe32GenerateDeclarationsResponseFieldsItem",
@@ -1295,6 +1453,36 @@ __all__ = [
     "EuVatReturnPacksListDeclarationsResponse",
     "EuVatReturnPacksListDeclarationsResponsePacksItem",
     "EuVatReturnPacksListDeclarationsResponsePacksItemFrequency",
+    "GbCorporationTaxComputeDeclarationsResponse",
+    "GbCorporationTaxComputeDeclarationsResponsePartsItem",
+    "GbCorporationTaxComputeDeclarationsResponsePartsItemRate",
+    "GbHmrcAuthorizeUrlGetDeclarationsResponse",
+    "GbHmrcConnectDeclarationsResponse",
+    "GbVatLiabilitiesListDeclarationsRequestDevice",
+    "GbVatLiabilitiesListDeclarationsRequestDeviceScreensItem",
+    "GbVatLiabilitiesListDeclarationsRequestDeviceWindowSize",
+    "GbVatLiabilitiesListDeclarationsResponse",
+    "GbVatLiabilitiesListDeclarationsResponseLiabilitiesItem",
+    "GbVatLiabilitiesListDeclarationsResponseLiabilitiesItemTaxPeriod",
+    "GbVatObligationsListDeclarationsRequestDevice",
+    "GbVatObligationsListDeclarationsRequestDeviceScreensItem",
+    "GbVatObligationsListDeclarationsRequestDeviceWindowSize",
+    "GbVatObligationsListDeclarationsRequestStatus",
+    "GbVatObligationsListDeclarationsResponse",
+    "GbVatObligationsListDeclarationsResponseObligationsItem",
+    "GbVatObligationsListDeclarationsResponseObligationsItemStatus",
+    "GbVatPaymentsListDeclarationsRequestDevice",
+    "GbVatPaymentsListDeclarationsRequestDeviceScreensItem",
+    "GbVatPaymentsListDeclarationsRequestDeviceWindowSize",
+    "GbVatPaymentsListDeclarationsResponse",
+    "GbVatPaymentsListDeclarationsResponsePaymentsItem",
+    "GbVatPenaltiesGetDeclarationsRequestDevice",
+    "GbVatPenaltiesGetDeclarationsRequestDeviceScreensItem",
+    "GbVatPenaltiesGetDeclarationsRequestDeviceWindowSize",
+    "GbVatReturnsGetDeclarationsRequestDevice",
+    "GbVatReturnsGetDeclarationsRequestDeviceScreensItem",
+    "GbVatReturnsGetDeclarationsRequestDeviceWindowSize",
+    "GbVatReturnsGetDeclarationsResponse",
     "IeB1GenerateDeclarationsResponse",
     "IeB1GenerateDeclarationsResponseDirectorsItem",
     "IeB1GenerateDeclarationsResponseFieldsItem",
@@ -1492,6 +1680,37 @@ __all__ = [
     "TaxPaymentsUpdateDeclarationsRequestKind",
     "TaxPaymentsUpdateDeclarationsResponse",
     "TaxPaymentsUpdateDeclarationsResponseKind",
+    "Us940GetDeclarationsResponse",
+    "Us940GetDeclarationsResponsePart5",
+    "Us941GetDeclarationsResponse",
+    "Us941GetDeclarationsResponseLine16",
+    "Us941GetDeclarationsResponseLine16MonthsItem",
+    "Us941GetDeclarationsResponseLine5A",
+    "Us941GetDeclarationsResponseLine5C",
+    "Us941GetDeclarationsResponseLine5D",
+    "Us941GetDeclarationsResponseScheduleBItem",
+    "UsDeFranchiseTaxComputeDeclarationsRequestAuthorizedSharesItem",
+    "UsDeFranchiseTaxComputeDeclarationsResponse",
+    "UsDeFranchiseTaxComputeDeclarationsResponseMethod",
+    "UsDeGrossReceiptsGetDeclarationsRequestActivity",
+    "UsDeGrossReceiptsGetDeclarationsResponse",
+    "UsDeUnemploymentGetDeclarationsResponse",
+    "UsDeUnemploymentGetDeclarationsResponseEmployeesItem",
+    "UsDeWithholdingGetDeclarationsResponse",
+    "UsStateSalesGetDeclarationsResponse",
+    "UsStateSalesGetDeclarationsResponseOutsideUs",
+    "UsStateSalesGetDeclarationsResponseStatesItem",
+    "UsStateSalesGetDeclarationsResponseWithoutState",
+    "UsW2ListDeclarationsResponse",
+    "UsW2ListDeclarationsResponseFormsItem",
+    "UsW2ListDeclarationsResponseFormsItemBoxE",
+    "UsW2ListDeclarationsResponseFormsItemStatesItem",
+    "UsW2ListDeclarationsResponseFormsItemStatesItemBox15",
+    "UsW2ListDeclarationsResponseW3",
+    "UsWorkweeksListDeclarationsResponse",
+    "UsWorkweeksListDeclarationsResponseEmployeesItem",
+    "UsWorkweeksListDeclarationsResponseEmployeesItemWeeksItem",
+    "UsWorkweeksListDeclarationsResponseEmployeesItemWeeksItemDaysItem",
     "VatProrataGetDeclarationsResponse",
     "VatProrataListDeclarationsResponse",
     "VatProrataListDeclarationsResponseRowsItem",

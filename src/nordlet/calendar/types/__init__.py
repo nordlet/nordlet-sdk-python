@@ -72,6 +72,9 @@ if typing.TYPE_CHECKING:
         ListCalendarResponseRowsItemSubmissionsItemStatus,
     )
     from .submit_calendar_request_correction import SubmitCalendarRequestCorrection
+    from .submit_calendar_request_device import SubmitCalendarRequestDevice
+    from .submit_calendar_request_device_screens_item import SubmitCalendarRequestDeviceScreensItem
+    from .submit_calendar_request_device_window_size import SubmitCalendarRequestDeviceWindowSize
     from .submit_calendar_response import SubmitCalendarResponse
     from .submit_calendar_response_correction_input import SubmitCalendarResponseCorrectionInput
     from .submit_calendar_response_environment import SubmitCalendarResponseEnvironment
@@ -139,6 +142,9 @@ _dynamic_imports: typing.Dict[str, str] = {
     "ListCalendarResponseRowsItemSubmissionsItemEnvironment": ".list_calendar_response_rows_item_submissions_item_environment",
     "ListCalendarResponseRowsItemSubmissionsItemStatus": ".list_calendar_response_rows_item_submissions_item_status",
     "SubmitCalendarRequestCorrection": ".submit_calendar_request_correction",
+    "SubmitCalendarRequestDevice": ".submit_calendar_request_device",
+    "SubmitCalendarRequestDeviceScreensItem": ".submit_calendar_request_device_screens_item",
+    "SubmitCalendarRequestDeviceWindowSize": ".submit_calendar_request_device_window_size",
     "SubmitCalendarResponse": ".submit_calendar_response",
     "SubmitCalendarResponseCorrectionInput": ".submit_calendar_response_correction_input",
     "SubmitCalendarResponseEnvironment": ".submit_calendar_response_environment",
@@ -228,6 +234,9 @@ __all__ = [
     "ListCalendarResponseRowsItemSubmissionsItemEnvironment",
     "ListCalendarResponseRowsItemSubmissionsItemStatus",
     "SubmitCalendarRequestCorrection",
+    "SubmitCalendarRequestDevice",
+    "SubmitCalendarRequestDeviceScreensItem",
+    "SubmitCalendarRequestDeviceWindowSize",
     "SubmitCalendarResponse",
     "SubmitCalendarResponseCorrectionInput",
     "SubmitCalendarResponseEnvironment",

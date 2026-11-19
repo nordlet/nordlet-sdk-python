@@ -6,16 +6,21 @@ import pydantic
 import typing_extensions
 from ...core.pydantic_utilities import IS_PYDANTIC_V2, UniversalBaseModel
 from ...core.serialization import FieldMetadata
+from .payments_export_payroll_response_format import PaymentsExportPayrollResponseFormat
 
 
 class PaymentsExportPayrollResponse(UniversalBaseModel):
+    format: PaymentsExportPayrollResponseFormat
     message_id: typing_extensions.Annotated[str, FieldMetadata(alias="messageId"), pydantic.Field(alias="messageId")]
     file_name: typing_extensions.Annotated[str, FieldMetadata(alias="fileName"), pydantic.Field(alias="fileName")]
+    content_type: typing_extensions.Annotated[
+        str, FieldMetadata(alias="contentType"), pydantic.Field(alias="contentType")
+    ]
     transaction_count: typing_extensions.Annotated[
         int, FieldMetadata(alias="transactionCount"), pydantic.Field(alias="transactionCount")
     ]
     control_sum: typing_extensions.Annotated[str, FieldMetadata(alias="controlSum"), pydantic.Field(alias="controlSum")]
-    xml: str
+    content: str
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

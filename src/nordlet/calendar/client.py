@@ -12,6 +12,7 @@ from .types.download_calendar_response import DownloadCalendarResponse
 from .types.get_calendar_response import GetCalendarResponse
 from .types.list_calendar_response import ListCalendarResponse
 from .types.submit_calendar_request_correction import SubmitCalendarRequestCorrection
+from .types.submit_calendar_request_device import SubmitCalendarRequestDevice
 from .types.submit_calendar_response import SubmitCalendarResponse
 from .types.update_calendar_response import UpdateCalendarResponse
 
@@ -112,10 +113,11 @@ class CalendarClient:
         amend: typing.Optional[bool] = OMIT,
         correction: typing.Optional[SubmitCalendarRequestCorrection] = OMIT,
         document_keys: typing.Optional[typing.Sequence[str]] = OMIT,
+        device: typing.Optional[SubmitCalendarRequestDevice] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> SubmitCalendarResponse:
         """
-        With amend: true the return is filed again as a correction of the one already submitted or accepted for the period; only deadlines whose `calendar/get` row has `correction` accept it. `correction` carries what that row's `correction.required` and `correction.optional` name: `reason`, `reasonCode` (one of `correction.reasonCodes`), `authorityReference`, the administration's own number of the filing being corrected, and `discoveredOn`, the date the error was found (YYYY-MM-DD, not after the company's today); a missing required one answers 422 with fieldErrors. For a deadline filed as one document per person, `documentKeys` limits the correction to those documents.
+        With amend: true the return is filed again as a correction of the one already submitted or accepted for the period; only deadlines whose `calendar/get` row has `correction` accept it. `correction` carries what that row's `correction.required` and `correction.optional` name: `reason`, `reasonCode` (one of `correction.reasonCodes`), `authorityReference`, the administration's own number of the filing being corrected, and `discoveredOn`, the date the error was found (YYYY-MM-DD, not after the company's today); a missing required one answers 422 with fieldErrors. For a deadline filed as one document per person, `documentKeys` limits the correction to those documents. `device` carries the facts of the user's browser that an administration requires with the filing (HMRC for the UK VAT return); a filing sent through such an administration without it fails.
 
         Parameters
         ----------
@@ -126,6 +128,9 @@ class CalendarClient:
         correction : typing.Optional[SubmitCalendarRequestCorrection]
 
         document_keys : typing.Optional[typing.Sequence[str]]
+
+        device : typing.Optional[SubmitCalendarRequestDevice]
+            Facts of the browser the user files from, which HMRC requires with every VAT (MTD) API call: `navigator.userAgent`, a UUID the browser keeps for the device, every screen (width, height, scaling factor, colour depth in bits), the window size in pixels and the time zone as `UTC±hh:mm`.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -147,7 +152,12 @@ class CalendarClient:
         )
         """
         _response = self._raw_client.submit(
-            key=key, amend=amend, correction=correction, document_keys=document_keys, request_options=request_options
+            key=key,
+            amend=amend,
+            correction=correction,
+            document_keys=document_keys,
+            device=device,
+            request_options=request_options,
         )
         return _response.data
 
@@ -423,10 +433,11 @@ class AsyncCalendarClient:
         amend: typing.Optional[bool] = OMIT,
         correction: typing.Optional[SubmitCalendarRequestCorrection] = OMIT,
         document_keys: typing.Optional[typing.Sequence[str]] = OMIT,
+        device: typing.Optional[SubmitCalendarRequestDevice] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> SubmitCalendarResponse:
         """
-        With amend: true the return is filed again as a correction of the one already submitted or accepted for the period; only deadlines whose `calendar/get` row has `correction` accept it. `correction` carries what that row's `correction.required` and `correction.optional` name: `reason`, `reasonCode` (one of `correction.reasonCodes`), `authorityReference`, the administration's own number of the filing being corrected, and `discoveredOn`, the date the error was found (YYYY-MM-DD, not after the company's today); a missing required one answers 422 with fieldErrors. For a deadline filed as one document per person, `documentKeys` limits the correction to those documents.
+        With amend: true the return is filed again as a correction of the one already submitted or accepted for the period; only deadlines whose `calendar/get` row has `correction` accept it. `correction` carries what that row's `correction.required` and `correction.optional` name: `reason`, `reasonCode` (one of `correction.reasonCodes`), `authorityReference`, the administration's own number of the filing being corrected, and `discoveredOn`, the date the error was found (YYYY-MM-DD, not after the company's today); a missing required one answers 422 with fieldErrors. For a deadline filed as one document per person, `documentKeys` limits the correction to those documents. `device` carries the facts of the user's browser that an administration requires with the filing (HMRC for the UK VAT return); a filing sent through such an administration without it fails.
 
         Parameters
         ----------
@@ -437,6 +448,9 @@ class AsyncCalendarClient:
         correction : typing.Optional[SubmitCalendarRequestCorrection]
 
         document_keys : typing.Optional[typing.Sequence[str]]
+
+        device : typing.Optional[SubmitCalendarRequestDevice]
+            Facts of the browser the user files from, which HMRC requires with every VAT (MTD) API call: `navigator.userAgent`, a UUID the browser keeps for the device, every screen (width, height, scaling factor, colour depth in bits), the window size in pixels and the time zone as `UTC±hh:mm`.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -466,7 +480,12 @@ class AsyncCalendarClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.submit(
-            key=key, amend=amend, correction=correction, document_keys=document_keys, request_options=request_options
+            key=key,
+            amend=amend,
+            correction=correction,
+            document_keys=document_keys,
+            device=device,
+            request_options=request_options,
         )
         return _response.data
 

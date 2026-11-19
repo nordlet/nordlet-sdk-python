@@ -6,11 +6,13 @@ import typing
 from ..core.client_wrapper import AsyncClientWrapper, SyncClientWrapper
 from ..core.request_options import RequestOptions
 from .raw_client import AsyncRawBankClient, RawBankClient
+from .types.accounts_create_bank_request_payment_file_settings import AccountsCreateBankRequestPaymentFileSettings
 from .types.accounts_create_bank_request_type import AccountsCreateBankRequestType
 from .types.accounts_create_bank_response import AccountsCreateBankResponse
 from .types.accounts_list_bank_request_filter_item import AccountsListBankRequestFilterItem
 from .types.accounts_list_bank_request_sort_item import AccountsListBankRequestSortItem
 from .types.accounts_list_bank_response import AccountsListBankResponse
+from .types.accounts_update_bank_request_payment_file_settings import AccountsUpdateBankRequestPaymentFileSettings
 from .types.accounts_update_bank_request_type import AccountsUpdateBankRequestType
 from .types.accounts_update_bank_response import AccountsUpdateBankResponse
 from .types.direct_debits_candidates_bank_request_filter_item import DirectDebitsCandidatesBankRequestFilterItem
@@ -43,7 +45,9 @@ from .types.import_templates_list_builtin_bank_response import ImportTemplatesLi
 from .types.import_templates_update_bank_request_fields_item import ImportTemplatesUpdateBankRequestFieldsItem
 from .types.import_templates_update_bank_request_type import ImportTemplatesUpdateBankRequestType
 from .types.import_templates_update_bank_response import ImportTemplatesUpdateBankResponse
+from .types.mandates_auddis_export_bank_response import MandatesAuddisExportBankResponse
 from .types.mandates_cancel_bank_response import MandatesCancelBankResponse
+from .types.mandates_create_bank_request_account_type import MandatesCreateBankRequestAccountType
 from .types.mandates_create_bank_request_scheme import MandatesCreateBankRequestScheme
 from .types.mandates_create_bank_request_sequence_type import MandatesCreateBankRequestSequenceType
 from .types.mandates_create_bank_response import MandatesCreateBankResponse
@@ -122,13 +126,16 @@ class BankClient:
         name: str,
         type: typing.Optional[AccountsCreateBankRequestType] = OMIT,
         iban: typing.Optional[str] = OMIT,
+        bank_code: typing.Optional[str] = OMIT,
+        bank_account_number: typing.Optional[str] = OMIT,
+        payment_file_settings: typing.Optional[AccountsCreateBankRequestPaymentFileSettings] = OMIT,
         currency: typing.Optional[str] = OMIT,
         account_code: typing.Optional[str] = OMIT,
         document_ref: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AccountsCreateBankResponse:
         """
-        Create a bank, Stripe or broker account. `currency` defaults to the company base currency and `accountCode` to the default bank account of the chart of accounts. A `documentRef` also creates a bank agreement with that document attached. A Stripe account with an `iban` is refused with 422; an account with the same IBAN already existing answers 409.
+        Create a bank, Stripe or broker account. `currency` defaults to the company base currency and `accountCode` to the default bank account of the chart of accounts. Where the country has no IBAN the account is identified by `bankCode` (sort code, routing number) and `bankAccountNumber`, stored without spaces and hyphens. A `documentRef` also creates a bank agreement with that document attached. A Stripe account with an `iban` or an account number is refused with 422; an account with the same IBAN already existing answers 409.
 
         Parameters
         ----------
@@ -137,6 +144,15 @@ class BankClient:
         type : typing.Optional[AccountsCreateBankRequestType]
 
         iban : typing.Optional[str]
+
+        bank_code : typing.Optional[str]
+            Sort code, routing number or other national bank code, for an account without an IBAN
+
+        bank_account_number : typing.Optional[str]
+            Account number, for an account without an IBAN
+
+        payment_file_settings : typing.Optional[AccountsCreateBankRequestPaymentFileSettings]
+            What the bank gave the company for payment files from this account: the Bacs service user number for a UK account, the ACH Immediate Origin and Company Identification for a US account
 
         currency : typing.Optional[str]
 
@@ -167,6 +183,9 @@ class BankClient:
             name=name,
             type=type,
             iban=iban,
+            bank_code=bank_code,
+            bank_account_number=bank_account_number,
+            payment_file_settings=payment_file_settings,
             currency=currency,
             account_code=account_code,
             document_ref=document_ref,
@@ -229,12 +248,15 @@ class BankClient:
         name: typing.Optional[str] = OMIT,
         type: typing.Optional[AccountsUpdateBankRequestType] = OMIT,
         iban: typing.Optional[str] = OMIT,
+        bank_code: typing.Optional[str] = OMIT,
+        bank_account_number: typing.Optional[str] = OMIT,
+        payment_file_settings: typing.Optional[AccountsUpdateBankRequestPaymentFileSettings] = OMIT,
         account_code: typing.Optional[str] = OMIT,
         is_active: typing.Optional[bool] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AccountsUpdateBankResponse:
         """
-        Change the name, type, IBAN, ledger account code or active flag of a bank account. Setting type to stripe clears the IBAN, and sending an `iban` together with it is refused with 422.
+        Change the name, type, IBAN, bank code and account number, payment file settings (`paymentFileSettings` replaces the stored settings as a whole), ledger account code or active flag of a bank account. Setting type to stripe clears the IBAN and the account number, and sending an `iban` together with it is refused with 422.
 
         Parameters
         ----------
@@ -245,6 +267,15 @@ class BankClient:
         type : typing.Optional[AccountsUpdateBankRequestType]
 
         iban : typing.Optional[str]
+
+        bank_code : typing.Optional[str]
+            Sort code, routing number or other national bank code, for an account without an IBAN
+
+        bank_account_number : typing.Optional[str]
+            Account number, for an account without an IBAN
+
+        payment_file_settings : typing.Optional[AccountsUpdateBankRequestPaymentFileSettings]
+            What the bank gave the company for payment files from this account: the Bacs service user number for a UK account, the ACH Immediate Origin and Company Identification for a US account
 
         account_code : typing.Optional[str]
 
@@ -274,6 +305,9 @@ class BankClient:
             name=name,
             type=type,
             iban=iban,
+            bank_code=bank_code,
+            bank_account_number=bank_account_number,
+            payment_file_settings=payment_file_settings,
             account_code=account_code,
             is_active=is_active,
             request_options=request_options,
@@ -853,7 +887,7 @@ class BankClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PaymentsExportBankResponse:
         """
-        Build a credit transfer file (ISO 20022 pain.001.001.03) that pays the remaining amount of each registered purchase invoice from the bank account on `executionDate` (default: today), to the partner's default bank account. The bank account needs an IBAN and every invoice must be in the currency of the bank account and have a partner bank account on file (422 otherwise, see `partners/bank-accounts/create`); an invoice that is already paid answers 409. A file in EUR is a SEPA credit transfer (service level SEPA); a file in another currency is a generic pain.001 without the SEPA service level, in the currency of the account. The file is returned as `xml`; nothing is posted or marked paid.
+        Build a payment file that pays the remaining amount of each registered purchase invoice from the bank account on `executionDate`, to the partner's default bank account that the format can use. The format follows the bank account: a GBP account of a UK company with a sort code and account number gets a Bacs Standard 18 Direct Credit file (needs `paymentFileSettings.serviceUserNumber`; `executionDate` is the day the money arrives, a Bacs working day whose processing day is after today, default the earliest), a USD account of a US company with a routing number and account number gets a Nacha ACH credit file (needs `paymentFileSettings.immediateOrigin` and `companyIdentification`; CCD for a business partner, PPD for a partner that is not one, see `partners/update` `isBusiness`; default `executionDate` today), and an account with an IBAN gets ISO 20022 pain.001.001.03, a SEPA credit transfer in EUR and a generic pain.001 in other currencies (default `executionDate` today). Every invoice must be in the currency of the bank account and the partner must have a bank account the format can use (IBAN; sort code and account number; routing number, account number and `accountType`), 422 otherwise, see `partners/bank-accounts/create`; an invoice that is already paid answers 409. The file is returned in `content`, with `format`, `fileName` and `contentType`; nothing is posted or marked paid.
 
         Parameters
         ----------
@@ -1425,9 +1459,12 @@ class BankClient:
         self,
         *,
         partner_id: str,
-        iban: str,
         signature_date: dt.date,
+        iban: typing.Optional[str] = OMIT,
         bic: typing.Optional[str] = OMIT,
+        bank_code: typing.Optional[str] = OMIT,
+        bank_account_number: typing.Optional[str] = OMIT,
+        account_type: typing.Optional[MandatesCreateBankRequestAccountType] = OMIT,
         scheme: typing.Optional[MandatesCreateBankRequestScheme] = OMIT,
         sequence_type: typing.Optional[MandatesCreateBankRequestSequenceType] = OMIT,
         reference: typing.Optional[str] = OMIT,
@@ -1436,17 +1473,26 @@ class BankClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> MandatesCreateBankResponse:
         """
-        Record a SEPA direct debit mandate a partner has signed: debtor IBAN and BIC, scheme (CORE or B2B), recurrent or one-off, and the signature date. `reference` is the mandate reference written into the collection files; without one `MNDT-` followed by a generated id is used. `debtorName` defaults to the partner name. A reference already in use answers 409.
+        Record a direct debit mandate a partner has signed, with the signature date. Schemes: `CORE` and `B2B` are SEPA mandates on the debtor's IBAN (and BIC), recurrent or one-off; `BACS` is a UK Direct Debit Instruction on a 6-digit sort code (`bankCode`) and an 8-digit account number, recurrent only, lodged with AUDDIS through `bank/mandates/auddis-export` before the first collection; `PPD` (consumer) and `CCD` (business) are US ACH debit authorizations on a 9-digit routing number (`bankCode`), an account number and `accountType`. Without `scheme`, an IBAN gives `CORE`, a UK company `BACS`, and a US company `CCD` for a business partner or `PPD` for one that is not (see `partners/update` `isBusiness`). `reference` is the mandate reference written into the collection files; without one `MNDT-` followed by a generated id is used (for `BACS` `MNDT` and the start of a generated id, upper case; a Bacs reference has 6 to 18 characters of A-Z, 0-9, . & / - and space, with at least six letters or digits, not one repeated character, not starting with DDIC). `debtorName` defaults to the partner name. A reference already in use answers 409.
 
         Parameters
         ----------
         partner_id : str
 
-        iban : str
-
         signature_date : dt.date
 
+        iban : typing.Optional[str]
+
         bic : typing.Optional[str]
+
+        bank_code : typing.Optional[str]
+            Sort code (Bacs) or routing number (ACH), for a mandate without an IBAN
+
+        bank_account_number : typing.Optional[str]
+            Account number, for a mandate without an IBAN
+
+        account_type : typing.Optional[MandatesCreateBankRequestAccountType]
+            Checking or savings account; a US ACH file needs it
 
         scheme : typing.Optional[MandatesCreateBankRequestScheme]
 
@@ -1477,7 +1523,6 @@ class BankClient:
         )
         client.bank.mandates_create(
             partner_id="partnerId",
-            iban="iban",
             signature_date=datetime.date.fromisoformat(
                 "2026-07-01",
             ),
@@ -1485,9 +1530,12 @@ class BankClient:
         """
         _response = self._raw_client.mandates_create(
             partner_id=partner_id,
-            iban=iban,
             signature_date=signature_date,
+            iban=iban,
             bic=bic,
+            bank_code=bank_code,
+            bank_account_number=bank_account_number,
+            account_type=account_type,
             scheme=scheme,
             sequence_type=sequence_type,
             reference=reference,
@@ -1547,7 +1595,7 @@ class BankClient:
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> MandatesCancelBankResponse:
         """
-        Cancel an active mandate. A mandate that is already cancelled or completed answers 409.
+        Cancel an active mandate. A BACS mandate that was lodged with AUDDIS is then reported cancelled by the next `bank/mandates/auddis-export`. A mandate that is already cancelled or completed answers 409.
 
         Parameters
         ----------
@@ -1666,7 +1714,7 @@ class BankClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> DirectDebitsCandidatesBankResponse:
         """
-        List the issued EUR sale invoices that are unpaid or partly paid and whose partner holds an active mandate, each with the mandate `bank/direct-debits/export` would use (the most recently signed active one). Filterable by partnerId, fullNumber, issueDate and dueDate; sortable by issueDate, dueDate, fullNumber, grossTotal, createdAt, partnerName (the name of the partner), remaining (the gross total less the paid amount) and mandateReference (the reference of the mandate shown).
+        List the issued sale invoices that are unpaid or partly paid and whose partner holds an active mandate of a scheme in the invoice currency (CORE and B2B for EUR, BACS for GBP, PPD and CCD for USD), each with the mandate `bank/direct-debits/export` would use (the most recently signed active one of those schemes). Filterable by partnerId, fullNumber, issueDate and dueDate; sortable by issueDate, dueDate, fullNumber, grossTotal, createdAt, partnerName (the name of the partner), remaining (the gross total less the paid amount) and mandateReference (the reference of the mandate shown).
 
         Parameters
         ----------
@@ -1712,7 +1760,7 @@ class BankClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> DirectDebitsExportBankResponse:
         """
-        Build a SEPA direct debit file (pain.008.001.02) that collects the remaining amount of each issued EUR sale invoice into the bank account on `collectionDate` (default: today) under the partner's most recently signed active mandate. The bank account needs an IBAN and the company a valid `sepaCreditorId` (422, see `account/companies/update`); an invoice whose partner has no active mandate, or whose mandate expired (36 months without a collection), answers 422; an invoice already paid, or a one-off mandate asked to collect more than one invoice, answers 409. The sequence type is OOFF for a one-off mandate, FRST for the first collection under a recurrent one and RCUR after that. On success the collection count and last collection date of each mandate are advanced and a one-off mandate is completed; nothing is posted.
+        Build a direct debit file that collects the remaining amount of each issued sale invoice into the bank account on `collectionDate` under the partner's most recently signed active mandate of a scheme the file carries. The format follows the bank account: a GBP account of a UK company with a sort code and account number gets a Bacs Standard 18 Direct Debit file (BACS mandates; needs `paymentFileSettings.serviceUserNumber`; each mandate must have been lodged with `bank/mandates/auddis-export` and the collection processed at least two Bacs working days after the lodgement; `collectionDate` is the day the money is collected, a Bacs working day whose processing day is after today, default the earliest; transaction code 01 for the first collection under a mandate and 17 after that), a USD account of a US company with a routing number and account number gets a Nacha ACH debit file (PPD and CCD mandates; needs `paymentFileSettings.immediateOrigin` and `companyIdentification`; `collectionDate` not before the mandate's signature date; default today), and an account with an IBAN gets a SEPA direct debit file pain.008.001.02 (CORE and B2B mandates; needs a valid `sepaCreditorId`, see `account/companies/update`; a mandate expires after 36 months without a collection; sequence type OOFF for a one-off mandate, FRST for the first collection under a recurrent one and RCUR after that; default today). Each invoice must be in the currency of the format (EUR, GBP, USD), 422 otherwise; an invoice whose partner has no usable active mandate answers 422; an invoice already paid, or a one-off mandate asked to collect more than one invoice, answers 409. On success the collection count and last collection date of each mandate are advanced and a one-off mandate is completed; nothing is posted. The file is returned in `content`, with `format`, `fileName`, `contentType` and the `collectionDate` used.
 
         Parameters
         ----------
@@ -1746,6 +1794,52 @@ class BankClient:
             bank_account_id=bank_account_id,
             sale_invoice_ids=sale_invoice_ids,
             collection_date=collection_date,
+            request_options=request_options,
+        )
+        return _response.data
+
+    def mandates_auddis_export(
+        self,
+        *,
+        bank_account_id: str,
+        mandate_ids: typing.Optional[typing.Sequence[str]] = OMIT,
+        processing_date: typing.Optional[dt.date] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> MandatesAuddisExportBankResponse:
+        """
+        Build a Bacs AUDDIS file that lodges new Bacs Direct Debit Instructions (transaction code 0N, each active BACS mandate not yet lodged) and cancels lodged ones (0C, each cancelled BACS mandate whose cancellation was not yet lodged) with the paying banks. Without `mandateIds` every such mandate of the company is included. The bank account must be a GBP account of a UK company with a sort code, an account number and `paymentFileSettings.serviceUserNumber` (422 otherwise). `processingDate` is the Bacs processing day of the file, a Bacs working day after today (default the next one); it is stored as the mandate's `lodgedOn` or `cancellationLodgedOn`, and a first collection can be processed two Bacs working days after `lodgedOn`. Nothing to lodge answers 409. The file is returned in `content`, with `format`, `fileName` and `contentType`; nothing is sent to the bank.
+
+        Parameters
+        ----------
+        bank_account_id : str
+
+        mandate_ids : typing.Optional[typing.Sequence[str]]
+
+        processing_date : typing.Optional[dt.date]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        MandatesAuddisExportBankResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.bank.mandates_auddis_export(
+            bank_account_id="bankAccountId",
+        )
+        """
+        _response = self._raw_client.mandates_auddis_export(
+            bank_account_id=bank_account_id,
+            mandate_ids=mandate_ids,
+            processing_date=processing_date,
             request_options=request_options,
         )
         return _response.data
@@ -2687,13 +2781,16 @@ class AsyncBankClient:
         name: str,
         type: typing.Optional[AccountsCreateBankRequestType] = OMIT,
         iban: typing.Optional[str] = OMIT,
+        bank_code: typing.Optional[str] = OMIT,
+        bank_account_number: typing.Optional[str] = OMIT,
+        payment_file_settings: typing.Optional[AccountsCreateBankRequestPaymentFileSettings] = OMIT,
         currency: typing.Optional[str] = OMIT,
         account_code: typing.Optional[str] = OMIT,
         document_ref: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AccountsCreateBankResponse:
         """
-        Create a bank, Stripe or broker account. `currency` defaults to the company base currency and `accountCode` to the default bank account of the chart of accounts. A `documentRef` also creates a bank agreement with that document attached. A Stripe account with an `iban` is refused with 422; an account with the same IBAN already existing answers 409.
+        Create a bank, Stripe or broker account. `currency` defaults to the company base currency and `accountCode` to the default bank account of the chart of accounts. Where the country has no IBAN the account is identified by `bankCode` (sort code, routing number) and `bankAccountNumber`, stored without spaces and hyphens. A `documentRef` also creates a bank agreement with that document attached. A Stripe account with an `iban` or an account number is refused with 422; an account with the same IBAN already existing answers 409.
 
         Parameters
         ----------
@@ -2702,6 +2799,15 @@ class AsyncBankClient:
         type : typing.Optional[AccountsCreateBankRequestType]
 
         iban : typing.Optional[str]
+
+        bank_code : typing.Optional[str]
+            Sort code, routing number or other national bank code, for an account without an IBAN
+
+        bank_account_number : typing.Optional[str]
+            Account number, for an account without an IBAN
+
+        payment_file_settings : typing.Optional[AccountsCreateBankRequestPaymentFileSettings]
+            What the bank gave the company for payment files from this account: the Bacs service user number for a UK account, the ACH Immediate Origin and Company Identification for a US account
 
         currency : typing.Optional[str]
 
@@ -2740,6 +2846,9 @@ class AsyncBankClient:
             name=name,
             type=type,
             iban=iban,
+            bank_code=bank_code,
+            bank_account_number=bank_account_number,
+            payment_file_settings=payment_file_settings,
             currency=currency,
             account_code=account_code,
             document_ref=document_ref,
@@ -2810,12 +2919,15 @@ class AsyncBankClient:
         name: typing.Optional[str] = OMIT,
         type: typing.Optional[AccountsUpdateBankRequestType] = OMIT,
         iban: typing.Optional[str] = OMIT,
+        bank_code: typing.Optional[str] = OMIT,
+        bank_account_number: typing.Optional[str] = OMIT,
+        payment_file_settings: typing.Optional[AccountsUpdateBankRequestPaymentFileSettings] = OMIT,
         account_code: typing.Optional[str] = OMIT,
         is_active: typing.Optional[bool] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AccountsUpdateBankResponse:
         """
-        Change the name, type, IBAN, ledger account code or active flag of a bank account. Setting type to stripe clears the IBAN, and sending an `iban` together with it is refused with 422.
+        Change the name, type, IBAN, bank code and account number, payment file settings (`paymentFileSettings` replaces the stored settings as a whole), ledger account code or active flag of a bank account. Setting type to stripe clears the IBAN and the account number, and sending an `iban` together with it is refused with 422.
 
         Parameters
         ----------
@@ -2826,6 +2938,15 @@ class AsyncBankClient:
         type : typing.Optional[AccountsUpdateBankRequestType]
 
         iban : typing.Optional[str]
+
+        bank_code : typing.Optional[str]
+            Sort code, routing number or other national bank code, for an account without an IBAN
+
+        bank_account_number : typing.Optional[str]
+            Account number, for an account without an IBAN
+
+        payment_file_settings : typing.Optional[AccountsUpdateBankRequestPaymentFileSettings]
+            What the bank gave the company for payment files from this account: the Bacs service user number for a UK account, the ACH Immediate Origin and Company Identification for a US account
 
         account_code : typing.Optional[str]
 
@@ -2863,6 +2984,9 @@ class AsyncBankClient:
             name=name,
             type=type,
             iban=iban,
+            bank_code=bank_code,
+            bank_account_number=bank_account_number,
+            payment_file_settings=payment_file_settings,
             account_code=account_code,
             is_active=is_active,
             request_options=request_options,
@@ -3527,7 +3651,7 @@ class AsyncBankClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PaymentsExportBankResponse:
         """
-        Build a credit transfer file (ISO 20022 pain.001.001.03) that pays the remaining amount of each registered purchase invoice from the bank account on `executionDate` (default: today), to the partner's default bank account. The bank account needs an IBAN and every invoice must be in the currency of the bank account and have a partner bank account on file (422 otherwise, see `partners/bank-accounts/create`); an invoice that is already paid answers 409. A file in EUR is a SEPA credit transfer (service level SEPA); a file in another currency is a generic pain.001 without the SEPA service level, in the currency of the account. The file is returned as `xml`; nothing is posted or marked paid.
+        Build a payment file that pays the remaining amount of each registered purchase invoice from the bank account on `executionDate`, to the partner's default bank account that the format can use. The format follows the bank account: a GBP account of a UK company with a sort code and account number gets a Bacs Standard 18 Direct Credit file (needs `paymentFileSettings.serviceUserNumber`; `executionDate` is the day the money arrives, a Bacs working day whose processing day is after today, default the earliest), a USD account of a US company with a routing number and account number gets a Nacha ACH credit file (needs `paymentFileSettings.immediateOrigin` and `companyIdentification`; CCD for a business partner, PPD for a partner that is not one, see `partners/update` `isBusiness`; default `executionDate` today), and an account with an IBAN gets ISO 20022 pain.001.001.03, a SEPA credit transfer in EUR and a generic pain.001 in other currencies (default `executionDate` today). Every invoice must be in the currency of the bank account and the partner must have a bank account the format can use (IBAN; sort code and account number; routing number, account number and `accountType`), 422 otherwise, see `partners/bank-accounts/create`; an invoice that is already paid answers 409. The file is returned in `content`, with `format`, `fileName` and `contentType`; nothing is posted or marked paid.
 
         Parameters
         ----------
@@ -4187,9 +4311,12 @@ class AsyncBankClient:
         self,
         *,
         partner_id: str,
-        iban: str,
         signature_date: dt.date,
+        iban: typing.Optional[str] = OMIT,
         bic: typing.Optional[str] = OMIT,
+        bank_code: typing.Optional[str] = OMIT,
+        bank_account_number: typing.Optional[str] = OMIT,
+        account_type: typing.Optional[MandatesCreateBankRequestAccountType] = OMIT,
         scheme: typing.Optional[MandatesCreateBankRequestScheme] = OMIT,
         sequence_type: typing.Optional[MandatesCreateBankRequestSequenceType] = OMIT,
         reference: typing.Optional[str] = OMIT,
@@ -4198,17 +4325,26 @@ class AsyncBankClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> MandatesCreateBankResponse:
         """
-        Record a SEPA direct debit mandate a partner has signed: debtor IBAN and BIC, scheme (CORE or B2B), recurrent or one-off, and the signature date. `reference` is the mandate reference written into the collection files; without one `MNDT-` followed by a generated id is used. `debtorName` defaults to the partner name. A reference already in use answers 409.
+        Record a direct debit mandate a partner has signed, with the signature date. Schemes: `CORE` and `B2B` are SEPA mandates on the debtor's IBAN (and BIC), recurrent or one-off; `BACS` is a UK Direct Debit Instruction on a 6-digit sort code (`bankCode`) and an 8-digit account number, recurrent only, lodged with AUDDIS through `bank/mandates/auddis-export` before the first collection; `PPD` (consumer) and `CCD` (business) are US ACH debit authorizations on a 9-digit routing number (`bankCode`), an account number and `accountType`. Without `scheme`, an IBAN gives `CORE`, a UK company `BACS`, and a US company `CCD` for a business partner or `PPD` for one that is not (see `partners/update` `isBusiness`). `reference` is the mandate reference written into the collection files; without one `MNDT-` followed by a generated id is used (for `BACS` `MNDT` and the start of a generated id, upper case; a Bacs reference has 6 to 18 characters of A-Z, 0-9, . & / - and space, with at least six letters or digits, not one repeated character, not starting with DDIC). `debtorName` defaults to the partner name. A reference already in use answers 409.
 
         Parameters
         ----------
         partner_id : str
 
-        iban : str
-
         signature_date : dt.date
 
+        iban : typing.Optional[str]
+
         bic : typing.Optional[str]
+
+        bank_code : typing.Optional[str]
+            Sort code (Bacs) or routing number (ACH), for a mandate without an IBAN
+
+        bank_account_number : typing.Optional[str]
+            Account number, for a mandate without an IBAN
+
+        account_type : typing.Optional[MandatesCreateBankRequestAccountType]
+            Checking or savings account; a US ACH file needs it
 
         scheme : typing.Optional[MandatesCreateBankRequestScheme]
 
@@ -4243,7 +4379,6 @@ class AsyncBankClient:
         async def main() -> None:
             await client.bank.mandates_create(
                 partner_id="partnerId",
-                iban="iban",
                 signature_date=datetime.date.fromisoformat(
                     "2026-07-01",
                 ),
@@ -4254,9 +4389,12 @@ class AsyncBankClient:
         """
         _response = await self._raw_client.mandates_create(
             partner_id=partner_id,
-            iban=iban,
             signature_date=signature_date,
+            iban=iban,
             bic=bic,
+            bank_code=bank_code,
+            bank_account_number=bank_account_number,
+            account_type=account_type,
             scheme=scheme,
             sequence_type=sequence_type,
             reference=reference,
@@ -4324,7 +4462,7 @@ class AsyncBankClient:
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> MandatesCancelBankResponse:
         """
-        Cancel an active mandate. A mandate that is already cancelled or completed answers 409.
+        Cancel an active mandate. A BACS mandate that was lodged with AUDDIS is then reported cancelled by the next `bank/mandates/auddis-export`. A mandate that is already cancelled or completed answers 409.
 
         Parameters
         ----------
@@ -4467,7 +4605,7 @@ class AsyncBankClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> DirectDebitsCandidatesBankResponse:
         """
-        List the issued EUR sale invoices that are unpaid or partly paid and whose partner holds an active mandate, each with the mandate `bank/direct-debits/export` would use (the most recently signed active one). Filterable by partnerId, fullNumber, issueDate and dueDate; sortable by issueDate, dueDate, fullNumber, grossTotal, createdAt, partnerName (the name of the partner), remaining (the gross total less the paid amount) and mandateReference (the reference of the mandate shown).
+        List the issued sale invoices that are unpaid or partly paid and whose partner holds an active mandate of a scheme in the invoice currency (CORE and B2B for EUR, BACS for GBP, PPD and CCD for USD), each with the mandate `bank/direct-debits/export` would use (the most recently signed active one of those schemes). Filterable by partnerId, fullNumber, issueDate and dueDate; sortable by issueDate, dueDate, fullNumber, grossTotal, createdAt, partnerName (the name of the partner), remaining (the gross total less the paid amount) and mandateReference (the reference of the mandate shown).
 
         Parameters
         ----------
@@ -4521,7 +4659,7 @@ class AsyncBankClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> DirectDebitsExportBankResponse:
         """
-        Build a SEPA direct debit file (pain.008.001.02) that collects the remaining amount of each issued EUR sale invoice into the bank account on `collectionDate` (default: today) under the partner's most recently signed active mandate. The bank account needs an IBAN and the company a valid `sepaCreditorId` (422, see `account/companies/update`); an invoice whose partner has no active mandate, or whose mandate expired (36 months without a collection), answers 422; an invoice already paid, or a one-off mandate asked to collect more than one invoice, answers 409. The sequence type is OOFF for a one-off mandate, FRST for the first collection under a recurrent one and RCUR after that. On success the collection count and last collection date of each mandate are advanced and a one-off mandate is completed; nothing is posted.
+        Build a direct debit file that collects the remaining amount of each issued sale invoice into the bank account on `collectionDate` under the partner's most recently signed active mandate of a scheme the file carries. The format follows the bank account: a GBP account of a UK company with a sort code and account number gets a Bacs Standard 18 Direct Debit file (BACS mandates; needs `paymentFileSettings.serviceUserNumber`; each mandate must have been lodged with `bank/mandates/auddis-export` and the collection processed at least two Bacs working days after the lodgement; `collectionDate` is the day the money is collected, a Bacs working day whose processing day is after today, default the earliest; transaction code 01 for the first collection under a mandate and 17 after that), a USD account of a US company with a routing number and account number gets a Nacha ACH debit file (PPD and CCD mandates; needs `paymentFileSettings.immediateOrigin` and `companyIdentification`; `collectionDate` not before the mandate's signature date; default today), and an account with an IBAN gets a SEPA direct debit file pain.008.001.02 (CORE and B2B mandates; needs a valid `sepaCreditorId`, see `account/companies/update`; a mandate expires after 36 months without a collection; sequence type OOFF for a one-off mandate, FRST for the first collection under a recurrent one and RCUR after that; default today). Each invoice must be in the currency of the format (EUR, GBP, USD), 422 otherwise; an invoice whose partner has no usable active mandate answers 422; an invoice already paid, or a one-off mandate asked to collect more than one invoice, answers 409. On success the collection count and last collection date of each mandate are advanced and a one-off mandate is completed; nothing is posted. The file is returned in `content`, with `format`, `fileName`, `contentType` and the `collectionDate` used.
 
         Parameters
         ----------
@@ -4563,6 +4701,60 @@ class AsyncBankClient:
             bank_account_id=bank_account_id,
             sale_invoice_ids=sale_invoice_ids,
             collection_date=collection_date,
+            request_options=request_options,
+        )
+        return _response.data
+
+    async def mandates_auddis_export(
+        self,
+        *,
+        bank_account_id: str,
+        mandate_ids: typing.Optional[typing.Sequence[str]] = OMIT,
+        processing_date: typing.Optional[dt.date] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> MandatesAuddisExportBankResponse:
+        """
+        Build a Bacs AUDDIS file that lodges new Bacs Direct Debit Instructions (transaction code 0N, each active BACS mandate not yet lodged) and cancels lodged ones (0C, each cancelled BACS mandate whose cancellation was not yet lodged) with the paying banks. Without `mandateIds` every such mandate of the company is included. The bank account must be a GBP account of a UK company with a sort code, an account number and `paymentFileSettings.serviceUserNumber` (422 otherwise). `processingDate` is the Bacs processing day of the file, a Bacs working day after today (default the next one); it is stored as the mandate's `lodgedOn` or `cancellationLodgedOn`, and a first collection can be processed two Bacs working days after `lodgedOn`. Nothing to lodge answers 409. The file is returned in `content`, with `format`, `fileName` and `contentType`; nothing is sent to the bank.
+
+        Parameters
+        ----------
+        bank_account_id : str
+
+        mandate_ids : typing.Optional[typing.Sequence[str]]
+
+        processing_date : typing.Optional[dt.date]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        MandatesAuddisExportBankResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.bank.mandates_auddis_export(
+                bank_account_id="bankAccountId",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.mandates_auddis_export(
+            bank_account_id=bank_account_id,
+            mandate_ids=mandate_ids,
+            processing_date=processing_date,
             request_options=request_options,
         )
         return _response.data

@@ -24,14 +24,17 @@ if typing.TYPE_CHECKING:
     from .business_trips_list_hr_response import BusinessTripsListHrResponse
     from .business_trips_list_hr_response_rows_item import BusinessTripsListHrResponseRowsItem
     from .business_trips_list_hr_response_rows_item_status import BusinessTripsListHrResponseRowsItemStatus
+    from .contracts_create_hr_request_pay_frequency import ContractsCreateHrRequestPayFrequency
     from .contracts_create_hr_request_salary_type import ContractsCreateHrRequestSalaryType
     from .contracts_create_hr_request_type import ContractsCreateHrRequestType
     from .contracts_create_hr_response import ContractsCreateHrResponse
+    from .contracts_create_hr_response_pay_frequency import ContractsCreateHrResponsePayFrequency
     from .contracts_create_hr_response_salary_type import ContractsCreateHrResponseSalaryType
     from .contracts_create_hr_response_status import ContractsCreateHrResponseStatus
     from .contracts_create_hr_response_type import ContractsCreateHrResponseType
     from .contracts_create_hr_response_work_hours_unit import ContractsCreateHrResponseWorkHoursUnit
     from .contracts_end_hr_response import ContractsEndHrResponse
+    from .contracts_end_hr_response_pay_frequency import ContractsEndHrResponsePayFrequency
     from .contracts_end_hr_response_salary_type import ContractsEndHrResponseSalaryType
     from .contracts_end_hr_response_status import ContractsEndHrResponseStatus
     from .contracts_end_hr_response_type import ContractsEndHrResponseType
@@ -44,6 +47,7 @@ if typing.TYPE_CHECKING:
     from .contracts_list_hr_request_sort_item_dir import ContractsListHrRequestSortItemDir
     from .contracts_list_hr_response import ContractsListHrResponse
     from .contracts_list_hr_response_rows_item import ContractsListHrResponseRowsItem
+    from .contracts_list_hr_response_rows_item_pay_frequency import ContractsListHrResponseRowsItemPayFrequency
     from .contracts_list_hr_response_rows_item_salary_type import ContractsListHrResponseRowsItemSalaryType
     from .contracts_list_hr_response_rows_item_status import ContractsListHrResponseRowsItemStatus
     from .contracts_list_hr_response_rows_item_type import ContractsListHrResponseRowsItemType
@@ -51,14 +55,17 @@ if typing.TYPE_CHECKING:
     from .employees_anonymize_hr_response import EmployeesAnonymizeHrResponse
     from .employees_anonymize_hr_response_address import EmployeesAnonymizeHrResponseAddress
     from .employees_anonymize_hr_response_attributes_item import EmployeesAnonymizeHrResponseAttributesItem
+    from .employees_anonymize_hr_response_bank_account_type import EmployeesAnonymizeHrResponseBankAccountType
     from .employees_anonymize_hr_response_status import EmployeesAnonymizeHrResponseStatus
     from .employees_attachments_list_hr_response import EmployeesAttachmentsListHrResponse
     from .employees_attachments_list_hr_response_rows_item import EmployeesAttachmentsListHrResponseRowsItem
     from .employees_create_hr_request_address import EmployeesCreateHrRequestAddress
     from .employees_create_hr_request_attributes_item import EmployeesCreateHrRequestAttributesItem
+    from .employees_create_hr_request_bank_account_type import EmployeesCreateHrRequestBankAccountType
     from .employees_create_hr_response import EmployeesCreateHrResponse
     from .employees_create_hr_response_address import EmployeesCreateHrResponseAddress
     from .employees_create_hr_response_attributes_item import EmployeesCreateHrResponseAttributesItem
+    from .employees_create_hr_response_bank_account_type import EmployeesCreateHrResponseBankAccountType
     from .employees_create_hr_response_status import EmployeesCreateHrResponseStatus
     from .employees_delete_hr_response import EmployeesDeleteHrResponse
     from .employees_fields_hr_response import EmployeesFieldsHrResponse
@@ -67,6 +74,7 @@ if typing.TYPE_CHECKING:
     from .employees_get_hr_response import EmployeesGetHrResponse
     from .employees_get_hr_response_address import EmployeesGetHrResponseAddress
     from .employees_get_hr_response_attributes_item import EmployeesGetHrResponseAttributesItem
+    from .employees_get_hr_response_bank_account_type import EmployeesGetHrResponseBankAccountType
     from .employees_get_hr_response_status import EmployeesGetHrResponseStatus
     from .employees_list_hr_request_filter_item import EmployeesListHrRequestFilterItem
     from .employees_list_hr_request_filter_item_op import EmployeesListHrRequestFilterItemOp
@@ -78,6 +86,7 @@ if typing.TYPE_CHECKING:
     from .employees_list_hr_response_rows_item import EmployeesListHrResponseRowsItem
     from .employees_list_hr_response_rows_item_address import EmployeesListHrResponseRowsItemAddress
     from .employees_list_hr_response_rows_item_attributes_item import EmployeesListHrResponseRowsItemAttributesItem
+    from .employees_list_hr_response_rows_item_bank_account_type import EmployeesListHrResponseRowsItemBankAccountType
     from .employees_list_hr_response_rows_item_status import EmployeesListHrResponseRowsItemStatus
     from .employees_records_create_hr_request_type import EmployeesRecordsCreateHrRequestType
     from .employees_records_create_hr_response import EmployeesRecordsCreateHrResponse
@@ -99,10 +108,12 @@ if typing.TYPE_CHECKING:
     from .employees_records_update_hr_response_type import EmployeesRecordsUpdateHrResponseType
     from .employees_update_hr_request_address import EmployeesUpdateHrRequestAddress
     from .employees_update_hr_request_attributes_item import EmployeesUpdateHrRequestAttributesItem
+    from .employees_update_hr_request_bank_account_type import EmployeesUpdateHrRequestBankAccountType
     from .employees_update_hr_request_status import EmployeesUpdateHrRequestStatus
     from .employees_update_hr_response import EmployeesUpdateHrResponse
     from .employees_update_hr_response_address import EmployeesUpdateHrResponseAddress
     from .employees_update_hr_response_attributes_item import EmployeesUpdateHrResponseAttributesItem
+    from .employees_update_hr_response_bank_account_type import EmployeesUpdateHrResponseBankAccountType
     from .employees_update_hr_response_status import EmployeesUpdateHrResponseStatus
     from .incapacity_certificates_create_hr_response import IncapacityCertificatesCreateHrResponse
     from .incapacity_certificates_list_hr_request_filter_item import IncapacityCertificatesListHrRequestFilterItem
@@ -180,14 +191,17 @@ _dynamic_imports: typing.Dict[str, str] = {
     "BusinessTripsListHrResponse": ".business_trips_list_hr_response",
     "BusinessTripsListHrResponseRowsItem": ".business_trips_list_hr_response_rows_item",
     "BusinessTripsListHrResponseRowsItemStatus": ".business_trips_list_hr_response_rows_item_status",
+    "ContractsCreateHrRequestPayFrequency": ".contracts_create_hr_request_pay_frequency",
     "ContractsCreateHrRequestSalaryType": ".contracts_create_hr_request_salary_type",
     "ContractsCreateHrRequestType": ".contracts_create_hr_request_type",
     "ContractsCreateHrResponse": ".contracts_create_hr_response",
+    "ContractsCreateHrResponsePayFrequency": ".contracts_create_hr_response_pay_frequency",
     "ContractsCreateHrResponseSalaryType": ".contracts_create_hr_response_salary_type",
     "ContractsCreateHrResponseStatus": ".contracts_create_hr_response_status",
     "ContractsCreateHrResponseType": ".contracts_create_hr_response_type",
     "ContractsCreateHrResponseWorkHoursUnit": ".contracts_create_hr_response_work_hours_unit",
     "ContractsEndHrResponse": ".contracts_end_hr_response",
+    "ContractsEndHrResponsePayFrequency": ".contracts_end_hr_response_pay_frequency",
     "ContractsEndHrResponseSalaryType": ".contracts_end_hr_response_salary_type",
     "ContractsEndHrResponseStatus": ".contracts_end_hr_response_status",
     "ContractsEndHrResponseType": ".contracts_end_hr_response_type",
@@ -200,6 +214,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "ContractsListHrRequestSortItemDir": ".contracts_list_hr_request_sort_item_dir",
     "ContractsListHrResponse": ".contracts_list_hr_response",
     "ContractsListHrResponseRowsItem": ".contracts_list_hr_response_rows_item",
+    "ContractsListHrResponseRowsItemPayFrequency": ".contracts_list_hr_response_rows_item_pay_frequency",
     "ContractsListHrResponseRowsItemSalaryType": ".contracts_list_hr_response_rows_item_salary_type",
     "ContractsListHrResponseRowsItemStatus": ".contracts_list_hr_response_rows_item_status",
     "ContractsListHrResponseRowsItemType": ".contracts_list_hr_response_rows_item_type",
@@ -207,14 +222,17 @@ _dynamic_imports: typing.Dict[str, str] = {
     "EmployeesAnonymizeHrResponse": ".employees_anonymize_hr_response",
     "EmployeesAnonymizeHrResponseAddress": ".employees_anonymize_hr_response_address",
     "EmployeesAnonymizeHrResponseAttributesItem": ".employees_anonymize_hr_response_attributes_item",
+    "EmployeesAnonymizeHrResponseBankAccountType": ".employees_anonymize_hr_response_bank_account_type",
     "EmployeesAnonymizeHrResponseStatus": ".employees_anonymize_hr_response_status",
     "EmployeesAttachmentsListHrResponse": ".employees_attachments_list_hr_response",
     "EmployeesAttachmentsListHrResponseRowsItem": ".employees_attachments_list_hr_response_rows_item",
     "EmployeesCreateHrRequestAddress": ".employees_create_hr_request_address",
     "EmployeesCreateHrRequestAttributesItem": ".employees_create_hr_request_attributes_item",
+    "EmployeesCreateHrRequestBankAccountType": ".employees_create_hr_request_bank_account_type",
     "EmployeesCreateHrResponse": ".employees_create_hr_response",
     "EmployeesCreateHrResponseAddress": ".employees_create_hr_response_address",
     "EmployeesCreateHrResponseAttributesItem": ".employees_create_hr_response_attributes_item",
+    "EmployeesCreateHrResponseBankAccountType": ".employees_create_hr_response_bank_account_type",
     "EmployeesCreateHrResponseStatus": ".employees_create_hr_response_status",
     "EmployeesDeleteHrResponse": ".employees_delete_hr_response",
     "EmployeesFieldsHrResponse": ".employees_fields_hr_response",
@@ -223,6 +241,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "EmployeesGetHrResponse": ".employees_get_hr_response",
     "EmployeesGetHrResponseAddress": ".employees_get_hr_response_address",
     "EmployeesGetHrResponseAttributesItem": ".employees_get_hr_response_attributes_item",
+    "EmployeesGetHrResponseBankAccountType": ".employees_get_hr_response_bank_account_type",
     "EmployeesGetHrResponseStatus": ".employees_get_hr_response_status",
     "EmployeesListHrRequestFilterItem": ".employees_list_hr_request_filter_item",
     "EmployeesListHrRequestFilterItemOp": ".employees_list_hr_request_filter_item_op",
@@ -234,6 +253,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "EmployeesListHrResponseRowsItem": ".employees_list_hr_response_rows_item",
     "EmployeesListHrResponseRowsItemAddress": ".employees_list_hr_response_rows_item_address",
     "EmployeesListHrResponseRowsItemAttributesItem": ".employees_list_hr_response_rows_item_attributes_item",
+    "EmployeesListHrResponseRowsItemBankAccountType": ".employees_list_hr_response_rows_item_bank_account_type",
     "EmployeesListHrResponseRowsItemStatus": ".employees_list_hr_response_rows_item_status",
     "EmployeesRecordsCreateHrRequestType": ".employees_records_create_hr_request_type",
     "EmployeesRecordsCreateHrResponse": ".employees_records_create_hr_response",
@@ -253,10 +273,12 @@ _dynamic_imports: typing.Dict[str, str] = {
     "EmployeesRecordsUpdateHrResponseType": ".employees_records_update_hr_response_type",
     "EmployeesUpdateHrRequestAddress": ".employees_update_hr_request_address",
     "EmployeesUpdateHrRequestAttributesItem": ".employees_update_hr_request_attributes_item",
+    "EmployeesUpdateHrRequestBankAccountType": ".employees_update_hr_request_bank_account_type",
     "EmployeesUpdateHrRequestStatus": ".employees_update_hr_request_status",
     "EmployeesUpdateHrResponse": ".employees_update_hr_response",
     "EmployeesUpdateHrResponseAddress": ".employees_update_hr_response_address",
     "EmployeesUpdateHrResponseAttributesItem": ".employees_update_hr_response_attributes_item",
+    "EmployeesUpdateHrResponseBankAccountType": ".employees_update_hr_response_bank_account_type",
     "EmployeesUpdateHrResponseStatus": ".employees_update_hr_response_status",
     "IncapacityCertificatesCreateHrResponse": ".incapacity_certificates_create_hr_response",
     "IncapacityCertificatesListHrRequestFilterItem": ".incapacity_certificates_list_hr_request_filter_item",
@@ -350,14 +372,17 @@ __all__ = [
     "BusinessTripsListHrResponse",
     "BusinessTripsListHrResponseRowsItem",
     "BusinessTripsListHrResponseRowsItemStatus",
+    "ContractsCreateHrRequestPayFrequency",
     "ContractsCreateHrRequestSalaryType",
     "ContractsCreateHrRequestType",
     "ContractsCreateHrResponse",
+    "ContractsCreateHrResponsePayFrequency",
     "ContractsCreateHrResponseSalaryType",
     "ContractsCreateHrResponseStatus",
     "ContractsCreateHrResponseType",
     "ContractsCreateHrResponseWorkHoursUnit",
     "ContractsEndHrResponse",
+    "ContractsEndHrResponsePayFrequency",
     "ContractsEndHrResponseSalaryType",
     "ContractsEndHrResponseStatus",
     "ContractsEndHrResponseType",
@@ -370,6 +395,7 @@ __all__ = [
     "ContractsListHrRequestSortItemDir",
     "ContractsListHrResponse",
     "ContractsListHrResponseRowsItem",
+    "ContractsListHrResponseRowsItemPayFrequency",
     "ContractsListHrResponseRowsItemSalaryType",
     "ContractsListHrResponseRowsItemStatus",
     "ContractsListHrResponseRowsItemType",
@@ -377,14 +403,17 @@ __all__ = [
     "EmployeesAnonymizeHrResponse",
     "EmployeesAnonymizeHrResponseAddress",
     "EmployeesAnonymizeHrResponseAttributesItem",
+    "EmployeesAnonymizeHrResponseBankAccountType",
     "EmployeesAnonymizeHrResponseStatus",
     "EmployeesAttachmentsListHrResponse",
     "EmployeesAttachmentsListHrResponseRowsItem",
     "EmployeesCreateHrRequestAddress",
     "EmployeesCreateHrRequestAttributesItem",
+    "EmployeesCreateHrRequestBankAccountType",
     "EmployeesCreateHrResponse",
     "EmployeesCreateHrResponseAddress",
     "EmployeesCreateHrResponseAttributesItem",
+    "EmployeesCreateHrResponseBankAccountType",
     "EmployeesCreateHrResponseStatus",
     "EmployeesDeleteHrResponse",
     "EmployeesFieldsHrResponse",
@@ -393,6 +422,7 @@ __all__ = [
     "EmployeesGetHrResponse",
     "EmployeesGetHrResponseAddress",
     "EmployeesGetHrResponseAttributesItem",
+    "EmployeesGetHrResponseBankAccountType",
     "EmployeesGetHrResponseStatus",
     "EmployeesListHrRequestFilterItem",
     "EmployeesListHrRequestFilterItemOp",
@@ -404,6 +434,7 @@ __all__ = [
     "EmployeesListHrResponseRowsItem",
     "EmployeesListHrResponseRowsItemAddress",
     "EmployeesListHrResponseRowsItemAttributesItem",
+    "EmployeesListHrResponseRowsItemBankAccountType",
     "EmployeesListHrResponseRowsItemStatus",
     "EmployeesRecordsCreateHrRequestType",
     "EmployeesRecordsCreateHrResponse",
@@ -423,10 +454,12 @@ __all__ = [
     "EmployeesRecordsUpdateHrResponseType",
     "EmployeesUpdateHrRequestAddress",
     "EmployeesUpdateHrRequestAttributesItem",
+    "EmployeesUpdateHrRequestBankAccountType",
     "EmployeesUpdateHrRequestStatus",
     "EmployeesUpdateHrResponse",
     "EmployeesUpdateHrResponseAddress",
     "EmployeesUpdateHrResponseAttributesItem",
+    "EmployeesUpdateHrResponseBankAccountType",
     "EmployeesUpdateHrResponseStatus",
     "IncapacityCertificatesCreateHrResponse",
     "IncapacityCertificatesListHrRequestFilterItem",

@@ -13,6 +13,8 @@ if typing.TYPE_CHECKING:
     from .departments_create_payroll_response import DepartmentsCreatePayrollResponse
     from .departments_list_payroll_response import DepartmentsListPayrollResponse
     from .departments_list_payroll_response_rows_item import DepartmentsListPayrollResponseRowsItem
+    from .frequencies_list_payroll_response import FrequenciesListPayrollResponse
+    from .frequencies_list_payroll_response_frequencies_item import FrequenciesListPayrollResponseFrequenciesItem
     from .lines_attendance_payroll_response import LinesAttendancePayrollResponse
     from .lines_attendance_payroll_response_additions_item import LinesAttendancePayrollResponseAdditionsItem
     from .lines_attendance_payroll_response_components_item import LinesAttendancePayrollResponseComponentsItem
@@ -22,13 +24,16 @@ if typing.TYPE_CHECKING:
     from .payment_types_list_payroll_response_rows_item import PaymentTypesListPayrollResponseRowsItem
     from .payments_export_payroll_request_locale import PaymentsExportPayrollRequestLocale
     from .payments_export_payroll_response import PaymentsExportPayrollResponse
+    from .payments_export_payroll_response_format import PaymentsExportPayrollResponseFormat
     from .runs_approve_payroll_response import RunsApprovePayrollResponse
     from .runs_approve_payroll_response_component_totals_item import RunsApprovePayrollResponseComponentTotalsItem
     from .runs_approve_payroll_response_component_totals_item_kind import (
         RunsApprovePayrollResponseComponentTotalsItemKind,
     )
+    from .runs_approve_payroll_response_frequency import RunsApprovePayrollResponseFrequency
     from .runs_approve_payroll_response_status import RunsApprovePayrollResponseStatus
     from .runs_cancel_payroll_response import RunsCancelPayrollResponse
+    from .runs_create_payroll_request_frequency import RunsCreatePayrollRequestFrequency
     from .runs_create_payroll_request_gross_overrides_item import RunsCreatePayrollRequestGrossOverridesItem
     from .runs_create_payroll_request_lines_item import RunsCreatePayrollRequestLinesItem
     from .runs_create_payroll_request_lines_item_additions_item import RunsCreatePayrollRequestLinesItemAdditionsItem
@@ -38,6 +43,7 @@ if typing.TYPE_CHECKING:
     from .runs_create_payroll_response_component_totals_item_kind import (
         RunsCreatePayrollResponseComponentTotalsItemKind,
     )
+    from .runs_create_payroll_response_frequency import RunsCreatePayrollResponseFrequency
     from .runs_create_payroll_response_lines_item import RunsCreatePayrollResponseLinesItem
     from .runs_create_payroll_response_lines_item_additions_item import RunsCreatePayrollResponseLinesItemAdditionsItem
     from .runs_create_payroll_response_lines_item_components_item import (
@@ -53,6 +59,7 @@ if typing.TYPE_CHECKING:
     from .runs_get_payroll_response import RunsGetPayrollResponse
     from .runs_get_payroll_response_component_totals_item import RunsGetPayrollResponseComponentTotalsItem
     from .runs_get_payroll_response_component_totals_item_kind import RunsGetPayrollResponseComponentTotalsItemKind
+    from .runs_get_payroll_response_frequency import RunsGetPayrollResponseFrequency
     from .runs_get_payroll_response_lines_item import RunsGetPayrollResponseLinesItem
     from .runs_get_payroll_response_lines_item_additions_item import RunsGetPayrollResponseLinesItemAdditionsItem
     from .runs_get_payroll_response_lines_item_components_item import RunsGetPayrollResponseLinesItemComponentsItem
@@ -75,12 +82,14 @@ if typing.TYPE_CHECKING:
     from .runs_list_payroll_response_rows_item_component_totals_item_kind import (
         RunsListPayrollResponseRowsItemComponentTotalsItemKind,
     )
+    from .runs_list_payroll_response_rows_item_frequency import RunsListPayrollResponseRowsItemFrequency
     from .runs_list_payroll_response_rows_item_status import RunsListPayrollResponseRowsItemStatus
     from .runs_reverse_payroll_response import RunsReversePayrollResponse
     from .runs_reverse_payroll_response_component_totals_item import RunsReversePayrollResponseComponentTotalsItem
     from .runs_reverse_payroll_response_component_totals_item_kind import (
         RunsReversePayrollResponseComponentTotalsItemKind,
     )
+    from .runs_reverse_payroll_response_frequency import RunsReversePayrollResponseFrequency
     from .runs_reverse_payroll_response_status import RunsReversePayrollResponseStatus
     from .schedules_create_payroll_response import SchedulesCreatePayrollResponse
     from .schedules_list_payroll_response import SchedulesListPayrollResponse
@@ -93,6 +102,8 @@ _dynamic_imports: typing.Dict[str, str] = {
     "DepartmentsCreatePayrollResponse": ".departments_create_payroll_response",
     "DepartmentsListPayrollResponse": ".departments_list_payroll_response",
     "DepartmentsListPayrollResponseRowsItem": ".departments_list_payroll_response_rows_item",
+    "FrequenciesListPayrollResponse": ".frequencies_list_payroll_response",
+    "FrequenciesListPayrollResponseFrequenciesItem": ".frequencies_list_payroll_response_frequencies_item",
     "LinesAttendancePayrollResponse": ".lines_attendance_payroll_response",
     "LinesAttendancePayrollResponseAdditionsItem": ".lines_attendance_payroll_response_additions_item",
     "LinesAttendancePayrollResponseComponentsItem": ".lines_attendance_payroll_response_components_item",
@@ -102,11 +113,14 @@ _dynamic_imports: typing.Dict[str, str] = {
     "PaymentTypesListPayrollResponseRowsItem": ".payment_types_list_payroll_response_rows_item",
     "PaymentsExportPayrollRequestLocale": ".payments_export_payroll_request_locale",
     "PaymentsExportPayrollResponse": ".payments_export_payroll_response",
+    "PaymentsExportPayrollResponseFormat": ".payments_export_payroll_response_format",
     "RunsApprovePayrollResponse": ".runs_approve_payroll_response",
     "RunsApprovePayrollResponseComponentTotalsItem": ".runs_approve_payroll_response_component_totals_item",
     "RunsApprovePayrollResponseComponentTotalsItemKind": ".runs_approve_payroll_response_component_totals_item_kind",
+    "RunsApprovePayrollResponseFrequency": ".runs_approve_payroll_response_frequency",
     "RunsApprovePayrollResponseStatus": ".runs_approve_payroll_response_status",
     "RunsCancelPayrollResponse": ".runs_cancel_payroll_response",
+    "RunsCreatePayrollRequestFrequency": ".runs_create_payroll_request_frequency",
     "RunsCreatePayrollRequestGrossOverridesItem": ".runs_create_payroll_request_gross_overrides_item",
     "RunsCreatePayrollRequestLinesItem": ".runs_create_payroll_request_lines_item",
     "RunsCreatePayrollRequestLinesItemAdditionsItem": ".runs_create_payroll_request_lines_item_additions_item",
@@ -114,6 +128,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "RunsCreatePayrollResponse": ".runs_create_payroll_response",
     "RunsCreatePayrollResponseComponentTotalsItem": ".runs_create_payroll_response_component_totals_item",
     "RunsCreatePayrollResponseComponentTotalsItemKind": ".runs_create_payroll_response_component_totals_item_kind",
+    "RunsCreatePayrollResponseFrequency": ".runs_create_payroll_response_frequency",
     "RunsCreatePayrollResponseLinesItem": ".runs_create_payroll_response_lines_item",
     "RunsCreatePayrollResponseLinesItemAdditionsItem": ".runs_create_payroll_response_lines_item_additions_item",
     "RunsCreatePayrollResponseLinesItemComponentsItem": ".runs_create_payroll_response_lines_item_components_item",
@@ -123,6 +138,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "RunsGetPayrollResponse": ".runs_get_payroll_response",
     "RunsGetPayrollResponseComponentTotalsItem": ".runs_get_payroll_response_component_totals_item",
     "RunsGetPayrollResponseComponentTotalsItemKind": ".runs_get_payroll_response_component_totals_item_kind",
+    "RunsGetPayrollResponseFrequency": ".runs_get_payroll_response_frequency",
     "RunsGetPayrollResponseLinesItem": ".runs_get_payroll_response_lines_item",
     "RunsGetPayrollResponseLinesItemAdditionsItem": ".runs_get_payroll_response_lines_item_additions_item",
     "RunsGetPayrollResponseLinesItemComponentsItem": ".runs_get_payroll_response_lines_item_components_item",
@@ -139,10 +155,12 @@ _dynamic_imports: typing.Dict[str, str] = {
     "RunsListPayrollResponseRowsItem": ".runs_list_payroll_response_rows_item",
     "RunsListPayrollResponseRowsItemComponentTotalsItem": ".runs_list_payroll_response_rows_item_component_totals_item",
     "RunsListPayrollResponseRowsItemComponentTotalsItemKind": ".runs_list_payroll_response_rows_item_component_totals_item_kind",
+    "RunsListPayrollResponseRowsItemFrequency": ".runs_list_payroll_response_rows_item_frequency",
     "RunsListPayrollResponseRowsItemStatus": ".runs_list_payroll_response_rows_item_status",
     "RunsReversePayrollResponse": ".runs_reverse_payroll_response",
     "RunsReversePayrollResponseComponentTotalsItem": ".runs_reverse_payroll_response_component_totals_item",
     "RunsReversePayrollResponseComponentTotalsItemKind": ".runs_reverse_payroll_response_component_totals_item_kind",
+    "RunsReversePayrollResponseFrequency": ".runs_reverse_payroll_response_frequency",
     "RunsReversePayrollResponseStatus": ".runs_reverse_payroll_response_status",
     "SchedulesCreatePayrollResponse": ".schedules_create_payroll_response",
     "SchedulesListPayrollResponse": ".schedules_list_payroll_response",
@@ -179,6 +197,8 @@ __all__ = [
     "DepartmentsCreatePayrollResponse",
     "DepartmentsListPayrollResponse",
     "DepartmentsListPayrollResponseRowsItem",
+    "FrequenciesListPayrollResponse",
+    "FrequenciesListPayrollResponseFrequenciesItem",
     "LinesAttendancePayrollResponse",
     "LinesAttendancePayrollResponseAdditionsItem",
     "LinesAttendancePayrollResponseComponentsItem",
@@ -188,11 +208,14 @@ __all__ = [
     "PaymentTypesListPayrollResponseRowsItem",
     "PaymentsExportPayrollRequestLocale",
     "PaymentsExportPayrollResponse",
+    "PaymentsExportPayrollResponseFormat",
     "RunsApprovePayrollResponse",
     "RunsApprovePayrollResponseComponentTotalsItem",
     "RunsApprovePayrollResponseComponentTotalsItemKind",
+    "RunsApprovePayrollResponseFrequency",
     "RunsApprovePayrollResponseStatus",
     "RunsCancelPayrollResponse",
+    "RunsCreatePayrollRequestFrequency",
     "RunsCreatePayrollRequestGrossOverridesItem",
     "RunsCreatePayrollRequestLinesItem",
     "RunsCreatePayrollRequestLinesItemAdditionsItem",
@@ -200,6 +223,7 @@ __all__ = [
     "RunsCreatePayrollResponse",
     "RunsCreatePayrollResponseComponentTotalsItem",
     "RunsCreatePayrollResponseComponentTotalsItemKind",
+    "RunsCreatePayrollResponseFrequency",
     "RunsCreatePayrollResponseLinesItem",
     "RunsCreatePayrollResponseLinesItemAdditionsItem",
     "RunsCreatePayrollResponseLinesItemComponentsItem",
@@ -209,6 +233,7 @@ __all__ = [
     "RunsGetPayrollResponse",
     "RunsGetPayrollResponseComponentTotalsItem",
     "RunsGetPayrollResponseComponentTotalsItemKind",
+    "RunsGetPayrollResponseFrequency",
     "RunsGetPayrollResponseLinesItem",
     "RunsGetPayrollResponseLinesItemAdditionsItem",
     "RunsGetPayrollResponseLinesItemComponentsItem",
@@ -225,10 +250,12 @@ __all__ = [
     "RunsListPayrollResponseRowsItem",
     "RunsListPayrollResponseRowsItemComponentTotalsItem",
     "RunsListPayrollResponseRowsItemComponentTotalsItemKind",
+    "RunsListPayrollResponseRowsItemFrequency",
     "RunsListPayrollResponseRowsItemStatus",
     "RunsReversePayrollResponse",
     "RunsReversePayrollResponseComponentTotalsItem",
     "RunsReversePayrollResponseComponentTotalsItemKind",
+    "RunsReversePayrollResponseFrequency",
     "RunsReversePayrollResponseStatus",
     "SchedulesCreatePayrollResponse",
     "SchedulesListPayrollResponse",

@@ -8,6 +8,7 @@ import typing_extensions
 from ...core.pydantic_utilities import IS_PYDANTIC_V2, UniversalBaseModel
 from ...core.serialization import FieldMetadata
 from .runs_create_payroll_response_component_totals_item import RunsCreatePayrollResponseComponentTotalsItem
+from .runs_create_payroll_response_frequency import RunsCreatePayrollResponseFrequency
 from .runs_create_payroll_response_lines_item import RunsCreatePayrollResponseLinesItem
 from .runs_create_payroll_response_status import RunsCreatePayrollResponseStatus
 
@@ -16,6 +17,15 @@ class RunsCreatePayrollResponse(UniversalBaseModel):
     id: str
     year: int
     month: int
+    frequency: RunsCreatePayrollResponseFrequency
+    period_start: typing_extensions.Annotated[
+        str, FieldMetadata(alias="periodStart"), pydantic.Field(alias="periodStart")
+    ]
+    period_end: typing_extensions.Annotated[str, FieldMetadata(alias="periodEnd"), pydantic.Field(alias="periodEnd")]
+    tax_year: typing_extensions.Annotated[int, FieldMetadata(alias="taxYear"), pydantic.Field(alias="taxYear")]
+    tax_period: typing_extensions.Annotated[
+        typing.Optional[int], FieldMetadata(alias="taxPeriod"), pydantic.Field(alias="taxPeriod")
+    ] = None
     country_code: typing_extensions.Annotated[
         str, FieldMetadata(alias="countryCode"), pydantic.Field(alias="countryCode")
     ]

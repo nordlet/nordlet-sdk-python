@@ -98,6 +98,7 @@ class LeadsClient:
         estimated_value : typing.Optional[str]
 
         currency : typing.Optional[str]
+            Defaults to the company's base currency
 
         description : typing.Optional[str]
 
@@ -224,6 +225,7 @@ class LeadsClient:
         estimated_value : typing.Optional[str]
 
         currency : typing.Optional[str]
+            Defaults to the company's base currency
 
         description : typing.Optional[str]
 
@@ -919,6 +921,7 @@ class AsyncLeadsClient:
         estimated_value : typing.Optional[str]
 
         currency : typing.Optional[str]
+            Defaults to the company's base currency
 
         description : typing.Optional[str]
 
@@ -1061,6 +1064,7 @@ class AsyncLeadsClient:
         estimated_value : typing.Optional[str]
 
         currency : typing.Optional[str]
+            Defaults to the company's base currency
 
         description : typing.Optional[str]
 

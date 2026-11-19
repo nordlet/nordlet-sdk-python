@@ -4,11 +4,16 @@ import datetime as dt
 import typing
 
 import pydantic
+import typing_extensions
 from ...core.pydantic_utilities import IS_PYDANTIC_V2, UniversalBaseModel
+from ...core.serialization import FieldMetadata
 
 
 class ExchangeRatesSyncReferenceResponse(UniversalBaseModel):
     date: dt.date
+    base_currency: typing_extensions.Annotated[
+        str, FieldMetadata(alias="baseCurrency"), pydantic.Field(alias="baseCurrency")
+    ]
     imported: int
 
     if IS_PYDANTIC_V2:
