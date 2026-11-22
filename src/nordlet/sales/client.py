@@ -41,6 +41,7 @@ from .types.invoices_apply_advance_sales_response import InvoicesApplyAdvanceSal
 from .types.invoices_card_payments_connect_sales_response import InvoicesCardPaymentsConnectSalesResponse
 from .types.invoices_card_payments_disconnect_sales_response import InvoicesCardPaymentsDisconnectSalesResponse
 from .types.invoices_card_payments_get_sales_response import InvoicesCardPaymentsGetSalesResponse
+from .types.invoices_create_sales_request_delivery_address import InvoicesCreateSalesRequestDeliveryAddress
 from .types.invoices_create_sales_request_lines_item import InvoicesCreateSalesRequestLinesItem
 from .types.invoices_create_sales_request_locale import InvoicesCreateSalesRequestLocale
 from .types.invoices_create_sales_request_type import InvoicesCreateSalesRequestType
@@ -68,6 +69,7 @@ from .types.invoices_reverse_sales_response import InvoicesReverseSalesResponse
 from .types.invoices_send_sales_request_locale import InvoicesSendSalesRequestLocale
 from .types.invoices_send_sales_response import InvoicesSendSalesResponse
 from .types.invoices_unlock_sales_response import InvoicesUnlockSalesResponse
+from .types.invoices_update_sales_request_delivery_address import InvoicesUpdateSalesRequestDeliveryAddress
 from .types.invoices_update_sales_request_lines_item import InvoicesUpdateSalesRequestLinesItem
 from .types.invoices_update_sales_request_locale import InvoicesUpdateSalesRequestLocale
 from .types.invoices_update_sales_request_vat_scheme import InvoicesUpdateSalesRequestVatScheme
@@ -160,6 +162,8 @@ class SalesClient:
         received_by_title: typing.Optional[str] = OMIT,
         discount_percent: typing.Optional[str] = OMIT,
         sales_tax_percent: typing.Optional[str] = OMIT,
+        sales_tax_jurisdiction: typing.Optional[str] = OMIT,
+        delivery_address: typing.Optional[InvoicesCreateSalesRequestDeliveryAddress] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> InvoicesCreateSalesResponse:
         """
@@ -235,7 +239,13 @@ class SalesClient:
         discount_percent : typing.Optional[str]
 
         sales_tax_percent : typing.Optional[str]
-            Sales tax as a percent of the net total, added to the invoice total. It is not posted to the ledger and is left out of VAT and national tax reports. Invoices only.
+            Sales tax as a percent of the net total, added to the document total and posted to the sales tax payable account when the document is issued. US companies only (422 otherwise); invoices and credit notes only.
+
+        sales_tax_jurisdiction : typing.Optional[str]
+            The US state the sales tax is collected for, as an ISO 3166-2 code such as `US-CA`; unset means the state of `deliveryAddress` (422 when it has none), else the credited invoice's state for a credit note, else the state of the customer's address (422 without one). When the customer has a certificate of exemption for that state (`partners/sales-tax-exemptions/create`) that covers the sale, no sales tax is charged and the document keeps the certificate's id in `salesTaxExemptionId`.
+
+        delivery_address : typing.Optional[InvoicesCreateSalesRequestDeliveryAddress]
+            Where the goods or services are delivered, when not at the customer's address; it decides the state of the sales tax when `salesTaxJurisdiction` is not given.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -291,6 +301,8 @@ class SalesClient:
             received_by_title=received_by_title,
             discount_percent=discount_percent,
             sales_tax_percent=sales_tax_percent,
+            sales_tax_jurisdiction=sales_tax_jurisdiction,
+            delivery_address=delivery_address,
             request_options=request_options,
         )
         return _response.data
@@ -665,11 +677,13 @@ class SalesClient:
         received_by_name: typing.Optional[str] = OMIT,
         received_by_title: typing.Optional[str] = OMIT,
         sales_tax_percent: typing.Optional[str] = OMIT,
+        sales_tax_jurisdiction: typing.Optional[str] = OMIT,
+        delivery_address: typing.Optional[InvoicesUpdateSalesRequestDeliveryAddress] = OMIT,
         lines: typing.Optional[typing.Sequence[InvoicesUpdateSalesRequestLinesItem]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> InvoicesUpdateSalesResponse:
         """
-        Change a draft sale document. Fields left out keep their value, `lines` replaces every line, a changed `discountPercent` recomputes the existing lines, and `salesTaxPercent` (invoices only, null removes it) recomputes the sales tax and the total. Answers 409 when the document is issued or locked, and 422 under the checks of `sales/invoices/create` (the credited document's partner and currency, the OSS and IOSS country, VAT on the lines, the operation type and document series).
+        Change a draft sale document. Fields left out keep their value, `lines` replaces every line, a changed `discountPercent` recomputes the existing lines, and `salesTaxPercent` (US companies, invoices and credit notes only, null removes it) recomputes the sales tax and the total; `salesTaxJurisdiction` is resolved again as in `sales/invoices/create` when the partner, the delivery address, the percent or the jurisdiction changes; `deliveryAddress` null removes it. Answers 409 when the document is issued or locked, and 422 under the checks of `sales/invoices/create` (the credited document's partner and currency, the OSS and IOSS country, VAT on the lines, the operation type and document series).
 
         Parameters
         ----------
@@ -727,6 +741,11 @@ class SalesClient:
 
         sales_tax_percent : typing.Optional[str]
 
+        sales_tax_jurisdiction : typing.Optional[str]
+            The US state the sales tax is collected for, as an ISO 3166-2 code such as `US-CA`
+
+        delivery_address : typing.Optional[InvoicesUpdateSalesRequestDeliveryAddress]
+
         lines : typing.Optional[typing.Sequence[InvoicesUpdateSalesRequestLinesItem]]
 
         request_options : typing.Optional[RequestOptions]
@@ -776,6 +795,8 @@ class SalesClient:
             received_by_name=received_by_name,
             received_by_title=received_by_title,
             sales_tax_percent=sales_tax_percent,
+            sales_tax_jurisdiction=sales_tax_jurisdiction,
+            delivery_address=delivery_address,
             lines=lines,
             request_options=request_options,
         )
@@ -2837,6 +2858,8 @@ class AsyncSalesClient:
         received_by_title: typing.Optional[str] = OMIT,
         discount_percent: typing.Optional[str] = OMIT,
         sales_tax_percent: typing.Optional[str] = OMIT,
+        sales_tax_jurisdiction: typing.Optional[str] = OMIT,
+        delivery_address: typing.Optional[InvoicesCreateSalesRequestDeliveryAddress] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> InvoicesCreateSalesResponse:
         """
@@ -2912,7 +2935,13 @@ class AsyncSalesClient:
         discount_percent : typing.Optional[str]
 
         sales_tax_percent : typing.Optional[str]
-            Sales tax as a percent of the net total, added to the invoice total. It is not posted to the ledger and is left out of VAT and national tax reports. Invoices only.
+            Sales tax as a percent of the net total, added to the document total and posted to the sales tax payable account when the document is issued. US companies only (422 otherwise); invoices and credit notes only.
+
+        sales_tax_jurisdiction : typing.Optional[str]
+            The US state the sales tax is collected for, as an ISO 3166-2 code such as `US-CA`; unset means the state of `deliveryAddress` (422 when it has none), else the credited invoice's state for a credit note, else the state of the customer's address (422 without one). When the customer has a certificate of exemption for that state (`partners/sales-tax-exemptions/create`) that covers the sale, no sales tax is charged and the document keeps the certificate's id in `salesTaxExemptionId`.
+
+        delivery_address : typing.Optional[InvoicesCreateSalesRequestDeliveryAddress]
+            Where the goods or services are delivered, when not at the customer's address; it decides the state of the sales tax when `salesTaxJurisdiction` is not given.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -2976,6 +3005,8 @@ class AsyncSalesClient:
             received_by_title=received_by_title,
             discount_percent=discount_percent,
             sales_tax_percent=sales_tax_percent,
+            sales_tax_jurisdiction=sales_tax_jurisdiction,
+            delivery_address=delivery_address,
             request_options=request_options,
         )
         return _response.data
@@ -3430,11 +3461,13 @@ class AsyncSalesClient:
         received_by_name: typing.Optional[str] = OMIT,
         received_by_title: typing.Optional[str] = OMIT,
         sales_tax_percent: typing.Optional[str] = OMIT,
+        sales_tax_jurisdiction: typing.Optional[str] = OMIT,
+        delivery_address: typing.Optional[InvoicesUpdateSalesRequestDeliveryAddress] = OMIT,
         lines: typing.Optional[typing.Sequence[InvoicesUpdateSalesRequestLinesItem]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> InvoicesUpdateSalesResponse:
         """
-        Change a draft sale document. Fields left out keep their value, `lines` replaces every line, a changed `discountPercent` recomputes the existing lines, and `salesTaxPercent` (invoices only, null removes it) recomputes the sales tax and the total. Answers 409 when the document is issued or locked, and 422 under the checks of `sales/invoices/create` (the credited document's partner and currency, the OSS and IOSS country, VAT on the lines, the operation type and document series).
+        Change a draft sale document. Fields left out keep their value, `lines` replaces every line, a changed `discountPercent` recomputes the existing lines, and `salesTaxPercent` (US companies, invoices and credit notes only, null removes it) recomputes the sales tax and the total; `salesTaxJurisdiction` is resolved again as in `sales/invoices/create` when the partner, the delivery address, the percent or the jurisdiction changes; `deliveryAddress` null removes it. Answers 409 when the document is issued or locked, and 422 under the checks of `sales/invoices/create` (the credited document's partner and currency, the OSS and IOSS country, VAT on the lines, the operation type and document series).
 
         Parameters
         ----------
@@ -3491,6 +3524,11 @@ class AsyncSalesClient:
         received_by_title : typing.Optional[str]
 
         sales_tax_percent : typing.Optional[str]
+
+        sales_tax_jurisdiction : typing.Optional[str]
+            The US state the sales tax is collected for, as an ISO 3166-2 code such as `US-CA`
+
+        delivery_address : typing.Optional[InvoicesUpdateSalesRequestDeliveryAddress]
 
         lines : typing.Optional[typing.Sequence[InvoicesUpdateSalesRequestLinesItem]]
 
@@ -3549,6 +3587,8 @@ class AsyncSalesClient:
             received_by_name=received_by_name,
             received_by_title=received_by_title,
             sales_tax_percent=sales_tax_percent,
+            sales_tax_jurisdiction=sales_tax_jurisdiction,
+            delivery_address=delivery_address,
             lines=lines,
             request_options=request_options,
         )

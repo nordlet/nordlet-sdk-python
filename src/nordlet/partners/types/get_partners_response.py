@@ -114,6 +114,7 @@ class GetPartnersResponse(UniversalBaseModel):
         FieldMetadata(alias="legalCountryClass"),
         pydantic.Field(alias="legalCountryClass"),
     ] = None
+    identifiers: typing.Dict[str, str]
     created_at: typing_extensions.Annotated[
         dt.datetime, FieldMetadata(alias="createdAt"), pydantic.Field(alias="createdAt")
     ]

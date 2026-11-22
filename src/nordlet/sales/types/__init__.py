@@ -84,6 +84,7 @@ if typing.TYPE_CHECKING:
     from .invoice_templates_update_sales_response_lines_item import InvoiceTemplatesUpdateSalesResponseLinesItem
     from .invoice_templates_update_sales_response_supply_type import InvoiceTemplatesUpdateSalesResponseSupplyType
     from .invoices_apply_advance_sales_response import InvoicesApplyAdvanceSalesResponse
+    from .invoices_apply_advance_sales_response_delivery_address import InvoicesApplyAdvanceSalesResponseDeliveryAddress
     from .invoices_apply_advance_sales_response_lines_item import InvoicesApplyAdvanceSalesResponseLinesItem
     from .invoices_apply_advance_sales_response_lines_item_recognition_method import (
         InvoicesApplyAdvanceSalesResponseLinesItemRecognitionMethod,
@@ -117,6 +118,7 @@ if typing.TYPE_CHECKING:
     from .invoices_card_payments_connect_sales_response import InvoicesCardPaymentsConnectSalesResponse
     from .invoices_card_payments_disconnect_sales_response import InvoicesCardPaymentsDisconnectSalesResponse
     from .invoices_card_payments_get_sales_response import InvoicesCardPaymentsGetSalesResponse
+    from .invoices_create_sales_request_delivery_address import InvoicesCreateSalesRequestDeliveryAddress
     from .invoices_create_sales_request_lines_item import InvoicesCreateSalesRequestLinesItem
     from .invoices_create_sales_request_lines_item_quantity import InvoicesCreateSalesRequestLinesItemQuantity
     from .invoices_create_sales_request_lines_item_recognition import InvoicesCreateSalesRequestLinesItemRecognition
@@ -130,6 +132,7 @@ if typing.TYPE_CHECKING:
     from .invoices_create_sales_request_type import InvoicesCreateSalesRequestType
     from .invoices_create_sales_request_vat_scheme import InvoicesCreateSalesRequestVatScheme
     from .invoices_create_sales_response import InvoicesCreateSalesResponse
+    from .invoices_create_sales_response_delivery_address import InvoicesCreateSalesResponseDeliveryAddress
     from .invoices_create_sales_response_lines_item import InvoicesCreateSalesResponseLinesItem
     from .invoices_create_sales_response_lines_item_recognition_method import (
         InvoicesCreateSalesResponseLinesItemRecognitionMethod,
@@ -158,6 +161,7 @@ if typing.TYPE_CHECKING:
     from .invoices_einvoice_status_sales_response_transport import InvoicesEinvoiceStatusSalesResponseTransport
     from .invoices_einvoice_xml_sales_response import InvoicesEinvoiceXmlSalesResponse
     from .invoices_get_sales_response import InvoicesGetSalesResponse
+    from .invoices_get_sales_response_delivery_address import InvoicesGetSalesResponseDeliveryAddress
     from .invoices_get_sales_response_lines_item import InvoicesGetSalesResponseLinesItem
     from .invoices_get_sales_response_lines_item_recognition_method import (
         InvoicesGetSalesResponseLinesItemRecognitionMethod,
@@ -177,6 +181,7 @@ if typing.TYPE_CHECKING:
     from .invoices_get_sales_response_vat_evidence_vies import InvoicesGetSalesResponseVatEvidenceVies
     from .invoices_get_sales_response_vat_scheme import InvoicesGetSalesResponseVatScheme
     from .invoices_issue_sales_response import InvoicesIssueSalesResponse
+    from .invoices_issue_sales_response_delivery_address import InvoicesIssueSalesResponseDeliveryAddress
     from .invoices_issue_sales_response_lines_item import InvoicesIssueSalesResponseLinesItem
     from .invoices_issue_sales_response_lines_item_recognition_method import (
         InvoicesIssueSalesResponseLinesItemRecognitionMethod,
@@ -206,11 +211,15 @@ if typing.TYPE_CHECKING:
     from .invoices_list_sales_request_sort_item_dir import InvoicesListSalesRequestSortItemDir
     from .invoices_list_sales_response import InvoicesListSalesResponse
     from .invoices_list_sales_response_rows_item import InvoicesListSalesResponseRowsItem
+    from .invoices_list_sales_response_rows_item_delivery_address import (
+        InvoicesListSalesResponseRowsItemDeliveryAddress,
+    )
     from .invoices_list_sales_response_rows_item_payment_status import InvoicesListSalesResponseRowsItemPaymentStatus
     from .invoices_list_sales_response_rows_item_status import InvoicesListSalesResponseRowsItemStatus
     from .invoices_list_sales_response_rows_item_type import InvoicesListSalesResponseRowsItemType
     from .invoices_list_sales_response_rows_item_vat_scheme import InvoicesListSalesResponseRowsItemVatScheme
     from .invoices_lock_sales_response import InvoicesLockSalesResponse
+    from .invoices_lock_sales_response_delivery_address import InvoicesLockSalesResponseDeliveryAddress
     from .invoices_lock_sales_response_lines_item import InvoicesLockSalesResponseLinesItem
     from .invoices_lock_sales_response_lines_item_recognition_method import (
         InvoicesLockSalesResponseLinesItemRecognitionMethod,
@@ -241,6 +250,7 @@ if typing.TYPE_CHECKING:
     from .invoices_peppol_status_sales_response_status import InvoicesPeppolStatusSalesResponseStatus
     from .invoices_peppol_xml_sales_response import InvoicesPeppolXmlSalesResponse
     from .invoices_reverse_sales_response import InvoicesReverseSalesResponse
+    from .invoices_reverse_sales_response_delivery_address import InvoicesReverseSalesResponseDeliveryAddress
     from .invoices_reverse_sales_response_lines_item import InvoicesReverseSalesResponseLinesItem
     from .invoices_reverse_sales_response_lines_item_recognition_method import (
         InvoicesReverseSalesResponseLinesItemRecognitionMethod,
@@ -266,6 +276,7 @@ if typing.TYPE_CHECKING:
     from .invoices_send_sales_request_locale import InvoicesSendSalesRequestLocale
     from .invoices_send_sales_response import InvoicesSendSalesResponse
     from .invoices_unlock_sales_response import InvoicesUnlockSalesResponse
+    from .invoices_unlock_sales_response_delivery_address import InvoicesUnlockSalesResponseDeliveryAddress
     from .invoices_unlock_sales_response_lines_item import InvoicesUnlockSalesResponseLinesItem
     from .invoices_unlock_sales_response_lines_item_recognition_method import (
         InvoicesUnlockSalesResponseLinesItemRecognitionMethod,
@@ -284,6 +295,7 @@ if typing.TYPE_CHECKING:
     from .invoices_unlock_sales_response_vat_evidence_scheme import InvoicesUnlockSalesResponseVatEvidenceScheme
     from .invoices_unlock_sales_response_vat_evidence_vies import InvoicesUnlockSalesResponseVatEvidenceVies
     from .invoices_unlock_sales_response_vat_scheme import InvoicesUnlockSalesResponseVatScheme
+    from .invoices_update_sales_request_delivery_address import InvoicesUpdateSalesRequestDeliveryAddress
     from .invoices_update_sales_request_lines_item import InvoicesUpdateSalesRequestLinesItem
     from .invoices_update_sales_request_lines_item_quantity import InvoicesUpdateSalesRequestLinesItemQuantity
     from .invoices_update_sales_request_lines_item_recognition import InvoicesUpdateSalesRequestLinesItemRecognition
@@ -296,6 +308,7 @@ if typing.TYPE_CHECKING:
     from .invoices_update_sales_request_locale import InvoicesUpdateSalesRequestLocale
     from .invoices_update_sales_request_vat_scheme import InvoicesUpdateSalesRequestVatScheme
     from .invoices_update_sales_response import InvoicesUpdateSalesResponse
+    from .invoices_update_sales_response_delivery_address import InvoicesUpdateSalesResponseDeliveryAddress
     from .invoices_update_sales_response_lines_item import InvoicesUpdateSalesResponseLinesItem
     from .invoices_update_sales_response_lines_item_recognition_method import (
         InvoicesUpdateSalesResponseLinesItemRecognitionMethod,
@@ -498,6 +511,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "InvoiceTemplatesUpdateSalesResponseLinesItem": ".invoice_templates_update_sales_response_lines_item",
     "InvoiceTemplatesUpdateSalesResponseSupplyType": ".invoice_templates_update_sales_response_supply_type",
     "InvoicesApplyAdvanceSalesResponse": ".invoices_apply_advance_sales_response",
+    "InvoicesApplyAdvanceSalesResponseDeliveryAddress": ".invoices_apply_advance_sales_response_delivery_address",
     "InvoicesApplyAdvanceSalesResponseLinesItem": ".invoices_apply_advance_sales_response_lines_item",
     "InvoicesApplyAdvanceSalesResponseLinesItemRecognitionMethod": ".invoices_apply_advance_sales_response_lines_item_recognition_method",
     "InvoicesApplyAdvanceSalesResponseLinesItemRecognitionMilestonesItem": ".invoices_apply_advance_sales_response_lines_item_recognition_milestones_item",
@@ -515,6 +529,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "InvoicesCardPaymentsConnectSalesResponse": ".invoices_card_payments_connect_sales_response",
     "InvoicesCardPaymentsDisconnectSalesResponse": ".invoices_card_payments_disconnect_sales_response",
     "InvoicesCardPaymentsGetSalesResponse": ".invoices_card_payments_get_sales_response",
+    "InvoicesCreateSalesRequestDeliveryAddress": ".invoices_create_sales_request_delivery_address",
     "InvoicesCreateSalesRequestLinesItem": ".invoices_create_sales_request_lines_item",
     "InvoicesCreateSalesRequestLinesItemQuantity": ".invoices_create_sales_request_lines_item_quantity",
     "InvoicesCreateSalesRequestLinesItemRecognition": ".invoices_create_sales_request_lines_item_recognition",
@@ -524,6 +539,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "InvoicesCreateSalesRequestType": ".invoices_create_sales_request_type",
     "InvoicesCreateSalesRequestVatScheme": ".invoices_create_sales_request_vat_scheme",
     "InvoicesCreateSalesResponse": ".invoices_create_sales_response",
+    "InvoicesCreateSalesResponseDeliveryAddress": ".invoices_create_sales_response_delivery_address",
     "InvoicesCreateSalesResponseLinesItem": ".invoices_create_sales_response_lines_item",
     "InvoicesCreateSalesResponseLinesItemRecognitionMethod": ".invoices_create_sales_response_lines_item_recognition_method",
     "InvoicesCreateSalesResponseLinesItemRecognitionMilestonesItem": ".invoices_create_sales_response_lines_item_recognition_milestones_item",
@@ -548,6 +564,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "InvoicesEinvoiceStatusSalesResponseTransport": ".invoices_einvoice_status_sales_response_transport",
     "InvoicesEinvoiceXmlSalesResponse": ".invoices_einvoice_xml_sales_response",
     "InvoicesGetSalesResponse": ".invoices_get_sales_response",
+    "InvoicesGetSalesResponseDeliveryAddress": ".invoices_get_sales_response_delivery_address",
     "InvoicesGetSalesResponseLinesItem": ".invoices_get_sales_response_lines_item",
     "InvoicesGetSalesResponseLinesItemRecognitionMethod": ".invoices_get_sales_response_lines_item_recognition_method",
     "InvoicesGetSalesResponseLinesItemRecognitionMilestonesItem": ".invoices_get_sales_response_lines_item_recognition_milestones_item",
@@ -563,6 +580,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "InvoicesGetSalesResponseVatEvidenceVies": ".invoices_get_sales_response_vat_evidence_vies",
     "InvoicesGetSalesResponseVatScheme": ".invoices_get_sales_response_vat_scheme",
     "InvoicesIssueSalesResponse": ".invoices_issue_sales_response",
+    "InvoicesIssueSalesResponseDeliveryAddress": ".invoices_issue_sales_response_delivery_address",
     "InvoicesIssueSalesResponseLinesItem": ".invoices_issue_sales_response_lines_item",
     "InvoicesIssueSalesResponseLinesItemRecognitionMethod": ".invoices_issue_sales_response_lines_item_recognition_method",
     "InvoicesIssueSalesResponseLinesItemRecognitionMilestonesItem": ".invoices_issue_sales_response_lines_item_recognition_milestones_item",
@@ -586,11 +604,13 @@ _dynamic_imports: typing.Dict[str, str] = {
     "InvoicesListSalesRequestSortItemDir": ".invoices_list_sales_request_sort_item_dir",
     "InvoicesListSalesResponse": ".invoices_list_sales_response",
     "InvoicesListSalesResponseRowsItem": ".invoices_list_sales_response_rows_item",
+    "InvoicesListSalesResponseRowsItemDeliveryAddress": ".invoices_list_sales_response_rows_item_delivery_address",
     "InvoicesListSalesResponseRowsItemPaymentStatus": ".invoices_list_sales_response_rows_item_payment_status",
     "InvoicesListSalesResponseRowsItemStatus": ".invoices_list_sales_response_rows_item_status",
     "InvoicesListSalesResponseRowsItemType": ".invoices_list_sales_response_rows_item_type",
     "InvoicesListSalesResponseRowsItemVatScheme": ".invoices_list_sales_response_rows_item_vat_scheme",
     "InvoicesLockSalesResponse": ".invoices_lock_sales_response",
+    "InvoicesLockSalesResponseDeliveryAddress": ".invoices_lock_sales_response_delivery_address",
     "InvoicesLockSalesResponseLinesItem": ".invoices_lock_sales_response_lines_item",
     "InvoicesLockSalesResponseLinesItemRecognitionMethod": ".invoices_lock_sales_response_lines_item_recognition_method",
     "InvoicesLockSalesResponseLinesItemRecognitionMilestonesItem": ".invoices_lock_sales_response_lines_item_recognition_milestones_item",
@@ -617,6 +637,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "InvoicesPeppolStatusSalesResponseStatus": ".invoices_peppol_status_sales_response_status",
     "InvoicesPeppolXmlSalesResponse": ".invoices_peppol_xml_sales_response",
     "InvoicesReverseSalesResponse": ".invoices_reverse_sales_response",
+    "InvoicesReverseSalesResponseDeliveryAddress": ".invoices_reverse_sales_response_delivery_address",
     "InvoicesReverseSalesResponseLinesItem": ".invoices_reverse_sales_response_lines_item",
     "InvoicesReverseSalesResponseLinesItemRecognitionMethod": ".invoices_reverse_sales_response_lines_item_recognition_method",
     "InvoicesReverseSalesResponseLinesItemRecognitionMilestonesItem": ".invoices_reverse_sales_response_lines_item_recognition_milestones_item",
@@ -634,6 +655,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "InvoicesSendSalesRequestLocale": ".invoices_send_sales_request_locale",
     "InvoicesSendSalesResponse": ".invoices_send_sales_response",
     "InvoicesUnlockSalesResponse": ".invoices_unlock_sales_response",
+    "InvoicesUnlockSalesResponseDeliveryAddress": ".invoices_unlock_sales_response_delivery_address",
     "InvoicesUnlockSalesResponseLinesItem": ".invoices_unlock_sales_response_lines_item",
     "InvoicesUnlockSalesResponseLinesItemRecognitionMethod": ".invoices_unlock_sales_response_lines_item_recognition_method",
     "InvoicesUnlockSalesResponseLinesItemRecognitionMilestonesItem": ".invoices_unlock_sales_response_lines_item_recognition_milestones_item",
@@ -648,6 +670,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "InvoicesUnlockSalesResponseVatEvidenceScheme": ".invoices_unlock_sales_response_vat_evidence_scheme",
     "InvoicesUnlockSalesResponseVatEvidenceVies": ".invoices_unlock_sales_response_vat_evidence_vies",
     "InvoicesUnlockSalesResponseVatScheme": ".invoices_unlock_sales_response_vat_scheme",
+    "InvoicesUpdateSalesRequestDeliveryAddress": ".invoices_update_sales_request_delivery_address",
     "InvoicesUpdateSalesRequestLinesItem": ".invoices_update_sales_request_lines_item",
     "InvoicesUpdateSalesRequestLinesItemQuantity": ".invoices_update_sales_request_lines_item_quantity",
     "InvoicesUpdateSalesRequestLinesItemRecognition": ".invoices_update_sales_request_lines_item_recognition",
@@ -656,6 +679,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "InvoicesUpdateSalesRequestLocale": ".invoices_update_sales_request_locale",
     "InvoicesUpdateSalesRequestVatScheme": ".invoices_update_sales_request_vat_scheme",
     "InvoicesUpdateSalesResponse": ".invoices_update_sales_response",
+    "InvoicesUpdateSalesResponseDeliveryAddress": ".invoices_update_sales_response_delivery_address",
     "InvoicesUpdateSalesResponseLinesItem": ".invoices_update_sales_response_lines_item",
     "InvoicesUpdateSalesResponseLinesItemRecognitionMethod": ".invoices_update_sales_response_lines_item_recognition_method",
     "InvoicesUpdateSalesResponseLinesItemRecognitionMilestonesItem": ".invoices_update_sales_response_lines_item_recognition_milestones_item",
@@ -850,6 +874,7 @@ __all__ = [
     "InvoiceTemplatesUpdateSalesResponseLinesItem",
     "InvoiceTemplatesUpdateSalesResponseSupplyType",
     "InvoicesApplyAdvanceSalesResponse",
+    "InvoicesApplyAdvanceSalesResponseDeliveryAddress",
     "InvoicesApplyAdvanceSalesResponseLinesItem",
     "InvoicesApplyAdvanceSalesResponseLinesItemRecognitionMethod",
     "InvoicesApplyAdvanceSalesResponseLinesItemRecognitionMilestonesItem",
@@ -867,6 +892,7 @@ __all__ = [
     "InvoicesCardPaymentsConnectSalesResponse",
     "InvoicesCardPaymentsDisconnectSalesResponse",
     "InvoicesCardPaymentsGetSalesResponse",
+    "InvoicesCreateSalesRequestDeliveryAddress",
     "InvoicesCreateSalesRequestLinesItem",
     "InvoicesCreateSalesRequestLinesItemQuantity",
     "InvoicesCreateSalesRequestLinesItemRecognition",
@@ -876,6 +902,7 @@ __all__ = [
     "InvoicesCreateSalesRequestType",
     "InvoicesCreateSalesRequestVatScheme",
     "InvoicesCreateSalesResponse",
+    "InvoicesCreateSalesResponseDeliveryAddress",
     "InvoicesCreateSalesResponseLinesItem",
     "InvoicesCreateSalesResponseLinesItemRecognitionMethod",
     "InvoicesCreateSalesResponseLinesItemRecognitionMilestonesItem",
@@ -900,6 +927,7 @@ __all__ = [
     "InvoicesEinvoiceStatusSalesResponseTransport",
     "InvoicesEinvoiceXmlSalesResponse",
     "InvoicesGetSalesResponse",
+    "InvoicesGetSalesResponseDeliveryAddress",
     "InvoicesGetSalesResponseLinesItem",
     "InvoicesGetSalesResponseLinesItemRecognitionMethod",
     "InvoicesGetSalesResponseLinesItemRecognitionMilestonesItem",
@@ -915,6 +943,7 @@ __all__ = [
     "InvoicesGetSalesResponseVatEvidenceVies",
     "InvoicesGetSalesResponseVatScheme",
     "InvoicesIssueSalesResponse",
+    "InvoicesIssueSalesResponseDeliveryAddress",
     "InvoicesIssueSalesResponseLinesItem",
     "InvoicesIssueSalesResponseLinesItemRecognitionMethod",
     "InvoicesIssueSalesResponseLinesItemRecognitionMilestonesItem",
@@ -938,11 +967,13 @@ __all__ = [
     "InvoicesListSalesRequestSortItemDir",
     "InvoicesListSalesResponse",
     "InvoicesListSalesResponseRowsItem",
+    "InvoicesListSalesResponseRowsItemDeliveryAddress",
     "InvoicesListSalesResponseRowsItemPaymentStatus",
     "InvoicesListSalesResponseRowsItemStatus",
     "InvoicesListSalesResponseRowsItemType",
     "InvoicesListSalesResponseRowsItemVatScheme",
     "InvoicesLockSalesResponse",
+    "InvoicesLockSalesResponseDeliveryAddress",
     "InvoicesLockSalesResponseLinesItem",
     "InvoicesLockSalesResponseLinesItemRecognitionMethod",
     "InvoicesLockSalesResponseLinesItemRecognitionMilestonesItem",
@@ -969,6 +1000,7 @@ __all__ = [
     "InvoicesPeppolStatusSalesResponseStatus",
     "InvoicesPeppolXmlSalesResponse",
     "InvoicesReverseSalesResponse",
+    "InvoicesReverseSalesResponseDeliveryAddress",
     "InvoicesReverseSalesResponseLinesItem",
     "InvoicesReverseSalesResponseLinesItemRecognitionMethod",
     "InvoicesReverseSalesResponseLinesItemRecognitionMilestonesItem",
@@ -986,6 +1018,7 @@ __all__ = [
     "InvoicesSendSalesRequestLocale",
     "InvoicesSendSalesResponse",
     "InvoicesUnlockSalesResponse",
+    "InvoicesUnlockSalesResponseDeliveryAddress",
     "InvoicesUnlockSalesResponseLinesItem",
     "InvoicesUnlockSalesResponseLinesItemRecognitionMethod",
     "InvoicesUnlockSalesResponseLinesItemRecognitionMilestonesItem",
@@ -1000,6 +1033,7 @@ __all__ = [
     "InvoicesUnlockSalesResponseVatEvidenceScheme",
     "InvoicesUnlockSalesResponseVatEvidenceVies",
     "InvoicesUnlockSalesResponseVatScheme",
+    "InvoicesUpdateSalesRequestDeliveryAddress",
     "InvoicesUpdateSalesRequestLinesItem",
     "InvoicesUpdateSalesRequestLinesItemQuantity",
     "InvoicesUpdateSalesRequestLinesItemRecognition",
@@ -1008,6 +1042,7 @@ __all__ = [
     "InvoicesUpdateSalesRequestLocale",
     "InvoicesUpdateSalesRequestVatScheme",
     "InvoicesUpdateSalesResponse",
+    "InvoicesUpdateSalesResponseDeliveryAddress",
     "InvoicesUpdateSalesResponseLinesItem",
     "InvoicesUpdateSalesResponseLinesItemRecognitionMethod",
     "InvoicesUpdateSalesResponseLinesItemRecognitionMilestonesItem",

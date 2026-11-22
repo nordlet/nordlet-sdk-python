@@ -167,6 +167,17 @@ if typing.TYPE_CHECKING:
     from .list_partners_response_rows_item_type import ListPartnersResponseRowsItemType
     from .merge_partners_response import MergePartnersResponse
     from .merge_partners_response_moved_item import MergePartnersResponseMovedItem
+    from .sales_tax_exemptions_cancel_partners_response import SalesTaxExemptionsCancelPartnersResponse
+    from .sales_tax_exemptions_create_partners_request_business_type import (
+        SalesTaxExemptionsCreatePartnersRequestBusinessType,
+    )
+    from .sales_tax_exemptions_create_partners_request_reasons_item import (
+        SalesTaxExemptionsCreatePartnersRequestReasonsItem,
+    )
+    from .sales_tax_exemptions_create_partners_request_state import SalesTaxExemptionsCreatePartnersRequestState
+    from .sales_tax_exemptions_create_partners_response import SalesTaxExemptionsCreatePartnersResponse
+    from .sales_tax_exemptions_list_partners_response import SalesTaxExemptionsListPartnersResponse
+    from .sales_tax_exemptions_list_partners_response_items_item import SalesTaxExemptionsListPartnersResponseItemsItem
     from .statuses_create_partners_response import StatusesCreatePartnersResponse
     from .statuses_delete_partners_response import StatusesDeletePartnersResponse
     from .statuses_list_partners_response import StatusesListPartnersResponse
@@ -338,6 +349,13 @@ _dynamic_imports: typing.Dict[str, str] = {
     "ListPartnersResponseRowsItemType": ".list_partners_response_rows_item_type",
     "MergePartnersResponse": ".merge_partners_response",
     "MergePartnersResponseMovedItem": ".merge_partners_response_moved_item",
+    "SalesTaxExemptionsCancelPartnersResponse": ".sales_tax_exemptions_cancel_partners_response",
+    "SalesTaxExemptionsCreatePartnersRequestBusinessType": ".sales_tax_exemptions_create_partners_request_business_type",
+    "SalesTaxExemptionsCreatePartnersRequestReasonsItem": ".sales_tax_exemptions_create_partners_request_reasons_item",
+    "SalesTaxExemptionsCreatePartnersRequestState": ".sales_tax_exemptions_create_partners_request_state",
+    "SalesTaxExemptionsCreatePartnersResponse": ".sales_tax_exemptions_create_partners_response",
+    "SalesTaxExemptionsListPartnersResponse": ".sales_tax_exemptions_list_partners_response",
+    "SalesTaxExemptionsListPartnersResponseItemsItem": ".sales_tax_exemptions_list_partners_response_items_item",
     "StatusesCreatePartnersResponse": ".statuses_create_partners_response",
     "StatusesDeletePartnersResponse": ".statuses_delete_partners_response",
     "StatusesListPartnersResponse": ".statuses_list_partners_response",
@@ -529,6 +547,13 @@ __all__ = [
     "ListPartnersResponseRowsItemType",
     "MergePartnersResponse",
     "MergePartnersResponseMovedItem",
+    "SalesTaxExemptionsCancelPartnersResponse",
+    "SalesTaxExemptionsCreatePartnersRequestBusinessType",
+    "SalesTaxExemptionsCreatePartnersRequestReasonsItem",
+    "SalesTaxExemptionsCreatePartnersRequestState",
+    "SalesTaxExemptionsCreatePartnersResponse",
+    "SalesTaxExemptionsListPartnersResponse",
+    "SalesTaxExemptionsListPartnersResponseItemsItem",
     "StatusesCreatePartnersResponse",
     "StatusesDeletePartnersResponse",
     "StatusesListPartnersResponse",

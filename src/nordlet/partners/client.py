@@ -72,6 +72,16 @@ from .types.list_partners_request_filter_item import ListPartnersRequestFilterIt
 from .types.list_partners_request_sort_item import ListPartnersRequestSortItem
 from .types.list_partners_response import ListPartnersResponse
 from .types.merge_partners_response import MergePartnersResponse
+from .types.sales_tax_exemptions_cancel_partners_response import SalesTaxExemptionsCancelPartnersResponse
+from .types.sales_tax_exemptions_create_partners_request_business_type import (
+    SalesTaxExemptionsCreatePartnersRequestBusinessType,
+)
+from .types.sales_tax_exemptions_create_partners_request_reasons_item import (
+    SalesTaxExemptionsCreatePartnersRequestReasonsItem,
+)
+from .types.sales_tax_exemptions_create_partners_request_state import SalesTaxExemptionsCreatePartnersRequestState
+from .types.sales_tax_exemptions_create_partners_response import SalesTaxExemptionsCreatePartnersResponse
+from .types.sales_tax_exemptions_list_partners_response import SalesTaxExemptionsListPartnersResponse
 from .types.statuses_create_partners_response import StatusesCreatePartnersResponse
 from .types.statuses_delete_partners_response import StatusesDeletePartnersResponse
 from .types.statuses_list_partners_response import StatusesListPartnersResponse
@@ -1004,6 +1014,177 @@ class PartnersClient:
         _response = self._raw_client.companies_house_get(company_number=company_number, request_options=request_options)
         return _response.data
 
+    def sales_tax_exemptions_create(
+        self,
+        *,
+        partner_id: str,
+        state: SalesTaxExemptionsCreatePartnersRequestState,
+        reasons: typing.Sequence[SalesTaxExemptionsCreatePartnersRequestReasonsItem],
+        business_type: SalesTaxExemptionsCreatePartnersRequestBusinessType,
+        id_number: str,
+        id_issued_by: str,
+        received_on: dt.date,
+        other_reason: typing.Optional[str] = OMIT,
+        reason_detail: typing.Optional[str] = OMIT,
+        other_business_type: typing.Optional[str] = OMIT,
+        single_purchase_reference: typing.Optional[str] = OMIT,
+        signed_by: typing.Optional[str] = OMIT,
+        signer_title: typing.Optional[str] = OMIT,
+        signed_on: typing.Optional[dt.date] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> SalesTaxExemptionsCreatePartnersResponse:
+        """
+        Records a US customer's Streamlined Sales Tax certificate of exemption (SSTGB form F0003) for one of its 24 member states (`state`, such as `US-OH`; 422 for another state and for a company outside the US): the reasons of section 4 (A to M; `otherReason` explains L), `reasonDetail` for the department, name or number the form asks with a reason, the business type of section 3 (01 to 20; `otherBusinessType` explains 20), the ID number of section 5 and the state or country that issued it, `singlePurchaseReference` (section 1: the purchase order number the certificate is for; unset makes it a blanket certificate), the signer (not needed for an electronic certificate) and `receivedOn`, the day the seller received it. An invoice or credit note with sales tax for that state is then charged no sales tax when the certificate covers it: received no later than 90 days after the issue date, not cancelled by then, for a single purchase only on the document whose `orderNumber` is the reference, and for a blanket certificate only while purchases under it are no more than 12 months apart.
+
+        Parameters
+        ----------
+        partner_id : str
+
+        state : SalesTaxExemptionsCreatePartnersRequestState
+
+        reasons : typing.Sequence[SalesTaxExemptionsCreatePartnersRequestReasonsItem]
+
+        business_type : SalesTaxExemptionsCreatePartnersRequestBusinessType
+
+        id_number : str
+
+        id_issued_by : str
+
+        received_on : dt.date
+
+        other_reason : typing.Optional[str]
+
+        reason_detail : typing.Optional[str]
+
+        other_business_type : typing.Optional[str]
+
+        single_purchase_reference : typing.Optional[str]
+
+        signed_by : typing.Optional[str]
+
+        signer_title : typing.Optional[str]
+
+        signed_on : typing.Optional[dt.date]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        SalesTaxExemptionsCreatePartnersResponse
+            Default Response
+
+        Examples
+        --------
+        import datetime
+
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.partners.sales_tax_exemptions_create(
+            partner_id="partnerId",
+            state="US-AR",
+            reasons=["A"],
+            business_type="10",
+            id_number="idNumber",
+            id_issued_by="idIssuedBy",
+            received_on=datetime.date.fromisoformat(
+                "2026-07-01",
+            ),
+        )
+        """
+        _response = self._raw_client.sales_tax_exemptions_create(
+            partner_id=partner_id,
+            state=state,
+            reasons=reasons,
+            business_type=business_type,
+            id_number=id_number,
+            id_issued_by=id_issued_by,
+            received_on=received_on,
+            other_reason=other_reason,
+            reason_detail=reason_detail,
+            other_business_type=other_business_type,
+            single_purchase_reference=single_purchase_reference,
+            signed_by=signed_by,
+            signer_title=signer_title,
+            signed_on=signed_on,
+            request_options=request_options,
+        )
+        return _response.data
+
+    def sales_tax_exemptions_list(
+        self, *, partner_id: typing.Optional[str] = OMIT, request_options: typing.Optional[RequestOptions] = None
+    ) -> SalesTaxExemptionsListPartnersResponse:
+        """
+        Lists the certificates of exemption recorded with `partners/sales-tax-exemptions/create`, of one partner when `partnerId` is given, by state and the day they were received. Answers 422 for a company outside the US.
+
+        Parameters
+        ----------
+        partner_id : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        SalesTaxExemptionsListPartnersResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.partners.sales_tax_exemptions_list()
+        """
+        _response = self._raw_client.sales_tax_exemptions_list(partner_id=partner_id, request_options=request_options)
+        return _response.data
+
+    def sales_tax_exemptions_cancel(
+        self, *, id: str, cancelled_on: dt.date, request_options: typing.Optional[RequestOptions] = None
+    ) -> SalesTaxExemptionsCancelPartnersResponse:
+        """
+        Records that the customer cancelled a certificate of exemption on `cancelledOn`; documents issued from that day are charged sales tax again. The certificate is kept for the records. Answers 404 for an unknown or already cancelled certificate and 422 for a company outside the US.
+
+        Parameters
+        ----------
+        id : str
+
+        cancelled_on : dt.date
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        SalesTaxExemptionsCancelPartnersResponse
+            Default Response
+
+        Examples
+        --------
+        import datetime
+
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.partners.sales_tax_exemptions_cancel(
+            id="id",
+            cancelled_on=datetime.date.fromisoformat(
+                "2026-07-01",
+            ),
+        )
+        """
+        _response = self._raw_client.sales_tax_exemptions_cancel(
+            id=id, cancelled_on=cancelled_on, request_options=request_options
+        )
+        return _response.data
+
     def vat_reviews_list(
         self,
         *,
@@ -1136,10 +1317,11 @@ class PartnersClient:
         is_group_member: typing.Optional[bool] = OMIT,
         is_active: typing.Optional[bool] = OMIT,
         legal_country_class: typing.Optional[CreatePartnersRequestLegalCountryClass] = OMIT,
+        identifiers: typing.Optional[typing.Dict[str, str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> CreatePartnersResponse:
         """
-        Creates a partner; without `isCustomer` it is a customer unless `isSupplier` is true. `groupId`, `statusId` and `priceListId` must belong to the company; without `legalCountryClass` the class is derived from the address country (`lt`, `eu` or `non_eu`); `documentRef` attaches an uploaded file that is not yet linked to a record; a `code` already used by a live partner of the company is refused with 409. A `vatCode` is checked at once against VIES, or a UK number with HMRC and the result stored on the partner: an invalid number, a VIES name that shares no word with the partner's name, or a VIES failure opens a VAT review (`vat_review.opened`), while a code that neither service can check is stored unchecked (see `partners/validate-vat`).
+        Creates a partner; without `isCustomer` it is a customer unless `isSupplier` is true. `groupId`, `statusId` and `priceListId` must belong to the company; without `legalCountryClass` the class is derived from the address country (`lt`, `eu` or `non_eu`); `documentRef` attaches an uploaded file that is not yet linked to a record; a `code` already used by a live partner of the company is refused with 409. A `vatCode` is checked at once against VIES, or a UK number with HMRC and the result stored on the partner: an invalid number, a VIES name that shares no word with the partner's name, or a VIES failure opens a VAT review (`vat_review.opened`), while a code that neither service can check is stored unchecked (see `partners/validate-vat`). An entry of `identifiers` that is not a partner identifier of the company's country or does not have its format is refused with 422.
 
         Parameters
         ----------
@@ -1220,6 +1402,9 @@ class PartnersClient:
 
         legal_country_class : typing.Optional[CreatePartnersRequestLegalCountryClass]
 
+        identifiers : typing.Optional[typing.Dict[str, str]]
+            Tax data of the partner by key, checked against the company's country: `tin` (US, Taxpayer identification number (TIN) from Form W-9, 9 digits); `tinType` (US, Type of the taxpayer identification number, SSN, EIN, ITIN or ATIN); `taxClassification` (US, Federal tax classification (Form W-9, line 3a), individual, c-corporation, s-corporation, partnership, trust-estate, llc-c, llc-s, llc-p, other); `nonemployeeCompensation` (US, Paid for services as nonemployee compensation (Form 1099-NEC, box 1), yes or no)
+
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
@@ -1277,6 +1462,7 @@ class PartnersClient:
             is_group_member=is_group_member,
             is_active=is_active,
             legal_country_class=legal_country_class,
+            identifiers=identifiers,
             request_options=request_options,
         )
         return _response.data
@@ -1321,6 +1507,7 @@ class PartnersClient:
         is_group_member: typing.Optional[bool] = OMIT,
         is_active: typing.Optional[bool] = OMIT,
         legal_country_class: typing.Optional[FindOrCreatePartnersRequestLegalCountryClass] = OMIT,
+        identifiers: typing.Optional[typing.Dict[str, str]] = OMIT,
         iban: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> FindOrCreatePartnersResponse:
@@ -1406,6 +1593,9 @@ class PartnersClient:
 
         legal_country_class : typing.Optional[FindOrCreatePartnersRequestLegalCountryClass]
 
+        identifiers : typing.Optional[typing.Dict[str, str]]
+            Tax data of the partner by key, checked against the company's country: `tin` (US, Taxpayer identification number (TIN) from Form W-9, 9 digits); `tinType` (US, Type of the taxpayer identification number, SSN, EIN, ITIN or ATIN); `taxClassification` (US, Federal tax classification (Form W-9, line 3a), individual, c-corporation, s-corporation, partnership, trust-estate, llc-c, llc-s, llc-p, other); `nonemployeeCompensation` (US, Paid for services as nonemployee compensation (Form 1099-NEC, box 1), yes or no)
+
         iban : typing.Optional[str]
 
         request_options : typing.Optional[RequestOptions]
@@ -1465,6 +1655,7 @@ class PartnersClient:
             is_group_member=is_group_member,
             is_active=is_active,
             legal_country_class=legal_country_class,
+            identifiers=identifiers,
             iban=iban,
             request_options=request_options,
         )
@@ -1541,10 +1732,11 @@ class PartnersClient:
         is_group_member: typing.Optional[bool] = OMIT,
         is_active: typing.Optional[bool] = OMIT,
         legal_country_class: typing.Optional[UpdatePartnersRequestLegalCountryClass] = OMIT,
+        identifiers: typing.Optional[typing.Dict[str, typing.Optional[str]]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> UpdatePartnersResponse:
         """
-        Changes the given fields of a partner; the clearable fields accept null. A new address country re-derives `legalCountryClass` unless the class is given, and a `code` already used by another live partner of the company is refused with 409. A changed `vatCode` resets the VIES result and is checked at once as in `partners/create`; a removed code, or one that neither service can check, resolves the partner's open VAT review as `superseded` (`vat_review.resolved`).
+        Changes the given fields of a partner; the clearable fields accept null. `identifiers` replaces the stored set (null clears it); an entry that is not a partner identifier of the company's country or does not have its format is refused with 422. A new address country re-derives `legalCountryClass` unless the class is given, and a `code` already used by another live partner of the company is refused with 409. A changed `vatCode` resets the VIES result and is checked at once as in `partners/create`; a removed code, or one that neither service can check, resolves the partner's open VAT review as `superseded` (`vat_review.resolved`).
 
         Parameters
         ----------
@@ -1627,6 +1819,9 @@ class PartnersClient:
 
         legal_country_class : typing.Optional[UpdatePartnersRequestLegalCountryClass]
 
+        identifiers : typing.Optional[typing.Dict[str, typing.Optional[str]]]
+            Tax data of the partner by key, checked against the company's country: `tin` (US, Taxpayer identification number (TIN) from Form W-9, 9 digits); `tinType` (US, Type of the taxpayer identification number, SSN, EIN, ITIN or ATIN); `taxClassification` (US, Federal tax classification (Form W-9, line 3a), individual, c-corporation, s-corporation, partnership, trust-estate, llc-c, llc-s, llc-p, other); `nonemployeeCompensation` (US, Paid for services as nonemployee compensation (Form 1099-NEC, box 1), yes or no)
+
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
@@ -1685,6 +1880,7 @@ class PartnersClient:
             is_group_member=is_group_member,
             is_active=is_active,
             legal_country_class=legal_country_class,
+            identifiers=identifiers,
             request_options=request_options,
         )
         return _response.data
@@ -3445,6 +3641,201 @@ class AsyncPartnersClient:
         )
         return _response.data
 
+    async def sales_tax_exemptions_create(
+        self,
+        *,
+        partner_id: str,
+        state: SalesTaxExemptionsCreatePartnersRequestState,
+        reasons: typing.Sequence[SalesTaxExemptionsCreatePartnersRequestReasonsItem],
+        business_type: SalesTaxExemptionsCreatePartnersRequestBusinessType,
+        id_number: str,
+        id_issued_by: str,
+        received_on: dt.date,
+        other_reason: typing.Optional[str] = OMIT,
+        reason_detail: typing.Optional[str] = OMIT,
+        other_business_type: typing.Optional[str] = OMIT,
+        single_purchase_reference: typing.Optional[str] = OMIT,
+        signed_by: typing.Optional[str] = OMIT,
+        signer_title: typing.Optional[str] = OMIT,
+        signed_on: typing.Optional[dt.date] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> SalesTaxExemptionsCreatePartnersResponse:
+        """
+        Records a US customer's Streamlined Sales Tax certificate of exemption (SSTGB form F0003) for one of its 24 member states (`state`, such as `US-OH`; 422 for another state and for a company outside the US): the reasons of section 4 (A to M; `otherReason` explains L), `reasonDetail` for the department, name or number the form asks with a reason, the business type of section 3 (01 to 20; `otherBusinessType` explains 20), the ID number of section 5 and the state or country that issued it, `singlePurchaseReference` (section 1: the purchase order number the certificate is for; unset makes it a blanket certificate), the signer (not needed for an electronic certificate) and `receivedOn`, the day the seller received it. An invoice or credit note with sales tax for that state is then charged no sales tax when the certificate covers it: received no later than 90 days after the issue date, not cancelled by then, for a single purchase only on the document whose `orderNumber` is the reference, and for a blanket certificate only while purchases under it are no more than 12 months apart.
+
+        Parameters
+        ----------
+        partner_id : str
+
+        state : SalesTaxExemptionsCreatePartnersRequestState
+
+        reasons : typing.Sequence[SalesTaxExemptionsCreatePartnersRequestReasonsItem]
+
+        business_type : SalesTaxExemptionsCreatePartnersRequestBusinessType
+
+        id_number : str
+
+        id_issued_by : str
+
+        received_on : dt.date
+
+        other_reason : typing.Optional[str]
+
+        reason_detail : typing.Optional[str]
+
+        other_business_type : typing.Optional[str]
+
+        single_purchase_reference : typing.Optional[str]
+
+        signed_by : typing.Optional[str]
+
+        signer_title : typing.Optional[str]
+
+        signed_on : typing.Optional[dt.date]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        SalesTaxExemptionsCreatePartnersResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+        import datetime
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.partners.sales_tax_exemptions_create(
+                partner_id="partnerId",
+                state="US-AR",
+                reasons=["A"],
+                business_type="10",
+                id_number="idNumber",
+                id_issued_by="idIssuedBy",
+                received_on=datetime.date.fromisoformat(
+                    "2026-07-01",
+                ),
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.sales_tax_exemptions_create(
+            partner_id=partner_id,
+            state=state,
+            reasons=reasons,
+            business_type=business_type,
+            id_number=id_number,
+            id_issued_by=id_issued_by,
+            received_on=received_on,
+            other_reason=other_reason,
+            reason_detail=reason_detail,
+            other_business_type=other_business_type,
+            single_purchase_reference=single_purchase_reference,
+            signed_by=signed_by,
+            signer_title=signer_title,
+            signed_on=signed_on,
+            request_options=request_options,
+        )
+        return _response.data
+
+    async def sales_tax_exemptions_list(
+        self, *, partner_id: typing.Optional[str] = OMIT, request_options: typing.Optional[RequestOptions] = None
+    ) -> SalesTaxExemptionsListPartnersResponse:
+        """
+        Lists the certificates of exemption recorded with `partners/sales-tax-exemptions/create`, of one partner when `partnerId` is given, by state and the day they were received. Answers 422 for a company outside the US.
+
+        Parameters
+        ----------
+        partner_id : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        SalesTaxExemptionsListPartnersResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.partners.sales_tax_exemptions_list()
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.sales_tax_exemptions_list(
+            partner_id=partner_id, request_options=request_options
+        )
+        return _response.data
+
+    async def sales_tax_exemptions_cancel(
+        self, *, id: str, cancelled_on: dt.date, request_options: typing.Optional[RequestOptions] = None
+    ) -> SalesTaxExemptionsCancelPartnersResponse:
+        """
+        Records that the customer cancelled a certificate of exemption on `cancelledOn`; documents issued from that day are charged sales tax again. The certificate is kept for the records. Answers 404 for an unknown or already cancelled certificate and 422 for a company outside the US.
+
+        Parameters
+        ----------
+        id : str
+
+        cancelled_on : dt.date
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        SalesTaxExemptionsCancelPartnersResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+        import datetime
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.partners.sales_tax_exemptions_cancel(
+                id="id",
+                cancelled_on=datetime.date.fromisoformat(
+                    "2026-07-01",
+                ),
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.sales_tax_exemptions_cancel(
+            id=id, cancelled_on=cancelled_on, request_options=request_options
+        )
+        return _response.data
+
     async def vat_reviews_list(
         self,
         *,
@@ -3593,10 +3984,11 @@ class AsyncPartnersClient:
         is_group_member: typing.Optional[bool] = OMIT,
         is_active: typing.Optional[bool] = OMIT,
         legal_country_class: typing.Optional[CreatePartnersRequestLegalCountryClass] = OMIT,
+        identifiers: typing.Optional[typing.Dict[str, str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> CreatePartnersResponse:
         """
-        Creates a partner; without `isCustomer` it is a customer unless `isSupplier` is true. `groupId`, `statusId` and `priceListId` must belong to the company; without `legalCountryClass` the class is derived from the address country (`lt`, `eu` or `non_eu`); `documentRef` attaches an uploaded file that is not yet linked to a record; a `code` already used by a live partner of the company is refused with 409. A `vatCode` is checked at once against VIES, or a UK number with HMRC and the result stored on the partner: an invalid number, a VIES name that shares no word with the partner's name, or a VIES failure opens a VAT review (`vat_review.opened`), while a code that neither service can check is stored unchecked (see `partners/validate-vat`).
+        Creates a partner; without `isCustomer` it is a customer unless `isSupplier` is true. `groupId`, `statusId` and `priceListId` must belong to the company; without `legalCountryClass` the class is derived from the address country (`lt`, `eu` or `non_eu`); `documentRef` attaches an uploaded file that is not yet linked to a record; a `code` already used by a live partner of the company is refused with 409. A `vatCode` is checked at once against VIES, or a UK number with HMRC and the result stored on the partner: an invalid number, a VIES name that shares no word with the partner's name, or a VIES failure opens a VAT review (`vat_review.opened`), while a code that neither service can check is stored unchecked (see `partners/validate-vat`). An entry of `identifiers` that is not a partner identifier of the company's country or does not have its format is refused with 422.
 
         Parameters
         ----------
@@ -3677,6 +4069,9 @@ class AsyncPartnersClient:
 
         legal_country_class : typing.Optional[CreatePartnersRequestLegalCountryClass]
 
+        identifiers : typing.Optional[typing.Dict[str, str]]
+            Tax data of the partner by key, checked against the company's country: `tin` (US, Taxpayer identification number (TIN) from Form W-9, 9 digits); `tinType` (US, Type of the taxpayer identification number, SSN, EIN, ITIN or ATIN); `taxClassification` (US, Federal tax classification (Form W-9, line 3a), individual, c-corporation, s-corporation, partnership, trust-estate, llc-c, llc-s, llc-p, other); `nonemployeeCompensation` (US, Paid for services as nonemployee compensation (Form 1099-NEC, box 1), yes or no)
+
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
@@ -3742,6 +4137,7 @@ class AsyncPartnersClient:
             is_group_member=is_group_member,
             is_active=is_active,
             legal_country_class=legal_country_class,
+            identifiers=identifiers,
             request_options=request_options,
         )
         return _response.data
@@ -3786,6 +4182,7 @@ class AsyncPartnersClient:
         is_group_member: typing.Optional[bool] = OMIT,
         is_active: typing.Optional[bool] = OMIT,
         legal_country_class: typing.Optional[FindOrCreatePartnersRequestLegalCountryClass] = OMIT,
+        identifiers: typing.Optional[typing.Dict[str, str]] = OMIT,
         iban: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> FindOrCreatePartnersResponse:
@@ -3871,6 +4268,9 @@ class AsyncPartnersClient:
 
         legal_country_class : typing.Optional[FindOrCreatePartnersRequestLegalCountryClass]
 
+        identifiers : typing.Optional[typing.Dict[str, str]]
+            Tax data of the partner by key, checked against the company's country: `tin` (US, Taxpayer identification number (TIN) from Form W-9, 9 digits); `tinType` (US, Type of the taxpayer identification number, SSN, EIN, ITIN or ATIN); `taxClassification` (US, Federal tax classification (Form W-9, line 3a), individual, c-corporation, s-corporation, partnership, trust-estate, llc-c, llc-s, llc-p, other); `nonemployeeCompensation` (US, Paid for services as nonemployee compensation (Form 1099-NEC, box 1), yes or no)
+
         iban : typing.Optional[str]
 
         request_options : typing.Optional[RequestOptions]
@@ -3938,6 +4338,7 @@ class AsyncPartnersClient:
             is_group_member=is_group_member,
             is_active=is_active,
             legal_country_class=legal_country_class,
+            identifiers=identifiers,
             iban=iban,
             request_options=request_options,
         )
@@ -4022,10 +4423,11 @@ class AsyncPartnersClient:
         is_group_member: typing.Optional[bool] = OMIT,
         is_active: typing.Optional[bool] = OMIT,
         legal_country_class: typing.Optional[UpdatePartnersRequestLegalCountryClass] = OMIT,
+        identifiers: typing.Optional[typing.Dict[str, typing.Optional[str]]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> UpdatePartnersResponse:
         """
-        Changes the given fields of a partner; the clearable fields accept null. A new address country re-derives `legalCountryClass` unless the class is given, and a `code` already used by another live partner of the company is refused with 409. A changed `vatCode` resets the VIES result and is checked at once as in `partners/create`; a removed code, or one that neither service can check, resolves the partner's open VAT review as `superseded` (`vat_review.resolved`).
+        Changes the given fields of a partner; the clearable fields accept null. `identifiers` replaces the stored set (null clears it); an entry that is not a partner identifier of the company's country or does not have its format is refused with 422. A new address country re-derives `legalCountryClass` unless the class is given, and a `code` already used by another live partner of the company is refused with 409. A changed `vatCode` resets the VIES result and is checked at once as in `partners/create`; a removed code, or one that neither service can check, resolves the partner's open VAT review as `superseded` (`vat_review.resolved`).
 
         Parameters
         ----------
@@ -4108,6 +4510,9 @@ class AsyncPartnersClient:
 
         legal_country_class : typing.Optional[UpdatePartnersRequestLegalCountryClass]
 
+        identifiers : typing.Optional[typing.Dict[str, typing.Optional[str]]]
+            Tax data of the partner by key, checked against the company's country: `tin` (US, Taxpayer identification number (TIN) from Form W-9, 9 digits); `tinType` (US, Type of the taxpayer identification number, SSN, EIN, ITIN or ATIN); `taxClassification` (US, Federal tax classification (Form W-9, line 3a), individual, c-corporation, s-corporation, partnership, trust-estate, llc-c, llc-s, llc-p, other); `nonemployeeCompensation` (US, Paid for services as nonemployee compensation (Form 1099-NEC, box 1), yes or no)
+
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
@@ -4174,6 +4579,7 @@ class AsyncPartnersClient:
             is_group_member=is_group_member,
             is_active=is_active,
             legal_country_class=legal_country_class,
+            identifiers=identifiers,
             request_options=request_options,
         )
         return _response.data

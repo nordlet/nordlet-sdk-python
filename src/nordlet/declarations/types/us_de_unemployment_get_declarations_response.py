@@ -9,6 +9,8 @@ from ...core.serialization import FieldMetadata
 from .us_de_unemployment_get_declarations_response_employees_item import (
     UsDeUnemploymentGetDeclarationsResponseEmployeesItem,
 )
+from .us_de_unemployment_get_declarations_response_uc8 import UsDeUnemploymentGetDeclarationsResponseUc8
+from .us_de_unemployment_get_declarations_response_uc8a import UsDeUnemploymentGetDeclarationsResponseUc8A
 
 
 class UsDeUnemploymentGetDeclarationsResponse(UniversalBaseModel):
@@ -23,6 +25,10 @@ class UsDeUnemploymentGetDeclarationsResponse(UniversalBaseModel):
     ]
     contributions: str
     employees: typing.List[UsDeUnemploymentGetDeclarationsResponseEmployeesItem]
+    uc8: UsDeUnemploymentGetDeclarationsResponseUc8
+    uc8a: UsDeUnemploymentGetDeclarationsResponseUc8A
+    warnings: typing.List[str]
+    source: str
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

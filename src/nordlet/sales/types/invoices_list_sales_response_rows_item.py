@@ -7,6 +7,7 @@ import pydantic
 import typing_extensions
 from ...core.pydantic_utilities import IS_PYDANTIC_V2, UniversalBaseModel
 from ...core.serialization import FieldMetadata
+from .invoices_list_sales_response_rows_item_delivery_address import InvoicesListSalesResponseRowsItemDeliveryAddress
 from .invoices_list_sales_response_rows_item_payment_status import InvoicesListSalesResponseRowsItemPaymentStatus
 from .invoices_list_sales_response_rows_item_status import InvoicesListSalesResponseRowsItemStatus
 from .invoices_list_sales_response_rows_item_type import InvoicesListSalesResponseRowsItemType
@@ -47,6 +48,17 @@ class InvoicesListSalesResponseRowsItem(UniversalBaseModel):
     sales_tax_total: typing_extensions.Annotated[
         str, FieldMetadata(alias="salesTaxTotal"), pydantic.Field(alias="salesTaxTotal")
     ]
+    sales_tax_jurisdiction: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="salesTaxJurisdiction"), pydantic.Field(alias="salesTaxJurisdiction")
+    ] = None
+    sales_tax_exemption_id: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="salesTaxExemptionId"), pydantic.Field(alias="salesTaxExemptionId")
+    ] = None
+    delivery_address: typing_extensions.Annotated[
+        typing.Optional[InvoicesListSalesResponseRowsItemDeliveryAddress],
+        FieldMetadata(alias="deliveryAddress"),
+        pydantic.Field(alias="deliveryAddress"),
+    ] = None
     paid_amount: typing_extensions.Annotated[str, FieldMetadata(alias="paidAmount"), pydantic.Field(alias="paidAmount")]
     journal_transaction_id: typing_extensions.Annotated[
         typing.Optional[str], FieldMetadata(alias="journalTransactionId"), pydantic.Field(alias="journalTransactionId")

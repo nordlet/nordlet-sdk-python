@@ -6,6 +6,7 @@ import pydantic
 import typing_extensions
 from ...core.pydantic_utilities import IS_PYDANTIC_V2, UniversalBaseModel
 from ...core.serialization import FieldMetadata
+from .us_de_withholding_get_declarations_response_wth_tax import UsDeWithholdingGetDeclarationsResponseWthTax
 
 
 class UsDeWithholdingGetDeclarationsResponse(UniversalBaseModel):
@@ -15,6 +16,9 @@ class UsDeWithholdingGetDeclarationsResponse(UniversalBaseModel):
     wages: str
     tax_withheld: typing_extensions.Annotated[
         str, FieldMetadata(alias="taxWithheld"), pydantic.Field(alias="taxWithheld")
+    ]
+    wth_tax: typing_extensions.Annotated[
+        UsDeWithholdingGetDeclarationsResponseWthTax, FieldMetadata(alias="wthTax"), pydantic.Field(alias="wthTax")
     ]
 
     if IS_PYDANTIC_V2:

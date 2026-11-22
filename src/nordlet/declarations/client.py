@@ -91,6 +91,14 @@ from .types.eu_vat_return_packs_list_declarations_response import EuVatReturnPac
 from .types.gb_corporation_tax_compute_declarations_response import GbCorporationTaxComputeDeclarationsResponse
 from .types.gb_hmrc_authorize_url_get_declarations_response import GbHmrcAuthorizeUrlGetDeclarationsResponse
 from .types.gb_hmrc_connect_declarations_response import GbHmrcConnectDeclarationsResponse
+from .types.gb_p11d_items_create_declarations_request_item import GbP11DItemsCreateDeclarationsRequestItem
+from .types.gb_p11d_items_create_declarations_response import GbP11DItemsCreateDeclarationsResponse
+from .types.gb_p11d_items_delete_declarations_response import GbP11DItemsDeleteDeclarationsResponse
+from .types.gb_p11d_items_list_declarations_response import GbP11DItemsListDeclarationsResponse
+from .types.gb_p45get_declarations_response import GbP45GetDeclarationsResponse
+from .types.gb_return_facts_get_declarations_response import GbReturnFactsGetDeclarationsResponse
+from .types.gb_return_facts_set_declarations_request_facts import GbReturnFactsSetDeclarationsRequestFacts
+from .types.gb_return_facts_set_declarations_response import GbReturnFactsSetDeclarationsResponse
 from .types.gb_vat_liabilities_list_declarations_request_device import GbVatLiabilitiesListDeclarationsRequestDevice
 from .types.gb_vat_liabilities_list_declarations_response import GbVatLiabilitiesListDeclarationsResponse
 from .types.gb_vat_obligations_list_declarations_request_device import GbVatObligationsListDeclarationsRequestDevice
@@ -190,6 +198,7 @@ from .types.tax_payments_update_declarations_request_kind import TaxPaymentsUpda
 from .types.tax_payments_update_declarations_response import TaxPaymentsUpdateDeclarationsResponse
 from .types.us940get_declarations_response import Us940GetDeclarationsResponse
 from .types.us941get_declarations_response import Us941GetDeclarationsResponse
+from .types.us1099nec_list_declarations_response import Us1099NecListDeclarationsResponse
 from .types.us_de_franchise_tax_compute_declarations_request_authorized_shares_item import (
     UsDeFranchiseTaxComputeDeclarationsRequestAuthorizedSharesItem,
 )
@@ -200,6 +209,12 @@ from .types.us_de_gross_receipts_get_declarations_request_activity import (
 from .types.us_de_gross_receipts_get_declarations_response import UsDeGrossReceiptsGetDeclarationsResponse
 from .types.us_de_unemployment_get_declarations_response import UsDeUnemploymentGetDeclarationsResponse
 from .types.us_de_withholding_get_declarations_response import UsDeWithholdingGetDeclarationsResponse
+from .types.us_de_withholding_reconciliation_get_declarations_response import (
+    UsDeWithholdingReconciliationGetDeclarationsResponse,
+)
+from .types.us_flsa_records_list_declarations_response import UsFlsaRecordsListDeclarationsResponse
+from .types.us_income_tax_return_get_declarations_response import UsIncomeTaxReturnGetDeclarationsResponse
+from .types.us_sales_tax_get_declarations_response import UsSalesTaxGetDeclarationsResponse
 from .types.us_state_sales_get_declarations_response import UsStateSalesGetDeclarationsResponse
 from .types.us_w2list_declarations_response import UsW2ListDeclarationsResponse
 from .types.us_workweeks_list_declarations_response import UsWorkweeksListDeclarationsResponse
@@ -3910,6 +3925,234 @@ class DeclarationsClient:
         )
         return _response.data
 
+    def gb_return_facts_get(
+        self, *, year: int, request_options: typing.Optional[RequestOptions] = None
+    ) -> GbReturnFactsGetDeclarationsResponse:
+        """
+        The facts of one accounting period that the Company Tax Return (CT600) and its computations need and the ledger does not hold: the company type (box 4), the associated companies, the small companies regime and the section 477 audit exemption of the accounts, the tax adjustments to the profit per the accounts, the capital allowances and balancing charges, the trading losses brought forward, the chargeable gains, the qualifying donations, the tax already paid, the declarant and the senior statutory auditor who signed the auditor’s report. The annual accounts to Companies House read the small companies regime, the section 477 audit exemption and the senior statutory auditor too. `year` is the fiscal year by the year in which it ends. A key that is absent has not been answered.
+
+        Parameters
+        ----------
+        year : int
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        GbReturnFactsGetDeclarationsResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.declarations.gb_return_facts_get(
+            year=1000000,
+        )
+        """
+        _response = self._raw_client.gb_return_facts_get(year=year, request_options=request_options)
+        return _response.data
+
+    def gb_return_facts_set(
+        self,
+        *,
+        year: int,
+        facts: GbReturnFactsSetDeclarationsRequestFacts,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> GbReturnFactsSetDeclarationsResponse:
+        """
+        Replace the facts of one accounting period for the Company Tax Return. The `gb-ct-return` and `gb-annual-accounts` filings built afterwards read them; a key left out stays unanswered.
+
+        Parameters
+        ----------
+        year : int
+
+        facts : GbReturnFactsSetDeclarationsRequestFacts
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        GbReturnFactsSetDeclarationsResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+        from nordlet.declarations import GbReturnFactsSetDeclarationsRequestFacts
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.declarations.gb_return_facts_set(
+            year=1000000,
+            facts=GbReturnFactsSetDeclarationsRequestFacts(),
+        )
+        """
+        _response = self._raw_client.gb_return_facts_set(year=year, facts=facts, request_options=request_options)
+        return _response.data
+
+    def gb_p11d_items_create(
+        self,
+        *,
+        employee_id: str,
+        tax_year: int,
+        item: GbP11DItemsCreateDeclarationsRequestItem,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> GbP11DItemsCreateDeclarationsResponse:
+        """
+        Records a benefit or expense of an employee that is not taxed through the payroll, for the P11D of the tax year that starts on 6 April of `taxYear`. `item.type` chooses the P11D section (A `asset-transferred`; B `payment`, `tax-on-notional-payments`; C `vouchers-or-credit-cards`; D `living-accommodation`; E `mileage-allowance`; F `car`; G `vans`; H `loan`; I `medical`; J `relocation`; K `services`; L `asset-available`; M `other-class-1a`, `other-non-class-1a`, `tax-paid-not-deducted`; N `expenses-travel-and-subsistence`, `expenses-entertainment`, `expenses-home-telephone`, `expenses-non-qualifying-relocation`, `expenses-other`). Amounts are the cash equivalents the employer works out; for a cost item the cash equivalent is the cost less the amount made good. The `gb-p11db` filing sends these P11Ds with the P11D(b), whose total benefit adds the items liable to Class 1A. Answers 422 for a rule of HMRC's business rules the item breaks and 409 for a second item of a kind HMRC takes once per employee.
+
+        Parameters
+        ----------
+        employee_id : str
+
+        tax_year : int
+
+        item : GbP11DItemsCreateDeclarationsRequestItem
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        GbP11DItemsCreateDeclarationsResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+        from nordlet.declarations import (
+            GbP11DItemsCreateDeclarationsRequestItem_AssetTransferred,
+        )
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.declarations.gb_p11d_items_create(
+            employee_id="employeeId",
+            tax_year=1000000,
+            item=GbP11DItemsCreateDeclarationsRequestItem_AssetTransferred(
+                asset="cars",
+                cost="121.00",
+                made_good="121.00",
+            ),
+        )
+        """
+        _response = self._raw_client.gb_p11d_items_create(
+            employee_id=employee_id, tax_year=tax_year, item=item, request_options=request_options
+        )
+        return _response.data
+
+    def gb_p11d_items_list(
+        self,
+        *,
+        tax_year: int,
+        employee_id: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> GbP11DItemsListDeclarationsResponse:
+        """
+        Lists the P11D items of a tax year, optionally of one employee, with their section, cash equivalent and whether they count for Class 1A.
+
+        Parameters
+        ----------
+        tax_year : int
+
+        employee_id : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        GbP11DItemsListDeclarationsResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.declarations.gb_p11d_items_list(
+            tax_year=1000000,
+        )
+        """
+        _response = self._raw_client.gb_p11d_items_list(
+            tax_year=tax_year, employee_id=employee_id, request_options=request_options
+        )
+        return _response.data
+
+    def gb_p11d_items_delete(
+        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> GbP11DItemsDeleteDeclarationsResponse:
+        """
+        Deletes a P11D item.
+
+        Parameters
+        ----------
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        GbP11DItemsDeleteDeclarationsResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.declarations.gb_p11d_items_delete(
+            id="id",
+        )
+        """
+        _response = self._raw_client.gb_p11d_items_delete(id=id, request_options=request_options)
+        return _response.data
+
+    def gb_p45get(
+        self, *, employee_id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> GbP45GetDeclarationsResponse:
+        """
+        Gives the P45 figures of an employee who has left (`terminationDate` set): the employer PAYE reference, the employee's National Insurance number, name, leaving date, payroll number, gender, date of birth and address, whether Student Loan deductions are to continue, the tax code at the leaving date with the Week 1/Month 1 mark, and the pay and tax of the tax year of the leaving date from the approved payroll runs. With a cumulative code the totals are the last entries of box 7 with the tax week or month of the last payment; with a Week 1/Month 1 code they are this employment's pay and tax of box 8. Nordlet does not print the P45 form.
+
+        Parameters
+        ----------
+        employee_id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        GbP45GetDeclarationsResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.declarations.gb_p45get(
+            employee_id="employeeId",
+        )
+        """
+        _response = self._raw_client.gb_p45get(employee_id=employee_id, request_options=request_options)
+        return _response.data
+
     def gb_vat_obligations_list(
         self,
         *,
@@ -4352,11 +4595,75 @@ class DeclarationsClient:
         _response = self._raw_client.us_w2list(year=year, request_options=request_options)
         return _response.data
 
+    def us_income_tax_return_get(
+        self, *, year: int, request_options: typing.Optional[RequestOptions] = None
+    ) -> UsIncomeTaxReturnGetDeclarationsResponse:
+        """
+        The federal income tax return of the fiscal year that ends in `year`, chosen by the legal form: Form 1120 for a corporation, Form 1120-S for an S corporation, Form 1065 for a partnership, and for an LLC the return of the filing option `usLlcTaxReturn`. `page1` gives the income and deduction lines filled from the statement rows of the form (`ledger/statement-rows/list` with `scheme`) and the total lines computed as the form says (Form 1120 lines 1c, 3, 11, 27 and 28; Form 1120-S lines 1c, 3, 6, 21 and 22; Form 1065 lines 1c, 3, 8, 16c, 22 and 23); line 1b is the debit balance of the returns and allowances accounts. `scheduleL` gives each Schedule L line at the beginning and end of the year, `otherLines` the Schedule K and M-1 lines. Answers 422 for a company outside the US, a sole proprietorship, and an LLC without `usLlcTaxReturn`.
+
+        Parameters
+        ----------
+        year : int
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        UsIncomeTaxReturnGetDeclarationsResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.declarations.us_income_tax_return_get(
+            year=1000000,
+        )
+        """
+        _response = self._raw_client.us_income_tax_return_get(year=year, request_options=request_options)
+        return _response.data
+
+    def us1099nec_list(
+        self, *, year: int, request_options: typing.Optional[RequestOptions] = None
+    ) -> Us1099NecListDeclarationsResponse:
+        """
+        The Forms 1099-NEC of a calendar year: one per partner marked with `identifiers.nonemployeeCompensation` = `yes` whose payments in the year reach the threshold (2026: $2,000), box 1 the payments on its registered purchase invoices less those on its credit notes, by payment date, in the company currency at the invoice rate, without settlements by credit note or advance. A partner whose Form W-9 tax classification is a C or S corporation (`c-corporation`, `s-corporation`, `llc-c`, `llc-s`) is listed in `excluded`. The recipient name type is `I` for a partner of type `person` and `B` otherwise. Answers 422 for a company outside the US and for a year whose threshold Nordlet does not have.
+
+        Parameters
+        ----------
+        year : int
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        Us1099NecListDeclarationsResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.declarations.us1099nec_list(
+            year=1000000,
+        )
+        """
+        _response = self._raw_client.us1099nec_list(year=year, request_options=request_options)
+        return _response.data
+
     def us_de_withholding_get(
         self, *, period: str, request_options: typing.Optional[RequestOptions] = None
     ) -> UsDeWithholdingGetDeclarationsResponse:
         """
-        The Delaware withholding of a month (YYYY-MM), a quarter (YYYY-Qn) or a year (YYYY, for the annual reconciliation) from the approved US payroll runs paid in it: the employees with Delaware income tax withheld, their wages and the tax withheld. Answers 422 for a company outside the US.
+        The Delaware withholding of a month (YYYY-MM), a quarter (YYYY-Qn) or a year (YYYY) from the approved US payroll runs paid in it: the employees with Delaware income tax withheld, their wages and the tax withheld, and `wthTax`, the boxes of Form WTH-TAX (taxpayer ID `deWithholdingAccount`, the tax period, line 1 the tax withheld, line 2 the amount remitted, here equal to line 1). Answers 422 for a company outside the US.
 
         Parameters
         ----------
@@ -4384,17 +4691,70 @@ class DeclarationsClient:
         _response = self._raw_client.us_de_withholding_get(period=period, request_options=request_options)
         return _response.data
 
+    def us_de_withholding_reconciliation_get(
+        self,
+        *,
+        year: int,
+        tax_paid: typing.Optional[typing.Sequence[str]] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> UsDeWithholdingReconciliationGetDeclarationsResponse:
+        """
+        The lines of the Delaware annual reconciliation, Form WTH-REC, of a year from the approved US payroll runs paid in it: line 1 the Delaware wages, line 2 the number of Forms W-2, line 3 the Delaware income tax withheld, and the withholding worksheet of tax withheld by month of the pay date. `taxPaid` is the tax paid to the Division of Revenue in each month, January to December; with it the response fills the tax paid column, line 4, line 5a (overpayment), line 5b (balance due) and line 6 (total remittance), without it those are null. Answers 422 for a company outside the US.
+
+        Parameters
+        ----------
+        year : int
+
+        tax_paid : typing.Optional[typing.Sequence[str]]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        UsDeWithholdingReconciliationGetDeclarationsResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.declarations.us_de_withholding_reconciliation_get(
+            year=1000000,
+        )
+        """
+        _response = self._raw_client.us_de_withholding_reconciliation_get(
+            year=year, tax_paid=tax_paid, request_options=request_options
+        )
+        return _response.data
+
     def us_de_unemployment_get(
-        self, *, year: int, quarter: int, request_options: typing.Optional[RequestOptions] = None
+        self,
+        *,
+        year: int,
+        quarter: int,
+        approved_credit: typing.Optional[str] = OMIT,
+        interest: typing.Optional[str] = OMIT,
+        penalty: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
     ) -> UsDeUnemploymentGetDeclarationsResponse:
         """
-        The Delaware unemployment insurance figures of a quarter from the approved US payroll runs paid in it, for the employees charged Delaware unemployment insurance: the total wages, the wages above each employee's yearly wage base, the taxable wages, the contributions, and each employee with the social security number (`personalCode`) and the wages of the quarter. Answers 422 for a company outside the US.
+        The Delaware unemployment insurance figures of a quarter from the approved US payroll runs paid in it, for the employees charged Delaware unemployment insurance: the total wages, the wages above each employee's yearly wage base, the taxable wages, the contributions, and each employee with the social security number (`personalCode`) and the wages of the quarter. `uc8` gives the lines of Form UC-8: line 1 the covered workers of each month in a payroll period that includes the 12th, lines 2 to 4 the gross covered, excess and taxable wages, line 5 the taxable wages multiplied by the rate of the runs, line 7 line 5 less line 6 and line 10 lines 7, 8 and 9; lines 6 (approved credit), 8 (interest) and 9 (penalty) are `approvedCredit`, `interest` and `penalty` when given, otherwise null and counted as zero. `uc8a` gives Form UC-8A in pages of 30 rows (social security number, first initial, last name, gross covered wages; Nordlet keeps no middle initial) with line 31 of each page, line 32 the total of the pages after the first and line 33 the grand total. Answers 422 for a company outside the US.
 
         Parameters
         ----------
         year : int
 
         quarter : int
+
+        approved_credit : typing.Optional[str]
+
+        interest : typing.Optional[str]
+
+        penalty : typing.Optional[str]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -4416,7 +4776,14 @@ class DeclarationsClient:
             quarter=1000000,
         )
         """
-        _response = self._raw_client.us_de_unemployment_get(year=year, quarter=quarter, request_options=request_options)
+        _response = self._raw_client.us_de_unemployment_get(
+            year=year,
+            quarter=quarter,
+            approved_credit=approved_credit,
+            interest=interest,
+            penalty=penalty,
+            request_options=request_options,
+        )
         return _response.data
 
     def us_de_gross_receipts_get(
@@ -4467,7 +4834,7 @@ class DeclarationsClient:
         self, *, from_: dt.date, to: dt.date, request_options: typing.Optional[RequestOptions] = None
     ) -> UsStateSalesGetDeclarationsResponse:
         """
-        The sales of a US company per state between two issue dates, to see where its sales may oblige it to collect a state's sales tax: the number and net amount of the issued sale invoices and credit notes (subtracted) by the state of the customer's address (`subdivision`, since invoices carry no delivery address), the sales to customers in the US without a state, and the sales to customers outside the US. Advance invoices are left out because the final invoice carries the sale; amounts in another currency are at the rate stored on the invoice, and an invoice without one is left out with a warning. Answers 422 for a company outside the US.
+        The sales of a US company per state between two issue dates, to see where its sales may oblige it to collect a state's sales tax: the number and net amount of the issued sale invoices and credit notes (subtracted) by the state of the document's `deliveryAddress`, else of the customer's address (`subdivision`), the sales delivered in the US without a state, and the sales delivered outside the US. Advance invoices are left out because the final invoice carries the sale; amounts in another currency are at the rate stored on the invoice, and an invoice without one is left out with a warning. Answers 422 for a company outside the US.
 
         Parameters
         ----------
@@ -4502,6 +4869,47 @@ class DeclarationsClient:
         )
         """
         _response = self._raw_client.us_state_sales_get(from_=from_, to=to, request_options=request_options)
+        return _response.data
+
+    def us_sales_tax_get(
+        self, *, from_: dt.date, to: dt.date, request_options: typing.Optional[RequestOptions] = None
+    ) -> UsSalesTaxGetDeclarationsResponse:
+        """
+        The sales tax a US company charged between two issue dates, per state (`salesTaxJurisdiction` of the document), for its state sales tax returns: the number of issued invoices and credit notes (subtracted) with sales tax, their net amount split into `taxableSales` and `exemptSales` (documents charged no sales tax under the customer's certificate of exemption, `salesTaxExemptionId`), and their sales tax, which `sales/invoices/issue` credited to the sales tax payable account. Amounts in another currency are at the rate stored on the document, and a document without one is left out with a warning. Answers 422 for a company outside the US.
+
+        Parameters
+        ----------
+        from_ : dt.date
+
+        to : dt.date
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        UsSalesTaxGetDeclarationsResponse
+            Default Response
+
+        Examples
+        --------
+        import datetime
+
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.declarations.us_sales_tax_get(
+            from_=datetime.date.fromisoformat(
+                "2026-07-01",
+            ),
+            to=datetime.date.fromisoformat(
+                "2026-07-01",
+            ),
+        )
+        """
+        _response = self._raw_client.us_sales_tax_get(from_=from_, to=to, request_options=request_options)
         return _response.data
 
     def us_de_franchise_tax_compute(
@@ -4607,6 +5015,56 @@ class DeclarationsClient:
         )
         """
         _response = self._raw_client.us_workweeks_list(
+            from_=from_, to=to, employee_id=employee_id, request_options=request_options
+        )
+        return _response.data
+
+    def us_flsa_records_list(
+        self,
+        *,
+        from_: dt.date,
+        to: dt.date,
+        employee_id: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> UsFlsaRecordsListDeclarationsResponse:
+        """
+        The payroll and time records that 29 CFR 516.2(a) requires for each employee of a US company (or the one `employeeId`) over the period: name and `code`, home address with zip code, date of birth when the employee is under 19 on `from`, `usSex`, the occupation (the position of a contract of the period), the day and time the workweek begins (`usWorkweekStart`, `usWorkweekStartTime`), the hours of each workday and workweek with the regular hourly rate of a workweek with overtime and the straight-time earnings of the workweek (hourly contracts), and for each approved payroll run that overlaps the period the basis of pay, the regular pay, the overtime pay and hours, the straight-time earnings and the overtime premium (the overtime pay less the overtime hours at the hourly rate), the additions and deductions, the total wages, the pay date and the pay period. Figures that need an hourly contract are null without one, with a warning; missing employee data is listed in `warnings`. Answers 422 for a company outside the US.
+
+        Parameters
+        ----------
+        from_ : dt.date
+
+        to : dt.date
+
+        employee_id : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        UsFlsaRecordsListDeclarationsResponse
+            Default Response
+
+        Examples
+        --------
+        import datetime
+
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.declarations.us_flsa_records_list(
+            from_=datetime.date.fromisoformat(
+                "2026-07-01",
+            ),
+            to=datetime.date.fromisoformat(
+                "2026-07-01",
+            ),
+        )
+        """
+        _response = self._raw_client.us_flsa_records_list(
             from_=from_, to=to, employee_id=employee_id, request_options=request_options
         )
         return _response.data
@@ -9509,6 +9967,282 @@ class AsyncDeclarationsClient:
         )
         return _response.data
 
+    async def gb_return_facts_get(
+        self, *, year: int, request_options: typing.Optional[RequestOptions] = None
+    ) -> GbReturnFactsGetDeclarationsResponse:
+        """
+        The facts of one accounting period that the Company Tax Return (CT600) and its computations need and the ledger does not hold: the company type (box 4), the associated companies, the small companies regime and the section 477 audit exemption of the accounts, the tax adjustments to the profit per the accounts, the capital allowances and balancing charges, the trading losses brought forward, the chargeable gains, the qualifying donations, the tax already paid, the declarant and the senior statutory auditor who signed the auditor’s report. The annual accounts to Companies House read the small companies regime, the section 477 audit exemption and the senior statutory auditor too. `year` is the fiscal year by the year in which it ends. A key that is absent has not been answered.
+
+        Parameters
+        ----------
+        year : int
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        GbReturnFactsGetDeclarationsResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.declarations.gb_return_facts_get(
+                year=1000000,
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.gb_return_facts_get(year=year, request_options=request_options)
+        return _response.data
+
+    async def gb_return_facts_set(
+        self,
+        *,
+        year: int,
+        facts: GbReturnFactsSetDeclarationsRequestFacts,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> GbReturnFactsSetDeclarationsResponse:
+        """
+        Replace the facts of one accounting period for the Company Tax Return. The `gb-ct-return` and `gb-annual-accounts` filings built afterwards read them; a key left out stays unanswered.
+
+        Parameters
+        ----------
+        year : int
+
+        facts : GbReturnFactsSetDeclarationsRequestFacts
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        GbReturnFactsSetDeclarationsResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+        from nordlet.declarations import GbReturnFactsSetDeclarationsRequestFacts
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.declarations.gb_return_facts_set(
+                year=1000000,
+                facts=GbReturnFactsSetDeclarationsRequestFacts(),
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.gb_return_facts_set(year=year, facts=facts, request_options=request_options)
+        return _response.data
+
+    async def gb_p11d_items_create(
+        self,
+        *,
+        employee_id: str,
+        tax_year: int,
+        item: GbP11DItemsCreateDeclarationsRequestItem,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> GbP11DItemsCreateDeclarationsResponse:
+        """
+        Records a benefit or expense of an employee that is not taxed through the payroll, for the P11D of the tax year that starts on 6 April of `taxYear`. `item.type` chooses the P11D section (A `asset-transferred`; B `payment`, `tax-on-notional-payments`; C `vouchers-or-credit-cards`; D `living-accommodation`; E `mileage-allowance`; F `car`; G `vans`; H `loan`; I `medical`; J `relocation`; K `services`; L `asset-available`; M `other-class-1a`, `other-non-class-1a`, `tax-paid-not-deducted`; N `expenses-travel-and-subsistence`, `expenses-entertainment`, `expenses-home-telephone`, `expenses-non-qualifying-relocation`, `expenses-other`). Amounts are the cash equivalents the employer works out; for a cost item the cash equivalent is the cost less the amount made good. The `gb-p11db` filing sends these P11Ds with the P11D(b), whose total benefit adds the items liable to Class 1A. Answers 422 for a rule of HMRC's business rules the item breaks and 409 for a second item of a kind HMRC takes once per employee.
+
+        Parameters
+        ----------
+        employee_id : str
+
+        tax_year : int
+
+        item : GbP11DItemsCreateDeclarationsRequestItem
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        GbP11DItemsCreateDeclarationsResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+        from nordlet.declarations import (
+            GbP11DItemsCreateDeclarationsRequestItem_AssetTransferred,
+        )
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.declarations.gb_p11d_items_create(
+                employee_id="employeeId",
+                tax_year=1000000,
+                item=GbP11DItemsCreateDeclarationsRequestItem_AssetTransferred(
+                    asset="cars",
+                    cost="121.00",
+                    made_good="121.00",
+                ),
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.gb_p11d_items_create(
+            employee_id=employee_id, tax_year=tax_year, item=item, request_options=request_options
+        )
+        return _response.data
+
+    async def gb_p11d_items_list(
+        self,
+        *,
+        tax_year: int,
+        employee_id: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> GbP11DItemsListDeclarationsResponse:
+        """
+        Lists the P11D items of a tax year, optionally of one employee, with their section, cash equivalent and whether they count for Class 1A.
+
+        Parameters
+        ----------
+        tax_year : int
+
+        employee_id : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        GbP11DItemsListDeclarationsResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.declarations.gb_p11d_items_list(
+                tax_year=1000000,
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.gb_p11d_items_list(
+            tax_year=tax_year, employee_id=employee_id, request_options=request_options
+        )
+        return _response.data
+
+    async def gb_p11d_items_delete(
+        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> GbP11DItemsDeleteDeclarationsResponse:
+        """
+        Deletes a P11D item.
+
+        Parameters
+        ----------
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        GbP11DItemsDeleteDeclarationsResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.declarations.gb_p11d_items_delete(
+                id="id",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.gb_p11d_items_delete(id=id, request_options=request_options)
+        return _response.data
+
+    async def gb_p45get(
+        self, *, employee_id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> GbP45GetDeclarationsResponse:
+        """
+        Gives the P45 figures of an employee who has left (`terminationDate` set): the employer PAYE reference, the employee's National Insurance number, name, leaving date, payroll number, gender, date of birth and address, whether Student Loan deductions are to continue, the tax code at the leaving date with the Week 1/Month 1 mark, and the pay and tax of the tax year of the leaving date from the approved payroll runs. With a cumulative code the totals are the last entries of box 7 with the tax week or month of the last payment; with a Week 1/Month 1 code they are this employment's pay and tax of box 8. Nordlet does not print the P45 form.
+
+        Parameters
+        ----------
+        employee_id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        GbP45GetDeclarationsResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.declarations.gb_p45get(
+                employee_id="employeeId",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.gb_p45get(employee_id=employee_id, request_options=request_options)
+        return _response.data
+
     async def gb_vat_obligations_list(
         self,
         *,
@@ -10013,11 +10747,91 @@ class AsyncDeclarationsClient:
         _response = await self._raw_client.us_w2list(year=year, request_options=request_options)
         return _response.data
 
+    async def us_income_tax_return_get(
+        self, *, year: int, request_options: typing.Optional[RequestOptions] = None
+    ) -> UsIncomeTaxReturnGetDeclarationsResponse:
+        """
+        The federal income tax return of the fiscal year that ends in `year`, chosen by the legal form: Form 1120 for a corporation, Form 1120-S for an S corporation, Form 1065 for a partnership, and for an LLC the return of the filing option `usLlcTaxReturn`. `page1` gives the income and deduction lines filled from the statement rows of the form (`ledger/statement-rows/list` with `scheme`) and the total lines computed as the form says (Form 1120 lines 1c, 3, 11, 27 and 28; Form 1120-S lines 1c, 3, 6, 21 and 22; Form 1065 lines 1c, 3, 8, 16c, 22 and 23); line 1b is the debit balance of the returns and allowances accounts. `scheduleL` gives each Schedule L line at the beginning and end of the year, `otherLines` the Schedule K and M-1 lines. Answers 422 for a company outside the US, a sole proprietorship, and an LLC without `usLlcTaxReturn`.
+
+        Parameters
+        ----------
+        year : int
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        UsIncomeTaxReturnGetDeclarationsResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.declarations.us_income_tax_return_get(
+                year=1000000,
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.us_income_tax_return_get(year=year, request_options=request_options)
+        return _response.data
+
+    async def us1099nec_list(
+        self, *, year: int, request_options: typing.Optional[RequestOptions] = None
+    ) -> Us1099NecListDeclarationsResponse:
+        """
+        The Forms 1099-NEC of a calendar year: one per partner marked with `identifiers.nonemployeeCompensation` = `yes` whose payments in the year reach the threshold (2026: $2,000), box 1 the payments on its registered purchase invoices less those on its credit notes, by payment date, in the company currency at the invoice rate, without settlements by credit note or advance. A partner whose Form W-9 tax classification is a C or S corporation (`c-corporation`, `s-corporation`, `llc-c`, `llc-s`) is listed in `excluded`. The recipient name type is `I` for a partner of type `person` and `B` otherwise. Answers 422 for a company outside the US and for a year whose threshold Nordlet does not have.
+
+        Parameters
+        ----------
+        year : int
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        Us1099NecListDeclarationsResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.declarations.us1099nec_list(
+                year=1000000,
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.us1099nec_list(year=year, request_options=request_options)
+        return _response.data
+
     async def us_de_withholding_get(
         self, *, period: str, request_options: typing.Optional[RequestOptions] = None
     ) -> UsDeWithholdingGetDeclarationsResponse:
         """
-        The Delaware withholding of a month (YYYY-MM), a quarter (YYYY-Qn) or a year (YYYY, for the annual reconciliation) from the approved US payroll runs paid in it: the employees with Delaware income tax withheld, their wages and the tax withheld. Answers 422 for a company outside the US.
+        The Delaware withholding of a month (YYYY-MM), a quarter (YYYY-Qn) or a year (YYYY) from the approved US payroll runs paid in it: the employees with Delaware income tax withheld, their wages and the tax withheld, and `wthTax`, the boxes of Form WTH-TAX (taxpayer ID `deWithholdingAccount`, the tax period, line 1 the tax withheld, line 2 the amount remitted, here equal to line 1). Answers 422 for a company outside the US.
 
         Parameters
         ----------
@@ -10053,17 +10867,78 @@ class AsyncDeclarationsClient:
         _response = await self._raw_client.us_de_withholding_get(period=period, request_options=request_options)
         return _response.data
 
+    async def us_de_withholding_reconciliation_get(
+        self,
+        *,
+        year: int,
+        tax_paid: typing.Optional[typing.Sequence[str]] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> UsDeWithholdingReconciliationGetDeclarationsResponse:
+        """
+        The lines of the Delaware annual reconciliation, Form WTH-REC, of a year from the approved US payroll runs paid in it: line 1 the Delaware wages, line 2 the number of Forms W-2, line 3 the Delaware income tax withheld, and the withholding worksheet of tax withheld by month of the pay date. `taxPaid` is the tax paid to the Division of Revenue in each month, January to December; with it the response fills the tax paid column, line 4, line 5a (overpayment), line 5b (balance due) and line 6 (total remittance), without it those are null. Answers 422 for a company outside the US.
+
+        Parameters
+        ----------
+        year : int
+
+        tax_paid : typing.Optional[typing.Sequence[str]]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        UsDeWithholdingReconciliationGetDeclarationsResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.declarations.us_de_withholding_reconciliation_get(
+                year=1000000,
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.us_de_withholding_reconciliation_get(
+            year=year, tax_paid=tax_paid, request_options=request_options
+        )
+        return _response.data
+
     async def us_de_unemployment_get(
-        self, *, year: int, quarter: int, request_options: typing.Optional[RequestOptions] = None
+        self,
+        *,
+        year: int,
+        quarter: int,
+        approved_credit: typing.Optional[str] = OMIT,
+        interest: typing.Optional[str] = OMIT,
+        penalty: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
     ) -> UsDeUnemploymentGetDeclarationsResponse:
         """
-        The Delaware unemployment insurance figures of a quarter from the approved US payroll runs paid in it, for the employees charged Delaware unemployment insurance: the total wages, the wages above each employee's yearly wage base, the taxable wages, the contributions, and each employee with the social security number (`personalCode`) and the wages of the quarter. Answers 422 for a company outside the US.
+        The Delaware unemployment insurance figures of a quarter from the approved US payroll runs paid in it, for the employees charged Delaware unemployment insurance: the total wages, the wages above each employee's yearly wage base, the taxable wages, the contributions, and each employee with the social security number (`personalCode`) and the wages of the quarter. `uc8` gives the lines of Form UC-8: line 1 the covered workers of each month in a payroll period that includes the 12th, lines 2 to 4 the gross covered, excess and taxable wages, line 5 the taxable wages multiplied by the rate of the runs, line 7 line 5 less line 6 and line 10 lines 7, 8 and 9; lines 6 (approved credit), 8 (interest) and 9 (penalty) are `approvedCredit`, `interest` and `penalty` when given, otherwise null and counted as zero. `uc8a` gives Form UC-8A in pages of 30 rows (social security number, first initial, last name, gross covered wages; Nordlet keeps no middle initial) with line 31 of each page, line 32 the total of the pages after the first and line 33 the grand total. Answers 422 for a company outside the US.
 
         Parameters
         ----------
         year : int
 
         quarter : int
+
+        approved_credit : typing.Optional[str]
+
+        interest : typing.Optional[str]
+
+        penalty : typing.Optional[str]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -10094,7 +10969,12 @@ class AsyncDeclarationsClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.us_de_unemployment_get(
-            year=year, quarter=quarter, request_options=request_options
+            year=year,
+            quarter=quarter,
+            approved_credit=approved_credit,
+            interest=interest,
+            penalty=penalty,
+            request_options=request_options,
         )
         return _response.data
 
@@ -10154,7 +11034,7 @@ class AsyncDeclarationsClient:
         self, *, from_: dt.date, to: dt.date, request_options: typing.Optional[RequestOptions] = None
     ) -> UsStateSalesGetDeclarationsResponse:
         """
-        The sales of a US company per state between two issue dates, to see where its sales may oblige it to collect a state's sales tax: the number and net amount of the issued sale invoices and credit notes (subtracted) by the state of the customer's address (`subdivision`, since invoices carry no delivery address), the sales to customers in the US without a state, and the sales to customers outside the US. Advance invoices are left out because the final invoice carries the sale; amounts in another currency are at the rate stored on the invoice, and an invoice without one is left out with a warning. Answers 422 for a company outside the US.
+        The sales of a US company per state between two issue dates, to see where its sales may oblige it to collect a state's sales tax: the number and net amount of the issued sale invoices and credit notes (subtracted) by the state of the document's `deliveryAddress`, else of the customer's address (`subdivision`), the sales delivered in the US without a state, and the sales delivered outside the US. Advance invoices are left out because the final invoice carries the sale; amounts in another currency are at the rate stored on the invoice, and an invoice without one is left out with a warning. Answers 422 for a company outside the US.
 
         Parameters
         ----------
@@ -10196,6 +11076,54 @@ class AsyncDeclarationsClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.us_state_sales_get(from_=from_, to=to, request_options=request_options)
+        return _response.data
+
+    async def us_sales_tax_get(
+        self, *, from_: dt.date, to: dt.date, request_options: typing.Optional[RequestOptions] = None
+    ) -> UsSalesTaxGetDeclarationsResponse:
+        """
+        The sales tax a US company charged between two issue dates, per state (`salesTaxJurisdiction` of the document), for its state sales tax returns: the number of issued invoices and credit notes (subtracted) with sales tax, their net amount split into `taxableSales` and `exemptSales` (documents charged no sales tax under the customer's certificate of exemption, `salesTaxExemptionId`), and their sales tax, which `sales/invoices/issue` credited to the sales tax payable account. Amounts in another currency are at the rate stored on the document, and a document without one is left out with a warning. Answers 422 for a company outside the US.
+
+        Parameters
+        ----------
+        from_ : dt.date
+
+        to : dt.date
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        UsSalesTaxGetDeclarationsResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+        import datetime
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.declarations.us_sales_tax_get(
+                from_=datetime.date.fromisoformat(
+                    "2026-07-01",
+                ),
+                to=datetime.date.fromisoformat(
+                    "2026-07-01",
+                ),
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.us_sales_tax_get(from_=from_, to=to, request_options=request_options)
         return _response.data
 
     async def us_de_franchise_tax_compute(
@@ -10316,6 +11244,63 @@ class AsyncDeclarationsClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.us_workweeks_list(
+            from_=from_, to=to, employee_id=employee_id, request_options=request_options
+        )
+        return _response.data
+
+    async def us_flsa_records_list(
+        self,
+        *,
+        from_: dt.date,
+        to: dt.date,
+        employee_id: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> UsFlsaRecordsListDeclarationsResponse:
+        """
+        The payroll and time records that 29 CFR 516.2(a) requires for each employee of a US company (or the one `employeeId`) over the period: name and `code`, home address with zip code, date of birth when the employee is under 19 on `from`, `usSex`, the occupation (the position of a contract of the period), the day and time the workweek begins (`usWorkweekStart`, `usWorkweekStartTime`), the hours of each workday and workweek with the regular hourly rate of a workweek with overtime and the straight-time earnings of the workweek (hourly contracts), and for each approved payroll run that overlaps the period the basis of pay, the regular pay, the overtime pay and hours, the straight-time earnings and the overtime premium (the overtime pay less the overtime hours at the hourly rate), the additions and deductions, the total wages, the pay date and the pay period. Figures that need an hourly contract are null without one, with a warning; missing employee data is listed in `warnings`. Answers 422 for a company outside the US.
+
+        Parameters
+        ----------
+        from_ : dt.date
+
+        to : dt.date
+
+        employee_id : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        UsFlsaRecordsListDeclarationsResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+        import datetime
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.declarations.us_flsa_records_list(
+                from_=datetime.date.fromisoformat(
+                    "2026-07-01",
+                ),
+                to=datetime.date.fromisoformat(
+                    "2026-07-01",
+                ),
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.us_flsa_records_list(
             from_=from_, to=to, employee_id=employee_id, request_options=request_options
         )
         return _response.data

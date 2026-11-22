@@ -57,6 +57,7 @@ from .types.invoices_apply_advance_sales_response import InvoicesApplyAdvanceSal
 from .types.invoices_card_payments_connect_sales_response import InvoicesCardPaymentsConnectSalesResponse
 from .types.invoices_card_payments_disconnect_sales_response import InvoicesCardPaymentsDisconnectSalesResponse
 from .types.invoices_card_payments_get_sales_response import InvoicesCardPaymentsGetSalesResponse
+from .types.invoices_create_sales_request_delivery_address import InvoicesCreateSalesRequestDeliveryAddress
 from .types.invoices_create_sales_request_lines_item import InvoicesCreateSalesRequestLinesItem
 from .types.invoices_create_sales_request_locale import InvoicesCreateSalesRequestLocale
 from .types.invoices_create_sales_request_type import InvoicesCreateSalesRequestType
@@ -84,6 +85,7 @@ from .types.invoices_reverse_sales_response import InvoicesReverseSalesResponse
 from .types.invoices_send_sales_request_locale import InvoicesSendSalesRequestLocale
 from .types.invoices_send_sales_response import InvoicesSendSalesResponse
 from .types.invoices_unlock_sales_response import InvoicesUnlockSalesResponse
+from .types.invoices_update_sales_request_delivery_address import InvoicesUpdateSalesRequestDeliveryAddress
 from .types.invoices_update_sales_request_lines_item import InvoicesUpdateSalesRequestLinesItem
 from .types.invoices_update_sales_request_locale import InvoicesUpdateSalesRequestLocale
 from .types.invoices_update_sales_request_vat_scheme import InvoicesUpdateSalesRequestVatScheme
@@ -166,6 +168,8 @@ class RawSalesClient:
         received_by_title: typing.Optional[str] = OMIT,
         discount_percent: typing.Optional[str] = OMIT,
         sales_tax_percent: typing.Optional[str] = OMIT,
+        sales_tax_jurisdiction: typing.Optional[str] = OMIT,
+        delivery_address: typing.Optional[InvoicesCreateSalesRequestDeliveryAddress] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[InvoicesCreateSalesResponse]:
         """
@@ -241,7 +245,13 @@ class RawSalesClient:
         discount_percent : typing.Optional[str]
 
         sales_tax_percent : typing.Optional[str]
-            Sales tax as a percent of the net total, added to the invoice total. It is not posted to the ledger and is left out of VAT and national tax reports. Invoices only.
+            Sales tax as a percent of the net total, added to the document total and posted to the sales tax payable account when the document is issued. US companies only (422 otherwise); invoices and credit notes only.
+
+        sales_tax_jurisdiction : typing.Optional[str]
+            The US state the sales tax is collected for, as an ISO 3166-2 code such as `US-CA`; unset means the state of `deliveryAddress` (422 when it has none), else the credited invoice's state for a credit note, else the state of the customer's address (422 without one). When the customer has a certificate of exemption for that state (`partners/sales-tax-exemptions/create`) that covers the sale, no sales tax is charged and the document keeps the certificate's id in `salesTaxExemptionId`.
+
+        delivery_address : typing.Optional[InvoicesCreateSalesRequestDeliveryAddress]
+            Where the goods or services are delivered, when not at the customer's address; it decides the state of the sales tax when `salesTaxJurisdiction` is not given.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -286,6 +296,10 @@ class RawSalesClient:
                 "receivedByTitle": received_by_title,
                 "discountPercent": discount_percent,
                 "salesTaxPercent": sales_tax_percent,
+                "salesTaxJurisdiction": sales_tax_jurisdiction,
+                "deliveryAddress": convert_and_respect_annotation_metadata(
+                    object_=delivery_address, annotation=InvoicesCreateSalesRequestDeliveryAddress, direction="write"
+                ),
                 "lines": convert_and_respect_annotation_metadata(
                     object_=lines, annotation=typing.Sequence[InvoicesCreateSalesRequestLinesItem], direction="write"
                 ),
@@ -2067,11 +2081,13 @@ class RawSalesClient:
         received_by_name: typing.Optional[str] = OMIT,
         received_by_title: typing.Optional[str] = OMIT,
         sales_tax_percent: typing.Optional[str] = OMIT,
+        sales_tax_jurisdiction: typing.Optional[str] = OMIT,
+        delivery_address: typing.Optional[InvoicesUpdateSalesRequestDeliveryAddress] = OMIT,
         lines: typing.Optional[typing.Sequence[InvoicesUpdateSalesRequestLinesItem]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[InvoicesUpdateSalesResponse]:
         """
-        Change a draft sale document. Fields left out keep their value, `lines` replaces every line, a changed `discountPercent` recomputes the existing lines, and `salesTaxPercent` (invoices only, null removes it) recomputes the sales tax and the total. Answers 409 when the document is issued or locked, and 422 under the checks of `sales/invoices/create` (the credited document's partner and currency, the OSS and IOSS country, VAT on the lines, the operation type and document series).
+        Change a draft sale document. Fields left out keep their value, `lines` replaces every line, a changed `discountPercent` recomputes the existing lines, and `salesTaxPercent` (US companies, invoices and credit notes only, null removes it) recomputes the sales tax and the total; `salesTaxJurisdiction` is resolved again as in `sales/invoices/create` when the partner, the delivery address, the percent or the jurisdiction changes; `deliveryAddress` null removes it. Answers 409 when the document is issued or locked, and 422 under the checks of `sales/invoices/create` (the credited document's partner and currency, the OSS and IOSS country, VAT on the lines, the operation type and document series).
 
         Parameters
         ----------
@@ -2129,6 +2145,11 @@ class RawSalesClient:
 
         sales_tax_percent : typing.Optional[str]
 
+        sales_tax_jurisdiction : typing.Optional[str]
+            The US state the sales tax is collected for, as an ISO 3166-2 code such as `US-CA`
+
+        delivery_address : typing.Optional[InvoicesUpdateSalesRequestDeliveryAddress]
+
         lines : typing.Optional[typing.Sequence[InvoicesUpdateSalesRequestLinesItem]]
 
         request_options : typing.Optional[RequestOptions]
@@ -2170,6 +2191,12 @@ class RawSalesClient:
                 "receivedByName": received_by_name,
                 "receivedByTitle": received_by_title,
                 "salesTaxPercent": sales_tax_percent,
+                "salesTaxJurisdiction": sales_tax_jurisdiction,
+                "deliveryAddress": convert_and_respect_annotation_metadata(
+                    object_=delivery_address,
+                    annotation=typing.Optional[InvoicesUpdateSalesRequestDeliveryAddress],
+                    direction="write",
+                ),
                 "lines": convert_and_respect_annotation_metadata(
                     object_=lines, annotation=typing.Sequence[InvoicesUpdateSalesRequestLinesItem], direction="write"
                 ),
@@ -9873,6 +9900,8 @@ class AsyncRawSalesClient:
         received_by_title: typing.Optional[str] = OMIT,
         discount_percent: typing.Optional[str] = OMIT,
         sales_tax_percent: typing.Optional[str] = OMIT,
+        sales_tax_jurisdiction: typing.Optional[str] = OMIT,
+        delivery_address: typing.Optional[InvoicesCreateSalesRequestDeliveryAddress] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[InvoicesCreateSalesResponse]:
         """
@@ -9948,7 +9977,13 @@ class AsyncRawSalesClient:
         discount_percent : typing.Optional[str]
 
         sales_tax_percent : typing.Optional[str]
-            Sales tax as a percent of the net total, added to the invoice total. It is not posted to the ledger and is left out of VAT and national tax reports. Invoices only.
+            Sales tax as a percent of the net total, added to the document total and posted to the sales tax payable account when the document is issued. US companies only (422 otherwise); invoices and credit notes only.
+
+        sales_tax_jurisdiction : typing.Optional[str]
+            The US state the sales tax is collected for, as an ISO 3166-2 code such as `US-CA`; unset means the state of `deliveryAddress` (422 when it has none), else the credited invoice's state for a credit note, else the state of the customer's address (422 without one). When the customer has a certificate of exemption for that state (`partners/sales-tax-exemptions/create`) that covers the sale, no sales tax is charged and the document keeps the certificate's id in `salesTaxExemptionId`.
+
+        delivery_address : typing.Optional[InvoicesCreateSalesRequestDeliveryAddress]
+            Where the goods or services are delivered, when not at the customer's address; it decides the state of the sales tax when `salesTaxJurisdiction` is not given.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -9993,6 +10028,10 @@ class AsyncRawSalesClient:
                 "receivedByTitle": received_by_title,
                 "discountPercent": discount_percent,
                 "salesTaxPercent": sales_tax_percent,
+                "salesTaxJurisdiction": sales_tax_jurisdiction,
+                "deliveryAddress": convert_and_respect_annotation_metadata(
+                    object_=delivery_address, annotation=InvoicesCreateSalesRequestDeliveryAddress, direction="write"
+                ),
                 "lines": convert_and_respect_annotation_metadata(
                     object_=lines, annotation=typing.Sequence[InvoicesCreateSalesRequestLinesItem], direction="write"
                 ),
@@ -11774,11 +11813,13 @@ class AsyncRawSalesClient:
         received_by_name: typing.Optional[str] = OMIT,
         received_by_title: typing.Optional[str] = OMIT,
         sales_tax_percent: typing.Optional[str] = OMIT,
+        sales_tax_jurisdiction: typing.Optional[str] = OMIT,
+        delivery_address: typing.Optional[InvoicesUpdateSalesRequestDeliveryAddress] = OMIT,
         lines: typing.Optional[typing.Sequence[InvoicesUpdateSalesRequestLinesItem]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[InvoicesUpdateSalesResponse]:
         """
-        Change a draft sale document. Fields left out keep their value, `lines` replaces every line, a changed `discountPercent` recomputes the existing lines, and `salesTaxPercent` (invoices only, null removes it) recomputes the sales tax and the total. Answers 409 when the document is issued or locked, and 422 under the checks of `sales/invoices/create` (the credited document's partner and currency, the OSS and IOSS country, VAT on the lines, the operation type and document series).
+        Change a draft sale document. Fields left out keep their value, `lines` replaces every line, a changed `discountPercent` recomputes the existing lines, and `salesTaxPercent` (US companies, invoices and credit notes only, null removes it) recomputes the sales tax and the total; `salesTaxJurisdiction` is resolved again as in `sales/invoices/create` when the partner, the delivery address, the percent or the jurisdiction changes; `deliveryAddress` null removes it. Answers 409 when the document is issued or locked, and 422 under the checks of `sales/invoices/create` (the credited document's partner and currency, the OSS and IOSS country, VAT on the lines, the operation type and document series).
 
         Parameters
         ----------
@@ -11836,6 +11877,11 @@ class AsyncRawSalesClient:
 
         sales_tax_percent : typing.Optional[str]
 
+        sales_tax_jurisdiction : typing.Optional[str]
+            The US state the sales tax is collected for, as an ISO 3166-2 code such as `US-CA`
+
+        delivery_address : typing.Optional[InvoicesUpdateSalesRequestDeliveryAddress]
+
         lines : typing.Optional[typing.Sequence[InvoicesUpdateSalesRequestLinesItem]]
 
         request_options : typing.Optional[RequestOptions]
@@ -11877,6 +11923,12 @@ class AsyncRawSalesClient:
                 "receivedByName": received_by_name,
                 "receivedByTitle": received_by_title,
                 "salesTaxPercent": sales_tax_percent,
+                "salesTaxJurisdiction": sales_tax_jurisdiction,
+                "deliveryAddress": convert_and_respect_annotation_metadata(
+                    object_=delivery_address,
+                    annotation=typing.Optional[InvoicesUpdateSalesRequestDeliveryAddress],
+                    direction="write",
+                ),
                 "lines": convert_and_respect_annotation_metadata(
                     object_=lines, annotation=typing.Sequence[InvoicesUpdateSalesRequestLinesItem], direction="write"
                 ),

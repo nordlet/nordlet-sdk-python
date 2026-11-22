@@ -424,6 +424,336 @@ if typing.TYPE_CHECKING:
     )
     from .gb_hmrc_authorize_url_get_declarations_response import GbHmrcAuthorizeUrlGetDeclarationsResponse
     from .gb_hmrc_connect_declarations_response import GbHmrcConnectDeclarationsResponse
+    from .gb_p11d_items_create_declarations_request_item import (
+        GbP11DItemsCreateDeclarationsRequestItem,
+        GbP11DItemsCreateDeclarationsRequestItem_AssetAvailable,
+        GbP11DItemsCreateDeclarationsRequestItem_AssetTransferred,
+        GbP11DItemsCreateDeclarationsRequestItem_Car,
+        GbP11DItemsCreateDeclarationsRequestItem_ExpensesEntertainment,
+        GbP11DItemsCreateDeclarationsRequestItem_ExpensesHomeTelephone,
+        GbP11DItemsCreateDeclarationsRequestItem_ExpensesNonQualifyingRelocation,
+        GbP11DItemsCreateDeclarationsRequestItem_ExpensesOther,
+        GbP11DItemsCreateDeclarationsRequestItem_ExpensesTravelAndSubsistence,
+        GbP11DItemsCreateDeclarationsRequestItem_LivingAccommodation,
+        GbP11DItemsCreateDeclarationsRequestItem_Loan,
+        GbP11DItemsCreateDeclarationsRequestItem_Medical,
+        GbP11DItemsCreateDeclarationsRequestItem_MileageAllowance,
+        GbP11DItemsCreateDeclarationsRequestItem_OtherClass1A,
+        GbP11DItemsCreateDeclarationsRequestItem_OtherNonClass1A,
+        GbP11DItemsCreateDeclarationsRequestItem_Payment,
+        GbP11DItemsCreateDeclarationsRequestItem_Relocation,
+        GbP11DItemsCreateDeclarationsRequestItem_Services,
+        GbP11DItemsCreateDeclarationsRequestItem_TaxOnNotionalPayments,
+        GbP11DItemsCreateDeclarationsRequestItem_TaxPaidNotDeducted,
+        GbP11DItemsCreateDeclarationsRequestItem_Vans,
+        GbP11DItemsCreateDeclarationsRequestItem_VouchersOrCreditCards,
+    )
+    from .gb_p11d_items_create_declarations_request_item_asset_available import (
+        GbP11DItemsCreateDeclarationsRequestItemAssetAvailable,
+    )
+    from .gb_p11d_items_create_declarations_request_item_asset_available_asset import (
+        GbP11DItemsCreateDeclarationsRequestItemAssetAvailableAsset,
+    )
+    from .gb_p11d_items_create_declarations_request_item_asset_transferred import (
+        GbP11DItemsCreateDeclarationsRequestItemAssetTransferred,
+    )
+    from .gb_p11d_items_create_declarations_request_item_asset_transferred_asset import (
+        GbP11DItemsCreateDeclarationsRequestItemAssetTransferredAsset,
+    )
+    from .gb_p11d_items_create_declarations_request_item_car import GbP11DItemsCreateDeclarationsRequestItemCar
+    from .gb_p11d_items_create_declarations_request_item_car_fuel import GbP11DItemsCreateDeclarationsRequestItemCarFuel
+    from .gb_p11d_items_create_declarations_request_item_expenses_entertainment import (
+        GbP11DItemsCreateDeclarationsRequestItemExpensesEntertainment,
+    )
+    from .gb_p11d_items_create_declarations_request_item_expenses_home_telephone import (
+        GbP11DItemsCreateDeclarationsRequestItemExpensesHomeTelephone,
+    )
+    from .gb_p11d_items_create_declarations_request_item_expenses_non_qualifying_relocation import (
+        GbP11DItemsCreateDeclarationsRequestItemExpensesNonQualifyingRelocation,
+    )
+    from .gb_p11d_items_create_declarations_request_item_expenses_other import (
+        GbP11DItemsCreateDeclarationsRequestItemExpensesOther,
+    )
+    from .gb_p11d_items_create_declarations_request_item_expenses_travel_and_subsistence import (
+        GbP11DItemsCreateDeclarationsRequestItemExpensesTravelAndSubsistence,
+    )
+    from .gb_p11d_items_create_declarations_request_item_living_accommodation import (
+        GbP11DItemsCreateDeclarationsRequestItemLivingAccommodation,
+    )
+    from .gb_p11d_items_create_declarations_request_item_loan import GbP11DItemsCreateDeclarationsRequestItemLoan
+    from .gb_p11d_items_create_declarations_request_item_medical import GbP11DItemsCreateDeclarationsRequestItemMedical
+    from .gb_p11d_items_create_declarations_request_item_mileage_allowance import (
+        GbP11DItemsCreateDeclarationsRequestItemMileageAllowance,
+    )
+    from .gb_p11d_items_create_declarations_request_item_other_class1a import (
+        GbP11DItemsCreateDeclarationsRequestItemOtherClass1A,
+    )
+    from .gb_p11d_items_create_declarations_request_item_other_class1a_item import (
+        GbP11DItemsCreateDeclarationsRequestItemOtherClass1AItem,
+    )
+    from .gb_p11d_items_create_declarations_request_item_other_non_class1a import (
+        GbP11DItemsCreateDeclarationsRequestItemOtherNonClass1A,
+    )
+    from .gb_p11d_items_create_declarations_request_item_other_non_class1a_item import (
+        GbP11DItemsCreateDeclarationsRequestItemOtherNonClass1AItem,
+    )
+    from .gb_p11d_items_create_declarations_request_item_payment import GbP11DItemsCreateDeclarationsRequestItemPayment
+    from .gb_p11d_items_create_declarations_request_item_payment_payment import (
+        GbP11DItemsCreateDeclarationsRequestItemPaymentPayment,
+    )
+    from .gb_p11d_items_create_declarations_request_item_relocation import (
+        GbP11DItemsCreateDeclarationsRequestItemRelocation,
+    )
+    from .gb_p11d_items_create_declarations_request_item_services import (
+        GbP11DItemsCreateDeclarationsRequestItemServices,
+    )
+    from .gb_p11d_items_create_declarations_request_item_tax_on_notional_payments import (
+        GbP11DItemsCreateDeclarationsRequestItemTaxOnNotionalPayments,
+    )
+    from .gb_p11d_items_create_declarations_request_item_tax_paid_not_deducted import (
+        GbP11DItemsCreateDeclarationsRequestItemTaxPaidNotDeducted,
+    )
+    from .gb_p11d_items_create_declarations_request_item_vans import GbP11DItemsCreateDeclarationsRequestItemVans
+    from .gb_p11d_items_create_declarations_request_item_vouchers_or_credit_cards import (
+        GbP11DItemsCreateDeclarationsRequestItemVouchersOrCreditCards,
+    )
+    from .gb_p11d_items_create_declarations_response import GbP11DItemsCreateDeclarationsResponse
+    from .gb_p11d_items_create_declarations_response_item import (
+        GbP11DItemsCreateDeclarationsResponseItem,
+        GbP11DItemsCreateDeclarationsResponseItem_AssetAvailable,
+        GbP11DItemsCreateDeclarationsResponseItem_AssetTransferred,
+        GbP11DItemsCreateDeclarationsResponseItem_Car,
+        GbP11DItemsCreateDeclarationsResponseItem_ExpensesEntertainment,
+        GbP11DItemsCreateDeclarationsResponseItem_ExpensesHomeTelephone,
+        GbP11DItemsCreateDeclarationsResponseItem_ExpensesNonQualifyingRelocation,
+        GbP11DItemsCreateDeclarationsResponseItem_ExpensesOther,
+        GbP11DItemsCreateDeclarationsResponseItem_ExpensesTravelAndSubsistence,
+        GbP11DItemsCreateDeclarationsResponseItem_LivingAccommodation,
+        GbP11DItemsCreateDeclarationsResponseItem_Loan,
+        GbP11DItemsCreateDeclarationsResponseItem_Medical,
+        GbP11DItemsCreateDeclarationsResponseItem_MileageAllowance,
+        GbP11DItemsCreateDeclarationsResponseItem_OtherClass1A,
+        GbP11DItemsCreateDeclarationsResponseItem_OtherNonClass1A,
+        GbP11DItemsCreateDeclarationsResponseItem_Payment,
+        GbP11DItemsCreateDeclarationsResponseItem_Relocation,
+        GbP11DItemsCreateDeclarationsResponseItem_Services,
+        GbP11DItemsCreateDeclarationsResponseItem_TaxOnNotionalPayments,
+        GbP11DItemsCreateDeclarationsResponseItem_TaxPaidNotDeducted,
+        GbP11DItemsCreateDeclarationsResponseItem_Vans,
+        GbP11DItemsCreateDeclarationsResponseItem_VouchersOrCreditCards,
+    )
+    from .gb_p11d_items_create_declarations_response_item_asset_available import (
+        GbP11DItemsCreateDeclarationsResponseItemAssetAvailable,
+    )
+    from .gb_p11d_items_create_declarations_response_item_asset_available_asset import (
+        GbP11DItemsCreateDeclarationsResponseItemAssetAvailableAsset,
+    )
+    from .gb_p11d_items_create_declarations_response_item_asset_transferred import (
+        GbP11DItemsCreateDeclarationsResponseItemAssetTransferred,
+    )
+    from .gb_p11d_items_create_declarations_response_item_asset_transferred_asset import (
+        GbP11DItemsCreateDeclarationsResponseItemAssetTransferredAsset,
+    )
+    from .gb_p11d_items_create_declarations_response_item_car import GbP11DItemsCreateDeclarationsResponseItemCar
+    from .gb_p11d_items_create_declarations_response_item_car_fuel import (
+        GbP11DItemsCreateDeclarationsResponseItemCarFuel,
+    )
+    from .gb_p11d_items_create_declarations_response_item_expenses_entertainment import (
+        GbP11DItemsCreateDeclarationsResponseItemExpensesEntertainment,
+    )
+    from .gb_p11d_items_create_declarations_response_item_expenses_home_telephone import (
+        GbP11DItemsCreateDeclarationsResponseItemExpensesHomeTelephone,
+    )
+    from .gb_p11d_items_create_declarations_response_item_expenses_non_qualifying_relocation import (
+        GbP11DItemsCreateDeclarationsResponseItemExpensesNonQualifyingRelocation,
+    )
+    from .gb_p11d_items_create_declarations_response_item_expenses_other import (
+        GbP11DItemsCreateDeclarationsResponseItemExpensesOther,
+    )
+    from .gb_p11d_items_create_declarations_response_item_expenses_travel_and_subsistence import (
+        GbP11DItemsCreateDeclarationsResponseItemExpensesTravelAndSubsistence,
+    )
+    from .gb_p11d_items_create_declarations_response_item_living_accommodation import (
+        GbP11DItemsCreateDeclarationsResponseItemLivingAccommodation,
+    )
+    from .gb_p11d_items_create_declarations_response_item_loan import GbP11DItemsCreateDeclarationsResponseItemLoan
+    from .gb_p11d_items_create_declarations_response_item_medical import (
+        GbP11DItemsCreateDeclarationsResponseItemMedical,
+    )
+    from .gb_p11d_items_create_declarations_response_item_mileage_allowance import (
+        GbP11DItemsCreateDeclarationsResponseItemMileageAllowance,
+    )
+    from .gb_p11d_items_create_declarations_response_item_other_class1a import (
+        GbP11DItemsCreateDeclarationsResponseItemOtherClass1A,
+    )
+    from .gb_p11d_items_create_declarations_response_item_other_class1a_item import (
+        GbP11DItemsCreateDeclarationsResponseItemOtherClass1AItem,
+    )
+    from .gb_p11d_items_create_declarations_response_item_other_non_class1a import (
+        GbP11DItemsCreateDeclarationsResponseItemOtherNonClass1A,
+    )
+    from .gb_p11d_items_create_declarations_response_item_other_non_class1a_item import (
+        GbP11DItemsCreateDeclarationsResponseItemOtherNonClass1AItem,
+    )
+    from .gb_p11d_items_create_declarations_response_item_payment import (
+        GbP11DItemsCreateDeclarationsResponseItemPayment,
+    )
+    from .gb_p11d_items_create_declarations_response_item_payment_payment import (
+        GbP11DItemsCreateDeclarationsResponseItemPaymentPayment,
+    )
+    from .gb_p11d_items_create_declarations_response_item_relocation import (
+        GbP11DItemsCreateDeclarationsResponseItemRelocation,
+    )
+    from .gb_p11d_items_create_declarations_response_item_services import (
+        GbP11DItemsCreateDeclarationsResponseItemServices,
+    )
+    from .gb_p11d_items_create_declarations_response_item_tax_on_notional_payments import (
+        GbP11DItemsCreateDeclarationsResponseItemTaxOnNotionalPayments,
+    )
+    from .gb_p11d_items_create_declarations_response_item_tax_paid_not_deducted import (
+        GbP11DItemsCreateDeclarationsResponseItemTaxPaidNotDeducted,
+    )
+    from .gb_p11d_items_create_declarations_response_item_vans import GbP11DItemsCreateDeclarationsResponseItemVans
+    from .gb_p11d_items_create_declarations_response_item_vouchers_or_credit_cards import (
+        GbP11DItemsCreateDeclarationsResponseItemVouchersOrCreditCards,
+    )
+    from .gb_p11d_items_delete_declarations_response import GbP11DItemsDeleteDeclarationsResponse
+    from .gb_p11d_items_list_declarations_response import GbP11DItemsListDeclarationsResponse
+    from .gb_p11d_items_list_declarations_response_items_item import GbP11DItemsListDeclarationsResponseItemsItem
+    from .gb_p11d_items_list_declarations_response_items_item_item import (
+        GbP11DItemsListDeclarationsResponseItemsItemItem,
+        GbP11DItemsListDeclarationsResponseItemsItemItem_AssetAvailable,
+        GbP11DItemsListDeclarationsResponseItemsItemItem_AssetTransferred,
+        GbP11DItemsListDeclarationsResponseItemsItemItem_Car,
+        GbP11DItemsListDeclarationsResponseItemsItemItem_ExpensesEntertainment,
+        GbP11DItemsListDeclarationsResponseItemsItemItem_ExpensesHomeTelephone,
+        GbP11DItemsListDeclarationsResponseItemsItemItem_ExpensesNonQualifyingRelocation,
+        GbP11DItemsListDeclarationsResponseItemsItemItem_ExpensesOther,
+        GbP11DItemsListDeclarationsResponseItemsItemItem_ExpensesTravelAndSubsistence,
+        GbP11DItemsListDeclarationsResponseItemsItemItem_LivingAccommodation,
+        GbP11DItemsListDeclarationsResponseItemsItemItem_Loan,
+        GbP11DItemsListDeclarationsResponseItemsItemItem_Medical,
+        GbP11DItemsListDeclarationsResponseItemsItemItem_MileageAllowance,
+        GbP11DItemsListDeclarationsResponseItemsItemItem_OtherClass1A,
+        GbP11DItemsListDeclarationsResponseItemsItemItem_OtherNonClass1A,
+        GbP11DItemsListDeclarationsResponseItemsItemItem_Payment,
+        GbP11DItemsListDeclarationsResponseItemsItemItem_Relocation,
+        GbP11DItemsListDeclarationsResponseItemsItemItem_Services,
+        GbP11DItemsListDeclarationsResponseItemsItemItem_TaxOnNotionalPayments,
+        GbP11DItemsListDeclarationsResponseItemsItemItem_TaxPaidNotDeducted,
+        GbP11DItemsListDeclarationsResponseItemsItemItem_Vans,
+        GbP11DItemsListDeclarationsResponseItemsItemItem_VouchersOrCreditCards,
+    )
+    from .gb_p11d_items_list_declarations_response_items_item_item_asset_available import (
+        GbP11DItemsListDeclarationsResponseItemsItemItemAssetAvailable,
+    )
+    from .gb_p11d_items_list_declarations_response_items_item_item_asset_available_asset import (
+        GbP11DItemsListDeclarationsResponseItemsItemItemAssetAvailableAsset,
+    )
+    from .gb_p11d_items_list_declarations_response_items_item_item_asset_transferred import (
+        GbP11DItemsListDeclarationsResponseItemsItemItemAssetTransferred,
+    )
+    from .gb_p11d_items_list_declarations_response_items_item_item_asset_transferred_asset import (
+        GbP11DItemsListDeclarationsResponseItemsItemItemAssetTransferredAsset,
+    )
+    from .gb_p11d_items_list_declarations_response_items_item_item_car import (
+        GbP11DItemsListDeclarationsResponseItemsItemItemCar,
+    )
+    from .gb_p11d_items_list_declarations_response_items_item_item_car_fuel import (
+        GbP11DItemsListDeclarationsResponseItemsItemItemCarFuel,
+    )
+    from .gb_p11d_items_list_declarations_response_items_item_item_expenses_entertainment import (
+        GbP11DItemsListDeclarationsResponseItemsItemItemExpensesEntertainment,
+    )
+    from .gb_p11d_items_list_declarations_response_items_item_item_expenses_home_telephone import (
+        GbP11DItemsListDeclarationsResponseItemsItemItemExpensesHomeTelephone,
+    )
+    from .gb_p11d_items_list_declarations_response_items_item_item_expenses_non_qualifying_relocation import (
+        GbP11DItemsListDeclarationsResponseItemsItemItemExpensesNonQualifyingRelocation,
+    )
+    from .gb_p11d_items_list_declarations_response_items_item_item_expenses_other import (
+        GbP11DItemsListDeclarationsResponseItemsItemItemExpensesOther,
+    )
+    from .gb_p11d_items_list_declarations_response_items_item_item_expenses_travel_and_subsistence import (
+        GbP11DItemsListDeclarationsResponseItemsItemItemExpensesTravelAndSubsistence,
+    )
+    from .gb_p11d_items_list_declarations_response_items_item_item_living_accommodation import (
+        GbP11DItemsListDeclarationsResponseItemsItemItemLivingAccommodation,
+    )
+    from .gb_p11d_items_list_declarations_response_items_item_item_loan import (
+        GbP11DItemsListDeclarationsResponseItemsItemItemLoan,
+    )
+    from .gb_p11d_items_list_declarations_response_items_item_item_medical import (
+        GbP11DItemsListDeclarationsResponseItemsItemItemMedical,
+    )
+    from .gb_p11d_items_list_declarations_response_items_item_item_mileage_allowance import (
+        GbP11DItemsListDeclarationsResponseItemsItemItemMileageAllowance,
+    )
+    from .gb_p11d_items_list_declarations_response_items_item_item_other_class1a import (
+        GbP11DItemsListDeclarationsResponseItemsItemItemOtherClass1A,
+    )
+    from .gb_p11d_items_list_declarations_response_items_item_item_other_class1a_item import (
+        GbP11DItemsListDeclarationsResponseItemsItemItemOtherClass1AItem,
+    )
+    from .gb_p11d_items_list_declarations_response_items_item_item_other_non_class1a import (
+        GbP11DItemsListDeclarationsResponseItemsItemItemOtherNonClass1A,
+    )
+    from .gb_p11d_items_list_declarations_response_items_item_item_other_non_class1a_item import (
+        GbP11DItemsListDeclarationsResponseItemsItemItemOtherNonClass1AItem,
+    )
+    from .gb_p11d_items_list_declarations_response_items_item_item_payment import (
+        GbP11DItemsListDeclarationsResponseItemsItemItemPayment,
+    )
+    from .gb_p11d_items_list_declarations_response_items_item_item_payment_payment import (
+        GbP11DItemsListDeclarationsResponseItemsItemItemPaymentPayment,
+    )
+    from .gb_p11d_items_list_declarations_response_items_item_item_relocation import (
+        GbP11DItemsListDeclarationsResponseItemsItemItemRelocation,
+    )
+    from .gb_p11d_items_list_declarations_response_items_item_item_services import (
+        GbP11DItemsListDeclarationsResponseItemsItemItemServices,
+    )
+    from .gb_p11d_items_list_declarations_response_items_item_item_tax_on_notional_payments import (
+        GbP11DItemsListDeclarationsResponseItemsItemItemTaxOnNotionalPayments,
+    )
+    from .gb_p11d_items_list_declarations_response_items_item_item_tax_paid_not_deducted import (
+        GbP11DItemsListDeclarationsResponseItemsItemItemTaxPaidNotDeducted,
+    )
+    from .gb_p11d_items_list_declarations_response_items_item_item_vans import (
+        GbP11DItemsListDeclarationsResponseItemsItemItemVans,
+    )
+    from .gb_p11d_items_list_declarations_response_items_item_item_vouchers_or_credit_cards import (
+        GbP11DItemsListDeclarationsResponseItemsItemItemVouchersOrCreditCards,
+    )
+    from .gb_p45get_declarations_response import GbP45GetDeclarationsResponse
+    from .gb_p45get_declarations_response_employee import GbP45GetDeclarationsResponseEmployee
+    from .gb_p45get_declarations_response_employee_gender import GbP45GetDeclarationsResponseEmployeeGender
+    from .gb_p45get_declarations_response_employer import GbP45GetDeclarationsResponseEmployer
+    from .gb_p45get_declarations_response_last_entries import GbP45GetDeclarationsResponseLastEntries
+    from .gb_p45get_declarations_response_this_employment import GbP45GetDeclarationsResponseThisEmployment
+    from .gb_return_facts_get_declarations_response import GbReturnFactsGetDeclarationsResponse
+    from .gb_return_facts_get_declarations_response_facts import GbReturnFactsGetDeclarationsResponseFacts
+    from .gb_return_facts_get_declarations_response_facts_balancing_charges import (
+        GbReturnFactsGetDeclarationsResponseFactsBalancingCharges,
+    )
+    from .gb_return_facts_get_declarations_response_facts_capital_allowances import (
+        GbReturnFactsGetDeclarationsResponseFactsCapitalAllowances,
+    )
+    from .gb_return_facts_set_declarations_request_facts import GbReturnFactsSetDeclarationsRequestFacts
+    from .gb_return_facts_set_declarations_request_facts_balancing_charges import (
+        GbReturnFactsSetDeclarationsRequestFactsBalancingCharges,
+    )
+    from .gb_return_facts_set_declarations_request_facts_capital_allowances import (
+        GbReturnFactsSetDeclarationsRequestFactsCapitalAllowances,
+    )
+    from .gb_return_facts_set_declarations_response import GbReturnFactsSetDeclarationsResponse
+    from .gb_return_facts_set_declarations_response_facts import GbReturnFactsSetDeclarationsResponseFacts
+    from .gb_return_facts_set_declarations_response_facts_balancing_charges import (
+        GbReturnFactsSetDeclarationsResponseFactsBalancingCharges,
+    )
+    from .gb_return_facts_set_declarations_response_facts_capital_allowances import (
+        GbReturnFactsSetDeclarationsResponseFactsCapitalAllowances,
+    )
     from .gb_vat_liabilities_list_declarations_request_device import GbVatLiabilitiesListDeclarationsRequestDevice
     from .gb_vat_liabilities_list_declarations_request_device_screens_item import (
         GbVatLiabilitiesListDeclarationsRequestDeviceScreensItem,
@@ -752,6 +1082,12 @@ if typing.TYPE_CHECKING:
     from .tax_payments_update_declarations_request_kind import TaxPaymentsUpdateDeclarationsRequestKind
     from .tax_payments_update_declarations_response import TaxPaymentsUpdateDeclarationsResponse
     from .tax_payments_update_declarations_response_kind import TaxPaymentsUpdateDeclarationsResponseKind
+    from .us1099nec_list_declarations_response import Us1099NecListDeclarationsResponse
+    from .us1099nec_list_declarations_response_excluded_item import Us1099NecListDeclarationsResponseExcludedItem
+    from .us1099nec_list_declarations_response_forms_item import Us1099NecListDeclarationsResponseFormsItem
+    from .us1099nec_list_declarations_response_forms_item_name_type import (
+        Us1099NecListDeclarationsResponseFormsItemNameType,
+    )
     from .us940get_declarations_response import Us940GetDeclarationsResponse
     from .us940get_declarations_response_part5 import Us940GetDeclarationsResponsePart5
     from .us941get_declarations_response import Us941GetDeclarationsResponse
@@ -774,7 +1110,68 @@ if typing.TYPE_CHECKING:
     from .us_de_unemployment_get_declarations_response_employees_item import (
         UsDeUnemploymentGetDeclarationsResponseEmployeesItem,
     )
+    from .us_de_unemployment_get_declarations_response_uc8 import UsDeUnemploymentGetDeclarationsResponseUc8
+    from .us_de_unemployment_get_declarations_response_uc8a import UsDeUnemploymentGetDeclarationsResponseUc8A
+    from .us_de_unemployment_get_declarations_response_uc8a_pages_item import (
+        UsDeUnemploymentGetDeclarationsResponseUc8APagesItem,
+    )
+    from .us_de_unemployment_get_declarations_response_uc8a_pages_item_rows_item import (
+        UsDeUnemploymentGetDeclarationsResponseUc8APagesItemRowsItem,
+    )
     from .us_de_withholding_get_declarations_response import UsDeWithholdingGetDeclarationsResponse
+    from .us_de_withholding_get_declarations_response_wth_tax import UsDeWithholdingGetDeclarationsResponseWthTax
+    from .us_de_withholding_reconciliation_get_declarations_response import (
+        UsDeWithholdingReconciliationGetDeclarationsResponse,
+    )
+    from .us_de_withholding_reconciliation_get_declarations_response_worksheet_item import (
+        UsDeWithholdingReconciliationGetDeclarationsResponseWorksheetItem,
+    )
+    from .us_flsa_records_list_declarations_response import UsFlsaRecordsListDeclarationsResponse
+    from .us_flsa_records_list_declarations_response_employees_item import (
+        UsFlsaRecordsListDeclarationsResponseEmployeesItem,
+    )
+    from .us_flsa_records_list_declarations_response_employees_item_address import (
+        UsFlsaRecordsListDeclarationsResponseEmployeesItemAddress,
+    )
+    from .us_flsa_records_list_declarations_response_employees_item_pay_periods_item import (
+        UsFlsaRecordsListDeclarationsResponseEmployeesItemPayPeriodsItem,
+    )
+    from .us_flsa_records_list_declarations_response_employees_item_pay_periods_item_additions_item import (
+        UsFlsaRecordsListDeclarationsResponseEmployeesItemPayPeriodsItemAdditionsItem,
+    )
+    from .us_flsa_records_list_declarations_response_employees_item_pay_periods_item_basis_of_pay import (
+        UsFlsaRecordsListDeclarationsResponseEmployeesItemPayPeriodsItemBasisOfPay,
+    )
+    from .us_flsa_records_list_declarations_response_employees_item_pay_periods_item_deductions_item import (
+        UsFlsaRecordsListDeclarationsResponseEmployeesItemPayPeriodsItemDeductionsItem,
+    )
+    from .us_flsa_records_list_declarations_response_employees_item_sex import (
+        UsFlsaRecordsListDeclarationsResponseEmployeesItemSex,
+    )
+    from .us_flsa_records_list_declarations_response_employees_item_workweek_start import (
+        UsFlsaRecordsListDeclarationsResponseEmployeesItemWorkweekStart,
+    )
+    from .us_flsa_records_list_declarations_response_employees_item_workweeks_item import (
+        UsFlsaRecordsListDeclarationsResponseEmployeesItemWorkweeksItem,
+    )
+    from .us_flsa_records_list_declarations_response_employees_item_workweeks_item_days_item import (
+        UsFlsaRecordsListDeclarationsResponseEmployeesItemWorkweeksItemDaysItem,
+    )
+    from .us_income_tax_return_get_declarations_response import UsIncomeTaxReturnGetDeclarationsResponse
+    from .us_income_tax_return_get_declarations_response_form import UsIncomeTaxReturnGetDeclarationsResponseForm
+    from .us_income_tax_return_get_declarations_response_other_lines_item import (
+        UsIncomeTaxReturnGetDeclarationsResponseOtherLinesItem,
+    )
+    from .us_income_tax_return_get_declarations_response_page1item import (
+        UsIncomeTaxReturnGetDeclarationsResponsePage1Item,
+    )
+    from .us_income_tax_return_get_declarations_response_schedule_l_item import (
+        UsIncomeTaxReturnGetDeclarationsResponseScheduleLItem,
+    )
+    from .us_sales_tax_get_declarations_response import UsSalesTaxGetDeclarationsResponse
+    from .us_sales_tax_get_declarations_response_jurisdictions_item import (
+        UsSalesTaxGetDeclarationsResponseJurisdictionsItem,
+    )
     from .us_state_sales_get_declarations_response import UsStateSalesGetDeclarationsResponse
     from .us_state_sales_get_declarations_response_outside_us import UsStateSalesGetDeclarationsResponseOutsideUs
     from .us_state_sales_get_declarations_response_states_item import UsStateSalesGetDeclarationsResponseStatesItem
@@ -988,6 +1385,174 @@ _dynamic_imports: typing.Dict[str, str] = {
     "GbCorporationTaxComputeDeclarationsResponsePartsItemRate": ".gb_corporation_tax_compute_declarations_response_parts_item_rate",
     "GbHmrcAuthorizeUrlGetDeclarationsResponse": ".gb_hmrc_authorize_url_get_declarations_response",
     "GbHmrcConnectDeclarationsResponse": ".gb_hmrc_connect_declarations_response",
+    "GbP11DItemsCreateDeclarationsRequestItem": ".gb_p11d_items_create_declarations_request_item",
+    "GbP11DItemsCreateDeclarationsRequestItemAssetAvailable": ".gb_p11d_items_create_declarations_request_item_asset_available",
+    "GbP11DItemsCreateDeclarationsRequestItemAssetAvailableAsset": ".gb_p11d_items_create_declarations_request_item_asset_available_asset",
+    "GbP11DItemsCreateDeclarationsRequestItemAssetTransferred": ".gb_p11d_items_create_declarations_request_item_asset_transferred",
+    "GbP11DItemsCreateDeclarationsRequestItemAssetTransferredAsset": ".gb_p11d_items_create_declarations_request_item_asset_transferred_asset",
+    "GbP11DItemsCreateDeclarationsRequestItemCar": ".gb_p11d_items_create_declarations_request_item_car",
+    "GbP11DItemsCreateDeclarationsRequestItemCarFuel": ".gb_p11d_items_create_declarations_request_item_car_fuel",
+    "GbP11DItemsCreateDeclarationsRequestItemExpensesEntertainment": ".gb_p11d_items_create_declarations_request_item_expenses_entertainment",
+    "GbP11DItemsCreateDeclarationsRequestItemExpensesHomeTelephone": ".gb_p11d_items_create_declarations_request_item_expenses_home_telephone",
+    "GbP11DItemsCreateDeclarationsRequestItemExpensesNonQualifyingRelocation": ".gb_p11d_items_create_declarations_request_item_expenses_non_qualifying_relocation",
+    "GbP11DItemsCreateDeclarationsRequestItemExpensesOther": ".gb_p11d_items_create_declarations_request_item_expenses_other",
+    "GbP11DItemsCreateDeclarationsRequestItemExpensesTravelAndSubsistence": ".gb_p11d_items_create_declarations_request_item_expenses_travel_and_subsistence",
+    "GbP11DItemsCreateDeclarationsRequestItemLivingAccommodation": ".gb_p11d_items_create_declarations_request_item_living_accommodation",
+    "GbP11DItemsCreateDeclarationsRequestItemLoan": ".gb_p11d_items_create_declarations_request_item_loan",
+    "GbP11DItemsCreateDeclarationsRequestItemMedical": ".gb_p11d_items_create_declarations_request_item_medical",
+    "GbP11DItemsCreateDeclarationsRequestItemMileageAllowance": ".gb_p11d_items_create_declarations_request_item_mileage_allowance",
+    "GbP11DItemsCreateDeclarationsRequestItemOtherClass1A": ".gb_p11d_items_create_declarations_request_item_other_class1a",
+    "GbP11DItemsCreateDeclarationsRequestItemOtherClass1AItem": ".gb_p11d_items_create_declarations_request_item_other_class1a_item",
+    "GbP11DItemsCreateDeclarationsRequestItemOtherNonClass1A": ".gb_p11d_items_create_declarations_request_item_other_non_class1a",
+    "GbP11DItemsCreateDeclarationsRequestItemOtherNonClass1AItem": ".gb_p11d_items_create_declarations_request_item_other_non_class1a_item",
+    "GbP11DItemsCreateDeclarationsRequestItemPayment": ".gb_p11d_items_create_declarations_request_item_payment",
+    "GbP11DItemsCreateDeclarationsRequestItemPaymentPayment": ".gb_p11d_items_create_declarations_request_item_payment_payment",
+    "GbP11DItemsCreateDeclarationsRequestItemRelocation": ".gb_p11d_items_create_declarations_request_item_relocation",
+    "GbP11DItemsCreateDeclarationsRequestItemServices": ".gb_p11d_items_create_declarations_request_item_services",
+    "GbP11DItemsCreateDeclarationsRequestItemTaxOnNotionalPayments": ".gb_p11d_items_create_declarations_request_item_tax_on_notional_payments",
+    "GbP11DItemsCreateDeclarationsRequestItemTaxPaidNotDeducted": ".gb_p11d_items_create_declarations_request_item_tax_paid_not_deducted",
+    "GbP11DItemsCreateDeclarationsRequestItemVans": ".gb_p11d_items_create_declarations_request_item_vans",
+    "GbP11DItemsCreateDeclarationsRequestItemVouchersOrCreditCards": ".gb_p11d_items_create_declarations_request_item_vouchers_or_credit_cards",
+    "GbP11DItemsCreateDeclarationsRequestItem_AssetAvailable": ".gb_p11d_items_create_declarations_request_item",
+    "GbP11DItemsCreateDeclarationsRequestItem_AssetTransferred": ".gb_p11d_items_create_declarations_request_item",
+    "GbP11DItemsCreateDeclarationsRequestItem_Car": ".gb_p11d_items_create_declarations_request_item",
+    "GbP11DItemsCreateDeclarationsRequestItem_ExpensesEntertainment": ".gb_p11d_items_create_declarations_request_item",
+    "GbP11DItemsCreateDeclarationsRequestItem_ExpensesHomeTelephone": ".gb_p11d_items_create_declarations_request_item",
+    "GbP11DItemsCreateDeclarationsRequestItem_ExpensesNonQualifyingRelocation": ".gb_p11d_items_create_declarations_request_item",
+    "GbP11DItemsCreateDeclarationsRequestItem_ExpensesOther": ".gb_p11d_items_create_declarations_request_item",
+    "GbP11DItemsCreateDeclarationsRequestItem_ExpensesTravelAndSubsistence": ".gb_p11d_items_create_declarations_request_item",
+    "GbP11DItemsCreateDeclarationsRequestItem_LivingAccommodation": ".gb_p11d_items_create_declarations_request_item",
+    "GbP11DItemsCreateDeclarationsRequestItem_Loan": ".gb_p11d_items_create_declarations_request_item",
+    "GbP11DItemsCreateDeclarationsRequestItem_Medical": ".gb_p11d_items_create_declarations_request_item",
+    "GbP11DItemsCreateDeclarationsRequestItem_MileageAllowance": ".gb_p11d_items_create_declarations_request_item",
+    "GbP11DItemsCreateDeclarationsRequestItem_OtherClass1A": ".gb_p11d_items_create_declarations_request_item",
+    "GbP11DItemsCreateDeclarationsRequestItem_OtherNonClass1A": ".gb_p11d_items_create_declarations_request_item",
+    "GbP11DItemsCreateDeclarationsRequestItem_Payment": ".gb_p11d_items_create_declarations_request_item",
+    "GbP11DItemsCreateDeclarationsRequestItem_Relocation": ".gb_p11d_items_create_declarations_request_item",
+    "GbP11DItemsCreateDeclarationsRequestItem_Services": ".gb_p11d_items_create_declarations_request_item",
+    "GbP11DItemsCreateDeclarationsRequestItem_TaxOnNotionalPayments": ".gb_p11d_items_create_declarations_request_item",
+    "GbP11DItemsCreateDeclarationsRequestItem_TaxPaidNotDeducted": ".gb_p11d_items_create_declarations_request_item",
+    "GbP11DItemsCreateDeclarationsRequestItem_Vans": ".gb_p11d_items_create_declarations_request_item",
+    "GbP11DItemsCreateDeclarationsRequestItem_VouchersOrCreditCards": ".gb_p11d_items_create_declarations_request_item",
+    "GbP11DItemsCreateDeclarationsResponse": ".gb_p11d_items_create_declarations_response",
+    "GbP11DItemsCreateDeclarationsResponseItem": ".gb_p11d_items_create_declarations_response_item",
+    "GbP11DItemsCreateDeclarationsResponseItemAssetAvailable": ".gb_p11d_items_create_declarations_response_item_asset_available",
+    "GbP11DItemsCreateDeclarationsResponseItemAssetAvailableAsset": ".gb_p11d_items_create_declarations_response_item_asset_available_asset",
+    "GbP11DItemsCreateDeclarationsResponseItemAssetTransferred": ".gb_p11d_items_create_declarations_response_item_asset_transferred",
+    "GbP11DItemsCreateDeclarationsResponseItemAssetTransferredAsset": ".gb_p11d_items_create_declarations_response_item_asset_transferred_asset",
+    "GbP11DItemsCreateDeclarationsResponseItemCar": ".gb_p11d_items_create_declarations_response_item_car",
+    "GbP11DItemsCreateDeclarationsResponseItemCarFuel": ".gb_p11d_items_create_declarations_response_item_car_fuel",
+    "GbP11DItemsCreateDeclarationsResponseItemExpensesEntertainment": ".gb_p11d_items_create_declarations_response_item_expenses_entertainment",
+    "GbP11DItemsCreateDeclarationsResponseItemExpensesHomeTelephone": ".gb_p11d_items_create_declarations_response_item_expenses_home_telephone",
+    "GbP11DItemsCreateDeclarationsResponseItemExpensesNonQualifyingRelocation": ".gb_p11d_items_create_declarations_response_item_expenses_non_qualifying_relocation",
+    "GbP11DItemsCreateDeclarationsResponseItemExpensesOther": ".gb_p11d_items_create_declarations_response_item_expenses_other",
+    "GbP11DItemsCreateDeclarationsResponseItemExpensesTravelAndSubsistence": ".gb_p11d_items_create_declarations_response_item_expenses_travel_and_subsistence",
+    "GbP11DItemsCreateDeclarationsResponseItemLivingAccommodation": ".gb_p11d_items_create_declarations_response_item_living_accommodation",
+    "GbP11DItemsCreateDeclarationsResponseItemLoan": ".gb_p11d_items_create_declarations_response_item_loan",
+    "GbP11DItemsCreateDeclarationsResponseItemMedical": ".gb_p11d_items_create_declarations_response_item_medical",
+    "GbP11DItemsCreateDeclarationsResponseItemMileageAllowance": ".gb_p11d_items_create_declarations_response_item_mileage_allowance",
+    "GbP11DItemsCreateDeclarationsResponseItemOtherClass1A": ".gb_p11d_items_create_declarations_response_item_other_class1a",
+    "GbP11DItemsCreateDeclarationsResponseItemOtherClass1AItem": ".gb_p11d_items_create_declarations_response_item_other_class1a_item",
+    "GbP11DItemsCreateDeclarationsResponseItemOtherNonClass1A": ".gb_p11d_items_create_declarations_response_item_other_non_class1a",
+    "GbP11DItemsCreateDeclarationsResponseItemOtherNonClass1AItem": ".gb_p11d_items_create_declarations_response_item_other_non_class1a_item",
+    "GbP11DItemsCreateDeclarationsResponseItemPayment": ".gb_p11d_items_create_declarations_response_item_payment",
+    "GbP11DItemsCreateDeclarationsResponseItemPaymentPayment": ".gb_p11d_items_create_declarations_response_item_payment_payment",
+    "GbP11DItemsCreateDeclarationsResponseItemRelocation": ".gb_p11d_items_create_declarations_response_item_relocation",
+    "GbP11DItemsCreateDeclarationsResponseItemServices": ".gb_p11d_items_create_declarations_response_item_services",
+    "GbP11DItemsCreateDeclarationsResponseItemTaxOnNotionalPayments": ".gb_p11d_items_create_declarations_response_item_tax_on_notional_payments",
+    "GbP11DItemsCreateDeclarationsResponseItemTaxPaidNotDeducted": ".gb_p11d_items_create_declarations_response_item_tax_paid_not_deducted",
+    "GbP11DItemsCreateDeclarationsResponseItemVans": ".gb_p11d_items_create_declarations_response_item_vans",
+    "GbP11DItemsCreateDeclarationsResponseItemVouchersOrCreditCards": ".gb_p11d_items_create_declarations_response_item_vouchers_or_credit_cards",
+    "GbP11DItemsCreateDeclarationsResponseItem_AssetAvailable": ".gb_p11d_items_create_declarations_response_item",
+    "GbP11DItemsCreateDeclarationsResponseItem_AssetTransferred": ".gb_p11d_items_create_declarations_response_item",
+    "GbP11DItemsCreateDeclarationsResponseItem_Car": ".gb_p11d_items_create_declarations_response_item",
+    "GbP11DItemsCreateDeclarationsResponseItem_ExpensesEntertainment": ".gb_p11d_items_create_declarations_response_item",
+    "GbP11DItemsCreateDeclarationsResponseItem_ExpensesHomeTelephone": ".gb_p11d_items_create_declarations_response_item",
+    "GbP11DItemsCreateDeclarationsResponseItem_ExpensesNonQualifyingRelocation": ".gb_p11d_items_create_declarations_response_item",
+    "GbP11DItemsCreateDeclarationsResponseItem_ExpensesOther": ".gb_p11d_items_create_declarations_response_item",
+    "GbP11DItemsCreateDeclarationsResponseItem_ExpensesTravelAndSubsistence": ".gb_p11d_items_create_declarations_response_item",
+    "GbP11DItemsCreateDeclarationsResponseItem_LivingAccommodation": ".gb_p11d_items_create_declarations_response_item",
+    "GbP11DItemsCreateDeclarationsResponseItem_Loan": ".gb_p11d_items_create_declarations_response_item",
+    "GbP11DItemsCreateDeclarationsResponseItem_Medical": ".gb_p11d_items_create_declarations_response_item",
+    "GbP11DItemsCreateDeclarationsResponseItem_MileageAllowance": ".gb_p11d_items_create_declarations_response_item",
+    "GbP11DItemsCreateDeclarationsResponseItem_OtherClass1A": ".gb_p11d_items_create_declarations_response_item",
+    "GbP11DItemsCreateDeclarationsResponseItem_OtherNonClass1A": ".gb_p11d_items_create_declarations_response_item",
+    "GbP11DItemsCreateDeclarationsResponseItem_Payment": ".gb_p11d_items_create_declarations_response_item",
+    "GbP11DItemsCreateDeclarationsResponseItem_Relocation": ".gb_p11d_items_create_declarations_response_item",
+    "GbP11DItemsCreateDeclarationsResponseItem_Services": ".gb_p11d_items_create_declarations_response_item",
+    "GbP11DItemsCreateDeclarationsResponseItem_TaxOnNotionalPayments": ".gb_p11d_items_create_declarations_response_item",
+    "GbP11DItemsCreateDeclarationsResponseItem_TaxPaidNotDeducted": ".gb_p11d_items_create_declarations_response_item",
+    "GbP11DItemsCreateDeclarationsResponseItem_Vans": ".gb_p11d_items_create_declarations_response_item",
+    "GbP11DItemsCreateDeclarationsResponseItem_VouchersOrCreditCards": ".gb_p11d_items_create_declarations_response_item",
+    "GbP11DItemsDeleteDeclarationsResponse": ".gb_p11d_items_delete_declarations_response",
+    "GbP11DItemsListDeclarationsResponse": ".gb_p11d_items_list_declarations_response",
+    "GbP11DItemsListDeclarationsResponseItemsItem": ".gb_p11d_items_list_declarations_response_items_item",
+    "GbP11DItemsListDeclarationsResponseItemsItemItem": ".gb_p11d_items_list_declarations_response_items_item_item",
+    "GbP11DItemsListDeclarationsResponseItemsItemItemAssetAvailable": ".gb_p11d_items_list_declarations_response_items_item_item_asset_available",
+    "GbP11DItemsListDeclarationsResponseItemsItemItemAssetAvailableAsset": ".gb_p11d_items_list_declarations_response_items_item_item_asset_available_asset",
+    "GbP11DItemsListDeclarationsResponseItemsItemItemAssetTransferred": ".gb_p11d_items_list_declarations_response_items_item_item_asset_transferred",
+    "GbP11DItemsListDeclarationsResponseItemsItemItemAssetTransferredAsset": ".gb_p11d_items_list_declarations_response_items_item_item_asset_transferred_asset",
+    "GbP11DItemsListDeclarationsResponseItemsItemItemCar": ".gb_p11d_items_list_declarations_response_items_item_item_car",
+    "GbP11DItemsListDeclarationsResponseItemsItemItemCarFuel": ".gb_p11d_items_list_declarations_response_items_item_item_car_fuel",
+    "GbP11DItemsListDeclarationsResponseItemsItemItemExpensesEntertainment": ".gb_p11d_items_list_declarations_response_items_item_item_expenses_entertainment",
+    "GbP11DItemsListDeclarationsResponseItemsItemItemExpensesHomeTelephone": ".gb_p11d_items_list_declarations_response_items_item_item_expenses_home_telephone",
+    "GbP11DItemsListDeclarationsResponseItemsItemItemExpensesNonQualifyingRelocation": ".gb_p11d_items_list_declarations_response_items_item_item_expenses_non_qualifying_relocation",
+    "GbP11DItemsListDeclarationsResponseItemsItemItemExpensesOther": ".gb_p11d_items_list_declarations_response_items_item_item_expenses_other",
+    "GbP11DItemsListDeclarationsResponseItemsItemItemExpensesTravelAndSubsistence": ".gb_p11d_items_list_declarations_response_items_item_item_expenses_travel_and_subsistence",
+    "GbP11DItemsListDeclarationsResponseItemsItemItemLivingAccommodation": ".gb_p11d_items_list_declarations_response_items_item_item_living_accommodation",
+    "GbP11DItemsListDeclarationsResponseItemsItemItemLoan": ".gb_p11d_items_list_declarations_response_items_item_item_loan",
+    "GbP11DItemsListDeclarationsResponseItemsItemItemMedical": ".gb_p11d_items_list_declarations_response_items_item_item_medical",
+    "GbP11DItemsListDeclarationsResponseItemsItemItemMileageAllowance": ".gb_p11d_items_list_declarations_response_items_item_item_mileage_allowance",
+    "GbP11DItemsListDeclarationsResponseItemsItemItemOtherClass1A": ".gb_p11d_items_list_declarations_response_items_item_item_other_class1a",
+    "GbP11DItemsListDeclarationsResponseItemsItemItemOtherClass1AItem": ".gb_p11d_items_list_declarations_response_items_item_item_other_class1a_item",
+    "GbP11DItemsListDeclarationsResponseItemsItemItemOtherNonClass1A": ".gb_p11d_items_list_declarations_response_items_item_item_other_non_class1a",
+    "GbP11DItemsListDeclarationsResponseItemsItemItemOtherNonClass1AItem": ".gb_p11d_items_list_declarations_response_items_item_item_other_non_class1a_item",
+    "GbP11DItemsListDeclarationsResponseItemsItemItemPayment": ".gb_p11d_items_list_declarations_response_items_item_item_payment",
+    "GbP11DItemsListDeclarationsResponseItemsItemItemPaymentPayment": ".gb_p11d_items_list_declarations_response_items_item_item_payment_payment",
+    "GbP11DItemsListDeclarationsResponseItemsItemItemRelocation": ".gb_p11d_items_list_declarations_response_items_item_item_relocation",
+    "GbP11DItemsListDeclarationsResponseItemsItemItemServices": ".gb_p11d_items_list_declarations_response_items_item_item_services",
+    "GbP11DItemsListDeclarationsResponseItemsItemItemTaxOnNotionalPayments": ".gb_p11d_items_list_declarations_response_items_item_item_tax_on_notional_payments",
+    "GbP11DItemsListDeclarationsResponseItemsItemItemTaxPaidNotDeducted": ".gb_p11d_items_list_declarations_response_items_item_item_tax_paid_not_deducted",
+    "GbP11DItemsListDeclarationsResponseItemsItemItemVans": ".gb_p11d_items_list_declarations_response_items_item_item_vans",
+    "GbP11DItemsListDeclarationsResponseItemsItemItemVouchersOrCreditCards": ".gb_p11d_items_list_declarations_response_items_item_item_vouchers_or_credit_cards",
+    "GbP11DItemsListDeclarationsResponseItemsItemItem_AssetAvailable": ".gb_p11d_items_list_declarations_response_items_item_item",
+    "GbP11DItemsListDeclarationsResponseItemsItemItem_AssetTransferred": ".gb_p11d_items_list_declarations_response_items_item_item",
+    "GbP11DItemsListDeclarationsResponseItemsItemItem_Car": ".gb_p11d_items_list_declarations_response_items_item_item",
+    "GbP11DItemsListDeclarationsResponseItemsItemItem_ExpensesEntertainment": ".gb_p11d_items_list_declarations_response_items_item_item",
+    "GbP11DItemsListDeclarationsResponseItemsItemItem_ExpensesHomeTelephone": ".gb_p11d_items_list_declarations_response_items_item_item",
+    "GbP11DItemsListDeclarationsResponseItemsItemItem_ExpensesNonQualifyingRelocation": ".gb_p11d_items_list_declarations_response_items_item_item",
+    "GbP11DItemsListDeclarationsResponseItemsItemItem_ExpensesOther": ".gb_p11d_items_list_declarations_response_items_item_item",
+    "GbP11DItemsListDeclarationsResponseItemsItemItem_ExpensesTravelAndSubsistence": ".gb_p11d_items_list_declarations_response_items_item_item",
+    "GbP11DItemsListDeclarationsResponseItemsItemItem_LivingAccommodation": ".gb_p11d_items_list_declarations_response_items_item_item",
+    "GbP11DItemsListDeclarationsResponseItemsItemItem_Loan": ".gb_p11d_items_list_declarations_response_items_item_item",
+    "GbP11DItemsListDeclarationsResponseItemsItemItem_Medical": ".gb_p11d_items_list_declarations_response_items_item_item",
+    "GbP11DItemsListDeclarationsResponseItemsItemItem_MileageAllowance": ".gb_p11d_items_list_declarations_response_items_item_item",
+    "GbP11DItemsListDeclarationsResponseItemsItemItem_OtherClass1A": ".gb_p11d_items_list_declarations_response_items_item_item",
+    "GbP11DItemsListDeclarationsResponseItemsItemItem_OtherNonClass1A": ".gb_p11d_items_list_declarations_response_items_item_item",
+    "GbP11DItemsListDeclarationsResponseItemsItemItem_Payment": ".gb_p11d_items_list_declarations_response_items_item_item",
+    "GbP11DItemsListDeclarationsResponseItemsItemItem_Relocation": ".gb_p11d_items_list_declarations_response_items_item_item",
+    "GbP11DItemsListDeclarationsResponseItemsItemItem_Services": ".gb_p11d_items_list_declarations_response_items_item_item",
+    "GbP11DItemsListDeclarationsResponseItemsItemItem_TaxOnNotionalPayments": ".gb_p11d_items_list_declarations_response_items_item_item",
+    "GbP11DItemsListDeclarationsResponseItemsItemItem_TaxPaidNotDeducted": ".gb_p11d_items_list_declarations_response_items_item_item",
+    "GbP11DItemsListDeclarationsResponseItemsItemItem_Vans": ".gb_p11d_items_list_declarations_response_items_item_item",
+    "GbP11DItemsListDeclarationsResponseItemsItemItem_VouchersOrCreditCards": ".gb_p11d_items_list_declarations_response_items_item_item",
+    "GbP45GetDeclarationsResponse": ".gb_p45get_declarations_response",
+    "GbP45GetDeclarationsResponseEmployee": ".gb_p45get_declarations_response_employee",
+    "GbP45GetDeclarationsResponseEmployeeGender": ".gb_p45get_declarations_response_employee_gender",
+    "GbP45GetDeclarationsResponseEmployer": ".gb_p45get_declarations_response_employer",
+    "GbP45GetDeclarationsResponseLastEntries": ".gb_p45get_declarations_response_last_entries",
+    "GbP45GetDeclarationsResponseThisEmployment": ".gb_p45get_declarations_response_this_employment",
+    "GbReturnFactsGetDeclarationsResponse": ".gb_return_facts_get_declarations_response",
+    "GbReturnFactsGetDeclarationsResponseFacts": ".gb_return_facts_get_declarations_response_facts",
+    "GbReturnFactsGetDeclarationsResponseFactsBalancingCharges": ".gb_return_facts_get_declarations_response_facts_balancing_charges",
+    "GbReturnFactsGetDeclarationsResponseFactsCapitalAllowances": ".gb_return_facts_get_declarations_response_facts_capital_allowances",
+    "GbReturnFactsSetDeclarationsRequestFacts": ".gb_return_facts_set_declarations_request_facts",
+    "GbReturnFactsSetDeclarationsRequestFactsBalancingCharges": ".gb_return_facts_set_declarations_request_facts_balancing_charges",
+    "GbReturnFactsSetDeclarationsRequestFactsCapitalAllowances": ".gb_return_facts_set_declarations_request_facts_capital_allowances",
+    "GbReturnFactsSetDeclarationsResponse": ".gb_return_facts_set_declarations_response",
+    "GbReturnFactsSetDeclarationsResponseFacts": ".gb_return_facts_set_declarations_response_facts",
+    "GbReturnFactsSetDeclarationsResponseFactsBalancingCharges": ".gb_return_facts_set_declarations_response_facts_balancing_charges",
+    "GbReturnFactsSetDeclarationsResponseFactsCapitalAllowances": ".gb_return_facts_set_declarations_response_facts_capital_allowances",
     "GbVatLiabilitiesListDeclarationsRequestDevice": ".gb_vat_liabilities_list_declarations_request_device",
     "GbVatLiabilitiesListDeclarationsRequestDeviceScreensItem": ".gb_vat_liabilities_list_declarations_request_device_screens_item",
     "GbVatLiabilitiesListDeclarationsRequestDeviceWindowSize": ".gb_vat_liabilities_list_declarations_request_device_window_size",
@@ -1210,6 +1775,10 @@ _dynamic_imports: typing.Dict[str, str] = {
     "TaxPaymentsUpdateDeclarationsRequestKind": ".tax_payments_update_declarations_request_kind",
     "TaxPaymentsUpdateDeclarationsResponse": ".tax_payments_update_declarations_response",
     "TaxPaymentsUpdateDeclarationsResponseKind": ".tax_payments_update_declarations_response_kind",
+    "Us1099NecListDeclarationsResponse": ".us1099nec_list_declarations_response",
+    "Us1099NecListDeclarationsResponseExcludedItem": ".us1099nec_list_declarations_response_excluded_item",
+    "Us1099NecListDeclarationsResponseFormsItem": ".us1099nec_list_declarations_response_forms_item",
+    "Us1099NecListDeclarationsResponseFormsItemNameType": ".us1099nec_list_declarations_response_forms_item_name_type",
     "Us940GetDeclarationsResponse": ".us940get_declarations_response",
     "Us940GetDeclarationsResponsePart5": ".us940get_declarations_response_part5",
     "Us941GetDeclarationsResponse": ".us941get_declarations_response",
@@ -1226,7 +1795,32 @@ _dynamic_imports: typing.Dict[str, str] = {
     "UsDeGrossReceiptsGetDeclarationsResponse": ".us_de_gross_receipts_get_declarations_response",
     "UsDeUnemploymentGetDeclarationsResponse": ".us_de_unemployment_get_declarations_response",
     "UsDeUnemploymentGetDeclarationsResponseEmployeesItem": ".us_de_unemployment_get_declarations_response_employees_item",
+    "UsDeUnemploymentGetDeclarationsResponseUc8": ".us_de_unemployment_get_declarations_response_uc8",
+    "UsDeUnemploymentGetDeclarationsResponseUc8A": ".us_de_unemployment_get_declarations_response_uc8a",
+    "UsDeUnemploymentGetDeclarationsResponseUc8APagesItem": ".us_de_unemployment_get_declarations_response_uc8a_pages_item",
+    "UsDeUnemploymentGetDeclarationsResponseUc8APagesItemRowsItem": ".us_de_unemployment_get_declarations_response_uc8a_pages_item_rows_item",
     "UsDeWithholdingGetDeclarationsResponse": ".us_de_withholding_get_declarations_response",
+    "UsDeWithholdingGetDeclarationsResponseWthTax": ".us_de_withholding_get_declarations_response_wth_tax",
+    "UsDeWithholdingReconciliationGetDeclarationsResponse": ".us_de_withholding_reconciliation_get_declarations_response",
+    "UsDeWithholdingReconciliationGetDeclarationsResponseWorksheetItem": ".us_de_withholding_reconciliation_get_declarations_response_worksheet_item",
+    "UsFlsaRecordsListDeclarationsResponse": ".us_flsa_records_list_declarations_response",
+    "UsFlsaRecordsListDeclarationsResponseEmployeesItem": ".us_flsa_records_list_declarations_response_employees_item",
+    "UsFlsaRecordsListDeclarationsResponseEmployeesItemAddress": ".us_flsa_records_list_declarations_response_employees_item_address",
+    "UsFlsaRecordsListDeclarationsResponseEmployeesItemPayPeriodsItem": ".us_flsa_records_list_declarations_response_employees_item_pay_periods_item",
+    "UsFlsaRecordsListDeclarationsResponseEmployeesItemPayPeriodsItemAdditionsItem": ".us_flsa_records_list_declarations_response_employees_item_pay_periods_item_additions_item",
+    "UsFlsaRecordsListDeclarationsResponseEmployeesItemPayPeriodsItemBasisOfPay": ".us_flsa_records_list_declarations_response_employees_item_pay_periods_item_basis_of_pay",
+    "UsFlsaRecordsListDeclarationsResponseEmployeesItemPayPeriodsItemDeductionsItem": ".us_flsa_records_list_declarations_response_employees_item_pay_periods_item_deductions_item",
+    "UsFlsaRecordsListDeclarationsResponseEmployeesItemSex": ".us_flsa_records_list_declarations_response_employees_item_sex",
+    "UsFlsaRecordsListDeclarationsResponseEmployeesItemWorkweekStart": ".us_flsa_records_list_declarations_response_employees_item_workweek_start",
+    "UsFlsaRecordsListDeclarationsResponseEmployeesItemWorkweeksItem": ".us_flsa_records_list_declarations_response_employees_item_workweeks_item",
+    "UsFlsaRecordsListDeclarationsResponseEmployeesItemWorkweeksItemDaysItem": ".us_flsa_records_list_declarations_response_employees_item_workweeks_item_days_item",
+    "UsIncomeTaxReturnGetDeclarationsResponse": ".us_income_tax_return_get_declarations_response",
+    "UsIncomeTaxReturnGetDeclarationsResponseForm": ".us_income_tax_return_get_declarations_response_form",
+    "UsIncomeTaxReturnGetDeclarationsResponseOtherLinesItem": ".us_income_tax_return_get_declarations_response_other_lines_item",
+    "UsIncomeTaxReturnGetDeclarationsResponsePage1Item": ".us_income_tax_return_get_declarations_response_page1item",
+    "UsIncomeTaxReturnGetDeclarationsResponseScheduleLItem": ".us_income_tax_return_get_declarations_response_schedule_l_item",
+    "UsSalesTaxGetDeclarationsResponse": ".us_sales_tax_get_declarations_response",
+    "UsSalesTaxGetDeclarationsResponseJurisdictionsItem": ".us_sales_tax_get_declarations_response_jurisdictions_item",
     "UsStateSalesGetDeclarationsResponse": ".us_state_sales_get_declarations_response",
     "UsStateSalesGetDeclarationsResponseOutsideUs": ".us_state_sales_get_declarations_response_outside_us",
     "UsStateSalesGetDeclarationsResponseStatesItem": ".us_state_sales_get_declarations_response_states_item",
@@ -1458,6 +2052,174 @@ __all__ = [
     "GbCorporationTaxComputeDeclarationsResponsePartsItemRate",
     "GbHmrcAuthorizeUrlGetDeclarationsResponse",
     "GbHmrcConnectDeclarationsResponse",
+    "GbP11DItemsCreateDeclarationsRequestItem",
+    "GbP11DItemsCreateDeclarationsRequestItemAssetAvailable",
+    "GbP11DItemsCreateDeclarationsRequestItemAssetAvailableAsset",
+    "GbP11DItemsCreateDeclarationsRequestItemAssetTransferred",
+    "GbP11DItemsCreateDeclarationsRequestItemAssetTransferredAsset",
+    "GbP11DItemsCreateDeclarationsRequestItemCar",
+    "GbP11DItemsCreateDeclarationsRequestItemCarFuel",
+    "GbP11DItemsCreateDeclarationsRequestItemExpensesEntertainment",
+    "GbP11DItemsCreateDeclarationsRequestItemExpensesHomeTelephone",
+    "GbP11DItemsCreateDeclarationsRequestItemExpensesNonQualifyingRelocation",
+    "GbP11DItemsCreateDeclarationsRequestItemExpensesOther",
+    "GbP11DItemsCreateDeclarationsRequestItemExpensesTravelAndSubsistence",
+    "GbP11DItemsCreateDeclarationsRequestItemLivingAccommodation",
+    "GbP11DItemsCreateDeclarationsRequestItemLoan",
+    "GbP11DItemsCreateDeclarationsRequestItemMedical",
+    "GbP11DItemsCreateDeclarationsRequestItemMileageAllowance",
+    "GbP11DItemsCreateDeclarationsRequestItemOtherClass1A",
+    "GbP11DItemsCreateDeclarationsRequestItemOtherClass1AItem",
+    "GbP11DItemsCreateDeclarationsRequestItemOtherNonClass1A",
+    "GbP11DItemsCreateDeclarationsRequestItemOtherNonClass1AItem",
+    "GbP11DItemsCreateDeclarationsRequestItemPayment",
+    "GbP11DItemsCreateDeclarationsRequestItemPaymentPayment",
+    "GbP11DItemsCreateDeclarationsRequestItemRelocation",
+    "GbP11DItemsCreateDeclarationsRequestItemServices",
+    "GbP11DItemsCreateDeclarationsRequestItemTaxOnNotionalPayments",
+    "GbP11DItemsCreateDeclarationsRequestItemTaxPaidNotDeducted",
+    "GbP11DItemsCreateDeclarationsRequestItemVans",
+    "GbP11DItemsCreateDeclarationsRequestItemVouchersOrCreditCards",
+    "GbP11DItemsCreateDeclarationsRequestItem_AssetAvailable",
+    "GbP11DItemsCreateDeclarationsRequestItem_AssetTransferred",
+    "GbP11DItemsCreateDeclarationsRequestItem_Car",
+    "GbP11DItemsCreateDeclarationsRequestItem_ExpensesEntertainment",
+    "GbP11DItemsCreateDeclarationsRequestItem_ExpensesHomeTelephone",
+    "GbP11DItemsCreateDeclarationsRequestItem_ExpensesNonQualifyingRelocation",
+    "GbP11DItemsCreateDeclarationsRequestItem_ExpensesOther",
+    "GbP11DItemsCreateDeclarationsRequestItem_ExpensesTravelAndSubsistence",
+    "GbP11DItemsCreateDeclarationsRequestItem_LivingAccommodation",
+    "GbP11DItemsCreateDeclarationsRequestItem_Loan",
+    "GbP11DItemsCreateDeclarationsRequestItem_Medical",
+    "GbP11DItemsCreateDeclarationsRequestItem_MileageAllowance",
+    "GbP11DItemsCreateDeclarationsRequestItem_OtherClass1A",
+    "GbP11DItemsCreateDeclarationsRequestItem_OtherNonClass1A",
+    "GbP11DItemsCreateDeclarationsRequestItem_Payment",
+    "GbP11DItemsCreateDeclarationsRequestItem_Relocation",
+    "GbP11DItemsCreateDeclarationsRequestItem_Services",
+    "GbP11DItemsCreateDeclarationsRequestItem_TaxOnNotionalPayments",
+    "GbP11DItemsCreateDeclarationsRequestItem_TaxPaidNotDeducted",
+    "GbP11DItemsCreateDeclarationsRequestItem_Vans",
+    "GbP11DItemsCreateDeclarationsRequestItem_VouchersOrCreditCards",
+    "GbP11DItemsCreateDeclarationsResponse",
+    "GbP11DItemsCreateDeclarationsResponseItem",
+    "GbP11DItemsCreateDeclarationsResponseItemAssetAvailable",
+    "GbP11DItemsCreateDeclarationsResponseItemAssetAvailableAsset",
+    "GbP11DItemsCreateDeclarationsResponseItemAssetTransferred",
+    "GbP11DItemsCreateDeclarationsResponseItemAssetTransferredAsset",
+    "GbP11DItemsCreateDeclarationsResponseItemCar",
+    "GbP11DItemsCreateDeclarationsResponseItemCarFuel",
+    "GbP11DItemsCreateDeclarationsResponseItemExpensesEntertainment",
+    "GbP11DItemsCreateDeclarationsResponseItemExpensesHomeTelephone",
+    "GbP11DItemsCreateDeclarationsResponseItemExpensesNonQualifyingRelocation",
+    "GbP11DItemsCreateDeclarationsResponseItemExpensesOther",
+    "GbP11DItemsCreateDeclarationsResponseItemExpensesTravelAndSubsistence",
+    "GbP11DItemsCreateDeclarationsResponseItemLivingAccommodation",
+    "GbP11DItemsCreateDeclarationsResponseItemLoan",
+    "GbP11DItemsCreateDeclarationsResponseItemMedical",
+    "GbP11DItemsCreateDeclarationsResponseItemMileageAllowance",
+    "GbP11DItemsCreateDeclarationsResponseItemOtherClass1A",
+    "GbP11DItemsCreateDeclarationsResponseItemOtherClass1AItem",
+    "GbP11DItemsCreateDeclarationsResponseItemOtherNonClass1A",
+    "GbP11DItemsCreateDeclarationsResponseItemOtherNonClass1AItem",
+    "GbP11DItemsCreateDeclarationsResponseItemPayment",
+    "GbP11DItemsCreateDeclarationsResponseItemPaymentPayment",
+    "GbP11DItemsCreateDeclarationsResponseItemRelocation",
+    "GbP11DItemsCreateDeclarationsResponseItemServices",
+    "GbP11DItemsCreateDeclarationsResponseItemTaxOnNotionalPayments",
+    "GbP11DItemsCreateDeclarationsResponseItemTaxPaidNotDeducted",
+    "GbP11DItemsCreateDeclarationsResponseItemVans",
+    "GbP11DItemsCreateDeclarationsResponseItemVouchersOrCreditCards",
+    "GbP11DItemsCreateDeclarationsResponseItem_AssetAvailable",
+    "GbP11DItemsCreateDeclarationsResponseItem_AssetTransferred",
+    "GbP11DItemsCreateDeclarationsResponseItem_Car",
+    "GbP11DItemsCreateDeclarationsResponseItem_ExpensesEntertainment",
+    "GbP11DItemsCreateDeclarationsResponseItem_ExpensesHomeTelephone",
+    "GbP11DItemsCreateDeclarationsResponseItem_ExpensesNonQualifyingRelocation",
+    "GbP11DItemsCreateDeclarationsResponseItem_ExpensesOther",
+    "GbP11DItemsCreateDeclarationsResponseItem_ExpensesTravelAndSubsistence",
+    "GbP11DItemsCreateDeclarationsResponseItem_LivingAccommodation",
+    "GbP11DItemsCreateDeclarationsResponseItem_Loan",
+    "GbP11DItemsCreateDeclarationsResponseItem_Medical",
+    "GbP11DItemsCreateDeclarationsResponseItem_MileageAllowance",
+    "GbP11DItemsCreateDeclarationsResponseItem_OtherClass1A",
+    "GbP11DItemsCreateDeclarationsResponseItem_OtherNonClass1A",
+    "GbP11DItemsCreateDeclarationsResponseItem_Payment",
+    "GbP11DItemsCreateDeclarationsResponseItem_Relocation",
+    "GbP11DItemsCreateDeclarationsResponseItem_Services",
+    "GbP11DItemsCreateDeclarationsResponseItem_TaxOnNotionalPayments",
+    "GbP11DItemsCreateDeclarationsResponseItem_TaxPaidNotDeducted",
+    "GbP11DItemsCreateDeclarationsResponseItem_Vans",
+    "GbP11DItemsCreateDeclarationsResponseItem_VouchersOrCreditCards",
+    "GbP11DItemsDeleteDeclarationsResponse",
+    "GbP11DItemsListDeclarationsResponse",
+    "GbP11DItemsListDeclarationsResponseItemsItem",
+    "GbP11DItemsListDeclarationsResponseItemsItemItem",
+    "GbP11DItemsListDeclarationsResponseItemsItemItemAssetAvailable",
+    "GbP11DItemsListDeclarationsResponseItemsItemItemAssetAvailableAsset",
+    "GbP11DItemsListDeclarationsResponseItemsItemItemAssetTransferred",
+    "GbP11DItemsListDeclarationsResponseItemsItemItemAssetTransferredAsset",
+    "GbP11DItemsListDeclarationsResponseItemsItemItemCar",
+    "GbP11DItemsListDeclarationsResponseItemsItemItemCarFuel",
+    "GbP11DItemsListDeclarationsResponseItemsItemItemExpensesEntertainment",
+    "GbP11DItemsListDeclarationsResponseItemsItemItemExpensesHomeTelephone",
+    "GbP11DItemsListDeclarationsResponseItemsItemItemExpensesNonQualifyingRelocation",
+    "GbP11DItemsListDeclarationsResponseItemsItemItemExpensesOther",
+    "GbP11DItemsListDeclarationsResponseItemsItemItemExpensesTravelAndSubsistence",
+    "GbP11DItemsListDeclarationsResponseItemsItemItemLivingAccommodation",
+    "GbP11DItemsListDeclarationsResponseItemsItemItemLoan",
+    "GbP11DItemsListDeclarationsResponseItemsItemItemMedical",
+    "GbP11DItemsListDeclarationsResponseItemsItemItemMileageAllowance",
+    "GbP11DItemsListDeclarationsResponseItemsItemItemOtherClass1A",
+    "GbP11DItemsListDeclarationsResponseItemsItemItemOtherClass1AItem",
+    "GbP11DItemsListDeclarationsResponseItemsItemItemOtherNonClass1A",
+    "GbP11DItemsListDeclarationsResponseItemsItemItemOtherNonClass1AItem",
+    "GbP11DItemsListDeclarationsResponseItemsItemItemPayment",
+    "GbP11DItemsListDeclarationsResponseItemsItemItemPaymentPayment",
+    "GbP11DItemsListDeclarationsResponseItemsItemItemRelocation",
+    "GbP11DItemsListDeclarationsResponseItemsItemItemServices",
+    "GbP11DItemsListDeclarationsResponseItemsItemItemTaxOnNotionalPayments",
+    "GbP11DItemsListDeclarationsResponseItemsItemItemTaxPaidNotDeducted",
+    "GbP11DItemsListDeclarationsResponseItemsItemItemVans",
+    "GbP11DItemsListDeclarationsResponseItemsItemItemVouchersOrCreditCards",
+    "GbP11DItemsListDeclarationsResponseItemsItemItem_AssetAvailable",
+    "GbP11DItemsListDeclarationsResponseItemsItemItem_AssetTransferred",
+    "GbP11DItemsListDeclarationsResponseItemsItemItem_Car",
+    "GbP11DItemsListDeclarationsResponseItemsItemItem_ExpensesEntertainment",
+    "GbP11DItemsListDeclarationsResponseItemsItemItem_ExpensesHomeTelephone",
+    "GbP11DItemsListDeclarationsResponseItemsItemItem_ExpensesNonQualifyingRelocation",
+    "GbP11DItemsListDeclarationsResponseItemsItemItem_ExpensesOther",
+    "GbP11DItemsListDeclarationsResponseItemsItemItem_ExpensesTravelAndSubsistence",
+    "GbP11DItemsListDeclarationsResponseItemsItemItem_LivingAccommodation",
+    "GbP11DItemsListDeclarationsResponseItemsItemItem_Loan",
+    "GbP11DItemsListDeclarationsResponseItemsItemItem_Medical",
+    "GbP11DItemsListDeclarationsResponseItemsItemItem_MileageAllowance",
+    "GbP11DItemsListDeclarationsResponseItemsItemItem_OtherClass1A",
+    "GbP11DItemsListDeclarationsResponseItemsItemItem_OtherNonClass1A",
+    "GbP11DItemsListDeclarationsResponseItemsItemItem_Payment",
+    "GbP11DItemsListDeclarationsResponseItemsItemItem_Relocation",
+    "GbP11DItemsListDeclarationsResponseItemsItemItem_Services",
+    "GbP11DItemsListDeclarationsResponseItemsItemItem_TaxOnNotionalPayments",
+    "GbP11DItemsListDeclarationsResponseItemsItemItem_TaxPaidNotDeducted",
+    "GbP11DItemsListDeclarationsResponseItemsItemItem_Vans",
+    "GbP11DItemsListDeclarationsResponseItemsItemItem_VouchersOrCreditCards",
+    "GbP45GetDeclarationsResponse",
+    "GbP45GetDeclarationsResponseEmployee",
+    "GbP45GetDeclarationsResponseEmployeeGender",
+    "GbP45GetDeclarationsResponseEmployer",
+    "GbP45GetDeclarationsResponseLastEntries",
+    "GbP45GetDeclarationsResponseThisEmployment",
+    "GbReturnFactsGetDeclarationsResponse",
+    "GbReturnFactsGetDeclarationsResponseFacts",
+    "GbReturnFactsGetDeclarationsResponseFactsBalancingCharges",
+    "GbReturnFactsGetDeclarationsResponseFactsCapitalAllowances",
+    "GbReturnFactsSetDeclarationsRequestFacts",
+    "GbReturnFactsSetDeclarationsRequestFactsBalancingCharges",
+    "GbReturnFactsSetDeclarationsRequestFactsCapitalAllowances",
+    "GbReturnFactsSetDeclarationsResponse",
+    "GbReturnFactsSetDeclarationsResponseFacts",
+    "GbReturnFactsSetDeclarationsResponseFactsBalancingCharges",
+    "GbReturnFactsSetDeclarationsResponseFactsCapitalAllowances",
     "GbVatLiabilitiesListDeclarationsRequestDevice",
     "GbVatLiabilitiesListDeclarationsRequestDeviceScreensItem",
     "GbVatLiabilitiesListDeclarationsRequestDeviceWindowSize",
@@ -1680,6 +2442,10 @@ __all__ = [
     "TaxPaymentsUpdateDeclarationsRequestKind",
     "TaxPaymentsUpdateDeclarationsResponse",
     "TaxPaymentsUpdateDeclarationsResponseKind",
+    "Us1099NecListDeclarationsResponse",
+    "Us1099NecListDeclarationsResponseExcludedItem",
+    "Us1099NecListDeclarationsResponseFormsItem",
+    "Us1099NecListDeclarationsResponseFormsItemNameType",
     "Us940GetDeclarationsResponse",
     "Us940GetDeclarationsResponsePart5",
     "Us941GetDeclarationsResponse",
@@ -1696,7 +2462,32 @@ __all__ = [
     "UsDeGrossReceiptsGetDeclarationsResponse",
     "UsDeUnemploymentGetDeclarationsResponse",
     "UsDeUnemploymentGetDeclarationsResponseEmployeesItem",
+    "UsDeUnemploymentGetDeclarationsResponseUc8",
+    "UsDeUnemploymentGetDeclarationsResponseUc8A",
+    "UsDeUnemploymentGetDeclarationsResponseUc8APagesItem",
+    "UsDeUnemploymentGetDeclarationsResponseUc8APagesItemRowsItem",
     "UsDeWithholdingGetDeclarationsResponse",
+    "UsDeWithholdingGetDeclarationsResponseWthTax",
+    "UsDeWithholdingReconciliationGetDeclarationsResponse",
+    "UsDeWithholdingReconciliationGetDeclarationsResponseWorksheetItem",
+    "UsFlsaRecordsListDeclarationsResponse",
+    "UsFlsaRecordsListDeclarationsResponseEmployeesItem",
+    "UsFlsaRecordsListDeclarationsResponseEmployeesItemAddress",
+    "UsFlsaRecordsListDeclarationsResponseEmployeesItemPayPeriodsItem",
+    "UsFlsaRecordsListDeclarationsResponseEmployeesItemPayPeriodsItemAdditionsItem",
+    "UsFlsaRecordsListDeclarationsResponseEmployeesItemPayPeriodsItemBasisOfPay",
+    "UsFlsaRecordsListDeclarationsResponseEmployeesItemPayPeriodsItemDeductionsItem",
+    "UsFlsaRecordsListDeclarationsResponseEmployeesItemSex",
+    "UsFlsaRecordsListDeclarationsResponseEmployeesItemWorkweekStart",
+    "UsFlsaRecordsListDeclarationsResponseEmployeesItemWorkweeksItem",
+    "UsFlsaRecordsListDeclarationsResponseEmployeesItemWorkweeksItemDaysItem",
+    "UsIncomeTaxReturnGetDeclarationsResponse",
+    "UsIncomeTaxReturnGetDeclarationsResponseForm",
+    "UsIncomeTaxReturnGetDeclarationsResponseOtherLinesItem",
+    "UsIncomeTaxReturnGetDeclarationsResponsePage1Item",
+    "UsIncomeTaxReturnGetDeclarationsResponseScheduleLItem",
+    "UsSalesTaxGetDeclarationsResponse",
+    "UsSalesTaxGetDeclarationsResponseJurisdictionsItem",
     "UsStateSalesGetDeclarationsResponse",
     "UsStateSalesGetDeclarationsResponseOutsideUs",
     "UsStateSalesGetDeclarationsResponseStatesItem",
