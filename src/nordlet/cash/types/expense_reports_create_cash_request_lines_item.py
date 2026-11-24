@@ -16,6 +16,12 @@ class ExpenseReportsCreateCashRequestLinesItem(UniversalBaseModel):
     account_code: typing_extensions.Annotated[
         str, FieldMetadata(alias="accountCode"), pydantic.Field(alias="accountCode")
     ]
+    partner_id: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="partnerId"), pydantic.Field(alias="partnerId")
+    ] = None
+    vat_classifier_code: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="vatClassifierCode"), pydantic.Field(alias="vatClassifierCode")
+    ] = None
     net_amount: typing_extensions.Annotated[str, FieldMetadata(alias="netAmount"), pydantic.Field(alias="netAmount")]
     vat_amount: typing_extensions.Annotated[
         typing.Optional[str], FieldMetadata(alias="vatAmount"), pydantic.Field(alias="vatAmount")

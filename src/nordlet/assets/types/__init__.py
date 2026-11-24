@@ -17,6 +17,23 @@ if typing.TYPE_CHECKING:
         AssetsCreateAssetsResponseInputVatUseChangesItemReason,
     )
     from .assets_create_assets_response_status import AssetsCreateAssetsResponseStatus
+    from .assets_create_from_purchase_assets_request_documents_item import (
+        AssetsCreateFromPurchaseAssetsRequestDocumentsItem,
+    )
+    from .assets_create_from_purchase_assets_response import AssetsCreateFromPurchaseAssetsResponse
+    from .assets_create_from_purchase_assets_response_disposal_reason import (
+        AssetsCreateFromPurchaseAssetsResponseDisposalReason,
+    )
+    from .assets_create_from_purchase_assets_response_documents_item import (
+        AssetsCreateFromPurchaseAssetsResponseDocumentsItem,
+    )
+    from .assets_create_from_purchase_assets_response_input_vat_use_changes_item import (
+        AssetsCreateFromPurchaseAssetsResponseInputVatUseChangesItem,
+    )
+    from .assets_create_from_purchase_assets_response_input_vat_use_changes_item_reason import (
+        AssetsCreateFromPurchaseAssetsResponseInputVatUseChangesItemReason,
+    )
+    from .assets_create_from_purchase_assets_response_status import AssetsCreateFromPurchaseAssetsResponseStatus
     from .assets_dispose_assets_request_reason import AssetsDisposeAssetsRequestReason
     from .assets_dispose_assets_response import AssetsDisposeAssetsResponse
     from .assets_dispose_assets_response_disposal_reason import AssetsDisposeAssetsResponseDisposalReason
@@ -112,6 +129,13 @@ _dynamic_imports: typing.Dict[str, str] = {
     "AssetsCreateAssetsResponseInputVatUseChangesItem": ".assets_create_assets_response_input_vat_use_changes_item",
     "AssetsCreateAssetsResponseInputVatUseChangesItemReason": ".assets_create_assets_response_input_vat_use_changes_item_reason",
     "AssetsCreateAssetsResponseStatus": ".assets_create_assets_response_status",
+    "AssetsCreateFromPurchaseAssetsRequestDocumentsItem": ".assets_create_from_purchase_assets_request_documents_item",
+    "AssetsCreateFromPurchaseAssetsResponse": ".assets_create_from_purchase_assets_response",
+    "AssetsCreateFromPurchaseAssetsResponseDisposalReason": ".assets_create_from_purchase_assets_response_disposal_reason",
+    "AssetsCreateFromPurchaseAssetsResponseDocumentsItem": ".assets_create_from_purchase_assets_response_documents_item",
+    "AssetsCreateFromPurchaseAssetsResponseInputVatUseChangesItem": ".assets_create_from_purchase_assets_response_input_vat_use_changes_item",
+    "AssetsCreateFromPurchaseAssetsResponseInputVatUseChangesItemReason": ".assets_create_from_purchase_assets_response_input_vat_use_changes_item_reason",
+    "AssetsCreateFromPurchaseAssetsResponseStatus": ".assets_create_from_purchase_assets_response_status",
     "AssetsDisposeAssetsRequestReason": ".assets_dispose_assets_request_reason",
     "AssetsDisposeAssetsResponse": ".assets_dispose_assets_response",
     "AssetsDisposeAssetsResponseDisposalReason": ".assets_dispose_assets_response_disposal_reason",
@@ -205,6 +229,13 @@ __all__ = [
     "AssetsCreateAssetsResponseInputVatUseChangesItem",
     "AssetsCreateAssetsResponseInputVatUseChangesItemReason",
     "AssetsCreateAssetsResponseStatus",
+    "AssetsCreateFromPurchaseAssetsRequestDocumentsItem",
+    "AssetsCreateFromPurchaseAssetsResponse",
+    "AssetsCreateFromPurchaseAssetsResponseDisposalReason",
+    "AssetsCreateFromPurchaseAssetsResponseDocumentsItem",
+    "AssetsCreateFromPurchaseAssetsResponseInputVatUseChangesItem",
+    "AssetsCreateFromPurchaseAssetsResponseInputVatUseChangesItemReason",
+    "AssetsCreateFromPurchaseAssetsResponseStatus",
     "AssetsDisposeAssetsRequestReason",
     "AssetsDisposeAssetsResponse",
     "AssetsDisposeAssetsResponseDisposalReason",

@@ -51,6 +51,18 @@ class InvoicesUpdateSalesRequestLinesItem(UniversalBaseModel):
     vat_exemption_basis: typing_extensions.Annotated[
         typing.Optional[str], FieldMetadata(alias="vatExemptionBasis"), pydantic.Field(alias="vatExemptionBasis")
     ] = None
+    account_code: typing_extensions.Annotated[
+        typing.Optional[str],
+        FieldMetadata(alias="accountCode"),
+        pydantic.Field(
+            alias="accountCode",
+            description="The revenue account the line is credited to at issue, a postable account of the company's chart (422 otherwise); without it the operation type's income account, else the item's sale account, else the services revenue posting rule account for a service item or a line without an item and the products revenue posting rule account for a product item. A line that sells a fixed asset always goes to `assets.disposalProceeds`.",
+        ),
+    ] = None
+    """
+    The revenue account the line is credited to at issue, a postable account of the company's chart (422 otherwise); without it the operation type's income account, else the item's sale account, else the services revenue posting rule account for a service item or a line without an item and the products revenue posting rule account for a product item. A line that sells a fixed asset always goes to `assets.disposalProceeds`.
+    """
+
     standalone_selling_price: typing_extensions.Annotated[
         typing.Optional[str],
         FieldMetadata(alias="standaloneSellingPrice"),

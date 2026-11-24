@@ -86,8 +86,17 @@ class InvoicesCreatePurchasesResponse(UniversalBaseModel):
     einvoice_number: typing_extensions.Annotated[
         typing.Optional[str], FieldMetadata(alias="einvoiceNumber"), pydantic.Field(alias="einvoiceNumber")
     ] = None
+    payment_reference: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="paymentReference"), pydantic.Field(alias="paymentReference")
+    ] = None
     document_ref: typing_extensions.Annotated[
         typing.Optional[str], FieldMetadata(alias="documentRef"), pydantic.Field(alias="documentRef")
+    ] = None
+    agreement_id: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="agreementId"), pydantic.Field(alias="agreementId")
+    ] = None
+    agreement_period_start: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="agreementPeriodStart"), pydantic.Field(alias="agreementPeriodStart")
     ] = None
     created_at: typing_extensions.Annotated[
         dt.datetime, FieldMetadata(alias="createdAt"), pydantic.Field(alias="createdAt")

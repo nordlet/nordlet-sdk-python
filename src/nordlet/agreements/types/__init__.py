@@ -32,6 +32,19 @@ if typing.TYPE_CHECKING:
     from .agreements_create_agreements_response_kind import AgreementsCreateAgreementsResponseKind
     from .agreements_create_agreements_response_status import AgreementsCreateAgreementsResponseStatus
     from .agreements_delete_agreements_response import AgreementsDeleteAgreementsResponse
+    from .agreements_expected_invoices_agreements_response import AgreementsExpectedInvoicesAgreementsResponse
+    from .agreements_expected_invoices_agreements_response_periods_item import (
+        AgreementsExpectedInvoicesAgreementsResponsePeriodsItem,
+    )
+    from .agreements_expected_invoices_agreements_response_periods_item_purchase_invoices_item import (
+        AgreementsExpectedInvoicesAgreementsResponsePeriodsItemPurchaseInvoicesItem,
+    )
+    from .agreements_expected_invoices_agreements_response_periods_item_purchase_invoices_item_status import (
+        AgreementsExpectedInvoicesAgreementsResponsePeriodsItemPurchaseInvoicesItemStatus,
+    )
+    from .agreements_expected_invoices_agreements_response_periods_item_purchase_invoices_item_type import (
+        AgreementsExpectedInvoicesAgreementsResponsePeriodsItemPurchaseInvoicesItemType,
+    )
     from .agreements_generate_invoice_agreements_response import AgreementsGenerateInvoiceAgreementsResponse
     from .agreements_get_agreements_response import AgreementsGetAgreementsResponse
     from .agreements_get_agreements_response_billing_period import AgreementsGetAgreementsResponseBillingPeriod
@@ -53,6 +66,23 @@ if typing.TYPE_CHECKING:
     )
     from .agreements_list_agreements_response_rows_item_kind import AgreementsListAgreementsResponseRowsItemKind
     from .agreements_list_agreements_response_rows_item_status import AgreementsListAgreementsResponseRowsItemStatus
+    from .agreements_payment_schedule_get_agreements_response import AgreementsPaymentScheduleGetAgreementsResponse
+    from .agreements_payment_schedule_get_agreements_response_rows_item import (
+        AgreementsPaymentScheduleGetAgreementsResponseRowsItem,
+    )
+    from .agreements_payment_schedule_get_agreements_response_totals import (
+        AgreementsPaymentScheduleGetAgreementsResponseTotals,
+    )
+    from .agreements_payment_schedule_set_agreements_request_rows_item import (
+        AgreementsPaymentScheduleSetAgreementsRequestRowsItem,
+    )
+    from .agreements_payment_schedule_set_agreements_response import AgreementsPaymentScheduleSetAgreementsResponse
+    from .agreements_payment_schedule_set_agreements_response_rows_item import (
+        AgreementsPaymentScheduleSetAgreementsResponseRowsItem,
+    )
+    from .agreements_payment_schedule_set_agreements_response_totals import (
+        AgreementsPaymentScheduleSetAgreementsResponseTotals,
+    )
     from .agreements_update_agreements_request_billing_period import AgreementsUpdateAgreementsRequestBillingPeriod
     from .agreements_update_agreements_request_kind import AgreementsUpdateAgreementsRequestKind
     from .agreements_update_agreements_request_status import AgreementsUpdateAgreementsRequestStatus
@@ -95,6 +125,11 @@ _dynamic_imports: typing.Dict[str, str] = {
     "AgreementsCreateAgreementsResponseKind": ".agreements_create_agreements_response_kind",
     "AgreementsCreateAgreementsResponseStatus": ".agreements_create_agreements_response_status",
     "AgreementsDeleteAgreementsResponse": ".agreements_delete_agreements_response",
+    "AgreementsExpectedInvoicesAgreementsResponse": ".agreements_expected_invoices_agreements_response",
+    "AgreementsExpectedInvoicesAgreementsResponsePeriodsItem": ".agreements_expected_invoices_agreements_response_periods_item",
+    "AgreementsExpectedInvoicesAgreementsResponsePeriodsItemPurchaseInvoicesItem": ".agreements_expected_invoices_agreements_response_periods_item_purchase_invoices_item",
+    "AgreementsExpectedInvoicesAgreementsResponsePeriodsItemPurchaseInvoicesItemStatus": ".agreements_expected_invoices_agreements_response_periods_item_purchase_invoices_item_status",
+    "AgreementsExpectedInvoicesAgreementsResponsePeriodsItemPurchaseInvoicesItemType": ".agreements_expected_invoices_agreements_response_periods_item_purchase_invoices_item_type",
     "AgreementsGenerateInvoiceAgreementsResponse": ".agreements_generate_invoice_agreements_response",
     "AgreementsGetAgreementsResponse": ".agreements_get_agreements_response",
     "AgreementsGetAgreementsResponseBillingPeriod": ".agreements_get_agreements_response_billing_period",
@@ -112,6 +147,13 @@ _dynamic_imports: typing.Dict[str, str] = {
     "AgreementsListAgreementsResponseRowsItemBillingPeriod": ".agreements_list_agreements_response_rows_item_billing_period",
     "AgreementsListAgreementsResponseRowsItemKind": ".agreements_list_agreements_response_rows_item_kind",
     "AgreementsListAgreementsResponseRowsItemStatus": ".agreements_list_agreements_response_rows_item_status",
+    "AgreementsPaymentScheduleGetAgreementsResponse": ".agreements_payment_schedule_get_agreements_response",
+    "AgreementsPaymentScheduleGetAgreementsResponseRowsItem": ".agreements_payment_schedule_get_agreements_response_rows_item",
+    "AgreementsPaymentScheduleGetAgreementsResponseTotals": ".agreements_payment_schedule_get_agreements_response_totals",
+    "AgreementsPaymentScheduleSetAgreementsRequestRowsItem": ".agreements_payment_schedule_set_agreements_request_rows_item",
+    "AgreementsPaymentScheduleSetAgreementsResponse": ".agreements_payment_schedule_set_agreements_response",
+    "AgreementsPaymentScheduleSetAgreementsResponseRowsItem": ".agreements_payment_schedule_set_agreements_response_rows_item",
+    "AgreementsPaymentScheduleSetAgreementsResponseTotals": ".agreements_payment_schedule_set_agreements_response_totals",
     "AgreementsUpdateAgreementsRequestBillingPeriod": ".agreements_update_agreements_request_billing_period",
     "AgreementsUpdateAgreementsRequestKind": ".agreements_update_agreements_request_kind",
     "AgreementsUpdateAgreementsRequestStatus": ".agreements_update_agreements_request_status",
@@ -179,6 +221,11 @@ __all__ = [
     "AgreementsCreateAgreementsResponseKind",
     "AgreementsCreateAgreementsResponseStatus",
     "AgreementsDeleteAgreementsResponse",
+    "AgreementsExpectedInvoicesAgreementsResponse",
+    "AgreementsExpectedInvoicesAgreementsResponsePeriodsItem",
+    "AgreementsExpectedInvoicesAgreementsResponsePeriodsItemPurchaseInvoicesItem",
+    "AgreementsExpectedInvoicesAgreementsResponsePeriodsItemPurchaseInvoicesItemStatus",
+    "AgreementsExpectedInvoicesAgreementsResponsePeriodsItemPurchaseInvoicesItemType",
     "AgreementsGenerateInvoiceAgreementsResponse",
     "AgreementsGetAgreementsResponse",
     "AgreementsGetAgreementsResponseBillingPeriod",
@@ -196,6 +243,13 @@ __all__ = [
     "AgreementsListAgreementsResponseRowsItemBillingPeriod",
     "AgreementsListAgreementsResponseRowsItemKind",
     "AgreementsListAgreementsResponseRowsItemStatus",
+    "AgreementsPaymentScheduleGetAgreementsResponse",
+    "AgreementsPaymentScheduleGetAgreementsResponseRowsItem",
+    "AgreementsPaymentScheduleGetAgreementsResponseTotals",
+    "AgreementsPaymentScheduleSetAgreementsRequestRowsItem",
+    "AgreementsPaymentScheduleSetAgreementsResponse",
+    "AgreementsPaymentScheduleSetAgreementsResponseRowsItem",
+    "AgreementsPaymentScheduleSetAgreementsResponseTotals",
     "AgreementsUpdateAgreementsRequestBillingPeriod",
     "AgreementsUpdateAgreementsRequestKind",
     "AgreementsUpdateAgreementsRequestStatus",

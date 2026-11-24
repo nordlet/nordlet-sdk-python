@@ -13,11 +13,17 @@ from .types.agreements_create_agreements_request_kind import AgreementsCreateAgr
 from .types.agreements_create_agreements_request_status import AgreementsCreateAgreementsRequestStatus
 from .types.agreements_create_agreements_response import AgreementsCreateAgreementsResponse
 from .types.agreements_delete_agreements_response import AgreementsDeleteAgreementsResponse
+from .types.agreements_expected_invoices_agreements_response import AgreementsExpectedInvoicesAgreementsResponse
 from .types.agreements_generate_invoice_agreements_response import AgreementsGenerateInvoiceAgreementsResponse
 from .types.agreements_get_agreements_response import AgreementsGetAgreementsResponse
 from .types.agreements_list_agreements_request_filter_item import AgreementsListAgreementsRequestFilterItem
 from .types.agreements_list_agreements_request_sort_item import AgreementsListAgreementsRequestSortItem
 from .types.agreements_list_agreements_response import AgreementsListAgreementsResponse
+from .types.agreements_payment_schedule_get_agreements_response import AgreementsPaymentScheduleGetAgreementsResponse
+from .types.agreements_payment_schedule_set_agreements_request_rows_item import (
+    AgreementsPaymentScheduleSetAgreementsRequestRowsItem,
+)
+from .types.agreements_payment_schedule_set_agreements_response import AgreementsPaymentScheduleSetAgreementsResponse
 from .types.agreements_update_agreements_request_billing_period import AgreementsUpdateAgreementsRequestBillingPeriod
 from .types.agreements_update_agreements_request_kind import AgreementsUpdateAgreementsRequestKind
 from .types.agreements_update_agreements_request_status import AgreementsUpdateAgreementsRequestStatus
@@ -532,6 +538,124 @@ class AgreementsClient:
         _response = self._raw_client.agreements_generate_invoice(
             id=id, as_of_date=as_of_date, request_options=request_options
         )
+        return _response.data
+
+    def agreements_expected_invoices(
+        self, *, id: str, to: typing.Optional[dt.date] = OMIT, request_options: typing.Optional[RequestOptions] = None
+    ) -> AgreementsExpectedInvoicesAgreementsResponse:
+        """
+        The schedule of the supplier invoices an agreement with a `billingPeriod` leads you to expect, such as a lease: each period from `startDate` up to `to` (default today), on the grid of `agreements/agreements/generate-invoice` (prorated by days when cut by `endDate`, an `autoRenew` agreement continuing by whole terms), with `expectedNet`, the sum of quantity times unit price of the agreement items, else `value`, times the prorated share, rounded to the cent (null when an item has no unit price or the agreement has neither), and the purchase invoices registered for the period: those created or updated with this `agreementId` and the period's `periodStart` as `agreementPeriodStart`. A period without one is `missing`. Answers 404 for an unknown agreement and 422 when it has no `billingPeriod`.
+
+        Parameters
+        ----------
+        id : str
+
+        to : typing.Optional[dt.date]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        AgreementsExpectedInvoicesAgreementsResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.agreements.agreements_expected_invoices(
+            id="id",
+        )
+        """
+        _response = self._raw_client.agreements_expected_invoices(id=id, to=to, request_options=request_options)
+        return _response.data
+
+    def agreements_payment_schedule_set(
+        self,
+        *,
+        id: str,
+        rows: typing.Sequence[AgreementsPaymentScheduleSetAgreementsRequestRowsItem],
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> AgreementsPaymentScheduleSetAgreementsResponse:
+        """
+        Keep the repayment schedule of a loan or lease agreement as the lender or lessor gives it: one row per instalment with its `dueDate`, the `principal` it repays and the `interest` it pays. The rows replace the agreement's earlier schedule; an empty list removes it. Nordlet does not compute instalments, because the interest rate, day count and rounding are the lender's. Answers 404 for an unknown agreement and 422 when two rows have the same `dueDate`.
+
+        Parameters
+        ----------
+        id : str
+
+        rows : typing.Sequence[AgreementsPaymentScheduleSetAgreementsRequestRowsItem]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        AgreementsPaymentScheduleSetAgreementsResponse
+            Default Response
+
+        Examples
+        --------
+        import datetime
+
+        from nordlet import Nordlet
+        from nordlet.agreements import (
+            AgreementsPaymentScheduleSetAgreementsRequestRowsItem,
+        )
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.agreements.agreements_payment_schedule_set(
+            id="id",
+            rows=[
+                AgreementsPaymentScheduleSetAgreementsRequestRowsItem(
+                    due_date=datetime.date.fromisoformat(
+                        "2026-07-01",
+                    ),
+                    principal="121.0000",
+                    interest="121.0000",
+                )
+            ],
+        )
+        """
+        _response = self._raw_client.agreements_payment_schedule_set(id=id, rows=rows, request_options=request_options)
+        return _response.data
+
+    def agreements_payment_schedule_get(
+        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> AgreementsPaymentScheduleGetAgreementsResponse:
+        """
+        The repayment schedule kept with `agreements/agreements/payment-schedule/set`, by due date, with each instalment's total and, when the agreement has a `value` (the amount lent or financed), the principal outstanding after it. Answers 404 for an unknown agreement.
+
+        Parameters
+        ----------
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        AgreementsPaymentScheduleGetAgreementsResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.agreements.agreements_payment_schedule_get(
+            id="id",
+        )
+        """
+        _response = self._raw_client.agreements_payment_schedule_get(id=id, request_options=request_options)
         return _response.data
 
     def agreements_billing_run(
@@ -1294,6 +1418,149 @@ class AsyncAgreementsClient:
         _response = await self._raw_client.agreements_generate_invoice(
             id=id, as_of_date=as_of_date, request_options=request_options
         )
+        return _response.data
+
+    async def agreements_expected_invoices(
+        self, *, id: str, to: typing.Optional[dt.date] = OMIT, request_options: typing.Optional[RequestOptions] = None
+    ) -> AgreementsExpectedInvoicesAgreementsResponse:
+        """
+        The schedule of the supplier invoices an agreement with a `billingPeriod` leads you to expect, such as a lease: each period from `startDate` up to `to` (default today), on the grid of `agreements/agreements/generate-invoice` (prorated by days when cut by `endDate`, an `autoRenew` agreement continuing by whole terms), with `expectedNet`, the sum of quantity times unit price of the agreement items, else `value`, times the prorated share, rounded to the cent (null when an item has no unit price or the agreement has neither), and the purchase invoices registered for the period: those created or updated with this `agreementId` and the period's `periodStart` as `agreementPeriodStart`. A period without one is `missing`. Answers 404 for an unknown agreement and 422 when it has no `billingPeriod`.
+
+        Parameters
+        ----------
+        id : str
+
+        to : typing.Optional[dt.date]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        AgreementsExpectedInvoicesAgreementsResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.agreements.agreements_expected_invoices(
+                id="id",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.agreements_expected_invoices(id=id, to=to, request_options=request_options)
+        return _response.data
+
+    async def agreements_payment_schedule_set(
+        self,
+        *,
+        id: str,
+        rows: typing.Sequence[AgreementsPaymentScheduleSetAgreementsRequestRowsItem],
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> AgreementsPaymentScheduleSetAgreementsResponse:
+        """
+        Keep the repayment schedule of a loan or lease agreement as the lender or lessor gives it: one row per instalment with its `dueDate`, the `principal` it repays and the `interest` it pays. The rows replace the agreement's earlier schedule; an empty list removes it. Nordlet does not compute instalments, because the interest rate, day count and rounding are the lender's. Answers 404 for an unknown agreement and 422 when two rows have the same `dueDate`.
+
+        Parameters
+        ----------
+        id : str
+
+        rows : typing.Sequence[AgreementsPaymentScheduleSetAgreementsRequestRowsItem]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        AgreementsPaymentScheduleSetAgreementsResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+        import datetime
+
+        from nordlet import AsyncNordlet
+        from nordlet.agreements import (
+            AgreementsPaymentScheduleSetAgreementsRequestRowsItem,
+        )
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.agreements.agreements_payment_schedule_set(
+                id="id",
+                rows=[
+                    AgreementsPaymentScheduleSetAgreementsRequestRowsItem(
+                        due_date=datetime.date.fromisoformat(
+                            "2026-07-01",
+                        ),
+                        principal="121.0000",
+                        interest="121.0000",
+                    )
+                ],
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.agreements_payment_schedule_set(
+            id=id, rows=rows, request_options=request_options
+        )
+        return _response.data
+
+    async def agreements_payment_schedule_get(
+        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> AgreementsPaymentScheduleGetAgreementsResponse:
+        """
+        The repayment schedule kept with `agreements/agreements/payment-schedule/set`, by due date, with each instalment's total and, when the agreement has a `value` (the amount lent or financed), the principal outstanding after it. Answers 404 for an unknown agreement.
+
+        Parameters
+        ----------
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        AgreementsPaymentScheduleGetAgreementsResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.agreements.agreements_payment_schedule_get(
+                id="id",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.agreements_payment_schedule_get(id=id, request_options=request_options)
         return _response.data
 
     async def agreements_billing_run(

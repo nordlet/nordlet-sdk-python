@@ -2,4 +2,6 @@
 
 import typing
 
-FindOrCreatePartnersResponsePartnerLegalCountryClass = typing.Union[typing.Literal["lt", "eu", "non_eu"], typing.Any]
+FindOrCreatePartnersResponsePartnerLegalCountryClass = typing.Union[
+    typing.Literal["domestic", "eu", "non_eu"], typing.Any
+]

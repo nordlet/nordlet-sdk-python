@@ -86,6 +86,7 @@ class CatalogClient:
         sale_price_excl_vat: typing.Optional[str] = OMIT,
         purchase_price_excl_vat: typing.Optional[str] = OMIT,
         cn_code: typing.Optional[str] = OMIT,
+        cpa_code: typing.Optional[str] = OMIT,
         origin_country: typing.Optional[str] = OMIT,
         net_mass_kg: typing.Optional[str] = OMIT,
         supplementary_unit: typing.Optional[str] = OMIT,
@@ -126,7 +127,7 @@ class CatalogClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> ItemsCreateCatalogResponse:
         """
-        Create a catalog item: a product, a service or a set of other items. `unit` must be `vnt`, a global measurement unit or one of the company's own units (`catalog/units/options`), the sale, purchase and expense account codes must be postable accounts of the chart, and `priceFrom`/`priceTo` and `validFrom`/`validTo` must be in order; otherwise 422. A `set` needs at least one component and none of them may be a set; `components` on any other type is refused with 422. 409 when an active item already carries the `code`. `documentRef` is the storage key of a file uploaded with `files/upload`, which is attached to the item. Emits `item.created`.
+        Create a catalog item: a product, a service or a set of other items. `unit` must be a global measurement unit or one of the company's own units (`catalog/units/options`; create one with `catalog/units/create`), the sale, purchase and expense account codes must be postable accounts of the chart, and `priceFrom`/`priceTo` and `validFrom`/`validTo` must be in order; otherwise 422. A `set` needs at least one component and none of them may be a set; `components` on any other type is refused with 422. 409 when an active item already carries the `code`. `documentRef` is the storage key of a file uploaded with `files/upload`, which is attached to the item. Emits `item.created`.
 
         Parameters
         ----------
@@ -141,6 +142,7 @@ class CatalogClient:
         barcode : typing.Optional[str]
 
         unit : typing.Optional[str]
+            Unit of measure; without it `vnt` for a Lithuanian company and `pcs` for any other
 
         vat_classifier_code : typing.Optional[str]
 
@@ -151,6 +153,9 @@ class CatalogClient:
         purchase_price_excl_vat : typing.Optional[str]
 
         cn_code : typing.Optional[str]
+
+        cpa_code : typing.Optional[str]
+            CPA code of a service, six digits without dots (62.01.11 is 620111); the Italian Intrastat list of services needs it
 
         origin_country : typing.Optional[str]
 
@@ -257,6 +262,7 @@ class CatalogClient:
             sale_price_excl_vat=sale_price_excl_vat,
             purchase_price_excl_vat=purchase_price_excl_vat,
             cn_code=cn_code,
+            cpa_code=cpa_code,
             origin_country=origin_country,
             net_mass_kg=net_mass_kg,
             supplementary_unit=supplementary_unit,
@@ -343,6 +349,7 @@ class CatalogClient:
         sale_price_excl_vat: typing.Optional[str] = OMIT,
         purchase_price_excl_vat: typing.Optional[str] = OMIT,
         cn_code: typing.Optional[str] = OMIT,
+        cpa_code: typing.Optional[str] = OMIT,
         origin_country: typing.Optional[str] = OMIT,
         net_mass_kg: typing.Optional[str] = OMIT,
         supplementary_unit: typing.Optional[str] = OMIT,
@@ -402,6 +409,7 @@ class CatalogClient:
         barcode : typing.Optional[str]
 
         unit : typing.Optional[str]
+            Unit of measure; without it `vnt` for a Lithuanian company and `pcs` for any other
 
         vat_classifier_code : typing.Optional[str]
 
@@ -412,6 +420,9 @@ class CatalogClient:
         purchase_price_excl_vat : typing.Optional[str]
 
         cn_code : typing.Optional[str]
+
+        cpa_code : typing.Optional[str]
+            CPA code of a service, six digits without dots (62.01.11 is 620111); the Italian Intrastat list of services needs it
 
         origin_country : typing.Optional[str]
 
@@ -519,6 +530,7 @@ class CatalogClient:
             sale_price_excl_vat=sale_price_excl_vat,
             purchase_price_excl_vat=purchase_price_excl_vat,
             cn_code=cn_code,
+            cpa_code=cpa_code,
             origin_country=origin_country,
             net_mass_kg=net_mass_kg,
             supplementary_unit=supplementary_unit,
@@ -1761,6 +1773,7 @@ class AsyncCatalogClient:
         sale_price_excl_vat: typing.Optional[str] = OMIT,
         purchase_price_excl_vat: typing.Optional[str] = OMIT,
         cn_code: typing.Optional[str] = OMIT,
+        cpa_code: typing.Optional[str] = OMIT,
         origin_country: typing.Optional[str] = OMIT,
         net_mass_kg: typing.Optional[str] = OMIT,
         supplementary_unit: typing.Optional[str] = OMIT,
@@ -1801,7 +1814,7 @@ class AsyncCatalogClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> ItemsCreateCatalogResponse:
         """
-        Create a catalog item: a product, a service or a set of other items. `unit` must be `vnt`, a global measurement unit or one of the company's own units (`catalog/units/options`), the sale, purchase and expense account codes must be postable accounts of the chart, and `priceFrom`/`priceTo` and `validFrom`/`validTo` must be in order; otherwise 422. A `set` needs at least one component and none of them may be a set; `components` on any other type is refused with 422. 409 when an active item already carries the `code`. `documentRef` is the storage key of a file uploaded with `files/upload`, which is attached to the item. Emits `item.created`.
+        Create a catalog item: a product, a service or a set of other items. `unit` must be a global measurement unit or one of the company's own units (`catalog/units/options`; create one with `catalog/units/create`), the sale, purchase and expense account codes must be postable accounts of the chart, and `priceFrom`/`priceTo` and `validFrom`/`validTo` must be in order; otherwise 422. A `set` needs at least one component and none of them may be a set; `components` on any other type is refused with 422. 409 when an active item already carries the `code`. `documentRef` is the storage key of a file uploaded with `files/upload`, which is attached to the item. Emits `item.created`.
 
         Parameters
         ----------
@@ -1816,6 +1829,7 @@ class AsyncCatalogClient:
         barcode : typing.Optional[str]
 
         unit : typing.Optional[str]
+            Unit of measure; without it `vnt` for a Lithuanian company and `pcs` for any other
 
         vat_classifier_code : typing.Optional[str]
 
@@ -1826,6 +1840,9 @@ class AsyncCatalogClient:
         purchase_price_excl_vat : typing.Optional[str]
 
         cn_code : typing.Optional[str]
+
+        cpa_code : typing.Optional[str]
+            CPA code of a service, six digits without dots (62.01.11 is 620111); the Italian Intrastat list of services needs it
 
         origin_country : typing.Optional[str]
 
@@ -1940,6 +1957,7 @@ class AsyncCatalogClient:
             sale_price_excl_vat=sale_price_excl_vat,
             purchase_price_excl_vat=purchase_price_excl_vat,
             cn_code=cn_code,
+            cpa_code=cpa_code,
             origin_country=origin_country,
             net_mass_kg=net_mass_kg,
             supplementary_unit=supplementary_unit,
@@ -2036,6 +2054,7 @@ class AsyncCatalogClient:
         sale_price_excl_vat: typing.Optional[str] = OMIT,
         purchase_price_excl_vat: typing.Optional[str] = OMIT,
         cn_code: typing.Optional[str] = OMIT,
+        cpa_code: typing.Optional[str] = OMIT,
         origin_country: typing.Optional[str] = OMIT,
         net_mass_kg: typing.Optional[str] = OMIT,
         supplementary_unit: typing.Optional[str] = OMIT,
@@ -2095,6 +2114,7 @@ class AsyncCatalogClient:
         barcode : typing.Optional[str]
 
         unit : typing.Optional[str]
+            Unit of measure; without it `vnt` for a Lithuanian company and `pcs` for any other
 
         vat_classifier_code : typing.Optional[str]
 
@@ -2105,6 +2125,9 @@ class AsyncCatalogClient:
         purchase_price_excl_vat : typing.Optional[str]
 
         cn_code : typing.Optional[str]
+
+        cpa_code : typing.Optional[str]
+            CPA code of a service, six digits without dots (62.01.11 is 620111); the Italian Intrastat list of services needs it
 
         origin_country : typing.Optional[str]
 
@@ -2220,6 +2243,7 @@ class AsyncCatalogClient:
             sale_price_excl_vat=sale_price_excl_vat,
             purchase_price_excl_vat=purchase_price_excl_vat,
             cn_code=cn_code,
+            cpa_code=cpa_code,
             origin_country=origin_country,
             net_mass_kg=net_mass_kg,
             supplementary_unit=supplementary_unit,

@@ -24,6 +24,10 @@ from ..errors.unprocessable_entity_error import UnprocessableEntityError
 from ..types.error_response import ErrorResponse
 from .types.assets_create_assets_request_documents_item import AssetsCreateAssetsRequestDocumentsItem
 from .types.assets_create_assets_response import AssetsCreateAssetsResponse
+from .types.assets_create_from_purchase_assets_request_documents_item import (
+    AssetsCreateFromPurchaseAssetsRequestDocumentsItem,
+)
+from .types.assets_create_from_purchase_assets_response import AssetsCreateFromPurchaseAssetsResponse
 from .types.assets_dispose_assets_request_reason import AssetsDisposeAssetsRequestReason
 from .types.assets_dispose_assets_response import AssetsDisposeAssetsResponse
 from .types.assets_get_assets_response import AssetsGetAssetsResponse
@@ -813,6 +817,208 @@ class RawAssetsClient:
                     AssetsCreateAssetsResponse,
                     parse_obj_as(
                         type_=AssetsCreateAssetsResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return HttpResponse(response=_response, data=_data)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 422:
+                raise UnprocessableEntityError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
+    def assets_create_from_purchase(
+        self,
+        *,
+        purchase_invoice_line_id: str,
+        group_id: str,
+        code: str,
+        name: typing.Optional[str] = OMIT,
+        depreciation_start_date: typing.Optional[dt.date] = OMIT,
+        acquisition_cost: typing.Optional[str] = OMIT,
+        salvage_value: typing.Optional[str] = OMIT,
+        useful_life_months: typing.Optional[int] = OMIT,
+        notes: typing.Optional[str] = OMIT,
+        documents: typing.Optional[typing.Sequence[AssetsCreateFromPurchaseAssetsRequestDocumentsItem]] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> HttpResponse[AssetsCreateFromPurchaseAssetsResponse]:
+        """
+        Register a fixed asset from a line of a registered purchase invoice that was booked to the asset account of the group (422 otherwise, and for a credit note, a draft or reversed invoice and a deferred line). The acquisition date is the invoice's registration date, else its document date. The acquisition cost is what the line booked, in the company currency (its net amount plus the VAT not deducted), less what earlier assets from the same line took; `acquisitionCost` takes a part of it instead, for a line that holds several assets (422 above what is left, 409 when nothing is left). The name defaults to the line description. The asset keeps `purchaseInvoiceLineId`. Otherwise as `assets/assets/create`.
+
+        Parameters
+        ----------
+        purchase_invoice_line_id : str
+
+        group_id : str
+
+        code : str
+
+        name : typing.Optional[str]
+
+        depreciation_start_date : typing.Optional[dt.date]
+
+        acquisition_cost : typing.Optional[str]
+
+        salvage_value : typing.Optional[str]
+
+        useful_life_months : typing.Optional[int]
+
+        notes : typing.Optional[str]
+
+        documents : typing.Optional[typing.Sequence[AssetsCreateFromPurchaseAssetsRequestDocumentsItem]]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        HttpResponse[AssetsCreateFromPurchaseAssetsResponse]
+            Default Response
+        """
+        _response = self._client_wrapper.httpx_client.request(
+            "v1/assets/assets/create-from-purchase",
+            method="POST",
+            json={
+                "purchaseInvoiceLineId": purchase_invoice_line_id,
+                "groupId": group_id,
+                "code": code,
+                "name": name,
+                "depreciationStartDate": depreciation_start_date,
+                "acquisitionCost": acquisition_cost,
+                "salvageValue": salvage_value,
+                "usefulLifeMonths": useful_life_months,
+                "notes": notes,
+                "documents": convert_and_respect_annotation_metadata(
+                    object_=documents,
+                    annotation=typing.Sequence[AssetsCreateFromPurchaseAssetsRequestDocumentsItem],
+                    direction="write",
+                ),
+            },
+            headers={
+                "content-type": "application/json",
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    AssetsCreateFromPurchaseAssetsResponse,
+                    parse_obj_as(
+                        type_=AssetsCreateFromPurchaseAssetsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -3119,6 +3325,208 @@ class AsyncRawAssetsClient:
                     AssetsCreateAssetsResponse,
                     parse_obj_as(
                         type_=AssetsCreateAssetsResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return AsyncHttpResponse(response=_response, data=_data)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 422:
+                raise UnprocessableEntityError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
+    async def assets_create_from_purchase(
+        self,
+        *,
+        purchase_invoice_line_id: str,
+        group_id: str,
+        code: str,
+        name: typing.Optional[str] = OMIT,
+        depreciation_start_date: typing.Optional[dt.date] = OMIT,
+        acquisition_cost: typing.Optional[str] = OMIT,
+        salvage_value: typing.Optional[str] = OMIT,
+        useful_life_months: typing.Optional[int] = OMIT,
+        notes: typing.Optional[str] = OMIT,
+        documents: typing.Optional[typing.Sequence[AssetsCreateFromPurchaseAssetsRequestDocumentsItem]] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> AsyncHttpResponse[AssetsCreateFromPurchaseAssetsResponse]:
+        """
+        Register a fixed asset from a line of a registered purchase invoice that was booked to the asset account of the group (422 otherwise, and for a credit note, a draft or reversed invoice and a deferred line). The acquisition date is the invoice's registration date, else its document date. The acquisition cost is what the line booked, in the company currency (its net amount plus the VAT not deducted), less what earlier assets from the same line took; `acquisitionCost` takes a part of it instead, for a line that holds several assets (422 above what is left, 409 when nothing is left). The name defaults to the line description. The asset keeps `purchaseInvoiceLineId`. Otherwise as `assets/assets/create`.
+
+        Parameters
+        ----------
+        purchase_invoice_line_id : str
+
+        group_id : str
+
+        code : str
+
+        name : typing.Optional[str]
+
+        depreciation_start_date : typing.Optional[dt.date]
+
+        acquisition_cost : typing.Optional[str]
+
+        salvage_value : typing.Optional[str]
+
+        useful_life_months : typing.Optional[int]
+
+        notes : typing.Optional[str]
+
+        documents : typing.Optional[typing.Sequence[AssetsCreateFromPurchaseAssetsRequestDocumentsItem]]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        AsyncHttpResponse[AssetsCreateFromPurchaseAssetsResponse]
+            Default Response
+        """
+        _response = await self._client_wrapper.httpx_client.request(
+            "v1/assets/assets/create-from-purchase",
+            method="POST",
+            json={
+                "purchaseInvoiceLineId": purchase_invoice_line_id,
+                "groupId": group_id,
+                "code": code,
+                "name": name,
+                "depreciationStartDate": depreciation_start_date,
+                "acquisitionCost": acquisition_cost,
+                "salvageValue": salvage_value,
+                "usefulLifeMonths": useful_life_months,
+                "notes": notes,
+                "documents": convert_and_respect_annotation_metadata(
+                    object_=documents,
+                    annotation=typing.Sequence[AssetsCreateFromPurchaseAssetsRequestDocumentsItem],
+                    direction="write",
+                ),
+            },
+            headers={
+                "content-type": "application/json",
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    AssetsCreateFromPurchaseAssetsResponse,
+                    parse_obj_as(
+                        type_=AssetsCreateFromPurchaseAssetsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )

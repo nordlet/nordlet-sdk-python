@@ -3,7 +3,15 @@
 import typing
 
 import pydantic
+import typing_extensions
 from ...core.pydantic_utilities import IS_PYDANTIC_V2, UniversalBaseModel
+from ...core.serialization import FieldMetadata
+from .transactions_suggest_matches_bank_response_allocations_item import (
+    TransactionsSuggestMatchesBankResponseAllocationsItem,
+)
+from .transactions_suggest_matches_bank_response_posting_rules_item import (
+    TransactionsSuggestMatchesBankResponsePostingRulesItem,
+)
 from .transactions_suggest_matches_bank_response_suggestions_item import (
     TransactionsSuggestMatchesBankResponseSuggestionsItem,
 )
@@ -11,6 +19,12 @@ from .transactions_suggest_matches_bank_response_suggestions_item import (
 
 class TransactionsSuggestMatchesBankResponse(UniversalBaseModel):
     suggestions: typing.List[TransactionsSuggestMatchesBankResponseSuggestionsItem]
+    allocations: typing.Optional[typing.List[TransactionsSuggestMatchesBankResponseAllocationsItem]] = None
+    posting_rules: typing_extensions.Annotated[
+        typing.List[TransactionsSuggestMatchesBankResponsePostingRulesItem],
+        FieldMetadata(alias="postingRules"),
+        pydantic.Field(alias="postingRules"),
+    ]
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

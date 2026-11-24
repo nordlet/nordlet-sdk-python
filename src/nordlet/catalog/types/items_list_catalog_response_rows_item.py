@@ -39,6 +39,9 @@ class ItemsListCatalogResponseRowsItem(UniversalBaseModel):
     cn_code: typing_extensions.Annotated[
         typing.Optional[str], FieldMetadata(alias="cnCode"), pydantic.Field(alias="cnCode")
     ] = None
+    cpa_code: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="cpaCode"), pydantic.Field(alias="cpaCode")
+    ] = None
     origin_country: typing_extensions.Annotated[
         typing.Optional[str], FieldMetadata(alias="originCountry"), pydantic.Field(alias="originCountry")
     ] = None

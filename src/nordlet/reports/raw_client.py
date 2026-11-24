@@ -48,6 +48,7 @@ from .types.oss_reports_response import OssReportsResponse
 from .types.partner_balances_reports_response import PartnerBalancesReportsResponse
 from .types.period_checklist_reports_response import PeriodChecklistReportsResponse
 from .types.pos_sales_reports_response import PosSalesReportsResponse
+from .types.saft_no_reports_response import SaftNoReportsResponse
 from .types.sie_reports_response import SieReportsResponse
 from .types.size_category_reports_response import SizeCategoryReportsResponse
 from .types.stock_aging_reports_response import StockAgingReportsResponse
@@ -55,6 +56,7 @@ from .types.stock_balance_reports_response import StockBalanceReportsResponse
 from .types.stock_movement_reports_response import StockMovementReportsResponse
 from .types.stock_shortage_reports_response import StockShortageReportsResponse
 from .types.trial_balance_reports_response import TrialBalanceReportsResponse
+from .types.vat_accounts_reports_response import VatAccountsReportsResponse
 from .types.vat_detail_reports_request_side import VatDetailReportsRequestSide
 from .types.vat_detail_reports_response import VatDetailReportsResponse
 from .types.vat_summary_reports_request_side import VatSummaryReportsRequestSide
@@ -236,7 +238,7 @@ class RawReportsClient:
         self, *, year: int, request_options: typing.Optional[RequestOptions] = None
     ) -> HttpResponse[SizeCategoryReportsResponse]:
         """
-        Classify the company's size for a calendar year as micro, small, medium or large from total assets at the year end, the net turnover of the year and the average number of employees under employment contracts, against the limits returned in `thresholds`; a category applies when at least two of its three limits are met. This is the default category of `reports/financial-statements`.
+        Classify the company's size for a calendar year as micro, small, medium or large from total assets at the year end, the net turnover of the year and the average number of employees under employment contracts, against the limits returned in `thresholds`; a category applies when at least two of its three limits are met. The limits are those of the accounting law of the company's country for a financial year starting on 1 January of that year, in `currency` (the company's base currency, converted at the year-end rate when the law sets them in another currency); a category the law does not have is left out of `thresholds`. A country without recorded limits uses those of Directive 2013/34/EU as amended by Delegated Directive (EU) 2023/2775. The category follows the law's rule over the years: in most countries it changes only when the limits are crossed at two consecutive year ends, and in AT, BE, BG, CZ, HU, PT and SK from the year after; DK and FI need both years within a category's limits, SE both years over its limits to be large, EE two year ends outside a category to leave it, LV the higher category while the category changes every year, HR the figures of the year before, and the Maltese medium category one year end; a Bulgarian company that leaves its category takes the category of the later year. The earlier years are the financial years before with postings in Nordlet, each tested against the limits of the year classified at its own year-end rate; a year without postings ends the chain, and the first year is classified on its own figures. CY, GR and countries without recorded limits classify each year on its own figures. This is the default category of `reports/financial-statements`.
 
         Parameters
         ----------
@@ -1734,7 +1736,7 @@ class RawReportsClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[VatSummaryReportsResponse]:
         """
-        VAT of issued sale invoices (by issue date) or registered purchase invoices (by registration date) in a period, summed per VAT rate: net, VAT and gross in the base currency and the number of documents, credit notes counting negative. The rows of `reports/vat-detail` grouped by rate.
+        VAT of issued sale invoices (by issue date; an advance invoice whose VAT is due when it is paid, by payment date) or registered purchase invoices (by registration date) in a period, summed per VAT rate: net, VAT and gross in the base currency and the number of documents, credit notes counting negative. The rows of `reports/vat-detail` grouped by rate.
 
         Parameters
         ----------
@@ -2888,11 +2890,343 @@ class RawReportsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
+    def saft_no(
+        self, *, from_date: dt.date, to_date: dt.date, request_options: typing.Optional[RequestOptions] = None
+    ) -> HttpResponse[SaftNoReportsResponse]:
+        """
+        Export the posted ledger of a period of a Norwegian company as a SAF-T Financial file (Skatteetaten, Norwegian SAF-T Financial data), which the company hands over when the Tax Administration asks for it (bokføringsforskriften § 7-8). The contact person is the one stored for the Skatteetaten system (`declarations/configs/update`, `contactFirstName`, `contactLastName`). Answers 422 for a company outside Norway.
+
+        Parameters
+        ----------
+        from_date : dt.date
+
+        to_date : dt.date
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        HttpResponse[SaftNoReportsResponse]
+            Default Response
+        """
+        _response = self._client_wrapper.httpx_client.request(
+            "v1/reports/saft-no",
+            method="POST",
+            json={
+                "fromDate": from_date,
+                "toDate": to_date,
+            },
+            headers={
+                "content-type": "application/json",
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    SaftNoReportsResponse,
+                    parse_obj_as(
+                        type_=SaftNoReportsResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return HttpResponse(response=_response, data=_data)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 422:
+                raise UnprocessableEntityError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
+    def vat_accounts(
+        self,
+        *,
+        year: int,
+        month: int,
+        months: typing.Optional[int] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> HttpResponse[VatAccountsReportsResponse]:
+        """
+        Compares, for the `months` months starting in `month`, the VAT posted on each account of the posting rules `sales.vatPayable`, `sales.ossVatPayable` and `purchases.vatReceivable` with the VAT the documents read by the company's VAT return carry. `posted` is the movement of the account in the period (credit less debit on an output account, debit less credit on the input account) without the bank, cash and year-end closing postings, which are shown as `settlements`; `expected` is, from the documents of the period: output VAT and self-assessed VAT for `sales.vatPayable`, VAT of the issued invoices, credit notes and advance invoices under the OSS and IOSS schemes (`vatScheme` `oss_union`, `oss_non_union`, `ioss`, by issue date) for `sales.ossVatPayable` and deductible VAT for `purchases.vatReceivable`, summed when rules share an account (deductible VAT subtracted on an output account). `difference` is `posted` less `expected`; `byDocumentType` gives the debit and credit of the period by journal document type. `warnings` are those of the VAT return collector, such as lines without a VAT type.
+
+        Parameters
+        ----------
+        year : int
+
+        month : int
+
+        months : typing.Optional[int]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        HttpResponse[VatAccountsReportsResponse]
+            Default Response
+        """
+        _response = self._client_wrapper.httpx_client.request(
+            "v1/reports/vat-accounts",
+            method="POST",
+            json={
+                "year": year,
+                "month": month,
+                "months": months,
+            },
+            headers={
+                "content-type": "application/json",
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    VatAccountsReportsResponse,
+                    parse_obj_as(
+                        type_=VatAccountsReportsResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return HttpResponse(response=_response, data=_data)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 422:
+                raise UnprocessableEntityError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
     def period_checklist(
         self, *, period: str, request_options: typing.Optional[RequestOptions] = None
     ) -> HttpResponse[PeriodChecklistReportsResponse]:
         """
-        Lists what is still open for `period`: a month (`YYYY-MM`) or the fiscal year that ends in `YYYY`. Items: draft sale documents (invoices, credit notes and advance invoices with an issue date in the period) and draft purchase documents dated in the period, bank lines dated in the period with status `new`, assets with depreciation months not posted up to the period end, expense deferral rows due by the period end and not posted, active recurring invoices whose next run date is on or before the period end, payroll runs of the period's months still in draft, and for a fiscal year the issued sale and registered purchase documents in a currency other than the base currency still open at the year end. Each item carries the `count` and the `ids` of the documents, rows, assets, recurring invoices or runs; an item with nothing open is left out. `ledger/periods/lock` returns the same items as `warnings`.
+        Lists what is still open for `period`: a month (`YYYY-MM`) or the fiscal year that ends in `YYYY`. Items: draft sale documents (invoices, credit notes and advance invoices with an issue date in the period) and draft purchase documents dated in the period, bank lines dated in the period with status `new`, assets with depreciation months not posted up to the period end, expense deferral rows due by the period end and not posted, active recurring invoices whose next run date is on or before the period end, payroll runs of the period's months still in draft, for a fiscal year the issued sale and registered purchase documents in a currency other than the base currency still open at the year end, the bank accounts whose ledger balance at the period end differs from the statement balance stored by an import (`bank/reconciliation/get`), the posted manual entries and accruals in the period on the VAT accounts of the posting rules `sales.vatPayable`, `sales.ossVatPayable` and `purchases.vatReceivable` and the expense reports in the period with VAT on a line without a VAT type, which no VAT return reads, and the filings of the period (`calendar/list` keys) whose filing system has settings without a stored value. Each item carries the `count` and the `ids` of the documents, rows, assets, recurring invoices, runs, bank accounts, journal transactions or calendar keys; an item with nothing open is left out. `ledger/periods/lock` returns the same items as `warnings`.
 
         Parameters
         ----------
@@ -3218,7 +3552,7 @@ class RawReportsClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[VatDetailReportsResponse]:
         """
-        VAT of issued sale invoices (by issue date) or registered purchase invoices (by registration date) in a period, one row per document and VAT rate: net, VAT and gross in the base currency, with totals; credit notes count negative. `reports/vat-summary` groups these rows by rate.
+        VAT of issued sale invoices (by issue date; an advance invoice whose VAT is due when it is paid, by payment date) or registered purchase invoices (by registration date) in a period, one row per document and VAT rate: net, VAT and gross in the base currency, with totals; credit notes count negative. `reports/vat-summary` groups these rows by rate.
 
         Parameters
         ----------
@@ -5382,7 +5716,7 @@ class AsyncRawReportsClient:
         self, *, year: int, request_options: typing.Optional[RequestOptions] = None
     ) -> AsyncHttpResponse[SizeCategoryReportsResponse]:
         """
-        Classify the company's size for a calendar year as micro, small, medium or large from total assets at the year end, the net turnover of the year and the average number of employees under employment contracts, against the limits returned in `thresholds`; a category applies when at least two of its three limits are met. This is the default category of `reports/financial-statements`.
+        Classify the company's size for a calendar year as micro, small, medium or large from total assets at the year end, the net turnover of the year and the average number of employees under employment contracts, against the limits returned in `thresholds`; a category applies when at least two of its three limits are met. The limits are those of the accounting law of the company's country for a financial year starting on 1 January of that year, in `currency` (the company's base currency, converted at the year-end rate when the law sets them in another currency); a category the law does not have is left out of `thresholds`. A country without recorded limits uses those of Directive 2013/34/EU as amended by Delegated Directive (EU) 2023/2775. The category follows the law's rule over the years: in most countries it changes only when the limits are crossed at two consecutive year ends, and in AT, BE, BG, CZ, HU, PT and SK from the year after; DK and FI need both years within a category's limits, SE both years over its limits to be large, EE two year ends outside a category to leave it, LV the higher category while the category changes every year, HR the figures of the year before, and the Maltese medium category one year end; a Bulgarian company that leaves its category takes the category of the later year. The earlier years are the financial years before with postings in Nordlet, each tested against the limits of the year classified at its own year-end rate; a year without postings ends the chain, and the first year is classified on its own figures. CY, GR and countries without recorded limits classify each year on its own figures. This is the default category of `reports/financial-statements`.
 
         Parameters
         ----------
@@ -6880,7 +7214,7 @@ class AsyncRawReportsClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[VatSummaryReportsResponse]:
         """
-        VAT of issued sale invoices (by issue date) or registered purchase invoices (by registration date) in a period, summed per VAT rate: net, VAT and gross in the base currency and the number of documents, credit notes counting negative. The rows of `reports/vat-detail` grouped by rate.
+        VAT of issued sale invoices (by issue date; an advance invoice whose VAT is due when it is paid, by payment date) or registered purchase invoices (by registration date) in a period, summed per VAT rate: net, VAT and gross in the base currency and the number of documents, credit notes counting negative. The rows of `reports/vat-detail` grouped by rate.
 
         Parameters
         ----------
@@ -8034,11 +8368,343 @@ class AsyncRawReportsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
+    async def saft_no(
+        self, *, from_date: dt.date, to_date: dt.date, request_options: typing.Optional[RequestOptions] = None
+    ) -> AsyncHttpResponse[SaftNoReportsResponse]:
+        """
+        Export the posted ledger of a period of a Norwegian company as a SAF-T Financial file (Skatteetaten, Norwegian SAF-T Financial data), which the company hands over when the Tax Administration asks for it (bokføringsforskriften § 7-8). The contact person is the one stored for the Skatteetaten system (`declarations/configs/update`, `contactFirstName`, `contactLastName`). Answers 422 for a company outside Norway.
+
+        Parameters
+        ----------
+        from_date : dt.date
+
+        to_date : dt.date
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        AsyncHttpResponse[SaftNoReportsResponse]
+            Default Response
+        """
+        _response = await self._client_wrapper.httpx_client.request(
+            "v1/reports/saft-no",
+            method="POST",
+            json={
+                "fromDate": from_date,
+                "toDate": to_date,
+            },
+            headers={
+                "content-type": "application/json",
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    SaftNoReportsResponse,
+                    parse_obj_as(
+                        type_=SaftNoReportsResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return AsyncHttpResponse(response=_response, data=_data)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 422:
+                raise UnprocessableEntityError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
+    async def vat_accounts(
+        self,
+        *,
+        year: int,
+        month: int,
+        months: typing.Optional[int] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> AsyncHttpResponse[VatAccountsReportsResponse]:
+        """
+        Compares, for the `months` months starting in `month`, the VAT posted on each account of the posting rules `sales.vatPayable`, `sales.ossVatPayable` and `purchases.vatReceivable` with the VAT the documents read by the company's VAT return carry. `posted` is the movement of the account in the period (credit less debit on an output account, debit less credit on the input account) without the bank, cash and year-end closing postings, which are shown as `settlements`; `expected` is, from the documents of the period: output VAT and self-assessed VAT for `sales.vatPayable`, VAT of the issued invoices, credit notes and advance invoices under the OSS and IOSS schemes (`vatScheme` `oss_union`, `oss_non_union`, `ioss`, by issue date) for `sales.ossVatPayable` and deductible VAT for `purchases.vatReceivable`, summed when rules share an account (deductible VAT subtracted on an output account). `difference` is `posted` less `expected`; `byDocumentType` gives the debit and credit of the period by journal document type. `warnings` are those of the VAT return collector, such as lines without a VAT type.
+
+        Parameters
+        ----------
+        year : int
+
+        month : int
+
+        months : typing.Optional[int]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        AsyncHttpResponse[VatAccountsReportsResponse]
+            Default Response
+        """
+        _response = await self._client_wrapper.httpx_client.request(
+            "v1/reports/vat-accounts",
+            method="POST",
+            json={
+                "year": year,
+                "month": month,
+                "months": months,
+            },
+            headers={
+                "content-type": "application/json",
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    VatAccountsReportsResponse,
+                    parse_obj_as(
+                        type_=VatAccountsReportsResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return AsyncHttpResponse(response=_response, data=_data)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 422:
+                raise UnprocessableEntityError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
     async def period_checklist(
         self, *, period: str, request_options: typing.Optional[RequestOptions] = None
     ) -> AsyncHttpResponse[PeriodChecklistReportsResponse]:
         """
-        Lists what is still open for `period`: a month (`YYYY-MM`) or the fiscal year that ends in `YYYY`. Items: draft sale documents (invoices, credit notes and advance invoices with an issue date in the period) and draft purchase documents dated in the period, bank lines dated in the period with status `new`, assets with depreciation months not posted up to the period end, expense deferral rows due by the period end and not posted, active recurring invoices whose next run date is on or before the period end, payroll runs of the period's months still in draft, and for a fiscal year the issued sale and registered purchase documents in a currency other than the base currency still open at the year end. Each item carries the `count` and the `ids` of the documents, rows, assets, recurring invoices or runs; an item with nothing open is left out. `ledger/periods/lock` returns the same items as `warnings`.
+        Lists what is still open for `period`: a month (`YYYY-MM`) or the fiscal year that ends in `YYYY`. Items: draft sale documents (invoices, credit notes and advance invoices with an issue date in the period) and draft purchase documents dated in the period, bank lines dated in the period with status `new`, assets with depreciation months not posted up to the period end, expense deferral rows due by the period end and not posted, active recurring invoices whose next run date is on or before the period end, payroll runs of the period's months still in draft, for a fiscal year the issued sale and registered purchase documents in a currency other than the base currency still open at the year end, the bank accounts whose ledger balance at the period end differs from the statement balance stored by an import (`bank/reconciliation/get`), the posted manual entries and accruals in the period on the VAT accounts of the posting rules `sales.vatPayable`, `sales.ossVatPayable` and `purchases.vatReceivable` and the expense reports in the period with VAT on a line without a VAT type, which no VAT return reads, and the filings of the period (`calendar/list` keys) whose filing system has settings without a stored value. Each item carries the `count` and the `ids` of the documents, rows, assets, recurring invoices, runs, bank accounts, journal transactions or calendar keys; an item with nothing open is left out. `ledger/periods/lock` returns the same items as `warnings`.
 
         Parameters
         ----------
@@ -8364,7 +9030,7 @@ class AsyncRawReportsClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[VatDetailReportsResponse]:
         """
-        VAT of issued sale invoices (by issue date) or registered purchase invoices (by registration date) in a period, one row per document and VAT rate: net, VAT and gross in the base currency, with totals; credit notes count negative. `reports/vat-summary` groups these rows by rate.
+        VAT of issued sale invoices (by issue date; an advance invoice whose VAT is due when it is paid, by payment date) or registered purchase invoices (by registration date) in a period, one row per document and VAT rate: net, VAT and gross in the base currency, with totals; credit notes count negative. `reports/vat-summary` groups these rows by rate.
 
         Parameters
         ----------

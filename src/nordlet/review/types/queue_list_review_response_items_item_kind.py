@@ -3,6 +3,12 @@
 import typing
 
 QueueListReviewResponseItemsItemKind = typing.Union[
-    typing.Literal["draft_warning", "bank_transaction_unbooked", "partner_vat_invalid", "filing_settings_missing"],
+    typing.Literal[
+        "draft_warning",
+        "bank_transaction_unbooked",
+        "partner_vat_invalid",
+        "filing_settings_missing",
+        "file_unattached",
+    ],
     typing.Any,
 ]

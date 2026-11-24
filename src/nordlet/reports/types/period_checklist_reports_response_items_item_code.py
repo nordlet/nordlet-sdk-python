@@ -13,6 +13,9 @@ PeriodChecklistReportsResponseItemsItemCode = typing.Union[
         "payroll_runs_not_approved",
         "open_fx_receivables",
         "open_fx_payables",
+        "bank_ledger_differs_from_statement",
+        "vat_outside_returns",
+        "filing_settings_missing",
     ],
     typing.Any,
 ]

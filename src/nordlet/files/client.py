@@ -11,6 +11,7 @@ from .types.list_files_request_filter_item import ListFilesRequestFilterItem
 from .types.list_files_request_sort_item import ListFilesRequestSortItem
 from .types.list_files_response import ListFilesResponse
 from .types.upload_files_response import UploadFilesResponse
+from .types.upload_links_create_files_response import UploadLinksCreateFilesResponse
 
 # this is used as the default value for optional parameters
 OMIT = typing.cast(typing.Any, ...)
@@ -86,6 +87,61 @@ class FilesClient:
             mime_type=mime_type,
             content=content,
             entity_id=entity_id,
+            request_options=request_options,
+        )
+        return _response.data
+
+    def upload_links_create(
+        self,
+        *,
+        entity: str,
+        file_name: str,
+        entity_id: typing.Optional[str] = OMIT,
+        mime_type: typing.Optional[str] = OMIT,
+        expires_in_minutes: typing.Optional[int] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> UploadLinksCreateFilesResponse:
+        """
+        Create a link that takes one file of up to 10 MB as the raw request body, so the file does not have to be sent base64-encoded: `POST` the bytes to `url` with any `Content-Type`; no API key is needed, the link is the permission. The link works once and until `expiresAt` (`expiresInMinutes`, 60 by default, at most 1440). The file is stored under `entity`, `entityId`, `fileName` and `mimeType` (else the media type of the upload request) with the id `fileId` and the `storageKey` given here, which other calls take as `documentRef` once the file is uploaded; `files/get` with `fileId` answers 404 until then. The upload answers 404 for an unknown or expired link and 409 for a link already used.
+
+        Parameters
+        ----------
+        entity : str
+
+        file_name : str
+
+        entity_id : typing.Optional[str]
+
+        mime_type : typing.Optional[str]
+
+        expires_in_minutes : typing.Optional[int]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        UploadLinksCreateFilesResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.files.upload_links_create(
+            entity="entity",
+            file_name="fileName",
+        )
+        """
+        _response = self._raw_client.upload_links_create(
+            entity=entity,
+            file_name=file_name,
+            entity_id=entity_id,
+            mime_type=mime_type,
+            expires_in_minutes=expires_in_minutes,
             request_options=request_options,
         )
         return _response.data
@@ -277,6 +333,69 @@ class AsyncFilesClient:
             mime_type=mime_type,
             content=content,
             entity_id=entity_id,
+            request_options=request_options,
+        )
+        return _response.data
+
+    async def upload_links_create(
+        self,
+        *,
+        entity: str,
+        file_name: str,
+        entity_id: typing.Optional[str] = OMIT,
+        mime_type: typing.Optional[str] = OMIT,
+        expires_in_minutes: typing.Optional[int] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> UploadLinksCreateFilesResponse:
+        """
+        Create a link that takes one file of up to 10 MB as the raw request body, so the file does not have to be sent base64-encoded: `POST` the bytes to `url` with any `Content-Type`; no API key is needed, the link is the permission. The link works once and until `expiresAt` (`expiresInMinutes`, 60 by default, at most 1440). The file is stored under `entity`, `entityId`, `fileName` and `mimeType` (else the media type of the upload request) with the id `fileId` and the `storageKey` given here, which other calls take as `documentRef` once the file is uploaded; `files/get` with `fileId` answers 404 until then. The upload answers 404 for an unknown or expired link and 409 for a link already used.
+
+        Parameters
+        ----------
+        entity : str
+
+        file_name : str
+
+        entity_id : typing.Optional[str]
+
+        mime_type : typing.Optional[str]
+
+        expires_in_minutes : typing.Optional[int]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        UploadLinksCreateFilesResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.files.upload_links_create(
+                entity="entity",
+                file_name="fileName",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.upload_links_create(
+            entity=entity,
+            file_name=file_name,
+            entity_id=entity_id,
+            mime_type=mime_type,
+            expires_in_minutes=expires_in_minutes,
             request_options=request_options,
         )
         return _response.data

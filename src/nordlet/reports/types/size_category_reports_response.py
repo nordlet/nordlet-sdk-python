@@ -13,6 +13,7 @@ class SizeCategoryReportsResponse(UniversalBaseModel):
     year: int
     criteria: SizeCategoryReportsResponseCriteria
     category: SizeCategoryReportsResponseCategory
+    currency: str
     thresholds: typing.Dict[str, SizeCategoryReportsResponseThresholdsValue]
 
     if IS_PYDANTIC_V2:

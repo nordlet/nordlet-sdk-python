@@ -18,6 +18,7 @@ if typing.TYPE_CHECKING:
         ListFilesResponse,
         ListFilesResponseRowsItem,
         UploadFilesResponse,
+        UploadLinksCreateFilesResponse,
     )
 _dynamic_imports: typing.Dict[str, str] = {
     "DeleteFilesResponse": ".types",
@@ -31,6 +32,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "ListFilesResponse": ".types",
     "ListFilesResponseRowsItem": ".types",
     "UploadFilesResponse": ".types",
+    "UploadLinksCreateFilesResponse": ".types",
 }
 
 
@@ -67,4 +69,5 @@ __all__ = [
     "ListFilesResponse",
     "ListFilesResponseRowsItem",
     "UploadFilesResponse",
+    "UploadLinksCreateFilesResponse",
 ]

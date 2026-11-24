@@ -62,6 +62,18 @@ class InvoicesUnlockSalesResponse(UniversalBaseModel):
         pydantic.Field(alias="deliveryAddress"),
     ] = None
     paid_amount: typing_extensions.Annotated[str, FieldMetadata(alias="paidAmount"), pydantic.Field(alias="paidAmount")]
+    advance_vat_on_payment: typing_extensions.Annotated[
+        bool,
+        FieldMetadata(alias="advanceVatOnPayment"),
+        pydantic.Field(
+            alias="advanceVatOnPayment",
+            description="True for an issued advance invoice whose VAT is due when it is paid, and for its credit notes: the VAT is posted and declared with each payment, not at issue",
+        ),
+    ]
+    """
+    True for an issued advance invoice whose VAT is due when it is paid, and for its credit notes: the VAT is posted and declared with each payment, not at issue
+    """
+
     journal_transaction_id: typing_extensions.Annotated[
         typing.Optional[str], FieldMetadata(alias="journalTransactionId"), pydantic.Field(alias="journalTransactionId")
     ] = None

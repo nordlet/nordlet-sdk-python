@@ -91,6 +91,8 @@ from .types.invoices_update_sales_request_locale import InvoicesUpdateSalesReque
 from .types.invoices_update_sales_request_vat_scheme import InvoicesUpdateSalesRequestVatScheme
 from .types.invoices_update_sales_response import InvoicesUpdateSalesResponse
 from .types.invoices_view_sales_response import InvoicesViewSalesResponse
+from .types.invoices_zugferd_pdf_sales_request_locale import InvoicesZugferdPdfSalesRequestLocale
+from .types.invoices_zugferd_pdf_sales_response import InvoicesZugferdPdfSalesResponse
 from .types.payments_list_sales_response import PaymentsListSalesResponse
 from .types.recognition_compute_sales_response import RecognitionComputeSalesResponse
 from .types.recognition_modify_sales_request_approach import RecognitionModifySalesRequestApproach
@@ -1260,7 +1262,7 @@ class RawSalesClient:
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> HttpResponse[InvoicesPeppolSendSalesResponse]:
         """
-        Send an issued invoice or credit note to the customer over Peppol through the company's own access point (Account → Compliance → EU; Nordlet supports Recommand, Storecove and e-invoice.be). Without one the call is refused with 422 and the document can only be downloaded with `sales/invoices/peppol-xml`. `status` is `pending` until the receiving access point confirms, then `delivered`; `failed` and `rejected` come with `detail`, and the invoice can then be sent again. Later changes arrive through the access point's webhook and are announced as `sale_invoice.peppol_delivered`, `sale_invoice.peppol_rejected` and `sale_invoice.peppol_failed`.
+        Send an issued invoice or credit note to the customer over Peppol through the company's own access point (declarations/configs/update (system peppol); Nordlet supports Recommand, Storecove and e-invoice.be). Without one the call is refused with 422 and the document can only be downloaded with `sales/invoices/peppol-xml`. `status` is `pending` until the receiving access point confirms, then `delivered`; `failed` and `rejected` come with `detail`, and the invoice can then be sent again. Later changes arrive through the access point's webhook and are announced as `sale_invoice.peppol_delivered`, `sale_invoice.peppol_rejected` and `sale_invoice.peppol_failed`.
 
         Parameters
         ----------
@@ -1578,7 +1580,7 @@ class RawSalesClient:
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> HttpResponse[InvoicesEinvoiceXmlSalesResponse]:
         """
-        Render an issued invoice as the national e-invoicing payload for the company country: SII or Veri*Factu (ES), Factur-X (FR), myDATA (GR), Fiskalizacija (HR), NAV Online Számla (HU), FatturaPA (IT), KSeF FA(3) (PL), AT comunicação de faturas (PT) or UBL CIUS-RO (RO). Review the warnings - data the invoice does not carry is flagged, never invented.
+        Render an issued invoice as the national e-invoicing payload for the company country: XRechnung UBL (DE), SII or Veri*Factu (ES), Factur-X (FR), myDATA (GR), Fiskalizacija (HR), NAV Online Számla (HU), FatturaPA (IT), KSeF FA(3) (PL), AT comunicação de faturas (PT) or UBL CIUS-RO (RO). Review the warnings - data the invoice does not carry is flagged, never invented. For XRechnung, answers 422 naming what the BR-DE rules need and the company or invoice lacks; a customer whose Peppol ID has scheme 0204 gets its Leitweg-ID as the buyer reference.
 
         Parameters
         ----------
@@ -1610,6 +1612,172 @@ class RawSalesClient:
                     InvoicesEinvoiceXmlSalesResponse,
                     parse_obj_as(
                         type_=InvoicesEinvoiceXmlSalesResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return HttpResponse(response=_response, data=_data)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 422:
+                raise UnprocessableEntityError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
+    def invoices_zugferd_pdf(
+        self,
+        *,
+        id: str,
+        locale: typing.Optional[InvoicesZugferdPdfSalesRequestLocale] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> HttpResponse[InvoicesZugferdPdfSalesResponse]:
+        """
+        Render an issued invoice or credit note of a German company as a ZUGFeRD 2.5.2 (Factur-X 1.09.2) hybrid e-invoice in the EN 16931 profile, returned base64-encoded: the PDF of `sales/invoices/pdf` as PDF/A-3 with the invoice data embedded as `factur-x.xml` (UN/CEFACT Cross Industry Invoice). The embedded XML is the leading part of the invoice. The seller is the one printed on the document, with the Steuernummer of the `de-elster` compliance settings (scheme FC) and the USt-IdNr. (scheme VA). The date of supply written is the issue date. Answers 422 for a company outside Germany, a draft, a document other than an invoice or credit note, a document with sales tax, and a seller with neither a Steuernummer nor a USt-IdNr.
+
+        Parameters
+        ----------
+        id : str
+
+        locale : typing.Optional[InvoicesZugferdPdfSalesRequestLocale]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        HttpResponse[InvoicesZugferdPdfSalesResponse]
+            Default Response
+        """
+        _response = self._client_wrapper.httpx_client.request(
+            "v1/sales/invoices/zugferd-pdf",
+            method="POST",
+            json={
+                "id": id,
+                "locale": locale,
+            },
+            headers={
+                "content-type": "application/json",
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    InvoicesZugferdPdfSalesResponse,
+                    parse_obj_as(
+                        type_=InvoicesZugferdPdfSalesResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -2500,19 +2668,22 @@ class RawSalesClient:
         *,
         id: str,
         series: typing.Optional[str] = OMIT,
+        number: typing.Optional[str] = OMIT,
         issue_date: typing.Optional[dt.date] = OMIT,
         warehouse_id: typing.Optional[str] = OMIT,
         return_to_stock: typing.Optional[bool] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[InvoicesIssueSalesResponse]:
         """
-        Issue a draft sale document: assigns the next number (from its document series, else from `series` or the type's default prefix and the year), the issue date (`issueDate`, else the draft's, else today) and a missing due date from the partner's payment term, and for an invoice, credit note or advance invoice posts the journal entry and stores the VAT evidence. `warehouseId` (or the series' warehouse) takes the sold goods of an invoice out of stock, the first-expiring lot first (lots without an expiry date after those with one, then the oldest layers first), leaving out expired lots, with a cost of goods sold entry; `returnToStock` puts them back for a credit note that credits an invoice. A credit note is set against the unpaid balance of the credited document. Emits `sale_invoice.issued`, `sale_invoice.paid` when a credit note settles the credited invoice in full, and `intercompany.invoice_mirrored` when the partner is linked to another company of the group (a draft purchase invoice is created there). Answers 409 when the document is already issued or locked, the accounting period is locked or the credited invoice is reversed, 422 when the lines carry VAT under a scheme that charges none, when credit notes would exceed the credited total, or when `returnToStock` is used on anything but a credit note of an invoice. `warnings` carries the VAT type warnings of `sales/invoices/create` and `document_date_before_last_number` when the document is dated before the last number issued in its series.
+        Issue a draft sale document: assigns the next number (from its document series, else from `series` or the type's default prefix and the year), or keeps `number`, the number a document issued in another program (a webshop, a till) already carries, without moving the series counter (409 when the company already has a document with that number, 422 in a country whose sale documents get national marks at issue, Portugal), the issue date (`issueDate`, else the draft's, else today) and a missing due date from the partner's payment term, and for an invoice, credit note or advance invoice posts the journal entry and stores the VAT evidence. `warehouseId` (or the series' warehouse) takes the sold goods of an invoice out of stock, the first-expiring lot first (lots without an expiry date after those with one, then the oldest layers first), leaving out expired lots, with a cost of goods sold entry; `returnToStock` puts them back for a credit note that credits an invoice. A credit note is set against the unpaid balance of the credited document. An advance invoice whose VAT is due when it is paid (`advanceVatOnPayment`: the VAT country is AT, BG, CZ, DE, EE, ES, FI, FR, HR, HU, LT, LV, PL, SE, SI or SK, or BE, IE, LU or NL with a customer who is not a business) posts no VAT at issue: each payment posts and declares the VAT of the part paid, and a credit note takes back only VAT already declared. Emits `sale_invoice.issued`, `sale_invoice.paid` when a credit note settles the credited invoice in full, and `intercompany.invoice_mirrored` when the partner is linked to another company of the group (a draft purchase invoice is created there). Answers 409 when the document is already issued or locked, the accounting period is locked or the credited invoice is reversed, 422 when the lines carry VAT under a scheme that charges none, when credit notes would exceed the credited total, or when `returnToStock` is used on anything but a credit note of an invoice. `warnings` carries the VAT type warnings of `sales/invoices/create` and `document_date_before_last_number` when the document is dated before the last number issued in its series.
 
         Parameters
         ----------
         id : str
 
         series : typing.Optional[str]
+
+        number : typing.Optional[str]
 
         issue_date : typing.Optional[dt.date]
 
@@ -2534,6 +2705,7 @@ class RawSalesClient:
             json={
                 "id": id,
                 "series": series,
+                "number": number,
                 "issueDate": issue_date,
                 "warehouseId": warehouse_id,
                 "returnToStock": return_to_stock,
@@ -10992,7 +11164,7 @@ class AsyncRawSalesClient:
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> AsyncHttpResponse[InvoicesPeppolSendSalesResponse]:
         """
-        Send an issued invoice or credit note to the customer over Peppol through the company's own access point (Account → Compliance → EU; Nordlet supports Recommand, Storecove and e-invoice.be). Without one the call is refused with 422 and the document can only be downloaded with `sales/invoices/peppol-xml`. `status` is `pending` until the receiving access point confirms, then `delivered`; `failed` and `rejected` come with `detail`, and the invoice can then be sent again. Later changes arrive through the access point's webhook and are announced as `sale_invoice.peppol_delivered`, `sale_invoice.peppol_rejected` and `sale_invoice.peppol_failed`.
+        Send an issued invoice or credit note to the customer over Peppol through the company's own access point (declarations/configs/update (system peppol); Nordlet supports Recommand, Storecove and e-invoice.be). Without one the call is refused with 422 and the document can only be downloaded with `sales/invoices/peppol-xml`. `status` is `pending` until the receiving access point confirms, then `delivered`; `failed` and `rejected` come with `detail`, and the invoice can then be sent again. Later changes arrive through the access point's webhook and are announced as `sale_invoice.peppol_delivered`, `sale_invoice.peppol_rejected` and `sale_invoice.peppol_failed`.
 
         Parameters
         ----------
@@ -11310,7 +11482,7 @@ class AsyncRawSalesClient:
         self, *, id: str, request_options: typing.Optional[RequestOptions] = None
     ) -> AsyncHttpResponse[InvoicesEinvoiceXmlSalesResponse]:
         """
-        Render an issued invoice as the national e-invoicing payload for the company country: SII or Veri*Factu (ES), Factur-X (FR), myDATA (GR), Fiskalizacija (HR), NAV Online Számla (HU), FatturaPA (IT), KSeF FA(3) (PL), AT comunicação de faturas (PT) or UBL CIUS-RO (RO). Review the warnings - data the invoice does not carry is flagged, never invented.
+        Render an issued invoice as the national e-invoicing payload for the company country: XRechnung UBL (DE), SII or Veri*Factu (ES), Factur-X (FR), myDATA (GR), Fiskalizacija (HR), NAV Online Számla (HU), FatturaPA (IT), KSeF FA(3) (PL), AT comunicação de faturas (PT) or UBL CIUS-RO (RO). Review the warnings - data the invoice does not carry is flagged, never invented. For XRechnung, answers 422 naming what the BR-DE rules need and the company or invoice lacks; a customer whose Peppol ID has scheme 0204 gets its Leitweg-ID as the buyer reference.
 
         Parameters
         ----------
@@ -11342,6 +11514,172 @@ class AsyncRawSalesClient:
                     InvoicesEinvoiceXmlSalesResponse,
                     parse_obj_as(
                         type_=InvoicesEinvoiceXmlSalesResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return AsyncHttpResponse(response=_response, data=_data)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 422:
+                raise UnprocessableEntityError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
+    async def invoices_zugferd_pdf(
+        self,
+        *,
+        id: str,
+        locale: typing.Optional[InvoicesZugferdPdfSalesRequestLocale] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> AsyncHttpResponse[InvoicesZugferdPdfSalesResponse]:
+        """
+        Render an issued invoice or credit note of a German company as a ZUGFeRD 2.5.2 (Factur-X 1.09.2) hybrid e-invoice in the EN 16931 profile, returned base64-encoded: the PDF of `sales/invoices/pdf` as PDF/A-3 with the invoice data embedded as `factur-x.xml` (UN/CEFACT Cross Industry Invoice). The embedded XML is the leading part of the invoice. The seller is the one printed on the document, with the Steuernummer of the `de-elster` compliance settings (scheme FC) and the USt-IdNr. (scheme VA). The date of supply written is the issue date. Answers 422 for a company outside Germany, a draft, a document other than an invoice or credit note, a document with sales tax, and a seller with neither a Steuernummer nor a USt-IdNr.
+
+        Parameters
+        ----------
+        id : str
+
+        locale : typing.Optional[InvoicesZugferdPdfSalesRequestLocale]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        AsyncHttpResponse[InvoicesZugferdPdfSalesResponse]
+            Default Response
+        """
+        _response = await self._client_wrapper.httpx_client.request(
+            "v1/sales/invoices/zugferd-pdf",
+            method="POST",
+            json={
+                "id": id,
+                "locale": locale,
+            },
+            headers={
+                "content-type": "application/json",
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    InvoicesZugferdPdfSalesResponse,
+                    parse_obj_as(
+                        type_=InvoicesZugferdPdfSalesResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -12232,19 +12570,22 @@ class AsyncRawSalesClient:
         *,
         id: str,
         series: typing.Optional[str] = OMIT,
+        number: typing.Optional[str] = OMIT,
         issue_date: typing.Optional[dt.date] = OMIT,
         warehouse_id: typing.Optional[str] = OMIT,
         return_to_stock: typing.Optional[bool] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[InvoicesIssueSalesResponse]:
         """
-        Issue a draft sale document: assigns the next number (from its document series, else from `series` or the type's default prefix and the year), the issue date (`issueDate`, else the draft's, else today) and a missing due date from the partner's payment term, and for an invoice, credit note or advance invoice posts the journal entry and stores the VAT evidence. `warehouseId` (or the series' warehouse) takes the sold goods of an invoice out of stock, the first-expiring lot first (lots without an expiry date after those with one, then the oldest layers first), leaving out expired lots, with a cost of goods sold entry; `returnToStock` puts them back for a credit note that credits an invoice. A credit note is set against the unpaid balance of the credited document. Emits `sale_invoice.issued`, `sale_invoice.paid` when a credit note settles the credited invoice in full, and `intercompany.invoice_mirrored` when the partner is linked to another company of the group (a draft purchase invoice is created there). Answers 409 when the document is already issued or locked, the accounting period is locked or the credited invoice is reversed, 422 when the lines carry VAT under a scheme that charges none, when credit notes would exceed the credited total, or when `returnToStock` is used on anything but a credit note of an invoice. `warnings` carries the VAT type warnings of `sales/invoices/create` and `document_date_before_last_number` when the document is dated before the last number issued in its series.
+        Issue a draft sale document: assigns the next number (from its document series, else from `series` or the type's default prefix and the year), or keeps `number`, the number a document issued in another program (a webshop, a till) already carries, without moving the series counter (409 when the company already has a document with that number, 422 in a country whose sale documents get national marks at issue, Portugal), the issue date (`issueDate`, else the draft's, else today) and a missing due date from the partner's payment term, and for an invoice, credit note or advance invoice posts the journal entry and stores the VAT evidence. `warehouseId` (or the series' warehouse) takes the sold goods of an invoice out of stock, the first-expiring lot first (lots without an expiry date after those with one, then the oldest layers first), leaving out expired lots, with a cost of goods sold entry; `returnToStock` puts them back for a credit note that credits an invoice. A credit note is set against the unpaid balance of the credited document. An advance invoice whose VAT is due when it is paid (`advanceVatOnPayment`: the VAT country is AT, BG, CZ, DE, EE, ES, FI, FR, HR, HU, LT, LV, PL, SE, SI or SK, or BE, IE, LU or NL with a customer who is not a business) posts no VAT at issue: each payment posts and declares the VAT of the part paid, and a credit note takes back only VAT already declared. Emits `sale_invoice.issued`, `sale_invoice.paid` when a credit note settles the credited invoice in full, and `intercompany.invoice_mirrored` when the partner is linked to another company of the group (a draft purchase invoice is created there). Answers 409 when the document is already issued or locked, the accounting period is locked or the credited invoice is reversed, 422 when the lines carry VAT under a scheme that charges none, when credit notes would exceed the credited total, or when `returnToStock` is used on anything but a credit note of an invoice. `warnings` carries the VAT type warnings of `sales/invoices/create` and `document_date_before_last_number` when the document is dated before the last number issued in its series.
 
         Parameters
         ----------
         id : str
 
         series : typing.Optional[str]
+
+        number : typing.Optional[str]
 
         issue_date : typing.Optional[dt.date]
 
@@ -12266,6 +12607,7 @@ class AsyncRawSalesClient:
             json={
                 "id": id,
                 "series": series,
+                "number": number,
                 "issueDate": issue_date,
                 "warehouseId": warehouse_id,
                 "returnToStock": return_to_stock,

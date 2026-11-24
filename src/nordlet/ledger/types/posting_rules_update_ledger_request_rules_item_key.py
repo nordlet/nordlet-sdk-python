@@ -8,6 +8,7 @@ PostingRulesUpdateLedgerRequestRulesItemKey = typing.Union[
         "sales.revenueProducts",
         "sales.revenueServices",
         "sales.vatPayable",
+        "sales.ossVatPayable",
         "sales.advancesReceived",
         "purchases.payables",
         "purchases.advancesPaid",

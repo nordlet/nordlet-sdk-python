@@ -33,6 +33,9 @@ class InvoicesReversePurchasesResponseLinesItem(UniversalBaseModel):
     vat_classifier_code: typing_extensions.Annotated[
         typing.Optional[str], FieldMetadata(alias="vatClassifierCode"), pydantic.Field(alias="vatClassifierCode")
     ] = None
+    deductible_percent: typing_extensions.Annotated[
+        typing.Optional[int], FieldMetadata(alias="deductiblePercent"), pydantic.Field(alias="deductiblePercent")
+    ] = None
     cost_center_id: typing_extensions.Annotated[
         typing.Optional[str], FieldMetadata(alias="costCenterId"), pydantic.Field(alias="costCenterId")
     ] = None
@@ -53,6 +56,9 @@ class InvoicesReversePurchasesResponseLinesItem(UniversalBaseModel):
     ] = None
     expiry_date: typing_extensions.Annotated[
         typing.Optional[dt.date], FieldMetadata(alias="expiryDate"), pydantic.Field(alias="expiryDate")
+    ] = None
+    chassis_numbers: typing_extensions.Annotated[
+        typing.Optional[typing.List[str]], FieldMetadata(alias="chassisNumbers"), pydantic.Field(alias="chassisNumbers")
     ] = None
     line_net: typing_extensions.Annotated[str, FieldMetadata(alias="lineNet"), pydantic.Field(alias="lineNet")]
     line_vat: typing_extensions.Annotated[str, FieldMetadata(alias="lineVat"), pydantic.Field(alias="lineVat")]

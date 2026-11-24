@@ -61,6 +61,9 @@ from .types.match_rules_delete_bank_response import MatchRulesDeleteBankResponse
 from .types.match_rules_list_bank_response import MatchRulesListBankResponse
 from .types.match_rules_update_bank_response import MatchRulesUpdateBankResponse
 from .types.payments_export_bank_response import PaymentsExportBankResponse
+from .types.posting_rules_create_bank_response import PostingRulesCreateBankResponse
+from .types.posting_rules_delete_bank_response import PostingRulesDeleteBankResponse
+from .types.posting_rules_list_bank_response import PostingRulesListBankResponse
 from .types.reconciliation_get_bank_response import ReconciliationGetBankResponse
 from .types.securities_get_bank_response import SecuritiesGetBankResponse
 from .types.securities_import_bank_response import SecuritiesImportBankResponse
@@ -94,6 +97,7 @@ from .types.transactions_match_bank_request_remainder import TransactionsMatchBa
 from .types.transactions_match_bank_response import TransactionsMatchBankResponse
 from .types.transactions_match_many_bank_request_allocations_item import TransactionsMatchManyBankRequestAllocationsItem
 from .types.transactions_match_many_bank_response import TransactionsMatchManyBankResponse
+from .types.transactions_post_bank_request_save_rule import TransactionsPostBankRequestSaveRule
 from .types.transactions_post_bank_response import TransactionsPostBankResponse
 from .types.transactions_record_bank_request_document_type import TransactionsRecordBankRequestDocumentType
 from .types.transactions_record_bank_response import TransactionsRecordBankResponse
@@ -634,10 +638,11 @@ class BankClient:
         project_id: typing.Optional[str] = OMIT,
         description: typing.Optional[str] = OMIT,
         vat_classifier_code: typing.Optional[str] = OMIT,
+        save_rule: typing.Optional[TransactionsPostBankRequestSaveRule] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> TransactionsPostBankResponse:
         """
-        Book one new bank transaction against a ledger account, for lines that settle no invoice (bank fees, interest, tax payments, transfers). Posts a journal transaction dated on the line's booking date between the bank account's ledger account and `accountCode` (incoming money: debit bank, credit the account; outgoing money the reverse), with the optional `partnerId` on the transaction and `costCenterId` and `projectId` on the counter entry, and sets the line to matched with `matchedDocumentType` `journal_transaction`. With `taxPaymentId` the line settles a tax payment recorded with `declarations/tax-payments/create`: an outgoing line for a payment, an incoming line for a refund, in the company currency and for the same amount (422 otherwise), not yet booked from another line (409); the line is matched as `tax_payment`. VAT is not booked here, because VAT returns are built from documents: a `vatClassifierCode` answers 422, and a fee with VAT is registered as a purchase invoice and the line matched to it. Answers 409 when the line is already matched or ignored or when the accounting period of the line date is locked. `bank/transactions/unmatch` reverses the posting.
+        Book one new bank transaction against a ledger account, for lines that settle no invoice (bank fees, interest, tax payments, transfers). Posts a journal transaction dated on the line's booking date between the bank account's ledger account and `accountCode` (incoming money: debit bank, credit the account; outgoing money the reverse), with the optional `partnerId` on the transaction and `costCenterId` and `projectId` on the counter entry, and sets the line to matched with `matchedDocumentType` `journal_transaction`. With `taxPaymentId` the line settles a tax payment recorded with `declarations/tax-payments/create`: an outgoing line for a payment, an incoming line for a refund, in the company currency and for the same amount (422 otherwise), not yet booked from another line (409); the line is matched as `tax_payment`. VAT is not booked here, because VAT returns are built from documents: a `vatClassifierCode` answers 422, and a fee with VAT is registered as a purchase invoice and the line matched to it. With `saveRule` the account and the partner are also kept as a posting rule (see `bank/posting-rules/create`), which `bank/transactions/suggest-matches` proposes for later lines; each text given must be in this line's counterparty name or description (422 otherwise). Answers 409 when the line is already matched or ignored or when the accounting period of the line date is locked. `bank/transactions/unmatch` reverses the posting.
 
         Parameters
         ----------
@@ -656,6 +661,8 @@ class BankClient:
         description : typing.Optional[str]
 
         vat_classifier_code : typing.Optional[str]
+
+        save_rule : typing.Optional[TransactionsPostBankRequestSaveRule]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -686,6 +693,7 @@ class BankClient:
             project_id=project_id,
             description=description,
             vat_classifier_code=vat_classifier_code,
+            save_rule=save_rule,
             request_options=request_options,
         )
         return _response.data
@@ -887,7 +895,7 @@ class BankClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PaymentsExportBankResponse:
         """
-        Build a payment file that pays the remaining amount of each registered purchase invoice from the bank account on `executionDate`, to the partner's default bank account that the format can use. The format follows the bank account: a GBP account of a UK company with a sort code and account number gets a Bacs Standard 18 Direct Credit file (needs `paymentFileSettings.serviceUserNumber`; `executionDate` is the day the money arrives, a Bacs working day whose processing day is after today, default the earliest), a USD account of a US company with a routing number and account number gets a Nacha ACH credit file (needs `paymentFileSettings.immediateOrigin` and `companyIdentification`; CCD for a business partner, PPD for a partner that is not one, see `partners/update` `isBusiness`; default `executionDate` today), and an account with an IBAN gets ISO 20022 pain.001.001.03, a SEPA credit transfer in EUR and a generic pain.001 in other currencies (default `executionDate` today). Every invoice must be in the currency of the bank account and the partner must have a bank account the format can use (IBAN; sort code and account number; routing number, account number and `accountType`), 422 otherwise, see `partners/bank-accounts/create`; an invoice that is already paid answers 409. The file is returned in `content`, with `format`, `fileName` and `contentType`; nothing is posted or marked paid.
+        Build a payment file that pays the remaining amount of each registered purchase invoice from the bank account on `executionDate`, to the partner's default bank account that the format can use. The format follows the bank account: a GBP account of a UK company with a sort code and account number gets a Bacs Standard 18 Direct Credit file (needs `paymentFileSettings.serviceUserNumber`; `executionDate` is the day the money arrives, a Bacs working day whose processing day is after today, default the earliest), a USD account of a US company with a routing number and account number gets a Nacha ACH credit file (needs `paymentFileSettings.immediateOrigin` and `companyIdentification`; CCD for a business partner, PPD for a partner that is not one, see `partners/update` `isBusiness`; default `executionDate` today), and an account with an IBAN gets ISO 20022 pain.001.001.03, a SEPA credit transfer in EUR and a generic pain.001 in other currencies (default `executionDate` today); a SEK account with a Swedish IBAN gets a Swedish domestic pain.001 (needs `paymentFileSettings.bic`; SvcLvl NURG, or MPNS when the BIC is SEB's ESSESESS; CtgyPurp SUPP; ChrgBr SHAR; `paymentFileSettings.initiatingPartyBankId` is written as the initiating party's bank id), in which a partner may also be paid on a Bankgiro number (`bankCode` 9900 and the 7 or 8 digit number as `bankAccountNumber`) or a PlusGiro number (`bankCode` 9960 and 2 to 8 digits); the invoice's `paymentReference` goes as a structured reference (SCOR) when it is an OCR number paid to a Bankgiro or PlusGiro number (at most 25 digits with a modulus 10 check digit) or an RF creditor reference paid to an account (ISO 11649, issuer ISO; as text when the bank is Nordea, which does not take it yet), 422 when its check digits are wrong, and any other reference goes as the unstructured text in place of the invoice number. Every invoice must be in the currency of the bank account and the partner must have a bank account the format can use (IBAN; sort code and account number; routing number, account number and `accountType`), 422 otherwise, see `partners/bank-accounts/create`; an invoice that is already paid answers 409. The file is returned in `content`, with `format`, `fileName` and `contentType`; nothing is posted or marked paid.
 
         Parameters
         ----------
@@ -1455,6 +1463,116 @@ class BankClient:
         _response = self._raw_client.match_rules_list(request_options=request_options)
         return _response.data
 
+    def posting_rules_create(
+        self,
+        *,
+        account_code: str,
+        counterparty_contains: typing.Optional[str] = OMIT,
+        description_contains: typing.Optional[str] = OMIT,
+        partner_id: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostingRulesCreateBankResponse:
+        """
+        Keep a posting rule: a new bank line whose counterparty name contains `counterpartyContains` and whose description contains `descriptionContains` (case-insensitive; a text not given is not checked, at least one is required, 422 otherwise) is proposed for `accountCode` and `partnerId` in `bank/transactions/suggest-matches`. Nothing is posted until `bank/transactions/post` is called. `accountCode` must be a postable account (422).
+
+        Parameters
+        ----------
+        account_code : str
+
+        counterparty_contains : typing.Optional[str]
+
+        description_contains : typing.Optional[str]
+
+        partner_id : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostingRulesCreateBankResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.bank.posting_rules_create(
+            account_code="accountCode",
+        )
+        """
+        _response = self._raw_client.posting_rules_create(
+            account_code=account_code,
+            counterparty_contains=counterparty_contains,
+            description_contains=description_contains,
+            partner_id=partner_id,
+            request_options=request_options,
+        )
+        return _response.data
+
+    def posting_rules_list(
+        self, *, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostingRulesListBankResponse:
+        """
+        List the posting rules of the company, newest first.
+
+        Parameters
+        ----------
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostingRulesListBankResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.bank.posting_rules_list()
+        """
+        _response = self._raw_client.posting_rules_list(request_options=request_options)
+        return _response.data
+
+    def posting_rules_delete(
+        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostingRulesDeleteBankResponse:
+        """
+        Delete a posting rule. Lines already posted are not changed.
+
+        Parameters
+        ----------
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostingRulesDeleteBankResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.bank.posting_rules_delete(
+            id="id",
+        )
+        """
+        _response = self._raw_client.posting_rules_delete(id=id, request_options=request_options)
+        return _response.data
+
     def mandates_create(
         self,
         *,
@@ -1852,7 +1970,7 @@ class BankClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> TransactionsSuggestMatchesBankResponse:
         """
-        Suggest documents for a new bank transaction: issued sale invoices and advances for incoming money; registered purchase invoices, issued sale credit notes and approved payroll runs for outgoing money. Candidates are unpaid documents with any remaining balance, also one below the payment, scored by an equal remaining balance, the document number or payroll period in the payment description and a counterparty IBAN or name matching the partner or an employee on the run; the best `limit` come back with their reasons; a candidate with no matching reason (score 0) is left out. A transaction that is already matched answers 409.
+        Suggest documents for a new bank transaction: issued sale invoices and advances for incoming money; registered purchase invoices, issued sale credit notes and approved payroll runs for outgoing money. Candidates are unpaid documents with any remaining balance, also one below the payment, scored by an equal remaining balance, the document number or payroll period in the payment description and a counterparty IBAN or name matching the partner or an employee on the run; the best `limit` come back with their reasons; a candidate with no matching reason (score 0) is left out. `allocations` names two or more invoices or credit notes in the currency of the payment whose numbers all stand as whole words in the payment description and whose remaining balances add up to the payment, each with its remaining balance, ready for `bank/transactions/match-many`; otherwise it is null. `postingRules` lists the posting rules (`bank/posting-rules/create`) whose texts the counterparty name and description of the line contain, newest first, each with its account and partner for `bank/transactions/post`. A transaction that is already matched answers 409.
 
         Parameters
         ----------
@@ -3360,10 +3478,11 @@ class AsyncBankClient:
         project_id: typing.Optional[str] = OMIT,
         description: typing.Optional[str] = OMIT,
         vat_classifier_code: typing.Optional[str] = OMIT,
+        save_rule: typing.Optional[TransactionsPostBankRequestSaveRule] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> TransactionsPostBankResponse:
         """
-        Book one new bank transaction against a ledger account, for lines that settle no invoice (bank fees, interest, tax payments, transfers). Posts a journal transaction dated on the line's booking date between the bank account's ledger account and `accountCode` (incoming money: debit bank, credit the account; outgoing money the reverse), with the optional `partnerId` on the transaction and `costCenterId` and `projectId` on the counter entry, and sets the line to matched with `matchedDocumentType` `journal_transaction`. With `taxPaymentId` the line settles a tax payment recorded with `declarations/tax-payments/create`: an outgoing line for a payment, an incoming line for a refund, in the company currency and for the same amount (422 otherwise), not yet booked from another line (409); the line is matched as `tax_payment`. VAT is not booked here, because VAT returns are built from documents: a `vatClassifierCode` answers 422, and a fee with VAT is registered as a purchase invoice and the line matched to it. Answers 409 when the line is already matched or ignored or when the accounting period of the line date is locked. `bank/transactions/unmatch` reverses the posting.
+        Book one new bank transaction against a ledger account, for lines that settle no invoice (bank fees, interest, tax payments, transfers). Posts a journal transaction dated on the line's booking date between the bank account's ledger account and `accountCode` (incoming money: debit bank, credit the account; outgoing money the reverse), with the optional `partnerId` on the transaction and `costCenterId` and `projectId` on the counter entry, and sets the line to matched with `matchedDocumentType` `journal_transaction`. With `taxPaymentId` the line settles a tax payment recorded with `declarations/tax-payments/create`: an outgoing line for a payment, an incoming line for a refund, in the company currency and for the same amount (422 otherwise), not yet booked from another line (409); the line is matched as `tax_payment`. VAT is not booked here, because VAT returns are built from documents: a `vatClassifierCode` answers 422, and a fee with VAT is registered as a purchase invoice and the line matched to it. With `saveRule` the account and the partner are also kept as a posting rule (see `bank/posting-rules/create`), which `bank/transactions/suggest-matches` proposes for later lines; each text given must be in this line's counterparty name or description (422 otherwise). Answers 409 when the line is already matched or ignored or when the accounting period of the line date is locked. `bank/transactions/unmatch` reverses the posting.
 
         Parameters
         ----------
@@ -3382,6 +3501,8 @@ class AsyncBankClient:
         description : typing.Optional[str]
 
         vat_classifier_code : typing.Optional[str]
+
+        save_rule : typing.Optional[TransactionsPostBankRequestSaveRule]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -3420,6 +3541,7 @@ class AsyncBankClient:
             project_id=project_id,
             description=description,
             vat_classifier_code=vat_classifier_code,
+            save_rule=save_rule,
             request_options=request_options,
         )
         return _response.data
@@ -3651,7 +3773,7 @@ class AsyncBankClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PaymentsExportBankResponse:
         """
-        Build a payment file that pays the remaining amount of each registered purchase invoice from the bank account on `executionDate`, to the partner's default bank account that the format can use. The format follows the bank account: a GBP account of a UK company with a sort code and account number gets a Bacs Standard 18 Direct Credit file (needs `paymentFileSettings.serviceUserNumber`; `executionDate` is the day the money arrives, a Bacs working day whose processing day is after today, default the earliest), a USD account of a US company with a routing number and account number gets a Nacha ACH credit file (needs `paymentFileSettings.immediateOrigin` and `companyIdentification`; CCD for a business partner, PPD for a partner that is not one, see `partners/update` `isBusiness`; default `executionDate` today), and an account with an IBAN gets ISO 20022 pain.001.001.03, a SEPA credit transfer in EUR and a generic pain.001 in other currencies (default `executionDate` today). Every invoice must be in the currency of the bank account and the partner must have a bank account the format can use (IBAN; sort code and account number; routing number, account number and `accountType`), 422 otherwise, see `partners/bank-accounts/create`; an invoice that is already paid answers 409. The file is returned in `content`, with `format`, `fileName` and `contentType`; nothing is posted or marked paid.
+        Build a payment file that pays the remaining amount of each registered purchase invoice from the bank account on `executionDate`, to the partner's default bank account that the format can use. The format follows the bank account: a GBP account of a UK company with a sort code and account number gets a Bacs Standard 18 Direct Credit file (needs `paymentFileSettings.serviceUserNumber`; `executionDate` is the day the money arrives, a Bacs working day whose processing day is after today, default the earliest), a USD account of a US company with a routing number and account number gets a Nacha ACH credit file (needs `paymentFileSettings.immediateOrigin` and `companyIdentification`; CCD for a business partner, PPD for a partner that is not one, see `partners/update` `isBusiness`; default `executionDate` today), and an account with an IBAN gets ISO 20022 pain.001.001.03, a SEPA credit transfer in EUR and a generic pain.001 in other currencies (default `executionDate` today); a SEK account with a Swedish IBAN gets a Swedish domestic pain.001 (needs `paymentFileSettings.bic`; SvcLvl NURG, or MPNS when the BIC is SEB's ESSESESS; CtgyPurp SUPP; ChrgBr SHAR; `paymentFileSettings.initiatingPartyBankId` is written as the initiating party's bank id), in which a partner may also be paid on a Bankgiro number (`bankCode` 9900 and the 7 or 8 digit number as `bankAccountNumber`) or a PlusGiro number (`bankCode` 9960 and 2 to 8 digits); the invoice's `paymentReference` goes as a structured reference (SCOR) when it is an OCR number paid to a Bankgiro or PlusGiro number (at most 25 digits with a modulus 10 check digit) or an RF creditor reference paid to an account (ISO 11649, issuer ISO; as text when the bank is Nordea, which does not take it yet), 422 when its check digits are wrong, and any other reference goes as the unstructured text in place of the invoice number. Every invoice must be in the currency of the bank account and the partner must have a bank account the format can use (IBAN; sort code and account number; routing number, account number and `accountType`), 422 otherwise, see `partners/bank-accounts/create`; an invoice that is already paid answers 409. The file is returned in `content`, with `format`, `fileName` and `contentType`; nothing is posted or marked paid.
 
         Parameters
         ----------
@@ -4307,6 +4429,140 @@ class AsyncBankClient:
         _response = await self._raw_client.match_rules_list(request_options=request_options)
         return _response.data
 
+    async def posting_rules_create(
+        self,
+        *,
+        account_code: str,
+        counterparty_contains: typing.Optional[str] = OMIT,
+        description_contains: typing.Optional[str] = OMIT,
+        partner_id: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> PostingRulesCreateBankResponse:
+        """
+        Keep a posting rule: a new bank line whose counterparty name contains `counterpartyContains` and whose description contains `descriptionContains` (case-insensitive; a text not given is not checked, at least one is required, 422 otherwise) is proposed for `accountCode` and `partnerId` in `bank/transactions/suggest-matches`. Nothing is posted until `bank/transactions/post` is called. `accountCode` must be a postable account (422).
+
+        Parameters
+        ----------
+        account_code : str
+
+        counterparty_contains : typing.Optional[str]
+
+        description_contains : typing.Optional[str]
+
+        partner_id : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostingRulesCreateBankResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.bank.posting_rules_create(
+                account_code="accountCode",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.posting_rules_create(
+            account_code=account_code,
+            counterparty_contains=counterparty_contains,
+            description_contains=description_contains,
+            partner_id=partner_id,
+            request_options=request_options,
+        )
+        return _response.data
+
+    async def posting_rules_list(
+        self, *, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostingRulesListBankResponse:
+        """
+        List the posting rules of the company, newest first.
+
+        Parameters
+        ----------
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostingRulesListBankResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.bank.posting_rules_list()
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.posting_rules_list(request_options=request_options)
+        return _response.data
+
+    async def posting_rules_delete(
+        self, *, id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> PostingRulesDeleteBankResponse:
+        """
+        Delete a posting rule. Lines already posted are not changed.
+
+        Parameters
+        ----------
+        id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        PostingRulesDeleteBankResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.bank.posting_rules_delete(
+                id="id",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.posting_rules_delete(id=id, request_options=request_options)
+        return _response.data
+
     async def mandates_create(
         self,
         *,
@@ -4767,7 +5023,7 @@ class AsyncBankClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> TransactionsSuggestMatchesBankResponse:
         """
-        Suggest documents for a new bank transaction: issued sale invoices and advances for incoming money; registered purchase invoices, issued sale credit notes and approved payroll runs for outgoing money. Candidates are unpaid documents with any remaining balance, also one below the payment, scored by an equal remaining balance, the document number or payroll period in the payment description and a counterparty IBAN or name matching the partner or an employee on the run; the best `limit` come back with their reasons; a candidate with no matching reason (score 0) is left out. A transaction that is already matched answers 409.
+        Suggest documents for a new bank transaction: issued sale invoices and advances for incoming money; registered purchase invoices, issued sale credit notes and approved payroll runs for outgoing money. Candidates are unpaid documents with any remaining balance, also one below the payment, scored by an equal remaining balance, the document number or payroll period in the payment description and a counterparty IBAN or name matching the partner or an employee on the run; the best `limit` come back with their reasons; a candidate with no matching reason (score 0) is left out. `allocations` names two or more invoices or credit notes in the currency of the payment whose numbers all stand as whole words in the payment description and whose remaining balances add up to the payment, each with its remaining balance, ready for `bank/transactions/match-many`; otherwise it is null. `postingRules` lists the posting rules (`bank/posting-rules/create`) whose texts the counterparty name and description of the line contain, newest first, each with its account and partner for `bank/transactions/post`. A transaction that is already matched answers 409.
 
         Parameters
         ----------

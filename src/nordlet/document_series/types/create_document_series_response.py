@@ -36,6 +36,7 @@ class CreateDocumentSeriesResponse(UniversalBaseModel):
     print_series: typing_extensions.Annotated[
         bool, FieldMetadata(alias="printSeries"), pydantic.Field(alias="printSeries")
     ]
+    suffix: str
     is_default: typing_extensions.Annotated[bool, FieldMetadata(alias="isDefault"), pydantic.Field(alias="isDefault")]
     is_active: typing_extensions.Annotated[bool, FieldMetadata(alias="isActive"), pydantic.Field(alias="isActive")]
     created_at: typing_extensions.Annotated[

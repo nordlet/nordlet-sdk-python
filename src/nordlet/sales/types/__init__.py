@@ -336,6 +336,8 @@ if typing.TYPE_CHECKING:
     from .invoices_view_sales_response_seller_address import InvoicesViewSalesResponseSellerAddress
     from .invoices_view_sales_response_status import InvoicesViewSalesResponseStatus
     from .invoices_view_sales_response_type import InvoicesViewSalesResponseType
+    from .invoices_zugferd_pdf_sales_request_locale import InvoicesZugferdPdfSalesRequestLocale
+    from .invoices_zugferd_pdf_sales_response import InvoicesZugferdPdfSalesResponse
     from .payments_list_sales_response import PaymentsListSalesResponse
     from .payments_list_sales_response_rows_item import PaymentsListSalesResponseRowsItem
     from .payments_list_sales_response_rows_item_method import PaymentsListSalesResponseRowsItemMethod
@@ -703,6 +705,8 @@ _dynamic_imports: typing.Dict[str, str] = {
     "InvoicesViewSalesResponseSellerAddress": ".invoices_view_sales_response_seller_address",
     "InvoicesViewSalesResponseStatus": ".invoices_view_sales_response_status",
     "InvoicesViewSalesResponseType": ".invoices_view_sales_response_type",
+    "InvoicesZugferdPdfSalesRequestLocale": ".invoices_zugferd_pdf_sales_request_locale",
+    "InvoicesZugferdPdfSalesResponse": ".invoices_zugferd_pdf_sales_response",
     "PaymentsListSalesResponse": ".payments_list_sales_response",
     "PaymentsListSalesResponseRowsItem": ".payments_list_sales_response_rows_item",
     "PaymentsListSalesResponseRowsItemMethod": ".payments_list_sales_response_rows_item_method",
@@ -1066,6 +1070,8 @@ __all__ = [
     "InvoicesViewSalesResponseSellerAddress",
     "InvoicesViewSalesResponseStatus",
     "InvoicesViewSalesResponseType",
+    "InvoicesZugferdPdfSalesRequestLocale",
+    "InvoicesZugferdPdfSalesResponse",
     "PaymentsListSalesResponse",
     "PaymentsListSalesResponseRowsItem",
     "PaymentsListSalesResponseRowsItemMethod",

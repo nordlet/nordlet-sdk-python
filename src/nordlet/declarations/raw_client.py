@@ -82,10 +82,21 @@ from .types.de_return_facts_set_declarations_response import DeReturnFactsSetDec
 from .types.de_returns_generate_declarations_request_rule_key import DeReturnsGenerateDeclarationsRequestRuleKey
 from .types.de_returns_generate_declarations_response import DeReturnsGenerateDeclarationsResponse
 from .types.dk_selskabsskat_generate_declarations_response import DkSelskabsskatGenerateDeclarationsResponse
+from .types.ee_employment_register_generate_declarations_request_event import (
+    EeEmploymentRegisterGenerateDeclarationsRequestEvent,
+)
+from .types.ee_employment_register_generate_declarations_response import (
+    EeEmploymentRegisterGenerateDeclarationsResponse,
+)
 from .types.ee_employment_register_send_declarations_request_event import (
     EeEmploymentRegisterSendDeclarationsRequestEvent,
 )
 from .types.ee_employment_register_send_declarations_response import EeEmploymentRegisterSendDeclarationsResponse
+from .types.ee_tsd_annexes_get_declarations_response import EeTsdAnnexesGetDeclarationsResponse
+from .types.ee_tsd_annexes_set_declarations_request_annex4 import EeTsdAnnexesSetDeclarationsRequestAnnex4
+from .types.ee_tsd_annexes_set_declarations_request_annex5 import EeTsdAnnexesSetDeclarationsRequestAnnex5
+from .types.ee_tsd_annexes_set_declarations_request_annex6 import EeTsdAnnexesSetDeclarationsRequestAnnex6
+from .types.ee_tsd_annexes_set_declarations_response import EeTsdAnnexesSetDeclarationsResponse
 from .types.es_verifactu_declaracion_responsable_declarations_response import (
     EsVerifactuDeclaracionResponsableDeclarationsResponse,
 )
@@ -95,6 +106,10 @@ from .types.eu_digital_reporting_list_declarations_response import EuDigitalRepo
 from .types.eu_distance_sales_threshold_get_declarations_response import EuDistanceSalesThresholdGetDeclarationsResponse
 from .types.eu_ioss_compute_declarations_response import EuIossComputeDeclarationsResponse
 from .types.eu_oss_compute_declarations_response import EuOssComputeDeclarationsResponse
+from .types.eu_oss_non_union_compute_declarations_request_member_state_of_identification import (
+    EuOssNonUnionComputeDeclarationsRequestMemberStateOfIdentification,
+)
+from .types.eu_oss_non_union_compute_declarations_response import EuOssNonUnionComputeDeclarationsResponse
 from .types.eu_own_goods_transfers_compute_declarations_response import EuOwnGoodsTransfersComputeDeclarationsResponse
 from .types.eu_sme_cross_border_report_compute_declarations_response import (
     EuSmeCrossBorderReportComputeDeclarationsResponse,
@@ -127,6 +142,17 @@ from .types.gb_vat_returns_get_declarations_request_device import GbVatReturnsGe
 from .types.gb_vat_returns_get_declarations_response import GbVatReturnsGetDeclarationsResponse
 from .types.ie_b1generate_declarations_response import IeB1GenerateDeclarationsResponse
 from .types.ie_ct1generate_declarations_response import IeCt1GenerateDeclarationsResponse
+from .types.ie_rtd_generate_declarations_response import IeRtdGenerateDeclarationsResponse
+from .types.it_inail_autoliquidazione_compute_declarations_request_positions_item import (
+    ItInailAutoliquidazioneComputeDeclarationsRequestPositionsItem,
+)
+from .types.it_inail_autoliquidazione_compute_declarations_response import (
+    ItInailAutoliquidazioneComputeDeclarationsResponse,
+)
+from .types.it_inail_autoliquidazione_f24declarations_request_positions_item import (
+    ItInailAutoliquidazioneF24DeclarationsRequestPositionsItem,
+)
+from .types.it_inail_autoliquidazione_f24declarations_response import ItInailAutoliquidazioneF24DeclarationsResponse
 from .types.it_sdi_purchase_preview_declarations_request_tipo_documento import (
     ItSdiPurchasePreviewDeclarationsRequestTipoDocumento,
 )
@@ -135,6 +161,16 @@ from .types.it_sdi_purchase_send_declarations_request_tipo_documento import (
     ItSdiPurchaseSendDeclarationsRequestTipoDocumento,
 )
 from .types.it_sdi_purchase_send_declarations_response import ItSdiPurchaseSendDeclarationsResponse
+from .types.it_tfr_accrual_compute_declarations_response import ItTfrAccrualComputeDeclarationsResponse
+from .types.it_tfr_accrual_post_declarations_response import ItTfrAccrualPostDeclarationsResponse
+from .types.it_tfr_revaluation_compute_declarations_request_funds_item import (
+    ItTfrRevaluationComputeDeclarationsRequestFundsItem,
+)
+from .types.it_tfr_revaluation_compute_declarations_response import ItTfrRevaluationComputeDeclarationsResponse
+from .types.it_tfr_revaluation_post_declarations_request_funds_item import (
+    ItTfrRevaluationPostDeclarationsRequestFundsItem,
+)
+from .types.it_tfr_revaluation_post_declarations_response import ItTfrRevaluationPostDeclarationsResponse
 from .types.li_lohndeklaration_generate_declarations_response import LiLohndeklarationGenerateDeclarationsResponse
 from .types.li_lohnlisten_generate_declarations_response import LiLohnlistenGenerateDeclarationsResponse
 from .types.lt_fr0564compute_declarations_response import LtFr0564ComputeDeclarationsResponse
@@ -167,8 +203,16 @@ from .types.lt_sd_ffdata_declarations_request_type import LtSdFfdataDeclarations
 from .types.lt_sd_ffdata_declarations_response import LtSdFfdataDeclarationsResponse
 from .types.lt_sd_generate_declarations_request_type import LtSdGenerateDeclarationsRequestType
 from .types.lt_sd_generate_declarations_response import LtSdGenerateDeclarationsResponse
+from .types.lv_employee_notice_generate_declarations_request_end_code import (
+    LvEmployeeNoticeGenerateDeclarationsRequestEndCode,
+)
+from .types.lv_employee_notice_generate_declarations_request_event import (
+    LvEmployeeNoticeGenerateDeclarationsRequestEvent,
+)
+from .types.lv_employee_notice_generate_declarations_response import LvEmployeeNoticeGenerateDeclarationsResponse
 from .types.mt_annual_return_generate_declarations_response import MtAnnualReturnGenerateDeclarationsResponse
 from .types.mt_company_tax_generate_declarations_response import MtCompanyTaxGenerateDeclarationsResponse
+from .types.mt_fs7generate_declarations_response import MtFs7GenerateDeclarationsResponse
 from .types.pl_cit8generate_declarations_response import PlCit8GenerateDeclarationsResponse
 from .types.pl_intrastat_generate_declarations_request_flow import PlIntrastatGenerateDeclarationsRequestFlow
 from .types.pl_intrastat_generate_declarations_response import PlIntrastatGenerateDeclarationsResponse
@@ -234,6 +278,8 @@ from .types.us_sales_tax_get_declarations_response import UsSalesTaxGetDeclarati
 from .types.us_state_sales_get_declarations_response import UsStateSalesGetDeclarationsResponse
 from .types.us_w2list_declarations_response import UsW2ListDeclarationsResponse
 from .types.us_workweeks_list_declarations_response import UsWorkweeksListDeclarationsResponse
+from .types.vat_prorata_adjustment_get_declarations_response import VatProrataAdjustmentGetDeclarationsResponse
+from .types.vat_prorata_adjustment_post_declarations_response import VatProrataAdjustmentPostDeclarationsResponse
 from .types.vat_prorata_get_declarations_response import VatProrataGetDeclarationsResponse
 from .types.vat_prorata_list_declarations_response import VatProrataListDeclarationsResponse
 from .types.vat_prorata_set_declarations_response import VatProrataSetDeclarationsResponse
@@ -2791,6 +2837,176 @@ class RawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
+    def eu_oss_non_union_compute(
+        self,
+        *,
+        year: int,
+        quarter: int,
+        member_state_of_identification: EuOssNonUnionComputeDeclarationsRequestMemberStateOfIdentification,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> HttpResponse[EuOssNonUnionComputeDeclarationsResponse]:
+        """
+        Computes the non-Union OSS return of a quarter (Directive 2006/112/EC art. 358a to 369k) from the issued invoices and credit notes with the `oss_non_union` VAT scheme: services to consumers in the EU by a company established outside it. The rows, corrections and EUR conversion are those of `declarations/eu/oss/compute` (art. 365: per Member State of consumption the value without VAT and the VAT per rate; amendments of an earlier return in a later one within three years; art. 366: euro at the rate of the last day of the period). `memberStateOfIdentification` is the Member State the company registered with for the scheme (art. 358a(2)). Answers 422 when the company is established in the EU.
+
+        Parameters
+        ----------
+        year : int
+
+        quarter : int
+
+        member_state_of_identification : EuOssNonUnionComputeDeclarationsRequestMemberStateOfIdentification
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        HttpResponse[EuOssNonUnionComputeDeclarationsResponse]
+            Default Response
+        """
+        _response = self._client_wrapper.httpx_client.request(
+            "v1/declarations/eu/oss-non-union/compute",
+            method="POST",
+            json={
+                "year": year,
+                "quarter": quarter,
+                "memberStateOfIdentification": member_state_of_identification,
+            },
+            headers={
+                "content-type": "application/json",
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    EuOssNonUnionComputeDeclarationsResponse,
+                    parse_obj_as(
+                        type_=EuOssNonUnionComputeDeclarationsResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return HttpResponse(response=_response, data=_data)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 422:
+                raise UnprocessableEntityError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
     def eu_ioss_compute(
         self, *, year: int, month: int, request_options: typing.Optional[RequestOptions] = None
     ) -> HttpResponse[EuIossComputeDeclarationsResponse]:
@@ -5068,7 +5284,7 @@ class RawDeclarationsClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[PlIntrastatGenerateDeclarationsResponse]:
         """
-        Build the rows of the Polish INTRASTAT declaration for a month, arrivals or dispatches, grouped by CN code, partner country, country of origin, partner VAT number, nature of transaction, transport and delivery terms. Values are whole złoty converted at the invoice rate; credit notes with goods lines are returns (code 21). Goods without a CN code are left out and named in the warnings. The IST message itself goes out from the Intrastat deadline in the calendar.
+        Build the rows of the Polish INTRASTAT declaration for a month, arrivals or dispatches, grouped by CN code, partner country, country of origin, partner VAT number, nature of transaction, transport and delivery terms. Values are whole złoty converted at the invoice rate; credit notes with goods lines are returns (code 21). Answers 422 naming the lines when an intra-EU goods line has no CN code: a product item without an eight-digit `cnCode`, or a line without a product item whose VAT type is an intra-EU supply or acquisition of goods; lines of a triangular trade in which the company is the intermediary are left out. The IST message itself goes out from the Intrastat deadline in the calendar.
 
         Parameters
         ----------
@@ -7113,7 +7329,7 @@ class RawDeclarationsClient:
         self, *, fiscal_year: int, percent: str, request_options: typing.Optional[RequestOptions] = None
     ) -> HttpResponse[VatProrataSetDeclarationsResponse]:
         """
-        Sets the provisional pro-rata percentage of the company for a fiscal year (the year in which it ends, by the company's fiscal year end month). Purchase lines on a VAT type marked pro-rata (`prorata`) deduct that share of their VAT, book the rest into the line's expense, and the VAT returns declare only the deductible part. Without a percentage for the year such a line deducts 100 % and `purchases/invoices/register` answers the warning `prorata_not_set`. Setting it again replaces the percentage for documents registered afterwards; documents already registered are not changed and the year-end adjustment is not built.
+        Sets the provisional pro-rata percentage of the company for a calendar year (`fiscalYear`). Purchase lines on a VAT type marked pro-rata (`prorata`) deduct that share of their VAT, book the rest into the line's expense, and the VAT returns declare only the deductible part. Without a percentage for the year such a line deducts 100 % and `purchases/invoices/register` answers the warning `prorata_not_set`. Setting it again replaces the percentage for documents registered afterwards; documents already registered are not changed. The year-end adjustment to the definitive pro-rata is `declarations/vat-prorata/adjustment/get` and `post`.
 
         Parameters
         ----------
@@ -7307,6 +7523,342 @@ class RawDeclarationsClient:
                     VatProrataGetDeclarationsResponse,
                     parse_obj_as(
                         type_=VatProrataGetDeclarationsResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return HttpResponse(response=_response, data=_data)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 422:
+                raise UnprocessableEntityError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
+    def vat_prorata_adjustment_get(
+        self,
+        *,
+        fiscal_year: int,
+        definitive_percent: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> HttpResponse[VatProrataAdjustmentGetDeclarationsResponse]:
+        """
+        Computes the definitive pro-rata of a calendar year and the adjustment of the VAT deducted at the provisional pro-rata (Codul fiscal art. 300 alin. (8), (12) and (14)), for a Romanian company. `computedPercent` is the supplies of the year with the right of deduction (D300 rows 1, 3, 9-11, 13, 14, 16-18 and the regularisations) over those plus the supplies without it (row 15), net of credit notes and of the sale invoices of disposed fixed assets (alin. (7) lit. a)), rounded up to the next whole percent. `definitivePercent` in the body replaces it, for the exclusions Nordlet does not detect or a special pro-rata (alin. (16)). `proRataVat` is the VAT of the year's purchase lines on pro-rata VAT types before the pro-rata, `deductedVat` what the VAT returns deducted at the provisional percentage, `adjustment` the definitive deductible VAT less `deductedVat` (positive: more VAT to deduct). 422 for a company outside Romania.
+
+        Parameters
+        ----------
+        fiscal_year : int
+
+        definitive_percent : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        HttpResponse[VatProrataAdjustmentGetDeclarationsResponse]
+            Default Response
+        """
+        _response = self._client_wrapper.httpx_client.request(
+            "v1/declarations/vat-prorata/adjustment/get",
+            method="POST",
+            json={
+                "fiscalYear": fiscal_year,
+                "definitivePercent": definitive_percent,
+            },
+            headers={
+                "content-type": "application/json",
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    VatProrataAdjustmentGetDeclarationsResponse,
+                    parse_obj_as(
+                        type_=VatProrataAdjustmentGetDeclarationsResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return HttpResponse(response=_response, data=_data)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 422:
+                raise UnprocessableEntityError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
+    def vat_prorata_adjustment_post(
+        self,
+        *,
+        fiscal_year: int,
+        account_code: str,
+        definitive_percent: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> HttpResponse[VatProrataAdjustmentPostDeclarationsResponse]:
+        """
+        Posts the `adjustment` of `declarations/vat-prorata/adjustment/get` as a journal transaction (`documentType` `vat_prorata_adjustment`, `documentId` the year) dated 31 December: a positive adjustment debits the `purchases.vatReceivable` posting rule account and credits `accountCode`, a negative one the other way round. The D300 of the period that contains 31 December declares it in row 34 (`R31_2`, Ajustări conform pro-rata), as Codul fiscal art. 300 alin. (14) lit. b) and the OPANAF 174/2026 instructions say. 422 when there is no adjustment or it is zero, for a company outside Romania and for an account that is missing or not postable; 409 when the period is locked and when the year already has an adjustment that is not reversed (reverse it with `ledger/journal/transactions/reverse`).
+
+        Parameters
+        ----------
+        fiscal_year : int
+
+        account_code : str
+
+        definitive_percent : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        HttpResponse[VatProrataAdjustmentPostDeclarationsResponse]
+            Default Response
+        """
+        _response = self._client_wrapper.httpx_client.request(
+            "v1/declarations/vat-prorata/adjustment/post",
+            method="POST",
+            json={
+                "fiscalYear": fiscal_year,
+                "accountCode": account_code,
+                "definitivePercent": definitive_percent,
+            },
+            headers={
+                "content-type": "application/json",
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    VatProrataAdjustmentPostDeclarationsResponse,
+                    parse_obj_as(
+                        type_=VatProrataAdjustmentPostDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -9825,7 +10377,7 @@ class RawDeclarationsClient:
         self, *, year: int, request_options: typing.Optional[RequestOptions] = None
     ) -> HttpResponse[DeEuerGetDeclarationsResponse]:
         """
-        The Anlage EÜR and the Anlage AVEÜR of a year for a company that determines its profit on a cash basis (§ 4 Abs. 3 EStG), as the Zeilen and Kennzahlen of the official 2025 forms with their amounts: the receipts and payments of the year from the invoice payments (each payment split over the lines of its invoice), the payroll and tax payments and the journal transactions on cash and bank accounts, and the asset register for the Anlage AVEÜR and the AfA. Accounts are placed on the Zeilen through the de-euer statement scheme (Account → Statement rows). Refused with 422 for a company without the cash-basis flag.
+        The Anlage EÜR and the Anlage AVEÜR of a year for a company that determines its profit on a cash basis (§ 4 Abs. 3 EStG), as the Zeilen and Kennzahlen of the official 2025 forms with their amounts: the receipts and payments of the year from the invoice payments (each payment split over the lines of its invoice), the payroll and tax payments and the journal transactions on cash and bank accounts, and the asset register for the Anlage AVEÜR and the AfA. Accounts are placed on the Zeilen through the de-euer statement scheme (ledger/statement-rows/set). Refused with 422 for a company without the cash-basis flag.
 
         Parameters
         ----------
@@ -10790,6 +11342,518 @@ class RawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
+    def ee_tsd_annexes_get(
+        self, *, year: int, month: int, request_options: typing.Optional[RequestOptions] = None
+    ) -> HttpResponse[EeTsdAnnexesGetDeclarationsResponse]:
+        """
+        The figures of TSD annexes 4 (fringe benefits), 5 (gifts, donations and entertainment costs) and 6 (non-business expenses and other payments) entered for a month, and the annexes Nordlet calculates from them: the calculated codes, the income tax added to code 114 and the social tax (code 4180) added to code 115. Annex 5 sums the year: the gifts to listed persons and the entertainment costs of the earlier months, and the personalised social-taxed payments of annex 1 from the payroll runs paid in the year so far. The `ee-cit-return` file carries the annexes next to annex 7. From 2025 (rate 22/78).
+
+        Parameters
+        ----------
+        year : int
+
+        month : int
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        HttpResponse[EeTsdAnnexesGetDeclarationsResponse]
+            Default Response
+        """
+        _response = self._client_wrapper.httpx_client.request(
+            "v1/declarations/ee/tsd-annexes/get",
+            method="POST",
+            json={
+                "year": year,
+                "month": month,
+            },
+            headers={
+                "content-type": "application/json",
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    EeTsdAnnexesGetDeclarationsResponse,
+                    parse_obj_as(
+                        type_=EeTsdAnnexesGetDeclarationsResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return HttpResponse(response=_response, data=_data)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 422:
+                raise UnprocessableEntityError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
+    def ee_tsd_annexes_set(
+        self,
+        *,
+        year: int,
+        month: int,
+        annex4: typing.Optional[EeTsdAnnexesSetDeclarationsRequestAnnex4] = OMIT,
+        annex5: typing.Optional[EeTsdAnnexesSetDeclarationsRequestAnnex5] = OMIT,
+        annex6: typing.Optional[EeTsdAnnexesSetDeclarationsRequestAnnex6] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> HttpResponse[EeTsdAnnexesSetDeclarationsResponse]:
+        """
+        Replace the figures of TSD annexes 4, 5 and 6 for a month; an annex left out is not filed that month, and a body with no annex removes the month. Amounts are the figures the form asks the company to enter; Nordlet calculates the rest (4060, 4070, 4080, 4090, 4140, 4170, 4180, 4181; 5020, 5030 or 5050, 5060 to 5090, 5110 to 5170, 5190; 6000, 6140 to 6170) and refuses (422) a month whose figures do not compute. Annex 5 part II (`listedPersonTaxableGifts`, 5180) is for a person on the TuMS § 11 lg 1 list and excludes part I.
+
+        Parameters
+        ----------
+        year : int
+
+        month : int
+
+        annex4 : typing.Optional[EeTsdAnnexesSetDeclarationsRequestAnnex4]
+
+        annex5 : typing.Optional[EeTsdAnnexesSetDeclarationsRequestAnnex5]
+
+        annex6 : typing.Optional[EeTsdAnnexesSetDeclarationsRequestAnnex6]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        HttpResponse[EeTsdAnnexesSetDeclarationsResponse]
+            Default Response
+        """
+        _response = self._client_wrapper.httpx_client.request(
+            "v1/declarations/ee/tsd-annexes/set",
+            method="POST",
+            json={
+                "year": year,
+                "month": month,
+                "annex4": convert_and_respect_annotation_metadata(
+                    object_=annex4, annotation=EeTsdAnnexesSetDeclarationsRequestAnnex4, direction="write"
+                ),
+                "annex5": convert_and_respect_annotation_metadata(
+                    object_=annex5, annotation=EeTsdAnnexesSetDeclarationsRequestAnnex5, direction="write"
+                ),
+                "annex6": convert_and_respect_annotation_metadata(
+                    object_=annex6, annotation=EeTsdAnnexesSetDeclarationsRequestAnnex6, direction="write"
+                ),
+            },
+            headers={
+                "content-type": "application/json",
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    EeTsdAnnexesSetDeclarationsResponse,
+                    parse_obj_as(
+                        type_=EeTsdAnnexesSetDeclarationsResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return HttpResponse(response=_response, data=_data)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 422:
+                raise UnprocessableEntityError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
+    def ee_employment_register_generate(
+        self,
+        *,
+        contract_id: str,
+        event: EeEmploymentRegisterGenerateDeclarationsRequestEvent,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> HttpResponse[EeEmploymentRegisterGenerateDeclarationsResponse]:
+        """
+        Build, without sending, the employment register (töötamise register) entry for an employment contract: the start of work, or its end with the reason recorded on the contract, as the TOOTREG v2 XML that `employment-register/send` sends to e-MTA over X-tee.
+
+        Parameters
+        ----------
+        contract_id : str
+
+        event : EeEmploymentRegisterGenerateDeclarationsRequestEvent
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        HttpResponse[EeEmploymentRegisterGenerateDeclarationsResponse]
+            Default Response
+        """
+        _response = self._client_wrapper.httpx_client.request(
+            "v1/declarations/ee/employment-register/generate",
+            method="POST",
+            json={
+                "contractId": contract_id,
+                "event": event,
+            },
+            headers={
+                "content-type": "application/json",
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    EeEmploymentRegisterGenerateDeclarationsResponse,
+                    parse_obj_as(
+                        type_=EeEmploymentRegisterGenerateDeclarationsResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return HttpResponse(response=_response, data=_data)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 422:
+                raise UnprocessableEntityError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
     def ee_employment_register_send(
         self,
         *,
@@ -11274,7 +12338,7 @@ class RawDeclarationsClient:
         self, *, year: int, request_options: typing.Optional[RequestOptions] = None
     ) -> HttpResponse[IeB1GenerateDeclarationsResponse]:
         """
-        Build the working paper for the Form B1 annual return of a financial year - company details, registered office, directors and secretary from Account → Officers, the members from Account → Shareholders, the issued share capital and the figures of the financial statements - in the order the CORE screens ask for them. The CRO publishes no file format for the B1, so it is keyed into CORE.
+        Build the working paper for the Form B1 annual return of a financial year - company details, registered office, directors and secretary recorded with officers/create, the members recorded with ledger/owners/create, the issued share capital and the figures of the financial statements - in the order the CORE screens ask for them. The CRO publishes no file format for the B1, so it is keyed into CORE.
 
         Parameters
         ----------
@@ -11429,6 +12493,165 @@ class RawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
+    def ie_rtd_generate(
+        self, *, year: int, request_options: typing.Optional[RequestOptions] = None
+    ) -> HttpResponse[IeRtdGenerateDeclarationsResponse]:
+        """
+        Build the Return of Trading Details of a calendar year from the issued sale documents and the registered purchase invoices: the net value of supplies, intra-Community acquisitions, purchases for resale and purchases not for resale, in whole euro, by Irish VAT rate, in the order the ROS screen asks for them. Revenue publishes no upload format for the RTD, so the figures are keyed into ROS; `xml` is a working paper, not a file ROS accepts.
+
+        Parameters
+        ----------
+        year : int
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        HttpResponse[IeRtdGenerateDeclarationsResponse]
+            Default Response
+        """
+        _response = self._client_wrapper.httpx_client.request(
+            "v1/declarations/ie/rtd/generate",
+            method="POST",
+            json={
+                "year": year,
+            },
+            headers={
+                "content-type": "application/json",
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    IeRtdGenerateDeclarationsResponse,
+                    parse_obj_as(
+                        type_=IeRtdGenerateDeclarationsResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return HttpResponse(response=_response, data=_data)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 422:
+                raise UnprocessableEntityError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
     def it_sdi_purchase_send(
         self,
         *,
@@ -11438,7 +12661,7 @@ class RawDeclarationsClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[ItSdiPurchaseSendDeclarationsResponse]:
         """
-        Build the TD16-TD19 integration document for a registered purchase invoice and send it to the Sistema di Interscambio. Since July 2022 a purchase from a supplier established abroad is reported this way instead of the esterometro. The Italian VAT rate to self-assess is a judgement about the supply: pass vatRatePercent unless the purchase lines already carry it, otherwise the request is refused rather than guessed.
+        Build the TD16-TD19 integration document for a registered purchase invoice and send it to the Sistema di Interscambio. Since July 2022 a purchase from a supplier established abroad is reported this way instead of the esterometro. The Italian VAT rate to self-assess is a judgement about the supply: pass vatRatePercent unless the purchase lines already carry it, otherwise the request is refused rather than guessed. The document type is `tipoDocumento` when given, else the one the VAT types of the lines name (TD17-*, TD18-*, TD19-*; 422 when the lines name different ones), else TD18 or TD19 for catalog products and TD17 otherwise. Lines whose VAT type is import VAT paid at customs are left out, and a purchase with only such lines is refused with 422: the customs declaration documents it (art. 77 c. 4 of the Testo unico IVA, DLgs 10/2026).
 
         Parameters
         ----------
@@ -11608,7 +12831,7 @@ class RawDeclarationsClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[ItSdiPurchasePreviewDeclarationsResponse]:
         """
-        Render the TD16-TD19 integration document for a registered purchase invoice without sending it, so the rate and the document type can be checked first.
+        Render the TD16-TD19 integration document for a registered purchase invoice without sending it, so the rate and the document type can be checked first. The document type and the customs lines are decided as in `declarations/it/sdi/purchase-send`.
 
         Parameters
         ----------
@@ -11646,6 +12869,1110 @@ class RawDeclarationsClient:
                     ItSdiPurchasePreviewDeclarationsResponse,
                     parse_obj_as(
                         type_=ItSdiPurchasePreviewDeclarationsResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return HttpResponse(response=_response, data=_data)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 422:
+                raise UnprocessableEntityError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
+    def it_tfr_accrual_compute(
+        self,
+        *,
+        year: int,
+        month: int,
+        include_payment_types: typing.Optional[typing.Sequence[str]] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> HttpResponse[ItTfrAccrualComputeDeclarationsResponse]:
+        """
+        Compute the TFR of each employee in the approved payroll run of `year` and `month`: the quota is the TFR base divided by 13.5 (art. 2120 c. 2 c.c.), less the 0.50% contribution of art. 3 L. 297/1982 on the base of the employee's INPS IVS contribution. The TFR base is the pay of the period (`retribuzione`), the tredicesima, the quattordicesima and the benefit in kind; other payment types count only when listed in `includePaymentTypes`, because art. 2120 c. 3 counts a payment only when it is not occasional and the collective agreement may say otherwise (tips and the TFR paid out are refused). `destination` is the employee option `itTfrDestinazione`: `azienda` (default, kept in the company), `fondo-tesoreria` or `previdenza-complementare`.
+
+        Parameters
+        ----------
+        year : int
+
+        month : int
+
+        include_payment_types : typing.Optional[typing.Sequence[str]]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        HttpResponse[ItTfrAccrualComputeDeclarationsResponse]
+            Default Response
+        """
+        _response = self._client_wrapper.httpx_client.request(
+            "v1/declarations/it/tfr/accrual/compute",
+            method="POST",
+            json={
+                "year": year,
+                "month": month,
+                "includePaymentTypes": include_payment_types,
+            },
+            headers={
+                "content-type": "application/json",
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    ItTfrAccrualComputeDeclarationsResponse,
+                    parse_obj_as(
+                        type_=ItTfrAccrualComputeDeclarationsResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return HttpResponse(response=_response, data=_data)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 422:
+                raise UnprocessableEntityError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
+    def it_tfr_accrual_post(
+        self,
+        *,
+        year: int,
+        month: int,
+        expense_account_code: str,
+        include_payment_types: typing.Optional[typing.Sequence[str]] = OMIT,
+        fund_account_code: typing.Optional[str] = OMIT,
+        payable_account_code: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> HttpResponse[ItTfrAccrualPostDeclarationsResponse]:
+        """
+        Post the TFR of each employee in the approved payroll run of `year` and `month`: the quota is the TFR base divided by 13.5 (art. 2120 c. 2 c.c.), less the 0.50% contribution of art. 3 L. 297/1982 on the base of the employee's INPS IVS contribution. The TFR base is the pay of the period (`retribuzione`), the tredicesima, the quattordicesima and the benefit in kind; other payment types count only when listed in `includePaymentTypes`, because art. 2120 c. 3 counts a payment only when it is not occasional and the collective agreement may say otherwise (tips and the TFR paid out are refused). `destination` is the employee option `itTfrDestinazione`: `azienda` (default, kept in the company), `fondo-tesoreria` or `previdenza-complementare`. The journal transaction (`documentType` `it_tfr_accrual`, `documentId` YYYY-MM) is dated the last day of the month: debit `expenseAccountCode` (B9 c) with the whole accrual, credit `fundAccountCode` (liability C) with the TFR kept in the company and `payableAccountCode` (D14) with the TFR due to the Fondo di Tesoreria or a pension fund (OIC 31 §§ 60-76). 422 when there is nothing to accrue or an account the accrual needs is missing; 409 when the accounting period is locked and when the month is already posted and not reversed (reverse it with `ledger/journal/transactions/reverse`).
+
+        Parameters
+        ----------
+        year : int
+
+        month : int
+
+        expense_account_code : str
+
+        include_payment_types : typing.Optional[typing.Sequence[str]]
+
+        fund_account_code : typing.Optional[str]
+
+        payable_account_code : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        HttpResponse[ItTfrAccrualPostDeclarationsResponse]
+            Default Response
+        """
+        _response = self._client_wrapper.httpx_client.request(
+            "v1/declarations/it/tfr/accrual/post",
+            method="POST",
+            json={
+                "year": year,
+                "month": month,
+                "includePaymentTypes": include_payment_types,
+                "expenseAccountCode": expense_account_code,
+                "fundAccountCode": fund_account_code,
+                "payableAccountCode": payable_account_code,
+            },
+            headers={
+                "content-type": "application/json",
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    ItTfrAccrualPostDeclarationsResponse,
+                    parse_obj_as(
+                        type_=ItTfrAccrualPostDeclarationsResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return HttpResponse(response=_response, data=_data)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 422:
+                raise UnprocessableEntityError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
+    def it_tfr_revaluation_compute(
+        self,
+        *,
+        year: int,
+        foi_previous_december: str,
+        foi_december: str,
+        funds: typing.Sequence[ItTfrRevaluationComputeDeclarationsRequestFundsItem],
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> HttpResponse[ItTfrRevaluationComputeDeclarationsResponse]:
+        """
+        Compute the revaluation at 31 December of `year` of the TFR kept in the company (art. 2120 c. 5 c.c.): each `funds` amount is the TFR of the employee at 31 December of the previous year, without the quota of `year`, as the company keeps it; the rate is 1.5% plus 75% of the increase of the ISTAT FOI index of December (`foiDecember`) against the previous December (`foiPreviousDecember`), not rounded, and a fall of the index adds nothing. The 17% substitute tax (art. 11 c. 3 D.Lgs. 47/2000) is taken from the revaluation and paid with F24 code 1713 by 16 February; `accontoNextYear` is the acconto of the next year (code 1712, 16 December) at 17% of 90% of the revaluation. An employee who left in or before `year` is left out with a warning, because art. 2120 c. 6 revalues to the month of termination.
+
+        Parameters
+        ----------
+        year : int
+
+        foi_previous_december : str
+
+        foi_december : str
+
+        funds : typing.Sequence[ItTfrRevaluationComputeDeclarationsRequestFundsItem]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        HttpResponse[ItTfrRevaluationComputeDeclarationsResponse]
+            Default Response
+        """
+        _response = self._client_wrapper.httpx_client.request(
+            "v1/declarations/it/tfr/revaluation/compute",
+            method="POST",
+            json={
+                "year": year,
+                "foiPreviousDecember": foi_previous_december,
+                "foiDecember": foi_december,
+                "funds": convert_and_respect_annotation_metadata(
+                    object_=funds,
+                    annotation=typing.Sequence[ItTfrRevaluationComputeDeclarationsRequestFundsItem],
+                    direction="write",
+                ),
+            },
+            headers={
+                "content-type": "application/json",
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    ItTfrRevaluationComputeDeclarationsResponse,
+                    parse_obj_as(
+                        type_=ItTfrRevaluationComputeDeclarationsResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return HttpResponse(response=_response, data=_data)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 422:
+                raise UnprocessableEntityError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
+    def it_tfr_revaluation_post(
+        self,
+        *,
+        year: int,
+        foi_previous_december: str,
+        foi_december: str,
+        funds: typing.Sequence[ItTfrRevaluationPostDeclarationsRequestFundsItem],
+        expense_account_code: str,
+        fund_account_code: str,
+        tax_account_code: str,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> HttpResponse[ItTfrRevaluationPostDeclarationsResponse]:
+        """
+        Post the revaluation at 31 December of `year` of the TFR kept in the company (art. 2120 c. 5 c.c.): each `funds` amount is the TFR of the employee at 31 December of the previous year, without the quota of `year`, as the company keeps it; the rate is 1.5% plus 75% of the increase of the ISTAT FOI index of December (`foiDecember`) against the previous December (`foiPreviousDecember`), not rounded, and a fall of the index adds nothing. The 17% substitute tax (art. 11 c. 3 D.Lgs. 47/2000) is taken from the revaluation and paid with F24 code 1713 by 16 February; `accontoNextYear` is the acconto of the next year (code 1712, 16 December) at 17% of 90% of the revaluation. An employee who left in or before `year` is left out with a warning, because art. 2120 c. 6 revalues to the month of termination. The journal transaction (`documentType` `it_tfr_revaluation`, `documentId` the year) is dated 31 December: debit `expenseAccountCode` (B9 c) with the revaluation, credit `fundAccountCode` (liability C) with the revaluation less the tax and `taxAccountCode` with the tax. 422 when there is nothing to revalue; 409 when the accounting period is locked and when the year is already posted and not reversed (reverse it with `ledger/journal/transactions/reverse`).
+
+        Parameters
+        ----------
+        year : int
+
+        foi_previous_december : str
+
+        foi_december : str
+
+        funds : typing.Sequence[ItTfrRevaluationPostDeclarationsRequestFundsItem]
+
+        expense_account_code : str
+
+        fund_account_code : str
+
+        tax_account_code : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        HttpResponse[ItTfrRevaluationPostDeclarationsResponse]
+            Default Response
+        """
+        _response = self._client_wrapper.httpx_client.request(
+            "v1/declarations/it/tfr/revaluation/post",
+            method="POST",
+            json={
+                "year": year,
+                "foiPreviousDecember": foi_previous_december,
+                "foiDecember": foi_december,
+                "funds": convert_and_respect_annotation_metadata(
+                    object_=funds,
+                    annotation=typing.Sequence[ItTfrRevaluationPostDeclarationsRequestFundsItem],
+                    direction="write",
+                ),
+                "expenseAccountCode": expense_account_code,
+                "fundAccountCode": fund_account_code,
+                "taxAccountCode": tax_account_code,
+            },
+            headers={
+                "content-type": "application/json",
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    ItTfrRevaluationPostDeclarationsResponse,
+                    parse_obj_as(
+                        type_=ItTfrRevaluationPostDeclarationsResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return HttpResponse(response=_response, data=_data)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 422:
+                raise UnprocessableEntityError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
+    def it_inail_autoliquidazione_compute(
+        self,
+        *,
+        year: int,
+        positions: typing.Sequence[ItInailAutoliquidazioneComputeDeclarationsRequestPositionsItem],
+        rata_anticipata: typing.Optional[str] = OMIT,
+        rateazione: typing.Optional[bool] = OMIT,
+        codice_ditta: typing.Optional[str] = OMIT,
+        codice_ditta_control_code: typing.Optional[str] = OMIT,
+        sede_inail: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> HttpResponse[ItInailAutoliquidazioneComputeDeclarationsResponse]:
+        """
+        Compute the INAIL autoliquidazione premium of the employees' policy (polizza dipendenti) due by 16 February of `year` + 1: the regolazione of `year` on the wages paid in `year` and the rata of `year` + 1. The wages are the INAIL bases of the approved Italian payroll runs paid in `year` (DPR 1124/1965 art. 28: the wages actually paid), rounded to the euro; a run without the INAIL component counts the base of its INPS IVS contribution, with a warning. Each entry of `positions` is a PAT and voce of the INAIL basi di calcolo with its `tassoRegolazione` and `tassoRata` (the tasso applicato, per mille), the reduction of the basi di calcolo in percent of the premium (`riduzioneRegolazione`, `riduzioneRata`), the partly exempt wages (`quoteEsenti`), a lower presumed wage for the rata communicated to INAIL (`retribuzioniRata`) and the employees it covers (`employeeIds`, required when there is more than one position). premium = wages x tasso / 1000, less the reduction, plus the 1% addizionale ex ANMIL; the regolazione subtracts `rataAnticipata`, the rata requested for `year` in the basi di calcolo; intermediate amounts have five decimals and the total is rounded to the cent (INAIL guide to the autoliquidazione 2025/2026). With `rateazione` the total is paid in four instalments of 25% on 16 February, 16 May, 20 August and 16 November (moved to the next working day), the last three with the interest coefficients INAIL publishes each January (recorded for 2026 only). With `codiceDitta`, `codiceDittaControlCode` and `sedeInail` the response carries the F24 INAIL row: numero di riferimento 90 followed by `year` + 1, causale P.
+
+        Parameters
+        ----------
+        year : int
+
+        positions : typing.Sequence[ItInailAutoliquidazioneComputeDeclarationsRequestPositionsItem]
+
+        rata_anticipata : typing.Optional[str]
+
+        rateazione : typing.Optional[bool]
+
+        codice_ditta : typing.Optional[str]
+
+        codice_ditta_control_code : typing.Optional[str]
+
+        sede_inail : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        HttpResponse[ItInailAutoliquidazioneComputeDeclarationsResponse]
+            Default Response
+        """
+        _response = self._client_wrapper.httpx_client.request(
+            "v1/declarations/it/inail/autoliquidazione/compute",
+            method="POST",
+            json={
+                "year": year,
+                "positions": convert_and_respect_annotation_metadata(
+                    object_=positions,
+                    annotation=typing.Sequence[ItInailAutoliquidazioneComputeDeclarationsRequestPositionsItem],
+                    direction="write",
+                ),
+                "rataAnticipata": rata_anticipata,
+                "rateazione": rateazione,
+                "codiceDitta": codice_ditta,
+                "codiceDittaControlCode": codice_ditta_control_code,
+                "sedeInail": sede_inail,
+            },
+            headers={
+                "content-type": "application/json",
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    ItInailAutoliquidazioneComputeDeclarationsResponse,
+                    parse_obj_as(
+                        type_=ItInailAutoliquidazioneComputeDeclarationsResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return HttpResponse(response=_response, data=_data)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 422:
+                raise UnprocessableEntityError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
+    def it_inail_autoliquidazione_f24(
+        self,
+        *,
+        year: int,
+        positions: typing.Sequence[ItInailAutoliquidazioneF24DeclarationsRequestPositionsItem],
+        rata_anticipata: typing.Optional[str] = OMIT,
+        rateazione: typing.Optional[bool] = OMIT,
+        codice_ditta: typing.Optional[str] = OMIT,
+        codice_ditta_control_code: typing.Optional[str] = OMIT,
+        sede_inail: typing.Optional[str] = OMIT,
+        instalment: typing.Optional[int] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> HttpResponse[ItInailAutoliquidazioneF24DeclarationsResponse]:
+        """
+        Build the F24 telematic file (Agenzia delle Entrate specification for taxpayers, records A, M, V and Z) that pays instalment `instalment` (1 for the single payment) of the INAIL autoliquidazione premium of the employees' policy (polizza dipendenti) due by 16 February of `year` + 1: the regolazione of `year` on the wages paid in `year` and the rata of `year` + 1. The wages are the INAIL bases of the approved Italian payroll runs paid in `year` (DPR 1124/1965 art. 28: the wages actually paid), rounded to the euro; a run without the INAIL component counts the base of its INPS IVS contribution, with a warning. Each entry of `positions` is a PAT and voce of the INAIL basi di calcolo with its `tassoRegolazione` and `tassoRata` (the tasso applicato, per mille), the reduction of the basi di calcolo in percent of the premium (`riduzioneRegolazione`, `riduzioneRata`), the partly exempt wages (`quoteEsenti`), a lower presumed wage for the rata communicated to INAIL (`retribuzioniRata`) and the employees it covers (`employeeIds`, required when there is more than one position). premium = wages x tasso / 1000, less the reduction, plus the 1% addizionale ex ANMIL; the regolazione subtracts `rataAnticipata`, the rata requested for `year` in the basi di calcolo; intermediate amounts have five decimals and the total is rounded to the cent (INAIL guide to the autoliquidazione 2025/2026). With `rateazione` the total is paid in four instalments of 25% on 16 February, 16 May, 20 August and 16 November (moved to the next working day), the last three with the interest coefficients INAIL publishes each January (recorded for 2026 only). With `codiceDitta`, `codiceDittaControlCode` and `sedeInail` the response carries the F24 INAIL row: numero di riferimento 90 followed by `year` + 1, causale P. The file carries the INAIL row only, dated the instalment's due date; the debit account is given when the file is authenticated unless the company has exactly one active EUR account with an Italian IBAN. 422 without `codiceDitta`, when nothing is due (a credit is compensated in another F24) and for an instalment whose interest coefficients are not recorded.
+
+        Parameters
+        ----------
+        year : int
+
+        positions : typing.Sequence[ItInailAutoliquidazioneF24DeclarationsRequestPositionsItem]
+
+        rata_anticipata : typing.Optional[str]
+
+        rateazione : typing.Optional[bool]
+
+        codice_ditta : typing.Optional[str]
+
+        codice_ditta_control_code : typing.Optional[str]
+
+        sede_inail : typing.Optional[str]
+
+        instalment : typing.Optional[int]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        HttpResponse[ItInailAutoliquidazioneF24DeclarationsResponse]
+            Default Response
+        """
+        _response = self._client_wrapper.httpx_client.request(
+            "v1/declarations/it/inail/autoliquidazione/f24",
+            method="POST",
+            json={
+                "year": year,
+                "positions": convert_and_respect_annotation_metadata(
+                    object_=positions,
+                    annotation=typing.Sequence[ItInailAutoliquidazioneF24DeclarationsRequestPositionsItem],
+                    direction="write",
+                ),
+                "rataAnticipata": rata_anticipata,
+                "rateazione": rateazione,
+                "codiceDitta": codice_ditta,
+                "codiceDittaControlCode": codice_ditta_control_code,
+                "sedeInail": sede_inail,
+                "instalment": instalment,
+            },
+            headers={
+                "content-type": "application/json",
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    ItInailAutoliquidazioneF24DeclarationsResponse,
+                    parse_obj_as(
+                        type_=ItInailAutoliquidazioneF24DeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -12161,6 +14488,335 @@ class RawDeclarationsClient:
                     LtPln204FfdataDeclarationsResponse,
                     parse_obj_as(
                         type_=LtPln204FfdataDeclarationsResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return HttpResponse(response=_response, data=_data)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 422:
+                raise UnprocessableEntityError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
+    def lv_employee_notice_generate(
+        self,
+        *,
+        contract_id: str,
+        event: LvEmployeeNoticeGenerateDeclarationsRequestEvent,
+        end_code: typing.Optional[LvEmployeeNoticeGenerateDeclarationsRequestEndCode] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> HttpResponse[LvEmployeeNoticeGenerateDeclarationsResponse]:
+        """
+        Build the notice of employees (Ziņas par darba ņēmējiem, VID EDS document DokZDNv3) for an employment contract, for upload in EDS: the start of work with ziņu kods 11 and the employee's profession code (`lvProfesijasKods`), or the end of the contract with `endCode`, the ziņu kods 21 to 26 of annex 1 of MK noteikumi Nr. 827. Answers 422 when the start has no profession code, the end has no `endCode`, the contract has no end date or the employee's personal code is not a Latvian personas kods.
+
+        Parameters
+        ----------
+        contract_id : str
+
+        event : LvEmployeeNoticeGenerateDeclarationsRequestEvent
+
+        end_code : typing.Optional[LvEmployeeNoticeGenerateDeclarationsRequestEndCode]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        HttpResponse[LvEmployeeNoticeGenerateDeclarationsResponse]
+            Default Response
+        """
+        _response = self._client_wrapper.httpx_client.request(
+            "v1/declarations/lv/employee-notice/generate",
+            method="POST",
+            json={
+                "contractId": contract_id,
+                "event": event,
+                "endCode": end_code,
+            },
+            headers={
+                "content-type": "application/json",
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    LvEmployeeNoticeGenerateDeclarationsResponse,
+                    parse_obj_as(
+                        type_=LvEmployeeNoticeGenerateDeclarationsResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return HttpResponse(response=_response, data=_data)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 422:
+                raise UnprocessableEntityError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
+    def mt_fs7generate(
+        self, *, year: int, request_options: typing.Optional[RequestOptions] = None
+    ) -> HttpResponse[MtFs7GenerateDeclarationsResponse]:
+        """
+        The boxes of the FS7 Payer's Annual Reconciliation Statement of a year (A1 to A4, the share options question, B1, C1 to C4, D1 to D4, E1, E2 and F2) from the approved payroll runs, equal to the totals of the FS3 lodgement file of the `mt-annual-payroll-statements` deadline, with a PDF working copy that lists them. The Malta Tax and Customs Administration publishes no file for the FS7: a payer with fewer than 10 FS3s files the barcoded FS7 it issues, and the others key the figures into its FS7 web form or e-filing spreadsheet, so the figures are transcribed. `leftToPayer` names what Nordlet does not hold: the principal's name, position and signature, the Jobsplus number, the childcare question, tax arrears (PCU2(A)) and the payments of section F with F1 and F3.
+
+        Parameters
+        ----------
+        year : int
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        HttpResponse[MtFs7GenerateDeclarationsResponse]
+            Default Response
+        """
+        _response = self._client_wrapper.httpx_client.request(
+            "v1/declarations/mt/fs7/generate",
+            method="POST",
+            json={
+                "year": year,
+            },
+            headers={
+                "content-type": "application/json",
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    MtFs7GenerateDeclarationsResponse,
+                    parse_obj_as(
+                        type_=MtFs7GenerateDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -24051,6 +26707,176 @@ class AsyncRawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
+    async def eu_oss_non_union_compute(
+        self,
+        *,
+        year: int,
+        quarter: int,
+        member_state_of_identification: EuOssNonUnionComputeDeclarationsRequestMemberStateOfIdentification,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> AsyncHttpResponse[EuOssNonUnionComputeDeclarationsResponse]:
+        """
+        Computes the non-Union OSS return of a quarter (Directive 2006/112/EC art. 358a to 369k) from the issued invoices and credit notes with the `oss_non_union` VAT scheme: services to consumers in the EU by a company established outside it. The rows, corrections and EUR conversion are those of `declarations/eu/oss/compute` (art. 365: per Member State of consumption the value without VAT and the VAT per rate; amendments of an earlier return in a later one within three years; art. 366: euro at the rate of the last day of the period). `memberStateOfIdentification` is the Member State the company registered with for the scheme (art. 358a(2)). Answers 422 when the company is established in the EU.
+
+        Parameters
+        ----------
+        year : int
+
+        quarter : int
+
+        member_state_of_identification : EuOssNonUnionComputeDeclarationsRequestMemberStateOfIdentification
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        AsyncHttpResponse[EuOssNonUnionComputeDeclarationsResponse]
+            Default Response
+        """
+        _response = await self._client_wrapper.httpx_client.request(
+            "v1/declarations/eu/oss-non-union/compute",
+            method="POST",
+            json={
+                "year": year,
+                "quarter": quarter,
+                "memberStateOfIdentification": member_state_of_identification,
+            },
+            headers={
+                "content-type": "application/json",
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    EuOssNonUnionComputeDeclarationsResponse,
+                    parse_obj_as(
+                        type_=EuOssNonUnionComputeDeclarationsResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return AsyncHttpResponse(response=_response, data=_data)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 422:
+                raise UnprocessableEntityError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
     async def eu_ioss_compute(
         self, *, year: int, month: int, request_options: typing.Optional[RequestOptions] = None
     ) -> AsyncHttpResponse[EuIossComputeDeclarationsResponse]:
@@ -26328,7 +29154,7 @@ class AsyncRawDeclarationsClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[PlIntrastatGenerateDeclarationsResponse]:
         """
-        Build the rows of the Polish INTRASTAT declaration for a month, arrivals or dispatches, grouped by CN code, partner country, country of origin, partner VAT number, nature of transaction, transport and delivery terms. Values are whole złoty converted at the invoice rate; credit notes with goods lines are returns (code 21). Goods without a CN code are left out and named in the warnings. The IST message itself goes out from the Intrastat deadline in the calendar.
+        Build the rows of the Polish INTRASTAT declaration for a month, arrivals or dispatches, grouped by CN code, partner country, country of origin, partner VAT number, nature of transaction, transport and delivery terms. Values are whole złoty converted at the invoice rate; credit notes with goods lines are returns (code 21). Answers 422 naming the lines when an intra-EU goods line has no CN code: a product item without an eight-digit `cnCode`, or a line without a product item whose VAT type is an intra-EU supply or acquisition of goods; lines of a triangular trade in which the company is the intermediary are left out. The IST message itself goes out from the Intrastat deadline in the calendar.
 
         Parameters
         ----------
@@ -28373,7 +31199,7 @@ class AsyncRawDeclarationsClient:
         self, *, fiscal_year: int, percent: str, request_options: typing.Optional[RequestOptions] = None
     ) -> AsyncHttpResponse[VatProrataSetDeclarationsResponse]:
         """
-        Sets the provisional pro-rata percentage of the company for a fiscal year (the year in which it ends, by the company's fiscal year end month). Purchase lines on a VAT type marked pro-rata (`prorata`) deduct that share of their VAT, book the rest into the line's expense, and the VAT returns declare only the deductible part. Without a percentage for the year such a line deducts 100 % and `purchases/invoices/register` answers the warning `prorata_not_set`. Setting it again replaces the percentage for documents registered afterwards; documents already registered are not changed and the year-end adjustment is not built.
+        Sets the provisional pro-rata percentage of the company for a calendar year (`fiscalYear`). Purchase lines on a VAT type marked pro-rata (`prorata`) deduct that share of their VAT, book the rest into the line's expense, and the VAT returns declare only the deductible part. Without a percentage for the year such a line deducts 100 % and `purchases/invoices/register` answers the warning `prorata_not_set`. Setting it again replaces the percentage for documents registered afterwards; documents already registered are not changed. The year-end adjustment to the definitive pro-rata is `declarations/vat-prorata/adjustment/get` and `post`.
 
         Parameters
         ----------
@@ -28567,6 +31393,342 @@ class AsyncRawDeclarationsClient:
                     VatProrataGetDeclarationsResponse,
                     parse_obj_as(
                         type_=VatProrataGetDeclarationsResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return AsyncHttpResponse(response=_response, data=_data)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 422:
+                raise UnprocessableEntityError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
+    async def vat_prorata_adjustment_get(
+        self,
+        *,
+        fiscal_year: int,
+        definitive_percent: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> AsyncHttpResponse[VatProrataAdjustmentGetDeclarationsResponse]:
+        """
+        Computes the definitive pro-rata of a calendar year and the adjustment of the VAT deducted at the provisional pro-rata (Codul fiscal art. 300 alin. (8), (12) and (14)), for a Romanian company. `computedPercent` is the supplies of the year with the right of deduction (D300 rows 1, 3, 9-11, 13, 14, 16-18 and the regularisations) over those plus the supplies without it (row 15), net of credit notes and of the sale invoices of disposed fixed assets (alin. (7) lit. a)), rounded up to the next whole percent. `definitivePercent` in the body replaces it, for the exclusions Nordlet does not detect or a special pro-rata (alin. (16)). `proRataVat` is the VAT of the year's purchase lines on pro-rata VAT types before the pro-rata, `deductedVat` what the VAT returns deducted at the provisional percentage, `adjustment` the definitive deductible VAT less `deductedVat` (positive: more VAT to deduct). 422 for a company outside Romania.
+
+        Parameters
+        ----------
+        fiscal_year : int
+
+        definitive_percent : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        AsyncHttpResponse[VatProrataAdjustmentGetDeclarationsResponse]
+            Default Response
+        """
+        _response = await self._client_wrapper.httpx_client.request(
+            "v1/declarations/vat-prorata/adjustment/get",
+            method="POST",
+            json={
+                "fiscalYear": fiscal_year,
+                "definitivePercent": definitive_percent,
+            },
+            headers={
+                "content-type": "application/json",
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    VatProrataAdjustmentGetDeclarationsResponse,
+                    parse_obj_as(
+                        type_=VatProrataAdjustmentGetDeclarationsResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return AsyncHttpResponse(response=_response, data=_data)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 422:
+                raise UnprocessableEntityError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
+    async def vat_prorata_adjustment_post(
+        self,
+        *,
+        fiscal_year: int,
+        account_code: str,
+        definitive_percent: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> AsyncHttpResponse[VatProrataAdjustmentPostDeclarationsResponse]:
+        """
+        Posts the `adjustment` of `declarations/vat-prorata/adjustment/get` as a journal transaction (`documentType` `vat_prorata_adjustment`, `documentId` the year) dated 31 December: a positive adjustment debits the `purchases.vatReceivable` posting rule account and credits `accountCode`, a negative one the other way round. The D300 of the period that contains 31 December declares it in row 34 (`R31_2`, Ajustări conform pro-rata), as Codul fiscal art. 300 alin. (14) lit. b) and the OPANAF 174/2026 instructions say. 422 when there is no adjustment or it is zero, for a company outside Romania and for an account that is missing or not postable; 409 when the period is locked and when the year already has an adjustment that is not reversed (reverse it with `ledger/journal/transactions/reverse`).
+
+        Parameters
+        ----------
+        fiscal_year : int
+
+        account_code : str
+
+        definitive_percent : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        AsyncHttpResponse[VatProrataAdjustmentPostDeclarationsResponse]
+            Default Response
+        """
+        _response = await self._client_wrapper.httpx_client.request(
+            "v1/declarations/vat-prorata/adjustment/post",
+            method="POST",
+            json={
+                "fiscalYear": fiscal_year,
+                "accountCode": account_code,
+                "definitivePercent": definitive_percent,
+            },
+            headers={
+                "content-type": "application/json",
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    VatProrataAdjustmentPostDeclarationsResponse,
+                    parse_obj_as(
+                        type_=VatProrataAdjustmentPostDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -31085,7 +34247,7 @@ class AsyncRawDeclarationsClient:
         self, *, year: int, request_options: typing.Optional[RequestOptions] = None
     ) -> AsyncHttpResponse[DeEuerGetDeclarationsResponse]:
         """
-        The Anlage EÜR and the Anlage AVEÜR of a year for a company that determines its profit on a cash basis (§ 4 Abs. 3 EStG), as the Zeilen and Kennzahlen of the official 2025 forms with their amounts: the receipts and payments of the year from the invoice payments (each payment split over the lines of its invoice), the payroll and tax payments and the journal transactions on cash and bank accounts, and the asset register for the Anlage AVEÜR and the AfA. Accounts are placed on the Zeilen through the de-euer statement scheme (Account → Statement rows). Refused with 422 for a company without the cash-basis flag.
+        The Anlage EÜR and the Anlage AVEÜR of a year for a company that determines its profit on a cash basis (§ 4 Abs. 3 EStG), as the Zeilen and Kennzahlen of the official 2025 forms with their amounts: the receipts and payments of the year from the invoice payments (each payment split over the lines of its invoice), the payroll and tax payments and the journal transactions on cash and bank accounts, and the asset register for the Anlage AVEÜR and the AfA. Accounts are placed on the Zeilen through the de-euer statement scheme (ledger/statement-rows/set). Refused with 422 for a company without the cash-basis flag.
 
         Parameters
         ----------
@@ -32050,6 +35212,518 @@ class AsyncRawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
+    async def ee_tsd_annexes_get(
+        self, *, year: int, month: int, request_options: typing.Optional[RequestOptions] = None
+    ) -> AsyncHttpResponse[EeTsdAnnexesGetDeclarationsResponse]:
+        """
+        The figures of TSD annexes 4 (fringe benefits), 5 (gifts, donations and entertainment costs) and 6 (non-business expenses and other payments) entered for a month, and the annexes Nordlet calculates from them: the calculated codes, the income tax added to code 114 and the social tax (code 4180) added to code 115. Annex 5 sums the year: the gifts to listed persons and the entertainment costs of the earlier months, and the personalised social-taxed payments of annex 1 from the payroll runs paid in the year so far. The `ee-cit-return` file carries the annexes next to annex 7. From 2025 (rate 22/78).
+
+        Parameters
+        ----------
+        year : int
+
+        month : int
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        AsyncHttpResponse[EeTsdAnnexesGetDeclarationsResponse]
+            Default Response
+        """
+        _response = await self._client_wrapper.httpx_client.request(
+            "v1/declarations/ee/tsd-annexes/get",
+            method="POST",
+            json={
+                "year": year,
+                "month": month,
+            },
+            headers={
+                "content-type": "application/json",
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    EeTsdAnnexesGetDeclarationsResponse,
+                    parse_obj_as(
+                        type_=EeTsdAnnexesGetDeclarationsResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return AsyncHttpResponse(response=_response, data=_data)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 422:
+                raise UnprocessableEntityError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
+    async def ee_tsd_annexes_set(
+        self,
+        *,
+        year: int,
+        month: int,
+        annex4: typing.Optional[EeTsdAnnexesSetDeclarationsRequestAnnex4] = OMIT,
+        annex5: typing.Optional[EeTsdAnnexesSetDeclarationsRequestAnnex5] = OMIT,
+        annex6: typing.Optional[EeTsdAnnexesSetDeclarationsRequestAnnex6] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> AsyncHttpResponse[EeTsdAnnexesSetDeclarationsResponse]:
+        """
+        Replace the figures of TSD annexes 4, 5 and 6 for a month; an annex left out is not filed that month, and a body with no annex removes the month. Amounts are the figures the form asks the company to enter; Nordlet calculates the rest (4060, 4070, 4080, 4090, 4140, 4170, 4180, 4181; 5020, 5030 or 5050, 5060 to 5090, 5110 to 5170, 5190; 6000, 6140 to 6170) and refuses (422) a month whose figures do not compute. Annex 5 part II (`listedPersonTaxableGifts`, 5180) is for a person on the TuMS § 11 lg 1 list and excludes part I.
+
+        Parameters
+        ----------
+        year : int
+
+        month : int
+
+        annex4 : typing.Optional[EeTsdAnnexesSetDeclarationsRequestAnnex4]
+
+        annex5 : typing.Optional[EeTsdAnnexesSetDeclarationsRequestAnnex5]
+
+        annex6 : typing.Optional[EeTsdAnnexesSetDeclarationsRequestAnnex6]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        AsyncHttpResponse[EeTsdAnnexesSetDeclarationsResponse]
+            Default Response
+        """
+        _response = await self._client_wrapper.httpx_client.request(
+            "v1/declarations/ee/tsd-annexes/set",
+            method="POST",
+            json={
+                "year": year,
+                "month": month,
+                "annex4": convert_and_respect_annotation_metadata(
+                    object_=annex4, annotation=EeTsdAnnexesSetDeclarationsRequestAnnex4, direction="write"
+                ),
+                "annex5": convert_and_respect_annotation_metadata(
+                    object_=annex5, annotation=EeTsdAnnexesSetDeclarationsRequestAnnex5, direction="write"
+                ),
+                "annex6": convert_and_respect_annotation_metadata(
+                    object_=annex6, annotation=EeTsdAnnexesSetDeclarationsRequestAnnex6, direction="write"
+                ),
+            },
+            headers={
+                "content-type": "application/json",
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    EeTsdAnnexesSetDeclarationsResponse,
+                    parse_obj_as(
+                        type_=EeTsdAnnexesSetDeclarationsResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return AsyncHttpResponse(response=_response, data=_data)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 422:
+                raise UnprocessableEntityError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
+    async def ee_employment_register_generate(
+        self,
+        *,
+        contract_id: str,
+        event: EeEmploymentRegisterGenerateDeclarationsRequestEvent,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> AsyncHttpResponse[EeEmploymentRegisterGenerateDeclarationsResponse]:
+        """
+        Build, without sending, the employment register (töötamise register) entry for an employment contract: the start of work, or its end with the reason recorded on the contract, as the TOOTREG v2 XML that `employment-register/send` sends to e-MTA over X-tee.
+
+        Parameters
+        ----------
+        contract_id : str
+
+        event : EeEmploymentRegisterGenerateDeclarationsRequestEvent
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        AsyncHttpResponse[EeEmploymentRegisterGenerateDeclarationsResponse]
+            Default Response
+        """
+        _response = await self._client_wrapper.httpx_client.request(
+            "v1/declarations/ee/employment-register/generate",
+            method="POST",
+            json={
+                "contractId": contract_id,
+                "event": event,
+            },
+            headers={
+                "content-type": "application/json",
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    EeEmploymentRegisterGenerateDeclarationsResponse,
+                    parse_obj_as(
+                        type_=EeEmploymentRegisterGenerateDeclarationsResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return AsyncHttpResponse(response=_response, data=_data)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 422:
+                raise UnprocessableEntityError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
     async def ee_employment_register_send(
         self,
         *,
@@ -32534,7 +36208,7 @@ class AsyncRawDeclarationsClient:
         self, *, year: int, request_options: typing.Optional[RequestOptions] = None
     ) -> AsyncHttpResponse[IeB1GenerateDeclarationsResponse]:
         """
-        Build the working paper for the Form B1 annual return of a financial year - company details, registered office, directors and secretary from Account → Officers, the members from Account → Shareholders, the issued share capital and the figures of the financial statements - in the order the CORE screens ask for them. The CRO publishes no file format for the B1, so it is keyed into CORE.
+        Build the working paper for the Form B1 annual return of a financial year - company details, registered office, directors and secretary recorded with officers/create, the members recorded with ledger/owners/create, the issued share capital and the figures of the financial statements - in the order the CORE screens ask for them. The CRO publishes no file format for the B1, so it is keyed into CORE.
 
         Parameters
         ----------
@@ -32689,6 +36363,165 @@ class AsyncRawDeclarationsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
+    async def ie_rtd_generate(
+        self, *, year: int, request_options: typing.Optional[RequestOptions] = None
+    ) -> AsyncHttpResponse[IeRtdGenerateDeclarationsResponse]:
+        """
+        Build the Return of Trading Details of a calendar year from the issued sale documents and the registered purchase invoices: the net value of supplies, intra-Community acquisitions, purchases for resale and purchases not for resale, in whole euro, by Irish VAT rate, in the order the ROS screen asks for them. Revenue publishes no upload format for the RTD, so the figures are keyed into ROS; `xml` is a working paper, not a file ROS accepts.
+
+        Parameters
+        ----------
+        year : int
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        AsyncHttpResponse[IeRtdGenerateDeclarationsResponse]
+            Default Response
+        """
+        _response = await self._client_wrapper.httpx_client.request(
+            "v1/declarations/ie/rtd/generate",
+            method="POST",
+            json={
+                "year": year,
+            },
+            headers={
+                "content-type": "application/json",
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    IeRtdGenerateDeclarationsResponse,
+                    parse_obj_as(
+                        type_=IeRtdGenerateDeclarationsResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return AsyncHttpResponse(response=_response, data=_data)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 422:
+                raise UnprocessableEntityError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
     async def it_sdi_purchase_send(
         self,
         *,
@@ -32698,7 +36531,7 @@ class AsyncRawDeclarationsClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[ItSdiPurchaseSendDeclarationsResponse]:
         """
-        Build the TD16-TD19 integration document for a registered purchase invoice and send it to the Sistema di Interscambio. Since July 2022 a purchase from a supplier established abroad is reported this way instead of the esterometro. The Italian VAT rate to self-assess is a judgement about the supply: pass vatRatePercent unless the purchase lines already carry it, otherwise the request is refused rather than guessed.
+        Build the TD16-TD19 integration document for a registered purchase invoice and send it to the Sistema di Interscambio. Since July 2022 a purchase from a supplier established abroad is reported this way instead of the esterometro. The Italian VAT rate to self-assess is a judgement about the supply: pass vatRatePercent unless the purchase lines already carry it, otherwise the request is refused rather than guessed. The document type is `tipoDocumento` when given, else the one the VAT types of the lines name (TD17-*, TD18-*, TD19-*; 422 when the lines name different ones), else TD18 or TD19 for catalog products and TD17 otherwise. Lines whose VAT type is import VAT paid at customs are left out, and a purchase with only such lines is refused with 422: the customs declaration documents it (art. 77 c. 4 of the Testo unico IVA, DLgs 10/2026).
 
         Parameters
         ----------
@@ -32868,7 +36701,7 @@ class AsyncRawDeclarationsClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[ItSdiPurchasePreviewDeclarationsResponse]:
         """
-        Render the TD16-TD19 integration document for a registered purchase invoice without sending it, so the rate and the document type can be checked first.
+        Render the TD16-TD19 integration document for a registered purchase invoice without sending it, so the rate and the document type can be checked first. The document type and the customs lines are decided as in `declarations/it/sdi/purchase-send`.
 
         Parameters
         ----------
@@ -32906,6 +36739,1110 @@ class AsyncRawDeclarationsClient:
                     ItSdiPurchasePreviewDeclarationsResponse,
                     parse_obj_as(
                         type_=ItSdiPurchasePreviewDeclarationsResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return AsyncHttpResponse(response=_response, data=_data)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 422:
+                raise UnprocessableEntityError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
+    async def it_tfr_accrual_compute(
+        self,
+        *,
+        year: int,
+        month: int,
+        include_payment_types: typing.Optional[typing.Sequence[str]] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> AsyncHttpResponse[ItTfrAccrualComputeDeclarationsResponse]:
+        """
+        Compute the TFR of each employee in the approved payroll run of `year` and `month`: the quota is the TFR base divided by 13.5 (art. 2120 c. 2 c.c.), less the 0.50% contribution of art. 3 L. 297/1982 on the base of the employee's INPS IVS contribution. The TFR base is the pay of the period (`retribuzione`), the tredicesima, the quattordicesima and the benefit in kind; other payment types count only when listed in `includePaymentTypes`, because art. 2120 c. 3 counts a payment only when it is not occasional and the collective agreement may say otherwise (tips and the TFR paid out are refused). `destination` is the employee option `itTfrDestinazione`: `azienda` (default, kept in the company), `fondo-tesoreria` or `previdenza-complementare`.
+
+        Parameters
+        ----------
+        year : int
+
+        month : int
+
+        include_payment_types : typing.Optional[typing.Sequence[str]]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        AsyncHttpResponse[ItTfrAccrualComputeDeclarationsResponse]
+            Default Response
+        """
+        _response = await self._client_wrapper.httpx_client.request(
+            "v1/declarations/it/tfr/accrual/compute",
+            method="POST",
+            json={
+                "year": year,
+                "month": month,
+                "includePaymentTypes": include_payment_types,
+            },
+            headers={
+                "content-type": "application/json",
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    ItTfrAccrualComputeDeclarationsResponse,
+                    parse_obj_as(
+                        type_=ItTfrAccrualComputeDeclarationsResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return AsyncHttpResponse(response=_response, data=_data)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 422:
+                raise UnprocessableEntityError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
+    async def it_tfr_accrual_post(
+        self,
+        *,
+        year: int,
+        month: int,
+        expense_account_code: str,
+        include_payment_types: typing.Optional[typing.Sequence[str]] = OMIT,
+        fund_account_code: typing.Optional[str] = OMIT,
+        payable_account_code: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> AsyncHttpResponse[ItTfrAccrualPostDeclarationsResponse]:
+        """
+        Post the TFR of each employee in the approved payroll run of `year` and `month`: the quota is the TFR base divided by 13.5 (art. 2120 c. 2 c.c.), less the 0.50% contribution of art. 3 L. 297/1982 on the base of the employee's INPS IVS contribution. The TFR base is the pay of the period (`retribuzione`), the tredicesima, the quattordicesima and the benefit in kind; other payment types count only when listed in `includePaymentTypes`, because art. 2120 c. 3 counts a payment only when it is not occasional and the collective agreement may say otherwise (tips and the TFR paid out are refused). `destination` is the employee option `itTfrDestinazione`: `azienda` (default, kept in the company), `fondo-tesoreria` or `previdenza-complementare`. The journal transaction (`documentType` `it_tfr_accrual`, `documentId` YYYY-MM) is dated the last day of the month: debit `expenseAccountCode` (B9 c) with the whole accrual, credit `fundAccountCode` (liability C) with the TFR kept in the company and `payableAccountCode` (D14) with the TFR due to the Fondo di Tesoreria or a pension fund (OIC 31 §§ 60-76). 422 when there is nothing to accrue or an account the accrual needs is missing; 409 when the accounting period is locked and when the month is already posted and not reversed (reverse it with `ledger/journal/transactions/reverse`).
+
+        Parameters
+        ----------
+        year : int
+
+        month : int
+
+        expense_account_code : str
+
+        include_payment_types : typing.Optional[typing.Sequence[str]]
+
+        fund_account_code : typing.Optional[str]
+
+        payable_account_code : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        AsyncHttpResponse[ItTfrAccrualPostDeclarationsResponse]
+            Default Response
+        """
+        _response = await self._client_wrapper.httpx_client.request(
+            "v1/declarations/it/tfr/accrual/post",
+            method="POST",
+            json={
+                "year": year,
+                "month": month,
+                "includePaymentTypes": include_payment_types,
+                "expenseAccountCode": expense_account_code,
+                "fundAccountCode": fund_account_code,
+                "payableAccountCode": payable_account_code,
+            },
+            headers={
+                "content-type": "application/json",
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    ItTfrAccrualPostDeclarationsResponse,
+                    parse_obj_as(
+                        type_=ItTfrAccrualPostDeclarationsResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return AsyncHttpResponse(response=_response, data=_data)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 422:
+                raise UnprocessableEntityError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
+    async def it_tfr_revaluation_compute(
+        self,
+        *,
+        year: int,
+        foi_previous_december: str,
+        foi_december: str,
+        funds: typing.Sequence[ItTfrRevaluationComputeDeclarationsRequestFundsItem],
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> AsyncHttpResponse[ItTfrRevaluationComputeDeclarationsResponse]:
+        """
+        Compute the revaluation at 31 December of `year` of the TFR kept in the company (art. 2120 c. 5 c.c.): each `funds` amount is the TFR of the employee at 31 December of the previous year, without the quota of `year`, as the company keeps it; the rate is 1.5% plus 75% of the increase of the ISTAT FOI index of December (`foiDecember`) against the previous December (`foiPreviousDecember`), not rounded, and a fall of the index adds nothing. The 17% substitute tax (art. 11 c. 3 D.Lgs. 47/2000) is taken from the revaluation and paid with F24 code 1713 by 16 February; `accontoNextYear` is the acconto of the next year (code 1712, 16 December) at 17% of 90% of the revaluation. An employee who left in or before `year` is left out with a warning, because art. 2120 c. 6 revalues to the month of termination.
+
+        Parameters
+        ----------
+        year : int
+
+        foi_previous_december : str
+
+        foi_december : str
+
+        funds : typing.Sequence[ItTfrRevaluationComputeDeclarationsRequestFundsItem]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        AsyncHttpResponse[ItTfrRevaluationComputeDeclarationsResponse]
+            Default Response
+        """
+        _response = await self._client_wrapper.httpx_client.request(
+            "v1/declarations/it/tfr/revaluation/compute",
+            method="POST",
+            json={
+                "year": year,
+                "foiPreviousDecember": foi_previous_december,
+                "foiDecember": foi_december,
+                "funds": convert_and_respect_annotation_metadata(
+                    object_=funds,
+                    annotation=typing.Sequence[ItTfrRevaluationComputeDeclarationsRequestFundsItem],
+                    direction="write",
+                ),
+            },
+            headers={
+                "content-type": "application/json",
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    ItTfrRevaluationComputeDeclarationsResponse,
+                    parse_obj_as(
+                        type_=ItTfrRevaluationComputeDeclarationsResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return AsyncHttpResponse(response=_response, data=_data)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 422:
+                raise UnprocessableEntityError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
+    async def it_tfr_revaluation_post(
+        self,
+        *,
+        year: int,
+        foi_previous_december: str,
+        foi_december: str,
+        funds: typing.Sequence[ItTfrRevaluationPostDeclarationsRequestFundsItem],
+        expense_account_code: str,
+        fund_account_code: str,
+        tax_account_code: str,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> AsyncHttpResponse[ItTfrRevaluationPostDeclarationsResponse]:
+        """
+        Post the revaluation at 31 December of `year` of the TFR kept in the company (art. 2120 c. 5 c.c.): each `funds` amount is the TFR of the employee at 31 December of the previous year, without the quota of `year`, as the company keeps it; the rate is 1.5% plus 75% of the increase of the ISTAT FOI index of December (`foiDecember`) against the previous December (`foiPreviousDecember`), not rounded, and a fall of the index adds nothing. The 17% substitute tax (art. 11 c. 3 D.Lgs. 47/2000) is taken from the revaluation and paid with F24 code 1713 by 16 February; `accontoNextYear` is the acconto of the next year (code 1712, 16 December) at 17% of 90% of the revaluation. An employee who left in or before `year` is left out with a warning, because art. 2120 c. 6 revalues to the month of termination. The journal transaction (`documentType` `it_tfr_revaluation`, `documentId` the year) is dated 31 December: debit `expenseAccountCode` (B9 c) with the revaluation, credit `fundAccountCode` (liability C) with the revaluation less the tax and `taxAccountCode` with the tax. 422 when there is nothing to revalue; 409 when the accounting period is locked and when the year is already posted and not reversed (reverse it with `ledger/journal/transactions/reverse`).
+
+        Parameters
+        ----------
+        year : int
+
+        foi_previous_december : str
+
+        foi_december : str
+
+        funds : typing.Sequence[ItTfrRevaluationPostDeclarationsRequestFundsItem]
+
+        expense_account_code : str
+
+        fund_account_code : str
+
+        tax_account_code : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        AsyncHttpResponse[ItTfrRevaluationPostDeclarationsResponse]
+            Default Response
+        """
+        _response = await self._client_wrapper.httpx_client.request(
+            "v1/declarations/it/tfr/revaluation/post",
+            method="POST",
+            json={
+                "year": year,
+                "foiPreviousDecember": foi_previous_december,
+                "foiDecember": foi_december,
+                "funds": convert_and_respect_annotation_metadata(
+                    object_=funds,
+                    annotation=typing.Sequence[ItTfrRevaluationPostDeclarationsRequestFundsItem],
+                    direction="write",
+                ),
+                "expenseAccountCode": expense_account_code,
+                "fundAccountCode": fund_account_code,
+                "taxAccountCode": tax_account_code,
+            },
+            headers={
+                "content-type": "application/json",
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    ItTfrRevaluationPostDeclarationsResponse,
+                    parse_obj_as(
+                        type_=ItTfrRevaluationPostDeclarationsResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return AsyncHttpResponse(response=_response, data=_data)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 422:
+                raise UnprocessableEntityError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
+    async def it_inail_autoliquidazione_compute(
+        self,
+        *,
+        year: int,
+        positions: typing.Sequence[ItInailAutoliquidazioneComputeDeclarationsRequestPositionsItem],
+        rata_anticipata: typing.Optional[str] = OMIT,
+        rateazione: typing.Optional[bool] = OMIT,
+        codice_ditta: typing.Optional[str] = OMIT,
+        codice_ditta_control_code: typing.Optional[str] = OMIT,
+        sede_inail: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> AsyncHttpResponse[ItInailAutoliquidazioneComputeDeclarationsResponse]:
+        """
+        Compute the INAIL autoliquidazione premium of the employees' policy (polizza dipendenti) due by 16 February of `year` + 1: the regolazione of `year` on the wages paid in `year` and the rata of `year` + 1. The wages are the INAIL bases of the approved Italian payroll runs paid in `year` (DPR 1124/1965 art. 28: the wages actually paid), rounded to the euro; a run without the INAIL component counts the base of its INPS IVS contribution, with a warning. Each entry of `positions` is a PAT and voce of the INAIL basi di calcolo with its `tassoRegolazione` and `tassoRata` (the tasso applicato, per mille), the reduction of the basi di calcolo in percent of the premium (`riduzioneRegolazione`, `riduzioneRata`), the partly exempt wages (`quoteEsenti`), a lower presumed wage for the rata communicated to INAIL (`retribuzioniRata`) and the employees it covers (`employeeIds`, required when there is more than one position). premium = wages x tasso / 1000, less the reduction, plus the 1% addizionale ex ANMIL; the regolazione subtracts `rataAnticipata`, the rata requested for `year` in the basi di calcolo; intermediate amounts have five decimals and the total is rounded to the cent (INAIL guide to the autoliquidazione 2025/2026). With `rateazione` the total is paid in four instalments of 25% on 16 February, 16 May, 20 August and 16 November (moved to the next working day), the last three with the interest coefficients INAIL publishes each January (recorded for 2026 only). With `codiceDitta`, `codiceDittaControlCode` and `sedeInail` the response carries the F24 INAIL row: numero di riferimento 90 followed by `year` + 1, causale P.
+
+        Parameters
+        ----------
+        year : int
+
+        positions : typing.Sequence[ItInailAutoliquidazioneComputeDeclarationsRequestPositionsItem]
+
+        rata_anticipata : typing.Optional[str]
+
+        rateazione : typing.Optional[bool]
+
+        codice_ditta : typing.Optional[str]
+
+        codice_ditta_control_code : typing.Optional[str]
+
+        sede_inail : typing.Optional[str]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        AsyncHttpResponse[ItInailAutoliquidazioneComputeDeclarationsResponse]
+            Default Response
+        """
+        _response = await self._client_wrapper.httpx_client.request(
+            "v1/declarations/it/inail/autoliquidazione/compute",
+            method="POST",
+            json={
+                "year": year,
+                "positions": convert_and_respect_annotation_metadata(
+                    object_=positions,
+                    annotation=typing.Sequence[ItInailAutoliquidazioneComputeDeclarationsRequestPositionsItem],
+                    direction="write",
+                ),
+                "rataAnticipata": rata_anticipata,
+                "rateazione": rateazione,
+                "codiceDitta": codice_ditta,
+                "codiceDittaControlCode": codice_ditta_control_code,
+                "sedeInail": sede_inail,
+            },
+            headers={
+                "content-type": "application/json",
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    ItInailAutoliquidazioneComputeDeclarationsResponse,
+                    parse_obj_as(
+                        type_=ItInailAutoliquidazioneComputeDeclarationsResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return AsyncHttpResponse(response=_response, data=_data)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 422:
+                raise UnprocessableEntityError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
+    async def it_inail_autoliquidazione_f24(
+        self,
+        *,
+        year: int,
+        positions: typing.Sequence[ItInailAutoliquidazioneF24DeclarationsRequestPositionsItem],
+        rata_anticipata: typing.Optional[str] = OMIT,
+        rateazione: typing.Optional[bool] = OMIT,
+        codice_ditta: typing.Optional[str] = OMIT,
+        codice_ditta_control_code: typing.Optional[str] = OMIT,
+        sede_inail: typing.Optional[str] = OMIT,
+        instalment: typing.Optional[int] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> AsyncHttpResponse[ItInailAutoliquidazioneF24DeclarationsResponse]:
+        """
+        Build the F24 telematic file (Agenzia delle Entrate specification for taxpayers, records A, M, V and Z) that pays instalment `instalment` (1 for the single payment) of the INAIL autoliquidazione premium of the employees' policy (polizza dipendenti) due by 16 February of `year` + 1: the regolazione of `year` on the wages paid in `year` and the rata of `year` + 1. The wages are the INAIL bases of the approved Italian payroll runs paid in `year` (DPR 1124/1965 art. 28: the wages actually paid), rounded to the euro; a run without the INAIL component counts the base of its INPS IVS contribution, with a warning. Each entry of `positions` is a PAT and voce of the INAIL basi di calcolo with its `tassoRegolazione` and `tassoRata` (the tasso applicato, per mille), the reduction of the basi di calcolo in percent of the premium (`riduzioneRegolazione`, `riduzioneRata`), the partly exempt wages (`quoteEsenti`), a lower presumed wage for the rata communicated to INAIL (`retribuzioniRata`) and the employees it covers (`employeeIds`, required when there is more than one position). premium = wages x tasso / 1000, less the reduction, plus the 1% addizionale ex ANMIL; the regolazione subtracts `rataAnticipata`, the rata requested for `year` in the basi di calcolo; intermediate amounts have five decimals and the total is rounded to the cent (INAIL guide to the autoliquidazione 2025/2026). With `rateazione` the total is paid in four instalments of 25% on 16 February, 16 May, 20 August and 16 November (moved to the next working day), the last three with the interest coefficients INAIL publishes each January (recorded for 2026 only). With `codiceDitta`, `codiceDittaControlCode` and `sedeInail` the response carries the F24 INAIL row: numero di riferimento 90 followed by `year` + 1, causale P. The file carries the INAIL row only, dated the instalment's due date; the debit account is given when the file is authenticated unless the company has exactly one active EUR account with an Italian IBAN. 422 without `codiceDitta`, when nothing is due (a credit is compensated in another F24) and for an instalment whose interest coefficients are not recorded.
+
+        Parameters
+        ----------
+        year : int
+
+        positions : typing.Sequence[ItInailAutoliquidazioneF24DeclarationsRequestPositionsItem]
+
+        rata_anticipata : typing.Optional[str]
+
+        rateazione : typing.Optional[bool]
+
+        codice_ditta : typing.Optional[str]
+
+        codice_ditta_control_code : typing.Optional[str]
+
+        sede_inail : typing.Optional[str]
+
+        instalment : typing.Optional[int]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        AsyncHttpResponse[ItInailAutoliquidazioneF24DeclarationsResponse]
+            Default Response
+        """
+        _response = await self._client_wrapper.httpx_client.request(
+            "v1/declarations/it/inail/autoliquidazione/f24",
+            method="POST",
+            json={
+                "year": year,
+                "positions": convert_and_respect_annotation_metadata(
+                    object_=positions,
+                    annotation=typing.Sequence[ItInailAutoliquidazioneF24DeclarationsRequestPositionsItem],
+                    direction="write",
+                ),
+                "rataAnticipata": rata_anticipata,
+                "rateazione": rateazione,
+                "codiceDitta": codice_ditta,
+                "codiceDittaControlCode": codice_ditta_control_code,
+                "sedeInail": sede_inail,
+                "instalment": instalment,
+            },
+            headers={
+                "content-type": "application/json",
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    ItInailAutoliquidazioneF24DeclarationsResponse,
+                    parse_obj_as(
+                        type_=ItInailAutoliquidazioneF24DeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -33421,6 +38358,335 @@ class AsyncRawDeclarationsClient:
                     LtPln204FfdataDeclarationsResponse,
                     parse_obj_as(
                         type_=LtPln204FfdataDeclarationsResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return AsyncHttpResponse(response=_response, data=_data)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 422:
+                raise UnprocessableEntityError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
+    async def lv_employee_notice_generate(
+        self,
+        *,
+        contract_id: str,
+        event: LvEmployeeNoticeGenerateDeclarationsRequestEvent,
+        end_code: typing.Optional[LvEmployeeNoticeGenerateDeclarationsRequestEndCode] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> AsyncHttpResponse[LvEmployeeNoticeGenerateDeclarationsResponse]:
+        """
+        Build the notice of employees (Ziņas par darba ņēmējiem, VID EDS document DokZDNv3) for an employment contract, for upload in EDS: the start of work with ziņu kods 11 and the employee's profession code (`lvProfesijasKods`), or the end of the contract with `endCode`, the ziņu kods 21 to 26 of annex 1 of MK noteikumi Nr. 827. Answers 422 when the start has no profession code, the end has no `endCode`, the contract has no end date or the employee's personal code is not a Latvian personas kods.
+
+        Parameters
+        ----------
+        contract_id : str
+
+        event : LvEmployeeNoticeGenerateDeclarationsRequestEvent
+
+        end_code : typing.Optional[LvEmployeeNoticeGenerateDeclarationsRequestEndCode]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        AsyncHttpResponse[LvEmployeeNoticeGenerateDeclarationsResponse]
+            Default Response
+        """
+        _response = await self._client_wrapper.httpx_client.request(
+            "v1/declarations/lv/employee-notice/generate",
+            method="POST",
+            json={
+                "contractId": contract_id,
+                "event": event,
+                "endCode": end_code,
+            },
+            headers={
+                "content-type": "application/json",
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    LvEmployeeNoticeGenerateDeclarationsResponse,
+                    parse_obj_as(
+                        type_=LvEmployeeNoticeGenerateDeclarationsResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return AsyncHttpResponse(response=_response, data=_data)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 422:
+                raise UnprocessableEntityError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
+    async def mt_fs7generate(
+        self, *, year: int, request_options: typing.Optional[RequestOptions] = None
+    ) -> AsyncHttpResponse[MtFs7GenerateDeclarationsResponse]:
+        """
+        The boxes of the FS7 Payer's Annual Reconciliation Statement of a year (A1 to A4, the share options question, B1, C1 to C4, D1 to D4, E1, E2 and F2) from the approved payroll runs, equal to the totals of the FS3 lodgement file of the `mt-annual-payroll-statements` deadline, with a PDF working copy that lists them. The Malta Tax and Customs Administration publishes no file for the FS7: a payer with fewer than 10 FS3s files the barcoded FS7 it issues, and the others key the figures into its FS7 web form or e-filing spreadsheet, so the figures are transcribed. `leftToPayer` names what Nordlet does not hold: the principal's name, position and signature, the Jobsplus number, the childcare question, tax arrears (PCU2(A)) and the payments of section F with F1 and F3.
+
+        Parameters
+        ----------
+        year : int
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        AsyncHttpResponse[MtFs7GenerateDeclarationsResponse]
+            Default Response
+        """
+        _response = await self._client_wrapper.httpx_client.request(
+            "v1/declarations/mt/fs7/generate",
+            method="POST",
+            json={
+                "year": year,
+            },
+            headers={
+                "content-type": "application/json",
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    MtFs7GenerateDeclarationsResponse,
+                    parse_obj_as(
+                        type_=MtFs7GenerateDeclarationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )

@@ -101,6 +101,23 @@ class AccountsUpdateBankRequestPaymentFileSettings(UniversalBaseModel):
     Nacha: the Company Discretionary Data the bank asks for
     """
 
+    bic: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    pain.001: the BIC of the bank that holds this account, written as the debtor agent; required for a SEK supplier file from a Swedish account
+    """
+
+    initiating_party_bank_id: typing_extensions.Annotated[
+        typing.Optional[str],
+        FieldMetadata(alias="initiatingPartyBankId"),
+        pydantic.Field(
+            alias="initiatingPartyBankId",
+            description="pain.001: the identifier the bank gave the company for file payments (at Swedbank the agreement ID), written as InitgPty/Id/OrgId/Othr with scheme BANK",
+        ),
+    ] = None
+    """
+    pain.001: the identifier the bank gave the company for file payments (at Swedbank the agreement ID), written as InitgPty/Id/OrgId/Othr with scheme BANK
+    """
+
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2
     else:

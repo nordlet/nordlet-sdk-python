@@ -48,12 +48,13 @@ class DocumentSeriesClient:
         allocated_to: typing.Optional[int] = OMIT,
         warehouse_id: typing.Optional[str] = OMIT,
         print_series: typing.Optional[bool] = OMIT,
+        suffix: typing.Optional[str] = OMIT,
         is_default: typing.Optional[bool] = OMIT,
         is_active: typing.Optional[bool] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> CreateDocumentSeriesResponse:
         """
-        Create a numbering series for sale invoices, credit notes, proformas or advance invoices (`documentType`). Numbers run from `nextNumber`, padded to `numberLength` digits, and are written as `prefix`-number or, with `printSeries` false, as the bare number; a series may be bound to an operation type (a default series of an operation type is picked for its documents that name no series) and to a warehouse, which `sales/invoices/issue` takes the goods from. `isDefault` makes it the default of its document type and clears the previous one. Answers 422 when only one end of the allocated range `allocatedFrom`..`allocatedTo` is given or the range is reversed, 409 when the prefix exists for the document type.
+        Create a numbering series for sale invoices, credit notes, proformas or advance invoices (`documentType`). Numbers run from `nextNumber`, padded to `numberLength` digits, and are written as `prefix`-number or, with `printSeries` false, as the bare number, followed by `suffix` (a Croatian series is `printSeries` false with `suffix` `/<business premises>/<cash register>`, which gives `1/POSL1/1`); a series may be bound to an operation type (a default series of an operation type is picked for its documents that name no series) and to a warehouse, which `sales/invoices/issue` takes the goods from. `isDefault` makes it the default of its document type and clears the previous one. Answers 422 when only one end of the allocated range `allocatedFrom`..`allocatedTo` is given or the range is reversed, 409 when the prefix exists for the document type.
 
         Parameters
         ----------
@@ -78,6 +79,8 @@ class DocumentSeriesClient:
         warehouse_id : typing.Optional[str]
 
         print_series : typing.Optional[bool]
+
+        suffix : typing.Optional[str]
 
         is_default : typing.Optional[bool]
 
@@ -114,6 +117,7 @@ class DocumentSeriesClient:
             allocated_to=allocated_to,
             warehouse_id=warehouse_id,
             print_series=print_series,
+            suffix=suffix,
             is_default=is_default,
             is_active=is_active,
             request_options=request_options,
@@ -135,6 +139,7 @@ class DocumentSeriesClient:
         allocated_to: typing.Optional[int] = OMIT,
         warehouse_id: typing.Optional[str] = OMIT,
         print_series: typing.Optional[bool] = OMIT,
+        suffix: typing.Optional[str] = OMIT,
         is_default: typing.Optional[bool] = OMIT,
         is_active: typing.Optional[bool] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
@@ -167,6 +172,8 @@ class DocumentSeriesClient:
         warehouse_id : typing.Optional[str]
 
         print_series : typing.Optional[bool]
+
+        suffix : typing.Optional[str]
 
         is_default : typing.Optional[bool]
 
@@ -204,6 +211,7 @@ class DocumentSeriesClient:
             allocated_to=allocated_to,
             warehouse_id=warehouse_id,
             print_series=print_series,
+            suffix=suffix,
             is_default=is_default,
             is_active=is_active,
             request_options=request_options,
@@ -350,12 +358,13 @@ class AsyncDocumentSeriesClient:
         allocated_to: typing.Optional[int] = OMIT,
         warehouse_id: typing.Optional[str] = OMIT,
         print_series: typing.Optional[bool] = OMIT,
+        suffix: typing.Optional[str] = OMIT,
         is_default: typing.Optional[bool] = OMIT,
         is_active: typing.Optional[bool] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> CreateDocumentSeriesResponse:
         """
-        Create a numbering series for sale invoices, credit notes, proformas or advance invoices (`documentType`). Numbers run from `nextNumber`, padded to `numberLength` digits, and are written as `prefix`-number or, with `printSeries` false, as the bare number; a series may be bound to an operation type (a default series of an operation type is picked for its documents that name no series) and to a warehouse, which `sales/invoices/issue` takes the goods from. `isDefault` makes it the default of its document type and clears the previous one. Answers 422 when only one end of the allocated range `allocatedFrom`..`allocatedTo` is given or the range is reversed, 409 when the prefix exists for the document type.
+        Create a numbering series for sale invoices, credit notes, proformas or advance invoices (`documentType`). Numbers run from `nextNumber`, padded to `numberLength` digits, and are written as `prefix`-number or, with `printSeries` false, as the bare number, followed by `suffix` (a Croatian series is `printSeries` false with `suffix` `/<business premises>/<cash register>`, which gives `1/POSL1/1`); a series may be bound to an operation type (a default series of an operation type is picked for its documents that name no series) and to a warehouse, which `sales/invoices/issue` takes the goods from. `isDefault` makes it the default of its document type and clears the previous one. Answers 422 when only one end of the allocated range `allocatedFrom`..`allocatedTo` is given or the range is reversed, 409 when the prefix exists for the document type.
 
         Parameters
         ----------
@@ -380,6 +389,8 @@ class AsyncDocumentSeriesClient:
         warehouse_id : typing.Optional[str]
 
         print_series : typing.Optional[bool]
+
+        suffix : typing.Optional[str]
 
         is_default : typing.Optional[bool]
 
@@ -424,6 +435,7 @@ class AsyncDocumentSeriesClient:
             allocated_to=allocated_to,
             warehouse_id=warehouse_id,
             print_series=print_series,
+            suffix=suffix,
             is_default=is_default,
             is_active=is_active,
             request_options=request_options,
@@ -445,6 +457,7 @@ class AsyncDocumentSeriesClient:
         allocated_to: typing.Optional[int] = OMIT,
         warehouse_id: typing.Optional[str] = OMIT,
         print_series: typing.Optional[bool] = OMIT,
+        suffix: typing.Optional[str] = OMIT,
         is_default: typing.Optional[bool] = OMIT,
         is_active: typing.Optional[bool] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
@@ -477,6 +490,8 @@ class AsyncDocumentSeriesClient:
         warehouse_id : typing.Optional[str]
 
         print_series : typing.Optional[bool]
+
+        suffix : typing.Optional[str]
 
         is_default : typing.Optional[bool]
 
@@ -522,6 +537,7 @@ class AsyncDocumentSeriesClient:
             allocated_to=allocated_to,
             warehouse_id=warehouse_id,
             print_series=print_series,
+            suffix=suffix,
             is_default=is_default,
             is_active=is_active,
             request_options=request_options,

@@ -17,6 +17,7 @@ if typing.TYPE_CHECKING:
     from .list_files_response import ListFilesResponse
     from .list_files_response_rows_item import ListFilesResponseRowsItem
     from .upload_files_response import UploadFilesResponse
+    from .upload_links_create_files_response import UploadLinksCreateFilesResponse
 _dynamic_imports: typing.Dict[str, str] = {
     "DeleteFilesResponse": ".delete_files_response",
     "GetFilesResponse": ".get_files_response",
@@ -29,6 +30,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "ListFilesResponse": ".list_files_response",
     "ListFilesResponseRowsItem": ".list_files_response_rows_item",
     "UploadFilesResponse": ".upload_files_response",
+    "UploadLinksCreateFilesResponse": ".upload_links_create_files_response",
 }
 
 
@@ -65,4 +67,5 @@ __all__ = [
     "ListFilesResponse",
     "ListFilesResponseRowsItem",
     "UploadFilesResponse",
+    "UploadLinksCreateFilesResponse",
 ]

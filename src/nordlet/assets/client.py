@@ -8,6 +8,10 @@ from ..core.request_options import RequestOptions
 from .raw_client import AsyncRawAssetsClient, RawAssetsClient
 from .types.assets_create_assets_request_documents_item import AssetsCreateAssetsRequestDocumentsItem
 from .types.assets_create_assets_response import AssetsCreateAssetsResponse
+from .types.assets_create_from_purchase_assets_request_documents_item import (
+    AssetsCreateFromPurchaseAssetsRequestDocumentsItem,
+)
+from .types.assets_create_from_purchase_assets_response import AssetsCreateFromPurchaseAssetsResponse
 from .types.assets_dispose_assets_request_reason import AssetsDisposeAssetsRequestReason
 from .types.assets_dispose_assets_response import AssetsDisposeAssetsResponse
 from .types.assets_get_assets_response import AssetsGetAssetsResponse
@@ -292,6 +296,82 @@ class AssetsClient:
             acquisition_date=acquisition_date,
             acquisition_cost=acquisition_cost,
             depreciation_start_date=depreciation_start_date,
+            salvage_value=salvage_value,
+            useful_life_months=useful_life_months,
+            notes=notes,
+            documents=documents,
+            request_options=request_options,
+        )
+        return _response.data
+
+    def assets_create_from_purchase(
+        self,
+        *,
+        purchase_invoice_line_id: str,
+        group_id: str,
+        code: str,
+        name: typing.Optional[str] = OMIT,
+        depreciation_start_date: typing.Optional[dt.date] = OMIT,
+        acquisition_cost: typing.Optional[str] = OMIT,
+        salvage_value: typing.Optional[str] = OMIT,
+        useful_life_months: typing.Optional[int] = OMIT,
+        notes: typing.Optional[str] = OMIT,
+        documents: typing.Optional[typing.Sequence[AssetsCreateFromPurchaseAssetsRequestDocumentsItem]] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> AssetsCreateFromPurchaseAssetsResponse:
+        """
+        Register a fixed asset from a line of a registered purchase invoice that was booked to the asset account of the group (422 otherwise, and for a credit note, a draft or reversed invoice and a deferred line). The acquisition date is the invoice's registration date, else its document date. The acquisition cost is what the line booked, in the company currency (its net amount plus the VAT not deducted), less what earlier assets from the same line took; `acquisitionCost` takes a part of it instead, for a line that holds several assets (422 above what is left, 409 when nothing is left). The name defaults to the line description. The asset keeps `purchaseInvoiceLineId`. Otherwise as `assets/assets/create`.
+
+        Parameters
+        ----------
+        purchase_invoice_line_id : str
+
+        group_id : str
+
+        code : str
+
+        name : typing.Optional[str]
+
+        depreciation_start_date : typing.Optional[dt.date]
+
+        acquisition_cost : typing.Optional[str]
+
+        salvage_value : typing.Optional[str]
+
+        useful_life_months : typing.Optional[int]
+
+        notes : typing.Optional[str]
+
+        documents : typing.Optional[typing.Sequence[AssetsCreateFromPurchaseAssetsRequestDocumentsItem]]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        AssetsCreateFromPurchaseAssetsResponse
+            Default Response
+
+        Examples
+        --------
+        from nordlet import Nordlet
+
+        client = Nordlet(
+            token="YOUR_TOKEN",
+        )
+        client.assets.assets_create_from_purchase(
+            purchase_invoice_line_id="purchaseInvoiceLineId",
+            group_id="groupId",
+            code="code",
+        )
+        """
+        _response = self._raw_client.assets_create_from_purchase(
+            purchase_invoice_line_id=purchase_invoice_line_id,
+            group_id=group_id,
+            code=code,
+            name=name,
+            depreciation_start_date=depreciation_start_date,
+            acquisition_cost=acquisition_cost,
             salvage_value=salvage_value,
             useful_life_months=useful_life_months,
             notes=notes,
@@ -1021,6 +1101,90 @@ class AsyncAssetsClient:
             acquisition_date=acquisition_date,
             acquisition_cost=acquisition_cost,
             depreciation_start_date=depreciation_start_date,
+            salvage_value=salvage_value,
+            useful_life_months=useful_life_months,
+            notes=notes,
+            documents=documents,
+            request_options=request_options,
+        )
+        return _response.data
+
+    async def assets_create_from_purchase(
+        self,
+        *,
+        purchase_invoice_line_id: str,
+        group_id: str,
+        code: str,
+        name: typing.Optional[str] = OMIT,
+        depreciation_start_date: typing.Optional[dt.date] = OMIT,
+        acquisition_cost: typing.Optional[str] = OMIT,
+        salvage_value: typing.Optional[str] = OMIT,
+        useful_life_months: typing.Optional[int] = OMIT,
+        notes: typing.Optional[str] = OMIT,
+        documents: typing.Optional[typing.Sequence[AssetsCreateFromPurchaseAssetsRequestDocumentsItem]] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> AssetsCreateFromPurchaseAssetsResponse:
+        """
+        Register a fixed asset from a line of a registered purchase invoice that was booked to the asset account of the group (422 otherwise, and for a credit note, a draft or reversed invoice and a deferred line). The acquisition date is the invoice's registration date, else its document date. The acquisition cost is what the line booked, in the company currency (its net amount plus the VAT not deducted), less what earlier assets from the same line took; `acquisitionCost` takes a part of it instead, for a line that holds several assets (422 above what is left, 409 when nothing is left). The name defaults to the line description. The asset keeps `purchaseInvoiceLineId`. Otherwise as `assets/assets/create`.
+
+        Parameters
+        ----------
+        purchase_invoice_line_id : str
+
+        group_id : str
+
+        code : str
+
+        name : typing.Optional[str]
+
+        depreciation_start_date : typing.Optional[dt.date]
+
+        acquisition_cost : typing.Optional[str]
+
+        salvage_value : typing.Optional[str]
+
+        useful_life_months : typing.Optional[int]
+
+        notes : typing.Optional[str]
+
+        documents : typing.Optional[typing.Sequence[AssetsCreateFromPurchaseAssetsRequestDocumentsItem]]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        AssetsCreateFromPurchaseAssetsResponse
+            Default Response
+
+        Examples
+        --------
+        import asyncio
+
+        from nordlet import AsyncNordlet
+
+        client = AsyncNordlet(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.assets.assets_create_from_purchase(
+                purchase_invoice_line_id="purchaseInvoiceLineId",
+                group_id="groupId",
+                code="code",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.assets_create_from_purchase(
+            purchase_invoice_line_id=purchase_invoice_line_id,
+            group_id=group_id,
+            code=code,
+            name=name,
+            depreciation_start_date=depreciation_start_date,
+            acquisition_cost=acquisition_cost,
             salvage_value=salvage_value,
             useful_life_months=useful_life_months,
             notes=notes,

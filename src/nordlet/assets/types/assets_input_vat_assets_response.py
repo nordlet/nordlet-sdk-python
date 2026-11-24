@@ -93,6 +93,11 @@ class AssetsInputVatAssetsResponse(UniversalBaseModel):
         FieldMetadata(alias="disposalSaleInvoiceId"),
         pydantic.Field(alias="disposalSaleInvoiceId"),
     ] = None
+    purchase_invoice_line_id: typing_extensions.Annotated[
+        typing.Optional[str],
+        FieldMetadata(alias="purchaseInvoiceLineId"),
+        pydantic.Field(alias="purchaseInvoiceLineId"),
+    ] = None
     created_at: typing_extensions.Annotated[
         dt.datetime, FieldMetadata(alias="createdAt"), pydantic.Field(alias="createdAt")
     ]

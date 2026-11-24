@@ -13,6 +13,7 @@ ErrorResponseErrorCode = typing.Union[
         "idempotency_in_progress",
         "rate_limited",
         "payment_required",
+        "confirmation_required",
         "internal",
     ],
     typing.Any,

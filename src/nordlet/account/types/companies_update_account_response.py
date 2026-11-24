@@ -84,11 +84,11 @@ class CompaniesUpdateAccountResponse(UniversalBaseModel):
         FieldMetadata(alias="invoicePrefix"),
         pydantic.Field(
             alias="invoicePrefix",
-            description="Prefix of the numbers of invoices issued without a document series (SF when none was set)",
+            description="Prefix of the numbers of invoices issued without a document series (SF when none was set; empty in Bulgaria, where invoices and notes share one ten-digit number range)",
         ),
     ]
     """
-    Prefix of the numbers of invoices issued without a document series (SF when none was set)
+    Prefix of the numbers of invoices issued without a document series (SF when none was set; empty in Bulgaria, where invoices and notes share one ten-digit number range)
     """
 
     next_invoice_number: typing_extensions.Annotated[

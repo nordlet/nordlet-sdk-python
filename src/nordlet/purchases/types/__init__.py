@@ -52,6 +52,9 @@ if typing.TYPE_CHECKING:
     from .invoices_match_purchases_response_rows_item import InvoicesMatchPurchasesResponseRowsItem
     from .invoices_match_purchases_response_rows_item_status import InvoicesMatchPurchasesResponseRowsItemStatus
     from .invoices_match_purchases_response_status import InvoicesMatchPurchasesResponseStatus
+    from .invoices_propose_lines_purchases_request_lines_item import InvoicesProposeLinesPurchasesRequestLinesItem
+    from .invoices_propose_lines_purchases_response import InvoicesProposeLinesPurchasesResponse
+    from .invoices_propose_lines_purchases_response_lines_item import InvoicesProposeLinesPurchasesResponseLinesItem
     from .invoices_register_purchases_response import InvoicesRegisterPurchasesResponse
     from .invoices_register_purchases_response_lines_item import InvoicesRegisterPurchasesResponseLinesItem
     from .invoices_register_purchases_response_payment_status import InvoicesRegisterPurchasesResponsePaymentStatus
@@ -166,6 +169,9 @@ _dynamic_imports: typing.Dict[str, str] = {
     "InvoicesMatchPurchasesResponseRowsItem": ".invoices_match_purchases_response_rows_item",
     "InvoicesMatchPurchasesResponseRowsItemStatus": ".invoices_match_purchases_response_rows_item_status",
     "InvoicesMatchPurchasesResponseStatus": ".invoices_match_purchases_response_status",
+    "InvoicesProposeLinesPurchasesRequestLinesItem": ".invoices_propose_lines_purchases_request_lines_item",
+    "InvoicesProposeLinesPurchasesResponse": ".invoices_propose_lines_purchases_response",
+    "InvoicesProposeLinesPurchasesResponseLinesItem": ".invoices_propose_lines_purchases_response_lines_item",
     "InvoicesRegisterPurchasesResponse": ".invoices_register_purchases_response",
     "InvoicesRegisterPurchasesResponseLinesItem": ".invoices_register_purchases_response_lines_item",
     "InvoicesRegisterPurchasesResponsePaymentStatus": ".invoices_register_purchases_response_payment_status",
@@ -300,6 +306,9 @@ __all__ = [
     "InvoicesMatchPurchasesResponseRowsItem",
     "InvoicesMatchPurchasesResponseRowsItemStatus",
     "InvoicesMatchPurchasesResponseStatus",
+    "InvoicesProposeLinesPurchasesRequestLinesItem",
+    "InvoicesProposeLinesPurchasesResponse",
+    "InvoicesProposeLinesPurchasesResponseLinesItem",
     "InvoicesRegisterPurchasesResponse",
     "InvoicesRegisterPurchasesResponseLinesItem",
     "InvoicesRegisterPurchasesResponsePaymentStatus",

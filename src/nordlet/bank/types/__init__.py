@@ -164,6 +164,10 @@ if typing.TYPE_CHECKING:
     from .match_rules_update_bank_response import MatchRulesUpdateBankResponse
     from .payments_export_bank_response import PaymentsExportBankResponse
     from .payments_export_bank_response_format import PaymentsExportBankResponseFormat
+    from .posting_rules_create_bank_response import PostingRulesCreateBankResponse
+    from .posting_rules_delete_bank_response import PostingRulesDeleteBankResponse
+    from .posting_rules_list_bank_response import PostingRulesListBankResponse
+    from .posting_rules_list_bank_response_rows_item import PostingRulesListBankResponseRowsItem
     from .reconciliation_get_bank_response import ReconciliationGetBankResponse
     from .reconciliation_get_bank_response_statement_balance_source import (
         ReconciliationGetBankResponseStatementBalanceSource,
@@ -262,12 +266,22 @@ if typing.TYPE_CHECKING:
     )
     from .transactions_match_many_bank_response import TransactionsMatchManyBankResponse
     from .transactions_match_many_bank_response_status import TransactionsMatchManyBankResponseStatus
+    from .transactions_post_bank_request_save_rule import TransactionsPostBankRequestSaveRule
     from .transactions_post_bank_response import TransactionsPostBankResponse
     from .transactions_post_bank_response_status import TransactionsPostBankResponseStatus
     from .transactions_record_bank_request_document_type import TransactionsRecordBankRequestDocumentType
     from .transactions_record_bank_response import TransactionsRecordBankResponse
     from .transactions_record_bank_response_status import TransactionsRecordBankResponseStatus
     from .transactions_suggest_matches_bank_response import TransactionsSuggestMatchesBankResponse
+    from .transactions_suggest_matches_bank_response_allocations_item import (
+        TransactionsSuggestMatchesBankResponseAllocationsItem,
+    )
+    from .transactions_suggest_matches_bank_response_allocations_item_document_type import (
+        TransactionsSuggestMatchesBankResponseAllocationsItemDocumentType,
+    )
+    from .transactions_suggest_matches_bank_response_posting_rules_item import (
+        TransactionsSuggestMatchesBankResponsePostingRulesItem,
+    )
     from .transactions_suggest_matches_bank_response_suggestions_item import (
         TransactionsSuggestMatchesBankResponseSuggestionsItem,
     )
@@ -415,6 +429,10 @@ _dynamic_imports: typing.Dict[str, str] = {
     "MatchRulesUpdateBankResponse": ".match_rules_update_bank_response",
     "PaymentsExportBankResponse": ".payments_export_bank_response",
     "PaymentsExportBankResponseFormat": ".payments_export_bank_response_format",
+    "PostingRulesCreateBankResponse": ".posting_rules_create_bank_response",
+    "PostingRulesDeleteBankResponse": ".posting_rules_delete_bank_response",
+    "PostingRulesListBankResponse": ".posting_rules_list_bank_response",
+    "PostingRulesListBankResponseRowsItem": ".posting_rules_list_bank_response_rows_item",
     "ReconciliationGetBankResponse": ".reconciliation_get_bank_response",
     "ReconciliationGetBankResponseStatementBalanceSource": ".reconciliation_get_bank_response_statement_balance_source",
     "ReconciliationGetBankResponseUnbookedLinesItem": ".reconciliation_get_bank_response_unbooked_lines_item",
@@ -495,12 +513,16 @@ _dynamic_imports: typing.Dict[str, str] = {
     "TransactionsMatchManyBankRequestAllocationsItemDocumentType": ".transactions_match_many_bank_request_allocations_item_document_type",
     "TransactionsMatchManyBankResponse": ".transactions_match_many_bank_response",
     "TransactionsMatchManyBankResponseStatus": ".transactions_match_many_bank_response_status",
+    "TransactionsPostBankRequestSaveRule": ".transactions_post_bank_request_save_rule",
     "TransactionsPostBankResponse": ".transactions_post_bank_response",
     "TransactionsPostBankResponseStatus": ".transactions_post_bank_response_status",
     "TransactionsRecordBankRequestDocumentType": ".transactions_record_bank_request_document_type",
     "TransactionsRecordBankResponse": ".transactions_record_bank_response",
     "TransactionsRecordBankResponseStatus": ".transactions_record_bank_response_status",
     "TransactionsSuggestMatchesBankResponse": ".transactions_suggest_matches_bank_response",
+    "TransactionsSuggestMatchesBankResponseAllocationsItem": ".transactions_suggest_matches_bank_response_allocations_item",
+    "TransactionsSuggestMatchesBankResponseAllocationsItemDocumentType": ".transactions_suggest_matches_bank_response_allocations_item_document_type",
+    "TransactionsSuggestMatchesBankResponsePostingRulesItem": ".transactions_suggest_matches_bank_response_posting_rules_item",
     "TransactionsSuggestMatchesBankResponseSuggestionsItem": ".transactions_suggest_matches_bank_response_suggestions_item",
     "TransactionsSuggestMatchesBankResponseSuggestionsItemDocumentType": ".transactions_suggest_matches_bank_response_suggestions_item_document_type",
     "TransactionsUnignoreBankResponse": ".transactions_unignore_bank_response",
@@ -668,6 +690,10 @@ __all__ = [
     "MatchRulesUpdateBankResponse",
     "PaymentsExportBankResponse",
     "PaymentsExportBankResponseFormat",
+    "PostingRulesCreateBankResponse",
+    "PostingRulesDeleteBankResponse",
+    "PostingRulesListBankResponse",
+    "PostingRulesListBankResponseRowsItem",
     "ReconciliationGetBankResponse",
     "ReconciliationGetBankResponseStatementBalanceSource",
     "ReconciliationGetBankResponseUnbookedLinesItem",
@@ -748,12 +774,16 @@ __all__ = [
     "TransactionsMatchManyBankRequestAllocationsItemDocumentType",
     "TransactionsMatchManyBankResponse",
     "TransactionsMatchManyBankResponseStatus",
+    "TransactionsPostBankRequestSaveRule",
     "TransactionsPostBankResponse",
     "TransactionsPostBankResponseStatus",
     "TransactionsRecordBankRequestDocumentType",
     "TransactionsRecordBankResponse",
     "TransactionsRecordBankResponseStatus",
     "TransactionsSuggestMatchesBankResponse",
+    "TransactionsSuggestMatchesBankResponseAllocationsItem",
+    "TransactionsSuggestMatchesBankResponseAllocationsItemDocumentType",
+    "TransactionsSuggestMatchesBankResponsePostingRulesItem",
     "TransactionsSuggestMatchesBankResponseSuggestionsItem",
     "TransactionsSuggestMatchesBankResponseSuggestionsItemDocumentType",
     "TransactionsUnignoreBankResponse",

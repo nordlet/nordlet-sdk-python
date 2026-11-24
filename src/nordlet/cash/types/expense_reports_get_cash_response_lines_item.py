@@ -17,8 +17,17 @@ class ExpenseReportsGetCashResponseLinesItem(UniversalBaseModel):
     account_code: typing_extensions.Annotated[
         str, FieldMetadata(alias="accountCode"), pydantic.Field(alias="accountCode")
     ]
+    partner_id: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="partnerId"), pydantic.Field(alias="partnerId")
+    ] = None
+    vat_classifier_code: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="vatClassifierCode"), pydantic.Field(alias="vatClassifierCode")
+    ] = None
     net_amount: typing_extensions.Annotated[str, FieldMetadata(alias="netAmount"), pydantic.Field(alias="netAmount")]
     vat_amount: typing_extensions.Annotated[str, FieldMetadata(alias="vatAmount"), pydantic.Field(alias="vatAmount")]
+    deductible_vat: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="deductibleVat"), pydantic.Field(alias="deductibleVat")
+    ] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

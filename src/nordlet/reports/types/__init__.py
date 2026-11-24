@@ -99,6 +99,7 @@ if typing.TYPE_CHECKING:
     from .pos_sales_reports_response_by_rate_item import PosSalesReportsResponseByRateItem
     from .pos_sales_reports_response_rows_item import PosSalesReportsResponseRowsItem
     from .pos_sales_reports_response_totals import PosSalesReportsResponseTotals
+    from .saft_no_reports_response import SaftNoReportsResponse
     from .sie_reports_response import SieReportsResponse
     from .size_category_reports_response import SizeCategoryReportsResponse
     from .size_category_reports_response_category import SizeCategoryReportsResponseCategory
@@ -116,6 +117,14 @@ if typing.TYPE_CHECKING:
     from .trial_balance_reports_response_rows_item import TrialBalanceReportsResponseRowsItem
     from .trial_balance_reports_response_rows_item_type import TrialBalanceReportsResponseRowsItemType
     from .trial_balance_reports_response_totals import TrialBalanceReportsResponseTotals
+    from .vat_accounts_reports_response import VatAccountsReportsResponse
+    from .vat_accounts_reports_response_accounts_item import VatAccountsReportsResponseAccountsItem
+    from .vat_accounts_reports_response_accounts_item_by_document_type_item import (
+        VatAccountsReportsResponseAccountsItemByDocumentTypeItem,
+    )
+    from .vat_accounts_reports_response_accounts_item_rules_item import VatAccountsReportsResponseAccountsItemRulesItem
+    from .vat_accounts_reports_response_accounts_item_side import VatAccountsReportsResponseAccountsItemSide
+    from .vat_accounts_reports_response_documents import VatAccountsReportsResponseDocuments
     from .vat_detail_reports_request_side import VatDetailReportsRequestSide
     from .vat_detail_reports_response import VatDetailReportsResponse
     from .vat_detail_reports_response_rows_item import VatDetailReportsResponseRowsItem
@@ -204,6 +213,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "PosSalesReportsResponseByRateItem": ".pos_sales_reports_response_by_rate_item",
     "PosSalesReportsResponseRowsItem": ".pos_sales_reports_response_rows_item",
     "PosSalesReportsResponseTotals": ".pos_sales_reports_response_totals",
+    "SaftNoReportsResponse": ".saft_no_reports_response",
     "SieReportsResponse": ".sie_reports_response",
     "SizeCategoryReportsResponse": ".size_category_reports_response",
     "SizeCategoryReportsResponseCategory": ".size_category_reports_response_category",
@@ -221,6 +231,12 @@ _dynamic_imports: typing.Dict[str, str] = {
     "TrialBalanceReportsResponseRowsItem": ".trial_balance_reports_response_rows_item",
     "TrialBalanceReportsResponseRowsItemType": ".trial_balance_reports_response_rows_item_type",
     "TrialBalanceReportsResponseTotals": ".trial_balance_reports_response_totals",
+    "VatAccountsReportsResponse": ".vat_accounts_reports_response",
+    "VatAccountsReportsResponseAccountsItem": ".vat_accounts_reports_response_accounts_item",
+    "VatAccountsReportsResponseAccountsItemByDocumentTypeItem": ".vat_accounts_reports_response_accounts_item_by_document_type_item",
+    "VatAccountsReportsResponseAccountsItemRulesItem": ".vat_accounts_reports_response_accounts_item_rules_item",
+    "VatAccountsReportsResponseAccountsItemSide": ".vat_accounts_reports_response_accounts_item_side",
+    "VatAccountsReportsResponseDocuments": ".vat_accounts_reports_response_documents",
     "VatDetailReportsRequestSide": ".vat_detail_reports_request_side",
     "VatDetailReportsResponse": ".vat_detail_reports_response",
     "VatDetailReportsResponseRowsItem": ".vat_detail_reports_response_rows_item",
@@ -333,6 +349,7 @@ __all__ = [
     "PosSalesReportsResponseByRateItem",
     "PosSalesReportsResponseRowsItem",
     "PosSalesReportsResponseTotals",
+    "SaftNoReportsResponse",
     "SieReportsResponse",
     "SizeCategoryReportsResponse",
     "SizeCategoryReportsResponseCategory",
@@ -350,6 +367,12 @@ __all__ = [
     "TrialBalanceReportsResponseRowsItem",
     "TrialBalanceReportsResponseRowsItemType",
     "TrialBalanceReportsResponseTotals",
+    "VatAccountsReportsResponse",
+    "VatAccountsReportsResponseAccountsItem",
+    "VatAccountsReportsResponseAccountsItemByDocumentTypeItem",
+    "VatAccountsReportsResponseAccountsItemRulesItem",
+    "VatAccountsReportsResponseAccountsItemSide",
+    "VatAccountsReportsResponseDocuments",
     "VatDetailReportsRequestSide",
     "VatDetailReportsResponse",
     "VatDetailReportsResponseRowsItem",

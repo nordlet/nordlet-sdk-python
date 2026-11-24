@@ -308,10 +308,117 @@ if typing.TYPE_CHECKING:
     from .dk_selskabsskat_generate_declarations_response_fields_item import (
         DkSelskabsskatGenerateDeclarationsResponseFieldsItem,
     )
+    from .ee_employment_register_generate_declarations_request_event import (
+        EeEmploymentRegisterGenerateDeclarationsRequestEvent,
+    )
+    from .ee_employment_register_generate_declarations_response import EeEmploymentRegisterGenerateDeclarationsResponse
     from .ee_employment_register_send_declarations_request_event import EeEmploymentRegisterSendDeclarationsRequestEvent
     from .ee_employment_register_send_declarations_response import EeEmploymentRegisterSendDeclarationsResponse
     from .ee_employment_register_send_declarations_response_state import (
         EeEmploymentRegisterSendDeclarationsResponseState,
+    )
+    from .ee_tsd_annexes_get_declarations_response import EeTsdAnnexesGetDeclarationsResponse
+    from .ee_tsd_annexes_get_declarations_response_annexes import EeTsdAnnexesGetDeclarationsResponseAnnexes
+    from .ee_tsd_annexes_get_declarations_response_annexes_annex4item import (
+        EeTsdAnnexesGetDeclarationsResponseAnnexesAnnex4Item,
+    )
+    from .ee_tsd_annexes_get_declarations_response_annexes_annex5item import (
+        EeTsdAnnexesGetDeclarationsResponseAnnexesAnnex5Item,
+    )
+    from .ee_tsd_annexes_get_declarations_response_annexes_annex6 import (
+        EeTsdAnnexesGetDeclarationsResponseAnnexesAnnex6,
+    )
+    from .ee_tsd_annexes_get_declarations_response_annexes_annex6fields_item import (
+        EeTsdAnnexesGetDeclarationsResponseAnnexesAnnex6FieldsItem,
+    )
+    from .ee_tsd_annexes_get_declarations_response_annexes_annex6reductions_item import (
+        EeTsdAnnexesGetDeclarationsResponseAnnexesAnnex6ReductionsItem,
+    )
+    from .ee_tsd_annexes_get_declarations_response_annexes_annex6related_parties_item import (
+        EeTsdAnnexesGetDeclarationsResponseAnnexesAnnex6RelatedPartiesItem,
+    )
+    from .ee_tsd_annexes_get_declarations_response_input import EeTsdAnnexesGetDeclarationsResponseInput
+    from .ee_tsd_annexes_get_declarations_response_input_annex4 import EeTsdAnnexesGetDeclarationsResponseInputAnnex4
+    from .ee_tsd_annexes_get_declarations_response_input_annex4stock_option import (
+        EeTsdAnnexesGetDeclarationsResponseInputAnnex4StockOption,
+    )
+    from .ee_tsd_annexes_get_declarations_response_input_annex4stock_option_event import (
+        EeTsdAnnexesGetDeclarationsResponseInputAnnex4StockOptionEvent,
+    )
+    from .ee_tsd_annexes_get_declarations_response_input_annex5 import EeTsdAnnexesGetDeclarationsResponseInputAnnex5
+    from .ee_tsd_annexes_get_declarations_response_input_annex5limit import (
+        EeTsdAnnexesGetDeclarationsResponseInputAnnex5Limit,
+    )
+    from .ee_tsd_annexes_get_declarations_response_input_annex6 import EeTsdAnnexesGetDeclarationsResponseInputAnnex6
+    from .ee_tsd_annexes_get_declarations_response_input_annex6reductions_item import (
+        EeTsdAnnexesGetDeclarationsResponseInputAnnex6ReductionsItem,
+    )
+    from .ee_tsd_annexes_get_declarations_response_input_annex6related_parties_item import (
+        EeTsdAnnexesGetDeclarationsResponseInputAnnex6RelatedPartiesItem,
+    )
+    from .ee_tsd_annexes_get_declarations_response_input_annex6related_parties_item_type_code import (
+        EeTsdAnnexesGetDeclarationsResponseInputAnnex6RelatedPartiesItemTypeCode,
+    )
+    from .ee_tsd_annexes_set_declarations_request_annex4 import EeTsdAnnexesSetDeclarationsRequestAnnex4
+    from .ee_tsd_annexes_set_declarations_request_annex4stock_option import (
+        EeTsdAnnexesSetDeclarationsRequestAnnex4StockOption,
+    )
+    from .ee_tsd_annexes_set_declarations_request_annex4stock_option_event import (
+        EeTsdAnnexesSetDeclarationsRequestAnnex4StockOptionEvent,
+    )
+    from .ee_tsd_annexes_set_declarations_request_annex5 import EeTsdAnnexesSetDeclarationsRequestAnnex5
+    from .ee_tsd_annexes_set_declarations_request_annex5limit import EeTsdAnnexesSetDeclarationsRequestAnnex5Limit
+    from .ee_tsd_annexes_set_declarations_request_annex6 import EeTsdAnnexesSetDeclarationsRequestAnnex6
+    from .ee_tsd_annexes_set_declarations_request_annex6reductions_item import (
+        EeTsdAnnexesSetDeclarationsRequestAnnex6ReductionsItem,
+    )
+    from .ee_tsd_annexes_set_declarations_request_annex6related_parties_item import (
+        EeTsdAnnexesSetDeclarationsRequestAnnex6RelatedPartiesItem,
+    )
+    from .ee_tsd_annexes_set_declarations_request_annex6related_parties_item_type_code import (
+        EeTsdAnnexesSetDeclarationsRequestAnnex6RelatedPartiesItemTypeCode,
+    )
+    from .ee_tsd_annexes_set_declarations_response import EeTsdAnnexesSetDeclarationsResponse
+    from .ee_tsd_annexes_set_declarations_response_annexes import EeTsdAnnexesSetDeclarationsResponseAnnexes
+    from .ee_tsd_annexes_set_declarations_response_annexes_annex4item import (
+        EeTsdAnnexesSetDeclarationsResponseAnnexesAnnex4Item,
+    )
+    from .ee_tsd_annexes_set_declarations_response_annexes_annex5item import (
+        EeTsdAnnexesSetDeclarationsResponseAnnexesAnnex5Item,
+    )
+    from .ee_tsd_annexes_set_declarations_response_annexes_annex6 import (
+        EeTsdAnnexesSetDeclarationsResponseAnnexesAnnex6,
+    )
+    from .ee_tsd_annexes_set_declarations_response_annexes_annex6fields_item import (
+        EeTsdAnnexesSetDeclarationsResponseAnnexesAnnex6FieldsItem,
+    )
+    from .ee_tsd_annexes_set_declarations_response_annexes_annex6reductions_item import (
+        EeTsdAnnexesSetDeclarationsResponseAnnexesAnnex6ReductionsItem,
+    )
+    from .ee_tsd_annexes_set_declarations_response_annexes_annex6related_parties_item import (
+        EeTsdAnnexesSetDeclarationsResponseAnnexesAnnex6RelatedPartiesItem,
+    )
+    from .ee_tsd_annexes_set_declarations_response_input import EeTsdAnnexesSetDeclarationsResponseInput
+    from .ee_tsd_annexes_set_declarations_response_input_annex4 import EeTsdAnnexesSetDeclarationsResponseInputAnnex4
+    from .ee_tsd_annexes_set_declarations_response_input_annex4stock_option import (
+        EeTsdAnnexesSetDeclarationsResponseInputAnnex4StockOption,
+    )
+    from .ee_tsd_annexes_set_declarations_response_input_annex4stock_option_event import (
+        EeTsdAnnexesSetDeclarationsResponseInputAnnex4StockOptionEvent,
+    )
+    from .ee_tsd_annexes_set_declarations_response_input_annex5 import EeTsdAnnexesSetDeclarationsResponseInputAnnex5
+    from .ee_tsd_annexes_set_declarations_response_input_annex5limit import (
+        EeTsdAnnexesSetDeclarationsResponseInputAnnex5Limit,
+    )
+    from .ee_tsd_annexes_set_declarations_response_input_annex6 import EeTsdAnnexesSetDeclarationsResponseInputAnnex6
+    from .ee_tsd_annexes_set_declarations_response_input_annex6reductions_item import (
+        EeTsdAnnexesSetDeclarationsResponseInputAnnex6ReductionsItem,
+    )
+    from .ee_tsd_annexes_set_declarations_response_input_annex6related_parties_item import (
+        EeTsdAnnexesSetDeclarationsResponseInputAnnex6RelatedPartiesItem,
+    )
+    from .ee_tsd_annexes_set_declarations_response_input_annex6related_parties_item_type_code import (
+        EeTsdAnnexesSetDeclarationsResponseInputAnnex6RelatedPartiesItemTypeCode,
     )
     from .es_verifactu_declaracion_responsable_declarations_response import (
         EsVerifactuDeclaracionResponsableDeclarationsResponse,
@@ -360,6 +467,23 @@ if typing.TYPE_CHECKING:
         EuOssComputeDeclarationsResponseRowsItemRateType,
     )
     from .eu_oss_compute_declarations_response_totals import EuOssComputeDeclarationsResponseTotals
+    from .eu_oss_non_union_compute_declarations_request_member_state_of_identification import (
+        EuOssNonUnionComputeDeclarationsRequestMemberStateOfIdentification,
+    )
+    from .eu_oss_non_union_compute_declarations_response import EuOssNonUnionComputeDeclarationsResponse
+    from .eu_oss_non_union_compute_declarations_response_corrections_item import (
+        EuOssNonUnionComputeDeclarationsResponseCorrectionsItem,
+    )
+    from .eu_oss_non_union_compute_declarations_response_corrections_total import (
+        EuOssNonUnionComputeDeclarationsResponseCorrectionsTotal,
+    )
+    from .eu_oss_non_union_compute_declarations_response_rows_item import (
+        EuOssNonUnionComputeDeclarationsResponseRowsItem,
+    )
+    from .eu_oss_non_union_compute_declarations_response_rows_item_rate_type import (
+        EuOssNonUnionComputeDeclarationsResponseRowsItemRateType,
+    )
+    from .eu_oss_non_union_compute_declarations_response_totals import EuOssNonUnionComputeDeclarationsResponseTotals
     from .eu_own_goods_transfers_compute_declarations_response import EuOwnGoodsTransfersComputeDeclarationsResponse
     from .eu_own_goods_transfers_compute_declarations_response_rows_item import (
         EuOwnGoodsTransfersComputeDeclarationsResponseRowsItem,
@@ -819,6 +943,35 @@ if typing.TYPE_CHECKING:
     from .ie_ct1generate_declarations_response_criteria import IeCt1GenerateDeclarationsResponseCriteria
     from .ie_ct1generate_declarations_response_ct1 import IeCt1GenerateDeclarationsResponseCt1
     from .ie_ct1generate_declarations_response_fields_item import IeCt1GenerateDeclarationsResponseFieldsItem
+    from .ie_rtd_generate_declarations_response import IeRtdGenerateDeclarationsResponse
+    from .ie_rtd_generate_declarations_response_counts import IeRtdGenerateDeclarationsResponseCounts
+    from .ie_rtd_generate_declarations_response_rows_item import IeRtdGenerateDeclarationsResponseRowsItem
+    from .ie_rtd_generate_declarations_response_totals import IeRtdGenerateDeclarationsResponseTotals
+    from .it_inail_autoliquidazione_compute_declarations_request_positions_item import (
+        ItInailAutoliquidazioneComputeDeclarationsRequestPositionsItem,
+    )
+    from .it_inail_autoliquidazione_compute_declarations_response import (
+        ItInailAutoliquidazioneComputeDeclarationsResponse,
+    )
+    from .it_inail_autoliquidazione_compute_declarations_response_f24item import (
+        ItInailAutoliquidazioneComputeDeclarationsResponseF24Item,
+    )
+    from .it_inail_autoliquidazione_compute_declarations_response_instalments_item import (
+        ItInailAutoliquidazioneComputeDeclarationsResponseInstalmentsItem,
+    )
+    from .it_inail_autoliquidazione_compute_declarations_response_positions_item import (
+        ItInailAutoliquidazioneComputeDeclarationsResponsePositionsItem,
+    )
+    from .it_inail_autoliquidazione_compute_declarations_response_rata import (
+        ItInailAutoliquidazioneComputeDeclarationsResponseRata,
+    )
+    from .it_inail_autoliquidazione_compute_declarations_response_regolazione import (
+        ItInailAutoliquidazioneComputeDeclarationsResponseRegolazione,
+    )
+    from .it_inail_autoliquidazione_f24declarations_request_positions_item import (
+        ItInailAutoliquidazioneF24DeclarationsRequestPositionsItem,
+    )
+    from .it_inail_autoliquidazione_f24declarations_response import ItInailAutoliquidazioneF24DeclarationsResponse
     from .it_sdi_purchase_preview_declarations_request_tipo_documento import (
         ItSdiPurchasePreviewDeclarationsRequestTipoDocumento,
     )
@@ -835,6 +988,42 @@ if typing.TYPE_CHECKING:
         ItSdiPurchaseSendDeclarationsResponseTipoDocumento,
     )
     from .it_sdi_purchase_send_declarations_response_transport import ItSdiPurchaseSendDeclarationsResponseTransport
+    from .it_tfr_accrual_compute_declarations_response import ItTfrAccrualComputeDeclarationsResponse
+    from .it_tfr_accrual_compute_declarations_response_rows_item import ItTfrAccrualComputeDeclarationsResponseRowsItem
+    from .it_tfr_accrual_compute_declarations_response_rows_item_destination import (
+        ItTfrAccrualComputeDeclarationsResponseRowsItemDestination,
+    )
+    from .it_tfr_accrual_compute_declarations_response_rows_item_left_out_item import (
+        ItTfrAccrualComputeDeclarationsResponseRowsItemLeftOutItem,
+    )
+    from .it_tfr_accrual_compute_declarations_response_totals import ItTfrAccrualComputeDeclarationsResponseTotals
+    from .it_tfr_accrual_post_declarations_response import ItTfrAccrualPostDeclarationsResponse
+    from .it_tfr_accrual_post_declarations_response_rows_item import ItTfrAccrualPostDeclarationsResponseRowsItem
+    from .it_tfr_accrual_post_declarations_response_rows_item_destination import (
+        ItTfrAccrualPostDeclarationsResponseRowsItemDestination,
+    )
+    from .it_tfr_accrual_post_declarations_response_rows_item_left_out_item import (
+        ItTfrAccrualPostDeclarationsResponseRowsItemLeftOutItem,
+    )
+    from .it_tfr_accrual_post_declarations_response_totals import ItTfrAccrualPostDeclarationsResponseTotals
+    from .it_tfr_revaluation_compute_declarations_request_funds_item import (
+        ItTfrRevaluationComputeDeclarationsRequestFundsItem,
+    )
+    from .it_tfr_revaluation_compute_declarations_response import ItTfrRevaluationComputeDeclarationsResponse
+    from .it_tfr_revaluation_compute_declarations_response_rows_item import (
+        ItTfrRevaluationComputeDeclarationsResponseRowsItem,
+    )
+    from .it_tfr_revaluation_compute_declarations_response_totals import (
+        ItTfrRevaluationComputeDeclarationsResponseTotals,
+    )
+    from .it_tfr_revaluation_post_declarations_request_funds_item import (
+        ItTfrRevaluationPostDeclarationsRequestFundsItem,
+    )
+    from .it_tfr_revaluation_post_declarations_response import ItTfrRevaluationPostDeclarationsResponse
+    from .it_tfr_revaluation_post_declarations_response_rows_item import (
+        ItTfrRevaluationPostDeclarationsResponseRowsItem,
+    )
+    from .it_tfr_revaluation_post_declarations_response_totals import ItTfrRevaluationPostDeclarationsResponseTotals
     from .li_lohndeklaration_generate_declarations_response import LiLohndeklarationGenerateDeclarationsResponse
     from .li_lohndeklaration_generate_declarations_response_rows_item import (
         LiLohndeklarationGenerateDeclarationsResponseRowsItem,
@@ -927,6 +1116,11 @@ if typing.TYPE_CHECKING:
     from .lt_sd_generate_declarations_response import LtSdGenerateDeclarationsResponse
     from .lt_sd_generate_declarations_response_rows_item import LtSdGenerateDeclarationsResponseRowsItem
     from .lt_sd_generate_declarations_response_type import LtSdGenerateDeclarationsResponseType
+    from .lv_employee_notice_generate_declarations_request_end_code import (
+        LvEmployeeNoticeGenerateDeclarationsRequestEndCode,
+    )
+    from .lv_employee_notice_generate_declarations_request_event import LvEmployeeNoticeGenerateDeclarationsRequestEvent
+    from .lv_employee_notice_generate_declarations_response import LvEmployeeNoticeGenerateDeclarationsResponse
     from .mt_annual_return_generate_declarations_response import MtAnnualReturnGenerateDeclarationsResponse
     from .mt_annual_return_generate_declarations_response_fields_item import (
         MtAnnualReturnGenerateDeclarationsResponseFieldsItem,
@@ -944,6 +1138,8 @@ if typing.TYPE_CHECKING:
     from .mt_company_tax_generate_declarations_response_tax_accounts_item import (
         MtCompanyTaxGenerateDeclarationsResponseTaxAccountsItem,
     )
+    from .mt_fs7generate_declarations_response import MtFs7GenerateDeclarationsResponse
+    from .mt_fs7generate_declarations_response_boxes_item import MtFs7GenerateDeclarationsResponseBoxesItem
     from .pl_cit8generate_declarations_response import PlCit8GenerateDeclarationsResponse
     from .pl_cit8generate_declarations_response_positions_item import PlCit8GenerateDeclarationsResponsePositionsItem
     from .pl_intrastat_generate_declarations_request_flow import PlIntrastatGenerateDeclarationsRequestFlow
@@ -1192,6 +1388,8 @@ if typing.TYPE_CHECKING:
     from .us_workweeks_list_declarations_response_employees_item_weeks_item_days_item import (
         UsWorkweeksListDeclarationsResponseEmployeesItemWeeksItemDaysItem,
     )
+    from .vat_prorata_adjustment_get_declarations_response import VatProrataAdjustmentGetDeclarationsResponse
+    from .vat_prorata_adjustment_post_declarations_response import VatProrataAdjustmentPostDeclarationsResponse
     from .vat_prorata_get_declarations_response import VatProrataGetDeclarationsResponse
     from .vat_prorata_list_declarations_response import VatProrataListDeclarationsResponse
     from .vat_prorata_list_declarations_response_rows_item import VatProrataListDeclarationsResponseRowsItem
@@ -1325,9 +1523,56 @@ _dynamic_imports: typing.Dict[str, str] = {
     "DeReturnsGenerateDeclarationsResponse": ".de_returns_generate_declarations_response",
     "DkSelskabsskatGenerateDeclarationsResponse": ".dk_selskabsskat_generate_declarations_response",
     "DkSelskabsskatGenerateDeclarationsResponseFieldsItem": ".dk_selskabsskat_generate_declarations_response_fields_item",
+    "EeEmploymentRegisterGenerateDeclarationsRequestEvent": ".ee_employment_register_generate_declarations_request_event",
+    "EeEmploymentRegisterGenerateDeclarationsResponse": ".ee_employment_register_generate_declarations_response",
     "EeEmploymentRegisterSendDeclarationsRequestEvent": ".ee_employment_register_send_declarations_request_event",
     "EeEmploymentRegisterSendDeclarationsResponse": ".ee_employment_register_send_declarations_response",
     "EeEmploymentRegisterSendDeclarationsResponseState": ".ee_employment_register_send_declarations_response_state",
+    "EeTsdAnnexesGetDeclarationsResponse": ".ee_tsd_annexes_get_declarations_response",
+    "EeTsdAnnexesGetDeclarationsResponseAnnexes": ".ee_tsd_annexes_get_declarations_response_annexes",
+    "EeTsdAnnexesGetDeclarationsResponseAnnexesAnnex4Item": ".ee_tsd_annexes_get_declarations_response_annexes_annex4item",
+    "EeTsdAnnexesGetDeclarationsResponseAnnexesAnnex5Item": ".ee_tsd_annexes_get_declarations_response_annexes_annex5item",
+    "EeTsdAnnexesGetDeclarationsResponseAnnexesAnnex6": ".ee_tsd_annexes_get_declarations_response_annexes_annex6",
+    "EeTsdAnnexesGetDeclarationsResponseAnnexesAnnex6FieldsItem": ".ee_tsd_annexes_get_declarations_response_annexes_annex6fields_item",
+    "EeTsdAnnexesGetDeclarationsResponseAnnexesAnnex6ReductionsItem": ".ee_tsd_annexes_get_declarations_response_annexes_annex6reductions_item",
+    "EeTsdAnnexesGetDeclarationsResponseAnnexesAnnex6RelatedPartiesItem": ".ee_tsd_annexes_get_declarations_response_annexes_annex6related_parties_item",
+    "EeTsdAnnexesGetDeclarationsResponseInput": ".ee_tsd_annexes_get_declarations_response_input",
+    "EeTsdAnnexesGetDeclarationsResponseInputAnnex4": ".ee_tsd_annexes_get_declarations_response_input_annex4",
+    "EeTsdAnnexesGetDeclarationsResponseInputAnnex4StockOption": ".ee_tsd_annexes_get_declarations_response_input_annex4stock_option",
+    "EeTsdAnnexesGetDeclarationsResponseInputAnnex4StockOptionEvent": ".ee_tsd_annexes_get_declarations_response_input_annex4stock_option_event",
+    "EeTsdAnnexesGetDeclarationsResponseInputAnnex5": ".ee_tsd_annexes_get_declarations_response_input_annex5",
+    "EeTsdAnnexesGetDeclarationsResponseInputAnnex5Limit": ".ee_tsd_annexes_get_declarations_response_input_annex5limit",
+    "EeTsdAnnexesGetDeclarationsResponseInputAnnex6": ".ee_tsd_annexes_get_declarations_response_input_annex6",
+    "EeTsdAnnexesGetDeclarationsResponseInputAnnex6ReductionsItem": ".ee_tsd_annexes_get_declarations_response_input_annex6reductions_item",
+    "EeTsdAnnexesGetDeclarationsResponseInputAnnex6RelatedPartiesItem": ".ee_tsd_annexes_get_declarations_response_input_annex6related_parties_item",
+    "EeTsdAnnexesGetDeclarationsResponseInputAnnex6RelatedPartiesItemTypeCode": ".ee_tsd_annexes_get_declarations_response_input_annex6related_parties_item_type_code",
+    "EeTsdAnnexesSetDeclarationsRequestAnnex4": ".ee_tsd_annexes_set_declarations_request_annex4",
+    "EeTsdAnnexesSetDeclarationsRequestAnnex4StockOption": ".ee_tsd_annexes_set_declarations_request_annex4stock_option",
+    "EeTsdAnnexesSetDeclarationsRequestAnnex4StockOptionEvent": ".ee_tsd_annexes_set_declarations_request_annex4stock_option_event",
+    "EeTsdAnnexesSetDeclarationsRequestAnnex5": ".ee_tsd_annexes_set_declarations_request_annex5",
+    "EeTsdAnnexesSetDeclarationsRequestAnnex5Limit": ".ee_tsd_annexes_set_declarations_request_annex5limit",
+    "EeTsdAnnexesSetDeclarationsRequestAnnex6": ".ee_tsd_annexes_set_declarations_request_annex6",
+    "EeTsdAnnexesSetDeclarationsRequestAnnex6ReductionsItem": ".ee_tsd_annexes_set_declarations_request_annex6reductions_item",
+    "EeTsdAnnexesSetDeclarationsRequestAnnex6RelatedPartiesItem": ".ee_tsd_annexes_set_declarations_request_annex6related_parties_item",
+    "EeTsdAnnexesSetDeclarationsRequestAnnex6RelatedPartiesItemTypeCode": ".ee_tsd_annexes_set_declarations_request_annex6related_parties_item_type_code",
+    "EeTsdAnnexesSetDeclarationsResponse": ".ee_tsd_annexes_set_declarations_response",
+    "EeTsdAnnexesSetDeclarationsResponseAnnexes": ".ee_tsd_annexes_set_declarations_response_annexes",
+    "EeTsdAnnexesSetDeclarationsResponseAnnexesAnnex4Item": ".ee_tsd_annexes_set_declarations_response_annexes_annex4item",
+    "EeTsdAnnexesSetDeclarationsResponseAnnexesAnnex5Item": ".ee_tsd_annexes_set_declarations_response_annexes_annex5item",
+    "EeTsdAnnexesSetDeclarationsResponseAnnexesAnnex6": ".ee_tsd_annexes_set_declarations_response_annexes_annex6",
+    "EeTsdAnnexesSetDeclarationsResponseAnnexesAnnex6FieldsItem": ".ee_tsd_annexes_set_declarations_response_annexes_annex6fields_item",
+    "EeTsdAnnexesSetDeclarationsResponseAnnexesAnnex6ReductionsItem": ".ee_tsd_annexes_set_declarations_response_annexes_annex6reductions_item",
+    "EeTsdAnnexesSetDeclarationsResponseAnnexesAnnex6RelatedPartiesItem": ".ee_tsd_annexes_set_declarations_response_annexes_annex6related_parties_item",
+    "EeTsdAnnexesSetDeclarationsResponseInput": ".ee_tsd_annexes_set_declarations_response_input",
+    "EeTsdAnnexesSetDeclarationsResponseInputAnnex4": ".ee_tsd_annexes_set_declarations_response_input_annex4",
+    "EeTsdAnnexesSetDeclarationsResponseInputAnnex4StockOption": ".ee_tsd_annexes_set_declarations_response_input_annex4stock_option",
+    "EeTsdAnnexesSetDeclarationsResponseInputAnnex4StockOptionEvent": ".ee_tsd_annexes_set_declarations_response_input_annex4stock_option_event",
+    "EeTsdAnnexesSetDeclarationsResponseInputAnnex5": ".ee_tsd_annexes_set_declarations_response_input_annex5",
+    "EeTsdAnnexesSetDeclarationsResponseInputAnnex5Limit": ".ee_tsd_annexes_set_declarations_response_input_annex5limit",
+    "EeTsdAnnexesSetDeclarationsResponseInputAnnex6": ".ee_tsd_annexes_set_declarations_response_input_annex6",
+    "EeTsdAnnexesSetDeclarationsResponseInputAnnex6ReductionsItem": ".ee_tsd_annexes_set_declarations_response_input_annex6reductions_item",
+    "EeTsdAnnexesSetDeclarationsResponseInputAnnex6RelatedPartiesItem": ".ee_tsd_annexes_set_declarations_response_input_annex6related_parties_item",
+    "EeTsdAnnexesSetDeclarationsResponseInputAnnex6RelatedPartiesItemTypeCode": ".ee_tsd_annexes_set_declarations_response_input_annex6related_parties_item_type_code",
     "EsVerifactuDeclaracionResponsableDeclarationsResponse": ".es_verifactu_declaracion_responsable_declarations_response",
     "EuDac7PreviewDeclarationsResponse": ".eu_dac7preview_declarations_response",
     "EuDac7PreviewDeclarationsResponseSellersItem": ".eu_dac7preview_declarations_response_sellers_item",
@@ -1353,6 +1598,13 @@ _dynamic_imports: typing.Dict[str, str] = {
     "EuOssComputeDeclarationsResponseRowsItem": ".eu_oss_compute_declarations_response_rows_item",
     "EuOssComputeDeclarationsResponseRowsItemRateType": ".eu_oss_compute_declarations_response_rows_item_rate_type",
     "EuOssComputeDeclarationsResponseTotals": ".eu_oss_compute_declarations_response_totals",
+    "EuOssNonUnionComputeDeclarationsRequestMemberStateOfIdentification": ".eu_oss_non_union_compute_declarations_request_member_state_of_identification",
+    "EuOssNonUnionComputeDeclarationsResponse": ".eu_oss_non_union_compute_declarations_response",
+    "EuOssNonUnionComputeDeclarationsResponseCorrectionsItem": ".eu_oss_non_union_compute_declarations_response_corrections_item",
+    "EuOssNonUnionComputeDeclarationsResponseCorrectionsTotal": ".eu_oss_non_union_compute_declarations_response_corrections_total",
+    "EuOssNonUnionComputeDeclarationsResponseRowsItem": ".eu_oss_non_union_compute_declarations_response_rows_item",
+    "EuOssNonUnionComputeDeclarationsResponseRowsItemRateType": ".eu_oss_non_union_compute_declarations_response_rows_item_rate_type",
+    "EuOssNonUnionComputeDeclarationsResponseTotals": ".eu_oss_non_union_compute_declarations_response_totals",
     "EuOwnGoodsTransfersComputeDeclarationsResponse": ".eu_own_goods_transfers_compute_declarations_response",
     "EuOwnGoodsTransfersComputeDeclarationsResponseRowsItem": ".eu_own_goods_transfers_compute_declarations_response_rows_item",
     "EuOwnGoodsTransfersComputeDeclarationsResponseTransfersItem": ".eu_own_goods_transfers_compute_declarations_response_transfers_item",
@@ -1588,6 +1840,19 @@ _dynamic_imports: typing.Dict[str, str] = {
     "IeCt1GenerateDeclarationsResponseCriteria": ".ie_ct1generate_declarations_response_criteria",
     "IeCt1GenerateDeclarationsResponseCt1": ".ie_ct1generate_declarations_response_ct1",
     "IeCt1GenerateDeclarationsResponseFieldsItem": ".ie_ct1generate_declarations_response_fields_item",
+    "IeRtdGenerateDeclarationsResponse": ".ie_rtd_generate_declarations_response",
+    "IeRtdGenerateDeclarationsResponseCounts": ".ie_rtd_generate_declarations_response_counts",
+    "IeRtdGenerateDeclarationsResponseRowsItem": ".ie_rtd_generate_declarations_response_rows_item",
+    "IeRtdGenerateDeclarationsResponseTotals": ".ie_rtd_generate_declarations_response_totals",
+    "ItInailAutoliquidazioneComputeDeclarationsRequestPositionsItem": ".it_inail_autoliquidazione_compute_declarations_request_positions_item",
+    "ItInailAutoliquidazioneComputeDeclarationsResponse": ".it_inail_autoliquidazione_compute_declarations_response",
+    "ItInailAutoliquidazioneComputeDeclarationsResponseF24Item": ".it_inail_autoliquidazione_compute_declarations_response_f24item",
+    "ItInailAutoliquidazioneComputeDeclarationsResponseInstalmentsItem": ".it_inail_autoliquidazione_compute_declarations_response_instalments_item",
+    "ItInailAutoliquidazioneComputeDeclarationsResponsePositionsItem": ".it_inail_autoliquidazione_compute_declarations_response_positions_item",
+    "ItInailAutoliquidazioneComputeDeclarationsResponseRata": ".it_inail_autoliquidazione_compute_declarations_response_rata",
+    "ItInailAutoliquidazioneComputeDeclarationsResponseRegolazione": ".it_inail_autoliquidazione_compute_declarations_response_regolazione",
+    "ItInailAutoliquidazioneF24DeclarationsRequestPositionsItem": ".it_inail_autoliquidazione_f24declarations_request_positions_item",
+    "ItInailAutoliquidazioneF24DeclarationsResponse": ".it_inail_autoliquidazione_f24declarations_response",
     "ItSdiPurchasePreviewDeclarationsRequestTipoDocumento": ".it_sdi_purchase_preview_declarations_request_tipo_documento",
     "ItSdiPurchasePreviewDeclarationsResponse": ".it_sdi_purchase_preview_declarations_response",
     "ItSdiPurchasePreviewDeclarationsResponseTipoDocumento": ".it_sdi_purchase_preview_declarations_response_tipo_documento",
@@ -1596,6 +1861,24 @@ _dynamic_imports: typing.Dict[str, str] = {
     "ItSdiPurchaseSendDeclarationsResponseStatus": ".it_sdi_purchase_send_declarations_response_status",
     "ItSdiPurchaseSendDeclarationsResponseTipoDocumento": ".it_sdi_purchase_send_declarations_response_tipo_documento",
     "ItSdiPurchaseSendDeclarationsResponseTransport": ".it_sdi_purchase_send_declarations_response_transport",
+    "ItTfrAccrualComputeDeclarationsResponse": ".it_tfr_accrual_compute_declarations_response",
+    "ItTfrAccrualComputeDeclarationsResponseRowsItem": ".it_tfr_accrual_compute_declarations_response_rows_item",
+    "ItTfrAccrualComputeDeclarationsResponseRowsItemDestination": ".it_tfr_accrual_compute_declarations_response_rows_item_destination",
+    "ItTfrAccrualComputeDeclarationsResponseRowsItemLeftOutItem": ".it_tfr_accrual_compute_declarations_response_rows_item_left_out_item",
+    "ItTfrAccrualComputeDeclarationsResponseTotals": ".it_tfr_accrual_compute_declarations_response_totals",
+    "ItTfrAccrualPostDeclarationsResponse": ".it_tfr_accrual_post_declarations_response",
+    "ItTfrAccrualPostDeclarationsResponseRowsItem": ".it_tfr_accrual_post_declarations_response_rows_item",
+    "ItTfrAccrualPostDeclarationsResponseRowsItemDestination": ".it_tfr_accrual_post_declarations_response_rows_item_destination",
+    "ItTfrAccrualPostDeclarationsResponseRowsItemLeftOutItem": ".it_tfr_accrual_post_declarations_response_rows_item_left_out_item",
+    "ItTfrAccrualPostDeclarationsResponseTotals": ".it_tfr_accrual_post_declarations_response_totals",
+    "ItTfrRevaluationComputeDeclarationsRequestFundsItem": ".it_tfr_revaluation_compute_declarations_request_funds_item",
+    "ItTfrRevaluationComputeDeclarationsResponse": ".it_tfr_revaluation_compute_declarations_response",
+    "ItTfrRevaluationComputeDeclarationsResponseRowsItem": ".it_tfr_revaluation_compute_declarations_response_rows_item",
+    "ItTfrRevaluationComputeDeclarationsResponseTotals": ".it_tfr_revaluation_compute_declarations_response_totals",
+    "ItTfrRevaluationPostDeclarationsRequestFundsItem": ".it_tfr_revaluation_post_declarations_request_funds_item",
+    "ItTfrRevaluationPostDeclarationsResponse": ".it_tfr_revaluation_post_declarations_response",
+    "ItTfrRevaluationPostDeclarationsResponseRowsItem": ".it_tfr_revaluation_post_declarations_response_rows_item",
+    "ItTfrRevaluationPostDeclarationsResponseTotals": ".it_tfr_revaluation_post_declarations_response_totals",
     "LiLohndeklarationGenerateDeclarationsResponse": ".li_lohndeklaration_generate_declarations_response",
     "LiLohndeklarationGenerateDeclarationsResponseRowsItem": ".li_lohndeklaration_generate_declarations_response_rows_item",
     "LiLohnlistenGenerateDeclarationsResponse": ".li_lohnlisten_generate_declarations_response",
@@ -1668,6 +1951,9 @@ _dynamic_imports: typing.Dict[str, str] = {
     "LtSdGenerateDeclarationsResponse": ".lt_sd_generate_declarations_response",
     "LtSdGenerateDeclarationsResponseRowsItem": ".lt_sd_generate_declarations_response_rows_item",
     "LtSdGenerateDeclarationsResponseType": ".lt_sd_generate_declarations_response_type",
+    "LvEmployeeNoticeGenerateDeclarationsRequestEndCode": ".lv_employee_notice_generate_declarations_request_end_code",
+    "LvEmployeeNoticeGenerateDeclarationsRequestEvent": ".lv_employee_notice_generate_declarations_request_event",
+    "LvEmployeeNoticeGenerateDeclarationsResponse": ".lv_employee_notice_generate_declarations_response",
     "MtAnnualReturnGenerateDeclarationsResponse": ".mt_annual_return_generate_declarations_response",
     "MtAnnualReturnGenerateDeclarationsResponseFieldsItem": ".mt_annual_return_generate_declarations_response_fields_item",
     "MtAnnualReturnGenerateDeclarationsResponseMembersItem": ".mt_annual_return_generate_declarations_response_members_item",
@@ -1675,6 +1961,8 @@ _dynamic_imports: typing.Dict[str, str] = {
     "MtCompanyTaxGenerateDeclarationsResponse": ".mt_company_tax_generate_declarations_response",
     "MtCompanyTaxGenerateDeclarationsResponseFieldsItem": ".mt_company_tax_generate_declarations_response_fields_item",
     "MtCompanyTaxGenerateDeclarationsResponseTaxAccountsItem": ".mt_company_tax_generate_declarations_response_tax_accounts_item",
+    "MtFs7GenerateDeclarationsResponse": ".mt_fs7generate_declarations_response",
+    "MtFs7GenerateDeclarationsResponseBoxesItem": ".mt_fs7generate_declarations_response_boxes_item",
     "PlCit8GenerateDeclarationsResponse": ".pl_cit8generate_declarations_response",
     "PlCit8GenerateDeclarationsResponsePositionsItem": ".pl_cit8generate_declarations_response_positions_item",
     "PlIntrastatGenerateDeclarationsRequestFlow": ".pl_intrastat_generate_declarations_request_flow",
@@ -1835,6 +2123,8 @@ _dynamic_imports: typing.Dict[str, str] = {
     "UsWorkweeksListDeclarationsResponseEmployeesItem": ".us_workweeks_list_declarations_response_employees_item",
     "UsWorkweeksListDeclarationsResponseEmployeesItemWeeksItem": ".us_workweeks_list_declarations_response_employees_item_weeks_item",
     "UsWorkweeksListDeclarationsResponseEmployeesItemWeeksItemDaysItem": ".us_workweeks_list_declarations_response_employees_item_weeks_item_days_item",
+    "VatProrataAdjustmentGetDeclarationsResponse": ".vat_prorata_adjustment_get_declarations_response",
+    "VatProrataAdjustmentPostDeclarationsResponse": ".vat_prorata_adjustment_post_declarations_response",
     "VatProrataGetDeclarationsResponse": ".vat_prorata_get_declarations_response",
     "VatProrataListDeclarationsResponse": ".vat_prorata_list_declarations_response",
     "VatProrataListDeclarationsResponseRowsItem": ".vat_prorata_list_declarations_response_rows_item",
@@ -1992,9 +2282,56 @@ __all__ = [
     "DeReturnsGenerateDeclarationsResponse",
     "DkSelskabsskatGenerateDeclarationsResponse",
     "DkSelskabsskatGenerateDeclarationsResponseFieldsItem",
+    "EeEmploymentRegisterGenerateDeclarationsRequestEvent",
+    "EeEmploymentRegisterGenerateDeclarationsResponse",
     "EeEmploymentRegisterSendDeclarationsRequestEvent",
     "EeEmploymentRegisterSendDeclarationsResponse",
     "EeEmploymentRegisterSendDeclarationsResponseState",
+    "EeTsdAnnexesGetDeclarationsResponse",
+    "EeTsdAnnexesGetDeclarationsResponseAnnexes",
+    "EeTsdAnnexesGetDeclarationsResponseAnnexesAnnex4Item",
+    "EeTsdAnnexesGetDeclarationsResponseAnnexesAnnex5Item",
+    "EeTsdAnnexesGetDeclarationsResponseAnnexesAnnex6",
+    "EeTsdAnnexesGetDeclarationsResponseAnnexesAnnex6FieldsItem",
+    "EeTsdAnnexesGetDeclarationsResponseAnnexesAnnex6ReductionsItem",
+    "EeTsdAnnexesGetDeclarationsResponseAnnexesAnnex6RelatedPartiesItem",
+    "EeTsdAnnexesGetDeclarationsResponseInput",
+    "EeTsdAnnexesGetDeclarationsResponseInputAnnex4",
+    "EeTsdAnnexesGetDeclarationsResponseInputAnnex4StockOption",
+    "EeTsdAnnexesGetDeclarationsResponseInputAnnex4StockOptionEvent",
+    "EeTsdAnnexesGetDeclarationsResponseInputAnnex5",
+    "EeTsdAnnexesGetDeclarationsResponseInputAnnex5Limit",
+    "EeTsdAnnexesGetDeclarationsResponseInputAnnex6",
+    "EeTsdAnnexesGetDeclarationsResponseInputAnnex6ReductionsItem",
+    "EeTsdAnnexesGetDeclarationsResponseInputAnnex6RelatedPartiesItem",
+    "EeTsdAnnexesGetDeclarationsResponseInputAnnex6RelatedPartiesItemTypeCode",
+    "EeTsdAnnexesSetDeclarationsRequestAnnex4",
+    "EeTsdAnnexesSetDeclarationsRequestAnnex4StockOption",
+    "EeTsdAnnexesSetDeclarationsRequestAnnex4StockOptionEvent",
+    "EeTsdAnnexesSetDeclarationsRequestAnnex5",
+    "EeTsdAnnexesSetDeclarationsRequestAnnex5Limit",
+    "EeTsdAnnexesSetDeclarationsRequestAnnex6",
+    "EeTsdAnnexesSetDeclarationsRequestAnnex6ReductionsItem",
+    "EeTsdAnnexesSetDeclarationsRequestAnnex6RelatedPartiesItem",
+    "EeTsdAnnexesSetDeclarationsRequestAnnex6RelatedPartiesItemTypeCode",
+    "EeTsdAnnexesSetDeclarationsResponse",
+    "EeTsdAnnexesSetDeclarationsResponseAnnexes",
+    "EeTsdAnnexesSetDeclarationsResponseAnnexesAnnex4Item",
+    "EeTsdAnnexesSetDeclarationsResponseAnnexesAnnex5Item",
+    "EeTsdAnnexesSetDeclarationsResponseAnnexesAnnex6",
+    "EeTsdAnnexesSetDeclarationsResponseAnnexesAnnex6FieldsItem",
+    "EeTsdAnnexesSetDeclarationsResponseAnnexesAnnex6ReductionsItem",
+    "EeTsdAnnexesSetDeclarationsResponseAnnexesAnnex6RelatedPartiesItem",
+    "EeTsdAnnexesSetDeclarationsResponseInput",
+    "EeTsdAnnexesSetDeclarationsResponseInputAnnex4",
+    "EeTsdAnnexesSetDeclarationsResponseInputAnnex4StockOption",
+    "EeTsdAnnexesSetDeclarationsResponseInputAnnex4StockOptionEvent",
+    "EeTsdAnnexesSetDeclarationsResponseInputAnnex5",
+    "EeTsdAnnexesSetDeclarationsResponseInputAnnex5Limit",
+    "EeTsdAnnexesSetDeclarationsResponseInputAnnex6",
+    "EeTsdAnnexesSetDeclarationsResponseInputAnnex6ReductionsItem",
+    "EeTsdAnnexesSetDeclarationsResponseInputAnnex6RelatedPartiesItem",
+    "EeTsdAnnexesSetDeclarationsResponseInputAnnex6RelatedPartiesItemTypeCode",
     "EsVerifactuDeclaracionResponsableDeclarationsResponse",
     "EuDac7PreviewDeclarationsResponse",
     "EuDac7PreviewDeclarationsResponseSellersItem",
@@ -2020,6 +2357,13 @@ __all__ = [
     "EuOssComputeDeclarationsResponseRowsItem",
     "EuOssComputeDeclarationsResponseRowsItemRateType",
     "EuOssComputeDeclarationsResponseTotals",
+    "EuOssNonUnionComputeDeclarationsRequestMemberStateOfIdentification",
+    "EuOssNonUnionComputeDeclarationsResponse",
+    "EuOssNonUnionComputeDeclarationsResponseCorrectionsItem",
+    "EuOssNonUnionComputeDeclarationsResponseCorrectionsTotal",
+    "EuOssNonUnionComputeDeclarationsResponseRowsItem",
+    "EuOssNonUnionComputeDeclarationsResponseRowsItemRateType",
+    "EuOssNonUnionComputeDeclarationsResponseTotals",
     "EuOwnGoodsTransfersComputeDeclarationsResponse",
     "EuOwnGoodsTransfersComputeDeclarationsResponseRowsItem",
     "EuOwnGoodsTransfersComputeDeclarationsResponseTransfersItem",
@@ -2255,6 +2599,19 @@ __all__ = [
     "IeCt1GenerateDeclarationsResponseCriteria",
     "IeCt1GenerateDeclarationsResponseCt1",
     "IeCt1GenerateDeclarationsResponseFieldsItem",
+    "IeRtdGenerateDeclarationsResponse",
+    "IeRtdGenerateDeclarationsResponseCounts",
+    "IeRtdGenerateDeclarationsResponseRowsItem",
+    "IeRtdGenerateDeclarationsResponseTotals",
+    "ItInailAutoliquidazioneComputeDeclarationsRequestPositionsItem",
+    "ItInailAutoliquidazioneComputeDeclarationsResponse",
+    "ItInailAutoliquidazioneComputeDeclarationsResponseF24Item",
+    "ItInailAutoliquidazioneComputeDeclarationsResponseInstalmentsItem",
+    "ItInailAutoliquidazioneComputeDeclarationsResponsePositionsItem",
+    "ItInailAutoliquidazioneComputeDeclarationsResponseRata",
+    "ItInailAutoliquidazioneComputeDeclarationsResponseRegolazione",
+    "ItInailAutoliquidazioneF24DeclarationsRequestPositionsItem",
+    "ItInailAutoliquidazioneF24DeclarationsResponse",
     "ItSdiPurchasePreviewDeclarationsRequestTipoDocumento",
     "ItSdiPurchasePreviewDeclarationsResponse",
     "ItSdiPurchasePreviewDeclarationsResponseTipoDocumento",
@@ -2263,6 +2620,24 @@ __all__ = [
     "ItSdiPurchaseSendDeclarationsResponseStatus",
     "ItSdiPurchaseSendDeclarationsResponseTipoDocumento",
     "ItSdiPurchaseSendDeclarationsResponseTransport",
+    "ItTfrAccrualComputeDeclarationsResponse",
+    "ItTfrAccrualComputeDeclarationsResponseRowsItem",
+    "ItTfrAccrualComputeDeclarationsResponseRowsItemDestination",
+    "ItTfrAccrualComputeDeclarationsResponseRowsItemLeftOutItem",
+    "ItTfrAccrualComputeDeclarationsResponseTotals",
+    "ItTfrAccrualPostDeclarationsResponse",
+    "ItTfrAccrualPostDeclarationsResponseRowsItem",
+    "ItTfrAccrualPostDeclarationsResponseRowsItemDestination",
+    "ItTfrAccrualPostDeclarationsResponseRowsItemLeftOutItem",
+    "ItTfrAccrualPostDeclarationsResponseTotals",
+    "ItTfrRevaluationComputeDeclarationsRequestFundsItem",
+    "ItTfrRevaluationComputeDeclarationsResponse",
+    "ItTfrRevaluationComputeDeclarationsResponseRowsItem",
+    "ItTfrRevaluationComputeDeclarationsResponseTotals",
+    "ItTfrRevaluationPostDeclarationsRequestFundsItem",
+    "ItTfrRevaluationPostDeclarationsResponse",
+    "ItTfrRevaluationPostDeclarationsResponseRowsItem",
+    "ItTfrRevaluationPostDeclarationsResponseTotals",
     "LiLohndeklarationGenerateDeclarationsResponse",
     "LiLohndeklarationGenerateDeclarationsResponseRowsItem",
     "LiLohnlistenGenerateDeclarationsResponse",
@@ -2335,6 +2710,9 @@ __all__ = [
     "LtSdGenerateDeclarationsResponse",
     "LtSdGenerateDeclarationsResponseRowsItem",
     "LtSdGenerateDeclarationsResponseType",
+    "LvEmployeeNoticeGenerateDeclarationsRequestEndCode",
+    "LvEmployeeNoticeGenerateDeclarationsRequestEvent",
+    "LvEmployeeNoticeGenerateDeclarationsResponse",
     "MtAnnualReturnGenerateDeclarationsResponse",
     "MtAnnualReturnGenerateDeclarationsResponseFieldsItem",
     "MtAnnualReturnGenerateDeclarationsResponseMembersItem",
@@ -2342,6 +2720,8 @@ __all__ = [
     "MtCompanyTaxGenerateDeclarationsResponse",
     "MtCompanyTaxGenerateDeclarationsResponseFieldsItem",
     "MtCompanyTaxGenerateDeclarationsResponseTaxAccountsItem",
+    "MtFs7GenerateDeclarationsResponse",
+    "MtFs7GenerateDeclarationsResponseBoxesItem",
     "PlCit8GenerateDeclarationsResponse",
     "PlCit8GenerateDeclarationsResponsePositionsItem",
     "PlIntrastatGenerateDeclarationsRequestFlow",
@@ -2502,6 +2882,8 @@ __all__ = [
     "UsWorkweeksListDeclarationsResponseEmployeesItem",
     "UsWorkweeksListDeclarationsResponseEmployeesItemWeeksItem",
     "UsWorkweeksListDeclarationsResponseEmployeesItemWeeksItemDaysItem",
+    "VatProrataAdjustmentGetDeclarationsResponse",
+    "VatProrataAdjustmentPostDeclarationsResponse",
     "VatProrataGetDeclarationsResponse",
     "VatProrataListDeclarationsResponse",
     "VatProrataListDeclarationsResponseRowsItem",

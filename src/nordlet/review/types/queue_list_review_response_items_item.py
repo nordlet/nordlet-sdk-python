@@ -11,7 +11,7 @@ class QueueListReviewResponseItemsItem(UniversalBaseModel):
     kind: QueueListReviewResponseItemsItemKind
     id: str = pydantic.Field()
     """
-    The id of the draft, bank transaction or partner, or the key of the filing
+    The id of the draft, bank transaction, partner or file, or the key of the filing
     """
 
     message: str
